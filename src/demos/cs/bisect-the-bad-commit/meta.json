@@ -1,7 +1,7 @@
 {
   "slug": "bisect-the-bad-commit",
   "title": "Which of 1,000 versions broke it?",
-  "hook": "Version 1 works, version 1,000 doesn't. Do you really have to test them one by one?",
+  "hook": "Version 1 works, version 1,000 doesn't. How many tests find the first bad one?",
   "domain": "cs",
   "concept": "binary-search",
   "status": "review",
@@ -25,30 +25,24 @@
   "claims": [
     {
       "id": "cs.bisect-the-bad-commit.c1",
-      "text": "Testing the middle of the suspects rules out half of them whichever answer comes back: 999 → 500 → 250 → 125 → 63 → 32 → 16 → 8 → 4 → 2 → 1.",
+      "text": "Testing the middle of the suspects rules out half of them whichever answer comes back; the stage lists the suspects after each test; the stage lists the suspects after each test, for example 999, 500, 250, 125, 63, 32, 16, 8, 4, 2, 1 in the worst case.",
       "support": "simulation",
       "source": "Demo.tsx testAt()/mid() on the stage's fixed first-broken version v737 (chosen only as a fixed value; 974 of the 999 possible positions also take 10 tests, 25 take 9). Builder re-ran the halving in Node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.bisect-the-bad-commit.c2",
-      "text": "Halving 999 suspects down to 1 takes at most 10 tests, because 2^9 = 512 is too few and 2^10 = 1,024 is enough.",
+      "text": "Halving 999 suspects down to 1 takes at most 10 tests, wherever the first broken version is: 9 halvings only handle 512 suspects, and 10 halvings handle 1,024.",
       "support": "derivation",
       "source": "ceil(log2 999) = 10 (Demo.tsx WORST). Builder checked over all 999 positions in Node: max 10 tests.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.bisect-the-bad-commit.c3",
-      "text": "Testing one by one from v2 would have taken 736 tests to reach v737.",
+      "text": "Testing one by one from v2 could take up to 998 tests.",
       "support": "derivation",
       "source": "v2 to v737 inclusive is 737 - 1 = 736 versions (Demo.tsx BAD - 1).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.bisect-the-bad-commit.c4",
@@ -99,12 +93,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:binary-search",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

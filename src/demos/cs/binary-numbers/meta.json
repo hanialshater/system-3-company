@@ -36,12 +36,10 @@
     },
     {
       "id": "cs.binary-numbers.c2",
-      "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255.",
+      "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255. With all eight on the stage says: with 0, that is 256 numbers.",
       "support": "derivation",
       "source": "2^8 = 256 patterns; uniqueness of base-2 positional representation. Knuth, TAOCP Vol. 2, 4.1 (Positional number systems).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "status": "unverified"
     },
     {
       "id": "cs.binary-numbers.c3",
@@ -54,21 +52,17 @@
     },
     {
       "id": "cs.binary-numbers.c4",
-      "text": "Adding one more switch doubles how many numbers you can name.",
+      "text": "A ninth switch would be worth 256, one more than all eight together can make.",
       "support": "derivation",
       "source": "2^(k+1) = 2 * 2^k: each old pattern appears once with the new switch off and once with it on.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "status": "unverified"
     },
     {
       "id": "cs.binary-numbers.c5",
-      "text": "A byte is 8 bits, so it holds 256 values (0 to 255); 32 bits give 4,294,967,296 values, over four billion.",
+      "text": "A byte is 8 bits; counting with only on and off switches is called binary, and each switch is a bit.",
       "support": "convention",
       "source": "Byte = 8 bits (octet) per IEC 80000-13:2008; 2^32 = 4,294,967,296 (arithmetic).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "status": "unverified"
     },
     {
       "id": "cs.binary-numbers.c6",
@@ -122,12 +116,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:binary-numbers",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

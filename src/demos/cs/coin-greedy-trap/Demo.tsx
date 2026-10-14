@@ -51,6 +51,7 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
   const [showGreedy, setShowGreedy] = useState(false);
   const [showBest, setShowBest] = useState(false);
   const [own, setOwn] = useState<Record<number, number>>({}); // target -> fewest coins the learner used
+  const [seen, setSeen] = useState<number[]>([]); // targets whose greedy answer the learner has seen
   const [events, setEvents] = useState({ greedy: false, best: false });
 
   const sum = tray.reduce((a, b) => a + b, 0);
@@ -61,11 +62,11 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You have plenty of coins worth 1, 3 and 4. What is the fewest coins that add up to exactly 6?",
+        question: "A cashier has plenty of coins worth 1, 3 and 4, and always hands over the biggest coin that still fits. How many coins does the cashier use to make exactly 6?",
         options: ["2", "3", "4"],
-        answer: 0,
+        answer: 1,
       }}
-      exploreHint="Make 6 with as few coins as you can. Then compare with greedy."
+      exploreHint="Make 6 with as few coins as you can. Then compare with the cashier (greedy), then try 8 and 10."
       minInteractions={2}
       reveal={() => (
         <>
@@ -75,9 +76,10 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
             <strong>2</strong>. Taking the 4 first leaves 2, which only 1s can fill.
           </p>
           <p>
-            Greedy is not always wrong: for 8 it takes 4 + 4, the best possible. It fails when an early grab blocks a
-            better combination later; 10 is another trap (4 + 4 + 1 + 1 against 4 + 3 + 3). With everyday coins like
-            1, 5, 10 and 25, greedy happens to be always right.
+            Greedy means taking the biggest coin that fits each time.
+            {seen.includes(8) ? " For 8 it took 4 + 4, the best possible, so it is not always wrong." : ""}
+            {seen.includes(10) ? " For 10 it took 4 + 4 + 1 + 1 against 4 + 3 + 3: another trap." : ""}{" "}
+            It fails when an early grab blocks a better combination later.
           </p>
           <p className="muted">The best-looking step is not always part of the best answer.</p>
         </>
@@ -103,12 +105,13 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
           if (locked) return;
           setTarget(t);
           setTray([]);
-          setShowGreedy(false);
-          setShowBest(false);
+          // keep the rows open: the new target's answers appear at once
+          if (showGreedy) setSeen((x) => (x.includes(t) ? x : [...x, t]));
         };
         const runGreedy = () => {
           if (locked) return;
           setShowGreedy(true);
+          setSeen((x) => (x.includes(target) ? x : [...x, target]));
           flag("greedy", target);
           if (own[target] === fewest(target).length) flag("best", target);
         };
@@ -138,7 +141,7 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
               </div>
               <div className={`${s.line} ${showGreedy ? "" : s.hidden}`}>
                 <span className={s.who}>Greedy</span>
-                {showGreedy ? <Coins list={g} /> : <span className="muted small">biggest coin that fits, each time</span>}
+                {showGreedy ? <Coins list={g} /> : <span className="muted small">the biggest coin that fits, each time</span>}
                 <span className={`${s.count} ${showGreedy && g.length > b.length ? s.bad : ""}`}>{showGreedy ? g.length : ""}</span>
               </div>
               <div className={`${s.line} ${showBest ? "" : s.hidden}`}>
@@ -166,7 +169,7 @@ export default function CoinGreedyTrap({ slug }: { slug: string }) {
             </Row>
             <Row>
               <Control className="active" disabled={locked || showGreedy} onClick={runGreedy}>
-                Greedy&apos;s way
+                Cashier&apos;s way
               </Control>
               <Control disabled={locked || showBest || !showGreedy} onClick={runBest}>
                 Fewest possible

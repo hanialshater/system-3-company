@@ -23,3 +23,10 @@ QA: contract passes phone + desktop (local, 2026-10-13).
 ## v3 (revision 2026-10-13)
 
 - Review: reveal never unlocked on the QA path (Middles to the end animated for ~3.5 s, New number disabled meanwhile). Fix: 'Middles to the end' now plays all remaining middle guesses at once and the message shows the whole halving chain; ten pre-drawn dots (which announced the answer) now appear only as guesses are used.
+
+## Revision v4 (wave C, learner review)
+
+- v3 review showed no reveal; the v3 fix (Middles to the end plays all at once) passes QA here. Added the missing bad-guess contrast: a guess that keeps more than half now says 'Weak guess: the middle always rules out at least half.' (c5, unverified).
+- Not changed: 'Pick the middle' still does the key step on purpose, so the learner sees the halving chain.
+
+All changed claims are unverified, awaiting a fact-checker.

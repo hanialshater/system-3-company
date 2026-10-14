@@ -64,12 +64,10 @@
     },
     {
       "id": "cs.binary-search.c5",
-      "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes.",
+      "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes; the stage calls a guess that keeps more than half a weak guess.",
       "support": "derivation",
       "source": "With m candidates and the middle one guessed, a wrong answer leaves at most floor(m/2): the lesson's mid = floor((lo+hi)/2) leaves lo..mid-1 or mid+1..hi, sizes mid-lo and hi-mid, both <= floor(m/2) (checked for every m up to 2000 in artifacts/scratch/fc2-binary-search.mjs). Seen in the reveal (\"rules out half of it, whichever way the answer goes\"). The guess itself counts as ruled out. Added by fact-checker 2026-10-12; needs an independent check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.binary-search.c6",
@@ -113,12 +111,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:binary-search",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

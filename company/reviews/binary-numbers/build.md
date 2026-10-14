@@ -19,3 +19,12 @@ Key states (milestones, `minInteractions` = 2): `all-on` (the number reaches 255
 Trade-off for the QA contract: the contract presses the eight switches in order (which reaches 255) and then +1 (255 → 0, a full ripple), so both milestones are reachable on its path. A learner who only flips some switches cannot open the reveal until they reach 255 and do one full ripple. The "All off" button does not count toward anything.
 
 Not changed: the hook ("How far can eight of them count?"), which already fits the new question.
+
+## Revision v3 (wave C, learner review)
+
+- Count of patterns never visible: with all eight on the stage says 'With 0, that is 256 numbers.' (c2).
+- Told-only 512 and four billion removed from the reveal; claim c4 and c5 rewritten to what is shown.
+- Bit, byte and binary now defined in the closing line (c5).
+- Not changed: the carry from 127 is still optional (the QA path carries from 255); the reveal names whichever carry the learner saw.
+
+All changed claims are unverified, awaiting a fact-checker.

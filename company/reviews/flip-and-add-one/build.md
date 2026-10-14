@@ -5,3 +5,12 @@
 - Numbers: options are bitsOf(flip(5)), bitsOf(NEG) and bitsOf(128 | 5) from Demo.tsx; the reveal's −6, −5, 123 and −123 come from signed(). Brief answer (B, 11111011) re-computed in Node and held.
 - Open risk: the bit toggles come after the key buttons in the DOM (so QA reaches the key state first); the QA path then taps all 8 bits, so the final explore screenshot shows an arbitrary pattern (00000100) rather than −5. The reveal quotes only the learner's flip/+1/add steps from the log.
 - After screenshots: grid fits a phone; no further changes.
+
+## Revision v2 (wave C, learner review)
+
+- Bit, flip and the -128 column undefined: the question defines a bit and flipping (c5); a line under the grid says the left bit is worth -128 and shows '11111011 = -128 + 123 = -5' (c1).
+- Subtraction payoff was told: a new 'Add 9 to it' button shows 9 + 11111011 = 00000100 = 4 (c3); the reveal quotes it only if the learner did it.
+- Stage vs reveal mismatch from bit toggles: the line says 'Tap a bit to try your own'; the reveal quotes only the logged steps.
+- Hook no longer asks about the minus-sign bit. Not changed: the minus-sign-bit counterexample stays in the reveal as told (c4, verified).
+
+All changed claims are unverified, awaiting a fact-checker.

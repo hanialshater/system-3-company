@@ -42,12 +42,10 @@
     },
     {
       "id": "cs.blocked-cell-routes.c3",
-      "text": "Every route into a cell arrives from the left or from above, so its count is those two added; a blocked cell holds 0.",
+      "text": "Every route into a cell arrives from the left or from above, so its count is those two added; a blocked cell holds 0; each edge cell has only one way in, so it holds 1 route.",
       "support": "derivation",
       "source": "The last move into (r, c) is either right from (r, c−1) or down from (r−1, c); these route sets are disjoint, so N(r,c) = N(r,c−1) + N(r−1,c). A blocked cell has no routes into it.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.blocked-cell-routes.c4",
@@ -87,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:dp-grid-paths",
     "prerequisites": [
@@ -96,5 +94,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

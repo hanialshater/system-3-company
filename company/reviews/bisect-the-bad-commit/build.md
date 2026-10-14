@@ -7,3 +7,12 @@
 - Deviation from brief: no tapping arbitrary versions on the strip (1,000 versions on a 300 px strip is 3 per pixel on a phone); the learner chooses middle vs next instead.
 - The brief's "1000 -> 500" is 999 -> 500 here: suspects are v2..v1000 because v1 is known to work.
 - After screenshots: "Test the next one" kept a stale version number once found; the label now drops it.
+
+## Revision v2 (wave C, learner review)
+
+- Hook leaked '1,000 is not the answer': now 'How many tests find the first bad one?'.
+- Reveal quoted a chain the stage skipped: the stage now prints the suspects chain (e.g. 999 → 500 → ...) under the strip after any test or after 'Keep halving to the end'.
+- 736 never displayed and powers of two unexplained: the reveal says 'up to 998 tests' and '9 halvings only handle 512 suspects, 10 handle 1,024'; c1, c2, c3 rewritten.
+- Worst case vs one run: the reveal says 'wherever the first broken version is'.
+
+All changed claims are unverified, awaiting a fact-checker.

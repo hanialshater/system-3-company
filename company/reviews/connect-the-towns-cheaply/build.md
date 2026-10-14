@@ -6,3 +6,11 @@
 - Retitled: "Cheapest cables to join four towns" (the slug states the task, not the answer).
 - Design choice: enforcing cheapest-first leaves the learner a choice only between ties, and refusing loops. The lesson is about trusting the rule, not finding it. A free-order variant would let a learner see a 5 or 7 network; flagged as an option for learning-designer.
 - After screenshots: reads on phone. The diagonal cost labels sit nearer their first town to avoid the crossing point.
+
+## Revision v2 (wave C, learner review)
+
+- Greedy was never at risk: costs changed to AB 1, BC 2, AC 2, CD 3, BD 4, AD 5. The third-cheapest cable (AC) closes a loop mid-build and is refused, so the total is 6, not the tempting 5 (now an option). c1 to c3 rewritten.
+- Hook assumed the coins lesson: now 'Should you always lay the cheapest cable first?'; the 'unlike coins' sentence is gone (c5).
+- Loop defined on the stage message. Clipping left to the kit.
+
+All changed claims are unverified, awaiting a fact-checker.

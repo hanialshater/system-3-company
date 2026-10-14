@@ -1,7 +1,7 @@
 {
   "slug": "back-button-stack",
   "title": "Where does Back take you?",
-  "hook": "Back, back, then a new page. Then Back again. You might not land where you expect.",
+  "hook": "Back, back, then a new page. Where does Back take you now?",
   "domain": "cs",
   "concept": "stack-and-queue",
   "status": "review",
@@ -35,30 +35,24 @@
     },
     {
       "id": "cs.back-button-stack.c2",
-      "text": "After going back, the later pages are kept for Forward until you visit a new page, which throws them away.",
+      "text": "After going back, the later pages stay in the pile, marked ahead, until you visit a new page, which throws them away.",
       "support": "source",
       "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.back-button-stack.c3",
-      "text": "A stack gives back the last thing added first (last in, first out); a queue gives back the first thing added first (first in, first out), like a line at a till.",
+      "text": "A pile where the last page added is the first one you get back is called a stack (last in, first out).",
       "support": "source",
       "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.back-button-stack.c4",
-      "text": "The stage models history as one pile and has no Forward button; it shows forward pages as dashed entries above the current page.",
+      "text": "The stage models history as one pile and has no Forward button; it marks pages above the current page as ahead and the page just below it as where Back goes.",
       "support": "convention",
       "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,12 +76,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "cs:stack-and-queue",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

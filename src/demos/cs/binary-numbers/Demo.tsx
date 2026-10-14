@@ -51,10 +51,10 @@ export default function BinaryNumbers({ slug }: { slug: string }) {
           <p>
             Each switch is worth one more than all the switches to its right together: 128 = 127 + 1.{" "}
             {rippleFrom === 127
-              ? "That is why +1 from 127 flipped all eight. A ninth switch, worth 256, would double the count to 512."
-              : "That is why 255 + 1 rolled back to 0: it needs a ninth switch, worth 256, which would double the count to 512."}
+              ? "That is why +1 from 127 flipped all eight."
+              : "That is why 255 + 1 rolled back to 0: it needs a ninth switch, worth 256."}
           </p>
-          <p className="muted">That is binary. A computer byte is 8 such switches (bits); 32 bits name over four billion numbers.</p>
+          <p className="muted">Counting with only on and off switches is called binary, and each switch is a bit. A computer byte is 8 bits.</p>
         </>
       )}
     >
@@ -101,7 +101,7 @@ export default function BinaryNumbers({ slug }: { slug: string }) {
             : from !== null && flipCount > 1
               ? `${from} + 1 = ${n}: ${flipCount} switches flip, carrying left like 9 + 1 = 10.`
               : isAllOnesBelowTop(n) && top
-                ? `All ${parts.length} on = ${n}: one less than the next switch, ${top * 2}.`
+                ? `All ${parts.length} on = ${n}: one less than the next switch, ${top * 2}.${n === 255 ? " With 0, that is 256 numbers." : ""}`
                 : parts.length
                   ? parts.join(" + ")
                   : "All off = 0";

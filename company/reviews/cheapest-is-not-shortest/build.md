@@ -6,3 +6,11 @@
 - Retitled: the slug gives the answer; title "One road or three?".
 - Known weakness: the prediction is plain arithmetic (2+2+2 < 10), as briefed. The lesson's value is the settling procedure, not the surprise. Flag for learning-designer if reviewers find it too easy.
 - After screenshots: reads on phone. No changes.
+
+## Revision v2 (wave C, learner review)
+
+- Label and infinity undefined: the starting message says a label is the cheapest cost found so far and that the infinity sign means not reached yet (c5).
+- Safe-order reason was told: settling G now shows the later route back to S costing more than S's settled label (c3).
+- DISAGREE: 'make the prediction about the procedure'. The question tests whether the long way is cheaper; I judged a procedure question (which town is settled second) would be answerable by reading the smallest label. Left as is; the learner review's real complaint (arithmetic is easy) stands for the designer.
+
+All changed claims are unverified, awaiting a fact-checker.
