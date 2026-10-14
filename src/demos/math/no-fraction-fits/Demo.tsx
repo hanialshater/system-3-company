@@ -49,8 +49,9 @@ export default function NoFractionFits({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>No, never.</strong> In the {seen.length} values of q you tried, 2 × q² always fell between two squares, sometimes
-            off by only 1 (2 × 12² = {EX.t}, {EX.p}² = {EX.p * EX.p}). Near misses do not prove it; this does.
+            <strong>No, never.</strong> {seen.length <= 6 ? `For q = ${seen.join(", ")}` : `In the ${seen.length} values of q you tried`}, 2 × q² never
+            landed on a perfect square, and some misses were only 1 (2 × 12² = {EX.t}, {EX.p}² = {EX.p * EX.p}). Those near
+            misses can look like closing in, but close is not equal; this proves it.
           </p>
           <p>
             Suppose √2 = p/q in lowest terms. Then p² = 2q², so p² is even, so p is even: p = 2k. Then 4k² = 2q², so q² =
@@ -90,14 +91,14 @@ function Stage({
   return (
     <div className={s.wrap}>
       <p className={s.rule}>
-        p/q = √2 would need p² = 2 × q² exactly.
+        If p/q = √2, squaring gives p² = 2 × q². So: is 2 × q² ever a perfect square?
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`2 times ${q} squared is ${t}, between ${lo} squared and ${hi} squared`}>
         <line x1={X0} y1={LY} x2={X1} y2={LY} className={s.line} />
         {[lo, hi].map((v) => (
           <g key={v}>
             <line x1={xOf(v * v)} y1={LY - 10} x2={xOf(v * v)} y2={LY + 10} className={v === p ? s.sqNear : s.sq} />
-            <text x={xOf(v * v)} y={LY + 26} textAnchor="middle" className={v === p ? s.labNear : s.lab}>
+            <text x={xOf(v * v)} y={LY + 26} textAnchor={v === lo ? "start" : "end"} className={v === p ? s.labNear : s.lab}>
               {v}² = {v * v}
             </text>
           </g>
@@ -114,7 +115,11 @@ function Stage({
       </svg>
 
       <p className={s.caption} aria-live="polite">
-        {locked ? "Make a prediction to start." : `Nearest square ${p}² = ${p * p}: off by ${off}. Not equal.`}
+        {locked
+          ? "Make a prediction to start."
+          : off === 1
+            ? `Off by 1: ${p * p} is odd and ${t} is even. Not equal.`
+            : `Nearest square ${p}² = ${p * p}: off by ${off}. Not equal.`}
       </p>
 
       <Slider label="q (bottom of the fraction)" value={q} min={1} max={QMAX} disabled={locked} onChange={(v) => go(v, false)} />
@@ -122,8 +127,8 @@ function Stage({
         <Control disabled={locked} onClick={jump}>
           Next close call
         </Control>
-        <Readout label="Best p/q" value={locked ? "?" : `${p}/${q}`} />
-        <Readout label="(p/q)²" value={locked ? "?" : ((p * p) / (q * q)).toFixed(4)} />
+        <Readout label="Nearest p/q" value={locked ? "?" : `${p}/${q}`} />
+        <Readout label="(p/q)², want 2" value={locked ? "?" : ((p * p) / (q * q)).toFixed(4)} />
       </Row>
     </div>
   );

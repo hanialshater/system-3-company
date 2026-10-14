@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "math.paths-by-adding.c1",
-      "text": "Every shortest route into a corner arrives from the corner to its west or the corner to its south, so its count is the sum of those two counts; along the edges there is 1 route.",
+      "text": "Every shortest route into a corner arrives from the corner to its west or the corner to its south, so its count is the sum of those two counts; along the edges there is 1 route (1 from one side plus 0 from the other).",
       "support": "derivation",
       "source": "The last move of an east/north route is either east or north; the two sets of routes do not overlap. On an edge only one kind of move is possible.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "math.paths-by-adding.c2",
@@ -58,6 +56,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "text": "A city 3 blocks east by 3 blocks north has 4 x 4 corners (the dots); 20 shortest routes go from one corner to the opposite one.",
+      "support": "derivation",
+      "source": "Corners = (3 + 1)^2 = 16; routes = C(6, 3) = 20 (c2, c4). Question wording changed from '3-by-3 grid of blocks' to avoid confusion with the dots.",
+      "id": "math.paths-by-adding.c5",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -81,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:pascals-triangle",
     "prerequisites": [
@@ -90,5 +95,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

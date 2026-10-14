@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "math.plus-and-minus-chips.c1",
-      "text": "5 plus-chips and 3 minus-chips total 2: three pairs cancel and two plus-chips are left.",
+      "text": "3 plus-chips and 5 minus-chips total -2: three pairs cancel and two minus-chips are left.",
       "support": "derivation",
-      "source": "p plus-chips and m minus-chips total p - m; 5 - 3 = 2; recomputed with node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "3 - 5 = -2; stage cancels 3 pairs leaving 2 minus-chips. The total readout stays '?' until only one kind of chip is left.",
+      "status": "unverified"
     },
     {
       "id": "math.plus-and-minus-chips.c2",
@@ -42,12 +40,10 @@
     },
     {
       "id": "math.plus-and-minus-chips.c3",
-      "text": "A negative number is the opposite that cancels a positive one, like a debt against cash; so 5 + (-3) = 5 - 3 = 2.",
+      "text": "A negative number is the opposite that cancels a positive one, like a debt against cash: 5 minus-chips are not worth +5, and 3 + (-5) = 3 - 5 = -2.",
       "support": "convention",
       "source": "Integers as additive inverses (a + (-a) = 0, a + (-b) = a - b). The chip picture is the two-colour counter model used in teaching integers, e.g. Van de Walle, Karp and Bay-Williams, Elementary and Middle School Mathematics, chapter on integers.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -71,12 +67,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:negative-numbers",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

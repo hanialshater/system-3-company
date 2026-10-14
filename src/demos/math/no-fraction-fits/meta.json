@@ -57,6 +57,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "text": "When a square is off from 2 x q^2 by exactly 1, the square is odd and 2 x q^2 is even, so they cannot be equal.",
+      "support": "derivation",
+      "source": "2 x q^2 is always even; an integer within 1 of an even number that is not equal to it is odd. Shown in the stage caption for the off-by-1 close calls (q = 1, 2, 5, 12, 29, 70).",
+      "id": "math.no-fraction-fits.c5",
+      "status": "unverified"
+    },
+    {
+      "text": "If p/q = sqrt(2), squaring both sides gives p^2 = 2 x q^2.",
+      "support": "derivation",
+      "source": "(p/q)^2 = 2 multiplied by q^2; same fact as c2, now with the squaring step stated on the stage.",
+      "id": "math.no-fraction-fits.c6",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:sqrt2-irrational",
     "prerequisites": [
@@ -90,5 +104,6 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

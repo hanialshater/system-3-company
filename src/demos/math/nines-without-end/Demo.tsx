@@ -32,15 +32,14 @@ export default function NinesWithoutEnd({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "0.999… means nines forever, never stopping. How far is it from 1?",
-        options: ["A tiny positive gap", "Exactly zero", "It shrinks but never reaches zero"],
+        options: ["A tiny positive gap", "Exactly zero", "Never zero: always a little short"],
         answer: 1,
       }}
-      exploreHint="Add nines one at a time, then ask for all of them."
+      exploreHint="Add nines, at least four, then ask for all of them."
       reveal={() => (
         <>
           <p>
-            <strong>Exactly zero.</strong> Every nine you added cut the gap to a tenth: 0.1, 0.01, 0.001… and the zoom
-            never ran out. With all the nines, the gap has to be smaller than every one of those. No positive number
+            <strong>Exactly zero.</strong> {n > 1 ? `You added ${n - 1} more nine${n === 2 ? "" : "s"}, and the gap went from 0.1 down to ${gap(n)}: each nine cut it to a tenth, and the zoom never ran out.` : "Each nine cuts the gap to a tenth: 0.1, 0.01, 0.001…, and the zoom never runs out."} With all the nines, the gap has to be smaller than every one of those. No positive number
             is, so the gap is 0.
           </p>
           <p>
@@ -111,6 +110,9 @@ function Stage({
             <text x={X1 - 40} y={Y + 26} textAnchor="middle" className={s.zero}>
               gap 0
             </text>
+            <text x={X0} y={Y + 50} className={s.end}>
+              gaps you saw: 0.1 … {gap(n)}
+            </text>
           </>
         )}
       </svg>
@@ -119,7 +121,7 @@ function Stage({
         {locked
           ? "Make a prediction to start."
           : forever
-            ? "With all the nines, the gap is below 0.1, 0.01, 0.001… every one. Only 0 is."
+            ? "Is any positive number below 0.1, 0.01, 0.001… every one? No. Only 0 is."
             : n === 1
               ? "The red gap is the distance to 1. Add a nine to zoom in."
               : `Zoomed ×10 again. The gap is a tenth of the last one, still a full tenth of the view.`}
@@ -129,7 +131,10 @@ function Stage({
         <Control disabled={locked || forever || n >= MAXN} onClick={() => setN(n + 1)}>
           + one more 9
         </Control>
-        <Control disabled={locked || forever || n < 2} onClick={() => setForever(true)}>
+        <Control disabled={locked || forever || n >= MAXN} onClick={() => setN(Math.min(MAXN, n + 3))}>
+          + three more 9s
+        </Control>
+        <Control disabled={locked || forever || n < 4} onClick={() => setForever(true)}>
           All of them, forever
         </Control>
         <Control

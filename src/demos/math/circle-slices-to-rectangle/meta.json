@@ -34,12 +34,10 @@
     },
     {
       "id": "math.circle-slices-to-rectangle.c2",
-      "text": "Half the rim of a circle of radius 10 is pi x 10, about 31.4.",
+      "text": "The rim of a circle of radius 10 (its edge) is pi x 20, about 62.8 round; half the rim is pi x 10, about 31.4.",
       "support": "derivation",
-      "source": "Circumference = 2 pi r (definition of pi as circumference over diameter); half is pi r = 31.42.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Circumference = pi x diameter (definition of pi); 62.83 / 2 = 31.42. Stage label 'half the rim = 31.4', caption and reveal.",
+      "status": "unverified"
     },
     {
       "id": "math.circle-slices-to-rectangle.c3",
@@ -58,6 +56,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "text": "The unrolled strip is 10 tall and 31.4 long, half the rim, and covers about 3.14 of the 4 boxes.",
+      "support": "derivation",
+      "source": "Strip height r = 10 and length pi r = 31.4 (c3); 31.4 x 10 = 314 = 3.14 boxes of 100.",
+      "id": "math.circle-slices-to-rectangle.c5",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:circle-area-unrolled",
     "prerequisites": [
@@ -91,5 +96,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

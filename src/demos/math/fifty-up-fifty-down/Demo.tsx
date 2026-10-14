@@ -38,8 +38,9 @@ export default function FiftyUpFiftyDown({ slug }: { slug: string }) {
             Same percentage, bigger base.
           </p>
           <p>
-            In the picture the rise made the shape wider by p and the fall made it shorter by p, so the price is (1 + p)
-            × (1 − p) = 1 − p². The missing corner, p × p, is always there: even 10% up then 10% down ends at 99.
+            In the picture the fall cut a band off the top, across the whole risen width. It cut 75, not 50, because 50%
+            of 150 is more than 50% of 100. The extra 25 is the corner you never get back, and some corner is always
+            lost: even 10% up then 10% down ends at 99.
           </p>
           <p className="muted">Percent changes multiply. They do not cancel.</p>
         </>
@@ -79,20 +80,23 @@ function Stage({ locked, interact, pct, setPct }: StageContext & { pct: number; 
         <rect x={X0} y={top} width={S} height={S} className={s.start} />
 
         <text x={X0 + S / 2} y={Y0 - h / 2} textAnchor="middle" dominantBaseline="middle" className={s.big}>
-          {fmt(final)}
+          ends {fmt(final)}
         </text>
         {pct >= 25 && (
           <>
             {/* the rise: the strip added on the right */}
-            <text x={X0 + S + (w - S) / 2} y={Y0 - h / 2} textAnchor="middle" dominantBaseline="middle" className={s.gainLabel}>
+            <text x={X0 + S + (w - S) / 2} y={Y0 - h / 2 - 7} textAnchor="middle" dominantBaseline="middle" className={s.gainLabel}>
+              rise
+            </text>
+            <text x={X0 + S + (w - S) / 2} y={Y0 - h / 2 + 6} textAnchor="middle" dominantBaseline="middle" className={s.gainLabel}>
               +{fmt(100 * p)}
             </text>
             {/* the fall: the band cut off the top, across the risen width */}
             <text x={X0 + S / 2} y={top + (S - h) / 2} textAnchor="middle" dominantBaseline="middle" className={s.cutLabel}>
-              −{fmt(risen - final)}
+              fall −{fmt(risen - final)}
             </text>
             <text x={X0 + S + (w - S) / 2} y={top - 6} textAnchor="middle" className={s.cornerLabel}>
-              net −{fmt(100 * p * p)}
+              lost {fmt(100 * p * p)}
             </text>
           </>
         )}

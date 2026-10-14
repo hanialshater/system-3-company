@@ -56,8 +56,8 @@ export default function CircleSlicesToRectangle({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            About <strong>78%</strong>. Unrolled, the slices make a strip as tall as the radius, 10, and as long as half
-            the rim, π × 10 ≈ 31.4. That covers 31.4 × 10 ≈ 314 of the 400, or 3.14 of the four 10 × 10 boxes.
+            About <strong>78%</strong>. The rim, the circle's edge, is π times the width: π × 20 ≈ 62.8 round. Unrolled, the slices make a
+            strip as tall as the radius, 10, and as long as half the rim, π × 10 ≈ 31.4. That covers 31.4 × 10 ≈ 314 of the 400, or 3.14 of the four 10 × 10 boxes.
           </p>
           <p>
             More slices only straighten the bumps; the strip's size stays the same. So any circle's area is half the
@@ -145,7 +145,7 @@ function Stage({
           <>
             <line x1={SX + R * Math.sin(a)} y1={SY - 9} x2={SX + R * Math.sin(a) + stripW} y2={SY - 9} className={s.measure} />
             <text x={SX + R * Math.sin(a) + stripW / 2} y={SY - 13} textAnchor="middle" className={s.label}>
-              half the rim ≈ 31.4
+              half the rim = 31.4
             </text>
             <text x={SX + 4 * R + 2} y={SY + R / 2 + 4} className={s.label}>
               10
@@ -162,7 +162,7 @@ function Stage({
           ? "Make a prediction to start."
           : flat
             ? n >= 16
-              ? "The circle covers about 3.14 of the 4 boxes: roughly 78%."
+              ? "The strip is 10 tall and 31.4 long, half the rim (the rim is the edge, 62.8 round). It covers about 3.14 of the 4 boxes."
               : "Bumpy. Cut more slices to straighten the edges."
             : `${n} slices. Unroll them into a strip.`}
       </p>

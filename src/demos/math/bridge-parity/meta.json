@@ -51,12 +51,24 @@
     },
     {
       "id": "math.bridge-parity.c4",
-      "text": "With bridge 7 (south-east) closed only two places are odd, and a walk crossing all six bridges exists.",
+      "text": "Bridge 7 closed: only 2 places are odd, so a walk can start at one and end at the other. Try all 6.",
       "support": "derivation",
-      "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage. Caption text shown when counts are on and bridge 7 is closed.",
+      "status": "unverified"
+    },
+    {
+      "text": "On the full seven-bridge map the counts are 5, 3, 3, 3: 4 odd places, two too many.",
+      "support": "derivation",
+      "source": "Same degrees as c2; the reveal now says it means the full map, because the stage may show bridge 7 closed (3, 5, 2, 2).",
+      "id": "math.bridge-parity.c5",
+      "status": "unverified"
+    },
+    {
+      "text": "Rings mark places you passed through: 2 bridges each, in and out. Odd places can only be a start or end.",
+      "support": "derivation",
+      "source": "Rings are drawn at each intermediate stop of the learner's own walk (walkVisits in Demo.tsx); each used one bridge in and one out. Same parity argument as c3.",
+      "id": "math.bridge-parity.c6",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -78,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:euler-path-parity",
     "prerequisites": [
@@ -87,5 +99,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

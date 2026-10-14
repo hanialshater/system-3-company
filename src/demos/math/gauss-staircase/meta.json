@@ -1,7 +1,7 @@
 {
   "slug": "gauss-staircase",
-  "title": "Adding 1 to 10 without adding",
-  "hook": "1 + 2 + 3 + ... + 10 looks like ten additions. One flip makes it one multiplication.",
+  "title": "Adding 1 to 100 without adding",
+  "hook": "1 + 2 + … + 100 looks like a hundred additions. One flip makes it one multiplication.",
   "domain": "math",
   "concept": "triangular-numbers",
   "status": "review",
@@ -34,21 +34,24 @@
     },
     {
       "id": "math.gauss-staircase.c2",
-      "text": "Two staircases of n steps, one turned half a turn, fill an n-by-(n+1) rectangle exactly, so 1 + 2 + ... + n = n(n+1)/2.",
+      "text": "Two staircases of n steps, one turned half a turn, fill an n-by-(n+1) rectangle exactly, so 1 + 2 + ... + n = n(n+1)/2; blue is half of the rectangle.",
       "support": "derivation",
       "source": "Column i (1..n) holds i dots of the first staircase and n + 1 - i of the turned copy: n + 1 per column, n columns. Also provable by induction.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "math.gauss-staircase.c3",
-      "text": "1 + 2 + ... + 100 = 100 x 101 / 2 = 5050.",
+      "text": "1 + 2 + ... + 100 = 100 x 101 / 2 = 5,050; two 100-step staircases fill a 100 x 101 rectangle of 10,100 dots.",
       "support": "derivation",
-      "source": "From c2 with n = 100; recomputed with node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Gauss pairing / rectangle argument (c2): 100 x 101 = 10,100; half is 5,050. The prediction options are 5,000 / 5,050 / 10,100.",
+      "status": "unverified"
+    },
+    {
+      "text": "The reveal quotes the largest step count the learner showed with the flipped copy, m: m x (m+1), and half of it.",
+      "support": "derivation",
+      "source": "Computed from c2 for the learner's own m (Demo.tsx built state); for m = 10: 10 x 11 = 110, half 55 (c1).",
+      "id": "math.gauss-staircase.c4",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -73,12 +76,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:triangular-numbers",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

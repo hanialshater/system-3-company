@@ -11,8 +11,8 @@ import { useMilestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
 
-const START_P = 5;
-const START_M = 3;
+const START_P = 3;
+const START_M = 5;
 const MAX = 10;
 const MILESTONES = ["one-pair", "all-cancelled"] as const;
 
@@ -33,20 +33,23 @@ export default function PlusAndMinusChips({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `You hold ${START_P} plus-chips and ${START_M} minus-chips. A plus and a minus cancel. What is your total?`,
-        options: [String(START_P + START_M), String(START_P - START_M), fmt(START_M - START_P)],
-        answer: 1,
+        options: [String(START_P + START_M), String(START_M - START_P), fmt(START_P - START_M)],
+        answer: 2,
       }}
       exploreHint="Cancel pairs until only one kind of chip is left."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            <strong>{START_P - START_M}.</strong> {START_M} pairs cancelled and {START_P - START_M} plus-chips were left.
+            <strong>{fmt(START_P - START_M)}.</strong>{" "}
+            {chips.z > 0 && (chips.p === 0 || chips.m === 0)
+              ? `You cancelled ${chips.z} pair${chips.z === 1 ? "" : "s"} and ${chips.p > 0 ? `${chips.p} plus-chip${chips.p === 1 ? " was" : "s were"}` : `${chips.m} minus-chip${chips.m === 1 ? " was" : "s were"}`} left, so the total on the stage is ${fmt(chips.p - chips.m)}.`
+              : `${Math.min(START_P, START_M)} pairs cancel and ${Math.abs(START_P - START_M)} minus-chips are left.`}{" "}
             Taking away a pair never moved the total, because a plus and a minus together are worth zero.
           </p>
           <p>
-            A negative number is not a positive one with a sign painted on. It is the thing that cancels a positive, like
-            a debt against cash. That is why {START_P} + ({fmt(-START_M)}) = {START_P} − {START_M} = {START_P - START_M}.
+            A negative number is not a positive one with a sign painted on: {START_M} minus-chips are not worth +{START_M}. A minus cancels a plus, like a debt against cash, and here the debts win by{" "}
+            {START_M - START_P}. That is why {START_P} + ({fmt(-START_M)}) = {START_P} − {START_M} = {fmt(START_P - START_M)}.
           </p>
         </>
       )}
@@ -57,7 +60,7 @@ export default function PlusAndMinusChips({ slug }: { slug: string }) {
 }
 
 function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Chips; setChips: (c: Chips) => void }) {
-  const { reach, reached } = useMilestones(interact, MILESTONES);
+  const { reach } = useMilestones(interact, MILESTONES);
   const { p, m, z } = chips;
   const canCancel = p > 0 && m > 0;
   const atStart = p === START.p && m === START.m && z === 0;
@@ -110,12 +113,12 @@ function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Ch
           : z === 0
             ? `${p} plus, ${m} minus. Cancel a plus with a minus.`
             : !canCancel
-              ? `Only ${p > 0 ? "plus" : m > 0 ? "minus" : "no"} chips left: the total is ${fmt(total)}.`
+              ? `Only ${p > 0 ? "plus" : m > 0 ? "minus" : "no"} chips left, so the total is ${fmt(total)}.`
               : `${z} pair${z === 1 ? "" : "s"} cancelled to zero. The total did not move.`}
       </p>
 
       <Row>
-        <Readout label="Total" value={locked || !reached("one-pair") ? "?" : fmt(total)} />
+        <Readout label="Total" value={locked || canCancel ? "?" : fmt(total)} />
       </Row>
       <Row>
         <Control disabled={locked || !canCancel} onClick={() => cancel(1)}>
