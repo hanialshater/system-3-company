@@ -52,6 +52,18 @@ const BOT = 176;
 const px = (x: number) => L + x * (R - L);
 const py = (y: number) => BOT - y * (BOT - TOP);
 
+/** Sliver between the diagonal and the curve from share a to b (shaded: below the diagonal shrinks, above grows). */
+function shade(a: number, b: number): string {
+  const up: string[] = [];
+  const down: string[] = [];
+  for (let i = 0; i <= 20; i++) {
+    const x = a + ((b - a) * i) / 20;
+    up.push(`${px(x)},${py(next(x))}`);
+    down.push(`${px(x)},${py(x)}`);
+  }
+  return [...up, ...down.reverse()].join(" ");
+}
+
 function Stage({
   ctx,
   start,
@@ -111,10 +123,25 @@ function Stage({
         </text>
         {!locked && (
           <>
+            <polygon points={shade(0, TIP / 100)} className={s.shrinkZone} />
+            <polygon points={shade(TIP / 100, 0.8)} className={s.growZone} />
             <line x1={px(0)} y1={py(0)} x2={px(1)} y2={py(1)} className={s.ghost} />
             <polyline points={curve.join(" ")} className={s.line} />
             {round > 0 && <polyline points={web.join(" ")} className={s.web} />}
+            <circle cx={px(TIP / 100)} cy={py(TIP / 100)} r={5} className={s.cross} />
             <circle cx={px(cur)} cy={py(cur)} r={6} className={s.dot} />
+            <text x={px(TIP / 100) + 12} y={py(TIP / 100) + 3} className={s.tag}>
+              20%: round changes nothing
+            </text>
+            <text x={px(TIP / 100) + 8} y={py(0.07)} className={s.tagShrink}>
+              ◂ shrinks
+            </text>
+            <text x={px(0.04)} y={py(0.74)} className={s.tagGrow}>
+              shaded green: grows
+            </text>
+            <text transform={`translate(${px(0.58)} ${py(0.58)}) rotate(-31.6)`} dy={13} textAnchor="middle" className={s.axis}>
+              same share next round
+            </text>
           </>
         )}
         {locked && (
@@ -188,10 +215,10 @@ export default function BelowCriticalMass({ slug }: { slug: string }) {
       predict={{
         question: `A new product costs $0.16. People differ in how much they want it, and the more of the market already uses it, the more it is worth to each person. Each round, everyone who now values it above $0.16 starts using it. Two launches start with ${LOW}% and ${HIGH}% of the market. Where do they end up?`,
         options: [
-          "Both stay near where they started",
+          `The ${LOW}% launch holds at ${LOW}%; the ${HIGH}% launch grows to about 80%`,
           `The ${LOW}% launch fades to nothing; the ${HIGH}% launch grows to about 80%`,
-          "Both grow to about 80%",
-          "Both fade to nothing",
+          `Both grow to about 80%, though the ${LOW}% one takes longer`,
+          `Both fade to nothing, though the ${HIGH}% one takes longer`,
         ],
         answer: 1,
       }}
@@ -210,8 +237,14 @@ export default function BelowCriticalMass({ slug }: { slug: string }) {
             )}
           </p>
           <p>
-            The line is a <strong>tipping point</strong> at {TIP}%: a round changes nothing there, or at 0% and 80%. With few users the product is worth less than its
-            price to most people, so even fewer join. Below this critical mass, a product that most people would buy if others used it still fails.
+            On the chart, the dashed line means <strong>same share next round</strong>. Left of the ringed crossing at <strong>{TIP}%</strong> the curve dips below it
+            (shaded “shrinks”): next round has fewer users than this one. Right of it the curve is above the line and the share grows. That crossing is the{" "}
+            <strong>tipping point</strong>.
+          </p>
+          <p>
+            Why it shrinks: with few users the product is worth less than its price to most people, so even fewer join. Why 80% and not 100%: the people who want it
+            least would not pay $0.16 even when nearly everyone uses it. So below this critical mass, a product that most people would buy if others used it still
+            fails.
           </p>
           <p className="muted">A toy model with made-up numbers: it shows the logic, not a forecast for any real product.</p>
         </>

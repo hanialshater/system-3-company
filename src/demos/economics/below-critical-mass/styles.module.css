@@ -74,3 +74,35 @@
   min-width: 56px;
   font-variant-numeric: tabular-nums;
 }
+
+.shrinkZone {
+  fill: color-mix(in srgb, #d9534f 35%, transparent);
+  stroke: none;
+}
+
+.growZone {
+  fill: color-mix(in srgb, var(--domain) 22%, transparent);
+  stroke: none;
+}
+
+.cross {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.tag,
+.tagShrink,
+.tagGrow {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--fg);
+}
+
+.tagShrink {
+  fill: #c0392b;
+}
+
+.tagGrow {
+  fill: var(--muted);
+}

@@ -23,3 +23,12 @@ Inputs: learner review no-network-effects, fact-check pass NCM-1.
 - c7 reworded as the fact-checker suggested; c8 reworded (recall why); both unverified, with derivation sources. c9 added, unverified. Recall question "usually" changed to "can". c1-c6 untouched (still verified). References untouched.
 - Phone layout: removed the Round and Share readouts, merged the presets into one row of four, locked chart shows "The chart appears after you answer". Predict screen no longer clips; the reveal still scrolls the chart top off (shared card layout, not changed).
 - QA: contract passed on phone and desktop (port 3641, own dist .next-ncm2, QA_OUT in scratchpad), 0 retries. Walkthrough (--choose 2) viewed on phone.
+
+## Revision v3 (2026-10-14, session 2, demo-builder)
+
+Inputs: learner review r2 (company/reviews/below-critical-mass/2026-10-14-learner-no-network-effects-r2.md).
+- Chart labelled (shown, not told): dashed diagonal reads "same share next round"; ring at the 20% crossing with "20%: round changes nothing"; the sliver between curve and diagonal left of 20% is shaded red with "shrinks", the sliver from 20% to 80% shaded green ("shaded green: grows"). Visible only after answering (locked stage unchanged).
+- Reveal points at those marks (dashed line, ringed crossing, shaded "shrinks") instead of "the line", and adds one plain line on why 80% not 100%: the people who want it least would not pay $0.16 even when nearly everyone uses it. New claim c10 (node: at s = 1 only x < 0.84 join; at 0.8 the cut is 0.8).
+- Options balanced to similar length; the correct one (second, index unchanged) is no longer the only one naming both launches or the longest. Distractors: holds at 18%, both grow (18% slower), both fade (25% slower).
+- Claims: new c10 (80% not 100%) and c11 (diagonal and shaded regions), both unverified. c1-c9 untouched, still verified; references untouched. Version 3.
+- Build used `next build --webpack` (turbopack OOM-killed by other builders). tsconfig.json change reverted.
