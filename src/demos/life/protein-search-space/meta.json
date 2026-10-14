@@ -37,14 +37,18 @@
       "text": "A 100-link chain with 3 bends per link has 3^100 = 515377520732011331036461129765621272702107522001 shapes, about 5.15 x 10^47 (10^47 is 1 followed by 47 zeros): a 5 followed by 47 more digits.",
       "support": "derivation",
       "source": "BigInt 3n**100n in node: 48 digits, leading 515. The stage readout and the option text come from the same computation. | FACT-CHECK 2026-10-13 (pass 9): node BigInt 3n**100n = 515377520732011331036461129765621272702107522001, 48 digits; option 'About 5 with 47 more digits after it'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.protein-search-space.c3",
       "text": "Trying one shape every 10^-13 seconds (10 trillion, 10^13, tries a second, a deliberately generous speed), a 100-link chain would need about 1.6 x 10^27 years to try all shapes.",
       "support": "derivation",
       "source": "5.15e47 / 1e13 = 5.15e34 s; / 3.15576e7 s per year = 1.63e27 years (node). The rate 10^13 per second is a chosen assumption (about one bond vibration), as in the brief. | FACT-CHECK 2026-10-13 (pass 9): node: 5.1538e47 / 1e13 / 3.15576e7 = 1.633e27 years.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.protein-search-space.c4",
@@ -69,14 +73,18 @@
       "text": "Real proteins fold in about a millisecond to a few seconds, so folding cannot be a blind search; the chain is guided toward its shape (a folding funnel), though the real guidance is more complicated than the toy.",
       "support": "source",
       "source": "Levinthal (1969), 'How to fold graciously'; Dill & Chan (1997), Nature Structural Biology 4:10, 'From Levinthal to pathways to funnels'. To be verified: exact folding-time range. | FACT-CHECK 2026-10-13 (pass 9): Most proteins fold in about a millisecond (median about 5 ms for two-state folders, Protein Folding Kinetics Database analyses); slow ones take seconds. The fastest small domains fold in microseconds (villin headpiece about 4 us; Kubelka, Hofrichter, Eaton 2004, Curr Opin Struct Biol 14: 76-88), which only strengthens the conclusion. Optional builder wording: 'microseconds to seconds'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.protein-search-space.c7",
       "text": "Toy shortcut: if each link's best bend could be judged on its own, a 100-link chain needs only 3 x 100 = 300 tries instead of 3^100.",
       "support": "derivation",
       "source": "3 bends per link, tested one link at a time: 3 tries per link x 100 links = 300.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

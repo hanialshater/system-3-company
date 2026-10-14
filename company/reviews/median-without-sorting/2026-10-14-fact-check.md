@@ -23,3 +23,15 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | verified | Own node: Knuth formula for k = 500, n = 1000 gives 3,336.3; quicksort 2(n+1)H_n - 4n = 10,985.9. Own simulation (xorshift32, 20,000 shuffles, n - 1 comparisons per split as in Demo.tsx split()): quickselect 3,341.8, quicksort 10,987.3. 'About 3,300' and 'about 11,000' are right. Stage 9-card values 17 and 18 re-confirmed. |
 
 **Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).
+
+## Pass 18 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including dynamic ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc18/: own mulberry32 copy, own Poisson sampler, quickselect/quicksort, amortisation, RK4 Lotka-Volterra, negative-binomial slice allocation, replicator iteration, brute-force tree enumeration, Cauchy/die and Kelly replays). Sources checked by web search where a claim rests on one; papers not opened are marked.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own Fisher-Yates with own mulberry32(38) and own quickselect (fc18/med.mjs, group size - 1 comparisons per split): 8 splits, 297 comparisons, median 51. Seeds 1-40 mean 291.5 (select) and 639.6 (sort), matching the disclosed choice. |
+| c2 | verified | Demo.tsx keep() sets lo/hi to the kept side only; split() slices st.lo..st.hi; dropped bars are drawn at opacity 0.25 and never re-entered. 'Do the rest' uses the same functions. |
+| c4 | verified | Own first-card quicksort on the same shuffle: 619 comparisons; 619 / 297 = 2.08, so 'about twice' holds. Demo.tsx SORT_CMP = sortCost(START) is what the stage and reveal print. Non-blocking (already-verified c3): its text says 'position 5'; the stage and reveal say position 51. Builder should fix the claim text. |
+
+**Result:** all open claims in this pass verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).

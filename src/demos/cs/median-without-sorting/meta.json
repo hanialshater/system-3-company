@@ -29,14 +29,18 @@
       "text": "On these 101 shuffled cards (mulberry32 seed 38), splitting around first-card pivots and keeping only the side with position 51 finds the median in 8 splits and 297 comparisons.",
       "support": "simulation",
       "source": "Builder node run of Demo.tsx split()/keep() logic over the seed-38 shuffle (selection sketch in scratchpad med.mjs), counting group size - 1 comparisons per split. Seed 38 is a disclosed choice: over seeds 1-40 the mean is about 292 for the median search and 640 for sorting, and seed 38 gives 297 and 619.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.median-without-sorting.c2",
       "text": "The cards on the side that does not hold position 51 are dropped after each split and never looked at again.",
       "support": "simulation",
       "source": "Demo.tsx keep(): lo/hi shrink to the kept side; split() only touches st.lo..st.hi.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.median-without-sorting.c3",
@@ -52,7 +56,9 @@
       "text": "Sorting the same 101 cards with the same first-card rule takes 619 comparisons, about twice the 297 of the median search.",
       "support": "simulation",
       "source": "Builder node quicksort (first-card pivot, group size - 1 comparisons per split) on the seed-38 shuffle: 619. Same Demo.tsx function sortCost(). Seed 38 chosen as typical (see c1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.median-without-sorting.c5",

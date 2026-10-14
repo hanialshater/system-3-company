@@ -37,7 +37,9 @@
       "text": "With 4 independent seeds at 1/4 each, each seed is purple with chance 3/4, so all four are purple with chance 3/4 x 3/4 x 3/4 x 3/4 = 81/256, about 32% (the stage shows this product beside the count of families with none white), so at least one is white with chance about 68%.",
       "support": "derivation",
       "source": "1 - 81/256 = 175/256 = 0.684 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.one-in-four-sprouts.c3",
@@ -53,7 +55,9 @@
       "text": "The 100 families on the stage are one fixed seeded random field (seed 1, chosen without tuning the counts); the counts the learner sees (67 with a white flower, 49 with exactly one) vary from field to field around the expected 68 and 42.",
       "support": "simulation",
       "source": "Demo.tsx batch(): two fair allele draws per seed with a seeded PRNG; 'New field' changes the seed.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.one-in-four-sprouts.c5",

@@ -38,14 +38,18 @@
       "text": "On the stage (a = b = c = d = 1, thousands, months), spray strength 20% raises the average pests from about 1,000 to 1,200 and lowers average predators from about 1,000 to 800; at 40% the averages are about 1,400 pests and 600 predators. The reveal quotes the numbers for the strengths the learner set.",
       "support": "simulation",
       "source": "Demo.tsx run(): RK4, dt = 0.01, 600 months from (1.5, 1): averages 1.000/1.000 at e = 0, 1.199/0.800 at e = 0.2, 1.398/0.600 at e = 0.4 (checked with node).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.pesticide-paradox.c3",
       "text": "In this model pests breed on their own, while predators can only grow by eating pests; the pest average is the pest level at which predators exactly keep steady (what they eat just covers what they lose), so faster predator deaths raise it.",
       "support": "derivation",
       "source": "Predator break-even: cxy = (d + e)y gives x = (d + e)/c; follows from c1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.pesticide-paradox.c4",

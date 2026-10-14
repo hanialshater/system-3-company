@@ -35,14 +35,18 @@
       "text": "A rooted tree of k species has 2k - 1 branches (counting the stub above the root), so the next species can join in 2k - 1 places and each place gives a different tree; this gives 1 tree for 2 species, 3 for 3, 15 for 4, 105 for 5 and 34,459,425 for 10. The stage shows the running product (1 x 3 x 5 ...) and lets the learner move the newest species to another place.",
       "support": "derivation",
       "source": "trees(k+1) = trees(k) x (2k - 1); artifacts/scratch/w5life/trees.mjs gives 17!! = 34,459,425 for 10 species. Demo.tsx computes the count from places(k).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.tree-count-explodes.c3",
       "text": "Model (stated on the stage and in the reveal): only rooted trees with two branches at each fork are counted; the starting branch each species joins in the picture is a seeded illustration (mulberry32 seed 5) and the count does not depend on it.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; brief life #50.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

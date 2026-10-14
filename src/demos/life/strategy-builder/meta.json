@@ -37,14 +37,18 @@
       "text": "With random pairing and tit-for-tat share f, tit-for-tat's average score 30f + 9(1 - f) equals the cheat's average 14f + 10(1 - f) at f = 1/17, about 6%; above it tit-for-tat scores more, below it the cheat does. The stage's table shows the four pairing scores (30 = 10 x 3, 9 = 0 then 9 x 1, 14 = 5 then 9 x 1, 10 = 10 x 1) and a chart shows both averages crossing at that share.",
       "support": "derivation",
       "source": "Algebra; 1/17 = 0.0588 (artifacts/scratch/w2life/check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.strategy-builder.c3",
       "text": "On the stage, from a 3% start tit-for-tat falls to 0 of 100 (rounded) by generation 37 and stays there; from 4% by generation 48; from 8% it reaches 100 of 100 by generation 28; from 25% by generation 8; from 7% by generation 37; from 6% it grows but is only 18 of 100 at generation 60.",
       "support": "simulation",
       "source": "Deterministic imitation dynamics f' = f + f(1-f)(W_TFT - W_cheat)/15, clamped to 0..1, replicated in node (revision 2026-10-13; also artifacts/scratch/w2life/pd.mjs and the 2026-10-13 fact-check). No random seed (grid positions only, untuned mulberry32(8)). The speed constant 15 is a choice; the tipping point does not depend on it. Starts near 5.88% are sensitive: 5.8% and 5.9% go opposite ways.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.strategy-builder.c4",

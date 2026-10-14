@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · fact-checker · Pass 18: wave C life, economics, probability and builder-12 claims (56 claims, 32 lessons)
+
+- Changed: 56 unverified claims set to verified (checkedBy fact-checker) in 32 meta.json files. A "## Pass 18" table was added to company/reviews/<slug>/2026-10-14-fact-check.md for each lesson. Skipped half-of-humanity c1 and continental-jigsaw c1 because they need a human source check. Disputed claims were not touched. one-recipe-for-sixty and hanoi-tower-doubles had no open claims.
+- Belief (sure for the derivations and simulations): every number was re-run in my own scratch scripts. Each Demo.tsx was read, and its stage and reveal match the claims. Less sure on protein c6 (folding times) and spreaders c4 (Lloyd-Smith 2005): I checked them through secondary sources, not the full papers.
+- Non-blocking builder fixes: median-without-sorting c3 text says "position 5" but should say 51. one-in-four-sprouts c4 source mentions a removed "New field" control. fee-on-two-week-loan never shows the learner its 364-day year. dilute step 23 shows 15 of 20 empty, a tail draw. protein c6 wording could say "microseconds to seconds".
+- Next: chief of staff routes the non-blocking fixes to builders, and gets a human for the two source checks.
+
 ## 2026-10-14 · demo-builder (wc-builder-10) · wave C revisions of 15 life lessons
 
 - Changed: dish-runs-out, herd-immunity, hidden-carriers, keeping-the-bad-gene, natural-selection, one-in-four-sprouts, pcr-not-quite-doubling, pesticide-paradox, potassium-battery, protein-search-space, purging-slows-down, saturated-enzyme, spreaders-are-rare, strategy-builder, tree-count-explodes. Each got its latest learner review's findings fixed, a version bump, `format`/`interactions`, reworded claims reset to unverified, and a "Revision v<N>" in company/reviews/<slug>/build.md. None was published; none already said launch.
