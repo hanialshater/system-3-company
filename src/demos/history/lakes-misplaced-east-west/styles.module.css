@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; gap: 6px; }
+.wrap :global(.readout) { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+.pic { flex-shrink: 0; }
+.pic :global(svg) { display: block; width: 100%; max-height: 34dvh; }
+.msg { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.actual { fill: var(--fg); }
+.ring { fill: none; stroke: var(--domain); stroke-width: 1.6; }
+.err { stroke: var(--bad); stroke-width: 1.2; opacity: 0.85; }
+.small { font-size: 12px; fill: var(--fg); }
+.maker { font-size: 13px; font-weight: 800; fill: var(--fg); }
+.halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.title { font-size: 12px; font-weight: 700; fill: var(--fg); }
+.row { font-size: 12px; fill: var(--muted); }
+.rowKey { font-size: 12px; font-weight: 800; fill: var(--fg); }
+.val { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.barNs { fill: var(--muted); }
+.barEw { fill: var(--domain); }
+.presets { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 4px; }
+.presets :global(.control) { grid-column: span 2; padding: 6px 4px; min-height: 40px; line-height: 1.2; }
+.presets :global(.control:nth-child(n + 4)) { grid-column: span 3; }

@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; justify-content: center; }
+.wrap :global(.readout) { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.svg { flex-shrink: 0; max-height: 34dvh; }
+.msg { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.zero { stroke: var(--fg); stroke-width: 1.4; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.tick { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.axisTitle { font-size: 12px; font-weight: 600; fill: var(--fg); }
+.headline { font-size: 12px; font-weight: 800; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.bar { fill: var(--domain); opacity: 0.75; }
+.barNow { fill: var(--fg); }
+.mark line, .markNow line { stroke: var(--muted); stroke-width: 1.2; }
+.markNow line { stroke: var(--fg); }
+.note { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.mark .note { fill: var(--muted); }
+.halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+.presets :global(.control) { padding: 6px 4px; min-height: 40px; line-height: 1.2; }
