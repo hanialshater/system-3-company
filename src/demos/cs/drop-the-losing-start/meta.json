@@ -54,7 +54,7 @@
       "id": "cs.drop-the-losing-start.c4",
       "text": "A stretch whose total has gone negative can only drag down what follows, so dropping it never loses the best stretch.",
       "support": "derivation",
-      "source": "If the stretch so far sums to a negative number T, any stretch that continues it has total T + (rest) < rest, so starting fresh right after it is always at least as good. This is the correctness argument for Kadane's algorithm; also exercise 4.1-5 in CLRS (linear-time maximum subarray). | FACT-CHECK 2026-10-14 (pass 19): Derivation re-done: T < 0 implies T + rest < rest. Note: CLRS exercise 4.1-5 is the 3rd edition numbering; the maximum-subarray section is not in CLRS 4e.",
+      "source": "If the stretch so far sums to a negative number T, any stretch that continues it has total T + (rest) < rest, so starting fresh right after it is always at least as good. This is the correctness argument for Kadane's algorithm; also exercise 4.1-5 in CLRS 3rd edition (2009; linear-time maximum subarray; the maximum-subarray section is not in the 4th edition). Edition added 2026-10-14 by the builder per the pass-19 note. | FACT-CHECK 2026-10-14 (pass 19): Derivation re-done: T < 0 implies T + rest < rest. Note: CLRS exercise 4.1-5 is the 3rd edition numbering; the maximum-subarray section is not in CLRS 4e.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
