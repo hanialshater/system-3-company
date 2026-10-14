@@ -8,3 +8,11 @@
 - No claim about sinks: the reveal says the toy cannot show it (brief claim 3).
 - Iteration after the phone screenshot: on short runs the drift label collided with "aim" and "N ↑". I moved the drift label to the right of the end point and N to the top-right corner.
 - Bug fixed before QA: moving the latitude slider before any run would have started a run. It now keeps "no run".
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- All runs share one fixed scale (1,000 km tall) and earlier runs stay drawn, so the 10 km run is visibly a dot beside the 1,000 km curl. The readout lists every run sent.
+- Question restated as a puck on a spinning platform, with the travel time (about 3 hours) in it. Coriolis defined where named.
+- "Try the equator" button: drift 0 m, so "zero at the equator" is seen (third milestone). Reveal no longer says "strongest at the poles" but "grows toward the poles" (c4 reworded).
+- Not shown: the square law beyond the two numbers on the stage. Winds and ocean currents stays as one told sentence (c5).

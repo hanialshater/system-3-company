@@ -1,9 +1,9 @@
 "use client";
 
 // One lap around the world along a parallel near the North Pole. Map: azimuthal equidistant
-// centred on the pole (distances from the pole are true), zoomed so the chosen parallel is always
-// the same size on screen; a scale bar shows how far the zoom went. Lap length 2πR cos φ on a
-// sphere of radius 6,371.0088 km. Key state: a big lap seen first, then the 89°N lap (under 1,000 km).
+// centred on the pole (distances from the pole are true) at ONE fixed scale (v2), so the chosen
+// parallel visibly shrinks against the equator ring. Lap length 2πR cos φ on a sphere of radius
+// 6,371.0088 km. Key state: a big lap seen first, then the 89°N lap (under 1,000 km).
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -15,7 +15,7 @@ import s from "./styles.module.css";
 const W = 300;
 const H = 280;
 const RAD = Math.PI / 180;
-const LAP_PX = 95; // on-screen radius of the chosen parallel
+const KM_PER_PX = 80; // fixed map scale: the equator ring is about 125 px in radius
 const KEY = 89;
 const PRESETS = [0, 60, 85, KEY];
 const lapKm = (lat: number) => 2 * Math.PI * EARTH_RADIUS_KM * Math.cos(lat * RAD);
@@ -33,17 +33,17 @@ function niceKm(target: number) {
 export default function LapAt89North({ slug }: { slug: string }) {
   const [lat, setLat] = useState(45);
   const [seen, setSeen] = useState<number[]>([]);
-  const kmPerPx = fromPoleKm(lat) / LAP_PX;
+  const kmPerPx = KM_PER_PX;
   const projection = useMemo(
     () =>
       geoAzimuthalEquidistant()
         .rotate([0, -90])
-        .clipAngle(Math.min(180, 90 - lat + 25))
+        .clipAngle(91)
         .scale(EARTH_RADIUS_KM / kmPerPx)
-        .translate([W / 2, H / 2 + 6]),
-    [lat, kmPerPx],
+        .translate([W / 2, H / 2 + 4]),
+    [kmPerPx],
   );
-  const bar = niceKm(kmPerPx * 70);
+  const bar = niceKm(kmPerPx * 40);
   const barPx = bar / kmPerPx;
 
   return (
@@ -60,11 +60,11 @@ export default function LapAt89North({ slug }: { slug: string }) {
         <>
           <p>
             <strong>About {r10(lapKm(KEY))} km</strong>, under 2% of the {r10(lapKm(0))} km round the equator.
-            {seen.includes(85) && ` At 85°N you saw ${r10(lapKm(85))} km.`} The map had to zoom in each time to keep the circle in view.
+            {seen.includes(85) && ` At 85°N you saw ${r10(lapKm(85))} km.`} On the same map, the ring shrank from the whole width to a speck.
           </p>
           <p>
-            A circle of latitude has radius R × cos(latitude), and cos 89° is only 0.017: one degree from the pole, the &ldquo;world&rdquo; you
-            walk around is a circle about {r10(2 * fromPoleKm(KEY))} km across, on the drifting ice of the Arctic Ocean, if you could walk it.
+            Circles of latitude get smaller toward the pole. At 89°N the circle is only 1.7% as wide as at the equator: one degree from the
+            pole, the &ldquo;world&rdquo; you walk around is a circle about {r10(2 * fromPoleKm(KEY))} km across.
           </p>
         </>
       )}
@@ -90,6 +90,7 @@ export default function LapAt89North({ slug }: { slug: string }) {
                     const pole = proj([0, 90])!;
                     return (
                       <>
+                        <path d={path(geoCircle().center([0, 90]).radius(90)())} className={s.ref} />
                         <path d={path(geoCircle().center([0, 90]).radius(90 - lat)())} className={s.lap} />
                         <circle cx={pole[0]} cy={pole[1]} r={2.5} className={s.pole} />
                         <text x={pole[0] + 4} y={pole[1] - 4} className={s.lab}>
@@ -100,7 +101,7 @@ export default function LapAt89North({ slug }: { slug: string }) {
                           {bar.toLocaleString("en-US")} km
                         </text>
                         <text x={4} y={12} className={s.lab}>
-                          Centred on the North Pole. Yellow: {latName(lat)}.
+                          Centred on the North Pole. Yellow: {latName(lat)}. Dashed: equator.
                         </text>
                       </>
                     );
@@ -118,7 +119,9 @@ export default function LapAt89North({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Once around" value={locked ? "?" : `${r10(lapKm(lat))} km`} />
+                  <Readout label="Across the circle" value={locked ? "?" : `${r10(2 * fromPoleKm(lat))} km`} />
                 </Row>
+                {!locked && lapKm(lat) < 1000 && <p className={s.note}>A bit more than London to Edinburgh by road (about 650 km).</p>}
               </div>
             );
           }}

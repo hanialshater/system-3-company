@@ -8,3 +8,9 @@
 - Key state: the June peak, where the line stops at 23.4 N with Honolulu filled and Miami/Cairo empty. One milestone, "june-peak". The "21 Jun" chip is first in DOM order.
 - Locked: the "Farthest north so far" readout shows "?".
 - Iteration: the phone screenshot reads clearly. Miami's marker sits about 2 px above the Tropic of Cancer line, which is correct, but a reviewer may want a zoom.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Hook neutral. Latitude grid (equator, 20, 40 N) labelled on the map; tropic lines named; "Earth's axis tilt 23.4" readout beside "farthest north so far", so the match is on the stage.
+- 27 May / 16 July dropped from the reveal (claim c3 withdrawn). c4 reworded. Hint no longer says "through June".

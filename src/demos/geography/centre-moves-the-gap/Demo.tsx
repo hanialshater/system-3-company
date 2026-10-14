@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
-import { WorldMap, EARTH_RADIUS_KM, geoDistance, geoEquirectangular } from "@/kit/geo";
+import { WorldMap, EARTH_RADIUS_KM, geoDistance, geoEquirectangular, geoInterpolate } from "@/kit/geo";
 import s from "./styles.module.css";
 
 type P = [number, number];
@@ -34,7 +34,22 @@ function gapDegrees(centre: number) {
   return Math.abs(p(TOKYO)![0] - p(LA)![0]) / PX_PER_DEG;
 }
 
-const fmtLon = (v: number) => (v === 0 ? "0° (Greenwich)" : Math.abs(v) === 180 ? "180° (Pacific)" : `${Math.abs(v)}°${v > 0 ? "E" : "W"}`);
+/** The shortest route as SVG path pieces; a piece ends where the route runs off one edge of the map and re-enters at the other. */
+function routePath(projection: ReturnType<typeof makeProjection>) {
+  const interp = geoInterpolate(TOKYO, LA);
+  let d = "";
+  let prev: [number, number] | null = null;
+  for (let i = 0; i <= 100; i++) {
+    const pt = projection(interp(i / 100));
+    if (!pt) continue;
+    const jump = prev && Math.abs(pt[0] - prev[0]) > W / 2;
+    d += !prev || jump ? `M${pt[0].toFixed(1)} ${pt[1].toFixed(1)}` : `L${pt[0].toFixed(1)} ${pt[1].toFixed(1)}`;
+    prev = pt;
+  }
+  return d;
+}
+
+const fmtLon =(v: number) => (v === 0 ? "0° (Greenwich)" : Math.abs(v) === 180 ? "180° (Pacific)" : `${Math.abs(v)}°${v > 0 ? "E" : "W"}`);
 
 export default function CentreMovesTheGap({ slug }: { slug: string }) {
   const [centre, setCentre] = useState(0);
@@ -48,7 +63,7 @@ export default function CentreMovesTheGap({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `On a world map centred on Greenwich, Tokyo and Los Angeles are ${greenwichGap}° of map width apart. Re-centre the map on the Pacific (180°). How far apart are they now?`,
-        options: ["The same distance", `About ${Math.round(pacificGap / 10) * 10}°, 2.5 times closer`, "About 180°"],
+        options: [`The same, ${greenwichGap}°`, `About ${Math.round(pacificGap / 10) * 10}°`, "About 180°"],
         answer: 1,
       }}
       exploreHint="Centre the map on the Pacific, then slide the centre around."
@@ -87,6 +102,7 @@ export default function CentreMovesTheGap({ slug }: { slug: string }) {
                 >
                   {() => (
                     <>
+                      {!locked && <path d={routePath(projection)} className={s.route} />}
                       <line x1={Math.min(t[0], l[0])} y1={y} x2={Math.max(t[0], l[0])} y2={y} className={s.gap} />
                       <line x1={t[0]} y1={t[1]} x2={t[0]} y2={y} className={s.tick} />
                       <line x1={l[0]} y1={l[1]} x2={l[0]} y2={y} className={s.tick} />
@@ -105,7 +121,11 @@ export default function CentreMovesTheGap({ slug }: { slug: string }) {
                     </>
                   )}
                 </WorldMap>
-                <p className={s.note}>Equirectangular map: each degree of longitude is equally wide. Its edges are the cut.</p>
+                <p className={s.note}>
+                  {locked
+                    ? "Map is 360° wide. Red bar: the part between the cities."
+                    : "Map is 360° wide. Red bar: the part between the cities. The left and right edges are where the world is cut. Dashed blue: the shortest route over the Earth."}
+                </p>
                 <div className={s.chips}>
                   <Control disabled={locked || centre === 180} className={centre === 180 ? "active" : ""} onClick={() => set(180)}>
                     Centre on the Pacific
@@ -119,7 +139,7 @@ export default function CentreMovesTheGap({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Gap across the map" value={`${Math.round(gap)}°`} />
-                  <Readout label="Real distance" value={`${(Math.round(KM / 10) * 10).toLocaleString("en-US")} km`} />
+                  <Readout label="Real route (dashed)" value={locked ? "?" : `${(Math.round(KM / 10) * 10).toLocaleString("en-US")} km`} />
                 </Row>
               </div>
             );

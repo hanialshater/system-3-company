@@ -57,8 +57,9 @@ const EXT = (() => {
 })();
 
 function season(day: number, north: boolean) {
-  // Astronomical seasons: equinoxes about 20 Mar and 22 Sep, solstices about 21 Jun and 21 Dec.
-  const n = day >= 79 && day < 172 ? "spring" : day >= 172 && day < 265 ? "summer" : day >= 265 && day < 355 ? "autumn" : "winter";
+  // Everyday (meteorological) seasons, whole months: Mar-May spring, Jun-Aug summer, Sep-Nov autumn, Dec-Feb winter.
+  const m = dateOf(day).m;
+  const n = m >= 2 && m <= 4 ? "spring" : m >= 5 && m <= 7 ? "summer" : m >= 8 && m <= 10 ? "autumn" : "winter";
   if (north) return n;
   return { spring: "autumn", summer: "winter", autumn: "spring", winter: "summer" }[n];
 }
@@ -76,7 +77,7 @@ const pos = (day: number) => {
 
 export default function CloserInWinter({ slug }: { slug: string }) {
   const [day, setDay] = useState(dayOf(2, 21));
-  const [seen, setSeen] = useState({ jan: false, summer: false });
+  const [seen, setSeen] = useState({ jan: false, jul: false });
   const o = orbit(day);
   const [ex, ey] = pos(day);
   const ring = useMemo(() => DAYS.map((d) => pos(d).map((v) => v.toFixed(1)).join(",")).join(" "), []);
@@ -85,8 +86,8 @@ export default function CloserInWinter({ slug }: { slug: string }) {
   const go = (d: number, interact: () => void) => {
     setDay(d);
     const m = dateOf(d).m;
-    const next = { jan: seen.jan || m === 0, summer: seen.summer || m === 5 || m === 6 };
-    if (next.jan !== seen.jan || next.summer !== seen.summer) {
+    const next = { jan: seen.jan || m === 0, jul: seen.jul || m === 6 };
+    if (next.jan !== seen.jan || next.jul !== seen.jul) {
       setSeen(next);
       interact();
     }
@@ -100,7 +101,7 @@ export default function CloserInWinter({ slug }: { slug: string }) {
         options: ["January", "June", "September"],
         answer: 0,
       }}
-      exploreHint="Drag the date or tap a month. Watch the distance and the seasons."
+      exploreHint="Tap 1 Jan, 1 Jun, 1 Jul and 1 Sep, or drag the date. Watch the distance, the lean and the seasons."
       minInteractions={2}
       reveal={() => (
         <>
@@ -112,9 +113,8 @@ export default function CloserInWinter({ slug }: { slug: string }) {
           </p>
           <p>
             So distance cannot make the seasons: the two hemispheres have opposite seasons at the same distance. The cause
-            is the <strong>tilt</strong> of about {OBL.toFixed(1)}°. In June the north leans toward the Sun, the noon Sun
-            is overhead at about 23°N, and northern days are long with steep sunlight. In December it is the south&rsquo;s
-            turn.
+            is the <strong>tilt</strong> of about {OBL.toFixed(1)}°. In June the north leans toward the Sun, as the arrow
+            showed, and the noon Sun is overhead far north of the equator. In December it is the south&rsquo;s turn.
           </p>
         </>
       )}
@@ -129,9 +129,9 @@ export default function CloserInWinter({ slug }: { slug: string }) {
             </text>
             <line x1={CX} y1={CY} x2={ex} y2={ey} className={s.ray} />
             <circle cx={ex} cy={ey} r={6} className={s.earth} />
-            <line x1={ex} y1={ey} x2={ex} y2={ey - 16} className={s.axis} markerEnd="url(#cw-arrow)" />
+            <line x1={ex} y1={ey} x2={ex} y2={ey - 24} className={s.axis} markerEnd="url(#cw-arrow)" />
             <text x={6} y={H - 17} className={s.small}>
-              Arrow: the north pole leans this way all year.
+              Arrow: the north pole leans up the page all year.
             </text>
             <defs>
               <marker id="cw-arrow" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto">
@@ -154,7 +154,7 @@ export default function CloserInWinter({ slug }: { slug: string }) {
             />
           </Row>
           <div className={s.chips} role="group" aria-label="Jump to a month">
-            {[0, 5, 8].map((m) => (
+            {[0, 5, 6, 8].map((m) => (
               <Control key={m} disabled={locked || dateOf(day).m === m && dateOf(day).d === 1} onClick={() => go(dayOf(m, 1), interact)}>
                 1 {MONTHS[m]}
               </Control>
@@ -162,11 +162,15 @@ export default function CloserInWinter({ slug }: { slug: string }) {
           </div>
           <Row>
             <Readout label="Sun distance" value={fmtMkm(o.r)} />
-            <Readout label="Noon Sun overhead" value={`${Math.abs(o.dec).toFixed(1)}°${o.dec >= 0 ? "N" : "S"}`} />
+            <Readout label="vs closest day" value={`+${(((o.r - EXT.min.r) / EXT.min.r) * 100).toFixed(1)}%`} />
+          </Row>
+          <Row>
+            <Readout label="Noon Sun straight overhead" value={`${Math.abs(o.dec).toFixed(1)}° ${o.dec >= 0 ? "north" : "south"} of the equator`} />
           </Row>
           <p className={s.msg}>
             North: {season(day, true)} · South: {season(day, false)}
           </p>
+          <p className={s.small2}>{o.dec > 5 ? "The north leans toward the Sun." : o.dec < -5 ? "The south leans toward the Sun." : "Neither half leans toward the Sun."}</p>
         </div>
       )}
     </Lesson>

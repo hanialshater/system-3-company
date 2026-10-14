@@ -7,3 +7,9 @@
 - Bug found in QA: I first started the slider at 2,000 km, thinking two presses meant +1,000. They mean +500 (two steps of 250), so the gate never opened. Fixed by starting at 2,500.
 - Locked: the route, the marker and the readout are hidden, because the route drawn straight on the gnomonic map is the answer.
 - The stage says "Shows under half the globe" and "No winds" (brief claims 5 and 4).
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Opens on Mercator with Iceland, Greenland, Ireland, Canada labelled. The shortest route and the straight-on-Mercator dashed line are both drawn after the prediction, with 8,760 km and 9,730 km side by side. Gnomonic is the second view (gate: Greenland flown, gnomonic seen).
+- Hook and question no longer say "draw". Great circle and compass direction explained in the reveal (new claim c6; c5 reworded).

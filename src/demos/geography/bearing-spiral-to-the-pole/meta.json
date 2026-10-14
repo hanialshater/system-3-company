@@ -35,21 +35,17 @@
     },
     {
       "id": "geography.bearing-spiral-to-the-pole.c2",
-      "text": "At 80° the path circles the pole about 6.4 times by 89.9°N.",
+      "text": "At 80° the path has circled the pole about 4.3 times by 89°N, and the turns never end.",
       "support": "derivation",
-      "source": "Longitude travelled λ = tan α · ψ(φ), ψ = ln tan(45° + φ/2). tan 80° × ψ(89.9°) / 2π = 5.671 × 7.044 / 6.283 = 6.36 turns (builder node run; Demo.tsx turnsBy). Brief: 6.4. | FACT-CHECK 2026-10-13 (pass 6): Node: tan 80 x ln tan(45+89.9/2) / 2pi = 6.358, shown as 6.4.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Longitude travelled λ = tan α · ψ(φ), ψ = ln tan(45° + φ/2). tan 80° × ψ(89.9°) / 2π = 5.671 × 7.044 / 6.283 = 6.36 turns (builder node run; Demo.tsx turnsBy). Brief: 6.4. | FACT-CHECK 2026-10-13 (pass 6): Node: tan 80 x ln tan(45+89.9/2) / 2pi = 6.358, shown as 6.4. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.bearing-spiral-to-the-pole.c3",
-      "text": "Closer to the pole the path keeps circling without end, but its length is finite.",
+      "text": "The last degree of latitude to the pole adds only about 640 km at 80° (56,990 km to 89°N, 57,630 km to the pole), though it holds endless turns: the length is finite.",
       "support": "derivation",
-      "source": "ψ(φ) → ∞ as φ → 90°, so λ → ∞ (infinitely many turns), while s = R Δφ / cos α stays finite (Snyder 1987, ch. 7; from memory). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "ψ(φ) → ∞ as φ → 90°, so λ → ∞ (infinitely many turns), while s = R Δφ / cos α stays finite (Snyder 1987, ch. 7; from memory). | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.bearing-spiral-to-the-pole.c4",
@@ -62,12 +58,10 @@
     },
     {
       "id": "geography.bearing-spiral-to-the-pole.c5",
-      "text": "Every kilometre along a constant heading gains the same amount of northing, so the length is the north distance divided by cos(heading).",
+      "text": "At 80° each kilometre gains about 0.17 km of northing, the same at every turn, so the length to the pole is the north distance times about 5.8.",
       "support": "derivation",
-      "source": "dφ/ds = cos α / R for a constant azimuth α; integrate from 0 to π/2. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "dφ/ds = cos α / R for a constant azimuth α; integrate from 0 to π/2. | FACT-CHECK 2026-10-13 (pass 6): Re-derived; no issue. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.bearing-spiral-to-the-pole.c6",
@@ -100,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:rhumb-lines",
     "prerequisites": [
@@ -110,5 +104,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

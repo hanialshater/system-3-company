@@ -7,3 +7,10 @@
 - The reveal lists the latitudes the learner actually tried on the equinox. It quotes June's 18.5 h at 60°N only if the learner saw it.
 - Iteration after the phone screenshot: the model caption was cut off at the right edge. Split it over two lines and grew the SVG to 184 px.
 - Bug avoided: I first called reach() inside a setState updater. Moved it out, so interact() never runs during render.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Title no longer says 12 ("Day length at 60 N in March"); hook rewritten to a neutral question.
+- The stage opens at 60 N (the asked latitude) on 21 Dec and its readouts are visible from the start (5.5 h), so there is a "before". New claim c7 for 5.5 h.
+- "Line lit" is now "Share of the day in sunlight"; "geometric day" jargon dropped.

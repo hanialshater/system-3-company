@@ -39,6 +39,7 @@ const CHIPS = [100, 10, 1];
 
 export default function EarthFlattening({ slug }: { slug: string }) {
   const [k, setK] = useState(1);
+  const [peaks, setPeaks] = useState(false);
   const ry = RX * (1 - F * k);
   const drawnGap = GAP_MM * k;
 
@@ -50,8 +51,8 @@ export default function EarthFlattening({ slug }: { slug: string }) {
         options: ["About 1 mm", "About 1 cm", "About 3 cm"],
         answer: 0,
       }}
-      exploreHint="Squash it 100 times, then go back to true scale and look."
-      minInteractions={2}
+      exploreHint="Squash it 100 times, go back to true scale and look, then compare the two summits."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -69,7 +70,7 @@ export default function EarthFlattening({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["squashed", "true-scale"]}>
+        <Milestones interact={interact} names={["squashed", "true-scale", "peaks"]}>
           {(reach, reached) => {
             const set = (v: number) => {
               setK(v);
@@ -95,7 +96,7 @@ export default function EarthFlattening({ slug }: { slug: string }) {
                     equator
                   </text>
                   <text x={6} y={H - 6} className={s.small}>
-                    Dashed: perfect sphere. Solid: Earth (WGS84), flattening ×{k}.
+                    Dashed: a perfect ball. Solid: the Earth&rsquo;s real shape, its squash multiplied by {k}.
                   </text>
                 </svg>
                 <div className={s.chips} role="group" aria-label="Exaggerate the flattening">
@@ -112,6 +113,28 @@ export default function EarthFlattening({ slug }: { slug: string }) {
                   <Readout label="Drawn: poles closer by" value={locked ? "?" : `${drawnGap.toFixed(1)} mm`} />
                   <Readout label="Real 30 cm globe" value={locked ? "?" : `${GAP_MM.toFixed(1)} mm`} />
                 </Row>
+                {!locked && <Row>
+                  <Readout label="Real Earth: poles closer by" value={locked ? "?" : `${Math.round(2 * (A_KM - B_KM))} km (${(F * 100).toFixed(2)}%)`} />
+                  <Readout label="Equator bulges out" value={locked ? "?" : `${Math.round(A_KM - B_KM)} km`} />
+                </Row>}
+                {!locked && <Row>
+                  <Control
+                    disabled={locked}
+                    className={peaks ? "active" : ""}
+                    onClick={() => {
+                      setPeaks(true);
+                      reach("peaks");
+                    }}
+                  >
+                    Which summit is farthest from the centre?
+                  </Control>
+                </Row>}
+                {peaks && !locked && (
+                  <Row>
+                    <Readout label="Chimborazo (6,263 m high)" value={`${CHIMBORAZO.toFixed(1)} km from the centre`} />
+                    <Readout label="Everest (8,849 m high)" value={`${EVEREST.toFixed(1)} km from the centre`} />
+                  </Row>
+                )}
               </div>
             );
           }}

@@ -1,7 +1,7 @@
 {
   "slug": "london-december-noon-sun",
   "title": "How high is London's winter Sun?",
-  "hook": "Everyone knows the winter Sun is lower. Guess how low it gets at noon in London.",
+  "hook": "In December, how high does the noon Sun climb above London's horizon?",
   "domain": "geography",
   "concept": "sun-path-sky",
   "status": "review",
@@ -61,12 +61,24 @@
     },
     {
       "id": "geography.london-december-noon-sun.c5",
-      "text": "A low Sun spreads the same light over more ground, and its light passes through more air.",
+      "text": "A sunbeam arriving at height h above the horizon covers 1/sin(h) times the ground it covers when the Sun is overhead: about 3.8 times at 15.1° and 1.1 times at 61.9°.",
       "support": "derivation",
-      "source": "Light per unit of level ground scales with sin(altitude): sin 15° / sin 62° = 0.29. Path length through the atmosphere is about 1/sin(altitude) for altitudes above about 10° (plane-parallel air mass), about 3.9 at 15°. Stated qualitatively in the reveal; numbers not shown. | FACT-CHECK 2026-10-13 (pass 4): Node: sin 15 / sin 61.93 = 0.29 (ground light per area scales with sin altitude); plane-parallel air mass 1/sin 15 = 3.9 (Kasten-Young about 3.8), so 'more air' holds.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Light per unit of level ground scales with sin(altitude): sin 15° / sin 62° = 0.29. Path length through the atmosphere is about 1/sin(altitude) for altitudes above about 10° (plane-parallel air mass), about 3.9 at 15°. Stated qualitatively in the reveal; numbers not shown. | FACT-CHECK 2026-10-13 (pass 4): Node: sin 15 / sin 61.93 = 0.29 (ground light per area scales with sin altitude); plane-parallel air mass 1/sin 15 = 3.9 (Kasten-Young about 3.8), so 'more air' holds. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c6",
+      "text": "At noon the Sun's height is 90° minus your latitude plus the Sun's tilt offset for the date (+23.44° in June, 0° at the equinox, −23.44° in December).",
+      "support": "derivation",
+      "source": "Standard solar-noon altitude formula 90 - latitude + declination (e.g. Meeus, Astronomical Algorithms, ch. 13 / any positional-astronomy text); the stage computes it with altAt() and the lat slider shows it for other latitudes (0 to 60 N).",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.london-december-noon-sun.c7",
+      "text": "An equinox is a spring or autumn day with day and night of equal length.",
+      "support": "convention",
+      "source": "Standard definition (e.g. US Naval Observatory, 'Equinoxes and Solstices'); the stage ignores atmospheric refraction.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:sun-path-sky",
     "prerequisites": [
@@ -100,5 +112,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart",
+    "scrubber-timeline"
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "slug": "equinox-twelve-everywhere",
-  "title": "The day every place gets 12 hours",
-  "hook": "Summer days are long in the north and winter days short. Is there a day when that stops?",
+  "title": "Day length at 60°N in March",
+  "hook": "Days are short in a northern winter and long in summer. Where does March fall?",
   "domain": "geography",
   "concept": "daylight-by-latitude",
   "status": "review",
@@ -76,6 +76,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c7",
+      "text": "On 21 December the daylight at 60°N is about 5.5 hours on the stage.",
+      "support": "derivation",
+      "source": "Same model as c4: hours = 2 acos(-tan(lat) tan(dec))/15 with lat 60, dec -23.44 = 5.51 h (node check); the stage opens on this state (Demo.tsx dayHours).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:daylight-by-latitude",
     "prerequisites": [
@@ -108,5 +115,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart",
+    "locked-readouts"
+  ]
 }

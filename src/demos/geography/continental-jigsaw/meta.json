@@ -24,9 +24,9 @@
   "claims": [
     {
       "id": "geography.continental-jigsaw.c1",
-      "text": "Turned 57° about a pole near 44°N, 30.6°W, South America fits against Africa: the Bullard, Everett and Smith (1965) fit.",
+      "text": "South America turned 57° about a single point in the North Atlantic (near 44°N, 30.6°W) fits against Africa: the Bullard, Everett and Smith (1965) fit.",
       "support": "source",
-      "source": "Bullard, E., Everett, J. E. and Smith, A. G. (1965), The fit of the continents around the Atlantic, Phil. Trans. R. Soc. A 258(1088): 41-51 (South America to Africa: pole 44.0 N, 30.6 W, rotation 57.0 degrees, fitted at the 500-fathom isobath). Parameters from the brief and builder recall; not opened (network blocked). It is a best fit of margins, not a plate-motion history. | FACT-CHECK 2026-10-13 (pass 9): RE-OPENED in pass 9: this was marked verified but its source says the parameters came from builder recall and the paper was not opened. Bullard, Everett and Smith (1965), Phil. Trans. R. Soc. A 258: 41-51, is unreachable (royalsocietypublishing.org 403); a web search found no secondary source quoting 44.0 N, 30.6 W, 57.0 degrees. Needs a human source check of the paper's table. Note: c4 (500-fathom contour) rests on the same unopened paper.",
+      "source": "Bullard, E., Everett, J. E. and Smith, A. G. (1965), The fit of the continents around the Atlantic, Phil. Trans. R. Soc. A 258(1088): 41-51 (South America to Africa: pole 44.0 N, 30.6 W, rotation 57.0 degrees, fitted at the 500-fathom isobath). Parameters from the brief and builder recall; not opened (network blocked). It is a best fit of margins, not a plate-motion history. | FACT-CHECK 2026-10-13 (pass 9): RE-OPENED in pass 9: this was marked verified but its source says the parameters came from builder recall and the paper was not opened. Bullard, Everett and Smith (1965), Phil. Trans. R. Soc. A 258: 41-51, is unreachable (royalsocietypublishing.org 403); a web search found no secondary source quoting 44.0 N, 30.6 W, 57.0 degrees. Needs a human source check of the paper's table. Note: c4 (500-fathom contour) rests on the same unopened paper. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
       "status": "unverified"
     },
     {
@@ -69,10 +69,8 @@
       "id": "geography.continental-jigsaw.c6",
       "text": "The South Atlantic began opening roughly 130 million years ago.",
       "support": "source",
-      "source": "Frisch, Meschede and Blakey (2011), Plate Tectonics, Springer: South Atlantic rifting and opening in the Early Cretaceous, about 140-120 Ma. Not opened by the builder.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Frisch, Meschede and Blakey (2011), Plate Tectonics, Springer: South Atlantic rifting and opening in the Early Cretaceous, about 140-120 Ma. Not opened by the builder. | v2: sentence no longer shown to learners; withdrawn.",
+      "status": "withdrawn"
     },
     {
       "id": "geography.continental-jigsaw.c7",
@@ -105,12 +103,18 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:plate-tectonics-fit",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart"
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "slug": "fifty-hour-monday",
   "title": "How long is a Monday?",
-  "hook": "A day has 24 hours. So why is it Monday somewhere for much longer than that?",
+  "hook": "A day has 24 hours. How long can it be Monday somewhere on Earth?",
   "domain": "geography",
   "concept": "date-line",
   "status": "review",
@@ -51,12 +51,17 @@
     },
     {
       "id": "geography.fifty-hour-monday.c4",
-      "text": "The shaded bands are nominal 15-degree zones, not legal time zones; the two dots mark Kiritimati (about 1.9 N, 157.4 W) and Baker Island (about 0.2 N, 176.5 W).",
+      "text": "The shaded bands are nominal 15-degree strips of the world, not legal time zones; the two dots mark Kiritimati (about 1.9 N, 157.4 W) and Baker Island (about 0.2 N, 176.5 W).",
       "support": "convention",
-      "source": "Nominal zones: offset n covers longitudes 15n +/- 7.5 degrees. Island coordinates from memory of a gazetteer (Kiritimati 1.87 N 157.36 W; Baker Island 0.19 N 176.48 W), not checked online. Neither island exists in the 1:110m shapes; drawn as markers. No border or date-line claims are drawn.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Nominal zones: offset n covers longitudes 15n +/- 7.5 degrees. Island coordinates from memory of a gazetteer (Kiritimati 1.87 N 157.36 W; Baker Island 0.19 N 176.48 W), not checked online. Neither island exists in the 1:110m shapes; drawn as markers. No border or date-line claims are drawn. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fifty-hour-monday.c5",
+      "text": "UTC is the clock time at Greenwich; UTC+14 runs 14 hours ahead of it.",
+      "support": "convention",
+      "source": "Definition of UTC offsets (BIPM / IANA time zone database): an offset UTC+n is n hours ahead of Coordinated Universal Time.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:date-line",
     "prerequisites": [
@@ -89,5 +94,12 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "scrubber-timeline",
+    "step-run-button"
+  ]
 }

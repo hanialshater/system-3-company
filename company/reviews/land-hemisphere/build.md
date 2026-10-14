@@ -9,3 +9,10 @@
 - Locked: both readouts show "?".
 - Iteration: on the phone the land was too faint at the kit's default muted fill, so I highlighted all countries.
 - Small mismatch to note: the drawn fill is country shapes and the mask is the land polygon. Both are 1:110m Natural Earth and differ only along a few shared coastlines.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- The Western Europe preset (which handed over the maximum) is gone. Presets: North Pole (40 percent), Mid-Pacific (21), Africa (38). Gate: any half over 38 percent and any under 25 percent.
+- A "Stuck? Show the landiest half a computer found" button appears only after three tries. The reveal says a search found 47 percent, then quotes the learner's own best and lowest.
+- "Whole planet 29 percent" is a readout; 11 percent and 40 percent claims (c3, c4) withdrawn. Slider labels in plain words.
