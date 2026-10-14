@@ -43,12 +43,10 @@
     },
     {
       "id": "ai.greedy-slot-machine.c3",
-      "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls; the stage shows the first pulls (A won, B lost).",
+      "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls; the stage shows the first pulls (A lost, B lost; with both at 0% the tie goes to A).",
       "support": "simulation",
-      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4). | FACT-CHECK 2026-10-14 (pass 16): Own reimplementation and the extracted MODEL block of Demo.tsx agree: seed 5 first pulls are A LOST and B LOST (first = [0,0]); seeds 1-4 and 6 are A lost, B won. The stage prints 'first pulls: A lost, B lost', so the claim's '(A won, B lost)' contradicts the stage. The rest holds: B pulled 1 of 500, wins per 100 = 40, 29, 23, 30, 41 (163/500 = 32.6, 'about 30'), stuck. Since both looked 0%, greedy stayed on A only because ties go to A. Fix (builder): change the parenthetical to '(A lost, B lost; with both at 0% the tie goes to A)'. The reveal text itself is not wrong.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4). | FACT-CHECK 2026-10-14 (pass 16): Own reimplementation and the extracted MODEL block of Demo.tsx agree: seed 5 first pulls are A LOST and B LOST (first = [0,0]); seeds 1-4 and 6 are A lost, B won. The stage prints 'first pulls: A lost, B lost', so the claim's '(A won, B lost)' contradicts the stage. The rest holds: B pulled 1 of 500, wins per 100 = 40, 29, 23, 30, 41 (163/500 = 32.6, 'about 30'), stuck. Since both looked 0%, greedy stayed on A only because ties go to A. Fix (builder): change the parenthetical to '(A lost, B lost; with both at 0% the tie goes to A)'. The reveal text itself is not wrong. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.greedy-slot-machine.c4",
@@ -91,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:exploration-exploitation",
     "prerequisites": [

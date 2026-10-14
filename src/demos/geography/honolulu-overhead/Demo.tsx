@@ -148,7 +148,7 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">
-                  Latitude is how far north of the equator a place is. Dashed: the latitude where the noon Sun is overhead on this date.
+                  Latitude is how far north or south of the equator a place is. Dashed: the latitude where the noon Sun is overhead on this date.
                   Filled city: the Sun has been overhead there.
                 </p>
                 <div className={s.chips} role="group" aria-label="Jump to a date">

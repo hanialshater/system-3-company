@@ -9,3 +9,8 @@
 
 - Review (v1): stem mixed 'you' and 'a player', question and demo pointed at different numbers, lock-in told, hook leaked. Fix: question now asks how often greedy ends up stuck on A (the stage's own tally); 'Watch 100 more' builds the tally in one tap; the first pulls (A won/lost, B won/lost) are printed; readouts for average last-100 wins of both players; reveal quotes the learner's tally; 68 shown as arithmetic only.
 - Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Fact-check c3: the claim said first pulls were (A won, B lost) but the stage prints A lost, B lost. Fix: claim text now matches the stage and notes the tie goes to A. No code change.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

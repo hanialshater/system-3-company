@@ -33,6 +33,7 @@ export default function ConfidentAndWrong({ slug }: { slug: string }) {
   const [p, setP] = useState(P_START);
   const [seen, setSeen] = useState<number[]>([P_START]);
   const [halves, setHalves] = useState<number[]>([P_START]); // the chain of halvings since the last reset
+  const [longest, setLongest] = useState(0); // most halvings in one unbroken chain the learner has made
 
   return (
     <Lesson
@@ -51,8 +52,10 @@ export default function ConfidentAndWrong({ slug }: { slug: string }) {
             {f2(Q_ONE)}, {(Q_ONE / Q_HALF).toFixed(1)} times as much, and the curve was rising steeply at the left edge.
           </p>
           <p>
-            You saw each halving of the chance add the same {f2(Q_HALF)}. From 100%, 1% is about{" "}
-            {(Q_ONE / Q_HALF).toFixed(1)} halvings away, so it costs {(Q_ONE / Q_HALF).toFixed(1)} times the first one.
+            {longest >= 2
+              ? `You halved the chance ${longest} times in a row and each halving added the same ${f2(Q_HALF)}.`
+              : `You saw one halving, 50% to 25%, add ${f2(Q_HALF)} on top of the ${f2(Q_HALF)} for 100% to 50%. The step should repeat.`}{" "}
+            From 100%, 1% is about {(Q_ONE / Q_HALF).toFixed(1)} halvings away, so it costs {(Q_ONE / Q_HALF).toFixed(1)} times the first one.
             Keep halving and the penalty keeps rising: it never levels off.
           </p>
           <p>
@@ -77,6 +80,7 @@ export default function ConfidentAndWrong({ slug }: { slug: string }) {
               setP(v);
               setSeen((xs) => [...xs, v]);
               setHalves((h) => [...h, v]);
+              setLongest((n) => Math.max(n, halves.length));
               reach("halved");
               if (v <= 10) reach("ten");
             };

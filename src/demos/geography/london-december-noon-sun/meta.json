@@ -61,30 +61,24 @@
     },
     {
       "id": "geography.london-december-noon-sun.c5",
-      "text": "A sunbeam arriving at height h above the horizon covers 1/sin(h) times the ground it covers when the Sun is overhead: about 3.8 times at 15.1° and 1.1 times at 61.9°.",
+      "text": "A sunbeam arriving at height h above the horizon covers 1/sin(h) times the ground it covers when the Sun is overhead: about 3.9 times at 15.1° and 1.1 times at 61.9°.",
       "support": "derivation",
-      "source": "Light per unit of level ground scales with sin(altitude): sin 15° / sin 62° = 0.29. Path length through the atmosphere is about 1/sin(altitude) for altitudes above about 10° (plane-parallel air mass), about 3.9 at 15°. Stated qualitatively in the reveal; numbers not shown. | FACT-CHECK 2026-10-13 (pass 4): Node: sin 15 / sin 61.93 = 0.29 (ground light per area scales with sin altitude); plane-parallel air mass 1/sin 15 = 3.9 (Kasten-Young about 3.8), so 'more air' holds. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Node: Dec altitude 90 - 51.5072 - 23.44 = 15.0528 deg; 1/sin = 3.850, which the reveal and readout print with f1 as '3.9', not '3.8'. June 61.9328 deg: 1/sin = 1.133, '1.1' (right). Fix (builder): claim text 'about 3.9 times at 15.1 deg'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Light per unit of level ground scales with sin(altitude): sin 15° / sin 62° = 0.29. Path length through the atmosphere is about 1/sin(altitude) for altitudes above about 10° (plane-parallel air mass), about 3.9 at 15°. Stated qualitatively in the reveal; numbers not shown. | FACT-CHECK 2026-10-13 (pass 4): Node: sin 15 / sin 61.93 = 0.29 (ground light per area scales with sin altitude); plane-parallel air mass 1/sin 15 = 3.9 (Kasten-Young about 3.8), so 'more air' holds. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Node: Dec altitude 90 - 51.5072 - 23.44 = 15.0528 deg; 1/sin = 3.850, which the reveal and readout print with f1 as '3.9', not '3.8'. June 61.9328 deg: 1/sin = 1.133, '1.1' (right). Fix (builder): claim text 'about 3.9 times at 15.1 deg'. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.london-december-noon-sun.c6",
-      "text": "At noon the Sun's height is 90° minus your latitude plus the Sun's tilt offset for the date (+23.44° in June, 0° at the equinox, −23.44° in December).",
+      "text": "For places north of the tropics (24°N and up), the Sun's height at noon is 90° minus your latitude plus the Sun's tilt offset for the date (+23.44° in June, 0° at the equinox, −23.44° in December).",
       "support": "derivation",
-      "source": "Standard solar-noon altitude formula 90 - latitude + declination (e.g. Meeus, Astronomical Algorithms, ch. 13 / any positional-astronomy text); the stage computes it with altAt() and the lat slider shows it for other latitudes (0 to 60 N). | FACT-CHECK 2026-10-14 (pass 17): 90 - lat + dec is the noon altitude only where the Sun culminates south of the zenith (lat >= dec). The stage's latitude slider runs 0 to 60N, so on 21 June at 0-23N the readout prints e.g. '90 - 0.0 + 23.4 = 113.4' as the Sun's height, which is impossible (max 90; true value 66.6 deg to the north). Fix (builder): set the latitude slider min to 24N (or show 180 - x 'to the north' when x > 90), and qualify the claim 'for places north of the tropics'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Standard solar-noon altitude formula 90 - latitude + declination (e.g. Meeus, Astronomical Algorithms, ch. 13 / any positional-astronomy text); the stage computes it with altAt() and the lat slider shows it for other latitudes (0 to 60 N). | FACT-CHECK 2026-10-14 (pass 17): 90 - lat + dec is the noon altitude only where the Sun culminates south of the zenith (lat >= dec). The stage's latitude slider runs 0 to 60N, so on 21 June at 0-23N the readout prints e.g. '90 - 0.0 + 23.4 = 113.4' as the Sun's height, which is impossible (max 90; true value 66.6 deg to the north). Fix (builder): set the latitude slider min to 24N (or show 180 - x 'to the north' when x > 90), and qualify the claim 'for places north of the tropics'. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "geography.london-december-noon-sun.c7",
-      "text": "An equinox is a spring or autumn day with day and night of equal length.",
+      "text": "An equinox is a spring or autumn day when day and night are nearly equal in length.",
       "support": "convention",
-      "source": "Standard definition (e.g. US Naval Observatory, 'Equinoxes and Solstices'); the stage ignores atmospheric refraction. | FACT-CHECK 2026-10-14 (pass 17): On an equinox day and night are only nearly equal: day exceeds night by several minutes because of refraction and the Sun's disc (USNO 'Equinoxes and Solstices' FAQ; timeanddate 'Equinox: almost equal day and night'). The company's own equinox-twelve-everywhere c5 (verified) says so. The stage note repeats 'day and night equal'. Fix (builder, claim and Demo.tsx note): 'a spring or autumn day when day and night are nearly equal'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Standard definition (e.g. US Naval Observatory, 'Equinoxes and Solstices'); the stage ignores atmospheric refraction. | FACT-CHECK 2026-10-14 (pass 17): On an equinox day and night are only nearly equal: day exceeds night by several minutes because of refraction and the Sun's disc (USNO 'Equinoxes and Solstices' FAQ; timeanddate 'Equinox: almost equal day and night'). The company's own equinox-twelve-everywhere c5 (verified) says so. The stage note repeats 'day and night equal'. Fix (builder, claim and Demo.tsx note): 'a spring or autumn day when day and night are nearly equal'. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:sun-path-sky",
     "prerequisites": [

@@ -62,12 +62,10 @@
     },
     {
       "id": "geography.lap-at-89-north.c5",
-      "text": "One degree from the pole, the circle is about 220 km across.",
+      "text": "One degree from the pole, the circle is about 220 km straight across.",
       "support": "derivation",
-      "source": "Diameter measured over the surface: 2 × (1° × π/180 × R) = 222.4 km, shown as 220 km (r10 rounding). Demo.tsx fromPoleKm. | FACT-CHECK 2026-10-13 (pass 6): 2 x 111.2 = 222.4 km, shown as 220.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Straight-line diameter 2 R cos(89 deg) = 222.4 km, shown as 220 km (r10 rounding). Demo.tsx acrossKm. (v3: the stage readout is now the straight-line diameter; it was measured over the surface, same value near the pole.)",
+      "status": "unverified"
     },
     {
       "id": "geography.lap-at-89-north.c6",
@@ -96,12 +94,10 @@
     },
     {
       "id": "geography.lap-at-89-north.c9",
-      "text": "Whenever one lap is under 1,000 km, it is a bit more than London to Edinburgh by road (about 650 km).",
+      "text": "When one lap is under 1,000 km, the stage shows how many times the London to Edinburgh road distance (about 650 km) it is, e.g. about 1.1 times at 89°N.",
       "support": "derivation",
-      "source": "UNRECORDED claim found by the fact-checker (pass 17): Demo.tsx shows the note 'A bit more than London to Edinburgh by road (about 650 km).' whenever lapKm(lat) < 1000. | FACT-CHECK 2026-10-14 (pass 17): Node, 2 pi R cos(lat): 88.6N 978 km (1.5x, not 'a bit more'), 89.0N 699 km (right), 89.1N 629 km, 89.5N 349 km, 89.9N 70 km, all LESS than 650 km. The slider reaches 89.9N in 0.1 steps, so the note is false at 89.1-89.9N. Fix (builder, Demo.tsx): show the note only when the lap is about 680-760 km (e.g. 88.9-89.0N), or compute the comparison ('about N times London to Edinburgh').",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx shows (lapKm / 650).toFixed(1) times the London to Edinburgh road distance whenever lapKm(lat) < 1000. Node: 89.0N 699 km -> 1.1; 89.5N 349 km -> 0.5; 88.6N 978 km -> 1.5. v3 rewrite of the disputed claim; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -126,7 +122,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:polar-circle-geometry",
     "prerequisites": [

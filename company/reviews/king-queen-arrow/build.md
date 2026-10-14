@@ -9,3 +9,8 @@
 
 - Review (v1): prediction was arithmetic from the stem, circular by construction, real-vector question open, crown/prince distances told. Fix: second, messier hand-placed map where the same move lands nearest crown; prediction now asks whether the arrow always lands nearest queen on a messier map; distances to queen, crown and prince shown (2 decimals); both maps gate the reveal; new claim c5 discloses the messy map was invented to show a miss.
 - Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): the key 'Often, not always' claimed a frequency the stage never showed. Fix: options are Always / Not always / Never and the stem asks whether the arrow would always land nearest queen; the stage shows one success and one miss.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

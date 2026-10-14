@@ -12,3 +12,8 @@
 
 - Review (v1): caption read as 'd = d + 1', coefficient undefined, 'coin flips on new points' told. Fix: caption 'A degree-d curve has d + 1 numbers to tune'; biggest-coefficient readout dropped; a held-out 'new point' at x = 0.5 with its own coin-flip label, a live tally of how often the degree-5 curve called it right, and 'Try 20 more label sets' (gates the reveal).
 - Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Fact-check c3: degree-1 miss is 1.50 not 1.51. Fix: claim text and the header comment. No visible change.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

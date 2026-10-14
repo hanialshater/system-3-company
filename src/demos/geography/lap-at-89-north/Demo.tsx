@@ -19,7 +19,7 @@ const KM_PER_PX = 80; // fixed map scale: the equator ring is about 125 px in ra
 const KEY = 89;
 const PRESETS = [0, 60, 85, KEY];
 const lapKm = (lat: number) => 2 * Math.PI * EARTH_RADIUS_KM * Math.cos(lat * RAD);
-const fromPoleKm = (lat: number) => (90 - lat) * RAD * EARTH_RADIUS_KM;
+const acrossKm = (lat: number) => 2 * EARTH_RADIUS_KM * Math.cos(lat * RAD); // straight-line diameter of the parallel
 const r10 = (x: number) => (Math.round(x / 10) * 10).toLocaleString("en-US");
 const latName = (lat: number) => (lat === 0 ? "the equator" : `${lat}°N`);
 
@@ -63,8 +63,8 @@ export default function LapAt89North({ slug }: { slug: string }) {
             {seen.includes(85) && ` At 85°N you saw ${r10(lapKm(85))} km.`} On the same map, the ring shrank from the whole width to a speck.
           </p>
           <p>
-            Circles of latitude get smaller toward the pole. At 89°N the circle is only 1.7% as wide as at the equator: one degree from the
-            pole, the &ldquo;world&rdquo; you walk around is a circle about {r10(2 * fromPoleKm(KEY))} km across.
+            Circles of latitude get smaller toward the pole. At 89°N the circle is only 1.7% as wide across as at the equator: one degree from the
+            pole, the &ldquo;world&rdquo; you walk around is a circle about {r10(acrossKm(KEY))} km across.
           </p>
         </>
       )}
@@ -101,7 +101,7 @@ export default function LapAt89North({ slug }: { slug: string }) {
                           {bar.toLocaleString("en-US")} km
                         </text>
                         <text x={4} y={12} className={s.lab}>
-                          Centred on the North Pole. Yellow: {latName(lat)}. Dashed: equator.
+                          Centred on the North Pole. {lat === 0 ? "Yellow: the equator." : `Yellow: ${latName(lat)}. Dashed: equator.`}
                         </text>
                       </>
                     );
@@ -119,9 +119,9 @@ export default function LapAt89North({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Once around" value={locked ? "?" : `${r10(lapKm(lat))} km`} />
-                  <Readout label="Across the circle" value={locked ? "?" : `${r10(2 * fromPoleKm(lat))} km`} />
+                  <Readout label="Straight across the circle" value={locked ? "?" : `${r10(acrossKm(lat))} km`} />
                 </Row>
-                {!locked && lapKm(lat) < 1000 && <p className={s.note}>A bit more than London to Edinburgh by road (about 650 km).</p>}
+                {!locked && lapKm(lat) < 1000 && <p className={s.note}>About {(lapKm(lat) / 650).toFixed(1)} × the London to Edinburgh road distance (about 650 km).</p>}
               </div>
             );
           }}

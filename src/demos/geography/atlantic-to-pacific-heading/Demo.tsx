@@ -45,7 +45,6 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         projection={projection}
         width={W}
         height={H}
-        highlight={["Panama"]}
         graticule={false}
         label={locked ? "Map of Panama with the Caribbean Sea to the north and the Pacific Ocean to the south." : `Map of Panama with the Caribbean Sea to the north and the Pacific Ocean to the south. A ship ${t} percent of the way from the Atlantic end to the Pacific end of the canal, heading ${HEADING.toFixed(0)} degrees, ${compass(HEADING)}.`}
       >
@@ -54,7 +53,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           const b = proj(BALBOA);
           const p = proj(pos);
           const sea = proj([-80.7, 10.1]);
-          const pac = proj([-80.4, 7.3]);
+          const pac = proj([-79.0, 7.3]);
           if (!a || !b || !p || !sea || !pac) return null;
           const seas = (
             <>
@@ -89,7 +88,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           );
         }}
       </WorldMap>
-      <p className="muted tiny">Map of Panama, north up. The black line is the ship&rsquo;s track so far.</p>
+      <p className="muted tiny">Grey is land, pale is sea; north is up. The black line is the ship&rsquo;s track so far.</p>
       <Row>
         <Control disabled={locked} className={t >= 100 ? "active" : ""} onClick={() => go(100)}>
           Sail to the Pacific end
@@ -101,6 +100,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       <Row>
         <Slider label="Along the canal" value={t} min={0} max={100} step={5} disabled={locked} format={(v) => `${v}%`} onChange={go} />
         <Readout label="Heading (north 0°, east 90°)" value={locked ? "?" : t === 0 ? "not sailed yet" : `${HEADING.toFixed(0)}° ${compass(HEADING)}`} />
+        <Readout label="Straight-line distance so far" value={locked || t === 0 ? "–" : `${Math.round(KM * f)} km`} />
       </Row>
     </div>
   );

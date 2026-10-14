@@ -22,6 +22,7 @@ const RS = 140; // sky radius, px
 const RAD = Math.PI / 180;
 const LAT = 51.5072; // London
 const TILT = 23.44;
+const MIN_LAT = 24; // north of the tropics, so the noon Sun is always in the south
 const MAX_LAT = 60; // keeps the December Sun above the horizon (90 - 60 - 23.44 > 0)
 const DATES = [
   { label: "21 June", dec: TILT, key: "" },
@@ -102,14 +103,18 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
                   S
                 </text>
                 {/* Equinox height and the tilt band either side of it */}
-                <path d={arc(altAt(lat, -TILT), altAt(lat, TILT), RS)} className={s.band} />
-                <line x1={OX} y1={OY} x2={at(eq)[0]} y2={at(eq)[1]} className={s.eqLine} />
-                <text x={at(eq, RS + 6)[0]} y={at(eq, RS + 6)[1] + 3} className={s.small}>
-                  equinox
-                </text>
-                <text x={at(altAt(lat, TILT) + 4, RS + 6)[0]} y={at(altAt(lat, TILT) + 4, RS + 6)[1]} className={s.small}>
-                  ±{f1(TILT)}° tilt
-                </text>
+                {!locked && <path d={arc(altAt(lat, -TILT), altAt(lat, TILT), RS)} className={s.band} />}
+                {!locked && <line x1={OX} y1={OY} x2={at(eq)[0]} y2={at(eq)[1]} className={s.eqLine} />}
+                {!locked && (
+                  <text x={at(eq, RS + 6)[0]} y={at(eq, RS + 6)[1] + 3} className={s.small}>
+                    equinox
+                  </text>
+                )}
+                {!locked && (
+                  <text x={at(altAt(lat, TILT) + 4, RS + 6)[0]} y={at(altAt(lat, TILT) + 4, RS + 6)[1]} className={s.small}>
+                    ±{f1(TILT)}° tilt
+                  </text>
+                )}
                 {seen
                   .filter((k) => k !== i)
                   .map((k) => {
@@ -129,10 +134,10 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
                   {atLondon ? "you, London" : `you, ${f1(lat)}°N`}
                 </text>
                 <text x={4} y={12} className={s.small}>
-                  Toy sky, true angles. Facing east at noon.
+                  Toy sky, true angles. Side view at noon: south on the right.
                 </text>
               </svg>
-              <p className={s.note}>Equinox: a spring or autumn day with day and night equal. Tilt: how far the Earth leans, 23.4°. Orange bar: the ground one sunbeam lights.</p>
+              <p className={s.note}>Equinox: a spring or autumn day when day and night are nearly equal. Tilt: how far the Earth leans, 23.4°. Orange bar: the ground one sunbeam lights.</p>
               <Row>
                 <Slider
                   label="Date"
@@ -152,7 +157,7 @@ export default function LondonDecemberNoonSun({ slug }: { slug: string }) {
                 <Slider
                   label="Where you stand (latitude)"
                   value={Math.round(lat * 2) / 2}
-                  min={0}
+                  min={MIN_LAT}
                   max={MAX_LAT}
                   step={0.5}
                   disabled={locked}

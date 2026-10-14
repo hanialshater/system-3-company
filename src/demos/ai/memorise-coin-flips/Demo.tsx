@@ -3,7 +3,7 @@
 // Memorising-noise toy. Six points at x = 0, 0.2, ..., 1 with coin-flip labels +1 / -1
 // (label set n uses mulberry32(n), untuned; set 1 = -1, 1, -1, -1, -1, 1). A least-squares polynomial of
 // degree 1, 3 or 5 is fitted. Degree 5 has six coefficients, so it passes through all six dots for ANY labels
-// (largest miss < 1e-10 over 1,000 label sets). Set 1: degree 1 misses by up to 1.51, degree 3 by 0.76,
+// (largest miss < 1e-10 over 1,000 label sets). Set 1: degree 1 misses by up to 1.50, degree 3 by 0.76,
 // degree 5 by 0.00 with a biggest coefficient of 833; set 2: degree 5 biggest coefficient 625.
 
 import { useState } from "react";

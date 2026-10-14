@@ -82,8 +82,8 @@ export default function KingQueenArrow({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "On a tidy toy map, man is (0,0), woman (0,1), king (1,0), queen (1,1), crown (1,0.4), prince (1,-0.5): king + (woman - man) lands exactly on queen. On a messier map, with every word nudged a little, would that arrow land nearest queen?",
-        options: ["Always", "Often, not always", "Never"],
+          "On a tidy toy map, man is (0,0), woman (0,1), king (1,0), queen (1,1), crown (1,0.4), prince (1,-0.5): king + (woman - man) lands exactly on queen. On a messier map, with every word nudged a little, would that arrow always land nearest queen?",
+        options: ["Always", "Not always", "Never"],
         answer: 1,
       }}
       exploreHint="Measure the arrow, carry it to king, then try the messier map."

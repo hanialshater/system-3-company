@@ -29,7 +29,7 @@ type Mode = "distance" | "cosine" | null;
 
 export default function DirectionNotDistance({ slug }: { slug: string }) {
   const [k, setK] = useState(K_START);
-  const [seen, setSeen] = useState<number[]>([K_START]);
+  const [seen, setSeen] = useState<number[]>([]);
   const [mode, setMode] = useState<Mode>(null);
   const B = bAt(k);
   const cosB = cosine(Q, B);
@@ -39,7 +39,7 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Query Q = (${Q.join(", ")}). B = (${bAt(K_START).join(", ")}) is far away, pointing the same way as Q. C = (${C.join(", ")}) is close but points a bit lower. By cosine similarity, which is more similar to Q?`,
+        question: `Query Q = (${Q.join(", ")}). B = (${bAt(K_START).join(", ")}) is far from Q. C = (${C.join(", ")}) is close to Q. Cosine similarity compares the angle between two arrows drawn from the origin. Which is more similar to Q?`,
         options: ["B", "C", "They tie"],
         answer: 0,
       }}
@@ -76,14 +76,16 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <span className={`tag ${s.model}`}>Toy 2-D vectors</span>
-                <p className={s.caption}>Cosine: 1 = same direction, lower = wider angle.{locked ? "" : " Length is ignored."}</p>
+                {!locked && <p className={s.caption}>Cosine: 1 = same direction, lower = wider angle. Length is ignored.</p>}
                 <svg viewBox="0 0 320 212" className="stage-svg" role="img" aria-label={`B at ${k}, ${k}`}>
                   <line x1={ox} y1={oy} x2={ox + 11 * u} y2={oy} stroke="var(--line)" />
                   <line x1={ox} y1={oy} x2={ox} y2={oy - 11 * u} stroke="var(--line)" />
-                  <line x1={ox} y1={oy} x2={rx} y2={ry} stroke="var(--muted)" strokeDasharray="4 4" />
-                  <text x={rx - 4} y={ry + 12} textAnchor="end" className={s.tiny} fill="var(--muted)">
-                    Q&apos;s direction
-                  </text>
+                  {!locked && <line x1={ox} y1={oy} x2={rx} y2={ry} stroke="var(--muted)" strokeDasharray="4 4" />}
+                  {!locked && (
+                    <text x={rx - 4} y={ry + 12} textAnchor="end" className={s.tiny} fill="var(--muted)">
+                      Q&apos;s direction
+                    </text>
+                  )}
                   {!locked && mode === "distance" && (
                     <g>
                       <line x1={qx} y1={qy} x2={bx} y2={by} stroke="var(--bad)" strokeWidth={2} />
