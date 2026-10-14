@@ -67,6 +67,10 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+- 2026-10-14 cm-life-health-epidemiology (Umar): brief contact-order-matters updated to the interaction designer's spec (Overlap rule in claim 3, A/E person buttons, 1/k! marked not on the stage); node re-run matches (E→A from A 1; A→E 4; Overlap 4 from A and E). Not committed.
+
+- 2026-10-14: cm-math-discrete (Chiara), brief 3 cluster-stops-the-cascade fixed per Rafael's spec: edge count 14 (7 path + 7-8 + 6), synchronous-update rule stated, interaction line defers to the spec and the design-lead ruling; node re-run: 8 of 12 round 6, 12 of 12 round 8, 298 sets / 132 incomplete / 0 contradictions; only math.discrete.md edited, not committed.
+
 ### 2026-10-14: interaction-designer (Rafael), S2-20 specs cluster-stops-the-cascade and contact-order-matters
 
 - **What changed.** Wrote `company/design/specs/cluster-stops-the-cascade.md` + `.svg` (4 frames) and `company/design/specs/contact-order-matters.md` + `.svg` (4 frames). Re-ran both briefs in node with each spec's exact rule and simulated each QA path.
