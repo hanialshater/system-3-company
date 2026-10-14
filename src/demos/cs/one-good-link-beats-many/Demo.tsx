@@ -83,7 +83,7 @@ function Stage({ locked, interact, round, setRound }: {
           );
         })}
       </svg>
-      <p className={s.rule}>Each round a page passes {Math.round(S * 100)}% of its score down its links; every page gets a free 1.5%.</p>
+      <p className={s.rule}>Each round a page passes {Math.round(S * 100)}% of its score down its links; every page also gets 1.5% free, links or not.</p>
       <p className={s.legend}>Size: score. Thick arrow: more passed.</p>
       <Row>
         <Control disabled={locked || running || round >= SETTLED_ROUND} onClick={() => go(round + 1)}>Step</Control>
@@ -122,11 +122,11 @@ export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            After round 1, X led, <strong>{f3(score(1, "X"))}</strong> to {f3(score(1, "Y"))}. By round 2, Y had <strong>{f3(score(2, "Y"))}</strong> and X {f3(score(2, "X"))}, and X never moved again.{" "}
-            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}.</> : null}
+            After round 1, X led, <strong>{f3(score(1, "X"))}</strong> to {f3(score(1, "Y"))}. By round 2, Y had <strong>{f3(score(2, "Y"))}</strong> and X {f3(score(2, "X"))}.{" "}
+            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}, the same as at round 2.</> : null}
           </p>
           <p>
-            X&rsquo;s three links come from pages nobody links to, so in round 2 each passed on only about {f3(passed(2, "P"))}. Y&rsquo;s one link comes from H, which five pages link to, so H passed on {f3(passed(2, "H"))}.
+            X&rsquo;s three links come from pages nobody links to, so in round 2 each passed on only about {f3(passed(2, "P"))}. Y&rsquo;s one link comes from H, which five pages link to (Y links back to it too), so H passed on {f3(passed(2, "H"))}.
           </p>
           <p>
             A link passes on a share of the linking page&rsquo;s own score. PageRank ranks a page by who links to it, weighted by how important those linkers are.

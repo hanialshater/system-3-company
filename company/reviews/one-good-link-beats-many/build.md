@@ -21,3 +21,11 @@
 - Reset removed, so the reveal can no longer quote round 51 beside a round-0 stage. The reveal quotes round 51 only if the learner ran to it.
 - Claims: c4 (text) and c5 (reveal context) -> unverified; c8 and c9 added, unverified. c1, c2, c3, c6, c7 unchanged, still verified. Recall: option order only.
 - Not done: the optional "remove the 4 pages that link to H" step.
+
+## Revision v3 (demo-builder, 2026-10-14, polish from learner review r2)
+
+- "X never moved again" removed as an unconditional claim. Reveal now says "By round 2, Y had 0.389 and X 0.053" (a displayed round); only if the learner ran to round 51 it adds "the scores had stopped changing: Y 0.374, X 0.053, the same as at round 2".
+- "Free 1.5%" in plain words on the stage: "every page also gets 1.5% free, links or not."
+- Reveal gives one phrase on Y: "H, which five pages link to (Y links back to it too)".
+- Claims: c1 text now names Y linking back to H -> unverified. c2, c3, c4 text unchanged (still verified); the stage/reveal wording changed only.
+- QA v3: own NEXT_DIST_DIR .next-og3, QA_PORT 3913, QA_ONLY slug: 10 passed, 2 failed (feed.spec "subject chips filter the feed", phone and desktop; same non-lesson failure as v1). Walkthrough run on 3913; all four phone frames looked at: rule line wraps to two lines, reveal text fits, no new overlap. check and typecheck pass; tsconfig.json change from build reverted.
