@@ -7,7 +7,7 @@
 // which is a typical outcome, not a guarantee (at an average of 0.60 about 55% of tubes hold none).
 // Key states (milestones): step 21 (average about 6) and step 22 (average below 1).
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -21,11 +21,12 @@ const average = (k: number) => stock * 10 ** -k;
 const FEW = 21;
 const NONE = 22;
 const MAX_STEP = 30;
+const AUTO_END = 24;
 const MILESTONES = ["few", "none"] as const;
 
-const sample = (k: number) => {
+const sample = (k: number, draw = 0) => {
   const mean = average(k);
-  const rng = mulberry32(3000 + k);
+  const rng = mulberry32(3000 + k + draw * 977);
   const lim = Math.exp(-mean);
   let c = 0;
   let p = 1;
@@ -52,6 +53,17 @@ const TH = 112;
 
 export default function Dilution({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
+  const [draw, setDraw] = useState(0);
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Dilute automatically" repeats the 1:10 step, one tube at a time, so every step is seen.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 150);
+    return () => clearInterval(id);
+  }, [auto]);
 
   return (
     <Lesson
@@ -61,7 +73,7 @@ export default function Dilution({ slug }: { slug: string }) {
         options: ["10 steps", `${NONE} steps`, "60 steps"],
         answer: 1,
       }}
-      exploreHint="Repeat the 1:10 step to 21, then 22, and watch the dots in the tube."
+      exploreHint="Dilute one step at a time and watch the molecule count. Keep going past the point where the average drops below 1; steps 21 and 22 matter."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -70,7 +82,7 @@ export default function Dilution({ slug }: { slug: string }) {
           </p>
           <p>
             The start tube held about {fmtAvg(stock)} molecules and each step divides the count by 10, so it runs out after about {NONE} steps. Past that, a typical tube holds only
-            water, though by chance a few still catch one.
+            water: at an average of {fmtAvg(average(NONE))}, about 55% of tubes hold none and the rest hold one or more.
           </p>
         </>
       )}
@@ -80,22 +92,28 @@ export default function Dilution({ slug }: { slug: string }) {
           {(reach) => {
             const set = (v: number) => {
               setK(v);
+              setDraw(0);
               if (v === FEW) reach("few");
               if (v === NONE) reach("none");
             };
+            autoStep.current = () => {
+              if (k >= AUTO_END) return true;
+              set(k + 1);
+              return k + 1 >= AUTO_END;
+            };
             const mean = average(k);
             const show = k >= 19;
-            const c = show ? sample(k) : 0;
+            const c = show ? sample(k, draw) : 0;
             const fade = Math.max(0.08, Math.min(1, Math.log10(Math.max(mean, 1)) / 21.8));
             const logw = Math.max(0, ((Math.log10(mean) + 2) / 24) * 280);
             const dots: [number, number][] = [];
             if (show) {
-              const rng = mulberry32(555 + k);
+              const rng = mulberry32(555 + k + draw * 31);
               for (let i = 0; i < c; i++) dots.push([TX + 8 + rng() * (TW - 16), TY + 12 + rng() * (TH - 24)]);
             }
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Each step: 1 mL into 9 mL water. Tube = 10 mL.</p>
+                <p className={s.chip}>Start tube: 10 mL of 1.0 mol/L dye = {fmtAvg(stock)} molecules. Each step: 1 mL into 9 mL water.</p>
                 <svg viewBox="0 0 320 186" className="stage-svg" role="img" aria-label={locked ? "Dilution tube" : `Step ${k}: average ${fmtAvg(mean)} molecules`}>
                   <rect x={TX} y={TY} width={TW} height={TH} rx={8} fill={`color-mix(in srgb, var(--domain) ${Math.round(fade * (locked ? 0 : 60))}%, transparent)`} stroke="var(--fg)" strokeWidth={2} />
                   {dots.map((d, i) => (
@@ -125,16 +143,20 @@ export default function Dilution({ slug }: { slug: string }) {
                   <Readout label="Average per tube" value={locked ? "?" : fmtAvg(mean)} />
                 </Row>
                 <Row>
-                  <Control disabled={locked || k >= MAX_STEP} onClick={() => set(k + 1)}>
+                  <Control disabled={locked || auto || k >= AUTO_END} onClick={() => setAuto(true)}>
+                    Dilute automatically
+                  </Control>
+                  <Control disabled={locked || auto || k >= MAX_STEP} onClick={() => set(k + 1)}>
                     Dilute 1:10 once
                   </Control>
-                  {[10, FEW, NONE].map((t) => (
-                    <Control key={t} className={k === t ? "active" : ""} disabled={locked || k === t} onClick={() => set(t)}>
-                      Repeat to step {t}
-                    </Control>
-                  ))}
+                  <Control disabled={locked || auto || k === 0} onClick={() => set(0)}>
+                    Start again
+                  </Control>
+                  <Control disabled={locked || auto || !show} onClick={() => setDraw((d) => d + 1)}>
+                    Draw another tube
+                  </Control>
                 </Row>
-                <Slider label="Step" value={k} min={0} max={MAX_STEP} step={1} disabled={locked} onChange={set} />
+                <Slider label="Step" value={k} min={0} max={MAX_STEP} step={1} disabled={locked || auto} onChange={set} />
               </div>
             );
           }}

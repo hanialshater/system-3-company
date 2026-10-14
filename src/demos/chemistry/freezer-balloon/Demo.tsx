@@ -7,7 +7,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const ABS0 = -273.15;
@@ -42,28 +42,35 @@ export default function FreezerBalloon({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A 1.00 L balloon at 27 °C (300 K) goes into a freezer at −18 °C (255 K), at the same pressure. Its volume becomes about…",
+          "A 1.00 L balloon at 27 °C goes into a freezer at −18 °C, at the same pressure. Gas scientists add 273 to a Celsius temperature to get kelvin (K): 27 °C is 300 K and −18 °C is 255 K. The balloon's volume becomes about…",
         options: ["0.85 L", "0.50 L", "1.00 L"],
         answer: 0,
       }}
-      exploreHint="Cool the balloon to −18 °C. Then look where its line is heading."
-      minInteractions={2}
+      exploreHint="Slide the temperature down to −18 °C or colder, then look where the line is heading."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {lo <= -18 ? "At −18 °C you saw" : "At −18 °C the balloon reads"} <strong>0.85 L</strong>: it shrank by
+            At −18 °C you saw <strong>0.85 L</strong>: it shrank by
             15%, not by half. Volume goes with the kelvin temperature: 255 K ÷ 300 K = 0.85.
           </p>
           <p>
-            {showLine ? "The line you traced" : "Trace the line and it"} points down to zero volume at about{" "}
+            The line you traced points down to zero volume at about{" "}
             <strong>−273 °C</strong>. That is 0 K, where the kelvin scale starts. Celsius has its zero at freezing water,
             so 27 °C to −18 °C is not a fall to nothing: it is 300 K to 255 K.
           </p>
-          <p className="muted">A real gas turns liquid long before it gets that cold.</p>
+          <p className="muted">A real gas such as the air in the balloon turns liquid long before it gets that cold.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const moveTo = (t: number) => {
+          setC(t);
+          setLo((x) => Math.min(x, t));
+          setHi((x) => Math.max(x, t));
+          if (t <= -18 && lo > -18) interact(); // the reveal needs the −18 °C reading the question names
+        };
+        return (
         <div className={s.wrap}>
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`At ${fmtC(c)} the balloon is ${v.toFixed(2)} litres`}>
             {[0, 0.5, 1].map((g) => (
@@ -106,19 +113,23 @@ export default function FreezerBalloon({ slug }: { slug: string }) {
             max={40}
             disabled={locked}
             format={fmtC}
-            onChange={(t) => {
-              setC(t);
-              setLo((x) => Math.min(x, t));
-              setHi((x) => Math.max(x, t));
-              interact();
-            }}
+            onChange={moveTo}
           />
+          <Row>
+            <Control disabled={locked || c === -18} onClick={() => moveTo(-18)}>
+              Put it in the freezer (−18 °C)
+            </Control>
+            <Control disabled={locked || c === T_START} onClick={() => moveTo(T_START)}>
+              Back to the room (27 °C)
+            </Control>
+          </Row>
           <Row>
             <Readout label="Volume" value={`${v.toFixed(2)} L`} />
             <Readout label="In kelvin" value={`${Math.round(c - ABS0)} K`} />
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

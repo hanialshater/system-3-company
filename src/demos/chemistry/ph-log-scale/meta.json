@@ -1,6 +1,6 @@
 {
   "slug": "ph-log-scale",
-  "title": "Three pH steps apart",
+  "title": "Coffee against lemon juice",
   "hook": "Coffee is about pH 5, lemon juice about pH 2. How many times the hydrogen ions is that?",
   "domain": "chemistry",
   "concept": "ph-log-scale",
@@ -81,12 +81,10 @@
     },
     {
       "id": "chemistry.ph-log-scale.c7",
-      "text": "If black coffee is taken as pH 5 and lemon juice as pH 2 (round values), same-sized cups differ by exactly 1,000 times in hydrogen ions; for real coffees and lemon juices the ratio varies, roughly 200 to 1,300 times.",
+      "text": "If black coffee is taken as pH 5 and lemon juice as pH 2 (round values), same-sized cups differ by exactly 1,000 times in hydrogen ions.",
       "support": "derivation",
       "source": "From c2 with the round values: 10^(5-2) = 1,000. With the measured ranges in c3 and c4 the ratio runs from 10^(4.85-2.6) = 178 to 10^(5.13-2.0) = 1,349 (fact-checker, artifacts/scratch/fc2-ph-log-scale.mjs). v2 frames the predict question and reveal as round values (fact-check F1).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "chemistry.ph-log-scale.c8",
@@ -121,12 +119,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:ph-log-scale",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

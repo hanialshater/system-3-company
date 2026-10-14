@@ -1,7 +1,7 @@
 {
   "slug": "heavy-but-floats",
   "title": "Heavy, but it floats",
-  "hook": "A 500 g ball. Same mass every time. Why does it sometimes float?",
+  "hook": "Same 500 g ball, made bigger and smaller. What does the water do with it?",
   "domain": "chemistry",
   "concept": "density",
   "status": "review",
@@ -62,12 +62,10 @@
     },
     {
       "id": "chemistry.heavy-but-floats.c5",
-      "text": "A floating object has the same fraction of its volume under water as its density divided by water's: 0.625, five eighths, for this ball.",
+      "text": "A floating object has the same fraction of its volume under water as its density divided by water's: 0.625, five eighths (62.5%), for this ball.",
       "support": "derivation",
       "source": "Floating: weight = buoyancy, so rho_obj x V = rho_water x V_under, V_under / V = 0.625 / 1.0. The stage solves the spherical-cap depth h for (h/r)^2 (3 - h/r)/4 = 0.625 by bisection. | CLAIM FIX 2026-10-13: Stage drawing was wrong (cap sign mirrored: ball drawn 37.5% under at 800 cm3). Fixed Demo.tsx: cy = SURF + (capDepth(rho/RHO_W) - 1) * r, so 62.5% is under water at 800 cm3. Claim text unchanged.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "chemistry.heavy-but-floats.c6",
@@ -102,12 +100,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "chemistry:density",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

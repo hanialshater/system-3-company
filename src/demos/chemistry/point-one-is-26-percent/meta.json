@@ -42,21 +42,17 @@
     },
     {
       "id": "chemistry.point-one-is-26-percent.c3",
-      "text": "A fall of 0.3 in pH is about a doubling of hydrogen ions (10^0.3 = 2.0).",
+      "text": "A fall of 0.3 in pH is about a doubling of hydrogen ions (10^0.3 = 2.0; the stage shows about 200 dots against 100 at pH 7.9).",
       "support": "derivation",
       "source": "10^0.3 = 1.995 (node); stage shows about 200 dots at pH 7.9.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "chemistry.point-one-is-26-percent.c4",
-      "text": "pH counts powers of ten of hydrogen ion concentration.",
+      "text": "pH counts powers of ten of hydrogen ion concentration: one whole pH unit lower is ten times the hydrogen ions.",
       "support": "source",
       "source": "pH = −log10 a(H+) (IUPAC Gold Book, 'pH'); concentration used in place of activity, as is usual at this level.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "chemistry.point-one-is-26-percent.c5",
@@ -66,6 +62,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "chemistry.point-one-is-26-percent.c6",
+      "text": "Ten steps of 0.1 in pH make one whole unit, so each step multiplies the hydrogen ions by about 1.26, and 1.26 multiplied by itself ten times is about 10.",
+      "support": "derivation",
+      "source": "10^0.1 = 1.2589; 1.2589^10 = 10 (node).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +93,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "chemistry:ocean-acidification",
     "prerequisites": [
@@ -100,5 +103,6 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

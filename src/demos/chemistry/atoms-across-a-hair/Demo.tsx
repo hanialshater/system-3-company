@@ -5,9 +5,9 @@
 // A row of atoms (about 0.2 nm each) runs across the window and becomes visible only
 // at the last two steps. The count of atoms across the window is the thing to feel.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const V = 300; // window size in SVG units
@@ -22,6 +22,16 @@ const across = (z: number) => Math.round(viewNm(z) / ATOM_NM);
 export default function AtomsAcrossAHair({ slug }: { slug: string }) {
   const [z, setZ] = useState(0);
   const [deepest, setDeepest] = useState(0);
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Zoom in automatically" walks the ×10 steps one at a time, so the learner sees every step.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 300);
+    return () => clearInterval(id);
+  }, [auto]);
 
   const atomD = (V * ATOM_NM) / viewNm(z); // atom diameter in window units
   const hairW = (HAIR_UM * 1000 * V) / viewNm(z);
@@ -33,28 +43,38 @@ export default function AtomsAcrossAHair({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A human hair is about 70 micrometres wide; an atom is about 0.2 nanometres across. About how many atoms side by side span the hair?",
+          "A human hair is about 70 micrometres (µm) wide; a micrometre is a thousandth of a millimetre. An atom is about 0.2 nanometres (nm) across; a nanometre is a thousandth of a micrometre. About how many atoms side by side span the hair?",
         options: ["About 3,500", "About 350,000", "About 350 million"],
         answer: 1,
       }}
-      exploreHint="Zoom in one step at a time until single atoms appear."
-      minInteractions={2}
+      exploreHint="Zoom in one step at a time, all the way to the last step, until single atoms appear."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {deepest >= MAX_Z ? "You zoomed" : "Zoom all the way and it takes"} five steps of ×10 to go from a hair to
-            a window five atoms wide. Each step cut the count by ten: 500,000, 50,000, 5,000, 500, 50, 5.
+            You zoomed five steps of ×10 from a hair to a window five atoms wide. Each step cut the count of atoms
+            across the window by ten: 500,000, 50,000, 5,000, 500, 50, 5.
           </p>
           <p>
             The hair filled 70% of the first window, so it spans about 0.7 × 500,000 ={" "}
-            <strong>350,000 atoms</strong>. Check: 70 µm ÷ 0.2 nm = 70,000 nm ÷ 0.2 nm = 350,000, a gap of about five and
-            a half powers of ten.
+            <strong>350,000 atoms</strong>. Check: 70 µm ÷ 0.2 nm = 70,000 nm ÷ 0.2 nm = 350,000.
           </p>
-          <p className="muted">Atoms are not &ldquo;a bit&rdquo; smaller than a hair. They are 100,000s of times smaller.</p>
+          <p className="muted">Atoms are not &ldquo;a bit&rdquo; smaller than a hair. They are hundreds of thousands of times smaller.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const goto = (v: number) => {
+          setZ(v);
+          if (v > deepest) setDeepest(v);
+          if (v >= MAX_Z && deepest < MAX_Z) interact(); // the reveal needs the deepest step
+        };
+        autoStep.current = () => {
+          if (z >= MAX_Z) return true;
+          goto(z + 1);
+          return z + 1 >= MAX_Z;
+        };
+        return (
         <div className={s.wrap}>
           <svg
             viewBox={`0 0 ${V} ${V + 26}`}
@@ -123,19 +143,25 @@ export default function AtomsAcrossAHair({ slug }: { slug: string }) {
             value={z}
             min={0}
             max={MAX_Z}
-            disabled={locked}
+            disabled={locked || auto}
             format={(v) => `×${Math.pow(10, v).toLocaleString("en-US")}`}
-            onChange={(v) => {
-              setZ(v);
-              setDeepest((d) => Math.max(d, v));
-              interact();
-            }}
+            onChange={goto}
           />
           <Row>
+            <Control disabled={locked || auto || z >= MAX_Z} onClick={() => setAuto(true)}>
+              Zoom in automatically
+            </Control>
+          </Row>
+          <Row>
             <Readout label="Atom widths across window" value={locked ? "?" : across(z).toLocaleString("en-US")} />
+            <Readout
+              label="Hair width in atoms"
+              value={deepest >= MAX_Z ? Math.round((HAIR_UM * 1000) / ATOM_NM).toLocaleString("en-US") : "?"}
+            />
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

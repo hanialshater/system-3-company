@@ -52,11 +52,11 @@ export default function SameAirLessOxygen({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Air is 21% oxygen at every height. On Everest's summit the air pressure is about ${Math.round(SUMMIT_P)} kPa (sea level: ${Math.round(P0)} kPa). The oxygen's part of that pressure is about…`,
-        options: [`${SUMMIT_O2.toFixed(1)} kPa`, "21 kPa", "0.21 kPa"],
-        answer: 0,
+        question: `Air pressure is measured in kilopascals (kPa): ${Math.round(P0)} kPa at sea level, but only about ${Math.round(SUMMIT_P)} kPa on Everest's summit. At sea level about 21% of the air is oxygen. On the summit, oxygen is about what share of the air?`,
+        options: ["About 7%", "About 14%", "About 21%"],
+        answer: 2,
       }}
-      exploreHint="Climb, then go to the summit. Watch the coloured oxygen dots."
+      exploreHint="Climb, then go to the summit. Watch the coloured oxygen dots and the oxygen share."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
@@ -66,8 +66,8 @@ export default function SameAirLessOxygen({ slug }: { slug: string }) {
             sea level.
           </p>
           <p>
-            Each gas in a mix pushes its share of the total pressure. The air up high is not poorer in oxygen; it is thinner,
-            so each breath holds about a third as much.
+            Each gas in a mix pushes its share of the total pressure, as the Oxygen readout showed: 21% of {Math.round(SUMMIT_P)} kPa is
+            {" "}{SUMMIT_O2.toFixed(1)} kPa. The air up high is not poorer in oxygen; it is thinner, so each breath holds about a third as much.
           </p>
           <p className="muted">Standard-atmosphere model; measured summit pressure is a little higher, about 34 kPa.</p>
         </>
@@ -107,6 +107,9 @@ export default function SameAirLessOxygen({ slug }: { slug: string }) {
                   format={(v) => `${v.toLocaleString("en-US")} m`}
                 />
                 <Row>
+                  <Control onClick={() => go(Math.min(SUMMIT, h + 1000))} disabled={locked || atSummit}>
+                    Climb 1,000 m
+                  </Control>
                   <Control onClick={() => go(0)} disabled={locked || h === 0}>
                     Sea level
                   </Control>

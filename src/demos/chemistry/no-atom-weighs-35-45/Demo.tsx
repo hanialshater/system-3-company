@@ -67,7 +67,7 @@ export default function NoAtomWeighs({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `The periodic table gives chlorine's mass as ${TABLE.toFixed(2)} u (u is about one proton's mass). Is there a chlorine atom with that mass?`,
-        options: [`yes, every chlorine atom`, `no, ${TABLE.toFixed(2)} u is an average of two kinds`, `yes, but only a few atoms`],
+        options: ["Yes, every chlorine atom", "No, none does", "Yes, but only a few atoms"],
         answer: 1,
       }}
       exploreHint={`Draw ${KEY} atoms and look for one at ${TABLE.toFixed(2)} u.`}
@@ -80,7 +80,7 @@ export default function NoAtomWeighs({ slug }: { slug: string }) {
             <strong>{avg100.toFixed(2)} u</strong>.
           </p>
           <p>
-            Every chlorine atom has 17 protons; some carry 18 neutrons, some 20. The table&apos;s {TABLE.toFixed(2)} u is the
+            Every chlorine atom has 17 protons; some carry 18 neutrons, some 20. These two kinds are called isotopes: the same element with different numbers of neutrons. The table&apos;s {TABLE.toFixed(2)} u is the
             average over nature&apos;s mix, about 76% chlorine-35 and 24% chlorine-37.
           </p>
           <p className="muted">Toy bag of {BAG_N.toLocaleString("en-US")} atoms, shuffled with a fixed seed.</p>
@@ -111,12 +111,16 @@ export default function NoAtomWeighs({ slug }: { slug: string }) {
                   <text x={xOf(TABLE)} y={13} textAnchor="middle" className={s.small}>
                     table {TABLE.toFixed(2)}
                   </text>
-                  <text x={xOf(MASS[35])} y={28} textAnchor="middle" className={s.small}>
-                    chlorine-35
-                  </text>
-                  <text x={xOf(MASS[37])} y={28} textAnchor="middle" className={s.small}>
-                    chlorine-37
-                  </text>
+                  {n35 > 0 && (
+                    <text x={xOf(MASS[35])} y={28} textAnchor="middle" className={s.small}>
+                      chlorine-35: {n35}
+                    </text>
+                  )}
+                  {n37 > 0 && (
+                    <text x={xOf(MASS[37])} y={28} textAnchor="middle" className={s.small}>
+                      chlorine-37: {n37}
+                    </text>
+                  )}
                   {column(n35, MASS[35]).map((d, i) => (
                     <circle key={`a${i}`} cx={d.x} cy={d.y} r={2.4} className={s.cl35} />
                   ))}
@@ -136,8 +140,8 @@ export default function NoAtomWeighs({ slug }: { slug: string }) {
                   <Control onClick={() => draw(KEY)} disabled={locked || drawn + KEY > CAP}>
                     Draw {KEY}
                   </Control>
-                  <Control onClick={() => draw(1)} disabled={locked || drawn >= CAP}>
-                    Draw 1
+                  <Control onClick={() => draw(10)} disabled={locked || drawn + 10 > CAP}>
+                    Draw 10
                   </Control>
                 </Row>
                 <Row>

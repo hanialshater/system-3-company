@@ -5,9 +5,9 @@
 // a halving line (1/2, 1/4, 1/8) a pin drops with the age at that moment. Reading the
 // age of a 1/8 bone is counting pins, not multiplying by 8.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
 
 const T_HALF = 5700; // years, about
@@ -47,6 +47,16 @@ function curvePath(upTo: number) {
 export default function ReadTheBoneClock({ slug }: { slug: string }) {
   const [age, setAge] = useState(0);
   const [reach, setReach] = useState(0); // oldest age the learner has dragged to
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Run the clock" ages the bone in small steps up to 1/8 left, so every pin is seen dropping.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 160);
+    return () => clearInterval(id);
+  }, [auto]);
 
   const f = frac(age);
   const pins = [1, 2, 3].filter((k) => reach >= k * T_HALF);
@@ -58,19 +68,16 @@ export default function ReadTheBoneClock({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A bone has 1/8 of its original carbon-14. Carbon-14's half-life is about 5,700 years. About how old is the bone?",
+          "Carbon-14 is a radioactive form of carbon that slowly disappears after an animal dies. Its half-life, the time for half of it to disappear, is about 5,700 years. A bone has 1/8 of its original carbon-14. About how old is the bone?",
         options: ["About 5,700 years", "About 17,000 years", "About 46,000 years"],
         answer: 1,
       }}
-      exploreHint="Drag the age until the carbon-14 left is down to 1/8."
-      minInteractions={2}
+      exploreHint="Age the bone until the carbon-14 left is down to 1/8, and watch the pins."
+      minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {pins.length >= 3
-              ? "You saw three pins drop on the way to 1/8"
-              : "Drag on to 1/8 and three pins drop"}
-            : half gone at 5,700 years, a quarter left at 11,400, an eighth at <strong>17,100 years</strong>. 1/8 is
+            You saw three pins drop on the way to 1/8: half gone at 5,700 years, a quarter left at 11,400, an eighth at <strong>17,100 years</strong>. 1/8 is
             ½ × ½ × ½, so it is three half-lives, not eight.
           </p>
           <p>
@@ -81,14 +88,25 @@ export default function ReadTheBoneClock({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const goto = (v: number) => {
+          setAge(v);
+          setReach((r) => Math.max(r, v));
+          if (v >= 3 * T_HALF && reach < 3 * T_HALF) interact(); // the reveal quotes the three pins, so they must be seen
+        };
+        autoStep.current = () => {
+          const next = Math.min(3 * T_HALF, Math.max(age, reach) + 2 * STEP);
+          goto(next);
+          return next >= 3 * T_HALF;
+        };
+        return (
         <div className={s.wrap}>
           <div className={s.head}>
             <span className={s.big}>{pctText}</span>
             <span className="muted small">of its carbon-14 left</span>
           </div>
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`At ${yrs(age)} years, ${pctText} of the carbon-14 is left`}>
-            {GRID.map((g) => (
+            {(locked ? GRID.slice(0, 1) : GRID).map((g) => (
               <g key={g.label}>
                 <line x1={L} x2={L + PW} y1={Y(g.f)} y2={Y(g.f)} className={s.grid} />
                 <text x={L - 4} y={Y(g.f) + 3} textAnchor="end" className={s.axisLabel}>
@@ -130,19 +148,21 @@ export default function ReadTheBoneClock({ slug }: { slug: string }) {
             min={0}
             max={MAX_AGE}
             step={STEP}
-            disabled={locked}
+            disabled={locked || auto}
             format={(v) => `${yrs(v)} years`}
-            onChange={(v) => {
-              setAge(v);
-              setReach((r) => Math.max(r, v));
-              interact();
-            }}
+            onChange={goto}
           />
+          <Row>
+            <Control disabled={locked || auto || reach >= 3 * T_HALF} onClick={() => { setAge(0); setReach(0); setAuto(true); }}>
+              Run the clock until 1/8 is left
+            </Control>
+          </Row>
           <Row>
             <Readout label="Half-lives passed" value={(age / T_HALF).toFixed(1)} />
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }
