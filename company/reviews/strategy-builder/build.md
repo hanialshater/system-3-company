@@ -17,3 +17,8 @@
 
 Input: latest learner review (and fact-check). Payoff table orientation, 6% told. Table headers read "Row scores... against ..."; derivation line (30 = 10 x 3 ...); chart of both average scores by starting share with a cursor, crossing visible; the 25% button replaced by "Start at 4%, run" and "Start at 8%, run" (a bracket that does not name 6%); the gate needs a loss from at least 4% and a win from at most 8%. c2, c3 reworded, unverified.
 QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.
+
+## Revision v4
+Learner review r2 (2026-10-14) findings:
+- N1 (blocking): the "Start at 4%/8%, run" buttons, visible while locked, bracketed the 6% option. They now render only after the prediction is committed, and the explore hint no longer names 4% and 8%. Removing them entirely would leave no one-press QA path to a tit-for-tat win (QA gives sliders two arrow presses and no run), so they stay as post-prediction controls.
+- N2: the table's "average now" and the chart's average were two different numbers side by side; the chart title now says "average score at generation 0, by start".

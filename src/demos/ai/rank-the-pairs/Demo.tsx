@@ -37,8 +37,8 @@ export default function RankThePairs({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Spam scores ${SPAM.join(", ")}; real mail scores ${REAL.join(", ")}. Pick one spam and one real email at random. The chance the spam scores higher (a tie counts half):`,
-        options: ["50%", "86%", "100%"],
-        answer: 1,
+        options: ["64%", "75%", "86%", "94%"],
+        answer: 2,
       }}
       exploreHint="Check the spam rows and count the wins."
       minInteractions={2}
@@ -50,8 +50,8 @@ export default function RankThePairs({ slug }: { slug: string }) {
             spam loses to the real 0.6 and the 0.3 spam to 0.4.
           </p>
           <p>
-            That share of correctly ordered pairs is called AUC. It needs no cutoff, but it can hide how the scorer behaves at the
-            cutoff you actually use.
+            That share of correctly ordered pairs is called AUC, the area under the ROC curve. It needs no cutoff: every spam-real
+            pair is compared directly, so you could count it without choosing a threshold.
           </p>
         </>
       )}

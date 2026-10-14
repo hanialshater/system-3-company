@@ -24,3 +24,11 @@ Also: once merged, the empty piles collapse so the merged row stays visible when
 
 Claims touched: c9, c10 added (unverified). No existing claim text changed.
 QA: contract passes phone + desktop (local, 2026-10-13).
+
+## Revision v3
+Learner review v2 (2026-10-13) findings:
+- Hook asked "why split?" while the question asked about the worst-case merge. Retitled "How cheap is merging?"; hook now asks the merge-cost question the prediction asks.
+- The wrong-tap message ("Only a card placed counts as a comparison") contradicted the learner's picture. Now: "The other top card is smaller, so it goes first. Each card placed while both piles have cards is one comparison."
+- "Your merge took 7" was sometimes Finish-for-me's merge: reveal says "The merge on screen took N".
+- Rounds and the payoff were only told: the last round label on the stage now shows the worst case for all 8 cards (4 + 6 + 7 = 17) against 28 for every pair (new claim c11, unverified). The 1,000-card figures remain in the reveal as the "big numbers".
+- Still open by design: Finish for me remains the one-press QA path; round button reaches round 1 on first press.

@@ -97,7 +97,7 @@ function deal(seed: number) {
       { groups: pairs, label: `Merge into pairs: ${pairCost} comparisons` },
       {
         groups: fours,
-        label: `Merge into 4s: ${fourCost} comparisons. These are piles A and B.`,
+        label: `Piles A and B: ${fourCost} comparisons. Worst case for all 8 cards: 4 + 6 + 7 = 17, against 28 for every pair.`,
       },
     ],
   };
@@ -198,7 +198,7 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {lastMerge !== null ? `Your merge took ${lastMerge}. ` : ""}Each comparison looks at only the two top cards,
+            {lastMerge !== null ? `The merge on screen took ${lastMerge}. ` : ""}Each comparison looks at only the two top cards,
             and the smaller one goes into the row for good. Eight cards, so at most <strong>7</strong>; once a pile
             empties, the rest slides over for free. Piles that interleave to the end need all 7.
           </p>
@@ -348,7 +348,7 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
                   {locked
                     ? "Make a prediction to start."
                     : miss
-                      ? "That one is bigger, so it stays. Only a card placed counts as a comparison."
+                      ? "The other top card is smaller, so it goes first. Each card placed while both piles have cards is one comparison."
                       : done
                         ? `Merged with ${comparisons} comparison${comparisons === 1 ? "" : "s"}.${
                             comparisons < 7 ? " Piles that interleave to the end need 7." : ""

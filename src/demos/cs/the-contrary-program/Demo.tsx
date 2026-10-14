@@ -58,7 +58,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
               inside H helps: the trap is in D, not in H.
             </p>
             <p>
-              {others.length ? `On ${others.join(" and ")} your verdict was right: ` : "On simple programs like A and B a verdict can be right: "}
+              {others.length ? `On ${others.join(" and ")} a verdict can be right (see the ticks): ` : "On simple programs like A and B a verdict can be right: "}
               particular programs can be checked. What cannot exist is one checker that is right about every program,
               because from any such H we could build its own D. Turing proved this in 1936: the halting problem cannot be
               solved by any program.
@@ -93,7 +93,7 @@ export default function TheContraryProgram({ slug }: { slug: string }) {
                 </div>
 
                 <div className={`${s.outcome} ${right === null ? "" : right ? s.right : s.wrong}`}>
-                  {result ? `${prog} ${said(result.does)}: H was ${right ? "right" : "wrong"}` : "Waiting for H"}
+                  {result ? `${prog} ${said(result.does)}: H was ${right ? "right" : "wrong"}${prog === "D" ? ". Any other H gets the same trap: D just asks it." : ""}` : "Waiting for H"}
                 </div>
 
                 <div className={s.verdicts}>

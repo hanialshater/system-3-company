@@ -51,7 +51,7 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Keeping {Q_RATIO}%, round 2 added {usd(deposit(2, Q_RATIO))} and round 3 {usd(deposit(3, Q_RATIO))}, each 90% of the last.
+            Keeping {Q_RATIO}%, round 2 added {usd(deposit(2, Q_RATIO))}, and every round adds 90% of the one before.
             After {maxQ} rounds total deposits were <strong>{usd(total(maxQ, Q_RATIO))}</strong>, levelling off toward{" "}
             <strong>{usd(LIMIT_Q)}</strong>: {usd(FIRST)} ÷ 0.{Q_RATIO}.
             {tried.length > 0 && ` Keeping ${tried.map((k) => `${k}% stopped it at ${usd(limit(k))}`).join(", ")}.`}
@@ -119,7 +119,7 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
                     />
                   ))}
                   {!locked && (
-                    <text x={CX + CW / 2} y={py(tot) - 6} textAnchor="middle" className={s.value}>
+                    <text x={CX - 6} y={py(tot) + 4} textAnchor="end" className={s.value}>
                       {usd(tot)}
                     </text>
                   )}

@@ -31,11 +31,11 @@ export default function SplitTheSum({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `What is ${LEN} × ${ROWS}?`,
-        options: [String(total), String(total - 10), String(total + 10)],
-        answer: 0,
+        question: `Cut a ${LEN} × ${ROWS} rectangle into two pieces and add the two areas. Which cuts give the true ${LEN} × ${ROWS}?`,
+        options: [`Only a cut at ${TEN}`, "Any cut", "Only a cut near the middle"],
+        answer: 1,
       }}
-      exploreHint={`Drag the cut. Put it at ${TEN} and read the two areas.`}
+      exploreHint={`Drag the cut to ${TEN}, then to any other column, and read the areas.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
