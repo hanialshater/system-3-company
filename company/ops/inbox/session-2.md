@@ -231,3 +231,33 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 - 2026-10-14: cm-economics-markets (Rhea), prices-sort-the-buyers: question and claims now say "the smallest set" (node re-run: smallest ends (3,1,0), a stops at $3; largest (4,2,1); every set never stops); only economics.markets.md edited, per interaction-designer finding (S2-20).
 
 - 2026-10-14: cm-cs-systems, N1 new-road-slower-trip: node check fixed to 40 + s/100 and s < 5,000 (re-run in node; equilibrium 4,000 at 80 unchanged) and interaction aligned to Switch 1,000 + Run with the 2,000 milestone optional; only cs.systems.md edited, per interaction-designer finding (S2-20).
+
+### 2026-10-14 · rnd-engineer · W-145 knot data provenance (unblocks W-162)
+
+- **What changed:** new `src/lab/knots/provenance/`. It holds `sources.mjs` (typed-in DT codes, Conway 322 for 7_5, and braid
+  words for the three links, each cited), `derive.mjs` (a dependency-free generator plus `iso`, a diagram-isomorphism check),
+  the generated `table.derived.mjs` (same format as `table.mjs`, no U10), `derive.test.mjs` (7 tests pass) and `README.md`
+  (licences, sources per entry, method, verification output, recommendation). One pointer line was added to `PRIOR-ART.md`.
+  Nothing in `table.mjs`, `test/`, `bench.mjs`, `evolve.json` or `candidates/` was touched. Nothing was committed by me.
+- **What I believe:**
+  - Every derived entry is the **same oriented diagram** as the current one (relabelled only). Crossing number, writhe,
+    Alexander and Jones are equal, and `layout()` crossing positions are identical up to similarity. Very sure: this is
+    tested by `iso` and the invariants.
+  - In a scratch swap, the fixed evaluator passes 102/102 with the derived table plus the old U10 line. It fails only the 4
+    U10 tests without it.
+  - No permissive licence exists for any knot table I could check. Spherogram, snappy_manifolds and Regina are GPLv2+, and
+    database_knotinfo (the KnotInfo snapshot) is GPL; I quoted all four. KnotInfo's and the Knot Atlas's own terms are
+    **unverified**, because the hosts are 403'd by the egress proxy.
+  - Disclosed: 10_8's DT code is KnotInfo's value, read from the GPL-packaged snapshot because my memory was wrong. The
+    others were typed from memory, then cross-checked there.
+- **Recommendation:** re-derive, don't cite. Promote `table.derived.mjs` as the kit `table.mjs` (import path `./core.mjs`).
+  Drop U10 from the kit and keep it only in the lab bench (`test/benchdata.mjs` MONSTER). I found no own-code hard
+  unknot in about 95k seeded searches.
+- **Proposed board items:**
+  - (rnd-lead) Remove or replace the 4 U10/`monster-unknot` tests and published row for the kit test suite, and decide on
+    benchdata's copied 3_1/4_1 PD codes.
+  - (principal-engineer) W-162 promotion uses `provenance/table.derived.mjs`. Optionally, write a decision record: "short
+    notations of individual knots are cited facts".
+  - (rnd-lead) When egress allows, verify KnotInfo's and the Knot Atlas's licence pages and the published origin of the
+    monster unknot.
+- **Blocked:** web verification of the KnotInfo and Knot Atlas licences (egress policy 403).
