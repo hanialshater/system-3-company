@@ -84,7 +84,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           ? `${CLOSEST.name}, ${CLOSEST.year}: ${f1(CLOSEST.lon)}°`
           : view === "median"
             ? `${f1(MEDIAN - TRUE)}° too far ≈ ${MEDIAN_KM} km`
-            : `Earliest (${BY_YEAR[0].year}) ${f1(BY_YEAR[0].lon)}°, latest (${BY_YEAR[BY_YEAR.length - 1].year}) ${f1(BY_YEAR[BY_YEAR.length - 1].lon)}°`;
+            : `${MEDIAN_KM} km too far; earliest (${BY_YEAR[0].year}) ${f1(BY_YEAR[0].lon)}°, latest (${BY_YEAR[BY_YEAR.length - 1].year}) ${f1(BY_YEAR[BY_YEAR.length - 1].lon)}°`;
 
   const label = locked
     ? "An axis of degrees of longitude east of Toledo, from 0 to 30. The estimates are hidden until you predict."

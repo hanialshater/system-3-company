@@ -1,0 +1,115 @@
+{
+  "slug": "children-dying-before-five",
+  "title": "Four in ten",
+  "hook": "In 1900 four in ten children died before turning five. How fast did that change?",
+  "domain": "history",
+  "concept": "child-mortality-decline",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-1"
+  },
+  "learner": {
+    "knows": [
+      "many children died in the past"
+    ],
+    "doesNotKnow": [
+      "how many (about 4 in 10 worldwide in 1900)",
+      "that the figure barely moved through the 1800s",
+      "that most of the fall came after 1950"
+    ]
+  },
+  "misconception": "Child deaths fell slowly and steadily over the last few centuries.",
+  "objective": "The learner can say that Gapminder's world estimate of children dying before 5 barely moved from 1800 (430 per 1,000) to 1900 (411), then fell to 37 by 2020, about 11 times fewer, with more than half of that fall after 1950.",
+  "claims": [
+    {
+      "id": "history.children-dying-before-five.c1",
+      "text": "Gapminder's world estimate of children dying before age 5 per 1,000 born, each year from 1800 to 2020: 430 in 1800, 411 in 1900, 246 in 1950, 37 in 2020.",
+      "support": "source",
+      "source": "history-data.mjs: gmu5, gapminder-u5mr-global.csv, column child_mortality_0_5_year_olds_dying_per_1000_born (concept u5mr, 'the probability of dying between birth and exactly five years of age', ddf--concepts.csv, opened by cm-history). The 221 values for 1800-2020 are copied into Demo.tsx unchanged; history-cycle2-check.mjs section 13 '13 1900 and 2020'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c2",
+      "text": "From 1900 to 2020 the figure fell about 11 times (411 to 37).",
+      "support": "derivation",
+      "source": "411 / 37 = 11.1, rounded to 11. Computed in Demo.tsx; history-cycle2-check.mjs section 13.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c3",
+      "text": "In the century before 1900 the figure barely moved, from 430.",
+      "support": "derivation",
+      "source": "1800 430 to 1900 411: 19 fewer per 1,000 in a century. history-cycle2-check.mjs section 13 '13 flat before 1900'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c4",
+      "text": "More than half of the fall since 1900, 56%, came after 1950.",
+      "support": "derivation",
+      "source": "(246 - 37) / (411 - 37) = 0.559, shown as 56%. history-cycle2-check.mjs section 13 '13 share of the fall after 1950'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c5",
+      "text": "Out of 100 children: 41 in 1900, 4 in 2020.",
+      "support": "derivation",
+      "source": "411 / 10 and 37 / 10, rounded. history-cycle2-check.mjs section 13 '13 out of 100'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c6",
+      "text": "Where it stops: this is one source's world figure, and the further back it goes, the fewer places kept records to build it from.",
+      "support": "source",
+      "source": "HELD (the reveal's one held source sentence). Gapminder documentation for u5mr (gapm.io/du5mr; not reachable from this host). The pin's description says the series is estimates before 1950. Fallback: 'Where it stops: this is one source's world figure, an average over very different places.'",
+      "status": "unverified"
+    },
+    {
+      "id": "history.children-dying-before-five.c7",
+      "text": "In 1900 four in ten children died before turning five (hook).",
+      "support": "derivation",
+      "source": "411 per 1,000 = 41 in 100, about four in ten (c1, c5).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Child deaths in a town fall from 300 to 30 per 1,000 born. How does the number of children reaching age 5 change?",
+    "options": [
+      "About ten times as many",
+      "The same",
+      "About 40% more"
+    ],
+    "answer": 2,
+    "why": "Survivors go from 700 to 970 per 1,000, about 40% more: a tenfold fall in deaths is not a tenfold rise in survivors."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:child-mortality-decline",
+    "also": [],
+    "prerequisites": [
+      "history:life-expectancy-vs-lifespan"
+    ],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "child mortality",
+      "demography",
+      "Gapminder"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
