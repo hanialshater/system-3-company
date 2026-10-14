@@ -4,8 +4,9 @@
 // and at a slant on a pole at Alexandria. The learner sets the shadow angle; the same angle opens
 // at the Earth's centre, and tick marks count how many such arcs go round the circle. Angles are
 // drawn true; the well and the pole are not to scale.
-// v3 (FC pass 26, W-249): Syene (24.09 N) is north of the Tropic, so "Sun overhead" is framed as the account's,
-// in the question (now with the summer solstice), the Syene label and the reveal.
+// v3 (FC pass 26, W-249): Syene (24.09 N) is north of the Tropic, so "Sun overhead" is framed as the account's.
+// v4 (W-258 ruling, W-260): stage-only framing, "This lesson's story": the question, the Syene label, the chip
+// and the reveal stipulate the setup instead of reporting a source. Solstice dropped (the stage does not show a date).
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -68,7 +69,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "In the account, at noon on the summer solstice a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?",
+          "In this lesson's story, at noon a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?",
         options: ["7 times", "50 times", "360 times"],
         answer: 1,
       }}
@@ -78,8 +79,8 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
         <>
           <p>
             <strong>50 times.</strong> The Sun is so far away that its rays arrive parallel (the dashed lines), so the
-            shadow&rsquo;s angle in Alexandria is also the angle at the Earth&rsquo;s centre. In the account, the Sun stood
-            straight overhead at Syene at noon on the summer solstice, so the well had no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, as the account tells it.
+            shadow&rsquo;s angle in Alexandria is also the angle at the Earth&rsquo;s centre. This lesson&rsquo;s story: at
+            noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story&rsquo;s numbers.
           </p>
           <p>
             With modern numbers you saw {SEEN_MODERN}, within {Math.round((modernCirc / TRUE_MERIDIAN_KM - 1) * 100)}% of
@@ -141,7 +142,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                     {angle.toFixed(1)}°
                   </text>
                   <text x={sx + 4} y={sy - 16} className={s.small}>
-                    Syene, in the account:
+                    Syene, in the story:
                   </text>
                   <text x={sx + 4} y={sy - 6} className={s.small}>
                     Sun overhead, no shadow
@@ -155,7 +156,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                 </svg>
                 <div className={s.chips} role="group" aria-label="Use numbers from">
                   <Control disabled={locked || (!modern && angle === ACCOUNT.angle)} className={!modern && angle === ACCOUNT.angle ? "active" : ""} onClick={() => set(ACCOUNT.angle, false)}>
-                    The account: 7.2°
+                    The story: 7.2°
                   </Control>
                   <Control disabled={locked || modern} className={modern ? "active" : ""} onClick={() => set(MODERN.angle, true)}>
                     Modern: {MODERN.angle}°, {fmt(MODERN.dist)} km

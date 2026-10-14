@@ -42,3 +42,25 @@ Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
 4. Reveal values: same as v2. 50 (answer); "7.2° → 50 arcs, 250,000 stadia" (b) milestone `account`, Seen row; "7.11° → 50.6 arcs, 42,684 km" (b) milestone `modern`, Seen row; 7% and 40,008 km told (c3); the Sun overhead is told as the account's (c5), not as a modern fact.
 5. QA path unchanged: account chip, modern chip, slider two presses. Both milestones reached.
 6. Reset: none. Reveal after the QA path: "50 times. The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, as the account tells it. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance." (Composed from the code, not from a run.)
+
+## v4 (2026-10-14): W-260, stage-only story per the W-258 ruling
+
+Problem (ruling on W-258, company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md): "In the account, X" still asserts that a source says X, and no source could be opened. The wording now stipulates the setup as the lesson's own story, so its only support is the stage.
+Changes (wording is the ruling's, verbatim):
+- Question: "In this lesson's story, at noon a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?" Solstice dropped.
+- Syene label, two lines: "Syene, in the story:" / "Sun overhead, no shadow" (shorter than v3's first line, so it still fits the viewBox).
+- Chip: "The story: 7.2°".
+- Reveal: "This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story's numbers."
+- c1 reworded, support simulation, stage basis in source; c5 reworded, support derivation, Cleomedes reading dropped. Both unverified, checkedBy/checkedOn cleared.
+- Hook was an unrecorded historical claim. Reworded stage-only: "Can a stick's shadow and one walk size the whole planet? How?" and recorded as c6 (derivation, unverified). Eratosthenes is now named only in the reveal's c4 sentence.
+- Version 3 -> 4. Milestone names and the ACCOUNT constant kept (internal only).
+Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
+
+## Pre-flight v4
+
+1. Title and hook: "Measure the Earth with a shadow" / "Can a stick's shadow and one walk size the whole planet? How?" No number; they do not point to an option.
+2. Options unchanged: "7 times" / "50 times" / "360 times".
+3. Locked stage: shadow 20.00°, 18 ticks, readouts "?", Seen "nothing yet", Syene label "Syene, in the story: / Sun overhead, no shadow", chip "The story: 7.2°". Nothing says 50. The question gives only 7.2° and the story framing.
+4. Reveal values: 50 (answer); "7.2° → 50 arcs, 250,000 stadia" (b) milestone `account`, Seen row (c1); "7.11° → 50.6 arcs, 42,684 km" (b) milestone `modern`, Seen row; 7% and 40,008 km told (c3); the Sun overhead is the story's stipulation (c5), not a modern or historical fact.
+5. QA path unchanged: story chip, modern chip, slider two presses. Both milestones reached.
+6. Reset: none. Reveal after the QA path: "50 times. The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, the story's numbers. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance." (Composed from the code, not from a run.)

@@ -1,7 +1,7 @@
 {
   "slug": "eratosthenes-shadow",
   "title": "Measure the Earth with a shadow",
-  "hook": "Over 2,000 years ago someone sized the whole planet with a stick and a walk. How?",
+  "hook": "Can a stick's shadow and one walk size the whole planet? How?",
   "domain": "geography",
   "concept": "earth-circumference-eratosthenes",
   "status": "review",
@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "geography.eratosthenes-shadow.c1",
-      "text": "In the account, at noon on the solstice a well at Syene had no shadow, a pole's shadow in Alexandria made 7.2 degrees, and the distance was 5,000 stadia, giving 250,000 stadia.",
-      "support": "source",
-      "source": "Cleomedes, 'On the Circular Motions of the Celestial Bodies' (I.7), reporting Eratosthenes, whose own text is lost. The often-quoted 252,000 stadia comes from other ancient writers (e.g. Strabo, Pliny). From memory, not checked online. The lesson says 'as the account tells it'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "text": "This lesson's story: at noon a well at Syene has no shadow, a pole's shadow in Alexandria makes 7.2 degrees, and the distance is 5,000 stadia, giving 250,000 stadia.",
+      "support": "simulation",
+      "source": "Stage basis (Demo.tsx v4): the chip 'The story: 7.2°' sets the shadow angle to 7.2 (ACCOUNT.angle); the distance line reads 'Distance Syene to Alexandria: 5,000 stadia'; the circumference readout computes 360 / 7.2 x 5,000 = 250,000 stadia; the Seen line records '7.2° → 50 arcs, 250,000 stadia', which the reveal quotes. The question and the Syene label ('Syene, in the story:' / 'Sun overhead, no shadow') stipulate the no-shadow well as the lesson's setup. Reworded per W-258 ruling (company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md 'Ruling on W-258'); demo-builder v4, W-260. Builder statement, not self-verified. Needs a fact-checker re-check against the stage.",
+      "status": "unverified"
     },
     {
       "id": "geography.eratosthenes-shadow.c2",
@@ -61,9 +59,16 @@
     },
     {
       "id": "geography.eratosthenes-shadow.c5",
-      "text": "In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow.",
+      "text": "This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow.",
       "support": "derivation",
-      "source": "A vertical well shows no shadow on its sides only when the Sun is at the zenith (rays parallel to the well's axis). This is the reading of the account in Cleomedes I.7; Syene is in fact about 0.65 degrees north of the Tropic of Cancer (brief caveat 4), so the 'as the account tells it' framing applies. Stage label: 'Syene: Sun overhead, no shadow'. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The derivation (no shadow down a vertical well only with the Sun at the zenith) holds, but the sentence states as fact that the Sun was straight overhead at Syene. It was not quite: Syene is at 24.09 N (GeoNames), north of the Tropic of Cancer (about 0.65 degrees north today per the lesson's own brief caveat 4; still a few tenths of a degree in Eratosthenes' time). The brief asked for 'in the account' framing; the reveal sentence ('At Syene the Sun was straight overhead, so the well had no shadow.') and the stage label ('Syene: Sun overhead, no shadow') carry none, and the 'as the account tells it' phrase belongs to the next sentence. Fix (demo-builder): frame it as the account, e.g. 'In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow.' Related: the question says 'At noon a well in Syene has no shadow' with no date; c1 has 'on the solstice'. | v3 (demo-builder, 2026-10-14, W-249): reworded to the account framing the checker gave. Reveal: 'In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow.' Stage label (two lines): 'Syene, in the account:' / 'Sun overhead, no shadow'. Question now opens 'In the account, at noon on the summer solstice a well in Syene has no shadow; ...' (covered by c1). The lesson makes no modern claim that the Sun was exactly overhead. Needs re-check. | FC pass 27 (fact-checker, 2026-10-14): HELD UNVERIFIED (not disputed). Stage part checked: the reveal string matches the claim word for word, the Syene label is two lines 'Syene, in the account:' / 'Sun overhead, no shadow', and the question opens 'In the account, at noon on the summer solstice'. No modern claim of an overhead Sun remains, and the derivation half (no shadow down a vertical well only with the Sun at the zenith) holds. But what the sentence now asserts is what the account says (Sun overhead, at noon, on the summer solstice, a well). That cannot be derived; it rests on Cleomedes I.7 (and, for the well, possibly Strabo or Pliny rather than Cleomedes), and none of these could be opened (proxy 403 / DNS failure on penelope.uchicago.edu, perseus.tufts.edu, wikipedia, mathshistory, goobi.tib.eu). Search snippets only. Independence: this wording was drafted by the fact-checker in pass 26, so a fact-checker should not be the one to self-confirm it from snippets either. Needs an openable source or an evaluation-steward ruling (board).",
+      "source": "A vertical well shows no shadow on its sides only when the Sun is at the zenith (rays parallel to the well's axis), so 'no shadow' in the story and 'Sun straight overhead' are the same stipulation. Stage label (two lines): 'Syene, in the story:' / 'Sun overhead, no shadow'; the reveal says the claim word for word. The lesson stipulates this as its own setup and makes no claim about what any ancient source reports or that the Sun was exactly overhead at the real Syene (24.09 N, north of the Tropic). Reworded per W-258 ruling (company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md 'Ruling on W-258'); demo-builder v4, W-260. Builder statement, not self-verified. Needs a fact-checker re-check against the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.eratosthenes-shadow.c6",
+      "text": "Hook: a stick's shadow and one walked distance are enough to size the whole planet.",
+      "support": "derivation",
+      "source": "Hook v4: 'Can a stick's shadow and one walk size the whole planet? How?' (was 'Over 2,000 years ago someone sized the whole planet with a stick and a walk. How?', an unrecorded historical claim; reworded stage-only per W-258 ruling, W-260). With parallel rays the shadow angle equals the centre angle (c2), so circumference = (360 / angle) x distance; the stage computes it from the shadow angle and the distance line alone. The hook names no number, so it does not point to an option. Builder statement, not self-verified.",
       "status": "unverified"
     }
   ],
@@ -90,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "geography:earth-circumference-eratosthenes",
     "prerequisites": [
