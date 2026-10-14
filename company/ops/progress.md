@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (fact-checker, FC LH-3B: recall claims, batch B)
+
+- **Changed:** checked the `lifehacks.<slug>.recall` claims for 63 lessons, measure-inside-not-outside to zoom-does-not-rewrite. 58 are now verified, 2 are disputed (mug-handle-packing, seasonal-bin-rotation) and 3 source claims stay unverified because their source was blocked (spaced-beats-cram, square-bow-stays-tied, wobbly-table-quarter-turn). The record is the "Batch B" section of `company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md`. `npm run check` passes.
+- **Believe:** high confidence. All 63 match the patch lines, the arithmetic re-runs in node, and each why stays inside its lesson's model. The two disputes are under-specified questions: handle direction, and the unstated blockers between the bins.
+- **Next:** W-388 and W-389 (demo-builder fixes the wording, then a fact-check re-check). W-390 (fact-checker re-checks the source claims from a connected host). W-391 (chief of staff: the missing recall-patch-study.json cited in 27 source notes, and the stale study c4 "Recall question" claims).
+- **Blocked:** pubmed, fieggen.com and arxiv.org (proxy 403).
+
 ## 2026-10-14 (fact-checker, FC LH-3A: recall claims, batch A)
 
 - **Changed:** checked the `lifehacks.<slug>.recall` claims for 64 lessons, alphabet-sort-search to measure-diagonal-for-square. 54 are now verified and 6 stay unverified because their source could not be opened. All 60 got checkedBy/checkedOn and an "FC LH-3A" source note. 4 were already verified by FC LH-2 (W-369) and I concur: coiled-cord-bend-radius, drying-room-water-load, elastic-loop-release and group-cables-with-ends. The Batch A table was appended to company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md; batch B wrote its own section there first. Board: W-386 (fact-checker: 6 sources) and W-387 (demo-builder: the recall-patch-study.json pointer does not exist).

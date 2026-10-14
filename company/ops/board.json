@@ -4309,10 +4309,11 @@
       "id": "W-381",
       "title": "Curriculum-200 (company/domains/lifehacks-scope/curriculum-200.compact.md): replace concepts in content/curriculum/lifehacks.json with the 136 listed, once the HoP co-sign lands (content/ is cm-lifehacks's). Then demo-builder sets each lesson's meta concept, curriculum.primary and also (D lessons) from the lessons map, and runs tools/meta.mjs and npm run registry. Coordinator asked demo-builder to do both in one go on 2026-10-14; the builder declined the content/ half as out of scope.",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-382",
@@ -4401,6 +4402,24 @@
       "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-392",
+      "title": "Co-sign the Life Hacks charter (company/domains/lifehacks.md): curriculum-200 was applied as proposed on 2026-10-14 (W-381, 136 concepts, 200 lessons mapped) before your co-sign. Co-sign, or say what changes and cm-lifehacks re-applies. Also record the founder override in company/decisions/2026-10-14-pr2-lifehacks-scope.md.",
+      "owner": "head-of-product",
+      "state": "next",
+      "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-393",
+      "title": "Life Hacks: after W-381 the 200 meta.json still carry curriculum.level/prerequisites from the old one-concept-per-slug map (39 levels, 15 prerequisite lists disagree; no strand set). Re-derive these 3 fields from content/curriculum/lifehacks.json (concept's level, prerequisites as lifehacks:<id>, subarea as strand); touch nothing else. Note: tools/meta.mjs backfill uses ??= and will not overwrite.",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "lifehacks",
       "created": "2026-10-14",
       "links": []
     }

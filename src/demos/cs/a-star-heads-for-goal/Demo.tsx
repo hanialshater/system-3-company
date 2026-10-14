@@ -207,9 +207,17 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
               replay(v.mode, v.wall, v.k, { mode: v.mode, wall: v.wall, ghost: v.ghost });
             };
             const restart = (mode: Mode, wall: boolean) => {
-              const ghost = v.k > 0 ? run.order.slice(0, v.k) : v.ghost;
+              // Pressed during a replay: finish that run at once (its table cell fills), then switch.
+              const cut = busy;
+              if (cut) {
+                if (timer.current) clearInterval(timer.current);
+                setBusy(false);
+                finish(v.mode, v.wall);
+              }
+              const done = atGoal || cut;
+              const ghost = done ? run.order : v.k > 0 ? run.order.slice(0, v.k) : v.ghost;
               const base = { mode, wall, ghost };
-              if (atGoal) {
+              if (done) {
                 setV({ ...base, k: 0 });
                 replay(mode, wall, 0, base);
               } else {
@@ -324,7 +332,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                   <Control
                     className="tap"
                     aria-pressed={v.wall}
-                    disabled={locked || busy}
+                    disabled={locked}
                     onClick={() => restart(v.mode, !v.wall)}
                   >
                     {v.wall ? "Wall: on" : "Wall: off"}
@@ -332,7 +340,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                   <Control
                     className="tap"
                     aria-pressed={v.mode === "guess"}
-                    disabled={locked || busy}
+                    disabled={locked}
                     onClick={() => restart(v.mode === "guess" ? "none" : "guess", v.wall)}
                   >
                     {v.mode === "guess" ? "Guess: on" : "Guess: off"}
