@@ -235,7 +235,7 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
                       const w = txt.length * 7 + 6;
                       return (
                         <g key={`t${i}-${changed.has(i) ? tick : 0}`} className={changed.has(i) ? s.blink : undefined}>
-                          <rect x={x - w / 2} y={y - 8} width={w} height={16} rx={4} fill="var(--bg)" opacity={0.9} />
+                          <rect x={x - w / 2} y={y - 8} width={w} height={16} rx={4} fill={changed.has(i) ? "color-mix(in srgb, var(--domain) 45%, var(--bg))" : "var(--bg)"} opacity={0.92} />
                           <text x={x} y={y + 4.5} textAnchor="middle" className={`${s.num} ${isCut ? s.cutNum : changed.has(i) ? s.changed : ""}`}>
                             {txt}
                           </text>

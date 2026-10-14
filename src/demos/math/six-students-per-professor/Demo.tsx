@@ -71,11 +71,9 @@ export default function SixStudentsPerProfessor({ slug }: { slug: string }) {
             const seeSix = (kk: number, pp: number) => {
               if (kk !== KEY) return;
               reach("six");
-              setSixAt((list) => {
-                const next = list.includes(pp) ? list : [...list, pp];
-                if (next.length >= 2) reach("resize");
-                return next;
-              });
+              const next = sixAt.includes(pp) ? sixAt : [...sixAt, pp];
+              if (next !== sixAt) setSixAt(next);
+              if (next.length >= 2) reach("resize");
             };
             const onK = (v: number) => {
               setK(v);
