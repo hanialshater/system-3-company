@@ -4,6 +4,14 @@ Newest entry at the top. Every session adds one before it ends. This is testimon
 who no longer exists: check what you rely on.
 
 
+## 2026-10-14 demo-builder: TS2322 fix + W-192, W-193, W-194, W-197 (pass 21 disputes)
+
+- cs/one-cell-rule-30 v2: grow() `row: number[]` (TS2322, no behaviour change); W-197 reveal drops "with no pattern" (c1 unverified).
+- cs/every-base-fools-fermat v2: LIARS counts base 1 too, reveal reads 10 of 320; c7 text "10 of the 320", unverified.
+- cs/selfish-routes-cost-a-third-more v2: reveal and c4 say "a fixed time plus a part proportional to traffic", unverified.
+- probability/the-pivotal-juror-convicts v2: pGuilt = guilt(g, 3 - g), bar 7/30/70%; reveal was already right; c3 extended to 70%, unverified.
+- `npx tsc --noEmit -p .` 0 errors; registry up to date; check passed. Board items done. next build and QA not run (instructed). Next: fact-checker re-checks the 4 claims.
+
 ## 2026-10-14 demo-builder: W-201 kitchen-crowding v4, W-202 last-digit-first v4 (pass 21 disputes)
 
 - kitchen-crowding: c2 kept 'highest' and made code agree (seen.zero = max). c5: two-oven state recorded and quoted only when totalOf(n,2) > totalOf(n,1) (n >= 2); reveal also prints the one-oven total. c2, c5 unverified.
