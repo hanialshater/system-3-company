@@ -7,10 +7,13 @@
 // 3. The numbers the lesson quotes: seed 1, seeds 1 to 50 (D on 2 x 2 blocks, ticks), D by block
 //    size, the slider's range, the seed list (3 and 36 excluded) and the region check (R2). The
 //    region labels are read here from the brief's JSON for the check only; they never reach the lesson.
+// 4. v3: the seed list New mix cycles, no slider (fixed 30%), no region over 90% one group at 30%,
+//    the 'would move' rule, the QA-path numbers (spec section 8), one-group box shares (c17) and the
+//    agreement of two settled mixes (c16).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { run, dissimilarity, likeShare, MASK, N } from "./engine.ts";
+import { run, dissimilarity, likeShare, oneGroupBoxes, MASK, N } from "./engine.ts";
 import { run as abmRun } from "../../economics/mild-preferences-sharp-divides/abm.ts";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -139,5 +142,91 @@ for (let pct = 0; pct <= 30; pct += 5) {
 console.log(`\nv2 region scan, 0-30% step 5, ${SEEDS.length} seeds, every tick: ${framesScanned} frames, worst region share ${f2(worst)} (${worstAt})`);
 ok(hits === 0, "no region over 90% one group at any tick, any setting 0-30%, any lesson seed");
 ok(false100 === 0, "'would stay' (integer floor) reads 100% only when no square would move, 0-30%");
+
+// v3 (spec company/design/specs/schelling-on-new-york-v3.md; design review D1-D12; cultural pass 4).
+console.log("\nv3");
+// The seed list the lesson cycles through with New mix is the one scanned here: 1-50 without 3 and 36.
+const demo = fs.readFileSync(path.join(here, "Demo.tsx"), "utf8");
+ok(/length: 50 \}/.test(demo) && /x !== 3 && x !== 36/.test(demo) && /\(seedIx \+ 1\) % SEEDS\.length/.test(demo),
+  "Demo.tsx New mix cycles seeds 1-50 without 3 and 36 (the list every scan here covers), wrapping");
+ok(/const PCT = 30;/.test(demo) && !/<Slider/.test(demo), "Demo.tsx: no slider, the setting is fixed at 30% (D5)");
+
+// No region over 90% one group at any round at 30%, for every mix New mix can reach (cultural pass 4, 4.2).
+let hits30 = 0, worst30 = 0, frames30 = 0;
+for (const s of SEEDS) {
+  const r = run(s, 30);
+  r.frames.forEach((fr) => {
+    frames30++;
+    for (const n of names) {
+      const [a, b] = count(fr, n);
+      if (a + b < 10) continue;
+      const f = Math.max(a, b) / (a + b);
+      worst30 = Math.max(worst30, f);
+      if (f > 0.9) hits30++;
+    }
+  });
+}
+ok(hits30 === 0, `at 30%: no region over 90% one group at any round of any lesson seed (${frames30} frames, worst ${f2(worst30)})`);
+
+// 'would move' = ceil(100 x movers / agents): 0% only when nobody would move, and 0% whenever nobody
+// would move. It is 100 minus v2's 'would stay' floor, so v2's rule (100% stay only when nobody
+// moves) carries over unchanged (c6).
+let bad0 = 0, badStay = 0;
+for (const s of SEEDS) {
+  const r = run(s, 30);
+  r.movers.forEach((m) => {
+    const mv = Math.ceil((100 * m) / r.agents);
+    if ((mv === 0) !== (m === 0)) bad0++;
+    if (mv !== 100 - Math.floor((100 * (r.agents - m)) / r.agents)) badStay++;
+  });
+}
+ok(bad0 === 0, "'would move' reads 0% exactly when nobody would move, every frame at 30%");
+ok(badStay === 0, "'would move' equals 100 minus v2's 'would stay' floor at every frame (the would-stay rule holds)");
+
+// QA path numbers (spec section 8).
+const mvAt = (r, t) => Math.ceil((100 * r.movers[t]) / r.agents);
+const oneAt = (fr, k) => { const b = oneGroupBoxes(fr, N, k); return [b.one.length, b.held, Math.round((100 * b.one.length) / b.held)]; };
+const r2 = run(2, 30);
+const D_ = (fr, k) => f2(dissimilarity(fr, N, k));
+console.log(`  mix 1: would move ${r1.movers.map((m) => Math.ceil((100 * m) / r1.agents)).join(",")}%; one-group 2x2 ${oneAt(r1.frames[0], 2)} -> ${oneAt(last(r1), 2)}`);
+console.log(`  mix 2: ${r2.frames.length - 1} rounds; would move ${r2.movers.map((m) => Math.ceil((100 * m) / r2.agents)).join(",")}%; 2x2 ${D_(r2.frames[0], 2)}->${D_(last(r2), 2)}, 4x4 ${D_(r2.frames[0], 4)}->${D_(last(r2), 4)}, 8x8 ${D_(r2.frames[0], 8)}->${D_(last(r2), 8)}; one-group 2x2 ${oneAt(r2.frames[0], 2)} -> ${oneAt(last(r2), 2)}, 4x4 ${oneAt(r2.frames[0], 4)}, 8x8 ${oneAt(r2.frames[0], 8)}`);
+ok(mvAt(r1, 0) === 20 && mvAt(r1, 1) === 12 && mvAt(r1, 7) === 0, "mix 1: would move 20% at round 0, 12% at round 1, 0% at round 7");
+ok(D_(r1.frames[1], 2) === "0.58", "mix 1 round 1: 2x2 0.58");
+ok(r2.frames.length - 1 === 12 && r2.settled && D_(r2.frames[0], 2) === "0.44" && D_(last(r2), 2) === "0.76", "mix 2: 0.44 -> 0.76 in 12 rounds, settled");
+ok(mvAt(r2, 0) === 21, "mix 2 round 0: would move 21%");
+ok(D_(r2.frames[0], 4) === "0.24" && D_(r2.frames[0], 8) === "0.14" && D_(last(r2), 8) === "0.31", "mix 2 start: 4x4 0.24, 8x8 0.14 (settled 0.31)");
+ok(oneAt(r1.frames[0], 2).join() === "72,181,40" && oneAt(last(r1), 2).join() === "135,180,75", "mix 1 one-group 2x2: 72/181 (40%) -> 135/180 (75%) (c17)");
+ok(oneAt(r2.frames[0], 2).join() === "65,184,35" && oneAt(last(r2), 2).join() === "127,181,70", "mix 2 one-group 2x2: 65/184 (35%) -> 127/181 (70%) (c17)");
+ok(oneAt(r2.frames[0], 4).join() === "7,58,12" && oneAt(r2.frames[0], 8).join() === "0,18,0", "mix 2 start one-group: 4x4 7/58 (12%), 8x8 0/18 (0%) (c17)");
+
+// c17: one-group shares over the lesson seeds.
+const pctR = (a) => [Math.round(100 * Math.min(...a)), Math.round(100 * Math.max(...a)), Math.round((100 * a.reduce((x, y) => x + y, 0)) / a.length)];
+const og = { s2: [], s4: [], s8: [], e2: [] };
+for (const s of SEEDS) {
+  const r = run(s, 30);
+  const sh = (fr, k) => { const b = oneGroupBoxes(fr, N, k); return b.one.length / b.held; };
+  og.s2.push(sh(r.frames[0], 2)); og.s4.push(sh(r.frames[0], 4)); og.s8.push(sh(r.frames[0], 8)); og.e2.push(sh(last(r), 2));
+}
+console.log(`  one-group boxes over lesson seeds: start 2x2 ${pctR(og.s2)}, 4x4 ${pctR(og.s4)}, 8x8 ${pctR(og.s8)}; settled 2x2 ${pctR(og.e2)} (min,max,mean %)`);
+ok(pctR(og.s2).join() === "34,47,39", "c17: start 2x2 one-group 34-47% (mean 39%)");
+ok(pctR(og.s4).slice(0, 2).join() === "3,16" && pctR(og.s8).slice(0, 2).join() === "0,11", "c17: start 4x4 3-16%, 8x8 0-11%");
+ok(pctR(og.e2).slice(0, 2).join() === "64,81", "c17: settled at 30%, 2x2 64-81%");
+ok(og.s2.every((v, i) => v > og.s4[i] && og.s4[i] >= og.s8[i]), "every lesson seed: fewer one-group boxes in bigger boxes at the start");
+
+// c16: two settled mixes agree on the group about half the time on the cells both fill.
+const agree = (a, b) => {
+  const x = last(run(a, 30)), y = last(run(b, 30));
+  let t = 0, m = 0;
+  for (let i = 0; i < x.length; i++) {
+    const u = x[i], v = y[i];
+    if ((u === 1 || u === 2) && (v === 1 || v === 2)) { t++; if (u === v) m++; }
+  }
+  return [m, t];
+};
+const ag = SEEDS.map((s, i) => { const [m, t] = agree(s, SEEDS[(i + 1) % SEEDS.length]); return m / t; });
+const [m12, t12] = agree(1, 2), [m24, t24] = agree(2, 4);
+console.log(`  agreement of settled mixes: 1 vs 2 ${m12}/${t12} (${f2(m12 / t12)}), 2 vs 4 ${m24}/${t24} (${f2(m24 / t24)}), consecutive ${f2(Math.min(...ag))}-${f2(Math.max(...ag))} mean ${f2(ag.reduce((x, y) => x + y, 0) / ag.length)}`);
+ok(m12 === 229 && t12 === 463, "c16: mix 1 vs mix 2 agree on 229 of 463 shared cells (0.49)");
+ok(f2(Math.min(...ag)) === "0.41" && f2(Math.max(...ag)) === "0.59" && f2(ag.reduce((x, y) => x + y, 0) / ag.length) === "0.51", "c16: consecutive lesson seeds agree on 0.41-0.59 of shared cells, mean 0.51");
 console.log(fail ? `\n${fail} check(s) FAILED` : "\nall checks passed");
 process.exit(fail ? 1 : 0);

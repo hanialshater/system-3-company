@@ -171,6 +171,31 @@ export function dissimilarity(c: Cells, n: number, k: number): number {
   return s / 2;
 }
 
+/** Aligned k x k boxes that hold at least one agent (`held`), and the indices of those that hold
+ * only one group (`one`, row-major over ceil(n / k) boxes per side). A box with one agent counts
+ * as one-group. Used by the stage's one-group outlines and readout and by check.mjs (c17). */
+export function oneGroupBoxes(c: Cells, n: number, k: number): { one: number[]; held: number; nb: number } {
+  const nb = Math.ceil(n / k);
+  const A = new Int32Array(nb * nb);
+  const B = new Int32Array(nb * nb);
+  for (let i = 0; i < c.length; i++) {
+    const v = c[i];
+    if (!isAgent(v)) continue;
+    const x = i % n;
+    const q = Math.floor((i - x) / n / k) * nb + Math.floor(x / k);
+    if (v === 1) A[q]++;
+    else B[q]++;
+  }
+  const one: number[] = [];
+  let held = 0;
+  for (let q = 0; q < A.length; q++) {
+    if (A[q] + B[q] === 0) continue;
+    held++;
+    if (A[q] === 0 || B[q] === 0) one.push(q);
+  }
+  return { one, held, nb };
+}
+
 export interface Run {
   seed: number;
   pct: number;
