@@ -7,6 +7,13 @@ import { Face } from "./Avatar";
 import type { Person } from "./people";
 import s from "./hq.module.css";
 
+// A full category office (floor 3 and floor 6): the lead and their strand managers sit at desks, three to a row.
+// Seats are shared by Furniture (the desks) and the people layer (who sits there).
+const isCategoryOffice = (r: Room) => r.kind === "office" && r.id.startsWith("cm-") && r.h >= 200;
+// 9 desks: the lead and 3 strand managers take the first four; dispatched agents working there take the rest before "+N more".
+const SEAT = { cols: 3, rows: 3, gx: 56, gy: 66, x0: 37, y0: 50, desks: 9 };
+const seatAt = (r: Room, i: number) => ({ cx: r.x + SEAT.x0 + (i % SEAT.cols) * SEAT.gx, cy: r.y + SEAT.y0 + Math.floor(i / SEAT.cols) * SEAT.gy });
+
 const STATE_DOT: Record<Person["state"], string> = { working: "#3ddc97", stopped: "#ff6b6b", done: "#9aa3b5", idle: "transparent" };
 
 function Furniture({ r }: { r: Room }) {
@@ -51,6 +58,17 @@ function Furniture({ r }: { r: Room }) {
   if (r.kind === "floor") {
     const n = Math.max(1, Math.floor((w - 20) / 64));
     return <>{Array.from({ length: n }).map((_, i) => desk(x + 16 + i * 64, y + h - 26, 44, 12, i))}</>;
+  }
+  if (isCategoryOffice(r)) {
+    return (
+      <g>
+        {Array.from({ length: SEAT.desks }).map((_, i) => {
+          const { cx, cy } = seatAt(r, i);
+          return desk(cx - 20, cy + 30, 40, 11, i);
+        })}
+        <Plant x={x + 12} y={y + h - 12} />
+      </g>
+    );
   }
   // office
   return (
@@ -123,19 +141,19 @@ export default function Office({ rooms, people, activity, selected, onRoom, onPe
       })}
       {rooms.map((r) => {
         const here = people.filter((p) => p.room === r.id);
-        // On the build floor people sit at the desks; elsewhere they stand in a grid.
+        // On the build floor and in category offices people sit at the desks; elsewhere they stand in a grid.
         const atDesks = r.id === "build-floor";
+        const seated = isCategoryOffice(r);
         const gx = atDesks ? 62 : 52;
         const gy = atDesks ? 58 : 46;
-        const cols = atDesks ? 6 : Math.max(1, Math.floor((r.w - 10) / gx));
-        const rows = Math.max(1, Math.floor((r.h - 28) / gy));
+        const cols = seated ? SEAT.cols : atDesks ? 6 : Math.max(1, Math.floor((r.w - 10) / gx));
+        const rows = seated ? SEAT.rows : Math.max(1, Math.floor((r.h - 28) / gy));
         const shown = here.slice(0, cols * rows);
         const extra = here.length - shown.length;
         return (
           <g key={`p-${r.id}`}>
             {shown.map((p, i) => {
-              const cx = atDesks ? r.x + 42 + (i % cols) * gx : r.x + 30 + (i % cols) * gx;
-              const cy = atDesks ? r.y + 46 + Math.floor(i / cols) * gy : r.y + 44 + Math.floor(i / cols) * gy;
+              const { cx, cy } = seated ? seatAt(r, i) : atDesks ? { cx: r.x + 42 + (i % cols) * gx, cy: r.y + 46 + Math.floor(i / cols) * gy } : { cx: r.x + 30 + (i % cols) * gx, cy: r.y + 44 + Math.floor(i / cols) * gy };
               const color = teamColor(p.role);
               return (
                 <g key={p.key} className={s.person} onClick={(e) => (e.stopPropagation(), onPerson(p))}>

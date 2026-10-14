@@ -45,8 +45,8 @@ export const HOME: Record<string, string> = {
   "learner-model-engineer": "model-lab",
   "localization-lead": "international",
 };
-for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas"]) HOME[`cm-${d}`] = `cm-${d}`;
-// Sub-area managers sit in their category's office on floor 3.
+for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas", "history"]) HOME[`cm-${d}`] = `cm-${d}`;
+// Sub-area managers sit in their category's office (floor 3 for subjects; floor 6 for Books, Big Ideas and History).
 for (const [d, subs] of Object.entries(SUBAREAS)) for (const [sub] of subs) HOME[`cm-${d}-${sub}`] = `cm-${d}`;
 
 export interface Person {

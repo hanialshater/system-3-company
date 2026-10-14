@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 export { teamColor } from "./hq-colors";
+import type { Floor } from "./hq-floors";
+export { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "./hq-floors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
 import { roles } from "../../tools/org/roles.mjs";
 
@@ -30,8 +32,8 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories, 4 = R&D and Research, 5 = Engineering (app team). */
-  floor?: 1 | 2 | 3 | 4 | 5;
+  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks). */
+  floor?: Floor;
 }
 
 const DOMAINS: [string, string, string][] = [
@@ -46,23 +48,36 @@ const DOMAINS: [string, string, string][] = [
   ["geography", "Geo", "#64b5f6"],
 ];
 
+// Categories that are not school subjects (floor 6). Colours match src/lib/hq-colors.ts and content/domains.json.
+const NEW_CATEGORIES: [string, string, string][] = [
+  ["books", "Book Summaries", "#bcaaa4"],
+  ["big-ideas", "Big Ideas", "#4dd0e1"],
+  ["history", "History", "#d9b26f"],
+  ["lifehacks", "Life Hacks", "#ffb74d"],
+];
+
 // The floor plan, in SVG units (1000 × 660). Offices around the edge, the work floor in the middle.
 export const ROOMS: Room[] = [
   // Floor 1 top row: Product, and the stairs to the Categories floor.
   { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 470, h: 84, kind: "office" },
-  { id: "to-floor-3", name: "↑ Floor 3 · Categories", x: 500, y: 16, w: 230, h: 84, kind: "lobby" },
+  { id: "to-floor-3", name: "↑ Floors 3 & 6 · Categories", x: 500, y: 16, w: 230, h: 84, kind: "lobby" },
   { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 740, y: 16, w: 240, h: 84, kind: "lobby" },
-  // Floor 3: every category, its lead and its sub-area managers; strategy; Courses (book- and course-based curricula); Book Summaries and Big Ideas; Life Hacks safety.
-  ...[...DOMAINS, ["lifehacks", "Life Hacks", "#ffb74d"] as [string, string, string]].map(([id, name, color], i) => ({
+  // Floor 3 (re-cut 2026-10-14): the nine subject categories, each a full office for its lead and 3 strand managers;
+  // stairs up to floor 6; strategy, Courses and portfolio review along the bottom.
+  ...DOMAINS.map(([id, name, color], i) => ({
     id: `cm-${id}`, name, x: 20 + (i % 5) * 194, y: 16 + Math.floor(i / 5) * 246, w: 186, h: 236, kind: "office" as const, color, floor: 3 as const,
   })),
-  // Bottom row (2026-10-14): six rooms of 152 units, so Book Summaries and Big Ideas (lead + 3 strand managers each) fit on floor 3.
-  { id: "strategy", name: "Strategy · Verticals", x: 20, y: 508, w: 152, h: 130, kind: "office", floor: 3 },
-  { id: "courses", name: "Courses · Books", x: 181, y: 508, w: 152, h: 130, kind: "office", color: "#90a4ae", floor: 3 },
-  { id: "cm-books", name: "Book Summaries", x: 342, y: 508, w: 152, h: 130, kind: "office", color: "#bcaaa4", floor: 3 },
-  { id: "cm-big-ideas", name: "Big Ideas", x: 503, y: 508, w: 152, h: 130, kind: "office", color: "#4dd0e1", floor: 3 },
-  { id: "lifehacks-safety", name: "Hacks safety desk", x: 664, y: 508, w: 152, h: 130, kind: "floor", floor: 3 },
-  { id: "portfolio-review", name: "Portfolio review", x: 825, y: 508, w: 155, h: 130, kind: "meeting", floor: 3 },
+  { id: "to-floor-6", name: "↑ Floor 6", x: 796, y: 262, w: 186, h: 236, kind: "lobby", floor: 3 },
+  { id: "strategy", name: "Strategy · Verticals", x: 20, y: 508, w: 313, h: 130, kind: "office", floor: 3 },
+  { id: "courses", name: "Courses · Books", x: 342, y: 508, w: 313, h: 130, kind: "office", color: "#90a4ae", floor: 3 },
+  { id: "portfolio-review", name: "Portfolio review", x: 664, y: 508, w: 316, h: 130, kind: "meeting", floor: 3 },
+  // Floor 6 (2026-10-14, founder: "put these into the right floor"): the categories that are not school subjects.
+  // Same office size and kind as floor 3, so each lead and their strand managers sit at desks; Life Hacks keeps its safety desk beside it.
+  ...NEW_CATEGORIES.map(([id, name, color], i) => ({
+    id: `cm-${id}`, name, x: 20 + i * 194, y: 16, w: 186, h: 236, kind: "office" as const, color, floor: 6 as const,
+  })),
+  { id: "lifehacks-safety", name: "Hacks safety desk", x: 796, y: 16, w: 184, h: 236, kind: "floor", floor: 6 },
+  { id: "to-floor-3-from-6", name: "↓ Floor 3 · Categories · subjects", x: 20, y: 262, w: 380, h: 120, kind: "lobby", floor: 6 },
   { id: "meeting-wbr", name: "WBR room", x: 20, y: 116, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-retro", name: "Retro room", x: 20, y: 236, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-crit", name: "Demo Crit", x: 20, y: 356, w: 150, h: 110, kind: "meeting" },

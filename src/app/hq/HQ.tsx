@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { FounderItem, HqEvent, OrgRole, Room } from "@/lib/hq";
 import { teamColor } from "@/lib/hq-colors";
+import { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "@/lib/hq-floors";
 import { kudosRole } from "@/lib/hq-kudos";
 import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
@@ -47,7 +48,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
   const [live, setLive] = useState(false); // decided on mount: live unless the URL names a moment
   const [playing, setPlaying] = useState(false);
   const [view, setView] = useState<"office" | "people">("office");
-  const [floor, setFloor] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [floor, setFloor] = useState<Floor>(1);
   const [room, setRoom] = useState<string>("lobby");
   const [open, setOpen] = useState<Record<string, string | null>>({});
   const tick = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -59,7 +60,7 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
     if (Number.isFinite(at)) setT(Math.min(Math.max(at, t0), t1));
     else setLive(true);
     if (q.get("room")) (setRoom(q.get("room")!), setFloor(rooms.find((r) => r.id === q.get("room"))?.floor ?? 1));
-    if (["2", "3", "4", "5"].includes(q.get("floor") ?? "")) setFloor(Number(q.get("floor")) as 2 | 3 | 4 | 5);
+    if ((FLOORS as readonly number[]).includes(Number(q.get("floor")))) setFloor(Number(q.get("floor")) as Floor);
     if (q.get("view") === "people") setView("people");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -233,17 +234,17 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
                 </button>
               </form>
               <div className={s.floors} role="tablist" aria-label="Floor">
-                {([1, 2, 3, 4, 5] as const).map((f) => {
+                {FLOORS.map((f) => {
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
                   return (
                     <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
-                      {f === 1 ? "Floor 1 · Lessons & company" : f === 2 ? "Floor 2 · Design, Personalization, International" : f === 3 ? "Floor 3 · Categories" : f === 4 ? "Floor 4 · R&D, Research" : "Floor 5 · Engineering"}
+                      {FLOOR_NAMES[f]}
                       {here ? ` · ${here}` : ""}
                     </button>
                   );
                 })}
               </div>
-              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (id.startsWith("to-floor-") ? setFloor(Number(id.slice(-1)) as 2 | 3 | 4 | 5) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
+              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (stairsTo(id) ? setFloor(stairsTo(id)!) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />

@@ -1,0 +1,1487 @@
+{
+  "domain": "history",
+  "owner": "cm-history",
+  "note": "Owned by the category manager (cm-history); strands in subarea (population-economy, maps-borders, events-data), owned by cm-history-<strand>. demand: 1 low, 3 high, and EVERY demand value is the drafter's estimate (demandEstimate: true), not learner data: cm-history confirms or changes them at the first cycle planning. level: intro | core | stretch. dataOpened: true only where the drafter actually read the file's contents from this host on 2026-10-14 (fetching alone does not count). data: where the concept's numbers can be opened from this host (pinned = in company/domains/briefs/checks/history-data.mjs; opened, not pinned = read on 2026-10-14 but not yet pinned or checked; reachable, not opened = fetched but not read; not found yet = no openable dataset, so no brief until one is found). boundary: a neighbour category owns part of the idea (charter, Boundaries). sensitive: the class that sends a brief through the sensitive-topics route (charter; W-626). brief: the ranked brief that teaches it. Drafted 2026-10-14 by chief-of-staff-ceo-office (Leonie) at the founder's request (company/decisions/2026-10-14-history-category.md). Sized 2026-10-14 for about 100 lessons (company/decisions/2026-10-14-founder-history-100.md).",
+  "concepts": [
+    {
+      "id": "life-expectancy-vs-lifespan",
+      "name": "Life expectancy at birth is not the age adults died: Halley's Breslau table",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "math:mean-vs-median"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: halley, breslau",
+      "dataOpened": true,
+      "brief": "history.md #1"
+    },
+    {
+      "id": "farm-share-structural-change",
+      "name": "From half of all jobs to 1 in 50: the farm share of US work, 1850-2000",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: vega (jobs.json)",
+      "dataOpened": true,
+      "brief": "history.md #2",
+      "sensitive": "slavery (1850 coverage)"
+    },
+    {
+      "id": "long-run-income-growth",
+      "name": "Centuries of near-flat income, then sixteenfold: England's income per person since 1270",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "economics:growth-rate-gap"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: maddison",
+      "dataOpened": true,
+      "brief": "history.md #3"
+    },
+    {
+      "id": "real-wages-playfair",
+      "name": "Wages in wheat: Playfair's 250 years of prices and pay, re-drawn as one ratio",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "economics:inflation",
+        "probability:dual-axis-charts"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: wheat",
+      "dataOpened": true,
+      "brief": "history.md #7"
+    },
+    {
+      "id": "industrial-co2-share",
+      "name": "One country, most of the world's fossil CO2: Britain in 1850, and how shares fell while totals rose",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: co2",
+      "dataOpened": true,
+      "brief": "history.md #10"
+    },
+    {
+      "id": "great-divergence-incomes",
+      "name": "The great divergence: when income gaps between regions opened",
+      "level": "core",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:long-run-income-growth"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: maddison (UK, China, India series)",
+      "dataOpened": true,
+      "sensitive": "comparison of countries"
+    },
+    {
+      "id": "child-mortality-decline",
+      "name": "How many children died before 5, and how fast that changed",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:life-expectancy-vs-lifespan"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track child mortality by country from 1800 (pre-1950 often modelled)",
+      "dataOpened": true
+    },
+    {
+      "id": "us-age-structure",
+      "name": "A young country grows old: the US age pyramid, 1850 to 2000",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: vega (population.json)",
+      "dataOpened": true,
+      "sensitive": "slavery (1850 coverage)"
+    },
+    {
+      "id": "world-population-doubling",
+      "name": "How long the world took to double: 1, 2, 4 and 8 billion",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "math:exponential-growth"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: gmpop",
+      "dataOpened": true,
+      "boundary": "Books fact-straight-line and Big Ideas demographic-transition own the peak; History only the doubling record"
+    },
+    {
+      "id": "demographic-record-real-country",
+      "name": "A real country's demographic transition: how long births lagged deaths",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "big-ideas:demographic-transition"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track life expectancy, fertility and child mortality by country from 1800 (pre-1950 values often modelled); Systema Globalis crude death rates start only in 1950",
+      "dataOpened": true,
+      "boundary": "Big Ideas owns the mechanism; brief only after cm-big-ideas agrees"
+    },
+    {
+      "id": "fertility-decline-record",
+      "name": "Children per woman since 1800: how fast fertility fell, country by country",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:demographic-record-real-country"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track children per woman by country, 1800-2100 (pre-1950 often modelled)",
+      "dataOpened": true,
+      "sensitive": "population by country"
+    },
+    {
+      "id": "sex-ratio-at-baptism",
+      "name": "More boys than girls christened in London every year, 1629-1710",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: arbuthnot",
+      "dataOpened": true,
+      "boundary": "probability owns the sign test; History only the record and what baptisms are not"
+    },
+    {
+      "id": "energy-transitions",
+      "name": "Wood, coal, oil: how long each energy transition took",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "opened, not enough: OWID energy data has world shares only from 1965, so the long transitions need another source",
+      "dataOpened": true
+    },
+    {
+      "id": "trade-values-bowley",
+      "name": "British and Irish trade values in the late 1800s",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "economics:inflation"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: HistData Bowley (British and Irish trade values, 1855-1899)",
+      "dataOpened": true
+    },
+    {
+      "id": "women-in-recorded-work",
+      "name": "Who the census counted as working: women's recorded jobs, 1850-2000",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:farm-share-structural-change"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: vega (jobs.json)",
+      "dataOpened": true,
+      "sensitive": "comparison of groups"
+    },
+    {
+      "id": "urbanisation-share",
+      "name": "When most people came to live in cities",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "largest-cities-over-time",
+      "name": "The largest cities in each century, and how big they were",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "working-hours-decline",
+      "name": "Hours worked per year since the 1800s",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "price-of-light-history",
+      "name": "How much an hour of light cost, over centuries",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false,
+      "boundary": "Big Ideas jevons-paradox cites the same series (Fouquet & Pearson): BI owns the rebound idea"
+    },
+    {
+      "id": "longitude-problem-estimates",
+      "name": "Twelve estimates of one distance: the longitude problem in van Langren's 1644 graph",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:latitude-longitude",
+        "geography:sun-time-from-longitude"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: langren",
+      "dataOpened": true,
+      "brief": "history.md #4"
+    },
+    {
+      "id": "old-map-longitude-error",
+      "name": "East-west was the hard direction: Great Lakes maps, 1688-1818",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:longitude-problem-estimates"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: oldmaps",
+      "dataOpened": true,
+      "brief": "history.md #11"
+    },
+    {
+      "id": "empire-extent-mongols",
+      "name": "How big was the Mongol Empire? It depends who you count",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:equal-area-vs-conformal"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: basemap1279, necountries, neland",
+      "dataOpened": true,
+      "brief": "history.md #12",
+      "sensitive": "empire, borders"
+    },
+    {
+      "id": "empires-share-of-land-1914",
+      "name": "How much of the world's land was ruled from somewhere else in 1914",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:empire-extent-mongols"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1914 (areas by ruling power computed on 2026-10-14; dominions' coding changes the answer)",
+      "dataOpened": true,
+      "sensitive": "colonialism"
+    },
+    {
+      "id": "number-of-states-over-time",
+      "name": "How many independent states there were in 1914, 1945 and 2000",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1815, 1880, 1900, 1920, 1945, 1960, 2000 (feature counts mix states and regions, so counting needs a rule)",
+      "dataOpened": true,
+      "sensitive": "borders"
+    },
+    {
+      "id": "borders-after-1918",
+      "name": "The map of Europe before and after the First World War",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:number-of-states-over-time"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1914 and 1920",
+      "dataOpened": true,
+      "sensitive": "war, borders"
+    },
+    {
+      "id": "straight-borders",
+      "name": "Which borders are straight lines, and where they are",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:latitude-longitude"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: necountries (method not yet written)",
+      "dataOpened": true,
+      "sensitive": "colonialism, borders"
+    },
+    {
+      "id": "flow-map-minard",
+      "name": "A map that counts: how Minard's band encodes men left",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:napoleon-1812-attrition"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: minard, minardtemp",
+      "dataOpened": true,
+      "boundary": "a second Minard lesson; only after most-lost-before-moscow"
+    },
+    {
+      "id": "thematic-maps-guerry",
+      "name": "The first maps of statistics: Guerry's France in the 1830s",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:choropleth-area-bias"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: HistData Guerry (86 departments, 1830s)",
+      "dataOpened": true,
+      "boundary": "geography owns choropleth bias; History only the historical maps"
+    },
+    {
+      "id": "border-precision",
+      "name": "Sharp lines, fuzzy rule: how precise historical borders are",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:empire-extent-mongols"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: basemap1279 (BORDERPRECISION)",
+      "dataOpened": true,
+      "sensitive": "borders"
+    },
+    {
+      "id": "ptolemy-coordinates",
+      "name": "How far off Ptolemy's coordinates were, and in which direction",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:longitude-problem-estimates"
+      ],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "portolan-chart-accuracy",
+      "name": "Sea charts drawn without a projection: how accurate portolans were",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "migrations-on-the-map",
+      "name": "Where people moved, and how many, on one map",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "migration"
+    },
+    {
+      "id": "shrinking-world-travel-time",
+      "name": "How many days from London to New York, 1800 to 1950",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "roman-road-network",
+      "name": "How far the Roman road network reached",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "empire"
+    },
+    {
+      "id": "map-centre-in-history",
+      "name": "What old world maps put at the centre",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:map-centre-choice"
+      ],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false,
+      "boundary": "geography/north-is-up-convention is the nearest lesson"
+    },
+    {
+      "id": "empire-area-on-mercator",
+      "name": "Empires on Mercator: why the British Empire looked bigger on the classroom map",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:map-projections-area"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1914",
+      "dataOpened": true,
+      "boundary": "geography owns Mercator; History only if the question is the historical map",
+      "sensitive": "colonialism"
+    },
+    {
+      "id": "crimean-war-causes-of-death",
+      "name": "Disease, not wounds: Nightingale's Crimean War numbers",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "pinned: nightingale, vega (crimea.json)",
+      "dataOpened": true,
+      "brief": "history.md #5",
+      "sensitive": "war"
+    },
+    {
+      "id": "napoleon-1812-attrition",
+      "name": "Most of the army was gone before winter: Minard's figures for 1812",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "pinned: minard, minardtemp",
+      "dataOpened": true,
+      "brief": "history.md #6",
+      "sensitive": "war"
+    },
+    {
+      "id": "plague-1665-bills",
+      "name": "Six times the burials: London's plague year in the Bills of Mortality",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "pinned: arbuthnot",
+      "dataOpened": true,
+      "brief": "history.md #8"
+    },
+    {
+      "id": "disaster-deaths-over-time",
+      "name": "Disaster deaths since 1900: fifteen times fewer, per year",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "probability:per-capita-rates"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: vega (disasters.csv), gmpop",
+      "dataOpened": true,
+      "brief": "history.md #9",
+      "sensitive": "famine"
+    },
+    {
+      "id": "cholera-1849-elevation",
+      "name": "Farr's 1849 cholera map: height, water and what the data cannot separate",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "probability:confounding"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: cholera",
+      "dataOpened": true,
+      "boundary": "Big Ideas owns germ theory (germ-theory-pump); this is Farr's confounded record. Elevation still predicts within each water supplier, so the question must not claim water alone"
+    },
+    {
+      "id": "cholera-1849-daily",
+      "name": "An epidemic in daily deaths: England's 1849 cholera season",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "life:sir-epidemic-curve"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData CholeraDeaths1849 (daily deaths by cause, England 1849)",
+      "dataOpened": true,
+      "boundary": "life owns the epidemic curve; History only the record"
+    },
+    {
+      "id": "polio-trial-1954",
+      "name": "The 1954 polio vaccine trial: who was counted in which group",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "probability:control-groups"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData PolioTrials (8 groups; randomized and observed controls)",
+      "dataOpened": true,
+      "boundary": "probability owns control groups; brief only with a different question"
+    },
+    {
+      "id": "war-deaths-richardson",
+      "name": "Richardson's deadly quarrels: how war deaths are spread across wars, 1820-1949",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "probability:heavy-tails"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Quarrels (779 quarrels with deaths and attributes)",
+      "dataOpened": true,
+      "boundary": "Big Ideas war-sizes-heavy-tail owns the tail; History only another question, after cm-big-ideas agrees",
+      "sensitive": "war"
+    },
+    {
+      "id": "battle-deaths-trend",
+      "name": "Battle deaths per 100,000 people: what the record can and cannot say about a trend",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "probability:cherry-picked-window"
+      ],
+      "subarea": "events-data",
+      "data": "reachable, not opened: Gapminder Systema Globalis battle deaths (5 KB file)",
+      "dataOpened": false,
+      "sensitive": "war; trend claims are contested and never stated as settled"
+    },
+    {
+      "id": "technology-diffusion-speed",
+      "name": "How fast new technologies spread through households",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet (the usual series, Comin & Hobijn via OWID, is not reachable)",
+      "dataOpened": false
+    },
+    {
+      "id": "famine-mortality-record",
+      "name": "Famines in the record: how deaths are estimated, and why estimates differ",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "famine"
+    },
+    {
+      "id": "influenza-1918-excess-deaths",
+      "name": "1918 influenza: deaths above normal in the record",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "epidemic"
+    },
+    {
+      "id": "smallpox-eradication-record",
+      "name": "Smallpox: cases until zero",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "armada-fleet-losses",
+      "name": "The Spanish Armada in numbers: ships, men and guns by squadron",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Armada (10 squadrons: ships, tons, men, guns); no losses column, so the concept is the fleet's make-up",
+      "dataOpened": true,
+      "sensitive": "war"
+    },
+    {
+      "id": "nightingale-before-after",
+      "name": "Before and after March 1855: what Nightingale's two roses compare",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:crimean-war-causes-of-death"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: nightingale",
+      "dataOpened": true,
+      "boundary": "a second Nightingale lesson; only after disease-killed-eight-to-one",
+      "sensitive": "war"
+    },
+    {
+      "id": "plague-recurrence-london",
+      "name": "Plague years in London, 1629-1666: how often, and how bad",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:plague-1665-bills"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: arbuthnot",
+      "dataOpened": true
+    },
+    {
+      "id": "epidemic-vs-war-deaths",
+      "name": "When epidemics killed more than wars: the record compared",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:crimean-war-causes-of-death"
+      ],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "war, epidemic"
+    },
+    {
+      "id": "vaccination-adoption-record",
+      "name": "How quickly vaccination was taken up, in the record",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "life-expectancy-century-gain",
+      "name": "Life expectancy since 1900: how much of the gain came from children surviving",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:life-expectancy-vs-lifespan"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track life expectancy and child mortality by country",
+      "dataOpened": true
+    },
+    {
+      "id": "child-deaths-then-births-fall",
+      "name": "Child deaths fell first, then families shrank: one country's record since 1800",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:child-mortality-decline"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track child mortality and fertility",
+      "dataOpened": true,
+      "boundary": "Big Ideas owns the transition mechanism; History shows one dated record"
+    },
+    {
+      "id": "halley-annuity-price",
+      "name": "Pricing a pension in 1693: what Halley's table said a life annuity was worth",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:life-expectancy-vs-lifespan",
+        "economics:present-value"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: halley",
+      "dataOpened": true
+    },
+    {
+      "id": "age-heaping-breslau",
+      "name": "Too many deaths at ages ending in 0 and 5: rounding in old records",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: breslau",
+      "dataOpened": true,
+      "boundary": "probability owns rounding and measurement error; History shows the record"
+    },
+    {
+      "id": "burials-exceed-christenings",
+      "name": "London buried more than it christened, yet grew: the city lived on newcomers",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: arbuthnot",
+      "dataOpened": true,
+      "sensitive": "migration"
+    },
+    {
+      "id": "registration-gap-civil-war",
+      "name": "The missing christenings of the 1640s and 1650s: when a record breaks",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:sex-ratio-at-baptism"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: arbuthnot",
+      "dataOpened": true,
+      "sensitive": "war"
+    },
+    {
+      "id": "roman-italy-income",
+      "name": "Roman Italy's income per person, and how long it took to beat it",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:long-run-income-growth"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: maddison (Italy from year 1; Scheidel & Friesen estimate)",
+      "dataOpened": true
+    },
+    {
+      "id": "dutch-golden-age-income",
+      "name": "The richest place in 1600: the Netherlands against England",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:long-run-income-growth"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: maddison",
+      "dataOpened": true,
+      "sensitive": "comparison of countries"
+    },
+    {
+      "id": "china-income-1700-1950",
+      "name": "Income per person in China fell from 1700 to 1950",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:great-divergence-incomes"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: maddison",
+      "dataOpened": true,
+      "sensitive": "comparison of countries"
+    },
+    {
+      "id": "population-share-asia-1820",
+      "name": "Where the world's people lived in 1820",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: maddison (population)",
+      "dataOpened": true,
+      "boundary": "geography owns where people live today"
+    },
+    {
+      "id": "income-gap-1800-2000",
+      "name": "How far apart the richest and poorest countries' incomes were in 1800 and 2000",
+      "level": "core",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:great-divergence-incomes"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: Gapminder Fast Track GDP per capita (modelled before 1950)",
+      "dataOpened": true,
+      "sensitive": "comparison of countries",
+      "boundary": "economics owns relative-vs-absolute-inequality"
+    },
+    {
+      "id": "us-population-growth",
+      "name": "From 20 million to 280 million: the US population, 1850-2000",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "pinned: vega (population.json; 1850 counts the free population)",
+      "dataOpened": true,
+      "sensitive": "slavery (1850 coverage)"
+    },
+    {
+      "id": "us-old-age-share",
+      "name": "How many Americans were over 65, in 1850 and 2000",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:us-age-structure"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: vega (population.json)",
+      "dataOpened": true
+    },
+    {
+      "id": "vanished-jobs",
+      "name": "Jobs that disappeared: the census record of occupations that faded",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:farm-share-structural-change"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: vega (jobs.json)",
+      "dataOpened": true
+    },
+    {
+      "id": "clerical-work-rise",
+      "name": "The rise of office work, 1850-2000",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:farm-share-structural-change"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: vega (jobs.json)",
+      "dataOpened": true
+    },
+    {
+      "id": "job-sex-segregation-record",
+      "name": "Which recorded jobs were held mostly by women, and how that changed",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:women-in-recorded-work"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: vega (jobs.json)",
+      "dataOpened": true,
+      "sensitive": "comparison of groups"
+    },
+    {
+      "id": "co2-per-person-1850",
+      "name": "Britain's CO2 per person in 1850, against the world's today",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:industrial-co2-share"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: co2 (co2_per_capita)",
+      "dataOpened": true,
+      "sensitive": "no blame or policy"
+    },
+    {
+      "id": "cumulative-co2-record",
+      "name": "Shares of all CO2 since 1750: what a cumulative total shows",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:industrial-co2-share"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: co2 (cumulative_co2)",
+      "dataOpened": true,
+      "sensitive": "no blame or policy"
+    },
+    {
+      "id": "coal-then-oil-co2",
+      "name": "Coal's share of fossil CO2, from 1750 to today",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:industrial-co2-share"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: co2 (coal_co2, oil_co2)",
+      "dataOpened": true
+    },
+    {
+      "id": "us-overtakes-britain-co2",
+      "name": "When the United States overtook Britain in emissions",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:industrial-co2-share"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: co2",
+      "dataOpened": true
+    },
+    {
+      "id": "wheat-price-swings",
+      "name": "Bad harvests in the price record: how much wheat prices swung",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:real-wages-playfair"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: wheat",
+      "dataOpened": true
+    },
+    {
+      "id": "playfair-national-debt",
+      "name": "Britain's national debt in Playfair's charts, 1770-1824",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "economics:debt-to-gdp-dynamics"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: HistData Playfair1824 (stocks, wheat, bread, debt, trade)",
+      "dataOpened": true
+    },
+    {
+      "id": "bread-price-1770-1824",
+      "name": "The price of bread through the Napoleonic wars",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:real-wages-playfair"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: HistData Playfair1824",
+      "dataOpened": true,
+      "sensitive": "war"
+    },
+    {
+      "id": "trade-boom-1855-1899",
+      "name": "British trade in the late 1800s: growth with slumps",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:trade-values-bowley"
+      ],
+      "subarea": "population-economy",
+      "data": "opened, not pinned: HistData Bowley",
+      "dataOpened": true
+    },
+    {
+      "id": "population-projection-vs-record",
+      "name": "The past and the projected: world population to 2100 on one line",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:world-population-doubling"
+      ],
+      "subarea": "population-economy",
+      "data": "pinned: gmpop (projection after the present)",
+      "dataOpened": true,
+      "boundary": "Books fact-straight-line owns the straight-line instinct; History only if cm-books agrees"
+    },
+    {
+      "id": "price-of-food-share",
+      "name": "What share of a household's spending went on food, then and now",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "literacy-rise",
+      "name": "How many people could read, since 1800",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "heights-as-history",
+      "name": "Average adult height as a record of living standards",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "population-economy",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "land-without-states-1492",
+      "name": "In 1492, how much land was ruled by a state at all?",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "geography:equal-area-vs-conformal"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1492 (1,946 features, almost all precision 1; peoples and cultures as well as states)",
+      "dataOpened": true,
+      "sensitive": "colonialism (the year), coding of peoples"
+    },
+    {
+      "id": "border-precision-over-time",
+      "name": "When borders became precise: the share of 'approximate' borders by year",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:border-precision"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1492-2000 (precision 1 dominates to 1530, precision 3 from 1700)",
+      "dataOpened": true
+    },
+    {
+      "id": "ottoman-extent-1700",
+      "name": "The Ottoman Empire's area in 1700, on an equal-area map",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:empire-extent-mongols"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1700",
+      "dataOpened": true,
+      "sensitive": "empire"
+    },
+    {
+      "id": "spanish-americas-1530",
+      "name": "How much of the Americas Spain's map claimed in 1530, and how much it held",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:land-without-states-1492"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1530",
+      "dataOpened": true,
+      "sensitive": "colonialism"
+    },
+    {
+      "id": "decolonisation-1945-1960",
+      "name": "How many new states appeared between 1945 and 1960",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:number-of-states-over-time"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1945 and 1960",
+      "dataOpened": true,
+      "sensitive": "colonialism, borders"
+    },
+    {
+      "id": "ussr-breakup-map",
+      "name": "One state becomes fifteen: the map in 1960 and 1994",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:number-of-states-over-time"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1960 and 1994",
+      "dataOpened": true,
+      "sensitive": "borders (some disputed today)"
+    },
+    {
+      "id": "dominions-coding-1914",
+      "name": "Was Canada part of the British Empire in 1914? How the map's coding changes the total",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:empires-share-of-land-1914"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: historical-basemaps 1914",
+      "dataOpened": true,
+      "sensitive": "colonialism"
+    },
+    {
+      "id": "guerry-literacy-map",
+      "name": "Literacy across France in the 1830s, from Guerry's statistics",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:thematic-maps-guerry"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: HistData Guerry",
+      "dataOpened": true
+    },
+    {
+      "id": "guerry-crime-vs-instruction",
+      "name": "Crime and schooling in Guerry's France: what one map pair can show",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:thematic-maps-guerry",
+        "probability:confounding"
+      ],
+      "subarea": "maps-borders",
+      "data": "opened, not pinned: HistData Guerry",
+      "dataOpened": true
+    },
+    {
+      "id": "langren-versions",
+      "name": "Van Langren's graph in every version, 1628-1644: did the estimates change?",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:longitude-problem-estimates"
+      ],
+      "subarea": "maps-borders",
+      "data": "reachable, not opened: HistData Langren.all",
+      "dataOpened": false
+    },
+    {
+      "id": "oldmaps-north-error",
+      "name": "Which old maps put the Great Lakes too far north or south, and by how much",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:old-map-longitude-error"
+      ],
+      "subarea": "maps-borders",
+      "data": "pinned: oldmaps",
+      "dataOpened": true
+    },
+    {
+      "id": "minard-cities-route",
+      "name": "The cities on Minard's route and where the column shrank fastest",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:napoleon-1812-attrition"
+      ],
+      "subarea": "maps-borders",
+      "data": "reachable, not opened: HistData Minard.cities",
+      "dataOpened": false,
+      "sensitive": "war"
+    },
+    {
+      "id": "partition-borders-1947",
+      "name": "New borders in South Asia in 1947",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "borders, religion, migration"
+    },
+    {
+      "id": "silk-roads-distances",
+      "name": "How far goods travelled on the overland routes",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "antarctic-claims-map",
+      "name": "Overlapping claims on Antarctica",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false,
+      "sensitive": "borders"
+    },
+    {
+      "id": "capital-cities-moved",
+      "name": "Capitals that moved, and how far",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "maps-borders",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "broad-street-already-falling",
+      "name": "Was the 1854 outbreak already falling when the pump handle came off?",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "big-ideas:germ-theory-pump"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Snow.dates (daily attacks and deaths)",
+      "dataOpened": true,
+      "boundary": "Big Ideas owns germ theory and Snow; History only with cm-big-ideas' agreement"
+    },
+    {
+      "id": "polio-observed-vs-randomized",
+      "name": "The 1954 polio trial's two designs: why the observed-control results differ",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:polio-trial-1954"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData PolioTrials",
+      "dataOpened": true,
+      "boundary": "probability owns control groups"
+    },
+    {
+      "id": "world-wars-share-of-deaths",
+      "name": "How much of all recorded war deaths, 1820-1949, came from the two world wars",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:war-deaths-richardson"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Quarrels",
+      "dataOpened": true,
+      "sensitive": "war",
+      "boundary": "Big Ideas war-sizes-heavy-tail; split by question"
+    },
+    {
+      "id": "many-small-quarrels",
+      "name": "Most deadly quarrels were small: counting wars by size",
+      "level": "core",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:war-deaths-richardson"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Quarrels",
+      "dataOpened": true,
+      "sensitive": "war",
+      "boundary": "Big Ideas war-sizes-heavy-tail"
+    },
+    {
+      "id": "earthquake-deaths-record",
+      "name": "Earthquake deaths since 1900: no fall like droughts",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:disaster-deaths-over-time"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: vega (disasters.csv)",
+      "dataOpened": true
+    },
+    {
+      "id": "drought-deaths-decline",
+      "name": "Drought deaths by decade: from millions to thousands",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:disaster-deaths-over-time"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: vega (disasters.csv)",
+      "dataOpened": true,
+      "sensitive": "famine"
+    },
+    {
+      "id": "volcano-deaths-record",
+      "name": "Volcano deaths since 1900: rare and lumpy",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:disaster-deaths-over-time"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: vega (disasters.csv)",
+      "dataOpened": true
+    },
+    {
+      "id": "cholera-and-diarrhoea-1849",
+      "name": "Cholera and diarrhoea deaths in 1849: two causes, one season",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:cholera-1849-daily"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData CholeraDeaths1849",
+      "dataOpened": true
+    },
+    {
+      "id": "crimea-army-size-and-rate",
+      "name": "Deaths or death rate? The Crimean record when the army doubled",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:crimean-war-causes-of-death",
+        "probability:per-capita-rates"
+      ],
+      "subarea": "events-data",
+      "data": "pinned: nightingale",
+      "dataOpened": true,
+      "sensitive": "war"
+    },
+    {
+      "id": "edgeworth-county-deaths",
+      "name": "Deaths by county in 1870s England: Edgeworth's comparison",
+      "level": "core",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData EdgeworthDeaths",
+      "dataOpened": true
+    },
+    {
+      "id": "armada-squadrons-strength",
+      "name": "Which Armada squadrons carried the soldiers, and which the sailors",
+      "level": "intro",
+      "demand": 1,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:armada-fleet-losses"
+      ],
+      "subarea": "events-data",
+      "data": "opened, not pinned: HistData Armada",
+      "dataOpened": true,
+      "sensitive": "war"
+    },
+    {
+      "id": "measles-before-vaccine",
+      "name": "Measles deaths before and after vaccination",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "black-death-share",
+      "name": "What share of Europe died in the Black Death, and how we know",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "telegraph-to-internet-speed",
+      "name": "How fast news crossed the Atlantic, 1800-2000",
+      "level": "intro",
+      "demand": 2,
+      "demandEstimate": true,
+      "prerequisites": [],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    },
+    {
+      "id": "car-and-phone-adoption",
+      "name": "Cars, phones and radios: how long each took to reach half of households",
+      "level": "intro",
+      "demand": 3,
+      "demandEstimate": true,
+      "prerequisites": [
+        "history:technology-diffusion-speed"
+      ],
+      "subarea": "events-data",
+      "data": "not found yet",
+      "dataOpened": false
+    }
+  ]
+}

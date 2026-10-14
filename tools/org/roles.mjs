@@ -655,6 +655,8 @@ roles.push(
   // 2026-10-14, founder request (company/decisions/2026-10-14-books-and-big-ideas.md).
   cm("cm-books", "books", "Book Summaries", "the core ideas of widely read non-fiction, one book idea per lesson, told in our own words, each tested on the stage and followed by whether the idea holds up; multi-card sequence once the kit supports it, single card until then", "Every claim is either \"the book argues X\" with a chapter citation (confirmed against the book by the fact-checker) or a separate claim on whether X holds up, sourced to the research. Never reproduce the book's text: quote at most one short attributed line, and summarise in our own words."),
   cm("cm-big-ideas", "big-ideas", "Big Ideas", "ideas that change how people see the world, across science, society and the mind, each shown as one prediction the idea overturns", "Teach the idea as the evidence supports it, not as pop science tells it: state where it applies and where it fails, and source the strong form or say it is contested."),
+  // 2026-10-14, founder decision (company/decisions/2026-10-14-founder-history-category.md, 2026-10-14-history-category.md).
+  cm("cm-history", "history", "History through data and maps", "history taught as predict, explore, reveal on real data or a real map (populations, incomes, borders, epidemics, wars as numbers), never as a narrative or dates to memorise", "Every number on the stage is recomputed from a data file someone can open (company/domains/history.md, Sources); a number nobody opened is not cited. Sensitive history (war, colonialism, slavery, genocide, borders, religion) takes the sensitive-topics route before build and before publish."),
 );
 
 // ------------------------------------------------------------------ life hacks, personalization, international (2026-10-13, founder request)
@@ -1136,12 +1138,15 @@ export const SUBAREAS = {
   // 2026-10-14, founder request (company/decisions/2026-10-14-books-and-big-ideas.md).
   books: [["business", "Business & Strategy"], ["psychology", "Psychology & Self"], ["science-history", "Science & History"]],
   "big-ideas": [["science", "Science"], ["society", "Society & Economics"], ["mind", "Mind & Philosophy"]],
+  // 2026-10-14, founder decision (company/decisions/2026-10-14-history-category.md).
+  history: [["population-economy", "Population & Economy over Time"], ["maps-borders", "Maps & Borders"], ["events-data", "Events through Data"]],
 };
-const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps", books: "Book Summaries", "big-ideas": "Big Ideas" };
+const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps", books: "Book Summaries", "big-ideas": "Big Ideas", history: "History through data and maps" };
 // Extra scope for strands whose category has its own rules (charter section named here).
 const STRAND_RULES = {
   books: "Book rules (company/domains/books.md): one book idea per concept (2 to 4 per book); every brief separates \"the book argues X\" (chapter cited, marked unconfirmed until the fact-checker checks it against the book) from \"does X hold up\" (sourced to research, or said to be untested); no text reproduced, at most one short attributed quote; multi-card sequence only once the kit stepper lands, single card until then",
   "big-ideas": "Big Ideas rules (company/domains/big-ideas.md): before briefing an idea, find the subject category that already teaches its mechanism and name that concept as a prerequisite or in `also`; brief the shift in view, not a re-run of the subject lesson; state where the idea fails or is contested",
+  history: "History rules (company/domains/history.md): every number on the stage is recomputed from an openable data file by a check script in company/domains/briefs/checks/ (pinned by SHA-256), never copied from an unopened page; claims split into data, derivation and source; a sensitive class (war, colonialism, slavery, genocide, borders, religion, famine, group comparisons) takes the sensitive-topics route before build and before publish; check the boundary table (geography, economics, Big Ideas, Books) before briefing",
 };
 
 for (const [domain, subs] of Object.entries(SUBAREAS))

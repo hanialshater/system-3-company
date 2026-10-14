@@ -12,6 +12,7 @@ const DOMAIN_COLOR: Record<string, string> = {
   lifehacks: "#ffb74d",
   books: "#bcaaa4",
   "big-ideas": "#4dd0e1",
+  history: "#d9b26f",
 };
 
 export const TEAM_COLOR: Record<string, string> = {

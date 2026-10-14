@@ -79,6 +79,11 @@ const ROOM_BY_ROLE = {
   "cm-big-ideas-science": "cm-big-ideas",
   "cm-big-ideas-society": "cm-big-ideas",
   "cm-big-ideas-mind": "cm-big-ideas",
+  // History through data and maps (2026-10-14): listed for the same reason; its office is on floor 6 with Books, Big Ideas and Life Hacks.
+  "cm-history": "cm-history",
+  "cm-history-population-economy": "cm-history",
+  "cm-history-maps-borders": "cm-history",
+  "cm-history-events-data": "cm-history",
   "design-lead": "design-studio",
   "interaction-designer": "design-studio",
   "visual-designer": "design-studio",

@@ -57,6 +57,11 @@ export const PERSONA = {
   "cm-big-ideas-science": "Lucia",
   "cm-big-ideas-society": "Babajide",
   "cm-big-ideas-mind": "Signe",
+  // History through data and maps (2026-10-14). Named explicitly for the same reason: strands 34 to 36 would wrap STRAND.
+  "cm-history": "Henrike",
+  "cm-history-population-economy": "Olumide",
+  "cm-history-maps-borders": "Marisol",
+  "cm-history-events-data": "Anselm",
   "lifehacks-safety-reviewer": "Sana",
   "personalization-lead": "Mateo",
   "learner-model-engineer": "Ifeoma",
