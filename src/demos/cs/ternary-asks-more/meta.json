@@ -54,8 +54,10 @@
       "id": "cs.ternary-asks-more.c4",
       "text": "After two questions on 721, halving has 249 numbers left (501 to 749) and thirds has 333 (668 to 1,000).",
       "support": "simulation",
-      "source": "Builder's node script: numbers left after each question. Halving: 500, 249, 124, 62, 31, 15, 7, 3, 1, found at 10. Thirds: 666, 333, 110, 110, 73, 36, 24, 12, 8, 4, 1, 1, found at 13. | FACT-CHECK 2026-10-14 (pass 22): Own re-run: after 2 questions halving range 501-749 (249), thirds 668-1000 (333); reveal prints left(HQ,2) and left(TQ,2). | REWORDED v2 (builder, 2026-10-14): Text unchanged; it is now shown on stage as the table column 'left after 2' (249 / 333), filled once two questions have been asked, and the reveal points at that column. Unverified.",
-      "status": "unverified"
+      "source": "Builder's node script: numbers left after each question. Halving: 500, 249, 124, 62, 31, 15, 7, 3, 1, found at 10. Thirds: 666, 333, 110, 110, 73, 36, 24, 12, 8, 4, 1, 1, found at 13. | FACT-CHECK 2026-10-14 (pass 22): Own re-run: after 2 questions halving range 501-749 (249), thirds 668-1000 (333); reveal prints left(HQ,2) and left(TQ,2). | REWORDED v2 (builder, 2026-10-14): Text unchanged; it is now shown on stage as the table column 'left after 2' (249 / 333), filled once two questions have been asked, and the reveal points at that column. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own re-implementation of both searches on 721: after 2 questions halving holds 501-749 (249), thirds 668-1000 (333); found at 10 and 13. v2 table column 'left after 2' fills from k >= 2 and is never cleared; milestone both-found needs k = 13, so the column is filled on every path to the reveal (also with reduced motion, where k jumps to 13). Reveal prints left(HQ, 2) and left(TQ, 2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ternary-asks-more.c5",

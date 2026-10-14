@@ -176,6 +176,11 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       }
       userScrolled = false;
       expectedTop = body.scrollTop;
+      // W-146: a stage or reveal that grows after the tap (animation, late annotations) re-fits too.
+      const stage = stageOf();
+      const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
+      if (stage) ro?.observe(stage);
+      if (reveal) ro?.observe(reveal);
       requestAnimationFrame(bringIntoView);
       timers.push(window.setTimeout(bringIntoView, 400)); // a reveal that animates in may still be growing
     };
