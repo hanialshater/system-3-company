@@ -154,7 +154,7 @@ function Stage({
       <p className={s.caption} aria-live="polite">
         {locked
           ? "Make a prediction to start."
-          : `Nearest square ${p}² = ${p * p}: off by ${off}. Its 2s: ${twos(p * p)}, even; ${t}'s: ${twos(t)}, odd.`}
+          : `Nearest square ${p}² = ${p * p}: off by ${off}.`}
       </p>
 
       {!locked && (
@@ -179,7 +179,7 @@ function Stage({
           Next close call
         </Control>
         <Readout label="Nearest p/q" value={locked ? "?" : `${p}/${q}`} />
-        <Readout label="(p/q)², want 2" value={locked ? "?" : ((p * p) / (q * q)).toFixed(4)} />
+        <Readout label="(p/q)² vs 2" value={locked ? "?" : ((p * p) / (q * q)).toFixed(4)} />
       </Row>
     </div>
   );

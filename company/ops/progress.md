@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (demo-builder, W-373, lh-scale-recipe-portions warning reword)
+
+Changed: this slug's `warning` in src/lib/lifehacks/resource-specs.json and claim c5 in its meta.json now read the safety second reader's wording verbatim: "Cooking times do not scale in proportion to quantity: follow the recipe's own times and check food is cooked through." c5 is unverified; version 2 → 3; `## Pre-flight v3` added to company/reviews/lh-scale-recipe-portions/build.md. W-373 → review.
+Believe (high confidence): the edit is in place. I re-read the file after the write because another builder was editing resource-specs.json at the same time. test:lifehacks (53/53), tsc and check pass. Not checked: how the longer line renders at 390x844.
+Next: a reader other than the author (lifehacks-safety-reviewer) confirms the wording on the stage; fact-checker owes the c5 food-safety source. Blocked: nothing.
+
 ## 2026-10-14 (second reader, W-362/W-368, lifehacks-safety-reviewer, independent instance)
 
 Changed: appended "Second reader (independent)" to 11 safety records; W-362 and W-368 moved to done; two follow-ups added to the board.

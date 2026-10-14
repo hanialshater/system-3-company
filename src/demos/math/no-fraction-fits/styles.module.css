@@ -11,7 +11,8 @@
 .markLab { fill: var(--fg); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.88rem; min-height: 1.4em; }
 .wrap :global(.row) { justify-content: center; gap: 6px; margin-top: 2px; }
-.wrap :global(.readout) { min-width: 64px; }
+.wrap :global(.readout) { min-width: 0; padding: 4px 8px; }
+.wrap :global(.control) { padding: 8px 10px; }
 .wrap :global(.readout-label) { text-transform: none; }
 .even { fill: var(--good); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .odd { fill: var(--bad); }
