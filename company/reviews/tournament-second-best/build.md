@@ -13,3 +13,10 @@
 - Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
 - Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
 
+
+
+## Revision v2
+
+svg aria-label was a constant 'Knockout bracket'. It now carries rounds played, the champion and the current info line. Runner-up strength number colour darkened for light-theme contrast.
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

@@ -21,7 +21,10 @@ const average = (k: number) => stock * 10 ** -k;
 const FEW = 21;
 const NONE = 22;
 const MAX_STEP = 30;
-const AUTO_END = 24;
+const AUTO_END = 22;
+const TUBES = 20;
+// Empty tubes among TUBES seeded samples at step k (shown on stage from step 19, so the reveal's count is one the learner saw).
+const emptyOf = (k: number) => Array.from({ length: TUBES }, (_, d) => sample(k, d + 1)).filter((x) => x === 0).length;
 const MILESTONES = ["few", "none"] as const;
 
 const sample = (k: number, draw = 0) => {
@@ -59,11 +62,12 @@ export default function Dilution({ slug }: { slug: string }) {
   // "Dilute automatically" repeats the 1:10 step, one tube at a time, so every step is seen.
   useEffect(() => {
     if (!auto) return;
-    const id = setInterval(() => {
+    // Fast until step 20, then a pause on each step so steps 21 and 22 can be read.
+    const id = setTimeout(() => {
       if (autoStep.current()) setAuto(false);
-    }, 150);
-    return () => clearInterval(id);
-  }, [auto]);
+    }, k >= FEW - 1 ? 1000 : 80);
+    return () => clearTimeout(id);
+  }, [auto, k]);
 
   return (
     <Lesson
@@ -73,7 +77,7 @@ export default function Dilution({ slug }: { slug: string }) {
         options: ["10 steps", `${NONE} steps`, "60 steps"],
         answer: 1,
       }}
-      exploreHint="Dilute one step at a time and watch the molecule count. Keep going past the point where the average drops below 1; steps 21 and 22 matter."
+      exploreHint="Dilute one step at a time and watch the molecule count. The run slows at steps 21 and 22: watch the count and the tubes."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -82,7 +86,7 @@ export default function Dilution({ slug }: { slug: string }) {
           </p>
           <p>
             The start tube held about {fmtAvg(stock)} molecules and each step divides the count by 10, so it runs out after about {NONE} steps. Past that, a typical tube holds only
-            water: at an average of {fmtAvg(average(NONE))}, about 55% of tubes hold none and the rest hold one or more.
+            water: at an average of {fmtAvg(average(NONE))}, about 55% of tubes hold none and the rest hold one or more. On the stage, {emptyOf(NONE)} of {TUBES} drawn tubes were empty.
           </p>
         </>
       )}
@@ -127,6 +131,9 @@ export default function Dilution({ slug }: { slug: string }) {
                   </text>
                   <text x={TX + TW + 16} y={TY + 62} className={s.small}>
                     {locked ? "" : `average: ${fmtAvg(mean)}`}
+                  </text>
+                  <text x={TX + TW + 16} y={TY + 84} className={s.small}>
+                    {locked || !show ? "" : `${TUBES} tubes drawn: ${emptyOf(k)} empty`}
                   </text>
                   <text x={20} y={150} className={s.axis}>
                     molecules (log scale)
