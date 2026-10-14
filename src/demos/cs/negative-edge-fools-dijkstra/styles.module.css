@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap :global(.tap) { min-height: 44px; min-width: 76px; }
+.wrap > .panel > :global(.row) { justify-content: center; margin-top: 2px; }
+.panel { border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px; }
+.head { margin: 0; font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+.rule { margin: 0; min-height: 1.3em; font-size: 0.85rem; }
+.graph { position: relative; }
+.town {
+  position: absolute; width: 48px; height: 48px; transform: translate(-50%, -50%);
+  border-radius: 50%; border: 0; background: transparent; cursor: pointer; padding: 0;
+}
+.town:focus-visible { outline: 2px solid var(--domain); }
+.town:disabled { cursor: default; }
+.name { font-size: 15px; font-weight: 800; fill: var(--fg); }
+.pill { font-size: 12px; font-weight: 800; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.cost { font-size: 13px; font-weight: 700; fill: var(--fg); }
+.neg { font-size: 13px; font-weight: 800; fill: var(--domain); }
+.struck { font-size: 13px; font-weight: 800; fill: var(--bad); }
+.tag { font-size: 10px; font-weight: 700; fill: var(--bad); }
