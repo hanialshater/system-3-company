@@ -38,3 +38,7 @@ No open claims. v3 changed the reveal wording and pinned the reveal stage. Re-ra
 **Advisory (not blocking):** the footer now begins "In real populations, partnerships that overlap ... can spread infection further (Morris and Kretzschmar, 1997)". c6 does not say "in real populations", and the cited paper is a simulation of a model population; the size of the real-world effect is contested in the empirical literature. "Can" keeps it true, but "In models of real populations" or dropping the prefix would match the source. Owner: demo-builder.
 
 **Result:** 0 status changes. Lesson: 7 verified.
+
+## Pass NCM-4 (2026-10-14)
+
+Checker: fact-checker. Scope: re-read the footer against c6 (the NCM-3 advisory). Footer now: "In models of real populations, partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and Kretzschmar, 1997). Real contacts are not certain to pass it on." This matches the source (a stochastic simulation of a model population) and c6 ("can spread further"); the prefix only narrows the claim, and the last sentence is c7. Advisory resolved. 0 status changes; lesson stays at 7 verified. Optional, for the builder: align c6's text with the footer by adding "In models".

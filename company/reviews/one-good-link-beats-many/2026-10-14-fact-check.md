@@ -48,3 +48,13 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** round 1 (0.270 v 0.100) and round 2 (0.389 v 0.053) are reached (milestone round-two); round 51 sentence shows only if r51. Paragraph 2: passed(2, P) 0.013, passed(2, H) 0.374 (c5, c8). Paragraph 3 = c6; footer = c7.
 
 **Result:** 1 verified, 1 disputed. Lesson now: 8 verified, 1 disputed (c4).
+
+## Pass NCM-4 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: c4, reset to unverified after the reveal rewording. Method: re-ran ROUNDS from the current model.ts (tsx) and read the current reveal in Demo.tsx.
+
+| Claim | Check | Result |
+|---|---|---|
+| c4 | Round 51: Y 0.374, X 0.053, H 0.422; round 50 identical to 3 dp (max change 0.00015). Reveal: "Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead." X is exactly 0.05325 in rounds 2, 3 and 51; Y > X in every round 2 to 51 (X led only in round 1, 0.27 vs 0.1, which the reveal states separately). The NCM-3 dispute is resolved. | verified |
+
+Result: c4 verified. Lesson: no open claims. No fresh walkthrough (read from code).

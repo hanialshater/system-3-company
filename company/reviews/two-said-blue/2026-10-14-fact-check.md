@@ -46,3 +46,17 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 2. If the learner switches to an accuracy chip with no runs, paragraph 3 says "Look at crowd N on the stage" for another accuracy while the stage shows no run. Owner: demo-builder.
 
 **Result:** 2 verified, 0 disputed. Lesson now: 8 verified, 1 withdrawn (c8, not shown).
+
+## Pass NCM-4 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: c9, extended with the plain-vote wrong chance. Method: re-ran plainWrong and pctSmall from the current model.ts (tsx) and independently summed the binomial in python (P of fewer than 50 blue clues in 100).
+
+| Accuracy | plainWrong (model.ts) | independent sum | printed | 1 - p printed |
+|---|---|---|---|---|
+| 60% | 0.016762 | 0.016762 | 1.7% | 40.0% |
+| 2 in 3 | 0.00019893 | 0.00019893 | 0.020% | 33.3% |
+| 80% | 5.18e-12 | 5.18e-12 | under 0.01% | 20.0% |
+
+Reveal paragraph 2 ("Alone, one person is wrong X of the time ... a plain vote of 100 such clues is wrong only Y of the time (ties not counted)") matches the claim: ties excluded (the 50-50 case is not in the sum), and the crowd (exactWrong 30.8%, 20.0%, 5.9%) beats one person but is far worse than a plain vote at each accuracy. The NCM-3 advisory (60%: "almost never" vs 1.7%) is gone with the new wording; the predict option's own "under 1 time in 100" at 60% was not re-read as part of this pass's scope.
+
+Result: c9 verified. Lesson: no open claims (c8 withdrawn, not shown). No fresh walkthrough.

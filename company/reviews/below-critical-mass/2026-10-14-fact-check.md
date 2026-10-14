@@ -53,3 +53,13 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** paragraph 1 always quotes 19% (dies in 2 rounds) and 21% (80% in 8 rounds) because the edge milestones force them and onEnded keeps the start nearest 20% on each side (re-run: 19 16 0; 21 24 33 51 69 77 79 80 80): backed by c3/c4. Paragraph 3 = c8, c10, c7. Footer = c6. The "shaded green" label is the domain teal #80cbc4; acceptable.
 
 **Result:** 1 verified, 1 disputed. Lesson now: 10 verified, 1 disputed (c11). Blocks publish until the one-line fix.
+
+## Pass NCM-4 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: c11, reset to unverified after reveal paragraph 2 was bounded. Method: read the current Demo.tsx reveal (lines ~240-241) and re-ran next(s) in node.
+
+| Claim | Check | Result |
+|---|---|---|
+| c11 | Reveal now says "Between it and 80% the curve is above the line and the share grows. Above 80% it dips below again, so the share falls back to 80%." next(s) vs s: below at 0.1, 0.18, 0.19; above at 0.5, 0.79; below at 0.81 (0.802), 0.9 (0.822), 1.0 (0.84). Claim text and reveal agree; the NCM-3 dispute is resolved. | verified |
+
+Result: c11 verified. Lesson: 11 verified, 0 open. No fresh walkthrough (read from code).
