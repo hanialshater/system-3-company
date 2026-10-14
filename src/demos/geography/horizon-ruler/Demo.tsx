@@ -4,6 +4,8 @@
 // just grazes the curve (the tangent). Distances along the ground are drawn true to a km scale;
 // the curve and the height are both stretched by the same factor so the tangent geometry stays
 // exact. Horizon distance d = sqrt(2 R h), no refraction.
+// v3 (W-250): "tower" was not a registered milestone, so with minInteractions 3 the reveal could never open.
+// Milestone names and minInteractions are now both derived from STOPS.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -24,6 +26,8 @@ const STOPS = [
   { label: "100× higher, 170 m", m: 170, key: "hundred" },
   { label: "Burj Khalifa, 828 m", m: 828, key: "tower" },
 ];
+// Every stop is a milestone (the reveal quotes all three), so names and minInteractions both come from STOPS.
+const MILESTONES = STOPS.map((st) => st.key);
 const START_M = 30;
 const LOG_MAX = 3; // slider covers 1 m to 1,000 m
 
@@ -70,7 +74,7 @@ export default function HorizonRuler({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Try your own eye height, then 100 times higher, then the tower."
-      minInteractions={3}
+      minInteractions={STOPS.length}
       reveal={() => (
         <>
           <p>
@@ -88,7 +92,7 @@ export default function HorizonRuler({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["eyes", "hundred"]}>
+        <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const set = (v: number) => {
               setM(v);

@@ -20,6 +20,9 @@
 // not be tied to a speed). Two stops past 7.9 km/s (9.0, an oval orbit that leaves the picture; 79, an escape), so
 // the slider's top is not the answer. The "loop" milestone is the 7.9 stop only, the slowest that never lands, so
 // the reveal's 7.9 numbers are always ones the learner saw. Header moved below the planet, clear of "1 min".
+// v6 (FC pass 26, W-248): the reveal says "your {fastest landing} and 7.9 km/s throws both fell 17.6 km" only when
+// the fastest landing has a first-minute record with the same fall; a slider jump to 0.79 or 4.0 km/s (which land
+// before one minute) now reads "your 7.9 km/s throw fell 17.6 km".
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Slider } from "@/kit/controls";
@@ -78,7 +81,10 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
             away (the line under the readout).
           </p>
           <p>
-            The ball was falling the whole time: in the first minute your {kms(near.v)} and {kms(loop.v)} throws both fell{" "}
+            The ball was falling the whole time: in the first minute{" "}
+            {near.minute && km1(near.minute.fell) === km1(loop.minute!.fell)
+              ? `your ${kms(near.v)} and ${kms(loop.v)} throws both fell`
+              : `your ${kms(loop.v)} throw fell`}{" "}
             {km1(loop.minute!.fell)} km below the dashed straight line. What changed was the ground.{" "}
             {near.minute
               ? `Under your ${kms(near.v)} throw it curved away ${km1(near.minute.groundAway)} km; under`

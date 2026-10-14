@@ -50,3 +50,11 @@ Revision for r7 (knows-repeated-rules): the reveal's "at 94 it lands on 27's pat
 4. **Reveal values.** 111, 9,232: SEQ[27], milestone "27-at-1", table column 27. 10, 18, 118: printed only if that start is in `done`, shown in its table column. 94 and step 13: JOIN97 / JOIN97_STEP computed from SEQ, printed only when joinSeen (set when 97's run is drawn to step >= 13), the same text as the stage line, which persists.
 5. **QA path.** Step, Run to 1 ("27-at-1"), Step to show slider, chips 26 ("another-start"), 27, 28, 97 (each runs out in < 400 ms; 97 sets joinSeen). Both milestones; table full and the join line visible when the reveal opens.
 6. **Reset.** No Reset control; `done` and joinSeen never clear. Reveal from that run: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118 steps: as your stage line says, at the value 94 (its step 13) it lands on 27's path and follows it down. The start number tells you almost nothing about the run. Each ? in your table stayed a ? until you ran that start: only running the rule filled it in. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."
+
+## Pre-flight v5 (demo-builder, 2026-10-14, W-245, FC pass 26 nit on c6)
+
+Fix: the stage line kept saying "..., ringed." after re-picking 97 reset its line to step 0, when no ring was drawn (path: chip 97, Step x13, chip 27, chip 97). `ringOn = (drawn[97] ?? 0) >= JOIN97_STEP` now drives both the ring and the line's ending. The line reads "97 meets 27's path at value 94 (its step 13), ringed." only while the ring is drawn, and otherwise "... (its step 13)." The line still persists once joinSeen is set. The reveal string is unchanged ("at the value 94 (its step 13) it lands on 27's path") and never said "ringed". c6's quoted stage line is updated and set to unverified (it was verified in pass 26). The numbers are unchanged.
+1-4. Title, hook, options, locked stage and reveal values: unchanged from v4.
+5. QA path: unchanged. Chip 97 runs out to 118, so the ring is on and the line ends ", ringed." at the reveal.
+6. Reset: none. The QA-path reveal is as in v4.
+- meta.json 4 -> 5. Not run: build, QA, walkthrough.

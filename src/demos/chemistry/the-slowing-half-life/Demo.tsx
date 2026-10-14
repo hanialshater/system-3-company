@@ -87,8 +87,8 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
             A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four
             times rarer: your 2nd-order rate row (vs the start) reads <strong>{rate(2, 1)}</strong> after one halving and{" "}
             <strong>{rate(2, 2)}</strong> after two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
-            wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the wait stayed the same. Radioactive decay is first
-            order: one fixed half-life.
+            wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the wait stayed the same: one fixed
+            half-life.
           </p>
         </>
       )}

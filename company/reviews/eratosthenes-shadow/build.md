@@ -23,3 +23,22 @@
 4. Reveal values: 50 (answer); "7.2° → 50 arcs, 250,000 stadia" (b) milestone `account`, Seen row; "7.11° → 50.6 arcs, 42,684 km" (b) milestone `modern`, Seen row; 7% and 40,008 km are told context (claim c3), not presented as seen.
 5. QA path: account chip (reaches `account`), modern chip (reaches `modern`), slider two presses (7.13°). Both milestones reached; both Seen rows still on the stage at reveal.
 6. Reset: there is no Reset control. After the QA path the reveal reads: "50 times. The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. At Syene the Sun was straight overhead, so the well had no shadow. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, as the account tells it. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance." (Composed from the code, not from a run.)
+
+## v3 (2026-10-14): W-249, "Sun overhead" framed as the account
+
+Problem (FC pass 26, c5 disputed): the reveal ("At Syene the Sun was straight overhead") and the stage label ("Syene: Sun overhead, no shadow") stated as fact that the Sun was at the zenith at Syene. Syene is at 24.09 N, north of the Tropic of Cancer, so it was not exactly overhead. The question gave no date.
+Changes:
+- Reveal: "In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow." (the checker's wording).
+- Stage label in two lines above Syene: "Syene, in the account:" / "Sun overhead, no shadow" (8.5 px, starts at x 164, so it stays inside the 320 viewBox; not checked on a phone, no build run).
+- Question: "In the account, at noon on the summer solstice a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?" It names no number other than the given 7.2°, so it does not give away 50.
+- c5 reworded and set back to unverified. c1 ("In the account, at noon on the solstice…") already covers the question's facts; not changed. Version 2 -> 3.
+Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
+
+## Pre-flight v3
+
+1. Title and hook unchanged: "Measure the Earth with a shadow" / "Over 2,000 years ago someone sized the whole planet with a stick and a walk. How?" They do not point to an option.
+2. Options unchanged: "7 times" / "50 times" / "360 times".
+3. Locked stage: shadow 20.00°, 18 ticks, readouts "?", Seen "nothing yet", Syene label "Syene, in the account: / Sun overhead, no shadow". Nothing says 50. The question adds only the date and the account framing.
+4. Reveal values: same as v2. 50 (answer); "7.2° → 50 arcs, 250,000 stadia" (b) milestone `account`, Seen row; "7.11° → 50.6 arcs, 42,684 km" (b) milestone `modern`, Seen row; 7% and 40,008 km told (c3); the Sun overhead is told as the account's (c5), not as a modern fact.
+5. QA path unchanged: account chip, modern chip, slider two presses. Both milestones reached.
+6. Reset: none. Reveal after the QA path: "50 times. The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, as the account tells it. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance." (Composed from the code, not from a run.)

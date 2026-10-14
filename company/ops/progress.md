@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-251 (the-slowing-half-life c3, v6)
+
+- Changed: made the stage-only reword from the evaluation-steward's W-247 ruling. The Demo.tsx reveal now ends "so the wait stayed the same: one fixed half-life." The radioactive-decay sentence is gone. The c3 text is now "A first-order reaction keeps one fixed half-life (here 10 min each time)." I dropped the IUPAC Gold Book sentence from c3's source and set c3 to unverified, clearing checkedBy/checkedOn. meta.json is now v6, and build.md has Pre-flight v6. tsc and `npm run check` pass. I did not run build, QA or a walkthrough, as instructed. W-251 is done, and I added W-253 for the fact-checker.
+- Believe: every remaining word of c3 and the reveal is shown on stage by the 1st-order waits row. About 90% sure. The text-only edit has not been seen in a browser.
+- Next: fact-checker re-checks c3 (W-253). cm-chemistry decides whether to bring back the radioactive-decay bridge once a source can be opened.
+- Blocked: nothing.
+
 ## 2026-10-14, demo-builder: W-246 (one-road-cuts-the-map c6, v4)
 
 - Changed: in Demo.tsx, "Walk depth-first" now reopens every road. The badges, dotted roads, thick 3-4 and the legend note all show under one condition: walked and no road closed. If you close a road after the walk, the marks hide and the note adds "Reopen all to see the walk." The Walk row stays. meta.json is now v4, c6 reworded and set to unverified, and build.md has Pre-flight v4. tsc and `npm run check` pass. W-246 is in review, and I added W-252 for the fact-checker.
@@ -23,6 +30,19 @@ who no longer exists: check what you rely on.
 - Belief: high confidence on the 18. Each was re-run in a node port of the lesson logic (d3-geo for the two Mercator lessons) on every reachable branch. None of the 12 has motion-dependent text. The Mercator and Fenwick claims rest on derivation, not on Snyder or Fenwick (neither was opened). The one-road c6 dispute is high confidence: the legend is the note text only while closed === null, and the natural path (chips, then Walk) never clears closed. Advisories that are not disputes: the Equal Earth rhumb bow in mercator c13 is only 2.8 px, and penalty c6 can print equal two-decimal values.
 - Next: demo-builder W-246, then a fact-checker re-checks one-road c6. W-247 needs an openable source or a ruling. The QA owner builds and QAs these 12 (not run).
 - Blocked: half-life c3 (external hosts fail DNS).
+
+## 2026-10-14 demo-builder: W-243, W-244, W-245 (fact-check pass 26 fixes)
+
+- Changed:
+  - shrinking-degree v3 (c2). The stage now names its model. The caption reads "A globe, treated as a sphere of radius 6,371 km" and the reveal reads "Your Seen line, on this sphere of radius 6,371 km: ...". The readouts keep one decimal. c2 now speaks of the sphere only and c4 of the real Earth (111.3 km).
+  - range-min-in-four-nodes v4 (c7). The Seen row records only the first combine of 3 to 12 ("Seen (first combine): ..."). Seen blocks stay dashed when not lit, including on the change path (dashed green). The reveal's "dashed when not lit" is unchanged and now true.
+  - hailstone-27-climbs v5 (c6). The stage line ends ", ringed." only while the ring is drawn; otherwise it ends "(its step 13).".
+  - enemies-allow-three-camps v5 (c5). The claim text is now the reveal string verbatim. No code change.
+  - All four claims are unverified, and each build.md has a Pre-flight for the new version.
+  - Board: W-243, W-244 and W-245 are done. Added W-254 (fact-checker re-check) and W-255 (learning-designer: "the strict rule" is undefined on stage after the v4 cut).
+- Belief: high confidence that each change matches the checker's reachable paths. These were traced in code, not run in a browser. tsc and check pass. Not run: build, QA, walkthrough.
+- Note: a concurrent session's commit 2e26574 ("Fact-check pass 26 batch 2") swept in my shrinking-degree Demo.tsx edit. The other files are uncommitted. The uncommitted src/app, src/components and tsconfig changes are not mine and were not touched.
+- Next: the fact-checker re-checks the four claims (W-254). The QA owner builds and QAs the 4 lessons.
 
 ## 2026-10-14 demo-builder: W-239 (each-element-pops-once pass 25 fixes)
 

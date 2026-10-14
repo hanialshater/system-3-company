@@ -29,3 +29,14 @@ Revision for r7 (adult-beginner): the reveal's "10, 20 min" quoted the 2nd-order
 4. **Reveal values.** "2nd-order waits row reads 10, 20 min": waitRow(2) from seen[2] (>= 2 by milestone "second-twice"), the same string as the row. "1st-order waits row reads 10, 10 min" and "same 10 min": waitRow(1) from seen[1] (>= 2 by "first-twice"). "1/4 ... 1/16": rate(2,1), rate(2,2), on the "2nd-order rate vs start" row once seen[2] >= 2. "(1/2 → 1/4)": rateRow(1), the "1st-order rate vs start" row.
 5. **QA path.** Slider two presses: n = 1 ("second-once"), n = 2 ("second-twice"); "Pairs must meet" disabled (active); "Steady (1st order)": "first-twice". All 3 milestones. At reveal the rows read "10, 20 min" / "1/4 → 1/16" and "10, 10 min" / "1/2 → 1/4"; all quoted values are on stage rows.
 6. **Reset.** There is no Reset control; the rows only grow, and switching order keeps both. Reveal from that run: "Your 2nd-order waits row reads 10, 20 min: each half takes twice as long as the last. Your 1st-order waits row reads 10, 10 min: the same 10 min every time. A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four times rarer: your 2nd-order rate row (vs the start) reads 1/4 after one halving and 1/16 after two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the wait doubles. In 1st order the rate only halved (1/2 → 1/4), so the wait stayed the same. Radioactive decay is first order: one fixed half-life."
+
+## Pre-flight v6
+
+Revision for W-251 (evaluation-steward ruling on W-247, see 2026-10-14-fact-check.md "Ruling on W-247"): stage-only reword. The reveal's "Radioactive decay is first order" sentence is cut, because its source could not be opened. The reveal now ends "so the wait stayed the same: one fixed half-life." c3 text is now "A first-order reaction keeps one fixed half-life (here 10 min each time)." The IUPAC Gold Book sentence is dropped from c3's source. c3 is unverified and needs a fact-checker re-check. No mechanics changed. Typecheck and check were run. Build, QA and walkthrough were not run (out of this task's scope).
+
+1. **Title and hook.** Unchanged from v5. Neither says longer or shorter.
+2. **Options.** Unchanged: "5 min", "10 min", "20 min".
+3. **Locked stage.** Unchanged from v5. Nothing matches.
+4. **Reveal values.** Unchanged from v5. "one fixed half-life" rests on waitRow(1) ("10, 10 min", >= 2 entries by "first-twice"), which is on stage.
+5. **QA path.** Unchanged from v5.
+6. **Reset.** No Reset control. Reveal from that run now ends: "In 1st order the rate only halved (1/2 → 1/4), so the wait stayed the same: one fixed half-life."

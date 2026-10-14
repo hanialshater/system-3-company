@@ -36,3 +36,14 @@ Fixes: (top) the question's cover is recorded when 3 to 12 is combined: a stage 
 5. QA path: Positions 3 to 12, Combine (Seen row appears), From x2 (5 to 12), To x2 (5 to 14), Change the value at 9. All 3 milestones; at the reveal the stage shows the Seen row, the dashed [3] and [4 to 7] (lit [8 to 11] stays lit only if inside 5 to 14: it is, as part of that cover), and the 5 to 14 readouts.
 6. Reset: no Reset; Seen row never clears. QA-path reveal: "Positions 3 to 12 are 10 values, but you combined just 4 stored nodes: [3], [4 to 7], [8 to 11] and [12] (the Seen row; dashed when not lit). Only the ragged ends need small nodes; the middle is covered by big aligned ones. Your last range, 5 to 14, needed 5. No range of these 16 positions needs more than 6. / Every range is a union of at most about 2 log₂ n stored nodes ..."
 - meta.json 2 -> 3; new claim c7 (unverified). Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v4 (demo-builder, 2026-10-14, W-244, answering FC pass 26 c7)
+
+Fixes: (1) `combine()` now sets seenMin only if it is still null, so the row records the first combine of 3 to 12 and is never rewritten. The row is labelled "Seen (first combine): 3 to 12 = [3] + [4 to 7] + [8 to 11] + [12], 4 nodes, minimum 2". The 2 holds when the learner combines before any Change. If Change was pressed first, the row shows that combine's minimum (3 after one or two changes, 2 after three), and the claim says so. (2) The dash is now `dashed = !on && seenMin !== null && Q_KEYS.has(key(b))`, which no longer depends on onPath. A Seen block on the change path keeps its dashes, drawn in the path's green at width 3. The checker's path (combine 3..12, widen to 0..15, Change) now shows [8 to 11] dashed green, not solid. The reveal's "dashed when not lit" is unchanged and true on that path. c7 is reworded and set to unverified.
+1. Title and hook: unchanged.
+2. Options: unchanged ("10", "4", "2").
+3. Locked stage: unchanged. No Seen row, no dashes.
+4. Reveal values: unchanged from v3. The reveal does not quote the Seen row's minimum.
+5. QA path: unchanged from v3. Combine comes before Change, so the row reads "minimum 2". After Change at 9 (inside 5 to 14), [8 to 11] is lit as part of the 5 to 14 cover, so it is solid and lit, not traced.
+6. Reset: none. The Seen row never clears or rewrites. The QA-path reveal is as in v3.
+- meta.json 3 -> 4. Not run: build, QA, walkthrough.
