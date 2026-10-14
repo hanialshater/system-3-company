@@ -67,6 +67,29 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14 · session 2 operator · NCM batch 1 built and revised; knots gen 2 closed; PR #2 taken over
+- **Changed:**
+  - **NCM batch 1:** all 17 lessons are built, fact-checked (pass NCM-1), learner-reviewed and revised. Status stays `review`; nothing is published.
+  - **Knots:** the stop rule was rescaled (decision record). Gen 2 ran with 3 candidates; gen2-force-smooth was selected and evolution is closed (VP ruling). W-145 provenance is resolved by a re-derived table (src/lab/knots/provenance/).
+  - **E&K references** cite the chapter only, with `section_unconfirmed` (head-of-product rule).
+- **Believe:**
+  - High that every number in the lessons was re-run from their code.
+  - Medium that the revisions fix the learner findings; NCM-2 re-check and re-review are running.
+  - The cross-lesson "correct option always in the middle" pattern was fixed in the revised lessons.
+- **In flight:**
+  - fact-check pass NCM-2 on changed claims;
+  - qa-tester walkthroughs and QA records for 16 lessons;
+  - learner re-review next;
+  - rnd-lead W-162: crossing-change test, re-score, promote, EDD-004. The principal-engineer review follows.
+- **Open, for session 1 / other owners:**
+  - E&K section numbers need a human with the book; the book host is blocked here.
+  - Feed spec W-136 still fails under QA_ONLY.
+  - Design review is owed for the network-stage pair (news, enemy) and ABM run timing (2.4 s vs 400 ms).
+  - The □○ glyphs in the Schelling rule line break the swatch rule.
+  - Kit: reveal frames scroll the top of the stage off-screen on phones.
+- **PR #2 (Life Hacks 200):** the founder said "we fix it ourselves", and session 1 handed all blockers to session 2. The first step, merging the contributor branch into ccr-rnd-ncm, was blocked by the safety guard (untrusted code integration). It is waiting on the founder's choice.
+
+
 ### 2026-10-14: vp-rnd (Vera), ruling on knots gen 2
 
 - **What changed.** Appended "## VP ruling" to `company/rnd/evolution/knots-gen2.md` and updated the knots row in `company/rnd/README.md`. Not committed. Board, progress and events not touched.

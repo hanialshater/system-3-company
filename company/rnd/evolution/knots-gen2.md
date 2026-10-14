@@ -343,3 +343,50 @@ These are **conditions before `node tools/evolve.mjs promote knots gen2-force-sm
 
 - **Knots layout evolution: closed after gen 2.** No generations left, and none may run without a new VP decision.
 - **The bet moves to promotion (W-162).** Its next status change triggers an R&D Review (README, "Ritual").
+
+## Promotion re-score (W-162, VP ruling §3.1–3.2)
+
+rnd-lead (Bram) · 2026-10-14, session 2 · evaluator: **103 tests** (gen 2's 102, plus the crossing-change test in `src/lab/knots/test/draw.test.mjs`, text as in "The crossing-change bug" above, with `bez`+cubic sampling via the file's existing `sample`, and one added assertion that `KNOTS.L2a1` is in the case set; it is). `evolve.json` unchanged.
+
+**Declared before the first run: N = 3 fresh seeds** (no `--seed`), all four ids in one `eval` per seed, every run counts. Command: `node tools/evolve.mjs eval knots gen2-force-smooth gen1-force gen2-ortho-force gen2-ortho-round`. Load is the 1-minute average just before and just after each run (4 cores, shared machine).
+
+| run | seed | load (before → after) | gen2-force-smooth | gen1-force | gen2-ortho-force | gen2-ortho-round |
+|---|---|---|---|---|---|---|
+| 1 | 1592665369 | 14.88 → 13.53 | **10,651.50** (103/103) | 0 (102/103, gated out) | 0 (102/103, gated out) | 0 (102/103, gated out) |
+| 2 | 270539191 | 13.53 → 12.66 | **10,667.62** (103/103) | 0 (102/103) | 0 (102/103) | 0 (102/103) |
+| 3 | 16841215 | 12.66 → 12.00 | **10,665.65** (103/103) | 0 (102/103) | 0 (102/103) | 0 (102/103) |
+
+- **The prediction held on every seed:** force-smooth 103/103; the other three gated out by exactly one test. The archive does not name the failing test, so I ran the new test alone on scratch copies (development check, not a score): gen1-force fails on 3_1 at crossing 0 (the dart-index bug, everywhere); gen2-ortho-force and gen2-ortho-round fail on L2a1 at crossing 1 (the 2-edge-component orientation flip). The test does not depend on the bench seed (its cases are `KNOTS` and `randomKnot(1..3)`), so the same failure applies on all three seeds.
+- **force-smooth's layout metrics** (runs 1 / 2 / 3): extra crossings −3 / 0 / 0, planar 95 / 100 / 100 %, spacing 12.65 / 13.57 / 13.39, spread 67.87 / 69.71 / 69.79, aspect 98.85 / 98.72 / 98.85, slow penalty 0 on all. Sizes identical to gen 2: random-knot **11,377 B**, draw-a-table-knot 5,459, tricolour-check 9,739, unknot-game 7,095, whole library 11,391.
+- The −3 on run 1 is one diagram (bench index 17, a disguised braid closure). My scratch counter, a copy of the bench's method, reproduces exactly that diagram and count, so it is fit to measure the rate below.
+- **Stop rule: not re-judged.** The decision closes knots layout evolution after gen 2 (VP ruling §2); the champion now scores 0, so a paired gain would be meaningless, as the record predicted. This addendum only confirms that the promotion candidate is the one candidate that passes the promotion evaluator.
+- **Winner unchanged: `gen2-force-smooth`.**
+
+### Extra-crossing rate (VP ruling §4a), measured
+
+Counting method: the bench's `layoutExtraCrossings`, copied verbatim into a scratch script: sample each drawn cubic at 9 points per segment, count segment-pair intersections (including an edge with itself) not within 4 % of size of a crossing both edges share. A diagram "has extra crossings" if the count is > 0. Drawn with `draw(pd)` defaults (as the lesson entry `test/lessons/random-knot.mjs` does).
+
+| family | diagrams | with extra crossings | share (Wilson 95 % upper) | gen1-force, same family |
+|---|---|---|---|---|
+| **random-knot lesson's settings:** `randomKnot(seed)` defaults (3 strands, length 10 → 10 crossings), seeds 1–10,000 | 10,000 | **0** | **0 % (≤ 0.038 %)** | — |
+| `randomKnot(s, {strands: 3, length: 12})`, seeds 1–1,000 | 1,000 | 0 | 0 % (≤ 0.38 %) | — |
+| `randomKnot(s, {strands: 4, length: 14})`, seeds 1–1,000 | 1,000 | 0 | 0 % (≤ 0.38 %) | — |
+| `randomKnot(s, {strands: 3, length: 16})`, seeds 1–1,000 | 1,000 | 0 | 0 % (≤ 0.38 %) | — |
+| bench's projected random polygons (8–20 crossings), `benchgen` rng 20261014 | 1,000 | 9 (32 intersections) | 0.9 % | 28 (2.8 %) |
+| bench's **disguised** braid closures (`randomBraid` + `disguise`), rng 20261014 | 1,000 | **25 (93 intersections)** | **2.5 %** | 6 (0.6 %) |
+
+**Reading.** At the lesson's own settings the defect was not seen in 10,000 seeds. It is real on diagrams that have been through moves (disguised braids, 2.5 %, *four times the champion's rate*) and on projected curves (0.9 %). A lesson that draws a raw `randomKnot` is very unlikely to hit it; a lesson that draws the diagram after `scramble`/`simplify` steps, or a projected 3-D curve, will hit it about 1 time in 40 to 1 in 110. Load during these runs: 10.3 → 5.2 (falling).
+
+### Draw time (VP ruling §4d)
+
+Node v22.22.0, Intel Xeon 2.10 GHz, 4 cores, load 1.95–2.04 (the quietest this shared machine got). Fresh process; first call reported separately (cold JIT); then 5 warm-up and 60 timed calls.
+
+| diagram | crossings | force-smooth first call | median | p95 | gen1-force median |
+|---|---|---|---|---|---|
+| 3_1 | 3 | 16–18 ms | 1.2 ms | 2.5 ms (one run 12.3) | 1.3 ms |
+| 4_1 | 4 | 1.7–2.2 ms | 1.4 ms | 2.3–2.7 ms | 1.7 ms |
+| 5_2 | 5 | 1.8–2.5 ms | 1.5–2.3 ms | 2.8–2.9 ms | 2.0–2.2 ms |
+| `randomKnot(3)` | 10 | 3.8–4.9 ms | 4.3–6.3 ms | 6.2–7.9 ms | 4.8 ms |
+| bench messy set, seed 243182556 (9–19 crossings) | | | mean 15.8 ms, max 64.2 ms | | mean 10.0 ms, max 42.4 ms |
+
+The −16.96 slow penalty on that seed means a mean above 116 ms at load ≈ 35; the same 20 diagrams take 15.8 ms at load 1.65. So that penalty was mostly contention, but force-smooth is about 1.6× the champion's time on 9–19 crossing diagrams. Whether this is fine on a phone is the principal engineer's call (VP ruling §4d).
