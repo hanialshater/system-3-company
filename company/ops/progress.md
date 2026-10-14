@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · chief-of-staff · Release: Life Hacks and NCM lessons to the live feed (founder-approved deploy)
+- **Approved by:** the founder ("please deploy new demos of life hacks and ncm!! This is top priority"), per the deploy-approval rule.
+- **What ships:** commit b803a9a plus this note. The feed shows 587 published lessons and 238 in review (tagged "In review"), including all 200 Life Hacks lessons and 49 NCM lessons.
+- **Verified before the deploy commit:** clean worktree at b803a9a, `npm run build` (the Vercel build command) passed with 877 pages; smoke test on `next start`: `/`, `/catalog` and six Life Hacks and NCM lesson pages return 200 with the In review tag. Life Hacks QA contract on build 7: 400/400.
+- **Not claimed:** that Vercel built it. The git integration builds only `[deploy]` commits and is subject to the daily quota; check the Vercel dashboard. Publishing (moving lessons to `published`) still requires every gate.
+
 ## 2026-10-14 (hq-engineer, W-460 to W-464: HQ Library review changes)
 
 - **W-463 first.** Progress-entry slugs are now `<date>-<role>-<6 hex of heading>`; a repeat of the same heading is numbered from the bottom of the file (oldest keeps the bare slug), so adding an entry never moves an old link. Old heading-style links still resolve and redirect (307) to the stable path.
