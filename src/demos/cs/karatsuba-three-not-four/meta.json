@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "karatsuba",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -61,12 +61,10 @@
     },
     {
       "id": "cs.karatsuba-three-not-four.c5",
-      "text": "For 1,024-digit numbers the size model gives 59,049 products against 1,048,576.",
+      "text": "For 1,024-digit numbers the ideal no-carry count is 59,049 products against 1,048,576 (3^10 against 4^10).",
       "support": "derivation",
-      "source": "1,024 = 2^10 digits, 10 levels of halving: 3^10 = 59,049 and 4^10 = 1,048,576 (node). Size model: assumes no half-sum carries, as for the stage's numbers; with carries real counts are somewhat higher. | FC pass 22 (fact-checker, 2026-10-14): DISPUTED. 3^10 = 59,049 and 4^10 = 1,048,576 are right as an idealised count, but the reveal says 'for 1,024-digit numbers it is 59,049 products', with no 'size model' or 'about'. The lesson's own kara() run on real 1,024-digit inputs (scratchpad fc22/kara.mjs) needs 85,589 / 86,129 / 86,475 one-digit products (three random pairs) and 94,243 for the 1,024-digit repunit, because half-sums carry; schoolbook gives exactly 1,048,576. Fix (builder): say 'in the ideal count with no carries, 3^10 = 59,049 against 4^10 = 1,048,576', or give the real figure ('about 86,000 against 1,048,576').",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "1,024 = 2^10 digits, 10 levels of halving: 3^10 = 59,049 and 4^10 = 1,048,576 (node). Size model: assumes no half-sum carries, as for the stage's numbers; with carries real counts are somewhat higher. | FC pass 22 (fact-checker, 2026-10-14): DISPUTED. 3^10 = 59,049 and 4^10 = 1,048,576 are right as an idealised count, but the reveal says 'for 1,024-digit numbers it is 59,049 products', with no 'size model' or 'about'. The lesson's own kara() run on real 1,024-digit inputs (scratchpad fc22/kara.mjs) needs 85,589 / 86,129 / 86,475 one-digit products (three random pairs) and 94,243 for the 1,024-digit repunit, because half-sums carry; schoolbook gives exactly 1,048,576. Fix (builder): say 'in the ideal count with no carries, 3^10 = 59,049 against 4^10 = 1,048,576', or give the real figure ('about 86,000 against 1,048,576'). | Builder fix (demo-builder, 2026-10-14): W-207: reveal now says 'the ideal no-carry count is 59,049 products against 1,048,576 (3^10 against 4^10)', so the figure is labelled as the idealised count; real carried runs are higher (FC measured about 86,000).",
+      "status": "unverified"
     },
     {
       "id": "cs.karatsuba-three-not-four.c6",

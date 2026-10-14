@@ -46,15 +46,19 @@
       "id": "physics.ball-at-the-top.c3",
       "text": "Its velocity is v = 14.7 − 9.81 t: +1.95 m/s (up) at 1.3 s, +0.97 m/s at 1.4 s, about zero (−0.02 m/s) at 1.5 s and −1.00 m/s (down) at 1.6 s. It drops by 0.98 m/s every 0.1 s (9.81 m/s every second), before the top, through it and after; the reveal quotes the latest upward and earliest downward times the learner visited.",
       "support": "derivation",
-      "source": "v = 14.7 - 9.81 t: 14.7 - 13.734 = 0.966 m/s; 14.7 - 15.696 = -0.996 m/s. The stage computes v(t) at 0.1 s steps from 0 to 2.9 s; checked in node.",
-      "status": "unverified"
+      "source": "v = 14.7 - 9.81 t: 14.7 - 13.734 = 0.966 m/s; 14.7 - 15.696 = -0.996 m/s. The stage computes v(t) at 0.1 s steps from 0 to 2.9 s; checked in node. | FACT-CHECK 2026-10-14 (pass 22): Own node: v(1.3) = 1.947, v(1.4) = 0.966, v(1.5) = -0.015, v(1.6) = -0.996, shown by signed() as +1.95, +0.97, −0.02, −1.00; every 0.1 s step from 0 to 2.9 s drops v by 0.981 (DV shown as 0.98). Reveal takes max of visited ups (v > 0.05) and min of downs (v < -0.05).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.ball-at-the-top.c4",
       "text": "If the acceleration were zero at the top, the ball would stay hanging in the air, because its velocity would stop changing.",
       "support": "derivation",
-      "source": "a = dv/dt; with v = 0 and a = 0 the velocity stays 0 (Newton's first law).",
-      "status": "unverified"
+      "source": "a = dv/dt; with v = 0 and a = 0 the velocity stays 0 (Newton's first law). | FACT-CHECK 2026-10-14 (pass 22): Own derivation: a = dv/dt, and the force on the ball depends only on its state (position, velocity). If that force were zero at the top state (v = 0), staying at the top would solve the equation of motion, and by uniqueness it would be the motion: the velocity stops changing and the ball hangs. Reveal sentence matches the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.ball-at-the-top.c5",

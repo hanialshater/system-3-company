@@ -192,7 +192,7 @@ export default function KmpNeverStepsBack({ slug }: { slug: string }) {
           <p>
             Why {KMP.length}: every miss came after AAA had matched, and those A's are known text. The number
             under the third A, 2, said keep two of them, so the pattern slid one place and the next comparison was the
-            same text letter, never one already read: 3 + 2 × 5 + 1 = {KMP.length}.
+            same text letter, never one to its left: 3 + 2 × 5 + 1 = {KMP.length}.
           </p>
           <p className="muted">That table (0 1 2 0) is the fallback table of the KMP search.</p>
         </>

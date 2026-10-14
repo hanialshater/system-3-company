@@ -82,7 +82,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
           <>
             <p>
               <strong>The same work.</strong> On your {Ls} m ramp the push was <strong>{force(Ls).toFixed(1)} N</strong>, and the work counter still finished
-              at {WORK.toFixed(1)} J: {force(Ls).toFixed(1)} N × {Ls} m. A straight lift:{" "}
+              at {WORK.toFixed(1)} J ≈ {force(Ls).toFixed(1)} N × {Ls} m (the push is rounded). A straight lift:{" "}
               {force(1).toFixed(1)} N × 1 m, the same {WORK.toFixed(1)} J.
             </p>
             <p>
@@ -150,7 +150,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
                 <p className={s.log} aria-live="polite">
                   {locked || fulls.length === 0
                     ? "Finished pushes appear here."
-                    : fulls.map((x) => `${x} m: ${force(x).toFixed(1)} N × ${x} m = ${(force(x) * x).toFixed(1)} J`).join("  ·  ")}
+                    : fulls.map((x) => `${x} m: ${force(x).toFixed(1)} N × ${x} m ≈ ${(force(x) * x).toFixed(1)} J`).join("  ·  ")}
                 </p>
                 <Row>
                   <Control disabled={locked || pushing} onClick={() => setPushing(true)}>

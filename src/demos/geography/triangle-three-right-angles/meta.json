@@ -36,15 +36,19 @@
       "id": "geography.triangle-three-right-angles.c2",
       "text": "On a sphere a triangle's angles add to 180° plus the excess, and the excess measures the area: each degree over 180° is 1/720 of the sphere's surface (Girard's theorem: area = excess in radians × R², and the whole sphere, 4πR², corresponds to 720°).",
       "support": "source",
-      "source": "Girard's theorem (Albert Girard, 1629); any spherical trigonometry text, e.g. Todhunter, Spherical Trigonometry (1886), ch. on area. From memory, not checked online. The stage shows both numbers side by side: geoArea x R² and (sum - 180°) in radians x R² agree at every slider stop 15°-135°E (scratch c.mjs). | FACT-CHECK 2026-10-13 (pass 4): Girard's theorem: spherical excess (radians) x R^2 = area. Node: at 15,30,60,90,135E geoArea x R^2 = (sum-180) rad x R^2 to 3 d.p. (10.626, 21.253, 42.505, 63.758, 95.637 M km2). | FACT-CHECK 2026-10-14 (pass 19): Derivation (lune argument): the three pairs of lunes have area 4R^2(A+B+C) and cover the sphere once plus the triangle and its antipode three extra times, so 4R^2(A+B+C) = 4 pi R^2 + 4T, T = R^2(A+B+C-pi). For the stage's pole-equator triangle (90, 90, lambda) this is lambda R^2: node 10.626, 21.253, 42.505, 63.758, 95.637 M km2 at 15, 30, 60, 90, 135E, matching pass 4's geoArea values.",
-      "status": "unverified"
+      "source": "Girard's theorem (Albert Girard, 1629); any spherical trigonometry text, e.g. Todhunter, Spherical Trigonometry (1886), ch. on area. From memory, not checked online. The stage shows both numbers side by side: geoArea x R² and (sum - 180°) in radians x R² agree at every slider stop 15°-135°E (scratch c.mjs). | FACT-CHECK 2026-10-13 (pass 4): Girard's theorem: spherical excess (radians) x R^2 = area. Node: at 15,30,60,90,135E geoArea x R^2 = (sum-180) rad x R^2 to 3 d.p. (10.626, 21.253, 42.505, 63.758, 95.637 M km2). | FACT-CHECK 2026-10-14 (pass 19): Derivation (lune argument): the three pairs of lunes have area 4R^2(A+B+C) and cover the sphere once plus the triangle and its antipode three extra times, so 4R^2(A+B+C) = 4 pi R^2 + 4T, T = R^2(A+B+C-pi). For the stage's pole-equator triangle (90, 90, lambda) this is lambda R^2: node 10.626, 21.253, 42.505, 63.758, 95.637 M km2 at 15, 30, 60, 90, 135E, matching pass 4's geoArea values. | FACT-CHECK 2026-10-14 (pass 22): Own derivation (lune argument): 4R^2(A+B+C) = 4 pi R^2 + 4T, so T = R^2 (A+B+C-pi); one degree of excess is (pi/180) R^2 / (4 pi R^2) = 1/720 of the sphere. Own node with the stage's cornerAngle and d3-geo geoArea (fc22-5/tri.mjs): geoArea x R^2 equals excess x R^2 to 3 d.p. at 30-150E. Todhunter not opened; not needed for the sentence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.triangle-three-right-angles.c3",
       "text": "With the corner at 90°E the triangle covers about 63.8 million km², one-eighth (12.5%) of the Earth's 510 million km² surface.",
       "support": "derivation",
-      "source": "Sphere of radius R = 6,371.0088 km (EARTH_RADIUS_KM): (π/2) R² = 63.758 million km²; 4πR² = 510.066 million km². d3-geo geoArea on the exact corners gives 63.758 (scratch c.mjs). The Earth is modelled as a sphere. | FACT-CHECK 2026-10-13 (pass 4): Node: (pi/2) R^2 = 63.758 M km2 with R = 6371.0088; 4 pi R^2 = 510.066 M km2; ratio exactly 1/8 = 12.5%.",
-      "status": "unverified"
+      "source": "Sphere of radius R = 6,371.0088 km (EARTH_RADIUS_KM): (π/2) R² = 63.758 million km²; 4πR² = 510.066 million km². d3-geo geoArea on the exact corners gives 63.758 (scratch c.mjs). The Earth is modelled as a sphere. | FACT-CHECK 2026-10-13 (pass 4): Node: (pi/2) R^2 = 63.758 M km2 with R = 6371.0088; 4 pi R^2 = 510.066 M km2; ratio exactly 1/8 = 12.5%. | FACT-CHECK 2026-10-14 (pass 22): Own node: R = 6,371.0088 km; (pi/2) R^2 = 63.758 M km2 (geoArea agrees); 4 pi R^2 = 510.066 M km2; ratio 1/8 = 12.5%. Reveal text: '63.8 M km², one-eighth of the Earth's 510 M km²'. Spherical model disclosed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.triangle-three-right-angles.c4",
@@ -68,8 +72,10 @@
       "id": "geography.triangle-three-right-angles.c6",
       "text": "On the stage, with corners at the North Pole, 0°,0° and a third corner on the equator: at 30°E the angles add to 210° and the triangle is 4.2% of Earth; at 60°E, 240° and 8.3%; at 90°E, 270° and 12.5%; at 120°E, 300° and 16.7%; at 150°E, 330° and 20.8%.",
       "support": "derivation",
-      "source": "The two equator corners are right angles (meridians meet the equator at 90°) and the pole angle equals the longitude L, so the sum is 180° + L and the share of Earth is L/720 (claim c2): 30/720 = 4.17%, 60/720 = 8.33%, 90/720 = 12.5%, 120/720 = 16.67%, 150/720 = 20.83%. The stage computes the same from triangle() in Demo.tsx (cornerAngle and d3 geoArea).",
-      "status": "unverified"
+      "source": "The two equator corners are right angles (meridians meet the equator at 90°) and the pole angle equals the longitude L, so the sum is 180° + L and the share of Earth is L/720 (claim c2): 30/720 = 4.17%, 60/720 = 8.33%, 90/720 = 12.5%, 120/720 = 16.67%, 150/720 = 20.83%. The stage computes the same from triangle() in Demo.tsx (cornerAngle and d3 geoArea). | FACT-CHECK 2026-10-14 (pass 22): Own node with the stage's triangle(): sums 210, 240, 270, 300, 330 degrees; shares 4.2%, 8.3%, 12.5%, 16.7%, 20.8% via pct() (toFixed(1)); equals (L/720) x 100. Slider runs 30-150 in steps of 30.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

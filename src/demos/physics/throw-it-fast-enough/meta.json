@@ -65,8 +65,10 @@
       "id": "physics.throw-it-fast-enough.c6",
       "text": "In its first minute every throw that is still flying falls 17.6 km below the straight sideways line from the peak, while the ground curves away below that line by 13.9 km (7.0 km/s), 16.3 km (7.6), 17.2 km (7.8), 17.4 km (7.85) and 17.6 km (7.9): at 7.9 km/s the ground curves away as fast as the ball falls. The 0.79 and 4.0 km/s throws land within the first minute.",
       "support": "simulation",
-      "source": "fly() in model.ts records the ball at t = 60 s; fell = lineHeight(angle) - height, groundAway = lineHeight(angle) - 10 km, where lineHeight is the height of the straight sideways line from the peak ((R+P)/cos(angle) - R). Run with node: fell 17.6 km for 7.0 to 7.9 km/s (cf. g t^2 / 2 = 17.66 km); groundAway 13.9, 16.3, 17.2, 17.4, 17.6 km. 0.79 and 4.0 km/s land at about 36 and 212 km, before 60 s. The reveal quotes the fastest landing throw the learner moved to, and the 85-minute lap is shown on the Lands readout.",
-      "status": "unverified"
+      "source": "fly() in model.ts records the ball at t = 60 s; fell = lineHeight(angle) - height, groundAway = lineHeight(angle) - 10 km, where lineHeight is the height of the straight sideways line from the peak ((R+P)/cos(angle) - R). Run with node: fell 17.6 km for 7.0 to 7.9 km/s (cf. g t^2 / 2 = 17.66 km); groundAway 13.9, 16.3, 17.2, 17.4, 17.6 km. 0.79 and 4.0 km/s land at about 36 and 212 km, before 60 s. The reveal quotes the fastest landing throw the learner moved to, and the 85-minute lap is shown on the Lands readout. | FACT-CHECK 2026-10-14 (pass 22): Ran model.ts fly() in node (strip-types): at t = 60 s fell = 17.638-17.643 km (km1 -> 17.6) for 7.0-7.9 km/s; groundAway 13.86, 16.33, 17.20, 17.42, 17.65 km -> 13.9, 16.3, 17.2, 17.4, 17.6; 0.79 and 4.0 km/s land at t = 46 s and 53 s (36 and 212 km), so minute = null for them ('Landed within the first minute.'). Cross-check: g(R/(R+P))^2 t^2/2 = 17.60 km.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

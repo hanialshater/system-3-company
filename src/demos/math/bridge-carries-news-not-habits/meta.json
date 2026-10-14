@@ -26,36 +26,46 @@
       "id": "math.bridge-carries-news-not-habits.c1",
       "text": "On the stage (two complete groups of 5, one bridge, two starters in group A), the 'half your friends' habit fills group A, 5 people, in 2 rounds; the third round adds no one.",
       "support": "derivation",
-      "source": "Builder re-run in node 2026-10-14 (nextRound/runAll in Demo.tsx, simultaneous rounds): round 1 adds the two others with 2 of 4 friends in, round 2 adds the bridge person (4 of 5), round 3 adds nobody. Matches brief 4, company/domains/briefs/math.discrete.md, Course: NCM.",
-      "status": "unverified"
+      "source": "Builder re-run in node 2026-10-14 (nextRound/runAll in Demo.tsx, simultaneous rounds): round 1 adds the two others with 2 of 4 friends in, round 2 adds the bridge person (4 of 5), round 3 adds nobody. Matches brief 4, company/domains/briefs/math.discrete.md, Course: NCM. | FACT-CHECK 2026-10-14 (pass 22): Own independent simulation (simultaneous rounds, threshold >= 1/2): habit rounds add [2,3], [4], [] -> 5 people; reveal prints FINAL.habit.round - 1 = 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c2",
       "text": "When the habit stops, Ben has 1 of his 5 friends adopting (20%), short of half, and nobody else in group B has any adopting friend.",
       "support": "derivation",
-      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5.",
-      "status": "unverified"
+      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5. | FACT-CHECK 2026-10-14 (pass 22): Own simulation: at the stuck state Ben 1/5 (20%), people 6-9 0/4 each.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c3",
       "text": "News passed on from any one friend reaches all 10 people in 3 rounds, crossing the same link.",
       "support": "derivation",
-      "source": "Builder re-run in node 2026-10-14: rounds add [2,3,4], [Ben], [the other 4 in B]. FINAL.news in Demo.tsx.",
-      "status": "unverified"
+      "source": "Builder re-run in node 2026-10-14: rounds add [2,3,4], [Ben], [the other 4 in B]. FINAL.news in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): Own simulation, threshold >= 1 friend: rounds add [2,3,4], [5], [6,7,8,9] -> all 10 in 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c4",
       "text": "A bridge gives each person at its end exactly one friend on the far side, enough for news and too little for a habit that needs several friends.",
       "support": "derivation",
-      "source": "Structure of the stage graph: the only link between the groups is the bridge, so its end has 1 friend across; Ben needs at least half, 3 of his 5 friends, and the bridge can supply only 1; the other 4 friends adopt only after Ben does.",
-      "status": "unverified"
+      "source": "Structure of the stage graph: the only link between the groups is the bridge, so its end has 1 friend across; Ben needs at least half, 3 of his 5 friends, and the bridge can supply only 1; the other 4 friends adopt only after Ben does. | FACT-CHECK 2026-10-14 (pass 22): Graph has one cross edge (4-5); Ben needs ceil(5/2) = 3 adopting friends and only 1 can come from A.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c5",
       "text": "Researchers find the same split in real networks: weak ties spread information well but can block behaviours that need reinforcement from several contacts.",
       "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 19; D. Centola and M. Macy, 'Complex Contagions and the Weakness of Long Ties', Am. J. Sociology 113(3) (2007). Attribution: fact-checker confirms (flag carried from the brief).",
-      "status": "unverified"
+      "source": "Easley and Kleinberg (2010) ch. 19; D. Centola and M. Macy, 'Complex Contagions and the Weakness of Long Ties', Am. J. Sociology 113(3) (2007). Attribution: fact-checker confirms (flag carried from the brief). | FACT-CHECK 2026-10-14 (pass 22): Centola & Macy, 'Complex Contagions and the Weakness of Long Ties', AJS 2007 confirmed by search snippet (UPenn repository, UVM preprint; volume/issue 113(3) not shown, matches my memory). But that paper's result is from network models and simulations ('as adoption thresholds increase, long ties can impede diffusion'), and E&K ch. 19 'Cascading Behavior in Networks' (placement from own knowledge, confident) is also a model treatment. Neither supports 'Researchers find the same split in real networks', an empirical claim. Fix (builder): 'Network researchers argue the same split holds in real networks: ...' or 'Models of real networks show ...', or cite an empirical source a checker can open (e.g. Centola 2010, Science 329, an online experiment) and keep the wording to what it found.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -78,13 +88,28 @@
   "version": 1,
   "curriculum": {
     "primary": "math:complex-contagion-bridges",
-    "also": ["probability:independence"],
+    "also": [
+      "probability:independence"
+    ],
     "prerequisites": [],
     "level": "core",
     "strand": "discrete",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 19 }],
-    "tags": ["cascades", "weak ties", "complex contagion"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 19
+      }
+    ],
+    "tags": [
+      "cascades",
+      "weak ties",
+      "complex contagion"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
 }

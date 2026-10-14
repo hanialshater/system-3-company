@@ -34,29 +34,37 @@
       "id": "economics.honest-bid-loses-in-gsp.c1",
       "text": "With bids $7, $6 and $1 and slots of 10 and 4 clicks, honest X takes slot 1 at $6 a click and keeps 10 × ($7 − $6) = $10.",
       "support": "derivation",
-      "source": "GSP rule as stated on the card: slot k to the k-th highest bid, price per click = next bid down. Builder's node script (scratchpad ncm-e01-checks/check.mjs) and Demo.tsx gsp(7): slot 1, price 6, profit 70 - 60 = 10.",
-      "status": "unverified"
+      "source": "GSP rule as stated on the card: slot k to the k-th highest bid, price per click = next bid down. Builder's node script (scratchpad ncm-e01-checks/check.mjs) and Demo.tsx gsp(7): slot 1, price 6, profit 70 - 60 = 10. | FACT-CHECK 2026-10-14 (pass 22): Own independent GSP script: bid 7 -> slot 1, price 6, 10 x (7 - 6) = 10.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.honest-bid-loses-in-gsp.c2",
       "text": "Bidding $5, X drops to slot 2, pays Z's $1 a click and keeps 4 × ($7 − $1) = $24; bidding $8 gives the same slot and price as honest bidding ($10).",
       "support": "derivation",
-      "source": "Builder's node script, bids 0..10 with ties going to the other bidder: bids 2-6 give slot 2 at $1 (profit 24); bids 7-10 give slot 1 at $6 (profit 10); bids 0-1 give no slot (0). With ties going to X instead, bid 1 gives 24 and bid 6 gives 10; neither $5 nor $8 nor $7 changes. Demo.tsx gsp().",
-      "status": "unverified"
+      "source": "Builder's node script, bids 0..10 with ties going to the other bidder: bids 2-6 give slot 2 at $1 (profit 24); bids 7-10 give slot 1 at $6 (profit 10); bids 0-1 give no slot (0). With ties going to X instead, bid 1 gives 24 and bid 6 gives 10; neither $5 nor $8 nor $7 changes. Demo.tsx gsp(). | FACT-CHECK 2026-10-14 (pass 22): Own script, ties to other: bids 0-1 no slot, 2-6 slot 2 at $1 (24), 7-10 slot 1 at $6 (10); ties to X: 1-5 -> 24, 6-10 -> 10. $5 -> 24 and $8 -> 10 either way.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.honest-bid-loses-in-gsp.c3",
       "text": "Under the generalized second price rule an honest bid is not always best.",
       "support": "source",
-      "source": "Shown by c1-c2 for this example. General result and equilibrium analysis: B. Edelman, M. Ostrovsky, M. Schwarz, 'Internet advertising and the generalized second-price auction', American Economic Review 97(1), 242-259 (2007); H. R. Varian, 'Position auctions', International Journal of Industrial Organization 25 (2007); E&K ch. 15 (section unconfirmed). Citations from memory; fact-checker confirms. Per the brief, no revenue range or VCG revenue comparison is claimed.",
-      "status": "unverified"
+      "source": "Shown by c1-c2 for this example. General result and equilibrium analysis: B. Edelman, M. Ostrovsky, M. Schwarz, 'Internet advertising and the generalized second-price auction', American Economic Review 97(1), 242-259 (2007); H. R. Varian, 'Position auctions', International Journal of Industrial Organization 25 (2007); E&K ch. 15 (section unconfirmed). Citations from memory; fact-checker confirms. Per the brief, no revenue range or VCG revenue comparison is claimed. | FACT-CHECK 2026-10-14 (pass 22): Shown by c1-c2. Edelman, Ostrovsky & Schwarz, AER 97(1) 242-259 (2007) confirmed by search snippets (NBER w11765, citedrive DOI 10.1257/aer.97.1.242): GSP has no dominant-strategy equilibrium, truth-telling is not an equilibrium in general. Varian 2007 not found by search, not opened; E&K ch. 15 placement from own knowledge (GSP section, confident on chapter). Learner sentence does not depend on the unopened ones.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.honest-bid-loses-in-gsp.c4",
       "text": "The stage is a model: fixed clicks per slot, the other bids held still, one round, ties going to the other bidder.",
       "support": "convention",
-      "source": "Modelling choice stated on the card and in the reveal.",
-      "status": "unverified"
+      "source": "Modelling choice stated on the card and in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Chip 'ties go to the other' and muted reveal line; gsp() holds Y, Z fixed, one round.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "recall": {

@@ -78,12 +78,10 @@
     },
     {
       "id": "economics.bank-lends-it-again.c7",
-      "text": "Stage caption: 'round r adds $D = (100 − k)% of round r − 1's $D′' (second line shown while the previous deposit is at least $10), e.g. 'round 3 adds $810 = 90% of round 2's $900'.",
+      "text": "Stage caption: 'round r adds $D = (100 − k)% of round r − 1's $D′' (second line shown while the previous deposit is at least $10; the sign is '≈' instead of '=' whenever the whole-dollar amounts shown do not multiply out exactly), e.g. 'round 3 adds $810 = 90% of round 2's $900'.",
       "support": "derivation",
-      "source": "deposit(r, k) = 1000 × (1 − k/100)^(r − 1) in Demo.tsx, so deposit(r) = (1 − k/100) × deposit(r − 1) exactly; the caption prints both from the same function. Caption moved to y = 58 beside the column, between the 10% and 20% limit lines, so it no longer overprints 'limit $10,000 = $1,000 ÷ 10%' (r5 finding 1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: deposit(r,k) = 1000(1-k/100)^(r-1), so each is exactly (100-k)% of the one before; e.g. \"round 3 adds $810 = 90% of round 2's $900\". Non-blocking note: both sides are rounded to whole dollars, so some states show a visible gap (own scan: 12 states, worst \"$12 = 80% of round 20's $14\", true 11.20; also \"$349 = 90% of $387\"). Recommend \"≈\" or cents below $100.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "deposit(r, k) = 1000 × (1 − k/100)^(r − 1) in Demo.tsx, so deposit(r) = (1 − k/100) × deposit(r − 1) exactly; the caption prints both from the same function. Caption moved to y = 58 beside the column, between the 10% and 20% limit lines, so it no longer overprints 'limit $10,000 = $1,000 ÷ 10%' (r5 finding 1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text. | FACT-CHECK 2026-10-14 (pass 22): Pass 22: deposit(r,k) = 1000(1-k/100)^(r-1), so each is exactly (100-k)% of the one before; e.g. \"round 3 adds $810 = 90% of round 2's $900\". Non-blocking note: both sides are rounded to whole dollars, so some states show a visible gap (own scan: 12 states, worst \"$12 = 80% of round 20's $14\", true 11.20; also \"$349 = 90% of $387\"). Recommend \"≈\" or cents below $100. | Builder fix (demo-builder, 2026-10-14): W-210: caption sign is now computed: '=' only when the whole-dollar figures shown satisfy D x 100 = (100 - k) x D' exactly, otherwise '≈' (e.g. '$349 ≈ 90% of $387', '$12 ≈ 80% of round 20's $14'). Underlying deposit(r,k) unchanged.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +107,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:money-multiplier",
     "prerequisites": [],

@@ -53,8 +53,10 @@
       "id": "ai.word-in-pieces.c4",
       "text": "A model built on a tokenizer like this does not receive the word, only the row of piece numbers.",
       "support": "source",
-      "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence).",
-      "status": "unverified"
+      "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence). | FACT-CHECK 2026-10-14 (pass 22): Opened the SentencePiece README (raw.githubusercontent.com/google/sentencepiece): a tokenizer 'for neural network-based text generation systems ... where the vocabulary size is fixed', which encodes raw text to vocabulary IDs (integers) and decodes IDs back; the model file holds the vocabulary mapping. Kudo & Richardson 2018 (EMNLP demos, D18-2012) and Sennrich et al. 2016 (ACL, P16-1162, pp. 1715-1725) not opened (arXiv/ACL Anthology unreachable); bibliographic details and the paper's 'NMT inputs and outputs are id sequences' corroborated by web search only. Suggest the builder add the README as a reachable source.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.word-in-pieces.c5",
@@ -78,8 +80,10 @@
       "id": "ai.word-in-pieces.c7",
       "text": "The stage keeps a record of the counts the learner has seen: 'unhappiness' (11 letters) costs 3 tokens with all pieces on and 11 with none; 'zyxxy' (5 letters) costs 5 because no piece fits it, so in this toy a chunk in the list costs one token and a string with no piece falls into single letters. In the reveal the stage returns to un | happi | ness.",
       "support": "derivation",
-      "source": "tokenize() and the record line in Demo.tsx: 'unhappiness'.length = 11, tokenize('unhappiness', PIECES) = 3, tokenize('unhappiness', []) = 11; 'zyxxy' contains none of un, happi, ness, so tokenize('zyxxy', any subset) = 5. The reveal quotes the 11 and the 5 only after the gate (both milestones) is reached.",
-      "status": "unverified"
+      "source": "tokenize() and the record line in Demo.tsx: 'unhappiness'.length = 11, tokenize('unhappiness', PIECES) = 3, tokenize('unhappiness', []) = 11; 'zyxxy' contains none of un, happi, ness, so tokenize('zyxxy', any subset) = 5. The reveal quotes the 11 and the 5 only after the gate (both milestones) is reached. | FACT-CHECK 2026-10-14 (pass 22): Own node port of tokenize(): unhappiness length 11; all pieces 3 (un|happi|ness), none 11; zyxxy 5 under all 8 piece subsets. Record line in Demo.tsx adds 'no pieces: 11' and 'zyxxy, 5 letters: 5' only once seen; in phase reveal shownWord/shownTokens return to unhappiness with all pieces (un | happi | ness).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

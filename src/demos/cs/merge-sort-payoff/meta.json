@@ -100,8 +100,10 @@
       "id": "cs.merge-sort-payoff.c9",
       "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons, while checking every pair would take 499,500.",
       "support": "derivation",
-      "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2).",
-      "status": "unverified"
+      "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2). | FACT-CHECK 2026-10-14 (pass 22): Own node (fc22-5/ms.mjs): top-down recursion depth for 1,000 is 10 = ceil(log2 1000); worst case 8,977 < 10,000; 1000 x 999 / 2 = 499,500. Per-level cards placed: 1,000 at each of the first 9 levels and 976 at the 10th, so 'places every card once' is exact for 9 of 10 rounds and 'at most once' for the last; the bound (fewer comparisons than cards per round) holds either way. Non-blocking wording nit for the builder: 'places each card at most once'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.merge-sort-payoff.c10",
@@ -125,8 +127,10 @@
       "id": "cs.merge-sort-payoff.c12",
       "text": "On the stage the deck the piles came from is shown in three stacked rounds: split into 8 single cards (0 comparisons), merge singles into pairs (4), merge pairs into piles A and B (6). With the final merge's count added (7 for the first piles), the whole sort costs 0 + 4 + 6 + 7 = 17, against 28 for every pair.",
       "support": "simulation",
-      "source": "deal() in Demo.tsx computes the rounds with the same two-pointer merge the learner does. The deck order [l2, l0, l3, l1, r3, r1, r0, r2] is fixed, so every pair needs its 1 comparison (4) and each 2+2 merge interleaves to the end (3 + 3 = 6) for every seed; checked in node for seeds 7, 20, 33, 46. Seed 7 piles A 10 20 21 23 and B 4 5 18 36 interleave to the end, so the final merge is 7. 8 x 7 / 2 = 28 pairs (claim c10).",
-      "status": "unverified"
+      "source": "deal() in Demo.tsx computes the rounds with the same two-pointer merge the learner does. The deck order [l2, l0, l3, l1, r3, r1, r0, r2] is fixed, so every pair needs its 1 comparison (4) and each 2+2 merge interleaves to the end (3 + 3 = 6) for every seed; checked in node for seeds 7, 20, 33, 46. Seed 7 piles A 10 20 21 23 and B 4 5 18 36 interleave to the end, so the final merge is 7. 8 x 7 / 2 = 28 pairs (claim c10). | FACT-CHECK 2026-10-14 (pass 22): Own node port of deal(): pairCost 4 and fourCost 6 for all 200 seeds 7, 20, 33, ... (seed + 13 steps, as 'New piles' does); seed 7 piles A 10 20 21 23, B 4 5 18 36, final merge 7, so 0 + 4 + 6 + 7 = 17 against 28. RoundsStack draws three rows with those labels; roundLabel shows 'Whole sort: 0 + 4 + 6 + 7 = 17, against 28 for every pair.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -35,12 +35,10 @@
     },
     {
       "id": "physics.ramp-same-work.c2",
-      "text": "Raising 50 kg by 1.0 m along a 4 m frictionless ramp takes the same work as lifting it straight up: a push of 122.6 N × 4 m = 490.5 J against 490.5 N × 1 m = 490.5 J (the stage log shows each finished push as push × length = work, to 0.1 N).",
+      "text": "Raising 50 kg by 1.0 m along a 4 m frictionless ramp takes the same work as lifting it straight up: 490.5 J ≈ a push of 122.6 N × 4 m (the push is rounded), against 490.5 N × 1 m = 490.5 J (the stage log shows each finished push as push × length ≈ work, the push to 0.1 N).",
       "support": "derivation",
-      "source": "50 x 9.81 x 1 / 4 = 122.6 N; x 4 m = 490.5 J = m g h. The stage computes 490.5 / L for L = 1-8 m (490.5, 245.3, 163.5, 122.6, 98.1, 81.8, 70.1, 61.3 N); checked in node. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FC pass 22 (fact-checker, 2026-10-14): DISPUTED. Physics right (50 x 9.81 x 1 = 490.5 J; 490.5/4 = 122.625 N), but the sentence the log and reveal print, '122.6 N × 4 m = 490.5 J', does not multiply out: 122.6 x 4 = 490.4. The log rounds the push to 0.1 N and prints the unrounded product, so 4 of the 8 lengths mismatch (2 m: 245.3 x 2 = 490.6; 4 m: 490.4; 6 m: 81.8 x 6 = 490.8; 7 m: 70.1 x 7 = 490.7; 8 m: 61.3 x 8 = 490.4). r5 asked for the arithmetic to check; it still does not for the reveal's default 4 m. Fix (builder): write '≈' in the log and reveal, or show the push as 'weight × height ÷ length = 490.5 ÷ 4 = 122.6 N' and the work as 490.5 J without the product sign.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "50 x 9.81 x 1 / 4 = 122.6 N; x 4 m = 490.5 J = m g h. The stage computes 490.5 / L for L = 1-8 m (490.5, 245.3, 163.5, 122.6, 98.1, 81.8, 70.1, 61.3 N); checked in node. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FC pass 22 (fact-checker, 2026-10-14): DISPUTED. Physics right (50 x 9.81 x 1 = 490.5 J; 490.5/4 = 122.625 N), but the sentence the log and reveal print, '122.6 N × 4 m = 490.5 J', does not multiply out: 122.6 x 4 = 490.4. The log rounds the push to 0.1 N and prints the unrounded product, so 4 of the 8 lengths mismatch (2 m: 245.3 x 2 = 490.6; 4 m: 490.4; 6 m: 81.8 x 6 = 490.8; 7 m: 70.1 x 7 = 490.7; 8 m: 61.3 x 8 = 490.4). r5 asked for the arithmetic to check; it still does not for the reveal's default 4 m. Fix (builder): write '≈' in the log and reveal, or show the push as 'weight × height ÷ length = 490.5 ÷ 4 = 122.6 N' and the work as 490.5 J without the product sign. | Builder fix (demo-builder, 2026-10-14): W-208: reveal now reads 'finished at 490.5 J ≈ 122.6 N × 4 m (the push is rounded)' and the log prints 'push N × L m ≈ work J', so the rounded push no longer claims an exact product. Straight lift 490.5 N × 1 m = 490.5 J stays exact.",
+      "status": "unverified"
     },
     {
       "id": "physics.ramp-same-work.c3",
@@ -92,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "physics:inclined-plane-work",
     "prerequisites": [

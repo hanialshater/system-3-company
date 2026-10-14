@@ -62,11 +62,9 @@
     {
       "id": "cs.fewest-exits-first-tour.c5",
       "text": "The fewest-onward-moves rule is a rule of thumb, not a guarantee: it can fail on some boards and starts.",
-      "support": "source",
-      "source": "H. C. von Warnsdorff (1823) proposed the rule. Squirrel & Cull (1996), 'A Warnsdorff-rule algorithm for knight's tours on square chessboards': the plain rule with arbitrary tie-breaking can fail; their tie-breaking variant succeeds for the board sizes they tested. Written from the brief; builder has not opened the paper (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Verified independently of the unopened sources: own sim of the lesson's exact rule (fewest onward moves, ties to first in order) fails on 8x8 from (4,2) (60 of 64) and on 6x6 from (3,3) (34 of 36), boards where tours exist. Warnsdorff 1823 and Squirrel & Cull 1996 NOT opened (host blocked; search snippets only say tie-breaking matters and correctness is unproven). Learner text does not name them; builder should cite the counterexample instead.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "support": "derivation",
+      "source": "Counterexample: the lesson's exact rule B (fewest onward moves to unvisited squares, ties to the first in move order) started on 8x8 from (4,2) gets stuck after 60 of 64 squares (also 6x6 from (3,3): stuck after 34 of 36; squares as (column, row) as in Demo.tsx), although knight's tours exist on both boards. Found by the fact-checker's independent simulation of the lesson's rule in pass 22 (company/reviews/fewest-exits-first-tour/2026-10-14-fact-check.md, scratchpad fc22/kn.mjs) and re-run by the builder with a copy of choose() (60 and 34). One failing start is enough to show 'can fail on some boards and starts'. Background, not relied on and not opened: Warnsdorff (1823) proposed the rule; Squirrel & Cull (1996) on tie-breaking. | History: H. C. von Warnsdorff (1823) proposed the rule. Squirrel & Cull (1996), 'A Warnsdorff-rule algorithm for knight's tours on square chessboards': the plain rule with arbitrary tie-breaking can fail; their tie-breaking variant succeeds for the board sizes they tested. Written from the brief; builder has not opened the paper (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Verified independently of the unopened sources: own sim of the lesson's exact rule (fewest onward moves, ties to first in order) fails on 8x8 from (4,2) (60 of 64) and on 6x6 from (3,3) (34 of 36), boards where tours exist. Warnsdorff 1823 and Squirrel & Cull 1996 NOT opened (host blocked; search snippets only say tie-breaking matters and correctness is unproven). Learner text does not name them; builder should cite the counterexample instead. | Builder fix (demo-builder, 2026-10-14): W-210: source now rests on the 8x8-from-(4,2) counterexample; learner text unchanged.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -86,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:knights-tour-warnsdorff",
     "also": [],

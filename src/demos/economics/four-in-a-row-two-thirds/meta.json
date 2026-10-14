@@ -26,36 +26,55 @@
       "id": "economics.four-in-a-row-two-thirds.c1",
       "text": "In the line A–B–C–D with deals A–B and C–D worth $1 each, the balanced outcome gives B and C $0.667 (two thirds) each and A and D $0.333.",
       "support": "derivation",
-      "source": "Balance: v_B = o_B + (1 − o_B)/2 with o_B = 1 − v_C (A's fallback is 0); by symmetry v = 1 − v/2, so v = 2/3. Fixed-point iteration in Demo.tsx shares() from 0.5: 0.75, 0.625, 0.6875, 0.6563 … within $0.001 of 2/3 at round 9. Re-run in node by the builder (ncm-e02).",
-      "status": "unverified"
+      "source": "Balance: v_B = o_B + (1 − o_B)/2 with o_B = 1 − v_C (A's fallback is 0); by symmetry v = 1 − v/2, so v = 2/3. Fixed-point iteration in Demo.tsx shares() from 0.5: 0.75, 0.625, 0.6875, 0.6563 … within $0.001 of 2/3 at round 9. Re-run in node by the builder (ncm-e02). | FACT-CHECK 2026-10-14 (pass 22): Own node iteration v <- 1 - v/2 from 0.5: 0.75 0.625 0.6875 0.6563 0.6719 0.6641 0.6680 0.6660 0.6670 ... -> 2/3; A = 1/3. Correction to this source: within $0.001 of 2/3 at round 8 (|e8| = 1/1536), not 9, so SETTLED_AT = 8 (Demo comment '// 9' is stale; see c6).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c2",
       "text": "Each round, every pair covers both people's fallbacks and halves the rest; B's fallback is what C would leave B in a B–C deal, $1 minus C's share.",
       "support": "source",
-      "source": "Definition of a balanced outcome (each matched pair splits its surplus over the two outside options equally): Easley and Kleinberg (2010) ch. 12; Cook and Yamagishi (1992). Round-by-round updating is the lesson's way of showing the fixed point, a simplification; stage chip 'Model: each pair covers both fallbacks, then halves the rest'. Fact-checker confirms the definition and attribution.",
-      "status": "unverified"
+      "source": "Definition of a balanced outcome (each matched pair splits its surplus over the two outside options equally): Easley and Kleinberg (2010) ch. 12; Cook and Yamagishi (1992). Round-by-round updating is the lesson's way of showing the fixed point, a simplification; stage chip 'Model: each pair covers both fallbacks, then halves the rest'. Fact-checker confirms the definition and attribution. | FACT-CHECK 2026-10-14 (pass 22): Definition matches the balanced outcome (Nash bargaining split with network outside options) in Easley & Kleinberg ch. 12 'Bargaining and Power in Networks' (chapter title confirmed by search snippet of the ToC; book host blocked; section placement from my own knowledge, confident) which credits Cook & Yamagishi (1992) for the concept (from memory, not opened). Round-by-round update is disclosed on the stage chip as the lesson's model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c3",
       "text": "B's share swings (0.75, 0.625, 0.688 …) before settling, because each inner person's fallback depends on the other inner person's share.",
       "support": "derivation",
-      "source": "Iteration values from Demo.tsx shares(); the alternation follows from v_B(next) = 1 − v_C/2 with v_B = v_C.",
-      "status": "unverified"
+      "source": "Iteration values from Demo.tsx shares(); the alternation follows from v_B(next) = 1 − v_C/2 with v_B = v_C. | FACT-CHECK 2026-10-14 (pass 22): Reveal prints ROUNDS[1..3] = $0.750, $0.625, $0.688 (0.6875 toFixed(3) = 0.688, checked). Alternation follows from error e_r = -e_{r-1}/2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c4",
       "text": "In a line of three, the centre's two partners have no other deal, so the centre can take nearly all.",
       "support": "source",
-      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all). 'Nearly all' allows for a minimum unit. Fact-checker confirms.",
-      "status": "unverified"
+      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all). 'Nearly all' allows for a minimum unit. Fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): 3-node path: ends have only the centre, so any stable outcome gives the centre the full $1; E&K ch. 12 (placement from own knowledge, confident: the 3-path is that chapter's opening example). 'Nearly all' is fair for experiments with minimum units.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c5",
       "text": "This is a model, the balanced-outcome rule, not a forecast of any real negotiation.",
       "support": "convention",
-      "source": "Lesson framing. Laboratory results on 4-paths (brief claim 3) need a human source check and are kept out of learner text.",
-      "status": "unverified"
+      "source": "Lesson framing. Laboratory results on 4-paths (brief claim 3) need a human source check and are kept out of learner text. | FACT-CHECK 2026-10-14 (pass 22): Reveal muted line reads exactly this; stage chip discloses the model.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c6",
+      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round N. A kept $0.333.' (N = SETTLED_AT, renders 8.)",
+      "support": "derivation",
+      "source": "Unrecorded claim found by fact-checker 2026-10-14 (pass 22). SETTLED_AT = first round within TOL = $0.001 of 2/3 = round 8 (B 0.66602), not 9 as the Demo comment says. At round 8 (where 'Run until settled' stops) the stage readout shows 'B gets $0.666' and A '$0.334', while the reveal says settled at $0.667 by round 8 and A kept $0.333. DISPUTED: the reveal contradicts what the learner just saw. Fix (builder): TOL = 0.0005 gives round 9 (B $0.667, A $0.333 on the readout), or reword to 'came within $0.001 of $0.667 by round 8'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -79,12 +98,28 @@
   "curriculum": {
     "primary": "economics:balanced-outcomes",
     "also": [],
-    "prerequisites": ["economics:nash-bargaining"],
+    "prerequisites": [
+      "economics:nash-bargaining"
+    ],
     "level": "stretch",
     "strand": "markets",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 12 }],
-    "tags": ["bargaining", "networks", "power"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 12
+      }
+    ],
+    "tags": [
+      "bargaining",
+      "networks",
+      "power"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

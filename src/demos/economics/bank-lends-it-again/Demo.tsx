@@ -144,7 +144,8 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
                       </tspan>
                       {deposit(rounds - 1, ratio) >= 10 && (
                         <tspan x={CX + CW + 8} dy={14}>
-                          = {100 - ratio}% of round {rounds - 1}&apos;s {usd(deposit(rounds - 1, ratio))}
+                          {Math.round(deposit(rounds, ratio)) * 100 === (100 - ratio) * Math.round(deposit(rounds - 1, ratio)) ? "=" : "≈"}{" "}
+                          {100 - ratio}% of round {rounds - 1}&apos;s {usd(deposit(rounds - 1, ratio))}
                         </tspan>
                       )}
                     </text>

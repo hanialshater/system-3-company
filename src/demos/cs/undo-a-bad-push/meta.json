@@ -37,22 +37,28 @@
       "id": "cs.undo-a-bad-push.c2",
       "text": "Sending the unit back along a-b undoes the zig-zag: a-b drops to 0/1 and s -> b -> a -> t opens, for a total of 2. Sending a unit back along any other pipe only returns water to s (s-a, s-b) or takes it from t (a-t, b-t).",
       "support": "derivation",
-      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2. | FACT-CHECK 2026-10-14 (pass 10): Residual after zig: s-b, b->a (reverse), a-t free; augment gives all four outer pipes at 1, a-b 0, total 2. | FACT-CHECK 2026-10-14 (pass 19): Re-checked against Demo.tsx sendBack(): from zig flow (sa 1, ab 1, bt 1) it sets ab 0, sb 1, at 1; conservation holds at a (in 1, out 1) and b (in 1, out 1); total at+bt = 2. This is augmenting along residual path s->b->a->t.",
-      "status": "unverified"
+      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2. | FACT-CHECK 2026-10-14 (pass 10): Residual after zig: s-b, b->a (reverse), a-t free; augment gives all four outer pipes at 1, a-b 0, total 2. | FACT-CHECK 2026-10-14 (pass 19): Re-checked against Demo.tsx sendBack(): from zig flow (sa 1, ab 1, bt 1) it sets ab 0, sb 1, at 1; conservation holds at a (in 1, out 1) and b (in 1, out 1); total at+bt = 2. This is augmenting along residual path s->b->a->t. | FACT-CHECK 2026-10-14 (pass 22): Own enumeration of all 32 0/1 flows that conserve at a and b: the only total-2 flow is s-a 1, s-b 1, a-b 0, a-t 1, b-t 1, which is what sendBack('ab') produces from the zig state. a-b = 1 is reachable only from the zig push, where s-b and a-t are free. Other pipes: messages 'only returns water to s' (s-a, s-b) and 'takes water away from t' (a-t, b-t), flow unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c3",
       "text": "The dashed cut line is crossed only by the two pipes out of s, and both are full; all water must cross that line, so no flow can beat 2.",
       "support": "source",
-      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 10): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; min 2. CLRS 3rd ed. Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 19): Own enumeration of directed s-t cuts: {s} 2, {s,a} 3, {s,b} 2 (s-a, b-t), {s,a,b} 2; min 2 = flow, so flow is maximum (weak duality, CLRS 3e Cor. 26.5, from memory). After sendBack, sa = sb = 1 (both full); the stage draws the cut when total is 2, and both pipes from s are full in every total-2 state.",
-      "status": "unverified"
+      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 10): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; min 2. CLRS 3rd ed. Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 19): Own enumeration of directed s-t cuts: {s} 2, {s,a} 3, {s,b} 2 (s-a, b-t), {s,a,b} 2; min 2 = flow, so flow is maximum (weak duality, CLRS 3e Cor. 26.5, from memory). After sendBack, sa = sb = 1 (both full); the stage draws the cut when total is 2, and both pipes from s are full in every total-2 state. | FACT-CHECK 2026-10-14 (pass 22): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2. Own derivation (conservation: net flow across any s-t cut equals the total, and is at most the cut's forward capacity), so no flow beats 2; CLRS not opened and not needed. The dashed path (x 60-80) crosses only s-a and s-b; it is drawn only when total = 2, and in the only total-2 state both are full.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c5",
       "text": "Stage notes for sending one unit back: along a-b (when s-b and a-t are free) \"Water went s → b, back along a–b, then a → t: total 2.\"; along s-a or s-b \"only returns water to s\"; along a-t or b-t \"takes water away from t\"; the total is unchanged in those cases.",
       "support": "derivation",
-      "source": "sendBack() in Demo.tsx. A unit sent back along a pipe that starts at s ends at s (a cycle, no gain); one sent back along a pipe that ends at t starts at t, so it removes water from t; only a-b backwards lies on an s-to-t route (s -> b -> a -> t, the residual augmenting path), which needs s-b and a-t free.",
-      "status": "unverified"
+      "source": "sendBack() in Demo.tsx. A unit sent back along a pipe that starts at s ends at s (a cycle, no gain); one sent back along a pipe that ends at t starts at t, so it removes water from t; only a-b backwards lies on an s-to-t route (s -> b -> a -> t, the residual augmenting path), which needs s-b and a-t free. | FACT-CHECK 2026-10-14 (pass 22): sendBack() in Demo.tsx: a-b branch needs f.sb < 1 and f.at < 1 and sets note 'Water went s → b, back along a–b, then a → t: total 2.'; p[0] = 's' gives 'Back along s→a/s→b only returns water to s. Total still N.'; p[1] = 't' gives '... takes water away from t. Total still N.'; f is unchanged in those branches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

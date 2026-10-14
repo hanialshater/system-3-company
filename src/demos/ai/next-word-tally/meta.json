@@ -63,8 +63,10 @@
       "id": "ai.next-word-tally.c5",
       "text": "“Let the model pick” draws the next word with probability proportional to its count after the current word, and “Let it finish” keeps drawing that way until the sentence ends (seeded random numbers, seed 7, capped at 20 words); a word whose only follower is the full stop ends the sentence.",
       "support": "convention",
-      "source": "The lesson's own sampler, finish loop and append rule in Demo.tsx (seed 7). Seed 7 is the existing seed, not re-picked; with it, the QA press order (cat, sat, Let it finish) ends on “the cat sat on the fish.”, which is new.",
-      "status": "unverified"
+      "source": "The lesson's own sampler, finish loop and append rule in Demo.tsx (seed 7). Seed 7 is the existing seed, not re-picked; with it, the QA press order (cat, sat, Let it finish) ends on “the cat sat on the fish.”, which is new. | FACT-CHECK 2026-10-14 (pass 22): Read sample(), finish() and append() in Demo.tsx: sample draws with probability count/total; finish() makes at most 20 draws per press (each draw is one word; the auto full stop is not a draw); mat, fish and rug have '.' as their only follower, so append() ends the sentence. Own node port (fc22-5/nwt.mjs) with rng(7): cat, sat, Let it finish gives 'the cat sat on the fish .' after 3 draws, isNew = true, pair counts 2,1,2,2,1,1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.next-word-tally.c6",
@@ -79,8 +81,10 @@
       "id": "ai.next-word-tally.c7",
       "text": "A finished sentence shows each of its adjacent pairs with how many times that pair occurs in the training text; the reveal unlocks only once a sentence marked “New: not in the training text” is finished, and it quotes the learner's first such sentence, saying every pair under it had a count of at least 1.",
       "support": "derivation",
-      "source": "pairsOf and isNew in Demo.tsx. Any sentence the stage can build uses only menu words, and every menu word followed the previous word in CORPUS, so every pair count is ≥ 1 by construction.",
-      "status": "unverified"
+      "source": "pairsOf and isNew in Demo.tsx. Any sentence the stage can build uses only menu words, and every menu word followed the previous word in CORPUS, so every pair count is ≥ 1 by construction. | FACT-CHECK 2026-10-14 (pass 22): pairsOf/isNew/finished in Demo.tsx: the pair list shows only for a finished sentence; interact() is called only when a finished sentence is new; the reveal quotes newOnes[0] (first new sentence). Own exhaustive search over every hand-built sentence up to 13 picks (123 sentences): minimum pair count 1 (including the word-to-full-stop pair).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

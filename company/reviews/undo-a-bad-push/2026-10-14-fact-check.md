@@ -23,3 +23,15 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx learne
 | c3 | verified | Own enumeration of directed s-t cuts: {s} 2, {s,a} 3, {s,b} 2 (s-a, b-t), {s,a,b} 2; min 2 = flow, so flow is maximum (weak duality, CLRS 3e Cor. 26.5, from memory). After sendBack, sa = sb = 1 (both full); the stage draws the cut when total is 2, and both pipes from s are full in every total-2 state. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 22
+
+Checker: fact-checker (did not write these claims). Scope: the claims left unverified after the wave D wording reopen. Method: read Demo.tsx (and model.ts where used) against each sentence, then re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc22-5); sources opened where reachable, otherwise marked as not opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own enumeration of all 32 0/1 flows that conserve at a and b: the only total-2 flow is s-a 1, s-b 1, a-b 0, a-t 1, b-t 1, which is what sendBack('ab') produces from the zig state. a-b = 1 is reachable only from the zig push, where s-b and a-t are free. Other pipes: messages 'only returns water to s' (s-a, s-b) and 'takes water away from t' (a-t, b-t), flow unchanged. |
+| c3 | verified | Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2. Own derivation (conservation: net flow across any s-t cut equals the total, and is at most the cut's forward capacity), so no flow beats 2; CLRS not opened and not needed. The dashed path (x 60-80) crosses only s-a and s-b; it is drawn only when total = 2, and in the only total-2 state both are full. |
+| c5 | verified | sendBack() in Demo.tsx: a-b branch needs f.sb < 1 and f.at < 1 and sets note 'Water went s → b, back along a–b, then a → t: total 2.'; p[0] = 's' gives 'Back along s→a/s→b only returns water to s. Total still N.'; p[1] = 't' gives '... takes water away from t. Total still N.'; f is unchanged in those branches. |
+
+**Result:** every claim in this pass verified.

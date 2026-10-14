@@ -45,8 +45,10 @@
       "id": "cs.route-explosion.c3",
       "text": "Adding city k multiplies the count by k, because the new city can go in k places in every old order; the chain ends 40,320 × 9 = 362,880.",
       "support": "derivation",
-      "source": "Insertion argument: an order of k-1 cities has k gaps (before the first, between, after the last), so k! = k × (k-1)!. | FACT-CHECK 2026-10-14 (pass 19): Derivation: an order of k-1 cities has k gaps, each giving a distinct order of k cities, and every k-order arises exactly once (delete city k), so count(k) = k x count(k-1). Matches the stage's 'fact(k-1) x k' readout.",
-      "status": "unverified"
+      "source": "Insertion argument: an order of k-1 cities has k gaps (before the first, between, after the last), so k! = k × (k-1)!. | FACT-CHECK 2026-10-14 (pass 19): Derivation: an order of k-1 cities has k gaps, each giving a distinct order of k cities, and every k-order arises exactly once (delete city k), so count(k) = k x count(k-1). Matches the stage's 'fact(k-1) x k' readout. | FACT-CHECK 2026-10-14 (pass 22): Own brute force: inserting city k into every order of k-1 cities at each of k gaps gives exactly k! distinct orders for k = 3..8 (6, 24, 120, 720, 5,040, 40,320). 40,320 x 9 = 362,880. Stage message reads fact(k-1) x k.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.route-explosion.c4",
@@ -70,8 +72,10 @@
       "id": "cs.route-explosion.c6",
       "text": "The stage's running chain of orders for 3 to 9 cities reads 6, ×4 24, ×5 120, ×6 720, ×7 5,040, ×8 40,320, ×9 362,880; each drawn route leaves home (the square) and visits every city once.",
       "support": "derivation",
-      "source": "fact(n) in Demo.tsx for n = 3..9: 6, 24, 120, 720, 5040, 40320, 362880; each is the previous times n. Route thumbnails are polylines from home through perms(k) in Demo.tsx (no return leg is drawn; the count is the same either way because home is fixed).",
-      "status": "unverified"
+      "source": "fact(n) in Demo.tsx for n = 3..9: 6, 24, 120, 720, 5040, 40320, 362880; each is the previous times n. Route thumbnails are polylines from home through perms(k) in Demo.tsx (no return leg is drawn; the count is the same either way because home is fixed). | FACT-CHECK 2026-10-14 (pass 22): Own node: chain for 3..9 reads 6, x4 24, x5 120, x6 720, x7 5,040, x8 40,320, x9 362,880 (en-US format as fmt()). perms(4) gives 24 orders each visiting every city once; the polyline starts at home (the square) and has no return leg.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

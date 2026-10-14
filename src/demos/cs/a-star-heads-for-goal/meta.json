@@ -46,8 +46,10 @@
       "id": "cs.a-star-heads-for-goal.c3",
       "text": "A guess that can be too low but never too high (never more steps left than there are) never makes a shorter route look worse, so A* with it finds a shortest route: the guided route matches the no-guess flood's length on the open grid and with the wall.",
       "support": "source",
-      "source": "Hart, Nilsson & Raphael (1968), A formal basis for the heuristic determination of minimum cost paths, IEEE Trans. Systems Science and Cybernetics 4(2): optimality with an admissible heuristic. | FACT-CHECK 2026-10-14 (pass 19): Hart, Nilsson & Raphael, IEEE Trans. SSC 4(2):100-107, July 1968 (DOI 10.1109/TSSC.1968.300136, confirmed by web search): admissible heuristic gives a minimum-cost path. Manhattan on this grid is also consistent, so the stage's no-reopen version is optimal too.",
-      "status": "unverified"
+      "source": "Hart, Nilsson & Raphael (1968), A formal basis for the heuristic determination of minimum cost paths, IEEE Trans. Systems Science and Cybernetics 4(2): optimality with an admissible heuristic. | FACT-CHECK 2026-10-14 (pass 19): Hart, Nilsson & Raphael, IEEE Trans. SSC 4(2):100-107, July 1968 (DOI 10.1109/TSSC.1968.300136, confirmed by web search): admissible heuristic gives a minimum-cost path. Manhattan on this grid is also consistent, so the stage's no-reopen version is optimal too. | FACT-CHECK 2026-10-14 (pass 22): Own node port of search() (fc22-5/astar.mjs): open grid guess route 6 = no-guess 6; wall guess route 10 = no-guess 10 (BFS shortest 10). Own derivation: Manhattan is admissible and consistent on a 4-way unit grid, so the first time a cell is settled its steps are minimal; checked on 20,000 random wall layouts (30% walls), guided route length = flood length in every case. Hart, Nilsson & Raphael 1968 not opened (all PDF mirrors unreachable); citation details (IEEE TSSC 4(2):100-107) corroborated by web search only. The learner-visible sentence rests on the derivation, not the unopened paper.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.a-star-heads-for-goal.c4",
@@ -71,8 +73,10 @@
       "id": "cs.a-star-heads-for-goal.c6",
       "text": "At S the guess of steps left is 6 (6 columns, 0 rows to the goal); with the wall on, the shortest route takes 10 steps, so the guess there is lower than the real distance. Stage labels: the numbers on cells are settle order, and dashed cells are waiting to settle.",
       "support": "derivation",
-      "source": "GUESS_AT_S in Demo.tsx = |0 - 6| + |3 - 3| = 6. Wall route 10 from claim c2. Numbers drawn from settleIdx + 1; dashed outline = isFrontier (joined the frontier, not yet settled) in Demo.tsx.",
-      "status": "unverified"
+      "source": "GUESS_AT_S in Demo.tsx = |0 - 6| + |3 - 3| = 6. Wall route 10 from claim c2. Numbers drawn from settleIdx + 1; dashed outline = isFrontier (joined the frontier, not yet settled) in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): GUESS_AT_S = |0-6| + |3-3| = 6; own BFS with the wall gives 10. Stage line 'Guess at S: 6. Route: 10.' Legend 'Numbers: settle order. Dashed: waiting to settle.' matches num() = settleIdx+1 and isFrontier (joined frontier at disc <= k, not yet settled).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

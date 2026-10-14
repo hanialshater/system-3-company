@@ -257,8 +257,8 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
           </p>
           <p>
             The trick is the third box: (a+b)(c+d) minus a·c and b·d leaves a·d + b·c, the two cross terms, so one
-            multiplication is saved at every split. Saved at every level, that compounds: for 1,024-digit numbers it is
-            59,049 products against 1,048,576, and in general about n<sup>1.58</sup> instead of n<sup>2</sup> for n digits.
+            multiplication is saved at every split. Saved at every level, that compounds: for 1,024-digit numbers the ideal
+            no-carry count is 59,049 products against 1,048,576 (3<sup>10</sup> against 4<sup>10</sup>), and in general about n<sup>1.58</sup> instead of n<sup>2</sup> for n digits.
           </p>
         </>
       )}
