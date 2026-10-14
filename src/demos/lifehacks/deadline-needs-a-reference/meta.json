@@ -3,7 +3,7 @@
   "title": "What does “Friday” mean?",
   "hook": "A deadline needs a date and time reference, especially across locations.",
   "domain": "lifehacks",
-  "concept": "deadline-needs-a-reference",
+  "concept": "office-deadline-reference",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.deadline-needs-a-reference.recall",
       "text": "A date, a clock time and a time zone fix one moment; 'end of day' and bare times depend on where you read them.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Only key 2 has date, time and zone; matches c2 (DST/conversion out of scope). Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:deadline-needs-a-reference",
+    "primary": "lifehacks:office-deadline-reference",
     "prerequisites": [],
     "level": "intro",
     "references": [],

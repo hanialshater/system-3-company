@@ -24,6 +24,12 @@ It tests a popular hack against the mechanism behind it: why salt makes ice cold
 
 Source: `company/decisions/2026-10-14-pr2-lifehacks-scope.md` item 6, adjusted for its "Founder decision" section (all 200 PR #2 lessons land). Co-sign: head-of-product, pending (she records the founder's override in that decision record). Written by cm-lifehacks in session 2; received by message and committed by session 1.
 
+### Curriculum applied as proposed, pending co-sign (2026-10-14, W-381)
+- cm-lifehacks applied `lifehacks-scope/curriculum-200.compact.md` unchanged: `content/curriculum/lifehacks.json` now holds the 136 concepts (15 kept, two-minute-rule demand 3→2 and unit-price-shopping 3→1). All 200 lessons have `concept` and `curriculum.primary` from its lessons map, and the 15 D lessons name the receiving concept in `curriculum.also`. Coverage reads 120/136, 11 demand-3 concepts uncovered.
+- This was applied **before** the head of product's co-sign on this charter. It is a proposal in force, not a ratified map. If she declines or changes it, the curriculum and the 200 meta.json fields are re-applied from the decision, and this note says what happened.
+- Not changed, on purpose (other agents are editing these lessons): each lesson's `curriculum.level`, `curriculum.prerequisites` and `curriculum.strand` still come from the old one-concept-per-slug map (39 levels and 15 prerequisite lists disagree with the new concept; no lesson has `strand`). That re-derivation is on the board for demo-builder.
+- `lh-area-scales-square` (the "16th" duplicate of `math:area-scaling`, not on the decision list) got no `also`. It waits for cm-math's answer with the others.
+
 ### Strands
 - Every concept in `content/curriculum/lifehacks.json` carries one of 12 strands in its existing `subarea` field: `kitchen`, `cleaning`, `laundry`, `fix`, `storage`, `energy`, `shopping`, `study`, `time`, `digital`, `travel`, `garden`. Strand scopes are in `company/domains/lifehacks-scope/category.md` §2.
 - One exception: `viral-hack-debunk` has no strand, because Debunk is a format that any strand can use, not a strand. It is proposed for retirement as a concept.

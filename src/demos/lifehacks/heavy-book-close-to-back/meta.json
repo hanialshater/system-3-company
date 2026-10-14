@@ -3,7 +3,7 @@
   "title": "Same weight, shorter lever",
   "hook": "Which placement produces less static turning moment?",
   "domain": "lifehacks",
-  "concept": "heavy-book-close-to-back",
+  "concept": "shelf-load-lever",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -68,8 +68,10 @@
       "id": "lifehacks.heavy-book-close-to-back.recall",
       "text": "Moment = mass × g × distance. Same mass, distance from 25 cm to 5 cm, so the moment is one fifth as large. This simple model says nothing about comfort or injury.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 5/25 = 1/5 (node), an 80% drop, so '20%' is wrong. Moment formula matches c3; comfort/injury caveat matches c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -91,11 +93,13 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:heavy-book-close-to-back",
+    "primary": "lifehacks:shelf-load-lever",
     "prerequisites": [],
     "level": "intro",
     "references": [],
-    "also": []
+    "also": [
+      "physics:torque-lever"
+    ]
   },
   "format": "before-after",
   "interactions": [

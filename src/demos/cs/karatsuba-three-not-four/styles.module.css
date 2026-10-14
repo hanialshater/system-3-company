@@ -1,15 +1,15 @@
-.wrap { display: flex; flex-direction: column; gap: 6px; }
-.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; gap: 4px; }
 .rule { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
 .check { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
 .topbox { font-size: 11px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
-.head { font-size: 9.5px; font-weight: 700; fill: var(--fg); }
-.lab { font-size: 8px; font-weight: 700; fill: var(--fg); }
+.head { font-size: 10.5px; font-weight: 700; fill: var(--fg); }
+.lab { font-size: 10px; font-weight: 600; fill: var(--fg); }
 .nums { font-size: 10px; fill: var(--fg); font-variant-numeric: tabular-nums; }
-.small { font-size: 8.5px; fill: var(--fg); font-variant-numeric: tabular-nums; }
-.answer { font-size: 9px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.small { font-size: 10px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.answer { font-size: 10.5px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .table { margin: 0 auto; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
-.table th, .table td { padding: 2px 8px; text-align: center; border-bottom: 1px solid var(--line); }
+.table th, .table td { padding: 1px 7px; text-align: center; border-bottom: 1px solid var(--line); }
 .table th { color: var(--muted); font-weight: 600; }
 .table tbody th { text-align: left; }
 .grow { animation: grow 200ms ease-out; }
@@ -19,3 +19,4 @@
   .grow { animation: none; }
 }
 .checkBox { min-height: 3.9em; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.wrap :global(.control) { padding-left: 7px; padding-right: 7px; }

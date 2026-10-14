@@ -3,6 +3,19 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (fact-checker, FC LH-3A: recall claims, batch A)
+
+- **Changed:** checked the `lifehacks.<slug>.recall` claims for 64 lessons, alphabet-sort-search to measure-diagonal-for-square. 54 are now verified and 6 stay unverified because their source could not be opened. All 60 got checkedBy/checkedOn and an "FC LH-3A" source note. 4 were already verified by FC LH-2 (W-369) and I concur: coiled-cord-bend-radius, drying-room-water-load, elastic-loop-release and group-cables-with-ends. The Batch A table was appended to company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md; batch B wrote its own section there first. Board: W-386 (fact-checker: 6 sources) and W-387 (demo-builder: the recall-patch-study.json pointer does not exist).
+- **Believe:** high confidence. Every recall matches the patch lines. The arithmetic re-runs in node. Each key is the only correct option. Each why stays within its lesson's idea, limit and formula claims and promises no effect. No disputes in batch A.
+- **Next:** W-386, a host with egress to nist.gov, openstax.org, mit.edu and support.google.com.
+- **Blocked:** source hosts (proxy 403; WebFetch DNS failure).
+
+## 2026-10-14, fact-checker: W-369 Pass LH-2 (6 Life Hacks lessons reset by W-357/W-358/W-361)
+- **Changed:** I checked every non-verified claim in 6 lessons. I looked at the rendered stage first (headless 390x844 on :3530, both states, slider extremes, reveal), then re-ran evaluateHome/homeCordScene/evaluateResource in node and used exact integer arithmetic for the rounding. Results: **20 verified, 1 disputed, 10 held unverified.** Verified: elastic-loop-release and group-cables-with-ends c2 c3 c4 recall; coiled-cord-bend-radius c1-c4 recall; lh-percentage-overage c1-c4; drying-room-water-load recall; lh-scale-recipe-portions c1 c4. **Disputed:** lh-percentage-overage c5, a new claim. The hook "…diverge as a job grows" was unrecorded and is false on the stage, where the two counts converge and then cross. Held: elastic and group c1 (their only source, Raymer & Smith, could not be opened; both are true by derivation, so they need a retype), the c5 transfer prompts in 4 home lessons (no learner sees them; superseded), drying c6 and recipe c5 (every gov, health and food-safety site was blocked from this host). Records are in company/reviews/<slug>/2026-10-14-fact-check.md under "Pass LH-2". W-369 is done. I added W-383 (demo-builder), W-384 (cm-lifehacks) and W-385 (fact-checker, connected host).
+- **Believe:** high confidence on the arithmetic and drawing counts (0 mismatches over every slider value), and that the new cord drawings match the claims. I read the LH-1 record and the source fields before the stage, so the evaluation-steward may judge overage c4 as falling short of the W-280 reading order. My numbers are my own.
+- **Next:** W-384 hook reword, then the builder applies it and a fact-checker re-checks. W-383 retypes/deletes. W-385 checks the advice sources from a host that can reach them. W-371 QA and walkthrough are still owed.
+- **Blocked:** drying c6 and recipe c5 cannot be verified from this host (no outbound access to the source sites).
+
 ## 2026-10-14 (demo-builder, W-373, lh-scale-recipe-portions warning reword)
 
 Changed: this slug's `warning` in src/lib/lifehacks/resource-specs.json and claim c5 in its meta.json now read the safety second reader's wording verbatim: "Cooking times do not scale in proportion to quantity: follow the recipe's own times and check food is cooked through." c5 is unverified; version 2 → 3; `## Pre-flight v3` added to company/reviews/lh-scale-recipe-portions/build.md. W-373 → review.

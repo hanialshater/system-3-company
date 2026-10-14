@@ -3,7 +3,7 @@
   "title": "A loop is not a permanent knot",
   "hook": "Which manipulation removes the drawn crossing?",
   "domain": "lifehacks",
-  "concept": "elastic-loop-release",
+  "concept": "loop-is-not-a-knot",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -25,43 +25,51 @@
       "id": "lifehacks.elastic-loop-release.c1",
       "text": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
       "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: support is \"source\" and its only source, Raymer & Smith 2007 (mit.edu PDF, pnas.org), could not be opened from this host (proxy 403, DNS fail). Not verified on an unopened source. The claim is true by topology without the paper: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink), which is never a knot, and sliding the loop along to the free end removes it without cutting. Fix: retype support to derivation with that argument (as FC LH-1 asked), then re-check.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.elastic-loop-release.c2",
       "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: stage caption reads \"Plain cord; storage only\" and the reveal limit matches word for word (390x844 screenshots, both states); homeCordScene draws only a path, a grey ellipse, an arrow, dots and a bracket: no plug, device or limit value.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c3",
       "text": "Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for p=15..35, both states: drawn crossings = value = 1 before, 0 after (0 mismatches); stage readout \"Loop travel=10cm · end=Ncm\" matches; slider min 15 cm > 10 cm travel, so the slide is always possible on this slider. Minor drawing note: the orange crossing dot is at y=125 but the two segments cross at y=116.7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c4",
       "text": "Which manipulation removes the drawn crossing?",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: the rendered predict and stage question; key = 1 \"Slide loop off\", which is the manipulation that removes the crossing (threading the end through the loop would add crossings, tying an overhand).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c5",
       "text": "Why does the position of a free end matter when judging a tangle?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.elastic-loop-release.recall",
       "text": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: a one-crossing curl in an open cord is not a knot and slides off an accessible end; keyed option 1 \"Not if the loop slides off the free end\" matches; both distractors are false.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -83,7 +91,7 @@
   },
   "version": 2,
   "curriculum": {
-    "primary": "lifehacks:elastic-loop-release",
+    "primary": "lifehacks:loop-is-not-a-knot",
     "prerequisites": [],
     "level": "intro",
     "references": [],

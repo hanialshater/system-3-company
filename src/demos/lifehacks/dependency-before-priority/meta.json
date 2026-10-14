@@ -3,7 +3,7 @@
   "title": "Priority cannot bypass input",
   "hook": "The important output cannot run before its input exists.",
   "domain": "lifehacks",
-  "concept": "dependency-before-priority",
+  "concept": "do-the-blocking-task-first",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.dependency-before-priority.recall",
       "text": "A priority label does not remove a prerequisite; the invoice cannot go before its input exists.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Matches c2 (priority does not remove prerequisite); 'same moment' impossible since the quote is an input. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:dependency-before-priority",
+    "primary": "lifehacks:do-the-blocking-task-first",
     "prerequisites": [],
     "level": "intro",
     "references": [],

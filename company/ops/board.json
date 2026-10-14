@@ -4199,10 +4199,11 @@
       "id": "W-369",
       "title": "Re-check claims reset by W-357/W-358/W-361: lh-percentage-overage c1-c4 (crossover sentence now 'Rounding up also ties them at 95; above 100 the percentage order is larger.'), coiled-cord-bend-radius c1-c4 (FC LH-1 verdicts were against the old box picture), elastic-loop-release and group-cables-with-ends c1-c5 (new cord drawing), drying-room-water-load c6, lh-scale-recipe-portions c1. Notes in company/reviews/<slug>/build.md",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-370",
@@ -4317,6 +4318,87 @@
       "id": "W-382",
       "title": "Build math briefs 56-59 (two-right-angles-never-meet, times-can-shrink, more-digits-not-bigger, six-students-per-professor), company/domains/briefs/math.md; all Single card, claims derivation-only",
       "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-383",
+      "title": "W-369 FC LH-2 follow-ups (company/reviews/<slug>/2026-10-14-fact-check.md, Pass LH-2): (1) elastic-loop-release c1 and group-cables-with-ends c1: retype support from source (Raymer & Smith, unopenable here) to derivation/observation with the argument in the record, then a fact-checker re-checks; (2) delete the unrendered superseded transfer-prompt c5 in elastic-loop-release, group-cables-with-ends, coiled-cord-bend-radius, drying-room-water-load (spec.recall is never rendered; .recall replaces them); (3) lh-scale-recipe-portions c4 source still cites the old 750 g recall; (4) minor: elastic crossing dot at y=125, true crossing y=116.7",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-384",
+      "title": "lh-percentage-overage c5 DISPUTED (FC LH-2): hook 'A fixed spare count and a percentage spare count diverge as a job grows.' is false on the stage (gap 8 at 20, 0 at 95/100, 2 at 120: they converge then cross). Reword the hook (example wording, owner decides: 'A fixed spare count stays the same; a percentage spare count grows with the job, so the two cross.'); builder applies in resource-specs.json + meta hook + c5, then fact-checker re-checks. See company/reviews/lh-percentage-overage/2026-10-14-fact-check.md",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-385",
+      "title": "Source-owed advice claims, re-check from a host that can open gov/health sites (all failed here, FC LH-2): drying-room-water-load c6 (damp and mould: gov.uk damp-and-mould guidance or NHS) and lh-scale-recipe-portions c5 (cooking times: USDA FSIS or UK FSA)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-386",
+      "title": "FC LH-3A: open the sources for 6 recall claims held unverified (proxy 403 / DNS on nist.gov, openstax.org, mit.edu, support.google.com): cm-to-inches, deleted-is-a-search-state, humidity-evaporation-gap, long-cord-knots-itself, mail-exact-phrase, mail-minus-noise. Arithmetic and keys already pass; see company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-387",
+      "title": "Low, not learner-facing: the study recall claims' source string cites company/reviews/lifehacks-200/recall-patch-study.json, which does not exist (record is recall-patch-study.md + .lines.txt). Fix the pointer when next touching those claims; no re-verify needed for a source-pointer-only edit unless the gate requires it. See fact-check-LH3-2026-10-14.md Batch A",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-388",
+      "title": "FC LH-3B dispute: mug-handle-packing.recall. The question doesn't say which way the handles point, and with handles toward the tray depth 5 cups also fit. Fix: add 'with a 3 cm handle pointing along the row', then ask for a re-check. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-389",
+      "title": "FC LH-3B dispute: seasonal-bin-rotation.recall. 'Two bins share a cupboard 5 deep' never states the 3 items between them, so '4 blockers' doesn't follow. Fix: add 'with 3 other boxes between the front and back positions', then ask for a re-check. See fact-check-LH3-2026-10-14.md (Batch B)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-390",
+      "title": "FC LH-3B: re-check spaced-beats-cram, square-bow-stays-tied and wobbly-table-quarter-turn .recall from a host that can open pubmed, fieggen.com and arxiv.org (proxy 403 here)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-391",
+      "title": "FC LH-3B observations: (a) 27 study recall claims cite the nonexistent recall-patch-study.json (the record is .md + .lines.txt); (b) the study c4 claims 'Recall question answer and rationale: <old answer>' are stale after the recall patch, so relabel or retire them. See fact-check-LH3-2026-10-14.md (Batch B)",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

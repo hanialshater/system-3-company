@@ -3,7 +3,7 @@
   "title": "Scale the portions, not the pan",
   "hook": "A four-portion recipe uses 300g. How much corresponds to six portions?",
   "domain": "lifehacks",
-  "concept": "lh-scale-recipe-portions",
+  "concept": "recipe-scale-per-portion",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -26,8 +26,10 @@
       "id": "lifehacks.lh-scale-recipe-portions.c1",
       "text": "The quantity-only recipe uses 300g for four equal portions. Scaled model; quantities only.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: matches the scenario in the rendered question and the assumptions line \"Full scale:900g; quantities only.\" (75×12 = 900 = resourceGraphicScale).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c2",
@@ -51,14 +53,16 @@
       "id": "lifehacks.lh-scale-recipe-portions.c4",
       "text": "A quantity-only recipe uses 300g for four equal portions. How many grams keep the same amount per portion for two portions? Correct: 150g. The rate is 75g per portion; two portions × 75g = 150g. This is proportional quantity arithmetic only.",
       "support": "derivation",
-      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: 300 g ÷ 4 = 75 g; 75 × 2 = 150 g (keyed option 0); stage at Portions=2 shows (75×2) = 150g. Note: the source text above still cites the old ten-portion recall (750 g); the builder updates it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c5",
       "text": "Cooking times do not scale in proportion to quantity: follow the recipe's own times and check food is cooked through.",
       "support": "source",
-      "source": "Safety-required stage line; wording from the independent safety second reader (company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md, lifehacks-safety-reviewer), applied 2026-10-14 by demo-builder (W-373). Source owed: a food-safety body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "source": "Safety-required stage line; wording from the independent safety second reader (company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md, lifehacks-safety-reviewer), applied 2026-10-14 by demo-builder (W-373). Source owed: a food-safety body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: an advice claim that needs a food-safety body (e.g. USDA FSIS, UK FSA); none could be opened from this host (proxy 403, DNS fail). Not verified on an unopened source. My read of the wording: accurate as now written (times change with quantity, not in proportion).",
       "status": "unverified"
     }
   ],
@@ -82,7 +86,7 @@
   "version": 3,
   "format": "side-by-side",
   "curriculum": {
-    "primary": "lifehacks:lh-scale-recipe-portions",
+    "primary": "lifehacks:recipe-scale-per-portion",
     "prerequisites": [],
     "level": "intro",
     "references": [],

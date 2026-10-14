@@ -3,7 +3,7 @@
   "title": "Cut and paste relocate",
   "hook": "Copy and cut agree only if you ignore what happened to the source.",
   "domain": "lifehacks",
-  "concept": "cut-moves-the-selection",
+  "concept": "ui-copy-vs-cut",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.cut-moves-the-selection.recall",
       "text": "Cut removes B from its place; pasting puts it after D.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Simulated in node: cut B, paste after D → 'A C D B'. Matches c2. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:cut-moves-the-selection",
+    "primary": "lifehacks:ui-copy-vs-cut",
     "prerequisites": [],
     "level": "intro",
     "references": [],

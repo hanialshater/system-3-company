@@ -3,7 +3,7 @@
   "title": "Leave a restart point",
   "hook": "A handoff saying “almost done” lacks a place to resume.",
   "domain": "lifehacks",
-  "concept": "handoff-needs-a-checkpoint",
+  "concept": "office-handoff",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.handoff-needs-a-checkpoint.recall",
       "text": "Artifact, last completed step and next check give a restart point; 'nearly finished' gives none.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Only key 2 has artifact, last step, next check; matches c2. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:handoff-needs-a-checkpoint",
+    "primary": "lifehacks:office-handoff",
     "prerequisites": [],
     "level": "intro",
     "references": [],

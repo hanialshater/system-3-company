@@ -3,7 +3,7 @@
   "title": "Focus and selection differ",
   "hook": "The active panel and the selected item are separate pieces of state.",
   "domain": "lifehacks",
-  "concept": "selection-not-focus",
+  "concept": "ui-selection-vs-focus",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -57,8 +57,10 @@
       "id": "lifehacks.selection-not-focus.recall",
       "text": "Focus and selection are separate state; the target is the selected item. Real apps differ in how focus and shortcuts behave.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-study.lines.txt. The cited recall-patch-study.json is not in the repo; the patch of record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -80,7 +82,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:selection-not-focus",
+    "primary": "lifehacks:ui-selection-vs-focus",
     "prerequisites": [],
     "level": "intro",
     "references": [],

@@ -3,7 +3,7 @@
   "title": "Keep the phrase together",
   "hook": "“Blue folder” and “folder is blue” do not contain the same exact phrase.",
   "domain": "lifehacks",
-  "concept": "mail-exact-phrase",
+  "concept": "search-phrase-and-exclude",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -57,8 +57,10 @@
       "id": "lifehacks.mail-exact-phrase.recall",
       "text": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches.",
       "support": "source",
-      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Phrase match simulated in node: only 'I saw a red car' has the adjacent sequence. Source Gmail Help 7190 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -80,7 +82,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:mail-exact-phrase",
+    "primary": "lifehacks:search-phrase-and-exclude",
     "prerequisites": [],
     "level": "intro",
     "references": [],

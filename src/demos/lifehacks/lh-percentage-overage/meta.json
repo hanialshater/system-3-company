@@ -3,7 +3,7 @@
   "title": "Ten extra or ten percent extra",
   "hook": "A fixed spare count and a percentage spare count diverge as a job grows.",
   "domain": "lifehacks",
-  "concept": "lh-percentage-overage",
+  "concept": "fixed-vs-percentage",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -26,29 +26,46 @@
       "id": "lifehacks.lh-percentage-overage.c1",
       "text": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. Scaled model; quantity-only model; no installation advice.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
-      "status": "unverified"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: matches the rendered question and the assumptions line (\"Full scale:132tiles; quantity-only model; no installation advice.\"; \"Scaled model\" there is the full-scale prefix).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-percentage-overage.c2",
       "text": "The stage's two results are computed by the printed expressions. At Required=40tiles, A=44tiles and B=50tiles. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: stage prints ceil((40×1.1)) = 44tiles and (40+10) = 50tiles; fills are proportional; Full scale 132 = resourceGraphicScale = A at 120, fixed across x=40,95,100,105 screenshots.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-percentage-overage.c3",
       "text": "A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. Rounding up also ties them at 95; above 100 the percentage order is larger.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified with exact integer arithmetic, not the model: A = ceil(11x/10) = floor((11x+9)/10); A=B exactly for integers 91..100, i.e. 95 and 100 on the step-5 slider; A<B at 20..90, A>B at 105..120; resource-model.ts (snapToInteger) matches exact values at all 21 slider points, and the stage shows 105/105, 110/110, 116/115. \"Rounding up also ties them at 95\" is true and slider-scoped.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-percentage-overage.c4",
       "text": "From what required count is 10% extra (rounded up) at least as large as ten extra? Correct: 91. 10% grows with the requirement; the two orders are equal for requirements from 91 to 100 (95 and 100 on the slider), and below that ten extra is larger.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"*\",\"x\",1.1]]; B=[\"+\",\"x\",10]; x denotes Required. At x=40, A=44, B=50. Before ceil, resource-model.ts snaps a product within 1e-9 of an integer (snapToInteger), so x=100 gives A=ceil(110)=110, not 111 (W-357). On the slider (20 to 120, step 5) A=B at x=95 (ceil(104.5)=105) and x=100 (110); A<B below 95 and A>B from 105. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: ceil(1.1x) ≥ x+10 iff 1.1x > x+9 iff x > 90, so the least integer is 91 (keyed option 2); equal for 91..100, ten-extra larger below. Wording came verbatim from an FC LH-1 example; this is the fresh instance under the W-280 ruling (see the fact-check record for the reading-order disclosure).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-percentage-overage.c5",
+      "text": "A fixed spare count and a percentage spare count diverge as a job grows.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-percentage-overage\".hook), learner-visible under the title, found unrecorded by FC LH-2 (2026-10-14, fresh fact-checker instance, W-369). Spare counts are 10 and ceil(0.1x): on the slider (20 to 120) the gap is 8 at x=20, shrinks to 0 at 95 and 100, and is 2 at 120. They converge over most of the range, then cross; they diverge only above 100. DISPUTED: on the stage the two spare counts converge and cross; they do not diverge as the job grows from 20. Fix (example wording, owner decides): \"A fixed spare count stays the same; a percentage spare count grows with the job, so the two cross.\"",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -71,7 +88,7 @@
   "version": 2,
   "format": "side-by-side",
   "curriculum": {
-    "primary": "lifehacks:lh-percentage-overage",
+    "primary": "lifehacks:fixed-vs-percentage",
     "prerequisites": [],
     "level": "intro",
     "references": [],

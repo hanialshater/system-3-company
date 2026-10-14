@@ -3,7 +3,7 @@
   "title": "Rule out half the labels",
   "hook": "Find the same target by scanning shuffled labels and halving a sorted list.",
   "domain": "lifehacks",
-  "concept": "alphabet-sort-search",
+  "concept": "sorted-halving-search",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -79,8 +79,10 @@
       "id": "lifehacks.alphabet-sort-search.recall",
       "text": "Only sorted order makes every earlier label smaller than the middle label. Shuffled position supplies no such guarantee.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. No arithmetic. Key 1 only option giving the ordering guarantee; matches c1 (sorted comparison rules out earlier labels). Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -102,11 +104,13 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:alphabet-sort-search",
+    "primary": "lifehacks:sorted-halving-search",
     "prerequisites": [],
     "level": "intro",
     "references": [],
-    "also": []
+    "also": [
+      "cs:binary-search"
+    ]
   },
   "format": "single-card",
   "interactions": [

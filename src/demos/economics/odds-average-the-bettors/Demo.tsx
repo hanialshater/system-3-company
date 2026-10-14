@@ -12,15 +12,14 @@
 // $400, 70%; equal and richer runs with their money, odds and average), so slider play afterwards
 // cannot leave the reveal quoting a state that is gone. Simple-average readout hidden until the
 // commit. Bar segment labels on two lines so the $40 sliver is readable.
-// v4 (r8): fits beside the reveal on a phone. The four sliders are gone: the three preset buttons
-// are the explore (and the last one, "Start values", leaves the picture on the state the reveal's
-// first paragraph quotes). The readout row is gone (the picture's own "odds" and "simple average"
+// v4 (r8): fits beside the reveal on a phone. Three of the four sliders are gone; the one left is
+// bettor 2's money, the variable the lesson is about. The readout row is gone (the picture's own "odds" and "simple average"
 // labels carry it). The picture is 110 px tall instead of 150, the Seen rows are two lines, and the
 // model note lives only on the stage chip.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Row } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -155,7 +154,12 @@ export default function OddsAverage({ slug }: { slug: string }) {
                   {!locked && (
                     <g>
                       <line x1={cut} y1={16} x2={cut} y2={70} stroke="var(--fg)" strokeWidth={3} />
-                      <text x={clamp(cut)} y={83} className={s.big} textAnchor="middle">
+                      <text
+                        x={avgX <= cut ? Math.min(cut + 5, X0 + W - 70) : Math.max(cut - 5, X0 + 70)}
+                        y={83}
+                        className={s.big}
+                        textAnchor={avgX <= cut ? "start" : "end"}
+                      >
                         odds {pct(q.implied)}
                       </text>
                       <line x1={avgX} y1={20} x2={avgX} y2={92} className={s.ghost} />
@@ -173,7 +177,7 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     <>
                       {seenStart && (
                         <div>
-                          Seen, start: {usd(st.a1)} + {usd(st.a2)} = {usd(st.onA)} of {usd(st.total)} on A, odds {pct(st.implied)}, average {pct(st.simple)}
+                          Seen, start: {usd(st.a1)} + {usd(st.a2)} = {usd(st.onA)} of {usd(st.total)}: {pct(st.implied)} (avg {pct(st.simple)})
                         </div>
                       )}
                       {(eq || rich) && (
@@ -199,8 +203,11 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     disabled={locked || (w1 === START.w1 && p1 === START.p1 && w2 === START.w2 && p2 === START.p2)}
                     onClick={() => apply({ ...START })}
                   >
-                    Start values
+                    Start
                   </Control>
+                </Row>
+                <Row>
+                  <Slider label="Bettor 2 money" value={w2} min={50} max={400} step={50} format={usd} disabled={locked} onChange={(v) => apply({ w2: v })} />
                 </Row>
               </div>
             );

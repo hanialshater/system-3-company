@@ -3,7 +3,7 @@
   "title": "A door needs a quarter-circle",
   "hook": "Where can this light basket clear the door?",
   "domain": "lifehacks",
-  "concept": "door-swing-clearance",
+  "concept": "clearance-for-movement",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -68,8 +68,10 @@
       "id": "lifehacks.door-swing-clearance.recall",
       "text": "The door sweeps a quarter-circle whose radius is the door's width. In the model, anything closer to the hinge than 85 cm is inside that arc. Real handles and basket shapes need extra room, and exits must stay clear.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Radius = door width 85 cm; c3 collision when radius < width, so 'more than 85 cm' is safe in the model; 42.5 is half-width slip. Real-handle and exit caveats match c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -91,7 +93,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:door-swing-clearance",
+    "primary": "lifehacks:clearance-for-movement",
     "prerequisites": [],
     "level": "intro",
     "references": [],

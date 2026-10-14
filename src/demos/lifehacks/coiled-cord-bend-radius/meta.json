@@ -3,7 +3,7 @@
   "title": "Tighter coils, more curvature",
   "hook": "Which coil bends the cord more gently?",
   "domain": "lifehacks",
-  "concept": "coiled-cord-bend-radius",
+  "concept": "cord-coil-bend-radius",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -25,43 +25,53 @@
       "id": "lifehacks.coiled-cord-bend-radius.c1",
       "text": "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation against the new drawing: curvature of a circle = 1/r by definition; circumference 2πr grows with r; drawn turns × 2πr = 200 cm at every slider value (0 mismatches, r=5..20 and doubled), so total length is fixed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.c2",
       "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: caption and reveal limit present; drawing is circles, an arc, a radius line and labels only; r=Ncm is the model input, not a product limit.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.c3",
       "text": "Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene, r=5..20 step 0.5, both states: value = 1/r, comparison radius 2r, turns = 200/(2πr) (r=10: 3.18, r=20: 1.59, r=40: 0.80, as rendered), drawn radius = r×95/40 (0 mismatches).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.c4",
       "text": "Which coil bends the cord more gently?",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: rendered question; key = 1 \"Double radius\" (half the curvature).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.c5",
       "text": "Which dimension determines the sharpness of a circular bend?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.recall",
       "text": "Curvature = 1 ÷ radius. Half the radius gives twice the curvature, a sharper bend, and each turn uses less cord. The card gives no product-specific bend limit.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: (1/15)/(1/30) = 2, so curvature doubles; keyed option 0 \"It doubles\"; each turn uses 2π×15 < 2π×30 cm.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -83,7 +93,7 @@
   },
   "version": 2,
   "curriculum": {
-    "primary": "lifehacks:coiled-cord-bend-radius",
+    "primary": "lifehacks:cord-coil-bend-radius",
     "prerequisites": [],
     "level": "intro",
     "references": [],

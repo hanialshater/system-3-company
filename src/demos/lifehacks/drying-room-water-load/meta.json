@@ -3,7 +3,7 @@
   "title": "The water goes somewhere",
   "hook": "Which number describes water released by all items?",
   "domain": "lifehacks",
-  "concept": "drying-room-water-load",
+  "concept": "drying-humidity",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,22 +61,24 @@
       "id": "lifehacks.drying-room-water-load.c5",
       "text": "Why should you count the whole wet load rather than one garment?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.drying-room-water-load.c6",
       "text": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
       "support": "source",
-      "source": "Safety-required stage line (company/reviews/drying-room-water-load/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a housing, public-health or energy-advice body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "source": "Safety-required stage line (company/reviews/drying-room-water-load/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a housing, public-health or energy-advice body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: an advice claim (damp and mould) that needs a housing or public-health body. gov.uk, nhs.uk, epa.gov, cdc.gov and council pages could not be opened from this host (proxy 403, DNS fail); search snippets from UK council damp guidance agree but were not opened, so they are not used. The physical clause (evaporated water enters the room air first) is true. Re-check from a connected host.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.drying-room-water-load.recall",
       "text": "Water leaving laundry enters the surroundings: 6 × 300 g = 1800 g. This is a mass balance; it does not predict the room's humidity or any health outcome.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: 6 × 300 g = 1800 g = 1.8 kg (keyed option 0); mass balance, consistent with evaluateHome (count × per-item water); the why is a statement about the model, so it does not contradict c6.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -98,7 +100,7 @@
   },
   "version": 2,
   "curriculum": {
-    "primary": "lifehacks:drying-room-water-load",
+    "primary": "lifehacks:drying-humidity",
     "prerequisites": [],
     "level": "intro",
     "references": [],

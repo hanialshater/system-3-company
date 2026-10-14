@@ -5,6 +5,9 @@
 // (a·c, b·d, (a+b)(c+d)). One shared button splits both one level: 4 | 3, 16 | 9, 64 | 27 one-digit products. The
 // counts are the trees' real leaves, not constants. No half-sum carries for these numbers, so every leaf is 1-digit.
 // The halves differ (a 1114, b 1313, c 1311, d 1224) so the middle check can tell the cross terms from a·c and b·d.
+// v5 (wave H r8): phone fit. viewBox 274 -> 190 tall (one-digit dots packed 16 per row; the shared product moved into
+// the top box), labels >= 10px, the table is transposed (2 rows of counts), the three buttons fit one row, the check
+// lines are 4 short lines, the notation line hides at the reveal, and the reveal points at the check lines, not a box.
 // Milestones: one-digit-leaves and middle-checked (the check line prints both sides of the cross-term identity) (spec company/design/specs/karatsuba-three-not-four.md).
 
 import { useEffect, useState } from "react";
@@ -69,9 +72,11 @@ const COLS = [
   { x: 2, w: 166, tree: S, head: "Schoolbook: 4 per split" },
   { x: 172, w: 166, tree: K, head: "Karatsuba: 3 per split" },
 ];
-const L1Y = 44;
-const L2Y = 92;
-const L3Y = 156;
+const VIEW_H = 190;
+const L1Y = 40;
+const L2Y = 86;
+const L2H = 15; // row pitch of the half-size product boxes
+const L3Y = 150;
 
 function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number; middle: boolean }) {
   const l1 = col.tree.kids;
@@ -79,7 +84,7 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
   const isK = col.tree === K;
   return (
     <g>
-      <text x={col.x + col.w / 2} y={36} textAnchor="middle" className={s.head}>
+      <text x={col.x + col.w / 2} y={33} textAnchor="middle" className={s.head}>
         {col.head}
       </text>
       {lvl >= 1 &&
@@ -97,7 +102,7 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
                 stroke={hi ? "var(--domain)" : "var(--line)"}
                 strokeWidth={hi ? 2.5 : 1}
               />
-              <text x={col.x + i * bw + bw / 2} y={L1Y + 11} textAnchor="middle" className={s.lab}>
+              <text x={col.x + i * bw + bw / 2} y={L1Y + 12} textAnchor="middle" className={s.lab}>
                 {n.label}
               </text>
               <text x={col.x + i * bw + bw / 2} y={L1Y + 23} textAnchor="middle" className={s.nums}>
@@ -115,14 +120,14 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
             <g key={`${i}-${j}`} className={s.grow}>
               <rect
                 x={col.x + i * bw + 2}
-                y={L2Y + j * 16}
+                y={L2Y + j * L2H}
                 width={bw - 4}
-                height={14}
+                height={L2H - 2}
                 rx={3}
                 fill={isK ? "color-mix(in srgb, var(--domain) 18%, var(--bg-2))" : "var(--bg-2)"}
                 stroke="var(--line)"
               />
-              <text x={col.x + i * bw + bw / 2} y={L2Y + j * 16 + 10} textAnchor="middle" className={s.small}>
+              <text x={col.x + i * bw + bw / 2} y={L2Y + j * L2H + 10} textAnchor="middle" className={s.small}>
                 {m.x.toString()}×{m.y.toString()}
               </text>
             </g>
@@ -135,9 +140,9 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
                 <circle
                   key={`${i}-${q}`}
                   className={s.grow}
-                  cx={col.x + i * bw + bw / 2 - 12 + (q % 3) * 12}
-                  cy={L3Y + 6 + Math.floor(q / 3) * 12}
-                  r={4}
+                  cx={col.x + i * bw + bw / 2 - 10 + (q % 3) * 10}
+                  cy={L3Y + 5 + Math.floor(q / 3) * 10}
+                  r={3.5}
                   fill="var(--fg)"
                 />
               )),
@@ -146,23 +151,19 @@ function Column({ col, lvl, middle }: { col: (typeof COLS)[number]; lvl: number;
               <circle
                 key={q}
                 className={s.grow}
-                cx={col.x + col.w / 2 - 42 + (q % 8) * 12}
-                cy={L3Y + 6 + Math.floor(q / 8) * 12}
-                r={4}
+                cx={col.x + col.w / 2 - 75 + (q % 16) * 10}
+                cy={L3Y + 5 + Math.floor(q / 16) * 10}
+                r={3.5}
                 fill="var(--fg)"
               />
             )))}
-      {lvl >= DEPTH && (
-        <text x={col.x + col.w / 2} y={L3Y + 112} textAnchor="middle" className={s.answer}>
-          = {fmt(col.tree.value)}
-        </text>
-      )}
     </g>
   );
 }
 
-function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle }: {
+function Stage({ locked, revealed, interact, lvl, splitOne, splitAll, busy, middle, toggle }: {
   locked: boolean;
+  revealed: boolean;
   interact: () => void;
   lvl: number;
   splitOne: () => void;
@@ -180,16 +181,18 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
   }, [middle]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>Split each number into halves: a b and c d. Multiply the halves.</p>
+      {!revealed && <p className={s.rule}>Split each number into halves: a b and c d. Multiply the halves.</p>}
       <svg
-        viewBox="0 0 340 274"
+        viewBox={`0 0 340 ${VIEW_H}`}
         className="stage-svg"
         role="img"
         aria-label={`Schoolbook: ${COUNTS[lvl][0]} products at this level. Karatsuba: ${COUNTS[lvl][1]}${lvl >= DEPTH ? " one-digit products" : ""}`}
       >
-        <rect x={80} y={2} width={180} height={22} rx={5} fill="var(--bg-2)" stroke="var(--line)" />
-        <text x={170} y={17} textAnchor="middle" className={s.topbox}>
+        <rect x={lvl >= DEPTH ? 20 : 80} y={2} width={lvl >= DEPTH ? 300 : 180} height={20} rx={5} fill="var(--bg-2)" stroke="var(--line)" />
+        <text x={170} y={16} textAnchor="middle" className={s.topbox}>
           {X.toString()} × {Y.toString()}
+          {/* Both trees rebuild the same product from their leaves; shown once both reach 1 digit. */}
+          {lvl >= DEPTH && S.value === K.value ? ` = ${fmt(S.value)} (both)` : ""}
         </text>
         {COLS.map((c) => (
           <Column key={c.head} col={c} lvl={lvl} middle={middle} />
@@ -198,17 +201,19 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
       <table className={s.table}>
         <thead>
           <tr>
-            <th />
-            <th>Schoolbook</th>
-            <th>Karatsuba</th>
+            <th>Products</th>
+            {COUNTS.slice(1).map((_, i) => (
+              <th key={i}>{DIGITS[i + 1]}-digit</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {COUNTS.slice(1).map(([a, b], i) => (
-            <tr key={i}>
-              <th>{DIGITS[i + 1]}-digit products</th>
-              <td>{lvl > i ? a : "?"}</td>
-              <td>{lvl > i ? b : "?"}</td>
+          {(["Schoolbook", "Karatsuba"] as const).map((name, k) => (
+            <tr key={name}>
+              <th>{name}</th>
+              {COUNTS.slice(1).map((c, i) => (
+                <td key={i}>{lvl > i ? c[k] : "?"}</td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -218,10 +223,11 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
           <>
             <p className={s.check}>(a+b)(c+d) = a·c + a·d + b·c + b·d</p>
             <p className={s.check}>
-              Schoolbook&rsquo;s a·d + b·c: {fmt(AD)} + {fmt(BC)} = {fmt(CROSS)}
+              Schoolbook&rsquo;s a·d + b·c = {fmt(CROSS)}
             </p>
+            <p className={s.check}>Karatsuba&rsquo;s (a+b)(c+d) − a·c − b·d:</p>
             <p className={s.check}>
-              Karatsuba&rsquo;s (a+b)(c+d) − a·c − b·d: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}
+              {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}
             </p>
           </>
         ) : (
@@ -230,10 +236,10 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
       </div>
       <Row>
         <Control className={s.tap} disabled={locked || lvl >= DEPTH || busy} onClick={splitOne}>
-          Split one level
+          Split once
         </Control>
         <Control className={s.tap} disabled={locked || lvl >= DEPTH || busy} onClick={splitAll}>
-          Split down to 1 digit
+          Split to 1 digit
         </Control>
         <Control
           className={`${s.tap} ${middle ? "active" : ""}`}
@@ -241,7 +247,7 @@ function Stage({ locked, interact, lvl, splitOne, splitAll, busy, middle, toggle
           disabled={locked || middle}
           onClick={toggle}
         >
-          Check the middle
+          Check middle
         </Control>
       </Row>
     </div>
@@ -280,22 +286,20 @@ export default function KaratsubaThreeNotFour({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Schoolbook needed <strong>{sl}</strong> one-digit products; Karatsuba <strong>{kl}</strong>. One product fewer
-            at each split: 4·4·4 against 3·3·3.
+            Schoolbook needed <strong>{sl}</strong> one-digit products; Karatsuba <strong>{kl}</strong>: 4·4·4 against 3·3·3.
           </p>
           <p>
-            The trick is the third box. Your check lines showed it: (a+b)(c+d) holds all four products, a·c + a·d + b·c +
-            b·d. Take away a·c and b·d, which Karatsuba already has: {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} = {fmt(VIA)}, the
-            same as schoolbook&rsquo;s a·d + b·c ({fmt(AD)} + {fmt(BC)}). Saving one product at every split compounds: for 1,024-digit numbers, if no half-sum like a+b gains a digit, that
-            is 59,049 products against 1,048,576 (3<sup>10</sup> against 4<sup>10</sup>), and in general about n<sup>1.58</sup> instead of
-            n<sup>2</sup> for n digits.
+            Your check lines show why: (a+b)(c+d) holds all four products, so {fmt(SUMS)} − {fmt(AC)} − {fmt(BD)} ={" "}
+            {fmt(VIA)} leaves schoolbook&rsquo;s a·d + b·c. One product saved per split compounds: about n<sup>1.58</sup>{" "}
+            instead of n<sup>2</sup>.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Stage
           locked={locked}
+          revealed={phase === "reveal"}
           interact={interact}
           lvl={lvl}
           splitOne={splitOne}

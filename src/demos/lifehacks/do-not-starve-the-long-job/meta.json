@@ -3,7 +3,7 @@
   "title": "The short-job trade-off",
   "hook": "Clearing tiny tasks first can delay the long task’s own deadline.",
   "domain": "lifehacks",
-  "concept": "do-not-starve-the-long-job",
+  "concept": "queue-shortest-first",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.do-not-starve-the-long-job.recall",
       "text": "5 + 5 + 5 + 20 = 35, past minute 22; starting the long job first would finish it at 20.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 5+5+5+20 = 35 > 22; long first ends at 20 ≤ 22 (node). Matches c2. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,11 +86,13 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:do-not-starve-the-long-job",
+    "primary": "lifehacks:queue-shortest-first",
     "prerequisites": [],
     "level": "intro",
     "references": [],
-    "also": []
+    "also": [
+      "cs:shortest-job-first"
+    ]
   },
   "format": "before-after",
   "interactions": [

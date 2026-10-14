@@ -3,7 +3,7 @@
   "title": "Sort dates by their names",
   "hook": "Day-first names mix months when sorted alphabetically.",
   "domain": "lifehacks",
-  "concept": "iso-date-filename-sort",
+  "concept": "text-sort-vs-number-sort",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.iso-date-filename-sort.recall",
       "text": "Year-first names put the largest unit first; '05-01-2026' and 'Jan' sort ahead of 2025 as text.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. Sorted in node: only YYYY-MM-DD puts the 2025 file first. Wording: 'sort ahead of 2025' means ahead of the 2025 names; optional reword 'sort ahead of the 2025 names'. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:iso-date-filename-sort",
+    "primary": "lifehacks:text-sort-vs-number-sort",
     "prerequisites": [],
     "level": "intro",
     "references": [],

@@ -3,7 +3,7 @@
   "title": "A bundle still has loose ends",
   "hook": "Which layout removes the depicted free-end paths?",
   "domain": "lifehacks",
-  "concept": "group-cables-with-ends",
+  "concept": "cord-tangle-length",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -25,43 +25,51 @@
       "id": "lifehacks.group-cables-with-ends.c1",
       "text": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
       "support": "source",
-      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: support is \"source\" and its only source, Raymer & Smith 2007 (mit.edu PDF, pnas.org), could not be opened from this host (proxy 403, DNS fail). Not verified on an unopened source. The second sentence is true of the stage (middle tie with 2N orange end dots, versus ties at both ends and middle with none, 390x844 screenshots at N=2,4,8). Fix: retype to derivation/observation or cite an openable source, then re-check.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c2",
       "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: caption \"Plain cord; storage only\" and reveal limit present; drawing is strands, ties and end dots only.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c3",
       "text": "Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for N=2..8, both states: readout = drawn end dots = strands×2 before, 0 after (0 mismatches); stage readout \"Ncords · two ends each\"; nothing simulates knots.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c4",
       "text": "Which layout removes the depicted free-end paths?",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: rendered question; key = 1 \"Secure bundle ends\", the only layout with 0 drawn ends.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.group-cables-with-ends.c5",
       "text": "Why might a tie around the middle leave an end-related tangle pathway?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): held unverified: this transfer prompt is not rendered anywhere (HomeLesson.tsx never reads spec.recall; Feed.tsx shows meta.recall), so no learner sees it; superseded by the .recall claim. Builder deletes it as recall-patch-home.md step 2 did for six lessons.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.group-cables-with-ends.recall",
       "text": "Bundling the middle keeps the strands together but leaves the ends free, and free ends weaving through loops are the tangle path. Securing the ends removes that path in the drawing.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: with both ends held, an arc cannot change knot type (isotopy fixing the ends), so knotting needs an end to pass through a loop; a middle tie leaves the ends free. Keyed option 1 matches; \"in the drawing\" scopes the last sentence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -83,7 +91,7 @@
   },
   "version": 2,
   "curriculum": {
-    "primary": "lifehacks:group-cables-with-ends",
+    "primary": "lifehacks:cord-tangle-length",
     "prerequisites": [],
     "level": "intro",
     "references": [],

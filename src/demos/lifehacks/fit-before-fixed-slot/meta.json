@@ -3,7 +3,7 @@
   "title": "Fit around the fixed slot",
   "hook": "A movable task fits only if it respects the fixed appointment.",
   "domain": "lifehacks",
-  "concept": "fit-before-fixed-slot",
+  "concept": "fit-around-fixed-slots",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.fit-before-fixed-slot.recall",
       "text": "The call cannot move, so the task must end by 11:00: 11:00 − 25 minutes = 10:35.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 11:00 − 25 = 10:35 (node). 11:05 would overlap. Matches c2. Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:fit-before-fixed-slot",
+    "primary": "lifehacks:fit-around-fixed-slots",
     "prerequisites": [],
     "level": "intro",
     "references": [],

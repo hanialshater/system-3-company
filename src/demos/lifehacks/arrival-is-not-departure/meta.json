@@ -3,7 +3,7 @@
   "title": "Arrival time works backwards",
   "hook": "A twenty-minute trip for a minute-forty arrival has a latest departure.",
   "domain": "lifehacks",
-  "concept": "arrival-is-not-departure",
+  "concept": "work-back-from-deadline",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -61,8 +61,10 @@
       "id": "lifehacks.arrival-is-not-departure.recall",
       "text": "Departure = arrival minus trip: 9:00 − 35 minutes = 8:25.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 9:00 − 35 min = 8:25 (node). 9:00 ignores trip, 8:35 is a 10-min slip. Matches c2 (start = arrival − journey). Pointer fix: the patch record is company/reviews/lifehacks-200/recall-patch-study.md and recall-patch-study.lines.txt; recall-patch-study.json does not exist. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:arrival-is-not-departure",
+    "primary": "lifehacks:work-back-from-deadline",
     "prerequisites": [],
     "level": "intro",
     "references": [],

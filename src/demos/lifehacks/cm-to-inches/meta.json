@@ -3,7 +3,7 @@
   "title": "An inch is exactly 2.54cm",
   "hook": "Which conversion avoids the shown rounding shortcut?",
   "domain": "lifehacks",
-  "concept": "cm-to-inches",
+  "concept": "inch-is-2-54-cm",
   "status": "draft",
   "durationSec": 60,
   "owner": {
@@ -66,8 +66,10 @@
       "id": "lifehacks.cm-to-inches.recall",
       "text": "An inch is exactly 2.54 cm, so 127 ÷ 2.54 = 50 in. The 2.5 shortcut gives 50.8 in, and its error grows with length. The measurement itself still has its own uncertainty.",
       "support": "source",
-      "source": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
-      "status": "unverified"
+      "source": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Arithmetic OK: 127/2.54 = 50, 127/2.5 = 50.8, 127×2.5 = 317.5 (node); key unique; matches c1–c3. Source NIST si-units-length NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -89,7 +91,7 @@
   },
   "version": 1,
   "curriculum": {
-    "primary": "lifehacks:cm-to-inches",
+    "primary": "lifehacks:inch-is-2-54-cm",
     "prerequisites": [],
     "level": "intro",
     "references": [],
