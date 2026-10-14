@@ -4,8 +4,9 @@
 // The learner writes with it: each tap appends a word that followed the previous word
 // in training, either chosen by hand from the count bars or sampled by the model.
 // The payoff: "the dog sat on the mat" was never in the training text, yet every
-// adjacent pair was, so the counts alone can write it. The reveal unlocks only when
-// a sentence is finished, and says whether that sentence was new.
+// adjacent pair was, so the counts alone can write it. The reveal unlocks only when a
+// sentence the stage marks as new is finished; the finished sentence shows each of its
+// pairs with its training count, so the cause (seen pairs, unseen whole) is on the stage.
 
 import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -47,6 +48,14 @@ const isNew = (words: string[]) => {
   const run = " " + words.join(" ") + " ";
   return !CORPUS.some((line) => (" " + line + " ").includes(run));
 };
+/** Adjacent pairs of a finished sentence with their training counts. */
+const pairsOf = (words: string[]) =>
+  words.slice(0, -1).map((w, i) => {
+    const n = words[i + 1];
+    const c = (NEXT[w] ?? []).find(([x]) => x === n)?.[1] ?? 0;
+    return { a: w, b: n, c };
+  });
+const END: [string, number][] = [[".", 1]]; // fallback: end the sentence
 // MODEL END
 
 function rng(seed: number) {
@@ -77,15 +86,23 @@ export default function NextWordTally({ slug }: { slug: string }) {
   const menu = done ? [] : (NEXT[last] ?? []);
   const total = menu.reduce((a, [, c]) => a + c, 0);
   const newOnes = made.filter((m) => isNew(m.split(" ")));
-  const lastMade = made[made.length - 1];
+  const firstNew = newOnes[0];
 
-  const add = (w: string, interact: () => void) => {
-    const next = append(words, w);
+  const finished = (next: string[], interact: () => void) => {
     setWords(next);
     if (next[next.length - 1] === ".") {
       setMade((m) => [...m, next.join(" ")]);
-      interact(); // the reveal waits for a finished sentence
+      if (isNew(next)) interact(); // the reveal waits for a finished sentence that is new
     }
+  };
+  const add = (w: string, interact: () => void) => finished(append(words, w), interact);
+  /** The model keeps picking until the sentence ends (capped so a loop cannot run forever). */
+  const finish = (interact: () => void) => {
+    let next = words;
+    for (let k = 0; k < 20 && next[next.length - 1] !== "."; k++) {
+      next = append(next, sample(NEXT[next[next.length - 1]] ?? END, rand.current));
+    }
+    finished(next, interact);
   };
 
   const shown = words.filter((w) => w !== ".").join(" ");
@@ -99,14 +116,14 @@ export default function NextWordTally({ slug }: { slug: string }) {
         options: ["No, it never saw that sentence", "Yes, it can assemble it from the counts", "Only after it sees more sentences"],
         answer: 1,
       }}
-      exploreHint="Tap words to write a sentence. Try “the dog sat on the mat”."
+      exploreHint="Write a sentence the stage marks New. Try “the dog sat on the mat”."
       reveal={() => (
         <>
           <p>
-            {lastMade ? (
+            {firstNew ? (
               <>
-                Your last sentence, <strong>“{lastMade.replace(" .", ".")}”</strong>, was{" "}
-                {isNew(lastMade.split(" ")) ? "not in the training text" : "just a piece of the training text"}.{" "}
+                You made <strong>“{firstNew.replace(" .", ".")}”</strong>. That sentence is not in the training text,
+                yet every pair under it on the stage had a count of at least 1.{" "}
               </>
             ) : null}
             Every word you could pick had followed the word before it in training. That is all the model stores: “the”
@@ -131,9 +148,19 @@ export default function NextWordTally({ slug }: { slug: string }) {
             {done ? <span className={s.stop}>.</span> : <span className={s.caret} aria-hidden />}
           </div>
           {done ? (
-            <p className={`${s.verdict} ${isNew(words) ? s.fresh : s.copy}`}>
-              {isNew(words) ? "New: not in the training text." : "Not new: it is a piece of the training text."}
-            </p>
+            <>
+              <p className={`${s.verdict} ${isNew(words) ? s.fresh : s.copy}`}>
+                {isNew(words) ? "New: not in the training text." : "Not new: it is a piece of the training text."}
+              </p>
+              <p className={s.after}>Pairs in training:</p>
+              <ul className={s.pairs} aria-label="pairs in this sentence">
+                {pairsOf(words).map((p, i) => (
+                  <li key={i} className={s.pair}>
+                    {p.a}→{p.b} <span className={s.count}>×{p.c}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
           ) : (
             <>
               <p className={s.after}>
@@ -162,6 +189,9 @@ export default function NextWordTally({ slug }: { slug: string }) {
               onClick={() => add(sample(menu, rand.current), interact)}
             >
               Let the model pick
+            </Control>
+            <Control disabled={locked || done} onClick={() => finish(interact)}>
+              Let it finish
             </Control>
             <Control disabled={locked || words.length === 1} onClick={() => setWords(["the"])}>
               Start over

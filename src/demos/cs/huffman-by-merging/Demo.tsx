@@ -4,6 +4,9 @@
 // beneath it, so it costs the merged weight in bits. The payoff: merge the rarest first
 // and the common symbol stays near the top with a short code: 14 bits, not 16.
 // One representation: the growing code tree, codes written under its leaves.
+// "Try 10-bit codes" writes A 0, B 1, C 00, D 01 under the same leaves (tree hidden) and shows why
+// they fail: A's 0 starts C's 00, so "00" reads as C or as A A. The reveal waits for that and the tree.
+// QA press order: Try 10-bit codes, Join the two rarest, (CD), B -> both milestones.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -19,6 +22,9 @@ const LEAVES: Tree[] = [
   { id: "A", w: 4, sym: "A" },
 ];
 const FIXED = 16;
+/** The too-short code set from the 10-bit option: cheaper, but codes start one another. */
+const SHORT: Record<string, string> = { A: "0", B: "1", C: "00", D: "01" };
+const SHORT_BITS = LEAVES.reduce((a, t) => a + t.w * SHORT[t.sym!].length, 0); // 10
 
 const height = (t: Tree): number => (t.l && t.r ? 1 + Math.max(height(t.l), height(t.r)) : 0);
 const leavesOf = (t: Tree): Tree[] => (t.l && t.r ? [...leavesOf(t.l), ...leavesOf(t.r)] : [t]);
@@ -44,6 +50,8 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
   const [sel, setSel] = useState<number | null>(null);
   const [bits, setBits] = useState(0);
   const [built, setBuilt] = useState<number[]>([]); // totals of finished trees
+  const [joins, setJoins] = useState<number[]>([]); // cost of each join so far
+  const [short, setShort] = useState(false);
 
   const done = forest.length === 1;
   const code: Record<string, string> = {};
@@ -81,7 +89,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
         answer: 1,
       }}
       exploreHint="Tap two circles to join them. Each join puts one more digit on every letter below it."
-      minInteractions={1}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -91,11 +99,12 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
                 ? `Your trees cost ${built.join(" and ")} bits. `
                 : ""}
             Each join puts one more digit on every letter inside it, so a join costs the group's total count. Joining
-            the rarest first costs 2 + 4 + 8 = <strong>14</strong>.
+            the rarest first costs 2 + 4 + 8 = <strong>14</strong>, the sum on the Bits readout.
           </p>
           <p>
-            {done && bits < FIXED
-              ? `Your codes: ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}. `
+            The {SHORT_BITS}-bit codes you tried failed: A&rsquo;s 0 starts C&rsquo;s 00, so &ldquo;00&rdquo; could be C or
+            A A. {done && bits < FIXED
+              ? `Your tree's codes: ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}. `
               : "The best tree gives A 1, B 01, C 000, D 001. "}
             No code starts another (nothing else begins with A's 1), so the message decodes with no gaps. Huffman
             proved that joining the two rarest first is never beaten.
@@ -105,21 +114,25 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-      <Milestones interact={interact} names={["best-tree"]}>
+      <Milestones interact={interact} names={["short-fails", "best-tree"]}>
         {(reach) => {
         const join = (a: number, b: number, f: Tree[], total: number) => {
           let next = f.filter((_, i) => i !== a && i !== b);
           const m = merge(f[a], f[b]);
           next.splice(Math.min(a, b), 0, m);
           total += m.w;
+          const costs = [...(f.length === 4 ? [] : joins), m.w];
           // With two groups left there is only one join possible: make it.
           if (next.length === 2) {
             const last = merge(next[0], next[1]);
             total += last.w;
+            costs.push(last.w);
             next = [last];
           }
           setForest(next);
           setBits(total);
+          setJoins(costs);
+          setShort(false);
           setSel(null);
           if (next.length === 1) {
             setBuilt((x) => [...x, total]);
@@ -127,7 +140,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
           }
         };
         const tap = (i: number) => {
-          if (locked || done) return;
+          if (locked || done || short) return;
           if (sel === null) setSel(i);
           else if (sel === i) setSel(null);
           else join(sel, i, forest, bits);
@@ -143,10 +156,24 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
           setForest(LEAVES);
           setSel(null);
           setBits(0);
+          setJoins([]);
         };
+        const toggleShort = () => {
+          if (locked) return;
+          setSel(null);
+          setShort((v) => !v);
+          if (!short) reach("short-fails");
+        };
+        const bitsText = short
+          ? `${SHORT_BITS}?`
+          : joins.length
+            ? `${joins.join(" + ")}${done ? ` = ${bits}` : ""}`
+            : "0";
 
         const msg = locked
           ? "Make a prediction to start."
+          : short
+            ? `${SHORT_BITS} bits, but is “00” C, or A then A? A's 0 starts C's 00.`
           : done
             ? bits >= FIXED
               ? `Done: ${bits} bits, no better than fixed. Start over and join the two rarest first.`
@@ -155,7 +182,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
               ? "Now tap another circle to join them."
               : forest.length === 4
                 ? "The number is how many times the letter appears."
-                : "When two are left, they join automatically.";
+                : "Join two of these. The last two then join on their own.";
 
         return (
           <div className={s.wrap}>
@@ -163,16 +190,19 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
               {msg}
             </p>
             <Row>
+              <Control className={short ? "active" : ""} aria-pressed={short} disabled={locked} onClick={toggleShort}>
+                {short ? "Back to the tree" : `Try ${SHORT_BITS}-bit codes`}
+              </Control>
               <Control disabled={locked || done} onClick={lightest}>
                 Join the two rarest
               </Control>
-              <Readout label="Bits" value={bits} />
+              <Readout label="Bits" value={bitsText} />
             </Row>
 
             <div className={s.tree} style={{ aspectRatio: `${W} / ${H}` }}>
               <svg viewBox={`0 0 ${W} ${H}`} className={s.lines} aria-hidden="true">
                 {all
-                  .filter((t) => t.l && t.r)
+                  .filter((t) => !short && t.l && t.r)
                   .flatMap((t) =>
                     [t.l!, t.r!].map((c, k) => {
                       const p = pos.get(t.id)!;
@@ -189,24 +219,33 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
                   )}
                 {order.map((leaf) => {
                   const p = pos.get(leaf.id)!;
+                  const c = short ? SHORT[leaf.sym!] : code[leaf.sym!];
+                  // In the 10-bit view, mark A's 0 and the codes it starts (C 00, D 01).
+                  const clash = short && leaf.sym !== "B";
                   return (
                     <g key={leaf.id}>
-                      <text x={p.x} y={BOTTOM + 38} textAnchor="middle" className={s.code}>
-                        {code[leaf.sym!] || "–"}
+                      <text
+                        x={p.x}
+                        y={BOTTOM + 38}
+                        textAnchor="middle"
+                        className={s.code}
+                        style={clash ? { fill: "var(--bad)" } : undefined}
+                      >
+                        {c || "–"}
                       </text>
                       <text x={p.x} y={BOTTOM + 56} textAnchor="middle" className={s.cost}>
-                        {code[leaf.sym!] ? `${leaf.w}×${code[leaf.sym!].length}=${leaf.w * code[leaf.sym!].length}` : ""}
+                        {c ? `${leaf.w}×${c.length}=${leaf.w * c.length}` : ""}
                       </text>
                     </g>
                   );
                 })}
               </svg>
-              {all.map((t) => {
+              {all.filter((t) => !short || t.sym).map((t) => {
                 const p = pos.get(t.id)!;
                 const rootIdx = forest.indexOf(t);
                 const style = { left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` };
                 const label = t.sym ? `${t.sym} ${t.w}` : String(t.w);
-                return rootIdx >= 0 && !done ? (
+                return rootIdx >= 0 && !done && !short ? (
                   <Control
                     key={t.id}
                     className={`${s.node} ${t.sym ? s.leaf : ""} ${sel === rootIdx ? s.sel : ""}`}

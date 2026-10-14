@@ -6,6 +6,9 @@
 // $120 premium. Key state: one year seen (a single big loss), then 50+ years (the average).
 // Seed 1 is chosen: its first year has exactly one loss, as in the brief (disclosed in claim c4).
 // Model: independent risks, no fraud, one premium; not advice about buying cover.
+// v2: the customer's side is on the stage too. "Your house" (house 1, outlined; it is the house hit in
+// year 1 under seed 1) shows premiums paid against the losses cover paid for it, and a tally of years
+// with 0 / 1 / 2+ losses shows how lumpy single years are. In the reveal the stage shows the longest run.
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
@@ -23,6 +26,7 @@ const SEED = 1; // chosen: first year has exactly one loss
 const MAX_YEARS = 1001;
 const MANY = 50;
 const MILESTONES = ["one-year", "many-years"] as const;
+const YOURS = 1; // the house that loses in year 1 with seed 1 (disclosed in claim c7)
 
 /** Which houses lose in each year, for the whole seeded run. */
 const HISTORY: number[][] = (() => {
@@ -42,7 +46,9 @@ const CELL = 17;
 const GX = (320 - CELL * 10) / 2;
 const GY = 8;
 
-function House({ i, hit, dim }: { i: number; hit: boolean; dim: boolean }) {
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+
+function House({ i, hit, dim, mine }: { i: number; hit: boolean; dim: boolean; mine?: boolean }) {
   const x = GX + (i % 10) * CELL + 2;
   const y = GY + Math.floor(i / 10) * CELL + 3;
   const w = CELL - 4;
@@ -50,14 +56,28 @@ function House({ i, hit, dim }: { i: number; hit: boolean; dim: boolean }) {
     <path
       d={`M${x},${y + w * 0.45} L${x + w / 2},${y} L${x + w},${y + w * 0.45} V${y + w} H${x} Z`}
       fill={hit ? "var(--bad)" : dim ? "var(--bg-2)" : "color-mix(in srgb, var(--domain) 45%, transparent)"}
-      stroke={hit ? "var(--bad)" : "var(--line)"}
-      strokeWidth={1}
+      stroke={mine ? "var(--fg)" : hit ? "var(--bad)" : "var(--line)"}
+      strokeWidth={mine ? 2.2 : 1}
     />
   );
 }
 
-function Stage({ ctx, years, setYears }: { ctx: StageContext; years: number; setYears: (y: number) => void }) {
-  const { locked, interact } = ctx;
+function Stage({
+  ctx,
+  years: liveYears,
+  longest,
+  setYears,
+}: {
+  ctx: StageContext;
+  years: number;
+  longest: number;
+  setYears: (y: number) => void;
+}) {
+  const { locked, interact, phase } = ctx;
+  // The reveal quotes the longest run, so in the reveal the stage shows that run.
+  const done = phase === "reveal";
+  const years = done ? longest : liveYears;
+  const off = locked || done;
   const { reach } = useMilestones(interact, MILESTONES);
   const run = (y: number) => {
     const k = Math.min(MAX_YEARS, y);
@@ -67,31 +87,42 @@ function Stage({ ctx, years, setYears }: { ctx: StageContext; years: number; set
   };
   const latest = years > 0 ? HISTORY[years - 1] : [];
   const avg = avgPayout(years);
+  const run0 = HISTORY.slice(0, years);
+  const tally = [0, 1, 2].map((k) => run0.filter((h) => (k === 2 ? h.length >= 2 : h.length === k)).length);
+  const myLosses = run0.filter((h) => h.includes(YOURS)).length;
 
   return (
     <div className={s.wrap}>
       <p className={s.chip}>Model: independent 1-in-100 risks</p>
-      <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={locked ? "100 insured houses" : `Year ${years}: ${latest.length} houses lost $10,000`}>
+      <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={locked ? "100 insured houses" : `Year ${years}: ${plural(latest.length, "house", "houses")} lost $10,000`}>
         {Array.from({ length: HOUSES }, (_, i) => (
-          <House key={i} i={i} hit={!locked && latest.includes(i)} dim={locked || years === 0} />
+          <House key={i} i={i} hit={!locked && latest.includes(i)} dim={locked || years === 0} mine={!locked && i === YOURS} />
         ))}
         <text x={160} y={GY + CELL * 10 + 18} textAnchor="middle" className={s.value}>
           {locked || years === 0 ? "Each pays $120 a year" : `Year ${years}: paid $${(latest.length * LOSS).toLocaleString("en-US")}`}
         </text>
       </svg>
 
+      <p className={s.msg}>
+        {locked || years === 0
+          ? "\u00a0"
+          : `Your house (outlined): paid $${(PREMIUM * years).toLocaleString("en-US")}; cover paid it $${(myLosses * LOSS).toLocaleString("en-US")}.`}
+      </p>
+      <p className={s.msg}>
+        {locked || years < 2 ? "\u00a0" : `Years with 0 losses: ${tally[0]} · 1: ${tally[1]} · 2+: ${tally[2]}`}
+      </p>
       <Row>
         <Readout label="Years run" value={locked ? "?" : years} />
         <Readout label="Avg payout per customer" value={locked || years === 0 ? "?" : `$${Math.round(avg)}`} />
       </Row>
       <Row>
-        <Control className={s.tile} disabled={locked || years >= MAX_YEARS} onClick={() => run(years + 1)}>
+        <Control className={s.tile} disabled={off || years >= MAX_YEARS} onClick={() => run(years + 1)}>
           +1 year
         </Control>
-        <Control className={s.tile} disabled={locked || years >= MAX_YEARS} onClick={() => run(years + 100)}>
+        <Control className={s.tile} disabled={off || years >= MAX_YEARS} onClick={() => run(years + 100)}>
           +100 years
         </Control>
-        <Control className={s.tile} disabled={locked || years === 0} onClick={() => setYears(0)}>
+        <Control className={s.tile} disabled={off || years === 0} onClick={() => setYears(0)}>
           Reset
         </Control>
       </Row>
@@ -109,6 +140,7 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
   const shown = Math.round(avgPayout(longest));
   const zeroYears = HISTORY.slice(0, longest).filter((h) => h.length === 0).length;
   const bigYears = HISTORY.slice(0, longest).filter((h) => h.length >= 2).length;
+  const myLosses = HISTORY.slice(0, longest).filter((h) => h.includes(YOURS)).length;
 
   return (
     <Lesson
@@ -124,19 +156,20 @@ export default function InsuranceFairPrice({ slug }: { slug: string }) {
         <>
           <p>
             Over your {longest} years the insurer paid an average of <strong>${shown}</strong> per customer a year, close
-            to 1/100 × $10,000 = <strong>${EXPECTED}</strong>. Single years were lumpy: {zeroYears} had no loss and{" "}
-            {bigYears} had two or more.
+            to 1/100 × $10,000 = <strong>${EXPECTED}</strong>. Single years were lumpy: the tally shows {zeroYears} with
+            no loss and {bigYears} with two or more.
           </p>
           <p>
             So the ${PREMIUM} premium is ${PREMIUM - EXPECTED} above the average loss; in this model that covers the
-            insurer's costs. Paying more than the average can still make sense: you swap a small sure cost for protection
-            from a rare $10,000 one, and the insurer can carry it because it pools many houses.
+            insurer's costs. Look at your outlined house: it paid ${PREMIUM} every year, a small sure cost, and in year 1
+            it was hit, so cover paid its $10,000{myLosses > 1 ? ` (${myLosses} losses in ${longest} years)` : ""}. That is
+            the swap. The insurer can carry such losses because it pools 100 houses.
           </p>
           <p className="muted">A model: independent risks, no fraud, one seeded run. Not advice about buying cover.</p>
         </>
       )}
     >
-      {(ctx) => <Stage ctx={ctx} years={years} setYears={setYears} />}
+      {(ctx) => <Stage ctx={ctx} years={years} longest={longest} setYears={setYears} />}
     </Lesson>
   );
 }

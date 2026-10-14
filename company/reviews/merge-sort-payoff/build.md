@@ -32,3 +32,8 @@ Learner review v2 (2026-10-13) findings:
 - "Your merge took 7" was sometimes Finish-for-me's merge: reveal says "The merge on screen took N".
 - Rounds and the payoff were only told: the last round label on the stage now shows the worst case for all 8 cards (4 + 6 + 7 = 17) against 28 for every pair (new claim c11, unverified). The 1,000-card figures remain in the reveal as the "big numbers".
 - Still open by design: Finish for me remains the one-press QA path; round button reaches round 1 on first press.
+
+## Revision v4 (wave D r5, 2026-10-14)
+
+'Where did the piles come from?' now opens all three rounds stacked (singles 0, pairs 4, piles A and B 6) with a running total; after the final merge the line reads 'Whole sort: 0 + 4 + 6 + 7 = 17, against 28 for every pair'. Reveal quotes those numbers. Round button hidden in the reveal. Reopened c9; added c12.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

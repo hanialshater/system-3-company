@@ -6,8 +6,11 @@
 // arrow that is always 9.81 m/s^2 down. Peak at t = v0 / g = 1.50 s, 11.0 m up.
 // One representation: the ball on its vertical path, with both arrows.
 //
-// Earned reveal: milestone "crossed-top" when the scrubber moves the ball from one side of
-// the peak to the other (the velocity arrow vanishes and flips; the acceleration does not).
+// Earned reveal (v2): milestones "saw-up" (a move lands on a time with an upward velocity) and
+// "saw-down" (a move lands on a downward one), so both sides of the top are seen. A record line keeps
+// every time visited with its velocity and shows the steady drop of 0.98 m/s per 0.1 s, which is what
+// "acceleration = rate of change of velocity" looks like. The step buttons come first in the DOM so
+// QA's presses visit 1.3 s and 1.4 s (up) before the slider's two arrows reach 1.5 s and 1.6 s.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -29,12 +32,13 @@ const H = 262;
 const GY = 182;
 const KY = 14.5; // px per m
 const BX = 160;
-const KV = 6; // px per m/s, velocity arrow
-const KA = 3.6; // px per m/s^2, acceleration arrow
+const KV = 7.5; // px per m/s, velocity arrow
+const KA = 4.5; // px per m/s^2, acceleration arrow
+const DV = G * 0.1; // velocity change per 0.1 s: 0.98 m/s
 
 export default function BallAtTheTop({ slug }: { slug: string }) {
   const [t, setT] = useState(1.4);
-  const [crossed, setCrossed] = useState<{ a: number; b: number } | null>(null);
+  const [visited, setVisited] = useState<number[]>([]); // times landed on after the prediction
 
   return (
     <Lesson
@@ -44,21 +48,24 @@ export default function BallAtTheTop({ slug }: { slug: string }) {
         options: ["Zero", "9.81 m/s² downward", "9.81 m/s² upward"],
         answer: 1,
       }}
-      exploreHint="Scrub time through the top. Watch both arrows."
+      exploreHint="Step to a time before the top and one after. Watch both arrows."
+      minInteractions={2}
       reveal={() => {
-        const c = crossed ?? { a: 1.4, b: 1.6 };
-        const [a, b] = c.a < c.b ? [c.a, c.b] : [c.b, c.a];
+        const ups = visited.filter((x) => vel(x) > 0.05);
+        const downs = visited.filter((x) => vel(x) < -0.05);
+        const a = ups.length ? Math.max(...ups) : 1.4;
+        const b = downs.length ? Math.min(...downs) : 1.6;
         return (
           <>
             <p>
-              Going from {a.toFixed(1)} s to {b.toFixed(1)} s, the velocity arrow went from {signed(vel(a))} to{" "}
-              {signed(vel(b))}: it shrank, vanished at the top ({T_PEAK.toFixed(2)} s, {ht(T_PEAK).toFixed(1)} m up) and
-              flipped. The acceleration arrow never changed: <strong>9.81 m/s² down</strong>.
+              You saw {signed(vel(a))} at {a.toFixed(1)} s and {signed(vel(b))} at {b.toFixed(1)} s: the velocity arrow
+              shrank to about zero at the top ({T_PEAK.toFixed(2)} s, {ht(T_PEAK).toFixed(1)} m up) and flipped. The
+              acceleration arrow never changed: <strong>9.81 m/s² down</strong>.
             </p>
             <p>
-              Acceleration is how fast the velocity changes, not how fast the ball goes. At the top the velocity is still
-              changing, from up to down, at 9.81 m/s every second. If the acceleration were zero there, the ball would
-              stay hanging in the air.
+              Acceleration is how fast the velocity changes, not how fast the ball goes. Your record shows it: every 0.1 s
+              the velocity dropped by {DV.toFixed(2)} m/s, before the top, through it and after. That is 9.81 m/s every
+              second. If the acceleration were zero at the top, the ball would stay hanging in the air.
             </p>
             <p className="muted">No air resistance; with air, the pull at the top would still be 9.81 m/s² down.</p>
           </>
@@ -66,16 +73,17 @@ export default function BallAtTheTop({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["crossed-top"]}>
+        <Milestones interact={interact} names={["saw-up", "saw-down"]}>
           {(reach) => {
             const go = (nt: number) => {
               const n = Math.min(T_END, Math.max(0, round1(nt)));
-              if (Math.sign(vel(n)) !== Math.sign(vel(t)) && vel(n) !== 0) {
-                setCrossed({ a: t, b: n });
-                reach("crossed-top");
-              }
               setT(n);
+              setVisited((vs) => (vs.includes(n) ? vs : [...vs, n]));
+              if (vel(n) > 0.05) reach("saw-up");
+              if (vel(n) < -0.05) reach("saw-down");
             };
+            // Record: the times visited, in time order, with their velocities (the last five).
+            const rec = [...visited].sort((x, y) => x - y).slice(-5);
             const v = vel(t);
             const by = GY - ht(t) * KY;
             const vLen = v * KV;
@@ -126,7 +134,6 @@ export default function BallAtTheTop({ slug }: { slug: string }) {
                   </text>
                 </svg>
 
-                <Slider label="Time" value={t} min={0} max={T_END} step={0.1} disabled={locked} format={(x) => `${x.toFixed(1)} s`} onChange={go} />
                 <Row>
                   <Control disabled={locked || t <= 0} onClick={() => go(t - 0.1)}>
                     −0.1 s
@@ -135,6 +142,14 @@ export default function BallAtTheTop({ slug }: { slug: string }) {
                     +0.1 s
                   </Control>
                 </Row>
+                <Slider label="Time" value={t} min={0} max={T_END} step={0.1} disabled={locked} format={(x) => `${x.toFixed(1)} s`} onChange={go} />
+                <p className={s.record} aria-live="polite">
+                  {locked || rec.length === 0
+                    ? "\u00a0"
+                    : `Seen: ${rec.map((x) => `${x.toFixed(1)} s ${signed(vel(x)).replace(" m/s", "")}`).join(" · ")}${
+                        rec.length > 1 ? ` (m/s; −${DV.toFixed(2)} each 0.1 s)` : " m/s"
+                      }`}
+                </p>
                 <Row>
                   <Readout label="Velocity" value={locked ? "?" : `${signed(v)} ${Math.abs(v) < 0.05 ? "" : v > 0 ? "up" : "down"}`} />
                   <Readout label="Acceleration" value={locked ? "?" : "9.81 m/s² down"} />

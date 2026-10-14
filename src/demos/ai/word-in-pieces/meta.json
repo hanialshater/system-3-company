@@ -51,12 +51,10 @@
     },
     {
       "id": "ai.word-in-pieces.c4",
-      "text": "A model built on a subword tokenizer receives a sequence of piece ids, not the word or its letters.",
+      "text": "A model built on a tokenizer like this does not receive the word, only the row of piece numbers.",
       "support": "source",
       "source": "About real systems: Sennrich, Haddow & Birch 2016, 'Neural Machine Translation of Rare Words with Subword Units', ACL (words are encoded as sequences of subword units); Kudo & Richardson 2018, 'SentencePiece', EMNLP demo (text to id sequence).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "ai.word-in-pieces.c5",
@@ -75,6 +73,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "ai.word-in-pieces.c7",
+      "text": "The stage keeps a record of the counts the learner has seen: 'unhappiness' (11 letters) costs 3 tokens with all pieces on and 11 with none; 'zyxxy' (5 letters) costs 5 because no piece fits it, so in this toy a chunk in the list costs one token and a string with no piece falls into single letters. In the reveal the stage returns to un | happi | ness.",
+      "support": "derivation",
+      "source": "tokenize() and the record line in Demo.tsx: 'unhappiness'.length = 11, tokenize('unhappiness', PIECES) = 3, tokenize('unhappiness', []) = 11; 'zyxxy' contains none of un, happi, ness, so tokenize('zyxxy', any subset) = 5. The reveal quotes the 11 and the 5 only after the gate (both milestones) is reached.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +104,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:tokenization",
     "prerequisites": [

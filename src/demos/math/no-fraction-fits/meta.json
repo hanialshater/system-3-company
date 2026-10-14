@@ -42,30 +42,17 @@
     },
     {
       "id": "math.no-fraction-fits.c3",
-      "text": "2 × 12² = 288 and 17² = 289, off by 1; the misses are exactly 1 at q = 1, 2, 5, 12, 29, 70, and for q from 1 to 70 the nearest square is never equal.",
+      "text": "For q from 1 to 70, 2 × q² is never a perfect square; the nearest square misses by exactly 1 at q = 1, 2, 5, 12, 29, 70 (for example 2 × 5² = 50 and 7² = 49). The reveal quotes the learner's own closest call (smallest miss, largest q among the q they tried).",
       "support": "derivation",
       "source": "Recomputed with node for q = 1..70 (and no q up to 100000 gives a perfect square). The miss-by-1 values are the Pell numbers (solutions of p² - 2q² = ±1). The stage computes every value it shows from the same function. Illustration only: a table cannot prove it.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "math.no-fraction-fits.c4",
-      "text": "If √2 = p/q in lowest terms then p is even, so q is even too, a contradiction; so √2 is not a fraction of whole numbers (it is irrational).",
+      "text": "A square p² has each factor 2 of p twice, so its count of 2s is even; 2 × q² has q's 2s twice plus one, so its count is odd. Even never equals odd, so no whole p and q give p² = 2 × q², and no fraction is √2.",
       "support": "source",
       "source": "Classical parity proof, recorded in Aristotle, Prior Analytics I.23, and in later editions of Euclid's Elements (X, appendix); e.g. Hardy, A Mathematician's Apology, sec. 14.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
-      "text": "When a square is off from 2 x q^2 by exactly 1, the square is odd and 2 x q^2 is even, so they cannot be equal.",
-      "support": "derivation",
-      "source": "2 x q^2 is always even; an integer within 1 of an even number that is not equal to it is odd. Shown in the stage caption for the off-by-1 close calls (q = 1, 2, 5, 12, 29, 70). | FACT-CHECK 2026-10-14 (pass 11): 2q^2 is even; |p^2 - 2q^2| = 1 makes p^2 odd. Own node: off-by-1 cases for q <= 100 are exactly q = 1, 2, 5, 12, 29, 70 (Pell). Caption line 121 matches.",
-      "id": "math.no-fraction-fits.c5",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "If p/q = sqrt(2), squaring both sides gives p^2 = 2 x q^2.",
@@ -75,6 +62,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.no-fraction-fits.c7",
+      "text": "The stage labels each square with its count of factor 2s, always even (e.g. 16² = 256 has 8, 7² = 49 has 0), and labels 2 × q² with its count, always odd (e.g. 2 × 5² = 50 has 1, 2 × 12² = 288 has 5).",
+      "support": "derivation",
+      "source": "twos() in Demo.tsx counts factors of 2. If q = 2^a × m with m odd, q² = 2^(2a) × m², so 2q² = 2^(2a+1) × m²: odd count. Any p² = 2^(2b) × (odd)²: even count. 256 = 2^8, 49 odd, 50 = 2 × 25, 288 = 2^5 × 9. By unique factorisation p² = 2q² is impossible (the same fact as the lowest-terms parity proof).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -100,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:sqrt2-irrational",
     "prerequisites": [

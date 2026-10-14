@@ -4,8 +4,11 @@
 // hand (6), then adds cities one at a time and watches the count multiply by the new city
 // count: 24, 120, ... 362,880 at 9. One representation: the routes, drawn while they still fit
 // on a phone (3 and 4 cities), then the map with the count once they no longer do.
+// v3: a running chain (6 ×4 24 ×5 120 ... ×9 362,880) grows as cities are added, and the reveal
+// waits until the question's own case, 9 cities, is on the stage. "Add up to 9" steps through
+// 5..9 in under 400 ms (one step each), so QA's single press reaches it; "Add a city" steps by hand.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -45,6 +48,14 @@ export default function RouteExplosion({ slug }: { slug: string }) {
   const [maxK, setMaxK] = useState(MIN_K);
   const [saw19, setSaw19] = useState(false);
   const [listed, setListed] = useState<number[]>([]); // city counts whose routes the learner listed in full
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(
+    () => () => {
+      if (timer.current) clearInterval(timer.current);
+    },
+    [],
+  );
 
   const total = fact(k);
   const routes = k <= DRAW_MAX ? perms(k) : [];
@@ -61,19 +72,20 @@ export default function RouteExplosion({ slug }: { slug: string }) {
         options: ["81", fmt(fact(ANSWER_K)), fmt(fact(ANSWER_K + 1))],
         answer: 1,
       }}
-      exploreHint="List every route for 3 cities. Then add cities and watch each count multiply."
+      exploreHint="List every route for 3 cities. Then add cities up to 9 and watch the chain multiply."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
             {listed.length ? `You listed all ${fmt(fact(listed[listed.length - 1]))} routes for ${listed[listed.length - 1]} cities` : "You"}
-            {maxK > MIN_K ? ` and went up to ${maxK} cities: ${fmt(fact(maxK))} orders. ` : ". "}
+            {maxK > MIN_K ? ` and went up to ${maxK} cities: ${fmt(fact(maxK))} orders on the stage. ` : ". "}
             Pick the first city ({ANSWER_K} choices), then the next ({ANSWER_K - 1} left), and so on:{" "}
             {chain(ANSWER_K)} = <strong>{fmt(fact(ANSWER_K))}</strong>. Home is fixed, so it is not counted;{" "}
             {fmt(fact(ANSWER_K + 1))} would count it too.
           </p>
           <p>
-            Each new city multiplies the count: {fmt(fact(ANSWER_K - 1))} × {ANSWER_K} = {fmt(fact(ANSWER_K))}.{" "}
+            Look at the chain under the map: each new city multiplied the count by the new number of cities, ending{" "}
+            {fmt(fact(ANSWER_K - 1))} × {ANSWER_K} = {fmt(fact(ANSWER_K))}.{" "}
             {saw19 ? "With 19 cities" : "With 19 cities to visit"} there are {fmt(fact(19))} orders: about 3.9 years at a
             billion checks a second. Real route planners use cleverer methods than checking them all.
           </p>
@@ -81,7 +93,7 @@ export default function RouteExplosion({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["listed-all", "added-city"]}>
+        <Milestones interact={interact} names={["listed-all", "at-nine"]}>
           {(reach) => {
             const show = (n: number) => {
               setShown(n);
@@ -98,32 +110,50 @@ export default function RouteExplosion({ slug }: { slug: string }) {
               if (locked || !drawable || shown >= total) return;
               show(total);
             };
-            const add = () => {
-              if (locked || k >= MAX_K) return;
-              setK(k + 1);
+            const goTo = (n: number) => {
+              setK(n);
               setShown(0);
-              setMaxK(Math.max(maxK, k + 1));
-              reach("added-city");
+              setMaxK((m) => Math.max(m, n));
+              if (n === ANSWER_K) reach("at-nine");
+            };
+            const add = () => {
+              if (locked || busy || k >= MAX_K) return;
+              goTo(k + 1);
+            };
+            const addTo9 = () => {
+              if (locked || busy || k >= MAX_K) return;
+              let n = k > MAX_K ? MIN_K : k;
+              setBusy(true);
+              timer.current = setInterval(() => {
+                n += 1;
+                goTo(n);
+                if (n >= MAX_K) {
+                  if (timer.current) clearInterval(timer.current);
+                  timer.current = null;
+                  setBusy(false);
+                }
+              }, 60);
             };
             const try19 = () => {
-              if (locked) return;
+              if (locked || busy) return;
               setK(19);
               setShown(0);
               setSaw19(true);
-              reach("added-city");
             };
             const restart = () => {
-              if (locked) return;
+              if (locked || busy) return;
               setK(MIN_K);
               setShown(0);
             };
+            // The running chain: every count the learner has reached, each with the factor that made it.
+            const chainSteps = Array.from({ length: maxK - MIN_K + 1 }, (_, i) => MIN_K + i);
 
             const msg = locked
               ? "Make a prediction to start."
               : drawable
                 ? shown === 0
                   ? k === MIN_K
-                    ? `${k} cities. Draw the routes one by one.`
+                    ? `${k} cities. Each route leaves home (■). Draw them one by one.`
                     : `${k} cities: ${fmt(fact(k - 1))} × ${k} = ${fmt(total)}. Draw them if you like.`
                   : shown < total
                     ? `${shown} route${shown === 1 ? "" : "s"} so far.`
@@ -186,6 +216,16 @@ export default function RouteExplosion({ slug }: { slug: string }) {
                     })
                   )}
                 </svg>
+                <p className={s.chain} aria-label="Orders for each number of cities">
+                  {locked
+                    ? ""
+                    : chainSteps.map((n) => (
+                        <span key={n} className={n === k ? s.now : ""}>
+                          {n > MIN_K ? <span className={s.times}> ×{n} </span> : null}
+                          {fmt(fact(n))}
+                        </span>
+                      ))}
+                </p>
 
                 <Row>
                   <Readout label="Cities" value={k} />
@@ -198,13 +238,16 @@ export default function RouteExplosion({ slug }: { slug: string }) {
                   </Control>
                 </Row>
                 <Row>
-                  <Control disabled={locked || k >= MAX_K} onClick={add}>
+                  <Control disabled={locked || busy || k >= MAX_K} onClick={add}>
                     Add a city
                   </Control>
-                  <Control disabled={locked || k === 19} onClick={try19}>
+                  <Control disabled={locked || busy || k >= MAX_K} onClick={addTo9}>
+                    Add up to 9
+                  </Control>
+                  <Control disabled={locked || busy || k === 19} onClick={try19}>
                     Try 19 cities
                   </Control>
-                  <Control disabled={locked || (k === MIN_K && shown === 0)} onClick={restart}>
+                  <Control disabled={locked || busy || (k === MIN_K && shown === 0)} onClick={restart}>
                     Start over
                   </Control>
                 </Row>

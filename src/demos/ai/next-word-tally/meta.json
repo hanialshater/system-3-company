@@ -61,12 +61,10 @@
     },
     {
       "id": "ai.next-word-tally.c5",
-      "text": "“Let the model pick” draws the next word with probability proportional to its count after the current word (seeded random numbers); a word whose only follower is the full stop ends the sentence.",
+      "text": "“Let the model pick” draws the next word with probability proportional to its count after the current word, and “Let it finish” keeps drawing that way until the sentence ends (seeded random numbers, seed 7, capped at 20 words); a word whose only follower is the full stop ends the sentence.",
       "support": "convention",
-      "source": "The lesson's own sampler and append rule in Demo.tsx (seed 7).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "The lesson's own sampler, finish loop and append rule in Demo.tsx (seed 7). Seed 7 is the existing seed, not re-picked; with it, the QA press order (cat, sat, Let it finish) ends on “the cat sat on the fish.”, which is new.",
+      "status": "unverified"
     },
     {
       "id": "ai.next-word-tally.c6",
@@ -76,6 +74,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "ai.next-word-tally.c7",
+      "text": "A finished sentence shows each of its adjacent pairs with how many times that pair occurs in the training text; the reveal unlocks only once a sentence marked “New: not in the training text” is finished, and it quotes the learner's first such sentence, saying every pair under it had a count of at least 1.",
+      "support": "derivation",
+      "source": "pairsOf and isNew in Demo.tsx. Any sentence the stage can build uses only menu words, and every menu word followed the previous word in CORPUS, so every pair count is ≥ 1 by construction.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -101,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:next-token",
     "prerequisites": [],

@@ -3,6 +3,9 @@
 // Max flow with a greedy trap. Five one-unit pipes: s-a, s-b, a-b, a-t, b-t. Pushing the zig-zag
 // s->a->b->t first leaves no forward route (stuck at 1). Sending that unit back along a-b opens
 // s->b->a->t, total 2, which equals the two pipes leaving s (the smallest cut).
+// v3: no named rescue route. Once a pipe carries water the learner may send a unit back along it;
+// they find which pipe helps (only a-b does: s-a and s-b just return water to s, a-t and b-t take it
+// from t). QA order: Empty (disabled), the three routes, then back along s-a, s-b, a-b, a-t, b-t.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -41,20 +44,19 @@ export default function UndoABadPush({ slug }: { slug: string }) {
         options: ["1: stuck", "2", "3"],
         answer: 0,
       }}
-      exploreHint="Push s → a → b → t. Try the other routes. Then find a second unit."
+      exploreHint="Push s → a → b → t. Try the other routes. Then try sending a unit back along a pipe."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
             Pushing s → a → b → t first used the a–b pipe and left every forward route blocked: stuck at 1, so adding
-            water without ever taking any back falls short. A new route may run backwards along a pipe that carries water.
-            Going back along a–b undid the zig-zag and opened s → b → a → t: total <strong>2</strong>.
+            water without ever taking any back falls short. Sending the unit back along a–b undid the zig-zag: on the
+            stage a–b dropped to 0/1 and s → b → a → t opened, total <strong>2</strong>. Back along any other pipe only
+            returned water to s or took it from t.
           </p>
           <p>
-            Both pipes out of s are now full. Those two pipes are a cut: cut them and s is cut off from t. No flow is bigger
-            than the smallest cut, so nothing can beat 2. Letting a new
-            route cancel an earlier push is how the Ford–Fulkerson method fixes greedy mistakes. When no route is left,
-            the flow equals the smallest cut.
+            Look at the dashed cut line: only the two pipes out of s cross it, and both are full. All water must cross
+            that line, so no flow can beat 2.
           </p>
           <p className="muted">The best flow sometimes means taking water back.</p>
         </>
@@ -74,19 +76,30 @@ export default function UndoABadPush({ slug }: { slug: string }) {
               r.pipes.forEach((p) => next[p]++);
               setF(next);
               const st = stuck(next) && total(next) < 2;
-              setNote(st ? `Total ${total(next)}. Every forward route has a full pipe. A route may go backwards along a loaded pipe.` : `Pushed 1 unit along ${r.label}.`);
+              setNote(st ? `Total ${total(next)}. Every forward route has a full pipe.` : `Pushed 1 unit along ${r.label}.`);
               if (st) {
                 setWasStuck(true);
                 reach("stuck-at-1");
               }
             };
-            const sendBack = () => {
-              if (locked || f.ab < 1 || f.sb >= 1 || f.at >= 1) return;
-              const next = { ...f, ab: f.ab - 1, sb: f.sb + 1, at: f.at + 1 };
-              setF(next);
-              setUsedBack(true);
-              setNote("Water went s → b, back along a–b, then a → t: total 2.");
-              if (wasStuck && total(next) === 2) reach("two-by-sending-back");
+            const canBack = (p: Pipe) => f[p] >= 1 && tot < 2;
+            const sendBack = (p: Pipe) => {
+              if (locked || !canBack(p)) return;
+              if (p === "ab" && f.sb < 1 && f.at < 1) {
+                const next = { ...f, ab: f.ab - 1, sb: f.sb + 1, at: f.at + 1 };
+                setF(next);
+                setUsedBack(true);
+                setNote("Water went s → b, back along a–b, then a → t: total 2.");
+                if (wasStuck && total(next) === 2) reach("two-by-sending-back");
+                return;
+              }
+              setNote(
+                p[0] === "s"
+                  ? `Back along ${name(p)} only returns water to s. Total still ${tot}.`
+                  : p[1] === "t"
+                    ? `Back along ${name(p)} takes water away from t. Total still ${tot}.`
+                    : `No free route through ${name(p)} backwards. Total still ${tot}.`,
+              );
             };
             const reset = () => {
               if (locked) return;
@@ -164,9 +177,14 @@ export default function UndoABadPush({ slug }: { slug: string }) {
                       {r.label}
                     </Control>
                   ))}
-                  <Control disabled={locked || f.ab < 1 || f.sb >= 1 || f.at >= 1} onClick={sendBack}>
-                    Route s → b → a → t (back along a–b)
-                  </Control>
+                </div>
+                <div className={s.routes} role="group" aria-label="Send one unit back along a pipe">
+                  <span className={s.lab}>Send 1 back along:</span>
+                  {PIPES.map((p) => (
+                    <Control key={p} disabled={locked || !canBack(p)} aria-label={`Send one unit back along ${name(p)}`} onClick={() => sendBack(p)}>
+                      {name(p)}
+                    </Control>
+                  ))}
                 </div>
               </div>
             );

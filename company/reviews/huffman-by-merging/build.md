@@ -13,3 +13,8 @@
 ## Revision v3 (wave C)
 
 Question simplified (prefix rule out of the stem; bit defined). Circles now read 'C 1' with 'The number is how many times the letter appears'; button renamed 'Join the two rarest'. Each leaf shows its cost (1x3=3) so the 4+4+3+3 sum is on the stage. Reveal quotes the learner's own total and codes, gives a prefix example, and no longer asserts optimality as seen (it says Huffman proved it). Not changed: no worse-tree comparison on stage; the learner sees their own total vs 14 only. Claims c2-c5 reworded, unverified.
+
+## Revision v4 (wave D r5, 2026-10-14)
+
+New first control 'Try 10-bit codes' writes A 0, B 1, C 00, D 01 under the same leaves (tree hidden), clashing codes in red, and the caption asks whether 00 is C or A A; gate needs it plus the 14-bit tree. Bits readout shows the join costs as a sum (2 + 4 + 8 = 14). Auto-join caption fixed for the three-group moment. Reopened c1, c6; added c8.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

@@ -16,3 +16,8 @@ Learner review (2026-10-13) findings:
 - The reveal's "7.8 km/s ... came down X km" is now a throw the learner has actually seen (the opening state counts).
 - Locked picture description no longer says where the ball lands.
 - NOT done, and why: (a) the slider's maximum is still the answer: speeds above 7.9 km/s make elliptical orbits with an apogee hundreds of km up, which at x40 height exaggeration runs off the stage; that needs a different drawing (learning-designer call). (b) The zoomed 5 m / 8 km inset for the best idea in the lesson (c3) is still told in the reveal.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+Gate needs a landing throw the learner moved to, then the loop (the starting landing no longer counts). Cause on stage: a dashed straight sideways line, a red one-minute tick from that line to the ball, and a caption comparing the fall (17.6 km for every throw) with how far the ground curved away (13.9 to 17.6 km). Lap time on the Lands readout. Speed label fixed (7.85 no longer prints as 7.8). The 5 m / 8 km sentence is dropped (c3 removed). Added c6. Still open: the slider's top stop is the answer (stops above 7.9 cannot be drawn at heights x40).
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.
