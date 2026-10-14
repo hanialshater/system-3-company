@@ -26,3 +26,7 @@ Findings from the learner review (quality-wins-assumption) and the fact-check ad
 - **Not done:** finding 5 (early lock-in not forced) and finding 8 (Off jumps to the final state) need a design choice, not a build fix. Finding 3 (worst of 8 is a selection) is in the question wording, unchanged; c1's source discloses it.
 - Claims now unverified: c3 (text changed), c9 (new). All others unchanged.
 - Numbers: counts of 1st and ranges are computed in code from RUNS (on 3,1,7,1,4,1,1,3 gives 4 firsts, 1st-7th; off 2,1,2,1,2,1,2,1 gives 4 firsts, 1st-2nd), matching the screenshots.
+
+## Revision v3 (demo-builder, 2026-10-14, polish)
+
+- Reveal wording: "copying did not hide quality, it made the result unpredictable" replaced by "Copying did not stop the best song winning as often: 4 of 8 worlds with copying on and 4 of 8 with it off. It made the result unpredictable: ..." (counts computed in code). Claim c9 text matched and back to **unverified**; other claims unchanged.
