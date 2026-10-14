@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.rule { margin: 0; font-size: 0.82rem; color: var(--muted); text-align: center; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.panel { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.panel > :global(.control) { width: 100%; }
+.title { margin: 0; font-size: 0.85rem; font-weight: 700; }
+.tree { position: relative; width: 165px; height: 190px; max-width: 100%; }
+.edges { position: absolute; left: 0; top: 0; width: 165px; height: 210px; }
+.leaf { position: absolute; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--fg); background: var(--bg); font-weight: 800; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.bigcell { width: 44px; height: 44px; }
+.ghost { border: 1.5px dashed var(--muted); background: transparent; }
+.node { position: absolute; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; border: 2.5px solid var(--fg); font-weight: 800; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.node.done { border: 2px solid var(--muted); opacity: 1; }
+.node.blocked { color: var(--muted); }
+.badge { position: absolute; font-size: 0.8rem; font-weight: 800; color: var(--domain); }
+.swaps { margin: 0; font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.note { margin: 0; font-size: 0.78rem; color: var(--muted); text-align: center; min-height: 2.2em; font-variant-numeric: tabular-nums; }
+.tap { min-height: 44px; }
