@@ -1,6 +1,6 @@
 # AMD-002: CI cancels superseded `verify` runs on the same ref
 
-status: proposed
+status: ratified
 date: 2026-10-14
 proposed_by: chief-of-staff (task given to the evaluation steward, 2026-10-14)
 prepared_by: evaluation-steward
@@ -153,6 +153,4 @@ founder can override in writing (Article 4.1) if the queue is not the problem an
 regression shipped.
 
 ## Decision (constitutional review board)
-(Left for the board. Record: ratify as drafted (job-level), ratify the top-level form (only
-together with a fixed-base constitution check), or reject. Include the affected-role seat's
-written input.)
+**Ratified as drafted (job-level `concurrency` on `verify` only), 2026-10-14, by the founder** ("ratify AMD-002", in session 1). Applied by the chief of staff in one commit with the `Amendment: AMD-002` trailer. The top-level form is not adopted. The fixed-base constitution check (proposed AMD-003) is not commissioned yet. Affected-role seat (platform-engineer): no written input was taken before ratification; the founder ratified directly. The platform engineer runs the Monday sample of cancelled runs named in "Prediction and test".

@@ -37,6 +37,11 @@ jobs:
           fi
 
   verify:
+    # AMD-002: a newer push to the same ref cancels this job. Only this job: the constitution
+    # job checks the diff since the previous push, so cancelling it would skip that diff unseen.
+    concurrency:
+      group: ci-verify-${{ github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
