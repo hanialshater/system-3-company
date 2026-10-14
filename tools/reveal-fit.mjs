@@ -1,10 +1,10 @@
 // Reveal fit (W-135): on a phone, can the learner read the whole reveal?
 //
 //   node tools/reveal-fit.mjs --url http://localhost:3471 [<slug> ...] [--jobs 6] [--width 390 --height 844]
-//                             [--out artifacts/reveal-fit/<name>.json] [--shots] [--rotate 844x390]
+//                             [--out artifacts/reveal-fit/<name>.json] [--shots] [--rotate 844x390] [--strict]
 //
 // Needs a running build (NEXT_DIST_DIR=.next-fit npm run build; tools/serve.sh start <port> .next-fit).
-// For each lesson it opens /d/<slug> at 390×844 (touch, mobile), commits the first option, follows the
+// For each lesson it opens /d/<slug> at 390×844 (touch, mobile; taps, falling back to clicks with input: "click"), commits the first option, follows the
 // QA contract's path (first 16 enabled stage controls once, sliders two steps), presses "Show me why",
 // waits for layout to settle, and measures what the learner sees without touching anything:
 //
@@ -15,9 +15,22 @@
 //
 // It also measures the stage at the reveal: "thumb" when the stage box is under 180px tall while its
 // content is taller, or when its main picture (largest svg with a viewBox) is drawn at under 75% of the
-// scale the stage width allows and under 200px tall (height-squeezed into a thumbnail).
+// scale the stage width allows and under 200px tall (height-squeezed into a thumbnail). Pictures the
+// card shrank on purpose at the reveal (svg[data-reveal-fit], commit 1a879c6) are not thumbnails; they
+// are reported as `fitted` (drawn/natural px) instead.
 // Pass (the W-135 bar) = fit or scroll, and no thumb. "fit" is the stricter count: the learner did not
 // have to discover a scroll. Exit code 1 if any lesson fails the bar or errors.
+//
+// Phone fit (W-242; demo-standard "The reveal fits with its picture", Pre-flight 7), in px:
+//   crop        how far the stage top is above the visible card (0 = stage top on screen)
+//   hiddenBelow how far the reveal's last line is below the visible card (above the footer)
+//   named       stage labels the reveal quotes (svg text, HTML text, aria-label; >= 4 letters, or a
+//               2+ digit number), each with visible true/false. Heuristic: a picture named only by a
+//               noun ("the globe") is not detected; namedHidden counts quoted labels off screen.
+//   parts       stage height by block: picture (holds an svg >= 60px or one the card fitted), table (<table>, role table/grid,
+//               a class with "table", or 3+ readouts and no control), controls, text; revealWords, revealLines and
+//               pxPerLine, so a crop can be traced to its cause.
+//   phoneFit    crop <= 1 and hiddenBelow <= 2 and namedHidden = 0. --strict makes this the exit bar.
 // --rotate WxH: reveal at --width x --height, then resize the viewport to WxH (turning the phone after
 // the reveal, W-139 follow-up 2) and measure there instead.
 // No dependencies beyond @playwright/test, which QA already uses.
@@ -41,6 +54,7 @@ const width = Number(opt("width", 390));
 const height = Number(opt("height", 844));
 const jobs = Number(opt("jobs", 6));
 const shots = args.includes("--shots");
+const strict = args.includes("--strict");
 const rotate = opt("rotate", null)?.split("x").map(Number) ?? null;
 
 function allLessons() {
@@ -112,7 +126,14 @@ function measure() {
   // A picture is squeezed when its height, not the stage width, sets its scale: it is drawn at
   // under 75% of the size the stage width allows and ends up under 200px tall.
   let pic = null;
+  const fitted = [];
   for (const svg of stage.querySelectorAll("svg[viewBox]")) {
+    if (svg.dataset.revealFit) {
+      // Shrunk on purpose by the card at the reveal (useRevealFit): expected, not a thumbnail.
+      fitted.push(`${Math.round(svg.getBoundingClientRect().height)}/${svg.dataset.revealFit}`);
+      continue;
+    }
+    if (svg.closest("svg[data-reveal-fit]")) continue;
     const vb = svg.viewBox.baseVal;
     const b = svg.getBoundingClientRect();
     if (!vb || !vb.width || b.width * b.height < (pic?.area ?? 0)) continue;
@@ -121,8 +142,65 @@ function measure() {
     pic = { area: b.width * b.height, ratio: drawn / allowed, h: Math.round(vb.height * drawn) };
   }
   const squeezed = (sr.height < 180 && stage.scrollHeight > stage.clientHeight + 1) || (pic !== null && pic.ratio < 0.75 && pic.h < 200);
+  // Stage-top crop: how far the stage top sits above the visible card (viewport ∩ clipping ancestors).
+  const crop = Math.max(0, sw.top - sr.top);
+  const shown = (r) => r.height > 0 && Math.min(r.bottom, sw.bottom) - Math.max(r.top, sw.top) >= Math.min(r.height, 40) * 0.5;
+  // What the stage is made of, by block: descend through single-child wrappers, then classify each block.
+  let level = stage;
+  while (level.children.length === 1 && !level.matches("svg, table")) level = level.children[0];
+  const parts = { picture: 0, table: 0, controls: 0, text: 0 };
+  for (const el of level.children) {
+    const h = el.getBoundingClientRect().height;
+    if (!h) continue;
+    const big = [...(el.matches("svg[viewBox]") ? [el] : []), ...el.querySelectorAll("svg[viewBox]")].some((v) => v.dataset.revealFit || v.getBoundingClientRect().height >= 60);
+    const tabular = "table, [role=table], [role=grid], [class*=table i]";
+    const ctrl = el.matches('[data-qa="control"]') || el.querySelector('[data-qa="control"]');
+    const kind = !big && (el.matches(tabular) || el.querySelector(tabular) || (!ctrl && el.querySelectorAll('[data-qa="readout"]').length >= 3)) ? "table"
+      : big ? "picture"
+      : ctrl ? "controls" : "text";
+    parts[kind] += h;
+  }
+  for (const k of Object.keys(parts)) parts[k] = Math.round(parts[k]);
+  const revealText = (reveal.innerText || reveal.textContent || "").replace(/\s+/g, " ").trim();
+  const revealWords = revealText ? revealText.split(" ").filter((w) => /[\p{L}\p{N}]/u.test(w)).length : 0;
+  const lineTops = new Set([...range.getClientRects()].filter((r) => r.width > 2 && r.height > 6).map((r) => Math.round(r.top / 4)));
+  const revealLines = lineTops.size;
+  // Named elements: stage labels the reveal quotes, and whether each is on screen.
+  const norm = (t) => t.toLowerCase().replace(/[\u2018\u2019\u201c\u201d"'`]/g, "").replace(/\s+/g, " ").trim();
+  const words = (t) => ` ${t.replace(/[^\p{L}\p{N}.%°\u2212-]+/gu, " ")} `.replace(/[.-]+(?= )/g, "");
+  const said = words(norm(revealText));
+  const labels = new Map();
+  const consider = (el, raw) => {
+    const t = words(norm(raw)).trim();
+    if (!t || t.length > 40) return;
+    const letters = (t.match(/\p{L}/gu) || []).length;
+    if (!(letters >= 4 || /^\d{2,}([.,]\d+)?%?$/.test(t))) return;
+    if (/^(show|tap|drag|reset|next|back|play|step|start|stop|pause|again|your|the|with|from|this|that)$/.test(t)) return;
+    if (!said.includes(` ${t} `)) return;
+    const r = el.getBoundingClientRect();
+    const prev = labels.get(t);
+    labels.set(t, prev === true || shown(r));
+  };
+  for (const el of stage.querySelectorAll("text, tspan, [aria-label], th, td, label, span, strong, b, em, p, div, li, button, figcaption, h3, h4")) {
+    if (el.getAttribute("aria-label")) consider(el, el.getAttribute("aria-label"));
+    if (el.tagName === "text" || el.tagName === "tspan") {
+      if (el.tagName === "text" && el.querySelector("tspan")) continue;
+      consider(el, el.textContent || "");
+    } else if (![...el.children].some((c) => (c.textContent || "").trim())) consider(el, el.textContent || "");
+  }
+  const named = [...labels].map(([text, visible]) => ({ text, visible }));
+  const namedHidden = named.filter((n) => !n.visible).length;
   return {
     verdict,
+    crop: Math.round(crop),
+    phoneFit: crop <= 1 && hiddenBelow <= 2 && namedHidden === 0,
+    named,
+    namedHidden,
+    revealWords,
+    revealLines,
+    pxPerLine: revealLines ? Math.round(((tr.bottom - tr.top) / revealLines) * 10) / 10 : null,
+    parts,
+    fitted,
     hiddenBelow: Math.round(hiddenBelow),
     hiddenAbove: Math.round(hiddenAbove),
     reach: Math.round(reach),
@@ -137,11 +215,12 @@ function measure() {
   };
 }
 
-async function run(page, slug, settle = 120, deep = false) {
+async function run(page, slug, settle = 120, deep = false, click = false) {
+  const press = (loc, o) => (click ? loc.click(o) : loc.tap(o));
   await page.goto(`${base}/d/${slug}`, { waitUntil: "domcontentloaded" });
   await page.locator('[data-testid="lesson"]').waitFor({ timeout: 15_000 });
-  await page.locator('[data-testid="predict-option"]').first().click();
-  await page.locator('[data-testid="commit-prediction"]').click();
+  await press(page.locator('[data-testid="predict-option"]').first());
+  await press(page.locator('[data-testid="commit-prediction"]'));
   const controls = page.locator('[data-testid="stage"] [data-qa="control"]');
   const total = Math.min(await controls.count(), deep ? 40 : 16);
   for (let i = 0; i < total; i++) {
@@ -153,12 +232,12 @@ async function run(page, slug, settle = 120, deep = false) {
       const atMax = await c.evaluate((el) => Number(el.value) >= Number(el.max));
       if (deep) await page.keyboard.press(atMax ? "Home" : "End");
       else for (let k = 0; k < 2; k++) await page.keyboard.press(atMax ? "ArrowLeft" : "ArrowRight");
-    } else await c.click({ timeout: 3000 }).catch(() => {});
+    } else await press(c, { timeout: 3000 }).catch(() => {});
     await page.waitForTimeout(settle);
   }
   const btn = page.locator('[data-testid="reveal-button"]');
   if (!(await btn.isEnabled())) return { error: "reveal never unlocked" };
-  await btn.click();
+  await press(btn);
   await page.locator('[data-testid="reveal"]').waitFor();
   await page.waitForTimeout(900); // animations and any scroll-into-view settle
   if (rotate) {
@@ -189,12 +268,16 @@ async function worker() {
       if (r.error) r = await run(page, l.slug, 450);
       // Lessons gated on a milestone (useMilestones) may need sliders at an end: one deeper pass.
       if (r.error) r = await run(page, l.slug, 450, true);
+      // Some stages take mouse events only (a tap lands on an overlay): fall back to clicks and say so.
+      if (r.error) r = { ...(await run(page, l.slug, 450, false, true)), input: "click" };
+      if (r.error) r = { ...(await run(page, l.slug, 450, true, true)), input: "click" };
     } catch (e) {
       r = { error: String(e.message || e).split("\n")[0] };
     }
     results.push({ slug: l.slug, status: l.status, ...r });
-    const tag = r.error ? "ERROR" : r.verdict + (r.thumb ? "+thumb" : "");
-    if (r.error || r.verdict !== "fit" || r.thumb) console.log(`${tag.padEnd(12)} ${l.slug}  ${r.error ?? `hidden ${r.hiddenBelow}px, reach ${r.reach}px, stage ${r.stageH}px (visible ${r.stageVisible}), picture ${r.picH}px at ${r.picScale}`}`);
+    const tag = r.error ? "ERROR" : r.verdict + (r.thumb ? "+thumb" : "") + (r.crop > 1 ? "+crop" : "") + (r.namedHidden ? "+named" : "");
+    if (r.error || r.verdict !== "fit" || r.thumb || !r.phoneFit)
+      console.log(`${tag.padEnd(18)} ${l.slug}  ${r.error ?? `crop ${r.crop}px, hidden ${r.hiddenBelow}px, reach ${r.reach}px, stage ${r.stageH}px (visible ${r.stageVisible}), picture ${r.picH}px at ${r.picScale}, fitted ${r.fitted.join(",") || "-"}, ${r.revealWords} words${r.namedHidden ? `, off screen: ${r.named.filter((n) => !n.visible).map((n) => n.text).join(" | ")}` : ""}`}`);
   }
   await ctx.close();
 }
@@ -211,6 +294,9 @@ const summary = {
   clip: count((r) => r.verdict === "clip"),
   thumb: count((r) => r.thumb),
   errors: count((r) => r.error),
+  cropped: count((r) => r.crop > 1),
+  namedHidden: count((r) => r.namedHidden > 0),
+  phoneFit: count((r) => r.phoneFit),
 };
 summary.pass = count((r) => !r.error && r.verdict !== "clip" && !r.thumb);
 const out = opt("out", null);
@@ -219,4 +305,4 @@ if (out) {
   fs.writeFileSync(out, JSON.stringify({ summary, recorded: new Date().toISOString(), results }, null, 2));
 }
 console.log(JSON.stringify(summary));
-process.exit(summary.pass === results.length ? 0 : 1);
+process.exit((strict ? summary.phoneFit : summary.pass) === results.length ? 0 : 1);
