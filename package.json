@@ -13,10 +13,12 @@
     "check": "node tools/company.mjs check",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
-    "verify": "npm run test:deploy && npm run test:kit && npm run check && npm run typecheck && npm run build && npm run qa",
+    "verify": "npm run test:deploy && npm run test:kit && npm run test:eval && npm run check && npm run typecheck && npm run build && npm run qa",
     "metrics": "node tools/metrics.mjs",
     "deploy": "node tools/deploy.mjs",
     "test:deploy": "node --test tests/deploy/*.test.mjs",
+    "eval": "node tools/eval/bt.mjs",
+    "test:eval": "node --test tests/eval/*.test.mjs",
     "test:kit": "node --test src/kit/knots/test/*.test.mjs"
   },
   "dependencies": {
