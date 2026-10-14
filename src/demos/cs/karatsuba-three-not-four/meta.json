@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "karatsuba",
   "status": "draft",
-  "version": 2,
+  "version": 3,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -52,12 +52,10 @@
     },
     {
       "id": "cs.karatsuba-three-not-four.c4",
-      "text": "a·d + b·c = (a+b)(c+d) - a·c - b·d; for the halves 1111 and 1111 both sides are 2,468,642.",
+      "text": "a·d + b·c = (a+b)(c+d) - a·c - b·d, so one product of the sums minus the two products Karatsuba already has gives both cross terms. For the halves 1111 and 1111: 1111·1111 + 1111·1111 = 2,468,642, and (a+b)(c+d) - a·c - b·d = 4,937,284 - 1,234,321 - 1,234,321 = 2,468,642.",
       "support": "derivation",
-      "source": "Algebra: (a+b)(c+d) = ac + ad + bc + bd. With a = b = c = d = 1111: 2 x 1,234,321 = 2,468,642 and 2222^2 - 2 x 1,234,321 = 4,937,284 - 2,468,642 = 2,468,642. Computed live on the stage (CROSS and VIA). | FC pass 22 (fact-checker, 2026-10-14): node: 1111*1111 + 1111*1111 = 2,468,642; 2222^2 - 2*1,234,321 = 4,937,284 - 2,468,642 = 2,468,642. Stage 'Check the middle' line prints CROSS and VIA from the top split.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Algebra: (a+b)(c+d) = ac + ad + bc + bd. With a = b = c = d = 1111: 2 x 1,234,321 = 2,468,642 and 2222^2 - 2 x 1,234,321 = 4,937,284 - 2,468,642 = 2,468,642. Computed live on the stage (CROSS and VIA). | FC pass 22 (fact-checker, 2026-10-14): node: 1111*1111 + 1111*1111 = 2,468,642; 2222^2 - 2*1,234,321 = 4,937,284 - 2,468,642 = 2,468,642. Stage 'Check the middle' line prints CROSS and VIA from the top split. | Builder revision v3 (demo-builder, 2026-10-14): the stage's check line now prints both sides with their parts (stage text 'Schoolbook's a·d + b·c: 1111·1111 + 1111·1111 = 2,468,642' and 'Karatsuba's (a+b)(c+d) − a·c − b·d: 4,937,284 − 1,234,321 − 1,234,321 = 2,468,642', computed in Demo.tsx from the top split), and the reveal quotes the second line. Arithmetic: 2222² = 4,937,284; 1111² = 1,234,321.",
+      "status": "unverified"
     },
     {
       "id": "cs.karatsuba-three-not-four.c5",

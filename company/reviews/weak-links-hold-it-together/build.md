@@ -14,3 +14,20 @@ builder: demo-builder (ncm-specs) · 2026-10-14 · v1 draft · brief: company/do
 - Open for cm-probability (already routed by the spec): the question says "fewest shared friends" while the model ranks by the overlap ratio (spec checked the results agree). I kept the brief's question text unchanged.
 - Format "simulation-run"; interactions choice-before-reveal, slider-drives-live-chart, toggle-before-after, milestone-gate. Reference: E&K chapter 3 only. Claims c1–c5 unverified.
 - Not run, per the batch instruction: next build, typecheck, QA, walkthrough.
+
+## Revision v2 (wave E, disputed c4, 2026-10-14)
+
+Fact-check pass 23 disputed c4's direction. "A link with few shared friends usually runs between groups" is false in these networks: most zero-overlap links sit inside groups. The converse is true. Fixes:
+- Reveal sentence now reads: "Here the links between groups all have few shared friends, so cutting the weakest first removes them and breaks the network apart. Close ties sit inside groups, and the groups hold together without them."
+- c4 now rests on the stage's networks only (support: simulation). It no longer leans on Easley and Kleinberg ch. 3, which no checker has opened. c4 is unverified.
+- The order toggle "Cutting: weakest first / strongest first" relabelled itself. It is now two chips, "Strongest first" and "Weakest first", each active and disabled when chosen, in that DOM order, so the QA path does not change. The controls grid is three columns.
+- Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v2
+
+1. Title and hook: "Which cuts break a friend network?" / "Cut the closest friendships or the loosest ones. Which leaves the network in pieces?" Both are questions and neither favours an option.
+2. Options: "Fewest shared friends", "Most shared friends", "Both about the same". None numbered, same wording style.
+3. Locked stage: the uncut network of seed 1, with links drawn thicker for more overlap; "Largest group: 60 of 60", "bridges cut: 0 of 12", an empty curve, the rule line, and the slider at "0% (0 of 149)". Nothing marks which links go first. Link thickness is the definition of strength, not the answer.
+4. Reveal values: network number and seed, the cut count k, strongest-first largest, weakest-first largest, between-group links cut: all (a), computed from the learner's current network at 20% (L = max(level, 2)). Both 20% states are milestones (strong-20, weak-20). Both curves for the current network are drawn to the visited level, with end labels.
+5. QA path: slider ArrowRight x2 (strongest first, 20%: strong-20), Strongest first (disabled), Weakest first (weak-20), New network (network 2, seed 3, still weakest first at 20%). Both milestones reached; the question's own case (20% each way) is both of them. At the reveal the stage shows network 2 at 20% weakest first: largest 20, bridges cut 10 of 12, and both curve end labels.
+6. Reset: there is no Reset. "New network" changes the network, and the reveal follows the current one, which the stage and both curves show. Reveal on the QA path: "In network 2 (seed 3), cutting the 27 closest ties left 60 of 60 in one piece. Cutting the 27 loosest left a largest group of 20: 10 of the 12 links between groups were among them. / Here the links between groups all have few shared friends, so cutting the weakest first removes them and breaks the network apart. Close ties sit inside groups, and the groups hold together without them."

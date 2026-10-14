@@ -48,6 +48,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ray-counts-crossings.c4",
+      "text": "The ray drawn from the point is split at each crossing: a stretch with an odd number of crossings still to its right lies inside the U (solid, 'in'), one with an even number lies outside (dashed, 'out'), so it switches at every numbered crossing and is always outside past the last one. From any point in the gap (2 < x < 4, 2 < y < 6) the ray crosses exactly the edges at x = 4 and x = 6.",
+      "support": "derivation",
+      "source": "Demo.tsx stretches: stretch i runs from stop i to stop i+1 and is drawn inside when (hits.length - i) is odd, which is the c2 parity rule applied to the stretch. Gap: for 2 < y < 6 the vertical edges at x = 0, 2, 4, 6 all span the ray's height; from 2 < x < 4 only x = 4 and x = 6 lie to the right; the horizontal edges are never crossed at non-corner heights. Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -71,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:point-in-polygon",
     "also": [],

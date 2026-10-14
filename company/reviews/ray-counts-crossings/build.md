@@ -11,3 +11,23 @@ Single card. A grid from -0.5..8.5 by -0.5..6.5 holds the U polygon. Drag anywhe
 ## Known gaps
 - touch-action: none on the SVG means a swipe that starts on the stage will not scroll the feed.
 - The Jordan curve, Shimrat and Haines citations come from the brief and have not been opened. All claims are unverified.
+
+## Revision v2 (wave E r6, 2026-10-14)
+
+r6 (adult beginner, revise): the locked caption "(7, 4): 0 crossings, even, so outside" stated the rule before the commit; the right option repeated the rule's words; the shaded U showed the answer; the flip was told; the reveal's 2-crossing state was not on screen. Fixes:
+- Locked frame: the U is an outline with no fill, the dot is neutral, and the caption reads "Ray to the right from the point. Count the edges it crosses." Readouts show "?". Fill, verdict colour and counts appear only after the commit.
+- Options: "Inside", "Outside", "Cannot tell without the area" (no rule words).
+- The ray is drawn as stretches between crossings: solid green "in" where an odd number of crossings remain to the right, dashed "out" where an even number remain. It switches at every numbered crossing. The reveal points at it. New claim c4.
+- A "Tried:" line keeps the last four points with their count and in / out, so (3, 4) 2 out and (1, 4) 3 in are still on stage at the reveal. The reveal quotes the first gap point and the first odd point the learner reached (recorded when reached), not constants.
+- Alt text: "1 edge" singular.
+- Not changed, for the learning designer: the U's gap is open at the top, so a careful look still says "outside". The reviewer suggests a shape where looking misleads (a spiral, or arms that curl in). That changes the case and claim c1, so it is a design choice and not mine to make in a revision.
+- Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v2
+
+1. Title and hook: "Is the point in the U?" / "A point sits between the arms of a U, near its middle. Inside or out? Count, don't look." A question; no parity word or verdict.
+2. Options: "Inside", "Outside", "Cannot tell without the area". None numbered.
+3. Locked stage: the U outline (no fill), the grid, a neutral dot at (7, 4) with a muted dashed ray, caption "Ray to the right from the point. Count the edges it crosses.", readouts "?", "Tried: none yet". No count, verdict or in/out label. The outline itself is the open U (see the note above).
+4. Reveal values: the gap point and its 2 (x = 4, x = 6): (b) milestone notch, recorded when reached; the odd point and its count: (b) milestone inside-odd, recorded when reached; "solid / dashed, outside past the last crossing": (a) the current ray on stage.
+5. QA path: (1, 4) (3 crossings, inside-odd), (3, 4) (2, notch), (5, 4), (3, 1); (7, 4) is the start and disabled. Both milestones reached, the question's own case (3, 4) included. At the reveal "Tried: (1, 4) 3 in · (3, 4) 2 out · (5, 4) 1 in · (3, 1) 1 in" is on stage.
+6. Reset: no Reset control; the recorded points never clear. Reveal on the QA path: "In the gap, from (3, 4), the ray crossed 2 edges: into the right arm at x = 4, and out again at x = 6. From (1, 4) it crossed 3: odd, inside. / Look at the ray: at each numbered crossing it switches between solid (inside) and dashed (outside), and past the last crossing it is always outside. So counting back from the far end, an odd count means inside and an even count means outside, however central the point looks. The shape can have any number of notches. A ray through a corner exactly needs a tie rule; this stage keeps the point off corner heights."

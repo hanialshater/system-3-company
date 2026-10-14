@@ -5,7 +5,7 @@
 .topbox { font-size: 11px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .head { font-size: 9.5px; font-weight: 700; fill: var(--fg); }
 .lab { font-size: 7.5px; font-weight: 700; fill: var(--fg); }
-.nums { font-size: 7px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.nums { font-size: 8.5px; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .small { font-size: 7px; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .answer { font-size: 9px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .table { margin: 0 auto; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
@@ -18,3 +18,4 @@
 @media (prefers-reduced-motion: reduce) {
   .grow { animation: none; }
 }
+.checkBox { min-height: 2.6em; display: flex; flex-direction: column; justify-content: center; gap: 2px; }

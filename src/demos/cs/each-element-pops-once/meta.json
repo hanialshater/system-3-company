@@ -1,6 +1,6 @@
 {
   "slug": "each-element-pops-once",
-  "title": "Each number pops once",
+  "title": "Waiting for a bigger number",
   "hook": "Is \"next bigger\" a scan from every position?",
   "domain": "cs",
   "concept": "monotonic-stack",
@@ -66,6 +66,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.each-element-pops-once.c6",
+      "text": "Stack rule: a new number pops each smaller number waiting on top, then waits too. On 8 7 6 5 4 3 2 1 9, the 9's eight stack comparisons are all pops (solid ticks, labelled '8 pops'), and the stack empties one box at a time down to the 9; on 9 8 ... 1 each number's single comparison meets a bigger top and pops nothing (a hollow tick).",
+      "support": "simulation",
+      "source": "Demo.tsx run(): the stack loop pops while the top is smaller than the new value, then pushes; on 8..1 9 step 9 has popped = 8 indices and stack = 8 comparisons (the stack is empty after the eighth pop, so no ninth test). Stage: ticks with t < popped.length are filled, the rest hollow; the label shows popped.length; the replay shows the 9's pops one frame each (pk = 0..8). Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +96,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:monotonic-stack",
     "also": [],
