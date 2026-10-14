@@ -8,8 +8,9 @@
 // Physics: dry kinetic friction, deceleration mu g while moving (g = 9.81 m/s^2),
 // exact solution x(t) = v0 t - mu g t^2 / 2 until the puck stops at v0 / (mu g).
 // mu = 0.10, 0.03, 0.01, 0 (illustrative values). 10 s of motion plays in 2.5 s.
-// The reveal unlocks when the no-friction run has finished and at least one other
-// lane has been run, so the comparison has to be seen.
+// v2: one control starts all four pucks together (a fair race: a puck on a low-friction lane could
+// look ahead of the frictionless one when started at a different moment); lane names are labels, not
+// buttons. The reveal unlocks when the race has finished.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
@@ -70,16 +71,16 @@ export default function PuckOnIce({ slug }: { slug: string }) {
     setActive((as) => as.map((a, i) => a && !finished[i]));
     const nextDone = done.map((d, i) => d || finished[i]);
     setDone(nextDone);
-    if (!earned.current && nextDone[NONE] && nextDone.some((d, i) => d && i !== NONE)) {
+    if (!earned.current && nextDone.every(Boolean)) {
       earned.current = true;
       interactRef.current();
     }
   }, [times, active, done]);
 
-  const start = (i: number) => {
-    setTimes((ts) => ts.map((t, j) => (j === i ? 0 : t)));
-    setDone((ds) => ds.map((d, j) => (j === i ? false : d)));
-    setActive((as) => as.map((a, j) => (j === i ? true : a)));
+  const start = () => {
+    setTimes(LANES.map(() => 0));
+    setDone(LANES.map(() => false));
+    setActive(LANES.map(() => true));
   };
 
   return (
@@ -91,7 +92,7 @@ export default function PuckOnIce({ slug }: { slug: string }) {
         options: ["A steady push forward", "No push at all", "A push that grows over time"],
         answer: 1,
       }}
-      exploreHint="Slide a puck on a lane with friction, then on the lane with none."
+      exploreHint="Start all four pucks together. Watch the dots: equal gaps mean steady speed."
       reveal={() => (
         <>
           <p>
@@ -109,18 +110,20 @@ export default function PuckOnIce({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
-        const lastDone = done[NONE] ? NONE : done.findIndex(Boolean);
+        const raceOver = done.every(Boolean);
         const caption = locked
-          ? "Make a prediction to start."
-          : done[NONE]
-            ? "No friction: 2 m every second, with no push."
-            : "Each puck starts at 2 m/s. Nobody pushes after that.";
+          ? "Four ice lanes, from lots of friction to none. Predict first."
+          : raceOver
+            ? "Equal gaps between dots mean steady speed. Bottom lane: 2 m every second."
+            : anyActive
+              ? "All four pucks left at 2 m/s together. Dots mark each second."
+              : "Each puck gets one 2 m/s start. Press the button, then watch the dots.";
 
         return (
           <div className={s.wrap}>
             <p className={s.head}>
-              <span>Friction</span>
-              <span>Dots: once a second</span>
+              <span>Friction on the lane</span>
+              <span>Dot: once a second</span>
             </p>
             {LANES.map((lane, i) => {
               const t = times[i];
@@ -130,14 +133,7 @@ export default function PuckOnIce({ slug }: { slug: string }) {
               const finished = done[i];
               return (
                 <div key={lane.name} className={s.lane}>
-                  <Control
-                    className={`${s.go} ${finished ? "active" : ""}`}
-                    disabled={locked || active[i]}
-                    onClick={() => start(i)}
-                    aria-label={`Slide the puck: ${lane.name.toLowerCase()} friction`}
-                  >
-                    {lane.name}
-                  </Control>
+                  <span className={s.go}>{lane.name}</span>
                   <svg viewBox={`0 0 ${W} ${i === NONE ? LH + 11 : LH}`} className={`stage-svg ${s.track}`} role="img" aria-label={`${lane.name} friction lane, puck at ${x.toFixed(1)} m`}>
                     <rect x={0} y={4} width={W} height={LH - 8} rx={6} className={i === NONE ? s.iceNone : s.ice} />
                     {[0, 5, 10, 15, 20].map((m) => (
@@ -167,9 +163,12 @@ export default function PuckOnIce({ slug }: { slug: string }) {
                 </div>
               );
             })}
-            <p className={s.caption} aria-live="polite" data-last={lastDone}>
+            <p className={s.caption} aria-live="polite">
               {caption}
             </p>
+            <Control disabled={locked || anyActive} onClick={start}>
+              {done.some(Boolean) ? "Slide all four again" : "Slide all four pucks"}
+            </Control>
           </div>
         );
       }}

@@ -5,6 +5,8 @@
 // (geostationary radius 88 px, so the ISS orbit hugs the Earth). The satellite laps at
 // 2000x real time and carries a velocity arrow whose length is proportional to v.
 //
+// v2: the ISS start speed and lap are shown while locked, so the learner has a baseline to compare with.
+//
 // The radius slider steps through fixed stops (200 km up, ISS, 20,000 km, geostationary).
 // It starts at the ISS; QA's two presses reach geostationary, the question's state and the
 // milestone "geo".
@@ -105,7 +107,7 @@ export default function HigherOrbitSlower({ slug }: { slug: string }) {
               </svg>
 
               <p className={s.caption} aria-live="polite">
-                {locked ? "Radius: distance from Earth's centre. Predict first." : `${st.name}: ${km(st.r)} from Earth's centre.`}
+                {locked ? "Starting at the ISS, 6,771 km from Earth's centre. Its speed is shown. Predict first." : `${st.name}: ${km(st.r)} from Earth's centre.`}
               </p>
 
               <Row>
@@ -124,8 +126,8 @@ export default function HigherOrbitSlower({ slug }: { slug: string }) {
                 />
               </Row>
               <Row>
-                <Readout label="Speed" value={locked ? "?" : kms(v)} />
-                <Readout label="One lap" value={locked ? "?" : lap(T)} />
+                <Readout label="Speed" value={kms(v)} />
+                <Readout label="One lap" value={lap(T)} />
               </Row>
             </div>
           )}

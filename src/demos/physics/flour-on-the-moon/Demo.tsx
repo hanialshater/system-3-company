@@ -10,6 +10,7 @@
 // sheet, equatorial at the 1 bar level; it has no solid surface). Ideal linear spring:
 // stretch proportional to force. A balance compares two weights in the same gravity,
 // so g cancels.
+// v3: mass and pull (newtons) are defined on the locked stage, before the question is answered.
 // v2: the spring scale is marked in kg for Earth, like a kitchen or bathroom scale, so
 // the learner sees a "kg" reading that is really a pull. Pull arrows on both balance pans
 // grow and shrink together. Question asks which instrument changes (no definitions needed).
@@ -102,9 +103,9 @@ export default function FlourOnTheMoon({ slug }: { slug: string }) {
           if (i === 1) reach("moon"); // the reveal quotes the Moon reading
         };
         const caption = locked
-          ? "Spring scale marked in kg. Balance: flour vs a 1 kg block. Predict first."
+          ? "Mass: how much flour (1 kg). Pull: gravity's tug on it, in newtons (N). Predict which reading changes."
           : world === 0
-            ? "Earth: gravity pulls 1 kg with 9.81 N (newtons, a unit of pull)."
+            ? "Earth: gravity pulls the 1 kg bag with 9.81 N. The spring is marked in kg for Earth."
             : `${w.name}: pull is ${pct}% of Earth's. Spring shows ${shownKg.toFixed(2)} kg. Balance still level.`;
 
         return (

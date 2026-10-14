@@ -21,3 +21,11 @@ Key state: a changed weight on the 1 m string has swung one full back-and-forth 
 | Fact-check 5 (recall rider not a point mass) | Recall "why" now starts "Treat swing and rider as a pendulum". c9 text unchanged. |
 
 QA: contract passes phone + desktop (local, 2026-10-13).
+
+## Revision v3
+
+Findings from 2026-10-13-learner-adult-beginner.md (revise).
+
+Per-swing times now show 'swinging...' until one back-and-forth has run. The 'harder to speed up' slogan is replaced by 'gravity pulls Nx harder, but it is also Nx harder to get moving'; the reveal uses the learner's own weight (claim c7 reworded, unverified). Ghost labelled. Model tag glosses 'ideal'. Hint says to press Release. The weight slider already reaches 2 kg.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.

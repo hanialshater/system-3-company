@@ -11,7 +11,7 @@
 .swimmer { fill: var(--bad); }
 .best { fill: var(--good); }
 .tick { stroke: var(--muted); stroke-width: 1; }
-.small { fill: var(--muted); font-size: 9px; }
+.small { fill: var(--muted); font-size: 9px; paint-order: stroke; stroke: var(--bg-2); stroke-width: 2.5px; }
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.3em; }
 .wrap > label { flex: 0 0 auto; }
 .wrap :global(.readout) { flex: 1 1 0; min-width: 0; padding: 4px 8px; }

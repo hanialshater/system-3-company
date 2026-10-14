@@ -6,6 +6,9 @@
 // total is g t^2 / 2 = 4.9, 19.6, 44.1, 78.5 m. "Watch it fall" replays the drop in real
 // time with the strips appearing as each second passes. One scale: 2.2 px per metre.
 //
+// v2: strips read 'second 2: +14.7 m (total 19.6)' so they are not mistaken for totals; the reveal states
+// the 3 s values without claiming what the stage shows mid-replay.
+//
 // Earned reveal: milestone "three-seconds" when the stack reaches 3 s (44.1 m) or more.
 
 import { Lesson } from "@/kit/Lesson";
@@ -65,12 +68,12 @@ export default function FallDistanceSquares({ slug }: { slug: string }) {
         options: ["14.7 m", "29.4 m", "44.1 m"],
         answer: 2,
       }}
-      exploreHint="Add seconds one at a time and compare each new strip."
+      exploreHint="Add seconds one at a time. Each strip is the distance fallen during that second."
       reveal={() => (
         <>
           <p>
-            Your stack passed <strong>{m1(fallen(3))}</strong> at 3 s: strips of {m1(strip(1))}, {m1(strip(2))} and{" "}
-            {m1(strip(3))}. Each second covered more ground than the last, in the ratio 1 : 3 : 5.
+            By 3 s the stone has fallen <strong>{m1(fallen(3))}</strong>: strips of {m1(strip(1))}, {m1(strip(2))} and{" "}
+            {m1(strip(3))}, one for each second. Each second covered more ground than the last, in the ratio 1 : 3 : 5.
           </p>
           <p>
             The stone gains 9.81 m/s of speed every second, so each second it is moving faster and falls further. The
@@ -101,7 +104,7 @@ export default function FallDistanceSquares({ slug }: { slug: string }) {
                       <g key={n}>
                         <rect x={SX} y={TOP + fallen(n - 1) * KY} width={SW} height={strip(n) * KY} className={n % 2 ? s.stripA : s.stripB} />
                         <text x={SX + SW + 6} y={TOP + (fallen(n - 1) + strip(n) / 2) * KY + 3} className={s.stripLabel}>
-                          {n}s: {m1(strip(n))}
+                          second {n}: +{strip(n).toFixed(1)} m (total {fallen(n).toFixed(1)})
                         </text>
                       </g>
                     ))}

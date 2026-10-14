@@ -20,3 +20,11 @@ Key state: both the 30° and the 60° throw on the stage. Gate: `useMilestones([
 | Fact-check 4 (recall 30 m implies different speed) | Recall now "at 20 m/s and 25 degrees lands 31.2 m away". New claim c10 (unverified). |
 
 Readouts moved to their own row so the two buttons fit on a phone. QA: contract passes phone + desktop (local, 2026-10-13).
+
+## Revision v3
+
+Findings from 2026-10-13-learner-adult-beginner.md (revise).
+
+Slider starts at 30 degrees (the question's throw). The same-landing caption follows the latest throw, not an old pair. New Sideways readout supports 'moves sideways slower'. Partner is defined; 'Landed' says how to launch again. Not changed: arc-label crowding with four arcs (MAX_PINS 4 is needed to show two pairs).
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.

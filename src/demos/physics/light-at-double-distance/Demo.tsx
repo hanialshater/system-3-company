@@ -7,6 +7,7 @@
 //
 // Physics: point source in empty space, no reflections; illuminance on a surface
 // facing the source E = I / d^2 (inverse-square law). 100 lux at 1 m.
+// v2: hook no longer says the light is lost; reveal says it spreads, quotes 3 m only if visited; lux defined while locked.
 // Drawn in an oblique view: the beam runs left to right, each patch is a square
 // standing across the beam. The reveal unlocks once the page has reached 2 m.
 
@@ -39,6 +40,7 @@ function quad(z: number, u0: number, u1: number, v0: number, v1: number) {
 export default function LightAtDoubleDistance({ slug }: { slug: string }) {
   const [d, setD] = useState(1);
   const [seen2, setSeen2] = useState(false);
+  const [seen3, setSeen3] = useState(false);
   const lux = E1 / (d * d);
   const h = d / 2; // half-width of the beam at distance d (1 m wide at 1 m)
   const tiles = d * d;
@@ -60,20 +62,19 @@ export default function LightAtDoubleDistance({ slug }: { slug: string }) {
         <>
           <p>
             At 2 m the page got <strong>25 lux</strong>, a quarter. The beam is twice as wide and twice as tall there,
-            so the same light covers 4 squares, and the page is still only one of them. At 3 m: 9 squares, about 11
-            lux.
+            so the same light covers 4 squares, and the page is still only one of them.{seen3 ? " At 3 m: 9 squares, about 11 lux." : ""}
           </p>
           <p>
-            Light spreads over an area that grows with the square of the distance. So brightness falls as one over
-            distance squared: double the distance, a quarter of the light.
+            No light was lost; it spread out. The area it covers grows with the square of the distance: twice as far,
+            2 × 2 = 4 squares, so each square gets a quarter. That is brightness falling as one over distance squared.
           </p>
-          <p className="muted">This is the inverse-square law, for a small source with nothing reflecting.</p>
+          <p className="muted">This is the inverse-square law, for a small lamp with no walls bouncing light back.</p>
         </>
       )}
     >
       {({ locked, interact }) => {
         const caption = locked
-          ? "Make a prediction to start."
+          ? "Lux: how much light lands on each square metre. Predict first."
           : d === 1
             ? "The beam exactly covers the page at 1 m."
             : "Same light, spread over more squares. The page is one.";
@@ -130,6 +131,7 @@ export default function LightAtDoubleDistance({ slug }: { slug: string }) {
               format={(v) => `${v} m`}
               onChange={(v) => {
                 setD(v);
+                if (v === 3) setSeen3(true);
                 if (seen2 || v === 2) {
                   setSeen2(true);
                   interact();

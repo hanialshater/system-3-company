@@ -9,6 +9,8 @@
 // RK4 at 1/600 s. Drag is illustrative: the feather is given a terminal speed of
 // 1 m/s in Earth air and Earth gravity (k/m = 9.81 per metre); the hammer has
 // C_d A = 0.01 m^2 in air of density 1.2 kg/m^3.
+// v2: air button says what it does ("Add air"), readouts say "lands at", objects are labelled, the reveal quotes any
+// air drop the learner ran.
 // The reveal unlocks when an airless drop has landed.
 
 import { Lesson } from "@/kit/Lesson";
@@ -67,6 +69,7 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
   const [dropAir, setDropAir] = useState(false);
   const interactRef = useRef<() => void>(() => {});
   const earned = useRef(false);
+  const [airSeen, setAirSeen] = useState<{ h: number; f: number } | null>(null); // last drop with air, once it has landed
 
   const hammer = useMemo(() => fall(dropAir ? (0.5 * RHO * HAMMER_CDA) / mass : 0), [dropAir, mass]);
   const feather = useMemo(() => fall(dropAir ? FEATHER_K_PER_M : 0), [dropAir]);
@@ -84,6 +87,7 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
       setT(tt);
       if (tt >= tEnd) {
         setDropping(false);
+        if (dropAir) setAirSeen({ h: tH, f: tF });
         if (!dropAir && !earned.current) {
           earned.current = true;
           interactRef.current();
@@ -94,7 +98,7 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [dropping, tEnd, dropAir]);
+  }, [dropping, tEnd, dropAir, tH, tF]);
 
   const started = dropping || t > 0;
   const hY = started ? at(hammer, t) : H0;
@@ -113,7 +117,7 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
         options: ["The hammer", "The feather", "They land together"],
         answer: 2,
       }}
-      exploreHint="Drop them with no air. Then add air, or change the hammer's mass."
+      exploreHint="Drop them with no air. Then add air and drop again. The slider changes the hammer's mass."
       reveal={() => (
         <>
           <p>
@@ -121,6 +125,12 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
             A heavier hammer is pulled harder, but it is just as much harder to speed up, so every mass falls the same
             way.
           </p>
+          {airSeen && (
+            <p>
+              With air added, the feather lagged: it landed at <strong>{airSeen.f.toFixed(2)} s</strong>, the hammer at{" "}
+              {airSeen.h.toFixed(2)} s.
+            </p>
+          )}
           <p>
             Air is what makes a feather lag: it pushes back hard on something light and wide. On the Moon in 1971,
             astronaut David Scott dropped a hammer and a feather, and they landed together.
@@ -138,11 +148,11 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
           setDropping(true);
         };
         const caption = locked
-          ? "Make a prediction to start."
+          ? "Moon: no air. Hammer and feather start level at 1.5 m. Predict first."
           : !started
             ? air
               ? "Imagine the Moon with Earth's air."
-              : "Moon: no air. Release both together."
+              : "Moon: no air. Release both together. \"Add air\" imagines Earth's air."
             : dropping
               ? "Watch the two heights."
               : Math.abs(tH - tF) < 0.01
@@ -179,6 +189,12 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
                 <rect x={-2.5} y={-4} width={5} height={22} rx={2} className={s.handle} />
                 <rect x={-12} y={-10} width={24} height={9} rx={2} className={s.head} />
               </g>
+              <text x={XH} y={FLOOR + 14} textAnchor="middle" className={s.dim}>
+                hammer
+              </text>
+              <text x={XF} y={FLOOR + 14} textAnchor="middle" className={s.dim}>
+                feather
+              </text>
               {/* feather */}
               <g transform={`translate(${XF} ${TOP + (H0 - fY) * PX - 24})`}>
                 <path d="M 0 22 C -9 12 -9 -2 0 -10 C 9 -2 9 12 0 22 Z" className={s.vane} />
@@ -202,10 +218,10 @@ export default function MoonHammerFeather({ slug }: { slug: string }) {
                   setT(0);
                 }}
               >
-                {air ? "Air: on" : "Air: off"}
+                {air ? "Take air away" : "Add air"}
               </Control>
-              <Readout label="Hammer" value={hLanded ? `${tH.toFixed(2)} s` : "?"} />
-              <Readout label="Feather" value={fLanded ? `${tF.toFixed(2)} s` : "?"} />
+              <Readout label="Hammer lands at" value={hLanded ? `${tH.toFixed(2)} s` : "not yet"} />
+              <Readout label="Feather lands at" value={fLanded ? `${tF.toFixed(2)} s` : "not yet"} />
             </Row>
             <Slider
               label="Hammer mass"
