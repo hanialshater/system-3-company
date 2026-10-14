@@ -4933,6 +4933,17 @@
       "created": "2026-10-14",
       "links": [],
       "updated": "2026-10-14"
+    },
+    {
+      "id": "W-445",
+      "title": "Ratify or reject AMD-002 (company/constitution/amendments/AMD-002-ci-cancel-superseded-runs.md): job-level concurrency on ci.yml verify, so superseded runs cancel (~300 queued runs, ~3h40m push-to-CI). Drafted job-level, not top-level as asked, because a top-level block would also cancel the constitution job, which diffs only since the previous push, so a protected-path change could reach deploy unchecked. Ratifying commit: status: ratified in the AMD file + the diff + S3_AMENDMENT=AMD-002 + trailer 'Amendment: AMD-002', or CI fails. Affected-role seat: platform-engineer.",
+      "owner": "founder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [
+        "company/constitution/amendments/AMD-002-ci-cancel-superseded-runs.md"
+      ]
     }
   ]
 }
