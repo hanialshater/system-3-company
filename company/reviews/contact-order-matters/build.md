@@ -30,3 +30,14 @@ Light revision after the fact-check (NCM-1) and the static-diagram learner revie
 - **Predict options** reordered to ["1","0","4"], answer 0 (correct first).
 - Not changed: finding 6 (tap-E affordance), recall options, references (section_unconfirmed stays). spread() untouched, so no numbers changed.
 - QA: QA_ONLY=contact-order-matters, port 3751, own dist .next-com2: lesson specs passed on phone and desktop; 2 failures in the feed spec ("subject chips filter the feed", phone and desktop) are not this lesson (not investigated). Walkthrough phone frames all viewed: legend fits, reveal fits.
+
+## Revision v3 (demo-builder, 2026-10-14)
+
+Polish after learner review r2 (static-diagram learner). Version 2 -> 3. spread() untouched, no numbers changed.
+
+- **Reveal pin:** when the phase becomes reveal, the stage is set to A first, meetings run E to A, day 4 (1 of 4), the state paragraph 1 describes. Walkthrough frame 08 shows it. Caveat: the kit scrolls the lesson body in reveal, so rows A and B are cropped in the phone frame (C, D, E, "Reached 1 of 4" visible); that is kit layout, not changed.
+- **Notation:** chips now read "A to E" / "E to A" / Overlap with a "Meetings run" label; the stem adds "(meetings run E to A)"; reveal says "When meetings run E to A ... When they run A to E".
+- **Concurrency line:** paragraph 3 now says here every pair meets on each of days 1 to 4 (so infection can run both ways); the muted line begins "In real populations, partnerships that overlap in time (concurrency) ...", wording of c6 unchanged.
+- **Tap E:** a "tap E" cue under the E disc (shown while E is not the first case) and hint "then tap the E circle to start from E".
+- Claims: no claim text changed, so none reset to unverified. The reveal sentences for c3/c4 are reworded; fact-checker may want to re-read them. 
+- QA: QA_ONLY=contact-order-matters port 3921, dist .next-ncm3: lesson specs pass on phone and desktop (10 passed); the same 2 feed-spec failures ("subject chips filter the feed") as v2, unrelated. check passes; tsc --noEmit clean (npm run typecheck was OOM-killed by shared memory; ran tsc directly). Phone frames 01, 03, 08 viewed.
