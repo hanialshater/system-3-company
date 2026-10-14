@@ -53,7 +53,7 @@ export default function BackButtonStack({ slug }: { slug: string }) {
             is A, B, D. So Back goes to <strong>B</strong>. A pile where the last page added is the first one you get
             back is called a stack.
           </p>
-          <p className="muted">Back means &quot;one step down the pile&quot;, not &quot;the page you saw before this one&quot;.</p>
+          <p className="muted">Back is not &quot;the page before D in a list of everything you opened&quot;. That list, A, B, C, D, would send you to C. Back is one step down the pile, which sends you to B.</p>
         </>
       )}
     >

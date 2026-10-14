@@ -1,12 +1,12 @@
 {
   "slug": "median-without-sorting",
   "title": "The middle card, without sorting",
-  "hook": "To find the middle value you could sort everything first. Do you have to?",
+  "hook": "To find the middle of 101 cards you could sort them all first. Do you have to?",
   "domain": "cs",
   "concept": "quickselect",
   "format": "Single card",
   "status": "review",
-  "durationSec": 70,
+  "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
     "builder": "demo-builder"
@@ -22,25 +22,21 @@
     ]
   },
   "misconception": "To find the middle value you must sort everything first.",
-  "objective": "The learner can explain that after a split the pivot is in its final place and the median lies on one side only, so discarding the other side finds the median of 7 2 9 4 1 8 5 3 6 in 4 splits and 17 comparisons, and that the saving over sorting grows with n.",
+  "objective": "The learner can explain that after a split the pivot is in its final place and the median lies on one side only, so discarding the other side finds the median of 101 shuffled cards in about half the comparisons that sorting takes, and that the saving over sorting grows with n.",
   "claims": [
     {
       "id": "cs.median-without-sorting.c1",
-      "text": "Splitting 7 2 9 4 1 8 5 3 6 around first-card pivots and keeping only the side with position 5 uses pivots 7, 2, 4 and 5: 4 splits and 17 comparisons, and finds the median 5.",
+      "text": "On these 101 shuffled cards (mulberry32 seed 38), splitting around first-card pivots and keeping only the side with position 51 finds the median in 8 splits and 297 comparisons.",
       "support": "simulation",
-      "source": "Builder's node script (scratchpad checks/all.mjs, qsel.mjs), counting group size - 1 comparisons per split: 8 + 5 + 3 + 1 = 17. | FACT-CHECK 2026-10-14 (pass 10): Own node: pivots 7, 2, 4, 5; comparisons 8 + 5 + 3 + 1 = 17; median 5.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder node run of Demo.tsx split()/keep() logic over the seed-38 shuffle (selection sketch in scratchpad med.mjs), counting group size - 1 comparisons per split. Seed 38 is a disclosed choice: over seeds 1-40 the mean is about 292 for the median search and 640 for sorting, and seed 38 gives 297 and 619.",
+      "status": "unverified"
     },
     {
       "id": "cs.median-without-sorting.c2",
-      "text": "The 8 and 9 are dropped after the first split and never looked at again.",
+      "text": "The cards on the side that does not hold position 51 are dropped after each split and never looked at again.",
       "support": "simulation",
-      "source": "First split around 7 puts 8 and 9 to its right; 7 lands in position 7, so position 5 is on the left and the right side is discarded. | FACT-CHECK 2026-10-14 (pass 10): First split: 7 lands in position 7, 8 and 9 to its right, discarded.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx keep(): lo/hi shrink to the kept side; split() only touches st.lo..st.hi.",
+      "status": "unverified"
     },
     {
       "id": "cs.median-without-sorting.c3",
@@ -53,12 +49,10 @@
     },
     {
       "id": "cs.median-without-sorting.c4",
-      "text": "Sorting with the same first-card rule takes 18 comparisons on these 9 cards.",
+      "text": "Sorting the same 101 cards with the same first-card rule takes 619 comparisons, about twice the 297 of the median search.",
       "support": "simulation",
-      "source": "Builder's node quicksort, first-card pivot, group size - 1 comparisons per split: 18. | FACT-CHECK 2026-10-14 (pass 10): Own first-pivot quicksort, size - 1 comparisons per split: 18.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder node quicksort (first-card pivot, group size - 1 comparisons per split) on the seed-38 shuffle: 619. Same Demo.tsx function sortCost(). Seed 38 chosen as typical (see c1).",
+      "status": "unverified"
     },
     {
       "id": "cs.median-without-sorting.c5",
@@ -90,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:quickselect",
     "prerequisites": [

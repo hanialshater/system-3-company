@@ -13,3 +13,7 @@ All new or edited claims are unverified, for the fact-checker.
 ## Revision v3
 
 Fact-check c5: prime is 'a whole number above 1 that cannot be split into smaller whole factors' in the claim, the predict text and the caption. The '60 or 84' clause appears only if the learner split 84.
+
+## Revision v4
+
+Learner r3 N1: the title gave the answer. Retitled "Sixty, split any way you like"; hook now ends "What are you left with?". No stage or claim changes. N2 (only the first split is chosen) stays as in the build deviation above.

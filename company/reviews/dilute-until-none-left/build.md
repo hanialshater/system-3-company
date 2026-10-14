@@ -20,3 +20,7 @@ Fixes from the v1 learner review: jump buttons named the answer on the locked sc
 Auto run stopped at 24 and flashed step 22. It now runs fast to step 20, pauses 1 s on 21 and on 22, and stops at 22. From step 19 the stage also shows '20 tubes drawn: N empty' (seeded), and the reveal quotes that N, so the 55% is backed by something seen. New claim c7 (unverified).
 
 QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.
+
+## Revision v4
+
+Fact-check note and learner: 15 of 20 empty (75%) was a tail draw beside "about 55%". The 20-tube sampler now uses multiplier 1301 (was 977), chosen from fourteen tried: 12 of 20 empty at step 22 (60%, expected 10.9), 0 at step 21. The single shown tube at steps 21 and 22 (5 and 0) is unchanged. The reveal also says another 20 would differ a little. Claim c7 edited, unverified.
