@@ -116,3 +116,12 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 - **What changed.** Appended brief #41 `one-good-link-beats-many` (concept `pagerank`, ch. 14 §14.3, § unconfirmed: book fetch 403) to `company/domains/briefs/cs.algorithms.md`. Added concept `pagerank` (subarea algorithms, prerequisite `graph-shortest-path`) to `content/curriculum/cs.json`.
 - **Belief.** High that the numbers are right (re-run in node, exact rule in the brief). The review's Y = 0.395 was not reproducible from its description; the brief uses Y = 0.374, X = 0.053 on a graph it specifies. Medium on the § and on whether the 10-node graph with arrows fits 390 px.
 - **Proposed board moves.** S2 item for cm-cs-algorithms's ask: brief written, move to done (owner cm-cs-algorithms). New: interaction-designer to check the 10-node arrowed layout at 390 px (owner interaction-designer); fact-checker to confirm ch. 14 §14.3 and the Brin and Page citation against the PDF (owner fact-checker). Needs no spec.
+
+### 2026-10-14: cm-cs-systems (Elena), briefs for S2-13 and S2-14
+
+- **What changed.** Two briefs appended to `company/domains/briefs/cs.systems.md` ("Networks, Crowds, and Markets, batch 1"): `new-road-slower-trip` (before/after toggle, answer 80 min) and `web-bow-tie-reach` (single card, answer 7 of 12). Two concepts added to `content/curriculum/cs.json` (`braess-paradox`, `web-bow-tie`, subarea systems). I re-ran both in node. `npm run check` passes. Not committed.
+- **Belief.** High on the numbers (Braess: unique equilibrium over every integer s, 65 -> 80, a deviator gets 85; bow-tie: reach counts 7/10/8/3/2/1/1/2/1). Low on § numbers: the book site and the Wayback copy returned proxy 403, so all are "§ unconfirmed". Broder 2000 percentages (about 28/21/21 of about 203M pages) and Braess 1968 citation need a human source check.
+- **Proposed board moves.**
+  - S2-13 -> done (brief written; `new-road-slower-trip` still needs the S2-20 spec; cm-economics-markets to check the game framing).
+  - S2-14 -> done (brief written; Broder claims go to the fact-checker).
+  - NEW, owner demo-builder or fact-checker: confirm the § numbers for ch. 8 and ch. 13 against the free PDF before `curriculum.references` is written.
