@@ -37,3 +37,19 @@ Checker: fact-checker (did not write these claims). Wave E revision. Method: rea
 | c7 | verified | Own run: round 1 share 0.75 (C = B by symmetry), round 2 fallback 1 - 0.75 = 0.25 -> '$0.250'. Chip 'B's fallback = $1 − C's last share' matches. |
 
 **Result:** all open claims verified; no disputes.
+
+## Pass 35 (2026-10-14)
+
+Checker: fact-checker, fresh instance (wrote none of these claims). Method: read Demo.tsx first (stage, chip in every branch: locked, round 0, round N; trace rows; Reset; reveal; predict; hook and recall in meta.json), then the claim text and support, then source fields. Re-ran numbers in my own node scripts (scratchpad fc35/). No source host could be opened (WebFetch and curl fail DNS or proxy 403 for cornell.edu, berkeley.edu, arxiv.org, wikipedia.org), so nothing below is verified on an unopened source; claims verified here rest on the code or on a derivation re-run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Learner text describes the lesson's own rule, checked against Demo.tsx v5 shares(): oB = 1 - vC (C's last share), vB = oB + (1 - oB)/2 (A's fallback 0, so cover both, halve the rest). Chip: locked 'Each pair covers both fallbacks, then halves the rest'; round 0 'no fallbacks yet, each pair halves $1'; round N 'B's fallback = $1 − C's last share x = y'. All match. The Easley and Kleinberg / Cook and Yamagishi attribution in the source field was NOT opened (hosts unreachable) and is not in learner text; it is not the basis of this verdict. |
+| c3 | verified | Own node of shares(): rounds 1-3 B = 0.75, 0.625, 0.6875 -> usd '$0.750, $0.625, $0.688' (reveal is ROUNDS.slice(1,4)); trace row toFixed(3).slice(1) gives '.500 .750 .625 .688 ...'. maxSeen is not reset by Reset, so the row persists. Swing follows from oB = 1 - vC. |
+| c5 | verified | Convention. Reveal muted line reads 'A model, not a forecast of real bargains.' Consistent with the stage chip, which states the model rule. |
+| c6 | verified | Own run, TOL 0.0005: round 8 0.66602 (outside), round 9 0.66699 (first inside), rounds 10-14 stay inside; SETTLED_AT = 9. usd -> '$0.667', A 1 - 0.66699 -> '$0.333'. Reveal needs milestone 'settled' (round >= 9), so the learner has seen a round reading $0.667. |
+| c7 | verified | Own run tracking vB and vC separately: equal every round (symmetry). Round 1 C = 0.75 -> '$0.750'; round 2 fallback 1 - 0.75 = 0.25 -> '$0.250' (reveal uses ROUNDS[1].inner and ROUNDS[2].fallback). Trace row 'B's fallback: .000 .500 .250 ...'. |
+| c8 | verified | Verified as a derivation under the lesson's own rule, not on the cited source (not opened). 3-path A-B-C with A-B matched: C has no deal (share 0), so B's fallback is 1 - 0 = 1 and B gets 1 + 0/2 = $1 (own node). 'Nearly all' is weaker than 'all', so it holds; c5 frames it as a model. |
+| c9 | verified | Derivation: oB = 1 - vC and oC = 1 - vB in shares(), so each inner fallback is set by the other's share; fixed point v = 1 - v/2 = 2/3 < 1 (own run converges to 0.66666). Contrast with the 3-path (c8) where the centre gets 1. 'Power depends on the network' is the lesson's interpretive conclusion from that contrast, consistent with the model. |
+
+**Result:** all seven open claims verified on code and derivation; none rests on an unopened source. No disputes.

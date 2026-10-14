@@ -34,36 +34,46 @@
       "id": "ai.long-answers-lose-the-product.c1",
       "text": "0.5 x 0.5 = 25% and 0.85^10 = 19.7%, so the 2-token answer S is more probable than the 10-token answer L.",
       "support": "derivation",
-      "source": "Arithmetic; whole() in Demo.tsx; node 2026-10-14: 0.25 and 0.19687.",
-      "status": "unverified"
+      "source": "Arithmetic; whole() in Demo.tsx; node 2026-10-14: 0.25 and 0.19687. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: 0.5^2 = 0.25 -> pc '25%'; 0.85^10 = 0.19687 -> '19.7%'. The reveal uses rec, which check() sets only when L = 10 is complete; the question-case milestone requires that, so the reveal always reads 25% against 19.7%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.long-answers-lose-the-product.c2",
       "text": "At 85% per token, L beats S's 25% only up to 8 tokens (0.85^8 = 27.2%, 0.85^9 = 23.2%).",
       "support": "derivation",
-      "source": "CROSS in Demo.tsx computes 8; node: 0.85^8 = 0.2725, 0.85^9 = 0.2316. Stage lengths 1-10: 85.0, 72.3, 61.4, 52.2, 44.4, 37.7, 32.1, 27.2, 23.2, 19.7%.",
-      "status": "unverified"
+      "source": "CROSS in Demo.tsx computes 8; node: 0.85^8 = 0.2725, 0.85^9 = 0.2316. Stage lengths 1-10: 85.0, 72.3, 61.4, 52.2, 44.4, 37.7, 32.1, 27.2, 23.2, 19.7%. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node over n = 1..10: 0.85^n > 0.25 for n <= 8 (0.85^8 = 27.2%), false from 9 (23.2%) and 10 (19.7%); CROSS = 8. The reveal's 'At n tokens L won with x%' uses the last completed n <= 8, every one of which beats 25%; 'past 8 it always loses' holds since 0.85^n decreases.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.long-answers-lose-the-product.c3",
       "text": "A whole answer's probability is the product of its tokens' probabilities, so each extra token multiplies the whole by something below 1 and can only lower it; therefore the single most probable answer tends to be a short one.",
       "support": "derivation",
-      "source": "Chain rule of probability: P(w1..wn) = product of P(wi | w1..wi-1), each factor <= 1. The toy's per-token chances are fixed and invented (stage tag 'Invented token odds').",
-      "status": "unverified"
+      "source": "Chain rule of probability: P(w1..wn) = product of P(wi | w1..wi-1), each factor <= 1. The toy's per-token chances are fixed and invented (stage tag 'Invented token odds'). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: whole(p, k) = p^k and every token chance is in (0,1), so each extra factor lowers the product; the stage shows this as the bar shrinks with each +1 token. 'Tends to' is the right strength: a longer answer with higher per-token odds can still win (n <= 8 here).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.long-answers-lose-the-product.c4",
       "text": "Scoring per token (the geometric mean of the token chances, a length-normalised score) puts L ahead: 85% against 50%, at every length.",
       "support": "derivation",
-      "source": "(p^n)^(1/n) = p: S 0.5, L 0.85 for any n. Shown on the stage as 'per token: 85% (whole: ...)'.",
-      "status": "unverified"
+      "source": "(p^n)^(1/n) = p: S 0.5, L 0.85 for any n. Shown on the stage as 'per token: 85% (whole: ...)'. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: the geometric mean of k equal chances p is p, so per token L = 85% and S = 50% for every slider length 1-10; the stage prints 'per token: 85%' and '50%' with L marked more probable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.long-answers-lose-the-product.c5",
       "text": "Real decoders add such a length correction (length penalty or normalisation), because exact or beam search for the most probable output favours short outputs.",
       "support": "source",
-      "source": "Wu et al. (2016), 'Google's neural machine translation system', arXiv 1609.08144, section 7 (length normalisation in beam search); Murray and Chiang (2018), 'Correcting length bias in neural machine translation', WMT 2018. About real systems; needs the fact-checker. The brief's optional Stahlberg and Byrne (2019) sentence is not in learner text.",
-      "status": "unverified"
+      "source": "Wu et al. (2016), 'Google's neural machine translation system', arXiv 1609.08144, section 7 (length normalisation in beam search); Murray and Chiang (2018), 'Correcting length bias in neural machine translation', WMT 2018. About real systems; needs the fact-checker. The brief's optional Stahlberg and Byrne (2019) sentence is not in learner text. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Opened source: Hugging Face transformers (main, fetched 2026-10-14), GenerationConfig.length_penalty: 'applied as an exponent to the sequence length, which in turn is used to divide the score of the sequence. Since the score is the log likelihood of the sequence (i.e. negative), length_penalty > 0.0 promotes longer sequences'; default 1.0 (line 626), and the beam update divides log-probs by length**length_penalty, i.e. the per-token mean log-prob (log of the geometric mean). So a widely used real decoder applies this correction, and its docs state the reason (unnormalised log-likelihood favours short sequences). That exact search for the most probable output favours short outputs follows from c3. The NMT papers in the source field were not opened and are not the basis.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
