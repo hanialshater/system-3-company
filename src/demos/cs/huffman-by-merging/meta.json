@@ -38,29 +38,37 @@
       "id": "cs.huffman-by-merging.c2",
       "text": "Giving each of the 8 letters a 2-digit code costs 16 bits.",
       "support": "derivation",
-      "source": "8 symbols x 2 bits = 16.",
-      "status": "unverified"
+      "source": "8 symbols x 2 bits = 16. | FACT-CHECK 2026-10-14 (pass 11): Message is 4 A + 2 B + 1 C + 1 D = 8 letters; 8 x 2 = 16 (matches FIXED = 16 in Demo.tsx and the predict text).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.huffman-by-merging.c3",
       "text": "Each join puts one more digit on the code of every letter inside it, so a join costs the group's total count in bits.",
       "support": "derivation",
-      "source": "A join makes the two groups children of a new node, lengthening every code beneath by one bit (0 for one side, 1 for the other). Total bits = sum over symbols of weight x depth = sum over joins of the joined weight.",
-      "status": "unverified"
+      "source": "A join makes the two groups children of a new node, lengthening every code beneath by one bit (0 for one side, 1 for the other). Total bits = sum over symbols of weight x depth = sum over joins of the joined weight. | FACT-CHECK 2026-10-14 (pass 11): Total bits = sum weight x depth; each merge adds 1 to the depth of every leaf beneath it, so sum over merges of merged weight is the same total. For 4,2,1,1: merges 2 + 4 + 8 = 14.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.huffman-by-merging.c4",
       "text": "In a code read off such a tree, no code starts another, so a message can be decoded without gaps.",
       "support": "source",
-      "source": "Codes are the paths to leaves; a leaf has no descendants, so no codeword is a prefix of another (prefix code). CLRS 3rd ed., 16.3 'Huffman codes'. Example from the brief's tree: 1, 01, 000, 001.",
-      "status": "unverified"
+      "source": "Codes are the paths to leaves; a leaf has no descendants, so no codeword is a prefix of another (prefix code). CLRS 3rd ed., 16.3 'Huffman codes'. Example from the brief's tree: 1, 01, 000, 001. | FACT-CHECK 2026-10-14 (pass 11): Codewords are root-to-leaf paths and leaves have no children, so no codeword is a prefix of another; brief codes 1, 01, 000, 001 checked prefix-free.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.huffman-by-merging.c5",
       "text": "Huffman proved that always joining the two rarest groups gives the fewest bits possible for any code where no code starts another.",
       "support": "source",
-      "source": "Huffman, 'A Method for the Construction of Minimum-Redundancy Codes', Proc. IRE 40(9), 1952; optimality proof in CLRS 3rd ed., 16.3, Lemmas 16.2-16.3 and Theorem 16.4.",
-      "status": "unverified"
+      "source": "Huffman, 'A Method for the Construction of Minimum-Redundancy Codes', Proc. IRE 40(9), 1952; optimality proof in CLRS 3rd ed., 16.3, Lemmas 16.2-16.3 and Theorem 16.4. | FACT-CHECK 2026-10-14 (pass 11): Huffman 1952, Proc. IRE 40(9):1098-1101; optimality among prefix codes is CLRS 3rd ed. Thm 16.4 (greedy choice Lemma 16.2, optimal substructure Lemma 16.3). Claim limits itself to prefix codes: correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.huffman-by-merging.c6",

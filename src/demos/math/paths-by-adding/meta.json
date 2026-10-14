@@ -27,8 +27,10 @@
       "id": "math.paths-by-adding.c1",
       "text": "Every shortest route into a corner arrives from the corner to its west or the corner to its south, so its count is the sum of those two counts; along the edges there is 1 route (1 from one side plus 0 from the other).",
       "support": "derivation",
-      "source": "The last move of an east/north route is either east or north; the two sets of routes do not overlap. On an edge only one kind of move is possible.",
-      "status": "unverified"
+      "source": "The last move of an east/north route is either east or north; the two sets of routes do not overlap. On an edge only one kind of move is possible. | FACT-CHECK 2026-10-14 (pass 11): Last move is east or north, disjoint cases, so count = west + south; an edge corner has one predecessor.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.paths-by-adding.c2",
@@ -60,9 +62,11 @@
     {
       "text": "A city 3 blocks east by 3 blocks north has 4 x 4 corners (the dots); 20 shortest routes go from one corner to the opposite one.",
       "support": "derivation",
-      "source": "Corners = (3 + 1)^2 = 16; routes = C(6, 3) = 20 (c2, c4). Question wording changed from '3-by-3 grid of blocks' to avoid confusion with the dots.",
+      "source": "Corners = (3 + 1)^2 = 16; routes = C(6, 3) = 20 (c2, c4). Question wording changed from '3-by-3 grid of blocks' to avoid confusion with the dots. | FACT-CHECK 2026-10-14 (pass 11): (3+1)^2 = 16 corners; C(6,3) = 20 in node.",
       "id": "math.paths-by-adding.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

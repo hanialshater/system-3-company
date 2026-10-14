@@ -36,22 +36,28 @@
       "id": "math.gauss-staircase.c2",
       "text": "Two staircases of n steps, one turned half a turn, fill an n-by-(n+1) rectangle exactly, so 1 + 2 + ... + n = n(n+1)/2; blue is half of the rectangle.",
       "support": "derivation",
-      "source": "Column i (1..n) holds i dots of the first staircase and n + 1 - i of the turned copy: n + 1 per column, n columns. Also provable by induction.",
-      "status": "unverified"
+      "source": "Column i (1..n) holds i dots of the first staircase and n + 1 - i of the turned copy: n + 1 per column, n columns. Also provable by induction. | FACT-CHECK 2026-10-14 (pass 11): Column i has i + (n+1-i) = n+1 dots, n columns: n(n+1), so the sum is n(n+1)/2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.gauss-staircase.c3",
       "text": "1 + 2 + ... + 100 = 100 x 101 / 2 = 5,050; two 100-step staircases fill a 100 x 101 rectangle of 10,100 dots.",
       "support": "derivation",
-      "source": "Gauss pairing / rectangle argument (c2): 100 x 101 = 10,100; half is 5,050. The prediction options are 5,000 / 5,050 / 10,100.",
-      "status": "unverified"
+      "source": "Gauss pairing / rectangle argument (c2): 100 x 101 = 10,100; half is 5,050. The prediction options are 5,000 / 5,050 / 10,100. | FACT-CHECK 2026-10-14 (pass 11): 100 x 101 = 10,100; half 5,050.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "The reveal quotes the largest step count the learner showed with the flipped copy, m: m x (m+1), and half of it.",
       "support": "derivation",
-      "source": "Computed from c2 for the learner's own m (Demo.tsx built state); for m = 10: 10 x 11 = 110, half 55 (c1).",
+      "source": "Computed from c2 for the learner's own m (Demo.tsx built state); for m = 10: 10 x 11 = 110, half 55 (c1). | FACT-CHECK 2026-10-14 (pass 11): Demo.tsx: onBuilt(n) fires when the copy is shown, built = max; reveal prints built x (built+1) and half. m = 10: 110, 55.",
       "id": "math.gauss-staircase.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

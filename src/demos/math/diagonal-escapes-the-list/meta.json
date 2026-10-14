@@ -35,8 +35,10 @@
       "id": "math.diagonal-escapes-the-list.c2",
       "text": "The stage shows only the first 8 rows and 8 places; the argument is for the whole endless list, where row n differs at place n. For row 1,000,000 your string has the opposite digit at place 1,000,000, so it differs.",
       "support": "derivation",
-      "source": "The same rule applies to every n; the grid is an illustration. Rows come from mulberry32(1891), an arbitrary seed not chosen for the result (any list gives the same outcome).",
-      "status": "unverified"
+      "source": "The same rule applies to every n; the grid is an illustration. Rows come from mulberry32(1891), an arbitrary seed not chosen for the result (any list gives the same outcome). | FACT-CHECK 2026-10-14 (pass 11): Diagonal rule: place n of the new string is the opposite of row n place n, so it differs from row n for every n, including 1,000,000; caption line 102 matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.diagonal-escapes-the-list.c3",
@@ -50,9 +52,11 @@
     {
       "text": "If your string copies a row's digit at its highlighted place, it is not escaping that row; the opposite digit does escape it.",
       "support": "derivation",
-      "source": "A string differs from row k exactly when its place-k digit differs from row k's place-k digit; the stage marks a copied digit in red.",
+      "source": "A string differs from row k exactly when its place-k digit differs from row k's place-k digit; the stage marks a copied digit in red. | FACT-CHECK 2026-10-14 (pass 11): A string differs from row k at place k iff the digits differ; Demo.tsx flags the first copied place (line 98) and colours rowSame.",
       "id": "math.diagonal-escapes-the-list.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
