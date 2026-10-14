@@ -151,7 +151,7 @@ export const roles = [
     mission: "Decide what the learner should do, predict and notice, so the lesson teaches the payoff and not the procedure.",
     inScope: [
       "The brief fields of meta.json: learner.knows / doesNotKnow, misconception, objective, recall",
-      "A one-page design note: prediction question and options, the interaction, what the learner should notice, reveal script ≤ 120 words",
+      "A one-page design note: prediction question and options, the interaction, what the learner should notice, reveal script ≤ 90 words (demo-standard.md; fits a 390×844 phone with its picture)",
       "Proposing strategic constraints when versions converge ('no bars', 'no text on the stage')",
     ],
     outOfScope: ["Writing Demo.tsx", "Verifying claims", "Judging finished lessons"],
