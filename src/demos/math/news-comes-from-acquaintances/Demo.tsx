@@ -1,8 +1,9 @@
 "use client";
 
-// The tie between two groups (slug news-comes-from-acquaintances). Two groups of four (circles
-// A C D E, squares B F G H), every pair inside a group tied and close (K4 + K4), plus the one tie
+// The tie between two groups (slug news-comes-from-acquaintances). Two groups of four (all nodes
+// circles: A C D E and B F G H), every pair inside a group tied and close (K4 + K4), plus the one tie
 // A–B. Rule (strong triadic closure): two people you're close to must have a tie.
+// v3 polish (design review N1-N8): scale >= 0.95, circles r16, ink #0d0f14 on the x dot, news hops <= 270 ms.
 // v2: after the prediction A–B always starts close, so every learner (and the QA path) sees the
 // rule break first (A close to B and C, no B–C tie: drawn red). DOM order is C–E check, F–H check,
 // A–B pill (close / acquaintance), Send news: the scripted path photographs the broken state at the
@@ -164,7 +165,7 @@ function Stage({
       key={k ?? key(a, b) + cls}
       x1={P[a][0]} y1={P[a][1]} x2={P[b][0]} y2={P[b][1]}
       className={cls}
-      style={delay !== undefined ? { animationDelay: `${delay * 90}ms` } : undefined}
+      style={delay !== undefined ? { animationDelay: `${delay * 60}ms` } : undefined}
     />
   );
   const abWord = ab === null ? "unknown" : ab === "close" ? "close" : "acquaintance";
@@ -175,7 +176,7 @@ function Stage({
       disabled={locked}
       className={`${s.handle} ${check === c ? s.on : ""}`}
       style={pct(mid(a, b))}
-      aria-label={`Check the rule on tie ${a}–${b}`}
+      aria-label={`Check the rule on tie ${a}–${b}, ${checked.includes(c) ? "checked" : "not checked yet"}`}
       aria-pressed={check === c}
       onClick={() => onCheck(c)}
     >
@@ -211,15 +212,11 @@ function Stage({
           {[...G1, ...G2].map((n) => {
             const [x, y] = P[n];
             const cls = news ? s.heard : s.node;
-            const st = news ? { animationDelay: `${(NODE_HOP[n] + 1) * 90}ms` } : undefined;
+            const st = news ? { animationDelay: `${(NODE_HOP[n] + 1) * 60}ms` } : undefined;
             return (
               <g key={n}>
-                {G1.includes(n) ? (
-                  <circle cx={x} cy={y} r={15} className={cls} style={st} />
-                ) : (
-                  <rect x={x - 14} y={y - 14} width={28} height={28} rx={4} className={cls} style={st} />
-                )}
-                <text x={x} y={y + 5} className={news ? s.nameOn : s.name}>{n}</text>
+                <circle cx={x} cy={y} r={16} className={cls} style={st} />
+                <text x={x} y={y + 5.5} className={news ? s.nameOn : s.name}>{n}</text>
               </g>
             );
           })}
@@ -231,7 +228,6 @@ function Stage({
           className={`${s.handle} ${s.ab}`}
           style={pct(mid("A", "B"))}
           aria-label={`Tie A–B, ${abWord}. Tap to switch.`}
-          aria-pressed={ab === "close"}
           onClick={onTie}
         >
           <span className={`${s.pill} ${s.abPill}`}>{ab === null ? "?" : <Swatch kind={ab} />}</span>
