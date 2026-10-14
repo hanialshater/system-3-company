@@ -27,8 +27,10 @@
       "id": "geography.land-hemisphere.c1",
       "text": "A search of every possible centre on this map finds the landiest half near 42 N, 2 E, in Western Europe, and it is about 47% land.",
       "support": "simulation",
-      "source": "Every hemisphere centre on a 2 degree grid, searched at build time over the lesson's own 2 degree land mask (mask.ts; cells cos-weighted): maximum 47.1% at 42 N, 2 E. The page recomputes the share at that centre from the same mask. Published land-hemisphere centres are near Nantes, France, at about 47 N, 2 W, with land about 47-49% (Boggs 1945; Wikipedia 'Land and water hemispheres'; from memory, not checked online). 1:110m omits small islands, so it is a slight underestimate; the lesson says 'on this map'. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "Every hemisphere centre on a 2 degree grid, searched at build time over the lesson's own 2 degree land mask (mask.ts; cells cos-weighted): maximum 47.1% at 42 N, 2 E. The page recomputes the share at that centre from the same mask. Published land-hemisphere centres are near Nantes, France, at about 47 N, 2 W, with land about 47-49% (Boggs 1945; Wikipedia 'Land and water hemispheres'; from memory, not checked online). 1:110m omits small islands, so it is a slight underestimate; the lesson says 'on this map'. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Rebuilt the mask from the kit land-110m.json with d3.geoContains at every 2-deg cell centre: 0 of 16,200 cells differ from mask.ts. Own search of every 2-deg centre with cos-weighted cells: max 47.13% at 42N, 2E (40N 2E 47.13%, 46N 0E 47.12%: a flat ridge across France/Iberia); a 0.5-deg refinement peaks at 47.16% (44N, 0.5E). Reveal prints pct = 47%. Claim says 'on this map', so the published Nantes-centred values are not asserted.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.land-hemisphere.c2",

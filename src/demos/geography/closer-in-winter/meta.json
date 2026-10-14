@@ -81,15 +81,19 @@
       "id": "geography.closer-in-winter.c7",
       "text": "In June the north pole leans toward the Sun; in December the south pole does.",
       "support": "source",
-      "source": "Standard seasons explanation; NASA Space Place 'What causes the seasons?'. Not checked by the builder. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "Standard seasons explanation; NASA Space Place 'What causes the seasons?'. Not checked by the builder. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Node with the Demo.tsx orbit model: declination is at least +22.07 deg on every June day and at most -21.82 deg on every December day, so the stage message ('The north/south leans toward the Sun', thresholds +/-5 deg) shows north in June, south in December. Geometry: in June earthLon is about 270 deg, so Earth sits below the Sun and the up-the-page axis arrow points toward it. Agrees with the June solstice subsolar point at 23.4N (c4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.closer-in-winter.c8",
       "text": "The stage names seasons by whole months: March to May is spring, June to August summer, September to November autumn, December to February winter (reversed in the south).",
       "support": "convention",
-      "source": "Meteorological seasons, the everyday month-based convention (e.g. UK Met Office, NOAA). Implemented in season() in Demo.tsx.",
-      "status": "unverified"
+      "source": "Meteorological seasons, the everyday month-based convention (e.g. UK Met Office, NOAA). Implemented in season() in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 17): season() in Demo.tsx maps month index 2-4 to spring, 5-7 summer, 8-10 autumn, else winter, swapped for the south. Met Office (metoffice.gov.uk, 'When does Spring start?', 2026 blog; seasons pages) defines meteorological spring as 1 March to 31 May with four three-month seasons.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

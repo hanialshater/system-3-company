@@ -55,8 +55,10 @@
       "id": "geography.lap-at-89-north.c4",
       "text": "Circles of latitude get smaller toward the pole: a circle's radius is R × cos(latitude), so at 89°N it is about 1.7% as wide as at the equator.",
       "support": "derivation",
-      "source": "Geometry of the sphere; cos 89° = 0.01745. | FACT-CHECK 2026-10-13 (pass 6): cos 89 = 0.01745. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "Geometry of the sphere; cos 89° = 0.01745. | FACT-CHECK 2026-10-13 (pass 6): cos 89 = 0.01745. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Parallel radius = R cos(lat); cos 89 = 0.017452 = 1.7%. Node lap 2 pi R cos 89 = 698.6 km vs 40,030 km. Reveal text matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.lap-at-89-north.c5",
@@ -87,8 +89,19 @@
       "id": "geography.lap-at-89-north.c8",
       "text": "Driving from London to Edinburgh is about 650 km by road.",
       "support": "source",
-      "source": "Approximate road distance (about 400 miles) from common route planners (AA, Google Maps); builder recall, not opened. Used only as a familiar comparison for the 700 km lap.",
-      "status": "unverified"
+      "source": "Approximate road distance (about 400 miles) from common route planners (AA, Google Maps); builder recall, not opened. Used only as a familiar comparison for the 700 km lap. | FACT-CHECK 2026-10-14 (pass 17): Web search (route planners): Wanderlog 407 mi / 655 km, Sixt 405 mi, Road Genius 404 mi / 650 km (M6/A74(M)) and 412 mi / 664 km (M1/A1(M)). 'About 650 km' holds. The comparison sentence that carries it is a separate claim (c9).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.lap-at-89-north.c9",
+      "text": "Whenever one lap is under 1,000 km, it is a bit more than London to Edinburgh by road (about 650 km).",
+      "support": "derivation",
+      "source": "UNRECORDED claim found by the fact-checker (pass 17): Demo.tsx shows the note 'A bit more than London to Edinburgh by road (about 650 km).' whenever lapKm(lat) < 1000. | FACT-CHECK 2026-10-14 (pass 17): Node, 2 pi R cos(lat): 88.6N 978 km (1.5x, not 'a bit more'), 89.0N 699 km (right), 89.1N 629 km, 89.5N 349 km, 89.9N 70 km, all LESS than 650 km. The slider reaches 89.9N in 0.1 steps, so the note is false at 89.1-89.9N. Fix (builder, Demo.tsx): show the note only when the lap is about 680-760 km (e.g. 88.9-89.0N), or compute the comparison ('about N times London to Edinburgh').",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

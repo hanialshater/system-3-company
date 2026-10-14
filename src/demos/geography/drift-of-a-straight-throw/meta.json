@@ -54,8 +54,10 @@
       "id": "geography.drift-of-a-straight-throw.c4",
       "text": "The Coriolis effect is zero at the equator and grows toward the poles.",
       "support": "derivation",
-      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory). | FACT-CHECK 2026-10-13 (pass 4): f = 2 Omega sin(lat) is 0 at the equator and largest at the poles (Holton, Intro to Dynamic Meteorology, ch. 1/2). Node: latitude 0 gives 0 m east; slider shows it. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "The horizontal deflection is set by f = 2 Ω sin φ: 0 at φ = 0, maximum at φ = 90°. The stage's latitude slider shows 0 m at 0°N. Holton, An Introduction to Dynamic Meteorology (from memory). | FACT-CHECK 2026-10-13 (pass 4): f = 2 Omega sin(lat) is 0 at the equator and largest at the poles (Holton, Intro to Dynamic Meteorology, ch. 1/2). Node: latitude 0 gives 0 m east; slider shows it. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Horizontal Coriolis parameter f = 2 Omega sin(lat): 0 at the equator, increasing monotonically to 2 Omega at the poles. Demo.tsx drift() returns east = 0 when f = 0 and the readout shows '0 m' at 0N; drift grows with the latitude slider. The claim is about the horizontal deflection the stage shows (the vertical component is out of scope).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c5",
@@ -70,15 +72,19 @@
       "id": "geography.drift-of-a-straight-throw.c6",
       "text": "100 m/s is 360 km/h, so 1,000 km takes about 3 hours.",
       "support": "derivation",
-      "source": "100 x 3.6 = 360. | FACT-CHECK 2026-10-13 (pass 4): 100 m/s x 3.6 = 360 km/h (node). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "100 x 3.6 = 360. | FACT-CHECK 2026-10-13 (pass 4): 100 m/s x 3.6 = 360 km/h (node). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): 100 m/s x 3.6 = 360 km/h; 1,000,000 m / 100 m/s = 10,000 s = 2.78 h ('about 3 hours'). The predict text states both.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.drift-of-a-straight-throw.c7",
       "text": "The sideways drift of a moving object caused by the turning ground is called the Coriolis effect.",
       "support": "convention",
-      "source": "Standard definition (any physical-oceanography or meteorology text, e.g. Holton, An Introduction to Dynamic Meteorology, ch. 1).",
-      "status": "unverified"
+      "source": "Standard definition (any physical-oceanography or meteorology text, e.g. Holton, An Introduction to Dynamic Meteorology, ch. 1). | FACT-CHECK 2026-10-14 (pass 17): Definition: in a rotating frame a moving body is deflected sideways by the Coriolis effect (apparent force -2 Omega x v). The reveal names the stage's drift this way. Standard naming; no number at stake.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

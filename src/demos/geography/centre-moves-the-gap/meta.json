@@ -45,8 +45,10 @@
       "id": "geography.centre-moves-the-gap.c3",
       "text": "The shortest route between Tokyo (Haneda) and Los Angeles (LAX) is about 8,810 km, and re-centring the map does not change it.",
       "support": "derivation",
-      "source": "d3-geo geoDistance x 6,371.0088 km on the coordinates in c1 = 8,812.6 km (shown rounded to 8,810). Sphere model. The slider only rotates the projection. | FACT-CHECK 2026-10-13 (pass 4): Node haversine, R = 6371.0088 km (the kit's EARTH_RADIUS_KM), Haneda (35.55N,139.78E) to LAX (33.94N,118.41W) = 8,812.6 km; with exact airport coordinates 8,812.6 km; shown as 8,810. Independent of map centre (the formula uses no projection). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check.",
-      "status": "unverified"
+      "source": "d3-geo geoDistance x 6,371.0088 km on the coordinates in c1 = 8,812.6 km (shown rounded to 8,810). Sphere model. The slider only rotates the projection. | FACT-CHECK 2026-10-13 (pass 4): Node haversine, R = 6371.0088 km (the kit's EARTH_RADIUS_KM), Haneda (35.55N,139.78E) to LAX (33.94N,118.41W) = 8,812.6 km; with exact airport coordinates 8,812.6 km; shown as 8,810. Independent of map centre (the formula uses no projection). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Node haversine and d3-geo geoDistance, R = 6,371.0088: Haneda (35.55N, 139.78E) to LAX (33.94N, 118.41W) = 8,812.56 km, displayed Math.round(KM/10)*10 = 8,810. KM is a constant computed without the projection, so the slider cannot change it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.centre-moves-the-gap.c4",
@@ -61,8 +63,10 @@
       "id": "geography.centre-moves-the-gap.c5",
       "text": "The whole world map is 360° of longitude wide; its left and right edges are where the world is cut.",
       "support": "convention",
-      "source": "An equirectangular world map spans 360 degrees of longitude by construction (Snyder, Map Projections: A Working Manual); the stage draws the map at exactly that width (Demo.tsx PX_PER_DEG = W/360).",
-      "status": "unverified"
+      "source": "An equirectangular world map spans 360 degrees of longitude by construction (Snyder, Map Projections: A Working Manual); the stage draws the map at exactly that width (Demo.tsx PX_PER_DEG = W/360). | FACT-CHECK 2026-10-14 (pass 17): Demo.tsx: geoEquirectangular scale W/(2 pi), so 360 deg of longitude spans exactly W px; PX_PER_DEG = W/360. The projection clips at the antimeridian of the rotated centre, which is the left/right edge. Equirectangular spans 360 deg of longitude by construction (plate carree: x = R lambda).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
