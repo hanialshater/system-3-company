@@ -5,11 +5,65 @@ Newest entry at the top.
 
 ## Board items (proposed moves and new items)
 
+### Networks, Crowds, and Markets vertical review (principal-pm-verticals, 2026-10-14)
+Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each brief item reads "Brief <slug> (concept, E&K ch/§, result and format in the record's §3 Asks)". Every brief carries `curriculum.references` to `easley-kleinberg-2010`. The CM re-checks the answer in node and confirms the § against the PDF.
+
+- **W-137** (principal-pm-verticals) → done. The review record and `company/product/verticals/networks-crowds-markets.md` are written.
+- **S2-01** · Brief news-comes-from-acquaintances (math:weak-ties-local-bridges, ch. 3 §3.1–3.2, single card) · owner: cm-math-discrete
+- **S2-02** · Brief enemy-of-my-enemy (math:structural-balance, ch. 5 §5.1–5.2, single card) · owner: cm-math-discrete
+- **S2-03** · Brief cluster-stops-the-cascade (math:threshold-cascade, ch. 19 §19.2–19.3, single card with Step; needs a design-lead ruling, see S2-19) · owner: cm-math-discrete
+- **S2-04** · Brief agenda-picks-the-winner (math:condorcet-cycle, ch. 23 §23.3, single card) · owner: cm-math-discrete
+- **S2-05** · Brief the-giant-appears (probability:giant-component, ch. 2 §2.2, simulation run) · owner: cm-probability-chance
+- **S2-06** · Brief few-shortcuts-shrink-the-world (probability:small-world-shortcuts, ch. 20 §20.2, simulation run) · owner: cm-probability-chance
+- **S2-07** · Brief same-songs-different-hits (probability:rich-get-richer, ch. 18 §18.3–18.4, simulation run, needs a spec; MusicLab needs a human source check) · owner: cm-probability-chance
+- **S2-08** · Brief two-said-blue (probability:information-cascade, ch. 16 §16.2–16.5, simulation run) · owner: cm-probability-statistics
+- **S2-09** · Brief penalty-kick-mix (economics:mixed-strategy-equilibrium, ch. 6 §6.7–6.8, single card) · owner: cm-economics-markets
+- **S2-10** · Brief bid-what-its-worth (economics:second-price-auction, ch. 9 §9.4, single card) · owner: cm-economics-markets
+- **S2-11** · Brief prices-sort-the-buyers (economics:market-clearing-prices, ch. 10 §10.3–10.4, single card with step, needs a spec) · owner: cm-economics-markets
+- **S2-12** · Brief below-critical-mass (economics:network-effects-tipping, ch. 17 §17.2–17.3, single card) · owner: cm-economics-markets. Also add the ch. 4 §4.5 reference to the brief mild-preferences-sharp-divides.
+- **S2-13** · Brief new-road-slower-trip (cs:braess-paradox, ch. 8 §8.1–8.2, before/after, needs a spec; cm-economics-markets checks the game framing) · owner: cm-cs-systems
+- **S2-14** · Brief web-bow-tie-reach (cs:web-bow-tie, ch. 13 §13.3–13.4, single card; Broder 2000 needs a human source check) · owner: cm-cs-systems
+- **S2-15** · Brief one-good-link-beats-many (cs:pagerank, ch. 14 §14.3, single card with step) · owner: cm-cs-algorithms
+- **S2-16** · Brief contact-order-matters (life:contact-timing-concurrency, ch. 21 §21.6, storyboard/scrub, needs a spec) · owner: cm-life-health-epidemiology
+- **S2-17** · Add the ch. 4 §4.5 reference to the brief schelling-on-new-york · owner: cm-geography-people-places
+- **S2-18** · Confirm the 14 existing-lesson reference rows (record §0 table), then add `curriculum.references` entries. Metadata only. Skip vaccinate-at-the-peak until its fatal verdict clears · owner: demo-builder (after the category leads cm-cs, cm-economics, cm-life, cm-probability and cm-ai confirm)
+- **S2-19** · Ruling: is cluster-stops-the-cascade (a deterministic threshold cascade, ≤ 12 nodes) a single card or ABM? After two hand-built network lessons pass design review, write the UI concept `company/design/concepts/network-stage.md` · owner: design-lead
+- **S2-20** · Specs for new-road-slower-trip, prices-sort-the-buyers, same-songs-different-hits, cluster-stops-the-cascade and contact-order-matters (once each brief exists) · owner: interaction-designer
+- **S2-21** · NCM learning path in book order (14 referenced lessons + batch 1), with chapter deep links · owner: personalization-lead
+- **S2-22** · Event or field for arrival from a course or chapter link (the vertical's audience signal) · owner: analytics-steward
+- **S2-23** · Founder decision: approve the Networks, Crowds, and Markets vertical and the batch-1 budget (16 briefs, 5 specs, about 16 builds, about 4.1M builder tokens). Add to `company/ops/founder-inbox.json` · owner: founder (filed by the chief of staff)
+
+### Earlier items
+
 - **W-161** (vp-rnd) → done. See decision `company/decisions/2026-10-14-evolution-stop-rule.md`.
 - **NEW** (owner: rnd-lead): write `company/rnd/evolution/knots-gen2-brief.md` per §4 of that decision. Then dispatch knots gen 2 (3 rnd-engineers in worktrees) and record `knots-gen2.md` with the stop-rule table.
 - **W-162** (rnd-lead): keep drafting the EDD. Send it to the principal engineer only after gen-2 selection, or with gen1-force if gen 2 slips more than 2 days past dispatch.
 
 ## Handoffs
+
+### 2026-10-14: principal-pm-verticals (Selin), vertical review of Networks, Crowds, and Markets (W-137)
+
+- **What changed.**
+  - New strategy doc `company/product/verticals/networks-crowds-markets.md`. It covers the audience, the job to be done, the 24-chapter portfolio table, the batch 1, formats, metrics, kill criteria, budget and the verdict.
+  - New review record `company/rituals/records/2026-10-14-vertical-review-ncm.md` with sections 0–4. The asks (slug, concept, ch/§, checked result, format) are in §3, and 9 objections with answers are in §4.
+  - Proposed board items S2-01…S2-23 are above.
+  - I did not touch board.json, progress.md, events.jsonl, the founder inbox or `src/demos`.
+- **Picture.**
+  - 0 of 24 chapters are referenced today.
+  - 14 existing lessons already teach a chapter result (BFS, PD, Bayes, SIR, branching, waning, lemons, Condorcet jury, externality, commons) and should take references, not new lessons.
+  - The Schelling pair (ch. 4) is briefed.
+  - Batch 1 adds 16 lessons and brings coverage to 19 of 24 chapters (20 with Schelling). Chapters 1, 11, 12 and 15 are left.
+- **Belief.**
+  - **High:** the chapter-to-concept mapping and the arithmetic in the asks. I re-ran it in node: giant component, small world, cascade wrong rate of about 20%, penalty mix, PageRank, tipping at 0.2/0.8, clearing prices (3,1,0), Braess 65 → 80.
+  - **Medium:** the § numbers. They were written from the table of contents, because the book fetch was blocked (403), so the CMs confirm them.
+  - **Medium:** whether the network diagrams fit the 60-second budget. A pause criterion covers this.
+  - **There is no market evidence.** The verdict "grow" is a proposal for the founder.
+- **Next.**
+  - The session lead folds S2-01…S2-23 into the board and dispatches the CMs (7 strands).
+  - The design-lead rules on S2-19 before S2-03 is built.
+  - The founder decides on S2-23.
+  - The ritual event for vertical-review should be recorded by whoever folds this in.
+- **Blocked.** Nothing. The three empirical claims (Granovetter 1973, Broder et al. 2000, Salganik et al. 2006) need a human source check before their lessons publish.
 
 ### 2026-10-14: rnd-lead (Bram), knots gen-2 brief written; ready to dispatch after one commit
 
