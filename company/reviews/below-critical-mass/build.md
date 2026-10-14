@@ -12,3 +12,14 @@ builder: demo-builder · 2026-10-14 · session 2 (branch ccr-rnd-ncm), NCM batch
 - Layout: during predict the stage is clipped at the bottom of the card on a phone (chart small, lower control rows cut off); at explore and reveal it fits (reveal scrolls the top of the chart off). This is the shared card layout, not changed here; a designer may want fewer rows.
 - Typecheck clean. Full playwright run for the slug: contract passed (phone, desktop); the unrelated feed spec "subject chips filter the feed" failed on both viewports (not investigated; not this lesson's code).
 - Not verified by me: all six claims are unverified.
+
+## Revision v2 (2026-10-14, session 2, demo-builder)
+
+Inputs: learner review no-network-effects, fact-check pass NCM-1.
+- Notation: the question now says in plain words that people differ, value rises with the share already using it, and everyone who values it above $0.16 joins each round. No x, no formula (new claim c9, unverified).
+- Giveaway: hook and title no longer state the contrast ("Two launches, same product, same price. Where do they end up?"; title "Does a good product always find users?"). Four options, the correct one second, each a believable story.
+- Tipping point found, not told: the stage has four start tiles (18, 19, 21, 25) plus the slider; the reveal unlocks only after the learner has run 18 and 25 and also 19 (dies) and 21 (climbs). Hint: "squeeze the gap". Reveal quotes the finished runs closest to 20% on each side (19 died in 2 rounds, 21 climbed to 80% in 8; node re-run: 18>11>0, 19>16>0, 20 holds, 21>24>33>51>69>77>79>80>80 = 8 rounds, 25 6 rounds).
+- Doubled "Not quite" removed (kit verdict only). Reveal rewritten (about 85 words) and states the mechanism: few users, worth less than price to most, fewer join.
+- c7 reworded as the fact-checker suggested; c8 reworded (recall why); both unverified, with derivation sources. c9 added, unverified. Recall question "usually" changed to "can". c1-c6 untouched (still verified). References untouched.
+- Phone layout: removed the Round and Share readouts, merged the presets into one row of four, locked chart shows "The chart appears after you answer". Predict screen no longer clips; the reveal still scrolls the chart top off (shared card layout, not changed).
+- QA: contract passed on phone and desktop (port 3641, own dist .next-ncm2, QA_OUT in scratchpad), 0 retries. Walkthrough (--choose 2) viewed on phone.

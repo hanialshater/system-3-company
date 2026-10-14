@@ -1,13 +1,15 @@
 "use client";
 
-// Below critical mass. Toy market: a product costs $0.16 and is worth (1 - x) x share to person x.
+// Below critical mass. Toy market: a product costs $0.16 and is worth (1 - x) x share to person x
+// (people differ; the learner is told this in plain words, not as a formula).
 // Each round, everyone whose value beats the price uses it, so next share = 1 - 0.16 / share
 // (0 if share <= 0.16). One chart: that curve, the diagonal, and the run drawn as a cobweb.
-// Fixed points 0, 0.2, 0.8; 0.2 is unstable. Key state: one run started below 20% (dies) and one above (climbs).
+// Fixed points 0, 0.2, 0.8; 0.2 is unstable. Key states: the question's launches (18, 25) and the
+// two starts hugging the tipping point (19 dies, 21 climbs); the learner must run all four.
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -15,8 +17,11 @@ const PRICE = 0.16;
 const TIP = 20; // percent
 const LOW = 18;
 const HIGH = 25;
+const EDGE_LO = 19;
+const EDGE_HI = 21;
+const PRESETS = [LOW, EDGE_LO, EDGE_HI, HIGH];
 const START = 50;
-const MILESTONES = ["below-dies", "above-climbs"] as const;
+const MILESTONES = ["launch-low", "launch-high", "edge-below", "edge-above"] as const;
 
 const next = (x: number) => (x > PRICE ? 1 - PRICE / x : 0);
 
@@ -84,7 +89,7 @@ function Stage({
 
   return (
     <div className={s.wrap}>
-      <p className={s.chip}>Toy model: value grows with users</p>
+      <p className={s.chip}>Toy market · price $0.16 · more users, more value</p>
       <svg
         viewBox="0 0 320 200"
         className="stage-svg"
@@ -112,22 +117,30 @@ function Stage({
             <circle cx={px(cur)} cy={py(cur)} r={6} className={s.dot} />
           </>
         )}
+        {locked && (
+          <text x={(L + R) / 2} y={(TOP + BOT) / 2} textAnchor="middle" className={s.axis}>
+            The chart appears after you answer
+          </text>
+        )}
       </svg>
       <p className={s.msg} aria-live="polite">
         {locked ? "" : `Round ${round}: ${shown.map((x) => pct(x)).join(" → ")}%`} {verdict}
       </p>
       <Row>
-        <Control className={`${s.tile} ${start === LOW && done ? "active" : ""}`} disabled={locked || (start === LOW && done)} onClick={() => go(LOW, "end")}>
-          Start {LOW}%
-        </Control>
-        <Control className={`${s.tile} ${start === HIGH && done ? "active" : ""}`} disabled={locked || (start === HIGH && done)} onClick={() => go(HIGH, "end")}>
-          Start {HIGH}%
-        </Control>
+        {PRESETS.map((p) => (
+          <Control
+            key={p}
+            className={`${s.tile} ${start === p && done ? "active" : ""}`}
+            aria-label={`Start ${p}%`}
+            disabled={locked || (start === p && done)}
+            onClick={() => go(p, "end")}
+          >
+            {p}%
+          </Control>
+        ))}
       </Row>
       <Row>
         <Slider label="Start" value={start} min={0} max={100} disabled={locked} format={(v) => `${v}%`} onChange={(v) => go(v, 0)} />
-        <Readout label="Round" value={locked ? "?" : round} />
-        <Readout label="Share" value={locked ? "?" : `${pct(cur)}%`} />
       </Row>
       <Row>
         <Control className={s.tile} disabled={locked || done} onClick={() => go(start, round + 1)}>
@@ -152,8 +165,10 @@ function Game({ ctx, onEnded }: { ctx: StageContext; onEnded: (e: Ended) => void
     setRound(rr);
     if (rr === path.length - 1 && rr > 0) {
       onEnded({ start: st, rounds: rr, end: path[rr] });
-      if (st < TIP) reach("below-dies");
-      if (st > TIP) reach("above-climbs");
+      if (st < TIP) reach("launch-low");
+      if (st > TIP) reach("launch-high");
+      if (st === EDGE_LO) reach("edge-below");
+      if (st === EDGE_HI) reach("edge-above");
     }
   };
   return <Stage ctx={ctx} start={start} round={round} go={go} />;
@@ -162,31 +177,32 @@ function Game({ ctx, onEnded }: { ctx: StageContext; onEnded: (e: Ended) => void
 export default function BelowCriticalMass({ slug }: { slug: string }) {
   const [below, setBelow] = useState<Ended | null>(null);
   const [above, setAbove] = useState<Ended | null>(null);
+  // Keep the finished run on each side that sits closest to the tipping point.
   const onEnded = (e: Ended) => {
-    if (e.start < TIP) setBelow(e);
-    if (e.start > TIP) setAbove(e);
+    if (e.start < TIP && (!below || TIP - e.start <= TIP - below.start)) setBelow(e);
+    if (e.start > TIP && (!above || e.start - TIP <= above.start - TIP)) setAbove(e);
   };
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `A product costs $0.16. Its value to person x (x from 0 to 1 of the market) is (1 − x) times the share already using it. Each round, everyone whose value beats the price uses it. Launches start at ${LOW}% and ${HIGH}% of the market. Where do they end?`,
+        question: `A new product costs $0.16. People differ in how much they want it, and the more of the market already uses it, the more it is worth to each person. Each round, everyone who now values it above $0.16 starts using it. Two launches start with ${LOW}% and ${HIGH}% of the market. Where do they end up?`,
         options: [
-          "Both reach about 80%",
-          "Both die out",
-          `The ${LOW}% launch dies; the ${HIGH}% launch reaches about 80%`,
+          "Both stay near where they started",
+          `The ${LOW}% launch fades to nothing; the ${HIGH}% launch grows to about 80%`,
+          "Both grow to about 80%",
+          "Both fade to nothing",
         ],
-        answer: 2,
+        answer: 1,
       }}
-      exploreHint={`Launch at ${LOW}% and at ${HIGH}%. Then slide the start toward ${TIP}%.`}
+      exploreHint={`Launch ${LOW}% and ${HIGH}%. Then squeeze the gap: ${EDGE_LO}% against ${EDGE_HI}%. Where does the line fall?`}
       minInteractions={MILESTONES.length}
-      reveal={({ correct }) => (
+      reveal={() => (
         <>
           <p>
-            {correct ? "" : "Not quite. "}
             {below && above ? (
               <>
-                Your {below.start}% start died out in <strong>{below.rounds} rounds</strong>; your {above.start}% start climbed to{" "}
+                Starting at {below.start}%, the share died out in <strong>{below.rounds} rounds</strong>. Starting at {above.start}%, it climbed to{" "}
                 <strong>{pct(above.end)}%</strong> in {above.rounds}.
               </>
             ) : (
@@ -194,8 +210,8 @@ export default function BelowCriticalMass({ slug }: { slug: string }) {
             )}
           </p>
           <p>
-            The curve meets the diagonal at 0%, {TIP}% and 80%, where a round changes nothing. {TIP}% is a <strong>tipping point</strong>: just
-            below it the share shrinks each round, just above it grows. Below this critical mass, even a product worth buying fails.
+            The line is a <strong>tipping point</strong> at {TIP}%: a round changes nothing there, or at 0% and 80%. With few users the product is worth less than its
+            price to most people, so even fewer join. Below this critical mass, a product that most people would buy if others used it still fails.
           </p>
           <p className="muted">A toy model with made-up numbers: it shows the logic, not a forecast for any real product.</p>
         </>
