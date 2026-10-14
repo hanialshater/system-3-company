@@ -1,6 +1,6 @@
 # EDD-004: Promote the knots library (gen2-force-smooth) from src/lab/knots to the kit
 
-author: rnd-lead (Bram) · reviewers: principal-engineer (required; owns where it lives in `src/kit`) + design-lead (bigon block) · tier: 2 · status: **approved with conditions**, moved to `src/kit/knots` (engineering review [2026-10-14](../../rituals/records/2026-10-14-eng-review-EDD-004.md)) · date: 2026-10-14 · board: W-162 (data provenance: W-145)
+author: rnd-lead (Bram) · reviewers: principal-engineer (required; owns where it lives in `src/kit`) + design-lead (bigon block) · tier: 2 · status: **approved with conditions**, moved to `src/kit/knots` (engineering review [2026-10-14](../../rituals/records/2026-10-14-eng-review-EDD-004.md)); **Addendum A** (2026-10-14, below): kit drawing updated to fix1-bigon, tier 2, approved · date: 2026-10-14 · board: W-162 (data provenance: W-145)
 
 Sources: [knots-gen2.md](../../rnd/evolution/knots-gen2.md) (gen-2 record, **VP ruling**, and "Promotion re-score") · [provenance/README.md](../../../src/lab/knots/provenance/README.md) (W-145) · [evolution.md](../../rnd/evolution.md) · archive `company/rnd/evolution/knots.jsonl` (seeds 1592665369, 270539191, 16841215).
 
@@ -178,3 +178,67 @@ Rollback: delete `src/kit/knots`. No lesson imports it at first, and no stored d
 3. **Import-block narrowing for random-knot** (defect a). It is the VP's or principal engineer's call on the 0/10,000 evidence. My view: keep the block until the library exports a planarity check, because the lesson's "is it the unknot?" game is likely to show diagrams after moves, where the rate is 2.5 %.
 4. **The previous objection, carried:** ortho-force draws better small table knots and a readable Hopf link (gen-2 record, Selection). It was answered by the VP's ruling (§1), and it is preserved as the parent for any future layout project.
 5. **NOTES.md came along with `promote`** into `src/lab/knots/`. It is the candidate's design record for `draw.mjs`, kept in the lab and not moved to the kit.
+
+## Addendum A (2026-10-14): ship fix1-bigon's drawing into `src/kit/knots` (tier ruling, design and review)
+
+principal-engineer (Kenji) · session 2 (branch ccr-rnd-ncm) · proposed by rnd-lead in [knots-fix1.md](../../rnd/evolution/knots-fix1.md) · design: [2026-10-14-knot-pictures.md](../../design/reviews/2026-10-14-knot-pictures.md) condition 2 · **status: approved and shipped**. Note: `draw.mjs` and `index.d.ts` were swept into another session's commit 283c4c22 ("Fact-check pass NCM-3") minutes after I copied them, before this addendum and the README existed; the content is the intended one (`cmp` with the candidate). Same sweeper pattern as review finding F7
+
+This addendum is the EDD and the engineering review for one change: replacing `src/kit/knots/draw.mjs` (gen2-force-smooth) with fix1-bigon's, and taking fix1-bigon's one doc-comment change in `index.d.ts`. It is the follow-up this EDD names for defect b (bigons). It is not a new library, so it is not a new EDD.
+
+### Tier ruling: **tier 2**, discharged by this addendum
+
+- **Why tier 2, not tier 1.** The kit README and review item 6b class "changing what a function returns for existing input, including … the drawings of table entries" as tier 2. fix1-bigon changes `layout`/`draw` output for every table entry. The rule exists because design acceptances are made on specific pictures (the design lead accepted the kit's 5_2 and 6_1 by file), so a silent redraw would invalidate them. The handoff's "tier 1" is overruled; nothing about this change is result-preserving.
+- **Why an addendum is enough.** Tier 2 asks for a design, a review, a rollback plan and verification, not for a new document number. Every input a design needs already exists and was produced by the right owners: the options and their costs (fix1-bigon vs. keeping gen2-force-smooth vs. a stored layout per entry, EDD defect b), an official re-score with N declared (knots-fix1.md), width measurements against floors the design lead set, and the design lead's written acceptance. A fresh EDD would restate them. That would be ceremony.
+- **ADR: none.** Reversible by restoring two files; no data shape changes; no lesson imports `@/kit/knots` (`grep -r "@/kit/knots" src/demos src/app src/components` finds nothing).
+
+### What changed
+
+| file | change |
+|---|---|
+| `src/kit/knots/draw.mjs` | byte-identical to `src/lab/knots/candidates/fix1-bigon/draw.mjs` (`cmp`). Its only import is `'./core.mjs'`, already the kit path |
+| `src/kit/knots/index.d.ts` | fix1-bigon's one doc-comment hunk on `layout` (bigon opener; Hopf link still a lens). Kit header and the "U10 is lab-only" note kept. No type changed |
+| `src/kit/knots/README.md` | status, changelog, stability note, sizes, import-block status |
+
+API unchanged: same exports (`types.test.mjs` passes), same options, same `layout` data shape (`{crossings, points, loops}`, 4 handles per crossing). A layout stored by the old code would still load but would draw the old picture; nothing stores one.
+
+### Review (checked by me, not copied)
+
+- **Tests:** `npm run test:kit` 97/97, including the crossing-change test (stored layout keeps its picture across `crossingChange`). `npm run check` passed (655 lessons, 2 warnings that predate this). `npm run typecheck` exit 0 (machine at load about 3; not killed).
+- **Same output as the scored candidate:** `kit.draw(pd)` equals `fix1-bigon.draw(pd)` (JSON-identical) on all 21 kit `KNOTS` entries and `randomKnot(1..50)`. So the rnd-lead's widths on the kit table (3_1 23.5 ≥ 20, 4_1 17.0 ≥ 15) describe what the kit now draws.
+- **Size, measured on the kit itself** (the evolve size measure, staged in scratch from `src/kit/knots`; before = HEAD's kit):
+
+  | entry | before | after | delta |
+  |---|---|---|---|
+  | draw-a-table-knot | 5,410 | 5,623 | +213 |
+  | tricolour-check | 9,686 | 9,904 | +218 |
+  | unknot-game | 7,044 | 7,261 | +217 |
+  | random-knot | 11,326 | **11,542** | +216 (VP condition ≤ 11,776: 234 under; gate 12,288) |
+  | whole library | 11,340 | 11,561 | +221 |
+
+  Accepted. About 1 % of a lesson's budget for the one property the two blocked lessons depend on.
+- **Speed:** `layout` median, 31 runs, load about 3.7: 3_1 1.08 → 1.20 ms, 4_1 1.06 → 1.13, 5_2 1.53 → 1.68, 7_7 2.32 → 2.50, `randomKnot(3)` 4.02 → 4.20. About 5–10 % slower; the per-tap path (`draw` with a stored layout) is unchanged code. Review item 4's phone ruling and condition C4 stand unchanged.
+- **Score:** a tie inside the 15-point noise floor (median g −5.39, negative on 3/3 seeds), lost on spacing and spread. The rnd-lead selected on the width evidence; I accept that. The bench cannot see bigon width (evaluator gap 2), and the rnd-lead's proposed width check is the right fix for that, not a reason to hold this.
+
+### Costs, and what happened to each (objections travel)
+
+- **6_3's narrowest face 4.7 → 2.7.** Real and visible. Answered by the design ruling: 6_3 is not cleared for any lesson picture under either version. Written into the kit README.
+- **Random diagrams: 5th-percentile narrowest face 5.0 → 4.0 (median bigon 8.3 → 13.1).** Block (a) is untouched and still blocks random-knot. Before block (a) lifts, random-knot pictures under the shipped library need their own design look (design ruling 1c). Written into the README.
+- **The kit's 5_2 and 6_1 pictures change.** The design lead accepted both versions of 5_2, and prefers fix1-bigon's 6_1 (its left lobe opens; the old thin lens was "not acceptable" for tracing tasks). So this change *removes* a limit on draw-a-table-knot rather than adding one. cm-math-discrete's brief still says whether learners trace.
+- **"Keep gen2-force-smooth, save the bytes and the score."** Rejected by the design lead (the doubled sides teach the wrong arc grouping on tricolour-check). I agree; keeping it leaves block (b) with no route to lift.
+- **"Tier 1, it is just a better picture."** Answered above: the drawing is the result, and acceptances are made against it.
+
+### Import block (b) after this change: **still active**
+
+Library-side conditions 1 (rnd-lead re-score and widths) and 2 (this tier ruling and kit update) of the design ruling §1d are met. The block lifts per lesson, in writing, only when:
+- **tricolour-check:** cm-math-discrete has been consulted on the fix1-bigon trefoil (design condition 3) **and** the design lead has reviewed the lesson's contact sheet at phone size (condition 4);
+- **unknot-game:** the design lead has reviewed the lesson's contact sheet at phone size (condition 4). The design ruling does not require the consult for this lesson.
+
+Blocks (a) and (c) are unchanged.
+
+### Rollback
+
+`git checkout <commit before this change> -- src/kit/knots/draw.mjs src/kit/knots/index.d.ts`, or copy them from `src/lab/knots/candidates/gen2-force-smooth/` (kit header line in `index.d.ts` excepted), then `npm run test:kit`. Revert the README changelog line.
+
+### Lab and kit
+
+The kit now draws fix1-bigon; `src/lab/knots` still holds gen2-force-smooth. The rnd-lead should run `node tools/evolve.mjs promote knots fix1-bigon` so the lab (the evaluator's reference copy) matches the shipped kit. It will warn that fix1-bigon is not the leaderboard top; that is expected (selection was outside the score) and the warning is not a reason to stop. It is a lab-only file copy, not a generation, and it needs no further engineering review.
