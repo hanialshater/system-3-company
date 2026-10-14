@@ -53,7 +53,7 @@ const CELL = 36;
 const POP_MS = 260;
 const LX = 18;
 const ROW = 15;
-const PANEL_Y = 84;
+const PANEL_Y = 80;
 const STACK_BOTTOM = PANEL_Y + 14 + N * ROW;
 
 type Done = { scan: number; stack: number };

@@ -127,10 +127,10 @@ export default function TheLoserFlipsTheWinner({ slug }: { slug: string }) {
 const CARD_W = 60;
 const CARD_GAP = 8;
 const CARD_X0 = 4;
-const TILE_Y0 = 30;
-const TILE_PITCH = 30;
-const BAR_Y0 = 210;
-const BAR_PITCH = 26;
+const TILE_Y0 = 26;
+const TILE_PITCH = 26;
+const BAR_Y0 = 162;
+const BAR_PITCH = 24;
 const PX_PER_POINT = 36;
 
 function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => void }) {
@@ -173,7 +173,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
         <span>{rule}</span>
         <span className={s.voters}>voters 1–5</span>
       </p>
-      <svg viewBox="0 0 340 290" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
+      <svg viewBox="0 0 340 232" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
         {BALLOTS.map((b, i) => {
           const x = CARD_X0 + i * (CARD_W + CARD_GAP);
           const pts = ballotPoints(b, cOn);
@@ -182,8 +182,8 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
           const changed = !cOn && was !== g;
           return (
             <g key={i}>
-              <rect x={x} y={4} width={CARD_W} height={118} rx={8} className={s.card} />
-              <text x={x + CARD_W / 2} y={20} className={s.cardNum}>
+              <rect x={x} y={4} width={CARD_W} height={102} rx={8} className={s.card} />
+              <text x={x + CARD_W / 2} y={19} className={s.cardNum}>
                 {i + 1}
               </text>
               {b.map((c, r) => {
@@ -207,22 +207,22 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
                 <g>
                   <rect
                     x={x + 4}
-                    y={130}
+                    y={112}
                     width={CARD_W - 8}
-                    height={30}
-                    rx={15}
+                    height={28}
+                    rx={14}
                     className={g >= 0 ? s.chipA : s.chipB}
                   />
-                  <text x={x + CARD_W / 2} y={150} className={s.chipText}>
+                  <text x={x + CARD_W / 2} y={131} className={s.chipText}>
                     {gapText(g)}
                   </text>
                   {cOn && cBetween(b) && (
-                    <text x={x + CARD_W / 2} y={176} className={s.note}>
+                    <text x={x + CARD_W / 2} y={152} className={s.note}>
                       C between
                     </text>
                   )}
                   {changed && (
-                    <text x={x + CARD_W / 2} y={176} className={s.note}>
+                    <text x={x + CARD_W / 2} y={152} className={s.note}>
                       was {gapText(was).split(" ")[0]}
                     </text>
                   )}
@@ -292,8 +292,8 @@ function Stage({ locked, reach }: { locked: boolean; reach: (name: string) => vo
         >
           {cOn ? "Remove C" : "Put C back"}
         </Control>
-        <Control className={`${s.tap} ${s.full}`} disabled={locked || gaps} onClick={showGaps}>
-          A vs B on each ballot
+        <Control className={s.tap} disabled={locked || gaps} onClick={showGaps}>
+          A vs B gaps
         </Control>
       </div>
     </div>

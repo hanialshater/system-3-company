@@ -8,6 +8,10 @@
 // Layout: each line's x is the mean x of its present-day descendants, so lines never cross.
 // Milestones: one line left (her generation drawn), the 1,000-run tally, and the same 1,000 seeds
 // at 25 and 100 women (v2, wave G r7: "about 2N" is shown, not told: the mean roughly doubles with N).
+// v3 (learner r8): tree viewBox 360 × 201 with 12px labels, drawn at its natural height (never squeezed), so
+// "common mother", "+ 49 others" and the axis read at about 10.7px on a 390px phone; histogram labels 11.5px.
+// At the reveal the rule line, slider and buttons are hidden so the tree sits above the reveal on 390×844.
+// The theory sentence (97 exact, 2N(1 − 1/N) = 98) left the reveal (c2 withdrawn; W-184).
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Slider } from "@/kit/controls";
@@ -94,15 +98,14 @@ export function exactExpectation() {
 }
 
 // Geometry.
-const X0 = 26;
-const PITCH = 6.6;
-const Y_TODAY = 262;
-const H = 236;
+const X0 = 36;
+const PITCH = 6.4;
+const Y_TODAY = 177;
+const H = 157;
 const y = (g: number) => Y_TODAY - H * Math.sqrt(g / MAX_BACK);
 const TREE = family(STAGE_SEED, X0, PITCH);
 export const T = TREE.T;
 export const APPROX = 2 * N * (1 - 1 / N);
-const EXACT = exactExpectation();
 
 function runThousand() {
   const times: number[] = [];
@@ -150,20 +153,20 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
             <p>
               Your lines met in one woman {T} generations back; 1,000 families of {N} averaged {mean}.
               {sizes
-                ? ` With 25 women they averaged ${sz(25)}, with 100, ${sz(100)}: double the women, roughly double the wait, about 2N generations.`
-                : ""}{" "}
-              Theory for {N} expects about {Math.round(EXACT)}; 2N(1 − 1/N) = {APPROX} is an approximation.
+                ? ` With 25 women, ${sz(25)}; with 100, ${sz(100)}: double the women, roughly double the wait, about 2N generations.`
+                : ""}
             </p>
           )}
           <p>She was not alone: {N - 1} other women lived beside her, but their lines did not reach today.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => (
             <Stage
               locked={locked}
+              atReveal={phase === "reveal"}
               runs={runs}
               sizes={sizes}
               onRun={() => {
@@ -185,6 +188,7 @@ export default function AllLinesMeetInOneMother({ slug }: { slug: string }) {
 
 function Stage({
   locked,
+  atReveal,
   runs,
   sizes,
   onRun,
@@ -192,6 +196,7 @@ function Stage({
   onOneLine,
 }: {
   locked: boolean;
+  atReveal: boolean;
   runs: Runs | null;
   sizes: Sizes | null;
   onRun: () => void;
@@ -257,8 +262,8 @@ function Stage({
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>50 women per generation; each has a random mother from the one before.</p>
-      <svg viewBox="0 0 360 290" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
+      {!atReveal && <p className={s.rule}>50 women per generation; each has a random mother from the one before.</p>}
+      <svg viewBox="0 0 360 201" className={`stage-svg ${s.fit}`} role="img" aria-label={aria}>
         <line x1={14} y1={y(0)} x2={14} y2={y(MAX_BACK)} className={s.axis} />
         {[0, 5, 20, 50].map((g) => (
           <g key={g}>
@@ -268,7 +273,7 @@ function Stage({
             </text>
           </g>
         ))}
-        <text x={4} y={y(MAX_BACK) - 6} className={s.tick}>
+        <text x={2} y={y(MAX_BACK) - 6} className={s.tick}>
           √ scale
         </text>
 
@@ -295,7 +300,7 @@ function Stage({
             <text x={finalX} y={y(T) - 8} className={s.label}>
               common mother
             </text>
-            <text x={X0 + (N - 1) * PITCH} y={y(T) + 13} className={s.labelEnd}>
+            <text x={X0 + (N - 1) * PITCH} y={y(T) + 16} className={s.labelEnd}>
               + {N - 1} others
             </text>
           </g>
@@ -304,7 +309,7 @@ function Stage({
         {gens[0].map((l, i) => (
           <circle key={i} cx={l.x} cy={y(0)} r={2.6} className={s.today} />
         ))}
-        <text x={X0} y={282} className={s.tick}>
+        <text x={X0} y={196} className={s.tick}>
           today: 50 women
         </text>
       </svg>
@@ -318,23 +323,27 @@ function Stage({
 
       {runs && <Strip runs={runs} sizes={sizes} />}
 
+      {!atReveal && (
+        <>
       <div className={s.sliderWrap}>
         <Slider label="Generations back" value={back} min={0} max={MAX_BACK} disabled={locked} onChange={go} />
       </div>
       <div className={s.controls}>
         <Control className={s.tap} disabled={locked || back >= MAX_BACK} onClick={() => go(back + 10)}>
-          Back 10 generations
+          Back 10
         </Control>
         <Control className={s.tap} disabled={locked || back === T} onClick={climbToOne}>
-          Back until one line
+          Back to one line
         </Control>
         <Control className={s.tap} disabled={locked || runs !== null} onClick={onRun}>
           Run 1,000 families
         </Control>
         <Control className={s.tap} disabled={locked || runs === null || sizes !== null} onClick={onSizes}>
-          Same with 25 and 100 women
+          25 and 100 women
         </Control>
       </div>
+        </>
+      )}
     </div>
   );
 }
@@ -345,29 +354,29 @@ function Strip({ runs, sizes }: { runs: Runs; sizes: Sizes | null }) {
   return (
     <div>
       <p className={s.stripHead}>
-        1,000 runs: {runs.allMet ? "all met" : "not all met"}. Mean {Math.round(runs.mean)}
+        1,000 runs: {runs.allMet ? "all met" : "not all met"}, mean {Math.round(runs.mean)}
       </p>
       {sizes && (
         <p className={s.stripHead} data-testid="sizes">
           Mean wait: {[...sizes.filter((x) => x.n < N), { n: N, mean: runs.mean }, ...sizes.filter((x) => x.n > N)]
-            .map((x) => `${x.n} women ${Math.round(x.mean)}`)
+            .map((x, i) => `${x.n}${i === 0 ? " women" : ""}: ${Math.round(x.mean)}`)
             .join(" · ")}
         </p>
       )}
-      <svg viewBox="0 0 360 62" className={s.strip} role="img" aria-label={`Histogram of 1,000 meeting times; mean ${Math.round(runs.mean)}, yours ${T}`}>
+      <svg viewBox="0 0 360 64" className={s.strip} role="img" aria-label={`Histogram of 1,000 meeting times; mean ${Math.round(runs.mean)}, yours ${T}`}>
         {runs.bins.map((c, i) => {
-          const h = (c / top) * 36;
-          return <rect key={i} x={bx(i * 20) + 1} y={40 - h} width={(20 / 400) * 340 - 2} height={h} className={s.bin} />;
+          const h = (c / top) * 30;
+          return <rect key={i} x={bx(i * 20) + 1} y={32 - h} width={(20 / 400) * 340 - 2} height={h} className={s.bin} />;
         })}
-        <line x1={bx(0)} y1={40} x2={bx(400)} y2={40} className={s.axis} />
+        <line x1={bx(0)} y1={32} x2={bx(400)} y2={32} className={s.axis} />
         {[0, 100, 200, 300, 400].map((t) => (
-          <text key={t} x={bx(t)} y={51} className={s.binTick}>
+          <text key={t} x={bx(t)} y={46} className={s.binTick}>
             {t}
           </text>
         ))}
-        <line x1={bx(runs.mean)} y1={0} x2={bx(runs.mean)} y2={42} className={s.meanTick} />
-        <line x1={bx(T)} y1={0} x2={bx(T)} y2={42} className={s.yoursTick} />
-        <text x={bx(T) + 4} y={60} className={s.yours}>
+        <line x1={bx(runs.mean)} y1={0} x2={bx(runs.mean)} y2={34} className={s.meanTick} />
+        <line x1={bx(T)} y1={0} x2={bx(T)} y2={34} className={s.yoursTick} />
+        <text x={bx(T) + 4} y={61} className={s.yours}>
           yours
         </text>
       </svg>

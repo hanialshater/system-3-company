@@ -15,6 +15,10 @@
 // Wheat fields are crossed out instead of relying on a colour word.
 // v4 (W-265, phone fit): the reveal is trimmed to 88 words (was 119) so the chart top stays on screen at 390x844
 // when the reveal opens: the drop list is "1, 3, 5, ... 19" and the repeated "first ton cost 1" is gone.
+// v5 (build 6 phone fit, W-287 10px floor): measured crop 145px. The stage is compacted: the chart is 102 units tall
+// (was 154; viewBox 320x188, was 320x256), "wheat (tons)" sits on the tick row, the "Made-up farm" chip moved into the
+// picture's top line, and +1/-1 joined the readout row so the slider and "All 10 fields" fit on one line.
+// The model line is shorter ("The curve is made up, not real farm data.").
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,11 +36,11 @@ const stepCost = (w: number) => corn(w - 1) - corn(w); // corn lost for the w-th
 const FIRST = stepCost(1); // 1
 const LAST = stepCost(W_MAX); // 19
 
-// Geometry (viewBox 320 × 256): chart, then the field strip.
+// Geometry (viewBox 320 × 188): chart, then the field strip.
 const L = 40;
 const R = 286;
-const TOP = 26;
-const BOT = 180;
+const TOP = 22;
+const BOT = 124;
 const px = (w: number) => L + (w / W_MAX) * (R - L);
 const py = (c: number) => BOT - (c / CORN_MAX) * (BOT - TOP);
 // The frontier from 0 to wheat `to`.
@@ -70,7 +74,7 @@ export default function BendingFrontier({ slug }: { slug: string }) {
             which grew only {FIRST}; the last took the best, which grew {LAST}. Each drop is the corn its field used to
             grow: that is why the frontier bends.
           </p>
-          <p className="muted">A model: the curve is made up, not data from a real farm.</p>
+          <p className="muted">The curve is made up, not real farm data.</p>
         </>
       )}
     >
@@ -85,9 +89,8 @@ export default function BendingFrontier({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Made-up farm: 10 fields, worst to best for corn</p>
                 <svg
-                  viewBox="0 0 320 256"
+                  viewBox="0 0 320 188"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "Corn and wheat frontier" : `${w} tons wheat, ${corn(w)} tons corn`}
@@ -105,7 +108,10 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                   <text x={L} y={12} textAnchor="middle" className={s.axis}>
                     corn
                   </text>
-                  <text x={R + 30} y={BOT + 28} textAnchor="end" className={s.axis}>
+                  <text x={316} y={12} textAnchor="end" className={s.axis}>
+                    Made-up farm: 10 fields, worst to best for corn
+                  </text>
+                  <text x={(px(5) + px(10)) / 2} y={BOT + 14} textAnchor="middle" className={s.axis}>
                     wheat (tons)
                   </text>
                   <line x1={L} y1={TOP} x2={L} y2={BOT} stroke="var(--line)" />
@@ -131,7 +137,7 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                       <g key={`f${k}`}>
                         <rect
                           x={px(k - 1) + 1}
-                          y={BOT + 34}
+                          y={BOT + 22}
                           width={px(k) - px(k - 1) - 2}
                           height={22}
                           rx={3}
@@ -141,17 +147,17 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                           strokeDasharray={wheat && k !== w ? "3 2" : undefined}
                         />
                         {!locked && (
-                          <text x={(px(k - 1) + px(k)) / 2} y={BOT + 49} textAnchor="middle" className={s.small} opacity={wheat ? 0.6 : 1}>
+                          <text x={(px(k - 1) + px(k)) / 2} y={BOT + 37} textAnchor="middle" className={s.small} opacity={wheat ? 0.6 : 1}>
                             {stepCost(k)}
                           </text>
                         )}
                         {wheat && (
-                          <line x1={px(k - 1) + 5} y1={BOT + 52} x2={px(k) - 5} y2={BOT + 38} stroke="var(--fg)" strokeWidth={1.5} />
+                          <line x1={px(k - 1) + 5} y1={BOT + 40} x2={px(k) - 5} y2={BOT + 26} stroke="var(--fg)" strokeWidth={1.5} />
                         )}
                       </g>
                     );
                   })}
-                  <text x={10} y={BOT + 70} className={s.axis}>
+                  <text x={10} y={BOT + 58} className={s.axis}>
                     {locked ? "the 10 fields" : "number = corn the field grew · crossed out = now wheat"}
                   </text>
                 </svg>
@@ -159,15 +165,15 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                 <Row>
                   <Readout label="Corn" value={locked ? "?" : corn(w)} />
                   <Readout label="Last ton cost" value={locked ? "?" : w > 0 ? `${stepCost(w)} corn` : "—"} />
-                </Row>
-                <Row>
-                  <Slider label="Wheat (tons)" value={w} min={0} max={W_MAX} disabled={locked} onChange={set} />
                   <Control disabled={locked || w >= W_MAX} onClick={() => set(w + 1)} aria-label="One more ton of wheat">
                     +1
                   </Control>
                   <Control disabled={locked || w <= 0} onClick={() => set(w - 1)} aria-label="One less ton of wheat">
                     −1
                   </Control>
+                </Row>
+                <Row>
+                  <Slider label="Wheat (tons)" value={w} min={0} max={W_MAX} disabled={locked} onChange={set} />
                   <Control disabled={locked || w >= W_MAX} onClick={() => set(W_MAX)}>
                     All {W_MAX} fields
                   </Control>
