@@ -151,3 +151,26 @@ needs the test to be cheap (the script measures one table in about a second). Ow
 | Trefoil consult for tricolour-check; say in the draw-a-table-knot brief whether learners trace (decides 6_1) | cm-math-discrete |
 | Decide whether to adopt the width check above (then I write it and re-score both, N declared) | rnd-lead, VP notes |
 | `node tools/evolve.mjs promote knots fix1-bigon` into `src/lab/knots/` only after condition 2 is ruled, so lab and kit move together | rnd-lead |
+
+## Update 2026-10-14 (session 2): lab promoted, width gate decided
+
+**Lab promoted.** The principal engineer shipped fix1-bigon's drawing into `src/kit/knots` (EDD-004 Addendum A), so
+condition 2 is met and I ran `node tools/evolve.mjs promote knots fix1-bigon`. It warned fix1-bigon is not the
+leaderboard's top (gen2-force-smooth is); expected, because the selection above was made outside the score. It changed
+`src/lab/knots/draw.mjs`, `index.d.ts` and `NOTES.md` (now the candidate's account; its stale paths to
+`measure-bigons.mjs` now point to `company/rnd/evolution/knots-fix1/`). Checks: lab tests 103/103
+(`cd src/lab/knots && node --test test/*.test.mjs`; a bare `node --test` also collects other files and reports 117),
+`npm run test:kit` 97/97, and `src/lab/knots/draw.mjs` equals `src/kit/knots/draw.mjs` apart from import paths (diff of
+the files with import specifiers masked is empty). Lab and kit now draw the same.
+
+**Width gate: not adopted now.** Reasons: (1) adopting it is an evaluator change, so both survivors would need a
+re-score on a declared N before any further `promote`, and nothing is waiting on one; evolution is closed. (2) The
+only bigon gate I proposed (width/chord >= 0.25) would pin fix1-bigon's exact output, and 3_1 and 4_1 are already
+pinned by the design lead's floors, which say any change that takes either below 20 / 15 goes back to her (condition
+1). (3) The face-width half has no floor until the design lead rules on 6_3. Revisit trigger: the first time anyone
+edits `draw.mjs` or reopens knots evolution; then write the gate (bigon >= 0.25 on prime table knots, 3_1 >= 20, 4_1 >=
+15 on the kit table, face width reported only), declare N, and re-score gen2-force-smooth and fix1-bigon. Until then
+`node company/rnd/evolution/knots-fix1/measure-bigons.mjs --table=kit` is the manual check. Objection I considered: a
+cheap test costs about a second and would catch a silent regression; true, but that same regression would be caught by
+the lab test count and kit tests only for correctness, not looks, so the exposure is real but small while `draw.mjs`
+is frozen. I accept it.

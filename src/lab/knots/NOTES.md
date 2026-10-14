@@ -1,144 +1,174 @@
-# gen2-force-smooth: one Bezier per edge, angle spring, 8-sector zones, and no circle packing
+# fix1-bigon: open long bigons into lenses (follow-up to gen2-force-smooth)
 
-generation 2, slot `gen2-force-smooth` · rnd-engineer · 2026-10-14 · parent `gen1-force` · brief: `company/rnd/evolution/knots-gen2-brief.md`
+follow-up, not a generation · slot `fix1-bigon` · rnd-engineer · 2026-10-14 · parent `gen2-force-smooth` · authority:
+VP ruling §4 in `company/rnd/evolution/knots-gen2.md` ("Import block, bigons (b)"; option "a minimum bigon width in
+force-smooth's own forces"). Not registered in `evolve.json` (the evaluator is not mine), so `evolve eval` gates it out
+with "not registered"; every number below is measured, not a score.
 
 ## 1. The idea, in two lines
-Each edge is drawn as one cubic Bezier (crossing, handle, handle, crossing), and the relaxation moves those control
-points under anisotropic 8-sector PrEd zones, with an angle spring at handles and square crossings at the end. The
-circle packing, which force kept from gen 0, is dropped: a Tutte start plus this relaxation passes the looks gate.
+force-smooth puts each piece's largest region on Tutte's outer circle with its crossings on it, then squares every
+crossing; a long 2-sided region (bigon) between two such crossings stays two near-parallel strands (a doubled line). A
+**bigon opener** in the relaxation pushes a long bigon's two edges apart across its chord until it reads as a lens.
 
 ## 2. What changed
-Only `draw.mjs` and `index.d.ts`. All other files are byte-identical to `gen1-force` (and so to `gen0-baseline`).
+Only `draw.mjs` and `index.d.ts` (doc line). All other library files are byte-identical to `gen2-force-smooth`.
+`measure-bigons.mjs` and `renders/` are development files (not imported by `index.mjs`; see section 8). They now live in `company/rnd/evolution/knots-fix1/` (moved when the candidate was registered).
 
-- **Removed** (what force carried from gen 0 and no longer needs): the circle packing (`ang`, the packing iteration,
-  the placement BFS, `pl`), the `planar()` check that chose packing or Tutte, `clr()` and the keep-the-packing rule,
-  the `iters` and `tutte` options, and the 3-segment Catmull-Rom edge drawing.
-- **`layout(pd, { relax = 60 })`**: `tutte()` (unchanged from gen 0's fallback), then `force()`. Same output shape
-  `{crossings, points, loops}`; `points` are now the 4 Bezier handles per crossing (see the crossing-change fix below).
-- **`force()`** per piece: spring segments (crossing-handle, handle-handle except across a kink), strand triples
-  (crossing, handle, next handle) for the angle spring, face pairs `W` (as gen 1); a tiny step (1/1000) toward each
-  crossing's square frame to separate a kink's two handles, which Tutte puts on one point; `relax()`; the
-  handedness guard; renormalise.
-- **`relax()`**, as gen 1 plus:
-  - **anisotropic zones** (ImPrEd's 8 sectors): for a face pair (v, segment ab) at distance d along the nearest-point
-    direction e, v may approach by < 0.45 d along e and a, b by < 0.45 d towards v; a line across e then separates
-    them for the whole step (the proof is in the code comment). Bounds are filed per 45-degree sector and a move is
-    cut by the largest component it has inside each sector. Moves along or away from a near segment are free, so
-    vertices are no longer frozen by a segment they are not moving towards. Pairs with d >= 0.6 k are skipped (a step
-    is at most k/4, so they can never bind) - that is what keeps it fast.
-  - **angle spring** at every handle b between its crossing a and the edge's other handle c: b is pulled toward the
-    midpoint of a and c, a and c the other way, in proportion to the turn at b (offset / |ac|, scale-free). With the
-    crossings' directions fixed, least total turning is the turn shared evenly between an edge's two handles.
-  - **square crossings**: gen 1's square-frame pull (0.2) while cooling, then **12 steps of squaring alone, inside the
-    same zones**: every strand runs straight through its crossing and crosses at 90 degrees, and planarity of the
-    control polygons is kept (a hard snap instead broke it: -20 on the bench).
-  - crossing-crossing repulsion x8 (was x2), to spread crossings.
-- **`draw()`**:
-  - each edge is one `C` cubic (crossing, handle, handle, crossing), cut at under-passes as before;
-  - a **kink** (edge from a crossing to itself) has its handles taken twice as far out, so it draws a round curl,
-    not a 2-unit hook;
-  - the frame (bounding box) fits the curves (points at t = 1/4, 1/2, 3/4 of each edge), not their handles; a handle
-    that then falls outside the view box is clamped onto it (test: all path numbers inside the box);
-  - **stretch**: the short side is scaled by up to 1.2 x more to fill the square stage (the generic affine step the
-    brief allows; capped so a two-piece link is not squashed).
-- **Bug fix, pre-existing in gen 0 and gen 1: a stored layout did not survive `crossingChange`.** `crossingChange`
-  rewrites the PD tuple from the new incoming under-strand, so `load` renumbers that crossing's slots by one, and a
-  stored layout (indexed by dart) attaches the strands to the wrong arms. The unknot-game lesson does exactly this.
-  The test only compares crossing positions, so it passes; the pictures were wrong (gen1-force's 5_2, 3_1 and 4_1
-  after a crossing change show strands rerouted across the drawing). Here `points` are indexed from each crossing's
-  first incoming slot (`at()`), which a crossing change does not move; after the change only over/under swaps.
+- `tutte()` returns the outer region of each piece; `layout` passes it to `force()`.
+- `force()` collects the bigons of the piece, skipping the outer region: for each, crossing a, edge 1's two handles
+  (from a), crossing b, edge 2's two handles (from a).
+- `relax()`, during the cooling steps only (not the 12 squaring steps): for each bigon with chord l = |ab|, normal n,
+  `w` = (sum of edge 1's handle offsets along n) - (same for edge 2). If `6 (l - 1.5 k) > |w|`, edge 1's handles get
+  `+10 x shortfall` along n (sign of w) and edge 2's the opposite. Crossings get no force. Moves are still cut by the
+  8-sector zones, so the control polygons keep their faces and handedness exactly as before.
+- Unchanged: the API, `Layout` shape, the `at()` dart indexing that keeps a stored layout valid across
+  `crossingChange` (the 103rd test passes), `draw()`.
 
-## 3. Prior art and licences (ideas only; no code copied)
-- **PrEd**: Bertault, "A force-directed algorithm that preserves edge-crossing properties", *IPL* 74 (2000):
-  movement zones, node-edge repulsion (g - d)^2 / d.
-- **ImPrEd**: Simonetto, Archambault, Auber & Bourqui, "ImPrEd: an improved force-directed algorithm that prevents
-  nodes from crossing edges", *CGF* 30 (EuroVis 2011): 8-sector zones, face-limited pairs, cooling. My zone bound is a
-  separating-line variant (each side < 0.45 d along e), with the sector cut computed exactly (cos(delta - 22.5 deg)).
-- **Forces**: Fruchterman & Reingold, *SP&E* 21 (1991).
-- **Start**: Tutte, "How to draw a graph", *Proc. LMS* 13 (1963), barycentric embedding (gen 0's code).
-- **Curves**: cubic Bezier convex-hull property (textbook). KnotPlot (proprietary) informed nothing. No GPL code.
+## 3. Prior art and licences
+Ideas only, no code copied: PrEd (Bertault 2000) and ImPrEd (Simonetto et al. 2011) zones, as in the parent. Region
+"inflation" in force-directed drawings is folklore (e.g. pressure / bubble models); the variant kept here is a per-bigon
+separation force, my own. No GPL code read.
 
 ## 4. Internal objectives (what the code branches on or optimises)
-None reproduces the bench or the looks test: no 4 % radius, no 1.5 cap, no weight 5, no spread or spacing formula, no
-curvature measure, no 30 % / 3 % / 6 % / 2 x size.
-1. **Outer face = each piece's largest region** (`tutte`, inherited from gen 0's fallback). Goal: the region with the
-   most boundary goes outside, so the fewest strands are squeezed against the frame.
-2. **Handedness guard** (`force`, `hand`): keep the relaxed drawing unless it has *more* crossings whose handles turn
-   the wrong way than its start has. Goal: never draw a crossing mirrored. (gen 1 undid on *any* change of the sign
-   string; in development, a Tutte start with a degenerate kink crossing was then left unrelaxed.)
-3. **Stopping**: no score. min(60, 2e8 / N^3) cooling steps (gen 1's rule), then 12 squaring steps. Goal: bounded time.
-4. **The inherited packing rule ("keep the packing unless relaxing raises clearance by > 60 %") is gone** with the
-   packing. Nothing replaces it.
-5. Not scores, named for completeness: kink detection (`t >> 2 == h >> 2`, combinatorial); the zone skip at d >= 0.6 k
-   (a proof bound, not a tuning); the stretch cap 1.2 (a constant).
+None copies the bench or the looks test: no 4 % radius, no 1.5 cap, no spacing or spread formula, no curvature
+measure, no 30 % / 3 % / 6 % / 2 x size, no bigon or face width as measured in section 5.
+1. **Bigon separation target** `6 (l - 1.5 k)` on handle offsets (sum of two handles, so about 3 (l - 1.5 k) between the two edges' mean handle offsets).
+   Goal: a long bigon is drawn as an open lens. `k` is the relaxation's own length unit (`sqrt(pi / N)`, inherited).
+2. **Eligibility** `l > 1.5 k`: a bigon shorter than 1.5 relaxation units (a twist inside a dense diagram) is left
+   alone. Goal: spend room where a bigon is long enough to be mistaken for a doubled line.
+3. **Outer region excluded** (combinatorial, from Tutte's choice). Goal: never inflate the whole picture.
+4. Inherited from the parent and unchanged: outer region = largest region; handedness guard; stopping rule.
+5. Constants 6, 1.5, 10 were tuned by eye and with the scratch measures below on 3_1, 4_1, 5_2, L2a1, random12 and
+   bench seeds 101-102 (not the scoring seeds 1-3).
 
-## 5. Bench numbers (`node tools/evolve.mjs eval knots gen2-force-smooth gen1-force --seed=s`, scratch archive)
-Load average 1.5-2 during these three runs.
+## 5. Bigon width, before and after (`node company/rnd/evolution/knots-fix1/measure-bigons.mjs [before] [--table=kit]`)
+Width = largest distance from a point of one edge's curve to the other edge's curve (both ways), drawn with `draw(pd,
+{gap: 0})`, view box 100. Ratio = width / chord. Face width = for each edge of a region, the largest distance from its
+middle third to the region's other edges; the region's width is the smallest; the column is the diagram's minimum over
+all regions (catches squeezed triangles that are not bigons). Self-check in the script: two cubics bulging 7.5 to each
+side of a 100-long chord measure 15.
 
-| seed | score (this) | score (gen1-force) | g | extra | planar % | spacing | spread | aspect | slow |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | **10,578.42** | 10,559.32 | +19.10 | 0 (-1) | 100 (95) | 14.03 (14.46) | 69.63 (59.75) | 99.42 (94.77) | 0 (0) |
-| 2 | **10,563.18** | 10,551.50 | +11.68 | 0 (0) | 100 (100) | 11.90 (12.08) | 66.23 (55.52) | 98.59 (96.79) | 0 (0) |
-| 3 | **10,557.40** | 10,540.68 | +16.72 | 0 (0) | 100 (100) | 12.15 (12.22) | 68.17 (55.81) | 98.75 (94.16) | 0 (0) |
+| knot | bigons | min bigon width before -> after | ratio before -> after | min face width before -> after |
+|---|---|---|---|---|
+| **3_1** | 3 | **7.7 -> 23.5** | **0.10 -> 0.58** | 7.7 -> 18.2 |
+| **4_1** | 2 | **8.3 -> 17.0** | **0.12 -> 0.33** | 8.3 -> 12.0 |
+| 5_1 | 5 | 12.4 -> 19.8 | 0.27 -> 0.53 | 12.4 -> 18.0 |
+| 5_2 | 3 | 10.0 -> 14.3 | 0.19 -> 0.44 | 10.0 -> 13.9 |
+| 6_1 | 4 | 10.2 -> 10.0 | 0.24 -> 0.40 | 10.2 -> 10.0 |
+| 6_2 | 3 | 9.7 -> 16.0 | 0.21 -> 0.41 | 9.7 -> 14.4 |
+| 6_3 | 2 | 9.0 -> 8.6 | 0.17 -> 0.28 | **4.7 -> 2.7** |
+| 7_1 | 7 | 10.8 -> 16.3 | 0.32 -> 0.55 | 10.8 -> 14.9 |
+| 7_2 | 5 | 9.8 -> 11.0 | 0.26 -> 0.43 | 9.8 -> 11.0 |
+| 7_3 | 5 | 9.3 -> 9.0 | 0.23 -> 0.52 | 9.3 -> 8.8 |
+| 7_4 | 4 | 10.0 -> 15.5 | 0.26 -> 0.46 | 10.0 -> 15.0 |
+| 7_5 | 4 | 8.9 -> 8.0 | 0.19 -> 0.46 | 8.9 -> 8.0 |
+| 7_6 | 3 | 9.0 -> 9.1 | 0.21 -> 0.36 | 9.0 -> 8.5 |
+| 7_7 | 2 | 9.0 -> 15.5 | 0.20 -> 0.42 | 9.0 -> 11.8 |
+| 10_8 | 7 | 8.0 -> 11.0 | 0.29 -> 0.42 | 8.0 -> 10.9 |
+| **all prime table knots** | | **7.7 -> 8.0** | **0.10 -> 0.28** | **4.7 -> 2.7** (6_3) |
+| L2a1 (Hopf) | 4 | 4.2 -> 5.1 | 0.04 -> 0.05 | 1.3 -> 3.3 |
+| random12 | 8 | 5.6 -> 4.6 | 0.24 -> 0.23 | 5.6 -> 4.1 |
+| `randomKnot(1..200)` defaults, 1,013 bigons | | min 3.9 -> 3.8, 5th pct 5.5 -> 5.0, median 8.3 -> 13.1 | | per diagram: 5th pct 5.0 -> 4.0, median 7.5 -> 6.7 |
 
-(gen1-force in brackets.) Median g = +16.7. Unknot and Jones metrics are identical code; their differences are timing noise.
+Reference (gen 0's circle packing, the "textbook" pictures, measured with a scratch version of the same script):
+3_1 26.8 / 0.52, 4_1 10.1 / 0.32. So 3_1 is now close to the packing's trefoil and 4_1 is wider than it.
 
-- **Where it gains:** spread +10 to +12 (crossings un-bunched), aspect +2 to +5 (the stretch), size +1.5 points,
-  planar share. **Spacing is level or slightly lower** (-0.1 to -0.4): square crossings cost a little spacing.
-- **Wider check** (my layout-only copy of the bench, weighted layout term, seeds 1-12): 277.9 against gen1-force's
-  264.2 (1-6: 280.1 vs 267.8; held-out 7-12: 275.8 vs 260.6). Constants were tuned on 1-6 and checked on 7-12.
-- **Planarity:** the control polygons are planar on all 240 bench diagrams of seeds 1-12, at the start and after
-  relaxing (checked). The drawn curves had extra crossings in 1 of 240 (seed 12, 2 crossings): two near strands
-  whose control hulls overlap. The curve is inside its hull, but hulls are not kept apart.
-- **Speed:** CPU per bench draw 9.3 ms against gen1-force's 11.0 ms (same machine, same diagrams, seeds 1-3).
+**Reading.** The minimum ratio on every prime table knot rises (0.10 -> 0.28); 3_1 and 4_1, the two the VP named, go
+from doubled lines to open lenses. The cost is where the room comes from: 6_3's narrowest region (a triangle, not a
+bigon) gets thinner, 4.7 -> 2.7, and random diagrams' narrowest regions get thinner (5th percentile 5.0 -> 4.0) while
+their typical bigon gets much wider (median 8.3 -> 13.1).
 
-## 6. Size (`node tools/evolve.mjs size knots gen2-force-smooth`)
-| entry | this | gen1-force | delta |
+## 6. Pictures
+`renders/gen2-force-smooth--<name>.svg` (before) and `renders/fix1-bigon--<name>.svg` (after) for 3_1, 4_1, 5_2, L2a1
+and random12 (`randomKnot(20261014, {strands: 3, length: 12})`, as in knots-gen2-looks/). What I see:
+- **3_1:** three open lobes, close to the textbook trefoil (one lobe slightly smaller; the 8 axis-aligned zone sectors
+  break the 3-fold symmetry). The top crossing's vertical strand bends a little just past the crossing.
+- **4_1:** the left doubled side is now a lens; the right bigon is short (below the eligibility length) and is drawn
+  small but round.
+- **5_2:** both outer bigons open; readable, close to before.
+- **L2a1:** still a flat lens. Not fixed (section 8).
+- **random12:** outer lobes open; the centre-left S-shaped pair is a little tighter than before.
+
+## 7. Gates and conditions
+- **Tests:** 103/103 on the current evaluator (includes "a stored layout keeps every strand where it was across a
+  crossing change", L2a1 included), on each of seeds 1-3.
+- **Looks gate:** passes. My scratch copy of its measure (for the margin only), straight % / sharp %: 3_1 3/0, 4_1
+  10/0, 5_1 8/0, 5_2 8/0, 6_1 14/0, 6_2 10/0, 6_3 7/0, 7_1 0/0, 7_2 3/0, 7_3 3/0, 7_4 8/0, 7_5 7/0, 7_6 5/0, 7_7 8/0,
+  10_8 4/0. Worst straight 14 % (parent: 23 %, 7_7); sharp 0.0 % everywhere. More margin than the parent.
+- **Size** (`node tools/evolve.mjs size knots fix1-bigon`):
+
+| entry | gen2-force-smooth | fix1-bigon | delta |
 |---|---|---|---|
-| draw-a-table-knot | 5,459 | 6,203 | -744 |
-| tricolour-check | 9,739 | 10,461 | -722 |
-| unknot-game | 7,095 | 7,828 | -733 |
-| **random-knot** | **11,377** | 12,095 | **-718** (target <= 11,776: **399 B under**) |
-| whole library | 11,391 | 12,111 | -720 |
+| draw-a-table-knot | 5,459 | 5,673 | +214 |
+| tricolour-check | 9,739 | 9,957 | +218 |
+| unknot-game | 7,095 | 7,314 | +219 |
+| **random-knot** | 11,377 | **11,592** | +215 (condition <= 11,776: **184 B under**) |
+| whole library | 11,391 | 11,612 | +221 |
 
-No entry grows. The packing removal paid for everything added (zones, angle spring, squaring phase, Bezier drawing,
-kink curl, stretch, crossing-change fix) and left 399 B of the promotion headroom unspent.
+- **Extra crossings** (scratch counter, same method as the bench's: 9-point cubic samples, segment intersections not
+  within 4 % of size of a crossing both edges share; `draw(pd)` defaults; same diagrams for both):
 
-## 7. Looks gate
-**Pass.** Measured with my own copy of the measure in scratch (not in the library): worst table knot 7_7 at 23 %
-straight; sharp 0.0 % on every knot (gen1-force: 18 % / 1.1 %). Per knot (straight %): 3_1 0, 4_1 5, 5_1 0, 5_2 14,
-6_1 10, 6_2 19, 6_3 15, 7_1 0, 7_2 5, 7_3 8, 7_4 9, 7_5 18, 7_6 18, 7_7 23, 10_8 3. The margin to 30 % is smaller
-than gen 1's, because the table knots are now relaxed, not packed.
+| family | gen2-force-smooth | fix1-bigon |
+|---|---|---|
+| `randomKnot(1..1000)` defaults (the random-knot lesson) | 0 / 1,000 | **0 / 1,000** |
+| projected polygons, 1,000 (`benchgen`, rng 20261014) | 9 (32 intersections) | 12 (42) |
+| disguised braids, 1,000 (same rng stream, after the polygons) | 19 (70) | 19 (57) |
 
-## 8. What I expected, and what happened
-- **Expected:** that I would have to keep the packing for the gate and find 319 B elsewhere. **Happened:** a Tutte
-  start, relaxed with these forces and drawn as one curve per edge, passes the gate with 0 % sharp corners, so the
-  whole packing could go. That is where the 718 B came from.
-- **Wiggle:** gone by construction (one cubic per edge, straight through every crossing). Table knots are no longer
-  the packing's textbook pictures: 3_1 and 4_1 are rounded and symmetric but less "circular"; 7_4 and the random
-  12-crossing knot look better than gen 1's to me. The lead's renders decide.
-- **Square crossings were the hard part.** A pull alone stalls at 35-60 degrees (it balances the springs). A final
-  hard snap to 90 degrees broke control-polygon planarity (-20 on the bench). Squaring as 12 extra steps inside the
-  same movement zones reaches 90 degrees on table knots and keeps every polygon planar.
-- **Two start bugs found and fixed on the way:** (a) Tutte puts a kink's two handles on one point, and one bench
-  diagram came out unrelaxed (straight Tutte lines): fixed by a 1/1000 step toward the square frame (a 1/9
-  step crossed segments); (b) the bounding box over handles shrank the picture by about 10 bench points: the box now
-  fits points on the curves.
-- **Dead ends:** collinear-only crossings (no squaring, angle left to the forces) scored +1.4 but drew trefoil
-  crossings at 40 degrees; a blend halfway to 90 degrees made 5_1's inner edges exactly straight (45 % straight, gate
-  fail); stronger square pull (S >= 1) gave straight runs up to 44 %; handle-handle repulsion lower, PrEd range or
-  strength changed, 90 relax steps: flat or worse for the time.
-- **Known weakness: the Hopf link (L2a1) draws as a flat lens** (its four arcs crowd). Squaring a crossing whose four
-  arms all point into the same half-plane rotates arms a long way. Not in any lesson entry or in the looks gate, but
-  a linking lesson would see it.
+  The disguised-braid count for the parent differs from the rnd-lead's 25 because my stream draws the polygons first;
+  the comparison here is paired. 9 -> 12 on projected polygons is within what I would call noise at this count, but it
+  is not an improvement: defect (a) is not fixed by this candidate and its import block stands.
+- **Draw time** (warm median of 40, load about 10-14, so noisy): 3_1 1.23 -> 1.53 ms, 5_2 2.08 -> 2.18 ms,
+  `randomKnot(3)` 6.95 -> 4.82 ms.
 
-## 9. What I would try next
-- Keep strand hulls apart, not just polygons: add each edge's curve midpoint (t = 1/2) as a PrEd point against near
-  segments, or shorten handles where two hulls overlap. That is the remaining source of extra crossings.
-- Fix the Hopf case generically: square only crossings whose arms already span more than a half-plane, or start
-  with the crossings off the outer circle.
-- Spend part of the 399 B on a better start than Tutte's outer circle (outer-face crossings start with their arms
-  folded inward, which costs relaxation steps).
-- **Proposed test, for the lead (evaluator is not mine):** "a stored layout keeps the picture fixed across a crossing
-  change" should also check that every edge except those at the changed crossing keeps its path, which would have
-  caught the gen 0/gen 1 bug above.
+## 8. Self-score (`EVOLVE_ARCHIVE=<scratch> node tools/evolve.mjs eval knots fix1-bigon gen2-force-smooth --seed=N`)
+fix1-bigon is not in `evolve.json` "parents", so the evaluator gates it out (score 0, problem "not registered"). The
+"would-be score" column applies the evaluator's own formula (tests x 100 - 0.002 x mean lesson gz + bench) to its record.
+Load 14.0 -> 11.4 across the three runs.
+
+| seed | gen2-force-smooth score | fix1-bigon would-be score | g | spacing | spread | aspect | extra / planar | slow |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 10,676.22 | 10,667.39 | -8.83 | 14.03 -> 12.70 | 69.63 -> 66.30 | 99.42 -> 99.15 | 0 / 100 both | 0 |
+| 2 | 10,662.69 | 10,656.97 | -5.72 | 11.90 -> 11.53 | 66.23 -> 62.53 | 98.59 -> 98.75 | 0 / 100 both | 0 |
+| 3 | 10,656.07 | 10,648.22 | -7.84 | 12.15 -> 11.10 | 68.17 -> 64.66 | 98.75 -> 99.00 | 0 / 100 both | 0 |
+
+Median g = **-7.8** (about -2 % of the layout term). The loss is all spacing and spread: an open lens takes room that
+the bench's "closest crossing pair" and "closest strand-to-crossing" measures reward being left to other strands. The
+bench has no width measure, so it cannot see the gain. Size costs 0.43 points per seed.
+
+**Process notes.** An earlier version of `measure-bigons.mjs` used `import()` to load a library by path; the evaluator flagged it ("dynamic import() is not allowed"), so it imported statically. At registration the lead moved `measure-bigons.mjs` and `renders/` out of the candidate (they are not in `mutable`, so the frozen-file check would refuse them) to `company/rnd/evolution/knots-fix1/`; run it from the repo root (see that folder and `company/rnd/evolution/knots-fix1.md`). Promoted into the lab 2026-10-14.
+
+## 9. What I tried and dropped
+- **Bigon target proportional to the chord, every bigon** (no eligibility length): fixes 3_1 and the Hopf link, but
+  squeezes the triangles next to the bigons (4_1's top becomes a doubled line, 5_2 gets corners) and zig-zags the twist
+  chains of random diagrams; bench layout -10 to -20.
+- **Pulling a bigon's two crossings together** as well: rounder lenses, but spread fell further.
+- **Region pressure** (every inner region pushed outward in proportion to 1 / its control-polygon area): random
+  diagrams look balanced and the Hopf link opens when combined with the opener, but it **added extra crossings**: 1 in
+  1,000 at the random-knot lesson's settings, and projected polygons 9 -> 26 in 1,000. A false crossing is worse than a
+  thin region, so it is out.
+- **Eligibility from the start (Tutte) chord** instead of the current one: opens the Hopf link (ratio 0.48) but pushes
+  most bigons of a dense diagram; random12's narrowest bigon fell to 2.8.
+- **A cap on the target** (to stop 5_1's lobes reaching 3 % sharp in the uncapped BT = 8 version): the cap also shrank
+  the trefoil; lowering the gain to 6 did the same job without code.
+
+## 10. Hopf link (L2a1): looked at, not fixed
+All four of its regions are bigons; the outer one is excluded and the three inner ones lie on a chord that the centre
+pull shrinks to about 1.8 relaxation units within 10 steps, close to the eligibility length, so the middle lens is
+squeezed by its two neighbours' equal pushes. Every variant that opened it (sections 9's first, third and fourth items)
+cost a lesson-relevant picture or a false crossing. A link-only route (for example: eligibility by the start chord only
+in pieces whose regions are all bigons) is possible, but no lesson draws links and the EDD already says link drawing is
+not supported, so I did not spend the bytes.
+
+## 11. What I believe, and how sure
+- 3_1 and 4_1 no longer draw doubled sides: **sure** (numbers above, pictures in `renders/`). Whether the result is good
+  enough to lift the import block is the design lead's or a judge's call, with the pictures, not mine.
+- No new false crossings at the random-knot lesson's settings: **fairly sure** (0 in 1,000 seeds; the parent's 0 in
+  10,000 was the lead's run, I did not repeat 10,000).
+- The bench cost (median -7.8) is real and structural, not noise: **fairly sure** (same sign on all 3 seeds and on my
+  2 tuning seeds).
+- Some regions in dense diagrams and 6_3 are thinner than before: **sure**; whether it is visible at lesson size I
+  have not judged.
+
+## 12. Proposed (the lead decides; evaluator is not mine)
+- A bigon-width or minimum-face-width check for the looks test (VP's evaluator gap 2). `company/rnd/evolution/knots-fix1/measure-bigons.mjs` has one
+  definition of each with a self-check against a known value.

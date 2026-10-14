@@ -131,8 +131,9 @@ export interface Layout { crossings: [number, number][]; points: [number, number
 /**
  * Tutte embedding, then an embedding-preserving force relaxation (PrEd / ImPrEd style, anisotropic 8-sector zones):
  * no vertex may cross a segment of an edge's control polygon, so the picture stays planar with the same faces and
- * handedness. Forces: springs, repulsion, vertex-segment repulsion, centre pull, an angle spring at handles and a
- * square-crossing pull, finished by squaring every crossing to 90 degrees. `relax` = relaxation steps (default 60,
+ * handedness. Forces: springs, repulsion, vertex-segment repulsion, centre pull, an angle spring at handles, a
+ * square-crossing pull and a bigon opener (a long 2-sided region is pushed open into a lens), finished by squaring
+ * every crossing to 90 degrees. Links: drawn, but the Hopf link still comes out as a flat lens. `relax` = relaxation steps (default 60,
  * 0 = off; fewer steps past about 20 crossings). Deterministic. Plain data in math axes; store it to keep a picture fixed.
  */
 export function layout(pd: PD, opts?: { relax?: number }): Layout
