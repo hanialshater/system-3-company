@@ -24,3 +24,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c9 | verified | Together mode: -10/+20 at 0.5 for every n; loss 50%. Paragraph appears only with a together entry (n > 1). |
 
 **Result:** 4 verified, 1 disputed (c6). Publishing stays blocked on c6.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | 'Made-up numbers': UP = 20, DOWN = -10 are constants. 'In it, bets either move independently or all together': Mode = 'indep' / 'together', and outcomes() in together mode is one bet's 50/50 for any n; chip 'Model: independent coin-flip bets' / 'Model: the bets rise and fall together'. 'Not advice' is a disclaimer. The unsourced world claim is gone from the muted line and from Demo.tsx (grep: no 'real invest'). |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

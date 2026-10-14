@@ -38,3 +38,13 @@ Checker: fact-checker (did not write these claims). Wave E revision. Method: rea
 | c4 | disputed | Rests only on Bullard, Everett and Smith (1965), not opened: royalsocietypublishing, pmc.ncbi.nlm.nih.gov, earthguide.ucsd.edu, open.edu all blocked (proxy 403). Search-result text (not opened) says the best fit was at the 500-fathom contour, 'on the steep part of the continental edge', i.e. on the continental slope (~900 m), not the shelf edge (~100-200 m). So the wording may also be off. Fix (builder): 'Published fits use the continental margin, a depth contour on the steep slope offshore, not today's shoreline'; to clear, a human opens the paper's abstract. |
 
 **Result:** disputed: c4 (blocks publishing; fix in the Basis column, builder owns it). Others verified.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 (deleted) | n/a | Confirmed gone: meta.json has c1, c2, c3, c5, c6 (withdrawn), c7, and no shelf, fathom or slope sentence remains in Demo.tsx or the reveal. The new reveal clause 'The fit here is rough: these outlines are coarse.' is covered by c3 (verified). No open claims. |
+
+**Result:** 0 open claims; c4 deleted as the pass 24 fix asked. Nothing blocks on facts.

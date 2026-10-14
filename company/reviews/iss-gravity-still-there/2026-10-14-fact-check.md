@@ -25,3 +25,13 @@ Checker: fact-checker (did not write these claims). Wave E revision. Method: rea
 | c7 | verified | Own re-run of fly() (1 s Verlet): 3 km/s lands t 5.45 min (toFixed(1) '5.5'), arc 961 km; 7 km/s 12.57 min ('12.6'), 5,176 km; 7.67 km/s never lands in 93 min, period 2πR0/v = 92.4 min. Readout strings match ballText. |
 
 **Result:** disputed: c6 (blocks publishing; fix in the Basis column, builder owns it). Others verified.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Demo.tsx: far stops (k >= 2) use one scale FAR_KPX; near stops (k <= 1) map (r, a) to (E_PX + (r - R)·HPX, a) with a = atan2(x, y) kept, E_PX 82 px for R = 6,371 km, HPX 30/400 px/km. Own node: stretch 0.075 / (82/6371) = 5.83, shown Math.round = 6 ('Heights stretched 6×. Round Earth, no air.'); a test point's direction from the centre is unchanged and a ground point maps to radius 82 px, so landing points are true. The fly() model has inverse-square gravity, no drag and no spin. 'Every angle' is gone from the claim; the only remaining mention is a non-learner code comment noting the change. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

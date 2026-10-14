@@ -33,3 +33,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c5 | disputed | Sourcing only. The sentence rests on Centola & Macy 2007 (AJS, doi 10.1086/521848) and E&K ch. 19. Neither could be opened (DNS fails for repository.upenn.edu and journals.uchicago.edu). Search snippets agree, but they are not an opened source. Fix: open the abstract, add an openable source, or drop the sentence (nothing else depends on it). |
 
 **Result:** 0 verified, 1 disputed (c5). Publishing stays blocked on c5.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 (deleted) | n/a | Confirmed gone: meta.json has c1-c4 (all verified), and the Centola & Macy sentence is gone from Demo.tsx (grep: no 'Centola', 'Macy' or 'complex contag'). The reveal now ends 'enough for news, too little for a habit that needs several friends', which is c4 (verified). No open claims. |
+
+**Result:** 0 open claims; c5 deleted as the pass 24 fix asked. Nothing blocks on facts.

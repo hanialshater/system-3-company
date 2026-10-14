@@ -24,3 +24,13 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c5 | held (unverified) | HELD, still unverified. BEKT 2009 and E&K ch. 11 still unreachable (cs.cornell.edu and ideas.repec.org fail DNS). Search-result summary of the abstract: a trader 'can command a positive profit if and only if it has an essential connection'. That supports 'only if', but the 'iff' wording should be checked against the lesson's 'does not guarantee one' once the paper is opened (the converse may be about some equilibrium, not every one). |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | (this network only). Own node port (fc25/trade.mjs) of trades(): full 2 trades; LOST = [0, 0, 1], so T3 is the only trader whose removal loses value. On this network T1 and T2 share the S1-B1 route, so price-undercutting drives both spreads to 0 (c3; own best-response iteration on a $0.01 grid ends at 0 / 0), and T3 has no rival on S2-B2, so it can charge up to the $1 gap (c4). Together these give the sentence for this stage, with no general theorem needed. BEKT 2009 is no longer support; the general 'only if' and 'does not guarantee one' are gone from the reveal. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

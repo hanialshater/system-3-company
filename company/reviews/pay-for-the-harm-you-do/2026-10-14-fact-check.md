@@ -23,3 +23,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c1 | disputed | Numbers right: $65 without X, $30 with X on top, pay $35, not 7 × 10 = $70. But the reveal says 'The line under the bars: ... $30 ... the gap you saw, $35' from the honest bid, while the line shows the current bid. On the hint's own path (honest, then lower) the line reads '= $60' and the bracket '$5' when the reveal opens. Fix (builder): 'At the honest $7, the line under the bars read: ...', or reset the stage to $7 at the reveal. |
 
 **Result:** 0 verified, 1 disputed (c1). Publishing stays blocked on c1.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node port (fc25/vcg.mjs) of order/value/outcome/sums at bid 7: 'Without X: Y $60 + Z $5 = $65 · With X: Y $30 + Z $0 = $30', pay 35, keep 35; own bid 7 × 10 = 70. The reveal now says 'At the honest $7, the line under the bars read: ...' and 'That gap'. The honest milestone (set(7)) is required, and the sums line renders sums(o) for the current bid whenever unlocked, so the learner had that exact line on stage. The past tense no longer points at the current bid. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

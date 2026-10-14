@@ -25,3 +25,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c4 | verified | 50%: 66.7%, 30%: 58.8% for every n = 50..400; either quoted record exceeds 52.6%. |
 
 **Result:** 2 verified, 1 disputed (c2). Publishing stays blocked on c2.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | The Rubinstein backward induction share(n) = 1 - 0.9·share(n-1) is correct. Own node: for n = 3, 50, 51, 60, 100, 399 and 400 the reveal's quote string is identical to the stage line's string ('First round: offer 0.9 × 52.6% = 47.4%; keep 52.6%.' at 400; '0.9 × 52.9% = 47.6%; keep 52.4%' at 50). q is the 10% record with the largest n >= 50, and a record is written only by set() while that state is on stage, so 'That was the line above the chart at 10%' is true on every path that reaches long-10 (needed for the reveal), including a shrink chip at n >= 50. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

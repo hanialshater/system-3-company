@@ -22,3 +22,13 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c7 | held (unverified) | HELD, not verified. Lagarias (1985) not opened; cecm.sfu.ca, arxiv.org and wikipedia all fail DNS. Search-result text found nothing that states 'no formula' (only that the map looks pseudorandom, Applegate-Lagarias). It is a state-of-knowledge claim, and only an openable source can settle it. To clear: a checker with access opens Lagarias 1985 or Lagarias (ed.) 2010, or the builder rewords it to something the stage shows ('each ? is filled only by running it'). |
 
 **Result:** 1 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | (stage only). Demo.tsx: a start's Steps and Peak cells render '?' unless done.includes(n); done is appended only in show() when steps >= STEPS(n), and show() is called only by Step, Run to 1 and runOut (a chip pressed after a finished run runs the new start on stage). No other control fills a cell. Stage note 'Only running a start fills its ?.' and reveal 'Each ? in your table stayed a ? until you ran that start: only running the rule filled it in' match. The claim no longer states 'no known formula'; Lagarias is background only. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

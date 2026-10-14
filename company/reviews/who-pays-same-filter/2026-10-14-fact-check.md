@@ -23,3 +23,13 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c3 | held (unverified) | HELD, still unverified. The model half is unchanged and true (both Totals -$100). The naming ('This is the Coase theorem, which holds when bargaining is costless') still rests only on Coase 1960 / E&K ch. 24. Wikipedia and readthedocs fail DNS; search-result summaries agree but are not an opened source. |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | The model half: own arithmetic on Demo.tsx: the panel 1 deal can only be the $200 offer (factoryAccepts needs offer > 100, laundryGains needs offer < 300; offers 50, 200, 350), giving factory +100, laundry -200, total -100. In panel 2, fitted overrides paid: factory -100, laundry 0, total -100. Neither state can be undone, so both Totals read -$100 when the reveal opens. The naming 'Economists call this idea the Coase theorem' is judged as a naming convention (the coordinator's ruling for this pass): the free-bargaining, rights-decide-only-who-pays result is what the economics literature calls the Coase theorem, and the sentence no longer states a general law. 'Here bargaining is free' rests on the stage rule 'Simplified: two sides, free bargaining, costs known.' Nit: this source field reads 'both Totals read -00' (a shell-expanded '$100'); not learner-visible. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.

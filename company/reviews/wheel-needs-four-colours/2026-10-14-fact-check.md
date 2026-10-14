@@ -22,3 +22,13 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 |---|---|---|
 | c4 | disputed | Numbers hold: own node backtrack(4,3) and backtrack(4,4) both give red, blue, yellow, blue, yellow (3 used). But a reachable branch makes the reveal false: with 4 colours and Ring of 4 chosen while colouring by hand, paint C red, 1 blue, 2 yellow, 3 purple, 4 yellow (valid, 4 used). after() stores seen['4-4'] = {ok, used 4}; a later Run backtracking on that ring reaches ring-of-four (used 3) but setSeen keeps the first ok record. The reveal then says 'On the ring of four the two colours alternated all the way round: done with 4 colours' and the runs line '4 ring: done, 4 used'. Fix (builder): record only colourings using <= 3 colours for the ring-of-four record (or keep the smallest 'used' per key), so the quoted run is the one that reached the milestone. |
 | c6 | verified | Own node backtrack(5,4): C, 1..5 = red, blue, yellow, blue, yellow, purple, 0 dead ends, 4 used; backtrack(5,3): 6 dead ends, stuck at region 5. Any valid colouring of the 5-wheel uses 4, so the s54 record is 4 on every branch. |
+
+## Pass 25 (2026-10-14, W-238)
+
+Checker: fact-checker (did not write these claims). Re-check after the pass 24 fixes. Method: read Demo.tsx first (every learner-visible string, every reachable branch including reduced motion and the state after any reset or list/tree switch), then the build.md Pre-flight; re-ran the numbers in my own node ports of the lesson's logic (session scratchpad fc25/). No builds. No sentence below is verified on an unopened source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Own node port (fc25/wheel.mjs): backtrack(4,3) and backtrack(4,4) both give C,1..4 = red, blue, yellow, blue, yellow, 0 dead ends, 3 used. v3 record rule checked: a 4-colour hand colouring then a 3-colour run keeps used 3; the reverse order keeps 3 too; best4 is the fewest-used ok record across 4-3 and 4-4, and the reveal quotes it only when used <= 3 (the ring-of-four milestone also needs u <= 3). The pass 24 path (hand 4 colours, then Run backtracking) now reveals 'done with 3 colours', and an even ring with C fixed alternates two colours, so the sentence is true on every branch. |
+
+**Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
