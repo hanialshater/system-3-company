@@ -23,3 +23,13 @@ Confidence: moderate. Findings 1 and 2 are the ones I would stand on.
 ## Verdict for the current version: **revise** (no fatal flaw found)
 
 Top finding: the title and hook plus a single "worse" option give the answer away before the learner predicts, and the reveal names the paradox without saying why the number rose (both busy roads now carry all 4,000 cars).
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective covers "every driver on it, every trip slower, switching back slower still (85)", all in the reveal. It does not ask the learner to explain why the busy roads cost 40 each, so finding 2 is a gap in the objective as well as in the reveal.
+- The build note says the hero and the reveal's before/after pair were not built, and that the graph renders at about 230 px with pills at about 9 px at predict. That is the stage I saw; the pill numbers are the only place the mechanism appears, and they are smallest where the learner is predicting.
+- Finding 1 (title and hook telegraph "worse") is not mentioned in the build note or objective.
+
+Verdict unchanged: revise.

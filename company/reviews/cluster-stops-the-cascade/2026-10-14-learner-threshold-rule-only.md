@@ -24,3 +24,15 @@ Confidence: moderate. Findings 1 and 2 are the ones I would stand on.
 ## Verdict for the current version: **revise** (no fatal flaw found)
 
 Top finding: the reveal's explanation of why the group blocks itself ("3 of 4 inside, so none can join first") skips the step from inside-count to adopted-count, and the stage never shows an inside count.
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective is "explain that ... every member has more than half its friends inside the group ..., so none can be the first to join". The reveal says that in one clause. Finding 1 stands: the objective asks the learner to explain a step the lesson states but does not show or bridge, and the stage has no inside-count view.
+- The misconception targeted is "stops because too weak or too few seeds". Finding 2 stands: the predict asks the count, and a learner who simulates it by hand gets 8 without meeting that misconception. The hook's "Too few fans" phrase does name it, but only in the hook.
+- The build note says naming "0 and 1" in the question was a deliberate change from the brief; that is what makes the prediction computable (finding 2).
+- Builder's reveal intent (quote 8's 1/4 only if reached) matches what I saw; no conflict.
+- The unlabelled pill (finding 5) is not mentioned in the build note's legend list, so I think it was not considered.
+
+Verdict unchanged: revise.

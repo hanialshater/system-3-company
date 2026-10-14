@@ -23,3 +23,14 @@ Confidence: moderate. Findings 2 and 4 are the ones I would stand on.
 ## Verdict for the current version: **revise** (no fatal flaw found)
 
 Top finding: the question I am asked to predict (a's final price) is not the thing the lesson is about (that prices find the highest-total match), and the Run path skips the one step (raising a and b together) that explains why b rose.
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective is about the match and total, "without anyone assigning houses". The predict asks about a's price; the objective is carried by Compare. Finding 2 stands.
+- The build note says the reveal names the {a,b} step only if the learner raised three times by hand, so finding 4 is a known and intended branch, but it means the learner who uses Run (the common path) never gets the one non-obvious step.
+- Finding 6 (tiny cells) is confirmed by the builder: at predict on a phone the grid renders at about 65% scale (sum line about 8 px), below the design floor, routed to the visual-designer and accessibility-reviewer.
+- The build note says the predict question was shortened to fit the phone; the remaining wording "want only from" is the rule's phrasing and was not simplified.
+
+Verdict unchanged: revise.

@@ -22,3 +22,13 @@ Confidence: moderate. Finding 4 is the one I would argue hardest for; finding 5 
 ## Verdict for the current version: **revise** (no fatal flaw found)
 
 Top finding: the eight-world picture shows the best song still 1st in half the worlds with copying on, exactly as often as with copying off, so the reveal's contrast rests on the worst world and the top-song share, which the stage does not make easy to see.
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective says the best song "can finish near the bottom" in some worlds and that without copying the outcome is "close to quality". The reveal does both. Finding 4 stands as a problem the objective does not address: the builder's node numbers (on 3,1,7,1,4,1,1,3; off 2,1,2,1,2,1,2,1) confirm that the best song is 1st in four worlds both ways.
+- The build note records that world 3 is 7th at 100, 200, 300, 500 and 1,000 listeners, so the early lock-in is in the data; finding 5 is only that the learner is not required to step to see it. The builder chose milestones at the two 1,000 states, not at an early checkpoint.
+- The spec's MusicLab reference is deliberately not shown to learners; no conflict.
+
+Verdict unchanged: revise.

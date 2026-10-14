@@ -23,3 +23,14 @@ Confidence: moderate to good on 5 and 7; the rest are minor.
 ## Verdict for the current version: **launch with notes** (no fatal flaw found; findings 1 and 7 are worth a revise if the owner has time)
 
 Top finding: the Overlap case is a different input (every pair meets each day) presented in the reveal as one more ordering of the same contacts, and the citation line then reads it as concurrency.
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective includes "overlapping contacts open paths in both directions", so the Overlap case is intended as the two-way payoff, and the builder's node re-run shows Overlap reaches 4 from A and from E. Finding 7 narrows to this: Overlap is built as every pair meeting on every day, which is repeated contact, and the reveal's citation line reads it as concurrency. That is a content call for the learning designer.
+- The build note says the brief's 24-order distribution (1/k!) is not shown, which fits the lesson I saw (three specific orders only).
+- The legend omission in finding 1 (rung and hollow dot meaning) is partly addressed by the build note's "future links hollow" change; the legend still does not say it.
+- Finding 6 is consistent with the build note's dashed r = 22 ring as the affordance.
+
+Verdict unchanged: launch with notes.

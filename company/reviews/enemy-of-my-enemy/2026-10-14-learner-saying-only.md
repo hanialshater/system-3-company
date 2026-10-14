@@ -24,3 +24,14 @@ Confidence: moderate. Finding 5 is the one I would argue for; findings 3 and 4 a
 ## Verdict for the current version: **revise** (no fatal flaw found)
 
 Top finding: the reveal concludes "one camp or two" from "three camps never balance", which skips the claim that a balanced network is a camp split at all; the "mixed" state, which carries that gap, is never explained.
+
+## After reading the brief
+
+Read meta.json objective and misconception, and build.md, only after the findings above were written.
+
+- The objective ties "one camp or two" to "three camps always contain a trio of three enemies". The build note says node enumeration found 0 balanced settings that are not camp splits (n = 5), so the claim is true; but that is in a claim in the trust sheet, not in anything a learner sees. Finding 5 stands as a gap in the learner's experience, not as a falsehood.
+- The misconception ("several hostile camps") is addressed by the 3 camps preset, which the build note confirms is a preset. Finding 7 stands.
+- The build note's "known limits" mention the chip row below the fold at predict and a faint legend tint in light theme; neither is the same as my findings 3 and 4 (undefined "mixed", overlapping tints), so those are new to the builder.
+- Finding 9 (inner handles close together): the build note records handle centres at least 49 px apart with 44 px hit targets, so I withdraw it as a concern.
+
+Verdict unchanged: revise.
