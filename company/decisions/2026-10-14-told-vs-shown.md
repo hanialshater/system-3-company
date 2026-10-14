@@ -79,3 +79,93 @@ Sentence added to `company/product/demo-standard.md` under Craft rules. The file
 |---|---|---|---|
 | "The reveal does answer it in one sentence, which is enough for 60 s." Showing the cause costs build time and stage space, and the lesson's main surprise (gravity is ~88%; each ton costs more) is already shown. | Earlier learner reviewers (bending-frontier 2026-10-13, iss-gravity 2026-10-14 first pass) | purpose | **Rejected for causes in the brief's gap; accepted for everything else.** The objective's own verb is "explain", and the cause is half of doesNotKnow in both lessons. A learner who takes it on trust has not got it. The cost point is accepted: told context outside the gap stays allowed, and the stand-in must reuse the existing stage. |
 | Adding a field tint or a falling trace risks a second representation and the 25-word stage budget. | head-of-product (anticipated, from the craft rules) | evidence | **Accepted as a constraint, not a reason to skip.** The rule requires the stand-in on the existing picture, and both suggested fixes are overlays on it. If a builder cannot fit it, that goes back to the category manager as a scope problem (the lesson may hold two ideas). |
+
+## 2026-10-14 (later): rulings on four NCM batch-1 lessons
+
+Asked by session 2 after the final learner reviews. I read each final review, the current
+`Demo.tsx` and the brief (`learner.doesNotKnow`, `objective`) in `meta.json`. I did not read the
+build notes. These rulings apply the decision above. They do not change it.
+
+**How I read universals (a clarification, not a new rule).** A 60-second stage can show the mechanism
+on the one case the learner touches. It cannot show every case. Sentences such as "for any
+values", "all 16", "any number of people" or "at least 3" are therefore *context outside the gap*.
+They may be told in one claimed sentence **if** the mechanism they generalise is shown on the
+instance the learner reached. A universal is a revise only when the mechanism behind it is itself
+told-only.
+
+### 1. below-critical-mass: **meets the rule, launch**
+- The gap: doesNotKnow is *that* the same product and price can die out or reach most of the
+  market depending on the start. The objective asks the learner to explain *that* there is a
+  tipping point (shrink below it, grow above it). The stage holds both, and the gate forces the
+  runs: 18 vs 25 and 19 vs 21, plus the ringed 20% crossing and the labelled "shrinks" and "grows"
+  regions. The reveal points at them.
+- The objective names one cause, "with network effects". The stage stands for it: the chip says
+  "more users, more value", and the curve rises with the share, so the learner sees next round's
+  share depend on this round's.
+- "With few users the product is worth less than its price to most people" explains why this toy
+  curve has the shape it has. The brief does not ask the learner to explain that. It is context
+  outside the gap and is allowed as one told sentence. It is claimed (c8, verified).
+- Not required, but the cheapest improvement: label the curve "share who'd pay $0.16 at this
+  share" so the told sentence points at a mark.
+
+### 2. enemy-of-my-enemy: **needs a stand-in before publish**
+- The objective asks the learner to explain a cause: "*because* three camps always contain a
+  trio of three enemies". The stage has a stand-in in principle: the pink unbalanced trios and
+  the "3 of 10" count at ABC | D | E, and the learner can make them vanish by flipping D–E.
+  It fails the rule on two counts. (a) The three trios (ADE, BDE, CDE) all share D–E, so their tints
+  overlap into one blob and the learner cannot find "one person from each camp". (b) The reveal's
+  "one person from each makes three enemies" does not point at anything on the stage.
+- **Minimal acceptable stand-in:** on the existing stage, make the unbalanced trios individually
+  findable. The cheapest way is a text line under the Unbalanced readout that names them when
+  there are 4 or fewer (e.g. "ADE · BDE · CDE"). Distinct outlines instead of a shared fill also
+  pass. The reveal's sentence must then name the trios the learner's own three-camp state left
+  (from `seen.three`), e.g. "Your three camps left ADE, BDE, CDE: each takes one person from each
+  camp, so all three pairs are −." No new panel. The preset stays.
+- "All 16 balanced settings are camp splits", "at least 3" and "any number of people" are
+  universals. They stay as told context (see the clarification), because the mechanism they generalise
+  will now be on stage. The "must" in doesNotKnow is shown well enough for five people: the
+  readouts show 0 unbalanced only alongside clean camps, and the gate requires a "not camps" state
+  with unbalanced trios.
+- This overrules the reviewer's "launch with notes". Their own top finding is the reason.
+
+### 3. prices-sort-the-buyers: **meets the rule, launch**
+- Both doesNotKnow items are on the stage. The stops-where-each-can-take-a-favourite point is the
+  dashed over-wanted group, the wants/gets marks and the gated "cleared" state. The highest-total point
+  is the gated Compare with 23 highlighted among six. "Nobody assigned the houses" points at z
+  on b. The objective asks the learner to explain *that*, not *why* prices find the maximum, so
+  the reviewer's finding 6 (no mechanism for optimality) is outside the gap.
+- "Lowest prices that clear this market" and "for any values ..." are context and universals.
+  They are told and claimed, which is allowed.
+- Not told-vs-shown, and not blocking under this record: "total value" is undefined at predict
+  time, and the Compare chips ("xa yc zb") are not decoded. Those are craft notes for the
+  builder and learning-designer.
+
+### 4. same-songs-different-hits: **needs a stand-in before publish**
+- "Early luck compounds" is both in doesNotKnow ("rich-get-richer dynamics") and named in the
+  objective ("explain that ... early luck compounds"). The On/Off toggle shows *that* copying
+  changes the outcome, not *that it compounds from early picks*. The only view of compounding is
+  the +100 step, which the gate does not require, and the reveal points at nothing on stage.
+- **Minimal acceptable stand-in:** on the existing stage, gate an early checkpoint and point at it.
+  Add a milestone reached at 100 listeners with copying on, through the existing +100 control (so
+  the gate becomes early, copy-1000, nocopy-1000). Then add one reveal sentence, built from the
+  reached state, that compares the early rank with the final one. In my node re-run of the
+  current code (seeds 1–8), world 3's best song is 7th at 100 listeners and still 7th at 1,000,
+  and song 7 leads from 100 to 1,000. So: "At 100 listeners world 3's best song was already 7th;
+  900 more listeners did not move it." The builder re-runs this and records it as a claim; the
+  fact-checker verifies it. No new panel. "All 1,000" stays.
+- Separate issue, not ruled here: the reveal quotes "35–48%" and "at most 18%", which the stage
+  never prints. That is the *values* problem tracked under W-150 and goes to the builder with it.
+
+### Objections on these rulings
+| Objection | Raised by | Kind | Status |
+|---|---|---|---|
+| below-critical-mass: the "why it shrinks" is told only, so the lesson should be a block if the rule covers the why. | learner reviewer, final (`company/reviews/below-critical-mass/2026-10-14-learner-no-network-effects-final.md` finding 5) | purpose | **Declined for this brief.** The brief asks the learner to explain *that* there is a tipping point, and that is shown and gated. The value-below-price mechanism is the toy model's context. If a CM rewrites the objective to "explain why a small launch shrinks", this ruling flips to revise. |
+| enemy-of-my-enemy: there is a stand-in (pink trios, count), so launch with notes. | learner reviewer, final | evidence | **Declined.** The rule needs the learner to be able to find the stand-in and the reveal to point at it. Neither holds while the three trios share one blob. The fix is a label, not a rebuild. |
+| same-songs-different-hits: the toggle contrast already stands in for copying, so launch with notes. | learner reviewer, final ("close to revise") | evidence | **Partly accepted.** The toggle does stand in for *copying matters*, and it stays. It does not stand in for *compounding from early luck*, which the objective names. The minimal fix reuses the existing step control. |
+| Universals ("any values", "any number", "all 16") are told, so they break the rule. | raised as a question in the session-2 request | purpose | **Declined.** See the clarification above. If reviewers start sending lessons back over universals whose mechanism is shown, that triggers this record's second revisit condition. |
+
+Next moves (route, not done here): enemy-of-my-enemy and same-songs-different-hits go back to
+demo-builder (the early gate for same-songs is learning-designer's call on wording), and then
+fact-checker for the new claims. below-critical-mass and prices-sort-the-buyers go to
+launch-review with their review notes, subject to the fact-checker's open dispute on
+below-critical-mass c11.
