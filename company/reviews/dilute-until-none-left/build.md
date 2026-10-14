@@ -13,3 +13,10 @@ Fixes from the v1 learner review: jump buttons named the answer on the locked sc
 
 ## Revision v2
 (Added for the QA contract, which presses each control once.) A 'Dilute automatically' button repeats the 1:10 step every 150 ms up to step 24, so the learner watches every step, including the ones the reveal quotes, without a button that names them.
+
+
+## Revision v3
+
+Auto run stopped at 24 and flashed step 22. It now runs fast to step 20, pauses 1 s on 21 and on 22, and stops at 22. From step 19 the stage also shows '20 tubes drawn: N empty' (seeded), and the reveal quotes that N, so the 55% is backed by something seen. New claim c7 (unverified).
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

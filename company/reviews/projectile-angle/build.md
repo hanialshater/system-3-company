@@ -28,3 +28,10 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise).
 Slider starts at 30 degrees (the question's throw). The same-landing caption follows the latest throw, not an old pair. New Sideways readout supports 'moves sideways slower'. Partner is defined; 'Landed' says how to launch again. Not changed: arc-label crowding with four arcs (MAX_PINS 4 is needed to show two pairs).
 
 Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.
+
+
+## Revision v4
+
+The reveal quoted 45° / 40.8 m and the pairs 20/70, 40/50 unvisited. It now quotes 45° only if the learner launched 45°, and otherwise invites it. 'Lands' reads '?' while locked.
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

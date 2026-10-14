@@ -109,8 +109,10 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
           </p>
           <p>
             Time in the air times sideways speed comes out equal for any two angles that add to 90°:
-            {otherPairs.length ? ` you also saw ${otherPairs.join(", ")}.` : " 20° and 70°, 40° and 50°."} The balance
-            point, 45°, goes farthest: {range(45).toFixed(1)} m{tried45 ? ", as your 45° throw showed." : "."}
+            {otherPairs.length ? ` you also saw ${otherPairs.join(", ")}.` : " other pairs work the same way, so try the slider and Partner on the stage."}{" "}
+            {tried45
+              ? `Your 45° throw, the balance point with no partner, went farthest: ${range(45).toFixed(1)} m.`
+              : "Which single angle goes farthest? Aim the slider at 45° and launch to find out."}
           </p>
           <p className="muted">
             This is without air drag. Real air takes more metres from the long, steep flight, so the flatter throw wins.
@@ -241,7 +243,7 @@ export default function ProjectileAngle({ slug }: { slug: string }) {
                   onChange={(v) => setAngle(v)}
                 />
                 <Row>
-                  <Readout label="Lands" value={`${range(angle).toFixed(1)} m`} />
+                  <Readout label="Lands" value={locked ? "?" : `${range(angle).toFixed(1)} m`} />
                   <Readout label="Peak" value={`${peak(angle).toFixed(1)} m`} />
                   <Readout label="Air" value={`${airTime(angle).toFixed(1)} s`} />
                   <Readout label="Sideways" value={`${(V * Math.cos(rad(angle))).toFixed(1)} m/s`} />

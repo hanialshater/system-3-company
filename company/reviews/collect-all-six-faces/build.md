@@ -9,3 +9,10 @@
 - Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
 - Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
 
+
+
+## Revision v2
+
+The svg label is already dynamic in this code ('N rolls; K of 6 faces seen') and the face-number contrast was fixed in W-155; nothing stuck found. Version bumped so the accessibility reviewer can re-scan.
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

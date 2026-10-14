@@ -120,7 +120,7 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.info}>{info}</p>
-                <svg viewBox="0 0 320 228" className="stage-svg" role="img" aria-label="Knockout bracket">
+                <svg viewBox="0 0 320 228" className="stage-svg" role="img" aria-label={`Knockout bracket, ${played} of ${ROUNDS} rounds played. ${done ? `Champion ${NAMES[CHAMP]}. ` : ""}${info}`}>
                   {MATCHES.filter((m) => m.round < played).map((m, k) => {
                     const i = FIELDS[m.round].indexOf(m.a) / 2;
                     const ya = rowY(m.round, i * 2);

@@ -15,6 +15,8 @@ const SIDE_CM = 1;
 const area1 = (n: number) => Math.round(n ** 3 * 6 * (SIDE_CM / n) ** 2 * 1e6) / 1e6;
 const STEPS = [1, 2, 5, 10];
 const BIG = 10;
+const BAR_MAX = 100; // scale of the bar; deliberately not the answer
+
 const NAMES = ["thousand"] as const;
 const fmt = (v: number) => v.toLocaleString("en-US");
 
@@ -73,12 +75,12 @@ export default function CutTheCube({ slug }: { slug: string }) {
                     front face only; cuts also make hidden faces
                   </text>
                   <text x={30} y={226} className={s.small}>
-                    total outside area (bar runs to {area1(BIG)} cm²)
+                    total outside area
                   </text>
                   <rect x={30} y={232} width={260} height={16} className={s.track} />
-                  <rect x={30} y={232} width={(260 * area) / area1(BIG)} height={16} className={s.fill} />
-                  <line x1={30 + (260 * area1(1)) / area1(BIG)} x2={30 + (260 * area1(1)) / area1(BIG)} y1={228} y2={252} className={s.tick} />
-                  <text x={30 + (260 * area1(1)) / area1(BIG) + 3} y={260} className={s.small}>
+                  <rect x={30} y={232} width={(260 * area) / BAR_MAX} height={16} className={s.fill} />
+                  <line x1={30 + (260 * area1(1)) / BAR_MAX} x2={30 + (260 * area1(1)) / BAR_MAX} y1={228} y2={252} className={s.tick} />
+                  <text x={30 + (260 * area1(1)) / BAR_MAX + 3} y={260} className={s.small}>
                     whole cube, {area1(1)} cm²
                   </text>
                 </svg>

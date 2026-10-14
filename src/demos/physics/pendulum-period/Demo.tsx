@@ -135,7 +135,6 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
   const { me, ghost, t } = sim.current;
   const T = period(length);
   const T0 = period(GHOST_L);
-  const Tquarter = period(GHOST_L / 4);
   const gapDeg = (Math.abs(me.theta - ghost.theta) * 180) / Math.PI;
   const sameLength = isGhostLength(length);
   const heavy = !isGhostMass(mass);
@@ -169,7 +168,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
         options: ["longer", "the same time", "less time"],
         answer: 1,
       }}
-      exploreHint="Change only the weight, press Release and let it swing. Then try only the string."
+      exploreHint="Change only the weight, press Release and let it swing. Then change only the string (try 0.25 m) and release again."
       minInteractions={1}
       reveal={() => (
         <>
@@ -184,9 +183,10 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
           <p>
             Length is what sets the beat.{" "}
             {lengthSeen !== null
-              ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s). `
-              : "A different string drifts out of step. "}
-            Four times the length doubles the time, from {Tquarter.toFixed(2)} s at 0.25 m to {T0.toFixed(2)} s at 1 m.
+              ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s against ${T0.toFixed(2)} s). ${
+                  lengthSeen === 0.25 ? "Four times shorter, half the time." : ""
+                }`
+              : "You did not try the string, so try it now on the stage: a different length drifts out of step with the ghost."}{" "}
             Galileo reported the same with lead and cork pendulums.
           </p>
           <p className="muted">
