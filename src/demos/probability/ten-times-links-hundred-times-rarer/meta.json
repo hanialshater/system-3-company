@@ -1,0 +1,92 @@
+{
+  "slug": "ten-times-links-hundred-times-rarer",
+  "title": "How rare is a page with 1,000 links?",
+  "hook": "Most pages have a few links. Do pages with 1,000 links exist at all?",
+  "domain": "probability",
+  "concept": "power-law-scaling",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "most pages have few links, a few have many"
+    ],
+    "doesNotKnow": [
+      "that in a power law with exponent 2, ten times the links makes a page 100 times rarer at every scale, a straight line on log–log axes"
+    ]
+  },
+  "misconception": "Pages with 1,000 links are so rare they effectively don't exist, as in a bell curve.",
+  "objective": "The learner can explain that when the share of pages with k links falls like 1/k², every tenfold step in k makes pages 100 times rarer, so the log–log plot is a straight line of slope −2 and pages with 1,000 links are rare but real.",
+  "claims": [
+    {
+      "id": "probability.ten-times-links-hundred-times-rarer.c1",
+      "text": "If the share of pages with k links is proportional to 1/k², pages with 1,000 links are 100 times rarer than pages with 100, and those are 100 times rarer than pages with 10.",
+      "support": "derivation",
+      "source": "(1/100²)/(1/1,000²) = 100 and (1/10²)/(1/100²) = 100; in general (k/10)^-2 / k^-2 = 100 for every k. Matches the brief's check (ratio100vs1000 = 100).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.ten-times-links-hundred-times-rarer.c2",
+      "text": "On log–log axes this is a straight line of slope −2: down two powers of ten for every power of ten across.",
+      "support": "derivation",
+      "source": "log10(c·k^-2) = log10 c − 2·log10 k, linear in log10 k with slope −2.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.ten-times-links-hundred-times-rarer.c3",
+      "text": "On linear axes everything past about 10 links looks like zero, but there is no cliff: pages with 1,000 links are rare, not absent.",
+      "support": "derivation",
+      "source": "Relative to k = 1 the share at k = 10 is 0.01 (about 1.6 px of the stage's 158 px chart height) and at k = 1,000 is 10^-6. A power-law share k^-2 stays positive and falls by the same factor per decade, whereas a bell-curve tail falls faster than any power of k.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The share of pages with k links falls like 1/k². Pages with 10 links are how much more common than pages with 1,000?",
+    "options": [
+      "100 times",
+      "10,000 times",
+      "Millions of times"
+    ],
+    "answer": 1,
+    "why": "Two tenfold steps (10 → 100 → 1,000), each a factor of 100: 100 × 100 = 10,000."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:power-law-scaling",
+    "also": [
+      "probability:heavy-tails"
+    ],
+    "prerequisites": [
+      "probability:heavy-tails"
+    ],
+    "level": "core",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 18
+      }
+    ],
+    "tags": [
+      "power law",
+      "log scale"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}
