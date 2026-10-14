@@ -71,7 +71,7 @@ export default function WhoGrabsTheElectrons({ slug }: { slug: string }) {
         options: ["the oxygen", "the hydrogens", "exactly in the middle"],
         answer: 0,
       }}
-      exploreHint="Snap a hydrogen onto the oxygen, then try another partner."
+      exploreHint="Build water, then swap in another partner to compare."
       minInteractions={NAMES.length}
       reveal={() => {
         const others = tried.filter((e) => e !== "H");
@@ -81,11 +81,11 @@ export default function WhoGrabsTheElectrons({ slug }: { slug: string }) {
               On your O–H bond the shared pair sat <strong>close to the oxygen</strong>, and the oxygen turned
               δ− (slightly negative) while the hydrogen turned δ+.
               {others.length > 0 &&
-                ` With ${others.join(", ")} the pair sat nearer the middle${others.includes("O") ? ", and with O on both ends exactly in the middle" : ""}.`}
+                ` With ${others.join(", ")} the pair moved toward the oxygen by less${others.includes("O") ? ", and with O on both ends it stayed exactly in the middle" : ""}, because the atoms differ less in pull.`}
             </p>
             <p>
-              Oxygen attracts shared electrons harder than hydrogen does: its electronegativity is about 3.44 against
-              2.20. Sharing is lopsided whenever two different atoms bond, and the bigger the difference, the more
+              Oxygen attracts shared electrons harder than hydrogen does: its electronegativity (an atom's pull on shared
+              electrons) is about 3.44 against 2.20. Sharing is lopsided whenever two different atoms bond, and the bigger the difference, the more
               lopsided. In water this leaves the oxygen end slightly negative and the hydrogen ends slightly
               positive, so neighbouring water molecules attract each other.
             </p>
@@ -103,6 +103,11 @@ export default function WhoGrabsTheElectrons({ slug }: { slug: string }) {
               setTried(t);
               if (next.includes("H")) reach("o-h");
               if (t.includes("H") && t.some((e) => e !== "H")) reach("other");
+            };
+            const snapWater = () => {
+              setSlots(["H", "H"]);
+              setTried((tr) => (tr.includes("H") ? tr : [...tr, "H"]));
+              reach("o-h");
             };
             return (
               <div className={s.wrap}>
@@ -135,10 +140,13 @@ export default function WhoGrabsTheElectrons({ slug }: { slug: string }) {
                     <Atom key={`a${i}-${el}`} x={CX + DIRS[i].x * BOND} y={CY + DIRS[i].y * BOND} el={el} q={el === "O" ? 0 : EN.O - EN[el]} />
                   ))}
                   <text x={W / 2} y={H - 4} textAnchor="middle" className={s.small}>
-                    Drawing: shift scaled to electronegativity difference
+                    δ− slightly negative · δ+ slightly positive
                   </text>
                 </svg>
                 <Row>
+                  <Control aria-label="Build water: two hydrogens" onClick={() => snapWater()} disabled={locked || water}>
+                    Make H₂O
+                  </Control>
                   {PARTNERS.map((el) => (
                     <Control key={el} aria-label={`Snap on ${el}`} onClick={() => snap(el)} disabled={locked || (slots.length === 2 && slots[0] === el && slots[1] === el)}>
                       + {el}

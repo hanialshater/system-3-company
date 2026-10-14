@@ -7,3 +7,8 @@
 - Reveal quotes the harm levels the learner plotted. The reveal says "peaking at harm 1" which the learner has seen via the gate.
 - Option letters in the question are the brief's; "toy / chosen square-root link" is stated in the reveal and c3.
 - Claims all unverified.
+
+## Revision v2
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Question rewritten in the caption's language with a worked example (harm 0.25: 2.0 cases a day for 0.8 days, R0 1.6). A dashed R0 curve for all harms appears once the three preset points are plotted. Hook reworded. c2 reopened.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

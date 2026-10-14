@@ -45,10 +45,10 @@
       "id": "probability.three-cards-one-red-face.c3",
       "text": "The stage's draws are seeded: in the first 60, red was up 23 times with a red back 18 times (78%); over 600 draws, 212 of 310 (68%).",
       "support": "simulation",
-      "source": "draws() in model.ts, mulberry32 seed 1889, untuned (the first seed tried). Over seeds 1-500, the red-back share in 60 draws had middle 95% 50%-83% (median 68%). The reveal quotes only the learner's own tally.",
+      "source": "draws() in model.ts, mulberry32 seed 1889, untuned (the first seed tried). Over seeds 1-500, the red-back share in 60 draws had middle 95% 50%-83% (median 68%). The reveal quotes only the learner's own tally. | v2 (2026-10-14): reveal leads with the rebuttal and notes that short runs wobble; previous verification void, needs re-check. · Fact-check pass 19 2026-10-14: VERIFIED: own mulberry32 re-run, seed 1889: 23 red / 18 red backs in 60 (78.3%), 310 / 212 in 600 (68.4%). Seeds 1-500 at 60 draws: 2.5-97.5% range 50%-83%, median 67.1% (source says 68%; immaterial, not learner-facing).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -72,7 +72,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:three-cards-paradox",
     "prerequisites": [

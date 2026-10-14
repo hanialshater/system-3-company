@@ -1,7 +1,7 @@
 {
   "slug": "twice-as-hot-not-twice-as-fast",
-  "title": "Twice as hot, not twice as fast",
-  "hook": "Double the kelvins of the air. Do its molecules move twice as fast?",
+  "title": "Twice the kelvins, how much faster?",
+  "hook": "Heat air from 300 K to 600 K. How much faster do its molecules move?",
   "domain": "chemistry",
   "concept": "temperature-particle-motion",
   "status": "review",
@@ -46,19 +46,19 @@
       "id": "chemistry.twice-as-hot-not-twice-as-fast.c3",
       "text": "Going from 300 K to 600 K multiplies the typical speed by √2 ≈ 1.41; reaching twice the speed takes four times the kelvins, 1,200 K.",
       "support": "derivation",
-      "source": "v ∝ √T: √(600/300) = 1.414; √(1200/300) = 2.",
+      "source": "v ∝ √T: √(600/300) = 1.414; √(1200/300) = 2. | v2 (2026-10-14): text/stage revised after learner review; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 19): Re-checked v2: sqrt(600/300) = 1.4142, sqrt(1200/300) = 2 exactly. Demo.tsx shows (v/V0).toFixed(2): 1.41x at 600 K, 2.00x at 1,200 K; 2x mark drawn at 2*V0.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.twice-as-hot-not-twice-as-fast.c4",
-      "text": "300 K is about 27 °C, 600 K about 327 °C, 1,200 K about 927 °C; 27 °C to 54 °C is 300 K to 327 K.",
+      "text": "300 K is about 27 °C, 600 K about 327 °C, 1,200 K about 927 °C. Kelvin is the scale that starts at absolute zero.",
       "support": "derivation",
-      "source": "T(°C) = T(K) - 273.15 (BIPM SI Brochure, 9th ed., 2019); the stage rounds with 273.",
+      "source": "T(°C) = T(K) - 273.15 (BIPM SI Brochure, 9th ed., 2019); the stage rounds with 273. | v2 (2026-10-14): text/stage revised after learner review; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 19): Re-checked v2: 300-273.15 = 26.85 (27), 600 -> 326.85 (327), 1200 -> 926.85 (927); slider label uses t-273, giving 27/327/927. Absolute zero is 0 K by the definition of the kelvin (SI Brochure 9th ed., from memory). Predict text agrees (300 K = 27 C, 600 K = 327 C).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.twice-as-hot-not-twice-as-fast.c5",
@@ -92,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:temperature-particle-motion",
     "prerequisites": [],

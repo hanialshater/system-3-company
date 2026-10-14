@@ -41,6 +41,8 @@ const path = (o: Order, n: number) => {
   }).join(" ");
 };
 const name = (o: Order) => (o === 2 ? "2nd order" : "1st order");
+const btn = (o: Order) => (o === 2 ? "Pairs must meet (2nd order)" : "Steady (1st order)");
+const rate = (o: Order, n: number) => `1/${Math.pow(o === 2 ? 4 : 2, n)}`;
 
 export default function TheSlowingHalfLife({ slug }: { slug: string }) {
   const [order, setOrder] = useState<Order>(2);
@@ -54,11 +56,11 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A second-order reaction takes ${wait(2, 1)} min to go from ${A0} to ${A0 / 2} mmol/L. From ${A0 / 2} to ${A0 / 4} mmol/L it takes about…`,
+        question: `Half-life is the time for the amount to halve. In a second-order reaction (molecules must meet in pairs) it takes ${wait(2, 1)} min to go from ${A0} to ${A0 / 2} mmol/L. From ${A0 / 2} to ${A0 / 4} mmol/L it takes about…`,
         options: [`${wait(2, 1) / 2} min`, `${wait(2, 1)} min`, `${WAIT2} min`],
         answer: 2,
       }}
-      exploreHint="Wait for two halvings in 2nd order, then switch to 1st order."
+      exploreHint="Wait for two halvings in 2nd order, then switch to 1st order. Watch the rate."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
@@ -71,10 +73,9 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
             {seen[1] >= 2 ? "The first-order run kept" : "A first-order run keeps"} the same {T_HALF1} min every time.
           </p>
           <p>
-            A second-order reaction needs two reactant molecules to meet, so its rate goes with the concentration
-            squared. Halve the crowd and meetings become four times rarer while half as many molecules are left to react, so the next half takes twice as long. Its
-            half-life is 1/(k[A]), growing as [A] falls. A first-order reaction (like radioactive decay) has one fixed
-            half-life.
+            A second-order reaction needs two reactant molecules to meet. Halve the crowd and meetings become four
+            times rarer (the Rate readout fell to 1/4), while half as many molecules are left to react, so the next
+            half takes twice as long. A first-order reaction (like radioactive decay) has one fixed half-life.
           </p>
         </>
       )}
@@ -157,13 +158,14 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                         check(o, n);
                       }}
                     >
-                      {name(o)}
+                      {btn(o)}
                     </Control>
                   ))}
                 </Row>
                 <Row>
                   <Readout label="Last wait" value={n ? `${wait(order, n)} min` : "none yet"} />
                   <Readout label="Total" value={`${timeTo(order, n)} min`} />
+                  <Readout label="Rate vs start" value={rate(order, n)} />
                 </Row>
               </div>
             );

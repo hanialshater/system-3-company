@@ -10,3 +10,8 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - 99% not visited by default; reveal quoted 3-door tallies -> tallies kept per door count; gate = 'Play 100 rounds' at 100 doors (that button now first in DOM so QA reaches it at 100 doors). Reveal quotes the learner's tallies for every size played.
 - Host-knowledge point told -> new 'Guessing host: 1,000 rounds' button: host opens doors at random, rounds where he hit the car are thrown away; readout shows kept rounds and stay/switch wins (close to even). Not gated. Claim c5 rewritten, unverified.
 - Empty stage layout -> not changed beyond reordering controls; grid of 100 doors appears once a round starts (see phone-2 screenshot at 3 doors). Hook left (neutral question).
+
+## Revision v3 (batch 02, 2026-10-14)
+
+Hook no longer leans. Stay/switch tallies moved above the doors so they are not clipped on the phone; the guessing-host readout is labelled "Rounds kept (he missed the car)".
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

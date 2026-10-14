@@ -77,6 +77,16 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
             </g>
           );
         })}
+        {cur !== null && (
+          <g>
+            {DICE[cx].map((a, i) =>
+              DICE[cy].map((b, j) => (
+                <rect key={`${i}-${j}`} className={a > b ? s.barA : s.barB} opacity={a > b ? 1 : 0.35} x={270 + j * 11} y={8 + i * 11} width={10} height={10} rx={2} />
+              )),
+            )}
+            <text className={s.tally} x={270} y={86}>{exactWins(cx, cy)}/36 lit</text>
+          </g>
+        )}
         {w !== null && (
           <g>
             <rect className={s.barA} x={34} y={100} width={(w / ROLLS) * 226} height={14} rx={3} />
@@ -120,8 +130,7 @@ export default function DiceThatChaseEachOther({ slug }: { slug: string }) {
             all 36 face pairs, each of the four wins {AVG_OF_EXACT}, two in three, round the loop.
           </p>
           <p>
-            Winning belongs to a pair, not to a die. A has a lower average ({mean("A").toFixed(2)}) than B ({mean("B").toFixed(2)}) yet beats it, and B beats C ({mean("C").toFixed(2)}). Rolls of {ROLLS} scatter by
-            about five.
+            Winning belongs to a pair, not to a die. A has a lower average ({mean("A").toFixed(2)}) than B ({mean("B").toFixed(2)}) yet beats it, and B beats C (average {mean("C").toFixed(2)}). The grid showed why: each match is 36 face pairs, and the lit squares are the ones the first die wins. Rolls of {ROLLS} usually land within about ten of two in three, so a roll like 57 is ordinary scatter.
           </p>
         </>
       )}

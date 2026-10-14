@@ -1,0 +1,118 @@
+{
+  "slug": "heapify-from-the-bottom",
+  "title": "Seven cards, biggest on top",
+  "hook": "Build a heap: one card at a time, or all at once?",
+  "domain": "cs",
+  "concept": "build-heap-linear",
+  "format": "Side-by-side comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bubbling a new item up a heap (heap-bubble-up)"
+    ],
+    "doesNotKnow": [
+      "that building a whole heap at once is cheaper than inserting one by one"
+    ]
+  },
+  "misconception": "Building a heap of n items costs n insertions, each up to the full height.",
+  "objective": "The learner can say that sifting parents down from the last parent builds a heap with far fewer swaps than inserting one by one, because no sift starts at a leaf and few nodes are high up.",
+  "claims": [
+    {
+      "id": "cs.heapify-from-the-bottom.c1",
+      "text": "Sifting the parents of 1 2 3 4 5 6 7 down, last parent first, takes 4 swaps (1, 1 and 2) and gives the heap 7 5 6 4 2 1 3.",
+      "support": "simulation",
+      "source": "Builder's node run: position 3 sifts 3 below 7 (1 swap, 1 2 7 4 5 6 3); position 2 sifts 2 below 5 (1 swap, 1 5 7 4 2 6 3); the top sifts 1 past 7 then 6 (2 swaps). Total 4, array 7 5 6 4 2 1 3. · Fact-check pass 19 2026-10-14: Own node siftDown (same rule as Demo.tsx): per-sift swaps 1, 1, 2, total 4; intermediate arrays 1 2 7 4 5 6 3 and 1 5 7 4 2 6 3; final 7 5 6 4 2 1 3. Sifting positions 2 and 3 in either order gives the same result (disjoint subtrees).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.heapify-from-the-bottom.c2",
+      "text": "4 swaps is the most bottom-up building ever takes on 7 cards, over all 5,040 orders.",
+      "support": "simulation",
+      "source": "Builder's node run over all 5,040 permutations of 1..7: maximum bottom-up swaps 4. Not shown in the lesson text beyond the answer 4. · Fact-check pass 19 2026-10-14: Own node over all 5,040 permutations: max bottom-up swaps 4; also the bound: heights 2 + 1 + 1 = 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.heapify-from-the-bottom.c3",
+      "text": "Inserting 1 to 7 one by one, each bubbling up, takes 10 swaps (climbs +0 +1 +1 +2 +2 +2 +2) and gives the heap 7 4 6 1 3 2 5; every new card is the biggest so far.",
+      "support": "simulation",
+      "source": "Builder's node run: insertion climbs 0,1,1,2,2,2,2 = 10; final array 7 4 6 1 3 2 5. 10 is also the maximum over all 5,040 orders for insertion. Each card is larger than all earlier ones, so it climbs until the top or as high as its depth allows. · Fact-check pass 19 2026-10-14: Own node insert-and-bubble over 1..7: climbs 0,1,1,2,2,2,2 = 10, final 7 4 6 1 3 2 5; max over all 5,040 orders is 10.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.heapify-from-the-bottom.c4",
+      "text": "No sift starts at a leaf: the four bottom spots have no children.",
+      "support": "derivation",
+      "source": "In a 7-spot heap, spots 4-7 have no children (children of i are 2i and 2i+1, which exceed 7), so sifting starts at spots 3, 2, 1. Replaces the brief's 'leaves never move', which is false here: 7, 5 and 6 rise from leaves and 1 and 3 end at leaves. · Fact-check pass 19 2026-10-14: Derivation: children of 1-based i are 2i, 2i+1 > 7 for i = 4..7; Demo.tsx SIFT_ORDER = [2, 1, 0] only.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.heapify-from-the-bottom.c5",
+      "text": "In any heap about half the spots are leaves and a quarter sit one level up, so building from the bottom stays under 2n swaps.",
+      "support": "source",
+      "source": "CLRS, Introduction to Algorithms, section 6.3 (BUILD-MAX-HEAP is O(n)). Derivation: a sift from height h costs at most h swaps and there are at most ceil(n / 2^(h+1)) nodes of height h, so the total is at most the sum of heights, which is under n, hence under 2n. Floyd 1964, Algorithm 245: Treesort 3, CACM, for the method. · Fact-check pass 19 2026-10-14: Own node: sum of node heights < n for every heap size n = 1..2000 (each sift from height h costs at most h swaps), so swaps < n < 2n; e.g. n = 1000 sorted input takes 992. CLRS 4e section 6.3 (BUILD-MAX-HEAP O(n), bound sum ceil(n/2^(h+1)) O(h)). Floyd 1964, CACM 7(12): 701 (recalled, not opened).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A heap has 15 spots. Building it bottom up, which spots do you start sifting from?",
+    "options": [
+      "The 7 parents, last parent first",
+      "All 15 spots",
+      "The 8 leaves"
+    ],
+    "answer": 0,
+    "why": "The 8 bottom spots have no children, so there is nothing to sift. The work starts at the last parent and moves toward the top."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:build-heap-linear",
+    "also": [],
+    "prerequisites": [
+      "cs:heap-priority-queue"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 6,
+        "section": "6.3",
+        "note": "BUILD-MAX-HEAP"
+      }
+    ],
+    "tags": [
+      "heap",
+      "sift-down",
+      "floyd"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "side-by-side",
+    "tally-counters",
+    "locked-readouts"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "slug": "steeper-is-not-taller",
-  "title": "Steeper is not taller",
-  "hook": "One ramp ends higher than the other. Does that make it the steeper one?",
+  "title": "Which ramp is steeper?",
+  "hook": "Two ramps from the same foot: one ends higher. Is it the steeper one?",
   "domain": "math",
   "concept": "slope-as-rate",
   "status": "review",
@@ -44,10 +44,10 @@
       "id": "math.steeper-is-not-taller.c3",
       "text": "Over the same 4 across, A climbs 1 and B climbs 2; kept going for 12 across, B would climb 6.",
       "support": "derivation",
-      "source": "0.25 x 4 = 1, 0.5 x 4 = 2, 0.5 x 12 = 6; the stage computes the climbs from the same slopes; recomputed with node.",
+      "source": "0.25 x 4 = 1, 0.5 x 4 = 2, 0.5 x 12 = 6; the stage computes the climbs from the same slopes; recomputed with node. | v2 (2026-10-14): title no longer states the answer; reveal gated on both the 4-across and 12-across lines; previous verification void, needs re-check.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -71,7 +71,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:slope-as-rate",
     "prerequisites": [],

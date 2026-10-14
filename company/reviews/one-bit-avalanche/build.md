@@ -7,3 +7,8 @@
 - Locked: no count shown until the first tap; the grid shows the hash of "cat" with nothing highlighted.
 - Deviation: no free-text input; letters that become unprintable after a flip show as "·".
 - After screenshots: reads on phone; no changes.
+
+## Revision v2
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Question defines a hash as a fingerprint used to check a message. The dot glyph is explained. A running 'changed per tap' line shows each tap re-rolls about half. Reveal's nudge sentence rewritten to what the taps showed. c4, c5 reopened and new c6, unverified.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

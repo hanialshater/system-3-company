@@ -68,6 +68,8 @@ const ROOM_BY_ROLE = {
   "pattern-librarian": "meeting-crit",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
+  "courses-lead": "courses",
+  "cm-course-ncm": "courses",
   "design-lead": "design-studio",
   "interaction-designer": "design-studio",
   "visual-designer": "design-studio",

@@ -32,7 +32,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       <p className={s.msg}>
         {locked
           ? "Make a prediction to start."
-          : "Each tile is a 4-flip sequence. Tap it: share = heads among the flips right after a head."}
+          : open.length > 0 ? "Each tile gets one vote, however many flips follow a head in it." : "Each tile is a 4-flip sequence. Tap it: share = heads among the flips right after a head."}
       </p>
       <div className={s.grid}>
         {SEQS.map((sq, i) => (
@@ -58,7 +58,7 @@ export default function HeadsAfterHeadsTrap({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Flip a fair coin 4 times. In each sequence, find the share of heads among flips right after a head. Average that share over all ${QUALIFYING.length} sequences that have such a flip. The average is`,
+        question: `Flip a fair coin 4 times. In each sequence, find the share of heads among the flips right after a head (HHHT: those flips are H, H, T, so 2 of 3). Then average those shares over all ${QUALIFYING.length} sequences that have such a flip. The average is`,
         options: ["50%", `about ${Math.round(A * 100)}%`, "about 60%"],
         answer: 1,
       }}
@@ -67,7 +67,7 @@ export default function HeadsAfterHeadsTrap({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You opened all {QUALIFYING.length} sequences with a flip after a head. Their shares average {pct1(A)} (17/42), below half. Yet pooling every flip that follows a head, {P.heads} of {P.follow} are heads: exactly 50%.
+            You opened all {QUALIFYING.length} sequences with a flip after a head. Their shares average {pct1(A)}, below half. Yet pooling every flip that follows a head, {P.heads} of {P.follow} are heads: exactly 50%.
           </p>
           <p>
             Each flip is still fair. Sequences with many heads in a row have lots of such flips but are averaged as one, so averaging within short sequences drags the share down. Miller and Sanjurjo (2018) showed this counting trap affected early hot-hand studies.

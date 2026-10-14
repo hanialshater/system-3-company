@@ -4,7 +4,7 @@
 // list, adds 1 and factors the result by trial division. Every prime factor found is outside
 // the list (each listed prime leaves remainder 1), which is Euclid's argument. Product + 1 is
 // often prime (3, 7, 31, 211, 2311) but not always (30031 = 59 x 509).
-// Key state: a list of at least four primes, and a product + 1 that is composite.
+// Key state: a list of at least four primes, and the full list of six (30031 is not prime).
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
@@ -13,7 +13,7 @@ import { useState } from "react";
 import s from "./styles.module.css";
 
 const PRIMES = [2, 3, 5, 7, 11, 13];
-const MILESTONES = ["four-primes", "composite"] as const;
+const MILESTONES = ["four-primes", "all-six"] as const;
 
 function factor(n: number): number[] {
   const f: number[] = [];
@@ -31,7 +31,7 @@ export default function ProductPlusOne({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Multiply ${PRIMES.join(", ")} and add 1: ${ALL + 1}. Which is true?`,
+        question: `Could ${PRIMES.join(", ")} be every prime? Multiply them and add 1: ${ALL + 1}. Which is true of it?`,
         options: ["It is prime", `It divides by one of ${PRIMES[0]} to ${PRIMES[PRIMES.length - 1]}`, "It has a prime factor not in the list"],
         answer: 2,
       }}
@@ -44,11 +44,11 @@ export default function ProductPlusOne({ slug }: { slug: string }) {
               {ALL + 1} = {ALL_F.join(" × ")}
             </strong>
             , primes not in the list. The list&apos;s product divides by every prime in it, so product + 1 leaves remainder 1
-            for each of them. Yet it is a whole number above 1, so some prime divides it: one the list missed.
+            for each of them. Yet every whole number above 1 breaks into primes, so some prime divides it: one the list missed.
           </p>
           <p>
             That works for any finite list, so no list holds every prime: the primes never run out (Euclid). Product + 1 is
-            not always prime itself; you saw {ALL + 1} is not.
+            not always prime itself; {ALL + 1} is not.
           </p>
         </>
       )}
@@ -69,7 +69,7 @@ function Stage({ locked, interact, list, setList }: StageContext & { list: numbe
     const next = list.includes(p) ? list.filter((x) => x !== p) : [...list, p].sort((a, b) => a - b);
     setList(next);
     if (next.length >= 4) reach("four-primes");
-    if (next.length > 0 && factor(next.reduce((a, b) => a * b, 1) + 1).length > 1) reach("composite");
+    if (PRIMES.every((q) => next.includes(q))) reach("all-six");
   };
 
   return (
@@ -105,10 +105,12 @@ function Stage({ locked, interact, list, setList }: StageContext & { list: numbe
                     {p}
                   </span>
                 ))}
-                <span className={s.note}>{prime ? "prime itself, not in the list" : "composite: none in the list"}</span>
+                <span className={s.note}>{prime ? "prime itself, not in the list" : "not prime, and none of its primes are in the list"}</span>
               </span>
             </div>
-            <p className={s.hint}>Each listed prime leaves remainder 1.</p>
+            <p className={s.hint}>
+              Remainder of {n.toLocaleString("en-US")} ÷ each listed prime: {list.map((p) => `${p}→${n % p}`).join("  ")}
+            </p>
           </>
         )}
       </div>

@@ -8,3 +8,8 @@
 - Locked: the daylight and sun-sets readouts show "?".
 - Brief claim 3 (Tromso dates) is not used. The refraction caveat appears in the reveal without a number (claim c4).
 - Iteration: at a 50 N viewpoint the Arctic was small on the phone, so I tilted the view to 60 N.
+
+## Revision v2
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Question defines June 21 and latitude. The 66.6 N chip is replaced by 65, 70 and 80 so no button lands on the answer; the milestones are 'sets' (65) and 'never sets' (70). A 24-cell day strip shows the whole day's sunlight at the town, so 'never sets' is seen all round the clock. Reveal says why 23.4 N is not the answer (Tropic of Cancer). New claims c5 and c6, unverified.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

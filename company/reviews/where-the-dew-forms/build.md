@@ -5,3 +5,8 @@
 - Every number (4.24 kPa, 2.12 kPa, 18 °C) comes from the es() function that draws the curve; the 18 °C option is floor(TD).
 - Locked stage: 30 °C, 50% full, no dew point shown.
 - After screenshots: removed a duplicate "Air °C" readout (the slider already shows it).
+
+## Revision v2 (batch 02, 2026-10-14)
+
+Locked stage shows neither the "your air" line nor the curve left of 30 C; the curve is drawn only as far as the learner has cooled. The "18" jump button is replaced by steps 25 / 20 / 15 C; the gate is cooling to the dew point or below. A caption says the extra water leaves as dew. Reveal opens "Until the dew point". c4 reworded, unverified.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

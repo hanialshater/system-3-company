@@ -51,7 +51,7 @@ function Stage({ locked, reach, n, setN, price, setPrice }: {
       <p className={s.msg}>
         {locked
           ? "Make a prediction to start."
-          : `Flip until tails (at most ${MAXF} flips). First tails on flip k pays $2^k. All heads pays $0.`}
+          : `Flip until tails (at most ${MAXF} flips). Tails on flip 1 pays $2, flip 2 $4, flip 3 $8… All heads pays $0.`}
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`Running average payout after ${n} games`}>
         <line x1={PL} x2={W - 6} y1={PB} y2={PB} className={s.axis} />
@@ -105,8 +105,8 @@ export default function CappedDoublingGame({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Flip a fair coin until the first tails, at most ${MAXF} flips. First tails on flip k wins $2^k (all heads wins nothing). What is the fair entry price?`,
-        options: ["about $2", "about $10", `$${FAIR}`],
+        question: `Flip a fair coin until the first tails, at most ${MAXF} flips. First tails on flip 1 wins $2, on flip 2 wins $4, on flip 3 wins $8, and so on, doubling (all heads wins nothing). What is the fair entry price?`,
+        options: ["$2", "$10", `$${FAIR}`],
         answer: 2,
       }}
       exploreHint="Pick a price, then play 50 games and 500 more."
@@ -117,7 +117,7 @@ export default function CappedDoublingGame({ slug }: { slug: string }) {
             After your {n} games the average payout was {money(sm.avg)} but the median only {money(sm.median)}. Your biggest, {money(sm.biggest)}, was {share}% of everything paid out.
           </p>
           <p>
-            Each flip count k adds $1 to the average (2^k x 1/2^k), so the exact fair price is ${FAIR}, even though {Math.round(pSmall() * 100)}% of plays pay $4 or less. Another run could show a lower average: the big wins are rare.
+            Why ${FAIR}? Tails first on flip 1 pays $2 half the time: $1 on average. On flip 2, $4 a quarter of the time: $1. On flip 3, $8 an eighth of the time: $1. Every flip adds $1, so {MAXF} flips make ${FAIR}, even though {Math.round(pSmall() * 100)}% of plays pay $4 or less. Another run could show a lower average: the big wins are rare.
           </p>
         </>
       )}

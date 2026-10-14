@@ -7,3 +7,7 @@
 ## v2 (claim fix 2026-10-13)
 
 Claim c6 disputed (stage shows 6 dots at 300 mL, claim said about 7). Claim now '20, 10, 6 or 7, 5 and 4' and notes the stage shows 6; code comment updated. No learner-visible '7' remains. Unverified.
+
+## Revision v3
+
+Learner review v2. Retitled "Pour syrup into water" with a hook that no longer states the idea. The question now defines mol/L (1 mol of sugar in each litre). The reveal quoted 500 mL, so the reveal now unlocks only at 500 mL; a first-in-DOM-order button "Add all 400 mL of water" is the one-press path, the slider (100 mL steps) shows the steps in between. c1 back to unverified. Not touched: clipped chips on the locked stage (platform, W-061).

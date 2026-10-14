@@ -72,10 +72,19 @@
       "id": "chemistry.who-grabs-the-electrons.c6",
       "text": "The drawing is a cartoon: the pair's shift and the tint are scaled to the electronegativity difference, not measured electron densities; only the bonds to the central O are drawn.",
       "support": "derivation",
-      "source": "Demo.tsx pairAt(): the pair is drawn in the gap between the atoms, shifted from the middle toward O by 0.9 x (dEN / 1.24) of the half-gap. Partners such as C would carry other bonds in a real molecule; HOCl and Cl2O are real molecules, others shown are single bonds only. · Fact-check 2026-10-13: Reproduced pairAt(): shift is 0.9 x (dEN/1.24) of the half-gap.",
+      "source": "Demo.tsx pairAt(): the pair is drawn in the gap between the atoms, shifted from the middle toward O by 0.9 x (dEN / 1.24) of the half-gap. Partners such as C would carry other bonds in a real molecule; HOCl and Cl2O are real molecules, others shown are single bonds only. · Fact-check 2026-10-13: Reproduced pairAt(): shift is 0.9 x (dEN/1.24) of the half-gap. · Fact-check pass 19 2026-10-14: Demo.tsx pairAt(): offset toward O = (mid - a) x 0.9 x (EN.O - EN[el]) / D_OH, i.e. 0.9 x dEN/1.24 of the half-gap; Atom tint opacity 0.15 + 0.75 x min(1, |q|/1.24) with q from EN differences; only bonds from the central O are drawn (two DIRS slots). No electron-density data used.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "chemistry.who-grabs-the-electrons.c7",
+      "text": "Electronegativity is an atom's pull on shared electrons.",
+      "support": "source",
+      "source": "Pauling 1932, J. Am. Chem. Soc. 54, 3570; IUPAC Gold Book, electronegativity. · Fact-check pass 19 2026-10-14: IUPAC Gold Book E01990: 'Concept introduced by L. Pauling as the power of an atom to attract electrons to itself' (found via search; goldbook.iupac.org did not resolve from here). Pauling 1932, JACS 54: 3570 (recalled). Reveal wording matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -99,7 +108,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:bond-polarity",
     "prerequisites": [

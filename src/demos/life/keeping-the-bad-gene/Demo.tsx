@@ -130,7 +130,7 @@ function Stage({
         {locked
           ? "Make a prediction to start. w = share of all gene copies. Survival: two w 0%, one w 100%, no w 85%."
           : gen === 0
-            ? `Generation 0: w is 1% in one population, 50% in the other. Survival with no w: ${noCopy}%.`
+            ? `Generation 0: w is 1% in one population, 50% in the other. In the 50% one, ${pct(COMMON ** 2)} of young get two w and die. No-w survival: ${noCopy}%.`
             : `Generation ${gen}: w is ${pct(rare[gen])} (from 1%) and ${pct(common[gen])} (from 50%). Survival with no w: ${noCopy}%.`}
       </p>
 
@@ -174,7 +174,7 @@ export default function KeepingTheBadGene({ slug }: { slug: string }) {
           <p>
             Starting from 1% and from 50%, the curves met at <strong>{SETTLED_RARE} of 100 copies</strong>. Selection did not remove w, even though two copies kill. Look at the two
             young-animal rows: when w is rare almost no young get two copies (nobody dies of it) while some get one, who
-            survive best, so w rises. When w is common, a quarter or more of young get two copies and die, so w falls.
+            survive best, so w rises. When w is common, as at generation 0 of the 50% start, {pct(COMMON ** 2)} of young get two copies and die, so w falls.
             The balance is where the two pulls match: animals with no w lose 15 of 100, animals with two w lose
             100, so 15 &divide; (15 + 100) &asymp; {QSTAR}%.
           </p>

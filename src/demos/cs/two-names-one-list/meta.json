@@ -1,7 +1,7 @@
 {
   "slug": "two-names-one-list",
-  "title": "Does b = a make a second list?",
-  "hook": "Two names, one list. Change it through one name and look at the other.",
+  "title": "What does b = a do to a?",
+  "hook": "Make a list a, set b = a, then change b. What happens to a?",
   "domain": "cs",
   "concept": "references-aliasing",
   "status": "review",
@@ -61,10 +61,10 @@
       "id": "cs.two-names-one-list.c5",
       "text": "The stage's names, arrows and boxes show two names pointing at one list or at two lists.",
       "support": "derivation",
-      "source": "Model drawing: arrows from the name tags a and b to list boxes, drawn from the same state that the readouts show. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: arrow end y (aY, bY) and the second Box are drawn from 'aliased' = bPoints === 0, the same state as the readouts.",
+      "source": "Model drawing: arrows from the name tags a and b to list boxes, drawn from the same state that the readouts show. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx: arrow end y (aY, bY) and the second Box are drawn from 'aliased' = bPoints === 0, the same state as the readouts. | v2 (2026-10-14): locked stage shows only name a; reveal quotes the copy state as it was; previous verification void, needs re-check. · Fact-check pass 19 2026-10-14: Demo.tsx: when aliased (bPoints 0) both arrows end at y 70 on one Box; after copy, arrows end at y 50 and 130 on two Boxes; readouts use the same lists/bPoints. Locked stage shows only name a and one list, which the claim does not contradict (it describes the unlocked stage).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -86,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:references-aliasing",
     "prerequisites": [],

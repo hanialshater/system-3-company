@@ -138,7 +138,7 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
           {[0, 10, 20, 30].map((v) => (
             <text key={v} x={cx(v)} y={CY1 + 10} textAnchor="middle" className={s.small}>{v}%</text>
           ))}
-          <text x={CX0} y={CY0 + 7} className={s.small}>average score by start</text>
+          <text x={CX0} y={CY0 + 7} className={s.small}>average score at generation 0, by start</text>
           <text x={cx(30) - 2} y={cy(wT(0.3)) - 3} textAnchor="end" className={s.tftT}>tit-for-tat</text>
           <text x={cx(30) - 2} y={cy(wD(0.3)) + 10} textAnchor="end" className={s.cheatT}>cheat</text>
         </svg>
@@ -157,12 +157,16 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
         <Control className={s.chip} disabled={locked || gen >= GENS} onClick={() => go(GENS, start)}>
           To gen {GENS}
         </Control>
-        <Control className={s.chip} disabled={locked || (start === START_A && gen === GENS)} onClick={() => go(GENS, START_A)}>
-          Start at {START_A}%, run
-        </Control>
-        <Control className={s.chip} disabled={locked || (start === START_B && gen === GENS)} onClick={() => go(GENS, START_B)}>
-          Start at {START_B}%, run
-        </Control>
+        {!locked && (
+          <>
+            <Control className={s.chip} disabled={start === START_A && gen === GENS} onClick={() => go(GENS, START_A)}>
+              Start at {START_A}%, run
+            </Control>
+            <Control className={s.chip} disabled={start === START_B && gen === GENS} onClick={() => go(GENS, START_B)}>
+              Start at {START_B}%, run
+            </Control>
+          </>
+        )}
       </Row>
       <Slider label="Starting share of tit-for-tat" value={start} min={1} max={30} disabled={locked} format={(v) => `${v}%`} onChange={(v) => go(0, v)} />
       <Row>
@@ -183,7 +187,7 @@ export default function StrategyBuilder({ slug }: { slug: string }) {
         options: [`About ${THR}`, "About 25%", "About 50%", "About 95%"],
         answer: 0,
       }}
-      exploreHint="Run 60 generations from the start shown, then try the 4% and 8% starts. Slide the start and watch where the two score lines cross."
+      exploreHint="Run 60 generations from the start shown, then try the other starts. Slide the start and watch where the two score lines cross."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>

@@ -1,0 +1,118 @@
+{
+  "slug": "earliest-finish-wins",
+  "title": "Three rules, one room",
+  "hook": "Same four talks, three ways to choose. Do they fit the same number?",
+  "domain": "cs",
+  "concept": "interval-scheduling",
+  "format": "Side-by-side comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "greedy can fail (coin-greedy-trap)"
+    ],
+    "doesNotKnow": [
+      "which greedy rule is safe for booking a room"
+    ]
+  },
+  "misconception": "To fit the most talks into one room, pick the shortest talks, or the ones that start first.",
+  "objective": "The learner can say that picking the talk that ends first leaves the most room for the rest, and that picking by start time or by length can book fewer talks.",
+  "claims": [
+    {
+      "id": "cs.earliest-finish-wins.c1",
+      "text": "A talk may start the minute another ends, so B (1-4) and D (4-7) do not clash.",
+      "support": "derivation",
+      "source": "Convention: talks are half-open intervals [start, end), so two talks clash only if each starts before the other ends. Builder's node run: with the closed convention (touching talks clash) every rule books 1 talk and the maximum is 1, so the question has to state the convention.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.earliest-finish-wins.c2",
+      "text": "On A 0-10, B 1-4, C 3-5, D 4-7, earliest start first books 1 talk (A), shortest first books 1 talk (C), and earliest finish first books 2 talks (B, then D).",
+      "support": "simulation",
+      "source": "Builder's node run of each rule (ties broken alphabetically; B and D tie at 3 hours but C is picked first either way): earliest start [A], shortest [C], earliest finish [B, D]. Matches Demo.tsx lane order.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.earliest-finish-wins.c3",
+      "text": "A clashes with every talk, and C clashes with both B and D, so no room holds 3 talks; 2 is the maximum.",
+      "support": "simulation",
+      "source": "Builder's node run over all 16 subsets of the four talks: the largest compatible subset has 2 talks ({B, D} is the only one). Derivation: A 0-10 overlaps B, C and D; C 3-5 overlaps B (3-4) and D (4-5). Note: B and D do not overlap each other.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.earliest-finish-wins.c4",
+      "text": "Ending first leaves the most day for what is left, and swapping the talk that ends first into any schedule never makes it worse.",
+      "support": "source",
+      "source": "Exchange argument: CLRS, Introduction to Algorithms, activity selection (3rd ed. section 16.1, Theorem 16.1; 4th ed. numbering may differ, fact-checker to confirm). Replace the first talk of any optimal schedule with the talk that ends first; it ends no later, so the rest still fits. · Fact-check 2026-10-14 (pass 19): in CLRS 4th ed. activity selection is section 15.1, Theorem 15.1 (Chapter 15, Greedy Algorithms); 3rd ed. 16.1 / Theorem 16.1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.earliest-finish-wins.c5",
+      "text": "Earliest start first and shortest first can book fewer talks than the best rule on the same talks.",
+      "support": "simulation",
+      "source": "This counterexample: both book 1 talk, earliest finish books 2 (see c2). Builder's node run.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Talks: P 0-3, Q 2-4, R 3-6. One room, a talk may start the minute another ends. Picking the talk that ends first at each step, how many talks do you book?",
+    "options": [
+      "2 (P, then R)",
+      "1",
+      "3"
+    ],
+    "answer": 0,
+    "why": "P ends first (3). Q starts at 2, before P ends, so it clashes. R starts at 3, the minute P ends, so it fits. That makes 2, and Q and R cannot both be booked because they overlap."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:interval-scheduling",
+    "also": [],
+    "prerequisites": [
+      "cs:greedy-failure"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 15,
+        "section": "15.1",
+        "note": "Activity selection (3rd ed. 16.1). Fact-checker to confirm numbering."
+      }
+    ],
+    "tags": [
+      "greedy",
+      "intervals",
+      "scheduling"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "side-by-side",
+    "two-panel-shared-control",
+    "step-run-button"
+  ]
+}

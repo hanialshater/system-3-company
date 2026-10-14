@@ -8,3 +8,7 @@
 ## v2 (claim fix 2026-10-13)
 
 Claim c5 disputed ('nearly flat', 'loses again' unqualified). Reveal now says 'much flatter and usually loses again to no penalty'. Also c4 wording: 'some moderate penalty (the best of five, 0.0001 to 1)', per the checker note that single fixed values win less often. Both unverified.
+
+## Revision v3
+
+Learner review 2026-10-14: the no-penalty baseline was never on screen. Now a dashed ghost curve of the no-penalty fit and an always-visible 'No-penalty held-out' readout sit beside the live ones; the question explains the penalty as 'discourages wild bends' and glosses coefficients. Claim text unchanged.

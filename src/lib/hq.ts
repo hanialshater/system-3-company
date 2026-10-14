@@ -52,11 +52,12 @@ export const ROOMS: Room[] = [
   { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 470, h: 84, kind: "office" },
   { id: "to-floor-3", name: "↑ Floor 3 · Categories", x: 500, y: 16, w: 230, h: 84, kind: "lobby" },
   { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 740, y: 16, w: 240, h: 84, kind: "lobby" },
-  // Floor 3: every category, its lead and its sub-area managers; strategy; Life Hacks safety.
+  // Floor 3: every category, its lead and its sub-area managers; strategy; Courses (book- and course-based curricula); Life Hacks safety.
   ...[...DOMAINS, ["lifehacks", "Life Hacks", "#ffb74d"] as [string, string, string]].map(([id, name, color], i) => ({
     id: `cm-${id}`, name, x: 20 + (i % 5) * 194, y: 16 + Math.floor(i / 5) * 246, w: 186, h: 236, kind: "office" as const, color, floor: 3 as const,
   })),
-  { id: "strategy", name: "Strategy · Verticals", x: 20, y: 508, w: 480, h: 130, kind: "office", floor: 3 },
+  { id: "strategy", name: "Strategy · Verticals", x: 20, y: 508, w: 235, h: 130, kind: "office", floor: 3 },
+  { id: "courses", name: "Courses · Books", x: 265, y: 508, w: 235, h: 130, kind: "office", color: "#90a4ae", floor: 3 },
   { id: "lifehacks-safety", name: "Life Hacks safety desk", x: 510, y: 508, w: 220, h: 130, kind: "floor", floor: 3 },
   { id: "portfolio-review", name: "Portfolio review", x: 740, y: 508, w: 240, h: 130, kind: "meeting", floor: 3 },
   { id: "meeting-wbr", name: "WBR room", x: 20, y: 116, w: 150, h: 110, kind: "meeting" },

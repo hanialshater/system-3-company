@@ -7,3 +7,8 @@
 - After screenshots: piles now show their top card first.
 - Brief answer re-checked in node before building (scratchpad checks/all.mjs); it held.
 - QA: computer-use contract passed locally on phone and desktop (2026-10-14). Claims all unverified; nothing verified by the builder.
+
+
+## Revision v2
+
+Review: trace never prompted; reveal quoted unvisited runs; top of pile ambiguous. Changes: second milestone needs a 4-card trace (new button Trace from last pile, or tap pile 4); reveal quotes the learner's trace only; arrow marks each pile's top card. Claims unchanged. Version 2. Not done: slow card-by-card animation of Deal the rest.

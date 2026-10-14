@@ -58,6 +58,24 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.midnight-sun-line.c5",
+      "text": "23.4 N is the Tropic of Cancer, where the Sun is directly overhead at noon on the June solstice; it is not where the Sun stops setting. June 21 is the longest day of the year in the northern hemisphere.",
+      "support": "source",
+      "source": "Standard geography references (Tropic of Cancer at the Sun-declination limit of about 23.44 N; June solstice about 21 June). · Fact-check pass 19 2026-10-14: VERIFIED. Tropic latitude = solar declination limit (23.44 N); on the June solstice the subsolar point is at the declination, so noon Sun is overhead there. \"June 21\": the solstice falls on June 20-22 depending on year and time zone; declination one day off the solstice differs by 0.0035 deg, so day length differs by seconds. Suggest \"around June 21\" if the builder touches the text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.midnight-sun-line.c6",
+      "text": "The day strip shows, hour by hour on the solstice, when the Sun is above the horizon at the town (yellow), computed from the angular distance between the town and the Sun point at 23.44 N.",
+      "support": "derivation",
+      "source": "strip in Demo.tsx uses geoDistance(town, subsolar point) < 90 degrees for each hour; same model as the Daylight readout.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -81,7 +99,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:midnight-sun",
     "prerequisites": [

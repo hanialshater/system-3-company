@@ -6,3 +6,7 @@
 - Disclosure: the bigger maze was designed to show a long find (claim c2 says so); the reveal does not generalise a ratio from it.
 - Locked: nodes and stack are drawn neutral; nothing is highlighted.
 - After screenshots: the maze reads on phone with no overlaps; no changes.
+
+## Revision v2
+
+Review 2026-10-13: the bigger maze was optional and un-run. A third milestone requires it; 'Run the bigger maze' runs the search at once and overlays the shortest path (B shows as the dead end), so one press reaches it. 'Stack' and breadth-first glossed. c2, c5 reworded, unverified.

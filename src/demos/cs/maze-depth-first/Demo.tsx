@@ -110,12 +110,12 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Three places: S links to A and G, and A links to G. Depth-first search from S tries neighbours alphabetically and goes deeper before trying others. Which path to G does it return?",
+          "Three places: S links to A and G, and A links to G. Depth-first search from S goes as deep as it can before trying anything else, and picks neighbours alphabetically. Which path to G does it return?",
         options: ["S, G", triDfs.join(", "), "S, A, S, G"],
         answer: 1,
       }}
-      exploreHint="Step the search to G, then show the shortest path."
-      minInteractions={2}
+      exploreHint="Step the search to G, show the shortest path, then run the bigger maze."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -131,19 +131,19 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
           <p>
             Depth-first search commits to one branch and only backs up at a dead end. That makes it simple and it always
             finds a path if one exists, but not the shortest: in the bigger maze it returns {mazeDfs.length - 1} links where{" "}
-            {mazeBest.length - 1} would do. For fewest links, search breadth-first.
+            {mazeBest.length - 1} would do. For fewest links, search breadth-first (every place one link away, then two, and so on).
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["found", "compared"]}>
+        <Milestones interact={interact} names={["found", "compared", "maze"]}>
           {(reach) => {
             const arrive = (i: number) => {
               setAt(i);
               if (i === steps.length - 1) {
                 setResults((r) => ({ ...r, [g.name]: steps[i].stack }));
-                reach("found");
+                reach(gi === 0 ? "found" : "maze");
               }
             };
             const next = () => {
@@ -161,9 +161,19 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
             };
             const switchGraph = () => {
               if (locked) return;
-              setGi(1 - gi);
-              setAt(0);
-              setShowShort(false);
+              const ng = 1 - gi;
+              setGi(ng);
+              if (ng === 1) {
+                // The bigger maze runs at once and shows the shortest path beside it.
+                const ns = dfsSteps(MAZE);
+                setAt(ns.length - 1);
+                setShowShort(true);
+                setResults((r) => ({ ...r, [MAZE.name]: ns[ns.length - 1].stack }));
+                reach("maze");
+              } else {
+                setAt(0);
+                setShowShort(false);
+              }
             };
             const restart = () => {
               if (locked) return;
@@ -174,7 +184,7 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : showShort
-                ? `Shortest: ${best.join(", ")} (${best.length - 1}). Depth-first: ${step.stack.length - 1}.`
+                ? `Shortest: ${best.join(", ")} (${best.length - 1}). Depth-first: ${step.stack.length - 1}.${gi === 1 ? " B was a dead end." : ""}`
                 : step.text;
 
             return (
@@ -228,7 +238,7 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
                   })}
                 </svg>
                 <p className={s.stack} aria-label="Stack of places">
-                  <span className="muted small">Stack:</span>
+                  <span className="muted small">Path so far (the stack):</span>
                   {(locked ? [] : step.stack).map((u, i) => (
                     <span key={`${u}${i}`} className={s.chip}>
                       {u}
@@ -249,7 +259,7 @@ export default function MazeDepthFirst({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Control disabled={locked} onClick={switchGraph}>
-                    Try the {GRAPHS[1 - gi].name}
+                    {gi === 0 ? "Run the bigger maze" : "Back to the 3-place map"}
                   </Control>
                   <Control disabled={locked || at === 0} onClick={restart}>
                     Start over

@@ -15,3 +15,8 @@
 - "Whatever the immunity length" was unvisited -> third milestone: another immunity length chosen at day >= 700 (reached on the QA path by the last chips). Three milestones, minInteractions 3.
 - R0, "well mixed" and susceptible undefined -> question defines R0 and "can catch it"; "well mixed" dropped; legend says "susceptible (can catch it)". Title/hook no longer say waves return. Reveal about 80 words.
 - The "0/5 claims checked" badge is the verification state, not a defect to fix here; claims c2, c3, c4 rewritten and new c6 added, all unverified.
+
+
+## Revision v3
+
+Review: dashed 50% line visible while locked; 1/R0 told; reveal quoted day 900 when the card could be at another day; only wave 1 seen. Changes: half line and outline hidden while locked; settled milestone needs day 900; reveal derives 1/R0 (each infects 2 at full, 1 at half) and quotes only the wave seen and the 100-day town; the message says whether cases are growing or shrinking. c2, c3 changed. Version 3 (it was v2). Not done: W-138 thumbnail.

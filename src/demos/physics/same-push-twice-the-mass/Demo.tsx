@@ -37,6 +37,7 @@ export default function SamePushTwiceTheMass({ slug }: { slug: string }) {
   const [mass, setMass] = useState(2);
   const [force, setForce] = useState(10);
   const [seenCase, setSeenCase] = useState(false);
+  const [seenMore, setSeenMore] = useState(false);
 
   const a = force / mass;
   const v2 = a * T_END;
@@ -54,27 +55,33 @@ export default function SamePushTwiceTheMass({ slug }: { slug: string }) {
         options: ["10 m/s", "5 m/s", "2.5 m/s"],
         answer: 1,
       }}
-      exploreHint="Set the cart to 4 kg and read its speed at 2 s. Then try other pushes."
+      exploreHint="Set the cart to 4 kg and read its speed at 2 s. Then try a bigger push."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
-            With the 10 N push, the 4 kg cart reached <strong>5 m/s</strong> after 2 s, half the 2 kg cart&rsquo;s 10 m/s. The same push
+            A steady push does not give a steady speed: speed keeps climbing while the push lasts. With the 10 N push, the 4 kg cart reached <strong>5 m/s</strong> after 2 s, half the 2 kg cart&rsquo;s 10 m/s. The same push
             speeds up twice the mass half as fast: acceleration is force divided by mass, 10 N / 4 kg = 2.5 m/s every
             second.
           </p>
           <p>
-            Notice the lines: a steady push does not give a steady speed. Speed keeps climbing as long as the push
-            lasts. Double the push and the climb is twice as steep again.
+            Notice the lines: a bigger push made the line steeper, because acceleration (speed gained each second) grows
+            with the push.
           </p>
-          <p className="muted">Newton&rsquo;s second law: a = F / m.</p>
+          <p className="muted">Newton&rsquo;s second law: a = F / m, with a the acceleration, F the push in newtons and m the mass in kg.</p>
         </>
       )}
     >
       {({ locked, interact }) => {
         const change = (m: number, F: number) => {
-          const hit = seenCase || (m === 4 && F === 10);
-          if (hit) {
-            setSeenCase(true);
+          // Two steps: the question's case (10 N on 4 kg), then a bigger push on any cart.
+          if (!seenCase) {
+            if (m === 4 && F === 10) {
+              setSeenCase(true);
+              interact();
+            }
+          } else if (!seenMore && F > 10) {
+            setSeenMore(true);
             interact();
           }
         };
@@ -165,7 +172,7 @@ export default function SamePushTwiceTheMass({ slug }: { slug: string }) {
             </Row>
             <Row>
               <Readout label="Speed at 2 s" value={v2 > V_MAX ? `${v2.toFixed(0)} m/s (off the top)` : `${v2 % 1 === 0 ? v2 : v2.toFixed(2)} m/s`} />
-              <Readout label="Speeds up by" value={`${a % 1 === 0 ? a : a.toFixed(2)} m/s each second`} />
+              <Readout label="Acceleration" value={`${a % 1 === 0 ? a : a.toFixed(2)} m/s each second (speed gained)`} />
             </Row>
           </div>
         );

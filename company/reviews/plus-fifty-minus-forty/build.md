@@ -13,3 +13,11 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - x0.9 pairing told -> new 'Try heads then tails' control shows $100 -> x1.5 -> $150 -> x0.6 -> $90; third milestone.
 - $13,150 vs stage averages -> reveal says it is the average over every possible player, far above any 50 drawn, resting on rare winners.
 - Hook invited the wrong answer -> 'A bet that gains 5% on average each round, played 100 times. Where do you end up?'. c5 reworded ('average of all 50'), unverified; new c7 for the pairing, median and gridline statements.
+
+
+## Revision v3
+
+From the latest learner review and fact-check (batch 03).
+
+- Log scale explained on the stage ("$100 to $1 is a 99% loss").
+- Reveal replaces sqrt(0.9) and the $13,150 figure with 50 pairs of x0.9 and "far above the average of any 50 you drew". c2 unverified; new c8.

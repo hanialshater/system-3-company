@@ -1,0 +1,110 @@
+{
+  "slug": "skip-the-edge-that-loops",
+  "title": "The cheap road that never got built",
+  "hook": "Build the cheapest roads first. Does every cheap road make the cut?",
+  "domain": "cs",
+  "concept": "kruskal-mst",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a spanning tree joins all towns with no loops (connect-the-towns-cheaply)",
+      "union-find tells whether two towns are already in the same group"
+    ],
+    "doesNotKnow": [
+      "that sorting all the roads first and skipping the ones that close a loop also finds the cheapest tree"
+    ]
+  },
+  "misconception": "The cheapest road is always built, and the roads skipped are the expensive ones.",
+  "objective": "The learner can explain that Kruskal's method tests roads cheapest first and skips a road exactly when its towns are already connected, so on this map the 4-cost road A-B is skipped while the 5-cost road B-D is built, and the result is 4 roads (one fewer than towns) with total 11.",
+  "claims": [
+    {
+      "id": "cs.skip-the-edge-that-loops.c1",
+      "text": "Testing A-C 1, B-C 2, D-E 3, A-B 4, B-D 5, A-D 7, C-D 8, C-E 10 cheapest first builds A-C, B-C, D-E and B-D and skips the other four: 4 roads, total cost 11.",
+      "support": "simulation",
+      "source": "Demo.tsx run(), a union-find replay the stage itself uses; builder re-ran it in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: built AC, BC, DE, BD, total 11. Matches brief cs.algorithms #50.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.skip-the-edge-that-loops.c2",
+      "text": "A-B (cost 4) is skipped although it is cheaper than B-D (cost 5), because A and B are already joined through C.",
+      "support": "simulation",
+      "source": "Same replay: after A-C and B-C, find(A) = find(B). Demo.tsx run().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.skip-the-edge-that-loops.c3",
+      "text": "A road is skipped only when its towns are already connected; building it would close a loop.",
+      "support": "derivation",
+      "source": "If u and v are already connected, a path u..v exists among built roads, and adding u-v closes a cycle with it; otherwise no such path exists and the road joins two groups. CLRS 4e section 21.2 (MST-KRUSKAL tests FIND-SET(u) != FIND-SET(v)).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.skip-the-edge-that-loops.c4",
+      "text": "Kruskal's method ends with one road fewer than towns, and no tree joining all five towns costs less than 11.",
+      "support": "source",
+      "source": "Any spanning tree on n vertices has n - 1 edges (CLRS 4e appendix B.5.1). Kruskal returns a minimum spanning tree by the cut property (CLRS 4e section 21.1, Corollary 21.2; 21.2). Builder also enumerated all spanning trees of this 8-road map in node (scratchpad algo2b0/check2.mjs): minimum total 11, achieved only by AC, BC, DE, BD.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.skip-the-edge-that-loops.c5",
+      "text": "Towns in the same colour are already connected by built roads.",
+      "support": "convention",
+      "source": "Stage convention: each town is coloured by its union-find representative (alphabetically first town in its group). Demo.tsx COLOUR / run().",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Building roads cheapest first, you reach a cost-2 road whose two towns are already connected through other built roads. What happens to it?",
+    "options": [
+      "It is skipped, because it would close a loop",
+      "It is built, because it is cheap",
+      "It replaces the most expensive road built so far"
+    ],
+    "answer": 0,
+    "why": "Kruskal skips a road exactly when its towns are already in the same group, however cheap it is: building it would only add a loop."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:kruskal-mst",
+    "also": [],
+    "prerequisites": [
+      "cs:minimum-spanning-tree",
+      "cs:union-find"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 21,
+        "section": "21.2",
+        "note": "Kruskal's algorithm with a disjoint-set forest"
+      }
+    ],
+    "tags": [
+      "graphs",
+      "greedy",
+      "kruskal",
+      "union-find"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

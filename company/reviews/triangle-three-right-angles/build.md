@@ -7,3 +7,10 @@
 - Locked: the angle labels, the angle sum and the excess readout are hidden. Area stays visible because it is not the answer.
 - "Excess" is defined on the stage before the reveal uses it. The question avoids "meridian" and says "0° line of longitude" instead.
 - The reveal's "tiny triangles have almost no excess" is an extrapolation (claim c5). The smallest stage triangle has 15° of excess.
+
+## Revision v2
+Learner review (2026-10-13) findings:
+- Question spelled out the walk and its three turns (270 deducible). It now names only the three corners; options are 180, 210, 270, 360.
+- Locked stage showed a 60E triangle and its area, which disagreed with the question. Locked, the globe shows only the three corner dots (third corner at 90E, as the question says), no triangle fill, no area.
+- "EXCESS (RAD) x R^2" was unreadable: tile is now "Excess x R^2" and the stage caption defines it in two short lines. c2 reworded to match (unverified).
+- Not changed: 510 M km^2 and "tiny triangles" stay as told facts in the reveal (c3, c5); reveal clipping is a kit matter.

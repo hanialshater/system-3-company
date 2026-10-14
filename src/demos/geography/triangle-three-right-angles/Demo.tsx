@@ -51,7 +51,6 @@ const projection = geoOrthographic().rotate([-55, -30]).translate([W / 2, 128]).
 
 export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
   const [lon, setLon] = useState(START);
-  const t = useMemo(() => triangle(lon), [lon]);
   const key = triangle(KEY);
 
   return (
@@ -59,9 +58,9 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "From the North Pole, walk south along the 0° line of longitude to the equator, turn and walk east along the equator to 90°E, then north back to the Pole. What do the triangle's three angles add up to?",
-        options: ["180°", `${Math.round(key.sum)}°`, "360°"],
-        answer: 1,
+          "A triangle on the globe has its corners at the North Pole, at 0°, 0° on the equator, and at 90°E on the equator. What do its three angles add up to?",
+        options: ["180°", "210°", `${Math.round(key.sum)}°`, "360°"],
+        answer: 2,
       }}
       exploreHint="Slide the third corner east along the equator to 90°E."
       minInteractions={2}
@@ -79,7 +78,10 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact }) => {
+        const shown = locked ? KEY : lon;
+        const t = triangle(shown);
+        return (
         <Milestones interact={interact} names={["moved", "octant"]}>
           {(reach) => (
             <div className={s.wrap}>
@@ -87,17 +89,17 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
                 projection={projection}
                 width={W}
                 height={H}
-                label={`Globe. Triangle from the North Pole to 0°,0° to ${lon}°E on the equator.${locked ? "" : ` Angles add to ${Math.round(t.sum)}°.`}`}
+                label={`Globe. Triangle from the North Pole to 0°,0° to ${shown}°E on the equator.${locked ? "" : ` Angles add to ${Math.round(t.sum)}°.`}`}
               >
                 {({ path }) => {
                   const centre = geoCentroid(t.polygon) as P;
                   return (
                     <>
-                      <path d={path(t.polygon)} className={s.tri} />
+                      {!locked && <path d={path(t.polygon)} className={s.tri} />}
                       {t.corners.map((c, i) => {
                         const at = projection(c)!;
-                        const inner = projection(geoInterpolate(c, centre)(lon < 40 ? 0.42 : 0.28) as P)!;
-                        const name = i === 0 ? "North Pole" : i === 1 ? "0°, 0°" : `${lon}°E, 0°`;
+                        const inner = projection(geoInterpolate(c, centre)(shown < 40 ? 0.42 : 0.28) as P)!;
+                        const name = i === 0 ? "North Pole" : i === 1 ? "0°, 0°" : `${shown}°E, 0°`;
                         return (
                           <g key={i}>
                             <circle cx={at[0]} cy={at[1]} r={3.5} className={s.corner} />
@@ -112,8 +114,11 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
                           </g>
                         );
                       })}
+                      <text x={6} y={H - 18} className={s.small}>
+                        Excess = angle sum − 180°, in radians.
+                      </text>
                       <text x={6} y={H - 6} className={s.small}>
-                        Excess: how far the angle sum is above 180°.
+                        Excess × R² (R = Earth&apos;s radius) is the area.
                       </text>
                     </>
                   );
@@ -137,13 +142,14 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
               </Row>
               <Row>
                 <Readout label="Angle sum" value={locked ? "?" : `${Math.round(t.sum)}°`} />
-                <Readout label="Area" value={`${mkm(t.areaKm2)} · ${((t.areaKm2 / SPHERE_KM2) * 100).toFixed(1)}% of Earth`} />
-                <Readout label="Excess (rad) × R²" value={locked ? "?" : mkm(t.excessKm2)} />
+                <Readout label="Area" value={locked ? "?" : `${mkm(t.areaKm2)} · ${((t.areaKm2 / SPHERE_KM2) * 100).toFixed(1)}% of Earth`} />
+                <Readout label="Excess × R²" value={locked ? "?" : mkm(t.excessKm2)} />
               </Row>
             </div>
           )}
         </Milestones>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

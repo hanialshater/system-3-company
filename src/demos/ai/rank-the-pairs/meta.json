@@ -41,21 +41,12 @@
     },
     {
       "id": "ai.rank-the-pairs.c3",
-      "text": "The share of correctly ordered spam-real pairs (ties half) is called AUC, the area under the ROC curve; it equals the probability that a randomly chosen positive scores higher than a randomly chosen negative.",
+      "text": "The share of correctly ordered spam-real pairs (ties half) is called AUC, the area under the ROC curve; it equals the probability that a randomly chosen positive scores higher than a randomly chosen negative. It is computed by comparing pairs directly, so it needs no cutoff.",
       "support": "source",
-      "source": "Hanley & McNeil 1982, 'The meaning and use of the area under a receiver operating characteristic (ROC) curve', Radiology 143.",
+      "source": "Hanley & McNeil 1982, 'The meaning and use of the area under a receiver operating characteristic (ROC) curve', Radiology 143. · Fact-check pass 19 2026-10-14: verified independently: own ROC built from every cutoff on the toy scores, trapezoid area = 0.86 = the 21.5/25 pair share (ties half). Hanley & McNeil 1982 (Radiology 143(1):29-36) equivalence with the Wilcoxon statistic not re-opened; the toy derivation stands alone.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
-      "id": "ai.rank-the-pairs.c4",
-      "text": "AUC needs no cutoff but can hide how a scorer behaves at the cutoff you actually use.",
-      "support": "derivation",
-      "source": "AUC averages over all possible cutoffs; two scorers with equal AUC can differ at one chosen threshold. General property of the measure (about real systems); not shown on the stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -77,7 +68,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:auc-ranking",
     "prerequisites": [

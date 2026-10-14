@@ -1,7 +1,7 @@
 {
   "slug": "same-sugar-more-water",
-  "title": "Same sugar, more water",
-  "hook": "Water makes syrup weaker. Does it take any sugar away?",
+  "title": "Pour syrup into water",
+  "hook": "100 mL of syrup meets 400 mL of water. How strong is the mix?",
   "domain": "chemistry",
   "concept": "dilution",
   "status": "review",
@@ -27,12 +27,12 @@
   "claims": [
     {
       "id": "chemistry.same-sugar-more-water.c1",
-      "text": "Amount concentration is the amount of solute divided by the volume of the solution (the whole mixture), in mol/L.",
+      "text": "Amount concentration is the amount of solute divided by the volume of the solution (the whole mixture), in mol/L. On the stage, 1.0 mol/L means 1 mol of sugar in each litre.",
       "support": "source",
-      "source": "IUPAC Compendium of Chemical Terminology (Gold Book), entry 'amount concentration' (c = n/V, V the volume of the mixture).",
+      "source": "IUPAC Compendium of Chemical Terminology (Gold Book), entry 'amount concentration' (c = n/V, V the volume of the mixture). | FACT-CHECK 2026-10-14 (pass 19): IUPAC Gold Book A00295 (via search result summary; site not directly reachable): amount concentration = amount of constituent divided by the volume of the mixture, unit mol dm^-3 = mol/L; source Green Book 2nd ed. p. 42. Demo.tsx conc() = mol / (mixture mL / 1000), and the reveal divides by the 500 mL of mixture.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.same-sugar-more-water.c2",
@@ -103,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:dilution",
     "prerequisites": [],

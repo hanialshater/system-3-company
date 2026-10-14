@@ -1,0 +1,104 @@
+{
+  "slug": "shoelace-order-matters",
+  "title": "Same four corners, no area",
+  "hook": "A 4 by 3 rectangle has area 12. List its corners in another order and the formula says 0?",
+  "domain": "cs",
+  "concept": "shoelace-area",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-b2"
+  },
+  "learner": {
+    "knows": [
+      "the coordinates of a point on a grid"
+    ],
+    "doesNotKnow": [
+      "that the shoelace sum gives area only if the corners are listed in order round the boundary",
+      "that its sign tells you which way round the corners go"
+    ]
+  },
+  "misconception": "Area from corner coordinates depends only on which corners there are, not on the order you list them.",
+  "objective": "The learner can tap the rectangle's corners in different orders, read 12, -12 and 0 from the signed shoelace sum, and explain that the formula adds signed strips under each edge, which cancel when the path crosses itself.",
+  "claims": [
+    {
+      "id": "cs.shoelace-order-matters.c1",
+      "text": "The rectangle (0,0) (4,0) (4,3) (0,3), listed in order, has shoelace area 12; the reverse order gives -12; the order (0,0) (4,3) (4,0) (0,3) gives 0.",
+      "support": "simulation",
+      "source": "Builder's node check (2026-10-14): half the sum of x_i*y_(i+1) - x_(i+1)*y_i over the closed path gives 12, -12, 0. All 6 orders starting at (0,0): the two round the boundary give 12 and -12, the four that cross themselves give 0. Demo.tsx shoelace() recomputes the stage values. Matches brief cs.algorithms.md #74. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shoelace-order-matters.c2",
+      "text": "The formula adds a signed strip under each edge: + for an edge going left, − for an edge going right.",
+      "support": "derivation",
+      "source": "Trapezoid form: sum over edges of (x_i - x_(i+1)) * (y_i + y_(i+1)) / 2 expands to half of sum (x_i*y_(i+1) - x_(i+1)*y_i) plus half of sum (x_i*y_i - x_(i+1)*y_(i+1)), and the second sum telescopes to 0 round a closed path. So the strips between each edge and the x-axis add to the shoelace value; an edge with x decreasing (going left, y up) adds, one with x increasing subtracts. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shoelace-order-matters.c3",
+      "text": "In the order (0,0) (4,3) (4,0) (0,3), the edge from (0,0) to (4,3) gives −6 and the edge from (4,0) to (0,3) gives +6; the two upright edges give 0, so the total is 0.",
+      "support": "derivation",
+      "source": "(0-4)(0+3)/2 = -6; (4-0)(0+3)/2 = +6; edges (4,3)-(4,0) and (0,3)-(0,0) have x_i = x_(i+1), so 0. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shoelace-order-matters.c4",
+      "text": "The bow-tie path encloses two triangles of area 3, one traced each way round.",
+      "support": "derivation",
+      "source": "The diagonals cross at (2, 1.5). Left lobe (2,1.5) (0,3) (0,0): shoelace +3 (anticlockwise). Right lobe (2,1.5) (4,3) (4,0): shoelace -3 (clockwise). Note: the brief's 'two triangles of area 6 with opposite signs' describes the two edge strips (c3), not the lobes. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shoelace-order-matters.c5",
+      "text": "The sign tells you the direction: positive when the corners go anticlockwise.",
+      "support": "derivation",
+      "source": "With y pointing up, the boundary-order rectangle (0,0) (4,0) (4,3) (0,3) runs anticlockwise and gives +12; reversing every edge negates every term. Green's theorem gives area = (1/2) closed integral of (x dy - y dx) for a positively (anticlockwise) oriented simple curve. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shoelace-order-matters.c6",
+      "text": "A path that crosses itself makes some parts count positive and some negative.",
+      "support": "derivation",
+      "source": "The shoelace sum equals the sum over regions of (winding number x region area); a self-crossing path has regions wound in opposite directions (c4 example: +1 and -1). Unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You compute the shoelace area of a quadrilateral from its four corners and get 0, but the shape clearly has area. What went wrong?",
+    "options": [
+      "A coordinate was copied wrongly",
+      "The corners were not listed in order round the boundary, so the path crossed itself",
+      "The formula only works for triangles"
+    ],
+    "answer": 1,
+    "why": "The formula adds signed strips under each edge. A self-crossing order makes parts count with opposite signs, and they can cancel to 0."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:shoelace-area",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "geometry",
+      "area",
+      "cross-product"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate"
+  ]
+}

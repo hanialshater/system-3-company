@@ -1,0 +1,107 @@
+{
+  "slug": "pairs-cancel-under-xor",
+  "title": "Find the number with no partner",
+  "hook": "All but one number in 7 3 5 4 5 3 4 has a twin. Find it without sorting or counting.",
+  "domain": "cs",
+  "concept": "xor-cancel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-b2"
+  },
+  "learner": {
+    "knows": [
+      "bitwise operators on a number (mask-the-flags)"
+    ],
+    "doesNotKnow": [
+      "that a XOR a is 0 and a XOR 0 is a",
+      "that XOR ignores order, so one pass finds the lone value"
+    ]
+  },
+  "misconception": "Finding the one number without a partner in a list needs sorting or a table of counts.",
+  "objective": "The learner can fold 7 3 5 4 5 3 4 with XOR one number at a time, see pairs switch their bits back off and the running value end at 7 in any order, and explain why (a XOR a = 0, a XOR 0 = a, order does not matter).",
+  "claims": [
+    {
+      "id": "cs.pairs-cancel-under-xor.c1",
+      "text": "XOR of 7 3 5 4 5 3 4 is 7, written 111 in binary.",
+      "support": "simulation",
+      "source": "Builder's node check (2026-10-14): [7,3,5,4,5,3,4].reduce(^) = 7; also 7 on 1,000 seeded random shuffles. Demo.tsx RESULT recomputes it. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pairs-cancel-under-xor.c2",
+      "text": "a XOR a = 0 and a XOR 0 = a, so when a number's partner arrives, the bits it switched on switch back off.",
+      "support": "derivation",
+      "source": "Bitwise: each bit of a XOR a is b XOR b = 0; each bit of a XOR 0 is b. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pairs-cancel-under-xor.c3",
+      "text": "XOR ignores order, so any order of the list ends at 7.",
+      "support": "derivation",
+      "source": "XOR is associative and commutative (bitwise addition mod 2). The stage's 'New order' button reshuffles with mulberry32 seeds 1001, 1002, ... (seeds not chosen to show anything; every order gives 7). Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pairs-cancel-under-xor.c4",
+      "text": "The same method gives 4 for 4 1 2 1 2.",
+      "support": "simulation",
+      "source": "Builder's node check (2026-10-14): 4^1^2^1^2 = 4. Demo.tsx OTHER_RESULT recomputes it. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pairs-cancel-under-xor.c5",
+      "text": "It needs every other number to appear an even number of times; one that appears three times does not cancel and spoils the answer.",
+      "support": "derivation",
+      "source": "The XOR of a list is the XOR of the values that appear an odd number of times (pairs cancel by c2). A value appearing 3 times leaves one copy, so the result is lone XOR that value. Node example: 5 5 5 7 7 gives 5, and 5 5 5 7 2 2 gives 2, not 7. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.pairs-cancel-under-xor.c6",
+      "text": "Finding the lone number this way takes one pass, with no sorting and no table of counts.",
+      "support": "derivation",
+      "source": "One XOR per element, one running value of storage. Unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A list holds 1,001 numbers. Every number appears exactly twice except one. You XOR all of them together. What is left?",
+    "options": [
+      "0, because everything cancels",
+      "The number that appears once",
+      "It depends on the order of the list"
+    ],
+    "answer": 1,
+    "why": "Each pair XORs to 0 (a XOR a = 0), XOR ignores order, and the lone number XOR 0 is itself."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:xor-cancel",
+    "also": [],
+    "prerequisites": [
+      "cs:bit-masks"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "xor",
+      "bits",
+      "bit-manipulation"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

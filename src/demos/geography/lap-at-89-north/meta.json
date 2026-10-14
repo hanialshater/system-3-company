@@ -64,8 +64,10 @@
       "id": "geography.lap-at-89-north.c5",
       "text": "One degree from the pole, the circle is about 220 km straight across.",
       "support": "derivation",
-      "source": "Straight-line diameter 2 R cos(89 deg) = 222.4 km, shown as 220 km (r10 rounding). Demo.tsx acrossKm. (v3: the stage readout is now the straight-line diameter; it was measured over the surface, same value near the pole.)",
-      "status": "unverified"
+      "source": "Straight-line diameter 2 R cos(89 deg) = 222.4 km, shown as 220 km (r10 rounding). Demo.tsx acrossKm. (v3: the stage readout is now the straight-line diameter; it was measured over the surface, same value near the pole.) | FACT-CHECK 2026-10-14 (pass 19): Node with kit EARTH_RADIUS_KM = 6371.0088: 2R cos 89 deg = 222.4 km -> r10 '220'. The over-the-pole surface distance (2 deg of arc) is also 222.4 km.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.lap-at-89-north.c6",
@@ -96,8 +98,10 @@
       "id": "geography.lap-at-89-north.c9",
       "text": "When one lap is under 1,000 km, the stage shows how many times the London to Edinburgh road distance (about 650 km) it is, e.g. about 1.1 times at 89°N.",
       "support": "derivation",
-      "source": "Demo.tsx shows (lapKm / 650).toFixed(1) times the London to Edinburgh road distance whenever lapKm(lat) < 1000. Node: 89.0N 699 km -> 1.1; 89.5N 349 km -> 0.5; 88.6N 978 km -> 1.5. v3 rewrite of the disputed claim; needs re-check.",
-      "status": "unverified"
+      "source": "Demo.tsx shows (lapKm / 650).toFixed(1) times the London to Edinburgh road distance whenever lapKm(lat) < 1000. Node: 89.0N 699 km -> 1.1; 89.5N 349 km -> 0.5; 88.6N 978 km -> 1.5. v3 rewrite of the disputed claim; needs re-check. | FACT-CHECK 2026-10-14 (pass 19): Node: lap 89.0N 698.6 km -> (698.6/650).toFixed(1) = '1.1'; 89.5N 349.3 -> '0.5'; 88.6N 978.0 -> '1.5'; 88.5N 1,047.9 km, no note shown (>= 1,000). Matches Demo.tsx line 124.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

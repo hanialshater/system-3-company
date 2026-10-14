@@ -1,0 +1,2313 @@
+{
+  "work": "easley-kleinberg-2010",
+  "note": "Course map for Networks, Crowds, and Markets (cm-course-ncm, 2026-10-14). The book is a map only: no text, figures or exercises are copied; titles are used to locate ideas. The cs.cornell.edu site and PDF mirrors were blocked (proxy 403), so section numbers and titles come from my knowledge of the 2010 table of contents, checked against web-search snippets. \"confirmed\": true only where a snippet showed the number and title (source recorded); everything else is unconfirmed and must not be cited as a section in curriculum.references (head-of-product rule) until someone with the book checks it. Exercise sections are omitted. demoable = a learner can make one prediction that a stage shows in under 60 seconds with a checkable answer. status: covered (a built lesson teaches it), batch1 (session 2's batch-1 list), gap (briefed in company/courses/ncm/briefs.md), not-demoable (reason in why). Coverage is an input metric, not learner value.",
+  "chapters": [
+    {
+      "n": 1,
+      "title": "Overview",
+      "sections": [
+        {
+          "id": "1.1",
+          "title": "Aspects of Networks",
+          "confirmed": false,
+          "concepts": [
+            "networks as a lens"
+          ],
+          "demoable": false,
+          "why": "Survey of the book's themes; no single result to predict.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "1.2",
+          "title": "Central Themes and Topics",
+          "confirmed": false,
+          "concepts": [
+            "book roadmap"
+          ],
+          "demoable": false,
+          "why": "Roadmap of the book; the vertical's path page does this job (personalization-lead).",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Graphs",
+      "sections": [
+        {
+          "id": "2.1",
+          "title": "Basic Definitions",
+          "confirmed": true,
+          "source": "https://cs.gmu.edu/~ashehu/sites/default/files/cs695_Spring19/EK_networks-book-ch02.pdf",
+          "concepts": [
+            "node",
+            "edge",
+            "directed graph"
+          ],
+          "demoable": false,
+          "why": "Pure definitions. The adjacent lesson math/handshakes-halve (degree sum) supports the path but this section has no result of its own.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "2.2",
+          "title": "Paths and Connectivity",
+          "confirmed": false,
+          "concepts": [
+            "path",
+            "connected component",
+            "giant component"
+          ],
+          "demoable": true,
+          "why": "Giant component appears once average degree passes 1 (batch 1).",
+          "covered_by": [
+            "the-giant-appears"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "2.3",
+          "title": "Distance and Breadth-First Search",
+          "confirmed": false,
+          "concepts": [
+            "distance",
+            "breadth-first search",
+            "six degrees"
+          ],
+          "demoable": true,
+          "why": "BFS gives shortest distance: built (wave-from-the-corner published; maze-depth-first review; queue-or-stack-same-search draft).",
+          "covered_by": [
+            "wave-from-the-corner",
+            "maze-depth-first",
+            "queue-or-stack-same-search"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "2.4",
+          "title": "Network Datasets: An Overview",
+          "confirmed": false,
+          "concepts": [
+            "types of network data"
+          ],
+          "demoable": false,
+          "why": "Survey of datasets (collaboration, who-talks-to-whom, information, technological networks); nothing to predict.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Strong and Weak Ties",
+      "sections": [
+        {
+          "id": "3.1",
+          "title": "Triadic Closure",
+          "confirmed": true,
+          "source": "https://www.stat.berkeley.edu/~aldous/206-SNET/Papers/easley-kleinberg.pdf",
+          "concepts": [
+            "triadic closure",
+            "clustering coefficient"
+          ],
+          "demoable": true,
+          "why": "Batch-1 brief covers 3.1–3.2 (strong triadic closure is its rule).",
+          "covered_by": [
+            "news-comes-from-acquaintances"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "3.2",
+          "title": "The Strength of Weak Ties",
+          "confirmed": true,
+          "source": "https://www.stat.berkeley.edu/~aldous/206-SNET/Papers/easley-kleinberg.pdf",
+          "concepts": [
+            "local bridge",
+            "weak tie",
+            "strong triadic closure"
+          ],
+          "demoable": true,
+          "why": "Every local bridge is a weak tie (batch 1).",
+          "covered_by": [
+            "news-comes-from-acquaintances"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "3.3",
+          "title": "Tie Strength and Network Structure in Large-Scale Data",
+          "confirmed": false,
+          "concepts": [
+            "neighbourhood overlap",
+            "removing weak vs strong ties"
+          ],
+          "demoable": true,
+          "why": "Predict which removal order breaks the network: weakest-first shatters it, strongest-first barely dents it (toy network, labelled a model; the phone-data study is the book's source).",
+          "covered_by": [
+            "weak-links-hold-it-together"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "3.4",
+          "title": "Tie Strength, Social Media, and Passive Engagement",
+          "confirmed": false,
+          "concepts": [
+            "maintained vs one-way ties"
+          ],
+          "demoable": false,
+          "why": "Empirical description of Facebook and Twitter data (the number of strong ties stays small); a measured curve, not a mechanism the stage can derive, and reproducing it would mean copying the book's figure.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "3.5",
+          "title": "Closure, Structural Holes, and Social Capital",
+          "confirmed": true,
+          "source": "https://www.stat.berkeley.edu/~aldous/206-SNET/Papers/easley-kleinberg.pdf",
+          "concepts": [
+            "embeddedness",
+            "structural holes",
+            "brokerage"
+          ],
+          "demoable": true,
+          "why": "Predict who spans the most structural holes: the broker with 4 friends, not the hub with 5.",
+          "covered_by": [
+            "broker-between-two-groups"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "3.6",
+          "title": "Advanced Material: Betweenness Measures and Graph Partitioning",
+          "confirmed": true,
+          "source": "https://www.stat.berkeley.edu/~aldous/206-SNET/Papers/easley-kleinberg.pdf",
+          "concepts": [
+            "edge betweenness",
+            "Girvan–Newman",
+            "communities"
+          ],
+          "demoable": true,
+          "why": "Predict which link carries the most shortest paths; cutting it splits the groups (Girvan–Newman step).",
+          "covered_by": [
+            "cut-the-busiest-link"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Networks in Their Surrounding Contexts",
+      "sections": [
+        {
+          "id": "4.1",
+          "title": "Homophily",
+          "confirmed": false,
+          "concepts": [
+            "homophily",
+            "cross-group edge test (2pq)"
+          ],
+          "demoable": true,
+          "why": "Predict the share of cross-group friendships if group did not matter (46%), then compare with the class's 20%.",
+          "covered_by": [
+            "friends-split-more-than-chance"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "4.2",
+          "title": "Mechanisms Underlying Homophily: Selection and Social Influence",
+          "confirmed": false,
+          "concepts": [
+            "selection",
+            "social influence"
+          ],
+          "demoable": false,
+          "why": "The section's point is that one snapshot cannot tell selection from influence; separating them needs longitudinal data, a survey of studies rather than a checkable stage result.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "4.3",
+          "title": "Affiliation",
+          "confirmed": false,
+          "concepts": [
+            "affiliation network",
+            "focal closure",
+            "membership closure"
+          ],
+          "demoable": false,
+          "why": "Defines affiliation networks and the closure types; the predictable part (closure chance rising with shared ties) is briefed in 4.4.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "4.4",
+          "title": "Tracking Link Formation in On-Line Data",
+          "confirmed": false,
+          "concepts": [
+            "triadic closure probability",
+            "1 − (1 − p)^k baseline"
+          ],
+          "demoable": true,
+          "why": "Predict the chance of a new friendship with 5 mutual friends when each introduces with 10%: 41%, not 50%.",
+          "covered_by": [
+            "mutual-friends-add-up-slower"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "4.5",
+          "title": "A Spatial Model of Segregation",
+          "confirmed": false,
+          "concepts": [
+            "Schelling model"
+          ],
+          "demoable": true,
+          "why": "Schelling (batch-1 list includes mild-preferences-sharp-divides; schelling-on-new-york briefed in geography).",
+          "covered_by": [
+            "mild-preferences-sharp-divides",
+            "schelling-on-new-york"
+          ],
+          "status": "batch1"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Positive and Negative Relationships",
+      "sections": [
+        {
+          "id": "5.1",
+          "title": "Structural Balance",
+          "confirmed": false,
+          "concepts": [
+            "balanced triangle"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (5.1–5.2).",
+          "covered_by": [
+            "enemy-of-my-enemy"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "5.2",
+          "title": "Characterizing the Structure of Balanced Networks",
+          "confirmed": false,
+          "concepts": [
+            "balance theorem: at most two camps"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "enemy-of-my-enemy"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "5.3",
+          "title": "Applications of Structural Balance",
+          "confirmed": false,
+          "concepts": [
+            "international relations",
+            "trust online"
+          ],
+          "demoable": false,
+          "why": "Historical and applied survey (alliances before the First World War, online trust); no stage result beyond 5.2.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "5.4",
+          "title": "A Weaker Form of Structural Balance",
+          "confirmed": false,
+          "concepts": [
+            "weak balance",
+            "any number of camps"
+          ],
+          "demoable": true,
+          "why": "Allow all-enemy triangles and three camps become possible: predict how many forbidden triangles a 3-camp split leaves (0).",
+          "covered_by": [
+            "enemies-allow-three-camps"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "5.5",
+          "title": "Advanced Material: Generalizing the Definition of Structural Balance",
+          "confirmed": false,
+          "concepts": [
+            "balance in non-complete networks",
+            "odd negative cycles"
+          ],
+          "demoable": true,
+          "why": "Predict whether a sparse signed network can split into two camps; one loop with an odd number of enemy links blocks it.",
+          "covered_by": [
+            "one-odd-loop-blocks-two-camps"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Games",
+      "sections": [
+        {
+          "id": "6.1",
+          "title": "What is a Game?",
+          "confirmed": false,
+          "concepts": [
+            "players",
+            "strategies",
+            "payoffs"
+          ],
+          "demoable": false,
+          "why": "Definitions.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "6.2",
+          "title": "Reasoning about Behavior in a Game",
+          "confirmed": false,
+          "concepts": [
+            "best response reasoning"
+          ],
+          "demoable": true,
+          "why": "two-suspects-payoff (published) reasons column by column.",
+          "covered_by": [
+            "two-suspects-payoff"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "6.3",
+          "title": "Best Responses and Dominant Strategies",
+          "confirmed": false,
+          "concepts": [
+            "dominant strategy",
+            "prisoner's dilemma"
+          ],
+          "demoable": true,
+          "why": "two-suspects-payoff teaches the dominant strategy.",
+          "covered_by": [
+            "two-suspects-payoff"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "6.4",
+          "title": "Nash Equilibrium",
+          "confirmed": false,
+          "concepts": [
+            "Nash equilibrium without dominant strategies"
+          ],
+          "demoable": true,
+          "why": "Predict the stable pair in a 3x3 game where no move is always best.",
+          "covered_by": [
+            "no-best-move-one-stable-pair"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "6.5",
+          "title": "Multiple Equilibria: Coordination Games",
+          "confirmed": false,
+          "concepts": [
+            "coordination game",
+            "stag hunt",
+            "risk threshold"
+          ],
+          "demoable": true,
+          "why": "Predict how sure you must be of your partner to hunt the stag (75%).",
+          "covered_by": [
+            "stag-needs-three-in-four"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "6.6",
+          "title": "Multiple Equilibria: The Hawk-Dove Game",
+          "confirmed": false,
+          "concepts": [
+            "hawk-dove / chicken",
+            "asymmetric equilibria"
+          ],
+          "demoable": true,
+          "why": "Predict which outcomes are stable in chicken: one of each, never both the same.",
+          "covered_by": [
+            "someone-has-to-swerve"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "6.7",
+          "title": "Mixed Strategies",
+          "confirmed": false,
+          "concepts": [
+            "mixed strategy",
+            "indifference"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (6.7–6.8).",
+          "covered_by": [
+            "penalty-kick-mix"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "6.8",
+          "title": "Mixed Strategies: Examples and Empirical Analysis",
+          "confirmed": false,
+          "concepts": [
+            "penalty kicks"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "penalty-kick-mix"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "6.9",
+          "title": "Pareto-Optimality and Social Optimality",
+          "confirmed": false,
+          "concepts": [
+            "Pareto optimality",
+            "social optimum"
+          ],
+          "demoable": true,
+          "why": "two-suspects-payoff's reveal: both defect and each gets 1 instead of 3 (the equilibrium is not Pareto-optimal). The Pareto vs social-optimum distinction itself is not taught; reference row only.",
+          "covered_by": [
+            "two-suspects-payoff"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "6.10",
+          "title": "Advanced Material: Dominated Strategies and Dynamic Games",
+          "confirmed": true,
+          "source": "https://www.stat.berkeley.edu/~aldous/206-SNET/Papers/easley-kleinberg.pdf",
+          "concepts": [
+            "iterated deletion of dominated strategies",
+            "backward induction"
+          ],
+          "demoable": true,
+          "why": "Predict the number left after rational players delete dominated guesses (0). Backward induction is adjacent to the cs brief tic-tac-toe-is-a-draw (minimax).",
+          "covered_by": [
+            "two-thirds-of-the-average"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Evolutionary Game Theory",
+      "sections": [
+        {
+          "id": "7.1",
+          "title": "Fitness as a Result of Interaction",
+          "confirmed": false,
+          "concepts": [
+            "fitness from random pairings"
+          ],
+          "demoable": true,
+          "why": "strategy-builder (review): average score from random pairings decides growth.",
+          "covered_by": [
+            "strategy-builder"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "7.2",
+          "title": "Evolutionarily Stable Strategies",
+          "confirmed": false,
+          "concepts": [
+            "evolutionarily stable strategy",
+            "invasion"
+          ],
+          "demoable": true,
+          "why": "Predict whether a few mutants spread; they do, and everyone ends worse off (one-shot game; strategy-builder is a repeated game).",
+          "covered_by": [
+            "bigger-beetles-everyone-loses"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "7.3",
+          "title": "A General Description of Evolutionarily Stable Strategies",
+          "confirmed": false,
+          "concepts": [
+            "ESS conditions"
+          ],
+          "demoable": false,
+          "why": "The general algebraic conditions; the checkable instances are 7.2 and 7.4.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "7.4",
+          "title": "Relationship Between Evolutionary and Nash Equilibria",
+          "confirmed": false,
+          "concepts": [
+            "Nash equilibrium that is not an ESS"
+          ],
+          "demoable": true,
+          "why": "Predict whether mutants can take over a Nash equilibrium (they can, when they tie against the residents and win against each other).",
+          "covered_by": [
+            "stable-until-mutants-meet"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "7.5",
+          "title": "Evolutionarily Stable Mixed Strategies",
+          "confirmed": false,
+          "concepts": [
+            "hawk-dove ESS mix V/C"
+          ],
+          "demoable": true,
+          "why": "Predict the long-run hawk share (2/3 with V = 4, C = 6), from either start (slug from the vertical doc).",
+          "covered_by": [
+            "hawks-never-take-over"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "title": "Modeling Network Traffic using Game Theory",
+      "sections": [
+        {
+          "id": "8.1",
+          "title": "Traffic at Equilibrium",
+          "confirmed": false,
+          "concepts": [
+            "traffic equilibrium"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (8.1–8.2).",
+          "covered_by": [
+            "new-road-slower-trip"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "8.2",
+          "title": "Braess's Paradox",
+          "confirmed": false,
+          "concepts": [
+            "Braess's paradox"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "new-road-slower-trip"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "8.3",
+          "title": "Advanced Material: The Social Cost of Traffic at Equilibrium",
+          "confirmed": false,
+          "concepts": [
+            "price of anarchy",
+            "Pigou network"
+          ],
+          "demoable": true,
+          "why": "Predict whether a planner can beat the selfish 60-minute average: yes, to 45 (equilibrium is 4/3 of optimal).",
+          "covered_by": [
+            "selfish-routes-cost-a-third-more"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "title": "Auctions",
+      "sections": [
+        {
+          "id": "9.1",
+          "title": "Types of Auctions",
+          "confirmed": false,
+          "concepts": [
+            "English, Dutch, first-price, second-price"
+          ],
+          "demoable": false,
+          "why": "Definitions of formats.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "9.2",
+          "title": "When are Auctions Appropriate?",
+          "confirmed": false,
+          "concepts": [
+            "seller's uncertainty about values"
+          ],
+          "demoable": false,
+          "why": "A qualitative argument about when to auction versus post a price; no checkable stage outcome.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "9.3",
+          "title": "Relationships between Different Auction Formats",
+          "confirmed": false,
+          "concepts": [
+            "ascending auction ≡ second-price"
+          ],
+          "demoable": true,
+          "why": "Predict where a rising-price auction stops: at the second-highest value (55), not the winner's (70).",
+          "covered_by": [
+            "rising-price-stops-at-second"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "9.4",
+          "title": "Second-Price Auctions",
+          "confirmed": false,
+          "concepts": [
+            "truthful bidding is dominant"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "bid-what-its-worth"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "9.5",
+          "title": "First-Price Auctions and Other Formats",
+          "confirmed": false,
+          "concepts": [
+            "bid shading"
+          ],
+          "demoable": true,
+          "why": "Predict the best sealed first-price bid with value $80 (bid $40).",
+          "covered_by": [
+            "shade-your-sealed-bid"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "9.6",
+          "title": "Common Values and The Winner's Curse",
+          "confirmed": false,
+          "concepts": [
+            "winner's curse"
+          ],
+          "demoable": true,
+          "why": "probability/best-of-twenty-identical (published, concept winners-curse) teaches the selection-on-noise mechanism and cites the auction origin; propose a reference row instead of a new lesson. The 'bid below your estimate' framing is not taught (noted, not briefed).",
+          "covered_by": [
+            "best-of-twenty-identical"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "9.7",
+          "title": "Advanced Material: Bidding Strategies in First-Price and All-Pay Auctions",
+          "confirmed": false,
+          "concepts": [
+            "equilibrium bidding",
+            "revenue equivalence",
+            "all-pay auction"
+          ],
+          "demoable": true,
+          "why": "Predict which rule earns the seller more: first-price, second-price and all-pay all average about $33.3.",
+          "covered_by": [
+            "same-revenue-any-rule"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 10,
+      "title": "Matching Markets",
+      "sections": [
+        {
+          "id": "10.1",
+          "title": "Bipartite Graphs and Perfect Matchings",
+          "confirmed": false,
+          "concepts": [
+            "perfect matching",
+            "constricted set (Hall)"
+          ],
+          "demoable": true,
+          "why": "Predict whether everyone can get an acceptable room; three who accept only two rooms block it.",
+          "covered_by": [
+            "three-students-two-rooms"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "10.2",
+          "title": "Valuations and Optimal Assignments",
+          "confirmed": false,
+          "concepts": [
+            "optimal assignment"
+          ],
+          "demoable": true,
+          "why": "prices-sort-the-buyers states that its assignment (total 23) is the maximum over all 6; ask cm-economics-markets to add 10.2 to its references.",
+          "covered_by": [
+            "prices-sort-the-buyers"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "10.3",
+          "title": "Prices and the Market-Clearing Property",
+          "confirmed": false,
+          "concepts": [
+            "market-clearing prices"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "prices-sort-the-buyers"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "10.4",
+          "title": "Constructing a Set of Market-Clearing Prices",
+          "confirmed": false,
+          "concepts": [
+            "ascending price procedure"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "prices-sort-the-buyers"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "10.5",
+          "title": "How Does this Relate to Single-Item Auctions?",
+          "confirmed": false,
+          "concepts": [
+            "single-item auction as a matching market"
+          ],
+          "demoable": true,
+          "why": "Briefed with 9.3: one item, clearing prices run from 55 to 70 and the ascending procedure stops at the lowest, the second-highest value.",
+          "covered_by": [
+            "rising-price-stops-at-second"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "10.6",
+          "title": "Advanced Material: A Proof of the Matching Theorem",
+          "confirmed": false,
+          "concepts": [
+            "proof of Hall/König"
+          ],
+          "demoable": false,
+          "why": "A proof; its checkable content (constricted set ⇔ no perfect matching) is the 10.1 brief.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 11,
+      "title": "Network Models of Markets with Intermediaries",
+      "sections": [
+        {
+          "id": "11.1",
+          "title": "Price-Setting in Markets",
+          "confirmed": false,
+          "concepts": [
+            "bid-ask spread",
+            "intermediaries"
+          ],
+          "demoable": false,
+          "why": "Survey of real-world intermediaries and order books.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "11.2",
+          "title": "A Model of Trade on Networks",
+          "confirmed": false,
+          "concepts": [
+            "trading network model"
+          ],
+          "demoable": false,
+          "why": "Defines the model; its predictive result is 11.3.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "11.3",
+          "title": "Equilibria in Trading Networks",
+          "confirmed": false,
+          "concepts": [
+            "trader competition",
+            "monopoly link"
+          ],
+          "demoable": true,
+          "why": "Predict who gets the money when a second trader can reach the seller: the seller (bids rise to 1).",
+          "covered_by": [
+            "second-trader-pays-the-seller"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "11.4",
+          "title": "Further Equilibrium Phenomena: Auctions and Ripple Effects",
+          "confirmed": false,
+          "concepts": [
+            "ripple effects"
+          ],
+          "demoable": false,
+          "why": "The ripple effects need a multi-trader equilibrium on 6+ nodes that a learner cannot check inside 60 seconds; revisit after 11.3 ships.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "11.5",
+          "title": "Social Welfare in Trading Networks",
+          "confirmed": false,
+          "concepts": [
+            "equilibria are efficient"
+          ],
+          "demoable": false,
+          "why": "A theorem over all equilibria (each is socially optimal); checking it means enumerating equilibria, not one stage outcome.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "11.6",
+          "title": "Trader Profits",
+          "confirmed": false,
+          "concepts": [
+            "essential trader",
+            "profit = welfare contribution"
+          ],
+          "demoable": true,
+          "why": "Predict which of three traders earns: only the one whose removal loses a trade.",
+          "covered_by": [
+            "only-the-needed-trader-profits"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "11.7",
+          "title": "Reflections on Trade with Intermediaries",
+          "confirmed": false,
+          "concepts": [
+            "discussion"
+          ],
+          "demoable": false,
+          "why": "Discussion.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 12,
+      "title": "Bargaining and Power in Networks",
+      "sections": [
+        {
+          "id": "12.1",
+          "title": "Power in Social Networks",
+          "confirmed": false,
+          "concepts": [
+            "power as position"
+          ],
+          "demoable": false,
+          "why": "Conceptual introduction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "12.2",
+          "title": "Experimental Studies of Power and Exchange",
+          "confirmed": false,
+          "concepts": [
+            "network exchange experiments"
+          ],
+          "demoable": true,
+          "why": "One lesson with 12.3: the centre of a 3-person path takes nearly all.",
+          "covered_by": [
+            "middle-of-three-takes-all"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.3",
+          "title": "Results of Network Exchange Experiments",
+          "confirmed": false,
+          "concepts": [
+            "power from excludable partners"
+          ],
+          "demoable": true,
+          "why": "Briefed with 12.2.",
+          "covered_by": [
+            "middle-of-three-takes-all"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.4",
+          "title": "A Connection to Buyer-Seller Networks",
+          "confirmed": false,
+          "concepts": [
+            "link to ch. 10–11"
+          ],
+          "demoable": false,
+          "why": "A bridge to chapters 10–11 with no new predictable result.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "12.5",
+          "title": "Modeling Two-Person Interaction: The Nash Bargaining Solution",
+          "confirmed": false,
+          "concepts": [
+            "Nash bargaining solution",
+            "outside options"
+          ],
+          "demoable": true,
+          "why": "Predict A's share when A's outside option rises to 0.4: 0.7.",
+          "covered_by": [
+            "outside-option-sets-the-split"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.6",
+          "title": "Modeling Two-Person Interaction: The Ultimatum Game",
+          "confirmed": false,
+          "concepts": [
+            "ultimatum game"
+          ],
+          "demoable": true,
+          "why": "Predict the smallest offer a money-only responder accepts ($1 of $10); the human data are a flagged citation.",
+          "covered_by": [
+            "lowball-offer-should-pass"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.7",
+          "title": "Modeling Network Exchange: Stable Outcomes",
+          "confirmed": false,
+          "concepts": [
+            "stable outcome"
+          ],
+          "demoable": true,
+          "why": "One lesson with 12.8.",
+          "covered_by": [
+            "four-in-a-row-two-thirds"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.8",
+          "title": "Modeling Network Exchange: Balanced Outcomes",
+          "confirmed": false,
+          "concepts": [
+            "balanced outcome"
+          ],
+          "demoable": true,
+          "why": "Predict the split in a 4-person path: 2/3 to the inner pair, not all and not half.",
+          "covered_by": [
+            "four-in-a-row-two-thirds"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "12.9",
+          "title": "Advanced Material: A Game-Theoretic Approach to Bargaining",
+          "confirmed": false,
+          "concepts": [
+            "alternating offers (Rubinstein)"
+          ],
+          "demoable": true,
+          "why": "Predict the first proposer's share when delay shrinks the pie 10% a round: 52.6%.",
+          "covered_by": [
+            "patience-wins-the-split"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 13,
+      "title": "The Structure of the Web",
+      "sections": [
+        {
+          "id": "13.1",
+          "title": "The World Wide Web",
+          "confirmed": false,
+          "concepts": [
+            "history of the web"
+          ],
+          "demoable": false,
+          "why": "History.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "13.2",
+          "title": "Information Networks, Hypertext, and Associative Memory",
+          "confirmed": false,
+          "concepts": [
+            "hypertext",
+            "Memex",
+            "citation networks"
+          ],
+          "demoable": false,
+          "why": "History of ideas.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "13.3",
+          "title": "The Web as a Directed Graph",
+          "confirmed": false,
+          "concepts": [
+            "directed graph",
+            "strongly connected component"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (13.3–13.4).",
+          "covered_by": [
+            "web-bow-tie-reach"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "13.4",
+          "title": "The Bow-Tie Structure of the Web",
+          "confirmed": false,
+          "concepts": [
+            "bow-tie"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "web-bow-tie-reach"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "13.5",
+          "title": "The Emergence of Web 2.0",
+          "confirmed": false,
+          "concepts": [
+            "Web 2.0"
+          ],
+          "demoable": false,
+          "why": "Survey.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 14,
+      "title": "Link Analysis and Web Search",
+      "sections": [
+        {
+          "id": "14.1",
+          "title": "Searching the Web: The Problem of Ranking",
+          "confirmed": false,
+          "concepts": [
+            "ranking problem"
+          ],
+          "demoable": false,
+          "why": "Framing for 14.2–14.3.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "14.2",
+          "title": "Link Analysis using Hubs and Authorities",
+          "confirmed": false,
+          "concepts": [
+            "hubs and authorities (HITS)"
+          ],
+          "demoable": true,
+          "why": "Predict whether 3 in-links from weak lists beat 2 from strong lists (they do not).",
+          "covered_by": [
+            "good-lists-make-good-pages"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "14.3",
+          "title": "PageRank",
+          "confirmed": false,
+          "concepts": [
+            "PageRank"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "one-good-link-beats-many"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "14.4",
+          "title": "Applying Link Analysis in Modern Web Search",
+          "confirmed": false,
+          "concepts": [
+            "anchor text",
+            "search engine optimisation"
+          ],
+          "demoable": false,
+          "why": "Survey of practice.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "14.5",
+          "title": "Applications beyond the Web",
+          "confirmed": false,
+          "concepts": [
+            "citation analysis"
+          ],
+          "demoable": false,
+          "why": "Survey.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "14.6",
+          "title": "Advanced Material: Spectral Analysis, Random Walks, and Web Search",
+          "confirmed": false,
+          "concepts": [
+            "PageRank as random-walk limit",
+            "eigenvector"
+          ],
+          "demoable": true,
+          "why": "Predict a random surfer's visit share on a page with 1 in-link vs 3; it matches PageRank (31% vs 33%).",
+          "covered_by": [
+            "random-surfer-finds-the-rank"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 15,
+      "title": "Sponsored Search Markets",
+      "sections": [
+        {
+          "id": "15.1",
+          "title": "Advertising Tied to Search Behavior",
+          "confirmed": false,
+          "concepts": [
+            "history of search ads"
+          ],
+          "demoable": false,
+          "why": "History and business background.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "15.2",
+          "title": "Advertising as a Matching Market",
+          "confirmed": false,
+          "concepts": [
+            "click rates × value per click"
+          ],
+          "demoable": false,
+          "why": "Re-casts chapter 10's matching market with click rates; the predictive use is 15.3–15.4.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "15.3",
+          "title": "Encouraging Truthful Bidding in Matching Markets: The VCG Principle",
+          "confirmed": false,
+          "concepts": [
+            "VCG prices"
+          ],
+          "demoable": true,
+          "why": "One lesson with 15.4: each pays the harm caused to others.",
+          "covered_by": [
+            "pay-for-the-harm-you-do"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "15.4",
+          "title": "Analyzing the VCG Procedure: Truth-Telling as a Dominant Strategy",
+          "confirmed": false,
+          "concepts": [
+            "truth-telling dominant under VCG"
+          ],
+          "demoable": true,
+          "why": "Briefed with 15.3.",
+          "covered_by": [
+            "pay-for-the-harm-you-do"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "15.5",
+          "title": "The Generalized Second Price Auction",
+          "confirmed": false,
+          "concepts": [
+            "GSP auction"
+          ],
+          "demoable": true,
+          "why": "One lesson with 15.6: an honest bid is not best in GSP.",
+          "covered_by": [
+            "honest-bid-loses-in-gsp"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "15.6",
+          "title": "Equilibria of the Generalized Second Price Auction",
+          "confirmed": false,
+          "concepts": [
+            "GSP equilibria and revenue"
+          ],
+          "demoable": true,
+          "why": "Briefed with 15.5.",
+          "covered_by": [
+            "honest-bid-loses-in-gsp"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "15.7",
+          "title": "Ad Quality",
+          "confirmed": false,
+          "concepts": [
+            "bid × quality ranking"
+          ],
+          "demoable": true,
+          "why": "Predict who gets the top slot when the lower bidder has higher quality.",
+          "covered_by": [
+            "lower-bid-takes-the-top-ad"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "15.8",
+          "title": "Complex Queries and Interactions Among Keywords",
+          "confirmed": false,
+          "concepts": [
+            "keyword interactions"
+          ],
+          "demoable": false,
+          "why": "Open-ended discussion.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "15.9",
+          "title": "Advanced Material: VCG Prices and the Market-Clearing Property",
+          "confirmed": false,
+          "corroborated": "Kern, Manthey and Uetz (arXiv 1604.04157) discuss the book's result that VCG prices are market clearing (section number not shown)",
+          "concepts": [
+            "VCG prices are market clearing"
+          ],
+          "demoable": true,
+          "why": "Predict whether harm-based prices clear chapter 10's market: they equal (3,1,0).",
+          "covered_by": [
+            "harm-prices-clear-the-market"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "title": "Information Cascades",
+      "sections": [
+        {
+          "id": "16.1",
+          "title": "Following the Crowd",
+          "confirmed": false,
+          "concepts": [
+            "herding examples"
+          ],
+          "demoable": false,
+          "why": "Motivating examples and studies; the mechanism is 16.2–16.5.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "16.2",
+          "title": "A Simple Herding Experiment",
+          "confirmed": false,
+          "concepts": [
+            "urn experiment"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (16.2–16.5).",
+          "covered_by": [
+            "two-said-blue"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "16.3",
+          "title": "Bayes' Rule: A Model of Decision-Making Under Uncertainty",
+          "confirmed": false,
+          "concepts": [
+            "Bayes' rule"
+          ],
+          "demoable": true,
+          "why": "Built: which-coin-is-it, base-rates (published).",
+          "covered_by": [
+            "which-coin-is-it",
+            "base-rates",
+            "two-said-blue"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "16.4",
+          "title": "Bayes' Rule in the Herding Experiment",
+          "confirmed": false,
+          "concepts": [
+            "posterior in the urn experiment"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "two-said-blue"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "16.5",
+          "title": "A Simple, General Cascade Model",
+          "confirmed": false,
+          "concepts": [
+            "cascade model"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "two-said-blue"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "16.6",
+          "title": "Sequential Decision-Making and Cascades",
+          "confirmed": false,
+          "concepts": [
+            "cascade start at a lead of 2",
+            "followers carry no information"
+          ],
+          "demoable": true,
+          "why": "One lesson with 16.7.",
+          "covered_by": [
+            "two-public-clues-break-the-herd"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "16.7",
+          "title": "Lessons from Cascades",
+          "confirmed": false,
+          "concepts": [
+            "cascades are fragile"
+          ],
+          "demoable": true,
+          "why": "Predict whether two public clues outweigh 100 followers: yes, because the followers added nothing.",
+          "covered_by": [
+            "two-public-clues-break-the-herd"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 17,
+      "title": "Network Effects",
+      "sections": [
+        {
+          "id": "17.1",
+          "title": "The Economy Without Network Effects",
+          "confirmed": false,
+          "concepts": [
+            "reservation prices",
+            "demand curve"
+          ],
+          "demoable": true,
+          "why": "Baseline built: supply-demand and buyers-who-would-pay-more (reservation prices).",
+          "covered_by": [
+            "supply-demand",
+            "buyers-who-would-pay-more"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "17.2",
+          "title": "The Economy with Network Effects",
+          "confirmed": false,
+          "concepts": [
+            "network effects"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "below-critical-mass"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "17.3",
+          "title": "Stability, Instability, and Tipping Points",
+          "confirmed": false,
+          "concepts": [
+            "tipping point"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "below-critical-mass"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "17.4",
+          "title": "A Dynamic View of the Market",
+          "confirmed": false,
+          "concepts": [
+            "dynamics toward equilibria"
+          ],
+          "demoable": true,
+          "why": "below-critical-mass iterates 0.19 → 0 and 0.21 → 0.8; ask cm-economics-markets to add 17.4.",
+          "covered_by": [
+            "below-critical-mass"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "17.5",
+          "title": "Industries with Network Goods",
+          "confirmed": false,
+          "concepts": [
+            "industry examples"
+          ],
+          "demoable": false,
+          "why": "Survey of industries.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "17.6",
+          "title": "Mixing Individual Effects with Population-Level Effects",
+          "confirmed": false,
+          "concepts": [
+            "mixed value curves"
+          ],
+          "demoable": false,
+          "why": "Extends the same curve; no prediction beyond 17.3's.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "17.7",
+          "title": "Advanced Material: Negative Externalities and The El Farol Bar Problem",
+          "confirmed": false,
+          "concepts": [
+            "El Farol",
+            "minority game",
+            "mixed equilibrium"
+          ],
+          "demoable": true,
+          "why": "Predict attendance when everyone trusts the same forecast: 100% or 0%, never the forecast.",
+          "covered_by": [
+            "the-bar-nobody-can-forecast"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 18,
+      "title": "Power Laws and Rich-Get-Richer Phenomena",
+      "sections": [
+        {
+          "id": "18.1",
+          "title": "Popularity as a Network Phenomenon",
+          "confirmed": false,
+          "concepts": [
+            "popularity"
+          ],
+          "demoable": false,
+          "why": "Introduction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "18.2",
+          "title": "Power Laws",
+          "confirmed": false,
+          "concepts": [
+            "power law",
+            "log-log straight line"
+          ],
+          "demoable": true,
+          "why": "Predict how much rarer 1,000-link pages are than 100-link pages under exponent 2 (100×). average-that-never-settles (heavy tails, Cauchy) is adjacent and takes a reference row.",
+          "covered_by": [
+            "ten-times-links-hundred-times-rarer"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "18.3",
+          "title": "Rich-Get-Richer Models",
+          "confirmed": false,
+          "concepts": [
+            "preferential attachment"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (18.3–18.4).",
+          "covered_by": [
+            "same-songs-different-hits"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "18.4",
+          "title": "The Unpredictability of Rich-Get-Richer Effects",
+          "confirmed": false,
+          "concepts": [
+            "MusicLab"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "same-songs-different-hits"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "18.5",
+          "title": "The Long Tail",
+          "confirmed": false,
+          "concepts": [
+            "long tail",
+            "Zipf"
+          ],
+          "demoable": true,
+          "why": "Predict the share of sales outside the top 1% of 100,000 items (38%).",
+          "covered_by": [
+            "the-long-tail-adds-up"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "18.6",
+          "title": "The Effect of Search Tools and Recommendation Systems",
+          "confirmed": false,
+          "concepts": [
+            "recommenders"
+          ],
+          "demoable": false,
+          "why": "Discussion with no settled result to check.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "18.7",
+          "title": "Advanced Material: Analysis of Rich-Get-Richer Processes",
+          "confirmed": false,
+          "concepts": [
+            "exponent from copying probability"
+          ],
+          "demoable": true,
+          "why": "Predict how the biggest page changes as copying rises from 0% to 90% (14 → about 3,400–6,100 links).",
+          "covered_by": [
+            "more-copying-bigger-stars"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 19,
+      "title": "Cascading Behavior in Networks",
+      "sections": [
+        {
+          "id": "19.1",
+          "title": "Diffusion in Networks",
+          "confirmed": false,
+          "concepts": [
+            "diffusion examples"
+          ],
+          "demoable": false,
+          "why": "Introduction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "19.2",
+          "title": "Modeling Diffusion through a Network",
+          "confirmed": false,
+          "concepts": [
+            "threshold rule q"
+          ],
+          "demoable": true,
+          "why": "Batch 1 (19.2–19.3).",
+          "covered_by": [
+            "cluster-stops-the-cascade"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "19.3",
+          "title": "Cascades and Clusters",
+          "confirmed": false,
+          "concepts": [
+            "cluster density blocks cascades"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "cluster-stops-the-cascade"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "19.4",
+          "title": "Diffusion, Thresholds, and the Role of Weak Ties",
+          "confirmed": false,
+          "concepts": [
+            "complex contagion",
+            "weak ties"
+          ],
+          "demoable": true,
+          "why": "Predict whether a habit with q = 1/2 crosses the one bridge that news crosses (it does not).",
+          "covered_by": [
+            "bridge-carries-news-not-habits"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "19.5",
+          "title": "Extensions of the Basic Cascade Model",
+          "confirmed": false,
+          "concepts": [
+            "heterogeneous thresholds"
+          ],
+          "demoable": true,
+          "why": "Predict the outcome when one threshold changes from 1 to 2 in a 0..99 crowd: 100 → 1.",
+          "covered_by": [
+            "one-shy-rioter-stops-the-riot"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "19.6",
+          "title": "Knowledge, Thresholds, and Collective Action",
+          "confirmed": false,
+          "concepts": [
+            "common knowledge",
+            "collective action"
+          ],
+          "demoable": false,
+          "why": "The result rests on what each person knows the others know; the stage can show the network, but the learner cannot check the answer in 60 seconds without the multi-level knowledge argument.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "19.7",
+          "title": "Advanced Material: The Cascade Capacity",
+          "confirmed": false,
+          "concepts": [
+            "cascade capacity: line 1/2, grid 3/8"
+          ],
+          "demoable": true,
+          "why": "Predict the largest threshold that still lets two seeds take an endless line (1/2).",
+          "covered_by": [
+            "the-line-takes-up-to-half"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 20,
+      "title": "The Small-World Phenomenon",
+      "sections": [
+        {
+          "id": "20.1",
+          "title": "Six Degrees of Separation",
+          "confirmed": false,
+          "concepts": [
+            "Milgram experiment"
+          ],
+          "demoable": false,
+          "why": "History and empirical study.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "20.2",
+          "title": "Structure and Randomness",
+          "confirmed": false,
+          "concepts": [
+            "Watts–Strogatz"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "few-shortcuts-shrink-the-world"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "20.3",
+          "title": "Decentralized Search",
+          "confirmed": false,
+          "corroborated": "MIT reading list cites 'EK, Chapter 20.3-20.6 (navigation)' (search snippet; title not shown)",
+          "concepts": [
+            "greedy routing"
+          ],
+          "demoable": true,
+          "why": "One lesson with 20.4.",
+          "covered_by": [
+            "near-and-far-links-find-the-way"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "20.4",
+          "title": "Modeling the Process of Decentralized Search",
+          "confirmed": false,
+          "concepts": [
+            "Kleinberg exponent"
+          ],
+          "demoable": true,
+          "why": "Predict which shortcut mix routes fastest on a ring (1/d), not 'all random' or 'mostly near'.",
+          "covered_by": [
+            "near-and-far-links-find-the-way"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "20.5",
+          "title": "Empirical Analysis and Generalized Models",
+          "confirmed": false,
+          "concepts": [
+            "rank-based friendship"
+          ],
+          "demoable": false,
+          "why": "Empirical fits to online data; the model idea duplicates 20.4.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "20.6",
+          "title": "Core-Periphery Structures and Difficulties in Decentralized Search",
+          "confirmed": false,
+          "concepts": [
+            "core-periphery"
+          ],
+          "demoable": false,
+          "why": "Empirical observation about real chains; nothing a toy stage settles.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "20.7",
+          "title": "Advanced Material: Analysis of Decentralized Search",
+          "confirmed": false,
+          "concepts": [
+            "equal mass per distance scale"
+          ],
+          "demoable": true,
+          "why": "Predict whether a 1/d link lands more often 1–2 or 256–512 away: equally often.",
+          "covered_by": [
+            "every-scale-equally-likely"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 21,
+      "title": "Epidemics",
+      "sections": [
+        {
+          "id": "21.1",
+          "title": "Diseases and the Networks that Transmit Them",
+          "confirmed": false,
+          "concepts": [
+            "contact networks"
+          ],
+          "demoable": false,
+          "why": "Introduction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "21.2",
+          "title": "Branching Processes",
+          "confirmed": false,
+          "concepts": [
+            "branching process",
+            "R0"
+          ],
+          "demoable": true,
+          "why": "Built.",
+          "covered_by": [
+            "herd-immunity",
+            "immunity-eats-r",
+            "spreaders-are-rare"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "21.3",
+          "title": "The SIR Epidemic Model",
+          "confirmed": false,
+          "concepts": [
+            "SIR"
+          ],
+          "demoable": true,
+          "why": "Built (vaccinate-at-the-peak has an open fatal verdict: hold its reference row).",
+          "covered_by": [
+            "epidemic-overshoot",
+            "vaccinate-at-the-peak"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "21.4",
+          "title": "The SIS Epidemic Model",
+          "confirmed": false,
+          "concepts": [
+            "SIS / SIRS endemic level"
+          ],
+          "demoable": true,
+          "why": "waves-return (SIRS: susceptibility returns, endemic level 1/R0).",
+          "covered_by": [
+            "waves-return"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "21.5",
+          "title": "Synchronization",
+          "confirmed": false,
+          "concepts": [
+            "recurring waves"
+          ],
+          "demoable": true,
+          "why": "waves-return shows recurring waves (adjacent: random mixing, not the small-world synchronisation model).",
+          "covered_by": [
+            "waves-return"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "21.6",
+          "title": "Transient Contacts and the Dangers of Concurrency",
+          "confirmed": false,
+          "concepts": [
+            "concurrency",
+            "time-respecting paths"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "contact-order-matters"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "21.7",
+          "title": "Genealogy, Genetic Inheritance, and Mitochondrial Eve",
+          "confirmed": false,
+          "corroborated": "University of Toronto slides cite 'Ch 21.7' for Mitochondrial Eve (https://www.cs.toronto.edu/~ianberlot/303s23/docs/comp_W9.pdf; title not shown)",
+          "concepts": [
+            "coalescence",
+            "most recent common ancestor"
+          ],
+          "demoable": true,
+          "why": "Predict whether every woman's maternal line meets in one ancestor (yes, about 2N generations back).",
+          "covered_by": [
+            "all-lines-meet-in-one-mother"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "21.8",
+          "title": "Advanced Material: Analysis of Branching and Coalescent Processes",
+          "confirmed": false,
+          "concepts": [
+            "extinction probability"
+          ],
+          "demoable": true,
+          "why": "Predict how often an R = 1.5 outbreak dies out by chance (42%).",
+          "covered_by": [
+            "outbreak-can-fizzle-above-one"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 22,
+      "title": "Markets and Information",
+      "sections": [
+        {
+          "id": "22.1",
+          "title": "Markets with Exogenous Events",
+          "confirmed": false,
+          "concepts": [
+            "setup"
+          ],
+          "demoable": false,
+          "why": "Sets up the betting model of 22.2.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "22.2",
+          "title": "Horse Races, Betting, and Beliefs",
+          "confirmed": false,
+          "concepts": [
+            "log-utility bets in proportion to beliefs"
+          ],
+          "demoable": true,
+          "why": "One lesson with 22.3.",
+          "covered_by": [
+            "odds-average-the-bettors"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "22.3",
+          "title": "Aggregate Beliefs and the \"Wisdom of Crowds\"",
+          "confirmed": false,
+          "concepts": [
+            "odds = wealth-weighted beliefs"
+          ],
+          "demoable": true,
+          "why": "Predict the market's implied chance: 70% (wealth-weighted), not 60% or 80%.",
+          "covered_by": [
+            "odds-average-the-bettors"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "22.4",
+          "title": "Prediction Markets and Stock Markets",
+          "confirmed": false,
+          "concepts": [
+            "prediction markets"
+          ],
+          "demoable": false,
+          "why": "Survey of real markets; the mechanism is 22.2–22.3.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "22.5",
+          "title": "Markets with Endogenous Events",
+          "confirmed": false,
+          "concepts": [
+            "setup"
+          ],
+          "demoable": false,
+          "why": "Setup for 22.6.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "22.6",
+          "title": "The Market for Lemons",
+          "confirmed": false,
+          "concepts": [
+            "adverse selection"
+          ],
+          "demoable": true,
+          "why": "Built (published).",
+          "covered_by": [
+            "lemon-market-unravels"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "22.7",
+          "title": "Asymmetric Information in Other Markets",
+          "confirmed": false,
+          "concepts": [
+            "insurance",
+            "labour markets"
+          ],
+          "demoable": false,
+          "why": "Applies 22.6's mechanism to insurance and jobs; no new prediction beyond lemon-market-unravels.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "22.8",
+          "title": "Signaling Quality",
+          "confirmed": false,
+          "concepts": [
+            "signalling (Spence)"
+          ],
+          "demoable": true,
+          "why": "Predict whether high-ability workers buy a degree that teaches nothing (yes: 80 > 50; low types: 40 < 50).",
+          "covered_by": [
+            "useless-degree-still-pays"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "22.9",
+          "title": "Quality Uncertainty On-Line: Reputation Systems and Other Mechanisms",
+          "confirmed": false,
+          "concepts": [
+            "reputation systems"
+          ],
+          "demoable": false,
+          "why": "Survey of practice.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "22.10",
+          "title": "Advanced Material: Wealth Dynamics in Markets",
+          "confirmed": false,
+          "concepts": [
+            "market selection"
+          ],
+          "demoable": true,
+          "why": "Predict who ends with the money after 500 races: the accurate bettor (≥ 98.8% in 5 of 5 seeds).",
+          "covered_by": [
+            "accurate-bettor-takes-the-pot"
+          ],
+          "status": "gap"
+        }
+      ]
+    },
+    {
+      "n": 23,
+      "title": "Voting",
+      "sections": [
+        {
+          "id": "23.1",
+          "title": "Voting for Group Decision-Making",
+          "confirmed": false,
+          "concepts": [
+            "why vote"
+          ],
+          "demoable": false,
+          "why": "Introduction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "23.2",
+          "title": "Individual Preferences",
+          "confirmed": false,
+          "concepts": [
+            "complete and transitive preferences"
+          ],
+          "demoable": false,
+          "why": "Definitions.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "23.3",
+          "title": "Voting Systems: Majority Rule",
+          "confirmed": false,
+          "concepts": [
+            "Condorcet cycle"
+          ],
+          "demoable": true,
+          "why": "Batch 1.",
+          "covered_by": [
+            "agenda-picks-the-winner"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "23.4",
+          "title": "Voting Systems: Positional Voting",
+          "confirmed": false,
+          "concepts": [
+            "Borda count",
+            "independence of irrelevant alternatives"
+          ],
+          "demoable": true,
+          "why": "Predict whether dropping the last-placed option can change the Borda winner (it does: B → A).",
+          "covered_by": [
+            "the-loser-flips-the-winner"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "23.5",
+          "title": "Arrow's Impossibility Theorem",
+          "confirmed": false,
+          "concepts": [
+            "Arrow's theorem"
+          ],
+          "demoable": false,
+          "why": "An impossibility over all voting rules; no stage can show every rule failing. Its checkable pieces are 23.3 and 23.4.",
+          "covered_by": [],
+          "status": "not-demoable"
+        },
+        {
+          "id": "23.6",
+          "title": "Single-Peaked Preferences and the Median Voter Theorem",
+          "confirmed": false,
+          "concepts": [
+            "median voter theorem"
+          ],
+          "demoable": true,
+          "why": "Predict which position beats every other: the median (3), not the mean (4.8).",
+          "covered_by": [
+            "the-middle-voter-decides"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "23.7",
+          "title": "Voting as a Form of Information Aggregation",
+          "confirmed": false,
+          "concepts": [
+            "Condorcet jury theorem"
+          ],
+          "demoable": true,
+          "why": "Built (ai, published).",
+          "covered_by": [
+            "five-weak-voters"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "23.8",
+          "title": "Insincere Voting for Information Aggregation",
+          "confirmed": false,
+          "concepts": [
+            "pivotal reasoning"
+          ],
+          "demoable": true,
+          "why": "One lesson with 23.9.",
+          "covered_by": [
+            "the-pivotal-juror-convicts"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "23.9",
+          "title": "Jury Decisions and the Unanimity Rule",
+          "confirmed": false,
+          "concepts": [
+            "unanimity",
+            "strategic voting"
+          ],
+          "demoable": true,
+          "why": "Predict a juror's best vote with an innocent clue under unanimity: when pivotal, guilt is 70% likely.",
+          "covered_by": [
+            "the-pivotal-juror-convicts"
+          ],
+          "status": "gap"
+        },
+        {
+          "id": "23.10",
+          "title": "Sequential Voting and the Relation to Information Cascades",
+          "confirmed": false,
+          "concepts": [
+            "sequential public votes cascade"
+          ],
+          "demoable": true,
+          "why": "Same mechanism as two-said-blue (public sequential choices); ask cm-probability-statistics to add ch. 23 to its references.",
+          "covered_by": [
+            "two-said-blue"
+          ],
+          "status": "batch1"
+        },
+        {
+          "id": "23.11",
+          "title": "Advanced Material: A Proof of Arrow's Impossibility Theorem",
+          "confirmed": false,
+          "concepts": [
+            "proof"
+          ],
+          "demoable": false,
+          "why": "A proof.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "title": "Property Rights",
+      "sections": [
+        {
+          "id": "24.1",
+          "title": "Externalities and the Coase Theorem",
+          "confirmed": false,
+          "concepts": [
+            "externality",
+            "Coase theorem"
+          ],
+          "demoable": true,
+          "why": "Externality built (loaf-with-smoke). Coase theorem is a concept gap inside this section: briefed as who-pays-same-filter (does not change section coverage).",
+          "covered_by": [
+            "loaf-with-smoke"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "24.2",
+          "title": "The Tragedy of the Commons",
+          "confirmed": false,
+          "concepts": [
+            "tragedy of the commons"
+          ],
+          "demoable": true,
+          "why": "Built (review).",
+          "covered_by": [
+            "shared-pasture"
+          ],
+          "status": "covered"
+        },
+        {
+          "id": "24.3",
+          "title": "Intellectual Property",
+          "confirmed": false,
+          "concepts": [
+            "patents",
+            "copyright"
+          ],
+          "demoable": false,
+          "why": "Policy discussion with no single checkable prediction.",
+          "covered_by": [],
+          "status": "not-demoable"
+        }
+      ]
+    }
+  ]
+}

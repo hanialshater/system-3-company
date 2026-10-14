@@ -22,3 +22,8 @@ Trade-off for the QA contract: the contract presses the years slider (10 → 12)
 
 Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Title no longer leaks ("Ten years in, $1,967. And at forty?"); legend says "interest on past interest"; "Plain 7% only" readout puts $3,800 on stage; reveal shortened. c3 edited, unverified.
 QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.
+
+## Revision v4
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Locked chart no longer shows the $15k axis: gridlines and labels are hidden and the vertical scale fits only the year-10 balance until the learner commits. The dashed line's end is labelled 'first-decade pace: $4,900' at 40 years. c10 reworded, unverified.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

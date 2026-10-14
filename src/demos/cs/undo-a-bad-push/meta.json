@@ -35,18 +35,18 @@
     },
     {
       "id": "cs.undo-a-bad-push.c2",
-      "text": "Sending that unit back along a-b opens s -> b -> a -> t, for a total of 2.",
+      "text": "A new route may run backwards along a pipe that carries water; sending that unit back along a-b opens s -> b -> a -> t, for a total of 2.",
       "support": "derivation",
-      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2. | FACT-CHECK 2026-10-14 (pass 10): Residual after zig: s-b, b->a (reverse), a-t free; augment gives all four outer pipes at 1, a-b 0, total 2.",
+      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2. | FACT-CHECK 2026-10-14 (pass 10): Residual after zig: s-b, b->a (reverse), a-t free; augment gives all four outer pipes at 1, a-b 0, total 2. | FACT-CHECK 2026-10-14 (pass 19): Re-checked against Demo.tsx sendBack(): from zig flow (sa 1, ab 1, bt 1) it sets ab 0, sb 1, at 1; conservation holds at a (in 1, out 1) and b (in 1, out 1); total at+bt = 2. This is augmenting along residual path s->b->a->t.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.undo-a-bad-push.c3",
-      "text": "Both pipes out of s are full, so nothing can beat 2: no flow is bigger than the smallest cut.",
+      "text": "Both pipes out of s are full, and those two pipes are a cut (remove them and s is cut off from t); no flow is bigger than the smallest cut, so nothing can beat 2.",
       "support": "source",
-      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 10): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; min 2. CLRS 3rd ed. Corollary 26.5.",
+      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 10): Own cut enumeration: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; min 2. CLRS 3rd ed. Corollary 26.5. | FACT-CHECK 2026-10-14 (pass 19): Own enumeration of directed s-t cuts: {s} 2, {s,a} 3, {s,b} 2 (s-a, b-t), {s,a,b} 2; min 2 = flow, so flow is maximum (weak duality, CLRS 3e Cor. 26.5, from memory). After sendBack, sa = sb = 1 (both full); the stage draws the cut when total is 2, and both pipes from s are full in every total-2 state.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -80,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:max-flow",
     "prerequisites": [

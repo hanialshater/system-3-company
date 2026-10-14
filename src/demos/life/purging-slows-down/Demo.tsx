@@ -38,7 +38,8 @@ function picture(q: number) {
 
 // Chart: share of bad copies (0..10%) against generation (0..TO_TARGET).
 const CX0 = 30, CX1 = 292, CY0 = 8, CY1 = 74;
-const cx = (g: number) => CX0 + ((CX1 - CX0) * g) / TO_TARGET;
+const X_MAX = 120; // axis runs past the answer so its end gives nothing away; ticks appear after the guess
+const cx = (g: number) => CX0 + ((CX1 - CX0) * g) / X_MAX;
 const cy = (q: number) => CY1 - ((CY1 - CY0) * q) / Q0;
 
 function Stage({ locked, gen: genSet, revealing, onStep, onRun, onReset }: {
@@ -69,10 +70,10 @@ function Stage({ locked, gen: genSet, revealing, onStep, onRun, onReset }: {
       <svg viewBox="0 0 300 100" className={`stage-svg ${s.chart}`} role="img" aria-label={`Share of bad copies by generation: ${pct(q)} at generation ${gen}`}>
         <line x1={CX0} y1={CY1} x2={CX1} y2={CY1} className={s.line} />
         <line x1={CX0} y1={CY0} x2={CX0} y2={CY1} className={s.line} />
-        {[0, 0.05, 0.1].map((v) => (
+        {(locked ? [0.1] : [0, 0.05, 0.1]).map((v) => (
           <text key={v} x={CX0 - 3} y={cy(v) + 3} textAnchor="end" className={s.axis}>{Math.round(v * 100)}%</text>
         ))}
-        {[0, 10, 50, 90].map((g) => (
+        {(locked ? [] : [0, 10, 50, 90]).map((g) => (
           <text key={g} x={cx(g)} y={CY1 + 11} textAnchor="middle" className={s.axis}>{g}</text>
         ))}
         <text x={(CX0 + CX1) / 2} y={CY1 + 22} textAnchor="middle" className={s.axis}>generations</text>

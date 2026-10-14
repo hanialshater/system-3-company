@@ -4,3 +4,11 @@
 - Brief's second "drag the observed rate" control dropped to keep one target and one representation.
 - Key state: predicted rate matches 75% (milestone "matched-75"), reached by the second button on the QA path. Point and readouts hidden while locked.
 - Node check: fittedGap(0.75) = 1.0986; sigmoid(0.75) 67.9%, (1) 73.1%, (1.1) 75.03%, (3) 95.3%; only 1.1 matches among slider steps near it.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- The S-curve is drawn only after the prediction (locked stage keeps axes and the 75% line).
+- No claim text changed.

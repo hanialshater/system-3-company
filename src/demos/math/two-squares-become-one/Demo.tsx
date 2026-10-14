@@ -48,7 +48,7 @@ export default function TwoSquaresBecomeOne({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The long side is <strong>5</strong>. You moved three triangles without turning them, so the empty space kept
+            The long side is <strong>5</strong>. You slid three of the four triangles without turning them, so the empty space kept
             its size. As one tilted square it is c × c; as two squares it is 3 × 3 + 4 × 4 = 9 + 16 = 25. So c × c = 25
             and c = 5.
           </p>

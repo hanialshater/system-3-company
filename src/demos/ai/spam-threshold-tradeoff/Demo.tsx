@@ -7,7 +7,8 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 // MODEL START
@@ -63,11 +64,11 @@ export default function SpamThresholdTradeoff({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Ten emails with spam scores: spam 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Flagging 0.5 or more catches 4 of 5 spam and flags 1 real email. Lower the threshold to 0.25. What happens?",
-        options: ["More spam caught and more real mail flagged", "More spam caught, no extra real mail flagged", "Nothing changes"],
-        answer: 0,
+          "Ten emails with spam scores: spam 0.9, 0.8, 0.7, 0.5, 0.3; real mail 0.6, 0.4, 0.3, 0.2, 0.1. Flagging 0.5 or more catches 4 of 5 spam and flags 1 real email. Lower the threshold to 0.25. How many real emails are flagged then?",
+        options: ["Still 1", "2", "3"],
+        answer: 2,
       }}
-      exploreHint="Drag the threshold down to 0.25, then up past 0.6."
+      exploreHint="Try 0.25, then 0.65, or drag the slider."
       minInteractions={2}
       reveal={() => (
         <>
@@ -88,6 +89,14 @@ export default function SpamThresholdTradeoff({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
+        <Milestones interact={interact} names={["low-0.25", "high-0.65"]}>
+        {(reach) => {
+          const go = (v: number) => {
+            setT(v);
+            if (v <= 25) reach("low-0.25");
+            if (v >= 65) reach("high-0.65");
+          };
+          return (
         <div className={s.wrap}>
           <svg viewBox="0 0 320 168" className="stage-svg" role="img" aria-label={`Threshold ${f2(t)}: ${c.caught} spam caught, ${c.falseFlags} real flagged`}>
             <rect x={px(t)} y={18} width={R + 10 - px(t)} height={122} fill="var(--domain)" opacity={0.12} />
@@ -117,6 +126,14 @@ export default function SpamThresholdTradeoff({ slug }: { slug: string }) {
           <p className={s.msg} aria-live="polite">
             {message(locked)}
           </p>
+          <Row>
+            <Control disabled={locked} onClick={() => go(25)}>
+              Try 0.25
+            </Control>
+            <Control disabled={locked} onClick={() => go(65)}>
+              Try 0.65
+            </Control>
+          </Row>
           <Slider
             label="Flag if score ≥"
             value={t}
@@ -125,16 +142,16 @@ export default function SpamThresholdTradeoff({ slug }: { slug: string }) {
             step={5}
             format={f2}
             disabled={locked}
-            onChange={(v) => {
-              setT(v);
-              interact();
-            }}
+            onChange={go}
           />
           <Row>
             <Readout label="Spam caught" value={`${c.caught} of 5`} />
             <Readout label="Real mail flagged" value={<span className={c.falseFlags ? s.bad : ""}>{`${c.falseFlags} of 5`}</span>} />
           </Row>
         </div>
+          );
+        }}
+        </Milestones>
       )}
     </Lesson>
   );

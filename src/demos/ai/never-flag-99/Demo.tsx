@@ -6,7 +6,7 @@
 // 20 catches 8 of 10 frauds yet scores 98.6%, lower than doing nothing. Accuracy
 // rewards ignoring the rare class.
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import s from "./styles.module.css";
@@ -47,19 +47,27 @@ const pct = (a: number) => `${(100 * a).toFixed(1)}%`;
 
 export default function NeverFlag99({ slug }: { slug: string }) {
   const [flagged, setFlagged] = useState(0);
+  const [seen, setSeen] = useState(20); // the first setting the learner reached where accuracy fell below approve-all
   const sc = score(flagged);
   const base = score(0);
+  const reached = useRef(false);
+  const seenSc = score(seen);
 
   // The reveal waits for the key moment: catching fraud while accuracy drops below "approve all".
   const set = (v: number, interact: () => void) => {
     setFlagged(v);
-    if (score(v).accuracy < base.accuracy) interact();
+    if (score(v).accuracy < base.accuracy) {
+      if (!reached.current) setSeen(v);
+      reached.current = true;
+      interact();
+    }
   };
 
   const message = (locked: boolean) => {
     if (locked) return "Lock in a guess to start.";
     if (flagged === 0) return "Every payment approved.";
     if (sc.accuracy < base.accuracy) return "More fraud caught, yet accuracy fell.";
+    if (sc.accuracy > base.accuracy) return "Catches still outnumber false alarms. Keep going.";
     return "Riskiest first. Keep going.";
   };
 
@@ -77,11 +85,11 @@ export default function NeverFlag99({ slug }: { slug: string }) {
         <>
           <p>
             Approving everything scored <strong>{pct(base.accuracy)}</strong>: right on all 990 genuine payments, wrong
-            on all 10 frauds. It caught <strong>0</strong>.
+            on all 10 frauds (the red outlines). It caught <strong>0</strong>.
           </p>
           <p>
-            Flagging the riskiest 20 caught <strong>{score(20).caught} of 10</strong>, yet scored{" "}
-            <strong>{pct(score(20).accuracy)}</strong>, lower than doing nothing, because {score(20).falseAlarms}{" "}
+            Flagging the riskiest {seen} caught <strong>{seenSc.caught} of 10</strong>, yet scored{" "}
+            <strong>{pct(seenSc.accuracy)}</strong>, lower than doing nothing, because {seenSc.falseAlarms}{" "}
             genuine payments were flagged too. When one class is rare, accuracy rewards ignoring it. Ask instead how
             many of the cases you care about it catches.
           </p>
@@ -92,7 +100,7 @@ export default function NeverFlag99({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact, phase }) => (
+      {({ locked, interact }) => (
         <div className={s.wrap}>
           <svg
             viewBox={`0 0 ${COLS * CELL} ${(TOTAL / COLS) * CELL}`}
@@ -104,7 +112,7 @@ export default function NeverFlag99({ slug }: { slug: string }) {
               const rank = RANK_OF_CELL[cell];
               const isFlagged = rank < flagged;
               const fraud = FRAUD.has(rank);
-              const cls = isFlagged ? (fraud ? s.caught : s.alarm) : fraud && phase === "reveal" ? s.missed : s.ok;
+              const cls = isFlagged ? (fraud ? s.caught : s.alarm) : fraud && !locked ? s.missed : s.ok;
               return (
                 <rect
                   key={cell}
@@ -126,6 +134,10 @@ export default function NeverFlag99({ slug }: { slug: string }) {
             <span>
               <i className={s.caught} />
               caught fraud
+            </span>
+            <span>
+              <i className={s.missed} />
+              missed fraud
             </span>
             <span>
               <i className={s.alarm} />

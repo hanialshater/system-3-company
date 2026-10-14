@@ -8,3 +8,8 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Earned reveal: milestones 'edge' (48.6 degrees) and 'sixty'. QA path: start 45 -> 48.6 -> 60, so the last screen is the question's state with no exit ray. The reveal quotes 45 (start, seen on unlock: 86% out, leaves at 70.5 degrees), 48.6 and 60.
 - Numbers (node): theta_c 48.61 deg; exit angles 30 -> 41.8, 40 -> 59.0, 45 -> 70.5; Fresnel R 0 deg 2.0%, 45 deg 13.9%.
 - After screenshots: phone reads cleanly at 60 degrees; left as built.
+
+## Revision v2
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Added 'Tilt one step more' as the first control: stepping from 45 to 48.6 to 60 degrees shows the exit ray flatten and vanish with live percentages. Milestones are now 'edge' (48.6) and 'past' (60 or more). Claims unchanged.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

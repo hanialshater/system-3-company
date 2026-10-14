@@ -18,3 +18,7 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 
 Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Hook no longer leaks; chips renamed in plain words ("highest minus lowest", "more than 1 from 0"); stage text says the same 30 runs are re-read, and at 10,000 draws shows the farthest dot (24.7) and its one draw of 250,115; Cauchy glossed in the question. c4 edited, unverified.
 QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.
+
+## Revision v4
+
+Review 2026-10-14 r2: the title answered the question. Retitled 'Does every average settle?'. No code change.

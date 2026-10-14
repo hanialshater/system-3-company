@@ -26,6 +26,7 @@ only the container.
 - `*` **Numbers the learner can feel.** 8 cards, 23 people, 10 folds. Big numbers go in the reveal.
 - `*` **Prefer manipulation to animation.** Sliders and taps over play buttons; if there is a play button there is also a step button.
 - `*` **Earn the reveal** (pattern `earn-the-reveal`). Name the key state and gate the reveal on reaching it, by calling `interact()` only for steps toward it. Write the reveal from what the learner actually saw. Make the question's numbers match the stage exactly.
+- `*` **Show the why you promised.** If the brief lists a cause in doesNotKnow, or the objective asks the learner to explain it, something on the stage must stand for that cause and the reveal must point at it; a told sentence alone is a revise. Context outside the brief's gap may be told in one claimed sentence. (Decision `company/decisions/2026-10-14-told-vs-shown.md`.)
 - **Text budget.** Stage text ≤ 25 words at any moment. The reveal ≤ 120 words.
 - **No bluffing.** Every factual sentence in the hook, stage or reveal is a claim in `meta.json → claims` with its support and source.
 

@@ -1,0 +1,109 @@
+{
+  "slug": "any-start-same-tree",
+  "title": "Start somewhere else",
+  "hook": "Grow a cable network from another town. Does the bill change?",
+  "domain": "cs",
+  "concept": "prim-mst",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cheapest-first cables without loops (connect-the-towns-cheaply)"
+    ],
+    "doesNotKnow": [
+      "that growing the network from one town also works, from any town"
+    ]
+  },
+  "misconception": "Grow the network from a different town and you end up with a different total cost.",
+  "objective": "The learner can explain that the cheapest cable across any split of the towns is always part of the cheapest network, so the starting town changes only the order cables are added, not which cables are chosen.",
+  "claims": [
+    {
+      "id": "cs.any-start-same-tree.c1",
+      "text": "Growing from A adds AC, BC, BD, DE (total 11). Growing from E adds DE, BD, BC, AC (total 11). From B: BC, AC, BD, DE; from C: AC, BC, BD, DE; from D: DE, BD, BC, AC. All total 11.",
+      "support": "simulation",
+      "source": "Builder's node script (scratchpad prim.mjs), 2026-10-14: Prim from each start on AB 4, AC 1, BC 2, BD 5, CD 8, CE 10, DE 3, BE 6 (brief #30 fixed by the coordinator: DE 3). At every step the cheapest crossing cable was unique. · Fact-check pass 19 2026-10-14: Own node Prim from each of the 5 starts on the Demo.tsx CABLES: orders A: AC,BC,BD,DE; B: BC,AC,BD,DE; C: AC,BC,BD,DE; D and E: DE,BD,BC,AC; all total 11; no tie for the cheapest crossing cable at any step.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.any-start-same-tree.c2",
+      "text": "Whatever towns you have joined, the cheapest cable across the split between joined and unjoined towns is always part of the cheapest network.",
+      "support": "source",
+      "source": "The cut property: CLRS 3rd ed. section 23.1, Theorem 23.1 (safe edge), used by Prim's algorithm in section 23.2; Prim 1957, 'Shortest connection networks and some generalizations', Bell System Technical Journal 36. · Fact-check pass 19 2026-10-14: Cut property, CLRS 3e Theorem 23.1 (4e Theorem 21.1): a light edge crossing any cut respecting A is safe. With distinct costs the light edge is unique and the MST is unique, so 'part of the cheapest network' holds as stated. Prim 1957, BSTJ 36(6): 1389-1401 (recalled, not opened).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.any-start-same-tree.c3",
+      "text": "Because every cable costs a different amount, only one of the 40 possible networks (4 cables joining all 5 towns without a loop) costs 11; the next cheapest costs 12.",
+      "support": "simulation",
+      "source": "Builder's node script over all 70 four-cable subsets: 40 form a spanning tree; costs 11 once, 12 once. Matches the theorem that distinct costs give a unique cheapest network (CLRS 3rd ed. exercise 23.1-6). Spec's earlier note (BC = DE = 2) is resolved by DE = 3. · Fact-check pass 19 2026-10-14: Own node over all 70 four-cable subsets: 40 spanning trees, costs sorted 11, 12, 13, 14, 14, ...; 11 occurs once.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.any-start-same-tree.c4",
+      "text": "So the starting town changes only the order the cables are added, not the network.",
+      "support": "derivation",
+      "source": "From c2: each step adds a cable that belongs to the cheapest network, and that network is unique (c3), so every start ends on the same four cables. The stage shows the identical thick cables with reversed order badges. · Fact-check pass 19 2026-10-14: Follows from c2 and c3, confirmed by c1's simulation (same four cables from every start).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You grow a cheapest cable network from town X and your friend from town Y, always adding the cheapest cable that reaches a new town. If no two cables cost the same, how do your networks compare?",
+    "options": [
+      "Same cables, possibly added in a different order",
+      "Different cables, different totals",
+      "Different cables, same total"
+    ],
+    "answer": 0,
+    "why": "The cheapest cable across any split is always part of the cheapest network, so both of you pick from the same set of cables. Only the order depends on the start."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:prim-mst",
+    "also": [],
+    "prerequisites": [
+      "cs:minimum-spanning-tree"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 21,
+        "section": "21.2",
+        "note": "Prim's algorithm and the cut property (3rd ed. 23.1-23.2)"
+      }
+    ],
+    "tags": [
+      "graphs",
+      "greedy",
+      "prim",
+      "cut-property"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "side-by-side",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

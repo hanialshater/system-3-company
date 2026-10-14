@@ -865,6 +865,464 @@
       "subarea": "algorithms"
     },
     {
+      "id": "shell-sort",
+      "name": "Shell sort: far-apart passes first",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "insertion-sort",
+        "big-o-growth"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "bubble-turtles",
+      "name": "Bubble sort: why a small value at the end crawls",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "insertion-sort"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "bucket-sort",
+      "name": "Bucket sort: speed depends on the spread",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "counting-sort",
+        "insertion-sort"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "bogosort-expectation",
+      "name": "Bogosort: the cost of try-again sorting",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "combinatorial-explosion"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "exponential-search",
+      "name": "Exponential search: doubling to find the range",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "binary-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "ternary-search",
+      "name": "Ternary search: three parts cost more questions",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "binary-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "longest-common-subsequence",
+      "name": "Longest common subsequence",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "memoization",
+        "edit-distance"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "rod-cutting",
+      "name": "Rod cutting: the best price may be pieces",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "memoization",
+        "coin-change-ways"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "matrix-chain-order",
+      "name": "Matrix chain: the order of multiplying sets the cost",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "rod-cutting"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "kruskal-mst",
+      "name": "Kruskal: cheapest first unless it makes a loop",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "minimum-spanning-tree",
+        "union-find"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "graph-colouring-backtracking",
+      "name": "Graph colouring by backtracking",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "n-queens-backtracking"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "knights-tour-warnsdorff",
+      "name": "Knight's tour: fewest exits first",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "n-queens-backtracking",
+        "greedy-failure"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "karatsuba",
+      "name": "Karatsuba: three multiplications, not four",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "divide-and-conquer",
+        "big-o-growth"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "inversion-count",
+      "name": "Counting inversions while merging",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "divide-and-conquer"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "boyer-moore-horspool",
+      "name": "Boyer-Moore: reading backwards to skip",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "kmp-string-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "palindrome-centres",
+      "name": "Palindromic substrings from each centre",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "two-pointers"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "anagram-grouping",
+      "name": "Grouping anagrams by letter counts",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "counting-sort",
+        "hashing-collisions"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "consistent-hashing",
+      "name": "Consistent hashing",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "hashing-collisions"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "fenwick-tree",
+      "name": "Fenwick tree: prefix sums by lowest set bit",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "bit-masks",
+        "twos-complement"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "segment-tree",
+      "name": "Segment tree: ranges from a few nodes",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "divide-and-conquer",
+        "heap-priority-queue"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "avl-rotation",
+      "name": "Rotations keep a search tree short",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "binary-search-tree"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "circular-buffer",
+      "name": "Circular buffer: write index wraps",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "stack-and-queue",
+        "linked-list-vs-array"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "monotonic-stack",
+      "name": "Monotonic stack: next bigger value",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "stack-and-queue",
+        "big-o-growth"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "two-heap-median",
+      "name": "Running median with two heaps",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "heap-priority-queue"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "clear-lowest-bit",
+      "name": "x & (x-1): clearing the lowest 1 bit",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "bit-masks",
+        "twos-complement"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "gray-code",
+      "name": "Gray code: one bit flips per step",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "binary-numbers",
+        "bit-masks"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "xor-cancel",
+      "name": "XOR cancels pairs",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "bit-masks"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "modular-inverse",
+      "name": "Extended Euclid and the modular inverse",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "euclid-gcd",
+        "fast-exponentiation"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "carmichael-fermat",
+      "name": "Fermat test fooled; Miller-Rabin not",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "fast-exponentiation",
+        "euclid-gcd"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "newton-sqrt",
+      "name": "Newton's method for square roots",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "floating-point"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "collatz-steps",
+      "name": "The 3n+1 sequence",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "recursion"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "josephus-problem",
+      "name": "Josephus: who survives?",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "recursion"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "point-in-polygon",
+      "name": "Point in polygon: count the crossings",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "shoelace-area",
+      "name": "Shoelace area and corner order",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "strongly-connected-components",
+      "name": "Strongly connected components",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "depth-first-search",
+        "topological-sort"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "bridges-in-graphs",
+      "name": "Bridges: one edge whose loss disconnects",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "depth-first-search"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "reservoir-sampling",
+      "name": "Reservoir sampling",
+      "level": "core",
+      "demand": 1,
+      "prerequisites": [
+        "fisher-yates-shuffle"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "rule-30",
+      "name": "Elementary cellular automata: Rule 30",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "game-of-life"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "edge-filter",
+      "name": "Edge detection by differencing neighbours",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "pixels-rgb"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "round-robin-scheduling",
+      "name": "Round-robin scheduling",
+      "level": "intro",
+      "demand": 1,
+      "prerequisites": [
+        "shortest-job-first"
+      ],
+      "subarea": "algorithms"
+    },
+    {
+      "id": "edge-betweenness-communities",
+      "name": "Edge betweenness and Girvan–Newman community splitting",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "graph-shortest-path"
+      ],
+      "subarea": "algorithms",
+      "course": "ncm",
+      "proposed": true
+    },
+    {
+      "id": "hubs-authorities",
+      "name": "Hubs and authorities (HITS)",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "graph-shortest-path"
+      ],
+      "subarea": "algorithms",
+      "course": "ncm"
+    },
+    {
+      "id": "pagerank-random-walk",
+      "name": "PageRank as a random surfer's long-run share",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "probability:random-walk"
+      ],
+      "subarea": "algorithms",
+      "course": "ncm"
+    },
+    {
+      "id": "price-of-anarchy",
+      "name": "Price of anarchy: selfish routing costs up to 4/3",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "weighted-shortest-path"
+      ],
+      "subarea": "systems",
+      "course": "ncm"
+    },
+    {
       "id": "braess-paradox",
       "name": "Braess paradox: a free new road slows every trip",
       "level": "core",

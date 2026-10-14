@@ -52,12 +52,12 @@
     },
     {
       "id": "ai.ten-test-cases.c4",
-      "text": "Only more held-out cases shrink the noise in a test score.",
-      "support": "source",
-      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.2 (test error estimation needs enough held-out data). Within the toy the spread depends only on n (derivation above); 'only' is about the score of a fixed model.",
+      "text": "In this toy, more held-out cases shrink the noise in a test score: the spread falls as 1/√n.",
+      "support": "derivation",
+      "source": "Hastie, Tibshirani & Friedman 2009, The Elements of Statistical Learning, 2nd ed., §7.2 (test error estimation needs enough held-out data). Within the toy the spread depends only on n (derivation above); 'only' is about the score of a fixed model. · Fact-check pass 19 2026-10-14: DISPUTED. 'Only' is a universal the source does not support: ESL 2e 7.2 discusses held-out test error but not that sample size is the sole lever; stratified or paired evaluation also cuts score variance for a fixed model. Within the toy (iid cases, fixed p) SD = sqrt(p(1-p)/n) depends on n alone, so the scoped claim is true. Fix (builder): drop 'Only', e.g. 'More held-out cases shrink the noise: the spread falls as 1/sqrt(n)', or scope it to this toy; then re-cite as derivation. | v2 (2026-10-14, builder): \"Only\" dropped and the claim scoped to the toy, per pass 19. Derivation: with iid cases and fixed p = 0.8 the score SD is 100 × √(p(1-p)/n) (spreadPts in Demo.tsx), which falls as 1/√n; ESL 2e §7.2 kept as background only. Previous verdict void; needs re-check. | FACT-CHECK 2026-10-14 (pass 20): Reveal sentence matches claim verbatim; spreadPts(n) = 100*sqrt(0.16/n) gives 12.6 at n=10 and 1.3 at n=1000, ratio sqrt(100) = 10, i.e. 1/sqrt(n). Scoped to the toy, so the pass-19 objection is answered.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -81,7 +81,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:train-test-split",
     "prerequisites": [

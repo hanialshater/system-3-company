@@ -1,0 +1,13 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.panels { display: flex; gap: 6px; justify-content: center; }
+.panel { flex: 1 1 0; min-width: 0; max-height: none; }
+.tap { min-height: 44px; }
+.title { font-size: 11px; font-weight: 800; fill: var(--fg); }
+.letter { font-size: 12px; font-weight: 800; fill: var(--muted); }
+.numOn { font-size: 13px; font-weight: 800; fill: var(--bg); }
+.hops { font-size: 8.5px; fill: var(--muted); }
+.small { font-size: 9px; fill: var(--muted); }
+.tile { font-size: 13px; font-weight: 800; fill: var(--fg); }
+.order { font-size: 10px; font-weight: 800; fill: var(--fg); letter-spacing: 0.04em; }

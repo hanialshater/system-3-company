@@ -61,7 +61,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         projection={projection}
         width={W}
         height={H}
-        label={lon === null ? "Equirectangular map of the Americas with Miami and Lima marked." : `Equirectangular map of the Americas. The meridian ${west(lon)} crosses ${list.join(", ")}.`}
+        label={lon === null ? locked ? "Equirectangular map of the Americas." : "Equirectangular map of the Americas with Miami and Lima marked." : `Equirectangular map of the Americas. The meridian ${west(lon)} crosses ${list.join(", ")}.`}
       >
         {({ projection: proj }) => {
           const m = proj([MIAMI.lon, MIAMI.lat]);
@@ -70,15 +70,15 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           return (
             <>
               {x && <line x1={x[0]} y1={0} x2={x[0]} y2={H} stroke="var(--bad)" strokeWidth={1.6} />}
-              {m && (
+              {m && !locked && (
                 <g>
                   <circle cx={m[0]} cy={m[1]} r={3.5} fill="var(--fg)" />
-                  <text x={m[0] + 6} y={m[1] + 12} fontSize={9.5} fill="var(--fg)">
+                  <text x={m[0] - 6} y={m[1] + 3} textAnchor="end" fontSize={9.5} fill="var(--fg)">
                     Miami
                   </text>
                 </g>
               )}
-              {l && (
+              {l && !locked && (
                 <g>
                   <circle cx={l[0]} cy={l[1]} r={3.5} fill="var(--fg)" />
                   <text x={l[0] + 6} y={l[1] + 3} fontSize={9.5} fill="var(--fg)">

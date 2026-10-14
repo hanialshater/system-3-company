@@ -6,3 +6,7 @@
 - Deviation from brief: no target number (the caption's decomposition does that work); kept to one representation.
 - After screenshots: the title "Counting past 1000 on ten fingers" gave away the answer among the options; renamed "How far can ten fingers count?".
 - All numbers recomputed with node; all claims unverified, for the fact-checker.
+
+## Revision v2
+
+Learner review round 2. The finger values (512 ... 1) are hidden while the stage is locked and appear on unlock. Hook no longer says each finger means something different. Claims unchanged.

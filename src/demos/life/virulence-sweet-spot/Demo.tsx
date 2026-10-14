@@ -46,6 +46,16 @@ function Stage({ locked, v, tried, pick }: { locked: boolean; v: number | null; 
         ))}
         <text x={W - R} y={H - 1} textAnchor="end" className={s.axis}>harm v (log scale) →</text>
         <text x={L + 2} y={T - 2} className={s.axis}>R0</text>
+        {!locked && PRESETS.every((p) => tried.includes(p)) && (
+          <polyline
+            points={Array.from({ length: 41 }, (_, i) => {
+              const x = Math.pow(10, LX0 + ((LX1 - LX0) * i) / 40);
+              return `${px(x).toFixed(1)},${py(r0(x)).toFixed(1)}`;
+            }).join(" ")}
+            className={s.line}
+            style={{ strokeDasharray: "3 3", opacity: 0.6 }}
+          />
+        )}
         {!locked && pts.length > 1 && (
           <polyline points={pts.map((p) => `${px(p).toFixed(1)},${py(r0(p)).toFixed(1)}`).join(" ")} className={s.line} />
         )}
@@ -83,7 +93,7 @@ export default function VirulenceSweetSpot({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Toy germ. Harm v removes carriers at v per day, on top of 1 per day recovery, and it spreads 4 × √v new cases per carrier per day. R0 is new cases per carrier over the whole infection. Which harm gives the highest R0?",
+          "Toy germ. A more harmful strain infects faster, but its carriers stay sick for fewer days. Example, harm 0.25: 2.0 new cases a day for 0.8 days, so R0 = 1.6 new cases per carrier in all. Which harm gives the highest R0?",
         options: ["v = 0.25", "v = 1", "v = 4"],
         answer: 1,
       }}

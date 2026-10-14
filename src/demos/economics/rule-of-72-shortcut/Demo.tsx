@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const XMAX = 25;
@@ -42,7 +43,8 @@ export default function RuleOf72({ slug }: { slug: string }) {
         options: ["About 8 years", "About 11 years", "About 16 years"],
         answer: 0,
       }}
-      exploreHint="Set the rate to 9%. Compare the dot with the triangle."
+      exploreHint="Try 9%, then the lowest and highest rates. Compare the dot with the triangle."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -50,19 +52,23 @@ export default function RuleOf72({ slug }: { slug: string }) {
             almost on the dot. 100 ÷ 9 = 11 years is the dashed line, growth with no interest on interest.
           </p>
           <p>
-            Divide 72 by the yearly rate to estimate the doubling time. You saw it is closest around 6% to 10% and
-            drifts at the ends: at 3% it says 24 years (exact 23.4); at 20% it says 3.6 (exact 3.8). Close enough for
-            mental arithmetic.
+            Divide 72 by the yearly rate to estimate the doubling time. 72 suits mental arithmetic because it divides evenly by
+            many rates (2, 3, 4, 6, 8, 9, 12). You saw it is closest around 6% to 10% and drifts at the ends: at 3% it says 24
+            years (exact 23.4); at 20% it says 3.6 (exact 3.8).
           </p>
           <p className="muted">A shortcut for steady yearly compounding, not a forecast of any return.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["nine", "low-end", "high-end"]}>
+          {(reach) => {
         const set = (v: number) => {
           const r = Math.max(3, Math.min(20, Math.round(v)));
           setRate(r);
-          if (r === 9) interact(); // the reveal is earned at the brief's 9%
+          if (r === 9) reach("nine"); // the brief's 9%
+          if (r === 3) reach("low-end"); // the reveal quotes both ends, so the learner must visit them
+          if (r === 20) reach("high-end");
         };
         return (
           <div className={s.wrap}>
@@ -84,7 +90,7 @@ export default function RuleOf72({ slug }: { slug: string }) {
                 <>
                   <line x1={px(0)} y1={py(100)} x2={px(simple)} y2={py(simple <= XMAX ? 200 : 100 + rate * XMAX)} className={s.ghost} />
                   {simple <= XMAX && (
-                    <text x={Math.min(px(simple) + 4, R - 70)} y={py(200) + (simple <= XMAX - 6 ? 14 : 24)} className={s.axis}>
+                    <text x={R} textAnchor="end" y={py(200) + (simple <= XMAX - 6 ? 14 : 24)} className={s.axis}>
                       no compounding: {simple.toFixed(1)}
                     </text>
                   )}
@@ -105,18 +111,24 @@ export default function RuleOf72({ slug }: { slug: string }) {
 
             <Row>
               <Readout label="Exact" value={locked ? "?" : `${T.toFixed(2)} yrs`} />
-              <Readout label="72 ÷ rate" value={locked ? "?" : `${est.toFixed(2)} yrs`} />
+              <Readout label={locked ? "Shortcut" : "72 ÷ rate"} value={locked ? "?" : `${est.toFixed(2)} yrs`} />
               <Readout label="Off by" value={locked ? "?" : `${Math.abs(est - T).toFixed(2)} yrs`} />
             </Row>
             <Row>
               <Slider label="Yearly rate" value={rate} min={3} max={20} disabled={locked} format={(v) => `${v}%`} onChange={set} />
-              <Control disabled={locked || rate === 9} onClick={() => set(9)}>
-                9%
-              </Control>
+            </Row>
+            <Row>
+              {[9, 3, 20].map((v) => (
+                <Control key={v} disabled={locked || rate === v} onClick={() => set(v)}>
+                  {v}%
+                </Control>
+              ))}
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

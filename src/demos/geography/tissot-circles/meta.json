@@ -33,12 +33,12 @@
     },
     {
       "id": "geography.tissot-circles.c2",
-      "text": "Mercator stretches 2 times east-west and 2 times north-south at 60°, so areas there are 4 times larger; a 1,000 km circle comes out a bit more because its top reaches 69°N.",
+      "text": "Mercator stretches 2 times east-west and 2 times north-south at 60°, so areas there are 4 times larger; a 1,000 km circle comes out a bit more because its top edge, further north, is stretched more.",
       "support": "source",
-      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: h = k = sec(latitude), area factor sec^2; sec^2 60 = 4. Circle top latitude 60 + 8.99 = 68.99 N.",
+      "source": "Snyder (1987), Map Projections: A Working Manual, USGS PP 1395, ch. 7: h = k = sec(latitude), area factor sec^2; sec^2 60 = 4. Circle top latitude 60 + 8.99 = 68.99 N. | REVISION v2 2026-10-14: text edited to match stage; needs re-check. · Fact-check pass 19 2026-10-14: Own node with d3-geo and the Demo.tsx projection: drawn-area ratio 4.158 (stage shows 4.2x); independent sphere integral of sec^2(lat) over the two 1,000 km caps gives 4.157. Stretch readout 1/cos 60 = 2.00; sec^2 60 = 4. Circle angular radius 8.99 deg, top edge 68.99 N. Snyder 1987 PP 1395 ch. 7 (h = k = sec lat) recalled, not opened.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.tissot-circles.c3",
@@ -60,12 +60,12 @@
     },
     {
       "id": "geography.tissot-circles.c5",
-      "text": "No flat map can keep shapes and areas both true everywhere; this is a theorem about spheres.",
+      "text": "No flat map can keep shapes and areas both true everywhere; this is a proven result about spheres.",
       "support": "source",
-      "source": "Conformal (h = k) plus equal-area (h k = 1) would force h = k = 1, an isometry, which Gauss's Theorema Egregium (1827) rules out for a sphere (Gaussian curvature 1/R^2, not 0). Snyder (1987) ch. 1.",
+      "source": "Conformal (h = k) plus equal-area (h k = 1) would force h = k = 1, an isometry, which Gauss's Theorema Egregium (1827) rules out for a sphere (Gaussian curvature 1/R^2, not 0). Snyder (1987) ch. 1. | REVISION v2 2026-10-14: text edited to match stage; needs re-check. · Fact-check pass 19 2026-10-14: Derivation: conformal means h = k; equal-area means hk = 1; together h = k = 1 everywhere, an isometry, which Gauss's Theorema Egregium (1827) forbids for a sphere (K = 1/R^2 vs 0). Snyder chapter reference not opened; derivation stands alone.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.tissot-circles.c6",
@@ -98,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:equal-area-vs-conformal",
     "prerequisites": [

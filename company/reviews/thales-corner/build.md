@@ -8,3 +8,11 @@
 - Deviation from brief: the brief asked for "no number". I show the measured angle, because the learner's question is "does it change?" and a number answers that honestly. "Isosceles" is not used; the stage says "two equal sides and two equal angles".
 - After screenshots: the layout reads cleanly on the phone. No change.
 - All claims unverified, for the fact-checker.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Three preset buttons (P near A, at the top, P near B) come first; a place counts only if it is at least 4 places from the others, so a single drag no longer reads as three places.
+- Stage shows the running list of angles; the tile reads "x = 25, y = 65: 90".

@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.rule { margin: 0; text-align: center; font-size: 0.82rem; color: var(--muted); }
+.tree { position: relative; }
+.tree svg { display: block; width: 100%; height: auto; }
+.node {
+  position: absolute; padding: 0; min-width: 0; min-height: 0; border-radius: 8px;
+  background: transparent; border: 2px dashed var(--domain);
+}
+.node:global(.active) { background: transparent; border-color: transparent; }
+.lab { font-size: 9.5px; fill: var(--muted); }
+.q { font-size: 14px; font-weight: 800; fill: var(--muted); }
+.res { font-size: 10px; font-weight: 700; }
+.good { font-size: 11px; font-weight: 800; fill: var(--good); }
+.even { font-size: 11px; font-weight: 800; fill: var(--fg); }
+.bad { font-size: 11px; font-weight: 800; fill: var(--bad); }
+.res.good, .res.even, .res.bad { font-size: 10.5px; }
+.count { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }

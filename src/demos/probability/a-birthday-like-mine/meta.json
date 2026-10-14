@@ -61,12 +61,12 @@
     },
     {
       "id": "probability.a-birthday-like-mine.c5",
-      "text": "23 people make 253 pairs, but you are in only 23 of them; each comparison matches with chance 1 in 365.",
+      "text": "23 other people make 253 pairs among themselves, but you take part in only 23 comparisons; each matches with chance 1 in 365.",
       "support": "derivation",
-      "source": "23 x 22 / 2 = 253 pairs; you versus 23 others = 23 comparisons; each other person matches you with probability 1/365.",
+      "source": "23 x 22 / 2 = 253 pairs; you versus 23 others = 23 comparisons; each other person matches you with probability 1/365. | FACT-CHECK 2026-10-14 (pass 19): DISPUTED. The lesson's crowd is 23 OTHER people (pMe(23) = 1-(364/365)^23 = 6.1%). The 253 pairs are among those 23, and you are in none of them; your 23 comparisons are extra pairs. With you included there are 24 people, 276 pairs, 23 involving you; if the 23 includes you, you are in 22 of the 253. 'You are in only 23 of them' is wrong either way. Same sentence is in the reveal ({SMALL} people make {pairs(SMALL)} pairs, but you are in only {SMALL} of them). Suggested fix (builder, claim + reveal): '23 other people make 253 pairs among themselves, but you take part in only 23 comparisons; each matches with chance 1 in 365.' Retracts the pass-8 verification of the earlier wording. | v2 (2026-10-14, builder): rewritten per pass 19 in the claim and the reveal; the crowd is 23 others, so the 253 pairs (23 × 22 / 2) are among them and you are in none; your 23 comparisons are separate. Previous verdict void; needs re-check. | FACT-CHECK 2026-10-14 (pass 20): Reveal line 84 matches: {SMALL} other people make {pairs(SMALL)} = 253 pairs among themselves, you take part in {SMALL} = 23 comparisons, each 1 in 365. Stage subtitles agree (n comparisons; n(n-1)/2 pairs). Own node: pairs(23) = 253, pMe(23) = 6.1%, pAny(23) = 50.7%.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.a-birthday-like-mine.c6",
@@ -75,7 +75,16 @@
       "source": "n = 253 gives 1 - (364/365)^n = 0.5005 (claim 4).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.a-birthday-like-mine.c7",
+      "text": "Each other person misses your birthday with chance 364/365; with 253 people the chance that none match is (364/365)^253, about 50%.",
+      "support": "derivation",
+      "source": "Independent misses multiply: (364/365)^253 = 0.4995. The 253 equals 23 x 22 / 2 by coincidence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -97,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:specific-vs-any-match",
     "prerequisites": [

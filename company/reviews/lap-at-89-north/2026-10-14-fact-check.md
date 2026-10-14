@@ -12,3 +12,13 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx first 
 
 **Result:** c9 disputed (blocks publishing until the builder fixes it and a fact-checker re-checks); the rest verified.
 
+## Pass 19
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx first (predict, stage, readouts, reveal), then re-derived or re-ran each claim in my own scripts (scratchpad fc1); sources corroborated by web search where the row says so.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Node with kit EARTH_RADIUS_KM = 6371.0088: 2R cos 89 deg = 222.4 km -> r10 '220'. The over-the-pole surface distance (2 deg of arc) is also 222.4 km. |
+| c9 | verified | Node: lap 89.0N 698.6 km -> (698.6/650).toFixed(1) = '1.1'; 89.5N 349.3 -> '0.5'; 88.6N 978.0 -> '1.5'; 88.5N 1,047.9 km, no note shown (>= 1,000). Matches Demo.tsx line 124. |
+
+**Result:** every claim verified or withdrawn.

@@ -50,6 +50,23 @@ const NORTH_DAYS = T_SEPT - T_MARCH;
 const SOUTH_DAYS = YEAR - NORTH_DAYS;
 const declination = (tau: number) => Math.asin(Math.sin(EPS) * Math.sin(sunLon(T_MARCH + tau))) / RAD;
 
+// Orbit inset: angles come from the model; the oval is drawn far more squashed (e = 0.4) than the real orbit
+// so the far side is visible. The line through the Sun splits the year into the two halves counted on the stage.
+const OS = { x: 40, y: 40 };
+const OA = 26;
+const OE = 0.4;
+function orbitPt(lam: number): [number, number] {
+  const r = (OA * (1 - OE * OE)) / (1 + OE * Math.cos(lam - PERI));
+  const th = lam + Math.PI;
+  return [OS.x + r * Math.cos(th), OS.y - r * Math.sin(th)];
+}
+const arc = (from: number, to: number) =>
+  Array.from({ length: 41 }, (_, i) => orbitPt(from + ((to - from) * i) / 40))
+    .map((q, i) => `${i ? "L" : "M"}${q[0].toFixed(1)} ${q[1].toFixed(1)}`)
+    .join(" ");
+const FAR_HALF = arc(0, Math.PI);
+const NEAR_HALF = arc(Math.PI, 2 * Math.PI);
+
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [tau, setTau] = useState(0);
   const projection = useMemo(() => geoOrthographic().rotate([0, -90]).scale(86).translate([W / 2, H / 2]).clipAngle(90), []);
@@ -76,12 +93,19 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           return (
             <>
               <path d={path(night)} fill="#0b1d3a" fillOpacity={0.6} stroke="none" />
+              <path d={FAR_HALF} fill="none" stroke="#f5b301" strokeWidth={2} />
+              <path d={NEAR_HALF} fill="none" stroke="var(--muted)" strokeWidth={2} />
+              <circle cx={OS.x} cy={OS.y} r={3} fill="#f5b301" />
+              <circle cx={orbitPt(sunLon(T_MARCH + tau))[0]} cy={orbitPt(sunLon(T_MARCH + tau))[1]} r={3.5} fill="var(--domain)" stroke="var(--fg)" strokeWidth={0.8} />
+              <text x={4} y={9} fontSize={7} fill="var(--muted)">Earth&apos;s orbit, squashed to show it</text>
+              {tau >= YEAR - 1 && <text x={OS.x} y={OS.y - 24} fontSize={7.5} fontWeight={700} textAnchor="middle" fill="var(--muted)">{Math.round(SOUTH_DAYS)} d</text>}
+              {tau >= NORTH_DAYS - 0.5 && <text x={OS.x} y={OS.y + 50} fontSize={7.5} fontWeight={700} textAnchor="middle" fill="#f5b301">{Math.round(NORTH_DAYS)} d</text>}
               {pole && <circle cx={pole[0]} cy={pole[1]} r={3.5} fill={poleLit ? "#f5b301" : "var(--bad)"} stroke="var(--fg)" strokeWidth={0.8} />}
             </>
           );
         }}
       </WorldMap>
-      <p className="muted tiny">North Pole seen from above, with day-length model. Shaded: night. Dot: the pole.</p>
+      <p className="muted tiny">North Pole seen from above. Shaded: night. Dot: the pole. Corner: Earth in its orbit, days in each half.</p>
       <Row>
         <Control disabled={locked} onClick={() => go(NORTH_DAYS)}>
           Run to September equinox
@@ -116,12 +140,13 @@ export default function PolarDayLength({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            A few days more. The Sun stayed up {Math.round(NORTH_DAYS)} days and was down {Math.round(SOUTH_DAYS)}: the
-            summer half is {(NORTH_DAYS - SOUTH_DAYS).toFixed(1)} days longer.
+            A few days more. The Sun stayed up about {Math.round(NORTH_DAYS)} days and was down about {Math.round(SOUTH_DAYS)}:
+            the summer half is {(NORTH_DAYS - SOUTH_DAYS).toFixed(1)} days longer (the counters round).
           </p>
           <p>
-            Earth is farthest from the Sun in early July and moves slowest there, so the March-to-September half takes
-            longer. Counting light bent by air and the Sun&rsquo;s width, the polar day is about 190 days.
+            In the orbit corner, the gold half is the far side: Earth is farthest from the Sun in early July and moves
+            slowest there, so the March-to-September half takes longer. Counting light bent by air and the
+            Sun&rsquo;s width, the polar day is about 190 days.
           </p>
         </>
       )}

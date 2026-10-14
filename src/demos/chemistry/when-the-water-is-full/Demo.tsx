@@ -49,13 +49,13 @@ function pile(g: number) {
 
 export default function WhenTheWaterIsFull({ slug }: { slug: string }) {
   const [added, setAdded] = useState(0); // g of salt put in
-  const [dissolved, setDissolved] = useState(0); // g in solution
   const [stirs, setStirs] = useState(0);
 
   const ix = useRef(() => {});
   const { reach, reached } = useMilestones(() => ix.current(), ["saturated", "fifty-stirred"]);
   const [maxStirs, setMaxStirs] = useState(0); // stirs at 50 g or more, kept through "Empty"
 
+  const dissolved = Math.min(added, SOL); // g in solution (shown as instant; stirring only speeds real dissolving)
   const crystals = added - dissolved;
   const full = dissolved >= SOL && crystals > 0;
   const ions = dots(Math.round(dissolved * 2), stirs);
@@ -68,18 +68,19 @@ export default function WhenTheWaterIsFull({ slug }: { slug: string }) {
         options: ["None", `About ${LEFT} g`, `About ${ASK} g`],
         answer: 1,
       }}
-      exploreHint={`Put in ${ASK} g and stir. Then stir again.`}
+      exploreHint={`Put in ${ASK} g, then stir. Stir again.`}
       minInteractions={2}
       reveal={() => <WhyFull saw={reached("fifty-stirred")} stirs={maxStirs} />}
     >
       {({ locked, interact }) => {
         ix.current = interact;
-        const add = (g: number) => setAdded((a) => Math.min(MAX, a + g));
+        const grow = (to: number) => {
+          setAdded(to);
+          if (to > SOL) reach("saturated");
+        };
+        const add = (g: number) => grow(Math.min(MAX, added + g));
         const stir = () => {
-          const d = Math.min(added, SOL);
-          setDissolved(d);
           setStirs((n) => n + 1);
-          if (added > SOL) reach("saturated");
           if (added >= ASK) {
             reach("fifty-stirred");
             setMaxStirs((n) => n + 1);
@@ -120,9 +121,7 @@ export default function WhenTheWaterIsFull({ slug }: { slug: string }) {
                 +20 g
               </Control>
               <Control
-                onClick={() => {
-                  setAdded(ASK);
-                }}
+                onClick={() => grow(ASK)}
                 disabled={locked || added >= ASK}
               >
                 Fill to {ASK} g
@@ -133,7 +132,6 @@ export default function WhenTheWaterIsFull({ slug }: { slug: string }) {
               <Control
                 onClick={() => {
                   setAdded(0);
-                  setDissolved(0);
                   setStirs(0);
                 }}
                 disabled={locked || added === 0}
@@ -159,11 +157,11 @@ function WhyFull({ saw, stirs }: { saw: boolean; stirs: number }) {
     <>
       <p>
         {sawIt ? "You saw it" : "Stir it and you see it"}: the dissolved salt stops at about <strong>{SOL} g</strong>, so at{" "}
-        {ASK} g about <strong>{LEFT} g</strong> stays on the bottom{sawIt && stirs > 1 ? `, even after ${stirs} rounds of stirring` : ""}. More
-        stirring does not shrink it: the water is full.
+        {ASK} g about <strong>{LEFT} g</strong> stays on the bottom{sawIt && stirs > 1 ? `, even after ${stirs} rounds of stirring` : ""}. Stirring
+        did not shrink it: it only helps salt dissolve faster, and the water is full.
       </p>
       <p>
-        At that ceiling dissolving has not stopped. Ions still break off the crystals, but just as many land back on them,
+        At that ceiling dissolving has not stopped. Ions (the charged specks of salt, drawn as dots) still break off the crystals, but just as many land back on them,
         so the pile stays the same size. A solution in this state is called saturated.
       </p>
       <p className="muted">Warmer water holds a little more salt; about {SOL} g is the figure at 20 °C.</p>

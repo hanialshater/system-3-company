@@ -4,3 +4,12 @@
 - Brief said "tap anywhere"; replaced with a move button because QA presses only data-qa controls and an SVG tap target cannot be disabled while locked.
 - Key state: k = 5 at the question's dot (milestone "k5-at-bad-label"), reached by the second button on the QA path. Votes and the new dot's colour are hidden while locked.
 - Node check of vote(): k = 1 orange (0 blue / 1 orange), k = 3 2/1 blue, k = 5 4/1 blue, k = 7 6/1 blue, k = 13 6/7 orange. The question's "4 blue, 1 orange" is computed from vote().
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Question now states the voting rule and no longer prints the 4-blue/1-orange count (it was the answer); third option is "A tie".
+- Reveal says the 7 orange at k = 13 are six real dots plus the mistake.
+- New claim c4 (majority-vote rule), unverified.

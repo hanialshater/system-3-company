@@ -1,0 +1,126 @@
+{
+  "slug": "queue-or-stack-same-search",
+  "title": "Swap the to-do list",
+  "hook": "A search keeps a list of places to visit. Change how you pull from it and see what shifts.",
+  "domain": "cs",
+  "concept": "bfs-vs-dfs-frontier",
+  "format": "Side-by-side comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "BFS spreads in waves (wave-from-the-corner) and DFS goes deep (maze-depth-first)",
+      "a stack is last in, first out and a queue is first in, first out (back-button-stack)"
+    ],
+    "doesNotKnow": [
+      "that breadth-first and depth-first search are one algorithm with one line changed",
+      "that a queue finishes each ring before the next, which is why it finds fewest-hop routes"
+    ]
+  },
+  "misconception": "Breadth-first and depth-first search are two different algorithms that must be learned separately.",
+  "objective": "The learner can explain that the same search with a queue or a stack as its to-do list visits the same six places in different orders, and that the queue's ring-by-ring order is why it finds routes with the fewest hops.",
+  "claims": [
+    {
+      "id": "cs.queue-or-stack-same-search.c1",
+      "text": "On the graph A-B, A-C, B-D, B-E, C-F, E-F, starting from A and adding unseen neighbours in alphabetical order, the queue takes places in the order A B C D E F and the stack takes them in the order A C F E B D.",
+      "support": "simulation",
+      "source": "Builder's node script (one loop, pop() for the stack, shift() for the queue, a place is marked when added to the to-do list): queue A B C D E F, stack A C F E B D. Corrects the brief, which said A C F B E D (that order needs one-way edges). Demo.tsx run() computes both. TheAlgorithms/Python used only as a reference for BFS/DFS behaviour, no code copied.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.queue-or-stack-same-search.c2",
+      "text": "Both runs reach all six places.",
+      "support": "simulation",
+      "source": "Same node script: both orders contain A to F. CLRS 22.2 and 22.3: BFS and DFS visit every node reachable from the start.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.queue-or-stack-same-search.c3",
+      "text": "The queue finds E by a route of 2 hops from A (A-B-E) and the stack finds it by a route of 3 hops (A-C-F-E).",
+      "support": "simulation",
+      "source": "Builder's node script, hops recorded when a place is added to the to-do list: queue E=2 via B, stack E=3 via F; queue hops A0 B1 C1 D2 E2 F2, stack A0 B1 C1 F2 E3 D2. The true shortest A-to-E distance is 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.queue-or-stack-same-search.c4",
+      "text": "A queue takes places ring by ring, which is why a search with a queue finds routes with the fewest hops.",
+      "support": "source",
+      "source": "CLRS 3rd ed. section 22.2: BFS visits nodes in nondecreasing distance from the source; Theorem 22.5 (BFS computes shortest-path distances in unweighted graphs). The stack's route to E (3 hops) is longer than the true 2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.queue-or-stack-same-search.c5",
+      "text": "Both runs use the same steps: take a place, add its unseen neighbours; the only difference is taking from the front (queue) or from the top (stack).",
+      "support": "derivation",
+      "source": "Demo.tsx run(fromTop): one loop, the only branch is todo.pop() versus todo.shift(). Stack order here marks a place when added, which on this graph equals recursive DFS order (A C F E B D); the lesson says 'goes deep first', not 'is exactly depth-first search'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search takes places from a to-do list and adds each place's unseen neighbours. Which change makes it visit the nearest places first, ring by ring?",
+    "options": [
+      "Take from the front of the list (a queue)",
+      "Take from the top of the list (a stack)",
+      "Neither; the order never changes"
+    ],
+    "answer": 0,
+    "why": "A queue serves places in the order they were added, so everything one hop away is taken before anything two hops away. A stack takes the newest place and goes deep first."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:bfs-vs-dfs-frontier",
+    "also": [
+      "cs:stack-and-queue",
+      "cs:graph-shortest-path"
+    ],
+    "prerequisites": [
+      "cs:stack-and-queue",
+      "cs:graph-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 22,
+        "section": "22.2",
+        "note": "BFS, Theorem 22.5 (3rd ed. numbering)"
+      }
+    ],
+    "tags": [
+      "bfs",
+      "dfs",
+      "queue",
+      "stack",
+      "graph",
+      "frontier"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

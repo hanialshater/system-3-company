@@ -42,9 +42,20 @@ function Stage({ locked, reach, m, setM }: { locked: boolean; reach: (n: string)
         {ringed.map((i) => (
           <rect key={`r${i}`} x={(i % SIDE) * CELL + 1} y={Math.floor(i / SIDE) * CELL + 1} width={CELL - 2} height={CELL - 2} className={s.ring} />
         ))}
-        {cur?.dots.map((d, i) => (
-          <circle key={i} cx={d.x * SZ} cy={d.y * SZ} r={2.6} className={s.dot} />
-        ))}
+        {cur?.dots.map((d, i) => {
+          // Display only: keep each dot inside its own square, off the grid lines.
+          const nudge = (u: number) => {
+            const c = Math.min(SIDE - 1, Math.floor(u * SIDE));
+            return c * CELL + Math.max(3, Math.min(CELL - 3, (u * SIDE - c) * CELL));
+          };
+          return <circle key={i} cx={nudge(d.x)} cy={nudge(d.y)} r={2.2} className={s.dot} />;
+        })}
+        {cur &&
+          ringed.map((i) => (
+            <text key={`n${i}`} x={(i % SIDE) * CELL + CELL - 3} y={Math.floor(i / SIDE) * CELL + 9} textAnchor="end" className={s.cnt}>
+              {cur.counts[i]}
+            </text>
+          ))}
       </svg>
       <Row>
         <Control disabled={locked} onClick={() => add(1)}>Drop {DOTS} dots</Control>
@@ -78,7 +89,9 @@ export default function RandomDotsCluster({ slug }: { slug: string }) {
             {(EXACT * 100).toFixed(1)}%, so about half of all random scatters have a crowded square.
           </p>
           <p>
-            An evenly spread pattern is the unusual one. Seeing a lump is not evidence something attracts the dots.
+            A scatter with no crowded square ({((1 - EXACT) * 100).toFixed(1)}% of batches) is about as common as one with a
+            crowded square, so lumps are an ordinary part of random scatter. A lump on its own is weak evidence that
+            something attracts the dots.
           </p>
         </>
       )}

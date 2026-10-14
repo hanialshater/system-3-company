@@ -11,3 +11,12 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx first 
 
 **Result:** c6 disputed (blocks publishing until the builder fixes it and a fact-checker re-checks); the rest verified.
 
+## Pass 19
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predict, stage text, readouts, reveal) first, then re-derived or re-ran each number in my own scripts (scratchpad fc19b6) or checked the source.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Re-check after v3: Demo.tsx caption now reads 'Latitude is how far north or south of the equator a place is.' Pass 17 dispute resolved. |
+
+**Result:** all claims in this pass verified; no disputes.

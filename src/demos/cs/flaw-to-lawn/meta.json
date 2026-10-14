@@ -1,0 +1,136 @@
+{
+  "slug": "flaw-to-lawn",
+  "title": "Every letter differs. How far apart?",
+  "hook": "FLAW and LAWN clash at all 4 spots.",
+  "domain": "cs",
+  "concept": "edit-distance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "filling a grid from its neighbours (blocked-cell-routes)"
+    ],
+    "doesNotKnow": [
+      "how a spell checker measures how different two words are",
+      "that the distance between whole words is built from distances between their beginnings"
+    ]
+  },
+  "misconception": "Two words differ by the number of positions where their letters differ.",
+  "objective": "The learner can fill the edit-distance grid for FLAW and LAWN (each cell the cheapest of three neighbours plus one, or the diagonal free on a match), read 2 at the corner, and explain why that beats counting mismatched positions (4).",
+  "claims": [
+    {
+      "id": "cs.flaw-to-lawn.c1",
+      "text": "FLAW and LAWN differ at all 4 positions.",
+      "support": "derivation",
+      "source": "F/L, L/A, A/W, W/N: no position matches. Builder's node check: 4 mismatched positions. Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c2",
+      "text": "Turning FLAW into LAWN takes 2 edits: delete F, keep L, A, W, insert N.",
+      "support": "simulation",
+      "source": "Builder's node: Levenshtein DP gives 2, and a breadth-first search over single-letter insert/delete/replace edits also reaches LAWN in 2 (KITTEN to SITTING = 3 as a control). The traced path on the stage is delete F, keep L A W, insert N. Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c3",
+      "text": "Each grid cell is the cheapest of its three neighbours (above, left, diagonal) plus one, or the diagonal copied free when the two letters match.",
+      "support": "source",
+      "source": "Wagner and Fischer 1974, 'The string-to-string correction problem', JACM 21(1); CLRS 3rd ed. problem 15-5 (4th ed. 14-5). Builder re-ran the recurrence in node: grid rows 0 1 2 3 4 / 1 1 2 3 4 / 2 1 2 3 4 / 3 2 1 2 3 / 4 3 2 1 2. Reference only: TheAlgorithms/Python strings/levenshtein_distance.py (no code copied). Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c4",
+      "text": "Counting spot by spot gives 4, because it never lets letters slide; one delete shifts LAW into line.",
+      "support": "derivation",
+      "source": "After deleting F, FLAW becomes LAW, which sits at LAWN's first three positions; only N is then missing. Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c5",
+      "text": "The distance between whole words is built from distances between their beginnings, so a small grid replaces trying every sequence of edits.",
+      "support": "source",
+      "source": "Same recurrence as c3: cell (i, j) is the distance between the first i letters of FLAW and the first j letters of LAWN. Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c6",
+      "text": "The 16 cells the learner fills are the inner cells of a 5 x 5 grid.",
+      "support": "derivation",
+      "source": "(4 + 1) x (4 + 1) = 25 cells; the first row and column (9 cells) are given, 25 - 9 = 16. Unverified.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.flaw-to-lawn.c7",
+      "text": "Spell checkers and DNA alignment fill this grid.",
+      "support": "source",
+      "source": "Edit distance in spelling correction: Jurafsky and Martin, Speech and Language Processing, ch. 2 (minimum edit distance); DNA alignment uses the same grid idea (Needleman and Wunsch 1970, J. Mol. Biol. 48; Smith-Waterman). Wording 'fill this grid' is loose: they fill grids of the same kind. Unverified; checker should weigh the wording.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To fill one cell of the edit-distance grid for two words, which cells do you use?",
+    "options": [
+      "Only the cell to its left",
+      "Its three neighbours: above, left and diagonal",
+      "Every cell in the grid"
+    ],
+    "answer": 1,
+    "why": "The cell is the cheapest of the above, left and diagonal neighbours plus one (diagonal free when the letters match), so earlier answers are reused."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:edit-distance",
+    "prerequisites": [
+      "cs:dp-grid-paths"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 14,
+        "note": "problem 14-5 (edit distance); unverified chapter number"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "edit-distance",
+      "dynamic-programming",
+      "strings",
+      "spell-check"
+    ]
+  },
+  "format": "storyboard-scrub",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate",
+    "tally-counters"
+  ]
+}

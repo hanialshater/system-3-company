@@ -4,3 +4,11 @@
 - Controls: 23 people, 253 people, 183 people (presets), slider 1-300 (start 10). Gate: milestones crowd-23, crowd-183, crowd-253, since the reveal quotes all three. Readouts hidden while locked.
 - Numbers from pMe/pAny/pairs in model.ts: 0.5073, 0.0612, 0.3947, 0.4991 (252), 0.5005 (253); evenOdds() = 253. No randomness.
 - Observation: 23 people make 253 pairs and 253 is also the answer; the reveal uses it deliberately (253 comparisons with you), flagged in case a reviewer finds it confusing.
+
+
+## Revision v2
+
+From the latest learner review and fact-check (batch 03).
+
+- Reveal now explains 253 through the miss chance (364/365 per person, multiplying) and flags 253 pairs vs 253 people as a coincidence; new readout "Nobody matches you".
+- c5, c6 unverified; new c7.

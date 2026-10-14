@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.model { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.lanes, .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lane { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; }
+.head { margin: 0; font-size: 0.75rem; color: var(--muted); text-align: center; min-height: 2.4em; }
+.result { margin: 0; font-size: 0.8rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; min-height: 2.4em; }
+.kept { color: var(--good); }
+.lost { color: var(--bad); }
+.tap { min-height: 44px; }
+.btns { margin-top: 2px; }
+.btns > button, .full { width: 100%; }
+.nm { font-size: 8.5px; font-weight: 700; fill: var(--fg); }
+.nmB { font-size: 8.5px; font-weight: 700; fill: var(--bg); }
+.gr { font-size: 14px; font-weight: 800; fill: var(--fg); }
+.grB { font-size: 14px; font-weight: 800; fill: var(--bg); }
+.bd { font-size: 7px; font-weight: 800; fill: var(--bg); }
+.tagt { font-size: 9px; font-weight: 800; fill: var(--bad); }
+.note { font-size: 8.5px; fill: var(--muted); }

@@ -7,3 +7,8 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Before the prediction the 20 kg child waits on the ground and the plank is level, so the tilt cannot give the answer away; the 20 kg bar and readouts are hidden.
 - Earned reveal: milestones 'tried-other' and 'balanced' (4.0 m). The slider starts at 3.0 m, so QA's two presses go 3.5 then 4.0. The reveal quotes the other distance the learner tried and which side went down.
 - After screenshots: read cleanly on phone; left as built.
+
+## Revision v2 (batch 02, 2026-10-14)
+
+Locked stage drew a level plank with the 20 kg child at the ground; it now tips the 40 kg side down (only that child is aboard), so no balance is shown before the guess.
+Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.

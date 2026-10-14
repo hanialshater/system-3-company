@@ -23,3 +23,8 @@ Key states: at least 20 rooms of 23 drawn (`rooms-of-23`), plus one change of ro
 Claims: c9 and c11 withdrawn. c10 reworded to "Each new person makes a pair with everyone already there" (unverified). c12 added (unverified).
 
 QA-path trade-off: "New room" and "20 rooms" now come *before* the slider in the DOM. The contract therefore draws 21 rooms at 23, then slides to 25, and both milestones are met. A learner who slides first has to slide back to 23 to unlock the reveal. The stage says so.
+
+## Revision v3
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Hook no longer leaks. Locked stage shows only the people count, not the 253 pairs or the lines. The exact chance stays '?' until 20 rooms of 23 are drawn. New live readout 'chance someone has YOUR birthday' (about 6%) puts the reveal's contrast on the stage. Claims unchanged.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

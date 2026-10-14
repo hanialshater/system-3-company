@@ -1,0 +1,129 @@
+{
+  "slug": "negative-edge-fools-dijkstra",
+  "title": "A cheaper road arrives too late",
+  "hook": "Lock the cheapest town first. A road that gives money back can undo it.",
+  "domain": "cs",
+  "concept": "negative-edge-weights",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo-pair-11"
+  },
+  "learner": {
+    "knows": [
+      "settling the cheapest town first (cheapest-is-not-shortest)",
+      "a road has a cost, added along a route"
+    ],
+    "doesNotKnow": [
+      "that a settled label is only final when no road has negative cost",
+      "that checking every road repeatedly makes no such assumption"
+    ]
+  },
+  "misconception": "Dijkstra's cheapest-first rule always finds the cheapest route.",
+  "objective": "The learner can explain that cheapest-first locks a town on the assumption that no later road can make it cheaper, that a negative road breaks this (here A locks at 2 though 1 is possible, and C inherits the error: 4, not 3), and that checking every road repeatedly (Bellman-Ford) does not rely on it.",
+  "claims": [
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c1",
+      "text": "With roads S to A 2, S to B 3, B to A -2 and A to C 2, the cheapest cost to A is 1 (S, B, A: 3 - 2) and to C is 3.",
+      "support": "simulation",
+      "source": "Builder's node script (Bellman-Ford to a fixed point, 2026-10-14): A = 1, B = 3, C = 3. By hand: S-B-A-C = 3 - 2 + 2 = 3. · Fact-check pass 19 2026-10-14: Own node Bellman-Ford to fixed point (fc9): A 1, B 3, C 3; by hand S-B-A = 3-2 = 1, S-B-A-C = 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c2",
+      "text": "Cheapest-first with settled labels final locks A at 2 (the cheapest unsettled label when A is settled), and when B is settled later the road B to A offers 1, which is ignored.",
+      "support": "simulation",
+      "source": "Builder's node trace of the settle-once version: settle S (A 2, B 3), settle A (label 2; C 4), settle B (B to A offers 3 - 2 = 1, A is settled, ignored). Final A 2, B 3, C 4. · Fact-check pass 19 2026-10-14: Own node settle-once trace, matching Demo.tsx tapTown(): settle S (A 2, B 3), A (C 4), B offers A 1 to a settled town, ignored (stage 'too late'); final A 2, B 3, C 4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c3",
+      "text": "Even a version that lets the late offer correct A to 1 leaves C at 4, because C was already priced from the old A (CLRS's DIJKSTRA relaxes every edge out of each extracted node with no check, and ends with A = 1, C = 4).",
+      "support": "simulation",
+      "source": "Builder's node: textbook settle-once ends {A 2, B 3, C 4}; CLRS-style relax-all-out-edges with extraction order S, A, B, C ends {A 1, B 3, C 4}. The failure on C holds for both. CLRS 4th ed. section 22.3 (Dijkstra's algorithm); the spec's earlier brief graph (no A to C road) ends A = 1 under relax-all, which is why this graph adds A to C (cost 2 per the category manager: cost 1 leaves a B and C tie at 3). · Fact-check pass 19 2026-10-14: Own node relax-all-out-edges (CLRS 4e 22.3 DIJKSTRA relaxes every edge out of u with no settled check): order S, A, B, C ends A 1, B 3, C 4. Reveal text matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c4",
+      "text": "Checking every road in the order B to A, A to C, S to A, S to B: after pass 1 the labels are A 2, B 3, C unknown; after pass 2 they are A 1, B 3, C 3.",
+      "support": "simulation",
+      "source": "Builder's node script: pass 1 {A 2, B 3, C inf}, pass 2 {A 1, B 3, C 3}, pass 3 unchanged. Road order is a design choice shown by the stage (the pass highlights the roads that changed a label). · Fact-check pass 19 2026-10-14: Own node over PASS_ORDER (B>A, A>C, S>A, S>B, as in Demo.tsx runPass): pass 1 {A 2, B 3, C inf (shown as no label)}, pass 2 {A 1, B 3, C 3}, pass 3 unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c5",
+      "text": "Settling a town assumes no later road can make it cheaper; a road with negative cost breaks that assumption, and Dijkstra's algorithm is proven correct only for non-negative edge weights.",
+      "support": "source",
+      "source": "CLRS 4th ed. section 22.3 (Dijkstra's algorithm assumes non-negative weights; 3rd ed. 24.3). · Fact-check pass 19 2026-10-14: CLRS 4e section 22.3 states Dijkstra for nonnegative edge weights and proves correctness (Theorem 22.6) under that assumption (3e 24.3, Thm 24.6); counterexample c1-c2 shows the failure. Book not re-opened this pass; section numbering confirmed against 4e chapter layout (ch. 22 Single-Source Shortest Paths).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.negative-edge-fools-dijkstra.c6",
+      "text": "Bellman-Ford keeps no locks, re-checks every road, and costs more checks than cheapest-first (n - 1 passes over all roads).",
+      "support": "source",
+      "source": "CLRS 4th ed. section 22.1 (Bellman-Ford, |V| - 1 passes; handles negative weights and detects negative cycles); Bellman 1958, Quart. Appl. Math. 16. · Fact-check pass 19 2026-10-14: CLRS 4e 22.1: BELLMAN-FORD makes |V|-1 passes relaxing every edge, O(VE), vs Dijkstra O((V+E) lg V) with a binary heap; here 3 x 4 = 12 relaxations vs 4. Bellman 1958, 'On a routing problem', Quart. Appl. Math. 16(1): 87-90 (citation details recalled, not opened).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can cheapest-first (Dijkstra) give a wrong cost when one road has a negative cost?",
+    "options": [
+      "It locks a town assuming no later road can make it cheaper, and a negative road can",
+      "It never looks at roads leaving a town with a negative label",
+      "It checks every road too many times"
+    ],
+    "answer": 0,
+    "why": "Locking a town is only safe if costs never fall along a route. A refund road can cut a locked town's cost after the lock, and every town priced from it inherits the error."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:negative-edge-weights",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 22,
+        "section": "22.1, 22.3",
+        "note": "Bellman-Ford and Dijkstra's algorithm"
+      }
+    ],
+    "tags": [
+      "shortest-path",
+      "dijkstra",
+      "bellman-ford",
+      "negative-weights"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button",
+    "side-by-side"
+  ]
+}

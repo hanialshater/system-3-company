@@ -8,3 +8,8 @@
 - Locked: the water is drawn as a uniform ring (no bulges) and the readout shows "?". Showing two bulges before the prediction would give the answer away.
 - The brief asked for a draggable coastal point. I used one fixed coast point that turns with the Earth, because the slider already moves it round.
 - Iteration: the phone screenshot reads clearly (far-side dot at high water). No change.
+
+## Revision v2
+
+Batch 06, 2026-10-14, from the latest learner review and fact-check. Title and hook no longer give the count. Added a 'Quarter turn' button that shows low tide, and a third milestone. Three arrows show the Moon's pull strongest near and weakest far. Lunar day is defined on the stage. The unsupported 'some coasts get one tide' sentence is removed from the reveal. c3, c4 reopened.
+Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.

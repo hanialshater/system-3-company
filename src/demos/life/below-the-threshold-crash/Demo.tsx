@@ -41,7 +41,7 @@ const py = (N: number) => T + (H - T - B) * (1 - Math.log10(Math.max(N, 1)) / 3)
 function Stage({ locked, rel, release, clear }: { locked: boolean; rel: number[]; release: (n: number) => void; clear: () => void }) {
   const last = rel[rel.length - 1];
   const msg = locked
-    ? `Toy: groups under ${THRESH} can't find mates and shrink. Room for ${fmt(CAP)}. Log scale.`
+    ? `Toy: room for ${fmt(CAP)}. Log scale.`
     : last === undefined
       ? "Release a group and watch the years go by."
       : `Start ${last}: ${outcome(last)}.`;
@@ -54,8 +54,12 @@ function Stage({ locked, rel, release, clear }: { locked: boolean; rel: number[]
             <text x={L - 4} y={py(n) + 3} textAnchor="end" className={s.axis}>{fmt(n)}</text>
           </g>
         ))}
-        <line x1={L} x2={W - R} y1={py(THRESH)} y2={py(THRESH)} className={s.thresh} />
-        <text x={W - R} y={py(THRESH) - 3} textAnchor="end" className={s.axis}>{THRESH}: mates found</text>
+        {!locked && (
+          <>
+            <line x1={L} x2={W - R} y1={py(THRESH)} y2={py(THRESH)} className={s.thresh} />
+            <text x={W - R} y={py(THRESH) - 3} textAnchor="end" className={s.axis}>{THRESH}: mates found</text>
+          </>
+        )}
         <text x={px(0)} y={H - 6} className={s.axis}>0</text>
         <text x={px(YEARS)} y={H - 6} textAnchor="end" className={s.axis}>{YEARS} years</text>
         {!locked && rel.map((n) => {
@@ -92,7 +96,7 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Animals need a group of at least ${THRESH} to find mates; below that, numbers fall. Two groups start with 40 and 60, with room for ${fmt(CAP)}. After many years:`,
+        question: `These animals need mates nearby to breed. Two groups start with 40 and 60, with room for ${fmt(CAP)}. After many years:`,
         options: ["Both grow to 1,000", "The group of 40 dies out; 60 grows", "Both die out"],
         answer: 1,
       }}
@@ -106,18 +110,18 @@ export default function BelowTheThresholdCrash({ slug }: { slug: string }) {
               You released {list.join(", ")}: {list.map((n) => `${n} ${outcome(n)}`).join("; ")}.
             </p>
             <p>
-              The same species has two fates, split by the line at {THRESH}. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. Small does not always mean slow recovery: below the threshold it means none. Toy model: the threshold and rate are invented.
+              The same species has two fates, split by the line at {THRESH}. The line is the group size, {THRESH}, below which animals struggle to find mates. Below it each animal finds fewer mates, so the group shrinks faster; above it the group grows until food limits it at {fmt(CAP)}. Small does not always mean slow recovery: below the threshold it means none. Toy model: the threshold and rate are invented.
             </p>
           </>
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["released-40", "released-60"]}>
           {(reach) => (
             <Stage
               locked={locked}
-              rel={rel}
+              rel={phase === "reveal" ? STARTS.filter((n) => seen.includes(n)) : rel}
               release={(n) => {
                 setRel((x) => [...x, n]);
                 setSeen((x) => (x.includes(n) ? x : [...x, n]));

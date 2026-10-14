@@ -1,7 +1,7 @@
 {
   "slug": "seventy-two-doubling",
   "title": "The rule of 72",
-  "hook": "At 8% a year, 100 / 8 says 12.5 years to double. Compounding has a faster answer.",
+  "hook": "Money grows 8% a year. How long until it doubles?",
   "domain": "math",
   "concept": "rule-of-72",
   "status": "review",
@@ -58,6 +58,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "math.seventy-two-doubling.c5",
+      "text": "72 is close to 100 x ln 2 (about 69.3) and divides evenly by many whole rates, which is why the rule of 72 uses it.",
+      "support": "derivation",
+      "source": "100 ln 2 = 69.31; 72 has divisors 2, 3, 4, 6, 8, 9, 12. Standard explanation of the rule of 72.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -82,7 +91,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:rule-of-72",
     "prerequisites": [

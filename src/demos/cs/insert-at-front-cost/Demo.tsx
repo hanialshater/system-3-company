@@ -19,7 +19,7 @@ const CHAIN_MOVES = 0; // nothing moves; the new box's arrow and the start arrow
 const CHAIN_ARROWS = 2;
 const HOPS = TARGET - 1; // from item 1, follow TARGET - 1 arrows
 type View = "row" | "chain";
-type Rec = { inserted: boolean; went: boolean };
+type Seen = { rowInsert: boolean; chainInsert: boolean; rowGo: boolean; chainGo: boolean };
 
 // geometry (viewBox 340 wide)
 const W = 38;
@@ -31,11 +31,9 @@ const nodeX = (i: number) => 22 + i * (CW + CGAP);
 
 export default function InsertAtFrontCost({ slug }: { slug: string }) {
   const [view, setView] = useState<View>("row");
-  const [rec, setRec] = useState<Record<View, Rec>>({
-    row: { inserted: false, went: false },
-    chain: { inserted: false, went: false },
-  });
-  const r = rec[view];
+  // One list, shown two ways: inserting and going to item 4 apply to the row and the chain alike.
+  const [r, setR] = useState({ inserted: false, went: false });
+  const [seen, setSeen] = useState<Seen>({ rowInsert: false, chainInsert: false, rowGo: false, chainGo: false });
   const items = r.inserted ? [NEW, ...ITEMS] : ITEMS;
 
   return (
@@ -46,16 +44,16 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
         options: ["1", String(ROW_MOVES), String(ROW_MOVES + 1)],
         answer: 1,
       }}
-      exploreHint="Insert at the front of the row. Then switch to the chain and go to item 4."
-      minInteractions={2}
+      exploreHint="Insert at the front, switch views, go to item 4. Check both."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
             In the row, putting {NEW} first moved all <strong>{ROW_MOVES}</strong> items one slot right: slot 1 was
             taken, so everything behind it had to shift.
-            {rec.chain.went ? ` In the chain, reaching item ${TARGET} took ${HOPS} hops along the arrows.` : ""}
-            {rec.chain.inserted ? ` Inserting at the chain's front moved nothing; ${CHAIN_ARROWS} arrows changed.` : ""}
-            {rec.row.went ? ` In the row, slot ${TARGET} was a single jump.` : ""}
+            {seen.chainGo ? ` In the chain, reaching item ${TARGET} took ${HOPS} hops along the arrows.` : ""}
+            {seen.chainInsert ? ` Inserting at the chain's front moved nothing; ${CHAIN_ARROWS} arrows changed.` : ""}
+            {seen.rowGo ? ` In the row, slot ${TARGET} was a single jump.` : ""}
           </p>
           <p>
             A row (an array) makes reaching any slot instant but inserting at the front costly. A chain (a linked list)
@@ -65,21 +63,39 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["row-insert", "chain-walk"]}>
+        <Milestones interact={interact} names={["row-insert", "chain-insert", "chain-walk"]}>
           {(reach) => {
+            // Record what the learner has now looked at in the view they are on.
+            const look = (v: View, inserted: boolean, went: boolean) => {
+              const n = { ...seen };
+              if (inserted) {
+                if (v === "row") n.rowInsert = true;
+                else n.chainInsert = true;
+              }
+              if (went) {
+                if (v === "row") n.rowGo = true;
+                else n.chainGo = true;
+              }
+              setSeen(n);
+              if (inserted && v === "row") reach("row-insert");
+              if (inserted && v === "chain") reach("chain-insert");
+              if (went && v === "chain") reach("chain-walk");
+            };
             const insert = () => {
               if (locked || r.inserted) return;
-              setRec({ ...rec, [view]: { ...r, inserted: true, went: false } });
-              if (view === "row") reach("row-insert");
+              setR({ inserted: true, went: false });
+              look(view, true, false);
             };
             const go = () => {
               if (locked || r.went) return;
-              setRec({ ...rec, [view]: { ...r, went: true } });
-              if (view === "chain") reach("chain-walk");
+              setR({ ...r, went: true });
+              look(view, r.inserted, true);
             };
             const flip = () => {
               if (locked) return;
-              setView(view === "row" ? "chain" : "row");
+              const nv = view === "row" ? "chain" : "row";
+              setView(nv);
+              look(nv, r.inserted, r.went);
             };
             const moved = r.inserted ? (view === "row" ? ROW_MOVES : CHAIN_MOVES) : 0;
             const steps = r.went ? (view === "row" ? 1 : HOPS) : 0;

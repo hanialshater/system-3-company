@@ -5,8 +5,8 @@
 // air's actual water vapour: half of the 30 °C maximum (50% relative humidity). The learner cools
 // the air; the marker slides left along the flat line until it meets the curve (the dew point),
 // then rides down the curve while the excess condenses as dew.
-// Key state: a temperature within 1 °C below the dew point (18.4 °C): fullness 100%, first dew.
-// Milestone `dew-point`; the "18 °C" button reaches it.
+// Key state: cooled to the dew point or below (18.4 °C): fullness 100%, dew forming.
+// Milestone `dew-point`; the "15 °C" step button (or the slider) reaches it. No button names the answer.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -20,8 +20,8 @@ const RH0 = 0.5;
 const E = RH0 * es(T0); // kPa of water vapour in this air
 const L = Math.log(E / 0.61094);
 const TD = (243.04 * L) / (17.625 - L); // dew point, °C
-const PRESETS = [25, Math.floor(TD), 10];
-const inBand = (t: number) => t <= TD && t > TD - 1;
+const PRESETS = [25, 20, 15]; // steps down; none of them is the answer
+const pastDew = (t: number) => t <= TD; // the key state: cooled until dew forms
 const NAMES = ["dew-point"] as const;
 
 const W = 320;
@@ -36,12 +36,15 @@ const PHI = 5;
 const xOf = (t: number) => X0 + ((t - TLO) / (THI - TLO)) * (X1 - X0);
 const yOf = (p: number) => Y0 - (p / PHI) * (Y0 - Y1);
 
-const curve = Array.from({ length: 55 }, (_, i) => TLO + (i * (THI - TLO)) / 54)
-  .map((t, i) => `${i ? "L" : "M"} ${xOf(t).toFixed(1)} ${yOf(es(t)).toFixed(1)}`)
-  .join(" ");
+// The curve is drawn only from the coldest temperature tried up to 32 °C, so the crossing is not there to read in advance.
+const curveFrom = (lo: number) =>
+  Array.from({ length: 55 }, (_, i) => lo + (i * (THI - lo)) / 54)
+    .map((t, i) => `${i ? "L" : "M"} ${xOf(t).toFixed(1)} ${yOf(es(t)).toFixed(1)}`)
+    .join(" ");
 
 export default function WhereTheDewForms({ slug }: { slug: string }) {
   const [t, setT] = useState(T0);
+  const [lowest, setLowest] = useState(T0 - 0.01); // coldest temperature tried
   const full = es(t);
   const vapour = Math.min(E, full);
   const fullness = Math.min(1, E / full);
@@ -56,12 +59,12 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
         options: PRESETS.map((p) => `${p} °C`),
         answer: 1,
       }}
-      exploreHint="Cool the air and watch where the line meets the curve."
+      exploreHint="Cool the air until dew forms, and watch where the line meets the curve."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
-            Cooling never changed your air&apos;s water. It lowered the ceiling. At about{" "}
+            Until the dew point, cooling never changed your air&apos;s water. It lowered the ceiling. At about{" "}
             <strong>{TD.toFixed(0)} °C</strong> the curve came down to meet your line: 100% full, and the first dew.
           </p>
           <p>
@@ -77,7 +80,8 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
           {(reach) => {
             const set = (v: number) => {
               setT(v);
-              if (inBand(v)) reach("dew-point");
+              setLowest((l) => Math.min(l, v));
+              if (pastDew(v)) reach("dew-point");
             };
             return (
               <div className={s.wrap}>
@@ -95,16 +99,25 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
                     </text>
                   ))}
                   <text x={X0 + 4} y={Y1 + 2} className={s.small}>
-                    water vapour, kPa
+                    water vapour (as pressure), kPa
                   </text>
-                  <path d={curve} className={s.curve} />
+                  <path d={curveFrom(lowest)} className={s.curve} />
                   <text x={xOf(27)} y={yOf(es(31)) + 2} className={s.curveLabel}>
                     full
                   </text>
-                  <line x1={xOf(TLO)} x2={xOf(THI)} y1={yOf(E)} y2={yOf(E)} className={s.line} />
-                  <text x={xOf(THI) - 2} y={yOf(E) + 13} textAnchor="end" className={s.lineLabel}>
-                    your air
-                  </text>
+                  {!locked && (
+                    <>
+                      <line x1={xOf(TLO)} x2={xOf(THI)} y1={yOf(E)} y2={yOf(E)} className={s.line} />
+                      <text x={xOf(THI) - 2} y={yOf(E) + 13} textAnchor="end" className={s.lineLabel}>
+                        your air
+                      </text>
+                    </>
+                  )}
+                  {drops > 0 && (
+                    <text x={xOf(t) + 10} y={yOf(vapour) - 8} className={s.lineLabel}>
+                      extra water leaves as dew
+                    </text>
+                  )}
                   {Array.from({ length: drops }, (_, i) => (
                     <path
                       key={i}

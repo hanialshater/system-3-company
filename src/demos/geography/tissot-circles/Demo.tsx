@@ -44,6 +44,8 @@ export default function TissotCircles({ slug }: { slug: string }) {
   const ref = useMemo(() => circle(REF_LON, 0), []);
   const moving = useMemo(() => circle(MOVE_LON, lat), [lat]);
   const ratio = path.area(moving) / path.area(ref);
+  const bb = path.bounds(moving);
+  const wh = (bb[1][0] - bb[0][0]) / (bb[1][1] - bb[0][1]);
   const merc = useMemo(() => {
     const p = geoPath(makeProjection("mercator"));
     return p.area(circle(MOVE_LON, 60)) / p.area(circle(REF_LON, 0));
@@ -68,7 +70,7 @@ export default function TissotCircles({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Two identical circles, each with a 1,000 km radius on the ground, sit at the equator and at 60°N. On this Mercator map, how big does the 60°N circle look?",
+          "Two identical circles, each with a 1,000 km radius on the ground, sit at the equator and at 60°N. On this Mercator map (the classic wall map, which keeps shapes true), how big does the 60°N circle look?",
         options: ["About the same as the other", "About twice as big", "About four times as big"],
         answer: 2,
       }}
@@ -78,13 +80,13 @@ export default function TissotCircles({ slug }: { slug: string }) {
         <>
           <p>
             <strong>About four times</strong>: at 60°N this Mercator map drew it {merc.toFixed(1)}× the equator
-            circle&rsquo;s area, yet still round. Mercator stretches 2× east&ndash;west and 2× north&ndash;south at 60°,
-            and 2 × 2 = 4; a bit more here because the circle&rsquo;s top reaches 69°N.
+            circle&rsquo;s area, yet still round. At 60° Mercator stretches 2× east&ndash;west and 2× north&ndash;south (the
+            Stretch readout), and 2 × 2 = 4; a bit more here because the circle&rsquo;s top edge is stretched more.
           </p>
           <p>
             On Equal Earth the two areas matched ({ee.toFixed(2)}×), but the northern circle was squashed. A flat map can
-            keep shapes round or keep areas equal, not both everywhere: that is a theorem about spheres, not a flaw of one
-            map. Every projection chooses which distortion to accept.
+            keep shapes round or keep areas equal, not both everywhere: that is a proven result about spheres, not a flaw
+            of one map. Every projection chooses which distortion to accept.
           </p>
         </>
       )}
@@ -101,6 +103,20 @@ export default function TissotCircles({ slug }: { slug: string }) {
               <>
                 <path d={p(ref)} className={s.ref} />
                 <path d={p(moving)} className={s.move} />
+                {(() => {
+                  const c = path.centroid(ref);
+                  const d = path.centroid(moving);
+                  return (
+                    <>
+                      <text x={c[0]} y={c[1] + 3} textAnchor="middle" fontSize={9} fill="var(--fg)">
+                        fixed
+                      </text>
+                      <text x={d[0]} y={d[1] + 3} textAnchor="middle" fontSize={9} fill="var(--fg)">
+                        slides
+                      </text>
+                    </>
+                  );
+                })()}
               </>
             )}
           </WorldMap>
@@ -117,11 +133,13 @@ export default function TissotCircles({ slug }: { slug: string }) {
               </Control>
             ))}
             <Control className={kind === "equal" ? "active" : ""} disabled={locked} onClick={() => update(lat, kind === "mercator" ? "equal" : "mercator", interact)}>
-              {kind === "mercator" ? "Show Equal Earth" : "Show Mercator"}
+              {kind === "mercator" ? "Show Equal Earth (equal areas)" : "Show Mercator"}
             </Control>
           </Row>
           <Row>
-            <Readout label="Drawn area vs equator circle" value={`${ratio.toFixed(2)}×`} />
+            <Readout label="Drawn area vs fixed circle" value={`${ratio.toFixed(2)}×`} />
+            <Readout label="Stretch each way" value={kind === "mercator" ? `${(1 / Math.cos(lat * rad)).toFixed(2)}×` : "–"} />
+            <Readout label="Circle width : height" value={wh.toFixed(2)} />
           </Row>
         </div>
       )}

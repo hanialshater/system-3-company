@@ -47,7 +47,7 @@ function Stage({ locked, reach, stake, setStake, played, setPlayed }: {
       <p className={s.msg}>
         {locked
           ? "Make a prediction to start."
-          : `Each line is one game of fair $1 bets until someone holds all $${TOTAL}. Green: you took it all. Red: ruined.`}
+          : `Each line is one game of fair $1 bets until someone holds all $${TOTAL}. Green: you took it all. Red: ruined. Bar below: all games so far.`}
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={stake ? `${SHOWN} games starting with $${stake}` : "No games yet"}>
         {[0, TOTAL].map((v) => (
@@ -71,6 +71,18 @@ function Stage({ locked, reach, stake, setStake, played, setPlayed }: {
           />
         ))}
         <text x={W - 6} y={H - 2} textAnchor="end" className={s.lab}>bets (compressed) →</text>
+      </svg>
+      <svg viewBox="0 0 320 34" className={`stage-svg ${s.tally}`} role="img" aria-label={stake ? `${k} of ${n} games took all, ${n - k} ruined` : "No games yet"}>
+        {stake && (
+          <>
+            <rect x={PL} y={4} width={(W - PL - 6) * (k / n)} height={14} className={s.tallyW} />
+            <rect x={PL + (W - PL - 6) * (k / n)} y={4} width={(W - PL - 6) * (1 - k / n)} height={14} className={s.tallyL} />
+            <line x1={PL + (W - PL - 6) * (stake / TOTAL)} x2={PL + (W - PL - 6) * (stake / TOTAL)} y1={1} y2={21} className={s.tick} />
+            <text x={PL} y={31} className={s.lab}>
+              {n} games: {k} took all (green), {n - k} ruined (red). Tick: stake / ${TOTAL}.
+            </text>
+          </>
+        )}
       </svg>
       <Row>
         <Control disabled={locked} onClick={() => start(10)}>Start with $10</Control>
@@ -116,7 +128,7 @@ export default function FairGameStillRuins({ slug }: { slug: string }) {
             {wins(50, n50)} of {n50}; exact {pct1(exact(50))}.
           </p>
           <p>
-            Each bet is fair, yet the poorer side is usually ruined, while the rare wins run far. Fair odds do not mean an even chance of ending richer.
+            Why: in a fair game your expected money stays $10. You end with $0 or ${TOTAL}, so ${TOTAL} × chance = $10. Fair bets, yet the poorer side is usually ruined.
           </p>
         </>
       )}

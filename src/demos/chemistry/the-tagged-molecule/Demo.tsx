@@ -76,6 +76,8 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
   const tagFlips = tags.reduce((n, t) => n + flipsOf(t.hist), 0);
   // Ticks each tagged molecule was actually followed (a tag added later has a shorter history).
   const followed = tags.reduce((n, t) => n + t.hist.length - 1, 0);
+  const aToB = [...flipped].filter((i) => !isA[i]).length;
+  const bToA = flipped.size - aToB;
   const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 
   const advance = (k: number) => {
@@ -126,8 +128,8 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
                 ? `Your tagged molecule changed type ${plural(tagFlips, "time")} in the ${plural(followed, "tick")} you followed it, `
                 : `Your ${tags.length} tagged molecules changed type ${plural(tagFlips, "time")} in total while you followed them, `
               : `In ${ticks} ticks, `}
-            while the two bars never moved. Every tick, 12 A became B and 12 B became A: about a quarter of the mix
-            changed, and the counts held at 50 and 50.
+            while the two bars never moved. Each tick you saw 12 A become B and 12 B become A, about a quarter of the mix,
+            and the counts held at 50 and 50.
           </p>
           <p>
             That is <strong>equilibrium</strong>: not a reaction that has stopped, but two reactions running at the same
@@ -144,9 +146,11 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
           <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="group" aria-label={`${countA} A and ${countB} B after ${ticks} ticks`}>
             {/* the two counts */}
             <Glyph a x={8} y={9} size={10} />
-            <rect x={20} y={4} width={(countA / N) * (W - 24) * 2 * 0.98} height={10} rx={3} className={s.barA} />
+            <rect x={20} y={4} width={(countA / N) * (W - 80) * 2} height={10} rx={3} className={s.barA} />
+            <text x={20 + (countA / N) * (W - 80) * 2 + 5} y={13} className={s.lab}>A {countA}</text>
             <Glyph a={false} x={8} y={25} size={10} />
-            <rect x={20} y={20} width={(countB / N) * (W - 24) * 2 * 0.98} height={10} rx={3} className={s.barB} />
+            <rect x={20} y={20} width={(countB / N) * (W - 80) * 2} height={10} rx={3} className={s.barB} />
+            <text x={20 + (countB / N) * (W - 80) * 2 + 5} y={29} className={s.lab}>B {countB}</text>
 
             {/* the mix */}
             {isA.map((a, i) => {
@@ -166,7 +170,7 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
                 >
                   <rect x={cx - CELL / 2 + 1} y={cy - CELL / 2 + 1} width={CELL - 2} height={CELL - 2} rx={5} className={flipped.has(i) ? s.flash : s.hit} />
                   <Glyph a={a} x={cx} y={cy} size={14} />
-                  {ti >= 0 && <circle cx={cx} cy={cy} r={13} className={`${s.ring} ${s[TAG_CLASSES[ti]]}`} />}
+                  {ti >= 0 && !locked && <circle cx={cx} cy={cy} r={13} className={`${s.ring} ${s[TAG_CLASSES[ti]]}`} />}
                 </g>
               );
             })}
@@ -185,6 +189,11 @@ export default function TheTaggedMolecule({ slug }: { slug: string }) {
               );
             })}
           </svg>
+          <p className="muted" style={{ margin: 0, fontSize: 13 }}>
+            {locked || ticks === 0
+              ? "● = A, ■ = B. Press ▶ to run one tick."
+              : `Shaded = changed this tick: ${aToB} A→B, ${bToA} B→A.`}
+          </p>
           <Row>
             <Control
               aria-label="Next tick"

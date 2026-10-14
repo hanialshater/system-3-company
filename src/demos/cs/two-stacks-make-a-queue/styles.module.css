@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.model { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.readout { margin: 0; text-align: center; font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.note { margin: 0; min-height: 1.2em; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.label { font-size: 9px; fill: var(--muted); font-weight: 700; }
+.pourOn { font-size: 9px; fill: var(--fg); font-weight: 800; }
+.item { transition: transform 140ms ease-out; }
+.num { font-size: 15px; font-weight: 800; fill: var(--bg); }
+.badge { font-size: 8px; font-weight: 700; fill: var(--muted); }
+.badgeOn { font-size: 8px; font-weight: 800; fill: var(--fg); }
+.tape { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tile { min-height: 44px; padding: 4px 4px; font-size: 0.8rem; line-height: 1.1; }
+.tile small { display: block; font-size: 0.7rem; font-weight: 500; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .item { transition: none; } }

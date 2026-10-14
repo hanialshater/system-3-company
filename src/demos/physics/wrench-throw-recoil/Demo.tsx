@@ -22,6 +22,7 @@ const mom = (m: number, v: number) => m * v;
 const drift = (m: number, v: number) => mom(m, v) / ASTRONAUT;
 const r3 = (x: number) => Number(x.toFixed(3));
 const PX = 4.5; // px per metre after 1 s
+const ASTRO_PX = 45; // px per metre for the astronaut only: its move is drawn 10 times larger so it can be seen
 const BAR = 1.2; // px per kg m/s
 const CX = 160;
 
@@ -56,7 +57,7 @@ export default function WrenchThrowRecoil({ slug }: { slug: string }) {
           </p>
           <p>
             The wrench and astronaut always carried equal and opposite momentum, so the total stayed 0. You do not need
-            anything to push on, only something to push away. Speeds are from the starting frame.
+            anything to push on, only something to push away. Speeds are measured from where the astronaut started.
           </p>
         </>
       )}
@@ -73,15 +74,24 @@ export default function WrenchThrowRecoil({ slug }: { slug: string }) {
             };
             const caption = locked
               ? "Make a prediction to start."
-              : "An 80 kg astronaut at rest throws a wrench. Shown 1\u00a0s later.";
+              : "An 80 kg astronaut at rest throws a wrench. Shown 1\u00a0s later; the astronaut's move is magnified.";
             const wx = 188 + v * PX;
             return (
               <div className={s.wrap}>
                 <svg viewBox="0 0 320 210" className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
                   <text x={316} y={14} className={`${s.chip} ${s.chipR}`}>
-                    No outside force. Speeds from the start frame.
+                    No outside force.
                   </text>
-                  <g transform={`translate(${thrown ? -u * PX : 0} 0)`}>
+                  {thrown && !locked && (
+                    <>
+                      <circle cx={150} cy={42} r={11} className={s.ghost} />
+                      <rect x={138} y={55} width={24} height={30} rx={6} className={s.ghost} />
+                      <text x={150} y={116} className={s.lab}>
+                        astronaut moved {r3(u)} m (drawn 10× larger)
+                      </text>
+                    </>
+                  )}
+                  <g transform={`translate(${thrown ? -u * ASTRO_PX : 0} 0)`}>
                     <circle cx={150} cy={42} r={11} className={s.head} />
                     <rect x={138} y={55} width={24} height={30} rx={6} className={s.body} />
                     <text x={150} y={100} className={s.lab}>
@@ -117,7 +127,7 @@ export default function WrenchThrowRecoil({ slug }: { slug: string }) {
                         +{p}
                       </text>
                       <text x={CX} y={196} className={s.lab}>
-                        Total momentum 0 (kg·m/s)
+                        Momentum = mass × speed. Total 0
                       </text>
                     </>
                   )}

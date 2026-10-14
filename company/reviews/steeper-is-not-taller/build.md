@@ -5,3 +5,8 @@
 - Deviation from brief: the hidden-track car-speed matching game was dropped (needs drag and a second representation).
 - After screenshots: the "B, if it kept going" label sat on its own dashed line; moved above the grid.
 - All numbers recomputed with node; all claims unverified, for the fact-checker.
+
+
+## Revision v2
+
+Review: title stated the answer; reveal quoted 4 across, which the slider could skip. Changes: title and hook neutral; buttons Line at 4 across and Line at 12 across, both required; B's dashed extension hidden while locked. c3 unverified. Version 2.

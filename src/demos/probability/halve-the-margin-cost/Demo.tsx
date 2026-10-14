@@ -8,7 +8,7 @@
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { POLLS, SIZES, START, inside, margin, polls } from "./model";
 import s from "./styles.module.css";
 
@@ -27,6 +27,14 @@ const ROWS = 20;
 
 function Stage({ locked, interact, idx, setIdx }: { locked: boolean; interact: () => void; idx: number; setIdx: (i: number) => void }) {
   const { reach } = useMilestones(interact, MILESTONES);
+  const [visited, setVisited] = useState<number[]>([BASE]);
+  const go = (i: number) => {
+    setIdx(i);
+    setVisited((v) => (v.includes(SIZES[i]) ? v : [...v, SIZES[i]]));
+    if (SIZES[i] === DOUBLE) reach("at-2000");
+    // 4,000 only counts after 2,000 has been seen, so the "only 2.2" step is never skipped.
+    if (SIZES[i] === QUAD && (visited.includes(DOUBLE) || SIZES[idx] === DOUBLE)) reach("at-4000");
+  };
   const size = SIZES[idx];
   const res = useMemo(() => polls(size), [size]);
   const mg = margin(size);
@@ -35,10 +43,16 @@ function Stage({ locked, interact, idx, setIdx }: { locked: boolean; interact: (
   return (
     <div className={s.wrap}>
       <p className={s.msg}>
-        {locked ? "Make a prediction to start." : "Dot: one poll. True support: 50%. Band: the margin of error; about 95% of polls land inside."}
+        {locked ? "Make a prediction to start." : "Dot: one poll. True support: 50%. Band: the margin of error. Dashed lines: earlier bands."}
       </p>
       <svg viewBox="0 0 360 200" className={`stage-svg ${s.svg}`} role="img" aria-label={`Sample ${n(size)}: margin plus or minus ${m1(size)} points`}>
         <rect x={x(50 - mg)} y={8} width={x(50 + mg) - x(50 - mg)} height={164} className={s.band} />
+        {!locked &&
+          visited
+            .filter((v) => v !== size)
+            .flatMap((v) => [-1, 1].map((sg) => (
+              <line key={`${v}${sg}`} x1={x(50 + sg * margin(v))} y1={8} x2={x(50 + sg * margin(v))} y2={172} className={s.ghost} />
+            )))}
         <line x1={x(50)} y1={4} x2={x(50)} y2={176} className={s.truth} />
         {res.map((r, i) => (
           <circle key={i} cx={x(Math.max(LO, Math.min(HI, r)))} cy={14 + (i % ROWS) * 8} r={3} className={Math.abs(r - 50) <= mg ? s.dotIn : s.dotOut} />
@@ -50,6 +64,11 @@ function Stage({ locked, interact, idx, setIdx }: { locked: boolean; interact: (
         ))}
       </svg>
       <Row>
+        <Control disabled={locked || idx >= SIZES.length - 1} onClick={() => go(idx + 1)}>
+          Double the people
+        </Control>
+      </Row>
+      <Row>
         <Slider
           label="People polled"
           value={idx}
@@ -57,11 +76,7 @@ function Stage({ locked, interact, idx, setIdx }: { locked: boolean; interact: (
           max={SIZES.length - 1}
           disabled={locked}
           format={(i) => n(SIZES[i])}
-          onChange={(i) => {
-            setIdx(i);
-            if (SIZES[i] === DOUBLE) reach("at-2000");
-            if (SIZES[i] === QUAD) reach("at-4000");
-          }}
+          onChange={go}
         />
       </Row>
       <Row>

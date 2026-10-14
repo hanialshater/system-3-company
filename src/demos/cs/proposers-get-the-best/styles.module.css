@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap :global(.tap) { min-height: 44px; }
+.rule { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.card {
+  min-height: 64px; border-radius: 12px; border: 2px solid var(--line); background: var(--bg-2);
+  color: var(--fg); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; cursor: pointer; font: inherit; padding: 6px;
+}
+.card:disabled { cursor: default; opacity: 0.6; }
+.card:not(:disabled) { opacity: 1; border-color: var(--domain); }
+.stud { border-color: var(--domain); }
+.hosp { border-style: dashed; }
+.who { font-weight: 800; font-size: 1rem; }
+.star { color: var(--good); }
+.list { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.mate { text-decoration: underline; color: var(--fg); font-weight: 700; }
+.toggle { width: 100%; }
+.lines { height: 80px; width: 100%; }
+.x { font-size: 12px; fill: var(--bad); font-weight: 800; }
+.log { min-height: 3.2em; font-size: 0.85rem; }
+.log p { margin: 0; }
