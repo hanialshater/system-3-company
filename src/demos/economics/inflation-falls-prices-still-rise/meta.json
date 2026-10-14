@@ -26,35 +26,50 @@
       "text": "With yearly rates of 8%, 6%, 4%, 3% and 2%, each applied to last year's price, a $100 basket costs 108.00, 114.48, 119.06, 122.63 and then $125.08.",
       "support": "derivation",
       "source": "p ← p × (1 + i): 100 × 1.08 = 108.00; × 1.06 = 114.48; × 1.04 = 119.0592; × 1.03 = 122.6310; × 1.02 = 125.0836. Demo.tsx PATH; builder node run 2026-10-14. Brief: company/domains/briefs/economics.md #61.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation, re-run from PATH: 100.00, 108.00, 114.48, 119.06, 122.63, 125.08. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/infl.mjs."
     },
     {
       "id": "economics.inflation-falls-prices-still-rise.c2",
       "text": "Inflation is how fast prices rise, not how high they are, so a falling rate means slower rises.",
       "support": "derivation",
       "source": "Definition used by the lesson (stage chip 'Each year's rate applies to last year's price'): the rate is the yearly percentage change of the price level; a smaller positive rate still multiplies the price by more than 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Definition, not a source: the stage chip sets the rule (each year's rate applies to last year's price), so the rate is the yearly percentage change of the level and any rate above 0 multiplies the price by more than 1. Verified as the lesson's own definition."
     },
     {
       "id": "economics.inflation-falls-prices-still-rise.c3",
       "text": "A sixth year at 0% leaves the basket at $125.08; it does not go back.",
       "support": "derivation",
       "source": "125.0836 × (1 + 0) = 125.0836: a zero rate of change leaves the level unchanged. Demo.tsx y6Price(0).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 125.0836 x (1 + 0) = 125.0836, shown $125.08. The 'zero' milestone is required, so the reveal's sentence always matches a bar the learner saw."
     },
     {
       "id": "economics.inflation-falls-prices-still-rise.c4",
       "text": "A sixth year at −1% lowers the basket to $123.83: prices fall only when the rate goes below zero.",
       "support": "derivation",
       "source": "125.0836 × 0.99 = 123.8328; for any rate i ≥ 0, p × (1 + i) ≥ p, so the level falls only if i < 0. Demo.tsx y6Price(-1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 125.0836 x 0.99 = 123.8328, shown $123.83; p(1 + i) >= p for every i >= 0, so only i < 0 lowers the level. The 'negative' milestone is required."
     },
     {
       "id": "economics.inflation-falls-prices-still-rise.c5",
       "text": "The rates are made up, not any country's data and not a forecast.",
       "support": "convention",
       "source": "Lesson rule; the rates are the brief's illustrative path (Demo.tsx RATES); reveal's last sentence.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Lesson rule: RATES is the brief's illustrative path; the reveal says 'Made-up rates, not a forecast'."
     }
   ],
   "confidence": "",

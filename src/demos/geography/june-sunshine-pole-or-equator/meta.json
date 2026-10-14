@@ -27,35 +27,50 @@
       "text": "Daily sunlight per square metre at the top of the atmosphere follows Q = (S0/pi)(a/r)^2 (h0 sin(lat) sin(dec) + cos(lat) cos(dec) sin(h0)); the 24-hour curves on the chart are S0 (a/r)^2 max(0, sin(lat) sin(dec) + cos(lat) cos(dec) cos(h)).",
       "support": "derivation",
       "source": "Berger 1978 (J. Atmos. Sci. 35); Hartmann 2016, Global Physical Climatology, ch. 2. Section `june` of company/domains/briefs/checks/geography-wave-j.mjs. Builder check: integrating the hourly curve in node (2,880 steps) reproduces the closed form to 0.1 W/m^2 at 0, 45 and 90 N.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: integrating the lesson's hourly flux() over 24 h (28,800 steps) reproduces the closed form to 0.01 W/m2 at 0, 30, 45, 60, 66, 67, 80, 89 and 90 N. The formula is the standard daily-mean insolation (Berger 1978 not opened; verified on derivation). artifacts/fact-check-wave-j/wj-econ-phys-math-geo/geo/insol.mjs."
     },
     {
       "id": "geography.june-sunshine-pole-or-equator.c2",
       "text": "The solar constant is 1,361 W/m^2.",
       "support": "source",
       "source": "Kopp and Lean 2011, Geophys. Res. Lett. 38, L01706 (not opened by the builder). The answer is a ratio and does not depend on it.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: astropy 8.0.1 constants, IAU 2015 Resolution B3 nominal solar luminosity 3.828e26 W and IAU 2012 B2 au. L/(4 pi au^2) = 1,361.2 W/m2; Resolution B3 defines the nominal L from a TSI of 1361 W/m2. Kopp and Lean 2011 not opened."
     },
     {
       "id": "geography.june-sunshine-pole-or-equator.c3",
       "text": "On 21 June the Sun's declination is 23.44 degrees and the Earth-Sun distance about 1.0163 AU.",
       "support": "source",
       "source": "Meeus 1998, Astronomical Algorithms (equations as in section `sunset` of the check); not opened by the builder. The distance factor (a/r)^2 = 0.968 scales every place equally.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: astropy 8.0.1 get_sun (ERFA built-in ephemeris). 21 June 2026 12:00 UTC: declination 23.436 degrees, distance 1.01620 AU. IAU 2006 mean obliquity 23.4358 degrees. Meeus not opened."
     },
     {
       "id": "geography.june-sunshine-pole-or-equator.c4",
       "text": "On 21 June the pole gets 12.6 kWh per square metre against the equator's 9.2 (45 degrees N: 11.6); at the pole the Sun stays 23 degrees up for all 24 hours, at the equator it climbs to 67 degrees and sets after 12.",
       "support": "derivation",
       "source": "Arithmetic from c1 to c3: daily means 524.2, 384.8 and 483.4 W/m^2 times 24 h / 1000 = 12.58, 9.24, 11.60 kWh/m^2. Noon Sun height 90 - |lat - 23.44|: 23.4, 66.6 and 68.4 degrees. Day length 24 * acos(-tan(lat) tan(dec)) / pi: 24, 12.0, 15.4 h. Section `june` of the check; computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run: 524.2, 384.8 and 483.4 W/m2 give 12.6, 9.2 and 11.6 kWh/m2; noon Sun 23, 67 and 68 degrees; days 24, 12 and 15.4 h. The maximum over 0-90 N is at the pole. fmtDay prints '12 h' for the equator."
     },
     {
       "id": "geography.june-sunshine-pole-or-equator.c5",
       "text": "In June, tilt gives the north both a higher Sun and longer days; this is sunlight arriving above the air, not warmth at the ground.",
       "support": "derivation",
       "source": "Follows from c1 with dec = +23.44: both the noon height term and the day length h0 grow northward in June. 'Top of the atmosphere, not ground temperature' is a scope statement (no clouds, air or albedo in the model).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: with dec > 0, both sin(lat) sin(dec) and h0 grow northward. 'Above the air' is a scope statement that matches the model (no atmosphere). The recall's wrong option 'closer to the Sun in June' is indeed wrong: Earth is at 1.016 AU (c3)."
     }
   ],
   "confidence": "",

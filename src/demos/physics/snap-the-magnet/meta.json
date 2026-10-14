@@ -27,42 +27,60 @@
       "text": "Every piece of a magnet, however small, has both a north and a south pole; magnetic field lines have no start or end (stage: N and S letters on every piece's faces, 'every piece: N + S'; reveal: 'any piece has a north end and a south end').",
       "support": "source",
       "source": "Gauss's law for magnetism, ∇·B = 0: Griffiths, Introduction to Electrodynamics, chapter 5 (magnetostatics). Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: O. Certik, Theoretical Physics (github.com/certik/theoretical-physics, src/elmag/elmag.rst, Maxwell's equations, 'div B = 0'). Derivation: zero divergence means zero net flux through any closed surface around any piece, so any piece's net pole strength is 0 and an N face comes with an S face. Griffiths was not opened. The stage labels follow the uniform-magnetisation pole model (+sigma A on the face M points to, -sigma A on the other), as in the check script."
     },
     {
       "id": "physics.snap-the-magnet.c2",
       "text": "A bar magnet's magnetism comes from countless tiny atomic magnets (atomic magnetic moments, grouped in domains) lined up head to tail (stage: the arrows inside the bar, caption 'Arrows are the tiny atomic magnets'; reveal: 'A magnet is built from countless tiny atomic magnets lined up head to tail').",
       "support": "source",
       "source": "Griffiths, Introduction to Electrodynamics, chapter 6 (magnetic fields in matter; ferromagnetism and domains). Brief claim 2.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held: no source on the atomic and domain origin of ferromagnetism could be opened (Griffiths ch. 6 not reachable; Certik's book treats the bar magnet only as a dipole or monopole pair). This cannot be derived from div B = 0. To verify it, give me an openable source on atomic magnetic moments and domains."
     },
     {
       "id": "physics.snap-the-magnet.c3",
       "text": "Snapped in the middle, the break shows a new south pole on the north half and a new north pole on the other half, and the halves attract; with one half turned round the facing poles are S and S and the halves push apart (stage: compasses at the break, labels 'S | N at the break: they pull together', 'S | S: they push apart'; Seen row; reveal first paragraph).",
       "support": "simulation",
       "source": "Coaxial point-dipole chain force sum for two 5-unit halves with a 0.1 gap: attractive as cut, repulsive with one half reversed (artifacts/scratch/cm-physics-r4/check.mjs, block 'snap-the-magnet'). In the pole model each piece carries +σA on its N face and −σA on its S face (net 0). Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation re-run: a coaxial point-dipole chain, two 5-unit halves with a 0.1 gap: force -7.76e4 as cut (attract), +7.76e4 with one half reversed (repel). Stage checked face by face: as cut the break faces are S | N, turned they are S | S, and every compass needle points away from N faces and toward S faces. Path note (not blocking): from 'Snap in the middle' straight to 'Snap each half again', layout('quarters') draws the right half reversed although the learner never turned it. Every piece still shows N + S, but the picture silently flips; build the quarters from the current halves."
     },
     {
       "id": "physics.snap-the-magnet.c4",
       "text": "Nobody has ever found a lone north pole (an isolated magnetic monopole) (reveal).",
       "support": "source",
       "source": "Griffiths, Introduction to Electrodynamics, chapter 5 (no magnetic monopoles have been found); Particle Data Group, Review of Particle Physics, magnetic monopole searches. Brief claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: Particle Data Group 2026 database (PyPI package pdg 2026.0, pdg.sqlite, Searches section S028 'Magnetic Monopole Searches'): 199 measurements, almost all upper limits on production cross-sections, fluxes and densities. The only events listed are the CABRERA 1982 single candidate and a CAPLIN 1986 event flagged as controversial; neither was confirmed. 'Nobody has ever found' reads as 'no confirmed detection', which matches. Wording 'No one has ever confirmed a lone north pole' would be exact."
     },
     {
       "id": "physics.snap-the-magnet.c5",
       "text": "Compass convention: the compass's filled (north) end points away from an N face and towards an S face, along the field on the bar's axis; beside the middle of the whole bar the field runs from the N end towards the S end and there is no pole (stage: 'Compass: the filled end is its north end.', 'middle: no pole').",
       "support": "convention",
       "source": "Field outside a magnet runs from N to S; a compass needle's north end points along the field (any introductory text, e.g. Griffiths chapter 5). Demo.tsx Compass.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention (definition): a compass needle's north end points along B, and outside a magnet B runs from N to S. Checked in Demo.tsx Compass() for every face in all four layouts, and for the middle compass (points east, from the N end toward the S end)."
     },
     {
       "id": "physics.snap-the-magnet.c6",
       "text": "Idealisations: a uniformly magnetised bar, a clean break, and no loss of magnetism from the snap. The arrows are a picture of the alignment, not a count of atoms.",
       "support": "convention",
       "source": "Brief claim 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: idealisations, as stated; the arrows are 1 per about 22 px of bar, a picture rather than a count."
     }
   ],
   "confidence": "",

@@ -27,28 +27,40 @@
       "text": "A 4 by 6 photo enlarged so its short side is 6 keeps its shape only at 6 by 9: 6 ÷ 4 = 1.5 and 6 × 1.5 = 9, and 9 ÷ 6 = 1.5 = 6 ÷ 4.",
       "support": "derivation",
       "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A2 (x1.5 6 9 1.500 true).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 6/4 = 1.5, 4 x 1.5 = 6, 6 x 1.5 = 9, 9/6 = 1.5; check A2 re-run."
     },
     {
       "id": "math.adding-squashes-the-photo.c2",
       "text": "Adding 2 to each side gives 6 by 8, ratio 8 ÷ 6 = 1.33; adding 4 gives 8 by 10, ratio 1.25; neither is 1.5, so the corner leaves the line. Multiplying by 2 gives 8 by 12, ratio 1.5, on the line.",
       "support": "derivation",
       "source": "Check A2 (+2 6 8 1.333 false; +4 8 10 1.250 false; x2 8 12 1.500 true). The stage prints ratios with up to 2 decimals (1.33, 1.25, 1.5). The reveal quotes the first adding chip the learner pressed, recorded when the 'added-off' milestone fires.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 6 x 8 ratio 1.33, 8 x 10 ratio 1.25, 8 x 12 ratio 1.5; onRay matches; r2() prints 1.33, 1.25 and 1.5. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/math.mjs."
     },
     {
       "id": "math.adding-squashes-the-photo.c3",
       "text": "Two rectangles anchored at the same bottom-left corner have the same shape exactly when their side ratios are equal; then their top-right corners lie on one line through that corner.",
       "support": "derivation",
       "source": "Similar triangles: the corner (w, h) lies on the line y = (6/4)x through the anchor exactly when h ÷ w = 1.5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: with the anchor at the origin, (w, h) lies on y = 1.5x exactly when h/w = 1.5 (same orientation, short side across)."
     },
     {
       "id": "math.adding-squashes-the-photo.c4",
       "text": "A shape is kept by multiplying every side by the same number; adding the same amount grows the short side by a bigger share than the long side.",
       "support": "derivation",
       "source": "Adding d to sides a < b raises them by the fractions d/a and d/b, and d/a > d/b (here 2/4 = 50% against 2/6 = 33%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: adding d to sides a < b raises them by d/a > d/b. Recall: 10 x 15 scaled by 0.4 gives 4 x 6; subtracting 6 gives 4 x 9, a different ratio. Checks out."
     }
   ],
   "confidence": "",

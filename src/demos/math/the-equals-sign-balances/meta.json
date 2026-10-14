@@ -27,21 +27,30 @@
       "text": "8 + 4 = 12 and 7 + 5 = 12, so 8 + 4 = 7 + 5: with 7 in the box both sides are 12 and the beam is level.",
       "support": "derivation",
       "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A1 ([7, 12, 12, true]). Stage: LEFT = 8 + 4, right = box + 5 in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 8 + 4 = 12 = 7 + 5; check A1 re-run. Beam: diff 0 at box = 7, so it is level. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/math.mjs."
     },
     {
       "id": "math.the-equals-sign-balances.c2",
       "text": "With 12 or 17 in the box the right side is 17 or 22, not 12, so the beam tips to the right.",
       "support": "derivation",
       "source": "Arithmetic; check A1 ([12, 12, 17, false], [17, 12, 22, false]). The reveal quotes the first wrong value the learner tried (recorded when the 'tipped' milestone fires) and that value + 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 12 + 5 = 17, 17 + 5 = 22. angle = sign(diff) x min(10, 2|diff|) > 0, which rotates the beam clockwise, so the right pan goes down ('tips to the right'). The reveal quotes the first wrong value tried."
     },
     {
       "id": "math.the-equals-sign-balances.c3",
       "text": "The equals sign says both sides are the same amount (a = b states that a and b are the same number), not that the answer comes next.",
       "support": "convention",
       "source": "The meaning of equality in arithmetic and algebra (a = b means a and b name the same number).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Definition of equality (a = b: both sides name the same number). The recall ('box + 3 = 6 + 4' gives 7) also checks out."
     }
   ],
   "confidence": "",

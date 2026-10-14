@@ -27,35 +27,50 @@
       "text": "Steady heat flow through layers is Q = ΔT / ΣR, with R = 1/(hA) at a surface and L/(kA) for a layer; arrow width on the stage is set by the heat flow (stage caption 'Arrow width = heat flow').",
       "support": "derivation",
       "source": "Incropera, DeWitt, Bergman and Lavine, Fundamentals of Heat and Mass Transfer, chapter 3 (one-dimensional steady conduction, thermal resistance); artifacts/scratch/cm-physics-r4/check.mjs, block 'coat-on-the-ice'. Demo.tsx flow(). Arrow width 0.5 px per W for the ice, 0.015 px per W for the person (each scene to its own scale). Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation (Incropera not opened): Fourier's law q = kA dT/L gives R = L/(kA); a surface q = hA dT gives R = 1/(hA); resistances in series add in steady state. Arrow widths: 15.0 x 0.5 = 7.5 px bare, 2.1 px coated, 149 x 0.015 = 2.2 px for the person, matching the stated per-scene scales."
     },
     {
       "id": "physics.coat-on-the-ice.c2",
       "text": "Illustrative values: surface coefficient h = 10 W/m²K (natural convection plus radiation), wool k ≈ 0.04 W/mK in a 1 cm layer, ice latent heat 334 kJ/kg, ice density 917 kg/m³, a 10 cm ice cube (0.917 kg, 0.06 m² of surface).",
       "support": "source",
       "source": "Incropera et al., appendix A (thermal conductivity of wool/fibrous insulation about 0.04 W/mK; typical h for free convection plus radiation); latent heat of fusion of ice 334 kJ/kg and density 917 kg/m³ from any physics text. Labelled illustrative. Brief claim 2. Not shown as a sentence on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened. h: Churchill-Chu free convection for a 0.1 m vertical face at 0 C in 25 C air (ht 1.2.0 Nu_vertical_plate_Churchill, CoolProp 8.0 air properties) gives h_conv 5.6, and linearised radiation with emissivity 0.95-0.98 gives 5.0-5.2 W/m2K: total 10.6, so 10 is a fair illustrative value. For the person (34 C skin, 5 C room) the total is 9.8. Wool: ht.insulation (ASHRAE table) lists felted mineral wool 32 kg/m3 at 0.040 and 100 kg/m3 at 0.035 W/mK, and DIN EN 12524 lists felt underlay at 0.05 and wool underlay at 0.06 (denser). 0.04 sits at the light end; even at 0.06 the coated block still lasts 15 h, against 5.7 h bare. Ice: CRC heat of fusion 6,010 J/mol (chemicals 1.5.2) / 18.015 g/mol = 333.6 kJ/kg; IAPWS-06 ice Ih density at 0 C, 1 atm = 916.7 kg/m3 (iapws package). The numbers are illustrative and labelled so. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/coat.py, phys.mjs (sensitivity table)."
     },
     {
       "id": "physics.coat-on-the-ice.c3",
       "text": "The bare block takes in 15.0 W and melts in 5.7 h; wrapped in the coat it takes in 4.3 W and lasts 19.9 h (about 20 hours); a person (skin 34 °C, room 5 °C, 1.8 m²) loses 522 W bare and 149 W in the coat (stage label '15.0 W in · melts in 5.7 h', '4.3 W in · melts in 19.9 h', '149 W out (bare: 522 W)'; Seen row; reveal quotes the recorded values).",
       "support": "derivation",
       "source": "R_bare = 1/(10 x 0.06) = 1.667 K/W, R_wool = 0.01/(0.04 x 0.06) = 4.167 K/W; 25 / 1.667 = 15.0 W; 25 / 5.833 = 4.29 W; 0.917 x 334e3 / 15.0 / 3600 = 5.7 h, / 4.29 / 3600 = 19.9 h; person 29 / (1/18) = 522 W, 29 / (1/18 + 0.01/0.072) = 149 W (artifacts/scratch/cm-physics-r4/check.mjs). Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation, re-run from Demo.tsx constants: 15.00 W, 5.67 h; 4.29 W, 19.85 h (reveal 'about 20 hours'); person 522.0 W bare, 149.1 W coated; ratio 3.5. Caveat on the person numbers (not blocking): they hold the skin at 34 C, which a bare body at 5 C could not keep up, since about 520 W is several times resting metabolism. Fine as 'how fast heat would flow', which is how the stage frames it. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/phys.mjs."
     },
     {
       "id": "physics.coat-on-the-ice.c4",
       "text": "The coat makes no heat; it is a layer of trapped air that slows heat crossing it in either direction. Heat flows from warm to cold, and insulation only slows it; a warm body is the heater (reveal).",
       "support": "derivation",
       "source": "The coat has no energy source (first law of thermodynamics); heat flows down the temperature difference (second law). Wool insulates mainly through the still air trapped between its fibres (Incropera et al., chapter 3, insulation systems). Brief claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "'The coat makes no heat' and 'heat flows warm to cold': derivation (no energy source; heat flows down the temperature gradient). 'A layer of trapped air': supported by opened values, as a derivation. Still air conducts 0.025 W/mK (CoolProp, 10 C), and fibrous insulation reaches 0.035-0.04 at 32-100 kg/m3 (ASHRAE via ht), which is only about 2-8% solid by volume, so the layer is mostly still air and its k sits near air's. No textile-specific source was opened."
     },
     {
       "id": "physics.coat-on-the-ice.c5",
       "text": "Idealisations: the ice stays at 0 °C and keeps its shape and area while it melts, the coat fits closely, and radiation is folded into h.",
       "support": "convention",
       "source": "Brief claim 5.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, checked against the code: the ice is fixed at 0 C, the area is a constant 0.06 m2 (the bottom face's contact with the table is treated like the other faces), and radiation is folded into h (see c2)."
     }
   ],
   "confidence": "",

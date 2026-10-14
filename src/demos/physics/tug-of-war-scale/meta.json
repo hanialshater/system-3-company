@@ -28,28 +28,40 @@
       "text": "A massless spring scale at rest has equal pulls on its two ends and reads that one common tension (stage: two equal 'tension' arrows on the spring, dial; reveal: 'A scale measures the tension in the rope, the pull passed through it, and it can only be stretched if both ends are pulled equally').",
       "support": "derivation",
       "source": "Newton's second law with a = 0 and m ~ 0: T_right - T_left = m a = 0, so both ends carry the same tension, which the spring carries once (artifacts/scratch/cm-physics-r4/check.mjs, block 'tug-of-war-scale'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on Newton's laws (tension). Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation (Halliday et al. not opened): for a massless scale T_right - T_left = m a = 0, and a spring in series carries that one tension. Wording note for demo-builder (not blocking): the reveal's 'it can only be stretched if both ends are pulled equally' is true for the idealised massless scale at rest (c4), but not for a real scale that is accelerating. 'At rest, it is stretched only when both ends are pulled equally' would be exact."
     },
     {
       "id": "physics.tug-of-war-scale.c2",
       "text": "A wall holding the rope's end pulls back with the same 100 N as the friend pulls (stage: wall with a 100 N arrow; reveal: 'the wall pulls back exactly as hard, just as the second friend did').",
       "support": "derivation",
       "source": "Newton's third law: the rope pulls the wall 100 N, the wall pulls the rope 100 N. artifacts/scratch/cm-physics-r4/check.mjs; Halliday, Resnick and Walker, same chapter. Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: Newton's third law. The rope pulls the wall 100 N and the wall pulls the rope 100 N; the stage draws the right-hand arrow as 100 N."
     },
     {
       "id": "physics.tug-of-war-scale.c3",
       "text": "Each friend pulling 100 N gives a reading of 100 N; one friend and a wall gives 100 N; each pulling 200 N gives 200 N (stage dial and Seen row '100 + 100: 100 N · wall: 100 N · 200 + 200: 200 N'; reveal quotes the three readings recorded at the milestones).",
       "support": "derivation",
       "source": "artifacts/scratch/cm-physics-r4/check.mjs prints reads_N = 100, 100, 200 for the three cases. Demo.tsx PULL. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Check script re-run (artifacts/scratch/cm-physics-r4/check.mjs, 'scale'): 100, 100, 200 N; Demo.tsx PULL matches; the Seen row and reveal quote PULL at each milestone."
     },
     {
       "id": "physics.tug-of-war-scale.c4",
       "text": "Idealisations: the rope and scale are massless and everything is at rest. The spring's stretch and the arrow lengths on the stage are drawn in proportion to the tension, not to scale.",
       "support": "convention",
       "source": "Stated assumption, brief claim 4. Demo.tsx: half-length 22 + 0.05 px per N; arrows 0.12 px per N. Not shown as a sentence on the stage; recorded here.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, checked against the code: half-length 22 + 0.05 px/N, arrows 0.12 px/N; massless, at rest."
     }
   ],
   "confidence": "",

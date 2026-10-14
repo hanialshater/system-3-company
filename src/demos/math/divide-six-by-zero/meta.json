@@ -27,35 +27,50 @@
       "text": "Scoops of 3, 1 and 0.1 fill 6 in 2, 6 and 60 scoops: 6 ÷ 3 = 2, 6 ÷ 1 = 6, 6 ÷ 0.1 = 60.",
       "support": "derivation",
       "source": "Arithmetic; company/domains/briefs/checks/math-wave-j-check.mjs label A3 (3 2, 1 6, 0.1 60). The reveal names only the sizes the learner poured, recorded when they pour.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 6/3 = 2, 6/1 = 6, 6/0.1 = 60. JavaScript gives 59.999..., but count() rounds to 60 and the jug draws 60 bands."
     },
     {
       "id": "math.divide-six-by-zero.c2",
       "text": "6 ÷ a scoop size asks how many scoops fill the jug: a ÷ b is the number q with q × b = a.",
       "support": "convention",
       "source": "Definition of division as the inverse of multiplication (the measurement, 'how many fit', reading).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Definition: a / b is the q with q x b = a (the measurement reading of division)."
     },
     {
       "id": "math.divide-six-by-zero.c3",
       "text": "Any number times 0 is 0 (6 × 0, 1,000 × 0 and 1,000,000 × 0 are all 0), never 6, so no number q gives q × 0 = 6 and 6 ÷ 0 is left undefined. A scoop of 0 poured 1,000 times fills 0 of 6.",
       "support": "derivation",
       "source": "q × 0 = 0 for every q (check A3, zero [0, 0, 0, 0]); 1,000 × 0 = 0.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: q x 0 = 0 for every q, so no q solves q x 0 = 6, and 6/0 is undefined in the real numbers. Recall (5/0) checks out. Scope note: the claim is about ordinary (real-number) arithmetic. Some extended systems (the projective real line) write 6/0 = infinity, but there infinity is not a number that times 0 gives 6, so 'No number works' stands."
     },
     {
       "id": "math.divide-six-by-zero.c4",
       "text": "As the scoop size shrinks toward 0, 6 ÷ size grows with no ceiling, so no huge number is the answer either.",
       "support": "derivation",
       "source": "6 ÷ s > N whenever 0 < s < 6/N, so 6 ÷ s is unbounded as s → 0 and has no limit; and q × 0 = 0 ≠ 6 for every huge q.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 6/s > N whenever 0 < s < 6/N, so 6/s is unbounded as s -> 0+, and no real q satisfies q x 0 = 6."
     },
     {
       "id": "math.divide-six-by-zero.c5",
       "text": "6 ÷ 2 = 3 because three 2s make 6 (3 × 2 = 6).",
       "support": "derivation",
       "source": "Arithmetic; the hook's sentence, read through the definition in c2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Arithmetic: 3 x 2 = 6 (the hook)."
     }
   ],
   "confidence": "",

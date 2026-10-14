@@ -28,35 +28,50 @@
       "text": "A dropped object keeps the horizontal velocity it had at release, so inside a carriage moving at constant velocity it falls straight down and lands below the hand; the laws of motion are the same in any frame moving at constant velocity (stage: 'ball 20 m/s' arrow equal to 'train 20 m/s', straight trace; reveal: 'It left your hand already moving at the train's speed, and nothing slowed it, so it kept pace with you. Inside a steadily moving train, things fall just as they do standing still').",
       "support": "source",
       "source": "Inertia and Galilean relativity: Halliday, Resnick and Walker, Fundamentals of Physics, chapter on motion in two and three dimensions (relative motion); artifacts/scratch/cm-physics-r4/check.mjs. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Verified by derivation, not by the cited Halliday chapter (not opened; web blocked). Once released, the only force on the ball is vertical (no air resistance relative to the sealed carriage, c4), so its horizontal velocity stays at the train's v. Under x' = x - vt the acceleration is unchanged, so the fall in the carriage frame is the same as at rest. Support could be 'derivation'."
     },
     {
       "id": "physics.drop-on-the-train.c2",
       "text": "A fall from 1.8 m takes 0.61 s (reveal: 'in the 0.61 s fall').",
       "support": "derivation",
       "source": "t = sqrt(2h/g) = sqrt(2 x 1.8 / 9.81) = 0.606 s (artifacts/scratch/cm-physics-r4/check.mjs, block 'drop-on-the-train'). Demo.tsx HAND, T_FALL. Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: sqrt(3.6/9.81) = 0.6058 s, shown 0.61 s."
     },
     {
       "id": "physics.drop-on-the-train.c3",
       "text": "At 20 m/s the train and the ball each move 12.1 m forward during the fall (24.2 m at 40 m/s), so the ball lands 0 cm from the spot below the hand (stage: 'lands 0 cm from below your hand', platform label 'train moved 12.1 m · ball moved 12.1 m', Seen row '20 m/s: 0 cm · platform: 12.1 m curve · 40 m/s: 0 cm'; reveal quotes the recorded values).",
       "support": "derivation",
       "source": "20 x 0.606 = 12.12 m; 40 x 0.606 = 24.23 m; offset = 0 (artifacts/scratch/cm-physics-r4/check.mjs). Demo.tsx records the platform distance at the speed shown when the platform view fires. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation and code: 20 x 0.6058 = 12.12 m, 40 x 0.6058 = 24.23 m; the ball lands at carX + 30 px, the hand's spot, 0 cm. Path note (not blocking): if the platform view is first opened at 40 m/s, the reveal's 'the same drop ... the train moved 24.2 m' follows a sentence about 20 m/s; still true, but 'the same drop' then refers to the 40 m/s drop."
     },
     {
       "id": "physics.drop-on-the-train.c4",
       "text": "Idealisations: the train moves at constant velocity in a straight line, the carriage is sealed (its air moves with it), and there is no air resistance relative to the carriage. If the train braked at 2 m/s² during the fall, the ball would land about 37 cm ahead. Not on the stage.",
       "support": "derivation",
       "source": "0.5 x 2 x 0.606^2 = 0.367 m (artifacts/scratch/cm-physics-r4/check.mjs, 'train braking'). Brief claim 4: assumptions only.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 0.5 x 2 x 0.6058^2 = 0.367 m (37 cm). Not on the stage."
     },
     {
       "id": "physics.drop-on-the-train.c5",
       "text": "The platform view is drawn 10 px per metre across and 40 px per metre up (stage caption: 'Heights drawn 4× taller'); the carriage is drawn shorter than a real one.",
       "support": "convention",
       "source": "Demo.tsx PX = 10, VY = 40, CW = 56. Picture convention, not a fact about trains.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention, checked: PX = 10, VY = 40 (4x), CW = 56 px; caption 'Heights drawn 4x taller'."
     }
   ],
   "confidence": "",

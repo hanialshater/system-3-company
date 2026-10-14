@@ -1,0 +1,17 @@
+# Fact-check: which-way-the-water-goes (2026-10-14)
+
+Board: W-665. Lesson: src/demos/geography/which-way-the-water-goes/ (status draft, version 1).
+
+Checker: fact-checker (I did not write these claims). Method: I read Demo.tsx on every reachable path before I read the claims: locked state, each control in every order, Reset, the sliders' full range, and the dynamic strings in the stage, Seen line and reveal. Then I re-ran every number in node from my own copies of the lesson logic (scripts in artifacts/fact-check-wave-j/wj-econ-phys-math-geo/; the geography models were run from type-stripped copies of model.ts and solar.ts). Brief check script: company/domains/briefs/checks/geography-wave-j.mjs, sections watershed, ekman, june, insol-annual and sunset, re-run. The dev server was not used (the dispatcher's instruction). Web: only PyPI, npm, GitHub raw files and public git clones were reachable. Sources opened for this batch: ERA-Interim monthly winds (pydata/xarray-data eraint_uvz.nc, raw.githubusercontent.com); astropy 8.0.1 (IAU 2015 B3 nominal L_sun, IAU 2012 au, ERFA Sun ephemeris); pyproj (WGS 84 ellipsoid); geonamescache (GeoNames London); tzdata 2026.5 (IANA Europe/London). Not opened: Talley et al. 2011, Hartmann 2016, Meeus 1998, Kopp and Lean 2011, Berger 1978. Where a claim cites them, the verdict rests on a derivation or on an opened source named in the note.
+
+Unrecorded claims: I compared every learner-visible sentence (title, hook, question, options, stage labels, Seen line, reveal, recall) with the claims list. None found. The recall question was checked against the claims it rests on (see the notes).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Derivation (Ekman 1905 and Talley not opened): steady f k x M = tau/rho gives M = (tau_y, -tau_x)/(rho f), which is 90 degrees to the right of the wind for f > 0 and to the left for f < 0. Wind toward N at 30 N with tau 0.1 N/m2 gives 1.34 m2/s toward E (section 'ekman' re-run). Code: netB = wind + side x 90. Recall (south, wind toward E -> north) checks out. |
+| c2 | verified | Derivation: Ekman's constant-viscosity solution W = A e^((1+i)z/D) with surface stress gives A proportional to e^(-i pi/4): 45 degrees to the right at the surface, turning a further z/D and shrinking as e^(z/D) with depth. Demo.tsx draws exactly this (45 + z/D rad, length x e^(-z/D)). |
+| c3 | verified | Opened: ERA-Interim monthly means (January and July), pydata/xarray-data eraint_uvz.nc via raw.githubusercontent.com, 850 hPa zonal wind. Zonal mean at 15 N: -5.5 and -1.3 m/s (toward the west); at 45 N: +5.9 and +3.5 m/s (toward the east). North Pacific (160E-140W): -7.6 at 15 N, +6.8 and +5.8 at 45 N. Caveat: 850 hPa is about 1.5 km up, not the surface, and only two months. The lesson's 15 N and 45 N are idealised placements. Talley and Hartmann not opened. |
+| c4 | verified | Verified by derivation, for the idealised basin the stage draws. From c1 and c3, transport is northward under the trades and southward under the westerlies, so it converges between them. Geostrophic balance around a raised sea surface (f k x u = -g grad eta) gives flow with the high on its right in the north, which is clockwise around the mound. The stage's arrows are clockwise. That real subtropical gyres are driven this way is not separately sourced (Talley not opened); the card says 'Idealised'. |
+| c5 | verified | Convention: the stage caption. |
+
+**Result:** no disputes. All claims verified.

@@ -26,35 +26,50 @@
       "text": "Over a year the North Pole gets about 41% of the equator's sunlight per square metre at the top of the atmosphere (51.5 N 67%, 60 N 57%, 30 N 88%).",
       "support": "derivation",
       "source": "Daily-mean insolation Q = (S0/pi)(h0 sin(lat) sin(dec) + cos(lat) cos(dec) sin(h0)) (Berger 1978) averaged over a circular orbit in 3,600 steps: 415.5, 365.2, 277.0, 236.3 and 172.3 W/m^2 at 0, 30, 51.5, 60 and 90 N (pole/equator 0.415). Section `insol-annual` of company/domains/briefs/checks/geography-wave-j.mjs; re-run by the builder (scratchpad insol.mjs) and computed in Demo.tsx. Hartmann 2016 (Global Physical Climatology, ch. 2) shows about 417 and 173 W/m^2 (not opened by the builder).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-run from Demo.tsx annual(): 415.5, 365.2, 277.0, 236.3 and 172.3 W/m2, giving 100%, 88%, 67%, 57% and 41%; pole/equator 0.415. The circular-orbit average is stated in the code comment. Hartmann not opened; verified on derivation. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/geo/insol.mjs."
     },
     {
       "id": "geography.why-the-poles-get-less-sun.c2",
       "text": "The pole is at most 6,371 km farther from the Sun, 0.004% of the way.",
       "support": "source",
       "source": "Earth mean radius 6,371.0088 km (IUGG; EARTH_RADIUS_KM in src/kit/geo); 1 AU = 149,597,870.7 km (IAU 2012 resolution B2). At equinox the pole is R (1 - cos 90) = R farther along the Sun line than the sub-solar point: 6,371 / 149,597,870.7 = 0.0043%. Readout shown to 3 decimals: 0.004%. Sources not opened by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: WGS 84 via pyproj (a = 6,378,137 m, b = 6,356,752.314 m) gives the IUGG mean radius (2a + b)/3 = 6,371.0088 km = EARTH_RADIUS_KM in src/kit/geo; astropy gives the au as exactly 149,597,870,700 m (IAU 2012 B2). 6,371/149,597,870.7 = 0.0043%, shown 0.004%. Geometry: at equinox the pole is R farther along the Sun line than the sub-solar point (at solstice the summer pole is nearer than the centre), so 'at most'."
     },
     {
       "id": "geography.why-the-poles-get-less-sun.c3",
       "text": "That extra distance is worth less than 0.01% of the light.",
       "support": "derivation",
       "source": "Flux falls as 1/r^2: 1 - (1 AU / (1 AU + 6,371 km))^2 = 0.0085% (section `insol-annual`).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 1 - (AU/(AU + R))^2 = 0.0085% < 0.01%."
     },
     {
       "id": "geography.why-the-poles-get-less-sun.c4",
       "text": "Near the poles the same beam lands on more ground, so each square metre gets less: at equinox noon the lit ground is 1/cos(latitude) times the beam's width (x1.61 at 51.5 N, x2.00 at 60 N), and at the pole the beam grazes the ground.",
       "support": "derivation",
       "source": "Geometry of a parallel beam meeting a sphere at angle (90 - latitude) at equinox noon. Section `insol-annual` prints 1.00, 1.15, 1.61, 2.00. Drawn in Demo.tsx as the lit arc under a fixed-width band.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: a parallel beam meets the ground at incidence angle = latitude at equinox noon, so it spreads over 1/cos(lat): 1.15, 1.61 and 2.00 at 30, 51.5 and 60 N, and grazes the ground at 90. Code: spread = 1/cos(lat), and at the pole the lit arc draws only the part of the band below the pole."
     },
     {
       "id": "geography.why-the-poles-get-less-sun.c5",
       "text": "Equinox noon, top of atmosphere.",
       "support": "convention",
       "source": "Scope statement on the stage: the picture is equinox noon; the yearly share is above the air. The card makes no claim about climate zones (that needs temperature data).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the stage caption."
     }
   ],
   "confidence": "",

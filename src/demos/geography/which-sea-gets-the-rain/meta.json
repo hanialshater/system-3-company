@@ -6,9 +6,14 @@
   "concept": "river-watersheds",
   "status": "draft",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-geography", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["rivers run downhill to the sea"],
+    "knows": [
+      "rivers run downhill to the sea"
+    ],
     "doesNotKnow": [
       "that a drainage divide, not distance, decides which sea gets the rain",
       "that a divide near one coast sends most of the land to the far one"
@@ -22,38 +27,69 @@
       "text": "A drop at the dot, 55 km from the west sea and 150 km from the east sea, runs downhill to the east sea; a drop west of the ridge runs to the west sea.",
       "support": "simulation",
       "source": "Made-up island, 40 x 24 squares of 5 km, ridge at x = 7 +/- 1.5 plus noise from mulberry32 seed 7 (seed set in the brief before running, disclosed here). Priority-flood pit filling (Barnes, Lehman and Mulla 2014), then D8 steepest descent (O'Callaghan and Mark 1984). Dot at square (10, 12): 11 squares (55 km) from the west sea, 30 squares (150 km) from the east sea; ends east. Drop at (5, 12) ends west. src/demos/geography/which-sea-gets-the-rain/model.ts, a port of section `watershed` in company/domains/briefs/checks/geography-wave-j.mjs; builder re-ran both and they agree (764 east, 79.6%).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation re-run: node ran model.ts itself (type-stripped copy). Drop at (10, 12) ends east after 30 squares; drop at (5, 12) ends west. 55 km = 11 x 5 and 150 km = 30 x 5. Identical to section 'watershed' of company/domains/briefs/checks/geography-wave-j.mjs (its mulberry32 is written differently but is equivalent). artifacts/fact-check-wave-j/wj-econ-phys-math-geo/geo/."
     },
     {
       "id": "geography.which-sea-gets-the-rain.c2",
       "text": "About four fifths of the island (80%) drains east.",
       "support": "simulation",
       "source": "Same model: 764 of 960 squares (79.6%, shown rounded to 80%) end in the east sea; 284 squares nearer the west coast still drain east. Section `watershed` of company/domains/briefs/checks/geography-wave-j.mjs; model.ts eastCount.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation re-run: 764 of 960 east (79.6%, shown 80%), 284 nearer the west coast still drain east. The divide sits at x = 7-9 in every row, with no east square west of a west square in any row."
     },
     {
       "id": "geography.which-sea-gets-the-rain.c3",
       "text": "Water follows the slope, and the ridge is a divide: every drop on one side ends in one sea, every drop on the other side in the other.",
       "support": "derivation",
       "source": "Definition of a drainage divide (the boundary between land draining to different outlets). True by construction in the model: each square has exactly one outlet, and the drawn divide is the set of square edges between squares with different outlets (Demo.tsx divideSegs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Definition, true by construction: every square has one outlet, and divideSegs are the edges between squares with different outlets."
     },
     {
       "id": "geography.which-sea-gets-the-rain.c4",
       "text": "Made-up island; 1 square = 5 km.",
       "support": "convention",
       "source": "Scope statement on the stage caption: the island is a toy; no real river or basin is named (the kit has no river data).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the stage caption, and KM = 5."
+    },
+    {
+      "id": "geography.which-sea-gets-the-rain.c5",
+      "text": "Recall: a ridge 20 km from a country's west coast means most of its rain probably reaches the east coast ('everything east of the ridge drains east, and that is most of the land').",
+      "support": "derivation",
+      "source": "Unrecorded claim found by the fact-checker in meta.json recall (question and why). Rests on c3 plus an unstated assumption that the country is much wider than 40 km.",
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Recorded by the fact-checker as an unrecorded learner-facing claim (so I do not verify it myself). It holds only if the country is wider than twice the ridge's distance from the coast; the recall never says so. Fix for demo-builder: state a width (for example 'a country 300 km wide'), then a different checker verifies it."
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A ridge runs 20 km from a country's west coast. Most of its rain probably reaches which coast?",
-    "options": ["The east coast", "The west coast", "Both about equally"],
+    "options": [
+      "The east coast",
+      "The west coast",
+      "Both about equally"
+    ],
     "answer": 0,
     "why": "The divide, not the distance, decides: everything east of the ridge drains east, and that is most of the land."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "geography:river-watersheds",
@@ -62,8 +98,15 @@
     "level": "core",
     "strand": "earth-climate",
     "references": [],
-    "tags": ["toy-world", "drainage"]
+    "tags": [
+      "toy-world",
+      "drainage"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

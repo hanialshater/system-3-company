@@ -26,28 +26,40 @@
       "text": "In the lesson's seeded run (20 auctions, 10 bidders, seed 1), the guesses averaged $99.2, the winning bids averaged $116.5, and the winner overpaid in 20 of 20 auctions.",
       "support": "simulation",
       "source": "Demo.tsx simulate(10) with the kit's mulberry32(1), guesses 100 + (u × 40 − 20) drawn auction by auction, bidder by bidder; builder node run 2026-10-14: average guess 99.17, average winning bid 116.53, 20 of 20 above $100. Seed 1 was the brief's seed, not chosen for the result; seeds 7 and 42 give 117.2 and 116.0 (20 of 20). Brief: company/domains/briefs/economics.md #64.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation, re-run with the kit's mulberry32(1) copied from src/kit/random.ts: average guess 99.165, average winning bid 116.526, 20 of 20 overpaid. Seeds 7 and 42: 117.19 and 115.97, 20 of 20 each, so the picture does not depend on the seed. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/bid.mjs."
     },
     {
       "id": "economics.winning-bid-overpays.c2",
       "text": "With 2 bidders, the same seeded run's winning bids averaged $105.4 (12 of 20 overpaid); with 20 bidders, $118.6.",
       "support": "simulation",
       "source": "Demo.tsx simulate(2), simulate(20), mulberry32(1); builder node run 2026-10-14: 105.42 (12 of 20), 118.56 (20 of 20).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation, same run: 2 bidders 105.415 (12 of 20); 20 bidders 118.556 (20 of 20)."
     },
     {
       "id": "economics.winning-bid-overpays.c3",
       "text": "Winning picks out the bidder whose guess was highest, so the error that wins is the biggest one; with more rivals the expected overpayment is bigger.",
       "support": "derivation",
       "source": "Order statistics of n independent uniform errors on [−20, 20]: E[max] = 20(n − 1)/(n + 1): $6.7 for 2, $16.4 for 10, $18.1 for 20 above $100; increasing in n.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: for n independent U[-20, 20] errors, E[max] = 20(n - 1)/(n + 1): 6.67, 16.36 and 18.10 for n = 2, 10, 20, increasing in n. A Monte Carlo of 200,000 auctions of 10 bidders gives 16.38."
     },
     {
       "id": "economics.winning-bid-overpays.c4",
       "text": "Model rule on the card: each guess is $100 plus a random error up to ±$20 (seeded), each bidder bids its guess, the highest bid wins and pays it; a made-up jar.",
       "support": "convention",
       "source": "Lesson rule (stage chip and question); Demo.tsx simulate(). The oil-lease history (Capen, Clapp and Campbell 1971) and the label 'winner's curse' are kept out of learner text.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Lesson rule, checked against simulate(): the guess is 100 + U[-20, 20), each bidder bids its guess, and the highest bid wins and pays it. 'Winner's curse' and the 1971 oil-lease history are not in the learner text."
     }
   ],
   "confidence": "",
@@ -68,7 +80,29 @@
     "humanLearners": []
   },
   "version": 1,
-  "curriculum": {"primary":"economics:common-value-winners-curse","also":["probability:winners-curse"],"prerequisites":["economics:ascending-auction"],"level":"core","strand":"markets","references":[],"tags":["auctions","information","selection"]},
+  "curriculum": {
+    "primary": "economics:common-value-winners-curse",
+    "also": [
+      "probability:winners-curse"
+    ],
+    "prerequisites": [
+      "economics:ascending-auction"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [],
+    "tags": [
+      "auctions",
+      "information",
+      "selection"
+    ]
+  },
   "format": "simulation-run",
-  "interactions": ["choice-before-reveal", "preset-buttons", "step-run-button", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }

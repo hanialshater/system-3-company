@@ -6,9 +6,14 @@
   "concept": "equation-of-time",
   "status": "draft",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-geography", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-geography",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["the shortest day is about 21 December"],
+    "knows": [
+      "the shortest day is about 21 December"
+    ],
     "doesNotKnow": [
       "that solar noon drifts later through December, so the earliest sunset comes before the shortest day and the latest sunrise after it"
     ]
@@ -21,35 +26,50 @@
       "text": "London's earliest sunset, 15:51, comes around 13 December; the latest sunrise, 08:06, comes around 30 December; the day is shortest on the 21st (7 h 50 min).",
       "support": "derivation",
       "source": "NOAA solar calculator equations (Meeus 1998, Astronomical Algorithms, ch. 25 and 28), refraction 0.833 degrees, 51.5074 N 0.1278 W, GMT, 2026-27 values, computed for 1 Dec 2026 to 15 Jan 2027: earliest sunset 13 Dec 15:51:20 (within 30 s from 9 to 16 Dec), latest sunrise 30 Dec 08:06:15, shortest day 21 Dec 7:49:31. Section `sunset` of company/domains/briefs/checks/geography-wave-j.mjs; src/demos/geography/darkest-evening-of-the-year/solar.ts is a port, re-run by the builder with identical results. Values move by under a minute between years, hence 'around'. The window is December to mid-January; the claim that these are the year's extremes rests on winter being the only season with sunsets this early.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-run of solar.ts in node (type-stripped copy): earliest sunset 13 Dec 15:51 (15:51:20), latest sunrise 30 Dec 08:06, shortest day 21 Dec 7 h 50 min. Independent check with astropy 8.0.1 (Sun altitude -0.833 degrees at 51.5074 N, 0.1278 W): sunset 15:51:18 on both 12 and 13 Dec, latest sunrise 08:06:15 on 30 and 31 Dec, shortest day 21 Dec 7:49:38. Both methods round to the same minutes, so 'around' is apt. Stage note (not blocking): once 2 or more dates are visited, the ring labels 'earliest' and 'latest' mark the extremes among the dates visited so far, so before 13 Dec is visited the stage can say 'earliest 15:53' on 21 Dec. 'earliest seen' would be exact."
     },
     {
       "id": "geography.darkest-evening-of-the-year.c2",
       "text": "Solar noon in London moves from 11:55 on 13 December to 12:03 on 30 December.",
       "support": "derivation",
       "source": "Same equations: solar noon = 720 - 4 x longitude - equation of time (minutes, GMT): 11:54:42 on 13 Dec, 12:03 on 30 Dec (12:03:29 on 31 Dec). Section `sunset`; solar.ts.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-run: solar noon 11:54:42 on 13 Dec, shown 11:55; 12:03 on 30 Dec. The astropy maximum-altitude minute is 11:55 and 12:03. Agrees."
     },
     {
       "id": "geography.darkest-evening-of-the-year.c3",
       "text": "Solar noon drifts because Earth moves fastest in early January and its tilt adds to the drift.",
       "support": "source",
       "source": "Equation of time from orbital eccentricity and obliquity (Meeus 1998 ch. 28; the eot formula in solar.ts has an eccentricity term, -2e sin M, and an obliquity term, y sin 2L0). Perihelion falls on 2 to 5 January (Meeus). Not opened by the builder.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Disputed: the two causes are weighted the wrong way round. The sentence says noon drifts 'because Earth moves fastest in early January and its tilt adds to the drift', which makes speed the cause and tilt a top-up. Splitting the lesson's own equation-of-time formula (solar.ts) from 13 to 30 Dec: of the 8.3 min later drift, the obliquity (tilt) term gives 5.9 min and the eccentricity (orbital speed) term 2.2 min. The tilt is about 70% of it. Both facts in the sentence are right: perihelion is 3 Jan 2027 about 03 UTC (astropy, distance 0.98333 AU), and by Kepler's second law the orbit is fastest there. Fix for demo-builder (wording, in the reveal and in this claim): 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January', or name the tilt first."
     },
     {
       "id": "geography.darkest-evening-of-the-year.c4",
       "text": "London at 51.51 N, 0.13 W.",
       "support": "source",
       "source": "Gazetteer coordinates for central London (51.5074 N, 0.1278 W); the result holds across central London. Not opened by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: GeoNames via geonamescache (PyPI). London (geonameid 2643743) is at 51.50853 N, 0.12574 W, within about 0.2 km of 51.5074, -0.1278. A 0.2 km shift moves the times by under 1 s."
     },
     {
       "id": "geography.darkest-evening-of-the-year.c5",
       "text": "London, clock time (GMT), winter 2026-27.",
       "support": "convention",
       "source": "UK clocks are on GMT from late October to late March, so there is no daylight saving in December and January (stage caption).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: IANA tz database (tzdata 2026.5, zoneinfo Europe/London). The UTC offset is 0 from 26 Oct 2026 until 28 Mar 2027 (+1 h on 24 Oct 2026 and 29 Mar 2027), so the clock is GMT throughout 1 Dec - 15 Jan."
     }
   ],
   "confidence": "",
@@ -63,17 +83,34 @@
     "answer": 0,
     "why": "The day keeps shrinking until the 21st, but the whole day slides later, so the evening end stops getting earlier first."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "geography:equation-of-time",
-    "also": ["geography:sun-time-from-longitude"],
-    "prerequisites": ["geography:sun-time-from-longitude"],
+    "also": [
+      "geography:sun-time-from-longitude"
+    ],
+    "prerequisites": [
+      "geography:sun-time-from-longitude"
+    ],
     "level": "core",
     "strand": "earth-climate",
     "references": [],
-    "tags": ["sunset", "solar-noon"]
+    "tags": [
+      "sunset",
+      "solar-noon"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons", "slider-live-chart"]
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "slider-live-chart"
+  ]
 }

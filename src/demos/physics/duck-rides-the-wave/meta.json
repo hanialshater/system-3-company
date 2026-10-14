@@ -27,42 +27,60 @@
       "text": "Deep-water waves obey ω² = g k: at a 4 s period the wavelength is 25.0 m and the crest speed 6.25 m/s, so a crest moves on 25 m per wave and 250 m in ten waves (stage labels 'crest moved 25 m', 'crests moved 250 m'; reveal: 'the crest moved on 25 m', 'the crests had travelled 250 m').",
       "support": "derivation",
       "source": "λ = 2π g / ω² = 24.98 m, c = ω / k = 6.245 m/s (artifacts/scratch/cm-physics-r4/check.mjs, block 'duck-rides-the-wave'); linear wave theory, Kundu and Cohen, Fluid Mechanics, chapter on surface gravity waves. Demo.tsx PERIOD, LAMBDA, C. Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation (Kundu and Cohen not opened): from w^2 = gk, lambda = 2 pi g/w^2 = 24.98 m and c = w/k = 6.245 m/s; 25 m a period, 250 m in 40 s. That is the phase (crest) speed of a steady train of waves arriving from far away, which the question describes ('Ocean waves roll past'). See c4 for the train's front. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/duck.mjs."
     },
     {
       "id": "physics.duck-rides-the-wave.c2",
       "text": "In linear theory each surface water particle moves round a circle of radius equal to the amplitude (0.1 m) and comes back near its start each period: one loop about 0.2 m across (stage inset 'duck's path', Seen row '1 wave: loop 0.2 m'; reveal: 'your duck looped about 0.2 m across and came back').",
       "support": "derivation",
       "source": "Kundu and Cohen, same chapter (particle orbits in deep water). Demo.tsx integrates the particle path as in artifacts/scratch/cm-physics-r4/check.mjs (dt = 1 ms); the first-period loop is 0.19 m wide, shown to 1 decimal. Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: in linear deep-water theory the surface particle displacement is a circle of radius a e^(kz) = 0.1 m at the surface. The lesson's Lagrangian integration gives a first-period loop 0.188 m across (shown '0.2 m') that closes to within 0.015 m."
     },
     {
       "id": "physics.duck-rides-the-wave.c3",
       "text": "After ten waves (40 s) the duck has drifted forward only about 0.15 m (Stokes drift, about 0.004 m/s at this height) while the crests travelled 250 m (stage label 'duck moved 0.15 m', Seen row '10 waves: duck 0.15 m, crests 250 m'; reveal: 'your duck had shifted only about 0.15 m').",
       "support": "simulation",
       "source": "Second-order Stokes drift ω k a² = 0.0040 m/s → 0.16 m in 40 s; the Lagrangian simulation in artifacts/scratch/cm-physics-r4/check.mjs and in Demo.tsx gives 0.147 m. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Simulation and derivation: the Stokes drift w k a^2 = 0.00395 m/s, or 0.0038 m/s at the orbit's mean depth (-a), gives 0.15 to 0.16 m in 40 s. The lesson's integration gives 0.147 m, shown 0.15 m. artifacts/fact-check-wave-j/wj-econ-phys-math-geo/duck.mjs."
     },
     {
       "id": "physics.duck-rides-the-wave.c4",
       "text": "A buoy 100 m away begins to bob at 16 s, when the wave reaches it: the wave carries energy there, not water (stage label 'buoy starts to bob at 16 s', Seen row 'buoy: 16 s'; reveal: 'The buoy 100 m away began to bob at 16 s: the wave carried energy there, not water'). OBJECTION (demo-builder): the 16 s uses the crest speed. In deep water a wave train's front, and its energy, travel at the group speed, half the crest speed (3.1 m/s), so a buoy 100 m away would start to bob at about 32 s. Built as briefed; fact-checker and cm-physics to rule.",
       "support": "derivation",
       "source": "Brief: 100 / 6.25 = 16 s (artifacts/scratch/cm-physics-r4/check.mjs). Against it: deep-water group velocity c_g = c / 2 (Kundu and Cohen, chapter on surface waves, group velocity and energy flux), giving 100 / 3.12 = 32 s. Demo.tsx draws the front moving at C.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Ruling: the builder's objection is right; 16 s is wrong. In deep water w = sqrt(gk), so the group velocity is dw/dk = c/2 = 3.12 m/s, and the energy flux is E c_g. A train that starts at the duck at t = 0 reaches the buoy 100 m away at 100/3.12 = 32.0 s, not 16 s. Individual crests run at c through the group and die out at its front, so no crest arrives before the group. Re-checked by simulation: a Gaussian packet with carrier k = w^2/g, propagated with the exact dispersion, has its envelope peak at 125 m after 40 s and 250 m after 80 s (3.12 m/s). The stage makes the same error twice: Demo.tsx draws the front at C*t, and the buoy label and Seen row say 16 s. Fix for demo-builder: (1) move the envelope's front at C_G = C/2 while the crests inside it move at C; (2) BUOY_T = BUOY/C_G = 32 s, in the label, the Seen row and the reveal; (3) the claim text and source become 'about 32 s, group speed c/2' (the 'energy, not water' sentence stays). Optional: draw the 1-wave and 10-wave presets as a steady train already filling the sea, so c1's '250 m' does not show a crest outrunning a front that has only reached 125 m. {S}duck.mjs."
     },
     {
       "id": "physics.duck-rides-the-wave.c5",
       "text": "Near the shore, where waves break, the water does rush forward (reveal).",
       "support": "source",
       "source": "Kundu and Cohen, same chapter (breaking waves and surf-zone currents). Brief claim 4: one told sentence.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held: no source on breaking waves or surf-zone flow could be opened (Kundu and Cohen not reachable; web blocked). Breaking is nonlinear and empirical, so it cannot be verified from the linear theory I re-derived. To verify it, supply an openable source, or cut the sentence (cm-physics's call)."
     },
     {
       "id": "physics.duck-rides-the-wave.c6",
       "text": "Idealisations: deep water, small waves, no wind or current, and the duck moves with the surface water. Taller waves drift more (in proportion to the height squared). The stage draws heights 80 px per m and the duck's path 90 px per m against 2.45 px per m across (caption: 'Heights and the duck's path drawn magnified').",
       "support": "convention",
       "source": "Brief claim 5. Demo.tsx PXM, VY, IK.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation and code: Stokes drift goes as w k a^2, so the drift goes as the height squared. PXM 2.45, VY 80 and IK 90 px per m match the caption 'Heights and the duck's path drawn magnified'."
     }
   ],
   "confidence": "",
