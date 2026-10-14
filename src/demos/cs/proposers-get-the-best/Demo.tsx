@@ -208,7 +208,7 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
           </p>
           <p>
             Deferred acceptance always ends stable and gives the proposing side its best stable partner (Gale and
-            Shapley 1962). The US residency match moved to students proposing for this reason (Roth and Peranson 1999).
+            Shapley 1962). The US residency match switched to students proposing in 1998, a change studied by Roth and Peranson (1999).
           </p>
           <p className="muted">A fair-looking procedure can still have a side it favours.</p>
         </>

@@ -75,7 +75,7 @@ export default function OneBitAvalanche({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.label}>Message (tap one bit; · is a non-letter symbol)</p>
+                <p className={s.label}>Message (tap one bit; · stands for a byte with no printable character, or a space)</p>
                 <div className={s.msg}>
                   {msg.map((byte, i) => (
                     <div key={i} className={s.byte}>

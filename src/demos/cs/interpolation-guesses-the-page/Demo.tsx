@@ -111,7 +111,7 @@ export default function InterpolationGuessesThePage({ slug }: { slug: string }) 
                 {" "}
                 On the cubes, {fmt(cubes.target)} took <strong>{plural(cubes.looks)}</strong>; halving takes {cubes.halving}.{" "}
                 {cubes.looks > cubes.halving
-                  ? "The line bends away from the dots, so each aim fell short."
+                  ? "The dots bend upward, so the straight aim line runs above them and reaches your value too early: each aim fell short."
                   : "Here the line happened to fit well, so aiming won. Try 9,261 to see it fail."}
               </>
             ) : null}

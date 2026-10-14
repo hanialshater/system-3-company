@@ -69,12 +69,10 @@
     },
     {
       "id": "cs.one-bit-avalanche.c6",
-      "text": "A hash is a fixed-size fingerprint of a message, used to check that it was not altered. A dot (·) on the stage stands for a character that is not a printable letter.",
+      "text": "A hash is a fixed-size fingerprint of a message, used to check that it was not altered. A dot (·) on the stage stands for a byte with no printable character, or a space: any byte outside 33 to 126.",
       "support": "source",
-      "source": "Standard definition of a cryptographic hash function (NIST FIPS 180-4 for SHA-256: message digest used to detect changes). | FACT-CHECK 2026-10-14 (pass 19): Sentence 1 holds (FIPS 180-4: a digest used to detect whether a message changed). Sentence 2 does not match the code: charOf shows bytes 33-126 as themselves and · only for bytes outside that range. Node: the 24 one-bit flips of 'cat' give # ! ` 4 | (non-letters, shown as themselves) and · only when the top bit is set. So · is not 'a character that is not a printable letter', and the stage label '· is a non-letter symbol' is wrong too. Fix (builder, claim and Demo.tsx label): '· stands for a byte with no printable character'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Standard definition of a cryptographic hash function (NIST FIPS 180-4 for SHA-256: message digest used to detect changes). | FACT-CHECK 2026-10-14 (pass 19): Sentence 1 holds (FIPS 180-4: a digest used to detect whether a message changed). Sentence 2 does not match the code: charOf shows bytes 33-126 as themselves and · only for bytes outside that range. Node: the 24 one-bit flips of 'cat' give # ! ` 4 | (non-letters, shown as themselves) and · only when the top bit is set. So · is not 'a character that is not a printable letter', and the stage label '· is a non-letter symbol' is wrong too. Fix (builder, claim and Demo.tsx label): '· stands for a byte with no printable character'. | v2 (2026-10-14, builder): sentence 2 and the stage label reworded per pass 19 to match charOf (bytes 33-126 shown as themselves, all others as ·; a space, byte 32, can be reached by flipping two bits and also shows as ·). Previous verdict void; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

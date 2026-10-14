@@ -61,12 +61,10 @@
     },
     {
       "id": "cs.interpolation-guesses-the-page.c5",
-      "text": "On the cubes the aim line falls short at each look because the straight line from the low end to the high end sits well below the bending dots, so each look moves one position.",
+      "text": "On the cubes the dots bend upward, so the straight aim line from the low end to the high end runs above them and reaches the target value too early: each aim falls short. For small values like 1,000 and 9,261 each look moves just one position; for 729,000 the looks land at positions 73, 88, 89 and 90.",
       "support": "simulation",
-      "source": "Node trace for 9,261 shows probes 1, 2, ..., 21 in order: each aim lands one position past the last. Shown on the stage as the ticks crawling from the left edge. · Fact-check pass 19 2026-10-14: DISPUTED. The cubes are convex, so the chord from the low end to the high end lies ABOVE the dots, not below (own node check: above at all 98 interior positions of the first range). That is why the aim falls short: the line reaches the target value to the left of the target. Also \"each look moves one position\" holds for 1,000 and 9,261 but not 729,000 (positions 73, 88, 89, 90). The reveal line \"The line bends away from the dots\" is also loose (the line is straight; the dots bend). Suggested fix (builder, claim + reveal): \"On the cubes the dots bend upward, so the straight aim line runs above them and reaches the target value too early: each aim falls short, and for small values like 9,261 each look moves just one position.\"",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Node trace for 9,261 shows probes 1, 2, ..., 21 in order: each aim lands one position past the last. Shown on the stage as the ticks crawling from the left edge. · Fact-check pass 19 2026-10-14: DISPUTED. The cubes are convex, so the chord from the low end to the high end lies ABOVE the dots, not below (own node check: above at all 98 interior positions of the first range). That is why the aim falls short: the line reaches the target value to the left of the target. Also \"each look moves one position\" holds for 1,000 and 9,261 but not 729,000 (positions 73, 88, 89, 90). The reveal line \"The line bends away from the dots\" is also loose (the line is straight; the dots bend). Suggested fix (builder, claim + reveal): \"On the cubes the dots bend upward, so the straight aim line runs above them and reaches the target value too early: each aim falls short, and for small values like 9,261 each look moves just one position.\" | v2 (2026-10-14, builder): claim and reveal reworded per pass 19 (line runs above the convex dots; one-position steps scoped to small values; 729,000 trace 73, 88, 89, 90 from the pass-19 check, see c3). Previous verdict void; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

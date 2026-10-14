@@ -19,7 +19,13 @@ Subject categories own *what is true in a subject*. A course owns *a sequence so
 The book is a map, never a source of learner text, figures or exercises. The free draft is on the authors' site. The cloud environment's network policy currently blocks cs.cornell.edu and the mirrors, so the chapter and section titles come from search snippets and the published table of contents. Every section number stays `unconfirmed` until someone with access checks it (open: the founder can allow the host).
 
 ## Objections
-(filled from the consultations below; none raised yet)
+Both directs consulted agree with changes. Each change is adopted, and tools/org/roles.mjs is updated:
+1. **Order and targets** (Priya, Leonie): courses-lead *proposes* targets and order. The head of product approves them, and course briefs compete for the lesson slots allocated at cycle-planning. For NCM, Selin's vertical doc decides concept order. The courses org owns section coverage and book order, and course maps are now one of Selin's inputs.
+2. **Strand ownership** (Leonie): the course manager *proposes* concepts (`course: ncm`, `proposed: true`, plus a board item), and the strand manager accepts or objects. Disputes go to the category lead, then the head of product.
+3. **Brief routing** (Leonie): `tools/claim.mjs` reads only company/domains/briefs/. Rather than changing the tool, a course brief is copied into the owning strand's briefs file under "Course: NCM" once the strand manager has re-checked its answer, and builders claim it from there. Kenji may later choose to teach claim.mjs about course files.
+4. **Learning path** (Leonie): it stays with personalization-lead, and the course map is an input to it.
+5. **Denominator** (Priya, Leonie): courses-lead reviews every `demoable: false`, and a strand manager or Selin spot-checks them. Coverage comes from `node tools/meta.mjs coverage`, is reported as an input metric, and is never counted as Surface Value.
+6. **Unconfirmed sections** (Priya): no `curriculum.references` row may cite an unconfirmed section number. While the book host is blocked, rows cite the chapter only.
 
 ## Consulted
 - **head-of-product (Priya):** Agree with changes. Placement under me is right: courses-lead reports to head-of-product, beside principal-pm-verticals, with subject concepts staying with strand managers. Changes:

@@ -42,12 +42,10 @@
     },
     {
       "id": "math.straight-across-saves.c3",
-      "text": "For the straight side c of a right triangle with legs a and b, a² + b² = c², and c is always shorter than a + b. The stage shows east² + north² and its square root for the chosen destination.",
+      "text": "For the straight side c of a right triangle with legs a and b, a² + b² = c², and c is always shorter than a + b. The stage shows east² + north² and its square root for the chosen destination, rounded to the nearest whole number and marked \"about\" when not exact (at the start, 100² + 200² = 50,000, and its square root is about 224, since √50,000 ≈ 223.6).",
       "support": "derivation",
-      "source": "Pythagorean theorem; (a + b)² = a² + b² + 2ab > c² for a, b > 0, so a + b > c. | FACT-CHECK 2026-10-14 (pass 19): DISPUTED. The theorem half is fine ((a+b)^2 = c^2 + 2ab > c^2 for a,b > 0). But the stage caption says 'e^2 + n^2 = X, and its square root is S' with S = Math.round(hypot): at the starting position (100, 200) it reads '...= 50,000, and its square root is 224', yet sqrt(50,000) = 223.6. Same at (100,100) 141 vs 141.42 and most other cells; only Pythagorean cells like (300,400) are exact. Fix (builder): caption 'its square root is about S' (or use = only when exact), and match the claim text.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Pythagorean theorem; (a + b)² = a² + b² + 2ab > c² for a, b > 0, so a + b > c. | FACT-CHECK 2026-10-14 (pass 19): DISPUTED. The theorem half is fine ((a+b)^2 = c^2 + 2ab > c^2 for a,b > 0). But the stage caption says 'e^2 + n^2 = X, and its square root is S' with S = Math.round(hypot): at the starting position (100, 200) it reads '...= 50,000, and its square root is 224', yet sqrt(50,000) = 223.6. Same at (100,100) 141 vs 141.42 and most other cells; only Pythagorean cells like (300,400) are exact. Fix (builder): caption 'its square root is about S' (or use = only when exact), and match the claim text. | v2 (2026-10-14, builder): caption now says \"about S\" unless S² equals east² + north² exactly (e.g. 300, 400 gives exactly 500), per pass 19; claim text matches. Previous verdict void; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "math.straight-across-saves.c4",

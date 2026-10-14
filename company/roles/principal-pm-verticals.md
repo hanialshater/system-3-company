@@ -37,6 +37,7 @@ May not:
 ## Inputs
 
 - Coverage and overlap reports
+- Course maps and coverage (content/courses/*/chapters.json, company/courses/*/coverage.md)
 - Learner and recall data (once deployed)
 - Founder direction
 - Category charters

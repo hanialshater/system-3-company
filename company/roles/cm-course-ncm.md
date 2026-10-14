@@ -15,7 +15,7 @@ Every idea in Networks, Crowds, and Markets that a learner can predict and then 
 
 - content/courses/ncm/chapters.json: chapter → section → concepts, demo-able yes/no with a reason, and covering lessons
 - company/courses/ncm/briefs.md: briefs for uncovered demo-able sections (concept, misconception, prediction, node-checked answer, format from company/design/formats.md, curriculum.primary/also/references)
-- Adding course concepts to the owning subject category's content/curriculum/<domain>.json (tag `course: ncm`), telling that strand manager on the board
+- Proposing course concepts to the owning subject category: appended to content/curriculum/<domain>.json with `course: ncm` and `proposed: true`, plus a board item for that strand manager, who accepts or objects. After the strand manager re-checks a brief, it is copied into company/domains/briefs/<domain>.<strand>.md under "Course: NCM" so builders can claim it
 - company/courses/ncm/coverage.md: coverage by chapter, refreshed after each wave
 
 ## Out of scope

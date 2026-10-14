@@ -15,8 +15,9 @@ A learner who is reading a book or taking a course finds a 60-second demo for ev
 
 - content/courses/<course>/: the course map (chapters.json: every chapter and section, the concepts it teaches, demo-ability, and the lessons that cover it)
 - Which works enter content/works.json and get a course manager
-- Coverage targets per course (share of demo-able sections with a lesson) and the course learning path with personalization
-- Routing: a course concept that lives in a subject category is added to that category's curriculum map and its strand manager is told on the board
+- Proposed coverage targets and order per course (the head of product approves them; for a course that is also a vertical, the vertical doc decides order), and the course map as an input to personalization-lead's learning path
+- Reviewing the course manager's map, including every `demoable: false` call
+- Routing: a course concept that lives in a subject category is proposed to that strand's manager, who accepts it into the category's curriculum map or objects (disputes go to the category lead, then the head of product). Once the strand manager has re-checked the answer, the approved brief is copied into the strand's briefs file (company/domains/briefs/), and builders claim it from there
 
 ## Out of scope
 
@@ -28,12 +29,13 @@ A learner who is reading a book or taking a course finds a 60-second demo for ev
 
 May:
 - Adopt a work as a course (with the head of product)
-- Set course coverage targets and order
+- Propose course coverage targets and order
 - Ask any strand manager to review a course brief in their strand
 
 May not:
 - Publish
 - Copy a work's text or figures into a lesson
+- Count coverage as learner value (it is an input metric)
 
 ## Inputs
 

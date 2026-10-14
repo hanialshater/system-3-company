@@ -122,8 +122,8 @@ export default function TenTestCases({ slug }: { slug: string }) {
           <p>
             A score on a handful of cases is itself a noisy measurement. At 10 cases it typically wanders about{" "}
             {spreadPts(10).toFixed(1)} points either way; at 1,000 cases about {spreadPts(1000).toFixed(1)}
-            {runs[1000].length >= 2 && <> (your 1,000-case tests: ±{sdOf(runs[1000], 1000).toFixed(1)})</>}. Only more
-            held-out cases shrink the noise.
+            {runs[1000].length >= 2 && <> (your 1,000-case tests: ±{sdOf(runs[1000], 1000).toFixed(1)})</>}. In this toy,
+            more held-out cases shrink the noise: the spread falls as 1/√n.
           </p>
         </>
       )}

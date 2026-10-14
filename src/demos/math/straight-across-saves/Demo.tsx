@@ -72,7 +72,7 @@ export default function StraightAcrossSaves({ slug }: { slug: string }) {
             const S = straight(e, n);
             const caption = locked
               ? "Make a prediction to start."
-              : `Dashed: east, then north. Solid: straight. ${e}² + ${n}² = ${(e * e + n * n).toLocaleString("en-US")}, and its square root is ${S}.`;
+              : `Dashed: east, then north. Solid: straight. ${e}² + ${n}² = ${(e * e + n * n).toLocaleString("en-US")}, and its square root is ${S * S === e * e + n * n ? "" : "about "}${S}.`;
             return (
               <div className={s.wrap}>
                 <svg viewBox="0 0 320 214" className={`stage-svg ${s.fit}`} role="img" aria-label={caption}>
