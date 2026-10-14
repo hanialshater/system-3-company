@@ -19,12 +19,12 @@ There are two orgs, and both report to the VP of R&D in the CEO office:
 **Budget:** a lesson is ≤ 15 KB of its own code. A kit library should cost a lesson ≤ 10 KB gzipped for what it imports, so keep it tree-shakeable.
 
 ## How R&D works: code evolution
-Several R&D engineers write competing variants in parallel, and a fixed evaluator owned by the R&D lead scores them (`tools/evolve.mjs`). The best are kept and recombined over a few generations. See [evolution.md](evolution.md). Each bet below has a generation budget (default 4 generations of 3–5 agents).
+Several R&D engineers write competing variants in parallel, and a fixed evaluator owned by the R&D lead scores them (`tools/evolve.mjs`). The best are kept and recombined over a few generations. See [evolution.md](evolution.md). Each bet below has a generation budget (default 4 generations of 3–5 agents). The stop rule is in evolution.md step 6.
 
 ## Bet list
 | Bet | Org | Needed by | Exit criterion | Status |
 |---|---|---|---|---|
-| Knot theory JS library | R&D (+ Research for which invariants are teachable) | Knot theory lessons (math discrete strand), Life Hacks knots | Draws the knots up to 7 crossings from a table; computes crossing data, writhe, linking number, tricolourability, the Alexander and Jones polynomials, matching published values; supports Reidemeister moves on a diagram; ≤ 10 KB gzipped for a typical lesson | started 2026-10-13 |
+| Knot theory JS library | R&D (+ Research for which invariants are teachable) | Knot theory lessons (math discrete strand), Life Hacks knots | Draws the knots up to 7 crossings from a table; computes crossing data, writhe, linking number, tricolourability, the Alexander and Jones polynomials, matching published values; supports Reidemeister moves on a diagram; ≤ 10 KB gzipped for a typical lesson | started 2026-10-13. Gen 1 passed the stop rule ([decision 2026-10-14](../decisions/2026-10-14-evolution-stop-rule.md)). **Generation budget: 2 left after gen 1 (gen 2 and gen 3); gen 3 only if gen 2 passes.** Gen 2 (layout) is next; champion gen1-force. Promotion EDD drafting continues (W-162) |
 | Agent-based simulation engine | R&D | Schelling lessons (mild-preferences-sharp-divides, schelling-on-new-york) | Promote after both lessons ship (rule of two) | waiting on the two lessons |
 
 ## Ritual
