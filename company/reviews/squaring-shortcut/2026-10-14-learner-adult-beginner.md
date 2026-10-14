@@ -3,7 +3,7 @@
 # Learner review: squaring-shortcut
 lesson version: v1
 boundary: adult beginner (knows a power is repeated multiplication; has not thought about reusing results).
-Screenshots seen: yes (sheet.png, phone, 7 frames incl. sheet)
+Screenshots seen: yes (sheet.png, phone, 6 frames)
 
 ## 1. From the artifact
 
