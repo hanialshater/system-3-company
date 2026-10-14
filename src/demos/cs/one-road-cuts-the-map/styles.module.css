@@ -1,7 +1,8 @@
 .wrap { display: flex; flex-direction: column; gap: 4px; }
-.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; gap: 6px; }
+.wrap :global(.control) { padding: 8px 8px; }
 .note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
 .town { fill: #0d0f14; font-size: 15px; font-weight: 900; }
 .cross { fill: var(--bad); font-size: 16px; font-weight: 900; }
-.label { fill: var(--muted); font-size: 12px; font-weight: 700; }
-.badge { fill: var(--fg); font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.label { fill: var(--muted); font-size: 12.5px; font-weight: 700; }
+.badge { fill: var(--fg); font-size: 12.5px; font-weight: 800; font-variant-numeric: tabular-nums; }

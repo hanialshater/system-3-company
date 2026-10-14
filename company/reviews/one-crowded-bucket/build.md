@@ -51,3 +51,20 @@ Fixes: (top) the stage is more compact (tiles 16 high, viewBox 340 x 260, was 28
 5. QA path: Drop into buckets, Sort buckets (spread-sorted, Seen spread row), Spread disabled, Clumped (drop + sort, about 370 ms, clumped-sorted, Seen clumped row). Both rows and the tower are on stage at the reveal.
 6. Reset: no Reset; switching hands keeps both readouts and both Seen rows. QA-path reveal: "Spread out, the ten numbers landed in 9 buckets. Only 64 and 70 shared one, so sorting took 1 comparison. Clumped, all ten fell into 41-50, and the "tiny" sorts became one insertion sort of ten numbers. Each newcomer slid past every bigger number already there: 1 + 1 + 3 + 3 + 2 + 6 + 3 + 6 + 5 = 30 comparisons, and 42 and 44 made 6 tests each. Both runs are on the Seen rows. / Bucket sort only splits the work ..."
 - meta.json 2 -> 3; c6 text changed (unverified). Not run: build, QA, walkthrough, tsc.
+
+## v4 (demo-builder, 2026-10-14, answering 2026-10-14-learner-knows-counting-sort-r8.md, board W-317)
+- Fit (top finding): at 390x844 the open reveal cropped the stage top by 227 px (tool; "44" hidden; 108 words with the verdict). Stage 536 -> 346 px:
+  - The hand row left the picture: it is now the stage's first line, "Spread hand: 95 12 37 ..." / "Clumped hand: 47 43 ...", with dropped numbers struck through and faded, then "Drop into buckets of ten, then sort each." (the old rule line, shorter).
+  - Picture viewBox 340x260 -> 340x184: tile rows 16 -> 14 px, the per-bucket count row under the buckets is gone, and the picture's bottom line is now the live total, "Comparisons: 30 · small number on a tile: its tests".
+  - The three readouts (Comparisons / Spread / Clumped) are gone: the live total is in the picture and both results are on the Seen rows. The four buttons share one row: "Drop", "Sort", "Spread", "Clumped" (hand chips in a group labelled "Hand").
+  - Labels at least 10 px: tile numbers, tallies and bucket labels 8-10 -> 12 px in the viewBox (about 10.8 px drawn after the kit's small fit, 157/164).
+- Reveal ~103 -> 75 words (tool 108 -> 80 with the verdict). Cut "42 and 44 made 6 tests each" (labels the r8 learner could not read; c6 text narrowed and reopened) and "Both runs are on the Seen rows."; "ten numbers" -> "the hand" / "of ten"; the sum is printed as on the Seen row (1+1+3+...). Kept the mechanism sentence ("Each newcomer slid past every bigger number already there") and both payoff sentences (c4, c5). cm-cs may still choose a different cut.
+- The "Seen, spread" row now reads "9 buckets, 64 & 70 shared; 1 comparison" (was "shared one").
+
+## Pre-flight v4
+1-2. Unchanged.
+3. Locked stage: "Spread hand: 95 12 37 64 28 81 3 46 59 70", the how line, ten empty buckets, "Comparisons: 0 · each bucket holds ten values"; no Seen rows, no readouts. Nothing shows 30.
+4. Reveal values: 9 buckets, 64 and 70, 1 comparison (b) spread-sorted, on the "Seen, spread" row; 41-50, 1+1+3+3+2+6+3+6+5 = 30 (b) clumped-sorted, on the "Seen, clumped" row and the picture's total.
+5. QA path: Drop, Sort (spread-sorted), Spread disabled, Clumped (drop + sort, clumped-sorted).
+6. Reveal on that path: "Spread out, the hand landed in 9 buckets; only 64 and 70 shared one: 1 comparison. Clumped, all ten fell into 41-50, and the "tiny" sorts became one insertion sort of ten. Each newcomer slid past every bigger number already there: 1+1+3+3+2+6+3+6+5 = 30 comparisons. / Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it is as slow as the sort inside the one crowded bucket."
+7. Phone fit (`node tools/reveal-fit.mjs --url http://localhost:3530 one-crowded-bucket`, dev server, 2026-10-14): before crop 227 px, namedHidden 1, 108 words; after crop 0 px, hiddenBelow 0, namedHidden 0, 80 words (75 without the verdict). Stage 346 px (picture 157 of 164 natural, controls 44, text 102), reveal 247 px, window 618 px (a few px spare; a longer Seen line on another path could tip it). The hand line, the whole tower with its tallies, both Seen rows and the reveal's last line are on screen.

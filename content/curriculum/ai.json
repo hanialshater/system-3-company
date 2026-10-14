@@ -496,6 +496,47 @@
       "prerequisites": [
         "precision-recall-threshold"
       ]
+    },
+    {
+      "id": "fairness-impossibility",
+      "name": "Fairness trade-off: calibrated scores give unequal error rates",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "calibration",
+        "confusion-matrix"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "prediction-not-intervention",
+      "name": "Prediction is not intervention: records carry past decisions",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "probability:confounding"
+      ],
+      "subarea": "ai-society"
+    },
+    {
+      "id": "test-set-reuse",
+      "name": "Test-set reuse: the best of many models is flattered by luck",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "train-test-split"
+      ],
+      "subarea": "ml-basics"
+    },
+    {
+      "id": "sequence-length-bias",
+      "name": "Length bias: the most probable answer tends to be short",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "greedy-decoding"
+      ],
+      "subarea": "neural-language"
     }
   ]
 }

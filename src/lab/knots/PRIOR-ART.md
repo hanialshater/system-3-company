@@ -5,6 +5,11 @@ knotinfo.math.indiana.edu, katlas.org, math.toronto.edu, arxiv.org). **No code w
 Every algorithm below was written from the mathematical description. Third-party software was used only
 offline, as a **test oracle** that produced reference numbers (`test/published.mjs`), never shipped.
 
+**Provenance update (2026-10-14, W-145):** the table's PD codes below were read from GPL programs. A clean
+re-derivation (typed-in DT codes, a Conway notation and braid words, with citations, converted by our own code and proved
+to be the same diagrams) is in [provenance/README.md](provenance/README.md), with the licence check. The kit should promote
+`provenance/table.derived.mjs`. U10 is proposed for the lab bench only. The history below is kept as it was.
+
 ## JavaScript / TypeScript
 
 | Project | Licence | What it is | What we reused |

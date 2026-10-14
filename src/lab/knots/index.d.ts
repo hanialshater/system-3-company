@@ -123,13 +123,24 @@ export function closeCurve(pts: P3[], method?: 'direct' | 'radial'): P3[]
 export function project(pts: P3[]): PD
 
 // ---------- drawing ----------
+/**
+ * crossings: centres. points: 4 Bezier handles per crossing (4c + j, j counted counter-clockwise from the crossing's
+ * first incoming strand, so a stored layout survives crossingChange). loops: [x, y, r] of crossingless components.
+ */
 export interface Layout { crossings: [number, number][]; points: [number, number][]; loops: [number, number, number][] }
-/** Circle-packing layout (Tutte fallback). Plain data in math axes; store it to keep a picture fixed. */
-export function layout(pd: PD, opts?: { iters?: number; tutte?: boolean }): Layout
+/**
+ * Tutte embedding, then an embedding-preserving force relaxation (PrEd / ImPrEd style, anisotropic 8-sector zones):
+ * no vertex may cross a segment of an edge's control polygon, so the picture stays planar with the same faces and
+ * handedness. Forces: springs, repulsion, vertex-segment repulsion, centre pull, an angle spring at handles, a
+ * square-crossing pull and a bigon opener (a long 2-sided region is pushed open into a lens), finished by squaring
+ * every crossing to 90 degrees. Links: drawn, but the Hopf link still comes out as a flat lens. `relax` = relaxation steps (default 60,
+ * 0 = off; fewer steps past about 20 crossings). Deterministic. Plain data in math axes; store it to keep a picture fixed.
+ */
+export function layout(pd: PD, opts?: { relax?: number }): Layout
 export interface Drawing {
   size: number
   viewBox: string
-  /** One SVG path per edge, cut short where it passes under. from/to are crossing indices. */
+  /** One SVG path per edge (one cubic: crossing, two handles, crossing), cut short where it passes under. from/to are crossing indices. */
   edges: { label: number; component: number; from: number; to: number; d: string }[]
   /** Crossing centres (tap targets) and signs. */
   crossings: { i: number; x: number; y: number; sign: number }[]

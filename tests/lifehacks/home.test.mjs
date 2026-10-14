@@ -142,6 +142,8 @@ test('every plain-cord lesson on the generic stage gets a cord drawing that matc
  assert.equal(homeCordScene(loop,20,false).crossings.length,value('elastic-loop-release',20,false));
  assert.equal(homeCordScene(loop,20,true).crossings.length,value('elastic-loop-release',20,true));
  assert.ok(homeCordScene(loop,loop.max,false).end<=300);
+ { const [dot]=homeCordScene(loop,20,false).crossings; // W-383: the dot sits where the two diagonals of the curl cross
+   close(dot.y,150-(dot.x-110)*50/60); close(dot.y,100+(dot.x-130)*50/60); }
  const coil=get('coiled-cord-bend-radius'),narrow=homeCordScene(coil,10,false),wide=homeCordScene(coil,10,true);
  close(wide.r,2*narrow.r);close(narrow.turns,200/(2*Math.PI*10));close(wide.turns*2,narrow.turns);
  assert.ok(homeCordScene(coil,coil.max,true).cy-homeCordScene(coil,coil.max,true).r>=20);

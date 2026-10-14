@@ -13,11 +13,15 @@
 // v4 (W-246, FC pass 26): the walk is computed on the full map, so "Walk depth-first" reopens every road and the
 // walk marks (badges, dotted roads, bridge) and their legend show exactly when walked and no road is closed; closing
 // a road afterwards hides the marks (the note says so) instead of drawing badges that belong to a different map.
+// v5 (r8): compact for the phone reveal. viewBox 360 x 186 (was 320 x 266), the tallies are a picture label
+// (top left) instead of a readout row, "Reopen all" is gone (tap the closed road again to reopen it), the road
+// buttons and "Walk depth-first" share one wrapping row, and the Walk text row is gone (the badges it repeated
+// are on screen with the reveal now).
 // One representation: the map; reachable towns from town 1 in the domain colour, cut-off towns red.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -32,9 +36,11 @@ const ROADS: [number, number][] = [
   [4, 6],
 ];
 // Circle layout, clockwise from the top: 1, 4, 2, 5, 6, 3 (2-3 and 4-6 are the diameters; 3-4 is a middle-length chord like 1-2 and 4-5).
-const CX = 160;
-const CY = 124;
-const RAD = 84;
+const VW = 360;
+const VH = 186;
+const CX = 180;
+const CY = 92;
+const RAD = 62;
 const RING = [1, 4, 2, 5, 6, 3];
 const POS: Record<number, [number, number]> = Object.fromEntries(
   RING.map((t, i) => {
@@ -123,15 +129,14 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You closed all {ROADS.length} roads. {ROADS.length - BRIDGES.length} of them left the map whole; only{" "}
-            {BRIDGES.map(name).join(", ")} cut towns 4, 5 and 6 off from 1, 2 and 3. Towns 3 and 4 each touch three roads,
-            but closing any of their other roads changed nothing: those roads sit on loops, so traffic went the other way round.
+            You closed all {ROADS.length} roads. {ROADS.length - BRIDGES.length} left the map whole; only{" "}
+            {BRIDGES.map(name).join(", ")} cut towns 4, 5 and 6 off. Towns 3 and 4 each touch three roads, but their other
+            roads sit on loops, so traffic went the other way round.
           </p>
           <p>
-            A road on a loop has a detour; a bridge is a road on no loop. Your depth-first walk found it in one pass: town{" "}
-            {BR[1]} was visited #{DFS.disc[BR[1]]}, and the earliest visit anything from there on can loop back to is #
-            {DFS.low[BR[1]]} (↩#{DFS.low[BR[1]]}). Town {BR[0]}, #{DFS.disc[BR[0]]}, came earlier and no loop reaches it, so no
-            other road gets around {name(BR)}.
+            A bridge is a road on no loop. Your depth-first walk found it in one pass: from town {BR[1]} (#{DFS.disc[BR[1]]})
+            on, nothing loops back earlier than #{DFS.low[BR[1]]} (↩#{DFS.low[BR[1]]}); town {BR[0]} (#{DFS.disc[BR[0]]}) is
+            earlier, so no other road gets around {name(BR)}.
           </p>
         </>
       )}
@@ -140,16 +145,16 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
         <Milestones interact={interact} names={["first-test", "all-tested", "dfs-walk"]}>
           {(hit) => {
             const close = (i: number) => {
-              if (locked || closed === i) return;
+              if (locked) return;
+              if (closed === i) {
+                setClosed(null); // tap the closed road again to reopen it
+                return;
+              }
               setClosed(i);
               const next = tested.includes(i) ? tested : [...tested, i];
               setTested(next);
               hit("first-test");
               if (next.length === ROADS.length) hit("all-tested");
-            };
-            const reopen = () => {
-              if (locked || closed === null) return;
-              setClosed(null);
             };
             const walk = () => {
               if (locked || walked) return;
@@ -160,12 +165,12 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
 
             // walk marks belong to the full map: shown only after the walk and while every road is open
             const marks = walked && closed === null;
-            const hidden = walked ? " Reopen all to see the walk." : "";
+            const hidden = walked ? " Tap it again to see the walk." : "";
             const note =
               closed === null
                 ? marks
                   ? `Depth-first from 1. #visit order; ↩ earliest # it loops back to. Dotted: road back.`
-                  : "Tap a road below to close it."
+                  : "Tap a road below to close it; tap again to reopen."
                 : SPLITS[closed]
                   ? `${name(ROADS[closed])} closed: the map splits in two.${hidden}`
                   : `${name(ROADS[closed])} closed: every town is still reachable.${hidden}`;
@@ -173,7 +178,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 320 266" className="stage-svg" role="img" aria-label={`${reachable.size} of 6 towns reachable`}>
+                <svg viewBox={`0 0 ${VW} ${VH}`} className="stage-svg" role="img" aria-label={`${reachable.size} of 6 towns reachable`}>
                   {ROADS.map((r, i) => {
                     const [x1, y1] = POS[r[0]];
                     const [x2, y2] = POS[r[1]];
@@ -205,11 +210,11 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                     const ok = reachable.has(t);
                     const [x, y] = POS[t];
                     const ox = ((x - CX) / RAD) * 34;
-                    const oy = ((y - CY) / RAD) * 30;
+                    const oy = ((y - CY) / RAD) * 25;
                     return (
                       <g key={t}>
-                        <circle cx={x} cy={y} r={17} fill={ok ? "var(--domain)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={1.5} />
-                        <text x={x} y={y + 6} textAnchor="middle" className={s.town}>
+                        <circle cx={x} cy={y} r={15} fill={ok ? "var(--domain)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={1.5} />
+                        <text x={x} y={y + 5} textAnchor="middle" className={s.town}>
                           {t}
                         </text>
                         {marks ? (
@@ -220,8 +225,17 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  <text x={160} y={262} textAnchor="middle" className={s.label}>
-                    {reachable.size} of {TOWNS.length} towns reachable from town 1
+                  <text x={2} y={14} className={s.label}>
+                    Roads tested: {tested.length} / {ROADS.length}
+                  </text>
+                  <text x={2} y={30} className={s.label}>
+                    Map stays whole: {whole}
+                  </text>
+                  <text x={2} y={46} className={s.label}>
+                    Map splits: {split}
+                  </text>
+                  <text x={VW - 2} y={VH - 4} textAnchor="end" className={s.label}>
+                    {reachable.size} of {TOWNS.length} reachable from 1
                   </text>
                 </svg>
                 <Row>
@@ -229,33 +243,19 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                     <Control
                       key={name(r)}
                       className={i === closed ? "active" : ""}
-                      disabled={locked || i === closed}
+                      disabled={locked}
+                      aria-pressed={i === closed}
                       onClick={() => close(i)}
-                      aria-label={`Close road ${name(r)}`}
+                      aria-label={i === closed ? `Reopen road ${name(r)}` : `Close road ${name(r)}`}
                     >
                       {name(r)}
                       {tested.includes(i) ? (SPLITS[i] ? " ✕" : " ✓") : ""}
                     </Control>
                   ))}
-                </Row>
-                <Row>
-                  <Control disabled={locked || closed === null} onClick={reopen}>
-                    Reopen all
-                  </Control>
                   <Control disabled={locked || walked} onClick={walk}>
                     Walk depth-first
                   </Control>
                 </Row>
-                <Row>
-                  <Readout label="Map stays whole" value={whole} />
-                  <Readout label="Map splits" value={split} />
-                  <Readout label="Roads tested" value={`${tested.length} / ${ROADS.length}`} />
-                </Row>
-                {walked && (
-                  <p className={s.note} data-testid="seen-walk">
-                    Walk: town {BR[1]} #{DFS.disc[BR[1]]} ↩#{DFS.low[BR[1]]}, town {BR[0]} #{DFS.disc[BR[0]]}. Bridge: {name(BR)}.
-                  </p>
-                )}
               </div>
             );
           }}

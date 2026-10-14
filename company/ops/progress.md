@@ -3,6 +3,43 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: Life Hacks follow-ups W-388, W-389, W-391, W-393
+- **Changed:**
+  - W-388/W-389: rewrote the `recall` question in `mug-handle-packing` ("…with a 3 cm handle pointing along the row…") and `seasonal-bin-rotation` ("…front and back of a cupboard 5 deep, with 3 other boxes between them…"). Tightened both whys to match ("along the row"; "4 blockers (the 3 boxes and the other bin)"). Set the `.recall` claims to unverified, dropped checkedBy/On, version 1 → 2. `recall-patch-home.lines.txt` updated, and an Amendments note added to `recall-patch-home.md`.
+  - W-391a: the pointer was in 66 study `.recall` sources, not 27. All now cite `recall-patch-study.md + recall-patch-study.lines.txt`. Statuses unchanged.
+  - W-391b: deleted 68 study `c4` "Recall question answer and rationale" claims. Before deleting I checked each one by script: it repeated c1's correct option plus c2's principle, its answer differed from the current recall, and nothing outside its own meta.json referenced it.
+  - W-393: re-derived `curriculum.level`, `prerequisites` and `strand` for all 200 from `content/curriculum/lifehacks.json` (by primary concept). After the run, all 200 match. Nothing else changed and no versions were bumped.
+- **Believe:** High. test:lifehacks 53/53, tsc clean, check passed. Not built (as asked).
+- **Next:** W-427, fact-checker: re-check the two revised recalls.
+- **Blocked:** nothing. Note: another agent's merge briefly left conflict markers in board.json and progress.md mid-session. It resolved itself, and I edited neither file until it had.
+
+## 2026-10-14, community-engineer (Femi): PR #3 merged on our branch (W-226)
+- **Changed:**
+  - Re-trialled `ccr-rnd-ncm` @ `654b5397` and merged it `--no-ff` on branch `worktree-agent-afc0b5a86f91cfa7d`. Not pushed. Record: `company/engineering/community/prs/3.md` §8.
+  - The 4 requested changes are on the head:
+    - knots kit approved (EDD-004 approved with conditions, plus Addendum A, plus the principal-engineer review);
+    - the news references use `section_unconfirmed`;
+    - one-good-link has `format` and `interactions`;
+    - the agenda QA record was filed by qa-tester.
+  - Conflicts:
+    - `package.json`: union of `test:lifehacks` and `test:kit` in `verify`.
+    - `registry.generated.ts`: regenerated.
+    - 10 Life Hacks safety records (add/add): kept ours, which is theirs plus the W-359 second read.
+    - No `meta.json` conflicts.
+  - Board:
+    - W-137, W-161, W-162, W-145, W-226, W-227, W-228, W-229 → done.
+    - Session 2's inbox folded as W-406..W-420 (map in prs/3.md §8). Only items not already on the board or already done were added.
+- **Believe:**
+  - High that the merge is clean: check passes (855 lessons, 4,622 claims, 0 warnings), and tsc, `test:lifehacks` 53/53 and `test:kit` 97/97 pass.
+  - Medium on QA. The 34/34 final run was on session 2's unpushed `33d7dfbf`, so 7 lessons still show an old **fail** QA record on our tree (W-406).
+- **Next:**
+  - W-406: qa-tester re-files the 7 records.
+  - W-408: verify on the integrated tree (no next build was run here).
+  - W-407: EDD-004 C1/C2, before any lesson imports `@/kit/knots`.
+  - W-411: link the learner reviews.
+  - The release manager is not yet involved: all 17 lessons are `review`.
+- **Blocked:** nothing.
+
 ## 2026-10-14 (head-of-product, W-392, Life Hacks charter co-sign)
 
 - **Changed:**

@@ -1,0 +1,160 @@
+{
+  "slug": "two-said-blue",
+  "title": "When 100 people pick the same colour",
+  "hook": "100 people see each other's picks. Is the crowd more reliable than one person?",
+  "domain": "probability",
+  "concept": "information-cascade",
+  "format": "Simulation run",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a clue right 2 times in 3 beats a coin flip",
+      "more independent clues help (which-coin-is-it)"
+    ],
+    "doesNotKnow": [
+      "that a pick copied from a crowd is not an independent clue",
+      "that a crowd can stop adding information after two matching picks"
+    ]
+  },
+  "misconception": "When many people independently choose the same way, they are probably right.",
+  "objective": "The learner can say that in the urn model a crowd locks onto the wrong colour about 1 time in 5 (clue right 2 in 3), because after a lead of 2 nobody's own clue changes the pick, while a plain vote of the same clues is wrong about 1 time in 5,000.",
+  "keyState": "At least 100 crowds run (the Run 100 chip) and the pooled view opened. On the QA click path (Run 1, Run 100, Run 10,000) that is 10,101 crowds at clue right 2 in 3: 2,009 wrong (19.9%), pooled vote wrong in 2.",
+  "claims": [
+    {
+      "id": "probability.two-said-blue.c1",
+      "text": "The urn is blue. Everyone sees the earlier picks; a person who sees one colour lead by 2 or more copies it, and otherwise (a lead of 0 or 1, ties included) follows their own clue.",
+      "support": "convention",
+      "source": "model.ts sequence(): lead = blue picks minus red picks so far; |lead| >= 2 copies the leader, else pick = own clue. The urn is blue in every run; the clue is blue with probability ACC. Rule as in Easley & Kleinberg 2010 ch. 16 (section unconfirmed; tie rule chosen here and disclosed). | FACT-CHECK 2026-10-14 (pass NCM-1): Read model.ts sequence(): lead = blue minus red picks; |lead| >= 2 copies, else own clue; urn always blue. Stage message states the rule. E&K ch. 16 is Information Cascades (catalogue); section stays unconfirmed. | REVISION v2 (builder): the rule is now stated in the prediction question (not the stage message); claim text unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c2",
+      "text": "Once one colour leads the picks by 2, every later person (clue right 2 times in 3) copies it whatever their own clue says, so the crowd adds no new information. On the stage the first person to see a lead of 2 is ringed, and later people whose pick goes against their own clue are outlined; the reveal counts them for the last crowd shown.",
+      "support": "derivation",
+      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000. | REVISION v3 (builder): stage marker and reveal pointer added; text changed, so unverified. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Current model.ts, seeds 1-10,000 at each of the three accuracies: 0 picks differ from the ringed person's pick after the ring, 0 outlined (pick != clue) before the ring, 0 crowds with no ring. Ring = first person who saw |lead| >= 2; outline = pick != own clue, as the claim says. Reveal paragraph 3 ('the ring marks where the picks first led by 2, and after it no clue changed a pick. N people picked against their own clue (outlined)') matches. Bayes argument as in NCM-1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c3",
+      "text": "With clues right 2 times in 3, the chance the crowd locks onto the wrong colour is 1/5 = 20%. (Shown as 'exact: 20.0%' beside the learner's tally.)",
+      "support": "derivation",
+      "source": "Until the lead reaches 2 every pick equals its clue, so the lead is a gambler's-ruin walk with step +1 at probability p = 2/3 and -1 at q = 1/3, absorbed at +-2: P(red) = q^2/(q^2+p^2) = (1/9)/(5/9) = 1/5. Node check 2026-10-14: seeds 1..10,000 give 1,991 wrong (19.9%), seeds 1..101 give 18 wrong, seeds 1..10,101 give 2,009 wrong; every one of 10,000 sequences reached a lead of 2 (latest at person 27). | FACT-CHECK 2026-10-14 (pass NCM-1): q^2/(q^2+p^2) = 1/5 re-derived (gambler's ruin absorbed at +-2). Lesson's runMore: seeds 1-10,000 give 1,991 wrong; QA path (1,100,10,000) gives 101 -> 18 and 10,101 -> 2,009 (19.9%); every sequence reached a lead of 2, latest at index 26 (person 27). | REVISION v3 (builder): reveal wording only ('the exact chance is 20.0%'); claim text unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c4",
+      "text": "If the first two clues are both wrong, the crowd locks onto the wrong colour: chance (1-p)^2, which is 1/9 = 11.1% when clues are right 2 in 3 (0.16 at 60%, 0.04 at 80%). This is only one route: red can also reach a lead of 2 after a split start, so the total wrong chance (c3, c6) is higher. The reveal prints (1-p)^2 for the accuracy the learner ran most.",
+      "support": "derivation",
+      "source": "Two red clues give two red picks, a lead of 2, so by c2 everyone copies red. P = (1/3)^2 = 1/9. Seeds 1..10,000: 1,080 of 10,000 start with two red clues (10.8%). | FACT-CHECK 2026-10-14 (pass NCM-1): The claim as written is right ((1/3)^2 = 1/9; 1,080 of seeds 1-10,000 start with two red clues), but the reveal prints \"(1 in 9)\" unconditionally while its first paragraph quotes the accuracy the learner ran most. If that is 60% or 80% (reachable: run 10,000 at 80%, 100 at 2 in 3), the stage says 1 in 9 where the true value is 0.16 (about 1 in 6) or 0.04 (1 in 25). Fix: write \"(1 in 9 when clues are right 2 in 3)\", or compute (1-ACCS[q])^2 and print it. | REVISION v2 (builder, 2026-10-14): text changed per the dispute; reveal now computes pct((1 - ACCS[q]) ** 2) and adds the split-start route. node: (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; total wrong = (1-p)^2/((1-p)^2+p^2) > (1-p)^2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; runMore seeds 1-10,000 badStart: 1,080 at 2/3, 1,575 at 60%, 395 at 80%. Reveal now prints pct((1 - ACCS[q])**2) for the accuracy run most, and the split-start sentence is right: exactWrong (20.0%, 30.8%, 5.9%) exceeds (1-p)^2 at every accuracy. NCM-1 dispute resolved.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c5",
+      "text": "A plain vote of the same 100 clues (each right 2 times in 3) is wrong with probability about 0.0199% (about 1 in 5,000), plus 0.0220% for an exact 50-50 tie. On the stage, 'Pooled wrong (ties excluded)' counts the crowds whose 100 clues have a red majority; the reveal also says ties are not counted.",
+      "support": "derivation",
+      "source": "Exact binomial, computed in node 2026-10-14: P(blue clues < 50) = 0.0001989, P(= 50) = 0.0002204 with 100 clues at p = 2/3. Seeds 1..10,000: 2 red majorities and 3 ties; seeds 1..10,101: 2 and 3. Reveal quotes the learner's own count of red majorities. | FACT-CHECK 2026-10-14 (pass NCM-1): Own exact binomial (n=100, p=2/3): P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties; 1-10,101: 2 and 3. Advisory: the stage label \"Pooled wrong\" does not say ties are excluded; at 60% ties (128) are comparable to wrongs (163). Not false as claimed. | REVISION v2 (builder): label renamed to say ties are excluded; reveal wording 'had a red majority in N (ties not counted)'. Counting code unchanged. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Own exact binomial n = 100, p = 2/3: P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties. Readout label now 'Pooled wrong (ties excluded)' and reveal says '(ties not counted)'; counting code (poolBlue < 50) matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c6",
+      "text": "With clues right 60% of the time the crowd is wrong about 30.8% of the time; with clues right 80% of the time, about 5.9% (the same formula q^2/(q^2+p^2)). The reveal quotes the exact figure for the accuracy the learner ran most.",
+      "support": "derivation",
+      "source": "q^2/(q^2+p^2), computed in node: p=0.6 gives 0.16/0.52 = 0.3077, p=0.8 gives 0.04/0.68 = 0.0588. Seeds 1..10,000 give 3,094 (30.9%) at 60% and 594 (5.9%) at 80%. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.16/0.52 = 0.3077 -> \"30.8%\", 0.04/0.68 = 0.0588 -> \"5.9%\" (pct()); runMore seeds 1-10,000: 3,094 at 60%, 594 at 80%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c7",
+      "text": "Crowd number k is generated from a fixed seed k (mulberry32(k), 1, 2, 3, ... in order), counted separately for each clue accuracy; the readout 'Crowds run' shows how many have been run. Seeds are not shown to the learner.",
+      "support": "convention",
+      "source": "model.ts runMore() and sequence(); Demo.tsx readout label. Seeds are not chosen: they are 1, 2, 3, ... in order. | FACT-CHECK 2026-10-14 (pass NCM-1): runMore iterates k = t.n+1..t.n+count with a separate Tally per accuracy; readout label \"Runs (seeds 1 to n)\". | REVISION v2 (builder): readout label changed from 'Runs (seeds 1 to n)' to 'Crowds run' (jargon); seeds no longer printed. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. model.ts runMore iterates k = t.n+1..t.n+count with mulberry32(k), one Tally per accuracy; readout label is 'Crowds run'; no seed is printed on the stage or in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c9",
+      "text": "One person alone, with a clue right 2 times in 3, is wrong 1 time in 3 (33.3%; 40.0% at 60%, 20.0% at 80%), so a crowd wrong 1 time in 5 beats one person but is far worse than a plain vote. The reveal prints 1 minus the accuracy for the accuracy run most. The reveal also prints the plain-vote wrong chance for that accuracy (binomial, ties excluded: 0.020% at 2 in 3, 1.7% at 60%, under 0.01% at 80%).",
+      "support": "derivation",
+      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. 1 - p = 33.3%, 40.0%, 20.0%; exactWrong = 20.0%, 30.8%, 5.9% (each below 1 - p); plain vote of 100 clues wrong (binomial, ties excluded) 0.020%, 1.68%, ~0%. So the crowd beats one person and is far worse than a plain vote at every accuracy. Reveal paragraph 2 prints pct(1 - ACCS[q]). Advisory in the fact-check record: at 60% the reveal's 'a plain vote would almost never be wrong' (1.7%) exceeds the predict option's own 'under 1 time in 100'. | REVISION v4 (builder, 2026-10-14): reveal paragraph 2 now prints the plain-vote wrong chance for the accuracy run most (plainWrong in model.ts, exact binomial, ties excluded) instead of \"almost never\"; paragraph 3 pointer is shown only when the selected accuracy has a run. Text extended; unverified. | FACT-CHECK 2026-10-14 (pass NCM-4): VERIFIED. Re-ran plainWrong (model.ts) and an independent python binomial sum P(blue clues < 50 of 100): 60% 0.016762 (prints 1.7%), 2/3 0.00019893 (0.020%), 80% 5.18e-12 (under 0.01%); 1-p prints 40.0%, 33.3%, 20.0%. Reveal paragraph 2 matches claim; ties excluded as stated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.two-said-blue.c8",
+      "text": "(Not shown to the learner; dropped.) In the classroom urn experiment of Anderson and Holt (1997) cascades formed in the lab.",
+      "support": "source",
+      "source": "Brief planned claim 4. NEEDS A HUMAN SOURCE CHECK by the fact-checker (Anderson & Holt 1997, American Economic Review). Not used in the lesson text, so no learner sees it unverified; kept here so the check is not lost. | FACT-CHECK 2026-10-14 (pass NCM-1): Not in learner text. Source finding kept: Anderson and Holt (1997), \"Information Cascades in the Laboratory\", AER 87(5): 847-862 (RePEc, via search) report rational cascades formed in most periods where an imbalance arose. But it was a laboratory experiment; \"classroom\" belongs to Anderson and Holt (1996), JEP \"Classroom Games: Information Cascades\". If reinstated, drop \"classroom\".",
+      "status": "withdrawn",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "100 people each get a private clue (right 2 times in 3), see all earlier picks and choose. After two matching picks, what does a person's own clue do?",
+    "options": [
+      "It no longer changes their pick, so the crowd adds no new information",
+      "It still decides their pick",
+      "It counts double"
+    ],
+    "answer": 0,
+    "why": "Two matching picks put the odds at 4 to 1; one opposing clue only brings them to 2 to 1, so the person copies. The crowd was wrong about 1 time in 5."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/two-said-blue/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 5,
+  "curriculum": {
+    "primary": "probability:information-cascade",
+    "prerequisites": [
+      "probability:bayesian-updating"
+    ],
+    "level": "core",
+    "strand": "statistics",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 16,
+        "note": "Information cascades, urn experiment; section unconfirmed (16.2-16.5 from memory of the contents)",
+        "section_unconfirmed": "16.2"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "cascade",
+      "bayes",
+      "crowds",
+      "simulation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "tally-counters",
+    "preset-buttons",
+    "toggle-before-after"
+  ]
+}
