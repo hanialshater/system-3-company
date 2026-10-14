@@ -15,11 +15,11 @@
       "people can be linked, and a step is one link"
     ],
     "doesNotKnow": [
-      "a handful of random long links cuts the typical distance by half or more while neighbourhoods stay tight"
+      "a handful of random long links nearly halves the typical distance (and more with a few more) while neighbourhoods stay tight"
     ]
   },
   "misconception": "To shrink distances you must rewire a large part of the network.",
-  "objective": "The learner can explain that adding a few random long-distance links to a ring of local friendships cuts the average number of steps between two people by more than half (12.9 to 6.8 with 5 links, to 4.9 with 20) while clustering barely falls (0.500 to 0.435).",
+  "objective": "The learner can explain that adding a few random long-distance links to a ring of local friendships cuts the average number of steps between two people by nearly half with 5 links (12.9 to 6.8, a 47% cut) and by almost two-thirds with 20 (4.9), while clustering barely falls (0.500 to 0.435).",
   "claims": [
     {
       "id": "probability.few-shortcuts-shrink-the-world.c1",
@@ -86,23 +86,28 @@
     },
     {
       "id": "probability.few-shortcuts-shrink-the-world.c8",
-      "text": "Every route that can use a shortcut gets shorter, and nobody has to rewire the local circles.",
+      "text": "Every pair a shortcut helps gets a shorter route, and nobody has to rewire the local circles.",
       "support": "derivation",
-      "source": "Adding a link never lengthens any shortest path (the old routes are still there), and a link between far-apart people gives every pair whose route can use it a shorter route. The lesson's model adds shortcuts to an unchanged ring (model.ts); it is a model, not a claim about real people. | FACT-CHECK 2026-10-14 (pass NCM-1): Adding an edge cannot lengthen a shortest path; the model adds shortcuts to an unchanged ring. Read as \"every pair a shortcut can help gets a shorter route\", it holds. Advisory: \"every route that can use it\" could be read as any path through it; \"every pair it helps\" would be tighter.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Adding a link never lengthens any shortest path (the old routes are still there), and a link between far-apart people gives every pair whose route can use it a shorter route. The lesson's model adds shortcuts to an unchanged ring (model.ts); it is a model, not a claim about real people. | FACT-CHECK 2026-10-14 (pass NCM-1): Adding an edge cannot lengthen a shortest path; the model adds shortcuts to an unchanged ring. Read as \"every pair a shortcut can help gets a shorter route\", it holds. Advisory: \"every route that can use it\" could be read as any path through it; \"every pair it helps\" would be tighter. | REVISION v3: text changed to 'every pair a shortcut helps' as the fact-checker advised; back to unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.few-shortcuts-shrink-the-world.c9",
+      "text": "In the seed-1 world, the shortest route from person 3 to person 50 (labelled A and B) is 24 steps with no shortcuts, 5 with 5 shortcuts and 4 with 20 shortcuts (9 with 1).",
+      "support": "simulation",
+      "source": "model.ts route(): BFS shortest path length from 3 to 50 on the ring plus the first 0, 1, 5, 20 shortcuts of the mulberry32(1) sequence. Re-run in node 2026-10-14 (builder): 24, 9, 5, 4. The pair was chosen as far apart on the ring and with falling length at every chip, not at random.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "In a ring where everyone knows only their near neighbours, a few random long-distance links are added. What happens to the typical number of steps between two people?",
     "options": [
-      "It falls a lot",
       "It barely changes",
-      "It rises"
+      "It rises",
+      "It falls a lot"
     ],
-    "answer": 0,
+    "answer": 2,
     "why": "Each long link is a bridge between far-apart neighbourhoods, so many routes get much shorter, while most local friendships stay as they were."
   },
   "evidence": {
@@ -111,7 +116,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:small-world-shortcuts",
     "prerequisites": [
