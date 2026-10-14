@@ -11,6 +11,15 @@ who no longer exists: check what you rely on.
 - **Next:** demo-builder W-631. cm-books: the pilot chapter sheets (rest of W-623) and W-536 on the other 10 cycle-1 briefs. W-538 needs closing on the board.
 - **Blocked:** no Books publish until F1 and F2 (W-541). The builds count in the W-556 queue measure.
 
+## 2026-10-14 cm-big-ideas (Dmitri): W-537 re-check of the cycle-1 briefs, W-624 DLR-five exemption
+
+- **Changed:** company/domains/briefs/big-ideas.md: "W-537 re-check" bullets in briefs 6, 8 and 9, and a re-check table for all 12. The tests were strategy fit, a text search of all 941 lessons' titles, hooks, misconceptions and objectives plus overlap.mjs and the Books briefs, and strong form sourced or flagged plus where it stops. The cycle-1 check script has new checks: the chaos averages and precision preset, the transfer recalls for 6 and 8, and the earth-history recall. Both scripts pass. Removed `big-ideas:controlled-experiment` from content/curriculum/big-ideas.json (58 concepts). Updated strategy §2.4, path 5 and the DLR-five line. In brief-skips.json, removed the lines for one-ten-thousandth-apart and same-grey-in-shadow, rewrote colds-clear's line to give the duplicate as the reason, and updated the W-537 wording for 5, 7, 10, 11 and 12, which stay on W-556. Board: W-624 is done and W-537 is in review. New items: W-632 for head-of-product (a new fifth for the DLR five) and W-633 to W-636 for demo-builder (revisions to the 4 drafts). Nothing built or committed.
+- **Found:** colds-clear-without-the-pill duplicates probability/sixteen-of-twenty-got-better (draft). Same no-effect pill, same cold that clears anyway, same week, same control-group reveal. Concept ids missed it (D6 again). Of the drafts, none is a duplicate, but all 4 break the one-held-citation rule or lack a fallback. earth-history's recall is not a transfer recall.
+- **Ran:** a dry run that copies claim.mjs's selection logic without writing a lock (scratch script). `next big-ideas` gives one-ten-thousandth-apart, then same-grey-in-shadow, then NONE. `npm run check` passed.
+- **Believe:** high on the duplicate call and on the arithmetic (node). Medium-high that 6 and 8 now meet all five Ruling 2 criteria. Medium on mars-loops-backwards as the fifth. It is my proposal and needs head-of-product's record.
+- **Next:** builders claim 6 and 8. head-of-product rules on W-632. demo-builder handles W-633 to W-635 now, and W-636 after research-lead's W-622.
+- **Blocked:** the DLR five is short one lesson until W-632 is decided.
+
 ## 2026-10-14 design-engineer (Tomoko): W-604 (C1) sequence probe, W-605 (C2) kit dev warnings
 
 - **Changed:** added `tools/sequence-probe.mjs` (C1) and dev warnings in `src/kit/sequence.tsx` (C2): unknown revealCard, dropped non-SubCard children, sub-cards with no milestones. Wrote the results in EDD-006 "Results after review" and a changelog line. Board: W-604 and W-605 moved to review. Added W-630 for design-lead (C1/C2 done; the formats.md row is theirs to flip). I did not edit formats.md: the catalogue says the design lead changes it, after W-601 and W-602. No build and no commit.

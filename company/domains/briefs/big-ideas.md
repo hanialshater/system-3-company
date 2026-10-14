@@ -84,6 +84,18 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Nearest lessons: none on chaos (overlap check to confirm). `also`: none.
 - Format: Simulation run (deterministic; Step plus Run).
 - Curriculum: primary `big-ideas:chaos-butterfly`.
+- **W-537 re-check (cm-big-ideas, 2026-10-14): PASS with the changes below; these lines override the ones above where they differ.** Numbers in the cycle-1 check script ("W-537 re-check" block).
+  - Duplicate search (titles, hooks, misconceptions, objectives of all 941 lessons, plus `tools/overlap.mjs`, Books briefs and works): no lesson on sensitive dependence. Nearest: cs/hailstone-27-climbs (a simple rule runs long; not sensitivity to the start) and ai/line-stops-at-the-edge (extrapolation). Books: none.
+  - Strong form, flagged: the popular "a butterfly's wings cause a tornado" is a metaphor, not a finding. The lesson never states it. Verdict (shared words): **holds up** for the map on the stage (derivation).
+  - Transfer (≥ 3 domains): weather forecasting, a double pendulum or billiard break, population models (the logistic map comes from ecology).
+  - Presets in DOM order (replaces the gap control): "Run 30 steps" (gap 0.0001; milestone `run`, records "differ by 0.1 at step 11") / "1,000× more precise: run" (gap 0.0000001; milestone `precise`, records step 21) / "Average 1,000 steps" (milestone `average`; shows both runs' averages, 0.51 and 0.48) / "Step 1" / Reset. Reveal unlocks after `run` and `precise`.
+  - **Where it stops is shown, not told** (strategy D4 a): the two runs disagree at every step, but their long-run averages agree at about 0.5. Support: derivation.
+  - Reveal (replaces the draft above; 80 words): "The two runs agreed for {n} steps, then wandered apart like strangers. Making the start 1,000 times more precise bought only {extra} more steps: the gap roughly doubles each step. Edward Lorenz found this in a weather model in 1963. Where it stops: each step was unpredictable, but the long-run averages matched, about {avg} for both. Chaos limits forecasting a particular day, not the average. That is why a forecast fades after days while long-run averages can still be estimated."
+  - Held citations: **one**, Lorenz 1963 (claim 1). Cut if not checkable; fallback: "Weather models behave the same way" is also held, so the fallback drops the sentence and the reveal keeps "Mathematicians call this sensitive dependence on initial conditions" (a definition, support: convention). The "about two weeks" figure (claim 3) is removed from the learner path; the forecast sentence carries no number.
+  - Transfer recall (answer in the check script): "A forecast's error doubles every day. If today's measurements were 100 times more precise, how much longer would the forecast stay useful?" options: About 7 more days / About 100 times as long / No longer at all (answer: A; log2 100 = 6.6).
+  - Exemption criteria (decision Ruling 2): 1 yes (derivation, node check); 2 yes (one held, fallback written); 3 yes (not ⚑, not a sensitive class); 4 yes (Simulation run, catalogued, no CardSequence); 5 yes (W-538 on main in 6340d33; this re-check).
+  - Review route: standard (fact-checker, learner-evaluator).
+  - Multi-card later: card 1 the two runs, card 2 more precision, card 3 the averages.
 
 ### 7. deaths-fall-births-wait · concept: demographic-transition · intro · demand 3
 - Strand: society.
@@ -111,6 +123,17 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Curriculum: primary `big-ideas:perception-inference-shadow`.
 - Copyright: draw an original scene. Do not trace Adelson's image.
 - Theme: the squares' grey must be identical in light and dark mode. Use one variable, not `--fg`.
+- **W-537 re-check (cm-big-ideas, 2026-10-14): PASS with the changes below; these lines override the ones above where they differ.** Numbers in the cycle-1 check script ("W-537 re-check" block).
+  - Duplicate search (all 941 lessons' titles, hooks, misconceptions and objectives; `tools/overlap.mjs`; Books briefs and works): no lesson on lightness perception or illusions. The "shadow" hits are geometry (math/shadow-height, geography/eratosthenes-shadow, geography/light-in-the-cylinder). physics/light-at-double-distance is about the light itself, not what we see. Books: none.
+  - Strong form, flagged: the popular "your eyes can't be trusted" is not what the illusion shows. The lesson says the brain applies an assumption that is usually right. Verdict (shared words): **holds up** for what is on the screen (code is the source).
+  - Transfer (≥ 3 domains): photography and white balance, reading an X-ray or a shaded map, colour disputes about a photo (the dress, not named on the card).
+  - Presets in DOM order: "Sample A" / "Sample B" (milestone `sampled` after both; the readout shows the value as text, so the answer does not rest on sight alone) / "Connect them" (the strip of the same grey) / "Remove the shadow" (milestone `noshadow`) / Reset. Reveal unlocks after `sampled` and `noshadow`.
+  - **Where it stops, by derivation:** light reaching the eye = lighting × how much the surface reflects. A surface in shadow that sends the same light really is lighter, so in a real scene the guess is usually right. Support: derivation (the recall's arithmetic), not the Adelson chapter.
+  - Held citations: **one**, Helmholtz's "unconscious inference" (claim 3; 1867, public domain, class P). Cut if not checkable; fallback: "Psychologists call this kind of guess an inference" (no name). The Adelson credit (claim 2) is a caption line, not reveal text: "After a well-known checker-shadow illusion. Our own drawing." If Adelson 1995 is confirmed, the caption may name him. The Adelson limit citation (claim 4) leaves the learner path: the derivation carries the limit.
+  - Transfer recall (answer in the check script): "Two sheets of paper send exactly the same light to your camera. One is in shade, one is in sun. Which sheet is whiter?" options: The one in shade / The one in sun / They must be the same (answer: A).
+  - Exemption criteria (decision Ruling 2): 1 yes (the answer is on the learner's screen, node check of one constant); 2 yes (one held, fallback written); 3 yes (not ⚑, not a sensitive class); 4 yes (Before / after toggle, catalogued, no CardSequence); 5 yes (W-538 on main in 6340d33; this re-check).
+  - Review route: standard, plus a note to the accessibility-reviewer at walkthrough (a visual illusion; the sampler text is the non-visual path).
+  - Multi-card later: card 1 the illusion, card 2 the sampler, card 3 the shadow removed.
 
 ### 9. colds-clear-without-the-pill · concept: controlled-experiment · intro · demand 3
 - Strand: science.
@@ -124,6 +147,7 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Format: Simulation run (seeded).
 - Curriculum: primary `big-ideas:controlled-experiment`; also `probability:regression-to-mean`.
 - Health: about evidence, not treatment. No product names, no advice about cold remedies.
+- **W-537 re-check (cm-big-ideas, 2026-10-14): FAIL, duplicate. Do not build.** The text search found probability/sixteen-of-twenty-got-better (draft, concept `probability:control-groups`, probability brief 57): "16 of 20 got better. Did the pill work?", misconception "If most people who took a treatment got better, the treatment worked", the same cold-that-clears-anyway case, the same week, a no-effect pill, and a comparison group that shows it. That is the same mechanism on the same case (strategy 8.1; 2.4 precedent: randomised-assignment was removed for probability/the-doctor-picks-the-patients). Concept ids missed it (D6 again). `big-ideas:controlled-experiment` is removed from the map (strategy 2.4). The skip line stays, with this reason. The DLR-five slot it held goes back to head-of-product for a swap (board); my proposal is brief 14, mars-loops-backwards (derivation, uncontested, standard route).
 
 ### 10. tin-price-tells-everyone · concept: price-signals · intro · demand 3
 - Strand: society.
@@ -161,6 +185,27 @@ Ranked briefs for `tools/claim.mjs next big-ideas`, in the same format as the ot
 - Format: Storyboard / scrub (Step buttons; a natural multi-card sequence later).
 - Curriculum: primary `big-ideas:false-belief-theory-of-mind`.
 - Tone: no claims about autism or any group of children. The Sally–Anne paper is cited only for the task.
+
+## W-537 re-check of the cycle-1 briefs (cm-big-ideas, 2026-10-14)
+
+Tests, per brief: (a) strategy fit (`company/domains/big-ideas-strategy.md` §1 bar, §5 at most one held citation in the reveal with a written fallback, §6 route, transfer recall); (b) a text search of every lesson's title, hook, misconception and objective across `src/demos/` (941 lessons), plus `node tools/overlap.mjs` and the Books briefs and works; (c) the strong form sourced or flagged, plus where it stops. Check scripts re-run: both pass. Briefs 6 and 8 pass with changes written into the briefs; 9 fails (duplicate). The skip lines for 5, 7, 10, 11 and 12 stay on W-556 regardless; the findings below are what each needs before its line comes off.
+
+| # | Slug | Duplicate search | Strategy and strong form | Result |
+|---|---|---|---|---|
+| 1 | two-four-six-rule (draft) | none (probability/second-positive-test is Bayes, not hypothesis tests) | reveal carries 2 held sentences (Popper, Klayman & Ha) against the one-held rule; no fallback; transfer recall is good | revise the draft (board, demo-builder) |
+| 2 | earth-history-in-a-day (draft) | none (geography/fingernail-ocean is the doorway) | 6 of 8 claims held (target ≤ 15%); the recall reuses the stage's own event (writing), so it is not a transfer recall | revise the draft (board); stays out of the DLR five |
+| 3 | ten-times-taller-giant (draft) | none (math/cube-the-size is volume only; life/mouse-vs-elephant is metabolism) | one held (Biewener limit) plus Galileo (P); fallback not written; transfer recall (statue) is good | small revision (board) |
+| 4 | noise-draws-dunning-kruger (draft) | none | ⚑: 3 held sentences in the reveal; verdict must use the shared word "mixed or contested"; no research-lead map yet (W-622); both-names-or-neither fallback not written | revise after W-622 (board); out of the DLR five (D8) |
+| 5 | efficient-lamps-more-power | none | 2 held in the reveal (Sorrell, Fouquet & Pearson): one needs a fallback; no transfer recall; policy-adjacent, keep "no policy conclusion" | changes before release |
+| 6 | one-ten-thousandth-apart | none | limit now shown (averages); one held | **PASS** (brief updated) |
+| 7 | deaths-fall-births-wait | none; Books fact-straight-line pair honoured (BI owns the lag model) | sensitive class (demography): unclaimed until W-626; no transfer recall; the option says "about 4 times" and the check gives 4.39 (consistent) | held (W-556, W-626) |
+| 8 | same-grey-in-shadow | none | limit now by derivation; one held (P) | **PASS** (brief updated) |
+| 9 | colds-clear-without-the-pill | **duplicate of probability/sixteen-of-twenty-got-better** | — | **FAIL**; concept removed from the map |
+| 10 | tin-price-tells-everyone | none (economics/prices-sort-the-buyers is market clearing) | 2 held (Hayek, externalities text); the "price vs rationing" cost readout reads as a policy verdict, so the stage must say it is the model's switch cost only; economic-policy route (W-626) | changes before release |
+| 11 | quartet-gets-pricier | none (economics/growth-rate-gap is the doorway) | 2 held (Baumol & Bowen; "helps explain healthcare and education" via Nordhaus): cut the second or give it a fallback; the health-and-education share is disputed, so "helps explain" must stay hedged | changes before release |
+| 12 | where-sally-looks | none | ⚑; the predict answer about 3-year-olds rests on a held meta-analysis, which breaks "the lesson teaches with D claims alone" (§5): it moves down the list or the predict is re-written about the story's logic | re-rank at Wave K cycle planning |
+
+All 12 cycle-1 briefs predate the strategy's "transfer recall in the check script" and "preset buttons in DOM order" guards. 6 and 8 now meet them; the others get them when their lines come off.
 
 ## Next in line (cycle 2, no brief yet)
 

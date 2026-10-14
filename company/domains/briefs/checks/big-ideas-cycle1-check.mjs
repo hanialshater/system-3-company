@@ -115,5 +115,26 @@ const m32 = (a) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a
   ok("12 false belief: where Sally looks", sallyLooks === "basket", `Sally did not see the move, so she looks in the ${sallyLooks}`);
 }
 
+// W-537 re-check (cm-big-ideas, 2026-10-14): the shown limit and the transfer recall for briefs 6 and 8.
+{
+  // 6. Shown limit: the two runs disagree step by step, but their 1,000-step averages agree (both about 0.5).
+  const avg = (x0) => { let x = x0, t = 0; for (let i = 0; i < 1000; i++) { x = 4 * x * (1 - x); t += x; } return t / 1000; };
+  const ma = avg(0.3), mb = avg(0.3001);
+  ok("6 chaos limit: long-run averages agree", Math.abs(ma - 0.5) < 0.05 && Math.abs(mb - 0.5) < 0.05, `1,000-step average from 0.3 = ${r(ma, 2)}, from 0.3001 = ${r(mb, 2)} (both about 0.5; exact mean of the r = 4 map is 0.5)`);
+  // 6. Shown precision preset: a 1,000x smaller start gap (1e-7) buys about 10 steps (log2 1000 = 10).
+  const div = (g) => { let x = 0.3, y = 0.3 + g; for (let s = 1; s < 200; s++) { x = 4 * x * (1 - x); y = 4 * y * (1 - y); if (Math.abs(x - y) > 0.1) return s; } return null; };
+  ok("6 chaos: 1,000x more precise start", div(1e-7) - div(1e-4) === 10, `diverge at step ${div(1e-4)} (gap 0.0001) and ${div(1e-7)} (gap 0.0000001): ${div(1e-7) - div(1e-4)} more steps`);
+  // 6. Transfer recall: an error that doubles each day; 100x more precise start buys log2(100) days.
+  const extra = Math.log2(100);
+  ok("6 chaos recall: 100x more precise, error doubles daily", Math.round(extra) === 7, `log2(100) = ${r(extra, 2)} (answer: about 7 more days, not 100 times as long)`);
+  // 8. Transfer recall and limit: light reaching the camera = illumination x reflectance.
+  const Esun = 1000, Eshade = 250, L = 200; // illustrative units, same light from both sheets
+  const Rsun = L / Esun, Rshade = L / Eshade;
+  ok("8 shadow recall: same light, shade vs sun", Rshade > Rsun, `reflectance in sun ${Rsun}, in shade ${Rshade} (answer: the sheet in shade is whiter)`);
+  // 2. Proposed transfer recall for the earth-history-in-a-day draft (board W-635): a river cutting 1 mm a year, for the clock's last minute.
+  const minuteYears = 4.54e9 / 1440, cutKm = (minuteYears * 1) / 1e6;
+  ok("2 deep time recall: river in the last minute", cutKm > 2.5 && cutKm < 3.5, `1 clock minute = ${r(minuteYears / 1e6, 2)} million years; at 1 mm a year the river cuts ${r(cutKm, 2)} km (answer: about 3 km)`);
+}
+
 console.log(fail ? `\n${fail} check(s) failed` : "\nall big-ideas brief answers check");
 process.exit(fail ? 1 : 0);

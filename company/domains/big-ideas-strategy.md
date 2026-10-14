@@ -72,6 +72,7 @@ Count: 56 existing concepts + 12 new ideas = 68. This wave is E-heavy (5 of 8), 
 | Randomised assignment | probability/the-doctor-picks-the-patients (draft) | **Removed.** Brief 9's limit links to it |
 | Path dependence and lock-in | probability/same-songs-different-hits (review) | **Removed.** The QWERTY story is contested anyway |
 | Occam's razor | ai/overfitting + probability/which-coin-is-it | **Removed.** The Bayesian Occam factor *is* which-coin-is-it |
+| Control groups ("people get better anyway") | probability/sixteen-of-twenty-got-better (draft) | **Removed 2026-10-14 (W-537 re-check).** Brief 9 (colds-clear-without-the-pill) used the same no-effect pill, the same self-limiting cold and the same week. The map has 58 concepts now |
 | Hot-hand bias (Miller-Sanjurjo) | probability/heads-after-heads-trap (published) | Not added. A doorway from extraordinary-evidence's path |
 | Coastline paradox | geography/coastline-ruler (published) | Not added |
 | Fisher's sex ratio | life/who-has-grandchildren (published) | Not added. kin-selection must differ from it |
@@ -110,7 +111,7 @@ A second lesson exists **only as a step on a named path**, after the first has a
 2. **Small rules, big crowds**: math/one-shy-rioter-stops-the-riot → economics/mild-preferences-sharp-divides (Schelling) → probability/same-songs-different-hits → economics/below-critical-mass (network effects) → network-value-not-squared (22).
 3. **Heavy tails in the world**: probability/ten-times-links-hundred-times-rarer → top-fifth-of-the-top-fifth (16) → old-books-outlast-new (23) → chemistry/half-life (the memoryless contrast) → war-sizes-heavy-tail (BI-6, sensitive).
 4. **Change the frame**: earth-history-in-a-day (2) → mars-loops-backwards (14) → raisins-see-no-centre (17) → ten-times-taller-giant (3).
-5. **How we know**: two-four-six-rule (1) → colds-clear-without-the-pill (9) → probability/the-doctor-picks-the-patients → most-positives-could-be-false (19).
+5. **How we know**: two-four-six-rule (1) → probability/sixteen-of-twenty-got-better (doorway; replaces brief 9, W-537) → probability/the-doctor-picks-the-patients → most-positives-could-be-false (19).
 6. **Choosing well**: probability/capped-doubling-game → same-veil-two-choices (21) → economics/two-suspects-payoff → one-box-or-two (24).
 
 ### 3.3 Doorways into subject lessons
@@ -131,7 +132,7 @@ Every Big Ideas lesson names one subject lesson as its doorway (prerequisite or 
 
 **Caps.** At most **12 Big Ideas lessons in draft + review at once** (4 today), the way Books caps lessons per book. At most **3 ⚑ lessons in review at once**. A brief may be written early (CMs out-write review 3×, plan section 5), but a Wave K brief always carries its skip line.
 
-**The Domain Launch Review five** (uncontested, derivation-checked, one per lens type): two-four-six-rule, ten-times-taller-giant, one-ten-thousandth-apart, same-grey-in-shadow, and noise-draws-dunning-kruger. The last is contested, so I would swap it for colds-clear-without-the-pill if head-of-product prefers the D8 rule strictly. earth-history-in-a-day has 5 source claims (dates), so it is likely held, and it is not in the five.
+**The Domain Launch Review five** (uncontested, derivation-checked, one per lens type): two-four-six-rule, ten-times-taller-giant, one-ten-thousandth-apart, same-grey-in-shadow, and noise-draws-dunning-kruger. The last is contested, so I would swap it for colds-clear-without-the-pill if head-of-product prefers the D8 rule strictly. earth-history-in-a-day has 5 source claims (dates), so it is likely held, and it is not in the five. **Update 2026-10-14 (W-537 re-check):** head-of-product took colds-clear-without-the-pill as the swap, but the re-check found it duplicates probability/sixteen-of-twenty-got-better, so it is out. Proposed fifth: mars-loops-backwards (brief 14: derivation, uncontested, standard route). The swap is head-of-product's call (board).
 
 **Already done to honour the gate:** skip lines in `company/ops/brief-skips.json` for the 12 strategy-wave-1 briefs and the 8 unbuilt cycle-1 briefs. The 4 drafts were built before the W-537 re-check that decision objection 4 required. W-537 covers them now, and nothing is retracted.
 
