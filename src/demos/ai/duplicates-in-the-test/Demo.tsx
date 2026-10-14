@@ -119,19 +119,20 @@ export default function DuplicatesInTheTest({ slug }: { slug: string }) {
                     const cy = 6 + Math.floor(i / cols) * (ch + 4);
                     const dim = !locked && freshOnly && x.copy;
                     return (
-                      <g key={i} opacity={dim ? 0.25 : 1}>
+                      <g key={i}>
                         <rect
                           x={cx}
                           y={cy}
                           width={cw}
                           height={ch}
                           rx={5}
+                          opacity={dim ? 0.25 : 1}
                           fill={x.copy ? "color-mix(in srgb, var(--domain) 25%, transparent)" : "var(--bg-2)"}
                           stroke={x.copy ? "var(--domain)" : "var(--line)"}
                           strokeWidth={x.copy ? 2 : 1}
                         />
                         {x.copy && (
-                          <text x={cx + 4} y={cy + 11} className={s.tiny} fill="var(--domain)">
+                          <text x={cx + 4} y={cy + 11} className={`${s.tiny} ${s.copyTag}`}>
                             copy
                           </text>
                         )}

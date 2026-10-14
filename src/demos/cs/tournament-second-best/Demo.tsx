@@ -156,11 +156,11 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
                             stroke={picked === p ? "var(--fg)" : "var(--line)"}
                             strokeWidth={picked === p ? 2 : 1}
                           />
-                          <text x={COLX[r] + (r === 0 && shown ? 12 : BOX_W / 2)} y={y + 4} textAnchor="middle" className={s.name}>
+                          <text x={COLX[r] + (r === 0 && shown ? 12 : BOX_W / 2)} y={y + 4} textAnchor="middle" className={`${s.name} ${champ ? s.onChamp : ""}`}>
                             {NAMES[p]}
                           </text>
                           {r === 0 && shown && (
-                            <text x={COLX[r] + 34} y={y + 4} textAnchor="middle" className={`${s.str} ${p === SECOND ? s.second : ""}`}>
+                            <text x={COLX[r] + 34} y={y + 4} textAnchor="middle" className={`${s.str} ${p === SECOND ? s.second : ""} ${champ ? s.onChamp : ""}`}>
                               {STRENGTH[p]}
                             </text>
                           )}

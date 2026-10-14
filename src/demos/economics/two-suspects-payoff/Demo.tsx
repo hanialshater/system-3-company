@@ -101,15 +101,15 @@ export default function TwoSuspectsPayoff({ slug }: { slug: string }) {
                       const inCol = !locked && them === c;
                       const chosen = !locked && them === c && you === r;
                       return (
-                        <g key={`${r}${c}`} opacity={!locked && them !== null && !inCol ? 0.45 : 1}>
-                          <rect x={x + 2} y={y + 2} width={CW - 4} height={CH - 4} rx={8} className={chosen ? s.cellOn : s.cell} />
+                        <g key={`${r}${c}`}>
+                          <rect x={x + 2} y={y + 2} width={CW - 4} height={CH - 4} rx={8} className={chosen ? s.cellOn : s.cell} opacity={!locked && them !== null && !inCol ? 0.45 : 1} />
                           {inCol && better === r && (
                             <rect x={x + 2} y={y + 2} width={CW - 4} height={CH - 4} rx={8} fill="none" stroke="var(--good)" strokeWidth={3.5} />
                           )}
                           <text x={x + CW / 2} y={y + CH / 2 + 4} textAnchor="middle" className={s.big}>
                             {mine}
                           </text>
-                          <text x={x + CW / 2} y={y + CH / 2 + 22} textAnchor="middle" className={s.axis}>
+                          <text x={x + CW / 2} y={y + CH / 2 + 22} textAnchor="middle" className={s.small}>
                             them {theirs}
                           </text>
                           {inCol && better === r && (

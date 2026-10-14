@@ -5,3 +5,10 @@
 - Words added to the brief's A/B tree for readability (cat/dog; sat/ran/ate; barked/sat), odds as in brief 40.
 - Node check: 0.6 × 0.4 = 0.24; 0.4 × 0.9 = 0.36; other leaves 0.21, 0.15, 0.04.
 - QA counts stage controls once, before pressing; the second-word row therefore always renders 3 slots (disabled "then …" when there is no word), so the QA path can reach "then barked".
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- first-word label on the active path: domain in dark, domain darkened by mixing with black in light (class domText). The numbers were already --fg/--muted/--good.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

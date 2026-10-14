@@ -4,3 +4,10 @@
 - Brief asked to drag the query point; buttons used so the QA path (one press each) reaches x = 3.
 - Key state: query at x = 3 (milestone "far-outside"), last query button on the QA path. Readouts and query point hidden while locked.
 - Node check of fit(): slope 1, intercept −0.125, max inside error 0.125, line(3) = 2.875 vs 9. Question numbers and options computed from fit()/maxInsideError().
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- "fitted line" label: domain per theme (class domText).
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

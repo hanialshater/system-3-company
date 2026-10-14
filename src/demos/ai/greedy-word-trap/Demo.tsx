@@ -141,7 +141,7 @@ export default function GreedyWordTrap({ slug }: { slug: string }) {
                     The
                   </text>
                   {TREE.map((f, i) => (
-                    <text key={f.word} x={114} y={firstY(i) + 4} className={s.label} fill={!locked && onPath(i) ? "var(--domain)" : "var(--fg)"}>
+                    <text key={f.word} x={114} y={firstY(i) + 4} className={`${s.label} ${!locked && onPath(i) ? s.domText : s.fgText}`}>
                       {f.word}
                     </text>
                   ))}
