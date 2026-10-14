@@ -1,0 +1,85 @@
+{
+  "slug": "copy-overlaps-itself",
+  "title": "Six letters from a two-letter start",
+  "hook": "One instruction copies six letters from two. Where do they come from?",
+  "domain": "cs",
+  "concept": "lz77",
+  "format": "Storyboard / scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "compressing runs of a repeated letter (runs-that-grow)"
+    ],
+    "doesNotKnow": [
+      "that 'copy what came before' is how zip files work",
+      "that a back-reference copy can overlap itself"
+    ]
+  },
+  "misconception": "You can only copy text that has already been fully written.",
+  "objective": "The learner can explain that a decoder copies one letter at a time, so a copy can read letters it wrote earlier in the same instruction, and two numbers (back 2, copy 6) can stand for a long run.",
+  "claims": [
+    {
+      "id": "cs.copy-overlaps-itself.c1",
+      "text": "Starting from 'ab', the instruction back 2, copy 6, applied one letter at a time, writes 'abababab'.",
+      "support": "simulation",
+      "source": "Builder's node run (scratchpad algo10-verify.mjs): out += out[out.length - 2] six times gives abababab.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.copy-overlaps-itself.c2",
+      "text": "Copy steps 1 and 2 read the original letters a and b; from step 3 on, each copy step reads a letter written by this same copy.",
+      "support": "simulation",
+      "source": "Builder's node run: source indexes for steps 1..6 are 0,1,2,3,4,5; indexes 0-1 are the original 'ab', 2-5 were written by steps 1-4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.copy-overlaps-itself.c3",
+      "text": "A back-reference is two numbers (how far back, how many to copy) standing in for a repeat; an overlapping copy rebuilds a whole run from one instruction.",
+      "support": "source",
+      "source": "Ziv and Lempel 1977, 'A universal algorithm for sequential data compression', IEEE Trans. Inf. Theory 23(3); RFC 1951 section 3.2.5 (length and distance codes, where length may exceed distance).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.copy-overlaps-itself.c4",
+      "text": "This is the idea inside gzip and PNG.",
+      "support": "source",
+      "source": "DEFLATE (RFC 1951) combines LZ77 and Huffman coding; gzip (RFC 1952) and PNG (RFC 2083 / ISO 15948) both use DEFLATE.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A decoder has written 'xyz'. The instruction says: go back 3 letters and copy 6, one letter at a time. What has it written in total?",
+    "options": [
+      "xyzxyzxyz",
+      "xyzxyz",
+      "xyz"
+    ],
+    "answer": 0,
+    "why": "Each copied letter is read from 3 back, and from the 4th copied letter on that is a letter this copy wrote. 3 + 6 = 9 letters."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:lz77",
+    "prerequisites": [
+      "cs:run-length-encoding"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "also": [],
+    "tags": ["compression", "back-reference", "gzip", "png"]
+  },
+  "interactions": ["choice-before-reveal", "storyboard-scrub", "milestone-gate"]
+}

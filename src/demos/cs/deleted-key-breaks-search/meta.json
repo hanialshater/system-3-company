@@ -1,0 +1,108 @@
+{
+  "slug": "deleted-key-breaks-search",
+  "title": "Deleting B, searching for C",
+  "hook": "C is still in the table. Will the search still find it?",
+  "domain": "cs",
+  "concept": "hash-deletion-tombstones",
+  "format": "Before / after toggle",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "linear probing: a key whose slot is taken moves to the next free slot (probing-clusters-grow)"
+    ],
+    "doesNotKnow": [
+      "that emptying a slot can hide keys stored past it",
+      "that a delete leaves a marker saying keep looking"
+    ]
+  },
+  "misconception": "Deleting from a hash table just means emptying the key's slot.",
+  "objective": "The learner can explain that a linear-probing search stops at an empty slot, so a delete must leave a gone marker or the keys stored past the gap become unreachable.",
+  "claims": [
+    {
+      "id": "cs.deleted-key-breaks-search.c1",
+      "text": "In an 8-slot table where A, B, C all hash to slot 1 and sit in slots 1, 2, 3, emptying slot 2 and searching for C probes slot 1 (A) and slot 2 (empty), stops, and reports C not found.",
+      "support": "simulation",
+      "source": "Builder's node run of linear-probing search (scratchpad algo10-verify.mjs): probes [1 A, 2 empty], stop, not found.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.deleted-key-breaks-search.c2",
+      "text": "With a gone marker in slot 2 instead, the same search probes slot 1 (A), slot 2 (gone), slot 3 (C) and finds C in slot 3.",
+      "support": "simulation",
+      "source": "Builder's node run: probes [1 A, 2 gone, 3 C], found in slot 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.deleted-key-breaks-search.c3",
+      "text": "A linear-probing search treats an empty slot as the end of the run, so emptying B's slot breaks the search for every key stored past it.",
+      "support": "derivation",
+      "source": "Search stops at the first empty slot (CLRS 4th ed. 11.4, open addressing search); a key stored past a slot that later became empty is never reached.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.deleted-key-breaks-search.c4",
+      "text": "Open-addressing deletion marks the slot with a special value (DELETED) instead of emptying it, so the search keeps looking past it.",
+      "support": "source",
+      "source": "CLRS 4th ed. 11.4 (deleting from an open-addressing table by storing DELETED instead of NIL).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.deleted-key-breaks-search.c5",
+      "text": "Markers pile up and slow searches, so tables get rebuilt now and then.",
+      "support": "source",
+      "source": "CLRS 4th ed. 11.4: with DELETED markers the search time no longer depends on the load factor alone, which is why chaining is more common when keys are deleted. Rebuilding is general practice, not a CLRS claim; fact-checker to confirm wording.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A linear-probing table has keys X, Y, Z in slots 4, 5, 6, all hashed to 4. You delete Y by emptying slot 5, then search for Z. What happens?",
+    "options": [
+      "The search stops at slot 5 and says Z is not there",
+      "The search finds Z in slot 6",
+      "The search finds Y"
+    ],
+    "answer": 0,
+    "why": "The search treats an empty slot as the end of the run. A gone marker in slot 5 would have told it to keep looking."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:hash-deletion-tombstones",
+    "prerequisites": [
+      "cs:open-addressing"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 11,
+        "section": "11.4",
+        "note": "Open addressing: deletion with a DELETED marker"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "hash-table",
+      "linear-probing",
+      "deletion",
+      "tombstone"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}
