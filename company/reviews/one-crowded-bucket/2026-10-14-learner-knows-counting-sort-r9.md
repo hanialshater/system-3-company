@@ -18,3 +18,10 @@ Path walked: chose "About 1, as before"; tapped "Drop", "Sort", "Clumped"; opene
 6. The trust link reads "5/6 claims checked" (fact-checker's lane).
 
 Verdict reason: the gap (even spread is what makes it fast) is shown by contrast and quoted. The rough edges are in the explore, not the reveal.
+
+## After reading build.md (Pre-flight v4) and the r8 review
+
+- r8's fit revise is fixed: the release frame matches Pre-flight 7 (crop 0, tower and both Seen rows on screen).
+- Pre-flight 5 confirms that "Clumped" does drop and sort in one press (my finding 4). That is a QA-path convenience, and it costs the learner the chance to watch the crowded sort. Hypothesis for learning-designer, not a blocker.
+- The builder notes there are only a few px to spare at the reveal. A longer Seen line on another path could tip it.
+- Fix route: none required for launch. The arrival-order sum against sorted-order tiles (finding 3) is a minor for demo-builder.

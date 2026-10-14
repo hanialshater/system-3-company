@@ -19,3 +19,9 @@ Path walked: chose "About equal"; tapped "1 race", "+50 races", "Run to 500"; op
 7. The trust link reads "1/6 claims checked" (fact-checker's lane).
 
 Verdict reason: wealth moving to accuracy, the long lucky lead and odds drifting to 60% are all on the stage and quoted from the runs I opened.
+
+## After reading build.md (Pre-flight v4) and the r8 review
+
+- r8's fit revise is fixed: crop 0, everything the reveal names is on screen, 90 words.
+- The claim for 1.2 / 0.8 (visible in the trust sheet) says "winners split the pool by stake", so the factors hold "whatever the shares". That is clearer than the learner text. "All-in every race" in the model line still reads to me as "everything on one side" (finding 3). It is a wording hypothesis for cm-economics, not a blocker. The reveal is at exactly 90 words, so any change must swap words, not add them.
+- Fix route: none required for launch.

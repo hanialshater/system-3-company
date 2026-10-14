@@ -18,3 +18,9 @@ Path walked: chose "No, 60 is best"; slid "Drivers on road B" to 90%; tapped "Al
 6. The trust link reads "2/6 claims checked" (fact-checker's lane).
 
 Verdict reason: the stage teaches "selfish can be worse". The reveal's closing line turns one network's 4/3 into what reads as a general rule, and the gap's "up to" is missing.
+
+## After reading build.md (Pre-flight v5) and the r8 review
+
+- Pre-flight v5 says the worst-case sentence ("… that is the worst it can ever be") was cut and c4 was withdrawn, to bring the reveal from about 129 to 87 words for r8's budget finding. That cut is the cause of my finding 4: the gap's "up to 4/3" left the learner text, and "So selfish routing costs 60 / 45 = 4/3" was kept as the closing line, so it now reads as general.
+- The fit and word fixes worked (crop 0, 87 words), but the cut removed a sentence the brief's doesNotKnow needs.
+- Fix route: cm-cs decides which sentence carries "at most 4/3 for roads like these" within 90 words. One option is to tie the closing line to this network and let the bound replace a clause. demo-builder implements it, and the fact-checker re-checks the claim. The cost-line prefix "Lowest split" (finding 3) is a minor for demo-builder.

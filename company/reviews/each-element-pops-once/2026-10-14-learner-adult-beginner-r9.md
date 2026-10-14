@@ -18,3 +18,10 @@ Path walked: chose "36"; tapped "Next number", "All the rest", then list "8 … 
 6. The trust link reads "4/6 claims checked" (fact-checker's lane).
 
 Verdict reason: the gap (one pass via waiting values) is staged and quoted. The counting convention is the only rough edge.
+
+## After reading build.md (Pre-flight v6 and addendum) and the r8 review
+
+- r8's revise (the reveal never unlocked on the walkthrough path) is fixed. On this run the reveal unlocked after "8 … 1 9", and the frame shows the end state ("8 pops", 36 · 15), which matches the addendum's jump-to-end.
+- The builder asked evaluators to judge the mid-pop edge. With the addendum, the reveal frame shows the finished state, so "quotes what you saw" holds. The mid-animation 04-step-3 frame is pre-reveal and harmless.
+- The clipped List row in the locked frame (finding 5) is not mentioned in the note. It is minor, for demo-builder or the kit.
+- Fix route: none required for launch.

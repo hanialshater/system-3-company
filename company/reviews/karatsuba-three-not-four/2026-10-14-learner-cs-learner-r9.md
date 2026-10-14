@@ -18,3 +18,11 @@ Path walked: chose "16"; tapped "Split once", "Split to 1 digit", "Check middle"
 6. The trust link reads "1/7 claims checked" (fact-checker's lane).
 
 Verdict reason: the teaching works, but at the reveal the stage top is cropped on a phone. The demo standard requires a crop of 0.
+
+## After reading build.md (Pre-flight v5) and the r8 review
+
+- The builder says the notation line hides by design when the reveal opens. So the missing caption in my finding 4 is intended, not cropped content. I correct that part.
+- What remains: the builder's dev-server reveal-fit screenshot (artifacts/reveal-fit/karatsuba-three-not-four.png) shows the stage with its rounded top edge and padding above the "11141313 × …" box. The release walkthrough frame (05-reveal.png) shows a square top edge with the box flush against it. So the release build and the dev measurement disagree, and on the release build some of the stage top (at least its padding and edge) is off screen. No content the reveal names is lost.
+- Verdict kept at revise, with low-to-medium confidence. The fit rule is literal (crop 0), and the release frame does not show 0. It flips to launch if reveal-fit, run against the release build at 390×844, reports crop 0.
+- r8's revise (the reveal named "the third box", 100 words) is fixed. It now points at the check lines and is 42 words. cm-cs still owes confirmation of the 1,024-digit cut.
+- Fix route: qa-tester or demo-builder runs `tools/reveal-fit.mjs` against the release build. If it reports a crop, demo-builder removes it without shrinking text.

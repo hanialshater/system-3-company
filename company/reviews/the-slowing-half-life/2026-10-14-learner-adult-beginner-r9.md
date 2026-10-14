@@ -18,3 +18,9 @@ Path walked: chose "5 min"; moved "Halvings waited" to 2 (one press reached 2); 
 6. The trust link reads "1/5 claims checked" (fact-checker's lane).
 
 Verdict reason: the misconception (fixed half-life) is asked, broken on the stage and quoted back. The square law is told, but it is outside the stated gap.
+
+## After reading build.md (Pre-flight v7) and the r8 review
+
+- r8's revise (113 words, a reveal sentence pointing at a line that showed 1st-order wording) is fixed. The reveal is 82 body words and no longer points at the caption line. Pre-flight 7 reports crop 0 on dev, and the release frame agrees.
+- My finding 3 (the square law is told) has stood since r5. It is outside the brief's doesNotKnow, so it is context, not a gap.
+- Fix route: none required for launch. cm-chemistry still owes confirmation of the cut sentence (Pre-flight v7).

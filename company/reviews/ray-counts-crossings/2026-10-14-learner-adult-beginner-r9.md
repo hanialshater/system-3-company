@@ -17,3 +17,9 @@ Path walked: chose "Inside"; tapped (1, 4), (3, 4), (5, 4), (3, 1), (7, 4); open
 5. The trust link reads "1/4 claims checked" (fact-checker's lane).
 
 Verdict reason: the rule is shown on the stage and quoted. The weakness is that the prediction does not need the rule.
+
+## After reading build.md (Pre-flight v4) and the r8 review
+
+- r8's fit revise is fixed: the (1, 4) ray is drawn again at the reveal, crop 0, 83 words.
+- The builder's note says the r7/r8 should-fix ("looking answers the question") stays with the learning designer. My finding 1 is the same issue seen fresh. It has now been raised in three rounds without an answer on record, so it needs a decision (accept with a reason, or redesign), not another round.
+- Fix route: none required for launch. learning-designer owes an answer on the prediction.

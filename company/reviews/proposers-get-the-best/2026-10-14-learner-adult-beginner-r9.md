@@ -17,3 +17,9 @@ Path walked: chose "The same pairs both times"; tapped Ann, Bea, Cal (students p
 5. The trust link reads "3/7 claims checked" (fact-checker's lane).
 
 Verdict reason: r8's fit problem is fixed, the gap is asked, broken and quoted, and the remaining told sentence is one claimed line of context.
+
+## After reading build.md (Pre-flight v5) and the r8 review
+
+- r8's two items are fixed: crop 0 with the clash ✕ on screen, and 73 words. "Best stable partner" was cut, which also removes r8's told-sentence note.
+- The note does not address finding 3: on the DOM-order path no receiver trades up, so the "deferred" move is never seen. It is a design hypothesis (a tap order or a list tweak that forces one trade-up), for learning-designer. Not blocking.
+- Fix route: none required for launch.

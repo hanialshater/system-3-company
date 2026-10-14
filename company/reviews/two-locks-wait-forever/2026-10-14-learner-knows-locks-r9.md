@@ -21,3 +21,10 @@ Path walked: chose "No, one always finishes"; tapped "Step P", "Step Q" (jam); "
 9. The trust link reads "0/5 claims checked" (fact-checker's lane; the gate also shows no learner review until this one).
 
 Verdict reason: the deadlock and its cure are staged and quoted from my run. The issues are labelling and one ambiguous status line, not the teaching.
+
+## After reading build.md (Pre-flight v1)
+
+- Pre-flight 7 already says the red loop is not on screen at the reveal on the QA path, and that the trace line carries it per the brief's phone-fit line. This agrees with my finding 3, and I accept it as passing.
+- Finding 5: Demo.tsx defines "waited" as "at some point an unfinished worker's next lock was held by the other". On "P all, then Q" that is true by definition, because Q's first lock (B) was held while P ran. But nothing on the stage shows Q trying, so for a learner "had to wait" reads as "was blocked". It is not false, so I downgrade it to a wording minor.
+- Finding 4: the builder intends the "Jam:" trace to survive Reset. That is right, but it needs a "Seen" label so it does not read as the current state.
+- Fix route: none required for launch. Minors for demo-builder: the "Seen" label on the jam trace, "1 steps run.", and the P-all-then-Q status wording.

@@ -19,3 +19,10 @@ Path walked: chose "S"; tapped "+1 token", "All tokens", "Per token"; moved "Tok
 7. The trust link reads "0/5 claims checked" in this build (fact-checker's lane, not mine).
 
 Verdict reason: the central surprise (shorter beats more confident) is staged and quoted from what I saw. The length correction is thin but present.
+
+## After reading build.md (Pre-flight v1)
+
+- Pre-flight 7 reports crop 0 and 82 reveal words on the dev server. The release walkthrough agrees.
+- Pre-flight 5 confirms that at the reveal the stage is in "Per token" mode, so the "◀ more probable" marker shows the per-token winner (my finding 6). That is by design, and the Seen line keeps the whole-answer values.
+- Nothing in the note addresses finding 3, that per-token scoring is shown only when an answer's tokens all have the same chance, so it never looks like an average. It is a design hypothesis for learning-designer, not a launch blocker.
+- Fix route: none required for launch.

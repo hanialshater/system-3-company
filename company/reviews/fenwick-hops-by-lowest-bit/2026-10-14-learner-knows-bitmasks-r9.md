@@ -19,3 +19,10 @@ Path walked: chose "13"; tapped "Read a cell, hop down", "Hop to 0", "Change pos
 7. The trust link reads "1/7 claims checked" (fact-checker's lane).
 
 Verdict reason: both halves of the idea (read by clearing bits, update by adding them) are drawn and quoted from my own run.
+
+## After reading build.md (Pre-flight v4) and the r8 review
+
+- r8's revise (bar picture off screen at the reveal) is fixed: everything the reveal names is drawn inside the picture and on screen in the release frame.
+- The builder flags that dropping the 1–15 / 1–7 targets removes some exploration (design-lead board item). From the learner side I did not miss them: one query plus one update carried the idea.
+- The builder's open minor, that "Change position 1" does not say what the change is, matches my reading. I noticed it only as a mild "change to what?".
+- Fix route: none required for launch.

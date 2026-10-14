@@ -18,3 +18,9 @@ Path walked: chose "2"; tapped "Run backtracking" (ring of 5, 3 colours: dead en
 6. The trust link reads "1/6 claims checked" (fact-checker's lane).
 
 Verdict reason: the stuck region and the even ring are both drawn, and the reveal reads them back. The phone crop affects only the optional hand-colouring.
+
+## After reading build.md (Pre-flight v4) and the r8 review
+
+- r8's finding 4 (the reveal argued from a picture not on screen) is fixed: the reveal restores the recorded ring-of-5 dead end, and the release frame shows it.
+- Finding 4 (hand-colouring buttons and feedback not on screen together) is not mentioned in the note. It affects explore only, so it is a minor for demo-builder.
+- Fix route: none required for launch.
