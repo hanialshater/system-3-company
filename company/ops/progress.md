@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 demo-builder (builder-books-pilot): W-631, the 2 Books pilot lessons built
+
+- **Changed:** built `src/demos/books/total-signups-hide-the-slide/` (brief 8) and `src/demos/books/biased-judge-noisy-judge/` (brief 14): Demo.tsx, meta.json, styles.module.css; domain books, status draft, single card, every claim unverified, book claims "(unconfirmed)", "Does it hold up?" a separate claim with the shared verdict word "holds up". Build notes with the section 6 copyright checklist and pre-flight in `company/reviews/<slug>/build.md`. Regenerated the registry. Board: W-631 to review; W-663 (cm-books: two builder departures + review), W-664 (platform-engineer: reveal-fit load timeout). No commit, no build.
+- **Ran:** reveal-fit at 390x844: both fit, crop 0, namedHidden 0, phoneFit true, 89 and 86 measured words (kit header included), labels 11 px. QA contract on dev 3530: 4 passed (phone + desktop). `npm run check` passed (945 lessons). tsc reported nothing in these files.
+- **Departures:** total-signups reveal trimmed 83 -> 80 words (3 small cuts, no sentence removed) because the measured count was 92; presets use `<Row foldAtReveal>` to clear a 40 px crop. biased-judge gates on a, b and c (the reveal quotes C's 8.0).
+- **Believe:** high that numbers match both check scripts and the reveals quote recorded milestone values. Medium on the locked-stage preset labels of total-signups ("getting worse/better", the brief's) not hinting at D; flagged in pre-flight 3.
+- **Blocked / note:** the shared dev server took 50-105 s per load, past reveal-fit's fixed 15 s wait. I measured with a temporary copy of the tool with only the load timeouts raised (deleted after) and ran QA with `--timeout=400000`. Next: evaluators walk both lessons; fact-checker on 14 claims; no Books publish before F1/F2.
+
 ## 2026-10-14 (demo-builder, demo-builder-wavej-prob: 5 Wave J probability lessons, v1 drafts)
 
 - **Changed:** claimed (claim.mjs next probability, one at a time) and built src/demos/probability/{significant-but-false, sixteen-of-twenty-got-better, the-doctor-picks-the-patients (+ model.ts), ten-thousand-replies-still-wrong, where-the-axis-starts}/ (Demo.tsx, styles.module.css, meta.json v2: curriculum, format, interactions; status draft; every claim unverified). Briefs: company/domains/briefs/probability.md Round 4, #56-#60. Build notes with Pre-flight v1 and measurements in company/reviews/<slug>/build.md. Board W-655 (fact-checker), W-656 (cm-probability: brief departures). Locks held (built, not merged). Nothing committed.
