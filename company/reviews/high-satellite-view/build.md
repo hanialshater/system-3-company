@@ -8,3 +8,7 @@ v1 (2026-10-13, Wave 5 geography, sonnet build, EXP-003). Brief 41 (`satellite-s
 - Phone screenshot: reveal was clipped, so it was cut to ~50 words.
 - Model label on the stage (spherical Earth, equator); no usable-service claim beyond "on the horizon at the edge".
 - Claims c1 and c8 are from memory (ISS/GPS/geostationary heights); c1-c9 all unverified.
+
+## Revision v2
+
+Review 2026-10-14 r2: the reveal quoted 7% at 1,000 km, never visited. Added a 'low' milestone (any height under 5,000 km; the first preset is the space station); the reveal quotes the lowest height the learner tried. New claim c10 (400 km, about 3%), unverified. Hook no longer says 'whole planet'.

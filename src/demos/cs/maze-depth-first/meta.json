@@ -34,12 +34,10 @@
     },
     {
       "id": "cs.maze-depth-first.c2",
-      "text": "In the bigger maze depth-first search hits the dead end B, backs up, and returns S, A, C, D, G (4 links) where S, E, G (2 links) would do.",
+      "text": "In the bigger maze depth-first search hits the dead end B, backs up, and returns S, A, C, D, G (4 links) where S, E, G (2 links) would do. B was a dead end.",
       "support": "simulation",
-      "source": "Demo.tsx dfsSteps(MAZE) and shortest(MAZE) on the edges listed in MAZE (S-A, S-E, A-B, A-C, C-D, D-G, E-G). The maze was designed by the builder to show a long find; it is an illustration, not a typical case.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Demo.tsx dfsSteps(MAZE) and shortest(MAZE) on the edges listed in MAZE (S-A, S-E, A-B, A-C, C-D, D-G, E-G). The maze was designed by the builder to show a long find; it is an illustration, not a typical case. | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "cs.maze-depth-first.c3",
@@ -61,12 +59,10 @@
     },
     {
       "id": "cs.maze-depth-first.c5",
-      "text": "To find the path with the fewest links, search breadth-first.",
+      "text": "To find the path with the fewest links, search breadth-first (every place one link away, then two, and so on).",
       "support": "source",
-      "source": "CLRS 3rd ed., 22.2, Theorem 22.5 (breadth-first search computes shortest-path distances in unweighted graphs).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "CLRS 3rd ed., 22.2, Theorem 22.5 (breadth-first search computes shortest-path distances in unweighted graphs). | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:depth-first-search",
     "prerequisites": [

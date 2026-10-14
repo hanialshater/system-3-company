@@ -4,3 +4,7 @@
 - Controls in DOM order: "Play 1 round", "Play 10 rounds", "Play until a bust". QA path: 1 + 10 rounds, then the first bust at round 33 (32 wins, total -$31).
 - Gate: 1 milestone, "bust". Reveal quotes the learner's own wins, busts and total from state, then the exact 63/64 x $1 - 1/64 x $63 = $0.
 - Considered and dropped a "Play 1,000 rounds" button: with this seed the average after 1,033 rounds is -$0.55, at the 2.5% tail over seeds (SD of a 1,000-round average is about $0.25), so it would push learners towards the "-$0.98" option. The exact arithmetic carries the average instead.
+
+## Revision v2
+
+Review 2026-10-13 (W-126): one run contradicted the revealed average. Added 'Play to 5,000 rounds' (long-run milestone; seed 777: 76 busts, +$136, about +$0.03 a round), live 'Bust: 1 round in' and 'Average per round' readouts, 1+2+4+8+16+32 on stage, 'even money' defined. The reveal admits short runs vary. c3 reworded, unverified.

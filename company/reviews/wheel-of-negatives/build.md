@@ -6,3 +6,7 @@
 - Locked: the halves are grey, the negative labels are hidden and the top weight shows "?", so the -128 weight is not given away before the prediction.
 - Deviation from brief: no drag on the wheel; step buttons only (drag on a 256-notch circle is imprecise on a phone).
 - Before the first build the bottom labels (127, -128) would have been clipped and overlapping; moved the wheel down and spread them. Screenshots then read cleanly; no further changes.
+
+## Revision v2
+
+Review 2026-10-13: jargon in the question; the hook hinted at overflow. Question now describes eight on/off switches; hook neutral; half-turn button relabelled; reveal shortened for phones.
