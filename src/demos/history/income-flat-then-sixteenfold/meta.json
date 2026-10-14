@@ -1,0 +1,134 @@
+{
+  "slug": "income-flat-then-sixteenfold",
+  "title": "How fast did England get richer?",
+  "hook": "England's income per person doubled in 430 years. What did the next 318 years do?",
+  "domain": "history",
+  "concept": "long-run-income-growth",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-3"
+  },
+  "learner": {
+    "knows": [
+      "that people are richer now than in the past",
+      "that a growth rate compounds (economics:growth-rate-gap)"
+    ],
+    "doesNotKnow": [
+      "that for centuries income per person barely moved",
+      "that nearly all the growth came in the last 300 years"
+    ]
+  },
+  "misconception": "Living standards rose slowly and steadily through history.",
+  "objective": "The learner can say that England's income per person only about doubled in the 430 years to 1700 (about 0.16% a year) but grew about 16-fold in the 318 years after (about 0.87% a year, doubling about every 80 years), and that the series before 1700 is a modern reconstruction.",
+  "claims": [
+    {
+      "id": "history.income-flat-then-sixteenfold.c1",
+      "text": "Income per person (GDP per capita) in the Maddison Project's United Kingdom series: 1,192 in 1270, 2,412 in 1700 and 38,058 in 2018 (stage: the index line, 1700 = 100; question: 'about doubled from 1270 to 1700').",
+      "support": "source",
+      "source": "history-data.mjs: maddison, maddison2020.csv (Maddison Project Database 2020, Bolt & van Zanden 2020, OWID's copy), entity 'United Kingdom', column 'GDP per capita', years 1270, 1700, 2018. Brief claim 1; check section 2 of history-cycle1-check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c2",
+      "text": "The stage line plots every year 1270-2018 of that series as an index (value / value in 1700 × 100), each value rounded to a whole number before indexing; no currency is shown because the copy opened states no unit (stage title 'Income per person, index (1700 = 100)').",
+      "support": "source",
+      "source": "history-data.mjs: maddison, maddison2020.csv, 'United Kingdom', 'GDP per capita', 749 annual rows 1270-2018 with no gaps (extracted by the builder with the check script's CSV reader, 2026-10-14). 'States no currency unit': check section 2 ('ratios only').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c3",
+      "text": "From 1270 to 1700 income per person grew ×2.0 (0.16% a year); from 1700 to 2018 it grew ×15.8 (0.87% a year), so the second span grew about 16-fold (readouts '×2.0 · 0.16%/yr', '×15.8 · 0.87%/yr'; reveal: 'grew 2.0-fold … 15.8-fold. Growth of 0.16% a year … 0.87% a year').",
+      "support": "derivation",
+      "source": "2,412 / 1,192 = 2.02; 38,058 / 2,412 = 15.78; annual rate = ratio^(1/years) − 1: 0.164% over 430 years, 0.871% over 318 years. history-cycle1-check.mjs section 2 ('1270 to 1700', '1700 to 2018'); Demo.tsx ratio() and rate() on the rounded series give the same values to the shown precision. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c4",
+      "text": "Growth of 0.87% a year doubles income about every 80 years (reveal: 'doubles income about every 80 years').",
+      "support": "derivation",
+      "source": "ln 2 / ln(1.00871) = 79.9, rounded to 80. history-cycle1-check.mjs section 2 ('doubling time after 1700: 80 years'). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c5",
+      "text": "Before 1700 the series fell as well as rose (for example 1,717 in 1400 and 1,446 in 1650), so the early record is not a slow steady climb (stage: the wiggling line before 1700).",
+      "support": "source",
+      "source": "history-data.mjs: maddison, 'United Kingdom', 'GDP per capita', years 1348, 1400, 1500, 1600, 1650. history-cycle1-check.mjs section 2 ('not smooth before 1700'). Not stated in words to the learner; it is what the line shows.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c6",
+      "text": "The dashed lines are our model, not data: steady compound growth at each span's average rate, drawn from the series' value at the span's start (stage legend 'dashed: steady growth rate (our line)'; labels '0.16% a year', '0.87% a year'). On the log scale a steady rate is a straight line.",
+      "support": "convention",
+      "source": "Builder's model, labelled as ours beside the real series (charter: a model is allowed only when labelled as ours). index(t) = index(start) × (1 + r)^(t − start), r from c3. On a log axis log(index) is linear in t.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c7",
+      "text": "Growth of 0.16% a year is invisible in a lifetime, which is why most of history looks flat on this chart (reveal).",
+      "support": "derivation",
+      "source": "1.00164^70 = 1.12: about 12% over a 70-year life, smaller than the year-to-year swings in the series before 1700 (c5); against 0.87% a year, 1.00871^70 = 1.83. On the linear 0-1,600 axis the pre-1700 values (41-108) sit within the bottom 7% of the plot.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c8",
+      "text": "The series covers England only before 1700 (reveal: 'the series covers England only before 1700'; question: 'Income per person in England').",
+      "support": "source",
+      "source": "Maddison Project Database 2020 README in OWID's copy (opened; history-data.mjs: maddison, doc): the UK series is England for 1252-1700 and Britain for 1700-1870, from Broadberry et al. (2015). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c9",
+      "text": "These are reconstructions from wages, prices and output records, so early values are estimates (reveal, 'Where it stops'). HELD: one held source sentence. Fallback if not checkable: 'these are modern estimates, so early values are rough'.",
+      "support": "source",
+      "source": "Broadberry, Campbell, Klein, Overton & van Leeuwen (2015), British Economic Growth 1270-1870, Cambridge University Press (not opened). Brief claim 4, held.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One economy grows 0.2% a year for 300 years, another 2% a year for 30 years. Which grows more in total?",
+    "options": [
+      "The 300-year one",
+      "About the same",
+      "The 30-year one"
+    ],
+    "answer": 1,
+    "why": "1.002^300 is about 1.82 and 1.02^30 is about 1.81: a tiny rate over centuries does no more than a modest rate over one generation, which is why England's centuries before 1700 look flat."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:long-run-income-growth",
+    "also": [
+      "math:rule-of-72"
+    ],
+    "prerequisites": [
+      "economics:growth-rate-gap"
+    ],
+    "level": "intro",
+    "strand": "population-economy",
+    "references": [],
+    "tags": [
+      "income per person",
+      "Maddison",
+      "England",
+      "compound growth",
+      "log scale"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
