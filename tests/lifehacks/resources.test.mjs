@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { evaluateResource, resourcePair, resourceAmount } from '../../src/lib/lifehacks/resource-model.ts';
+import { evaluateResource, resourcePair, resourceAmount, resourceGraphicScale, resourceAxisEnd, resourceCylinderDimensions } from '../../src/lib/lifehacks/resource-model.ts';
 const specs = JSON.parse(readFileSync(new URL('../../src/lib/lifehacks/resource-specs.json', import.meta.url), 'utf8'));
 const get = slug => {
   const spec = specs.find(item => item.slug === slug);
@@ -105,6 +105,36 @@ test('reuse boundaries include odd sheets, separate offcuts and declared materia
   assert.deepEqual(resourcePair(get('lh-offcuts-not-one-piece'), 60), [60, 120]);
   assert.deepEqual(resourcePair(get('lh-material-reuse-account'), 10), [220, 200]);
   assert.deepEqual(resourcePair(get('lh-reuse-cost-per-use'), 60), [0.2, 0.2]);
+});
+
+test('fixed picture scales preserve growth and actual energy-axis durations', () => {
+  const flow = get('lh-flow-times-minutes');
+  assert.equal(resourceGraphicScale(flow), 72);
+  assert.equal(resourcePair(flow, 4)[0] / resourceGraphicScale(flow), 1 / 3);
+  assert.equal(resourcePair(flow, 6)[0] / resourceGraphicScale(flow), 1 / 2);
+  assert.equal(resourceGraphicScale(get('lh-lead-time-stock')), 48);
+  assert.equal(resourceAxisEnd(get('lh-watts-hours-trade'), 0, 3), '0→3h');
+  assert.equal(resourceAxisEnd(get('lh-watts-hours-trade'), 1, 3), '0→15h');
+  assert.equal(resourceAxisEnd(get('lh-annual-label-cost'), 0, 2), '0→2years');
+});
+
+test('cylinder projected bases preserve fourfold area at doubled radius', () => {
+  const a = resourceCylinderDimensions(0, 12);
+  const b = resourceCylinderDimensions(1, 12);
+  assert.deepEqual(a, { rx: 21, ry: 9, height: 48 });
+  assert.deepEqual(b, { rx: 42, ry: 18, height: 48 });
+  assert.equal(b.rx * b.ry / (a.rx * a.ry), 4);
+});
+
+test('revised transfer recalls require scaling, an equality and stock-at-ordering meaning', () => {
+  assert.equal(get('lh-scale-recipe-portions').recall.options[0], '750g');
+  assert.equal(get('lh-lead-time-stock').recall.options[0], '32 units');
+  assert.equal(get('lh-reuse-cost-per-use').recall.options[0], '90 uses');
+  assert.equal(get('lh-reuse-cost-per-use').variable.start, 50);
+  near(resourcePair(get('lh-reuse-cost-per-use'), 50)[0], 0.24);
+  assert.deepEqual(resourcePair(get('lh-reuse-cost-per-use'), 60), [0.2, 0.2]);
+  assert.match(get('lh-lead-time-stock').question, /on hand when ordering/);
+  assert.doesNotMatch(get('lh-lead-time-stock').question, /reorder trigger/);
 });
 
 test('decimal rounding follows the declared half-up toy convention', () => {

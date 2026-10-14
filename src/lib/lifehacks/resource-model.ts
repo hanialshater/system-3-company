@@ -66,3 +66,23 @@ export function resourceFormula(expression: ResourceExpression, x: number): stri
 export function resourcePair(spec: ResourceSpec, x: number): [number, number] {
   return [evaluateResource(spec.formulaA, x), evaluateResource(spec.formulaB, x)];
 }
+
+/** One fixed scale across the allowed input range makes growth and shrinkage visible. */
+export function resourceGraphicScale(spec: ResourceSpec): number {
+  const { min, max, step } = spec.variable;
+  let scale = 0.001;
+  for (let value = min; value <= max; value += step) {
+    scale = Math.max(scale, ...resourcePair(spec, value).map(Math.abs));
+  }
+  return Math.max(scale, ...resourcePair(spec, max).map(Math.abs));
+}
+
+export function resourceAxisEnd(spec: ResourceSpec, index: number, x: number): string {
+  const duration = spec.slug === "lh-watts-hours-trade" && index === 1 ? x * 5 : x;
+  return `0→${resourceNumber(duration)}${spec.variable.unit || spec.variable.label.toLowerCase()}`;
+}
+
+export function resourceCylinderDimensions(index: number, height: number) {
+  const radius = index === 0 ? 3 : 6;
+  return { rx: radius * 7, ry: radius * 3, height: height * 4 };
+}

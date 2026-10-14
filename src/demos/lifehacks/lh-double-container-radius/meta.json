@@ -31,9 +31,9 @@
     },
     {
       "id": "lifehacks.lh-double-container-radius.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Height=10cm, A=0.283L and B=1.131L. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Height=10cm, A=0.283L and B=1.131L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {

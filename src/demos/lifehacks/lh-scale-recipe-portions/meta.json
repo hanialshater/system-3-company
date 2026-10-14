@@ -31,36 +31,36 @@
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Portions=6, A=450g and B=300g. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Portions=6, A=450g and B=300g. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; recall at x=9: B=300. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c3",
       "text": "The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; recall at x=9: B=300. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; Transfer recall: A at x=10 gives 750g (300÷4×10). Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c4",
-      "text": "The quantity-only recipe uses 300g for four equal portions. Change only Portions to 9. What is B (Unchanged) now? Correct: 300g. Use B's stated rule with Portions=9: it gives 300g. The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice.",
+      "text": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions? Correct: 750g. 300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",75,\"x\"]; B=300; x denotes Portions. At x=6, A=450, B=300; recall at x=9: B=300. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "The quantity-only recipe uses 300g for four equal portions. Change only Portions to 9. What is B (Unchanged) now?",
+    "question": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions?",
     "options": [
+      "750g",
       "300g",
-      "675g",
-      "302g"
+      "450g"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Portions=9: it gives 300g. The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice."
+    "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
   },
   "evidence": {
     "qa": [],

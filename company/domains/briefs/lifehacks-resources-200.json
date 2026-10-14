@@ -341,7 +341,7 @@
     },
     {
       "id": "lh-reuse-cost-per-use",
-      "name": "The denominator is uses",
+      "name": "When reuse catches up",
       "level": "intro",
       "demand": 3,
       "prerequisites": []
@@ -457,10 +457,11 @@
     "Independent safety/fact/learner review is required; no publish gate claims.",
     "All receipt policies, tariffs, masses and capacities are declared assumptions. Quantities related to food only cover portions, not preparation or safety.",
     "Scaled diagrams are comparative encodings; printed numeric expressions are authoritative. Models ignore unlisted real-world costs, variability, tolerances and safety constraints.",
-    "Geometry silhouette dimensions derive from actual input lengths/radii rather than normalized volume fills. The other six families are explicitly scaled comparative drawings, not literal icon inventories."
+    "Geometry silhouette dimensions derive from actual input lengths/radii rather than normalized volume fills. The other six families are explicitly scaled comparative drawings, not literal icon inventories.",
+    "2026-10-14 review fixes: hint names the labelled slider; figures use a fixed full-scale key; allocation/inventory/reuse encode continuous relative amounts; water tap is panel-relative; cylinder ellipse axes both scale with radius; B energy-duration axis is fivefold where required. Recipe recall now tests scaling, lead-time stock is explicitly on hand when ordering, and reuse requires the learner to reach an observed equality at sixty uses before reveal. Independent reviewer recheck remains outstanding."
   ],
   "validation": {
-    "pureModelFixtures": "node --test tests/lifehacks/resources.test.mjs: 12/12 passed, including primary boundary/error cases and unverified-gate preservation.",
+    "pureModelFixtures": "node --test tests/lifehacks/resources.test.mjs: 15/15 passed, including fixed scales, actual B-duration axis endpoints, projected cylinder base area, transfer recalls and unverified-gate preservation.",
     "typecheck": "tsc --noEmit --incremental false passed on final component and all sixty lesson wrappers.",
     "companyCheck": "Only 60 missing curriculum concepts + stale registry; root owns those integration files. Existing disputed-claim warnings remain unrelated.",
     "browserQA": "Pending root integration, not claimed or appended as evidence."

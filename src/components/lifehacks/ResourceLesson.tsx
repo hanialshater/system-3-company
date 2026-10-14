@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { evaluateResource, resourceAmount, resourceFormula, resourceNumber, resourcePair, type ResourceSpec } from "@/lib/lifehacks/resource-model";
+import { evaluateResource, resourceAmount, resourceAxisEnd, resourceCylinderDimensions, resourceFormula, resourceGraphicScale, resourceNumber, resourcePair, type ResourceSpec } from "@/lib/lifehacks/resource-model";
 import s from "./ResourceLesson.module.css";
 
 export function useResourceState(spec: ResourceSpec) {
@@ -19,9 +19,8 @@ export function useResourceState(spec: ResourceSpec) {
 /** Every picture responds to quantities; families use receipts, vessels, routes or timelines. */
 function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: number; seen: [boolean, boolean]; selected: number | null }) {
   const values = resourcePair(spec, x);
-  const max = Math.max(...values.map(Math.abs), 0.001);
+  const max = resourceGraphicScale(spec);
   const proportion = (index: number) => seen[index] ? Math.max(0, Math.min(1, values[index] / max)) : 0;
-  const cells = (index: number) => Math.round(proportion(index) * 12);
   const imageName = `${spec.title}. ${seen[0] ? `${spec.aLabel}: ${resourceAmount(values[0], spec.unit)}` : "A not tested"}; ${seen[1] ? `${spec.bLabel}: ${resourceAmount(values[1], spec.unit)}` : "B not tested"}. ${spec.variable.label}: ${x}${spec.variable.unit}.`;
   return (
     <svg viewBox="0 0 320 130" className={s.picture} role="img" aria-label={imageName}>
@@ -39,14 +38,12 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
         if (spec.family === "geometry") {
           // Internal dimensions, radius and routes come from the same declared inputs as the arithmetic.
           if (spec.slug === "lh-double-container-radius") {
-            const radius = i === 0 ? 3 : 6;
-            const width = radius * 14;
-            const height = x * 4;
+            const { rx, ry, height } = resourceCylinderDimensions(i, x);
             const center = left + 69;
             return <g key={i}>
-              <path d={`M${center - width / 2} 15v${height}a${width / 2} 9 0 0 0 ${width} 0V15`} className={`${s.paper} ${selectedClass}`} />
-              <ellipse cx={center} cy={15} rx={width / 2} ry={9} className={s.ink} />
-              <path d={`M${center} 15h${width / 2}M${left + 119} 15v${height}`} className={s.path} />
+              <path d={`M${center - rx} 20v${height}a${rx} ${ry} 0 0 0 ${rx * 2} 0V20`} className={`${s.paper} ${selectedClass}`} />
+              <ellipse cx={center} cy={20} rx={rx} ry={ry} className={s.ink} />
+              <path d={`M${center} 20h${rx}M${left + 119} 20v${height}`} className={s.path} />
             </g>;
           }
           if (spec.slug === "lh-area-scales-square") {
@@ -88,9 +85,22 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
             <path d={`M${begin} 25l16-12h${width}v${height}l-16 12M${begin + width} 25l16-12`} className={s.ink} />
           </g>;
         }
+        if (spec.family === "water" && spec.unit === "min") {
+          const center = left + 68;
+          const end = -Math.PI / 2 + p * Math.PI * 2;
+          const px = center + Math.cos(end) * 29;
+          const py = 47 + Math.sin(end) * 29;
+          return <g key={i}>
+            <circle cx={center} cy={47} r={29} className={`${s.paper} ${selectedClass}`} />
+            {p >= 1 ? <circle cx={center} cy={47} r={29} className={s.solid} opacity="0.6" /> : p > 0 && <path d={`M${center} 47V18A29 29 0 ${p > 0.5 ? 1 : 0} 1 ${px} ${py}Z`} className={s.solid} opacity="0.6" />}
+            <path d={`M${center} 47L${px} ${py}`} className={s.ink} />
+            <path d={`M${left + 47} 91v24h42V91`} className={s.ink} />
+            <rect x={left + 50} y={115 - x / spec.variable.max * 21} width={36} height={x / spec.variable.max * 21} className={s.solid} opacity="0.6" />
+          </g>;
+        }
         if (spec.family === "water") return (
           <g key={i}>
-            <path d={`M${left + 45} 8h39l-5 17H50Z`} className={s.ghost} />
+            <path d={`M${left + 45} 8h39l-5 17H${left + 36}Z`} className={s.ghost} />
             <path d={`M${left + 22} 20v94q46 14 92 0V20`} className={`${s.ink} ${selectedClass}`} />
             <path d={`M${left + 25} ${116 - p * 88}h86v${p * 88}q-43 12-86 0Z`} className={s.solid} opacity="0.65" />
             {[0, 1, 2, 3].map((tick) => <path key={tick} d={`M${left + 115} ${108 - tick * 24}h8`} className={s.ink} />)}
@@ -99,15 +109,15 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
         if (spec.family === "energy") {
           const samples = [0, 1, 2, 3, 4].map((tick) => {
             const amount = evaluateResource(i === 0 ? spec.formulaA : spec.formulaB, x * tick / 4);
-            return { x: left + 20 + tick * 23, y: 102 - (seen[i] ? amount / max * 72 : 0) };
+            return { x: left + 20 + tick * 23, y: 102 - (seen[i] ? amount / max * 87 : 0) };
           });
           return (
           <g key={i}>
             <path d={`M${left + 20} 102V15M${left + 20} 102h111`} className={s.ink} />
             <path d={samples.map((point, tick) => `${tick === 0 ? "M" : "L"}${point.x} ${point.y}`).join(" ")} className={`${s.ink} ${selectedClass}`} />
             {samples.map((point, tick) => <circle key={tick} cx={point.x} cy={point.y} r={seen[i] ? 4 : 2} className={seen[i] ? s.solid : s.ghost} />)}
-            <text x={left + 20} y={10} fill="var(--muted)" fontSize="9">{spec.unit}</text>
-            <text x={left + 70} y={122} textAnchor="middle" fill="var(--muted)" fontSize="9">0→{resourceNumber(x)}{spec.variable.unit}</text>
+            <text x={left + 20} y={10} fill="var(--muted)" fontSize="9">{resourceAmount(max, spec.unit)}</text>
+            <text x={left + 70} y={122} textAnchor="middle" fill="var(--muted)" fontSize="9">{resourceAxisEnd(spec, i, x)}</text>
           </g>
         );
         }
@@ -115,24 +125,22 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
           <g key={i}>
             <path d={`M${left + 21} 25h91v80H${left + 21}Z`} className={`${s.paper} ${selectedClass}`} />
             <path d={`M${left + 30} 46h75M${left + 30} 71h75`} className={s.path} />
-            {Array.from({ length: 12 }, (_, j) => <rect key={j} x={left + 30 + j % 4 * 20} y={27 + Math.floor(j / 4) * 26} width={13} height={16} rx={2} className={j < cells(i) ? s.solid : s.ghost} />)}
+            {[0, 1, 2].map((row) => <rect key={row} x={left + 30} y={27 + row * 26} width={75 * p} height={16} rx={2} className={s.solid} opacity="0.65" />)}
             <path d={`M${left + 118} 30q17 33 0 68m0-8v8h8`} className={s.ink} />
           </g>
         );
         if (spec.family === "reuse") return (
           <g key={i}>
             <path d={`M${left + 32} 30a40 40 0 1 1 0 65m0-10v10h10`} className={`${s.ink} ${selectedClass}`} />
-            {Array.from({ length: 12 }, (_, j) => {
-              const angle = j / 12 * Math.PI * 2;
-              return <circle key={j} cx={left + 70 + Math.cos(angle) * 37} cy={63 + Math.sin(angle) * 37} r={5} className={j < cells(i) ? s.solid : s.ghost} />;
-            })}
+            <circle cx={left + 70} cy={63} r={30} className={s.path} />
+            <circle cx={left + 70} cy={63} r={30} fill="none" stroke="var(--domain)" strokeWidth="6" strokeDasharray={`${p * Math.PI * 60} ${Math.PI * 60}`} transform={`rotate(-90 ${left + 70} 63)`} />
             <rect x={left + 58} y={48} width={24} height={30} rx={5} className={s.paper} />
           </g>
         );
         return (
           <g key={i}>
             <path d={`M${left + 17} 34v74q52 16 105 0V34`} className={`${s.ink} ${selectedClass}`} />
-            {Array.from({ length: 12 }, (_, j) => <circle key={j} cx={left + 33 + j % 4 * 23} cy={49 + Math.floor(j / 4) * 23} r={7} className={j < cells(i) ? s.solid : s.ghost} />)}
+            <path d={`M${left + 20} ${109 - p * 67}h99v${p * 67}q-50 13-99 0Z`} className={s.solid} opacity="0.65" />
             <path d={`M${left + 70} 8v18m-5-5 5 5 5-5`} className={s.ink} />
           </g>
         );
@@ -153,7 +161,7 @@ export function ResourceStage({ spec, x, selected, seen, children }: { spec: Res
           <span className={s.formula}>{seen[i] ? resourceFormula(i === 0 ? spec.formulaA : spec.formulaB, x) : "—"}</span>
         </div>)}
       </div>
-      <p className={s.assumptions}>{spec.assumptions}</p>
+      <p className={s.assumptions}>{spec.family === "geometry" ? spec.assumptions : spec.assumptions.replace("Scaled model;", `Full scale:${resourceAmount(resourceGraphicScale(spec), spec.unit)};`)}</p>
       {children}
     </div>
   );
@@ -169,3 +177,4 @@ export function ResourceReveal({ spec, x }: { spec: ResourceSpec; x: number }) {
 }
 
 export const resourceControlClass = s.controls;
+export const resourceExploreHint = "Test both cases, then move the labelled slider. Compare the displayed expressions.";

@@ -661,11 +661,11 @@
       "step": 1
     },
     "unit": "g",
-    "question": "The quantity-only recipe uses 300g for four equal portions. At six equal portions, which quantity preserves grams per portion?",
+    "question": "The quantity-only recipe uses 300g for four equal portions. How many grams preserve the same amount per portion for six portions?",
     "options": [
-      "Scaled",
-      "Unchanged",
-      "Both"
+      "450g",
+      "300g",
+      "600g"
     ],
     "answer": 0,
     "assumptions": "Scaled model; quantities only; no cooking guidance.",
@@ -674,14 +674,14 @@
     "objective": "Scale a recipe quantity while preserving quantity per portion.",
     "misconception": "The same ingredient quantity serves more people without changing portion size.",
     "recall": {
-      "question": "The quantity-only recipe uses 300g for four equal portions. Change only Portions to 9. What is B (Unchanged) now?",
+      "question": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions?",
       "options": [
+        "750g",
         "300g",
-        "675g",
-        "302g"
+        "450g"
       ],
       "answer": 0,
-      "why": "Use B's stated rule with Portions=9: it gives 300g. The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice."
+      "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
     }
   },
   {
@@ -1089,27 +1089,27 @@
       "step": 1
     },
     "unit": "items",
-    "question": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer. At three lead days, which reorder trigger is higher?",
+    "question": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve. How many units must be on hand when ordering for A?",
     "options": [
-      "With buffer",
-      "No buffer",
-      "Equal"
+      "20 units",
+      "12 units",
+      "8 units"
     ],
     "answer": 0,
     "assumptions": "Scaled model; constant toy demand; buffer=8; no policy advice.",
-    "details": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer.",
-    "principle": "Lead-time demand is daily demand multiplied by delivery days. A stated buffer is added separately. Real demand and delays can vary; these values illustrate the distinction, not a universal reorder policy.",
-    "objective": "Calculate lead-time demand and separate an explicit buffer.",
+    "details": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve.",
+    "principle": "Multiply daily use by waiting days, then add the reserve. This is the stock left when ordering under the toy rule, not the quantity to buy. Real demand and delays can vary; the rule is illustrative.",
+    "objective": "Calculate the stock on hand when ordering to cover a stated delivery delay and retain a stated reserve.",
     "misconception": "Delivery lead time has no effect on the quantity consumed before arrival.",
     "recall": {
-      "question": "Demand is exactly four units/day. Delivery takes three days. A retains an additional eight-unit buffer. Change only Lead-days to 6. What is B (No-buffer) now?",
+      "question": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering?",
       "options": [
-        "24items",
-        "32items",
-        "26items"
+        "32 units",
+        "24 units",
+        "8 units"
       ],
       "answer": 0,
-      "why": "Use B's stated rule with Lead-days=6: it gives 24items. Lead-time demand is daily demand multiplied by delivery days. A stated buffer is added separately. Real demand and delays can vary; these values illustrate the distinction, not a universal reorder policy."
+      "why": "4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve."
     }
   },
   {
@@ -2605,8 +2605,8 @@
   },
   {
     "slug": "lh-reuse-cost-per-use",
-    "title": "The denominator is uses",
-    "hook": "A €12 reusable item spreads its modeled purchase cost over repeated uses.",
+    "title": "When reuse catches up",
+    "hook": "€12 once or €0.20 each use: when do their modeled costs per use match?",
     "concept": "lh-reuse-cost-per-use",
     "family": "reuse",
     "aLabel": "Reusable",
@@ -2619,14 +2619,14 @@
     "formulaB": 0.2,
     "variable": {
       "label": "Uses",
-      "start": 10,
-      "min": 5,
+      "start": 50,
+      "min": 40,
       "max": 80,
       "unit": "",
       "step": 5
     },
     "unit": "€/use",
-    "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. At ten uses, which modeled cost per use is lower?",
+    "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. At fifty uses, which modeled cost per use is lower?",
     "options": [
       "Reusable",
       "Single-use",
@@ -2639,14 +2639,14 @@
     "objective": "Find a reuse cost-per-use crossover under explicitly limited costs.",
     "misconception": "A reusable purchase is automatically cheaper at every use count.",
     "recall": {
-      "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Change only Uses to 25. What is B (Single-use) now?",
+      "question": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match?",
       "options": [
-        "0.2€/use",
-        "0.48€/use",
-        "2.2€/use"
+        "90 uses",
+        "18 uses",
+        "60 uses"
       ],
       "answer": 0,
-      "why": "Use B's stated rule with Uses=25: it gives 0.2€/use. Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation."
+      "why": "At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions."
     }
   },
   {

@@ -31,9 +31,9 @@
     },
     {
       "id": "lifehacks.lh-water-meter-units.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Litres=1500L, A=1.5m³ and B=1,500m³. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Litres=1500L, A=1.5m³ and B=1,500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500; recall at x=1800: B=1800. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {

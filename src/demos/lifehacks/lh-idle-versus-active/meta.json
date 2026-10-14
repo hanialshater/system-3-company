@@ -31,9 +31,9 @@
     },
     {
       "id": "lifehacks.lh-idle-versus-active.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Days=5, A=0.6kWh and B=0.33kWh. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Days=5, A=0.6kWh and B=0.33kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33; recall at x=8: B=0.528. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33; recall at x=8: B=0.528. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {

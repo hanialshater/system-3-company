@@ -1,7 +1,7 @@
 {
   "slug": "lh-reuse-cost-per-use",
-  "title": "The denominator is uses",
-  "hook": "A €12 reusable item spreads its modeled purchase cost over repeated uses.",
+  "title": "When reuse catches up",
+  "hook": "€12 once or €0.20 each use: when do their modeled costs per use match?",
   "domain": "lifehacks",
   "concept": "lh-reuse-cost-per-use",
   "status": "review",
@@ -31,36 +31,36 @@
     },
     {
       "id": "lifehacks.lh-reuse-cost-per-use.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Uses=10, A=1.2€/use and B=0.2€/use. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Uses=50, A=0.24€/use and B=0.2€/use. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=50, A=0.24, B=0.2. The equality milestone requires x=60, where both are 0.2€/use; the slider then stays at this observed state. Transfer recall: €18÷€0.20/use=90 uses. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-reuse-cost-per-use.c3",
       "text": "Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=50, A=0.24, B=0.2. The equality milestone requires x=60, where both are 0.2€/use; the slider then stays at this observed state. Transfer recall: €18÷€0.20/use=90 uses. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
       "status": "unverified"
     },
     {
       "id": "lifehacks.lh-reuse-cost-per-use.c4",
-      "text": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Change only Uses to 25. What is B (Single-use) now? Correct: 0.2€/use. Use B's stated rule with Uses=25: it gives 0.2€/use. Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation.",
+      "text": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match? Correct: 90 uses. At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",12,\"x\"]; B=0.2; x denotes Uses. At x=10, A=1.2, B=0.2; recall at x=25: B=0.2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "Equality in the fresh recall scenario: €18/use-count = €0.20/use, so use-count = 18÷0.20 = 90. Ongoing costs, useful life and environmental impacts are excluded. In the stage, the €12 version matches at 60 uses and the reveal is gated on observing that exact equality.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. Change only Uses to 25. What is B (Single-use) now?",
+    "question": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match?",
     "options": [
-      "0.2€/use",
-      "0.48€/use",
-      "2.2€/use"
+      "90 uses",
+      "18 uses",
+      "60 uses"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Uses=25: it gives 0.2€/use. Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation."
+    "why": "At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions."
   },
   "evidence": {
     "qa": [],

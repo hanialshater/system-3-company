@@ -31,9 +31,9 @@
     },
     {
       "id": "lifehacks.lh-small-leak-large-duration.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Flow=5mL/min, A=7.2L and B=0.3L. The geometry pictures follow the declared dimension relationships; other stage pictures are scaled to the larger displayed comparison and icons are not literal item counts.",
+      "text": "The stage's two results are computed by the printed expressions. At Flow=5mL/min, A=7.2L and B=0.3L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3; recall at x=8: B=0.48. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3; recall at x=8: B=0.48. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
       "status": "unverified"
     },
     {
