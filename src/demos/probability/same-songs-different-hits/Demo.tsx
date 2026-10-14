@@ -18,7 +18,7 @@ const APPEAL = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7];
 const WORLDS = 8;
 const TOTAL = 1000;
 const STEP = 100;
-const MILESTONES = ["copy-1000", "nocopy-1000"] as const;
+const MILESTONES = ["early-100", "copy-1000", "nocopy-1000"] as const;
 
 /** picks[checkpoint][song] for checkpoints 0, 100, ..., 1000 listeners. */
 function simulate(seed: number, copy: boolean): number[][] {
@@ -73,6 +73,7 @@ const Tri = ({ cx, y }: { cx: number; y: number }) => (
 export default function SameSongsDifferentHits({ slug }: { slug: string }) {
   const [n, setN] = useState(0);
   const [mode, setMode] = useState<Mode>("on");
+  const [early, setEarly] = useState(false);
   const [done, setDone] = useState<Record<Mode, boolean>>({ on: false, off: false });
 
   useEffect(() => {
@@ -81,6 +82,9 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
 
   const on = stats("on", TOTAL);
   const off = stats("off", TOTAL);
+  // Early checkpoint (reached at 100 listeners, copying on): the worst world's best song, then and now.
+  const w = on.lowWorlds[0] - 1;
+  const early100 = finish(RUNS.on[w][1]);
   const range = (t: number[]) => `${Math.min(...t.map(pct))}–${Math.max(...t.map(pct))}%`;
 
   return (
@@ -92,7 +96,7 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
         options: ["2nd of 8", "4th of 8", "7th of 8"],
         answer: 2,
       }}
-      exploreHint="Add listeners, run all 1,000, then switch copying off and compare the 8 worlds."
+      exploreHint="Add 100 listeners, then run all 1,000, then switch copying off and compare the 8 worlds."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -103,6 +107,12 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
             with it off. It made the result unpredictable: the top song in each world took {range(on.top)} of the
             picks, against at most {Math.max(...off.top.map(pct))}% with copying off.
           </p>
+          {early && (
+            <p>
+              At 100 listeners world {w + 1}’s best song was already {ord(early100)}
+              {early100 === on.low ? "; 900 more listeners did not move it." : `; by 1,000 it was ${ord(on.low)}.`}
+            </p>
+          )}
           <p>
             Each early pick makes that song more likely to be picked again, so early luck compounds. Quality still
             tilts the odds, but it does not decide the hit.
@@ -112,15 +122,17 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Stage locked={locked} interact={interact} n={locked ? 0 : n} mode={mode} done={done} setN={setN} setMode={setMode} />
+        <Stage locked={locked} interact={interact} n={locked ? 0 : n} mode={mode} done={done} early={early} setEarly={setEarly} setN={setN} setMode={setMode} />
       )}
     </Lesson>
   );
 }
 
 function Stage({
-  locked, interact, n, mode, done, setN, setMode,
+  locked, interact, n, mode, done, early, setEarly, setN, setMode,
 }: {
+  early: boolean;
+  setEarly: (b: boolean) => void;
   locked: boolean;
   interact: () => void;
   n: number;
@@ -133,6 +145,10 @@ function Stage({
   // interact() is called only through reach(): the reveal is earned by the two 1,000-listener
   // states, not by any two presses (minInteractions = 2).
   const go = (nn: number, m: Mode) => {
+    if (nn === STEP && m === "on") {
+      setEarly(true);
+      reach("early-100");
+    }
     if (nn === TOTAL) reach(m === "on" ? "copy-1000" : "nocopy-1000");
   };
   const st = n > 0 ? stats(mode, n) : null;
@@ -191,7 +207,7 @@ function Stage({
           onClick={() => { const nn = n + STEP; setN(nn); go(nn, mode); }}>
           +100 listeners
         </Control>
-        <Control className={s.tap} disabled={locked || n >= TOTAL}
+        <Control className={s.tap} disabled={locked || n >= TOTAL || !early}
           onClick={() => { setN(TOTAL); go(TOTAL, mode); }}>
           All 1,000
         </Control>
@@ -201,7 +217,11 @@ function Stage({
         {(["on", "off"] as const).map((m) => (
           <Control key={m} className={`${s.tap} ${s.chip} ${m === mode ? "active" : ""}`}
             disabled={locked || m === mode} aria-pressed={m === mode} aria-label={`Copying ${m}`}
-            onClick={() => { setMode(m); go(n, m); }}>
+            onClick={() => {
+              // Copying on with the 100-listener checkpoint still unseen: show that checkpoint (no dead end).
+              const nn = m === "on" && !early && n > STEP ? STEP : n;
+              setMode(m); setN(nn); go(nn, m);
+            }}>
             {m === "on" ? "On" : "Off"}
           </Control>
         ))}
