@@ -44,3 +44,6 @@ Run `npm run company -- status`, `npm run company -- rituals` and `npm run metri
 ## Operational health (2026-10-13)
 - An incident (see `company/engineering/operations/incident-response.md`): contain first, declare it as an `incident` event, and dispatch the principal-engineer-ops. A SEV1 goes in the founder inbox at once.
 - When `rituals-due` lists `ops-review`, run `/ops-review`. Every tech team reports through its point of contact.
+
+## Revisions to lessons that were published meanwhile (2026-10-14 incident)
+A builder can be assigned a lesson that publishes before the revision merges: point-one-is-26-percent was published in wave C2, then builder 7's fix reset claim c3 to unverified, and the gate failed on a live lesson. Before merging a revision branch, list the slugs it touches that are now `published` (`git diff --name-only <base>..<branch> -- src/demos | xargs -n1 dirname | sort -u`). For each one, either get its edited claims re-verified before the merge, or ask the release manager to move it back to review until it is re-verified and re-reviewed. Never leave a published lesson with an unverified claim.
