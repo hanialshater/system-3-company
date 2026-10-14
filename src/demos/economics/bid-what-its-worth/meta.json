@@ -1,0 +1,139 @@
+{
+  "slug": "bid-what-its-worth",
+  "title": "What should you bid for a $70 painting?",
+  "hook": "The winner pays the runner-up's bid, not their own. What does that do to your best bid?",
+  "domain": "economics",
+  "concept": "second-price-auction",
+  "format": "single-card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an auction is",
+      "you want to pay less than the item is worth to you"
+    ],
+    "doesNotKnow": [
+      "that when the winner pays the second-highest bid, shading your bid never helps",
+      "that inflating your bid only adds wins that lose money"
+    ]
+  },
+  "misconception": "Bid below your value to keep some profit, or bid above to be safe.",
+  "objective": "The learner can show, against a low and a high rival bid, that in a sealed second-price auction a bid below value gives up a profitable win and a bid above value adds a losing win, so bidding true value is never worse than any other bid.",
+  "claims": [
+    {
+      "id": "economics.bid-what-its-worth.c1",
+      "text": "In a sealed-bid second-price auction the highest bidder wins and pays the second-highest bid.",
+      "support": "source",
+      "source": "Address: hook, predict question, stage rule line, reveal para 2. Easley & Kleinberg 2010, ch. 9 §9.4 (section unconfirmed; check against the free PDF).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c2",
+      "text": "With a value of $70, a bid of $70 is never worse than any other bid, whatever the rival bids, and for some rival bids it is strictly better.",
+      "support": "derivation",
+      "source": "Address: predict answer, reveal para 2 last sentence. Rule in Demo.tsx: profit = 70 - rival if bid > rival, else 0; tie goes to the rival. Node check over rival bids 0.00 to 400.00 in cents against alternative bids $0 to $200 in whole dollars: $70 is never lower than any alternative and is strictly higher for some rival bids (alternative $50: 2,000 rival values). Dominance is weak, not strict (ties); the lesson never says 'the only best'. Book argument: ch. 9 §9.4.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c3",
+      "text": "At value $70 and a rival bid of $75, a bid of $90 wins, pays $75 and loses $5; a bid of $70 loses and keeps $0.",
+      "support": "derivation",
+      "source": "Address: reveal para 1; stage bars at Rival $75. Arithmetic 70 - 75 = -5. Node: profit(90,75) = -5, profit(70,75) = 0.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c4",
+      "text": "At value $70 and a rival bid of $60, a bid of $50 loses and earns $0, while a bid of $70 wins, pays $60 and keeps $10; the $50 bid earns less than the $70 bid against every whole-dollar rival bid from $50 to $69.",
+      "support": "derivation",
+      "source": "Address: reveal para 1; stage bars at Rival $60 (the stage is pinned there at the reveal) and the sweep chart. Arithmetic 70 - 60 = 10. Node: profit(50,60) = 0, profit(70,60) = 10; over whole-dollar rival bids $0-$130, profit(50,r) < profit(70,r) exactly for r = 50..69 (20 values). v3 (2026-10-14 polish): added the sweep-range sentence. | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. Demo.tsx rule (tie to the rival): profit(50,60) = 0, profit(70,60) = 10; over whole-dollar rival bids 0-120 (the sweep chart's range), profit(50,r) < profit(70,r) exactly for r = 50..69 (20 values) and equal elsewhere. Reveal pins the stage to Rival $60, your bid $50, so the dashed (stroke-dasharray, your $50) line sits under the solid $70 line exactly as paragraph 1 says. Rival $60 and $75 are milestone-gated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c5",
+      "text": "In this lesson a tie goes to the rival (the bidder loses a tie).",
+      "support": "convention",
+      "source": "Address: stage rule line, reveal para 3. Stated rule of the model (Demo.tsx wins(): bid > rival). Not a claim about real auctions.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c6",
+      "text": "A bid only decides whether you win; the price is the rival's bid, so a bid below $70 only gives up wins that pay and a bid above $70 only adds wins that lose money or break even.",
+      "support": "derivation",
+      "source": "Address: reveal para 2. From the rule: a bid above 70 changes the outcome only when the rival is between 70 and the bid, where profit is negative or, at a rival bid of exactly $70, zero; a bid below 70 changes it only when the rival is between the bid and 70, where profit is positive. Same node check as c2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Own case analysis with ties to the rival: a bid b > 70 differs from 70 only when 70 <= r < b, where it wins and earns 70 - r <= 0 (0 only at r = 70); a bid b < 70 differs only when b <= r < 70, where 70 wins and earns 70 - r > 0. Matches the reveal paragraph 2 and the profit() rule in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.bid-what-its-worth.c7",
+      "text": "This is why the second-price format invites honest bids.",
+      "support": "source",
+      "source": "Address: reveal para 3. Easley & Kleinberg 2010, ch. 9 §9.4 (truthful bidding as a dominant strategy; section unconfirmed).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a sealed auction the winner pays the second-highest bid. An item is worth $100 to you. Which bid is never worse than any other?",
+    "options": [
+      "Less than $100, to keep a margin",
+      "More than $100, to be safe",
+      "Exactly $100"
+    ],
+    "answer": 2,
+    "why": "Your bid only decides whether you win; the price is the rival's bid. Bidding below $100 gives up wins that pay, and above $100 adds wins that lose."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bid-what-its-worth/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "economics:second-price-auction",
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 9,
+        "note": "section unconfirmed",
+        "section_unconfirmed": "9.4"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "auction",
+      "dominant-strategy",
+      "game-theory"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-live-chart",
+    "milestone-gate"
+  ]
+}

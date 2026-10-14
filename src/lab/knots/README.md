@@ -1,11 +1,19 @@
 # src/lab/knots: knot theory for 60-second lessons
 
-Status: **lab, generation 0 (baseline)**, 2026-10-14. Plain ESM JavaScript, no dependencies, types and
+Status: **lab, layout from `gen2-force-smooth`** (promoted into the lab 2026-10-14, W-162; design notes of `draw.mjs` in [NOTES.md](NOTES.md); kit move proposed in `company/engineering/edd/EDD-004-knots-kit.md`). Plain ESM JavaScript, no dependencies, types and
 docs in `index.d.ts`. **Lessons may not import `src/lab/`** (company/rnd/README.md). It reaches lessons
 only after the R&D lead's EDD and the principal engineer's review move it to `src/kit/`.
 
+> **Shipped copy: [`src/kit/knots/`](../../kit/knots/README.md)** (EDD-004, approved with conditions 2026-10-14,
+> `company/rituals/records/2026-10-14-eng-review-EDD-004.md`). Lessons import `@/kit/knots`, never this folder.
+> This lab folder is the **evolution workspace**: the evaluator (tests, `bench.mjs`, `size.mjs`, `evolve.json`), candidates,
+> bench data (including `U10`) and the table provenance (`provenance/`). A change made here does not reach lessons until it
+> is copied into the kit under the kit README's tier rules (tier 1: additive exports, result-preserving fixes, table refreshes
+> via `provenance/derive.mjs --write` plus the README `sed`; tier 2: anything that changes results, by EDD and review).
+> Note: the lab's own `table.mjs` still holds the older (spherogram-labelled) codes; the kit ships `provenance/table.derived.mjs`.
+
 - Prior art, data sources and licences: [PRIOR-ART.md](PRIOR-ART.md)
-- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 101 tests, about 15 s. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
+- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 103 tests. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
 - Bench (quality metrics, one JSON line): `node src/lab/knots/bench.mjs`
 - Sizes: `node src/lab/knots/size.mjs`
 

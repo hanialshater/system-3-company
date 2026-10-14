@@ -10,5 +10,7 @@
     "jonesWrongPenalty": 1, "jonesSpeed": 0.2
   },
   "mutable": ["draw.mjs", "layout*.mjs", "index.d.ts"],
-  "parents": { "gen0-baseline": [], "gen1-tutte": ["gen0-baseline"], "gen1-force": ["gen0-baseline"], "gen1-ortho": ["gen0-baseline"] }
+  "parents": { "gen0-baseline": [], "gen1-tutte": ["gen0-baseline"], "gen1-force": ["gen0-baseline"], "gen1-ortho": ["gen0-baseline"],
+    "gen2-ortho-force": ["gen1-ortho", "gen1-force"], "gen2-force-smooth": ["gen1-force"], "gen2-ortho-round": ["gen1-ortho"],
+    "fix1-bigon": ["gen2-force-smooth"] }
 }

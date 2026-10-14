@@ -1,0 +1,35 @@
+# Build note: prices-sort-the-buyers (demo-builder, 2026-10-14)
+
+Kept from evaluators until they report.
+
+- Built to: brief `company/domains/briefs/economics.markets.md` (NCM batch 1 #4), spec `company/design/specs/prices-sort-the-buyers.md`, and the binding changes in **`company/design/reviews/2026-10-14-design-review-ncm-specs.md` §2** (the review wins over the spec; 3 × 3 grid accepted) plus the network-stage rules in `company/design/reviews/2026-10-14-design-lead-ncm-rulings.md` §2.
+- Review changes applied: (1) house discs y 28, price pills centred y 62 (12 px text), buyers at x 44, grid top 91 / left 96, group outline 4 px outside the cells from y 87 (to 293), clear of the pills; (2) sum line 12 px muted, surplus 20 px bold, wants dot top-right of the cell; (3) "(┅)" in the rule line is an inline dashed-box SVG swatch; legend is "[cell+dot swatch] wants · [filled-cell swatch] gets"; all swatches are drawn by the same functions as the stage (`cellRect`, `wantDot`, `groupRect` in Demo.tsx); (4) Compare opens directly under the grid in place of the legend row; the market's pill uses the gets style (fg fill, bg ink, 3 px border).
+- Rule (code = card = meta c2): wants = all houses with max value − price; raise $1 every house in the smallest group whose only-wanters outnumber its houses. Implemented live (subset enumeration), not hard-coded.
+- Node check (scratch script, same rule, 2026-10-14): (0,0,0) {a} → (1,0,0) {a} → (2,0,0) {a,b} → (3,1,0) none. Smallest group unique each round. Match x–a, y–c, z–b = 23, the only perfect match in the wants sets. Six totals 21, 23, 14, 17, 15, 16. 20 clearing vectors with min 0 and max ≤ 12; over 0..20 all 284 clearing vectors are ≥ (3,1,0) house by house, which backs "the lowest prices that clear this market".
+- Controls: Restart, Raise, Run, Compare (all at first paint, disabled while locked). Run steps at 100 ms per round (instant under reduced motion), fires `cleared` on press; Raise/Run disabled while a Run animation plays and once cleared. Compare enabled only once cleared and disabled once open. Restart disabled at round 0 and in reveal. Reveal pins the stage to the cleared round-3 state with Compare open. Milestones `cleared`, `compared` (minInteractions 2).
+- Reveal quotes: if the learner reached rounds 1, 2 and 3 with Raise it names the three raises and the {a,b} step; otherwise only start and end prices. 23 and "six totals you compared" are always reached (milestone gate).
+- Changes from the spec/brief, with reasons:
+  - Predict question shortened ("Values are in the grid; …") and option A cut from "$0 (a goes to the highest valuer at once)" to "$0": on a 412 px phone the long question and 3 option rows left the stage ~250 px tall and clipped the grid's z row at predict. The rule wording ("smallest group") is unchanged.
+  - The SVG flexes to the stage height (min 180 px, max 300 px). Consequence: **at predict on phone the grid renders at about 65% scale**, so the muted sum line is about 8 px and the surplus about 13 px, below the review's 11 px floor for that one phase. Explore and reveal render at full size. Route to visual-designer / accessibility-reviewer (build-time design review).
+  - Group tint is `--fg` at 8% opacity, not `--bg-2`: the stage background is near `--bg-2`, so a `--bg-2` tint would be invisible.
+  - A visually hidden table (9 rows) gives each cell's value, price and wants; the walkthrough transcript prints it, so the transcript shows more words than the learner sees.
+- Section unconfirmed: curriculum.references carries easley-kleinberg-2010 ch. 10, section "10.3" with a note; the brief's §10.3–10.4 is unconfirmed (no PDF access). Claim c7 (theorem) keeps that flag.
+- Learning-designer item from the review: the rule line's "smallest group too many want" shortening is a content call, not checked by me.
+- Not done: no illustration (brief says none). Code size Demo.tsx + CSS ≈ 12.6 KB.
+
+## Revision v2 (demo-builder, 2026-10-14, session 2)
+
+Inputs: learner review one-market-only, fact-check Pass NCM-1 note 1.
+- Prediction now tests the lesson's idea: "Among the six possible matches, that one has" the highest / a middling / the lowest total value. Correct option is FIRST (answer 0). Hook no longer gives the answer ("What do rising prices do?"). The rule detail stays on the stage rule line and in c2.
+- Run no longer jumps: steps at 350 ms (not 100) and each state carries a caption ("Raised a and b together; 3 buyers wanted only a or b"), kept after the run ends; the dashed group shows at the {a,b} step. Reveal tells the three-raise path whenever the learner saw all three rounds (Raise or Run). 350 ms is the longest that lets the QA contract (450 ms settle) still reach Compare; 700 ms failed it on desktop. Under reduced motion Run still jumps (caption shows the last raise).
+- Legibility: grid redrawn 340 x 240 (was 300 high) with larger type (sum 15, surplus 22, prices 16, labels 16); at predict the rule line, legend, readout and caption are hidden so the grid renders at about full scale on a phone (walkthrough 01-predict viewed). The rule is in the question at predict.
+- c4 text now includes "y values b most (x 4, y 7, z 5)": status back to unverified. New claim c9 (caption text; node check of n: 3, 2, 3), unverified. Version 2.
+- Node check, exact rule: only-wanters at (0,0,0),(1,0,0),(2,0,0) give n 3, 2, 3 for groups {a},{a},{a,b}; price path unchanged.
+- QA (contract, QA_ONLY=prices-sort-the-buyers, NEXT_DIST_DIR=.next-psb2, QA_PORT 3731-3734): phone pass, desktop pass. The feed.spec "subject chips filter the feed" test fails on both viewports in this worktree; it is not about this lesson (not investigated).
+
+## Revision v3 (polish from the final learner review)
+
+- "Total value" is now defined in the predict question: it adds up what the three buyers value their houses (first number in each square, no prices).
+- Compare chips decoded: while Compare is open the rule line reads "Each chip: who gets which house (xa = x gets a), then that match's total value." (replaces the Raise rule line there, so stage word count is unchanged).
+- New claim c10 for both sentences, unverified. Other claims unchanged.
+- QA (own build, port 3981, QA_ONLY): contract spec fails only on 'tap targets at least 24px' (the in-progress kit stage-scale at reveal; not fixed here, kit is out of scope); every other contract step passed. Walkthrough frames read on phone. npm run check and typecheck pass.

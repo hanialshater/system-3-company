@@ -1,0 +1,137 @@
+{
+  "slug": "web-bow-tie-reach",
+  "title": "Which pages can you click to?",
+  "hook": "Pages link one way. How many can you actually click your way to?",
+  "domain": "cs",
+  "concept": "web-bow-tie",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "web pages link to other pages",
+      "what reaching a page by following links means"
+    ],
+    "doesNotKnow": [
+      "that links are one-way, so being connected is not the same as being reachable",
+      "the bow-tie shape of the web"
+    ]
+  },
+  "misconception": "If two pages are joined by links somewhere, you can click from one to the other. The web is one big connected thing.",
+  "objective": "The learner can explain that because links are one-way, the pages you can click to from a start page are fewer than the pages joined to it: from a core page you reach the core and OUT pages but never IN, and from an OUT page almost nowhere.",
+  "claims": [
+    {
+      "id": "cs.web-bow-tie-reach.c1",
+      "text": "In the 12-page graph on the stage, following links the way they point reaches 7 pages from each of A, B, C and D (counting the start), 10 from E, 8 from F, 3 from G, 2 from H, 1 from I, 1 from J, 2 from K and 1 from L. The reveal quotes only the first core, IN and OUT page the learner tapped, and the stage in the reveal is pinned to the core page (its reach filled, the other two ringed).",
+      "support": "simulation",
+      "source": "Node BFS over the exact edge list in Demo.tsx: A>B, B>C, C>D, D>A, D>B, C>G, D>H, E>A, E>F, E>J, F>B, G>H, H>I, K>L. Builder ran it 2026-10-14 (reach(start) as in Demo.tsx); output {A:7,B:7,C:7,D:7,E:10,F:8,G:3,H:2,I:1,J:1,K:2,L:1}. Deterministic, no seed. | FACT-CHECK 2026-10-14 (pass NCM-1): Own BFS over the 14-edge list copied from Demo.tsx (scratchpad fc/bow.mjs): {A:7,B:7,C:7,D:7,E:10,F:8,G:3,H:2,I:1,J:1,K:2,L:1}. Reveal computes reach(p).size for the first page tapped in each group; \"From p only itself\" only for size 1 (I, J, L not in core/in/out groups except I). Matches. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran Demo.tsx reach() on all 12 pages: A-D 7 (ABCDGHI), E 10, F 8, G 3, H 2, I 1, J 1, K 2, L 1. Reveal code quotes reach(p).size only for firsts.core/in/out; in the reveal the stage shows firsts.core filled and the other two dashed-ringed. Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c2",
+      "text": "Ignoring link direction, 10 of the 12 pages are joined to A (all but K and L, which link only to each other).",
+      "support": "simulation",
+      "source": "Node BFS over the same edge list treated as undirected from A: component = A, B, C, D, E, F, G, H, I, J (10 pages); K and L form their own pair. Builder ran it 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): Own undirected BFS from A: ABCDEFGHIJ (10); K-L a separate pair. Predict text \"10 of them are joined to the central group\" matches. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Own undirected BFS over the 14 Demo.tsx edges: component of A = ABCDEFGHIJ (10); K-L a separate pair (only edge K>L). Predict ('10 of them are joined to the central group') and reveal ('Ten pages are joined to the core (all but K and L ...)') match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c3",
+      "text": "Links point one way, so being joined is not the same as being reachable: from CORE (A to D) you can click out to OUT (G, H and I), but no link leads back to IN (E and F). The reveal also says the reachable count (7 from A) is smaller than the 10 joined.",
+      "support": "derivation",
+      "source": "Definition of a directed link plus the edge list in c1: reach(A) = A, B, C, D, G, H, I, which contains neither E nor F; A, B, C, D reach each other (checked in node). Holds for this graph. | FACT-CHECK 2026-10-14 (pass NCM-1): reach(A)=reach(B)=reach(C)=reach(D)=ABCDGHI; pages that reach A are only A-F; no edge enters E or F from A-D. Reveal wording (middle -> right, nothing back to the left, right end leads almost nowhere: G 3, H 2, I 1) matches the stage. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. reach() from A, B, C, D never contains E or F (node check); all four reach G, H, I. Reveal paragraph 1 matches. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Directed reach from each of A-D = ABCDGHI (7), never E or F; G 3, H 2, I 1. Reveal paragraph 1 ('From CORE (A to D) you can click out to OUT (G, H, I), but nothing leads back to IN (E, F), and OUT leads almost nowhere') matches; the reveal prints the first core page's reach (always 7) beside 'Ten pages are joined', so 7 < 10 is on screen.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c4",
+      "text": "The real web has a bow-tie shape: a tightly linked core, pages that lead into it, pages it leads out to, tendrils hanging off those, and disconnected pieces.",
+      "support": "source",
+      "source": "Broder, Kumar, Maghoul, Raghavan, Rajagopalan, Stata, Tomkins and Wiener, 'Graph structure in the Web', Computer Networks 33 (2000); Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 13. NEEDS A HUMAN SOURCE CHECK (builder cited from the brief and memory; no access to the paper). | FACT-CHECK 2026-10-14 (pass NCM-1): Broder et al. abstract and secondary summaries (search, 2026-10-14; primary PDF unreachable through the proxy) describe the bow-tie: strongly connected core (about 28%), IN, OUT, plus tendrils and disconnected components. E&K ch. 13 is the structure-of-the-Web chapter (library catalogue records); section stays unconfirmed. Advisory: the reveal omits tendrils and \"a few detached pieces\" understates the disconnected part; not false. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Broder et al., Computer Networks 33: 309-320 (2000) re-confirmed by search (two AltaVista crawls of over 200 million pages; bow-tie: SCC core, IN, OUT, tendrils, disconnected components). Primary PDF unreachable through the proxy. Advisory: Meusel et al. (WWW 2014, 'Graph structure in the web - revisited') report that the bow-tie proportions depend heavily on the crawl; 'the real web has this shape too' is defensible (the decomposition exists for any directed graph) but the attributed form ('Broder and colleagues found...') is the safer learner sentence.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c5",
+      "text": "Broder and colleagues (2000) mapped about 200 million pages.",
+      "support": "source",
+      "source": "Broder et al. 2000 (crawl of about 203 million pages, from the brief and the review record). NEEDS A HUMAN SOURCE CHECK. The core and IN/OUT percentages (about 28%, 21%, 21%) in the brief are deliberately NOT shown to learners; add them only after the paper is checked. | FACT-CHECK 2026-10-14 (pass NCM-1): Abstract as quoted in search results: \"two AltaVista crawls each with over 200 million pages and 1.5 billion links\"; Nature news (2000) \"analysed 200 million web pages\". \"About 200 million\" holds. The 28/21/21% figures remain unshown; core about 28% corroborated by secondary sources only.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c6",
+      "text": "This 12-page graph is a toy, not to scale.",
+      "support": "convention",
+      "source": "Disclosure that the stage is a teaching model, not data from the crawl. | FACT-CHECK 2026-10-14 (pass NCM-1): Disclosure is present in the reveal (\"This 12-page graph is a toy, not to scale\").",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c7",
+      "text": "Extra check, not shown to learners: over the 132 ordered pairs of distinct pages in the toy graph, 44 have a click path (one third).",
+      "support": "simulation",
+      "source": "Node: sum of (reach(start) - 1) over the 12 starts = 44 of 12*11 = 132. Builder ran it 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): Own script: sum of (reach-1) = 44 of 132 ordered pairs.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Page X links to page Y, but Y has no link back to X, and nothing else links to X. Starting on Y, can you click your way to X?",
+    "options": [
+      "No: links only work in the direction they point",
+      "Yes: they are joined by a link",
+      "Only if you go through a third page"
+    ],
+    "answer": 0,
+    "why": "Links are one-way, so being joined is not the same as being reachable. Y has no link out that leads back to X."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/web-bow-tie-reach/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "cs:web-bow-tie",
+    "prerequisites": [
+      "cs:graph-shortest-path"
+    ],
+    "level": "core",
+    "strand": "systems",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 13,
+        "note": "bow-tie structure of the web; section unconfirmed (brief says 13.3-13.4)",
+        "section_unconfirmed": "13.3"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "directed-graph",
+      "reachability",
+      "web"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate"
+  ]
+}

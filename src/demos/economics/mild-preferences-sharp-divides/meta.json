@@ -1,0 +1,157 @@
+{
+  "slug": "mild-preferences-sharp-divides",
+  "title": "Mild preferences, sharp divides",
+  "hook": "Nobody wants a majority. What does the city do?",
+  "domain": "economics",
+  "concept": "schelling-segregation",
+  "format": "agent-based-simulation",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "neighbourhoods can be strongly segregated",
+      "people choose where to live",
+      "percentages"
+    ],
+    "doesNotKnow": [
+      "that individual choices with a mild preference can add up to a far more extreme collective pattern",
+      "Schelling's segregation model",
+      "agent-based models"
+    ]
+  },
+  "misconception": "Strong segregation needs strong prejudice.",
+  "objective": "The learner can explain that in Schelling's model households who are content as a minority (they move only when under 30% of their neighbours are like them) still sort the grid into blocks, raising the like-neighbour share from about 50% to about 75%, because each move changes other households' streets and unsettles households that were content (shown as red rings); and that a toy model shows what can happen, not what causes any real city's pattern.",
+  "claims": [
+    {
+      "id": "economics.mild-preferences-sharp-divides.c1",
+      "text": "In the stage model at a 30% threshold, the average share of like neighbours rises from about 50% at the random start to about 75% when nobody wants to move, and every run settles with everyone happy.",
+      "support": "simulation",
+      "source": "abm.ts run(seed, 30), the exact rule on the card (40x40, no wrap, 10% empty, equal groups placed by a mulberry32 Fisher-Yates shuffle, 8 surrounding cells, unhappy if like/occupied < 30%, movers listed at tick start, shuffled with the same RNG, each to a uniformly random empty cell, cap 60 ticks). Builder rerun 2026-10-14: seeds 1-5 start 49.6-51.8%, end 74.2-77.3%, settled in 11-18 ticks (seed 1: 49.6% -> 75.5% at tick 15; seed 2: 50.1% -> 77.3% at tick 13). Seeds 1-100: end 71.8-79.0%, mean 75.7%, all 100 settle in 8-18 ticks. Seed 1 is simply the first seed (not chosen); seed 2 is what the QA path reaches after New mix. The stage quotes the learner's own run, whatever seed they reach.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c2",
+      "text": "In the stage model at a 10% threshold, almost nothing changes: the like-neighbour share stays about 50% to 52% and the run settles within a few ticks.",
+      "support": "simulation",
+      "source": "abm.ts run(seed, 10). Builder rerun 2026-10-14: seeds 1-5 start 49.6-51.8%, end 50.7-53.8%, settled in 1-2 ticks (seed 1 ends 51.0%, seed 2 ends 51.6%). Seeds 1-100: end 49.6-53.8%, mean 51.2%, all settle in 1-4 ticks.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c3",
+      "text": "In the stage model, at a 50% threshold the like-neighbour share settles near 87% to 88%; at 70% the run usually does not settle within 60 ticks, ending near 98% with a few percent of households still unhappy.",
+      "support": "simulation",
+      "source": "abm.ts run(seed, 50) and run(seed, 70). Builder rerun 2026-10-14: 50%: seeds 1-5 end 86.9-88.3%, settled in 13-24 ticks; seeds 1-100 end 85.8-90.5%, mean 87.7%, all settle (12-36 ticks). 70%: seeds 1-5 end 98.0-99.3% at tick 60, none settled, 0.4-1.7% of households still unhappy; seeds 1-100 end 94.8-99.8%, mean 98.1%, 5 of 100 settle before tick 60, 0-5.7% still unhappy. The stage reports a run that does not settle as 'not settled' with its happy share.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c4",
+      "text": "A household that moves only when under 30% of its neighbours are like it is content as a minority: it accepts a street that is up to 70% the other group, so nobody in the model asks for a majority of its own group.",
+      "support": "derivation",
+      "source": "From the rule: unhappy iff like/occupied < 0.30, so any street with like share >= 30% (other group <= 70%) is accepted; 30% < 50%, so a majority is never required. Used in the hook ('Nobody wants a majority'), the question and the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c5",
+      "text": "In the stage model, each move changes other households' streets: households that were content before a tick become unsettled by others' moves, and the grid sorts into same-group blocks.",
+      "support": "simulation",
+      "source": "Engine bookkeeping in abm.ts run() (2026-10-14 v2): agent ids move with their agents; 'unsettled[t]' lists agents unhappy after tick t that did not move in it (every unhappy agent moves, so these were happy before the tick); 'cascade' counts distinct agents happy at tick 0 that became unhappy later. Frames are identical to v1 (checked for seeds 1-100 at 10/30/50/70). Threshold 30%, seeds 1-5: 239-263 of 1,440 unhappy at tick 0; cascade 137/143/142/100/95 (matches the fact-checker's NCM-1 tracking); seeds 1-100: cascade 86-164; unsettled at tick 1: 44-78. On the stage each such household gets a red ring for the frame it is unsettled, with a count ('N unsettled by a move'); the reveal quotes the learner's own run's cascade. v4 (2026-10-14 polish): the stage shows a running total 'N unsettled now, M so far' = sum of unsettled[t].length over ticks 0..t (a household can be counted in more than one tick); the reveal quotes that total at the run's end (seed 2, 30%: 165 over 13 ticks; seed 1: 157; seed 3: 162), not the distinct 'cascade' count, which is no longer shown. Blocks: like share ~50% -> ~75% (c1) and all-like share (c9). | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. abm.ts in node, threshold 30%, seeds 1-100: independent replay with agent ids confirms every cell in unsettled[t] is unhappy after tick t and its agent was not unhappy before tick t (0 violations), so each counted household was content until a neighbour moved in or out. Running total at the run's end (the reveal's 'reached N by tick T', pinned to the learner's last settled 30% run): seed 1 157 by tick 15, seed 2 165 by tick 13, seed 3 162 by tick 18; range 98-176 over seeds 1-100; all 100 settle. Advisory (non-blocking): the total counts ring-instances, so a household unsettled in two ticks counts twice; distinct households are 155/161/156 for seeds 1-3 (total exceeds distinct by at most 6% over 100 seeds). The reveal calls it 'the stage's count', which is exactly the 'M so far' readout.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c6",
+      "text": "The stage runs a simplified version of Thomas Schelling's model: T. C. Schelling, 'Dynamic models of segregation', Journal of Mathematical Sociology 1(2), 143-186 (1971).",
+      "support": "source",
+      "source": "Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186. doi:10.1080/0022250X.1971.9989794. Fact-check NCM-1 confirmed journal, volume, pages and year from secondary records (issue and DOI moderately high; publisher page not opened). Also Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 4, sec. 4.5. The stage rule is a common simplified variant (moves to a random empty cell), not Schelling's exact 1971 procedure. v2 text adds 'a simplified version' at the fact-checker's suggestion (NCM-1); the reveal's caveat says 'A simplified version of Schelling's 1971 model'. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Citation re-confirmed by search (bibliographic record and UZH full-text PDF listing): Schelling, 'Dynamic Models of Segregation', J. Math. Sociol. 1(2): 143-186 (1971), Taylor & Francis; the paper's simulation has two groups sorting into neighbourhoods. 'A simplified version' matches the stage rule (move to a random empty cell) and the reveal caveat. Primary PDF not opened through the proxy.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c7",
+      "text": "The stage is a toy model with disclosed parameters (40x40 grid, 8 nearby cells, 10% empty, seed shown); it shows what can happen, not what causes any real city's pattern, and its numbers depend on the rule's details.",
+      "support": "convention",
+      "source": "Modelling choice stated on the stage (rule line 'Toy model.' and the seed line) and in the reveal's caveat. Brief: 'Labelled a model: it shows what can happen, not what causes any real city.' No real city is named.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c8",
+      "text": "Households that would each be content as a minority on their street can still end up sharply sorted, because each move changes other households' streets.",
+      "support": "simulation",
+      "source": "Recall card 'why'. Restates c1, c4 and c5 for the model; it is a statement about what the model can produce, not about any real town.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.mild-preferences-sharp-divides.c9",
+      "text": "In the stage model at a 30% threshold, about 1 in 6 households start with under 30% like neighbours by chance, and the share of households whose neighbours are all like them rises from about 1% at the random start to about 30% when nobody wants to move (about 2% at 10%, about 58% at 50%).",
+      "support": "simulation",
+      "source": "abm.ts run(seed, pct) with allLikeShare (agents with >= 1 neighbour whose occupied neighbours are all their group). Builder rerun 2026-10-14 (v2), seeds 1-100: unhappy at tick 0 at 30%: 15.7-20.1% (seeds 1-5: 247/251/250/239/263 of 1,440). All-like share at tick 0: 0.5-2.4%. End at 30%: 23.6-38.8%, mean 30.6% (seed 1: 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%). End at 10%: 1.2-3.8%, mean 2.2%. End at 50%: 52.0-67.8%, mean 58.4%. At 70% (tick 60, mostly not settled): 83.0-99.2%, mean 93.1%. Shown on the stage as a tint behind those households and a count ('N% all neighbours like'); the readout shows the count of households that want to move (hollow). The reveal quotes the learner's own 30% run. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran the lesson's abm.ts run() for seeds 1-100: unhappy at tick 0 at 30% is 15.7-20.1% (mean 17.8%, about 1 in 6); all-like share at tick 0 0.5-2.4% (mean 1.2%); at the end, 10%: mean 2.2%; 30%: mean 30.6% (23.6-38.8); 50%: mean 58.4%. Seed 1: 247 of 1,440 unhappy, 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%. All 100 runs settle at 10/30/50%. Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a town, every household would be happy as a minority on its street. Can the town still end up sharply divided into same-group blocks?",
+    "options": [
+      "No: sharp sorting needs strong preferences",
+      "Yes: mild preferences can add up to sharp sorting",
+      "Only if someone forces people to move"
+    ],
+    "answer": 1,
+    "why": "In a simplified version of Schelling's model, households who only want a few like neighbours still sort into blocks, because each move changes other households' streets and unsettles some of them."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/mild-preferences-sharp-divides/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "economics:schelling-segregation",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4,
+        "note": "Schelling model",
+        "section_unconfirmed": "4.5"
+      }
+    ],
+    "tags": [
+      "emergence",
+      "agent-based-model",
+      "segregation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

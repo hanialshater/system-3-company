@@ -1,0 +1,27 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; line-height: 1.35; color: var(--muted); }
+.swatch { display: inline-block; vertical-align: middle; margin: 0 2px 2px 4px; }
+.svg { flex: 1 1 0; min-height: 120px; max-height: 46dvh; }
+.road { fill: none; stroke-linecap: butt; }
+.busy { stroke-dasharray: none; }
+.fixed { stroke-dasharray: 7 5; }
+.link { stroke-dasharray: 0.1 9; stroke-linecap: round; }
+.node { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.nodeText { fill: var(--fg); font-size: 15px; font-weight: 700; text-anchor: middle; }
+.cars { fill: var(--muted); font-size: 11px; font-weight: 600; text-anchor: end; font-variant-numeric: tabular-nums; }
+.pill { fill: var(--bg-3); stroke: var(--line); stroke-width: 1.5; }
+.pillText { fill: var(--fg); font-size: 13px; font-weight: 700; text-anchor: middle; font-variant-numeric: tabular-nums; }
+.ring .pill { stroke: var(--accent); stroke-width: 2.5; }
+.readout { display: flex; flex-wrap: nowrap; gap: 6px; text-align: center; }
+.readout span { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; padding: 3px 4px; border-radius: 10px; background: var(--bg-2); }
+.readout small { font-size: 0.72rem; color: var(--muted); }
+.readout b { font-weight: 500; font-variant-numeric: tabular-nums; min-height: 1.3em; }
+.readout .win b { font-weight: 800; }
+.mark { margin-left: 4px; fill: var(--fg); vertical-align: baseline; }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+.chips { display: flex; gap: 5px; }
+.tap { min-height: 44px; padding-inline: 12px; }
+@media (prefers-reduced-motion: no-preference) {
+  .road { transition: stroke-width 0.1s; }
+}
+.svg.small { flex: 0 1 auto; min-height: 0; height: 25dvh; max-height: 25dvh; }

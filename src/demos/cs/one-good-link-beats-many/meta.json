@@ -1,0 +1,149 @@
+{
+  "slug": "one-good-link-beats-many",
+  "title": "What is one link worth?",
+  "hook": "Three links in, or one: which page scores higher?",
+  "domain": "cs",
+  "concept": "pagerank",
+  "status": "review",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a graph is pages and one-way links",
+      "following links from page to page"
+    ],
+    "doesNotKnow": [
+      "that a link counts for as much as the page it comes from"
+    ]
+  },
+  "misconception": "The page with the most links pointing at it is the most important one.",
+  "objective": "The learner can explain that a link passes on a share of the linking page's own score, so on the ten-page toy one link from a well-linked page (Y) ends up worth far more than three links from pages nobody links to (X).",
+  "claims": [
+    {
+      "id": "cs.one-good-link-beats-many.c1",
+      "text": "On the stage's ten pages, page X has 3 links pointing at it and page Y has 1, from page H; H has 5 links pointing at it (A, B, C, D and Y, which links back to H).",
+      "support": "derivation",
+      "source": "LINKS in src/demos/cs/one-good-link-beats-many/model.ts: P, Q, R link to X; H links to Y; A, B, C, D and Y link to H. Counts re-run with inLinks() in node, 2026-10-14: X 3, Y 1, H 5. | FACT-CHECK 2026-10-14 (pass NCM-1): Own count from LINKS in model.ts (run on the lesson's own model.ts via node type-stripping): X 3 (P,Q,R), Y 1 (H), H 5 (A,B,C,D,Y). Reveal \"H, which five pages link to\" matches. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. inLinks() from current model.ts (tsx): X 3 (P, Q, R), Y 1 (H), H 5 (A, B, C, D, Y). Predict and reveal ('H, which five pages link to (Y links back to it too)') match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c2",
+      "text": "With the stage's rule (each page splits 85% of its score equally among the pages it links to, every page also gets 1.5% free, all start at 0.1, updated in rounds), after round 1 X has 0.270 and Y 0.100; after round 2 Y has 0.389 and X 0.053.",
+      "support": "simulation",
+      "source": "step() and ROUNDS in model.ts (power iteration; s = 0.85, free share (1 - 0.85) / 10 = 0.015, start 1/10, every page has an out-link so scores sum to 1). Re-run in node on 2026-10-14 with the exact lesson code: round 1 X 0.270, Y 0.100, H 0.440; round 2 Y 0.389, H 0.223, X 0.053, A 0.245. The 0.85 and the 1.5% are this lesson's chosen values, not claims about any real search engine. | FACT-CHECK 2026-10-14 (pass NCM-1): Ran the lesson's step()/ROUNDS (fc/pr.mjs): round 1 X 0.270, Y 0.100, H 0.440; round 2 Y 0.389, X 0.053, H 0.223, A 0.245; sums 1.000000 every round. Stage rule text \"splits 85%... all get 1.5% free\" matches S and FREE.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c3",
+      "text": "X's score stays at 0.053 from round 2 on, and Y stays ahead of X in every round from 2 to 51.",
+      "support": "simulation",
+      "source": "Node run 2026-10-14 over rounds 1 to 51 with the lesson's model.ts: X identical to 12 decimals from round 2 (its three linkers have no in-links, so each stays at 0.015); Y > X in all rounds 2 to 51 (X leads only in round 1). The brief's own check covered rounds 2 to 12; this covers 51. | FACT-CHECK 2026-10-14 (pass NCM-1): X differs from its round-2 value by < 1e-12 in rounds 2-51; Y > X in every round 2-51; X > Y only in round 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c4",
+      "text": "At round 51 the scores have stopped changing (to three decimals): Y 0.374 and X 0.053 (H 0.422).",
+      "support": "simulation",
+      "source": "ROUNDS[51] in node, 2026-10-14: Y 0.374, X 0.053, H 0.422, A 0.060, other pages 0.015, sum 1.000. Rounded to 3 decimals the scores no longer change from round 50; the largest change from round 50 to 51 is 0.00015. H and Y swing in earlier rounds, so 'settled' means three-decimal stability, not exact convergence. The vertical review's earlier figure (Y 0.395) did not reproduce and is not used. | FACT-CHECK 2026-10-14 (pass NCM-1): ROUNDS[51]: Y 0.374, X 0.053, H 0.422, A 0.060, others 0.015; max change 50->51 is 0.000151; all pages equal to 3 dp at 50 and 51. Iterating 2,000 more rounds gives the fixed point Y 0.3741, X 0.0533, H 0.4224, so the round-51 figures equal the limit to 3 dp. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran model.ts ROUNDS: round 51 Y 0.374, X 0.053, H 0.422 (A 0.060, others 0.015, sum 1.000); max change 50 -> 51 is 0.000151; equal to round 51 at 3 dp from round 40 on. | FACT-CHECK 2026-10-14 (pass NCM-3): DISPUTED (reveal wording, not the numbers). Re-run (tsx, current model.ts): round 51 Y 0.374, X 0.053, H 0.422; round 2 Y 0.389, X 0.053; Y swings 0.389, 0.205, 0.518, 0.252 ... before settling. Reveal paragraph 1 says 'At round 51 the scores had stopped changing: Y 0.374, X 0.053, the same as at round 2.' right after printing 'By round 2, Y had 0.389'. Read naturally, 'the same as at round 2' covers both scores, and Y's is not (0.374 vs 0.389); only X is unchanged (c3). FIX (demo-builder): '... Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead.' (or drop 'the same as at round 2'). Then re-submit c4 as unverified. | REVISION v4 (builder, 2026-10-14): reveal now reads \"Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead.\" (dropped \"the same as at round 2\"). Claim text unchanged; reset to unverified per NCM-3. | FACT-CHECK 2026-10-14 (pass NCM-4): VERIFIED. Re-ran ROUNDS: round 51 Y 0.374, X 0.053, H 0.422; round 50 identical to 3 dp (max change 0.00015). X is exactly 0.05325 in rounds 2, 3 and 51 ('has not moved since round 2'); Y exceeds X in every round from 2 to 51 ('has stayed ahead'). Current reveal wording matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c5",
+      "text": "In round 2, each of X's three linkers passes on only about 0.013 to X (still about 0.013 at round 51).",
+      "support": "derivation",
+      "source": "After round 1 each of P, Q, R has 0.015 (the free share only: nobody links to them); each has one out-link, so in round 2 it passes 0.85 x 0.015 = 0.01275, about 0.013. Re-run in node 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): 0.85 x 0.015 = 0.01275; the reveal's f3(S*score(1,\"P\")) renders \"0.013\" (float 0.012750000000000003 rounds up). Matches. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. passed(2, 'P') = 0.85 x 0.015 = 0.01275, rendered 0.013 by f3 (float 0.012750000000000003). Matches reveal paragraph 2. | Builder revision (demo-builder, 2026-10-14, final-review polish): The reveal quotes the round shown beside it: round 2 if the learner stepped there, round 51 if they ran straight to it. Node 2026-10-14 with model.ts: passed(2,P) = passed(51,P) = 0.01275 (P, Q, R stay at 0.015), rendered 0.013. | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. model.ts in node: passed(r,'P') = 0.01275 for every round 2-51 (P, Q, R stay at 0.015), rendered 0.013 by f3. The reveal quotes rq = max(round, 2), the round the stage shows (reveal unlocks only at round >= 2, no Reset), so the quoted value always equals the arrow label beside it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c6",
+      "text": "A link passes on a share of the linking page's own score, and PageRank ranks a page by who links to it, weighted by how important those linkers are.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 UNCONFIRMED: the book page fetch returned a proxy 403 on 2026-10-14; chapter and section are from the table of contents as remembered; fact-checker to confirm against the free PDF). Brin and Page (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30: 107-117. Needs a human source check. The lesson makes no claim about link-buying or about how any search engine ranks today. | FACT-CHECK 2026-10-14 (pass NCM-1): Brin and Page (1998), Computer Networks and ISDN Systems 30(1-7): 107-117, DOI 10.1016/S0169-7552(98)00110-X, confirmed by bibliographic records (search). Formula PR(A) = (1-d) + d(PR(T1)/C(T1) + ... + PR(Tn)/C(Tn)) reproduced by secondary sources: each linker passes its rank divided by its out-link count, so rank depends on the linkers' ranks. Primary PDF unreachable (proxy). E&K ch. 14 is link analysis and web search (catalogue); section 14.3 stays unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c7",
+      "text": "This is a ten-page toy; the real web is far bigger.",
+      "support": "source",
+      "source": "Scale remark only: the stage has 10 pages. No figure for the real web is given. Fact-checker: confirm the sentence cannot be read as a claim about ranking practice. | FACT-CHECK 2026-10-14 (pass NCM-1): Scale remark only; it says nothing about how any engine ranks. The stage has 10 pages.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c8",
+      "text": "In round 2, H passes on about 0.374 to Y (0.85 x H's round-1 score of 0.440, H having one out-link). The numbers on the arrows into X and Y are the amounts passed in the round shown: 0.85 x the sender's score in the previous round, divided by its out-links. At round 51 H passes on about 0.359 to Y (0.85 x H's round-50 score, H having one out-link).",
+      "support": "derivation",
+      "source": "passed() in model.ts: S x score(round-1, from) / outDeg. Re-run in node 2026-10-14: passed(2,H) 0.374, passed(2,P) 0.01275, passed(1,P) 0.085 (round 1: each of P, Q, R passes 0.085 to X, so X has 0.015 + 3 x 0.085 = 0.270). Y round 2 = 0.015 + 0.374 = 0.389, matching c2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. score(1, 'H') = 0.015 + 0.85 x 0.5 = 0.440; passed(2, 'H') = 0.374; Y round 2 = 0.015 + 0.374 = 0.389. passed() = S x score(round-1, from) / outDeg, as the claim says; arrows into X and Y are labelled with it. | Builder revision (demo-builder, 2026-10-14, final-review polish): Node 2026-10-14: passed(2,H) = 0.374, passed(51,H) = 0.3590, Y at 51 = 0.015 + 0.359 = 0.374. The reveal quotes the shown round (2 or 51). | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. model.ts in node: score(1,H) 0.440, passed(2,H) 0.374; score(50,H) 0.4223, passed(51,H) 0.3590 -> 0.359; Y(51) = 0.015 + 0.359 = 0.374. passed() = S x score(r-1, from) / outDeg as stated. Advisory (non-blocking): if the learner Steps on past round 2 before or after opening the reveal, paragraph 2 quotes that round's values (e.g. round 3: H passes 0.190); these equal the arrow labels on the stage, so they are reached-state readings, but the claim text names only rounds 2 and 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-good-link-beats-many.c9",
+      "text": "X leads after round 1; the scores have stopped changing (to three decimals) at round 51.",
+      "support": "simulation",
+      "source": "Stage hints. Same runs as c2 and c4: X 0.270 > Y 0.100 at round 1; rounds 50 and 51 equal to 3 dp. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Round 1: X 0.270 > Y 0.100 (hint 'X leads so far'); rounds 50 and 51 equal at 3 dp (hint at 51 'The scores have stopped changing'). Y > X in every round 2-51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Page M has 2 links pointing at it, from two pages that nobody links to. Page N has 1 link, from a page that 20 pages link to. Under the lesson's rule, which page is likely to score higher once scores settle?",
+    "options": [
+      "M, it has more links",
+      "They always tie",
+      "N, its one link comes from a well-linked page"
+    ],
+    "answer": 2,
+    "why": "A link passes on a share of the linking page's own score. Links from pages nobody links to pass on almost nothing; a link from a well-linked page passes on a lot."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/one-good-link-beats-many/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 5,
+  "curriculum": {
+    "primary": "cs:pagerank",
+    "prerequisites": [
+      "cs:graph-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 14,
+        "section_unconfirmed": "14.3"
+      }
+    ],
+    "also": []
+  }
+}

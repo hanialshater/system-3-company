@@ -1,0 +1,173 @@
+{
+  "slug": "below-critical-mass",
+  "title": "Does a good product always find users?",
+  "hook": "Two launches, same product, same price. Where do they end up?",
+  "domain": "economics",
+  "concept": "network-effects-tipping",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a product is worth buying if its value exceeds its price"
+    ],
+    "doesNotKnow": [
+      "that when a product's value grows with the number of users, the same product and price can collapse to zero or reach most of the market depending on where it starts"
+    ]
+  },
+  "misconception": "A good product at a fair price will eventually find its users, whatever its starting share.",
+  "objective": "The learner can explain that with network effects there is a tipping point: a launch below critical mass shrinks to nothing, and one above it grows to a large stable share.",
+  "claims": [
+    {
+      "id": "economics.below-critical-mass.c1",
+      "text": "In this toy market, next round's share is 1 minus 0.16 divided by this round's share (and 0 when the share is 0.16 or less).",
+      "support": "derivation",
+      "source": "Person x (x from 0 to 1) has value (1 - x) * s and joins when (1 - x) * s > 0.16, i.e. x < 1 - 0.16 / s. The fraction of people with x below that is 1 - 0.16 / s when s > 0.16, else 0. Demo.tsx next(). Stated model, not an empirical claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c2",
+      "text": "The curve meets the diagonal at 0%, 20% and 80%, where a round changes nothing.",
+      "support": "derivation",
+      "source": "Solve z = 1 - 0.16 / z: z^2 - z + 0.16 = 0, roots (1 +- sqrt(1 - 0.64)) / 2 = 0.8 and 0.2; z = 0 is also fixed (share 0 gives 0). Re-run in node: roots 0.8, 0.2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c3",
+      "text": "A launch at 18% falls to 11% and then to 0 (two rounds); a launch at 25% goes 25, 36, 56, 71, 78, 79, 80 percent and settles near 80% in six rounds (stopping when a round moves less than half a point).",
+      "support": "derivation",
+      "source": "Node run of next(): 0.18 -> 0.111 -> 0; 0.25 -> 0.360, 0.556, 0.712, 0.775, 0.794, 0.798 (stop: change 0.004 < 0.005). Displayed shares are rounded to whole percent. Starts 1..100% all classified: below 20 die, above 20 end at 80% (no misclassification).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c4",
+      "text": "With network effects a product has a tipping point, a critical mass: below it the share shrinks each round, above it the share grows (19% falls to 16% then 0; 21% rises to 24%, 33%, 51%, 69% and on to 80%).",
+      "support": "source",
+      "source": "Easley & Kleinberg 2010, ch. 17 (network effects and critical mass); section 17.2 to 17.4 unconfirmed (proxy fetch failed, human check against the free PDF). Numbers: node run 0.19 -> 0.158 -> 0; 0.21 -> 0.238, 0.328, 0.512, 0.688, 0.767, ... 0.799.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c5",
+      "text": "The 20% point is unstable (a start just off it moves away) and 0% and 80% are stable (a start near them moves toward them).",
+      "support": "derivation",
+      "source": "Slope of next(s) = 0.16 / s^2: 4 at s = 0.2 (greater than 1, errors grow), 0.25 at s = 0.8 (less than 1, errors shrink); 0 is stable because any share up to 0.16 gives 0 in one round. Node check of every whole-percent start 1..100 agrees.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c6",
+      "text": "The numbers ($0.16 price, value (1 - x) times the share, rounds) are made up for the toy model and are not a forecast for any real product.",
+      "support": "convention",
+      "source": "Stated modelling assumption; the card names no real product. The rounds are a story about how people react to others.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c7",
+      "text": "Below this critical mass, a product that most people would buy if others used it still fails.",
+      "support": "derivation",
+      "source": "From c1: person x joins when (1 - x) * s > 0.16. At full use (s = 1) that holds for x < 0.84, so 84% of people value it above $0.16, yet a start below 20% still shrinks to 0 (c3, c4). Reworded after fact-check pass NCM-1 ('worth buying' was undefined). Builder-written; needs a checker other than the builder. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. At full use (share 1) person x values it (1-x) > 0.16 for x < 0.84: 84% of people (own numeric check 0.840). Demo run(): 19 -> 16 -> 0, 18 -> 11 -> 0; so 'most people would buy if others used it' and 'still fails' both hold.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c8",
+      "text": "With network effects, a launch below the tipping point loses users each round: with few users, the product is worth less than its price to most people, so even fewer join.",
+      "support": "derivation",
+      "source": "From c1: at share s, the product beats $0.16 only for people with x < 1 - 0.16/s, which is fewer than s itself when s < 0.2 (e.g. s = 0.18 gives 0.111). Matches c4 and c5. Reworded after fact-check pass NCM-1. Builder-written; unverified. Also shown in the reveal in short form. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. For 0 < s < 0.2, next(s) = 1 - 0.16/s < s (equivalently (s-0.2)(s-0.8) > 0); numeric scan of s in (0, 0.2) with Demo next(): always smaller. Share valuing it above price is 1 - 0.16/s < 0.2, so most (over 80%) value it below price. Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c9",
+      "text": "People differ in how much they want the product, the more of the market uses it the more it is worth to each person, and each round everyone who values it above $0.16 starts using it.",
+      "support": "derivation",
+      "source": "Plain-words restatement of the c1 model for the predict question (value (1 - x) * share for person x; join if value > price). Added in revision v2; builder-written, unverified. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Matches next() in Demo.tsx: value (1-x)*s rises with s for every x < 1, and the round joins exactly those with value > 0.16. Predict question wording matches the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c10",
+      "text": "The share stops near 80%, not 100%, because the people who want the product least would not pay $0.16 even when nearly everyone uses it.",
+      "support": "derivation",
+      "source": "From c1: at full use (s = 1) person x values it 1 - x, which beats $0.16 only for x < 0.84, so 16% never join; at s = 0.8 the cut is x < 1 - 0.16/0.8 = 0.8, so 20% stay out and the share is stable at 0.8 (c2, c5). Added in revision v3; builder-written, unverified. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Value (1-x)s > 0.16 iff x < 1 - 0.16/s: at s = 1 the cut is 0.84 (16% never join), at s = 0.8 it is 0.80, so 0.8 is a fixed point; runs from 90% and 100% fall back to 80% (90 82 81 80; 100 84 81 80 80), so the share stops near 80% because the least keen stay out. Reveal paragraph 3 matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.below-critical-mass.c11",
+      "text": "On the chart, the dashed diagonal means 'same share next round'; where the curve is below it (left of 20%) the share shrinks, and where it is above it (20% to 80%) the share grows.",
+      "support": "derivation",
+      "source": "The chart plots next share against share now, so the diagonal is next = now. next(s) < s for 0 < s < 0.2 and next(s) > s for 0.2 < s < 0.8 (c2, c8: (s-0.2)(s-0.8) sign). Added in revision v3; builder-written, unverified. | FACT-CHECK 2026-10-14 (pass NCM-3): DISPUTED (the claim text is right; the reveal sentence it backs is not). Claim says the share grows only from 20% to 80%. Reveal paragraph 2 says 'Right of it the curve is above the line and the share grows', with no upper bound. next(s) < s for every s > 0.8 (0.9 -> 0.822, 1.0 -> 0.84), and the Start slider reaches 81-100%, where the stage shows the share shrinking (90 82 81 80). Dashed diagonal (stroke-dasharray 5 4), ring at 20% and 0-20 / 20-80 shading all match the claim. FIX (demo-builder): reveal paragraph 2 -> 'Between it and 80% the curve is above the line and the share grows.' (optionally add 'Above 80% it dips below again, so the share falls back to 80%.'). Re-submit c11 as unverified after the edit. | REVISION v4 (builder, 2026-10-14): reveal paragraph 2 now bounds the growth: \"Between it and 80% the curve is above the line and the share grows. Above 80% it dips below again, so the share falls back to 80%.\" Claim text unchanged; reset to unverified for re-check per NCM-3. | FACT-CHECK 2026-10-14 (pass NCM-4): VERIFIED. Reveal paragraph 2 now reads 'Between it and 80% the curve is above the line and the share grows. Above 80% it dips below again, so the share falls back to 80%.' Re-ran next(): below diagonal at 0.1, 0.18, 0.19; above at 0.5, 0.79; below at 0.81 (0.802), 0.9 (0.822), 1.0 (0.84). Matches the claim and the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A product is worth its price to many people, but only 10% of the market uses it, and its value grows with the number of users. What can happen?",
+    "options": [
+      "It can shrink to nothing, because it starts below its critical mass",
+      "It always climbs, because it is worth its price",
+      "Its share stays at 10% forever"
+    ],
+    "answer": 0,
+    "why": "With network effects, a launch below the tipping point loses users each round: with few users, the product is worth less than its price to most people, so even fewer join. Only a start above critical mass grows."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/below-critical-mass/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "economics:network-effects-tipping",
+    "prerequisites": [
+      "economics:supply-demand"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 17,
+        "note": "network effects and critical mass; section unconfirmed, ask said 17.2-17.4",
+        "section_unconfirmed": "17.2"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "network-effects",
+      "tipping-point",
+      "critical-mass"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

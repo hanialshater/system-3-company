@@ -1,0 +1,62 @@
+# Fact-check: two-said-blue (2026-10-14)
+
+## Pass NCM-1 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predict, stage text, readouts, reveal, recall) and model.ts first, then re-ran the lesson's own model.ts in node 22 (type-stripping, `@/kit/random` repointed to a copy of src/kit/random.ts; scratchpad `fc/`) or my own re-typed rule where there is no model.ts. No walkthrough transcript exists yet for this slug (artifacts/walkthroughs/ empty for it), so the stage was read from code. Web: the egress proxy 403s/DNS-fails cornell.edu, berkeley.edu, wikipedia.org, arxiv.org, repec, nowpublishers and the Brin-Page mirrors; sources were checked through web-search results (quoted abstracts, catalogue records, secondary summaries), as each row says. Easley and Kleinberg: chapter numbers confirmed from library catalogue records; no section number could be confirmed from a reachable source, so every section stays `section_unconfirmed`.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | model.ts `sequence()` implements exactly the stated rule; stage message states it. E&K ch. 16 = information cascades (catalogue). |
+| c2 | verified | Bayes: net 2 revealed signals give 4:1; one opposing clue leaves 2:1 (holds for every accuracy > 1/2). Simulation: 0 deviations from the locked colour after the lead reached 2, seeds 1-10,000. |
+| c3 | verified | q^2/(q^2+p^2) = 1/5. Lesson's `runMore`: seeds 1-10,000 1,991 wrong; QA path 101 -> 18, 10,101 -> 2,009 (19.9%); all sequences locked, latest at index 26 (person 27). |
+| c4 | **disputed** | Claim text is right (1/9; 1,080/10,000 start with two red clues), but **the stage makes a different claim**: reveal paragraph 2 prints "(1 in 9)" unconditionally, while paragraph 1 reports the accuracy the learner ran most (`ACCS[q]`). A learner who runs 10,000 at 80% and 100 at 2 in 3 reads "clue right 80% ... 1 in 9", true value 0.04 (1 in 25); at 60% it is 0.16 (about 1 in 6). **Fix (builder):** "(1 in 9 when clues are right 2 in 3)", or compute `(1 - ACCS[q]) ** 2` and print it. Then re-submit c4. |
+| c5 | verified | Exact binomial (own code): P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. Seeds 1-10,000 and 1-10,101: 2 red majorities, 3 ties. **Advisory:** "Pooled wrong" does not tell the learner ties are excluded; at 60% there are 128 ties vs 163 wrong. Consider counting a tie as half wrong or labelling "Pooled wrong (red majority)". |
+| c6 | verified | 0.3077 -> "30.8%", 0.0588 -> "5.9%"; simulation 3,094 and 594 of 10,000. |
+| c7 | verified | Separate tally per accuracy, seeds t.n+1..t.n+count; readout label matches. |
+| c8 | withdrawn | Not in learner text. Kept finding: Anderson & Holt (1997), "Information Cascades in the Laboratory", AER 87(5): 847-862 (RePEc via search) report cascades formed in most periods where an imbalance arose. It was a **laboratory**, not classroom, experiment ("classroom" is Anderson & Holt 1996, JEP "Classroom Games"). If reinstated, drop "classroom". |
+
+**Result:** 6 verified, 1 disputed (c4), 1 withdrawn (c8). Lesson is blocked until c4's reveal line is fixed.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; runMore seeds 1-10,000 badStart: 1,080 at 2/3, 1,575 at 60%, 395 at 80%. Reveal now prints pct((1 - ACCS[q])**2) for the accuracy run most, and the split-start sentence is right: exactWrong (20.0%, 30.8%, 5.9%) exceeds (1-p)^2 at every accuracy. NCM-1 dispute resolved. |
+| c5 | verified | Own exact binomial n = 100, p = 2/3: P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties. Readout label now 'Pooled wrong (ties excluded)' and reveal says '(ties not counted)'; counting code (poolBlue < 50) matches. |
+| c7 | verified | model.ts runMore iterates k = t.n+1..t.n+count with mulberry32(k), one Tally per accuracy; readout label is 'Crowds run'; no seed is printed on the stage or in the reveal. |
+
+**Reveal check:** NCM-1 dispute on c4 is resolved: the reveal now computes (1-p)^2 for the accuracy run most and names the split-start route. Reveal tallies are the learner's own runs. No unbacked sentence.
+
+**Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified, 1 withdrawn.
+
+## Pass NCM-3 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the final-polish revisions, plus a fresh read of every predict, stage label and reveal sentence against the claims. Method: diffed Demo.tsx/model since the NCM-2 record (commit 319d2bda), re-ran the lesson's current code in node 22 via tsx (model files imported directly; Demo-only functions reproduced verbatim or re-implemented independently), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate the v3 commits and a build was not attempted in this shared checkout, so stage text was read from code.
+
+| Claim | Check | Result |
+|---|---|---|
+| c2 | Current model.ts, seeds 1-10,000 at each accuracy: 0 picks differ from the locked colour after the ring, 0 outlined people before the ring, 0 crowds without a ring. Ring = first person who saw a lead of 2; outline = pick against own clue. Bayes 4:1 / 2:1 argument as in NCM-1. | verified |
+| c9 | 1 - p = 33.3%, 40.0%, 20.0%; exact crowd wrong 20.0%, 30.8%, 5.9% (each lower); plain vote of 100 clues wrong 0.020%, 1.68%, ~0% (binomial, ties excluded). Reveal prints pct(1 - ACCS[q]). | verified |
+
+**Advisories (not blocking):**
+1. If the learner runs 60% clues most, reveal paragraph 2 says "a plain vote would almost never be wrong" while the plain vote is wrong 1.7% of the time (their tally shows about 1.6%), above the predict option's own definition "Almost never (under 1 time in 100)". Suggest "would rarely be wrong" or printing the pooled rate. Owner: demo-builder.
+2. If the learner switches to an accuracy chip with no runs, paragraph 3 says "Look at crowd N on the stage" for another accuracy while the stage shows no run. Owner: demo-builder.
+
+**Result:** 2 verified, 0 disputed. Lesson now: 8 verified, 1 withdrawn (c8, not shown).
+
+## Pass NCM-4 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: c9, extended with the plain-vote wrong chance. Method: re-ran plainWrong and pctSmall from the current model.ts (tsx) and independently summed the binomial in python (P of fewer than 50 blue clues in 100).
+
+| Accuracy | plainWrong (model.ts) | independent sum | printed | 1 - p printed |
+|---|---|---|---|---|
+| 60% | 0.016762 | 0.016762 | 1.7% | 40.0% |
+| 2 in 3 | 0.00019893 | 0.00019893 | 0.020% | 33.3% |
+| 80% | 5.18e-12 | 5.18e-12 | under 0.01% | 20.0% |
+
+Reveal paragraph 2 ("Alone, one person is wrong X of the time ... a plain vote of 100 such clues is wrong only Y of the time (ties not counted)") matches the claim: ties excluded (the 50-50 case is not in the sum), and the crowd (exactWrong 30.8%, 20.0%, 5.9%) beats one person but is far worse than a plain vote at each accuracy. The NCM-3 advisory (60%: "almost never" vs 1.7%) is gone with the new wording; the predict option's own "under 1 time in 100" at 60% was not re-read as part of this pass's scope.
+
+Result: c9 verified. Lesson: no open claims (c8 withdrawn, not shown). No fresh walkthrough.

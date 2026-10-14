@@ -1,0 +1,88 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 120px;
+  height: auto;
+}
+
+.wrap > :global(.slider) {
+  flex: none;
+}
+
+.chip {
+  align-self: center;
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+}
+
+.zero {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.axis {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.mine {
+  font-size: 12px;
+  font-weight: 800;
+  fill: var(--fg);
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.gain {
+  fill: color-mix(in srgb, var(--good-fill) 55%, transparent);
+  stroke: var(--good);
+  stroke-width: 2;
+}
+
+.loss {
+  fill: color-mix(in srgb, var(--bad-fill) 55%, transparent);
+  stroke: var(--bad);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 3;
+}
+
+.line70 {
+  fill: none;
+  stroke: var(--good);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+.lineMine {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+  stroke-linejoin: round;
+}

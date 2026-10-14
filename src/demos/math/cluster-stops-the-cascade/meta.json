@@ -1,0 +1,159 @@
+{
+  "slug": "cluster-stops-the-cascade",
+  "title": "Why a spreading idea stops",
+  "hook": "Two people adopt an idea. It spreads friend to friend, then stops short. What fixes that?",
+  "domain": "math",
+  "concept": "threshold-cascade",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a network of 12 people with links between friends",
+      "a rule \"join if at least half your friends have\"",
+      "fractions such as 1/4 and 3/4"
+    ],
+    "doesNotKnow": [
+      "that a cascade stops exactly at a group that is tightly knit",
+      "the cluster-density condition for an incomplete cascade"
+    ]
+  },
+  "misconception": "A spreading idea or product stops because it is too weak or the seeds are too few, rather than because of the shape of the network.",
+  "objective": "The learner can explain that the cascade from 0 and 1 stops at the group 8, 9, 10, 11 because every member has more than half its friends inside the group (8: 3 of 4, the others 3 of 3), so none can be the first to join, and that the same two seeds planted inside the group reach all 12.",
+  "claims": [
+    {
+      "id": "math.cluster-stops-the-cascade.c1",
+      "text": "Anyone joins once at least half their friends have (threshold q = 1/2: a person adopts when adopted friends / friends >= 1/2). On the stage every not-yet person is tested each round against the state at the end of the previous round (all update at once), and adopters stay adopted.",
+      "support": "source",
+      "source": "Threshold model of Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 19 §19.2 (section unconfirmed). The synchronous round is a modelling convention stated in the brief and spec; it is what Demo.tsx simulate() does.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c2",
+      "text": "From 0 and 1 it stopped at 8 of 12 in round 6; the four outlined (8, 9, 10, 11) never joined. One person joins per round: 2, 3, 4, 5, 6, 7.",
+      "support": "simulation",
+      "source": "Node re-run by the builder 2026-10-14 with the exact rule of Demo.tsx (synchronous, q = 1/2) on the 14-edge graph: rounds [[0,1],[2],[3],[4],[5],[6],[7]], final round 6, 8 adopted. Deterministic, no seed. Matches the brief and spec.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c3",
+      "text": "Started at 8 and 9, the same two seeds reached all 12: round 1 adds 7, 10 and 11, then 6, 5, 4, 3, 2, 1, 0, one per round, all 12 by round 8.",
+      "support": "simulation",
+      "source": "Same node run 2026-10-14: rounds [[8,9],[7,10,11],[6],[5],[4],[3],[2],[1],[0]], final round 8, 12 adopted.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c4",
+      "text": "At the end of the run from 0 and 1, person 8 had 1 of 4 friends adopted and 9, 10, 11 had 0 of 3. The stage shows this on a tapped person as 'n of d friends adopted' (pill n/d); the reveal quotes it only for the group member the learner focused on that final.",
+      "support": "derivation",
+      "source": "Neighbours of 8 are 7, 9, 10, 11; at the 0,1 final only 7 has adopted (c2). 9, 10, 11 have neighbours only inside the group. Node 2026-10-14: 8 1/4, 9 0/3, 10 0/3, 11 0/3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran Demo.tsx simulate() from {0,1}: adopters 0-7, last round 6; at that final 8 has 1/4 adopted friends, 9, 10, 11 have 0/3. Note: the reveal's quoted person is the current focus if it is a group member at start 0,1 (any round), but endFriends() always uses the final, and the reveal stage is pinned to the 0,1 final, so the pill shows the same number. Claim's 'focused on that final' slightly overstates the gate; not learner-facing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c5",
+      "text": "Each of the four has more than half its friends inside the group: 8 has 3 of 4, the others 3 of 3. While none of them has adopted, at most 1 of 4 (or 0 of 3) can have, under half, so none can join first. (Stage line on a tapped holdout at the 0,1 final: 'k of d are inside the group, so at most d-k; needs ceil(d/2)': 8 3 of 4, at most 1, needs 2; 9, 10, 11 3 of 3, at most 0, needs 2.)",
+      "support": "derivation",
+      "source": "Inside counts from the edge list (node 2026-10-14): 8 3/4, 9 3/3, 10 3/3, 11 3/3 (density 0.75 > 1 - q = 0.5). While no member has adopted, a member's adopted friends are all outside the group: at most 1 of 4 for 8, 0 of 3 for the others, under 1/2, so the rule never admits the first member. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Inside counts from NB in Demo.tsx: 8 3 of 4, 9/10/11 3 of 3. While none has adopted a member's adopted friends are outside: at most 1 of 4 or 0 of 3, below need = ceil(d/2) = 2. Stage focus line formula matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c6",
+      "text": "Where the seeds are decides it, not how many. From 0 and 1 two seeds stop at 8 of 12; the same number started at 8 and 9, inside the four, reach all 12. Starters only outside the four never help, however many: none of them can be the first of the four to join. So 'many more people adopting first, outside those four' and 'those four are out of reach' are both false.",
+      "support": "derivation",
+      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. simulate(): {0,1} -> 8 of 12 in 6 rounds; {8,9} -> 12 of 12 in 8 rounds. Same seed count, so neither 'many more' nor 'out of reach' holds. Both runs are milestone-gated ('stopped', 'planted'). | Builder revision (demo-builder, 2026-10-14, final-review polish): Node brute force 2026-10-14 over all 4096 seed sets with the exact rule of Demo.tsx: {0,1,8,9} reaches 12; all 256 seed sets with no member among 8-11 (up to all eight outside people) stall short of 12 (none reaches 12); all 2816 seed sets with at least two members among 8-11 reach 12. (A single member among 8-11 can also succeed if 7 is seeded too, which is why the reveal says outside-only starters fail, not that the four need two starters.) The predict options are 'Many more people adopting first, outside those four' (false), 'Nothing: those four are out of reach' (false, c3), 'Two people adopting first, among those four' (true). | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. Re-ran the Demo.tsx simulate() rule over all 4,095 non-empty seed sets: {0,1} -> 8 of 12, last round 6; {8,9} -> 12 of 12, last round 8; all 255 non-empty sets with no member among 8-11 stall short of 12 and none of 8-11 ever joins (so outside-only starters never help, however many); all 2,816 sets with two or more members among 8-11 reach 12. Matches reveal paragraph 1 ('More starters outside the four would not help, because none of them can be the first of the four to join'); both runs milestone-gated ('stopped', 'planted').",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c7",
+      "text": "A cascade stops exactly at such a group, where everyone has more than half their friends inside; with none among the rest, it takes everyone.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010), ch. 19 §19.3 (section unconfirmed): with threshold q, the initial adopters cause a complete cascade if and only if the other nodes contain no cluster of density greater than 1 - q. Brute-force check on this graph by the builder 2026-10-14 (synchronous rule): all 298 seed sets of size 1 to 3, 132 incomplete, 0 contradictions between 'incomplete' and 'a set of non-seeds exists whose every member has more than half its friends inside it'. Theorem, not empirical.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c8",
+      "text": "The stage graph is a made-up network of 12 people with 14 links: a path 0-1-...-7, a link 7-8, and 8, 9, 10, 11 all linked to each other.",
+      "support": "convention",
+      "source": "Hand-placed teaching graph from the brief (math.discrete #3). The brief's earlier count of 13 edges omitted the 7-8 link; 7 + 1 + 6 = 14 (spec 'Brief problems' 1, fixed in the brief).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.cluster-stops-the-cascade.c9",
+      "text": "Recall: if a run under 'join once at least half your friends have' stalls at a group where everyone has more than half their friends inside it, waiting more rounds adds none of them.",
+      "support": "derivation",
+      "source": "Same argument as c5, for any such group: with no member adopted, each member's adopted friends are outside the group, fewer than half of its friends, so no round admits a first member; the run is final.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the rule \"join once at least half your friends have\", a spreading idea stalls at the edge of a group where everyone has more than half their friends inside the group. What happens if you wait more rounds?",
+    "options": [
+      "More of them join, slowly",
+      "They all join at once",
+      "None of them ever joins"
+    ],
+    "answer": 2,
+    "why": "To join, a member needs at least half their friends adopted. More than half are inside the group, where nobody has adopted, so nobody can be the first. The run is already final."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/cluster-stops-the-cascade/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "math:threshold-cascade",
+    "prerequisites": [
+      "math:weak-ties-local-bridges"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 19,
+        "note": "threshold model and cascades; cluster theorem in 19.3; section unconfirmed (brief: 19.2-19.3)",
+        "section_unconfirmed": "19.2"
+      }
+    ],
+    "also": [],
+    "tags": [
+      "network",
+      "cascade",
+      "threshold",
+      "cluster"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
