@@ -8,3 +8,7 @@
 .box { fill: none; stroke: var(--line); stroke-width: 1.2; }
 .dot { fill: var(--domain); stroke: var(--domain); stroke-width: 1.2; transition: cx 0.35s ease, cy 0.35s ease; }
 @media (prefers-reduced-motion: reduce) { .dot { transition: none; } }
+.axis { stroke: var(--muted); stroke-width: 1; }
+.tick { stroke: var(--domain); stroke-width: 2; stroke-opacity: 0.55; }
+.doc { stroke: var(--bad); stroke-width: 3; }
+.docLabel { font-size: 10.5px; font-weight: 700; fill: var(--bad); }
