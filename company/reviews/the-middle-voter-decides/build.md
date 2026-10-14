@@ -17,3 +17,22 @@ Milestones: average-loses (any action while 4.8 or 5 is under test) and median-h
 - The brief planned claim support "citation". The checker accepts only derivation, simulation, source and convention, so the theorem claim (c6) is "source".
 - Equidistant voters abstain, which only matters when the rival sits exactly at a mirrored spot.
 - All claims are unverified.
+
+## Pre-flight v2
+
+Revision for r6 learner review (knows-majority-vote, revise): the reveal said "a rival at 4" beat 4.8, but the learner never saw that. The rival started at 6, where every candidate wins. The gate opened on just testing 4.8. The strip cells had no labels, and the hook's "Surely" pointed away from the average.
+Changes:
+- The rival starts at 4. The tested position starts at 5, so all three test buttons are enabled in turn.
+- Milestones: `median-holds` (3 tested), `average-loses` (4.8 tested while the rival beats it), `centre-loses` (5 tested while the rival beats it), minInteractions 3.
+- The rival position at which each one first lost is recorded and shown in a "Seen:" line on the stage. The reveal quotes that rival and the voters nearer it, both computed.
+- Strip cells are labelled with the rival position (0-10).
+- The new hook is "Five voters on a left-right line. Which spot can beat every rival head-to-head?".
+- The options are worded alike: "3 (the third voter)", "4.8 (the average)", "5 (the centre)". The old "3" was the only bare one.
+- c3 is reworded and set unverified, and c7 is new (4 beats 5).
+
+1. **Title and hook.** "Which spot wins every vote?" / "Five voters on a left-right line. Which spot can beat every rival head-to-head?" No: neither names the average, the centre or the middle.
+2. **Options.** "3 (the third voter)", "4.8 (the average)", "5 (the centre)": each is a number plus a short gloss.
+3. **Locked stage.** The 0-10 line, the five voters (1, 2, 3, 8, 10, also in the question) and the tested marker at 5, a distractor. No rival, no halfway line, no "middle voter" label and no strip; those appear only after the commit.
+4. **Reveal values.** "lost to your rival at 4": (b) milestone `average-loses`, recorded as lostTo.mean and shown as "4.8 lost to 4" in the Seen line. "voters 1, 2, 3 were nearer it": (a) computed from that recorded rival. "The centre, 5, lost too, to the rival at 4": (b) `centre-loses`, shown as "5 lost to 4" in the Seen line. "Position 3 won against every rival on the strip": (b) `median-holds`, shown as "3 beat every rival" in the Seen line. The halfway-line paragraph and the theorem: told context (c4, c5, c6).
+5. **QA path.** 3 (3rd voter) (`median-holds`, all ✓) -> 4.8 (avg) (the rival at 4 wins 3–2, `average-loses`) -> 5 (centre) (the rival at 4 wins 3–2, `centre-loses`) -> Rival slider two arrows (4.4). All three milestones are reached. The Seen line holds all three when the reveal opens.
+6. **Reset.** There is no reset. Moving the rival or the tested position does not clear the Seen record. Reveal (QA path): "The average, 4.8, lost to your rival at 4: voters 1, 2, 3 were nearer it, and three is a majority. The centre, 5, lost too, to the rival at 4. Position 3 won against every rival on the strip. / The halfway line shows why. Put a rival anywhere right of 3 and voters 1, 2 and 3 stay on 3's side; put it left and 3, 8 and 10 do. The middle voter is on the winning side of every split. / The average is pulled by how far away 8 and 10 sit; a vote only asks which side each voter is on. When each voter prefers nearer, the median voter's favourite beats every rival."

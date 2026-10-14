@@ -10,6 +10,9 @@
 // v4: "saw-split" now opens all three rounds at once (8 singles: 0, pairs: 4, piles A and B: 6), stacked,
 // and the finished merge adds its count to a running total set against 28 for every pair, so the
 // payoff of splitting (every round costs fewer comparisons than there are cards) is on the stage.
+// v5: the merge prompt and wrong-tap line sit at the top of the stage, and the rounds stack is compact, so the
+// feedback is never clipped on a phone. The finished sort is recorded (rounds + merge) and kept in a line that
+// New piles does not clear; the reveal quotes that record. Reveal trimmed under 120 words.
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -118,7 +121,7 @@ function Milestones({
   return <>{children(reach)}</>;
 }
 
-const ROW_H = 44;
+const ROW_H = 32;
 
 function RoundsStack({ rounds }: { rounds: { groups: number[][]; label: string }[] }) {
   // One row of 8 cards per round, stacked top to bottom; a gap between groups shows which cards are
@@ -145,13 +148,13 @@ function RoundsStack({ rounds }: { rounds: { groups: number[][]; label: string }
         });
         return (
           <g key={ri}>
-            <text x={160} y={y0 + 11} textAnchor="middle" className={css.rowLabel}>
+            <text x={160} y={y0 + 9} textAnchor="middle" className={css.rowLabel}>
               {round.label}
             </text>
             {cells.map((c, i) => (
               <g key={i}>
-                <rect x={c.x + 1} y={y0 + 15} width={w - 2} height={26} rx={5} className={css.cell} />
-                <text x={c.x + w / 2} y={y0 + 33} textAnchor="middle" className={css.num}>
+                <rect x={c.x + 1} y={y0 + 12} width={w - 2} height={19} rx={4} className={css.cell} />
+                <text x={c.x + w / 2} y={y0 + 26} textAnchor="middle" className={css.num}>
                   {c.v}
                 </text>
               </g>
@@ -172,9 +175,9 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
   const [comparisons, setComparisons] = useState(0);
   const [miss, setMiss] = useState<"left" | "right" | null>(null);
   const [showRounds, setShowRounds] = useState(false);
-  const [sawRounds, setSawRounds] = useState(false);
   const [auto, setAuto] = useState(false);
-  const [lastMerge, setLastMerge] = useState<number | null>(null);
+  // The finished sort, recorded when the merge completes: it survives New piles.
+  const [last, setLast] = useState<{ pair: number; four: number; merge: number } | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const leftTop = piles.left[li];
@@ -190,8 +193,8 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
   );
 
   useEffect(() => {
-    if (done) setLastMerge(comparisons);
-  }, [done, comparisons]);
+    if (done) setLast({ pair: piles.pairCost, four: piles.fourCost, merge: comparisons });
+  }, [done, comparisons, piles]);
 
   const reset = (nextSeed: number) => {
     setSeed(nextSeed);
@@ -217,17 +220,15 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {lastMerge !== null ? `The merge on screen took ${lastMerge}. ` : ""}Each comparison looks at only the two top cards,
-            and the smaller one goes into the row for good. Eight cards, so at most <strong>7</strong>; once a pile
-            empties, the rest slides over for free. Piles that interleave to the end need all 7.
+            {last ? `The merge on screen took ${last.merge}. ` : ""}Each comparison looks at only the two top cards, and the
+            smaller one goes into the row for good. Eight cards, so at most <strong>7</strong>; once a pile empties, the
+            rest slides over free. Piles that interleave to the end need all 7.
           </p>
           <p>
-            That is why Merge Sort splits: splitting compares nothing, and one card is a sorted pile. Your stacked rounds
-            cost 0, then {piles.pairCost}, then {piles.fourCost}
-            {lastMerge !== null ? `, then ${lastMerge}: ${before + lastMerge} in all` : ""}, against 28 for checking every
-            pair. Each round places every card once, so it costs fewer comparisons than there are cards. Halving 1,000
-            cards down to single cards takes 10 rounds, so fewer than 10,000 comparisons; checking every pair would take
-            499,500.
+            That is why Merge Sort splits: splitting compares nothing. The rounds before the last merge cost{" "}
+            {last ? `${last.pair} and ${last.four}; with the last merge's ${last.merge}, the whole sort took ${last.pair + last.four + last.merge}` : `${piles.pairCost} and ${piles.fourCost}`}
+            , against 28 for checking every pair. Halving 1,000 cards takes 10 rounds, each under 1,000 comparisons:
+            fewer than 10,000, against 499,500 for every pair.
           </p>
           <p className="muted">The splitting is setup. The merge is the payoff.</p>
         </>
@@ -302,12 +303,24 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
             const toggleRounds = () => {
               if (locked) return;
               setShowRounds((v) => !v);
-              setSawRounds(true);
               reach("saw-split");
             };
 
             return (
               <div className="ms">
+                <p className="ms-msg" aria-live="polite">
+                  {locked
+                    ? "Make a prediction to start."
+                    : miss
+                      ? "The other top card is smaller, so it goes first. Each card placed while both piles have cards is one comparison."
+                      : done
+                        ? `Merged with ${comparisons} comparison${comparisons === 1 ? "" : "s"}.${
+                            comparisons < 7 ? " Piles that interleave to the end need 7." : ""
+                          }`
+                        : oneSideEmpty
+                          ? "One pile is empty. The rest needs no comparisons."
+                          : "Which top card is smaller?"}
+                </p>
                 <div className={css.rounds}>
                   {showRounds && (
                     <>
@@ -334,7 +347,7 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
                       <div key={side} className="ms-pile">
                         <span className="muted small">{side === "left" ? "Pile A" : "Pile B"}</span>
                         {/* once merged, collapse the empty piles so the merged row stays in view */}
-                        <div className="ms-stack" style={done ? { minHeight: 0 } : undefined}>
+                        <div className="ms-stack" style={done || showRounds ? { minHeight: 0 } : undefined}>
                           {pile.slice(idx).map((v, k) =>
                             k === 0 ? (
                               <Control
@@ -370,20 +383,12 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
                   </div>
                 </div>
 
-                <p className="ms-msg" aria-live="polite">
-                  {locked
-                    ? "Make a prediction to start."
-                    : miss
-                      ? "The other top card is smaller, so it goes first. Each card placed while both piles have cards is one comparison."
-                      : done
-                        ? `Merged with ${comparisons} comparison${comparisons === 1 ? "" : "s"}.${
-                            comparisons < 7 ? " Piles that interleave to the end need 7." : ""
-                          }${sawRounds && !showRounds ? ` Whole sort: ${before + comparisons}, against 28.` : ""}`
-                        : oneSideEmpty
-                          ? "One pile is empty. The rest needs no comparisons."
-                          : "Which top card is smaller?"}
-                </p>
 
+                {last && (
+                  <p className={css.roundLabel}>
+                    Your sort: 0 + {last.pair} + {last.four} + {last.merge} = {last.pair + last.four + last.merge}, against 28.
+                  </p>
+                )}
                 <Row>
                   <Readout label="Comparisons" value={comparisons} />
                   <Readout label="Placed" value={`${out.length}/${N}`} />

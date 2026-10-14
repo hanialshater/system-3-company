@@ -61,12 +61,10 @@
     },
     {
       "id": "economics.insurance-fair-price.c5",
-      "text": "Insurance swaps a small certain cost (the premium every year) for protection from a rare large loss, and an insurer can carry such losses because it pools many customers (here 100 houses).",
+      "text": "Insurance swaps a small certain cost (the premium every year) for cover against a rare large loss; no house knows in advance whether it will be hit, and the insurer can carry the losses because it pools many customers (here 100 houses).",
       "support": "source",
-      "source": "Risk pooling and risk aversion as the basis of insurance markets (N. G. Mankiw, Principles of Economics, ch. 27, 'The Market for Insurance'). Law of large numbers: the per-customer average over many independent risks approaches the expected loss. | FACT-CHECK 2026-10-14 (pass 22): Verified by derivation and the stage, not by the cited book: in the model a customer pays $120 every year and is paid $10,000 when hit (swap of a small sure cost for a rare large loss). Pooling: per-customer yearly payout SD is sqrt(0.01 x 0.99) x $10,000 = $995 for one house and $99.5 averaged over 100 independent houses; the stage's average settles near $100. Mankiw not opened; the cited title is inexact (web search: the section is 'The Markets for Insurance' inside ch. 27 'The Basic Tools of Finance', edition-dependent). Non-blocking citation fix for the builder.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Risk pooling and risk aversion as the basis of insurance markets (N. G. Mankiw, Principles of Economics, ch. 27, 'The Market for Insurance'). Law of large numbers: the per-customer average over many independent risks approaches the expected loss. | FACT-CHECK 2026-10-14 (pass 22): Verified by derivation and the stage, not by the cited book: in the model a customer pays $120 every year and is paid $10,000 when hit (swap of a small sure cost for a rare large loss). Pooling: per-customer yearly payout SD is sqrt(0.01 x 0.99) x $10,000 = $995 for one house and $99.5 averaged over 100 independent houses; the stage's average settles near $100. Mankiw not opened; the cited title is inexact (web search: the section is 'The Markets for Insurance' inside ch. 27 'The Basic Tools of Finance', edition-dependent). Non-blocking citation fix for the builder. | REVISED v3 (demo-builder, 2026-10-14): reveal reworded: 'No house knows which it will be: each swaps a small sure cost for cover against a rare large loss, which the pool of 100 carries.'. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.insurance-fair-price.c6",
@@ -79,12 +77,17 @@
     },
     {
       "id": "economics.insurance-fair-price.c7",
-      "text": "\"Your house\" (outlined) pays $120 every year; it is hit in year 1, so cover pays it $10,000. Over the first 101 years it pays $12,120 in premiums and cover pays it $20,000 (2 losses).",
+      "text": "\"Your house\" (outlined, house 0) pays $120 every year; in the seeded run it is never hit in the first 101 years, so it pays $12,120 in premiums and cover pays it nothing. Seed 1 was kept; house 0 was chosen because never being hit is the commonest outcome in this run (40 of 100 houses).",
       "support": "simulation",
-      "source": "HISTORY in Demo.tsx (mulberry32 seed 1, 100 houses, chance 0.01): year 1 losses = [house 1]; house 1 loses in 2 of the first 101 years. Chosen, not random: house 1 is picked because it is the house hit in year 1 (seed 1 itself was chosen for a one-loss first year, claim c4). Node check of the same generator: 101-year tally 36 / 37 / 28, average $99. | FACT-CHECK 2026-10-14 (pass 22): Same script: house 1 (YOURS) is the only house hit in year 1 and loses in 2 of the first 101 years: premiums 120 x 101 = $12,120, cover 2 x $10,000 = $20,000. Stage message 'Your house (outlined): paid $12,120; cover paid it $20,000.' at 101 years; house drawn with the thicker outline (mine).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node check (2026-10-14, scratchpad b5x/ins.mjs, same mulberry32 and loop as Demo.tsx): seed 1, house index 0 has 0 losses in years 1-101. | REVISED v3 (demo-builder, 2026-10-14): v3 replaces the lucky house (index 1, hit in year 1 and twice in 101 years) with house 0. Unverified.",
+      "status": "unverified"
+    },
+    {
+      "status": "unverified",
+      "id": "economics.insurance-fair-price.c8",
+      "text": "In the seeded run, over the first 101 years, 40 of the 100 houses are never hit, 33 are hit once and 27 are hit twice or more.",
+      "support": "simulation",
+      "source": "Builder's node check (2026-10-14, scratchpad b5x/ins.mjs, same mulberry32 seed 1 and loop as Demo.tsx): per-house loss counts over years 1-101 give 0: 40, 1: 33, 2: 15, 3+: 12. Shown on stage as 'Houses hit 0 / 1 / 2+ times' and quoted in the reveal from the learner's longest run. Unverified."
     }
   ],
   "confidence": "",
@@ -109,7 +112,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:insurance-expected-cost",
     "prerequisites": [

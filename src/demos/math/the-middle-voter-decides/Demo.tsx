@@ -6,6 +6,10 @@
 // the result against every whole-number rival. Re-run in node (2026-10-14): only 3 beats all of 0..10;
 // 3 beats 5 (and 4.8, and 4) by 3 votes to 2; a rival at 4 beats 4.8 by 3 to 2.
 // Positions are kept in tenths so 4.8 and the halfway point compare exactly.
+// v2: the reveal needs the learner to SEE the average lose and the centre lose (a rival that beats each), plus 3 hold
+// against the whole strip. The rival starts at 4, so each test button pressed once shows its result. The rival
+// position at which each lost is recorded in a "Seen" line on the stage, which the reveal quotes. Strip cells carry
+// their rival position. The neutral hook drops "Surely".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -15,8 +19,10 @@ import s from "./styles.module.css";
 
 const VOTERS = [10, 20, 30, 80, 100]; // tenths
 const MEDIAN = 30;
+const MEAN = 48;
+const CENTRE = 50;
 const TESTS = [
-  { at: 30, label: "Test 3" },
+  { at: 30, label: "3 (3rd voter)" },
   { at: 48, label: "4.8 (avg)" },
   { at: 50, label: "5 (centre)" },
 ];
@@ -41,8 +47,12 @@ const X1 = 298;
 const px = (t: number) => X0 + ((X1 - X0) * t) / 100;
 
 export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
-  const [tested, setTested] = useState(48);
-  const [rival, setRival] = useState(60);
+  const [tested, setTested] = useState(CENTRE);
+  const [rival, setRival] = useState(40);
+  // The rival each position first lost to, recorded when seen (survives later moves).
+  const [lostTo, setLostTo] = useState<{ mean?: number; centre?: number; medianHeld?: boolean }>({});
+  const nearerVoters = (r: number, t: number) =>
+    VOTERS.filter((v) => Math.abs(v - r) < Math.abs(v - t)).map(fmt);
 
   const [forT, forR] = duel(tested, rival);
   const same = tested === rival;
@@ -59,16 +69,17 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
       predict={{
         question:
           "Five voters' favourites sit at 1, 2, 3, 8 and 10 on a 0-10 line. Each prefers nearer. Which position beats every other one-on-one?",
-        options: ["3", "4.8 (the average)", "5 (the centre)"],
+        options: ["3 (the third voter)", "4.8 (the average)", "5 (the centre)"],
         answer: 0,
       }}
-      exploreHint="Test the average and the centre against a rival, then test 3. Watch the halfway line."
-      minInteractions={2}
+      exploreHint="Test each position against the rival and move the rival. Watch the halfway line."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            The average, 4.8, lost: a rival at 4 is nearer to voters 1, 2 and 3, and three is a majority. The centre, 5, lost too.
-            Position 3 won against every rival on the strip.
+            The average, 4.8, lost to your rival at {fmt(lostTo.mean ?? 40)}: voters{" "}
+            {nearerVoters(lostTo.mean ?? 40, MEAN).join(", ")} were nearer it, and three is a majority. The centre, 5, lost
+            too, to the rival at {fmt(lostTo.centre ?? 40)}. Position 3 won against every rival on the strip.
           </p>
           <p>
             The halfway line shows why. Put a rival anywhere right of 3 and voters 1, 2 and 3 stay on 3&apos;s side; put it left and
@@ -82,20 +93,38 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact, phase }) => (
-        <Milestones interact={interact} names={["average-loses", "median-holds"]}>
+        <Milestones interact={interact} names={["median-holds", "average-loses", "centre-loses"]}>
           {(reach) => {
+            // Check the duel on the stage now and record what it showed.
+            const see = (t: number, r: number) => {
+              const [a, b] = duel(t, r);
+              if (t === MEDIAN) {
+                setLostTo((x) => ({ ...x, medianHeld: true }));
+                reach("median-holds");
+              } else if (b > a && t === MEAN) {
+                setLostTo((x) => (x.mean === undefined ? { ...x, mean: r } : x));
+                reach("average-loses");
+              } else if (b > a && t === CENTRE) {
+                setLostTo((x) => (x.centre === undefined ? { ...x, centre: r } : x));
+                reach("centre-loses");
+              }
+            };
             const pick = (at: number) => {
               if (locked) return;
               setTested(at);
-              if (at === MEDIAN) reach("median-holds");
-              else reach("average-loses");
+              see(at, rival);
             };
             const move = (v: number) => {
               if (locked) return;
-              setRival(Math.round(v * 10));
-              if (tested !== MEDIAN) reach("average-loses");
-              else reach("median-holds");
+              const r = Math.round(v * 10);
+              setRival(r);
+              see(tested, r);
             };
+            const seen = [
+              lostTo.mean !== undefined ? `4.8 lost to ${fmt(lostTo.mean)}` : null,
+              lostTo.centre !== undefined ? `5 lost to ${fmt(lostTo.centre)}` : null,
+              lostTo.medianHeld ? "3 beat every rival" : null,
+            ].filter(Boolean);
             const showing = phase !== "predict";
             const half = (tested + rival) / 2;
             const note = !showing
@@ -116,7 +145,7 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.note}>{note}</p>
-                <svg viewBox="0 0 320 182" className="stage-svg" role="img" aria-label={`Testing ${fmt(tested)} against rival ${fmt(rival)}: ${forT} to ${forR}`}>
+                <svg viewBox="0 0 320 194" className="stage-svg" role="img" aria-label={`Testing ${fmt(tested)} against rival ${fmt(rival)}: ${forT} to ${forR}`}>
                   {/* halfway line */}
                   {showing && !same && (
                     <g>
@@ -193,6 +222,9 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
                           <text x={px(r)} y={172} textAnchor="middle" className={s.cellLab}>
                             {res === "win" ? "✓" : res === "lose" ? "✗" : "="}
                           </text>
+                          <text x={px(r)} y={189} textAnchor="middle" className={s.tick}>
+                            {r / 10}
+                          </text>
                         </g>
                       ))}
                     </g>
@@ -213,6 +245,7 @@ export default function TheMiddleVoterDecides({ slug }: { slug: string }) {
                 <Row>
                   <Slider label="Rival" value={rival / 10} min={0} max={10} step={0.2} onChange={move} disabled={locked} format={(v) => v.toFixed(1)} />
                 </Row>
+                <p className={s.seen}>{seen.length ? `Seen: ${seen.join(" · ")}` : "\u00a0"}</p>
                 <Row>
                   <Readout label={`For ${fmt(tested)}`} value={showing ? forT : "–"} />
                   <Readout label="For rival" value={showing ? forR : "–"} />

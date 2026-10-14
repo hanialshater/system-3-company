@@ -44,12 +44,10 @@
     },
     {
       "id": "cs.proposers-get-the-best.c3",
-      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners.",
+      "text": "Both matchings are stable: no student and hospital both prefer each other to their partners. In the students' matching (Ann-X, Bea-Y), Ann would not swap to Y and Bea would not swap to X (Y and X would); in the hospitals' matching (X-Bea, Y-Ann), X would not swap to Ann and Y would not swap to Bea (Ann and Bea would).",
       "support": "simulation",
-      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.proposers-get-the-best.c4",
@@ -96,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:stable-matching",
     "also": [],

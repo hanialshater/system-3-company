@@ -7,6 +7,10 @@
 // One run of a rule = 5 seeded networks (mulberry32 seeds 1-5) × 200 source/target pairs (mulberry32(100 + seed),
 // the same pairs for every rule). Builder ran this code in Node (2026-10-14): q=0 → 38.3 mean steps, q=1 → 28.5, q=2 → 212.6.
 // With no long links the mean ring distance is 1,000,000 / 1,999 ≈ 500.
+// v2: the ring's centre shows the rule's MEAN over 1,000 messages (the number the question is about); the single
+// message's count is in the note. Drawn links are tinted by length (near 1-10, middle 11-100, far 101-1,000) and a
+// tally of all 2,000 links of the shown network by length sits under the ring, recorded per rule for the reveal.
+// The means row sits right under the ring. Options and buttons say "falls with distance" instead of "∝".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -69,7 +73,21 @@ function route(link: Int32Array, from: number, to: number): number[] {
   return path;
 }
 
-type Run = { nets: Int32Array[]; pairs: [number, number][]; steps: number[]; mean: number };
+type Run = { nets: Int32Array[]; pairs: [number, number][]; steps: number[]; mean: number; tally: number[] };
+
+// Length classes for the long links: near 1-10, middle 11-100, far 101-1,000 (ring distance).
+const BANDS = [
+  { max: 10, name: "near", color: "var(--good)" },
+  { max: 100, name: "middle", color: "var(--domain)" },
+  { max: HALF, name: "far", color: "var(--bad)" },
+];
+const band = (d: number) => BANDS.findIndex((b) => d <= b.max);
+/** Percent of the network's 2,000 long links in each band. */
+function tallyOf(link: Int32Array): number[] {
+  const c = [0, 0, 0];
+  for (let i = 0; i < N; i++) c[band(ringDist(i, link[i]))]++;
+  return c.map((x) => Math.round((100 * x) / N));
+}
 
 const cache = new Map<number, Run>();
 function runRule(q: number): Run {
@@ -90,15 +108,15 @@ function runRule(q: number): Run {
       steps.push(route(link, a, b).length - 1);
     }
   }
-  const run = { nets, pairs, steps, mean: steps.reduce((x, y) => x + y, 0) / steps.length };
+  const run = { nets, pairs, steps, mean: steps.reduce((x, y) => x + y, 0) / steps.length, tally: tallyOf(nets[0]) };
   cache.set(q, run);
   return run;
 }
 
 const RULES = [
   { q: 0, label: "Uniform", long: "uniform links" },
-  { q: 1, label: "Chance ∝ 1/d", long: "1/d links" },
-  { q: 2, label: "Chance ∝ 1/d²", long: "1/d² links" },
+  { q: 1, label: "Falls as 1/d", long: "1/d links" },
+  { q: 2, label: "Falls as 1/d²", long: "1/d² links" },
 ];
 const RING_ONLY = Math.round(1000000 / 1999); // 500
 
@@ -116,6 +134,7 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
   const [rule, setRule] = useState<number | null>(null);
   const [msg, setMsg] = useState(0);
   const [means, setMeans] = useState<(number | null)[]>([null, null, null]);
+  const [tallies, setTallies] = useState<(number[] | null)[]>([null, null, null]);
 
   const run = rule === null ? null : runRule(RULES[rule].q);
   const net = run ? run.nets[Math.floor(msg / PAIRS)] : null;
@@ -127,7 +146,11 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
   const note =
     rule === null
       ? "Pick a rule for the long links. Each run sends 1,000 messages."
-      : `${RULES[rule].long}, message ${msg + 1} of ${TOTAL.toLocaleString("en-US")}: ${path!.length - 1} steps.`;
+      : `${RULES[rule].long}. This message (${msg + 1} of ${TOTAL.toLocaleString("en-US")}): ${path!.length - 1} steps.`;
+  const tl = (i: number) => {
+    const x = tallies[i] ?? runRule(RULES[i].q).tally;
+    return x;
+  };
 
   return (
     <Lesson
@@ -135,7 +158,7 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
       predict={{
         question:
           "2,000 people on a ring, each with one long link. Messages go to whoever is closest to the target. Which long links route fastest?",
-        options: ["Uniformly random", "Chance ∝ 1/distance", "Chance ∝ 1/distance²"],
+        options: ["Uniformly random", "Chance falls with distance", "Chance falls with distance squared"],
         answer: 1,
       }}
       exploreHint="Run all three rules, then step through single messages to see how each one travels."
@@ -148,9 +171,10 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
             it would be about {RING_ONLY}.
           </p>
           <p>
-            Uniform links are mostly huge jumps, so near the target they rarely help and the last stretch crawls along the
-            ring. 1/d² links almost never jump far. 1/d links come at every scale, so wherever the message is, some
-            contact can cut the remaining distance a lot.
+            Look at your link tallies. Uniform links were {tl(0)[2]}% far and {tl(0)[0]}% near, so close to the target
+            they rarely help and the last stretch crawls along the ring. 1/d² links were {tl(2)[0]}% near and {tl(2)[2]}%
+            far. Only 1/d links came at every scale ({tl(1)[0]}% · {tl(1)[1]}% · {tl(1)[2]}%), so wherever the message
+            is, some contact can cut the remaining distance a lot.
           </p>
           <p>On large networks, Kleinberg proved greedy search is fast only when the exponent matches the dimension: 1 for a ring.</p>
         </>
@@ -165,6 +189,7 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
               setRule(i);
               setMsg(0);
               setMeans((m) => m.map((v, j) => (j === i ? r.mean : v)));
+              setTallies((m) => m.map((v, j) => (j === i ? r.tally : v)));
               reach(`q${RULES[i].q}`);
             };
             const next = () => {
@@ -181,6 +206,7 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
                       const i = k * SAMPLE_EVERY;
                       const [x1, y1] = pt(i);
                       const [x2, y2] = pt(net[i]);
+                      const b = BANDS[band(ringDist(i, net[i]))];
                       return (
                         <line
                           key={`l${i}`}
@@ -188,9 +214,9 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
                           y1={y1.toFixed(1)}
                           x2={x2.toFixed(1)}
                           y2={y2.toFixed(1)}
-                          stroke="var(--muted)"
-                          strokeWidth={1}
-                          opacity={0.45}
+                          stroke={b.color}
+                          strokeWidth={1.2}
+                          opacity={0.6}
                         />
                       );
                     })}
@@ -204,10 +230,10 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
                     </>
                   )}
                   <text x={CX} y={CY - 4} textAnchor="middle" className={s.big}>
-                    {path ? path.length - 1 : "?"}
+                    {run ? fmt(run.mean) : "?"}
                   </text>
                   <text x={CX} y={CY + 14} textAnchor="middle" className={s.small}>
-                    steps
+                    mean steps, 1,000 messages
                   </text>
                   <g className={s.legend}>
                     <circle cx={16} cy={258} r={4} fill="var(--domain)" />
@@ -218,12 +244,40 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
                     <text x={74} y={261}>
                       target
                     </text>
-                    <line x1={124} y1={258} x2={140} y2={258} stroke="var(--muted)" />
+                    <line x1={124} y1={258} x2={140} y2={258} stroke="var(--domain)" strokeWidth={2.5} />
                     <text x={144} y={261}>
-                      some long links (seeded)
+                      this message; 50 of the links
                     </text>
                   </g>
                 </svg>
+                <div className={s.tally}>
+                  {tallies.some(Boolean) ? (
+                    <>
+                      <span className="muted">Links by length</span>
+                      {RULES.map((r, i) =>
+                        tallies[i] ? (
+                          <span key={r.q} className={rule === i ? s.cur : undefined}>
+                            {r.long}:{" "}
+                            {BANDS.map((b, k) => (
+                              <span key={b.name} style={{ color: b.color }}>
+                                {k ? " · " : ""}
+                                {b.name} {tallies[i]![k]}%
+                              </span>
+                            ))}
+                          </span>
+                        ) : null,
+                      )}
+                    </>
+                  ) : (
+                    "\u00a0"
+                  )}
+                </div>
+                <Row>
+                  <Readout label="Uniform: mean" value={fmt(means[0])} />
+                  <Readout label="1/d: mean" value={fmt(means[1])} />
+                  <Readout label="1/d²: mean" value={fmt(means[2])} />
+                  <Readout label="Ring only" value={RING_ONLY} />
+                </Row>
                 <Row>
                   {RULES.map((r, i) => (
                     <Control key={r.q} className={`tap ${rule === i ? "active" : ""}`} disabled={locked} onClick={() => pick(i)}>
@@ -233,12 +287,6 @@ export default function NearAndFarLinksFindTheWay({ slug }: { slug: string }) {
                   <Control className="tap" disabled={locked || rule === null} onClick={next}>
                     Next message
                   </Control>
-                </Row>
-                <Row>
-                  <Readout label="Uniform: mean" value={fmt(means[0])} />
-                  <Readout label="1/d: mean" value={fmt(means[1])} />
-                  <Readout label="1/d²: mean" value={fmt(means[2])} />
-                  <Readout label="Ring only" value={RING_ONLY} />
                 </Row>
               </div>
             );
