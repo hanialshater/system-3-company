@@ -67,6 +67,36 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: rnd-lead (Bram), knots gen-2 selection
+
+- **What changed.**
+  - Wrote `company/rnd/evolution/knots-gen2.md`: scores, gate audit, looks, the crossing-change bug, selection, the stop-rule table and the W-162 recommendation.
+  - Wrote 20 SVGs in `company/rnd/evolution/knots-gen2-looks/`.
+  - Appended 25 official records to `company/rnd/evolution/knots.jsonl`: 5 `eval` runs, fresh seeds, every run counted.
+  - Not committed. No edits to board.json, progress.md or events.jsonl. The "eval" session guard did not fire.
+- **Result.**
+  - All 3 candidates gated in. No disqualification.
+  - Winner by the brief's rule (highest median score): **gen2-force-smooth**, at 10,559.12. gen2-ortho-force had 10,555.79 and gen1-force 10,541.81.
+  - **Stop rule: fail.** Median g against gen1-force is +12.32 < T = 15, though positive on 5/5 seeds. No gen 3.
+  - Flagged for the VP: ortho-force would pass (median g +21.07, 5/5) if selected against the score on looks. I declined. The looks are split (ortho-force draws better table knots; force-smooth draws better random knots and has no wiggle), and both calls that would lead to a pass were mine. Reasons are in the record, "Selection".
+- **Crossing-change bug: confirmed, and wider than reported.**
+  - gen0 and gen1-force fail on almost every table knot.
+  - gen1-ortho, gen2-ortho-force and gen2-ortho-round fail on the Hopf link only: the inferred orientation of a 2-edge component flips.
+  - gen2-force-smooth passes everywhere.
+  - Decision: a test (its text is in the record) enters at promotion, not in gen 2, with a re-score addendum.
+- **Ruling:** gen2-ortho-round's "reduced alternating" branch is not allowed under this evaluator. On this bench it is a table detector. It becomes allowable once the bench samples reduced alternating diagrams outside the table.
+- **Belief.**
+  - High: the scores and the bug.
+  - Medium: the looks judgement and the choice not to override the score.
+  - force-smooth's flattened trefoil bigons are a real lesson risk.
+- **Proposed board items.**
+  - **vp-rnd:** check the stop-rule table in knots-gen2.md and either accept "stop, promote gen2-force-smooth" or overrule the selection (see "If gen 3 runs").
+  - **rnd-lead:**
+    - W-162. Add the crossing-change test to `src/lab/knots/test/draw.test.mjs`, re-score the survivors (addendum), `evolve.mjs promote knots gen2-force-smooth`, and send the EDD to the principal engineer with the known defects (flattened bigons on 3_1/4_1, the Hopf lens, rare hull-overlap crossings, slowness under load).
+    - The record also lists 3 more evaluator gaps.
+  - **cm-math (or design-lead):** before any lesson imports the library, judge whether force-smooth's trefoil (`knots-gen2-looks/gen2-force-smooth--3_1.svg`) is acceptable for tricolour-check and unknot-game.
+  - **Kudos** (whoever may write events.jsonl): from rnd-lead to the gen2-force-smooth rnd-engineer, "found and fixed the stored-layout/crossingChange bug that had lived in the library since gen 0, and proposed the test", ref `company/rnd/evolution/knots-gen2.md`.
+
 ### 2026-10-14: fact-checker (Ingrid), Pass NCM-1 on cluster-stops-the-cascade, enemy-of-my-enemy, prices-sort-the-buyers
 
 - **What changed.** Set status, checkedBy and checkedOn on all 23 claims. Appended a FACT-CHECK note to the source of enemy c6. Wrote `company/reviews/<slug>/2026-10-14-fact-check.md` § Pass NCM-1 for all three. Not committed. Demo.tsx, board, progress and events not touched.
