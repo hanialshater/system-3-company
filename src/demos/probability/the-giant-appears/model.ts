@@ -7,7 +7,7 @@ export const N = 200;
 export const SEED = 1;
 export const MAX_LINKS = 300;
 /** Average friends each; links = friends x N / 2. */
-export const CHIPS = [0.5, 1, 1.5, 2, 3] as const;
+export const CHIPS = [0.5, 1, 1.25, 1.5, 2, 3] as const;
 export const linksFor = (friends: number) => (friends * N) / 2;
 
 export const LINKS: [number, number][] = (() => {
@@ -66,5 +66,18 @@ export function biggest(m: number) {
     }
   }
   const inGiant = Array.from({ length: N }, (_, i) => find(i) === best);
-  return { size: bestSize, inGiant };
+  // Second-biggest group: the biggest of the rest (ties: lowest-numbered person).
+  let second = -1;
+  let secondSize = 0;
+  for (let i = 0; i < N; i++) {
+    const r = find(i);
+    if (r === best) continue;
+    const sz = size.get(r)!;
+    if (sz > secondSize) {
+      secondSize = sz;
+      second = r;
+    }
+  }
+  const inSecond = Array.from({ length: N }, (_, i) => second >= 0 && find(i) === second);
+  return { size: bestSize, inGiant, secondSize, inSecond };
 }

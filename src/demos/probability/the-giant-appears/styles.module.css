@@ -1,11 +1,13 @@
 .wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .wrap :global(.row) { margin-top: 4px; }
-.svg { flex-shrink: 0; max-height: 25dvh; }
-.edge { stroke: var(--line); stroke-width: 1; }
-.edgeBig { stroke: var(--muted); stroke-width: 1; }
-.dot { fill: var(--bg); stroke: var(--fg); stroke-width: 1.2; }
+.svg { flex-shrink: 0; max-height: 17dvh; }
+.edge { stroke: var(--line); stroke-width: 0.6; opacity: 0.45; }
+.edgeBig { stroke: var(--domain); stroke-width: 1.4; }
+.edgeSecond { stroke: var(--good); stroke-width: 1.4; }
+.dot { fill: var(--bg); stroke: var(--muted); stroke-width: 1; }
+.dotSecond { fill: var(--good-fill); stroke: var(--fg); stroke-width: 1; }
 .dotBig { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
 .legend { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
 .chips { justify-content: center; }
-.chips > button { min-width: 52px; min-height: 44px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.chips > button { min-width: 44px; padding-left: 6px; padding-right: 6px; min-height: 44px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .lab { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
