@@ -112,8 +112,8 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              The line under the bars: without X, Y and Z get {usd(h.othersWithout)}. With X on top, Y drops to the second slot and
-              gets {usd(h.othersWith)}, and Z gets nothing. The gap you saw, <strong>{usd(h.pay)}</strong>, is X&apos;s price, not the $70
+              At the honest {usd(HONEST)}, the line under the bars read: without X, Y and Z get {usd(h.othersWithout)}. With X on top, Y drops to the second slot and
+              gets {usd(h.othersWith)}, and Z gets nothing. That gap, <strong>{usd(h.pay)}</strong>, is X&apos;s price, not the $70
               X&apos;s own bid would charge.
             </p>
             <p>

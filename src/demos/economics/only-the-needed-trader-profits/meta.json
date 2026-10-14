@@ -60,9 +60,9 @@
     },
     {
       "id": "economics.only-the-needed-trader-profits.c5",
-      "text": "In this model a trader can earn a profit only if removing it loses value for the market; being needed allows a profit but does not guarantee one.",
+      "text": "On this network, the only trader that can earn a profit is the one whose removal lost value: T3.",
       "support": "source",
-      "source": "Theorem in Blume, Easley, Kleinberg and Tardos (2009): in equilibrium a trader makes positive profit only if it is essential to the social optimum (removing it lowers the maximum welfare). One-directional, as the brief's Edited note requires. Easley and Kleinberg (2010) ch. 11. Fact-checker confirms the exact statement. | FC pass 23 (fact-checker, 2026-10-14): HELD, still unverified. This rests on the general theorem in Blume, Easley, Kleinberg and Tardos (2009) (in equilibrium a trader earns a positive profit only if it is essential). I could not open BEKT or E&K ch. 11: every scholarly host I tried was unreachable through the proxy. For this stage's network I re-derived it myself (c3: T1 and T2 earn 0 and are not essential; c4: T3 is essential and can profit), but the sentence says 'in this model', which is general, and a general theorem cannot be re-derived from one example. Wording is fine and one-directional; the reveal (line 74) and the footnote match the claim. Needs: a checker with access opens BEKT 2009 (GEB 67(1)) or E&K 11.4. | FC pass 24 (fact-checker, 2026-10-14): HELD, still unverified. BEKT 2009 and E&K ch. 11 still unreachable (cs.cornell.edu and ideas.repec.org fail DNS). Search-result summary of the abstract: a trader 'can command a positive profit if and only if it has an essential connection'. That supports 'only if', but the 'iff' wording should be checked against the lesson's 'does not guarantee one' once the paper is opened (the converse may be about some equilibrium, not every one).",
+      "source": "Theorem in Blume, Easley, Kleinberg and Tardos (2009): in equilibrium a trader makes positive profit only if it is essential to the social optimum (removing it lowers the maximum welfare). One-directional, as the brief's Edited note requires. Easley and Kleinberg (2010) ch. 11. Fact-checker confirms the exact statement. | FC pass 23 (fact-checker, 2026-10-14): HELD, still unverified. This rests on the general theorem in Blume, Easley, Kleinberg and Tardos (2009) (in equilibrium a trader earns a positive profit only if it is essential). I could not open BEKT or E&K ch. 11: every scholarly host I tried was unreachable through the proxy. For this stage's network I re-derived it myself (c3: T1 and T2 earn 0 and are not essential; c4: T3 is essential and can profit), but the sentence says 'in this model', which is general, and a general theorem cannot be re-derived from one example. Wording is fine and one-directional; the reveal (line 74) and the footnote match the claim. Needs: a checker with access opens BEKT 2009 (GEB 67(1)) or E&K 11.4. | FC pass 24 (fact-checker, 2026-10-14): HELD, still unverified. BEKT 2009 and E&K ch. 11 still unreachable (cs.cornell.edu and ideas.repec.org fail DNS). Search-result summary of the abstract: a trader 'can command a positive profit if and only if it has an essential connection'. That supports 'only if', but the 'iff' wording should be checked against the lesson's 'does not guarantee one' once the paper is opened (the converse may be about some equilibrium, not every one). | Builder revision v2 (demo-builder, 2026-10-14): limited to this network (pass 24 held the general theorem: BEKT 2009 unopened, and the iff/converse wording unchecked). The general 'only if' and 'does not guarantee one' are gone from the reveal. Now rests on the stage plus c1, c3 and c4: removing T1 or T2 loses no trade and they undercut each other to zero (c3); removing T3 loses a trade ( -> ) and it has no rival (c4).",
       "status": "unverified"
     },
     {
@@ -96,7 +96,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:essential-trader-profit",
     "also": [],

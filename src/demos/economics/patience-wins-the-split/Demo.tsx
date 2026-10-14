@@ -66,7 +66,9 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
             With one round the proposer took 100%: the other can only accept or get nothing. Each round you added in front changed
             that. The responder can say no and propose next round, which at a {whole(START_SHRINK)} shrink is worth{" "}
             {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share, so the proposer must offer that much and keeps the rest.
-            That is the line above the chart: &quot;offer {(1 - START_SHRINK).toFixed(1)} × next share&quot;.
+            That was the line above the chart at {whole(START_SHRINK)}: &quot;First round: offer {(1 - START_SHRINK).toFixed(1)} ×{" "}
+            {pct(share(START_SHRINK, (q?.n ?? LONG) - 1))} = {pct((1 - START_SHRINK) * share(START_SHRINK, (q?.n ?? LONG) - 1))}; keep{" "}
+            {pct(share(START_SHRINK, q?.n ?? LONG))}.&quot;
           </p>
           <p>
             Your {q?.n ?? LONG}-round game at {whole(START_SHRINK)} left the first proposer <strong>{pct(q?.keep ?? limit(START_SHRINK))}</strong>,

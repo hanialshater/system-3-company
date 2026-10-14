@@ -365,9 +365,9 @@ function Reveal() {
       </p>
       <p>
         Look at the two Totals: <strong>{"−"}$100 both times</strong>. The right decided only who pays, the laundry or the
-        factory. This is the Coase theorem.
+        factory. Economists call this idea the Coase theorem.
       </p>
-      <p>It holds when bargaining is free; with costly bargaining or many people, it can fail.</p>
+      <p>Here bargaining is free; with costly bargaining or many people, it can fail.</p>
     </>
   );
 }

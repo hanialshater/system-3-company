@@ -190,7 +190,7 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
               do not fall together.
             </p>
           )}
-          <p className="muted">A model with made-up numbers. Real investments often fall together. Not advice.</p>
+          <p className="muted">A model with made-up numbers: in it, bets either move independently or all together. Not advice.</p>
         </>
       )}
     >

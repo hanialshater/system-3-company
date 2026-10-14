@@ -6,7 +6,7 @@
 // 27: 111 steps, peak 9,232 at step 77; 26: 10; 28: 18; 97: 118 (claims c1, c2; re-run in node by the builder).
 // Answer visibility: the x tick labels stay hidden until the first run reaches 1; the y axis only grows.
 // v2 (r6): options are three bands ("111" was the only exact one); title no longer says "long climb";
-// the table shows every start with "?" until its run reaches 1, under "No known formula fills a ?. Run it.",
+// the table shows every start with "?" until its run reaches 1, under "Only running a start fills its ?.",
 // so "you have to run it" (the stand-in for "nobody has proved they all stop") is on stage.
 
 import { useEffect, useRef, useState } from "react";
@@ -93,7 +93,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
           <>
             <p>{parts.join(" ")} The start number tells you almost nothing about the run.</p>
             <p>
-              Each ? in your table stayed a ? until you ran that start: no known formula gives the count. Every start
+              Each ? in your table stayed a ? until you ran that start: only running the rule filled it in. Every start
               that computers have checked reaches 1. But nobody has proved that every start does: the Collatz
               conjecture is still open.
             </p>
@@ -253,7 +253,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                     ),
                   )}
                 </div>
-                <p className={s.note}>No known formula fills a ?. Run it.</p>
+                <p className={s.note}>Only running a start fills its ?.</p>
                 <Row>
                   <Control className="tap" disabled={locked || busy || atOne} onClick={step}>
                     Step
