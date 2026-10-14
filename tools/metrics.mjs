@@ -157,6 +157,15 @@ const perDomain = domains.map((d) => {
   };
 });
 
+// Budget: spend per project or line from the token ledger (company/ops/token-budget.md; tools/ledger.mjs).
+let budget = null;
+if (fs.existsSync(rel("company/ops/projects.json")) && fs.existsSync(rel("company/ops/ledger.jsonl"))) {
+  const L = await import("./lib/ledger.mjs");
+  budget = L.summary();
+  budget.fmt = L.fmt;
+}
+const budgetRows = budget ? budget.rows.filter((r) => r.spent || r.budget || (r.major && !["legacy", "done", "killed"].includes(r.status))) : [];
+
 if (md) {
   console.log(`| Metric | Value |\n|---|---|`);
   console.log(`| Lessons (not retired) | ${stat.lessons} |`);
@@ -181,6 +190,10 @@ if (md) {
     for (const w of waves)
       console.log(`| ${w.id} | ${w.builders ?? "—"} | ${w.lessonsAdded ?? "—"} | ${w.buildTokens && w.lessonsAdded ? Math.round(w.buildTokens / w.lessonsAdded / 1000) + "k" : "—"} | ${w.checkTokens && w.lessonsChecked ? Math.round(w.checkTokens / w.lessonsChecked / 1000) + "k" : "—"} | ${w.mergeQaFailures ?? "—"} |`);
   }
+  if (budget) {
+    console.log(`\n### Budget (token ledger: ${budget.fmt(budget.total)} measured over ${budget.runs} runs; ${budget.fmt(budget.perPublishedAll)} per published lesson; usage records end ${budget.lastUsage?.slice(0, 16) ?? "—"})\n\n| Line | Status | Major | Budget | Spent vs budget | % | Spent (all) | Published | k/published |\n|---|---|---|---|---|---|---|---|---|`);
+    for (const r of budgetRows) console.log(`| ${r.id} | ${r.status} | ${r.major ? "yes" : ""} | ${budget.fmt(r.budget)} | ${budget.fmt(r.against)} | ${r.pct ?? "—"} | ${budget.fmt(r.spent)} | ${r.returns?.published ?? "—"} | ${r.perPublished ? Math.round(r.perPublished / 1000) : "—"} |`);
+  }
 } else {
   console.log(`System 3 Company: health metrics (${today})\n`);
   console.log(`Lessons ${stat.lessons}  ·  ${Object.entries(stat.status).map(([k, v]) => `${k} ${v}`).join(" · ")}`);
@@ -198,5 +211,9 @@ if (md) {
     console.log(`\nWave  builders added  build-k/lesson  check-k/lesson  merge-QA-fail`);
     for (const w of waves)
       console.log(`${String(w.id).padEnd(5)} ${String(w.builders ?? "—").padStart(8)} ${String(w.lessonsAdded ?? "—").padStart(5)}  ${String(w.buildTokens && w.lessonsAdded ? Math.round(w.buildTokens / w.lessonsAdded / 1000) : "—").padStart(14)}  ${String(w.checkTokens && w.lessonsChecked ? Math.round(w.checkTokens / w.lessonsChecked / 1000) : "—").padStart(14)}  ${String(w.mergeQaFailures ?? "—").padStart(13)}`);
+  }
+  if (budget) {
+    console.log(`\nBudget  ${budget.fmt(budget.total)} measured over ${budget.runs} runs (${budget.unmeasured} stopped, unmeasured) · ${budget.fmt(budget.perPublishedAll)} per published lesson · usage records end ${budget.lastUsage?.slice(0, 16) ?? "—"} (node tools/ledger.mjs report)`);
+    for (const r of budgetRows) console.log(`        ${r.id.padEnd(22)} ${String(r.status).padEnd(10)} ${r.major ? "major" : "     "} budget ${budget.fmt(r.budget).padStart(6)}  spent ${budget.fmt(r.spent).padStart(6)}${r.pct != null ? `  ${r.pct}%${r.pct >= 100 ? " STOP" : r.pct >= 80 ? " WARN" : ""}` : ""}${r.perPublished ? `  ${Math.round(r.perPublished / 1000)}k/published` : ""}`);
   }
 }

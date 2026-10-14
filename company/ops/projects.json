@@ -1,0 +1,679 @@
+{
+  "note": "Project and budget-line register (company/ops/token-budget.md). Owner: portfolio-manager. Budgets are set by the project-review forum for major projects and by op-planning for lines; a budget written here by the portfolio-manager is a PROPOSAL until an approval record names who approved it. Tokens are harness subagent_tokens. tools/ledger.mjs reads this file.",
+  "enforceFrom": "2026-10-14T19:00:00Z",
+  "thresholds": {
+    "warnAt": 0.8,
+    "stopAt": 1,
+    "majorTokens": 5000000,
+    "majorRuns": 20,
+    "majorDays": 7
+  },
+  "forum": {
+    "chair": "founder",
+    "members": [
+      "vp-rnd",
+      "vp-marketing",
+      "chief-of-staff",
+      "chief-of-staff-ceo-office",
+      "principal-engineer",
+      "principal-engineer-ops",
+      "principal-pm-verticals"
+    ],
+    "secretary": "portfolio-manager",
+    "note": "vp-marketing is the id assumed for the VP of Marketing that chief-of-staff-ceo-office is creating (2026-10-14-founder-durable-ops-and-marketing.md); correct it here when the role lands."
+  },
+  "roleDefaults": {
+    "catalog": [
+      "demo-builder",
+      "fact-checker",
+      "learner-evaluator",
+      "qa-tester",
+      "release-manager",
+      "interaction-designer",
+      "lifehacks-safety-reviewer",
+      "cultural-reviewer",
+      "pedagogy-critic",
+      "^cm-"
+    ],
+    "maintenance": [
+      "platform-engineer",
+      "principal-engineer",
+      "principal-engineer-ops",
+      "design-lead",
+      "design-engineer",
+      "visual-designer",
+      "hq-engineer",
+      "tools-lead",
+      "backend-engineer",
+      "evaluation-steward",
+      "accessibility-reviewer",
+      "illustrator",
+      "mockup-artist"
+    ],
+    "leadership": [
+      "head-of-product",
+      "chief-of-staff-ceo-office",
+      "portfolio-manager",
+      "principal-pm-verticals",
+      "vp-rnd",
+      "domain-scout",
+      "analytics-steward",
+      "growth-designer"
+    ]
+  },
+  "projects": [
+    {
+      "id": "wave-j",
+      "title": "Wave J: 144 briefs across the subject categories and the NCM course",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "over 5M tokens",
+        "over 20 agent runs"
+      ],
+      "owner": "chief-of-staff",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": 15000000,
+        "basis": "set at the first project review from the measured cost per published lesson (token-budget.md section 3)",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "wave": "J",
+        "slugListOwedBy": "chief-of-staff, W-585",
+        "headline": "tokens per published Wave J lesson"
+      },
+      "kill": null,
+      "match": [
+        "wave[ -]?j\\b",
+        "\\bWJ\\b",
+        "wj-"
+      ],
+      "board": [
+        "W-585",
+        "W-722"
+      ],
+      "refs": [
+        "company/decisions/2026-10-14-w556-wave-gate.md"
+      ],
+      "proposedBy": "chief-of-staff",
+      "proposal": {
+        "budgetTokens": 15000000,
+        "basis": "144 slugs x 101k = 14.5M, rounded; 1.4M already spent on briefs (label-rule); measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Pause the wave if, after the first 30 Wave J drafts have one review round, fewer than 15 reach a launch verdict, or if tokens per published Wave J lesson pass 200k (2x today).",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "lifehacks-engine-v2",
+      "title": "Life Hacks engines v2 (Home, Study, Resource, AlphabetSearch) and migration of the 200",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "lesson engine used by more than 10 lessons",
+        "follows a 0-of-200-publishable investment"
+      ],
+      "owner": "cm-lifehacks",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": 3000000,
+        "basis": "set at the first project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "domains": [
+          "lifehacks"
+        ],
+        "headline": "Life Hacks lessons that pass learner review and publish on v2"
+      },
+      "kill": null,
+      "match": [
+        "engines? v2",
+        "v2 engine",
+        "W-608",
+        "W-611",
+        "engine-v2"
+      ],
+      "board": [
+        "W-608",
+        "W-611",
+        "W-726"
+      ],
+      "refs": [
+        "company/design/specs/lifehacks-engines-v2.md"
+      ],
+      "proposedBy": "cm-lifehacks",
+      "proposal": {
+        "budgetTokens": 3000000,
+        "basis": "tranche 1 only: engines plus batch D (14 lessons) migrated and reviewed; the other 186 are a second tranche on batch D results. Life Hacks 200 on v1 spent at least 2.0M (label-rule) for 0 publishable; measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Stop the migration if fewer than 7 of batch D's 14 get a launch verdict at learner review, or if tranche 1 reaches 3M before batch D is reviewed.",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "books-decks",
+      "title": "Book Summaries category under the book-deck format (pilot deck, ~10 committed books)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new category",
+        "new lesson format"
+      ],
+      "owner": "cm-books",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": 1500000,
+        "basis": "set at the first project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "domains": [
+          "books"
+        ],
+        "headline": "published Books lessons (blocked by F1/F2 until the founder answers W-615)"
+      },
+      "kill": null,
+      "match": [
+        "\\bbooks?\\b",
+        "book deck",
+        "deck format"
+      ],
+      "board": [
+        "W-615",
+        "W-623",
+        "W-631",
+        "W-649",
+        "W-725"
+      ],
+      "refs": [
+        "company/decisions/2026-10-14-book-deck-format.md",
+        "company/domains/books-strategy.md"
+      ],
+      "proposedBy": "cm-books",
+      "proposal": {
+        "budgetTokens": 1500000,
+        "basis": "tranche 1: the pilot deck (5 ideas, ~0.5M at 101k each) plus deck-format specs, fact-check and review; later decks wait for F1/F2 (W-615); measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Pause if the pilot deck is done and F1/F2 are still unanswered (nothing can publish); kill the format if the pilot deck fails learner review twice.",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "history",
+      "title": "History through data and maps: org, charter, curriculum and the Wave K pilot",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new category",
+        "new org"
+      ],
+      "owner": "principal-pm-verticals",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": 2000000,
+        "basis": "set at the first project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-14-founder-history-category.md",
+        "note": "founder decided to create the category; the forum sets budget, return and kill criteria"
+      },
+      "returns": {
+        "domains": [
+          "history"
+        ],
+        "headline": "published History lessons; held-claim rate in the pilot"
+      },
+      "kill": null,
+      "match": [
+        "\\bhistory\\b",
+        "cm-history"
+      ],
+      "board": [
+        "W-688",
+        "W-723"
+      ],
+      "refs": [
+        "company/product/verticals/2026-10-14-history-and-next-categories.md"
+      ],
+      "proposedBy": "principal-pm-verticals",
+      "proposal": {
+        "budgetTokens": 2000000,
+        "basis": "tranche 1: org, charter, curriculum (~1M at today's leadership and CM run costs) plus the Wave K pilot of 10 (~1M at 101k); measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Stop after the pilot if more than 40% of pilot claims are held on unopenable sources, or fewer than 5 of 10 pilot lessons reach a launch verdict.",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "marketing",
+      "title": "Marketing floor with a VP of Marketing reporting to the founder",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new org"
+      ],
+      "owner": "chief-of-staff-ceo-office",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-16T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": 1000000,
+        "basis": "set at the first project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-14-founder-durable-ops-and-marketing.md",
+        "note": "founder decided to create the org; the forum sets budget, return and kill criteria"
+      },
+      "returns": {
+        "notLessons": "no lesson return; nothing is deployed to learners yet (EXP-002 has not run), so the return measure must be defined at the forum (analytics-steward objection)"
+      },
+      "kill": null,
+      "match": [
+        "marketing",
+        "vp-marketing"
+      ],
+      "board": [
+        "W-724"
+      ],
+      "refs": [
+        "company/decisions/2026-10-14-founder-durable-ops-and-marketing.md"
+      ],
+      "proposedBy": "chief-of-staff-ceo-office",
+      "proposal": {
+        "budgetTokens": 1000000,
+        "basis": "org design and a first plan only (~13 runs at the leadership line's 75k per run); no external output, which needs the founder; measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Pause if no return measure the analytics-steward accepts is written within 7 days of approval.",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "scale-stage-1",
+      "title": "EDD-003 stage 1: lesson code out of the app's static import graph (runtime bundles)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "kit and deploy-path change",
+        "new dependency (bundler) needs a decision record"
+      ],
+      "owner": "principal-engineer",
+      "status": "proposed",
+      "budget": {
+        "tokens": null,
+        "proposed": 3000000,
+        "basis": "set at the first project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "notLessons": "engineering return: next build time, full QA time and shared lesson JS against the EDD-003 stage-1 triggers (build > 10 min, QA > 2 h, lesson JS > 200 KB gz)"
+      },
+      "kill": null,
+      "match": [
+        "stage[ -]?1\\b",
+        "runtime bundle",
+        "bundler"
+      ],
+      "board": [
+        "W-727"
+      ],
+      "refs": [
+        "company/engineering/edd/EDD-003-lesson-storage-at-scale.md",
+        "company/decisions/2026-10-14-lesson-bundler-and-memory.md"
+      ],
+      "proposedBy": "principal-engineer",
+      "proposal": {
+        "budgetTokens": 3000000,
+        "basis": "~22 platform-engineer runs at the measured 136k per run; checkpoint at 1.5M with the stage-1 measures; measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
+        "kill": "Abandon if at the 1.5M checkpoint the measured next build time or full QA time has not fallen by at least a third against the EDD-003 baseline.",
+        "by": "portfolio-manager",
+        "date": "2026-10-14",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+      }
+    },
+    {
+      "id": "big-ideas",
+      "title": "Big Ideas category (incubating): cycle-1 briefs and drafts",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new category"
+      ],
+      "owner": "cm-big-ideas",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-21T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": null,
+        "basis": "second project review",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-14-books-and-big-ideas.md",
+        "note": "category created by decision; no budget"
+      },
+      "returns": {
+        "domains": [
+          "big-ideas"
+        ]
+      },
+      "kill": null,
+      "match": [
+        "big ideas",
+        "big-ideas"
+      ],
+      "board": [],
+      "refs": [
+        "company/decisions/2026-10-14-books-big-ideas-strategy-review.md"
+      ]
+    },
+    {
+      "id": "multi-card-sequence",
+      "title": "EDD-006 multi-card sequence in the kit (CardSequence / SubCard)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "kit change"
+      ],
+      "owner": "design-engineer",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-21T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": null,
+        "basis": "second project review; the EDD-006 engineering review stands and is not re-opened by the forum",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/engineering/edd/EDD-006-multi-card-sequence.md",
+        "note": "engineering approval path, no budget"
+      },
+      "returns": {
+        "notLessons": "lessons shipped in the multi-card format; crit result of W-629"
+      },
+      "kill": null,
+      "match": [
+        "multi-card",
+        "CardSequence",
+        "EDD-006"
+      ],
+      "board": [
+        "W-601",
+        "W-602",
+        "W-604",
+        "W-629"
+      ],
+      "refs": []
+    },
+    {
+      "id": "ncm-course",
+      "title": "NCM course (first course vertical): chapter map and section briefs",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new course vertical"
+      ],
+      "owner": "cm-course-ncm",
+      "status": "in-flight",
+      "grandfatheredUntil": "2026-10-21T23:59:59Z",
+      "budget": {
+        "tokens": null,
+        "proposed": null,
+        "basis": "second project review; W-555 already stops section briefing after Wave J",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-14-courses-org.md",
+        "note": "org created by decision; no budget"
+      },
+      "returns": {
+        "notLessons": "course coverage is counted in the subject domains; no separate lesson scope yet"
+      },
+      "kill": null,
+      "match": [
+        "\\bNCM\\b",
+        "course-ncm",
+        "PR ?#?3\\b"
+      ],
+      "board": [
+        "W-555"
+      ],
+      "refs": []
+    },
+    {
+      "id": "lifehacks-200",
+      "title": "Life Hacks 200 (PR #2): 200 lessons built on engine v1",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new category",
+        "over 5M tokens"
+      ],
+      "owner": "cm-lifehacks",
+      "status": "legacy",
+      "budget": {
+        "tokens": null,
+        "basis": "never budgeted; started before the forum existed",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "domains": [
+          "lifehacks"
+        ],
+        "headline": "0 of 200 publishable (engine bug), per the founder decision record"
+      },
+      "kill": null,
+      "match": [
+        "life ?hacks",
+        "\\bLH\\b",
+        "lifehacks",
+        "\\blh-",
+        "PR ?#?2\\b"
+      ],
+      "board": [],
+      "refs": [
+        "company/decisions/2026-10-14-pr2-lifehacks-scope.md"
+      ]
+    },
+    {
+      "id": "scale-stage-0",
+      "title": "EDD-003 stage 0 and SPIKE-001 (lesson storage at scale)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "deploy-path change"
+      ],
+      "owner": "principal-engineer",
+      "status": "legacy",
+      "budget": {
+        "tokens": null,
+        "basis": "never budgeted",
+        "topUps": []
+      },
+      "approval": {
+        "record": null
+      },
+      "returns": {
+        "notLessons": "engineering return recorded in company/engineering/reviews/2026-10-14-scale-stage0-review.md"
+      },
+      "kill": null,
+      "match": [
+        "stage[ -]?0\\b",
+        "EDD-003",
+        "lesson storage",
+        "SPIKE-001",
+        "\\bspike\\b"
+      ],
+      "board": [],
+      "refs": []
+    },
+    {
+      "id": "rnd-knots",
+      "title": "R&D: teachable knot theory and the knots kit (EDD-004)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "kit change"
+      ],
+      "owner": "rnd-lead",
+      "status": "legacy",
+      "budget": {
+        "tokens": null,
+        "basis": "never budgeted",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/engineering/edd/EDD-004-knots-kit.md"
+      },
+      "returns": {
+        "notLessons": "knot lessons built on src/kit/knots; none counted yet"
+      },
+      "kill": null,
+      "match": [
+        "R&D",
+        "\\bknots?\\b",
+        "EDD-004"
+      ],
+      "board": [],
+      "refs": []
+    },
+    {
+      "id": "catalog",
+      "title": "Line: core catalog production (9 active subject domains: build, fact-check, review, QA, publish)",
+      "kind": "line",
+      "major": false,
+      "owner": "chief-of-staff",
+      "status": "active",
+      "budget": {
+        "tokens": null,
+        "basis": "set at op-planning per cycle (token-budget.md section 3)",
+        "topUps": []
+      },
+      "returns": {
+        "domains": [
+          "math",
+          "cs",
+          "probability",
+          "physics",
+          "ai",
+          "economics",
+          "life",
+          "chemistry",
+          "geography"
+        ],
+        "headline": "tokens per published lesson"
+      },
+      "match": [
+        "^Build .+ lessons$",
+        "merge-sort",
+        "curriculum and briefs",
+        "briefs round"
+      ],
+      "board": []
+    },
+    {
+      "id": "rituals",
+      "title": "Line: rituals (WBR, retro, crits, launch reviews, op planning, project review, digests)",
+      "kind": "line",
+      "major": false,
+      "owner": "chief-of-staff",
+      "status": "active",
+      "budget": {
+        "tokens": null,
+        "basis": "set at op-planning",
+        "topUps": []
+      },
+      "returns": {
+        "notLessons": "decisions and findings recorded in company/rituals/records"
+      },
+      "match": [
+        "\\bWBR\\b",
+        "\\bretro\\b",
+        "\\bcrit\\b",
+        "op[- ]planning",
+        "launch review",
+        "ops review",
+        "digest",
+        "vertical review",
+        "eng(ineering)? review",
+        "distillation",
+        "pattern review",
+        "\\bCOE\\b",
+        "project review"
+      ],
+      "board": []
+    },
+    {
+      "id": "maintenance",
+      "title": "Line: maintenance (platform, engineering reviews, design system, tools, HQ, accessibility)",
+      "kind": "line",
+      "major": false,
+      "owner": "principal-engineer",
+      "status": "active",
+      "budget": {
+        "tokens": null,
+        "basis": "set at op-planning",
+        "topUps": []
+      },
+      "returns": {
+        "notLessons": "findings fixed (board items done)"
+      },
+      "match": [],
+      "board": []
+    },
+    {
+      "id": "leadership",
+      "title": "Line: leadership and org (product rulings, org design, portfolio, strategy, scouting)",
+      "kind": "line",
+      "major": false,
+      "owner": "chief-of-staff-ceo-office",
+      "status": "active",
+      "budget": {
+        "tokens": null,
+        "basis": "set at op-planning",
+        "topUps": []
+      },
+      "returns": {
+        "notLessons": "decision records"
+      },
+      "match": [
+        "\\borg\\b",
+        "onboard",
+        "CEO office",
+        "portfolio manager"
+      ],
+      "board": []
+    }
+  ]
+}

@@ -28,7 +28,7 @@ place a fact lives. The disk is still the memory, and the log is its index in ti
 
 `dispatch` (the chief of staff sends work), `report` (an agent hands back), `stopped` (an agent
 ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `ritual`, `decision`,
-`incident`, `blocked`, `founder` (a message from the founder), `commit`, `note`, `kudos` (thanks from one role to another: actor = giver, subjects[0] = recipient role or agent label, summary = what for), `org-change` (a role added, moved or retired; subjects = role ids).
+`incident`, `blocked`, `founder` (a message from the founder), `commit`, `note`, `kudos` (thanks from one role to another: actor = giver, subjects[0] = recipient role or agent label, summary = what for), `org-change` (a role added, moved or retired; subjects = role ids), `proposal` (a major-project proposal for the project-review forum; subjects = project id; written by `node tools/ledger.mjs propose`).
 
 ## Rooms
 
@@ -47,6 +47,7 @@ ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `r
 | `tools` | Company tools: the event log, HQ, metrics |
 | `meeting-wbr`, `meeting-retro`, `meeting-crit`, `meeting-planning` | Ritual meetings |
 | `incident` | COEs and incidents |
+| `boardroom` | Project review: major-project proposals and approvals (company/rituals/templates/project-review.md) |
 | `constitution` | Amendments and constitutional reviews |
 | `cm-<domain>` | Category managers' offices |
 

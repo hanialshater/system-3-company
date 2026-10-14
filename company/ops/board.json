@@ -9546,6 +9546,186 @@
       "domain": null,
       "created": "2026-10-14",
       "links": []
+    },
+    {
+      "id": "W-720",
+      "title": "Dispatch preflight: add a project rule to tools/dispatch-check.mjs. With --project=<id> run 'node tools/ledger.mjs gate --project=<id> --tokens=<planned>' and FAIL on exit 1 (unapproved major project, grace ended, or 100% of budget). --kind=wave without --project FAILS, because a wave is major by definition. Coordinate with portfolio-manager; ledger.mjs is not yours to edit and dispatch-check is not mine. Also confirm the VP of Marketing role id used in company/ops/projects.json forum.members (assumed vp-marketing). See company/ops/token-budget.md section 6. #marketing",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-721",
+      "title": "Token ledger in the operating loop (company/ops/token-budget.md section 2): put [project:<id>] in the Agent description of every dispatch for a major project (ids in company/ops/projects.json); once per loop run 'node tools/events.mjs backfill && node tools/ledger.mjs import'. Today about 64 finished runs after 15:20 UTC (537 distinct subagent_tokens values in the transcript against 473 usage events) are not in the ledger; this depends on W-716.",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-722",
+      "title": "Project Review 1 proposal for wave-j (deadline 2026-10-16; grace ends then): one page in the shape of company/rituals/templates/project-review.md. Confirm or replace the proposed 15M and the kill criterion in company/ops/projects.json; record the Wave J slug list (W-585) so its returns can be counted. #wave-j",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-723",
+      "title": "Project Review 1 proposal for history (deadline 2026-10-16): one page per company/rituals/templates/project-review.md; confirm or replace the proposed 2.0M tranche (org, charter, curriculum, pilot of 10) and kill criterion in company/ops/projects.json. Hand to cm-history once the role exists. #history",
+      "owner": "principal-pm-verticals",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-724",
+      "title": "Project Review 1 proposal for marketing (deadline 2026-10-16): one page per company/rituals/templates/project-review.md; confirm or replace the proposed 1.0M (org design and first plan, nothing external) and define the return measure with analytics-steward. #marketing",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-725",
+      "title": "Project Review 1 proposal for books-decks (deadline 2026-10-16): one page per company/rituals/templates/project-review.md; confirm or replace the proposed 1.5M pilot-deck tranche and kill criterion in company/ops/projects.json; state what is publishable before F1/F2 (W-615). #books-decks",
+      "owner": "cm-books",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-726",
+      "title": "Project Review 1 proposal for lifehacks-engine-v2 (deadline 2026-10-16): one page per company/rituals/templates/project-review.md; confirm or replace the proposed 3.0M tranche (engines plus batch D, 14 lessons) and kill criterion (fewer than 7 of 14 reach launch). Engine v2 code is in the working tree uncommitted: say who is building it and under which item (W-608 says start after W-557 to W-561). #lifehacks-engine-v2",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-727",
+      "title": "Project Review 1 proposal for scale-stage-1, EDD-003 stage 1 (deadline 2026-10-16): one page per company/rituals/templates/project-review.md; confirm or replace the proposed 3.0M with a 1.5M checkpoint and the kill criterion; list the preconditions (bundler decision record, W-085, W-086, the W-087 amendment, founder question 6). Until it is approved, ledger gate refuses tagged work. #scale-stage-1",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-728",
+      "title": "Token unit (Project Review 1 item 0b): establish what the harness's subagent_tokens counts (context total? cache reads?) and how it relates to the plan's usage limit and to the coordinator's per-message usage (961M cache-read, 1.64M output in the transcript). Write the answer in company/ops/token-budget.md section 1 item 5 or a note it links.",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P3: not blocking the first forum"
+      }
+    },
+    {
+      "id": "W-729",
+      "title": "Amendment route: wire 'node tools/ledger.mjs check' into npm run check (tools/company.mjs is protected). Fold it into AMD-005 or draft a separate AMD; until then the gate bites only through tools/dispatch-check.mjs. company/ops/token-budget.md section 6.",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P3: not blocking the first forum"
+      }
+    },
+    {
+      "id": "W-730",
+      "title": "Founder: chair Project Review 1 by 2026-10-16 23:59 UTC (the in-flight grace period ends then). Agenda: company/ceo-office/2026-10-14-project-review-1-agenda.md. Decide item 0 (delegating tranches of 3M or less, the token unit, the major thresholds), then items 1 to 6 (history, marketing, books-decks, lifehacks-engine-v2, scale-stage-1, wave-j): approved, approved with changes, returned or killed.",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P2: the grace period ends 2026-10-16"
+      }
+    },
+    {
+      "id": "W-731",
+      "title": "HQ: draw a boardroom room for the project-review forum (events with room boardroom, type proposal or ritual; company/ops/events.md). Today an unknown room is not drawn.",
+      "owner": "hq-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-14",
+        "by": "portfolio-manager",
+        "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P4: cosmetic"
+      }
     }
   ]
 }
