@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 34dvh; }
+.friend { stroke: var(--good); stroke-width: 4; }
+.enemy { stroke: var(--bad); stroke-width: 1.5; stroke-dasharray: 5 4; opacity: 0.8; }
+.tri { fill: color-mix(in srgb, var(--domain) 30%, transparent); stroke: var(--domain); stroke-width: 2; }
+.triBad { fill: color-mix(in srgb, var(--bad) 30%, transparent); stroke: var(--bad); stroke-width: 2; }
+.person { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.inTri { fill: color-mix(in srgb, var(--domain) 40%, var(--bg-2)); stroke-width: 3; }
+.name { font-size: 13px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
+.rule { margin: 0; text-align: center; font-size: 0.86rem; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.4em; }
+.controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.camps { display: flex; gap: 6px; align-items: center; justify-content: center; }
+.campsLabel { font-size: 0.86rem; color: var(--muted); }
+.tap { min-height: 44px; min-width: 48px; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }

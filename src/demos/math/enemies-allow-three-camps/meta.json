@@ -1,0 +1,89 @@
+{
+  "slug": "enemies-allow-three-camps",
+  "title": "Can a feud have three sides?",
+  "hook": "The enemy of my enemy need not be my friend. How many camps can a feud hold then?",
+  "domain": "math",
+  "concept": "weak-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the balance rule from enemy-of-my-enemy (at most two camps)"
+    ],
+    "doesNotKnow": [
+      "that if an all-enemy triangle is allowed, the network can split into any number of camps"
+    ]
+  },
+  "misconception": "Hostile networks always end up as two sides.",
+  "objective": "The learner can explain that when only the 'two friends who are enemies' triangle is banned, any split into camps (friends inside, enemies across) is stable, because two friends of anyone share a camp; only the strict ban on all-enemy triangles forces two sides.",
+  "claims": [
+    {
+      "id": "math.enemies-allow-three-camps.c1",
+      "text": "Under the weaker rule the only banned triangle has two friendly links and one hostile link (someone with two friends who are enemies); all-enemy triangles are allowed.",
+      "support": "convention",
+      "source": "Definition of weak structural balance, Easley and Kleinberg (2010) ch. 5; J. A. Davis, 'Clustering and Structural Balance in Graphs', Human Relations 20 (1967). Brief 7 edit: the banned triangle is two friendly links and one hostile link.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c2",
+      "text": "Six people split into three pairs form 20 triangles: 0 banned, 12 with one friendly pair, and 8 all-enemy triangles (one person from each camp).",
+      "support": "derivation",
+      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c3",
+      "text": "With 2 camps of 3 or 6 camps of 1 there are also 0 banned triangles (with 0 and 20 all-enemy triangles respectively).",
+      "support": "derivation",
+      "source": "tally(2), tally(6) in Demo.tsx; builder re-run in node 2026-10-14: 2 camps: banned 0, all-enemy 0, one friendly 18, all-friend 2; 6 camps: banned 0, all-enemy 20.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c4",
+      "text": "When friends are exactly the people in your camp, any two friends of yours are friends too, so no split into camps has a banned triangle, whatever the number of camps.",
+      "support": "derivation",
+      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c5",
+      "text": "The strict rule (the enemy of my enemy is my friend) also bans all-enemy triangles, and that ban is what limits a network to two sides.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010) ch. 5 (structural balance: at most two camps); weak balance relaxes exactly the all-enemy triangle (Davis 1967). Attribution: fact-checker confirms (flag carried from the brief).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a group, two of anyone's friends are always friends, but three people can all dislike each other. What can the group look like?",
+    "options": [
+      "Exactly two rival sides",
+      "Any number of camps, friendly inside and hostile across",
+      "One big group of friends"
+    ],
+    "answer": 1,
+    "why": "Only a person with two friends who are enemies is ruled out. Friends-inside camps never make one, and all-enemy triangles across three or more camps are allowed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:weak-balance",
+    "also": [],
+    "prerequisites": ["math:parity-rules"],
+    "level": "stretch",
+    "strand": "discrete",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 5 }],
+    "tags": ["signed networks", "balance"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "milestone-gate"]
+}

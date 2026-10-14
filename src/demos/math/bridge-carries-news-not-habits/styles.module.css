@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 36dvh; }
+.edge { stroke: var(--line); stroke-width: 1.5; }
+.edgeOn { stroke: color-mix(in srgb, var(--domain) 60%, var(--line)); stroke-width: 2; }
+.bridge { stroke: var(--fg); stroke-width: 3.5; }
+.off { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.5; }
+.habit { fill: var(--domain); stroke: var(--fg); stroke-width: 1.5; }
+.news { fill: var(--good); stroke: var(--fg); stroke-width: 1.5; }
+.fresh { stroke-width: 3.5; }
+.group { font-size: 12px; fill: var(--muted); text-anchor: middle; font-weight: 700; }
+.name { font-size: 12px; fill: var(--fg); text-anchor: middle; font-weight: 700; }
+.badge { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+.badgeBad { font-size: 11px; fill: var(--bad); text-anchor: middle; font-weight: 700; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.4em; }
+.ruleRow { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: center; padding: 2px 6px; border-radius: 10px; border: 1px solid transparent; }
+.current { border-color: var(--line); background: var(--bg-2); }
+.ruleName { font-size: 0.86rem; }
+.count { font-variant-numeric: tabular-nums; }
+.tap { min-height: 44px; min-width: 64px; }

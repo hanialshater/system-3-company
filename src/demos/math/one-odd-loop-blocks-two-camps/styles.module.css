@@ -1,0 +1,15 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 34dvh; }
+.friend { stroke: var(--good); stroke-width: 3; }
+.enemy { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 7 5; }
+.broken { stroke-width: 5; }
+.loop { stroke: color-mix(in srgb, var(--domain) 45%, transparent); stroke-width: 14; stroke-linecap: round; }
+.person { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.campA { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.campB { fill: var(--bg-2); stroke: var(--fg); stroke-width: 3; stroke-dasharray: 3 2; }
+.name { font-size: 13px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.4em; }
+.loops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.tap { min-height: 44px; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }

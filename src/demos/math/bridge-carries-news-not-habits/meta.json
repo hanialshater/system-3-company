@@ -1,0 +1,90 @@
+{
+  "slug": "bridge-carries-news-not-habits",
+  "title": "News crosses the bridge. Does a habit?",
+  "hook": "One link joins two friend groups. Gossip gets across. Will a new habit follow it?",
+  "domain": "math",
+  "concept": "complex-contagion-bridges",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "weak ties bring news across groups",
+      "the 'join when half your friends have' rule"
+    ],
+    "doesNotKnow": [
+      "that a behaviour needing several adopting friends stops at the same bridge that news crosses"
+    ]
+  },
+  "misconception": "Whatever spreads like news spreads like a habit: the bridge that carries one carries the other.",
+  "objective": "The learner can explain that news needs one informed friend and so crosses a single bridge, while a habit that needs half your friends stops there, because across a bridge you have only one friend.",
+  "claims": [
+    {
+      "id": "math.bridge-carries-news-not-habits.c1",
+      "text": "On the stage (two complete groups of 5, one bridge, two starters in group A), the 'half your friends' habit fills group A, 5 people, in 2 rounds; the third round adds no one.",
+      "support": "derivation",
+      "source": "Builder re-run in node 2026-10-14 (nextRound/runAll in Demo.tsx, simultaneous rounds): round 1 adds the two others with 2 of 4 friends in, round 2 adds the bridge person (4 of 5), round 3 adds nobody. Matches brief 4, company/domains/briefs/math.discrete.md, Course: NCM.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-carries-news-not-habits.c2",
+      "text": "When the habit stops, Ben has 1 of his 5 friends adopting (20%), short of half, and nobody else in group B has any adopting friend.",
+      "support": "derivation",
+      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-carries-news-not-habits.c3",
+      "text": "News passed on from any one friend reaches all 10 people in 3 rounds, crossing the same link.",
+      "support": "derivation",
+      "source": "Builder re-run in node 2026-10-14: rounds add [2,3,4], [Ben], [the other 4 in B]. FINAL.news in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-carries-news-not-habits.c4",
+      "text": "A bridge gives each person at its end exactly one friend on the far side, enough for news and too little for a habit that needs several friends.",
+      "support": "derivation",
+      "source": "Structure of the stage graph: the only link between the groups is the bridge, so its end has 1 friend across; Ben needs at least half, 3 of his 5 friends, and the bridge can supply only 1; the other 4 friends adopt only after Ben does.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.bridge-carries-news-not-habits.c5",
+      "text": "Researchers find the same split in real networks: weak ties spread information well but can block behaviours that need reinforcement from several contacts.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010) ch. 19; D. Centola and M. Macy, 'Complex Contagions and the Weakness of Long Ties', Am. J. Sociology 113(3) (2007). Attribution: fact-checker confirms (flag carried from the brief).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two close-knit towns are linked by one friendship. A gym habit that people take up only when several friends do starts in one town. What should you expect?",
+    "options": [
+      "It mostly stays in the first town",
+      "It reaches the second town through the friendship",
+      "It spreads faster in the second town"
+    ],
+    "answer": 0,
+    "why": "The person at the far end of the link has only one friend from the first town, so the habit never gets the several friends it needs to cross. News would cross; habits that need reinforcement stop."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:complex-contagion-bridges",
+    "also": ["probability:independence"],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "discrete",
+    "references": [{ "work": "easley-kleinberg-2010", "chapter": 19 }],
+    "tags": ["cascades", "weak ties", "complex contagion"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "step-run-button", "milestone-gate"]
+}
