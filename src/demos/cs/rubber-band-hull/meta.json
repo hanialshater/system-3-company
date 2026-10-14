@@ -1,0 +1,95 @@
+{
+  "slug": "rubber-band-hull",
+  "title": "Which pins does the band touch?",
+  "hook": "A rubber band round 10 pins. One walk, left turns kept, right turns dropped, finds it.",
+  "domain": "cs",
+  "concept": "convex-hull",
+  "format": "storyboard-scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "left and right turns (shown on the stage as keep and drop)"
+    ],
+    "doesNotKnow": [
+      "how a program finds the outline around a set of points",
+      "that checking left or right turn for three points is all the geometry needed"
+    ]
+  },
+  "misconception": "The outline of a cloud of points is just its leftmost, rightmost, top and bottom points.",
+  "objective": "The learner can explain that the band corners are wherever the boundary turns, found by sorting the pins once and dropping any pin that makes a right turn, so some corners are not extreme pins and some inside pins are dropped.",
+  "claims": [
+    {
+      "id": "cs.rubber-band-hull.c1",
+      "text": "A rubber band round the 10 pins (0,0) (6,1) (8,3) (7,7) (2,8) (-1,4) (3,3) (4,5) (2,2) (5,2) touches 6 of them.",
+      "support": "simulation",
+      "source": "Builder's node script: Andrew's monotone chain gives (-1,4) (0,0) (6,1) (8,3) (7,7) (2,8); the Graham scan walk used on the stage gives the same set. The brief used (6,0); the spec moved it to (6,1) so the extremes are unambiguous (brief fix applied).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rubber-band-hull.c2",
+      "text": "The leftmost, rightmost, top and bottom pins are 4 of the 6 band pins: (-1,4), (8,3), (2,8) and (0,0). Pins 1 and 6 in the stage's order, (6,1) and (7,7), are on the band but are none of them.",
+      "support": "simulation",
+      "source": "Builder's node script: extremes of x and y over the 10 pins are 4 distinct pins; the other 2 hull pins are (6,1) and (7,7). Order numbers are the angle order from (0,0).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rubber-band-hull.c3",
+      "text": "Walking the pins in angle order from the lowest pin and dropping the previous corner on each right turn drops exactly 4 pins, (5,2), (2,2), (3,3) and (4,5), each at a right turn, and ends on the 6 band pins.",
+      "support": "simulation",
+      "source": "Builder's node trace of the scan used in Demo.tsx: cross products -3, -5, -20, -13 (all strictly right turns, never a straight line), one drop at most per tap; the other 5 pins are never dropped. Ties in angle sort nearer first and pop on cross <= 0. (2,2) and (3,3) share an angle from (0,0); they are tapped nearer first. The spec said no two pins share an angle; the sort handles it.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rubber-band-hull.c4",
+      "text": "Sorting the pins round the start once and then making one pass of left-or-right checks is Graham's scan, which takes about n log n steps for n pins.",
+      "support": "source",
+      "source": "Graham (1972), An efficient algorithm for determining the convex hull of a finite planar set, Information Processing Letters 1(4); CLRS 3rd ed. section 33.3 (Graham's scan, O(n lg n)). CLRS 4th ed. dropped the computational geometry chapter, so no works.json entry exists.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rubber-band-hull.c5",
+      "text": "A turn at three points is a right turn when the cross product of the two steps is negative.",
+      "support": "source",
+      "source": "CLRS 3rd ed. section 33.1 (direction by cross product). Used in Demo.tsx as cross(o, a, b) <= 0 means drop.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Pins sorted round the lowest one, and you add the next pin. When do you drop the previous corner?",
+    "options": [
+      "When the three points make a right turn",
+      "When the new pin is higher",
+      "When the previous corner is nearest the start"
+    ],
+    "answer": 0,
+    "why": "A right turn at the previous corner means it lies inside the band through its neighbours, so the band cannot touch it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:convex-hull",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["geometry", "graham-scan", "turns"]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "scrubber-timeline",
+    "milestone-gate"
+  ]
+}
