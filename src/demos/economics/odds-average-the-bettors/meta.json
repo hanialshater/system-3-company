@@ -1,0 +1,108 @@
+{
+  "slug": "odds-average-the-bettors",
+  "title": "The odds average the bettors",
+  "hook": "One bettor says 80%, another 40%. The odds don't say 60%. Whose opinion counts more?",
+  "domain": "economics",
+  "concept": "parimutuel-beliefs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "odds and probability (odds-three-to-one)"
+    ],
+    "doesNotKnow": [
+      "that when bettors split their money in proportion to their beliefs, the market's implied chance is the wealth-weighted average belief"
+    ]
+  },
+  "misconception": "The odds reflect the simple average opinion, or the loudest bettor's.",
+  "objective": "The learner can explain that $300 x 80% + $100 x 40% = $280 of a $400 pool on A gives implied odds of 70%, because each belief counts in proportion to the money behind it, not the simple average of 60%.",
+  "claims": [
+    {
+      "id": "economics.odds-average-the-bettors.c1",
+      "text": "With bettor 1 putting $300 x 80% = $240 and bettor 2 $100 x 40% = $40 on A, $280 of the $400 pool is on A, so the implied chance is 70%, not the simple average of 60%.",
+      "support": "derivation",
+      "source": "240 + 40 = 280; 280 / 400 = 0.70; (0.8 + 0.4) / 2 = 0.60. Demo.tsx pool(); re-run in node (ncm-e00).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.odds-average-the-bettors.c2",
+      "text": "With equal money the implied chance equals the simple average of beliefs; when bettor 2 holds more, it moves toward bettor 2's 40% (with $100 and $300 it is 50%).",
+      "support": "derivation",
+      "source": "Equal wealth w: (w p1 + w p2) / 2w = (p1 + p2) / 2. Preset 'Bettor 2 richer': (100 x 0.8 + 300 x 0.4) / 400 = 0.50. Demo.tsx pool().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.odds-average-the-bettors.c3",
+      "text": "When every bettor splits all their money by belief, the implied chance is the wealth-weighted average belief: each opinion counts in proportion to the money behind it.",
+      "support": "derivation",
+      "source": "Money on A = sum of w_i p_i; pool = sum of w_i; ratio = sum (w_i / W) p_i. Demo.tsx pool().",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.odds-average-the-bettors.c4",
+      "text": "Splitting all your money by belief is how a bettor who maximises the logarithm of their wealth bets in a pari-mutuel market.",
+      "support": "source",
+      "source": "Easley and Kleinberg 2010, ch. 22; Kelly 1956 (Bell System Technical Journal 35). Fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.odds-average-the-bettors.c5",
+      "text": "The lesson is a simplified model: two bettors, no house cut, everyone bets all their money by belief.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: no house cut; all money bet by belief' and the reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ana ($100) thinks a team wins 90%; Ben ($300) thinks 50%. Each bets all their money in proportion to belief. What chance do the odds imply?",
+    "options": [
+      "70%",
+      "60%",
+      "90%"
+    ],
+    "answer": 1,
+    "why": "$90 + $150 = $240 of the $400 pool is on the team: 60%. Ben's belief counts three times as much because he has three times the money."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:parimutuel-beliefs",
+    "also": [
+      "probability:odds-vs-probability"
+    ],
+    "prerequisites": [
+      "probability:odds-vs-probability"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 22
+      }
+    ],
+    "tags": [
+      "markets",
+      "beliefs",
+      "betting"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

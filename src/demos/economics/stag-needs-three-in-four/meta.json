@@ -1,0 +1,98 @@
+{
+  "slug": "stag-needs-three-in-four",
+  "title": "The stag needs three in four",
+  "hook": "Both hunters prefer the stag. So why might both settle for a hare?",
+  "domain": "economics",
+  "concept": "coordination-stag-hunt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "best replies"
+    ],
+    "doesNotKnow": [
+      "that a better equilibrium needs enough trust: here at least 75% belief that the partner cooperates"
+    ]
+  },
+  "misconception": "If both prefer the stag outcome, both will hunt stag.",
+  "objective": "The learner can explain that hunting stag is worth 4 times their confidence in the partner against a sure 3 for hare, so it pays only at 75% confidence or more, and that both-stag and both-hare are each stable, so doubt can lock in the worse outcome.",
+  "claims": [
+    {
+      "id": "economics.stag-needs-three-in-four.c1",
+      "text": "With stag paying 4 if both hunt it and 0 alone, and hare a sure 3, stag is worth 4 times your confidence that the partner hunts stag: 2 at 50%, and it matches hare only at 75%; below 75%, hare is the better bet.",
+      "support": "derivation",
+      "source": "Expected value 4p vs 3; 4p >= 3 iff p >= 3/4; 4 x 0.5 = 2. Demo.tsx; re-run in node (ncm-e00).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.stag-needs-three-in-four.c2",
+      "text": "Both 'both stag' and 'both hare' are stable (Nash equilibria): each is the best reply to itself; so although both prefer the stag outcome, doubt alone can lock them into hare.",
+      "support": "derivation",
+      "source": "Partner stag: stag 4 > hare 3. Partner hare: hare 3 > stag 0. Best-reply check over the 4 cells in node (ncm-e00): (S,S) and (H,H) only.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.stag-needs-three-in-four.c3",
+      "text": "The game is called the stag hunt, after an example of Rousseau's.",
+      "support": "source",
+      "source": "Skyrms, The Stag Hunt and the Evolution of Social Structure, 2004; Easley and Kleinberg 2010, ch. 6. Fact-checker to confirm.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.stag-needs-three-in-four.c4",
+      "text": "The payoffs are invented, in a simplified model with one partner where only the payoffs matter.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: invented payoffs, one partner' and the reveal's last line.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A joint project pays you 10 if your partner also commits and 0 if they don't; going solo pays a sure 6. How sure of your partner must you be for the project to be worth it?",
+    "options": [
+      "At least 50%",
+      "At least 60%",
+      "At least 90%"
+    ],
+    "answer": 1,
+    "why": "The project is worth 10 times your confidence; it matches the sure 6 at 60%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:coordination-stag-hunt",
+    "also": [],
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 6
+      }
+    ],
+    "tags": [
+      "game theory",
+      "coordination"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
