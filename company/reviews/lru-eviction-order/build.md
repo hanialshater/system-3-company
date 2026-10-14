@@ -9,3 +9,10 @@
 ## v2 (revision 2026-10-13)
 
 - Reveal no longer claims LRU "keeps more hits" (both rules show 1 hit, 4 misses on this stream). It now says the rules score the same here and shows where they differ if B or A is requested again. Claim c4 rewritten (unverified); new derivation claim c6 (unverified).
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- requests not yet processed no longer use opacity .55; they use a dashed border and --muted text, processed ones a solid border and --fg.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

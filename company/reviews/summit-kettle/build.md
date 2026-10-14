@@ -7,3 +7,10 @@
 ## v2 (claim fix 2026-10-13)
 
 Checker wording notes: predict question and reveal say 'about 0.3 atm' and 'about 70 C' (model 69.4 C; published 68 to 71 C); the live readout still shows the model's own 0.31 atm and 69 C. Claims c1 and c2 reworded to match, set unverified. Source for the measured pressure points to West 1983/1999 instead of the unlocatable 2006 paper.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- curve label: domain darkened in light mode.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

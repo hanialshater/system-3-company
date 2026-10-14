@@ -53,7 +53,7 @@
 }
 
 .gap {
-  fill: color-mix(in srgb, var(--bad) 30%, transparent);
+  fill: color-mix(in srgb, var(--bad-fill) 30%, transparent);
 }
 
 .ana {
@@ -65,7 +65,7 @@
 
 .ben {
   fill: none;
-  stroke: var(--warn);
+  stroke: var(--warn-fill);
   stroke-width: 3;
   stroke-linejoin: round;
 }
@@ -75,9 +75,19 @@
 }
 
 .benFill {
-  fill: color-mix(in srgb, var(--warn) 70%, transparent);
+  fill: color-mix(in srgb, var(--warn-fill) 70%, transparent);
 }
 
 .bad {
   color: var(--bad);
+}
+
+.domText {
+  fill: var(--domain);
+}
+
+@media (prefers-color-scheme: light) {
+  .domText {
+    fill: color-mix(in srgb, var(--domain) 45%, #000);
+  }
 }

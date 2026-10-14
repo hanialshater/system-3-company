@@ -19,3 +19,10 @@ Key state: at least 5 × 5 built (five L's). Gate: `useMilestones(["five-by-five
 | Fact-check 3 (Nelsen p. 71) | Not changed: no book access. |
 
 QA: contract passes phone + desktop (local, 2026-10-13).
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- newest term: domain darkened in light mode; "= n x n" now uses the text-safe --good.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

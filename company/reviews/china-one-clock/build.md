@@ -5,3 +5,10 @@
 - The clocks read "? / ?" while locked, because showing two identical official clocks would give the answer away.
 - Slider is world time (UTC); the yellow line marks mean solar noon. Reveal unlocks when the noon line reaches Kashgar (within 1.5°). Chips set the exact minute (step 1) so "Sun" reads 12:00 at each city.
 - Dashed lines are nominal 15° bands, captioned as such; no border or regional-convention claims.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- city labels: dark ink with a white halo (they sit on the blue China highlight); sun line and disc use --warn-fill.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

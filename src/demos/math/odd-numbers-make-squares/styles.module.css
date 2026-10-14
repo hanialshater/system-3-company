@@ -6,6 +6,7 @@
 .frame { fill: none; stroke: var(--fg); stroke-opacity: 0.35; stroke-width: 1.5; stroke-dasharray: 4 4; }
 .eq { margin: 0; text-align: center; font-size: 1rem; line-height: 1.35; font-variant-numeric: tabular-nums; }
 .termNew { color: var(--domain); font-weight: 800; }
+@media (prefers-color-scheme: light) { .termNew { color: color-mix(in srgb, var(--domain) 45%, #000); } }
 .square { color: var(--good); font-weight: 700; white-space: nowrap; }
 .caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.85rem; min-height: 1.2em; }
 /* Fit the stage: the SVG shrinks into whatever height is left (the stage shrinks when the reveal opens). */
