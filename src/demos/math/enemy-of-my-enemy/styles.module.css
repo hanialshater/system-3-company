@@ -1,0 +1,155 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Fixed aspect so the HTML tap targets sit exactly on the SVG handles. */
+.board {
+  position: relative;
+  width: min(100%, calc(40dvh * 340 / 284));
+  aspect-ratio: 340 / 284;
+  margin: 0 auto;
+}
+
+.board .svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+
+.trio {
+  fill: var(--bad-fill);
+  fill-opacity: 0.16;
+  stroke: none;
+}
+
+.friend {
+  stroke: var(--fg);
+  stroke-width: 3;
+}
+
+.enemy {
+  stroke: var(--fg);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+
+.handleOn {
+  fill: var(--good-fill);
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.handleOff {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.glyphOn,
+.glyphOff {
+  font-size: 17px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.glyphOn {
+  fill: #0d0f14;
+}
+
+.glyphOff {
+  fill: var(--fg);
+}
+
+.ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.node {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.name {
+  fill: var(--fg);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.hit {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hit:disabled {
+  cursor: default;
+}
+
+.hit:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -6px;
+}
+
+.legend {
+  margin: 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.keyFriend,
+.keyEnemy {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fg);
+  font-weight: 800;
+  color: var(--fg);
+  margin-left: 6px;
+}
+
+.keyFriend {
+  background: var(--good-fill);
+  color: #0d0f14;
+}
+
+.keyEnemy {
+  background: var(--bg-2);
+}
+
+.keyTrio {
+  display: inline-block;
+  width: 14px;
+  height: 12px;
+  margin-left: 6px;
+  vertical-align: -1px;
+  background: color-mix(in srgb, var(--bad-fill) 30%, transparent);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.tap {
+  min-height: 44px;
+}
