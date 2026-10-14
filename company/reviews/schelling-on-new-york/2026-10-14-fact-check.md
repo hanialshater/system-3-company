@@ -306,3 +306,105 @@ What the forms show is how the grades were made. Whether lenders followed the ma
 - **Anyone with the book (cm-geography to arrange):** find the Rothstein page for c10b. It is the last open claim.
 - **QA / walkthrough owner:** re-run `npm run walkthrough -- schelling-on-new-york` on v3. The transcript on disk is v2.
 - **demo-builder (optional):** the coastline caveat above.
+
+---
+
+# Pass 4 (v4)
+
+- Checker: fact-checker (session 2, branch s2-rebuild). Date: 2026-10-14. I wrote none of these claims.
+- Scope: v4 (meta.json version 4, commit `bb1d2b5f`). I checked the 11 open claims: c5, c6, c8, c10b, c10f, c12, c15, c16, c17, c18 and c19. I also checked every number and sentence on the v4 reveal, the stage lines and the recall.
+- Order of reading: meta.json, then Demo.tsx, engine.ts and check.mjs, then the walkthrough. The walkthrough (`artifacts/walkthroughs/schelling-on-new-york/transcript.md`, 15:02) is v4 this time, and its stage and reveal text match Demo.tsx. I saw one line of the build note (the 37.5% figure, through a search) after my own count was done.
+- **Result: 21 claims. 18 verified, 1 disputed (c19), 1 unverified (c10b), 1 withdrawn (c10c).** c19 and c10b block publishing.
+
+## Egress
+
+- Blocked or unresolved: census.gov, archive.org, web.stanford.edu, pmc.ncbi.nlm.nih.gov, link.springer.com, biomedcentral.com, huduser.gov, ebi.ac.uk. WebSearch works. Where a verdict rests on a search summary, the claim note says so.
+
+## Re-runs
+
+- `node src/demos/geography/schelling-on-new-york/check.mjs`: all checks pass, including the new v4 checks.
+- `git diff c4463b11 bb1d2b5f -- engine.ts` is empty. The model is the one I re-derived in pass 3.
+- **My own model** (Python, scratch file, not committed). It reads only `MASK_HEX` from engine.ts and re-implements the RNG, placement, the rule and D. Its results match check.mjs: 259/259 households; 2 × 2 start D 0.421-0.525 (mean 0.461); 8 × 8 mean 0.138.
+- **c18, box splits at the start, 48 seeds:**
+
+  | Households in the 2 × 2 box | Boxes | Split evenly |
+  |---|---|---|
+  | 1 | 1,645 | 0 |
+  | 2 | 1,615 | 798 |
+  | 3 | 2,079 | 0 |
+  | 4 | 3,438 | 1,333 (38.8%) |
+  | All | 8,777 | 2,131 (24.3%) |
+
+  - So 76% are uneven, 69-82% by seed. Most boxes are uneven on every seed, and even among full boxes (61%).
+  - The "37.5% of full 4-household boxes" in the build note is the textbook chance figure (6 of 16; 37.6% drawing from 259/259). The count on the grid is 38.8%. It is not on the card or in the claim, so this is not a dispute. The build note should say 39%.
+  - One-group boxes give 57% of the start D, and mixed but uneven boxes give the rest. So "one-group boxes raise it" and "uneven ... raising the score" both hold.
+- **c19, chance alone at tract size.** My own run (numpy binomial, 2,000 tracts, 5 repeats) agrees with the formula D ≈ 0.4 / √(n·p·(1−p)):
+
+  | Smaller group's share | 1,200 people | 4,000 people | 8,000 people |
+  |---|---|---|---|
+  | 50% | 0.02 | 0.01 | 0.01 |
+  | 20% | 0.03 | 0.02 | 0.01 |
+  | 10% | 0.04 | 0.02 | 0.02 |
+  | 5% | 0.05 | 0.03 | 0.02 |
+  | 2% | 0.08 | 0.04 | 0.03 |
+  | 1% | 0.12 | 0.06 | 0.05 |
+
+  - check.mjs's 0.01-0.04 is right for shares of 10-50%, which is all it tests.
+
+## Verdicts
+
+| Claim | Status | Basis |
+|---|---|---|
+| c5 random start about 0.4-0.5 | verified | Engine unchanged; re-run. The question is asked on mix 1 (0.47). |
+| c6 settles at 30%, about 0.75; "round of moves" | verified | Same count as "Round". |
+| c8 simplified Schelling; hook | verified | "Schelling's 1971 sorting model" is the checked citation and says no more than the claim. |
+| c10f race in the grading forms; "including" | verified | See below. |
+| c12 "Model rule, not anyone's measure:" | verified | Same meaning as before. |
+| c15 tract thousands; 2 × 2 box at most 4 | verified | "Neighbourhood-sized areas of thousands of people" fits 1,200-8,000. Search-indexed only, as in pass 3. |
+| c16 clumps in different places | verified | All pairs 0.35-0.62. |
+| c17 one-group shares; "before anything moved" | verified | Counts unchanged; the pass-3 caveat is applied. |
+| c18 most 2 × 2 boxes uneven | verified | Table above. |
+| c19 tracts; chance adds little | **disputed** | See below. |
+| c10b Rothstein 2017 | **unverified** | No page found. |
+
+## The reveal and the stage, sentence by sentence (QA path: P = mix 2, k* = 8)
+
+- "Holding at most 4 households, most 2×2 boxes are uneven, raising the score": true (c18). Every 2 × 2 box holds at most 4 land cells.
+- "before anything moved, 35% held one group": 65/184 for mix 2 (c17).
+- "8×8 boxes even this out: 0.14": mix 2's 8 × 8 start (c7, c18). If k* is 4 the line reads 4 × 4 with a value of 0.21-0.31, which is still lower than 2 × 2 on every seed.
+- "Real figures often use census tracts (neighbourhood-sized areas of thousands of people), where chance adds little": tract size c15; the rest is c19 (disputed on the claim text, see below; the card's own wording is fine for groups of a tenth or more).
+- "**This model does not show why real cities look as they do**: your mixes clumped in different places": c9 and c16.
+- The history sentences: c10f, c10a, c10b, c10d and c10e. All are verified except c10b.
+- Stage: "Spread (0 even, 1 apart); one-group boxes raise it:" holds (c4, c18). "[outline] one-group boxes start N% now M%" (c17). "round of moves" and "would move N%" (c6).
+- Reveal caption: mix 2 2 × 2 0.44→0.76, one-group 35%→70%, 8 × 8 0.14→0.31; mix 1 2 × 2 0.47→0.76, 75%. These match check.mjs and my model.
+
+## c10f: "including"
+
+- The card now places the maps inside "housing and lending discrimination by race". On the primary data from pass 3, the grading form has a printed race line, filled in on 6,566 of 7,930 forms. Race is named among the reasons for the grade on 1,140 or more forms, including 697 of the 1,884 D forms. So the grading took race into account, and calling the maps part of discrimination by race stays within the claim.
+- What the claim does not show is that lenders followed the maps. The card still says "research is mixed" (c10e), so it does not claim that either.
+
+## c19: dispute and fix
+
+- **The claim text is too broad.** "Two groups placed at random score close to 0 (under about 0.05)" is true only when the smaller group is about a tenth of the people or more. For small groups, chance alone gives more: 0.08 at 2% and 0.12 at 1% in tracts of 1,200.
+- **Fix (builder):** add "when each group is at least about a tenth of the people" to the claim text, and note the small-group figures in the source. The card's "where chance adds little" can stay.
+- **Tract use.** Kramer et al. (2010), *International Journal of Health Geographics* 9:29, say: "Most current studies rely on census tracts as approximations of the local residential environment when calculating segregation indices". That is search-indexed text; the paper was not opened. The builder's source, Iceland and Weinberg (2002), CENSR-3, could not be opened, and its search summaries say "neighborhoods" without naming the unit. **Fix:** add Kramer et al. 2010 as the source for "often use census tracts", or have someone with egress confirm the unit on a CENSR-3 page.
+
+## Recall: "chance alone"
+
+- The why still says "A 2 × 2 box holds at most 4 households, so chance alone leaves many boxes holding only one group." That is accurate. Only the random draw decides which group lands where. The coastline only lowers how many households a box holds, and the sentence itself names that ("at most 4"). On a grid with no coastline the share is about 18%, roughly one box in five, which is still "many".
+- Not a dispute. The reveal dropped "chance alone" and the recall kept it. If the learning designer wants the two to match, the recall could say "before anyone moves".
+
+## c10b: still unverified
+
+- One more search found no page, only interviews (Clemson news, EPI) and study guides (LitCharts). The pass-3 lead (p. 143, Levittown) still stands.
+- **To close:** someone with the book (Liveright 2017) gives the page or pages for the home-equity and wealth-gap argument.
+
+## Disputes
+
+1. **c19:** the claim text needs the group-share condition. A source for tract use is also needed (Kramer et al. 2010, or a CENSR-3 page). Fix above.
+
+## Next
+
+- **demo-builder:** fix the c19 claim text and source, then route it back to me. Also correct "37.5%" to "39%" in the build note.
+- **Anyone with the book (cm-geography to arrange):** the Rothstein page for c10b.
+- **learning-designer (optional):** align the recall's "chance alone" with the reveal.
