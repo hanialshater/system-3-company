@@ -1,0 +1,382 @@
+"use client";
+
+// AVL rotation as a before / after toggle (company/design/specs/rotation-untangles-the-chain.md).
+// Keys 1..7 arrive in order. "Plain" is an ordinary search tree (a chain); "Rotating" rebalances whenever one
+// side of a node is two levels deeper than the other (AVL). Height is counted in levels (one node = 1).
+// Each key has its own column (in-order position), so a rotation moves keys up and down, never sideways:
+// the in-order rule is visible. Rotating: 4 single left rotations (at 1, 3, 2, 5), height 3, root 4 (claim c1).
+
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Lesson } from "@/kit/Lesson";
+import { Control, Readout, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
+import s from "./styles.module.css";
+
+type Mode = "plain" | "rotating";
+type Node = { k: number; l: Node | null; r: Node | null; h: number };
+type Depths = Record<number, number>;
+type Edge = [number, number];
+type Rot = { at: number; up: number; ghost: Depths; ghostEdges: Edge[] };
+type Snap = { depth: Depths; edges: Edge[]; pre: Depths; preEdges: Edge[]; height: number; rots: number; rot?: Rot };
+
+const KEYS = [1, 2, 3, 4, 5, 6, 7];
+const ht = (n: Node | null) => (n ? n.h : 0);
+const fix = (n: Node) => {
+  n.h = 1 + Math.max(ht(n.l), ht(n.r));
+  return n;
+};
+const clone = (n: Node | null): Node | null => (n ? { k: n.k, h: n.h, l: clone(n.l), r: clone(n.r) } : null);
+const rotRight = (y: Node) => {
+  const x = y.l!;
+  y.l = x.r;
+  x.r = y;
+  fix(y);
+  return fix(x);
+};
+const rotLeft = (x: Node) => {
+  const y = x.r!;
+  x.r = y.l;
+  y.l = x;
+  fix(x);
+  return fix(y);
+};
+function layout(root: Node | null, base = 0): { depth: Depths; edges: Edge[] } {
+  const depth: Depths = {};
+  const edges: Edge[] = [];
+  const walk = (n: Node | null, d: number) => {
+    if (!n) return;
+    depth[n.k] = d;
+    for (const c of [n.l, n.r]) {
+      if (c) {
+        edges.push([n.k, c.k]);
+        walk(c, d + 1);
+      }
+    }
+  };
+  walk(root, base);
+  return { depth, edges };
+}
+function plainInsert(n: Node | null, k: number): Node {
+  if (!n) return { k, l: null, r: null, h: 1 };
+  if (k < n.k) n.l = plainInsert(n.l, k);
+  else n.r = plainInsert(n.r, k);
+  return fix(n);
+}
+
+function snapshots(mode: Mode): Snap[] {
+  const out: Snap[] = [{ depth: {}, edges: [], pre: {}, preEdges: [], height: 0, rots: 0 }];
+  let root: Node | null = null;
+  let rots = 0;
+  for (const key of KEYS) {
+    const before = layout(plainInsert(clone(root), key));
+    let rot: Rot | undefined;
+    const ins = (n: Node | null, k: number, d: number): Node => {
+      if (!n) return { k, l: null, r: null, h: 1 };
+      if (k < n.k) n.l = ins(n.l, k, d + 1);
+      else n.r = ins(n.r, k, d + 1);
+      fix(n);
+      if (mode === "plain") return n;
+      const bal = ht(n.l) - ht(n.r);
+      if (bal > 1 || bal < -1) {
+        const g = layout(clone(n), d);
+        let top: Node;
+        if (bal > 1) {
+          if (k > n.l!.k) n.l = rotLeft(n.l!);
+          top = rotRight(n);
+        } else {
+          if (k < n.r!.k) n.r = rotRight(n.r!);
+          top = rotLeft(n);
+        }
+        rots += 1;
+        if (!rot) rot = { at: n.k, up: top.k, ghost: g.depth, ghostEdges: g.edges };
+        return top;
+      }
+      return n;
+    };
+    root = ins(root, key, 0);
+    const now = layout(root);
+    out.push({
+      depth: now.depth,
+      edges: now.edges,
+      pre: rot ? before.depth : now.depth,
+      preEdges: rot ? before.edges : now.edges,
+      height: ht(root),
+      rots,
+      rot,
+    });
+  }
+  return out;
+}
+const SNAPS: Record<Mode, Snap[]> = { plain: snapshots("plain"), rotating: snapshots("rotating") };
+
+const reducedMotion = () =>
+  typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+const COLX = (k: number) => 33 + (k - 1) * 46;
+const LEVY = (d: number) => 22 + d * 40;
+const R = 16;
+
+// The tree, with a tween from the pre-rotation shape to the rotated one.
+function Tree({ mode, i, dur }: { mode: Mode; i: number; dur: number }) {
+  const snap = SNAPS[mode][i];
+  const [p, setP] = useState(1);
+  const raf = useRef<number | null>(null);
+  useLayoutEffect(() => {
+    if (raf.current) cancelAnimationFrame(raf.current);
+    if (!snap.rot || dur <= 0) {
+      setP(1);
+      return;
+    }
+    setP(0);
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const q = Math.min(1, (now - t0) / dur);
+      setP(q);
+      if (q < 1) raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, [mode, i, dur, snap]);
+
+  const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  const keys = Object.keys(snap.depth).map(Number);
+  const d = (k: number) => snap.pre[k] + (snap.depth[k] - snap.pre[k]) * ease;
+  const edges = p < 0.4 ? snap.preEdges : snap.edges;
+  const label =
+    i === 0
+      ? `${mode === "rotating" ? "Rotating" : "Plain"} tree: empty`
+      : `${mode === "rotating" ? "Rotating" : "Plain"} tree: root ${keys.find((k) => snap.depth[k] === 0)}, height ${snap.height} levels, ${snap.rots} rotation${snap.rots === 1 ? "" : "s"}`;
+
+  return (
+    <svg viewBox="0 0 342 324" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-keys={i}>
+      {snap.rot && (
+        <g aria-hidden="true">
+          {snap.rot.ghostEdges.map(([a, b]) => (
+            <line
+              key={`ge${a}-${b}`}
+              x1={COLX(a)}
+              y1={LEVY(snap.rot!.ghost[a])}
+              x2={COLX(b)}
+              y2={LEVY(snap.rot!.ghost[b])}
+              stroke="var(--muted)"
+              strokeDasharray="3 3"
+            />
+          ))}
+          {Object.entries(snap.rot.ghost).map(([k, dd]) => (
+            <g key={`g${k}`}>
+              <circle
+                cx={COLX(Number(k))}
+                cy={LEVY(dd)}
+                r={R - 1}
+                fill="none"
+                stroke="var(--muted)"
+                strokeDasharray="3 3"
+              />
+              <text x={COLX(Number(k))} y={LEVY(dd) + 4} textAnchor="middle" className={s.ghostKey}>
+                {k}
+              </text>
+            </g>
+          ))}
+        </g>
+      )}
+      {edges.map(([a, b]) => (
+        <line
+          key={`e${a}-${b}`}
+          x1={COLX(a)}
+          y1={LEVY(d(a))}
+          x2={COLX(b)}
+          y2={LEVY(d(b))}
+          stroke="var(--fg)"
+          strokeWidth={1.5}
+        />
+      ))}
+      {keys.map((k) => (
+        <g key={`n${k}`}>
+          <circle
+            cx={COLX(k)}
+            cy={LEVY(d(k))}
+            r={R}
+            fill="color-mix(in srgb, var(--domain) 45%, var(--bg-2))"
+            stroke="var(--fg)"
+          />
+          <text x={COLX(k)} y={LEVY(d(k)) + 4.5} textAnchor="middle" className={s.key}>
+            {k}
+          </text>
+        </g>
+      ))}
+      <line x1={10} y1={300} x2={332} y2={300} stroke="var(--line)" />
+      {KEYS.map((k) => {
+        const inserted = k <= i;
+        return (
+          <g key={`row${k}`}>
+            <rect
+              x={COLX(k) - 12}
+              y={288}
+              width={24}
+              height={24}
+              rx={4}
+              fill={inserted ? "var(--bg-2)" : "none"}
+              stroke={inserted ? "var(--fg)" : "var(--line)"}
+              strokeDasharray={inserted ? undefined : "3 2"}
+            />
+            <text x={COLX(k)} y={304} textAnchor="middle" className={inserted ? s.rowKey : s.rowWait}>
+              {k}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
+  const [mode, setMode] = useState<Mode>("rotating");
+  const [i, setI] = useState(0);
+  const [dur, setDur] = useState(300);
+  const [results, setResults] = useState<Partial<Record<Mode, number>>>({});
+  const [busy, setBusy] = useState(false);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(
+    () => () => {
+      if (timer.current) clearInterval(timer.current);
+    },
+    [],
+  );
+
+  const snap = SNAPS[mode][i];
+
+  return (
+    <Lesson
+      slug={slug}
+      predict={{
+        question:
+          "Keys 1 to 7 arrive in order. A plain search tree becomes a chain of height 7 (levels). A tree that rotates whenever one side is two levels deeper than the other: what height?",
+        options: ["7", "5", "3"],
+        answer: 2,
+      }}
+      exploreHint="Insert the keys one at a time and watch key 3."
+      minInteractions={2}
+      reveal={() => {
+        const rh = results.rotating ?? 3;
+        const ph = results.plain ?? 7;
+        return (
+          <>
+            <p>
+              Your tree took 1 to 7 in order and stayed {rh} levels tall. The plain tree was a chain of {ph}. Each time
+              one side got two levels deeper, a rotation lifted the middle key: at key 3, 2 rose above 1 and 3.
+            </p>
+            <p>
+              No key ever left its column, so the left-to-right order, and every search, stayed valid. Four rotations in
+              all. Doing this at every insert keeps the height close to log₂ of the number of keys.
+            </p>
+          </>
+        );
+      }}
+    >
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["first-rotation", "seven-rotating"]}>
+          {(reach) => {
+            const arrive = (m: Mode, k: number) => {
+              if (m === "rotating" && k >= 3) reach("first-rotation");
+              if (k >= 7) {
+                setResults((r) => ({ ...r, [m]: SNAPS[m][7].height }));
+                if (m === "rotating") reach("seven-rotating");
+              }
+            };
+
+            const replay = (m: Mode, from: number) => {
+              if (timer.current) clearInterval(timer.current);
+              if (reducedMotion() || from >= 7) {
+                setDur(0);
+                setI(7);
+                arrive(m, 7);
+                return;
+              }
+              setBusy(true);
+              setDur(40);
+              let k = from;
+              timer.current = setInterval(() => {
+                k += 1;
+                setI(k);
+                arrive(m, k);
+                if (k >= 7) {
+                  if (timer.current) clearInterval(timer.current);
+                  setBusy(false);
+                }
+              }, 50);
+            };
+
+            const insertNext = () => {
+              if (locked || busy || i >= 7) return;
+              setDur(reducedMotion() ? 0 : 300);
+              setI(i + 1);
+              arrive(mode, i + 1);
+            };
+            const insertRest = () => {
+              if (locked || busy || i >= 7) return;
+              replay(mode, i);
+            };
+            const switchMode = (m: Mode) => {
+              if (locked || busy || m === mode) return;
+              const wasFull = i >= 7;
+              setMode(m);
+              setI(0);
+              if (wasFull) replay(m, 0);
+              else if (timer.current) clearInterval(timer.current);
+            };
+
+            return (
+              <div className={s.wrap}>
+                <p className={s.rule}>
+                  {mode === "rotating"
+                    ? "If one side gets two levels deeper, rotate: lift the middle key up."
+                    : "Smaller keys go left, bigger go right. No rotations."}
+                </p>
+                <Tree mode={mode} i={i} dur={dur} />
+                <p className={s.note} aria-live="polite">
+                  {snap.rot ? `Rotated at ${snap.rot.at}: ${snap.rot.up} moves up` : " "}
+                </p>
+                <Row>
+                  <Readout label="Height" value={`${snap.height} levels`} />
+                  <Readout label="Rotations" value={snap.rots} />
+                </Row>
+                <Row>
+                  <Readout label="Plain" value={results.plain ?? "?"} />
+                  <Readout label="Rotating" value={results.rotating ?? "?"} />
+                </Row>
+                <Row>
+                  <Control className="tap" disabled={locked || busy || i >= 7} onClick={insertNext}>
+                    Insert next key
+                  </Control>
+                  <Control className="tap" disabled={locked || busy || i >= 7} onClick={insertRest}>
+                    Insert the rest
+                  </Control>
+                </Row>
+                <Row>
+                  <span className={s.lab} id="tree-label">
+                    Tree
+                  </span>
+                  <span role="group" aria-labelledby="tree-label" className={s.chips}>
+                    {(["plain", "rotating"] as const).map((m) => (
+                      <Control
+                        key={m}
+                        className={`tap ${mode === m ? "active" : ""}`}
+                        aria-pressed={mode === m}
+                        disabled={locked || busy || mode === m}
+                        onClick={() => switchMode(m)}
+                      >
+                        {m === "plain" ? "Plain" : "Rotating"}
+                      </Control>
+                    ))}
+                  </span>
+                </Row>
+              </div>
+            );
+          }}
+        </Milestones>
+      )}
+    </Lesson>
+  );
+}

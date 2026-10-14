@@ -1,0 +1,108 @@
+{
+  "slug": "one-crowded-bucket",
+  "title": "Ten buckets, one of them crowded",
+  "hook": "Is a sort that never compares across the whole list always fast?",
+  "domain": "cs",
+  "concept": "bucket-sort",
+  "format": "before-after",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sd"
+  },
+  "learner": {
+    "knows": [
+      "counting sort tallies values instead of comparing them (sorting-without-comparing)"
+    ],
+    "doesNotKnow": [
+      "that bucket sort is fast only when values spread evenly across buckets"
+    ]
+  },
+  "misconception": "A sort that never compares across the whole list is fast on any input.",
+  "objective": "The learner can explain that bucket sort turns one big sort into many tiny ones only while the buckets stay small: the spread hand needs 1 comparison, but the clumped hand lands in one bucket and needs 30, the cost of insertion-sorting all ten.",
+  "claims": [
+    {
+      "id": "cs.one-crowded-bucket.c1",
+      "text": "With buckets 1-10, 11-20, ..., 91-100 and insertion sort inside each bucket, counting every test of the moving number against a number already in the bucket (including the test that stops the slide), the spread hand 95 12 37 64 28 81 3 46 59 70 needs 1 comparison and the clumped hand 47 43 50 41 45 49 42 48 44 46 needs 30. The same ten clumped values in descending order (50 down to 41) would need 45.",
+      "support": "simulation",
+      "source": "Builder's node script (algo2-sd, 2026-10-14), same insertion sort and counting rule as Demo.tsx: spread 1 (all in bucket 61-70), clumped 30, descending 45; the clumped hand as written but reversed gives 28. Matches company/design/specs/one-crowded-bucket.md, which corrects the brief's '45 for reversed' to 'descending order'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-crowded-bucket.c2",
+      "text": "Spread out, the ten numbers land in nine buckets; only 64 and 70 share one (61-70), and that is where the single comparison happens.",
+      "support": "simulation",
+      "source": "Builder's node script: bucket counts [1,1,1,1,1,1,2,0,1,1] (bucket 71-80 empty). The brief's check line said '12 and 3 share bucket 1', which is wrong (3 is in 1-10, 12 in 11-20); the spec corrects it.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-crowded-bucket.c3",
+      "text": "Clumped, all ten numbers fall into bucket 41-50, so the tiny sorts become one insertion sort of ten numbers.",
+      "support": "derivation",
+      "source": "Every value 41..50 maps to bucket floor((v-1)/10) = 4, i.e. 41-50. Shown on the stage as one full column and nine empty ones.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-crowded-bucket.c4",
+      "text": "Bucket sort only splits the work when the values spread evenly over the buckets: for inputs drawn uniformly from an interval its expected running time is linear.",
+      "support": "source",
+      "source": "Cormen, Leiserson, Rivest & Stein, Introduction to Algorithms, 4th ed. (clrs-4e), ch. 8, bucket sort (section 8.4 in the 3rd ed.): expected linear time when inputs are uniformly distributed. Builder has not opened the 4th ed. to confirm the section number.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-crowded-bucket.c5",
+      "text": "When the data clump into one bucket, bucket sort is as slow as the sort inside that one crowded bucket.",
+      "support": "derivation",
+      "source": "If all n values share one bucket, the distribution pass is linear and the remaining cost is the in-bucket sort of n items (insertion sort: up to n(n-1)/2 comparisons). Seen on the stage as 30 comparisons, all under 41-50.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Bucket sort gets 1,000 numbers that all fall into the same bucket. Its speed is now about the same as...",
+    "options": [
+      "the sort used inside that one bucket",
+      "counting sort",
+      "a single pass over the list"
+    ],
+    "answer": 0,
+    "why": "Every number is in one bucket, so all the work is the inside sort of 1,000 numbers. Bucket sort only helps when the buckets stay small."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:bucket-sort",
+    "also": [],
+    "prerequisites": [
+      "cs:counting-sort",
+      "cs:insertion-sort"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 8,
+        "note": "bucket sort (chapter only)"
+      }
+    ],
+    "tags": [
+      "sorting",
+      "bucket-sort",
+      "distribution"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}
