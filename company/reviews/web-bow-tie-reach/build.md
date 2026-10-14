@@ -20,3 +20,11 @@
 - Claims c1, c3, c4 text changed, back to unverified. Version 2.
 - Node check unchanged: A-D 7, E 10, F 8, G 3, H 2, I 1, J 1, K 2, L 1.
 - QA (QA_ONLY=web-bow-tie-reach, port 3691): 10 passed, 2 failed (feed.spec subject chips, pre-existing, unrelated, both viewports). Lesson specs passed on phone and desktop. check and typecheck pass.
+
+## Revision v3 (demo-builder, 2026-10-14), from learner-adult-beginner-r2
+
+- Reveal labels: the kit scrolls the stage top off in the reveal, so the SVG IN/CORE/OUT tags can be cropped (still partly cropped after a compact 250 px reveal stage). The reveal caption now lists the groups in text under the stage (IN = E, F. CORE = A-D. OUT = G, H, I. Tendril = J. Detached = K, L) and the reveal text cites CORE (A to D), OUT (G, H, I), IN (E, F). Reveal stage compact (max 250 px, readout hidden, tag font 15). Seen in 14-reveal.png (phone).
+- Title now "Which pages can you click to?" (slug unchanged); no longer states the answer.
+- K and L tied to the 10: reveal says "Ten pages are joined to the core (all but K and L, which link only to each other)". c2 and c3 text changed, back to unverified. Version 3.
+- Not fixed (minor, out of the listed findings): step 1 confirms the guess; option 4.
+- Build: `next build` was OOM-killed twice (shared machine); QA run against `next dev` on port 3901 (QA_ONLY, own QA_OUT): 9 passed, 3 failed (feed.spec only, unrelated: feed home and subject chips). Lesson specs passed phone and desktop. Node check unchanged (no numbers changed).

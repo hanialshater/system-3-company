@@ -1,6 +1,6 @@
 {
   "slug": "web-bow-tie-reach",
-  "title": "Joined is not the same as reachable",
+  "title": "Which pages can you click to?",
   "hook": "Pages link one way. How many can you actually click your way to?",
   "domain": "cs",
   "concept": "web-bow-tie",
@@ -34,21 +34,17 @@
     },
     {
       "id": "cs.web-bow-tie-reach.c2",
-      "text": "Ignoring link direction, 10 of the 12 pages are joined to A (all but K and L).",
+      "text": "Ignoring link direction, 10 of the 12 pages are joined to A (all but K and L, which link only to each other).",
       "support": "simulation",
       "source": "Node BFS over the same edge list treated as undirected from A: component = A, B, C, D, E, F, G, H, I, J (10 pages); K and L form their own pair. Builder ran it 2026-10-14. | FACT-CHECK 2026-10-14 (pass NCM-1): Own undirected BFS from A: ABCDEFGHIJ (10); K-L a separate pair. Predict text \"10 of them are joined to the central group\" matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.web-bow-tie-reach.c3",
-      "text": "Links point one way, so being joined is not the same as being reachable: from CORE (A to D) you can click out to OUT (G, H and I), but no link leads back to IN (E and F).",
+      "text": "Links point one way, so being joined is not the same as being reachable: from CORE (A to D) you can click out to OUT (G, H and I), but no link leads back to IN (E and F). The reveal also says the reachable count (7 from A) is smaller than the 10 joined.",
       "support": "derivation",
       "source": "Definition of a directed link plus the edge list in c1: reach(A) = A, B, C, D, G, H, I, which contains neither E nor F; A, B, C, D reach each other (checked in node). Holds for this graph. | FACT-CHECK 2026-10-14 (pass NCM-1): reach(A)=reach(B)=reach(C)=reach(D)=ABCDGHI; pages that reach A are only A-F; no edge enters E or F from A-D. Reveal wording (middle -> right, nothing back to the left, right end leads almost nowhere: G 3, H 2, I 1) matches the stage. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. reach() from A, B, C, D never contains E or F (node check); all four reach G, H, I. Reveal paragraph 1 matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.web-bow-tie-reach.c4",
@@ -106,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:web-bow-tie",
     "prerequisites": [
