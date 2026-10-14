@@ -1,6 +1,6 @@
 # Spec: karatsuba-three-not-four
 
-owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review, **blocked on a number change in the brief (see Brief check)** · brief: `company/domains/briefs/cs.algorithms.md` #53 · wireframe: `karatsuba-three-not-four.svg`
+owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design review, unblocked: W-179 resolved 2026-10-14, brief #53 now uses 11111111 × 11111111 (see Brief check) · brief: `company/domains/briefs/cs.algorithms.md` #53 · wireframe: `karatsuba-three-not-four.svg`
 
 **Format: Side-by-side comparison** (as briefed). Two columns share one control: schoolbook on the left (each product splits into 4 half-size products), Karatsuba on the right (3). Each press splits every product one level down in **both** columns, so the learner watches 4 against 3 compound into 16 against 9 and then 64 against 27. Products are drawn as boxes that carry their numbers while they fit, and as dots at the 1-digit level.
 

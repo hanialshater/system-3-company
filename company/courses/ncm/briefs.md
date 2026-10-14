@@ -295,6 +295,7 @@ Owner to re-check: `cm-probability-chance` · 7 briefs
 - curriculum: `{"primary":"probability:triadic-closure-probability","also":["probability:at-least-once"],"prerequisites":["probability:at-least-once"],"level":"intro","strand":"chance","references":[{"work":"easley-kleinberg-2010","chapter":4,"section_unconfirmed":"4.4"}],"tags":["networks","triadic closure","independence"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: probability/at-least-once style lessons (concept at-least-once) use dice and lotteries; this applies the same rule to friendship and sets up the empirical curve.
+- Objection (cm-probability-chance): The numbers are right (1 − 0.9^k: 10, 19, 27, 41, 65%), but the rule is exactly what four-rolls-one-six, jackpot-once-a-week and one-in-a-million-daily already teach under concept at-least-once; dressing it as friendship is a re-skin, and the only new content (the rising empirical curve, Kossinets and Watts) must stay out of learner text until a human source check. Resubmit if the lesson turns on what is new: introductions that are NOT independent (a shared friend group makes the 5 correlated, so the true chance is below 41%), or the empirical curve once its source is checked. Concept stays `proposed: true`.
 
 #### 6. more-copying-bigger-stars · concept: probability:preferential-attachment-exponent · stretch · demand 1 · rank 42 · format: Simulation run (copy-share chips 0/50/90%)
 - Sections: ch. 18.7 (unconfirmed) · domain: probability
