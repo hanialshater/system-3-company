@@ -1,0 +1,99 @@
+{
+  "slug": "a-star-heads-for-goal",
+  "title": "A guess that aims the search",
+  "hook": "Add a guess of the steps left, and the search stops spreading in every direction.",
+  "domain": "cs",
+  "concept": "a-star-search",
+  "format": "before-after",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "cheapest-first search settles cells in order of cost so far (cheapest-is-not-shortest)",
+      "a search that spreads out in rings (wave-from-the-corner)"
+    ],
+    "doesNotKnow": [
+      "that a guess of the distance left can focus the search",
+      "that an honest underestimate keeps the shortest-route guarantee"
+    ]
+  },
+  "misconception": "To find the shortest route you have to spread out in every direction until you hit the goal.",
+  "objective": "The learner can explain that ranking cells by steps so far plus a guess of steps left, where the guess never overestimates, settles far fewer cells (7 instead of 31 on the open grid) and still finds a shortest route.",
+  "claims": [
+    {
+      "id": "cs.a-star-heads-for-goal.c1",
+      "text": "On an open 7 x 7 grid with 4-way moves, start in the middle of the left edge and goal in the middle of the right edge, ranking cells by steps so far plus Manhattan steps left settles 7 cells, goal included, and finds a 6-step route. With no guess, 31 cells are settled and the route is also 6 steps. Ties go to the cell with more steps taken, then to the cell added first.",
+      "support": "simulation",
+      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): start (col 0, row 3), goal (col 6, row 3), goal counted when settled; guess 7 settled / route 6, no guess 31 / route 6. The spec reports the same 7 and 31 under three other tie-breaks (fewer steps taken, first-in-first-out), so the open-grid numbers do not depend on the rule.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.a-star-heads-for-goal.c2",
+      "text": "With a 3-cell wall (column 3, rows 2 to 4), the guided search settles 16 cells and finds a 10-step route; with no guess all 46 open cells are settled and the route is also 10 steps. The 16 depends on the tie-break (more steps taken first): first-in-first-out gives 32.",
+      "support": "simulation",
+      "source": "Builder's node script (same algorithm and tie-break as Demo.tsx): guess + wall 16 / route 10; no guess + wall 46 / route 10. The spec's note gives 32 for first-in-first-out.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.a-star-heads-for-goal.c3",
+      "text": "A* with a guess that never overestimates the steps left finds a shortest route.",
+      "support": "source",
+      "source": "Hart, Nilsson & Raphael (1968), A formal basis for the heuristic determination of minimum cost paths, IEEE Trans. Systems Science and Cybernetics 4(2): optimality with an admissible heuristic.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.a-star-heads-for-goal.c4",
+      "text": "On a grid with 4-way moves, the count of columns plus rows between a cell and the goal never overestimates the steps left.",
+      "support": "derivation",
+      "source": "Each step changes the column or the row by at most 1, so any route needs at least |dc| + |dr| steps. Walls can only add steps.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.a-star-heads-for-goal.c5",
+      "text": "The guess ranks cells nearer the goal first, so the search runs at the goal instead of flooding every direction.",
+      "support": "derivation",
+      "source": "On the open grid every cell on row 3 has score 6 (steps so far + steps left) and every other cell scores at least 8, so the search settles row 3 first. Seen on the stage as numbers 1 to 7 along one row.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search ranks cells by steps so far plus a guess of steps left. When does the guess keep the route found a shortest one?",
+    "options": [
+      "When it never says more steps are left than there really are",
+      "When it is exactly right for every cell",
+      "When it is always bigger than the real distance"
+    ],
+    "answer": 0,
+    "why": "A guess that never overestimates cannot push a cell on a shortest route behind a worse one. A guess that is too big can."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:a-star-search",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path",
+      "cs:bfs-vs-dfs-frontier"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["pathfinding", "heuristic", "grid"]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}
