@@ -7,7 +7,7 @@ owner: interaction-designer (Rafael) · 2026-10-14 · status: draft, for design 
 ## Brief check (re-run in node, 2026-10-14)
 Squares (column, row) with (0, 0) the top-left corner. Moves tried in order (1,2) (2,1) (2,−1) (1,−2) (−1,−2) (−2,−1) (−2,1) (−1,2), as (right, down). Rule A takes the first legal move in that order. Rule B takes the legal move whose square has the fewest onward moves to unvisited squares, with ties going to the first in that order.
 - 5×5 from (0,0): **A visits 21** and is stuck at (1,3). The four squares it never reaches are (0,2) (0,3) (0,4) (1,4), the bottom-left corner. **B visits 25** and ends at (0,2). 8×8: **A 36, B 64.** **The brief is right.**
-- Both rules take (1,2) first. They part at move 2: A goes to (2,4), B to (0,4).
+- Both rules take (1,2) first (both legal squares have 5 onward moves; the tie goes to the first). They part at move 2: from (1,2) the legal squares have 3, 3, 3, 3 and 1 onward moves, so A goes to (2,4) and B to (0,4).
 
 ## Stage at 390×844 (~330 px at predict, ~470 px in explore)
 1. Rule lines, one per board, above it (muted, 13 words in all): "A: first legal move in the fixed order" · "B: fewest onward moves".
@@ -31,9 +31,9 @@ All 3 controls render at first paint, disabled while `locked`, class `.tap` (44 
 QA path (each control once, DOM order): Move (both at (1,2), visited 2) · Move until stuck (A stuck at 21 with the bottom-left corner hatched; B 25: milestone `both-ended-5x5`) · Board 8×8 (replayed: A 36, B 64; table full). The table holds all four numbers at the reveal.
 
 ## States
-- **Predict:** two identical boards, the knight on (0,0) numbered 1, the two legal squares outlined with badges ("3" on both, the same on A and B). "Visited: 1" on both. Table "?". No count of 25 is shown, and the board has no "squares left" counter, so nothing hints at 21.
+- **Predict:** two identical boards, the knight on (0,0) numbered 1, the two legal squares (1,2) and (2,1) outlined with badges ("5" on each, the same on A and B). "Visited: 1" on both. Table "?". No count of 25 is shown, and the board has no "squares left" counter, so nothing hints at 21.
 - **On unlock:** nothing moves until a press. Exploration hint: "Move both knights and watch where the rules part."
-- **Move 1:** both on (1,2). **Move 2:** A takes (2,4), B takes (0,4): the boards differ for the first time. B's badge on (0,4) reads lower than A's choice.
+- **Move 1:** both on (1,2). **Move 2:** A takes (2,4), B takes (0,4): the boards differ for the first time. At that moment the five legal squares read 3, 3, 3, 3 and 1: A takes the first 3, B takes the 1.
 - **A stuck:** 21 numbered squares, the knight ringed on (1,3), four hatched squares in the bottom-left corner. "stuck at 21".
 - **B done:** all 25 numbered, ending on (0,2). "Visited: 25".
 - **8×8:** both boards redrawn and replayed. A ringed at 36 with 28 hatched squares; B full at 64.

@@ -383,7 +383,7 @@ Owner to re-check: `cm-economics-markets` · 23 briefs
 - Sections: ch. 15.3 (unconfirmed), 15.4 (unconfirmed) · domain: economics
 - Audience: students in a networks course and curious adults (vertical audience). Learner knows: second-price auctions (batch 1) / does not know: that charging each winner the value their presence costs everyone else makes honest bids best, even with several slots.
 - Misconception: In a multi-slot ad auction each winner should pay their own bid.
-- Prediction (stage text ≤ 25 words): "Slots get 10 and 5 clicks. Values per click: X $7, Y $6, Z $1. X takes the top slot and pays the harm caused. How much?" options: A. $70 / B. $35 / C. $60 (answer: B ($35)).
+- Prediction (stage text ≤ 25 words): "Slots get 10 and 5 clicks; values per click X $7, Y $6, Z $1. X wins top slot, paying the harm caused. How much?" options: A. $70 / B. $35 / C. $60 (answer: B ($35)).
 - Check: Node: `15.3 {"order":["x","y","z"],"pay":{"x":35,"y":5,"z":0}}` and truth-telling check: `15.4 {"xUtilityByBid0to10":[0,30,30,30,30,30,35,35,35,35,35],"maxAt":6}` (X's honest bid of 7 earns the maximum, 35).
 - Reveal (one line): Without X, Y and Z would get 60 + 5 = 65; with X they get 30; X pays the $35 difference, and no other bid would leave X better off.
 - Planned claims:
