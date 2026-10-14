@@ -215,10 +215,15 @@ function measure() {
   };
 }
 
+// Load and render waits. REVEAL_FIT_TIMEOUT_MS raises both on a slow host (W-664), e.g. a shared
+// dev server under load; the measuring itself is unchanged.
+const LOAD_MS = Number(process.env.REVEAL_FIT_TIMEOUT_MS) || 30_000;
+const RENDER_MS = Number(process.env.REVEAL_FIT_TIMEOUT_MS) || 15_000;
+
 async function run(page, slug, settle = 120, deep = false, click = false) {
   const press = (loc, o) => (click ? loc.click(o) : loc.tap(o));
-  await page.goto(`${base}/d/${slug}`, { waitUntil: "domcontentloaded" });
-  await page.locator('[data-testid="lesson"]').waitFor({ timeout: 15_000 });
+  await page.goto(`${base}/d/${slug}`, { waitUntil: "domcontentloaded", timeout: LOAD_MS });
+  await page.locator('[data-testid="lesson"]').waitFor({ timeout: RENDER_MS });
   await press(page.locator('[data-testid="predict-option"]').first());
   await press(page.locator('[data-testid="commit-prediction"]'));
   const controls = page.locator('[data-testid="stage"] [data-qa="control"]');

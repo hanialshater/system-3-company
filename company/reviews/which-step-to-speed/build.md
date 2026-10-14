@@ -15,3 +15,7 @@ Departures from the brief: the brief's control 3 "Undo step 2" became "Only step
 7. **Phone fit.** Measured 2026-10-14 against :3530 with a scratchpad copy of `tools/reveal-fit.mjs` whose only change is longer page-load timeouts: verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 74 reveal words (with the verdict line), picScale 1 (smallest SVG text 10.5 px). Screenshot `artifacts/reveal-fit/which-step-to-speed.png`.
 
 `node tools/overlap.mjs` against cs and economics bottleneck lessons (brief, Differs from) was not run; cm-chemistry owns that call.
+
+## QA (local)
+
+Computer-use QA 2026-10-14 against the shared dev server :3530: `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J slugs> QA_OUT=artifacts/qa-wavej-chemistry npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=300000`. The `--timeout` flag raises only the per-test time budget (the config's 45 s ran out on page load, with the server at 15-60 s a page); no check was changed. Result: phone and desktop pass. Not run: next build, npm run verify (shared machine), walkthrough.
