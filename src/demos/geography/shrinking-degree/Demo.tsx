@@ -17,6 +17,7 @@ const H = 300;
 const LON0 = 10;
 const LON1 = 20;
 const PER_DEG = (Math.PI * EARTH_RADIUS_KM) / 180; // km per degree of arc
+const R_LABEL = Math.round(EARTH_RADIUS_KM).toLocaleString("en-US"); // "6,371": the stage names its model
 const degLonKm = (lat: number) => PER_DEG * Math.cos((lat * Math.PI) / 180);
 const CITIES: { name: string; p: Pt; left?: boolean }[] = [
   { name: "Oslo", p: [10.75, 59.91], left: true },
@@ -65,7 +66,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            About <strong>{Math.round(degLonKm(60))} km</strong>. Your Seen line: at 60°N one degree of longitude read{" "}
+            About <strong>{Math.round(degLonKm(60))} km</strong>. Your Seen line, on this sphere of radius {R_LABEL} km: at 60°N one degree of longitude read{" "}
             {seen[60] ?? degLonKm(60).toFixed(1)} km, half of the {degLonKm(0).toFixed(1)} km at the equator. The box
             narrowed as it went north, while its north&ndash;south size on the ground stayed the same.
           </p>
@@ -102,7 +103,7 @@ export default function ShrinkingDegree({ slug }: { slug: string }) {
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">A globe. Box: 10° by 10°. Dashed: the same box at the equator. Thin lines: longitude, latitude.</p>
+          <p className="muted tiny">A globe, treated as a sphere of radius {R_LABEL} km. Box: 10° by 10°. Dashed: the same box at the equator. Thin lines: longitude, latitude.</p>
           <Row>
             <Slider label="Box latitude" value={lat} min={0} max={80} disabled={locked} format={(v) => (v === 0 ? "equator" : `${v}°N`)} onChange={(v) => go(v, interact)} />
           </Row>
