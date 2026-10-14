@@ -71,7 +71,7 @@ that says "short notations of individual knots are facts; we cite, we don't copy
 | 7_5 | **Conway 322** (4-plat), w −7, rev 0 | Conway 1970; Rolfsen; Burde–Zieschang ch. 12; KnotInfo "Conway Notation" |
 | 7_6 | DT 4 8 12 2 14 6 10, w −3 | Rolfsen; KnotInfo |
 | 7_7 | DT 4 8 10 12 2 14 6, w −1 | Rolfsen; KnotInfo |
-| 10_8 | DT 6 14 12 16 18 20 4 2 8 10, w −2, rev 0 | Rolfsen; KnotInfo |
+| 10_8 | **Conway 514** (4-plat), w −2, rev 0 (until 2026-10-14: DT 6 14 12 16 18 20 4 2 8 10, read from the KnotInfo snapshot) | Conway 1970; Rolfsen App. C; Burde–Zieschang ch. 12; KnotInfo |
 | L2a1 Hopf | braid σ1⁻² , w −2 | Adams, *The Knot Book*; LinkInfo braid {2,{-1,-1}} |
 | L5a1 Whitehead | braid σ1 σ2⁻¹ σ1 σ2⁻², w −1, rev 0,1 | Adams; LinkInfo (whose word is {-1,2,-1,2,-1}; ours differs and is verified below) |
 | L6a4 Borromean | braid (σ1 σ2⁻¹)³, w 0, rev 2 | Birman 1974; Kassel–Turaev 2008; LinkInfo {3,{1,-2,1,-2,1,-2}} |
@@ -81,10 +81,19 @@ that says "short notations of individual knots are facts; we cite, we don't copy
 Conway notation 322 and the braid words were typed from memory of the standard tables. They were then cross-checked against
 the KnotInfo columns in the `database_knotinfo` CSV snapshot. That file was used only as an oracle: it was read, never copied
 into the repo, and is not committed. All the ≤ 7-crossing DT codes matched KnotInfo. **My remembered 10_8 code was wrong**
-(`fromDT` found it non-planar). The 10_8 code in `sources.mjs` is KnotInfo's "DT Notation" value, read from that snapshot.
+(`fromDT` found it non-planar). The 10_8 code in `sources.mjs` was then KnotInfo's "DT Notation" value, read from that snapshot (replaced; see the update below).
 It is a single 10-number fact, cited to KnotInfo. For **7_5**, KnotInfo's DT code (4 10 12 14 2 8 6) gives a **different
 diagram** of 7_5 from the table's, by a flype. So 7_5 uses its Conway notation 322 through the 4-plat, which reproduces the
 table's (Rolfsen-style) diagram exactly.
+
+**Update 2026-10-14 (rnd-lead, condition C1 of `company/rituals/records/2026-10-14-eng-review-EDD-004.md`).** 10_8 now
+uses its Conway notation **5 1 4** through the same 4-plat route as 7_5, typed from the published notation (Conway 1970;
+Rolfsen App. C), so no entry's source is "read from the snapshot" any more. `derive.mjs` reports `10_8 | Conway 5 1 4 (4-plat) |
+10/10 | same | same | same diagram (relabelled) | same up to similarity (0.000)`. `iso` against the previous DT-derived
+entry gives plane +1, crossings +1, no reversed components; writhe −2, Jones and Alexander equal; `identify` gives
+`[10_8, mirror: false]`. Only the 10_8 line of `table.derived.mjs` changed (new labels), and the kit's `table.mjs` was
+re-copied with the `sed` in `src/kit/knots/README.md`. The verification block below is the original run (10_8 then came from
+the DT code).
 
 ## Verification (output of `node src/lab/knots/provenance/derive.mjs`, 2026-10-14)
 

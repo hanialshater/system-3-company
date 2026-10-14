@@ -18,7 +18,7 @@
 //         "Braid Groups", GTM 247 (2008)).
 //   AD    C. Adams, "The Knot Book" (1994): Hopf link = closure of sigma_1^2; Whitehead link as a 3-braid.
 //   C70   J. H. Conway, "An enumeration of knots and links, and some of their algebraic properties", in
-//         Computational Problems in Abstract Algebra (1970) 329-358 (Conway notation; 7_5 = 322).
+//         Computational Problems in Abstract Algebra (1970) 329-358 (Conway notation; 7_5 = 322, 10_8 = 514).
 //   BZ    G. Burde, H. Zieschang, "Knots", de Gruyter (1985/2003), ch. 12: a 2-bridge knot with Conway
 //         notation a1 a2 ... an is the plat closure of the 4-braid s2^a1 s1^-a2 s2^a3 ... (derive.mjs, platGauss).
 //   WRITHE  the chirality bit follows the Rolfsen / Knot Atlas diagrams the README's convention fixes
@@ -41,7 +41,7 @@ export const SOURCES = [
   { name: '7_5', conway: [3, 2, 2], w: -7, rev: [0], u: 2, cite: 'C70, R76, BZ, KI' },
   { name: '7_6', dt: [4, 8, 12, 2, 14, 6, 10], w: -3, u: 1, cite: 'R76, KI' },
   { name: '7_7', dt: [4, 8, 10, 12, 2, 14, 6], w: -1, u: 1, cite: 'R76, KI' },
-  { name: '10_8', dt: [6, 14, 12, 16, 18, 20, 4, 2, 8, 10], w: -2, rev: [0], c: 10, u: 2, cite: 'R76, KI' },
+  { name: '10_8', conway: [5, 1, 4], w: -2, rev: [0], c: 10, u: 2, cite: 'C70, R76, BZ, KI' },
   { name: 'L2a1', braid: [-1, -1], w: -2, alias: 'hopf', c: 2, cite: 'AD, LI' },
   { name: 'L5a1', braid: [1, -2, 1, -2, -2], w: -1, rev: [0, 1], alias: 'whitehead', c: 5, cite: 'AD, LI' },
   { name: 'L6a4', braid: [1, -2, 1, -2, 1, -2], w: 0, rev: [2], alias: 'borromean', c: 6, a: true, cite: 'BIR, LI' },
