@@ -1,0 +1,92 @@
+{
+  "slug": "drop-the-losing-start",
+  "title": "Drop the stretch that went negative",
+  "hook": "Nine days of gains and losses. Find the best run without trying every pair.",
+  "domain": "cs",
+  "concept": "max-subarray",
+  "format": "Storyboard / scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a running total (assumed)"
+    ],
+    "doesNotKnow": [
+      "that a negative running total can be thrown away",
+      "Kadane's algorithm"
+    ]
+  },
+  "misconception": "To find the best stretch of days you must check every start and end pair.",
+  "objective": "The learner can explain that a stretch whose total has gone negative can only drag down what follows, so starting over there never loses the best stretch, and one pass over 9 days finds the same best (6) as checking all 45 stretches.",
+  "claims": [
+    {
+      "id": "cs.drop-the-losing-start.c1",
+      "text": "Nine days make 45 stretches of consecutive days (9 x 10 / 2), and the biggest total over any of them is 6, from days 4 to 7 (4 - 1 + 2 + 1); no other stretch reaches 6.",
+      "support": "simulation",
+      "source": "Builder's node script over all start-end pairs of -2 1 -3 4 -1 2 1 -5 4: 45 pairs, maximum 6, achieved only at days 4-7. The stage's triangle is the same brute force (PAIR in Demo.tsx).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.drop-the-losing-start.c2",
+      "text": "The line that never starts over (running total -2 -1 -4 0 -1 1 2 -3 1) never gets above 2.",
+      "support": "simulation",
+      "source": "Builder's node script: cumulative sums of -2 1 -3 4 -1 2 1 -5 4 are -2, -1, -4, 0, -1, 1, 2, -3, 1; maximum 2. The same line is drawn on the stage as 'Kept everything'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.drop-the-losing-start.c3",
+      "text": "Starting over whenever the running total is below 0 gives running totals -2 | 1 -2 | 4 3 5 6 1 5 (start-overs after day 1 and after day 3), and the best total on the way is 6.",
+      "support": "simulation",
+      "source": "Builder's node script, one pass with reset when the total is below 0: totals -2, then 1, -2, then 4, 3, 5, 6, 1, 5; best 6, matching the 45-pair maximum (c1). A walk by the learner with different start-overs can end lower; the reveal quotes the start-overs the learner actually made on a walk that reached 6 (any walk reaching 6 must start over after day 3).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.drop-the-losing-start.c4",
+      "text": "A stretch whose total has gone negative can only drag down what follows, so dropping it never loses the best stretch.",
+      "support": "derivation",
+      "source": "If the stretch so far sums to a negative number T, any stretch that continues it has total T + (rest) < rest, so starting fresh right after it is always at least as good. This is the correctness argument for Kadane's algorithm; also exercise 4.1-5 in CLRS (linear-time maximum subarray).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.drop-the-losing-start.c5",
+      "text": "One pass over the days replaces checking all 45 stretches; this is Kadane's algorithm.",
+      "support": "source",
+      "source": "Bentley, 'Programming Pearls: Algorithm Design Techniques', CACM 27(9), 1984, credits Kadane for the linear-time scan; CLRS exercise 4.1-5 asks for the linear-time solution. Builder's node check: the one-pass best equals the brute-force best for this list (6) and for 20,000 random lists.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Running total of daily gains: it is -3 after a few days. What does the best-run scan do?",
+    "options": [
+      "Starts over: this stretch can only drag down what follows",
+      "Keeps going: the next days might make up for it",
+      "Goes back and tries every earlier start"
+    ],
+    "answer": 0,
+    "why": "A negative total added to any continuation makes it smaller, so starting fresh is at least as good. That is why one pass is enough."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:max-subarray",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      { "work": "clrs-4e", "chapter": 4, "section": "4.1", "note": "Maximum-subarray problem; exercise 4.1-5 gives the linear-time scan" }
+    ],
+    "tags": ["running-total", "kadane", "one-pass"]
+  },
+  "interactions": ["choice-before-reveal", "storyboard-scrub", "step-run-button", "toggle-before-after", "locked-readouts", "milestone-gate"]
+}
