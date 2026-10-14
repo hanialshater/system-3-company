@@ -3087,26 +3087,83 @@
       "id": "W-259",
       "title": "Reveal on a phone: where stage controls + reveal are taller than the card body (a-star-heads-for-goal, every-second-seat-out, midnight-sun-line: 100-275px of stage top still scrolled off after the picture-only fit), decide: trim/hide stage controls at the reveal, shorter reveals, or a reveal that scrolls inside itself (relaxes W-135). Data: company/engineering/notes/2026-10-14-reveal-stage-crop.md",
       "owner": "design-lead",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-260",
+      "title": "eratosthenes-shadow v4 (W-258 ruling, company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md 'Ruling on W-258'): stage-only reword. Question: \"In this lesson's story, at noon a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?\" Stage label (2 lines): \"Syene, in the story:\" / \"Sun overhead, no shadow\". Chip: \"The story: 7.2°\". Reveal: replace the 'In the account, the Sun stood ... no shadow.' sentence and ', as the account tells it.' with \"This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story's numbers.\" c5 text = \"This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow.\" (support derivation, drop the Cleomedes reading from source). c1 text = \"This lesson's story: at noon a well at Syene has no shadow, a pole's shadow in Alexandria makes 7.2 degrees, and the distance is 5,000 stadia, giving 250,000 stadia.\" (support simulation, drop Cleomedes/Strabo/Pliny from source). Both unverified, checkedBy/checkedOn cleared. Also: the hook ('Over 2,000 years ago someone sized...') is an unrecorded learner-visible claim; record it as unverified or reword stage-only. Then add a fact-checker re-check of c1 and c5.",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": "geography",
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-261",
+      "title": "the-slowing-half-life c3: support field still says 'source'; set it to 'derivation' (FC pass 27 verified it on derivation, t1/2 = ln2/k plus the stage's 1st-order waits row, not on Atkins). Claim text unchanged; note the field change in source. See company/reviews/the-slowing-half-life/2026-10-14-fact-check.md Pass 27",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": "chemistry",
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-262",
+      "title": "eratosthenes-shadow v4 (W-260): re-check c1 (simulation), c5 (derivation) and new c6 (hook) against the stage only, per 'Ruling on W-258' in company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md. Pre-flight v4 in build.md (read after findings).",
+      "owner": "fact-checker",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
       "links": []
     },
     {
-      "id": "W-260",
-      "title": "eratosthenes-shadow v4 (W-258 ruling, company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md 'Ruling on W-258'): stage-only reword. Question: \"In this lesson's story, at noon a well in Syene has no shadow; in Alexandria a pole's shadow makes 7.2°. The Earth's circumference is how many times their distance?\" Stage label (2 lines): \"Syene, in the story:\" / \"Sun overhead, no shadow\". Chip: \"The story: 7.2°\". Reveal: replace the 'In the account, the Sun stood ... no shadow.' sentence and ', as the account tells it.' with \"This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story's numbers.\" c5 text = \"This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow.\" (support derivation, drop the Cleomedes reading from source). c1 text = \"This lesson's story: at noon a well at Syene has no shadow, a pole's shadow in Alexandria makes 7.2 degrees, and the distance is 5,000 stadia, giving 250,000 stadia.\" (support simulation, drop Cleomedes/Strabo/Pliny from source). Both unverified, checkedBy/checkedOn cleared. Also: the hook ('Over 2,000 years ago someone sized...') is an unrecorded learner-visible claim; record it as unverified or reword stage-only. Then add a fact-checker re-check of c1 and c5.",
+      "id": "W-263",
+      "title": "Adopt or refuse (with an objection in the record) the phone-fit rule proposed in company/decisions/2026-10-14-reveal-fits-with-its-picture.md: one Text-budget line plus Pre-flight question 7 in company/product/demo-standard.md (exact text in the decision). Also reconcile the reveal budget: demo-standard says 120 words, company/design/system.md says 90. Design lead did NOT edit demo-standard (no head-of-product agreement this session).",
+      "owner": "head-of-product",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-264",
+      "title": "W-259 follow-on, after W-242: run tools/reveal-fit.mjs stage-top crop at 390x844 over all lessons (feed and /d), write the list of lessons with crop > 0 px (and whether the element the reveal names is on screen) to company/engineering/notes/, then add one demo-builder board item per category. Do NOT change useRevealFit's scroll order (the reveal's last line stays on screen) or make the reveal an inner scroller; see company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-265",
+      "title": "W-259 small crops (decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md): bending-frontier (33 px) and one-odd-loop-blocks-two-camps (45 px). Cut about 2 lines of reveal or stage text each (bending-frontier: the muted model line can move onto the stage caption; one-odd-loop: tighten paragraph 1), no claim meaning changed; re-measure stage-top crop = 0 at 390x844 and note it in build.md Pre-flight. If a cut drops a claimed sentence, ask the category manager first",
       "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-266",
+      "title": "W-259 midnight-sun-line (99 px; the globe the reveal names is off screen): reveal is about 115 words. Decide which context to cut or move so the reveal fits about 75 words: the Tropic of Cancer sentence (answers a wrong option?) and the no-air caveat are candidates; the caveat may move to the stage caption, which already says Toy: no air. Content choice, so cm-geography decides, then a demo-builder item. Decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
+      "owner": "cm-geography",
       "state": "next",
       "domain": "geography",
       "created": "2026-10-14",
       "links": []
     },
     {
-      "id": "W-261",
-      "title": "the-slowing-half-life c3: support field still says 'source'; set it to 'derivation' (FC pass 27 verified it on derivation, t1/2 = ln2/k plus the stage's 1st-order waits row, not on Atkins). Claim text unchanged; note the field change in source. See company/reviews/the-slowing-half-life/2026-10-14-fact-check.md Pass 27",
+      "id": "W-267",
+      "title": "W-259 large crops need a stage redesign, not a text trim: every-second-seat-out (275 px: rule line + 340x340 circle + controls + table + long variable reveal) and a-star-heads-for-goal (200 px: rule + grid + controls + table + 2 long paragraphs). Builder proposes a compact stage (e.g. table folded into the picture, one control row) and a reveal at or under 90 words; cm-cs approves any reveal content change; design-lead does the design review (company/reviews/<slug>/<date>-design.md) before learner re-review. Decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md",
       "owner": "demo-builder",
       "state": "next",
-      "domain": "chemistry",
+      "domain": "cs",
       "created": "2026-10-14",
       "links": []
     }

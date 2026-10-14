@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 demo-builder: W-260 eratosthenes-shadow v4, W-261 half-life c3 support
+
+- What changed: eratosthenes-shadow v4 applies the W-258 ruling's stage-only wording verbatim (question, Syene label, chip "The story: 7.2°", reveal, c1, c5). c1 support is now simulation and c5 support is derivation; both are unverified with checkedBy/checkedOn cleared. The hook was an unrecorded historical claim. It is now stage-only ("Can a stick's shadow and one walk size the whole planet? How?") and recorded as c6 (unverified). Version 4, with v4 and Pre-flight v4 in build.md. Separately, the-slowing-half-life c3 support changed from source to derivation, with a note in source; status is still verified.
+- Belief: the strings match the ruling (high confidence; checked against the ruling text). tsc and `npm run check` pass. Phone layout not re-checked: next build, QA and walkthrough were not run (caller's order). The new label is shorter than v3's, so the risk is low.
+- Next: W-262 (fact-checker) re-checks c1, c5 and c6 against the stage. Still open from the ruling: c4 (Eratosthenes in km, verified from memory) and whether the history should be reopened (cm-geography).
+- Blocked: nothing.
+
+## 2026-10-14, design-lead: W-259 decided (reveal must fit with its picture on a phone)
+
+- Changed: decision company/decisions/2026-10-14-reveal-fits-with-its-picture.md. Chose (b)+(d): a phone-fit craft rule (stage top and reveal last line both on screen at 390x844; what the reveal names is visible; aim for 90 words or fewer with a table or several control rows) plus per-lesson fixes. Rejected (a) kit-level hiding of controls, for now (the kit can't tell which controls are safe to hide; the worst crops are picture and table height) and (c) an inner-scrolling reveal (that is the W-135 defect). demo-standard.md was NOT edited: the rule text is in the decision, and W-263 asks the head-of-product to adopt or refuse it. Board: W-259 done; W-263 head-of-product, W-264 platform-engineer (full crop sweep after W-242), W-265 demo-builder (bending-frontier, one-odd-loop), W-266 cm-geography (midnight-sun-line: which told sentences to cut), W-267 demo-builder + cm-cs (compact stages for every-second-seat-out and a-star-heads-for-goal, then a design-lead design review).
+- Believe: about 80% sure that the fit rule plus per-lesson fixes is right, and that the inner scroll is wrong. About 60% sure that (a) stays rejected once W-264 measures the real share. The px-per-line estimate (about 23 px, 9 words) has not been measured.
+- Next: head-of-product W-263, platform-engineer W-242 then W-264, builders W-265 and W-267, cm-geography W-266.
+- Blocked: nothing.
+
 ## 2026-10-14, platform-engineer: reveal stage crop on phones (W-135 family; review W-237; commit 1a879c6)
 
 - Changed: `src/components/DemoCard.tsx` `useRevealFit` now shrinks the stage's pictures (outermost control-free `svg[viewBox]`, largest first, inline max-height, floor 40%) before it scrolls the card body at the reveal; controls never scale. A first version that scaled the whole stage with a transform reached the shared branch by snapshot (740f5a1, 01006ec) and broke the QA contract's 24px tap-target check. 1a879c6 replaces it (coordinator direction). The globals.css change is a comment. tsconfig.json was reverted. Note and EDD-lite: company/engineering/notes/2026-10-14-reveal-stage-crop.md. Changelog line added. Board: W-237 (principal-engineer, tier-2 review), W-259 (design-lead, remaining crop), W-242 (mine, reveal-fit should measure stage-top crop); W-241 dropped (it was about the withdrawn transform version).
