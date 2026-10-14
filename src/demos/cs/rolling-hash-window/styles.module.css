@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.model { margin: 0; font-size: 0.8rem; color: var(--muted); text-align: center; }
+.msg { margin: 0; text-align: center; font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums; min-height: 1.4em; }
+.flag { margin: 0; text-align: center; font-size: 0.85rem; min-height: 2.4em; }
+.good { color: var(--good); }
+.bad { color: var(--bad); }
+.letter { font-size: 13px; font-weight: 800; fill: var(--fg); }
+.val { font-size: 9px; fill: var(--muted); }
+.chipOut { font-size: 10px; font-weight: 800; fill: var(--bad); }
+.chipIn { font-size: 10px; font-weight: 800; fill: var(--good); }
+.count { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hist { margin: 0; text-align: center; font-size: 0.85rem; color: var(--fg); font-variant-numeric: tabular-nums; }
+.btn { min-height: 44px; }

@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.model { margin: 0; font-size: 0.8rem; color: var(--muted); text-align: center; }
+.read { margin: 0; text-align: center; font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; min-height: 1.3em; }
+.good { color: var(--good); }
+.axis { font-size: 10px; fill: var(--muted); }
+.lab { font-size: 10px; font-weight: 700; fill: var(--fg); }
+.tgt { font-size: 10px; font-weight: 700; fill: var(--warn); }
+.btn { min-height: 44px; }
+.find { font-size: 0.8rem; color: var(--muted); align-self: center; }
+.tally { margin: 0; font-size: 0.85rem; text-align: center; color: var(--fg); font-variant-numeric: tabular-nums; min-height: 2.6em; }
+.tally span { display: block; }
