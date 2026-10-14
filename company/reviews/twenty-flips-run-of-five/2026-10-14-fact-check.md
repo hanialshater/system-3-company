@@ -32,3 +32,13 @@ Checker: fact-checker. I wrote and built none of these claims. Scope: every open
 | c6 | unverified | HELD (not learner-visible). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Bar-Hillel and Wagenaar 1991 not opened. |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 40 (2026-10-14, W-852)
+
+Checker: fact-checker (fresh instance). I wrote and built none of these claims. Scope: c6, the only open claim in this lesson. Method: I read Demo.tsx first. A grep finds no 'random', 'people' or 'human' string, which confirms that c6 is not learner-visible. Web: sciencedirect.com, doi.org, cris.huji.ac.il and the secondary hosts I tried (pmc.ncbi.nlm.nih.gov, europepmc.org, dlab.sauder.ubc.ca, labs.la.utexas.edu, srri.umass.edu) return proxy 403 from curl or ENOTFOUND from web fetch. I found no GitHub raw or PyPI copy of Bar-Hillel and Wagenaar (1991). I did not use search-result snippets as evidence.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | unverified | HELD (not learner-visible). Source not opened (hosts above). There is nothing to re-derive in node: the chance baseline (repeat or switch with probability 1/2) is c4, which is already verified. The claim is about human behaviour and needs the empirical source. **Fallback (builder):** no learner sees this sentence, so delete c6 from meta.json; the reveal already compares the learner's own taps with the tally (c5). Alternatively, replace it with a derivation the stage supports, e.g. 'A fair coin switches faces half the time, so in 20 flips the longest run is usually 4 or more'. I checked that against all 2^20 sequences in my own node brute force: P(longest ≥ 4) = 0.7684. |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified).

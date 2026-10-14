@@ -68,3 +68,13 @@ Checker: fact-checker. I wrote and built none of these claims. Scope: every open
 | c5 | unverified | HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. The learner caption ('Model: both rational, both know the shrink') matches share()/limit(); the attribution to Rubinstein 1982 is in the claim text only. Option for the owner, as in pass 35: drop the attribution from the claim text and mark it convention. |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 40 (2026-10-14)
+
+Checker: fact-checker (fresh instance). I wrote and built none of these claims. Scope: c5, the only open claim in this lesson. Method: I read Demo.tsx (share(), limit(), stepText(), the stage caption at line 120) first, then the claim. I re-derived the model in my own node script (session scratchpad fc40/c5.mjs). Web: jstor.org, doi.org, econometricsociety.org, arielrubinstein.tau.ac.il, econpapers.repec.org, web.archive.org, en.wikipedia.org and the lecture-note hosts I tried (uio.no, csc.liv.ac.uk, aueb.gr, arxiv.org, gametheory101.com) return proxy 403 from curl or ENOTFOUND from web fetch. The GitHub search API is limited to this session's repositories, and I found no GitHub raw or PyPI copy of Rubinstein (1982) or Easley and Kleinberg ch. 12. I did not use search-result snippets as evidence.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | unverified | HELD. Source not opened (hosts above). What I checked: an independent finite alternating-offers backward induction (common discount d = 1 − shrink, the responder accepts when indifferent) equals Demo.tsx share() for n = 1..400 at 10/30/50% shrink, with 0 mismatches. It tends to 1/(1 + d) = limit() (52.6 / 58.8 / 66.7%). The learner caption 'Model: both rational, both know the shrink' describes those assumptions. Only the name 'Rubinstein's' is unchecked, and learners do not see it. **Fallback (builder):** change the claim text to 'This is a simplified model of alternating offers: both players are rational and know the shrink rate.', support 'derivation', source 'Demo.tsx share()/limit(): proposers alternate, each refusal shrinks the pie by the stated rate, backward induction with common knowledge of the shrink'. A fact-checker can verify that from the code without the paper. |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified). This lesson stays gated on c5 until the builder applies the fallback (or a host that can open Econometrica 50(1) checks it).
