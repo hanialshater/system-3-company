@@ -1,0 +1,95 @@
+{
+  "slug": "ruler-start-not-zero",
+  "title": "Subtract the starting mark",
+  "hook": "Which reading gives this object’s length?",
+  "domain": "lifehacks",
+  "concept": "ruler-start-not-zero",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The object begins at the three-centimetre mark. Its length is the endpoint minus its start; the endpoint reading alone includes the unused part of the ruler."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The object begins at the three-centimetre mark. Its length is the endpoint minus its start; the endpoint reading alone includes the unused part of the ruler.",
+  "claims": [
+    {
+      "id": "lifehacks.ruler-start-not-zero.c1",
+      "text": "The object begins at the three-centimetre mark. Its length is the endpoint minus its start; the endpoint reading alone includes the unused part of the ruler.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Length=endpoint−3cm; raw endpoint overstates length by3cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ruler-start-not-zero.c2",
+      "text": "A damaged zero can be bypassed with a known start, but check the ruler’s scale.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Length=endpoint−3cm; raw endpoint overstates length by3cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ruler-start-not-zero.c3",
+      "text": "Length=endpoint−3cm; raw endpoint overstates length by3cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ruler-start-not-zero.c4",
+      "text": "Which reading gives this object’s length?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.ruler-start-not-zero.c5",
+      "text": "Recall: An object starts at the 4 cm mark and ends at the 19 cm mark. What is its length? Correct answer: 15 cm. Length is the endpoint minus the starting mark: 19 − 4 = 15 cm. Reading 19 cm alone includes the unused four centimetres before the object.",
+      "support": "derivation",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.ruler-start-not-zero.c1–c3; Length is the endpoint minus the starting mark: 19 − 4 = 15 cm. Reading 19 cm alone includes the unused four centimetres before the object.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An object starts at the 4 cm mark and ends at the 19 cm mark. What is its length?",
+    "options": [
+      "15 cm",
+      "19 cm",
+      "23 cm"
+    ],
+    "answer": 0,
+    "why": "Length is the endpoint minus the starting mark: 19 − 4 = 15 cm. Reading 19 cm alone includes the unused four centimetres before the object."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/ruler-start-not-zero/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:ruler-start-not-zero",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

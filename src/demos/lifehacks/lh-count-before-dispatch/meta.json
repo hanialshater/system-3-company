@@ -1,0 +1,95 @@
+{
+  "slug": "lh-count-before-dispatch",
+  "title": "A count correction travels forward",
+  "hook": "The record says ten, the shelf has eight. Which count remains after shipping three?",
+  "domain": "lifehacks",
+  "concept": "lh-count-before-dispatch",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Propagate a counted inventory discrepancy through a later transaction."
+    ]
+  },
+  "misconception": "A later dispatch automatically fixes an earlier inventory error.",
+  "objective": "Propagate a counted inventory discrepancy through a later transaction.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-count-before-dispatch.c1",
+      "text": "The physical count is two below the record. Three units are then dispatched. Scaled model; count difference=2; dispatch=3; no receipts.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-before-dispatch.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Record=10, A=5items and B=7items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",\"x\",5]; B=[\"-\",\"x\",3]; x denotes Record. At x=10, A=5, B=7; recall at x=13: B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-before-dispatch.c3",
+      "text": "Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",\"x\",5]; B=[\"-\",\"x\",3]; x denotes Record. At x=10, A=5, B=7; recall at x=13: B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-before-dispatch.c4",
+      "text": "The physical count is two below the record. Three units are then dispatched. Change only Record to 13. What is B (Recorded) now? Correct: 10items. Use B's stated rule with Record=13: it gives 10items. Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",\"x\",5]; B=[\"-\",\"x\",3]; x denotes Record. At x=10, A=5, B=7; recall at x=13: B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The physical count is two below the record. Three units are then dispatched. Change only Record to 13. What is B (Recorded) now?",
+    "options": [
+      "10items",
+      "8items",
+      "12items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Record=13: it gives 10items. Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-count-before-dispatch/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "The physical count is two below the record. Three units are then dispatched.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-count-before-dispatch",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

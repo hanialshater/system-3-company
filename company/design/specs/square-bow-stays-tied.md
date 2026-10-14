@@ -49,3 +49,9 @@ Laces `--domain`; shoes `--line` outline on `--bg-2`. Meter fill `--good` above 
 
 ## Claims this spec adds
 Loss rates −35% / −10% per 10 steps are illustrative (brief claim 5); "undone at step 30" is a consequence of them, not a measurement. The model line says so.
+
+## 200-lesson review collection
+
+The implementation variant in the founder-requested 200-lesson PR is described in
+`company/design/specs/square-bow-stays-tied-collection-200.md`. It remains in review; this addition does not attest that
+the original specification or publication gates have been met.

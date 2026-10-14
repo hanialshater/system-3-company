@@ -584,6 +584,16 @@ who no longer exists: check what you rely on.
 - Next: chief of staff runs integrated build, QA and walkthrough sheets; look at the new controls on phone (two-flips-slip-by, midnight-sun-line day strip, two-bulges arrows). Then fact-checker on unverified claims.
 
 
+## 2026-10-14 · chief-of-staff · PR 2 sync and completed browser regression
+
+_Imported from PR #2 (`codex/lifehacks-200` @ `71e99fee`) in the merge; board ids remapped W-176→W-354, W-177→W-355, W-178→W-356. Contributor testimony, not verified._
+
+- Changed: synchronized PR 2's source with upstream `840ba7ad`, retaining newer lesson fixes, shared color/reveal improvements and the company-role addition. Preserved all 175 upstream board items and the full event prefix. Life Hacks IDs are W-354 (review), W-355/W-356 (backlog). Repaired one target tile's fill/text contrast in `AlphabetSearchLesson.tsx`; no lesson behavior or claims changed.
+- Verified: full merged-layout browser regression 1456/1456, zero retries; final target repair two phone/desktop contracts plus four actual computed-color checks at 10.04:1. 17 deployment and 48 Life Hacks fixtures passed; check/typecheck/build passed on the repaired source. The initial concurrent rebuild exited 137; a serial retry passed. Records: `company/reviews/lifehacks-200/2026-10-14-validation.md`, `company/reviews/alphabet-sort-search/2026-10-14-integration-contrast.md`.
+- Believe: high confidence in tested contracts and the one target contrast pair. All 200 remain review with 883 unverified claims. No broad accessibility, factual, human-learning or publication clearance follows from this run.
+- Next: independent fact-checking and remaining reviews via W-355/W-356. PR 2 remains open for review; branch update reruns GitHub CI. Original head's constitution/verify checks succeeded.
+- Blocked: Vercel's bot reports the daily 100-deployment quota (`api-deployments-free-per-day`), retry in 24 hours. No working preview or production deployment is claimed.
+
 ## 2026-10-14 · interaction-designer · specs for a-star-heads-for-goal and rubber-band-hull (CS algorithms, group 6)
 - Changed: wrote `company/design/specs/a-star-heads-for-goal.{md,svg}` (before/after: guess chips + wall toggle, replayed runs, result table) and `company/design/specs/rubber-band-hull.{md,svg}` (step-through: the 9 pins are the controls in walk order, no finish button). Board untouched (caller's instruction).
 - Believe (high): both briefs' answers re-run in node: A* 7 vs Dijkstra 31 on the open grid, any tie-break; hull 6 pins, 4 right-turn pops in Graham order. Medium: whether the design lead accepts replay buttons ("Settle to goal") as not being a jump to the answer.
@@ -635,6 +645,17 @@ who no longer exists: check what you rely on.
 ## 2026-10-14 wave C, builder 7: revisions of 11 lessons
 
 Changed (see "Revision v<N>" in each company/reviews/<slug>/build.md): cut-the-cube-surface, dilute-until-none-left, heavy-but-floats, pay-first-then-profit, filament-vs-led-heat, pendulum-period, projectile-angle, puck-on-ice-no-push (phone clip: reveal-phase `.stage-svg {flex: none}` rule widened the lanes), point-one-is-26-percent (c3), collect-all-six-faces, tournament-second-best. QA passes except the known feed-chips failure (W-136). I believe the fixes work (walkthrough sheets and a phone probe seen); fairly sure. Edited claims are unverified (dilute c7 new, point-one c3): fact-checker next. Open: pendulum gate still needs only the weight trial (no one-tap path for a second trial); re-review wanted for all 11. collect-all-six-faces had no stuck label in the current code.
+
+## 2026-10-14 · chief-of-staff · 200 Life Hacks review collection and PR
+
+_Imported from PR #2 (`codex/lifehacks-200` @ `71e99fee`) in the merge; board ids remapped W-176→W-354, W-177→W-355, W-178→W-356. Contributor testimony, not verified._
+
+- Changed: exactly 200 new Life Hacks (70 home, 70 study, 60 resource), shared pure models and responsive SVG stages, 200 QA records, curriculum coverage and metadata v2. Latest upstream checkpoint `aef5a704` retained, including its 14 CS lessons and shared reveal sizing; app total 723. Work is W-354 in review.
+- Verified: 17 deployment fixtures, 48 Life Hacks fixtures, check/typecheck/build; final 410 browser tests (400 contracts plus 10 feed tests), zero retries. Nine revised recalls also passed 18 real phone/desktop revisit checks with seeded history. Protected paths and unrelated lesson code match the final upstream checkpoint. Company check passes with three upstream CS disputed-claim warnings.
+- Independent findings: 200 safety transcript reads and 20 focused main sheets, 21 artifact-first learner samples, and specific design rechecks. Latest sampled learner recommendations are 13 launch / eight revise / zero fatal against their recorded versions. Detailed scopes, hashes and limitations are in `company/reviews/lifehacks-200/` and the design handoff; these are not human-learning results.
+- Believe now: high confidence in the tested browser contract and stipulated calculations; no empirical, accessibility or general factual clearance is inferred. All 200 remain review, confidence empty, all 883 claims unverified; Life Hacks stays incubating. Source snapshots preserve the earlier audited builds in the PR history.
+- Next: W-355 (fact-checker) independently checks addressed claims in batches of at most 15; W-356 (learner-evaluator with designer/safety support) closes specific remaining findings and reviews the other 179 lessons. First-five incubation, human-learning and publication gates remain in force. No merge, publication or deployment performed for this task.
+- Handoff: `content/collections/lifehacks-200.json`, `company/reviews/lifehacks-200/2026-10-14-validation.md`, dated safety/learner indices, and `company/design/specs/lifehacks-design-handoff.md`.
 
 Template:
 

@@ -1,0 +1,95 @@
+{
+  "slug": "trays-slide-out-reach",
+  "title": "Move the tray, shorten the reach",
+  "hook": "Which position reduces the shown horizontal reach?",
+  "domain": "lifehacks",
+  "concept": "trays-slide-out-reach",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Sliding the tray brings the same back item toward the front. The drawing subtracts travel from depth; it changes access distance without changing the shelf’s storage volume."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Sliding the tray brings the same back item toward the front. The drawing subtracts travel from depth; it changes access distance without changing the shelf’s storage volume.",
+  "claims": [
+    {
+      "id": "lifehacks.trays-slide-out-reach.c1",
+      "text": "Sliding the tray brings the same back item toward the front. The drawing subtracts travel from depth; it changes access distance without changing the shelf’s storage volume.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Reach=depth or max(0,depth−30)cm, selected tray travel30cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.trays-slide-out-reach.c2",
+      "text": "Use trays and slides within their limits; this card models only horizontal distance.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Reach=depth or max(0,depth−30)cm, selected tray travel30cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.trays-slide-out-reach.c3",
+      "text": "Reach=depth or max(0,depth−30)cm, selected tray travel30cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.trays-slide-out-reach.c4",
+      "text": "Which position reduces the shown horizontal reach?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.trays-slide-out-reach.c5",
+      "text": "Which dimension changes when a rear item rides forward on a tray?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which dimension changes when a rear item rides forward on a tray?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Sliding the tray brings the same back item toward the front. The drawing subtracts travel from depth; it changes access distance without changing the shelf’s storage volume. Use trays and slides within their limits; this card models only horizontal distance."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/trays-slide-out-reach/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:trays-slide-out-reach",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

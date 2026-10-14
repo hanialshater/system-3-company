@@ -1,0 +1,86 @@
+{
+  "slug": "cover-before-recall",
+  "title": "Cover before you test",
+  "hook": "Seeing the answer and retrieving it are different activities.",
+  "domain": "lifehacks",
+  "concept": "cover-before-recall",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Perform a closed-answer check before using feedback."
+    ]
+  },
+  "misconception": "Answer beside the cue",
+  "objective": "Perform a closed-answer check before using feedback.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Seeing the answer and retrieving it are different activities. Which check asks you to retrieve an answer? Correct option: Answer covered. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.cover-before-recall.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.cover-before-recall.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, cover-before-recall fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "id": "lifehacks.cover-before-recall.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Answer covered. Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.cover-before-recall.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which check asks you to retrieve an answer?",
+    "options": [
+      "Answer covered",
+      "Answer beside the cue"
+    ],
+    "answer": 0,
+    "why": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/cover-before-recall/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:cover-before-recall",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

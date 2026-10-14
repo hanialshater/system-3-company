@@ -1,0 +1,95 @@
+{
+  "slug": "lh-weighted-bill-share",
+  "title": "Equal people, unequal portions",
+  "hook": "Two full portions and one half portion: what does one full portion represent?",
+  "domain": "lifehacks",
+  "concept": "lh-weighted-bill-share",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate a weighted share and distinguish it from equal-person division."
+    ]
+  },
+  "misconception": "Equal headcounts and equal consumption weights always produce the same split.",
+  "objective": "Calculate a weighted share and distinguish it from equal-person division.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-weighted-bill-share.c1",
+      "text": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people. Scaled model; fictional bill; agreed portion weights.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-bill-share.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Bill=30€, A=€12 and B=€10. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2.5]; B=[\"/\",\"x\",3]; x denotes Bill. At x=30, A=12, B=10; recall at x=33: B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-bill-share.c3",
+      "text": "A weighted split divides by 2.5 portion units rather than three people. A full portion gets one unit; the half portion gets half a unit. This is arithmetic under an agreed rule, not a recommendation for splitting bills.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2.5]; B=[\"/\",\"x\",3]; x denotes Bill. At x=30, A=12, B=10; recall at x=33: B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-bill-share.c4",
+      "text": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people. Change only Bill to 33€. What is B (Equal-people) now? Correct: €11. Use B's stated rule with Bill=33€: it gives €11. A weighted split divides by 2.5 portion units rather than three people. A full portion gets one unit; the half portion gets half a unit. This is arithmetic under an agreed rule, not a recommendation for splitting bills.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2.5]; B=[\"/\",\"x\",3]; x denotes Bill. At x=30, A=12, B=10; recall at x=33: B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people. Change only Bill to 33€. What is B (Equal-people) now?",
+    "options": [
+      "€11",
+      "€13.2",
+      "€13"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Bill=33€: it gives €11. A weighted split divides by 2.5 portion units rather than three people. A full portion gets one unit; the half portion gets half a unit. This is arithmetic under an agreed rule, not a recommendation for splitting bills."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-weighted-bill-share/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-weighted-bill-share",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "coiled-cord-bend-radius",
+  "title": "Tighter coils, more curvature",
+  "hook": "Which coil bends the cord more gently?",
+  "domain": "lifehacks",
+  "concept": "coiled-cord-bend-radius",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes.",
+  "claims": [
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c1",
+      "text": "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c2",
+      "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c3",
+      "text": "Circumference=2πr; turns=200/(2πr); curvature=1/r cm⁻¹; comparison radius=2r.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c4",
+      "text": "Which coil bends the cord more gently?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.coiled-cord-bend-radius.c5",
+      "text": "Which dimension determines the sharpness of a circular bend?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which dimension determines the sharpness of a circular bend?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A circle’s curvature is the reciprocal of its radius. A larger-radius loop uses more length per turn and bends less sharply; neither the cord material nor total length changes. Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/coiled-cord-bend-radius/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:coiled-cord-bend-radius",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

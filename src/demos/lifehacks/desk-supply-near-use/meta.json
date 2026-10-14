@@ -1,0 +1,95 @@
+{
+  "slug": "desk-supply-near-use",
+  "title": "Store it where the route ends",
+  "hook": "Which location reduces this repeated retrieval route?",
+  "domain": "lifehacks",
+  "concept": "desk-supply-near-use",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location.",
+  "claims": [
+    {
+      "id": "lifehacks.desk-supply-near-use.c1",
+      "text": "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Distance=2×input metres×6 uses or0m at use point.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.c2",
+      "text": "The model ignores setup and clutter; it is not a productivity measurement.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Distance=2×input metres×6 uses or0m at use point.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.c3",
+      "text": "Distance=2×input metres×6 uses or0m at use point.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.c4",
+      "text": "Which location reduces this repeated retrieval route?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.desk-supply-near-use.c5",
+      "text": "When can a second storage location remove repeated travel?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When can a second storage location remove repeated travel?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "For the pictured task, retrieving the same supply across the room repeatedly multiplies the walking distance. A copy at the use point removes that route, at the cost of another storage location. The model ignores setup and clutter; it is not a productivity measurement."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/desk-supply-near-use/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:desk-supply-near-use",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

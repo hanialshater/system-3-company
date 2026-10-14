@@ -1,0 +1,86 @@
+{
+  "slug": "project-prefix-filenames",
+  "title": "Add the project to the name",
+  "hook": "Three “notes” files need a clue that survives leaving their folders.",
+  "domain": "lifehacks",
+  "concept": "project-prefix-filenames",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Attach a project identifier to exported filenames."
+    ]
+  },
+  "misconception": "notes.txt alone",
+  "objective": "Attach a project identifier to exported filenames.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Three “notes” files need a clue that survives leaving their folders. Which remains identifiable outside its folder? Correct option: Project-prefixed name. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.project-prefix-filenames.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "A prefix carries the project identifier into the filename. The exercise makes identity visible; it does not estimate search time.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.project-prefix-filenames.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, project-prefix-filenames fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.project-prefix-filenames.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Project-prefixed name. A prefix carries the project identifier into the filename. The exercise makes identity visible; it does not estimate search time.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.project-prefix-filenames.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which remains identifiable outside its folder?",
+    "options": [
+      "Project-prefixed name",
+      "notes.txt alone"
+    ],
+    "answer": 0,
+    "why": "A prefix carries the project identifier into the filename. The exercise makes identity visible; it does not estimate search time."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/project-prefix-filenames/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:project-prefix-filenames",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

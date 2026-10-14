@@ -1,0 +1,95 @@
+{
+  "slug": "sofa-diagonal-room",
+  "title": "The diagonal hides more length",
+  "hook": "Which line can contain the pictured 140cm rod?",
+  "domain": "lifehacks",
+  "concept": "sofa-diagonal-room",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The rectangle’s diagonal is longer than either edge. A thin rod can fit along it when it is too long for the width; area alone does not answer a length-fit question."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The rectangle’s diagonal is longer than either edge. A thin rod can fit along it when it is too long for the width; area alone does not answer a length-fit question.",
+  "claims": [
+    {
+      "id": "lifehacks.sofa-diagonal-room.c1",
+      "text": "The rectangle’s diagonal is longer than either edge. A thin rod can fit along it when it is too long for the width; area alone does not answer a length-fit question.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available length=width or sqrt(width²+90²); rod=140cm. Margin=available−140.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.sofa-diagonal-room.c2",
+      "text": "This is a thin rod, not a sofa manoeuvring guarantee; thickness and entry paths matter.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Available length=width or sqrt(width²+90²); rod=140cm. Margin=available−140.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.sofa-diagonal-room.c3",
+      "text": "Available length=width or sqrt(width²+90²); rod=140cm. Margin=available−140.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.sofa-diagonal-room.c4",
+      "text": "Which line can contain the pictured 140cm rod?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.sofa-diagonal-room.c5",
+      "text": "Why might a thin poster tube fit diagonally but not along a box edge?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why might a thin poster tube fit diagonally but not along a box edge?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The rectangle’s diagonal is longer than either edge. A thin rod can fit along it when it is too long for the width; area alone does not answer a length-fit question. This is a thin rod, not a sofa manoeuvring guarantee; thickness and entry paths matter."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/sofa-diagonal-room/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:sofa-diagonal-room",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

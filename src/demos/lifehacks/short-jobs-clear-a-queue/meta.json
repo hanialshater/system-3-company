@@ -1,0 +1,86 @@
+{
+  "slug": "short-jobs-clear-a-queue",
+  "title": "Clear the short jobs",
+  "hook": "Same total work, different waiting time for the people in this queue.",
+  "domain": "lifehacks",
+  "concept": "short-jobs-clear-a-queue",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Compare total waiting under two orders."
+    ]
+  },
+  "misconception": "Long jobs first",
+  "objective": "Compare total waiting under two orders.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Same total work, different waiting time for the people in this queue. With all jobs ready, which reduces total waiting in this fixture? Correct option: Short jobs first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.short-jobs-clear-a-queue.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Total waiting is the sum of each start time. Moving a short job ahead reduces how long later jobs wait; this objective ignores deadlines.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.short-jobs-clear-a-queue.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, short-jobs-clear-a-queue fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.short-jobs-clear-a-queue.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Short jobs first. Total waiting is the sum of each start time. Moving a short job ahead reduces how long later jobs wait; this objective ignores deadlines.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.short-jobs-clear-a-queue.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With all jobs ready, which reduces total waiting in this fixture?",
+    "options": [
+      "Short jobs first",
+      "Long jobs first"
+    ],
+    "answer": 0,
+    "why": "Total waiting is the sum of each start time. Moving a short job ahead reduces how long later jobs wait; this objective ignores deadlines."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/short-jobs-clear-a-queue/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:short-jobs-clear-a-queue",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

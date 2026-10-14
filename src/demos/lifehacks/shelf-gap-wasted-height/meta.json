@@ -1,0 +1,95 @@
+{
+  "slug": "shelf-gap-wasted-height",
+  "title": "Small boxes under tall gaps",
+  "hook": "Which layout wastes less vertical space above these boxes?",
+  "domain": "lifehacks",
+  "concept": "shelf-gap-wasted-height",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The illustration subtracts box height from shelf clearance. Adjusting unused gap can create useful room elsewhere, provided the new opening still fits the box and hand allowance."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The illustration subtracts box height from shelf clearance. Adjusting unused gap can create useful room elsewhere, provided the new opening still fits the box and hand allowance.",
+  "claims": [
+    {
+      "id": "lifehacks.shelf-gap-wasted-height.c1",
+      "text": "The illustration subtracts box height from shelf clearance. Adjusting unused gap can create useful room elsewhere, provided the new opening still fits the box and hand allowance.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Unused height=gap−12 or max(0,15−12)cm; chosen hand allowance3cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-gap-wasted-height.c2",
+      "text": "Shelf strength and mounting are outside this card; use manufacturer instructions.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Unused height=gap−12 or max(0,15−12)cm; chosen hand allowance3cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-gap-wasted-height.c3",
+      "text": "Unused height=gap−12 or max(0,15−12)cm; chosen hand allowance3cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-gap-wasted-height.c4",
+      "text": "Which layout wastes less vertical space above these boxes?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-gap-wasted-height.c5",
+      "text": "Which clearance should remain when reducing a shelf gap?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which clearance should remain when reducing a shelf gap?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The illustration subtracts box height from shelf clearance. Adjusting unused gap can create useful room elsewhere, provided the new opening still fits the box and hand allowance. Shelf strength and mounting are outside this card; use manufacturer instructions."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/shelf-gap-wasted-height/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:shelf-gap-wasted-height",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

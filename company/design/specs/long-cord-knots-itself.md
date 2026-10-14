@@ -45,3 +45,9 @@ Hero 1:1 (plain cord, not a powered cable): predict phase only, 96×96 slot top 
 
 ## For the learning designer / cm-lifehacks
 Dropping the 4 m end and "tumble once" changes no claim. The reveal's "longer tumbling or floppier string knots more" has no control on the stage, so it must stay reveal text backed by claim (2), or be cut.
+
+## 200-lesson review collection
+
+The implementation variant in the founder-requested 200-lesson PR is described in
+`company/design/specs/long-cord-knots-itself-collection-200.md`. It remains in review; this addition does not attest that
+the original specification or publication gates have been met.

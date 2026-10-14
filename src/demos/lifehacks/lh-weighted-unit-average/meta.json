@@ -1,0 +1,95 @@
+{
+  "slug": "lh-weighted-unit-average",
+  "title": "Average the quantities too",
+  "hook": "Mixing different quantities makes a simple average of unit prices misleading.",
+  "domain": "lifehacks",
+  "concept": "lh-weighted-unit-average",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Compute a quantity-weighted average rather than averaging unit prices blindly."
+    ]
+  },
+  "misconception": "A mixture’s average unit price is always the simple mean of its labels.",
+  "objective": "Compute a quantity-weighted average rather than averaging unit prices blindly.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-weighted-unit-average.c1",
+      "text": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Scaled model; fictional prices; additive masses; no mixing guidance.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-unit-average.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Cheap-mass=2kg, A=4.5€/kg and B=4€/kg. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-unit-average.c3",
+      "text": "Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-unit-average.c4",
+      "text": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Change only Cheap-mass to 5kg. What is B (Chosen-weights) now? Correct: 3.5€/kg. Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Change only Cheap-mass to 5kg. What is B (Chosen-weights) now?",
+    "options": [
+      "3.5€/kg",
+      "4.5€/kg",
+      "5.5€/kg"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-weighted-unit-average/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "money-arithmetic",
+    "reviewRequired": true,
+    "assumptions": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-weighted-unit-average",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

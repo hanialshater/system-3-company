@@ -1,0 +1,95 @@
+{
+  "slug": "rug-chair-pullback",
+  "title": "Chairs need room beyond the table",
+  "hook": "Which rug covers the pictured chair movement?",
+  "domain": "lifehacks",
+  "concept": "rug-chair-pullback",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The drawing reserves space outside the table footprint for the selected chair movement. Adding that allowance at both sides produces a wider rectangle; the table dimensions alone omit it."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The drawing reserves space outside the table footprint for the selected chair movement. Adding that allowance at both sides produces a wider rectangle; the table dimensions alone omit it.",
+  "claims": [
+    {
+      "id": "lifehacks.rug-chair-pullback.c1",
+      "text": "The drawing reserves space outside the table footprint for the selected chair movement. Adding that allowance at both sides produces a wider rectangle; the table dimensions alone omit it.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Rug width=table width or table width+2×60cm; fixed chosen pullback60cm each side.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rug-chair-pullback.c2",
+      "text": "The sixty-centimetre movement is chosen for this illustration, not an ergonomic recommendation. Check actual furniture and clear paths.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Rug width=table width or table width+2×60cm; fixed chosen pullback60cm each side.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rug-chair-pullback.c3",
+      "text": "Rug width=table width or table width+2×60cm; fixed chosen pullback60cm each side.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rug-chair-pullback.c4",
+      "text": "Which rug covers the pictured chair movement?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rug-chair-pullback.c5",
+      "text": "Which extra dimension matters when planning a rug around movable chairs?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which extra dimension matters when planning a rug around movable chairs?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The drawing reserves space outside the table footprint for the selected chair movement. Adding that allowance at both sides produces a wider rectangle; the table dimensions alone omit it. The sixty-centimetre movement is chosen for this illustration, not an ergonomic recommendation. Check actual furniture and clear paths."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/rug-chair-pullback/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:rug-chair-pullback",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

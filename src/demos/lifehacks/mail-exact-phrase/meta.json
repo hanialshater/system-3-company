@@ -1,0 +1,86 @@
+{
+  "slug": "mail-exact-phrase",
+  "title": "Keep the phrase together",
+  "hook": "“Blue folder” and “folder is blue” do not contain the same exact phrase.",
+  "domain": "lifehacks",
+  "concept": "mail-exact-phrase",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish an exact phrase from two unordered words."
+    ]
+  },
+  "misconception": "Words anywhere",
+  "objective": "Distinguish an exact phrase from two unordered words.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: “Blue folder” and “folder is blue” do not contain the same exact phrase. What does a quoted phrase require in this fixture? Correct option: Same adjacent words. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.mail-exact-phrase.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The quoted phrase matches an adjacent sequence. Separate words would match a larger set; quotation changes the matching rule.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "id": "lifehacks.mail-exact-phrase.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, mail-exact-phrase fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.mail-exact-phrase.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Same adjacent words. The quoted phrase matches an adjacent sequence. Separate words would match a larger set; quotation changes the matching rule.",
+      "support": "derivation",
+      "source": "Google Gmail Help, Refine searches in Gmail, operator table; retrieved 2026-10-13: https://support.google.com/mail/answer/7190?hl=en . Fixture tests explicit fields only, not live Gmail conversation-level behaviour.",
+      "id": "lifehacks.mail-exact-phrase.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does a quoted phrase require in this fixture?",
+    "options": [
+      "Same adjacent words",
+      "Words anywhere"
+    ],
+    "answer": 0,
+    "why": "The quoted phrase matches an adjacent sequence. Separate words would match a larger set; quotation changes the matching rule."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/mail-exact-phrase/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:mail-exact-phrase",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

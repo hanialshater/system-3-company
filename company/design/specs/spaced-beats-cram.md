@@ -48,3 +48,9 @@ Hero 1:1: predict phase only, a 96×96 slot at the top right of the stage next t
 
 ## Safety copy guard (from the safety review)
 No sleep, all-nighter or "brain boost" words anywhere on the stage, including axis labels ("evening", not "all night").
+
+## 200-lesson review collection
+
+The implementation variant in the founder-requested 200-lesson PR is described in
+`company/design/specs/spaced-beats-cram-collection-200.md`. It remains in review; this addition does not attest that
+the original specification or publication gates have been met.

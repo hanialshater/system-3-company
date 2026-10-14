@@ -1,0 +1,95 @@
+{
+  "slug": "towel-spread-dries-first",
+  "title": "Same towel, smaller doorway",
+  "hook": "Same water and model flux: which towel layout dries sooner?",
+  "domain": "lifehacks",
+  "concept": "surface-area-drying",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time.",
+  "claims": [
+    {
+      "id": "lifehacks.towel-spread-dries-first.c1",
+      "text": "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time.",
+      "support": "source",
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-spread-dries-first.c2",
+      "text": "Real drying depends on fabric, temperature, humidity and airflow; this is not a twelve-hour promise.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-spread-dries-first.c3",
+      "text": "Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-spread-dries-first.c4",
+      "text": "Same water and model flux: which towel layout dries sooner?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-spread-dries-first.c5",
+      "text": "Recall: Same water and constant model flux: layout A exposes 1 m² and layout B exposes 2 m². How do their model drying times compare? Correct answer: B takes half as long. In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
+      "support": "derivation",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.towel-spread-dries-first.c1–c3; In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Same water and constant model flux: layout A exposes 1 m² and layout B exposes 2 m². How do their model drying times compare?",
+    "options": [
+      "B takes twice as long",
+      "They take the same time",
+      "B takes half as long"
+    ],
+    "answer": 2,
+    "why": "In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/towel-spread-dries-first/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:surface-area-drying",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

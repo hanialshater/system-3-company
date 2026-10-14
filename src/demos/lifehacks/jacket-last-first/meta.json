@@ -1,0 +1,95 @@
+{
+  "slug": "jacket-last-first",
+  "title": "Pack the return order backwards",
+  "hook": "Which stack lets you unpack in the requested order?",
+  "domain": "lifehacks",
+  "concept": "jacket-last-first",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible.",
+  "claims": [
+    {
+      "id": "lifehacks.jacket-last-first.c1",
+      "text": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.c2",
+      "text": "Only this stack is modelled; side-opening bags behave differently.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.c3",
+      "text": "For request order 1..N, pack 1..N causes N−1 blockers for first request; pack N..1 causes 0.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.c4",
+      "text": "Which stack lets you unpack in the requested order?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.jacket-last-first.c5",
+      "text": "Why is the last thing packed sometimes the right first thing to use?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is the last thing packed sometimes the right first thing to use?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A top-access stack behaves last-in, first-out. To retrieve items in a known use order, put them in the reverse order; the item packed last is the first accessible. Only this stack is modelled; side-opening bags behave differently."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/jacket-last-first/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:jacket-last-first",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

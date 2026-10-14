@@ -1,0 +1,86 @@
+{
+  "slug": "deleted-is-a-search-state",
+  "title": "Search the missing-file state",
+  "hook": "A file absent from the active list may be in the exercise’s trash.",
+  "domain": "lifehacks",
+  "concept": "deleted-is-a-search-state",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish active-only search from including deleted items."
+    ]
+  },
+  "misconception": "Active only",
+  "objective": "Distinguish active-only search from including deleted items.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A file absent from the active list may be in the exercise’s trash. Which search includes the trashed note? Correct option: Include trash. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.deleted-is-a-search-state.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The note has a deleted-state flag. Including that state reveals it in this fixture; retention and recovery rules differ across real products.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.deleted-is-a-search-state.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, deleted-is-a-search-state fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.deleted-is-a-search-state.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Include trash. The note has a deleted-state flag. Including that state reveals it in this fixture; retention and recovery rules differ across real products.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.deleted-is-a-search-state.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which search includes the trashed note?",
+    "options": [
+      "Include trash",
+      "Active only"
+    ],
+    "answer": 0,
+    "why": "The note has a deleted-state flag. Including that state reveals it in this fixture; retention and recovery rules differ across real products."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/deleted-is-a-search-state/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:deleted-is-a-search-state",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

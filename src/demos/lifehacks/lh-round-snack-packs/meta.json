@@ -1,0 +1,95 @@
+{
+  "slug": "lh-round-snack-packs",
+  "title": "Round the pack, keep the remainder",
+  "hook": "Three items per guest, ten per pack: how much extra appears?",
+  "domain": "lifehacks",
+  "concept": "lh-round-snack-packs",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Round purchases to whole packs and compute excess quantity."
+    ]
+  },
+  "misconception": "Buying whole packs provides exactly the required quantity.",
+  "objective": "Round purchases to whole packs and compute excess quantity.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-round-snack-packs.c1",
+      "text": "Each guest receives three items. Packs contain ten items and cannot be split at purchase. Scaled model; quantity-only model; indivisible ten-packs.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-snack-packs.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Guests=7, A=30items and B=21items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,[\"ceil\",[\"/\",[\"*\",3,\"x\"],10]]]; B=[\"*\",3,\"x\"]; x denotes Guests. At x=7, A=30, B=21; recall at x=10: B=30. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-snack-packs.c3",
+      "text": "First compute the exact requirement, then divide by pack size and round up. Purchased quantity is a multiple of ten. The gap is an explicit remainder rather than a change in portions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,[\"ceil\",[\"/\",[\"*\",3,\"x\"],10]]]; B=[\"*\",3,\"x\"]; x denotes Guests. At x=7, A=30, B=21; recall at x=10: B=30. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-round-snack-packs.c4",
+      "text": "Each guest receives three items. Packs contain ten items and cannot be split at purchase. Change only Guests to 10. What is B (Required) now? Correct: 30items. Use B's stated rule with Guests=10: it gives 30items. First compute the exact requirement, then divide by pack size and round up. Purchased quantity is a multiple of ten. The gap is an explicit remainder rather than a change in portions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,[\"ceil\",[\"/\",[\"*\",3,\"x\"],10]]]; B=[\"*\",3,\"x\"]; x denotes Guests. At x=7, A=30, B=21; recall at x=10: B=30. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Each guest receives three items. Packs contain ten items and cannot be split at purchase. Change only Guests to 10. What is B (Required) now?",
+    "options": [
+      "30items",
+      "31items",
+      "32items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Guests=10: it gives 30items. First compute the exact requirement, then divide by pack size and round up. Purchased quantity is a multiple of ten. The gap is an explicit remainder rather than a change in portions."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/lh-round-snack-packs/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "safety": {
+    "classification": "quantity-only",
+    "reviewRequired": true,
+    "assumptions": "Each guest receives three items. Packs contain ten items and cannot be split at purchase.",
+    "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+  },
+  "curriculum": {
+    "primary": "lifehacks:lh-round-snack-packs",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

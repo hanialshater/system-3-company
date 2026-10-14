@@ -1,0 +1,51 @@
+# Life Hacks: 200-lesson review collection
+
+owner: chief-of-staff · founder request: 2026-10-14 (Europe/Berlin) · work: W-176
+
+## Decision
+
+The founder requested the latest code, coverage of 200 life hacks, and a pull request.
+Build 200 distinct practical lessons in the existing `lifehacks` category. The scope
+expands the original five-brief incubation batch; it does not change publication gates
+or activate the category. The PR is a review collection.
+
+Three isolated builder scopes cover household organisation and physical mechanisms,
+study/planning/digital work, and shopping/resource arithmetic. Each lesson owns its
+metadata, prediction, recall question and claim addresses. Shared components reuse
+interaction mechanics; lesson objectives and inputs must remain distinct.
+
+## Boundaries
+
+- Keep every new lesson in `review`, with empty confidence until evidence supports it.
+- Builders record claims as `unverified`. A source link is not an independent fact-check.
+- Preserve the refuse list: no medical/dosage/diagnosis, chemical mixing, electrical
+  work, defeated safety devices, or legal/financial recommendations.
+- Label illustrative assumptions and simulation limits. Do not convert a chosen model
+  into a claim of measured household savings or human learning effects.
+- Prefer code-native diagrams. Existing illustration requests remain optional future
+  improvements; this collection adds no third-party image terms or dependencies.
+- Independent browser QA, safety review and reviewer findings accompany integration.
+  Human learning evidence remains absent until actual learners are observed.
+- Leave protected paths and the category's incubation/launch rules unchanged.
+
+## Objections
+
+**A large batch could disguise repetitive lessons.** Count distinct objectives and
+review the topic manifest across all three scopes. Record similarity or pedagogy
+findings instead of treating a larger count as a quality result.
+
+**A shared stage could make testing tautological.** Check independent numeric fixtures,
+exercise the prediction-to-reveal contract in a browser, and label outputs derived
+from chosen inputs. Review each lesson's explanation and recall separately from the
+shared renderer's technical correctness.
+
+**Incubation requires safety evidence.** Keep the category incubating and retain the
+first-five safety requirements. New or revised lessons do not inherit old brief passes
+as if they were full artifact reviews.
+
+## Definition of done for this PR
+
+Exactly 200 lesson folders and curriculum coverage entries; unique global slugs;
+valid addressed claims; responsive meaningful interactions; registry integration;
+check, typecheck, build and appropriate browser QA; independent review findings;
+board and handoff updates; a reviewable pull request.

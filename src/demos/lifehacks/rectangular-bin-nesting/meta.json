@@ -1,0 +1,95 @@
+{
+  "slug": "rectangular-bin-nesting",
+  "title": "Walls limit nesting depth",
+  "hook": "Which ideal stack has a shorter outside height?",
+  "domain": "lifehacks",
+  "concept": "rectangular-bin-nesting",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "For these tapered ideal bins, nesting shares hollow height while each additional rim adds a small increment. Solid boxes without a nesting shape do not share the same geometry."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "For these tapered ideal bins, nesting shares hollow height while each additional rim adds a small increment. Solid boxes without a nesting shape do not share the same geometry.",
+  "claims": [
+    {
+      "id": "lifehacks.rectangular-bin-nesting.c1",
+      "text": "For these tapered ideal bins, nesting shares hollow height while each additional rim adds a small increment. Solid boxes without a nesting shape do not share the same geometry.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Separate height=N×10; nested height=10+(N−1)×1 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rectangular-bin-nesting.c2",
+      "text": "Check real taper and rims; this is not a universal storage ratio.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Separate height=N×10; nested height=10+(N−1)×1 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rectangular-bin-nesting.c3",
+      "text": "Separate height=N×10; nested height=10+(N−1)×1 cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rectangular-bin-nesting.c4",
+      "text": "Which ideal stack has a shorter outside height?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rectangular-bin-nesting.c5",
+      "text": "Which shape feature allows empty containers to nest?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which shape feature allows empty containers to nest?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "For these tapered ideal bins, nesting shares hollow height while each additional rim adds a small increment. Solid boxes without a nesting shape do not share the same geometry. Check real taper and rims; this is not a universal storage ratio."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/rectangular-bin-nesting/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:rectangular-bin-nesting",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

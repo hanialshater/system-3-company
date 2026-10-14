@@ -1,0 +1,95 @@
+{
+  "slug": "seasonal-bin-rotation",
+  "title": "Frequent use belongs near access",
+  "hook": "Which layout needs fewer removals over these requests?",
+  "domain": "lifehacks",
+  "concept": "seasonal-bin-rotation",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Access cost should be counted across uses. Moving the frequently requested bin to the front reduces repeated blocker removals in this particular queue; the rarely requested bin can tolerate a longer path."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Access cost should be counted across uses. Moving the frequently requested bin to the front reduces repeated blocker removals in this particular queue; the rarely requested bin can tolerate a longer path.",
+  "claims": [
+    {
+      "id": "lifehacks.seasonal-bin-rotation.c1",
+      "text": "Access cost should be counted across uses. Moving the frequently requested bin to the front reduces repeated blocker removals in this particular queue; the rarely requested bin can tolerate a longer path.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Two bins, access positions1 andN; frequent request4 times, rare1. Removals before=4(N−1), after=(N−1).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.seasonal-bin-rotation.c2",
+      "text": "The frequencies are chosen examples, not measured household behaviour.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Two bins, access positions1 andN; frequent request4 times, rare1. Removals before=4(N−1), after=(N−1).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.seasonal-bin-rotation.c3",
+      "text": "Two bins, access positions1 andN; frequent request4 times, rare1. Removals before=4(N−1), after=(N−1).",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.seasonal-bin-rotation.c4",
+      "text": "Which layout needs fewer removals over these requests?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.seasonal-bin-rotation.c5",
+      "text": "Why can frequency matter more than a single retrieval when arranging bins?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can frequency matter more than a single retrieval when arranging bins?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Access cost should be counted across uses. Moving the frequently requested bin to the front reduces repeated blocker removals in this particular queue; the rarely requested bin can tolerate a longer path. The frequencies are chosen examples, not measured household behaviour."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/seasonal-bin-rotation/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:seasonal-bin-rotation",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

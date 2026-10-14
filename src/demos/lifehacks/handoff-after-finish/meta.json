@@ -1,0 +1,86 @@
+{
+  "slug": "handoff-after-finish",
+  "title": "A handoff has a release time",
+  "hook": "The reviewer cannot start with a draft that has not finished.",
+  "domain": "lifehacks",
+  "concept": "handoff-after-finish",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Schedule a dependent task after its input is ready."
+    ]
+  },
+  "misconception": "When drafting starts",
+  "objective": "Schedule a dependent task after its input is ready.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The reviewer cannot start with a draft that has not finished. When can review start in this model? Correct option: After draft finishes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-after-finish.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Draft completion releases the input for review. Overlap may be possible in other workflows, but this fixture explicitly forbids partial handoffs.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-after-finish.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, handoff-after-finish fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.handoff-after-finish.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: After draft finishes. Draft completion releases the input for review. Overlap may be possible in other workflows, but this fixture explicitly forbids partial handoffs.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.handoff-after-finish.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When can review start in this model?",
+    "options": [
+      "After draft finishes",
+      "When drafting starts"
+    ],
+    "answer": 0,
+    "why": "Draft completion releases the input for review. Overlap may be possible in other workflows, but this fixture explicitly forbids partial handoffs."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/handoff-after-finish/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:handoff-after-finish",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "wrapping-paper-minimum-area",
+  "title": "A box has six faces",
+  "hook": "Which estimate covers the entire closed box surface?",
+  "domain": "lifehacks",
+  "concept": "wrapping-paper-minimum-area",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The box has three pairs of equal faces. A single footprint rectangle omits the top and sides; adding all six gives the ideal surface area before overlaps."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The box has three pairs of equal faces. A single footprint rectangle omits the top and sides; adding all six gives the ideal surface area before overlaps.",
+  "claims": [
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.c1",
+      "text": "The box has three pairs of equal faces. A single footprint rectangle omits the top and sides; adding all six gives the ideal surface area before overlaps.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Surface=2(W×10+W×8+10×8)cm²; footprint=W×10cm².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.c2",
+      "text": "Wrapping paper also needs overlaps, folds and trim; this is only a geometric lower bound.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Surface=2(W×10+W×8+10×8)cm²; footprint=W×10cm².",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.c3",
+      "text": "Surface=2(W×10+W×8+10×8)cm²; footprint=W×10cm².",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.c4",
+      "text": "Which estimate covers the entire closed box surface?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wrapping-paper-minimum-area.c5",
+      "text": "Why is a box’s surface area only a lower bound for wrapping paper?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is a box’s surface area only a lower bound for wrapping paper?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The box has three pairs of equal faces. A single footprint rectangle omits the top and sides; adding all six gives the ideal surface area before overlaps. Wrapping paper also needs overlaps, folds and trim; this is only a geometric lower bound."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/wrapping-paper-minimum-area/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:wrapping-paper-minimum-area",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

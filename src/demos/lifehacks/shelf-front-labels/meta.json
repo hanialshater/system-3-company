@@ -1,0 +1,95 @@
+{
+  "slug": "shelf-front-labels",
+  "title": "A label behind a box is hidden",
+  "hook": "Which layout exposes the written addresses?",
+  "domain": "lifehacks",
+  "concept": "shelf-front-labels",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The picture uses opaque boxes. A rear-facing label is blocked when the boxes stay on the shelf; a front-facing address is visible from the shown viewpoint."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The picture uses opaque boxes. A rear-facing label is blocked when the boxes stay on the shelf; a front-facing address is visible from the shown viewpoint.",
+  "claims": [
+    {
+      "id": "lifehacks.shelf-front-labels.c1",
+      "text": "The picture uses opaque boxes. A rear-facing label is blocked when the boxes stay on the shelf; a front-facing address is visible from the shown viewpoint.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Visible addresses=0 for rear faces or N for front faces in opaque front-view geometry.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-front-labels.c2",
+      "text": "Visibility is viewpoint-dependent; this card does not measure search time.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Visible addresses=0 for rear faces or N for front faces in opaque front-view geometry.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-front-labels.c3",
+      "text": "Visible addresses=0 for rear faces or N for front faces in opaque front-view geometry.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-front-labels.c4",
+      "text": "Which layout exposes the written addresses?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.shelf-front-labels.c5",
+      "text": "Why is label placement part of an address system?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why is label placement part of an address system?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The picture uses opaque boxes. A rear-facing label is blocked when the boxes stay on the shelf; a front-facing address is visible from the shown viewpoint. Visibility is viewpoint-dependent; this card does not measure search time."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/shelf-front-labels/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:shelf-front-labels",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}
