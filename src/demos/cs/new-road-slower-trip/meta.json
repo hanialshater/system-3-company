@@ -106,7 +106,9 @@
     "why": "Each driver who takes the shortcut gains at that moment, but together they crowd the busy roads. In the lesson every driver ended on the new route and every trip went from 65 to 80 minutes, while switching back would take 85."
   },
   "evidence": {
-    "qa": ["company/reviews/new-road-slower-trip/2026-10-14-qa.md"],
+    "qa": [
+      "company/reviews/new-road-slower-trip/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -114,15 +116,33 @@
   "version": 1,
   "curriculum": {
     "primary": "cs:braess-paradox",
-    "prerequisites": ["economics:prisoners-dilemma"],
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
     "level": "core",
     "strand": "systems",
     "references": [
-      { "work": "easley-kleinberg-2010", "chapter": 8, "section": "8.1", "note": "Braess's paradox, the 4,000-driver example; section unconfirmed (brief says 8.1-8.2)" }
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 8,
+        "note": "Braess's paradox, the 4,000-driver example; section unconfirmed (brief says 8.1-8.2)",
+        "section_unconfirmed": "8.1"
+      }
     ],
     "also": [],
-    "tags": ["traffic", "equilibrium", "networks", "game-theory"]
+    "tags": [
+      "traffic",
+      "equilibrium",
+      "networks",
+      "game-theory"
+    ]
   },
   "format": "before-after",
-  "interactions": ["choice-before-reveal", "toggle-before-after", "step-run-button", "milestone-gate", "locked-readouts"]
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "step-run-button",
+    "milestone-gate",
+    "locked-readouts"
+  ]
 }
