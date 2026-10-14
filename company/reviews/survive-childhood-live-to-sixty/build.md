@@ -19,3 +19,5 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 7. **Phone fit.** `REVEAL_FIT_TIMEOUT_MS=300000 node tools/reveal-fit.mjs --url http://localhost:3622 survive-childhood-live-to-sixty` (2026-10-14): verdict fit, crop 0 px, namedHidden 0 (30, 60, average from birth, 72 all visible), phoneFit true, 80 words (77 reveal + verdict). The picture is fitted to 169/198 at the reveal, so 12 px viewBox labels render at about 10.2 px (at or above the 10 px floor); at predict they render larger. Screenshot `artifacts/reveal-fit/survive-childhood-live-to-sixty.png`.
 
 QA: `tests/qa/contract.spec.ts` phone + desktop passed (artifacts/qa/survive-childhood-live-to-sixty/). Claims c1-c6 unverified.
+
+Risk for cm-history: as the brief specifies, the locked stage shows the survivor curve. A learner who reads curves could estimate the answer from it before committing. Hiding the curve until the commit is the alternative, if the evaluators judge this "points to the answer".
