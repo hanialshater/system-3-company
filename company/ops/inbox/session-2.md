@@ -110,3 +110,9 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 - **Done.** Appended brief `two-said-blue` (information-cascade, simulation run, answer B: about 1 in 5) to `company/domains/briefs/probability.statistics.md`. Added concept `information-cascade` (core, demand 2, prerequisite `bayesian-updating`) to `content/curriculum/probability.json`. Re-ran in node: exact 20.0%, seeded 1,991 of 10,000, pooled-vote contrast 0.0199%.
 - **Proposed board moves.** S2-08 → ready (brief written, answer checked). No S2-20 spec needed for this lesson. Fact-checker: confirm the book § numbers (unconfirmed, fetch blocked) and the Anderson and Holt 1997 claim, or drop it.
+
+### 2026-10-14: cm-cs-algorithms, NCM batch 1
+
+- **What changed.** Appended brief #41 `one-good-link-beats-many` (concept `pagerank`, ch. 14 §14.3, § unconfirmed: book fetch 403) to `company/domains/briefs/cs.algorithms.md`. Added concept `pagerank` (subarea algorithms, prerequisite `graph-shortest-path`) to `content/curriculum/cs.json`.
+- **Belief.** High that the numbers are right (re-run in node, exact rule in the brief). The review's Y = 0.395 was not reproducible from its description; the brief uses Y = 0.374, X = 0.053 on a graph it specifies. Medium on the § and on whether the 10-node graph with arrows fits 390 px.
+- **Proposed board moves.** S2 item for cm-cs-algorithms's ask: brief written, move to done (owner cm-cs-algorithms). New: interaction-designer to check the 10-node arrowed layout at 390 px (owner interaction-designer); fact-checker to confirm ch. 14 §14.3 and the Brin and Page citation against the PDF (owner fact-checker). Needs no spec.

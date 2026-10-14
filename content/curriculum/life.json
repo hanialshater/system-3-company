@@ -254,7 +254,8 @@
       "demand": 1,
       "prerequisites": [
         "herd-immunity"
-      ]
+      ],
+      "subarea": "health-epidemiology"
     },
     {
       "id": "reproduction-number-growth",
@@ -475,6 +476,16 @@
       "level": "stretch",
       "demand": 1,
       "prerequisites": []
+    },
+    {
+      "id": "contact-timing-concurrency",
+      "name": "Contact order and overlap decide who can be infected",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "herd-immunity"
+      ],
+      "subarea": "health-epidemiology"
     }
   ]
 }
