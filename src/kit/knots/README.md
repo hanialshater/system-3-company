@@ -65,5 +65,10 @@ This is kit code, so the engineering tiers apply (company/engineering/README.md)
   - changing what a function returns for existing input, including the `layout` data shape and the drawings of table entries;
   - anything that pushes a lesson-entry size over budget.
 
+**`package.json` has `"sideEffects": false`.** Without it, Turbopack bundles the whole library into every lesson that
+imports anything from the barrel. A page importing `{ knot, draw }` measured 10,310 B gzip without the flag and 5,194 B
+with it, against 10,717 B for a page that uses everything (scratch Next 16.4 build, 2026-10-14). So **no module here may
+have an import-time side effect** outside itself.
+
 Sizes on 2026-10-14 (stripped gzip of each lesson entry's module closure): random-knot 11,323 B (condition ≤ 11,776 B,
 gate 12,288 B), draw-a-table-knot 5,408 B, tricolour-check 9,684 B, unknot-game 7,042 B.
