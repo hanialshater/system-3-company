@@ -33,30 +33,24 @@
     },
     {
       "id": "economics.patience-wins-the-split.c2",
-      "text": "Each added round in front, the proposer must offer the responder 90% of what the responder would keep as next round's proposer, and keeps the rest (for example 0.9 × 10.0% = 9.0% offered, 91.0% kept with three rounds).",
+      "text": "Each added round in front, the proposer must offer the responder 0.9 (at a 10% shrink) of what the responder would keep as next round's proposer, and keeps the rest; the stage line reads 'offer 0.9 × next share = offer; keep rest' (for example 0.9 × 10.0% = 9.0% offered, 91.0% kept with three rounds).",
       "support": "derivation",
-      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "share(n) = 1 − δ · share(n − 1), δ = 0.9: 1, 0.1, 0.91, 0.181, … Demo.tsx share(). Builder re-run in node. · Fact-check pass 23 2026-10-14: Own node: share(n) = 1 - 0.9 x share(n - 1) gives 100%, 10.0%, 91.0%, 18.1%; at n = 3 the stage line reads 'offer 0.9 x 10.0% = 9.0%; keep 91.0%'. | v2: reveal now says 'worth 0.9 of a proposer's share' and points at the stage line.",
+      "status": "unverified"
     },
     {
       "id": "economics.patience-wins-the-split.c3",
-      "text": "With a 10% shrink per round, long games settle at 1 ÷ (1 + 0.9) = 52.6% for the first proposer; 400 rounds give 52.6%.",
+      "text": "With a 10% shrink per round, long games settle at 1 ÷ (1 + 0.9) = 52.6% for the first proposer; the learner's long game at 10% (400 rounds on the QA path; 50 rounds give 52.4%) is quoted from their own record.",
       "support": "derivation",
-      "source": "share(n) = (1 − (−δ)^n) / (1 + δ). Node: 50 rounds 0.5236, 51 rounds 0.5288, 400 rounds 0.5263; 1/1.9 = 0.5263. Matches the brief's check (company/domains/briefs/economics.markets.md #24). · Fact-check pass 23 2026-10-14: Own node: share(10%, 400) = 52.6%, 1/1.9 = 52.6%; closed form (1 - (-d)^n)/(1 + d) re-derived. The infinite-horizon value matches the finite limit (sup/inf argument re-derived: M <= 1 - dm, m >= 1 - dM give M = m = 1/(1 + d)).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "share(n) = (1 − (−δ)^n) / (1 + δ). Node: 50 rounds 0.5236, 51 rounds 0.5288, 400 rounds 0.5263; 1/1.9 = 0.5263. Matches the brief's check (company/domains/briefs/economics.markets.md #24). · Fact-check pass 23 2026-10-14: Own node: share(10%, 400) = 52.6%, 1/1.9 = 52.6%; closed form (1 - (-d)^n)/(1 + d) re-derived. The infinite-horizon value matches the finite limit (sup/inf argument re-derived: M <= 1 - dm, m >= 1 - dM give M = m = 1/(1 + d)). | v2: Demo.tsx share(0.1, 400) = 52.6%, share(0.1, 50) = 52.4% (builder's node run 2026-10-14). The reveal quotes the recorded long game at 10%, which is a required milestone (long-10).",
+      "status": "unverified"
     },
     {
       "id": "economics.patience-wins-the-split.c4",
-      "text": "With a 50% shrink the first proposer's share is 66.7%; the costlier the delay, the more going first is worth (30% shrink gives 58.8%).",
+      "text": "With a 50% shrink a long game gives the first proposer 66.7% (30% shrink gives 58.8%); the costlier the delay, the more going first is worth.",
       "support": "derivation",
-      "source": "1/(1 + 0.5) = 0.6667; 1/(1 + 0.7) = 0.5882; 1/(1 + δ) falls as δ rises. Demo.tsx limit(). · Fact-check pass 23 2026-10-14: Own node: 1/(1 + 0.5) = 66.7% (reveal; 400 rounds also 66.7%), 1/(1 + 0.7) = 58.8% (stage dashed line at 30%); 1/(1 + d) falls as d rises.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "1/(1 + 0.5) = 0.6667; 1/(1 + 0.7) = 0.5882; 1/(1 + δ) falls as δ rises. Demo.tsx limit(). · Fact-check pass 23 2026-10-14: Own node: 1/(1 + 0.5) = 66.7% (reveal; 400 rounds also 66.7%), 1/(1 + 0.7) = 58.8% (stage dashed line at 30%); 1/(1 + d) falls as d rises. | v2: share(0.5, 400) = 66.7%, share(0.3, 400) = 58.8%. The reveal quotes the learner's recorded long game at another shrink (milestone long-other).",
+      "status": "unverified"
     },
     {
       "id": "economics.patience-wins-the-split.c5",
@@ -80,16 +74,14 @@
     "why": "The other side can wait one round and become the proposer, which is worth almost as much, so the first offer must give nearly half away: 1 ÷ (1 + 0.98) ≈ 50.5%."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/patience-wins-the-split/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [
       "company/reviews/patience-wins-the-split/2026-10-14-learner-ncm-learner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:alternating-offers",
     "also": [],

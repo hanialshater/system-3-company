@@ -41,21 +41,17 @@
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c3",
-      "text": "If each person goes independently with probability 0.6, attendance averages 60 and is above 60 on 46.2% of nights in the long run.",
+      "text": "If each person goes independently with probability 0.6, on average 60 come, and attendance is above 60 on 46.2% of nights in the long run.",
       "support": "derivation",
-      "source": "Binomial(100, 0.6): mean 60; P(X > 60) = sum over k = 61..100 = 0.4621. Re-run in node by the builder (ncm-e02); matches the brief. | FC pass 22 (fact-checker, 2026-10-14): own log-space binomial sum (scratchpad fc22/bar.mjs): P(X > 60) = 0.46208 for Binomial(100, 0.6); mean 60.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Binomial(100, 0.6): mean 60; P(X > 60) = sum over k = 61..100 = 0.4621. Re-run in node by the builder (ncm-e02); matches the brief. | FC pass 22 (fact-checker, 2026-10-14): own log-space binomial sum (scratchpad fc22/bar.mjs): P(X > 60) = 0.46208 for Binomial(100, 0.6); mean 60. | v2: reveal adds 'so on average 60 come' (100 × 0.6 = 60).",
+      "status": "unverified"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c4",
-      "text": "The learner's own random nights show an average near 60 with a crowded share near half.",
+      "text": "The learner's longest random run (recorded when it is run, kept after Reset; 111 nights on the QA path) shows an average near 60 with a crowded share near half.",
       "support": "simulation",
-      "source": "Demo.tsx: mulberry32(1), 100 draws per night, each goes if r() < 0.6. Seed 1 was the first seed tried, not chosen for the result. Seed 1: 100 nights average 60.2, 48 crowded; 200 nights 60.3, 96 crowded. Seeds 2 and 3 at 100 nights: 38 and 44 crowded. The reveal quotes the learner's run. | FC pass 22 (fact-checker, 2026-10-14): own mulberry32 re-implementation: seed 1 at 100 nights avg 60.2, 48 crowded; 111 nights (QA path) 60.1, 54; 200 nights 60.3, 96; every run length from 100 to 500 gives crowded share 44.4-51.6% and average 59.9-60.5. Seeds 2 and 3: 38 and 44 crowded at 100. Non-blocking note: Reset after the milestone lets the reveal quote a run under 100 nights (e.g. 1 night: 100% crowded); the numbers quoted are still the learner's own.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx: mulberry32(1), 100 draws per night, each goes if r() < 0.6. Seed 1 was the first seed tried, not chosen for the result. Seed 1: 100 nights average 60.2, 48 crowded; 200 nights 60.3, 96 crowded. Seeds 2 and 3 at 100 nights: 38 and 44 crowded. The reveal quotes the learner's run. | FC pass 22 (fact-checker, 2026-10-14): own mulberry32 re-implementation: seed 1 at 100 nights avg 60.2, 48 crowded; 111 nights (QA path) 60.1, 54; 200 nights 60.3, 96; every run length from 100 to 500 gives crowded share 44.4-51.6% and average 59.9-60.5. Seeds 2 and 3: 38 and 44 crowded at 100. Non-blocking note: Reset after the milestone lets the reveal quote a run under 100 nights (e.g. 1 night: 100% crowded); the numbers quoted are still the learner's own. | v2: v2 records the longest run (nights, average, crowded %) and the reveal quotes the record, so Reset cannot turn it into '0 nights'. With seed 1: 111 nights average 60.1, 49% crowded (builder node re-run of mulberry32(1), 2026-10-14).",
+      "status": "unverified"
     },
     {
       "id": "economics.the-bar-nobody-can-forecast.c5",
@@ -88,16 +84,14 @@
     "why": "A believed low forecast sends everyone, which makes the forecast wrong. When more is worse, no forecast everyone trusts can be right."
   },
   "evidence": {
-    "qa": [
-      "company/reviews/the-bar-nobody-can-forecast/2026-10-14-qa.md"
-    ],
+    "qa": [],
     "simulatedLearner": [
       "company/reviews/the-bar-nobody-can-forecast/2026-10-14-learner-network-effects-graduate-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:el-farol-minority",
     "also": [

@@ -7,6 +7,11 @@
 // and shows the best one with its broken links; Move enemy link D-E to C-D toggles the second enemy.
 // Numbers computed here: as given, ring 2 enemies, each small loop 1, 0 of 64 labellings work (best
 // breaks 1 link). Moved: loops 2, 2, 0; 2 of 64 labellings work (one split, camp names swapped).
+// v2 (r6): selecting a loop walks it from A on stage: each person on the loop is tinted by the camp the walk
+// gives them, switching at every red link, and A gets an outer ring in the camp the walk returns with (a clash
+// mark when odd). A legend is always shown; the best-try caption names the two camps and the thick broken link.
+// The enemy position is two buttons ("Enemy on D-E" / "Enemy on C-D"), not one that relabels itself. Loop counts
+// and split results are recorded per layout in a row the reveal quotes.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -21,10 +26,11 @@ const CHORD: Edge = [0, 3];
 const EDGES: Edge[] = [...RING, CHORD];
 const ENEMIES_AS_GIVEN: Edge[] = [[0, 1], [3, 4]];
 const ENEMIES_MOVED: Edge[] = [[0, 1], [2, 3]];
+const pathEdges = (p: number[]): Edge[] => p.map((v, i) => [v, p[(i + 1) % p.length]] as Edge);
 const LOOPS = {
-  ring: { label: "Big ring", edges: RING },
-  right: { label: "Right loop", edges: [[0, 1], [1, 2], [2, 3], [3, 0]] as Edge[] },
-  left: { label: "Left loop", edges: [[0, 3], [3, 4], [4, 5], [5, 0]] as Edge[] },
+  ring: { label: "Big ring", path: [0, 1, 2, 3, 4, 5], edges: pathEdges([0, 1, 2, 3, 4, 5]) },
+  right: { label: "Right loop", path: [0, 1, 2, 3], edges: pathEdges([0, 1, 2, 3]) },
+  left: { label: "Left loop", path: [0, 3, 4, 5], edges: pathEdges([0, 3, 4, 5]) },
 };
 type LoopId = keyof typeof LOOPS;
 const LOOP_IDS: LoopId[] = ["ring", "right", "left"];
@@ -33,6 +39,21 @@ const MILESTONES = ["odd-loop", "tried-all"] as const;
 const same = ([a, b]: Edge, [c, d]: Edge) => (a === c && b === d) || (a === d && b === c);
 const isEnemy = (enemies: Edge[], e: Edge) => enemies.some((x) => same(x, e));
 const enemyCount = (enemies: Edge[], loop: LoopId) => LOOPS[loop].edges.filter((e) => isEnemy(enemies, e)).length;
+/** Walk a loop from A: camp 0 at A, switch at each enemy link. Returns each visited person's camp and A's camp on return. */
+function walk(enemies: Edge[], loop: LoopId) {
+  const p = LOOPS[loop].path;
+  const camp: Record<number, number> = { [p[0]]: 0 };
+  let c = 0;
+  p.forEach((v, i) => {
+    const next = p[(i + 1) % p.length];
+    if (isEnemy(enemies, [v, next])) c = 1 - c;
+    if (i < p.length - 1) camp[next] = c;
+  });
+  return { camp, back: c };
+}
+type Layout = "given" | "moved";
+type Seen = Record<Layout, { loops: Partial<Record<LoopId, number>>; working?: number }>;
+const LAYOUT_NAME: Record<Layout, string> = { given: "enemy on D-E", moved: "enemy on C-D" };
 
 /** Every labelling of the 6 people into camps 0/1; a link is broken if friends are split or enemies share a camp. */
 export function tryAll(enemies: Edge[]) {
@@ -60,31 +81,47 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
   const [loop, setLoop] = useState<LoopId | null>(null);
   const [tried, setTried] = useState(false);
   const [moved, setMoved] = useState(false);
-  const given = tryAll(ENEMIES_AS_GIVEN);
-  const fixed = tryAll(ENEMIES_MOVED);
+  const [seen, setSeen] = useState<Seen>({ given: { loops: {} }, moved: { loops: {} } });
+  const g = seen.given;
+  const m = seen.moved;
+  const ringG = g.loops.ring ?? enemyCount(ENEMIES_AS_GIVEN, "ring");
+  const oddG = (["right", "left"] as LoopId[]).filter((l) => g.loops[l] !== undefined);
+  const record = (lay: Layout, l: LoopId | null, tr: boolean) =>
+    setSeen((s0) => {
+      const enemies = lay === "moved" ? ENEMIES_MOVED : ENEMIES_AS_GIVEN;
+      const cur = s0[lay];
+      return {
+        ...s0,
+        [lay]: {
+          loops: l ? { ...cur.loops, [l]: enemyCount(enemies, l) } : cur.loops,
+          working: tr ? tryAll(enemies).working : cur.working,
+        },
+      };
+    });
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Six people in a ring plus one cross link. Two enemy links; the big ring has an even count. Can they split into two camps?",
+          "Friends share a camp; enemies sit in opposite camps. Six people in a ring plus one cross link A-D; the red dashed links are enemies. Can they split into two camps?",
         options: ["Yes", "No", "Can't tell from the loops"],
-        answer: 1,
+        answer: tryAll(ENEMIES_AS_GIVEN).working > 0 ? 0 : 1,
       }}
-      exploreHint="Count the enemy links on each loop, then try every split."
+      exploreHint="Walk each loop from A, then try every split."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            The big ring has {enemyCount(ENEMIES_AS_GIVEN, "ring")} enemy links, an even number, but the cross link A-D makes two
-            smaller loops with {enemyCount(ENEMIES_AS_GIVEN, "right")} each. Walk round one: every enemy link switches camp, so
-            after one switch you come back to A in the other camp. That is why {given.working} of the 64 splits worked.
+            Your big ring had {ringG} enemy links, an even number, but the cross link A-D makes two smaller loops
+            {oddG.length ? ` (${oddG.map((l) => `${LOOPS[l].label.toLowerCase()}: ${g.loops[l]}`).join(", ")})` : ""} with an odd
+            count. On those walks every red link switched camp, so the walk came back to A in the other camp. That is why{" "}
+            {g.working ?? tryAll(ENEMIES_AS_GIVEN).working} of the 64 splits worked.
           </p>
           <p>
-            {moved
-              ? `When you moved the enemy link to C-D, every loop became even and ${fixed.working} labellings worked: one split, with the camp names swapped.`
-              : `Move the enemy link to C-D and every loop is even: then ${fixed.working} labellings work, one split with the camp names swapped.`}{" "}
+            {m.working !== undefined
+              ? `With the enemy on C-D every loop was even and ${m.working} of 64 worked: one split, with the camp names swapped.`
+              : `Put the enemy on C-D instead and every loop is even: then ${tryAll(ENEMIES_MOVED).working} of 64 work, one split with the camp names swapped.`}{" "}
             A network splits into two camps exactly when every loop has an even number of enemy links.
           </p>
         </>
@@ -98,19 +135,22 @@ export default function OneOddLoopBlocksTwoCamps({ slug }: { slug: string }) {
               loop={loop}
               tried={tried}
               moved={moved}
+              seen={seen}
               onLoop={(l) => {
                 setLoop(l);
+                record(moved ? "moved" : "given", l, tried);
                 if (!moved && enemyCount(ENEMIES_AS_GIVEN, l) % 2 === 1) reach("odd-loop");
               }}
               onTry={() => {
                 setTried(true);
+                record(moved ? "moved" : "given", loop, true);
                 if (!moved) reach("tried-all");
               }}
-              onMove={() => {
-                const back = moved;
-                setMoved(!moved);
-                if (back && tried) reach("tried-all");
-                if (back && loop && enemyCount(ENEMIES_AS_GIVEN, loop) % 2 === 1) reach("odd-loop");
+              onMove={(to) => {
+                setMoved(to);
+                record(to ? "moved" : "given", loop, tried);
+                if (!to && tried) reach("tried-all");
+                if (!to && loop && enemyCount(ENEMIES_AS_GIVEN, loop) % 2 === 1) reach("odd-loop");
               }}
             />
           )}
@@ -125,6 +165,7 @@ function Stage({
   loop,
   tried,
   moved,
+  seen,
   onLoop,
   onTry,
   onMove,
@@ -133,23 +174,33 @@ function Stage({
   loop: LoopId | null;
   tried: boolean;
   moved: boolean;
+  seen: Seen;
   onLoop: (l: LoopId) => void;
   onTry: () => void;
-  onMove: () => void;
+  onMove: (to: boolean) => void;
 }) {
   const enemies = moved ? ENEMIES_MOVED : ENEMIES_AS_GIVEN;
   const result = tried ? tryAll(enemies) : null;
   const inLoop = (e: Edge) => loop !== null && LOOPS[loop].edges.some((x) => same(x, e));
   const k = loop ? enemyCount(enemies, loop) : 0;
+  const w = !locked && loop && !result ? walk(enemies, loop) : null;
   const caption = locked
     ? "Make a prediction to start."
     : result
       ? result.working === 0
-        ? `0 of 64 splits work. Best try still breaks ${result.broken.length} link.`
+        ? `0 of 64 splits work. Best try (filled vs dotted camps) still breaks ${result.broken.length} link (thick).`
         : `${result.working} of 64 work: one split, names swapped.`
-      : loop
-        ? `${LOOPS[loop].label}: ${k} enemy link${k === 1 ? "" : "s"}, ${k % 2 ? "odd" : "even"}.`
-        : "Solid: friends. Red dashes: enemies.";
+      : loop && w
+        ? `${LOOPS[loop].label}: ${k} enemy link${k === 1 ? "" : "s"}. Walk from A, switching at each: back at A in the ${w.back ? "other camp: clash" : "same camp"}.`
+        : "Pick a loop to walk it from A.";
+  const rows = (Object.keys(seen) as Layout[])
+    .filter((lay) => Object.keys(seen[lay].loops).length || seen[lay].working !== undefined)
+    .map(
+      (lay) =>
+        `${LAYOUT_NAME[lay]}: ${LOOP_IDS.filter((l) => seen[lay].loops[l] !== undefined)
+          .map((l) => `${LOOPS[l].label.toLowerCase()} ${seen[lay].loops[l]}`)
+          .join(", ")}${seen[lay].working !== undefined ? `; ${seen[lay].working}/64 work` : ""}`,
+    );
 
   return (
     <div className={s.wrap}>
@@ -174,11 +225,14 @@ function Stage({
         })}
         {POS.map(([x, y], v) => (
           <g key={v}>
+            {w && v === 0 && <circle cx={x} cy={y} r={18} fill="none" className={w.back ? s.backB : s.backA} />}
             <circle
               cx={x}
               cy={y}
               r={13}
-              className={result ? (result.camp[v] ? s.campB : s.campA) : s.person}
+              className={
+                result ? (result.camp[v] ? s.campB : s.campA) : w && w.camp[v] !== undefined ? (w.camp[v] ? s.campB : s.campA) : s.person
+              }
             />
             <text x={x} y={y + 4.5} className={s.name}>
               {NAMES[v]}
@@ -187,6 +241,7 @@ function Stage({
         ))}
       </svg>
 
+      <p className={s.legend}>Green solid: friends · red dashes: enemies</p>
       <p className={s.caption} aria-live="polite">
         {caption}
       </p>
@@ -203,18 +258,24 @@ function Stage({
           </Control>
         ))}
       </div>
-      <div className={s.actions}>
+      <div className={s.actions1}>
         <Control className={s.tap} disabled={locked || tried} onClick={onTry}>
           Try all 64 splits
         </Control>
-        <Control className={s.tap} disabled={locked} onClick={onMove}>
-          {moved ? "Move it back to D-E" : "Move enemy D-E to C-D"}
+      </div>
+      <div className={s.actions}>
+        <Control className={`${s.tap} ${!moved ? "active" : ""}`} disabled={locked || !moved} onClick={() => onMove(false)}>
+          Enemy on D-E
+        </Control>
+        <Control className={`${s.tap} ${moved ? "active" : ""}`} disabled={locked || moved} onClick={() => onMove(true)}>
+          Enemy on C-D
         </Control>
       </div>
       <Row>
         <Readout label="Loop's enemy links" value={locked || !loop ? "?" : `${k}, ${k % 2 ? "odd" : "even"}`} />
         <Readout label="Splits that work" value={locked || !result ? "?" : `${result.working}/64`} />
       </Row>
+      <p className={s.legend}>{locked ? "" : rows.join(" · ")}</p>
     </div>
   );
 }

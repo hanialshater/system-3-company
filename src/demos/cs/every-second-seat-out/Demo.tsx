@@ -6,6 +6,9 @@
 // starter). Binary: 41 = 101001, move the leading 1 to the end: 010011 = 19.
 // Storyboard / scrub: the circle plus a scrubber over the removals made so far (it never computes ahead).
 // Spec: company/design/specs/every-second-seat-out.md.
+// v2 (r6): "Run to a power of two left" is a required step (milestone pow-41) and leaves a formula line on stage
+// (41 = 32 + 9 → 2 × 9 + 1 = 19); after the run the stage lists who the count starts on at 32, 16, 8, 4, 2 left,
+// and the binary rotation. Readouts carry n = 2^m + L. The reveal quotes the readouts and the current circle.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -17,7 +20,7 @@ const SIZES = [7, 10, 41];
 const QUESTION_N = 41;
 
 type Frame = { standing: number[]; skip: number }; // seats standing, seat the count starts on
-type Game = { frames: Frame[]; order: number[]; survivor: number; powFrame: number; lapFrame: number };
+type Game = { frames: Frame[]; order: number[]; survivor: number; powFrame: number; lapFrame: number; pow: number; laps: { left: number; skip: number }[] };
 
 function play(n: number): Game {
   const ring = Array.from({ length: n }, (_, i) => i + 1);
@@ -33,7 +36,12 @@ function play(n: number): Game {
     frames.push({ standing: [...ring], skip: ring[at] });
     if (powFrame < 0 && (ring.length & (ring.length - 1)) === 0) powFrame = order.length;
   }
-  return { frames, order, survivor: ring[0], powFrame, lapFrame: Math.floor(n / 2) };
+  // Every frame from powFrame on with a power of two (>= 2) left: who the count starts on.
+  const laps = frames
+    .slice(powFrame)
+    .filter((f) => f.standing.length >= 2 && (f.standing.length & (f.standing.length - 1)) === 0)
+    .map((f) => ({ left: f.standing.length, skip: f.skip }));
+  return { frames, order, survivor: ring[0], powFrame, lapFrame: Math.floor(n / 2), pow: n - powFrame, laps };
 }
 const GAMES = new Map(SIZES.map((n) => [n, play(n)]));
 const G41 = GAMES.get(QUESTION_N) as Game;
@@ -86,43 +94,49 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
         options: ["1", "19", "41"],
         answer: 1,
       }}
-      exploreHint="Run it, then scrub back to where 32 are left."
-      minInteractions={1}
+      exploreHint="Step to a power of two left, then run to the end."
+      minInteractions={2}
       reveal={() => {
         const others = SIZES.filter((x) => x !== QUESTION_N && table[x] !== undefined);
+        const g = GAMES.get(n) as Game;
+        const cur = table[n] !== undefined ? g : G41;
+        const cn = table[n] !== undefined ? n : QUESTION_N;
         return (
           <>
             <p>
-              {G41.survivor} survived. Scrub to removal {G41.powFrame}: {QUESTION_N - G41.powFrame} were left and the count
-              started at {G41.frames[G41.powFrame].skip}. With a power of two left, the person the count starts on always
-              survives: each lap removes exactly half and comes back to them.
+              {G41.survivor} survived. {QUESTION_N} = {G41.pow} + {G41.powFrame}: {G41.powFrame} removals left {G41.pow}, and the
+              count started on 2 × {G41.powFrame} + 1 = {G41.frames[G41.powFrame].skip}.
             </p>
             <p>
-              {QUESTION_N} = 32 + {G41.powFrame}, so {G41.powFrame} removals reach 32 and the starter is seat 2 × {G41.powFrame}{" "}
-              + 1 = {G41.survivor}. In binary, write {QUESTION_N} as {bin(QUESTION_N)} and move the leading 1 to the end:{" "}
-              {rotated(QUESTION_N)} = {parseInt(rotated(QUESTION_N), 2)}.
-              {others.length ? ` ${others.map((x) => `${x} gave ${table[x]}`).join(", ")}: the same rule.` : ""}
+              On your {cn} circle the count started on {cur.laps[0].skip} at {cur.laps.map((l) => l.left).join(", ")} left. A
+              power of two halves each lap and comes back to the starter, so the starter survives. In binary,{" "}
+              {bin(cn)} with its leading 1 moved to the end is {rotated(cn)} = {cur.survivor}.
+              {others.length ? ` ${others.map((x) => `${x} = ${(GAMES.get(x) as Game).pow} + ${(GAMES.get(x) as Game).powFrame} gave ${table[x]}`).join(", ")}: the same rule.` : ""}
             </p>
           </>
         );
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["survivor-41"]}>
+        <Milestones interact={interact} names={["pow-41", "survivor-41"]}>
           {(reach) => {
             const finish = (nn: number) => {
               setTable((t) => ({ ...t, [nn]: (GAMES.get(nn) as Game).survivor }));
               if (nn === QUESTION_N) reach("survivor-41");
             };
-            const replay = (nn: number, from: number) => {
+            const replay = (nn: number, from: number, stop?: number) => {
               if (timer.current) clearInterval(timer.current);
-              const to = nn - 1;
+              const to = stop ?? nn - 1;
+              const done = () => {
+                if (nn === QUESTION_N && to >= (GAMES.get(nn) as Game).powFrame) reach("pow-41");
+                if (to >= nn - 1) finish(nn);
+              };
               const reduced =
                 typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
               if (reduced || from >= to) {
                 setMade(to);
                 setView(to);
-                finish(nn);
+                done();
                 return;
               }
               setBusy(true);
@@ -136,7 +150,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                   if (timer.current) clearInterval(timer.current);
                   timer.current = null;
                   setBusy(false);
-                  finish(nn);
+                  done();
                 }
               }, ms);
             };
@@ -145,7 +159,12 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
               const t = made + 1;
               setMade(t);
               setView(t);
+              if (n === QUESTION_N && t >= game.powFrame) reach("pow-41");
               if (t >= last) finish(n);
+            };
+            const runToPow = () => {
+              if (locked || busy || made >= game.powFrame) return;
+              replay(n, made, game.powFrame);
             };
             const runToEnd = () => {
               if (locked || busy || finished) return;
@@ -236,10 +255,23 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                   <Control className="tap" disabled={locked || busy || finished} onClick={removeNext}>
                     Remove next
                   </Control>
+                  <Control className="tap" disabled={locked || busy || made >= game.powFrame} onClick={runToPow}>
+                    Run to a power of two left
+                  </Control>
                   <Control className="tap" disabled={locked || busy || finished} onClick={runToEnd}>
                     Run to the end
                   </Control>
                 </Row>
+                <p className={s.formula} aria-live="polite">
+                  {!locked && made >= game.powFrame
+                    ? `${n} = ${game.pow} + ${game.powFrame} → start 2 × ${game.powFrame} + 1 = ${game.frames[game.powFrame].skip}`
+                    : ""}
+                </p>
+                <p className={s.formula}>
+                  {!locked && finished
+                    ? `Starts on ${game.laps[0].skip} at ${game.laps.map((l) => l.left).join(", ")} left. Binary ${bin(n)} → ${rotated(n)}`
+                    : ""}
+                </p>
                 <div className={s.scrub}>
                   <label className={s.scrubLabel}>
                     <span>
@@ -287,7 +319,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   {SIZES.map((x) => (
-                    <Readout key={x} label={`${x} people`} value={table[x] !== undefined ? `→ ${table[x]}` : "→ ?"} />
+                    <Readout key={x} label={`${x} people`} value={table[x] !== undefined ? `→ ${table[x]} (${(GAMES.get(x) as Game).pow} + ${(GAMES.get(x) as Game).powFrame})` : "→ ?"} />
                   ))}
                 </Row>
               </div>
