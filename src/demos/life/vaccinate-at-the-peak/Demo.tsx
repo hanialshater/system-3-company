@@ -15,7 +15,7 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const BETA = 0.6, GAMMA = 0.2, I0 = 0.001;
-const R0 = BETA / GAMMA; // 3
+const R0 = Math.round((BETA / GAMMA) * 100) / 100; // 3 (rounded: 0.6/0.2 is 2.9999999999999996 in floats)
 const DOSE = 0.2;
 const END = 200;
 const MAX_DAY = 60;
@@ -101,13 +101,12 @@ function Stage({ locked, v, setV }: { locked: boolean; v: number | null; setV: (
 
 export default function VaccinateAtThePeak({ slug }: { slug: string }) {
   const [v, setVState] = useState<number | null>(null);
-  const [days, setDays] = useState<number[]>([]);
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy epidemic, R0 = ${R0}, nobody immune. 20% of the town, all not yet infected, is vaccinated at once: on day 0, or at the peak (day ${PEAK_DAY}). At the peak, how much of the day-0 benefit is left?`,
-        options: ["Almost none", "About half", `Most (about ${pct(FRAC)})`],
+        question: `Toy epidemic: each sick person infects ${R0} others (R0 = ${R0}), nobody immune. 20% of the town, all not yet infected, is vaccinated at once: on day 0, or at the peak (day ${PEAK_DAY}). At the peak, how much of the day-0 benefit is left?`,
+        options: ["Almost none of it", "About half of it", "About three quarters of it"],
         answer: 2,
       }}
       exploreHint="Try day 0, the peak and one more date. Compare the red with the dashed outline."
@@ -118,7 +117,7 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
             With no vaccine {pct(NONE.ever)} are infected in the end. Day 0 brings that to {pct(D0.ever)}; the peak, to {pct(DP.ever)}. So the
             peak saves {(100 * (NONE.ever - DP.ever)).toFixed(1)} of the {(100 * (NONE.ever - D0.ever)).toFixed(1)} points day 0 saves: <strong>{pct(FRAC)}</strong>{" "}
             of the benefit.
-            {days.length ? ` You also tried ${days.map((d) => `day ${d} (${pct(RUNS[d].ever)})`).join(", ")}.` : ""}
+            {v !== null && v !== 0 && v !== PEAK_DAY ? ` Your last date, day ${v}, ended at ${pct(RUNS[v].ever)}.` : ""}
           </p>
           <p>
             The peak is not the end of the epidemic: on day {PEAK_DAY}, {pct(DP.sAtV)} of the town had never been infected.
@@ -143,7 +142,6 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
                 else if (d === PEAK_DAY) reach("peak");
                 else {
                   reach("another-day");
-                  if (d !== null) setDays((x) => (x.includes(d) ? x : [...x, d].slice(-3)));
                 }
               }}
             />

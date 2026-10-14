@@ -18,3 +18,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise); the fact-check rout
 - Tank looked rescaled between shapes: the scale was already fixed (7 px/cm); the svg could shrink when the caption wrapped. Caption now has a fixed two-line height, and the shapes are drawn left of centre to leave room for the force diagram.
 - "1 L of water weighs 1 kg" was only implied: the ball caption states it.
 - Claim texts unchanged, so no status reset.
+
+## Revision v3 (wave C)
+
+Push and weight arrows and the 1 L = 1 kg caption are hidden until the prediction is locked. Small cup is now a required milestone so the flooding is seen. 'cm deep' and 'scale: 2.5 cm' labels. c4 reworded, unverified.

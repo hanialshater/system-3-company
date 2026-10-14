@@ -23,3 +23,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise) and 2026-10-13-fact-
 ## v3 (claim fix 2026-10-13)
 
 Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.
+
+## Revision v3 (wave C)
+
+No code change: the review is of v1; v3 already has 0.20 s reachable, car-weights, crush distance and the passenger link.

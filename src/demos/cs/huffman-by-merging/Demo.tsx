@@ -37,6 +37,7 @@ function merge(a: Tree, b: Tree): Tree {
 const W = 320;
 const BOTTOM = 190;
 const LEVEL = 52;
+const H = 268;
 
 export default function HuffmanByMerging({ slug }: { slug: string }) {
   const [forest, setForest] = useState<Tree[]>(LEAVES);
@@ -75,28 +76,31 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A message has 4 A's, 2 B's, 1 C and 1 D. Giving every letter a code of two 0s and 1s (00, 01, 10, 11) costs 16 bits, one bit per 0 or 1. Codes may be shorter for some letters if no code is the start of another. How few bits can it take?",
+          "A message has 4 A's, 2 B's, 1 C and 1 D. Giving every letter a 2-digit code (00, 01, 10, 11) costs 16 bits, where a bit is one 0 or 1. If common letters may get shorter codes, how few bits can the message take?",
         options: ["16", "14", "10"],
         answer: 1,
       }}
-      exploreHint="Tap two circles to join them. Each join adds a bit to everything below it."
+      exploreHint="Tap two circles to join them. Each join puts one more digit on every letter below it."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            {built.length ? `Your tree${built.length > 1 ? "s" : ""} cost ${built.join(" and ")} bits. ` : ""}
-            Joining two groups puts one more bit on every symbol inside them, so a join costs its weight. Join the two
-            rarest first (C + D = 2, then with B = 4, then with A = 8) and the total is 2 + 4 + 8 = <strong>14</strong>.
+            {done && bits < FIXED
+              ? `Your tree costs ${bits} bits, against 16. `
+              : built.length
+                ? `Your trees cost ${built.join(" and ")} bits. `
+                : ""}
+            Each join puts one more digit on every letter inside it, so a join costs the group's total count. Joining
+            the rarest first costs 2 + 4 + 8 = <strong>14</strong>.
           </p>
           <p>
             {done && bits < FIXED
-              ? `The tree you built gives ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}`
-              : "The best tree gives A 1, B 01, C 000, D 001"}
-            . A costs 4 × 1, B 2 × 2, C and D 3 each: 4 + 4 + 3 + 3 =
-            14 bits. No code is the start of another, so the message decodes without gaps. Always joining the two
-            lightest gives the fewest bits possible: Huffman coding.
+              ? `Your codes: ${Object.entries(code).sort().map(([k, v]) => `${k} ${v}`).join(", ")}. `
+              : "The best tree gives A 1, B 01, C 000, D 001. "}
+            No code starts another (nothing else begins with A's 1), so the message decodes with no gaps. Huffman
+            proved that joining the two rarest first is never beaten.
           </p>
-          <p className="muted">Short codes for common symbols, long codes for rare ones.</p>
+          <p className="muted">Short codes for common letters, long codes for rare ones.</p>
         </>
       )}
     >
@@ -150,7 +154,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
             : sel !== null
               ? "Now tap another circle to join them."
               : forest.length === 4
-                ? "Each circle shows how often it appears."
+                ? "The number is how many times the letter appears."
                 : "When two are left, they join automatically.";
 
         return (
@@ -160,13 +164,13 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
             </p>
             <Row>
               <Control disabled={locked || done} onClick={lightest}>
-                Join the two lightest
+                Join the two rarest
               </Control>
               <Readout label="Bits" value={bits} />
             </Row>
 
-            <div className={s.tree} style={{ aspectRatio: `${W} / 250` }}>
-              <svg viewBox={`0 0 ${W} 250`} className={s.lines} aria-hidden="true">
+            <div className={s.tree} style={{ aspectRatio: `${W} / ${H}` }}>
+              <svg viewBox={`0 0 ${W} ${H}`} className={s.lines} aria-hidden="true">
                 {all
                   .filter((t) => t.l && t.r)
                   .flatMap((t) =>
@@ -186,17 +190,22 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
                 {order.map((leaf) => {
                   const p = pos.get(leaf.id)!;
                   return (
-                    <text key={leaf.id} x={p.x} y={BOTTOM + 40} textAnchor="middle" className={s.code}>
-                      {code[leaf.sym!] || "–"}
-                    </text>
+                    <g key={leaf.id}>
+                      <text x={p.x} y={BOTTOM + 38} textAnchor="middle" className={s.code}>
+                        {code[leaf.sym!] || "–"}
+                      </text>
+                      <text x={p.x} y={BOTTOM + 56} textAnchor="middle" className={s.cost}>
+                        {code[leaf.sym!] ? `${leaf.w}×${code[leaf.sym!].length}=${leaf.w * code[leaf.sym!].length}` : ""}
+                      </text>
+                    </g>
                   );
                 })}
               </svg>
               {all.map((t) => {
                 const p = pos.get(t.id)!;
                 const rootIdx = forest.indexOf(t);
-                const style = { left: `${(p.x / W) * 100}%`, top: `${(p.y / 250) * 100}%` };
-                const label = t.sym ? `${t.sym}×${t.w}` : String(t.w);
+                const style = { left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` };
+                const label = t.sym ? `${t.sym} ${t.w}` : String(t.w);
                 return rootIdx >= 0 && !done ? (
                   <Control
                     key={t.id}
@@ -204,7 +213,7 @@ export default function HuffmanByMerging({ slug }: { slug: string }) {
                     style={style}
                     disabled={locked}
                     aria-pressed={sel === rootIdx}
-                    aria-label={t.sym ? `${t.sym}, appears ${t.w} times` : `Group of weight ${t.w}`}
+                    aria-label={t.sym ? `${t.sym}, appears ${t.w} times` : `Group made of letters that appear ${t.w} times in all`}
                     onClick={() => tap(rootIdx)}
                   >
                     {label}

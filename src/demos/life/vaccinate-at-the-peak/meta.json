@@ -67,6 +67,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "life.vaccinate-at-the-peak.c6",
+      "text": "R0 = 3 means that, early on, each sick person infects 3 others on average; in the toy model infection 0.6 per day over recovery 0.2 per day gives exactly 3.",
+      "support": "derivation",
+      "source": "R0 = beta/gamma = 0.6/0.2 = 3 in the SIR model (Kermack and McKendrick 1927). Demo shows it rounded because floating point gives 2.9999999999999996.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -88,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "life:sir-epidemic-curve",
     "prerequisites": [
@@ -97,5 +104,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

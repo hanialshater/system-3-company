@@ -53,12 +53,10 @@
     },
     {
       "id": "physics.clay-boat.c4",
-      "text": "The stage draws to scale four open cylindrical cups of 1 kg of clay with outer volumes 0.80, 1.25, 1.80 and 2.50 L; the 0.80 L cup sinks, and the others float with 5.9, 4.0 and 2.8 cm below the waterline.",
+      "text": "The stage draws to scale four open cylindrical cups of 1 kg of clay with outer volumes 0.80, 1.25, 1.80 and 2.50 L; the 0.80 L cup sinks, and the others float with 5.9, 4.0 and 2.8 cm deep (below the waterline).",
       "support": "derivation",
       "source": "Computed in Demo.tsx: outer diameter D from volume and a chosen height/diameter ratio (0.6, 0.5, 0.4, 0.33); wall and floor thickness solved so clay volume stays 0.556 L; draft = 1000 cm^3 / (pi D^2 / 4) = 5.88, 3.98, 2.81 cm. The 0.80 L cup would need 8.95 cm of draft but is only 7.16 cm tall. Shapes are illustrative; stability and surface tension ignored.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.clay-boat.c5",
@@ -102,12 +100,13 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:buoyancy",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

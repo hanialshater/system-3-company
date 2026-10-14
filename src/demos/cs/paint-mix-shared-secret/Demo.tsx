@@ -47,7 +47,7 @@ export default function PaintMixSharedSecret({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On a ${N}-hour clock you multiply, then wrap around. Alice keeps secret ${A_SECRET} and sends ${A_PUBLIC}; Bob keeps ${B_SECRET} and sends ${B_PUBLIC}. From 1, Bob multiplies by ${A_PUBLIC} ${B_SECRET} times; Alice multiplies by ${B_PUBLIC} ${A_SECRET} times. Where do they stop?`,
+        question: `On a ${N}-hour clock you multiply, then wrap around. Everyone knows the start number ${BASE}. Alice multiplies 1 by ${BASE}, ${A_SECRET} times (her secret), and sends ${A_PUBLIC}. Bob does ${B_SECRET} times and sends ${B_PUBLIC}. Now from 1, Bob multiplies by ${A_PUBLIC}, ${B_SECRET} times; Alice multiplies by ${B_PUBLIC}, ${A_SECRET} times. Where do they stop?`,
         options: [`Same mark, ${SHARED}`, `Same mark, ${A_PUBLIC}`, "Different marks"],
         answer: SAME ? 0 : 2,
       }}
@@ -56,10 +56,9 @@ export default function PaintMixSharedSecret({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You watched Bob multiply by {A_PUBLIC} {B_SECRET} times and Alice multiply by {B_PUBLIC} {A_SECRET} times.
-            Both hands stopped on <strong>{SHARED}</strong>. Not luck: Alice made {A_PUBLIC} by multiplying {BASE}{" "}
-            {A_SECRET} times, and Bob made {B_PUBLIC} with {BASE} {B_SECRET} times. So each of them really multiplied{" "}
-            {BASE} by itself {A_SECRET} × {B_SECRET} = {BOTH} times
+            Both hands stopped on <strong>{SHARED}</strong>. Not luck: Alice made {A_PUBLIC} with {A_SECRET} multiplies by{" "}
+            {BASE}, and Bob made {B_PUBLIC} with {B_SECRET}. So each of them really multiplied by {BASE} a total of{" "}
+            {A_SECRET} × {B_SECRET} = {BOTH} times
             {checked ? `, and your check (×${BASE}, ${BOTH} times) also stopped on ${DIRECT}.` : "."}
           </p>
           <p>
@@ -92,10 +91,10 @@ export default function PaintMixSharedSecret({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">
                   {locked
-                    ? "Make a prediction to start."
+                    ? `Start number ${BASE}. Alice: ${BASE} six times gives ${A_PUBLIC}. Bob: ${BASE} fifteen times gives ${B_PUBLIC}.`
                     : done
                       ? checked ? `×${BASE}, ${BOTH} times, also lands on ${DIRECT}.` : `Both stop on ${SHARED}.`
-                      : `Multiply, then wrap past ${N - 1} back to 0.`}
+                      : `Start number ${BASE}. Multiply, then wrap past ${N - 1} back to 0.`}
                 </p>
                 <svg viewBox="0 0 320 320" className="stage-svg" role="img"
                   aria-label={`A ${N}-hour clock. Bob's hand at ${bv}, Alice's hand at ${av}.`}>
@@ -151,7 +150,7 @@ export default function PaintMixSharedSecret({ slug }: { slug: string }) {
                     Alice: finish
                   </Control>
                   <Control disabled={locked || !done || checked} onClick={() => { if (!locked) setChecked(true); }}>
-                    Check: ×{BASE}, {BOTH} times
+                    Check: start number ×{BASE}, {BOTH} times
                   </Control>
                 </Row>
               </div>

@@ -10,3 +10,7 @@
 ## v2 (claim fix 2026-10-13)
 
 Claim c3 disputed ('most infections were still to come' at the peak; 65.5% already infected). Reveal now: 'The peak is not the end of the epidemic: on day 19, 35% of the town had never been infected.' Claim rewritten; unverified.
+
+## Revision v3 (wave C)
+
+R0 rounded for display (no 2.9999999999999996) and explained as 'each sick person infects 3 others'. Options now all qualitative (quarter / half / three quarters). Reveal quotes only the learner's last date instead of every slider step passed. New claim c6 unverified.

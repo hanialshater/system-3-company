@@ -9,3 +9,7 @@
 
 - Reveal now lists the codes of the tree the stage builds (A 1, B 01, C 000, D 001; 14 bits), not the 2-bit codes. Leaves start ordered C, D, B, A so the QA path (Join the two lightest, then tap the 2-group and B) builds the 14-bit tree; the reveal is gated on that tree via Milestones ("best-tree"), and a 16-bit finish says to start over. Question and hook reworded to explain bits.
 - New claim c7 (unverified) covers the listed codes.
+
+## Revision v3 (wave C)
+
+Question simplified (prefix rule out of the stem; bit defined). Circles now read 'C 1' with 'The number is how many times the letter appears'; button renamed 'Join the two rarest'. Each leaf shows its cost (1x3=3) so the 4+4+3+3 sum is on the stage. Reveal quotes the learner's own total and codes, gives a prefix example, and no longer asserts optimality as seen (it says Huffman proved it). Not changed: no worse-tree comparison on stage; the learner sees their own total vs 14 only. Claims c2-c5 reworded, unverified.

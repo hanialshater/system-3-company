@@ -21,14 +21,15 @@ const FAST_KMH = 2 * BASE_KMH;
 const ms = (kmh: number) => kmh / 3.6;
 const MU = ms(BASE_KMH) ** 2 / (G * BASE_R);
 const rMin = (kmh: number) => Math.round((ms(kmh) ** 2 / (MU * G)) * 10) / 10;
-const MILESTONES = ["fast", "cleared"] as const;
+const MID_KMH = 1.5 * BASE_KMH;
+const MILESTONES = ["mid", "fast", "cleared"] as const;
 const SC = 0.36; // px per metre
 const X0 = 44;
 const Y0 = 172;
 
 export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
   const [kmh, setKmh] = useState(BASE_KMH);
-  const [r, setR] = useState(100);
+  const [r, setR] = useState(BASE_R);
   const [clearedR, setClearedR] = useState<number | null>(null);
 
   return (
@@ -39,18 +40,18 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
         options: [`${2 * BASE_R} m`, `${rMin(FAST_KMH)} m`, `${4 * BASE_R * 2} m`],
         answer: 1,
       }}
-      exploreHint={`Raise the speed to ${FAST_KMH} km/h, then widen the bend until the car grips.`}
+      exploreHint={`Raise the speed to ${MID_KMH} then ${FAST_KMH} km/h, watching the dashed arc. Then widen the bend until the car grips.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            At {FAST_KMH} km/h the dashed grip limit swelled from <strong>{rMin(BASE_KMH)} m</strong> to{" "}
-            <strong>{rMin(FAST_KMH)} m</strong>: double the speed, {rMin(FAST_KMH) / rMin(BASE_KMH)} times the radius
+            The dashed grip limit swelled from <strong>{rMin(BASE_KMH)} m</strong> at {BASE_KMH} km/h to {rMin(MID_KMH)} m at {MID_KMH} km/h and{" "}
+            <strong>{rMin(FAST_KMH)} m</strong> at {FAST_KMH} km/h: double the speed, {rMin(FAST_KMH) / rMin(BASE_KMH)} times the radius
             {clearedR !== null ? `; your ${clearedR} m bend cleared it` : ""}.
           </p>
           <p>
-            Grip gives a fixed sideways force. A bend needs force m v² / r, so the safe radius is v² ÷ (μg): speed squared.
-            Flat, dry road with μ = {MU.toFixed(2)} (illustrative).
+            Grip gives a fixed sideways push. Turning a faster car takes a bigger push, growing with speed squared, and a
+            wider bend needs less. So the safe radius grows with speed squared. Flat, dry road, grip μ = {MU.toFixed(2)} (illustrative).
           </p>
         </>
       )}
@@ -61,6 +62,7 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
             const need = rMin(kmh);
             const grips = r >= need;
             const check = (k: number, rr: number) => {
+              if (k === MID_KMH) reach("mid");
               if (k === FAST_KMH) reach("fast");
               if (k === FAST_KMH && rr >= rMin(k)) {
                 setClearedR(rr);
@@ -106,9 +108,9 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
                 <Slider
                   label="Bend radius (m)"
                   value={r}
-                  min={50}
-                  max={400}
-                  step={50}
+                  min={BASE_R}
+                  max={350}
+                  step={75}
                   disabled={locked}
                   onChange={(v) => {
                     setR(v);

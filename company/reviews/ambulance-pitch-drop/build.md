@@ -27,3 +27,7 @@ Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the f
 ## v4 (revision 2026-10-13)
 
 - Review: reveal enabled after one nudge and 754/704 Hz never shown. Fix: readout 'Heard at -20 / 0 / +20 m' fills as visited; two milestones (approach reading seen, going-away reached) gate the reveal; hook no longer states the answer; reveal readings come from the same heard() calls.
+
+## Revision v5 (wave C)
+
+Hook no longer states the effect. Reveal now needs three milestones (approaching at -20 m, beside you, 20 m past), so 754 / 704 / 653 Hz were all shown in the readout. Caption explains rings. c8 reworded, unverified.

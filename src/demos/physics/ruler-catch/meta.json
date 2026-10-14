@@ -16,7 +16,7 @@
       "things speed up as they fall"
     ],
     "doesNotKnow": [
-      "how to turn a fall distance into a time with d = 1/2 g t²"
+      "how to turn a fall distance into a time with d = 1/2 g t\u00b2"
     ]
   },
   "misconception": "Reaction time is negligible, or about a second.",
@@ -24,16 +24,16 @@
   "claims": [
     {
       "id": "physics.ruler-catch.c1",
-      "text": "A ruler falling from rest drops a distance d = 1/2 g t² in time t, so a catch at distance d shows a reaction time t = √(2d / g).",
+      "text": "A ruler falling from rest drops a distance d = 1/2 g t\u00b2 in time t, so a catch at distance d shows a reaction time t = \u221a(2d / g).",
       "support": "derivation",
-      "source": "Constant-acceleration kinematics from rest; g = 9.81 m/s². No air drag (negligible for a ruler over 20 cm).",
+      "source": "Constant-acceleration kinematics from rest; g = 9.81 m/s\u00b2. No air drag (negligible for a ruler over 20 cm).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.ruler-catch.c2",
-      "text": "A catch at 20 cm means t = √(2 × 0.20 / 9.81) = 0.20 s.",
+      "text": "A catch at 20 cm means t = \u221a(2 \u00d7 0.20 / 9.81) = 0.20 s.",
       "support": "derivation",
       "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor).",
       "status": "verified",
@@ -86,7 +86,7 @@
       "Much faster"
     ],
     "answer": 1,
-    "why": "t = √(2 × 0.45 / 9.81) = 0.30 s, against 0.20 s for 20 cm. More fall means a longer wait, but distance grows with time squared."
+    "why": "t = \u221a(2 \u00d7 0.45 / 9.81) = 0.30 s, against 0.20 s for 20 cm. More fall means a longer wait, but distance grows with time squared."
   },
   "evidence": {
     "qa": [],
@@ -94,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:reaction-time-ruler",
     "prerequisites": [
@@ -103,5 +103,6 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

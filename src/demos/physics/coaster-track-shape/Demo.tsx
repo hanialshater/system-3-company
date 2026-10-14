@@ -20,7 +20,7 @@
 // reveal gated by <Milestones> (a gentle ramp, a curved track); the reveal glosses g and h.
 
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useEffect, useMemo, useState } from "react";
 import s from "./styles.module.css";
@@ -122,8 +122,8 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A frictionless cart starts from rest 5 m up. It rolls to the floor down either a steep ramp or a gentle one. Which gives the higher speed at the bottom?",
-        options: ["The steep ramp", "The gentle ramp", "The same speed"],
+          "A cart with nothing slowing it (no friction) starts from rest 5 m up and rolls to the floor down either a steep ramp or a gentle one. Which gives the higher speed at the bottom?",
+        options: ["The steep ramp", "The gentle ramp", "Both end at the same speed"],
         answer: 2,
       }}
       exploreHint="Make the ramp gentler, then curve it. Compare the speed at the bottom."
@@ -137,8 +137,8 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
               : " The shape changed the time, not the final speed."}
           </p>
           <p>
-            What sets the speed is the height lost: each cart&rsquo;s label climbs as it drops, and both readouts end at
-            the same bottom speed. All 5 m of drop becomes 9.90 m/s: v = &radic;(2 g h), with g = 9.81 m/s&sup2; (gravity) and h =
+            What sets the speed is the height lost: in each race the labels climbed as the carts dropped, and both
+            readouts ended at the same bottom speed. All 5 m of drop becomes 9.90 m/s: v = &radic;(2 g h), with g = 9.81 m/s&sup2; (gravity) and h =
             5 m.
           </p>
           <p className="muted">Without friction, only the drop matters, not the road taken.</p>
@@ -165,7 +165,7 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
               ? "Dashed: the steep ramp. Solid: your track. Both drop 5 m."
               : !racing
                 ? "Change the slope or the curve to race the two carts."
-                : "Labels: each cart's speed right now.";
+                : "Each label is that cart's speed so far. Watch them climb to the bottom.";
 
             return (
               <div className={s.wrap}>
@@ -228,6 +228,11 @@ export default function CoasterTrackShape({ slug }: { slug: string }) {
                     format={(v) => CURVES[v].name}
                     onChange={(v) => change(li, v)}
                   />
+                </Row>
+                <Row>
+                  <Control disabled={locked || !racing || t < tEnd} onClick={() => { setT(0); setRunId((r) => r + 1); }}>
+                    Race again
+                  </Control>
                 </Row>
                 <Row>
                   <Readout label="Steep ramp: bottom speed, time" value={locked ? "?" : `${REF.v[N].toFixed(2)} m/s, ${REF.t[N].toFixed(2)} s`} />

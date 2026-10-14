@@ -33,7 +33,8 @@ const X_START = 24;
 export default function BrickOnItsSide({ slug }: { slug: string }) {
   const [face, setFace] = useState(0);
   const [mass, setMass] = useState(2);
-  const [pulled, setPulled] = useState<number[]>([]); // faces pulled, in order
+  const [log, setLog] = useState<{ i: number; m: number }[]>([]); // pulls, in order, with the mass used
+  const pulled = log.map((e) => e.i);
   const [shift, setShift] = useState(0);
 
   return (
@@ -48,17 +49,16 @@ export default function BrickOnItsSide({ slug }: { slug: string }) {
       exploreHint="Pull the brick on two different faces and read the scale."
       minInteractions={2}
       reveal={() => {
-        const names = pulled.map((i) => FACES[i].label.toLowerCase());
+        const reads = log.map((e) => `${FACES[e.i].label.toLowerCase()} (${FACES[e.i].area} cm²) ${pull(e.m).toFixed(1)} N at ${e.m} kg`);
         return (
           <>
             <p>
-              On the {names.join(", ")} the scale read <strong>{pull(mass).toFixed(1)} N</strong> every time, while the
-              contact area went from {FACES[pulled[0] ?? 0].area} to {FACES[pulled[pulled.length - 1] ?? 0].area} cm².
+              You pulled the {reads.join("; the ")}. At the same mass the pull did not depend on the contact area.
             </p>
             <p>
               Sliding friction depends on how hard the surfaces press together (here the brick&apos;s weight) and on the
-              materials: f = μ × m × g = 0.40 × {mass} × 9.81. Less area means more pressure on each bit of it, and the two
-              effects cancel. Change the mass and the pull changes.
+              materials: f = μ × m × g. Less area means each bit of it is pressed harder, and the two
+              effects cancel. Mass does change the pull: 0.40 × 4 × 9.81 = {pull(4).toFixed(1)} N at 4 kg.
             </p>
             <p className="muted">True for hard, dry surfaces; soft or sticky ones (like racing tyres) break the rule.</p>
           </>
@@ -78,11 +78,11 @@ export default function BrickOnItsSide({ slug }: { slug: string }) {
             const scaleX = 238;
             const doPull = (i: number) => {
               setFace(i);
-              const next = pulled.includes(i) ? pulled : [...pulled, i];
-              setPulled(next);
+              const next = log.some((e) => e.i === i) ? log : [...log, { i, m: mass }];
+              setLog(next);
               setShift((x) => (x >= 90 ? 0 : x + 30));
               reach("first-pull");
-              if (next.length >= 2) reach("second-face");
+              if (new Set(next.map((e) => e.i)).size >= 2) reach("second-face");
             };
             return (
               <div className={s.wrap}>
