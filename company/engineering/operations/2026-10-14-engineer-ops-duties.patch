@@ -1,0 +1,39 @@
+--- a/tools/org/roles.mjs	2026-10-14 19:16:23.311842121 +0000
++++ b/tools/org/roles.mjs	2026-10-14 19:16:23.337303816 +0000
+@@ -1323,4 +1323,36 @@
+   tools: RECORDS,
+ });
+ 
++// ------------------------------------------------------------------ operational excellence (founder, 2026-10-14)
++// company/decisions/2026-10-14-founder-risk-in-ops-review.md, Amendment 1: "operational excellence is company wide
++// responsibility on all engineers". Touch points: company/rituals/templates/ops-readiness.md, company/ops/risks.json,
++// the Operational Health Review, incident ownership. Mechanism: EDD-007 (tools/readiness.mjs, proposed).
++const OPS_ENGINEERS = ["platform-engineer", "backend-engineer", "hq-engineer", "design-engineer", "tools-lead", "release-manager", "rnd-engineer", "demo-builder"];
++const OPS_DUTIES = {
++  inScope: [
++    "Operational readiness for its own changes (company/rituals/templates/ops-readiness.md): none for change tier 0; a self-check record for tier 1; for tier 2, or anything touching deploy, the event API, auth or learner data, a record approved by principal-engineer-ops before it ships (company/engineering/readiness/)",
++    "Its risk entries in company/ops/risks.json (the owner field): proposes new risks and re-scores with evidence; principal-engineer-ops writes the file",
++    "Incidents in its services: it contains them and owns their COE actions (a COE is written by an engineer outside the area)",
++  ],
++  mayNot: ["Ship a tier-2 change, or one touching deploy, the event API, auth or learner data, without an approved readiness record", "Approve its own readiness record"],
++  rituals: ["ops-review (reports on its services and risks, through its own engineer)"],
++};
++const OPS_DEMO_BUILDER_SCOPE = "Applies only to shared engines, templates used by more than 10 lessons, and kit changes; a lesson's own files are change tier 0";
++for (const r of roles) {
++  if (!OPS_ENGINEERS.includes(r.id)) continue;
++  r.inScope = [...(r.inScope ?? []), ...OPS_DUTIES.inScope.map((d) => (r.id === "demo-builder" ? `${d}. ${OPS_DEMO_BUILDER_SCOPE}` : d))];
++  r.authority = { ...(r.authority ?? {}), mayNot: [...(r.authority?.mayNot ?? []), ...OPS_DUTIES.mayNot] };
++  r.rituals = [...(r.rituals ?? []), ...OPS_DUTIES.rituals];
++}
++for (const r of roles) {
++  if (r.id === "principal-engineer-ops") {
++    r.inScope = [...r.inScope, "The risk register (company/ops/risks.json, company/ops/risks.md), re-scored at every Operational Health Review", "Operational readiness: the template, and approval of tier-2 changes and of any change touching deploy, the event API, auth or learner data"];
++    r.authority = { ...r.authority, may: [...r.authority.may, "Approve, approve with conditions, or refuse a tier-2 readiness record"], mayNot: [...r.authority.mayNot, "Approve readiness for a change in its own area (principal-engineer does)"] };
++    r.outputs = [...r.outputs, "The risk register", "Readiness approvals"];
++  }
++  if (r.id === "principal-engineer") {
++    r.inScope = [...r.inScope, "Co-designs operational readiness with principal-engineer-ops: owns the change-tier path map it reads (EDD-007), and approves readiness for changes in principal-engineer-ops' own area"];
++  }
++}
++
+ export { common };

@@ -61,11 +61,15 @@
       "every": {
         "merge": 40
       },
-      "or": [
-        "incident"
+      "orMatch": [
+        {
+          "type": "incident",
+          "summary": "^SEV[12]\\b",
+          "label": "SEV1 or SEV2 incident"
+        }
       ],
       "orHours": 168,
-      "why": "Operational health is a slow-moving picture: every 40 merged batches, at least weekly, and after any incident."
+      "why": "Operational health is a slow-moving picture: every 40 merged batches and at least weekly. Off-cycle on any new SEV1 or SEV2 (an incident event whose summary starts 'SEV1:' or 'SEV2:', incident-response.md step 1), which also re-scores company/ops/risks.json (founder decision 2026-10-14-founder-risk-in-ops-review.md). SEV3s wait for the weekly review; retro and design-review still fire on every incident."
     },
     {
       "ritual": "vertical-review",

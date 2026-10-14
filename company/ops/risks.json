@@ -1,0 +1,516 @@
+{
+  "note": "Risk register (founder decision company/decisions/2026-10-14-founder-risk-in-ops-review.md). Owner: principal-engineer-ops. Format: company/ops/risks.md. Re-scored at every Operational Health Review (company/rituals/templates/ops-review.md, section 7). Check: node tools/risks.mjs report.",
+  "updated": "2026-10-14",
+  "risks": [
+    {
+      "id": "R-001",
+      "title": "Single 4-CPU shared host",
+      "description": "Every agent, build, dev server, QA run and git worktree shares one 4-CPU box. On 10-14 it ran at load 25-60 with disk full several times (ENOSPC, git could not write refs); QA could not run until load fell to ~5 at 18:00. One `next dev` on :3530 serves every agent, so one fault takes all of them down. No role owns the host (principal-engineer holds it interim).",
+      "category": "operational",
+      "likelihood": 5,
+      "impact": 4,
+      "owner": "principal-engineer",
+      "mitigation": {
+        "summary": "Host allocator: dispatch-check C1/C2/C4 refuses over 8 agents / 3 builders, load > 2x CPUs or < 10 GB free (built 18:25, caps await ratification W-712, run before every dispatch W-713); interim 2 concurrent builds/QA (W-532); disk prune and pre-build guard (W-525); capacity decision, second machine or runner (W-531); a named owner (W-533).",
+        "board": [
+          "W-712",
+          "W-713",
+          "W-532",
+          "W-525",
+          "W-531",
+          "W-533"
+        ],
+        "reality": "partial",
+        "paperOnly": "W-525 guard and prune are not built; W-531 has no record; W-533 has no owner; the 8/3 caps are proposed, not ratified, and dispatch-check is a step someone must remember to run."
+      },
+      "status": "mitigating",
+      "tier": "shared-dev-host (T1)",
+      "links": [
+        "company/rituals/records/2026-10-14-coe-host-exhaustion.md",
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/reviews/org/2026-10-14-operating-audit.md",
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/product/verticals/plan-to-2000.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-002",
+      "title": "CI cost per push: the queue never drains",
+      "description": "Every push queues a full `ci` (npm ci, build, Playwright, full QA), about 1 runner-hour each. At 19:06 on 10-14, 278 runs were queued, the oldest 9 h old; `ci` has not gone green for a current commit, so `deploy.yml` never fires. The one-off drain (W-774) is blocked: the session token has no `actions: write` (HTTP 403 on all 277 cancels). AMD-002 stops new duplicates on a ref but cannot reach the backlog or cut the per-push cost.",
+      "category": "operational",
+      "likelihood": 5,
+      "impact": 4,
+      "owner": "platform-engineer",
+      "mitigation": {
+        "summary": "Containment AMD-002 (in place). Root fix: per-push cost cut (changed-lesson QA, sharding, timeouts) via AMD-007 (W-775). Drain once (W-774, needs a token with actions: write or the founder to cancel). Meter (W-776) and back-pressure on pushers (W-777). Falsifier 10-16 (W-481).",
+        "board": [
+          "W-775",
+          "W-774",
+          "W-776",
+          "W-777",
+          "W-481"
+        ],
+        "reality": "partial",
+        "paperOnly": "Only AMD-002 exists. W-775 needs an amendment not yet drafted; W-776/W-777 are backlog; W-774 is blocked on a permission."
+      },
+      "status": "mitigating",
+      "tier": "ci-and-deploy (T1)",
+      "links": [
+        "company/rituals/records/2026-10-14-coe-ci-queue.md",
+        "company/engineering/operations/2026-10-14-ci-backlog-cleared.md",
+        "company/rituals/records/2026-10-14-constitutional-review.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-003",
+      "title": "Production deploys bypass CI (W-480)",
+      "description": "Vercel's git integration builds `[deploy]` commits on its own trigger and never waits for `ci`. All four 10-14 deploys shipped before CI judged them (G1), so `constitution` and `verify` are advisory for anything that reaches learners, including an unratified protected-path change. The guard (`[deploy]` string filter in `vercel.json`) is unprotected and was edited by a `[deploy]` commit (J3). Anyone who can type `[deploy]` can ship.",
+      "category": "security",
+      "likelihood": 4,
+      "impact": 5,
+      "owner": "platform-engineer",
+      "mitigation": {
+        "summary": "Root fix: production only via `deploy.yml` after green `ci` (Vercel git production builds off, or a Deployment Check on `ci`), drafts unreachable, decision record with the founder (W-480). Containment: founder approval per deploy and the `[deploy]` filter (cost controls, not gates). Snapshots refuse protected paths and record `check` (W-482).",
+        "board": [
+          "W-480",
+          "W-482"
+        ],
+        "reality": "paper",
+        "paperOnly": "The fix (W-480) is not started. What exists is a CLAUDE.md rule and a filter in an unprotected file; neither is a gate. Note R-002: even after W-480, deploys wait on a CI that does not conclude."
+      },
+      "status": "open",
+      "tier": "ci-and-deploy (T1)",
+      "links": [
+        "company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md",
+        "company/rituals/records/2026-10-14-constitutional-review.md",
+        "company/engineering/operations/2026-10-14-ops-review.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-004",
+      "title": "/spike S1 still open on production until a deploy",
+      "description": "`/spike?cdn=` let anyone frame any site under our domain and write learners' localStorage and `/api/events`. The code fix (W-477) is done and in review, but production still runs the old build, and nothing ships without a founder-approved deploy. The fix only reaches learners through the path R-003 describes.",
+      "category": "security",
+      "likelihood": 3,
+      "impact": 4,
+      "owner": "release-manager",
+      "mitigation": {
+        "summary": "Fixed in code (W-477, done). Ship it: founder-approved deploy (W-584) with the post-deploy smoke that checks `/spike` and `/spike?cdn=` return 404 (W-609); the release hold (W-534) lifts once W-477's review passes.",
+        "board": [
+          "W-477",
+          "W-534",
+          "W-584",
+          "W-609"
+        ],
+        "reality": "partial",
+        "paperOnly": "The fix is real but not live; exposure on production is unchanged until the deploy."
+      },
+      "status": "mitigating",
+      "tier": "spike-route-open-cdn-param (S1)",
+      "links": [
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/engineering/reviews/2026-10-14-w477-spike-review.md",
+        "company/rituals/records/2026-10-14-wbr.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-005",
+      "title": "In-review lessons shown in production (W-479 G2)",
+      "description": "Production shows lessons that have not passed the publish gates behind an \"In review\" tag (238+ cited by the constitutional review; 271 lessons are in `review` on disk now, carrying most of the 193 unverified claims). No override decision record exists under Article 4.1, and `review` status is a hand edit (G3). Latent: with `SHOW_REVIEW` unset, `findDemo()` serves any `draft` (66 drafts on disk now) by direct URL after the next deploy.",
+      "category": "ux",
+      "likelihood": 5,
+      "impact": 3,
+      "owner": "founder",
+      "mitigation": {
+        "summary": "Founder: write the override with an exit date, or set `SHOW_REVIEW=off` in production (W-479 item 4). Drafts never reachable in production (W-480). Ops review declares SEV1 if undecided at the next review.",
+        "board": [
+          "W-479",
+          "W-480"
+        ],
+        "reality": "paper",
+        "paperOnly": "Only the \"In review\" tag exists. No decision, no exit date, no draft block."
+      },
+      "status": "open",
+      "links": [
+        "company/rituals/records/2026-10-14-constitutional-review.md",
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-006",
+      "title": "Held claims on sources this host cannot open",
+      "description": "Fact-checkers hold claims they cannot verify because the host's proxy blocks gov, health, pubmed and arxiv sources (6-10 held per FC batch). On disk now: 193 unverified claims across 100 lessons, and 107 lessons whose claim records mention an unopened or unopenable source. (The brief's \"about 295 lessons\" was not reproducible from meta.json; my count is above, method: claims with status != verified, and claim text matching held/unopen.) The stage-only reword precedent (J5) keeps learners from false facts but moves lessons towards describing only themselves, and nobody tracks the total.",
+      "category": "ux",
+      "likelihood": 5,
+      "impact": 3,
+      "owner": "evaluation-steward",
+      "mitigation": {
+        "summary": "One web-capable fact-check session per wave (founder, W-583). A single stage-only reword log with restore items (W-483). Re-check queues by host (W-385, W-511, W-490).",
+        "board": [
+          "W-583",
+          "W-483",
+          "W-511",
+          "W-385"
+        ],
+        "reality": "paper",
+        "paperOnly": "No egress decision, no reword log; held claims accumulate."
+      },
+      "status": "open",
+      "links": [
+        "company/rituals/records/2026-10-14-constitutional-review.md",
+        "company/product/verticals/plan-to-2000.md",
+        "company/rituals/records/2026-10-14-wbr.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-007",
+      "title": "Books copyright, and no legal read",
+      "description": "Book Summaries paraphrase copyrighted books. The charter says no Books lesson publishes before the founder rules on a legal read, but that is a charter rule: no publish hold or gate checks it, and Books drafts and pilot builds already exist.",
+      "category": "strategic",
+      "likelihood": 2,
+      "impact": 5,
+      "owner": "cm-books",
+      "mitigation": {
+        "summary": "Founder: commission the legal read and name a book source (W-541, W-615 F1/F2). Proposed: a publish hold for every books-domain slug until the ruling (chief-of-staff, publish-holds.json).",
+        "board": [
+          "W-541",
+          "W-615"
+        ],
+        "reality": "paper",
+        "paperOnly": "The only control is a sentence in the charter. Nothing mechanical stops a Books publish."
+      },
+      "status": "open",
+      "links": [
+        "company/product/verticals/plan-to-2000.md",
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/domains/books-strategy.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-008",
+      "title": "Sensitive-topics route not active (W-626)",
+      "description": "History, Big Ideas and Books briefs include sensitive classes (slavery, war, political figures). The cultural-reviewer route that should review them before publish is a proposed patch, and the gate (AMD-006) is not drafted. History briefs 3, 4, 5 and 11 already need it (W-744).",
+      "category": "ux",
+      "likelihood": 3,
+      "impact": 4,
+      "owner": "chief-of-staff-ceo-office",
+      "mitigation": {
+        "summary": "Founder decides the cultural-reviewer patch (W-764); localization-lead consents to the load (W-765); AMD-006 publish gate (W-766); CMs mark sensitive briefs (W-767, W-768, W-769).",
+        "board": [
+          "W-626",
+          "W-764",
+          "W-766",
+          "W-744"
+        ],
+        "reality": "paper",
+        "paperOnly": "No route, no gate, no marked briefs."
+      },
+      "status": "open",
+      "links": [
+        "company/domains/big-ideas-strategy.md",
+        "company/decisions/2026-10-14-w626-sensitive-topics-review-route.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-009",
+      "title": "Board-ID collisions (W-528)",
+      "description": "`board add` allocates `max + 1` of the local file (protected `tools/company.mjs`). Parallel sessions and stale worktree branches collide; on 10-14 ids were renumbered by hand and at least 3 updates were overwritten (audit A4, F9). The loser of a race silently loses an item.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 2,
+      "owner": "tools-lead",
+      "mitigation": {
+        "summary": "Concurrency-safe allocator by amendment, falsifier: 20 parallel adds give 20 ids, 0 lost (W-528). Single-writer rule for board.json (chief of staff only).",
+        "board": [
+          "W-528"
+        ],
+        "reality": "paper",
+        "paperOnly": "The amendment is not drafted, and the single-writer rule is contradicted by CLAUDE.md and the role docs (audit F5)."
+      },
+      "status": "open",
+      "tier": "work-queue (T2)",
+      "links": [
+        "company/reviews/org/2026-10-14-operating-audit.md",
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/rituals/records/2026-10-14-wbr.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-010",
+      "title": "Event-log gap (W-716)",
+      "description": "The event log stopped recording dispatches and reports at about 16:00 on 10-14 while git took about 50 commits (audit F4; WBR logging check). Everything computed from it is blind for that window: rituals-due thresholds, concurrency, stop rate, metrics, the token ledger (about 64 runs missing).",
+      "category": "data",
+      "likelihood": 5,
+      "impact": 3,
+      "owner": "tools-lead",
+      "mitigation": {
+        "summary": "Find why the hooks stopped, fix, backfill (W-716). rituals-due already counts committed ritual records as held (workaround in place).",
+        "board": [
+          "W-716"
+        ],
+        "reality": "partial",
+        "paperOnly": "The cause is not found; the records workaround covers rituals only, not dispatch, usage or concurrency."
+      },
+      "status": "mitigating",
+      "tier": "company-records-and-event-log (D3)",
+      "links": [
+        "company/reviews/org/2026-10-14-operating-audit.md",
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/ops/token-budget.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-011",
+      "title": "No real-learner data",
+      "description": "`/api/events` only `console.log`s, there is no auth or progress database (F-01), and no real learner has used a lesson (EXP-002 not started). Every learning claim the company makes is simulated. Even a deploy produces no data until events persist.",
+      "category": "data",
+      "likelihood": 5,
+      "impact": 4,
+      "owner": "backend-engineer",
+      "mitigation": {
+        "summary": "Persist events (W-706, after the founder's F-01 auth/DB decision); deploy (W-584); recruit 5 learners (W-007, F-11).",
+        "board": [
+          "W-706",
+          "W-584",
+          "W-007"
+        ],
+        "reality": "paper",
+        "paperOnly": "Nothing persists; no provider chosen; no learner recruited."
+      },
+      "status": "open",
+      "tier": "event-api (T2), learner-accounts (D1 missing)",
+      "links": [
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/ops/founder-inbox.json"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-012",
+      "title": "Usage budget: unmeasured unit, no approved budgets",
+      "description": "The 10-13 usage limit stopped 8 of 9 builders mid-wave. The 20x upgrade removed the stops (2 of 346 on 10-14), but no project has an approved budget, 82% of spend is attributed by role default, the coordinator's spend and 32 stopped runs are unmeasured, and nobody knows whether `subagent_tokens` is the billed unit. A budget that is not in the billed unit cannot warn before the limit.",
+      "category": "operational",
+      "likelihood": 3,
+      "impact": 3,
+      "owner": "portfolio-manager",
+      "mitigation": {
+        "summary": "Ledger and `ledger.mjs gate` (built; grace to 10-16); project rule in dispatch-check (W-720); `[project:<id>]` tags (W-721); token unit (W-728, principal-engineer-ops); first Project Review sets budgets (F-15).",
+        "board": [
+          "W-720",
+          "W-721",
+          "W-728"
+        ],
+        "reality": "partial",
+        "paperOnly": "The ledger exists; the gate is not wired into dispatch, no budget is set, and the unit is unknown."
+      },
+      "status": "mitigating",
+      "links": [
+        "company/ops/token-budget.md",
+        "company/rituals/records/2026-10-13-coe.md",
+        "company/decisions/2026-10-14-usage-upgrade.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-013",
+      "title": "Founder bandwidth",
+      "description": "The founder is on the critical path of most red items: 20 open board items and 13 open founder-inbox items, including the deploy path (W-480), in-review lessons (W-479), the first deploy (W-584), web fact-checks (W-583), Books legal (W-541), auth/DB (F-01), operating caps (W-712), the sensitive route (W-764), capacity spend (W-531) and Project Review 1 (F-15). Founder asks also turned into dispatch with no capacity answer (audit F2).",
+      "category": "strategic",
+      "likelihood": 5,
+      "impact": 4,
+      "owner": "chief-of-staff-ceo-office",
+      "mitigation": {
+        "summary": "Founder-request intake rule and daily rhythm (audit sections 2-3, ratify W-712); one ranked founder inbox with a recommendation per item; founder digest twice a day; delegate what the constitution allows (Project Review delegation, F-15 item 0).",
+        "board": [
+          "W-712"
+        ],
+        "reality": "partial",
+        "paperOnly": "The inbox and digest exist; the intake rule and delegation are proposals; nothing ranks the founder queue by risk."
+      },
+      "status": "open",
+      "links": [
+        "company/reviews/org/2026-10-14-operating-audit.md",
+        "company/ops/founder-inbox.json",
+        "company/decisions/2026-10-14-founder-risk-in-ops-review.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-014",
+      "title": "COE actions do not close",
+      "description": "The 10-13 COE's five actions have no board ids (ops review action 15, still owed). The three 10-14 COEs are final, but almost all their actions are backlog, one is blocked (W-774), and the root-cause fixes need amendments (W-775, W-528) or founder decisions (W-480, W-531). A COE whose actions stall repeats.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 3,
+      "owner": "principal-engineer-ops",
+      "mitigation": {
+        "summary": "dispatch-check R2: no build waves while a SEV1/SEV2 lacks a final COE (built, review W-715). Each ops review lists slipped COE actions (template section 7). Chief of staff gives the 10-13 actions board ids or drops them.",
+        "board": [
+          "W-715",
+          "W-717"
+        ],
+        "reality": "partial",
+        "paperOnly": "R2 checks that a COE exists, not that its actions close."
+      },
+      "status": "mitigating",
+      "links": [
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/rituals/records/2026-10-13-coe.md",
+        "company/rituals/records/2026-10-14-coe-ci-queue.md",
+        "company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md",
+        "company/rituals/records/2026-10-14-coe-host-exhaustion.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-015",
+      "title": "Protected-path check leaks (G5) and gates in ordinary tooling (G6)",
+      "description": "CI's constitution job diffs from `event.before`, skips the first push of a new branch, and accepts any ratified AMD for any protected path; the hook has the same flaw. AMD-001 is still proposed, so gate logic lives in unprotected tools (publish-ready.mjs), easier to change than what it judges.",
+      "category": "security",
+      "likelihood": 3,
+      "impact": 4,
+      "owner": "evaluation-steward",
+      "mitigation": {
+        "summary": "Founder commissions AMD-003 (fixed base, no skip, per-AMD path lists) and decides AMD-001 (W-479).",
+        "board": [
+          "W-479"
+        ],
+        "reality": "paper",
+        "paperOnly": "Not drafted; the board has not asked."
+      },
+      "status": "open",
+      "tier": "gates-and-qa-contract (T1)",
+      "links": [
+        "company/rituals/records/2026-10-14-constitutional-review.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-016",
+      "title": "Red `check` is routine",
+      "description": "Half-built domains on the shared tree turn `npm run check` red for everyone; \"check fails, not mine\" became normal and hides real errors (G4). WIP snapshots push with check failing.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 2,
+      "owner": "evaluation-steward",
+      "mitigation": {
+        "summary": "Decide how WIP domains stop failing check (W-530); snapshots record check status (W-482).",
+        "board": [
+          "W-530",
+          "W-482"
+        ],
+        "reality": "paper",
+        "paperOnly": "Neither built."
+      },
+      "status": "open",
+      "links": [
+        "company/rituals/records/2026-10-14-constitutional-review.md",
+        "company/engineering/operations/2026-10-14-ops-review.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-017",
+      "title": "Agent isolation: wrong worktree, process kills, scratch collisions",
+      "description": "Agents wrote into the coordinator's worktree, `pkill -f` patterns killed the coordinator's shell twice (a repeat of closed W-072), background loops died with their parent, and scratch dirs collided. Each is a SEV3 today; the promotion rule makes the next lost commit a SEV2.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 2,
+      "owner": "tools-lead",
+      "mitigation": {
+        "summary": "Worktree-per-agent lifecycle (W-526), pid-file process wrapper and no pattern kills (W-529), per-agent scratch dirs (W-023).",
+        "board": [
+          "W-526",
+          "W-529",
+          "W-023"
+        ],
+        "reality": "partial",
+        "paperOnly": "dispatch-check C3 exists; the lifecycle script, wrapper and scratch dirs do not."
+      },
+      "status": "open",
+      "tier": "agent-isolation (T2)",
+      "links": [
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/rituals/records/2026-10-14-coe-host-exhaustion.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-018",
+      "title": "Volume counted instead of Surface Value",
+      "description": "The plan to 2,000 can be met by counting files: Life Hacks has 200 lessons and 0 publishable, and 45% of lessons needed rework. Building faster than review raises the queue, not the count, and puts pressure on evaluator independence (plan-to-2000 section 6).",
+      "category": "strategic",
+      "likelihood": 3,
+      "impact": 4,
+      "owner": "head-of-product",
+      "mitigation": {
+        "summary": "Count only published lessons towards 2,000; wave gate (no Wave K builder claims until the review queue is at most one wave and J is at least 60% published; W-556, decided); walkthrough before account, always (evaluation-steward).",
+        "board": [
+          "W-556"
+        ],
+        "reality": "partial",
+        "paperOnly": "The wave gate is a decision checked by the chief of staff, not by a tool."
+      },
+      "status": "mitigating",
+      "links": [
+        "company/product/verticals/plan-to-2000.md",
+        "company/rituals/records/2026-10-14-wbr.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-019",
+      "title": "Shared lesson engines fail many lessons at once",
+      "description": "Life Hacks runs 200 lessons on four engines (Home, Study, Resource, AlphabetSearch). In r9 batch D, 14 of 14 lessons needed revision, and the WBR hypothesis (a) is one engine bug (inverted mode toggle, no amounts row) failing them all the same way. An engine change has the blast radius of a kit change but is reviewed like a lesson.",
+      "category": "ux",
+      "likelihood": 3,
+      "impact": 3,
+      "owner": "demo-builder",
+      "mitigation": {
+        "summary": "Engines v2 (W-608, in review by accessibility-reviewer and the spec); readiness check at change tier 2 for any engine or template used by more than 10 lessons (company/rituals/templates/ops-readiness.md).",
+        "board": [
+          "W-608"
+        ],
+        "reality": "partial",
+        "paperOnly": "v2 is in review, not merged; the readiness check is proposed (EDD-007) and not enforced by a tool yet."
+      },
+      "status": "mitigating",
+      "links": [
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/design/specs/lifehacks-engines-v2.md"
+      ],
+      "opened": "2026-10-14",
+      "lastReviewed": "2026-10-14"
+    }
+  ]
+}
