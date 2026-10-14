@@ -22,3 +22,21 @@ The brief's check line is wrong in two places (see above). The spec already rout
 
 ## Checks skipped
 next build, QA, walkthrough and tsc were not run (coordinator order). `npm run registry` and `npm run check` passed.
+
+## Revision v2 (wave E r6, 2026-10-14)
+
+r6 (knows counting sort, revise): the Hand toggle was clipped below the phone frame; the clumped sort was instant, so 30 was a number, not work; the tower overflowed; "30" was the only exact option. Fixes:
+- The stage is shorter: tiles stack 18 high instead of 22 (viewBox 340 x 282, was 330), so a ten-tile tower fits with its caption. The readouts moved below the controls, so Drop / Sort / Hand sit right under the buckets. DOM order is unchanged: Drop, Sort, Spread, Clumped.
+- Switching hand after a sort now drops (6 ms a number) and then sorts one comparison per frame (10 ms, flashing each pair, the Comparisons readout climbing), about 370 ms, inside the QA wait.
+- After a sort, each tile shows a small number for the tests it made sliding into place. The caption reads "small number on a tile: tests it made sliding into place". On the clumped tower they add to 30. The reveal points at them. New claim c6.
+- Options: "About 1, as before", "About 10", "About 30".
+- Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v2
+
+1. Title and hook: "Ten buckets, one of them crowded" / "Is a sort that never compares across the whole list always fast?" The title says a bucket is crowded but gives no comparison count. "About 10" (a crowded bucket, but cheap) and "About 30" both stay open. This is my judgement; a reviewer may disagree.
+2. Options: "About 1, as before", "About 10", "About 30". All "About" plus a number.
+3. Locked stage: ten empty buckets labelled 1 ... 91, the spread hand's tiles, the caption "each bucket holds ten values", and readouts at 0 / ? / ?. Nothing shows 30 or a tower.
+4. Reveal values: 1 comparison, 64 and 70 sharing: (b) milestone spread-sorted (readout Spread 1; the "1" under bucket 61); 30 and "all ten fell into 41-50": (b) milestone clumped-sorted (readout Clumped 30, the tower, "30" under it); "42 and 44 made 6 tests each": (b) the same milestone, shown as the small numbers on the tower's tiles.
+5. QA path: Drop into buckets (spread, 350 ms), Sort buckets (spread-sorted), Spread (disabled), Clumped (drop + sort about 370 ms, clumped-sorted). Both milestones reached, the question's own case included. At the reveal the clumped tower with its per-tile counts and both readouts are on stage.
+6. Reset: no Reset control; the Spread / Clumped readouts never clear. Reveal on the QA path: "Spread out, the ten numbers landed in nine buckets. Only 64 and 70 shared one, so sorting took 1 comparison. Clumped, all ten fell into 41-50, and the "tiny" sorts became one insertion sort of ten numbers: 30 comparisons. The small numbers on the tower's tiles add up to that: each newcomer slides past every bigger number already there, and 42 and 44 made 6 tests each. / Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it is as slow as the sort inside the one crowded bucket."

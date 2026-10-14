@@ -66,8 +66,7 @@ const PRESETS: { p: Pt; label: string }[] = [
   { p: [3, 1], label: "(3, 1)" },
   { p: [7, 4], label: "(7, 4)" },
 ];
-const NOTCH_COUNT = crossings(3, 4).length; // 2
-const LEFT_COUNT = crossings(1, 4).length; // 3
+type Seen = { p: Pt; n: number };
 
 // drawing
 const S = 30;
@@ -77,6 +76,10 @@ const fmt = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(1));
 
 export default function RayCountsCrossings({ slug }: { slug: string }) {
   const [pt, setPt] = useState<Pt>([7, 4]);
+  // What the learner has seen: the last few points tried, and the first notch point and first odd point.
+  const [log, setLog] = useState<Seen[]>([]);
+  const [notch, setNotch] = useState<Seen | null>(null);
+  const [odd, setOdd] = useState<Seen | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const dragging = useRef(false);
   const hits = crossings(pt[0], pt[1]);
@@ -89,21 +92,24 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
       predict={{
         question:
           "A U-shaped polygon has corners (0,0) (6,0) (6,6) (4,6) (4,2) (2,2) (2,6) (0,6). The point (3,4) sits in the gap between the arms. Shoot a ray from it to the right. Is the point inside?",
-        options: ["Inside: it is 1 crossing", "Outside: it crosses an even number of edges", "Cannot tell without the area"],
+        options: ["Inside", "Outside", "Cannot tell without the area"],
         answer: 1,
       }}
-      exploreHint="Drag the point, or tap a position. Count the edges the ray crosses."
+      exploreHint="Tap each position, or drag the point. Watch where the ray turns solid or dashed."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            In the gap the ray crossed {NOTCH_COUNT} edges: into the right arm at x = 4, and out again at x = 6. From (1, 4) it crossed{" "}
-            {LEFT_COUNT}: odd, inside.
+            {notch
+              ? `In the gap, from (${fmt(notch.p[0])}, ${fmt(notch.p[1])}), the ray crossed ${notch.n} edges: into the right arm at x = 4, and out again at x = 6. `
+              : ""}
+            {odd ? `From (${fmt(odd.p[0])}, ${fmt(odd.p[1])}) it crossed ${odd.n}: odd, inside.` : ""}
           </p>
           <p>
-            Far to the right is always outside, and every crossing flips inside and outside. So counting backwards from the far end,
-            an odd count means inside and an even count means outside, however central the point looks. The shape can have any
-            number of notches. A ray through a corner exactly needs a tie rule; this stage keeps the point off corner heights.
+            Look at the ray: at each numbered crossing it switches between solid (inside) and dashed (outside), and past the
+            last crossing it is always outside. So counting back from the far end, an odd count means inside and an even
+            count means outside, however central the point looks. The shape can have any number of notches. A ray through a
+            corner exactly needs a tie rule; this stage keeps the point off corner heights.
           </p>
         </>
       )}
@@ -115,8 +121,20 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
               if (locked) return;
               setPt(p);
               const k = crossings(p[0], p[1]).length;
-              if (k % 2 === 1) reach("inside-odd");
-              if (inNotch(p[0], p[1])) reach("notch");
+              const seen = { p, n: k };
+              setLog((l) => {
+                const last = l[l.length - 1];
+                if (last && last.p[0] === p[0] && last.p[1] === p[1]) return l;
+                return [...l.filter((x) => x.p[0] !== p[0] || x.p[1] !== p[1]), seen].slice(-4);
+              });
+              if (k % 2 === 1) {
+                setOdd((o) => o ?? seen);
+                reach("inside-odd");
+              }
+              if (inNotch(p[0], p[1])) {
+                setNotch((o) => o ?? seen);
+                reach("notch");
+              }
             };
             const toLocal = (e: PointerEvent<SVGSVGElement>): Pt | null => {
               const svg = svgRef.current;
@@ -142,17 +160,26 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
             };
 
             const poly = POLY.map(([x, y]) => `${X(x)},${Y(y)}`).join(" ");
+            // The ray as stretches between crossings. Past the last crossing it is outside; each crossing flips it.
+            const stops = [pt[0], ...hits.map((h) => h.x), XMAX + 6 / S];
+            const stretches = stops.slice(0, -1).map((x0, i) => ({
+              x0,
+              x1: stops[i + 1],
+              in: (hits.length - i) % 2 === 1,
+            }));
             return (
               <div className={s.wrap}>
                 <p className={s.note}>
-                  ({fmt(pt[0])}, {fmt(pt[1])}): {n} crossing{n === 1 ? "" : "s"}, {n % 2 ? "odd" : "even"}, so {inside ? "inside" : "outside"}.
+                  {locked
+                    ? "Ray to the right from the point. Count the edges it crosses."
+                    : `(${fmt(pt[0])}, ${fmt(pt[1])}): ${n} crossing${n === 1 ? "" : "s"}, ${n % 2 ? "odd" : "even"}, so ${inside ? "inside" : "outside"}.`}
                 </p>
                 <svg
                   ref={svgRef}
                   viewBox="0 0 320 240"
                   className={`stage-svg ${s.svg}`}
                   role="img"
-                  aria-label={`Point at ${fmt(pt[0])}, ${fmt(pt[1])}; ray crosses ${n} edges`}
+                  aria-label={`Point at ${fmt(pt[0])}, ${fmt(pt[1])}; ray crosses ${n} edge${n === 1 ? "" : "s"}`}
                   onPointerDown={down}
                   onPointerMove={move}
                   onPointerUp={up}
@@ -174,13 +201,41 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                       {g}
                     </text>
                   ))}
-                  <polygon points={poly} fill="var(--domain)" fillOpacity={0.16} stroke="var(--fg)" strokeWidth={2} strokeLinejoin="round" />
+                  <polygon
+                    points={poly}
+                    fill={locked ? "none" : "var(--domain)"}
+                    fillOpacity={0.16}
+                    stroke="var(--fg)"
+                    strokeWidth={2}
+                    strokeLinejoin="round"
+                  />
                   {hits.map((h) => {
                     const [x1, y1] = POLY[h.edge];
                     const [x2, y2] = POLY[(h.edge + 1) % POLY.length];
                     return <line key={`e${h.edge}`} x1={X(x1)} y1={Y(y1)} x2={X(x2)} y2={Y(y2)} stroke="var(--domain)" strokeWidth={5} strokeLinecap="round" />;
                   })}
-                  <line x1={X(pt[0])} y1={Y(pt[1])} x2={X(XMAX) + 6} y2={Y(pt[1])} stroke="var(--fg)" strokeWidth={1.5} strokeDasharray="5 3" />
+                  {locked ? (
+                    <line x1={X(pt[0])} y1={Y(pt[1])} x2={X(XMAX) + 6} y2={Y(pt[1])} stroke="var(--muted)" strokeWidth={1.5} strokeDasharray="5 3" />
+                  ) : (
+                    stretches.map((st, i) => (
+                      <g key={`r${i}`}>
+                        <line
+                          x1={X(st.x0)}
+                          y1={Y(pt[1])}
+                          x2={X(st.x1)}
+                          y2={Y(pt[1])}
+                          stroke={st.in ? "var(--good)" : "var(--muted)"}
+                          strokeWidth={st.in ? 4 : 1.5}
+                          strokeDasharray={st.in ? undefined : "5 3"}
+                        />
+                        {X(st.x1) - X(st.x0) > 26 && (
+                          <text x={(X(st.x0) + X(st.x1)) / 2} y={Y(pt[1]) - 6} textAnchor="middle" className={s.ax}>
+                            {st.in ? "in" : "out"}
+                          </text>
+                        )}
+                      </g>
+                    ))
+                  )}
                   {hits.map((h, i) => (
                     <g key={`h${h.edge}`}>
                       <circle cx={X(h.x)} cy={Y(pt[1])} r={8} fill="var(--bg-2)" stroke="var(--domain)" strokeWidth={2} />
@@ -189,7 +244,7 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                       </text>
                     </g>
                   ))}
-                  <circle cx={X(pt[0])} cy={Y(pt[1])} r={9} fill={inside ? "var(--good)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={2} className={s.dot} />
+                  <circle cx={X(pt[0])} cy={Y(pt[1])} r={9} fill={locked ? "var(--fg)" : inside ? "var(--good)" : "var(--bad)"} stroke="var(--fg)" strokeWidth={2} className={s.dot} />
                 </svg>
                 <Row>
                   {PRESETS.map(({ p, label }) => (
@@ -204,9 +259,14 @@ export default function RayCountsCrossings({ slug }: { slug: string }) {
                   ))}
                 </Row>
                 <Row>
-                  <Readout label="Crossings" value={n} />
-                  <Readout label="Verdict" value={inside ? "inside" : "outside"} />
+                  <Readout label="Crossings" value={locked ? "?" : n} />
+                  <Readout label="Verdict" value={locked ? "?" : inside ? "inside" : "outside"} />
                 </Row>
+                <p className={s.log} data-testid="tried">
+                  {log.length
+                    ? `Tried: ${log.map((x) => `(${fmt(x.p[0])}, ${fmt(x.p[1])}) ${x.n} ${x.n % 2 ? "in" : "out"}`).join(" · ")}`
+                    : "Tried: none yet"}
+                </p>
               </div>
             );
           }}

@@ -1,7 +1,7 @@
 {
   "slug": "enemies-allow-three-camps",
   "title": "Can a feud have three sides?",
-  "hook": "The enemy of my enemy need not be my friend. How many camps can a feud hold then?",
+  "hook": "The enemy of my enemy need not be my friend. Then which triangles break the rule?",
   "domain": "math",
   "concept": "weak-balance",
   "status": "draft",
@@ -32,12 +32,10 @@
     },
     {
       "id": "math.enemies-allow-three-camps.c2",
-      "text": "Six people split into three pairs form 20 triangles: 0 banned, 12 with one friendly pair, and 8 all-enemy triangles (one person from each camp).",
+      "text": "Six people in camps of 3 + 2 + 1 (A B C, D E, F) form 20 triangles: 0 banned, 13 with one friendly pair, 6 all-enemy triangles (one person from each camp), and 1 all-friends triangle (A, B, C).",
       "support": "derivation",
-      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2). | FACT-CHECK 2026-10-14 (pass 22): Own node over 20 triangles, split [0,0,1,1,2,2]: banned 0, one-friend 12, all-enemy 8.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2). | FACT-CHECK 2026-10-14 (pass 22): Own node over 20 triangles, split [0,0,1,1,2,2]: banned 0, one-friend 12, all-enemy 8. | Builder revision v3 (demo-builder, 2026-10-14): the question's split changed from three pairs [0,0,1,1,2,2] (where nobody had two friends, so 0 banned was trivially true) to 3 + 2 + 1 [0,0,0,1,1,2]. Builder node re-run over all 20 triangles: all-enemy 6 (3 x 2 x 1), one friendly pair 13, banned 0, all friends 1. Old counts (12, 8) no longer appear anywhere.",
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c3",
@@ -50,12 +48,10 @@
     },
     {
       "id": "math.enemies-allow-three-camps.c4",
-      "text": "When friends are exactly the people in your camp, any two friends of yours are friends too, so no split into camps has a banned triangle, whatever the number of camps.",
+      "text": "When friends are exactly the people in your camp, any two friends of yours are friends too (in A, B, C, B and C are both A's friends, so they share A's camp and are friends), so no split into camps has a banned triangle, whatever the number of camps.",
       "support": "derivation",
-      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links. | FACT-CHECK 2026-10-14 (pass 22): Same-camp is an equivalence relation, so no triangle has exactly two friendly links.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links. | FACT-CHECK 2026-10-14 (pass 22): Same-camp is an equivalence relation, so no triangle has exactly two friendly links. | Builder revision v3 (demo-builder, 2026-10-14): added the A, B, C instance; the stage caption for that triangle reads 'B and C are both A's friends, so same camp, so friends. Allowed.'",
+      "status": "unverified"
     },
     {
       "id": "math.enemies-allow-three-camps.c5",
@@ -68,12 +64,17 @@
     },
     {
       "id": "math.enemies-allow-three-camps.c6",
-      "text": "Allow it, and any number of camps is stable: you saw [the splits the learner viewed with all 20 triangles checked, e.g. 2 and 3] camps each with 0 banned triangles, and [the remaining of 2, 3, 6] camps give 0 too (the second clause only when some split was not seen this way).",
+      "text": "Allow it, and any number of camps is stable: you saw [the splits the learner viewed with all 20 triangles checked and no cross link, listed in ascending order, e.g. 2, 3 and 6] camps, each with 0 banned triangles.",
       "support": "derivation",
-      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'. | Builder fix (demo-builder, 2026-10-14): W-212: Demo.tsx now records a split as seen only when it is displayed with all 20 triangles checked (Check all / last Next in that split, or switching to it after all are checked), and the reveal quotes only those; unseen splits are stated without 'you saw' (counts from c3: 0 banned for 2, 3 and 6 camps). Fallback with nothing seen (unreachable, checked-all is required): '2, 3 and 6 camps each give 0 banned triangles.' · Fact-check pass 23 2026-10-14: v2 Demo: see() is called only when all 20 triangles are checked in the current split (Next to 20, Check all, or a chip after checking all), and the reveal names only those as 'you saw'; the others are listed as 'give 0 too'. checked-all always calls see(), so 'seen' is never empty at the reveal. Own count: banned 0 for 2, 3 and 6 camps.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'. | Builder fix (demo-builder, 2026-10-14): W-212: Demo.tsx now records a split as seen only when it is displayed with all 20 triangles checked (Check all / last Next in that split, or switching to it after all are checked), and the reveal quotes only those; unseen splits are stated without 'you saw' (counts from c3: 0 banned for 2, 3 and 6 camps). Fallback with nothing seen (unreachable, checked-all is required): '2, 3 and 6 camps each give 0 banned triangles.' · Fact-check pass 23 2026-10-14: v2 Demo: see() is called only when all 20 triangles are checked in the current split (Next to 20, Check all, or a chip after checking all), and the reveal names only those as 'you saw'; the others are listed as 'give 0 too'. checked-all always calls see(), so 'seen' is never empty at the reveal. Own count: banned 0 for 2, 3 and 6 camps. | Builder revision v3 (demo-builder, 2026-10-14): the unguaranteed second clause ('and the remaining ... camps give 0 too') is dropped; the sentence now lists only splits recorded as seen (all 20 checked, no B-D link), and the stage keeps them on the line '0 banned in: 3 camps · 6 camps · 2 camps'.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c7",
+      "text": "Making B and D friends across camps creates banned triangles: with camps 3 + 3 there are 4 (A B D, B C D, B D E, B D F), with 3 + 2 + 1 there are 3 (A B D, B C D, B D E), and with six camps of one there are 0, because nobody else is anyone's friend. In A, B, D, A and D are both B's friends but enemies.",
+      "support": "simulation",
+      "source": "Demo.tsx friendly() with link = true adds the pair (B, D); builder node re-run over all 20 triangles for each split. Stage caption 'B and D are friends across camps: N banned triangles (red)' and the per-triangle verdict 'A and D are both B's friends but enemies. Banned.' Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -93,7 +94,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:weak-balance",
     "also": [],

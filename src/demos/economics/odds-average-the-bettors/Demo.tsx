@@ -16,7 +16,8 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const START = { w1: 300, p1: 80, w2: 100, p2: 40 };
-const MILESTONES = ["equal", "richer2"] as const;
+const MILESTONES = ["equal", "richer2", "start"] as const;
+type Rec = { w1: number; p1: number; w2: number; p2: number; implied: number; simple: number };
 
 function pool(w1: number, p1: number, w2: number, p2: number) {
   const a1 = (w1 * p1) / 100;
@@ -39,6 +40,10 @@ export default function OddsAverage({ slug }: { slug: string }) {
   const [p2, setP2] = useState(START.p2);
   const q = pool(w1, p1, w2, p2);
   const st = pool(START.w1, START.p1, START.w2, START.p2);
+  // Recorded when each milestone is reached, so the reveal quotes what the learner saw.
+  const [eq, setEq] = useState<Rec | null>(null);
+  const [rich, setRich] = useState<Rec | null>(null);
+  const [seenStart, setSeenStart] = useState(false);
 
   return (
     <Lesson
@@ -48,17 +53,24 @@ export default function OddsAverage({ slug }: { slug: string }) {
         options: ["60%", "70%", "80%"],
         answer: 1,
       }}
-      exploreHint="Give both bettors equal money, then make bettor 2 the richer one."
+      exploreHint="Give both bettors equal money, make bettor 2 the richer one, then go back to the start."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
+          {seenStart && (
+            <p>
+              $300 × 80% = $240 and $100 × 40% = $40 put <strong>{usd(st.onA)} of the {usd(st.total)} pool</strong> on A, so the odds said{" "}
+              {pct(st.implied)}, not the simple average of {pct(st.simple)}.
+            </p>
+          )}
           <p>
-            $300 × 80% = $240 and $100 × 40% = $40 put <strong>{usd(st.onA)} of the {usd(st.total)} pool</strong> on A, so the odds said{" "}
-            {pct(st.implied)}, not the simple average of {pct(st.simple)}.
-          </p>
-          <p>
-            With equal money the odds landed on the simple average; when bettor 2 held more, they slid toward bettor 2&apos;s 40%. Each
-            opinion counts in proportion to the money behind it: the implied chance is the wealth-weighted average belief.
+            {eq
+              ? `With equal money (${usd(eq.w1)} each) the solid line sat on the dashed one: odds ${pct(eq.implied)}, simple average ${pct(eq.simple)}. `
+              : ""}
+            {rich
+              ? `With bettor 2 holding ${usd(rich.w2)} to bettor 1's ${usd(rich.w1)}, the odds slid to ${pct(rich.implied)}, toward bettor 2's ${rich.p2}%, while the dashed average stayed at ${pct(rich.simple)}. `
+              : ""}
+            Each opinion counts in proportion to the money behind it: the implied chance is the wealth-weighted average belief.
           </p>
           <p className="muted">
             A simplified model: no house cut, each bettor splits all their money by belief, as a bettor maximising the logarithm of their
@@ -76,8 +88,20 @@ export default function OddsAverage({ slug }: { slug: string }) {
               if (n.p1 !== undefined) setP1(n.p1);
               if (n.w2 !== undefined) setW2(n.w2);
               if (n.p2 !== undefined) setP2(n.p2);
-              if (v.w1 === v.w2) reach("equal");
-              if (v.w2 > v.w1) reach("richer2");
+              const r = pool(v.w1, v.p1, v.w2, v.p2);
+              const rec: Rec = { ...v, implied: r.implied, simple: r.simple };
+              if (v.w1 === v.w2) {
+                setEq((o) => o ?? rec);
+                reach("equal");
+              }
+              if (v.w2 > v.w1) {
+                setRich((o) => o ?? rec);
+                reach("richer2");
+              }
+              if (v.w1 === START.w1 && v.p1 === START.p1 && v.w2 === START.w2 && v.p2 === START.p2) {
+                setSeenStart(true);
+                reach("start");
+              }
             };
             const px = (v: number) => (v / q.total) * W;
             const segs = [
@@ -135,6 +159,20 @@ export default function OddsAverage({ slug }: { slug: string }) {
                     </g>
                   )}
                 </svg>
+                <p className={s.key}>
+                  <span className={s.swatch1} /> bettor 1&apos;s money <span className={s.swatch2} /> bettor 2&apos;s · left of the line: on A
+                </p>
+                <p className={s.key} data-testid="seen">
+                  {eq || rich || seenStart
+                    ? `Seen: ${[
+                        eq ? `equal money ${pct(eq.implied)}` : null,
+                        rich ? `bettor 2 richer ${pct(rich.implied)}` : null,
+                        seenStart ? `start ${pct(st.implied)}` : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}`
+                    : "Seen: nothing yet"}
+                </p>
                 <Row>
                   <Readout label="Implied chance of A" value={locked ? "?" : pct(q.implied)} />
                   <Readout label="Simple average" value={locked ? "?" : pct(q.simple)} />

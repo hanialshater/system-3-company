@@ -21,3 +21,21 @@ Learner review (2026-10-13) findings:
 
 Gate needs a landing throw the learner moved to, then the loop (the starting landing no longer counts). Cause on stage: a dashed straight sideways line, a red one-minute tick from that line to the ball, and a caption comparing the fall (17.6 km for every throw) with how far the ground curved away (13.9 to 17.6 km). Lap time on the Lands readout. Speed label fixed (7.85 no longer prints as 7.8). The 5 m / 8 km sentence is dropped (c3 removed). Added c6. Still open: the slider's top stop is the answer (stops above 7.9 cannot be drawn at heights x40).
 Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.
+
+## Revision v4 (wave E r6, 2026-10-14)
+
+r6 (adult beginner, revise; also named in decision 2026-10-14-reveal-quotes-what-you-saw as "reached but not seen"): the QA sweep passed 7.85 km/s in one step, so the learner never saw a throw land, yet the reveal said "your 7.85 km/s throw". Fixes inside my scope:
+- Step buttons around the slider, in DOM order Slower, slider, Faster (fixed labels; each disabled at its end stop). From the 7.8 start, pressing each once visits 7.6 (lands), then 7.8 and 7.85 (land, two arrow presses), then 7.9 (the loop). The learner moves to three landing throws before the orbit, and each lands on screen for one QA wait.
+- A line under the Lands readout keeps the fastest landing the learner moved to: "Your fastest landing, 7.85 km/s: 3,209 km away; ground curved away 17.4 km in 1 min." (The speed shows only after the loop, as the slider does.) The reveal points at it. Its 17.4 is the same value it quotes against the loop's 17.6.
+- Tangent line, one-minute drop and model chip drawn larger (chip 9 -> 11 px, line 1 -> 1.5, drop 2.5 -> 3.5).
+- Not changed, for the learning designer (decision 2026-10-14-reveal-quotes-what-you-saw, Board section): the slider's top stop is still the answer, and 79 km/s cannot be tested. Stops above 7.9 need a different drawing at heights x40.
+- No claim text changed. Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v4
+
+1. Title and hook: "Throw it so fast it never lands" / "Throw a ball hard enough and it misses the whole planet. How hard is hard enough?" They name the event, not the speed. All three options "never land" at some speed, so the title does not choose between them.
+2. Options: "About 790 m/s", "About 7.9 km/s", "About 79 km/s". All "About" plus a number.
+3. Locked stage: the planet, the peak, the chip "No air. 10 km peak. Heights ×40.", and the slider with speed "?". Lands shows "?". There is no arc, no line and no number. One leak remains: the slider thumb sits one stop from the right end, which hints that the answer is near the top of the range (see the note above).
+4. Reveal values: 7.9 km/s and 85 min: (b) milestone loop, read from the loop flight, which is on stage at the reveal. 7.85 km/s, 3,209 km and 17.4 km: (b) the fastest landing the learner moved to (tried, recorded when moved to), shown on the "Your fastest landing" line. 17.6 km fell: (b) the loop flight's caption on stage. √(gR) = 7.91 km/s: told, claimed (c1, "about 7.9").
+5. QA path: Slower (7.6, landed), slider ArrowRight x2 (7.8, 7.85), Faster (7.9, loop). Both milestones reached, and the question's own case (the slowest throw that never lands) is the loop. At the reveal the orbit, its caption, the ghost arcs and the fastest-landing line are all on stage.
+6. Reset: there is no Reset. tried only grows. Reveal on the QA path: "At 7.9 km/s your ball never landed: the readout showed it back round at the peak after 85 minutes. Your fastest landing, at 7.85 km/s, came down 3,209 km away (the line under the readout). / The ball was falling the whole time: in the first minute every throw fell 17.6 km below the dashed straight line. What changed was the ground. Under your 7.85 km/s throw it curved away 17.4 km; under 7.9 km/s it curved away 17.6 km, as fast as the ball fell. That is an orbit: about √(gR) = 7.91 km/s near the ground. / No air, round non-spinning Earth. The ISS orbits at about 7.7 km/s, 400 km up."

@@ -7,3 +7,21 @@
 - The added list is new claim c3 (from the spec), needs a fact-check.
 - Deviations from spec: the 150 ms pop slide is not built; popped values vanish from the stack and their answer slot fills with a ✓ on the same press.
 - Not run (by instruction): build, typecheck, QA, walkthrough. Screenshots not yet looked at.
+
+## Revision v2 (wave E r6, 2026-10-14)
+
+r6 (adult beginner, revise): the 9 popping eight waiting numbers never happened on screen, "pop" was not on the stage, and the 9's eight bars were unlabelled. Fixes:
+- The replay now shows each pop as its own frame: when the 9 arrives on 8 ... 1 9 the stack empties one box at a time (18 frames at 22 ms, about 400 ms, inside the QA wait).
+- Stack ticks that pop are solid, the stopping comparison is hollow, and any row with pops is labelled "N pops" ("8 pops" on the 9's row). The trace stays after the run.
+- Stage rule line now states the stack rule: "Stack rule: a new number pops each smaller number waiting on top, then waits too." The question stem states it as well.
+- Options are "36", "18", "8" (was "About 18", the only imprecise one). Title changed from "Each number pops once" to "Waiting for a bigger number" so it does not point at the mechanism the reveal explains.
+- Reveal points at the 9's row and its "8 pops" label. New claim c6 (unverified). Not run: build, QA, walkthrough, tsc.
+
+## Pre-flight v2
+
+1. Title and hook: "Waiting for a bigger number" / "Is "next bigger" a scan from every position?" Neither names a count or says the stack is cheap.
+2. Options: "36", "18", "8". All bare numbers.
+3. Locked stage: 9 tiles (9 8 ... 1), answer slots "?", "Scan: ?" / "Stack: ?", readouts "scan ? · stack ?", rule line. Nothing shows 8 or a stack cost.
+4. Reveal values: 36 and 8 on 9 8 ... 1: (b) milestone descending-done (readout "scan 36 · stack 8" filled then); 8 pops, 15 and 36 on 8 ... 1 9: (b) milestone pops-seen (readout "scan 36 · stack 15", the 9's row "8 pops"). The 9's-row sentence only prints when that readout is filled.
+5. QA path: Next number (9 placed), All the rest (replay, descending-done), chip "9 8 … 1" disabled, chip "8 … 1 9" (replay with pops, ~400 ms, pops-seen). Both milestones reached, the question's own case first. At the reveal the stage still shows the 8 … 1 9 run with the 9's "8 pops" row and both readouts.
+6. Reset: no Reset control; switching lists clears the stage but not the readouts, and the reveal quotes the readout values. Reveal on the QA path: "On 9 8 … 1, scanning took 36 comparisons and the stack 8: each new number met one bigger top (a hollow tick) and was pushed. On 8 … 1 9, look at the 9's row: 8 solid ticks marked "8 pops", one for each waiting number, while the stack emptied box by box down to the 9. That run cost 15 in all, still against 36. / A number waits on the stack until a bigger one arrives, and then it is popped and answered, exactly once. Every stack comparison either pops a number or ends that number's turn, so 9 numbers cost at most 9 pushes and 9 pops: the work grows like n, not n²."

@@ -21,7 +21,7 @@ const HANDS: Record<Hand, number[]> = {
 const bucketOf = (v: number) => Math.floor((v - 1) / 10);
 
 type Cmp = { b: number; pair: [number, number]; after: number[] };
-type Plan = { dropped: number[][]; events: Cmp[]; frames: number[][][] };
+type Plan = { dropped: number[][]; events: Cmp[]; frames: number[][][]; slides: Map<number, number> };
 
 // Insertion sort inside each bucket, recording every comparison and the bucket after it.
 function plan(hand: number[]): Plan {
@@ -52,7 +52,10 @@ function plan(hand: number[]): Plan {
     next[e.b] = e.after;
     frames.push(next);
   }
-  return { dropped, events, frames };
+  // How many comparisons each number made while it slid into place (the moving number is pair[0]).
+  const slides = new Map<number, number>();
+  for (const e of events) slides.set(e.pair[0], (slides.get(e.pair[0]) ?? 0) + 1);
+  return { dropped, events, frames, slides };
 }
 const PLANS: Record<Hand, Plan> = { spread: plan(HANDS.spread), clumped: plan(HANDS.clumped) };
 
@@ -62,14 +65,14 @@ const START: View = { hand: "spread", k: 0, step: 0, sorted: false, flash: false
 const reducedMotion = () =>
   typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-// Layout (viewBox 340 x 330).
+// Layout (viewBox 340 x 282).
 const TILE = 30;
 const COL = 32;
 const GAP = 2;
 const TOP = 44;
-const DEPTH = 230;
+const DEPTH = 186;
 const BOTTOM = TOP + DEPTH;
-const STACK = 22;
+const STACK = 18;
 const colX = (b: number) => 1 + b * (COL + GAP);
 
 export default function OneCrowdedBucket({ slug }: { slug: string }) {
@@ -90,7 +93,7 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
       predict={{
         question:
           "Ten numbers from 1 to 100 go into ten buckets (1-10, 11-20, ...), then each bucket is insertion-sorted. The spread hand 95 12 37 64 28 81 3 46 59 70 needs 1 comparison inside buckets. The hand 47 43 50 41 45 49 42 48 44 46: how many?",
-        options: ["About 1, as before", "About 10", "30"],
+        options: ["About 1, as before", "About 10", "About 30"],
         answer: 2,
       }}
       exploreHint="Drop and sort the spread hand, then switch to the clumped one."
@@ -98,12 +101,17 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
       reveal={() => {
         const sp = results.spread ?? 1;
         const cl = results.clumped ?? 30;
+        const sl = PLANS.clumped.slides;
+        const most = Math.max(...Array.from(sl.values()));
+        const late = HANDS.clumped.filter((x) => sl.get(x) === most);
         return (
           <>
             <p>
               Spread out, the ten numbers landed in nine buckets. Only 64 and 70 shared one, so sorting took {sp}{" "}
               comparison{sp === 1 ? "" : "s"}. Clumped, all ten fell into 41-50, and the &ldquo;tiny&rdquo; sorts became
-              one insertion sort of ten numbers: {cl} comparisons.
+              one insertion sort of ten numbers: {cl} comparisons. The small numbers on the tower&rsquo;s tiles add up to
+              that: each newcomer slides past every bigger number already there, and {late.join(" and ")} made {most}{" "}
+              tests each.
             </p>
             <p>
               Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it
@@ -179,9 +187,10 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
               if (locked || busy || h === v.hand) return;
               if (v.sorted) {
                 const n = PLANS[h].events.length;
-                const ms = Math.min(8, Math.floor(240 / Math.max(1, n)));
+                // Drop, then sort with the count climbing one comparison per frame (clumped: 60 + 31 x 10 ms).
+                const ms = Math.max(4, Math.min(10, Math.floor(320 / Math.max(1, n))));
                 setV({ hand: h, k: 0, step: 0, sorted: false, flash: false });
-                play([...dropFrames(h, 12), ...sortFrames(h, Math.max(4, ms))], () => finishSort(h));
+                play([...dropFrames(h, 6), ...sortFrames(h, ms)], () => finishSort(h));
               } else {
                 clearTimers();
                 setV({ hand: h, k: 0, step: 0, sorted: false, flash: false });
@@ -213,7 +222,7 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                 <p className={s.rule}>
                   Drop each number in its bucket of ten, then insertion-sort inside each bucket. Count comparisons.
                 </p>
-                <svg viewBox="0 0 340 330" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
+                <svg viewBox="0 0 340 282" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
                   {hand.map((x, i) => {
                     const gone = i < v.k;
                     return (
@@ -266,9 +275,19 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                                 stroke={hot ? "var(--fg)" : "color-mix(in srgb, var(--domain) 60%, var(--line))"}
                                 strokeWidth={hot ? 2 : 1}
                               />
-                              <text x={x + COL / 2} y={y + 14} textAnchor="middle" className={s.bnum}>
+                              <text
+                                x={v.sorted ? x + 12 : x + COL / 2}
+                                y={y + 12}
+                                textAnchor="middle"
+                                className={s.bnum}
+                              >
                                 {val}
                               </text>
+                              {v.sorted && (p.slides.get(val) ?? 0) > 0 && (
+                                <text x={x + COL - 4} y={y + 12} textAnchor="end" className={s.slide}>
+                                  {p.slides.get(val)}
+                                </text>
+                              )}
                             </g>
                           );
                         })}
@@ -283,15 +302,10 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  <text x={170} y={324} textAnchor="middle" className={s.cap}>
-                    each bucket holds ten values
+                  <text x={170} y={278} textAnchor="middle" className={s.cap}>
+                    {v.sorted ? "small number on a tile: tests it made sliding into place" : "each bucket holds ten values"}
                   </text>
                 </svg>
-                <Row>
-                  <Readout label="Comparisons" value={comps} />
-                  <Readout label="Spread" value={results.spread ?? "?"} />
-                  <Readout label="Clumped" value={results.clumped ?? "?"} />
-                </Row>
                 <Row>
                   <Control className="tap" disabled={locked || busy || v.k >= 10} onClick={drop}>
                     Drop into buckets
@@ -317,6 +331,11 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                       </Control>
                     ))}
                   </span>
+                </Row>
+                <Row>
+                  <Readout label="Comparisons" value={comps} />
+                  <Readout label="Spread" value={results.spread ?? "?"} />
+                  <Readout label="Clumped" value={results.clumped ?? "?"} />
                 </Row>
               </div>
             );

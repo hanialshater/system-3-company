@@ -51,12 +51,10 @@
     },
     {
       "id": "cs.wheel-needs-four-colours.c4",
-      "text": "With four regions round the centre, three colours are enough.",
+      "text": "With four regions round the centre, three colours are enough: the ring's two colours alternate all the way round, and because four is even the last region meets only one of them. Backtracking with four colours allowed (regions C, 1 to 4, colours in order) finds red, blue, yellow, blue, yellow, using 3.",
       "support": "simulation",
-      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours. | FACT-CHECK 2026-10-14 (pass 21): 4-wheel: backtrack(3) succeeds (1,2,3,2,3), exhaustive chromatic number 3.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's Node backtracking run on the 4-wheel (hub + 4-cycle), 2026-10-14: k=2 fails, k=3 succeeds (1, 2, 3, 2, 3). Derivation: an even ring alternates two colours. | FACT-CHECK 2026-10-14 (pass 21): 4-wheel: backtrack(3) succeeds (1,2,3,2,3), exhaustive chromatic number 3. | Builder revision v2 (demo-builder, 2026-10-14): now shown on stage: a 'Ring of 4' control re-runs the same backtracking on a 4-ring; the stage line reads 'Ring of 4, 4 colours: backtracking found a colouring using 3.' and the runs line '4 ring: done, 3 used'. Builder trace of backtrack(4, 4) in Demo.tsx: C=0, 1=1, 2=2, 3=1, 4=2.",
+      "status": "unverified"
     },
     {
       "id": "cs.wheel-needs-four-colours.c5",
@@ -66,6 +64,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.wheel-needs-four-colours.c6",
+      "text": "On the ring of five with four colours, backtracking (same order) colours C, 1 to 5 red, blue, yellow, blue, yellow, purple, using all 4.",
+      "support": "simulation",
+      "source": "Demo.tsx backtrack(5, 4); matches the build note's node re-run (1,2,3,2,3,4). Stage text 'Ring of 5, 4 colours: backtracking found a colouring using 4.' Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:graph-colouring-backtracking",
     "also": [],

@@ -50,12 +50,10 @@
     },
     {
       "id": "probability.weak-links-hold-it-together.c4",
-      "text": "A link with few shared friends usually runs between groups, so cutting those first breaks the network apart; close ties sit inside groups, and the groups hold together without them.",
-      "support": "source",
-      "source": "Easley and Kleinberg (2010) ch. 3 (local bridges have neighbourhood overlap 0; weak ties as bridges between tightly knit groups); illustrated on the stage by c1 and c3. · Fact-check pass 23 2026-10-14: DISPUTED (direction). Own run of the lesson's networks: bridges almost all have overlap 0 (the max is 0.13), but most links with few shared friends are inside groups: links with overlap 0 are 18/28/29/24/27 in seeds 1/3/5/6/7, of which only 10/10/12/12/12 are bridges, and the weakest 20% (26-30 links) holds 9-12 bridges. So 'a link with few shared friends usually runs between groups' is false here; the converse is true. Fix (builder, reveal and claim): 'Links between groups almost always have few shared friends, so cutting the weakest links first removes them and breaks the network apart. Close ties sit inside groups, and the groups hold together without them.'",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "text": "In the stage's networks, the links between groups all have few shared friends, so cutting the weakest links first removes them and breaks the network apart; close ties sit inside groups, and the groups hold together without them.",
+      "support": "simulation",
+      "source": "Easley and Kleinberg (2010) ch. 3 (local bridges have neighbourhood overlap 0; weak ties as bridges between tightly knit groups); illustrated on the stage by c1 and c3. · Fact-check pass 23 2026-10-14: DISPUTED (direction). Own run of the lesson's networks: bridges almost all have overlap 0 (the max is 0.13), but most links with few shared friends are inside groups: links with overlap 0 are 18/28/29/24/27 in seeds 1/3/5/6/7, of which only 10/10/12/12/12 are bridges, and the weakest 20% (26-30 links) holds 9-12 bridges. So 'a link with few shared friends usually runs between groups' is false here; the converse is true. Fix (builder, reveal and claim): 'Links between groups almost always have few shared friends, so cutting the weakest links first removes them and breaks the network apart. Close ties sit inside groups, and the groups hold together without them.' | Builder revision v2 (demo-builder, 2026-10-14): reworded per fact-check pass 23 (direction: it is the between-group links that have few shared friends, not the reverse). The sentence now rests only on the stage's five networks, not on Easley and Kleinberg ch. 3, which no checker has opened. Evidence: the fact-checker's own run (pass 23) found between-group links have overlap 0 in almost all cases (max 0.13), and c3 gives 12, 10, 12, 12, 12 of 12 between-group links cut by the weakest-first 20% (seeds 1, 3, 5, 6, 7). c1 shows the strongest-first 20% leaves all 60 in one piece. Reveal text: 'Here the links between groups all have few shared friends, so cutting the weakest first removes them and breaks the network apart. Close ties sit inside groups, and the groups hold together without them.'",
+      "status": "unverified"
     },
     {
       "id": "probability.weak-links-hold-it-together.c5",
@@ -84,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:tie-strength-overlap",
     "also": [],

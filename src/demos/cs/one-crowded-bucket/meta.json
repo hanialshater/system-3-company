@@ -66,6 +66,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.one-crowded-bucket.c6",
+      "text": "In the clumped hand's insertion sort, each newcomer is tested against every bigger number already in the bucket plus the one that stops it (if any). The tests per number, in arrival order 47 43 50 41 45 49 42 48 44 46, are 0, 1, 1, 3, 3, 2, 6, 3, 6, 5, which add up to 30; 42 and 44 made the most, 6 tests each. Stage: the small number on each sorted tile is the tests that number made sliding into place.",
+      "support": "simulation",
+      "source": "Demo.tsx plan(): slides counts events by the moving number (pair[0]); same comparison convention as c1. Builder node re-run of the insertion sort in arrival order: {47:0, 43:1, 50:1, 41:3, 45:3, 49:2, 42:6, 48:3, 44:6, 46:5}, total 30. Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:bucket-sort",
     "also": [],
