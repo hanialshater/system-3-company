@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · demo-builder (algo-pair-06) · tortoise-meets-hare, any-start-same-tree
+- Changed: built both lessons from brief + spec (status draft, all claims unverified); build notes in company/reviews/<slug>/build.md. any-start-same-tree uses the fixed brief (DE 3, total 11, next-best 12).
+- Believe (medium): answers re-run in node and match; Demo.tsx read carefully but NOT run in a browser. Skipped by order (machine out of memory): next build, qa, walkthrough, typecheck. Only `npm run check` passed.
+- Next: chief of staff integrated build + QA + walkthrough; check label overlap in the any-start panels at 390 px.
+
+
 ## 2026-10-14 · demo-builder · revision batch 01 (16 lessons, learner-review fixes)
 - Changed: Demo.tsx, meta.json (version bumped; edited claims back to unverified) and a "Revision v<N>" in build.md for never-flag-99, stop-at-epoch-sixty, same-sugar-more-water, when-the-water-is-full, insert-at-front-cost, pennies-dont-add-up, two-writers-one-counter, rule-of-72-shortcut, parallel-vs-arc-short-hop, below-the-threshold-crash, binary-fingers, straight-across-saves, same-push-twice-the-mass, two-tugs-right-angle, city-poll-nation-poll, hidden-third-cause.
 - Verified only: `npm run check` and a full typecheck (both pass). NOT run (machine out of memory, coordinator's order): build, lesson QA, walkthrough sheets. Milestone one-press paths were reasoned from DOM order, not tested; the chief of staff's integrated QA must confirm them.

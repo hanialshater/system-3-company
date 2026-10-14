@@ -1,0 +1,103 @@
+{
+  "slug": "tortoise-meets-hare",
+  "title": "Two runners, no notebook",
+  "hook": "A chain may loop back. Can two markers tell?",
+  "domain": "cs",
+  "concept": "cycle-detection",
+  "format": "storyboard-scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a linked list as boxes with arrows (insert-at-front-cost)"
+    ],
+    "doesNotKnow": [
+      "how to tell a looping list from a long one without remembering every box"
+    ]
+  },
+  "misconception": "To detect a loop you must remember every box you have visited.",
+  "objective": "The learner can explain that inside a loop the fast marker gains exactly one box per tick, so the gap shrinks by one and cannot skip over zero, and that two markers and no memory of visited boxes are enough.",
+  "claims": [
+    {
+      "id": "cs.tortoise-meets-hare.c1",
+      "text": "On the 7-box chain whose last arrow goes back to box 3, slow is on boxes 2, 3, 4, 5, 6 and fast on 3, 5, 7, 4, 6 at ticks 1 to 5, so they share box 6 at tick 5.",
+      "support": "simulation",
+      "source": "Builder's node trace (scratchpad th.mjs), 2026-10-14: slow 2,3,4,5,6; fast 3,5,7,4,6. Fast goes 7 to 3 to 4 at tick 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c2",
+      "text": "From tick 2, when both are in the loop, fast is 3, then 2, then 1, then 0 boxes behind slow.",
+      "support": "simulation",
+      "source": "Builder's node trace: gap = (slow - fast) mod 5 over loop boxes 3 to 7 gives 3, 2, 1, 0 at ticks 2 to 5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c3",
+      "text": "Inside a loop the fast marker gains exactly one box per tick, so the gap shrinks by one each tick and cannot step over 0.",
+      "support": "derivation",
+      "source": "Per tick fast moves 2 and slow moves 1, so the distance fast is behind along the loop changes by exactly 1. A gap that falls by 1 from a whole number reaches 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c4",
+      "text": "With the last arrow pointing nowhere, fast reaches box 7 at tick 3 and has no arrow to follow: no loop.",
+      "support": "simulation",
+      "source": "Builder's node trace: without the 7 to 3 arrow, slow is on 2,3,4 and fast on 3,5,7 at ticks 1 to 3; box 7 has no next box.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c5",
+      "text": "The two markers meet for every tail of 0 to 10 boxes and every loop of 1 to 10 boxes.",
+      "support": "simulation",
+      "source": "Builder's node script over all 110 combinations: none failed to meet (the brief's loop of 5 is odd and still meets).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.tortoise-meets-hare.c6",
+      "text": "This is Floyd's tortoise and hare, which keeps only two markers and no list of visited boxes.",
+      "support": "source",
+      "source": "Knuth, The Art of Computer Programming Vol. 2, section 3.1, exercise 6, attributes cycle finding to Floyd. 'Two markers' is a derivation: the algorithm stores only two positions.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A linked list is 1,000 boxes long and may loop. You run a slow marker (1 box per tick) and a fast one (2 boxes per tick). If there is a loop inside, what does the fast marker's distance behind the slow one do once both are in it?",
+    "options": [
+      "Shrinks by one each tick until they share a box",
+      "Stays the same forever",
+      "Grows, so you must remember visited boxes"
+    ],
+    "answer": 0,
+    "why": "Fast gains one box per tick, so the gap counts down by one and cannot skip zero. No list of visited boxes is needed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:cycle-detection",
+    "also": [],
+    "prerequisites": [
+      "cs:linked-list-vs-array"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["linked-list", "floyd", "two-pointers"]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "scrubber-timeline",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

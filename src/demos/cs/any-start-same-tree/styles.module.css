@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.model { margin: 0; font-size: 0.8rem; color: var(--muted); }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.panel { min-width: 0; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 4px 4px 2px; }
+.head { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 700; }
+.total { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cost { font-size: 11px; font-weight: 700; fill: var(--fg); stroke: var(--bg-2); stroke-width: 3px; paint-order: stroke; }
+.badge { font-size: 9px; font-weight: 800; fill: var(--bg); }
+.townOn { font-size: 11px; font-weight: 800; fill: var(--bg); }
+.townOff { font-size: 11px; font-weight: 800; fill: var(--fg); }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.85rem; font-weight: 600; }
+.good { color: var(--good); }
+.group { font-size: 0.75rem; color: var(--muted); }
+.chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.starts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.chip { min-height: 44px; font-weight: 800; font-variant-numeric: tabular-nums; }
