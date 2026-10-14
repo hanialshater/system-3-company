@@ -13,7 +13,11 @@ import { useState } from "react";
 import s from "./styles.module.css";
 
 const TARGET = 50;
-const SIDES = [25, 10, 8, 7, 7.1, 7.07];
+const SIDES = [25, 12.5, 10, 8, 7, 7.1, 7.07];
+// Only 25 m and 12.5 m (the halving and divide-by-4 guesses) show before the prediction. Each later chip
+// appears once the one before it has been tried, so the finer sides never cue the answer. Hidden chips stay
+// in the DOM (visibility: hidden), so the order of controls never changes.
+const OPEN = 2;
 const START = 5;
 const MILESTONES = ["bracketed", "close"] as const;
 const area = (x: number) => Number((x * x).toFixed(2));
@@ -36,11 +40,11 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A square floor has area ${TARGET} square metres. Its side is...`,
-        options: [`${TARGET / 2} m`, `just over ${LO} m`, "10 m"],
+        question: `A square floor has area ${TARGET} square metres. Its side is closest to...`,
+        options: [`${TARGET / 2} m`, "7.07 m", "10 m", `${TARGET / 4} m`],
         answer: 1,
       }}
-      exploreHint="Try sides until the square covers the dashed 50 m² outline."
+      exploreHint="Try the sides in turn; each one opens the next. Stop when the square covers the dashed 50 m² outline."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -49,6 +53,7 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
           </p>
           <p>
             {seen.includes(TARGET / 2) ? `A ${TARGET / 2} m side gave ${area(TARGET / 2)} m², far too much: halving 50 does not find the side. ` : ""}
+            {seen.includes(TARGET / 4) ? `Nor does dividing by 4: ${TARGET / 4} m gave ${area(TARGET / 4)} m². ` : ""}
             {LO} m gave {area(LO)} m² and {HI} m gave {area(HI)}, so the side lies between them. 7.07 m gave {area(7.07)} m², just
             under {TARGET}. Whole sides skip right over {TARGET}.
           </p>
@@ -61,6 +66,7 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
             <Stage
               locked={locked}
               side={side}
+              seen={seen}
               onSide={(x) => {
                 const next = seen.includes(x) ? seen : [...seen, x];
                 setSide(x);
@@ -76,7 +82,7 @@ export default function SideOfTheSquare({ slug }: { slug: string }) {
   );
 }
 
-function Stage({ locked, side, onSide }: { locked: boolean; side: number; onSide: (x: number) => void }) {
+function Stage({ locked, side, seen, onSide }: { locked: boolean; side: number; seen: number[]; onSide: (x: number) => void }) {
   const a = area(side);
   const verdict = a > TARGET ? (a - TARGET < 1 ? `just over ${TARGET}` : "too big") : a === TARGET ? "exactly 50" : TARGET - a < 0.1 ? `just under ${TARGET}` : "too small";
   const caption = locked
@@ -130,17 +136,21 @@ function Stage({ locked, side, onSide }: { locked: boolean; side: number; onSide
       </p>
 
       <div className={s.chips} role="group" aria-label="Pick the side">
-        {SIDES.map((x) => (
-          <Control
-            key={x}
-            disabled={locked || x === side}
-            className={x === side ? "active" : ""}
-            aria-label={`Make the side ${x} metres`}
-            onClick={() => onSide(x)}
-          >
-            {x} m
-          </Control>
-        ))}
+        {SIDES.map((x, i) => {
+          const open = i < OPEN || seen.includes(SIDES[i - 1]);
+          return (
+            <Control
+              key={x}
+              disabled={locked || x === side || !open}
+              className={`${x === side ? "active" : ""} ${open ? "" : s.hidden}`}
+              aria-hidden={!open}
+              aria-label={`Make the side ${x} metres`}
+              onClick={() => onSide(x)}
+            >
+              {x} m
+            </Control>
+          );
+        })}
       </div>
       <Row>
         <Readout label="Side" value={`${side} m`} />

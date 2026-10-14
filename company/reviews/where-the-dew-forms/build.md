@@ -10,3 +10,11 @@
 
 Locked stage shows neither the "your air" line nor the curve left of 30 C; the curve is drawn only as far as the learner has cooled. The "18" jump button is replaced by steps 25 / 20 / 15 C; the gate is cooling to the dew point or below. A caption says the extra water leaves as dew. Reveal opens "Until the dew point". c4 reworded, unverified.
 Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Options are now brackets (key: between 20 and 15 °C), matching the presets (20 °C no dew, 15 °C dew). The crossing is marked 'dew point ≈ 18 °C' once cooled past it. New Water and Max readouts (Fullness = Water / Max). Caption overlap fixed (label moved above the line, dew caption lowered).
+- Claims reopened (status unverified): c2, c3; new c5.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

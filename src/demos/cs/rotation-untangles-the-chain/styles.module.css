@@ -1,0 +1,12 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; width: 100%; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; min-width: 44px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 2.4em; max-width: 342px; }
+.svg { width: 342px; max-width: 100%; height: auto; }
+.key { font-size: 13px; font-weight: 800; fill: var(--fg); }
+.ghostKey { font-size: 12px; font-weight: 700; fill: var(--muted); }
+.rowKey { font-size: 11px; font-weight: 700; fill: var(--fg); }
+.rowWait { font-size: 11px; fill: var(--muted); }
+.note { margin: 0; min-height: 1.3em; font-size: 0.8rem; font-weight: 700; text-align: center; white-space: pre; }
+.lab { font-size: 0.75rem; color: var(--muted); }
+.chips { display: inline-flex; gap: 8px; }

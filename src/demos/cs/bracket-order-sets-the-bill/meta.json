@@ -1,0 +1,117 @@
+{
+  "slug": "bracket-order-sets-the-bill",
+  "title": "Bracket order sets the bill",
+  "hook": "Same three matrices, same answer. Same cost?",
+  "domain": "cs",
+  "concept": "matrix-chain-order",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "tables of smaller answers (rod cutting)"
+    ],
+    "doesNotKnow": [
+      "that the same product costs 6 times more in a different bracketing"
+    ]
+  },
+  "misconception": "Multiplying matrices costs the same whichever pair you multiply first.",
+  "objective": "The learner can explain that the bracketing of a matrix chain changes the size of the middle product and so the cost: for 10x30, 30x5, 5x60, (AB)C costs 4,500 multiplications and A(BC) 27,000, six times as much, for the same 10x60 result.",
+  "claims": [
+    {
+      "id": "cs.bracket-order-sets-the-bill.c1",
+      "text": "Multiplying a p×q matrix by a q×r matrix the usual way costs p·q·r single multiplications (question and stage rule line).",
+      "support": "source",
+      "source": "CLRS 4e section 14.2 (matrix-chain multiplication): computing a p x q by q x r product with the standard algorithm takes pqr scalar multiplications. Also CLRS 3e section 15.2. · Fact-check pass 21 2026-10-14: Derivation: each of the p x r entries is a length-q dot product, q multiplications; own triple-loop count for 10x30 by 30x5 = 1,500. CLRS 4e 14.2 / 3e 15.2 attribution consistent with my knowledge; book not opened, the claim does not depend on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.bracket-order-sets-the-bill.c2",
+      "text": "With A 10×30, B 30×5, C 5×60: (AB)C costs 10·30·5 = 1,500 then 10·5·60 = 3,000, total 4,500; A(BC) costs 30·5·60 = 9,000 then 10·30·60 = 18,000, total 27,000, six times as much.",
+      "support": "simulation",
+      "source": "Demo.tsx mul() computes each step's cost with the p*q*r rule the stage prints (TOP, BOT, RATIO). Builder's node script (2026-10-14) re-ran it: 1500 + 3000 and 9000 + 18000. The sizes are the brief's own (CLRS's own three-matrix example uses different sizes, 10x100, 100x5, 5x50, from memory: check before relying on it). · Fact-check pass 21 2026-10-14: Arithmetic re-run: 1,500 + 3,000 = 4,500; 9,000 + 18,000 = 27,000; ratio 6. Own DP gives 4,500 as the optimum for dims [10,30,5,60]. Builder's recalled CLRS example (10x100, 100x5, 5x50) also matches my knowledge (7,500 vs 75,000); not learner-visible.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.bracket-order-sets-the-bill.c3",
+      "text": "Both orders give the same 10×60 matrix (stage '✓ same 10×60 as above'; reveal 'every bracketing gives the same matrix').",
+      "support": "derivation",
+      "source": "Matrix multiplication is associative: ((AB)C)_ij = sum_k sum_l A_il B_lk C_kj = (A(BC))_ij. Result size is rows of A by columns of C, 10 x 60. CLRS 4e section 14.2 notes the product is the same for every parenthesization. · Fact-check pass 21 2026-10-14: Associativity derivation as given; result rows of A by columns of C = 10 x 60. Stage '✓ same 10×60 as above' only after both orders run.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.bracket-order-sets-the-bill.c4",
+      "text": "The 30×5 by 5×60 step alone costs 9,000, twice the whole (AB)C bill.",
+      "support": "derivation",
+      "source": "Arithmetic from c2: 9,000 = 2 x 4,500. · Fact-check pass 21 2026-10-14: 9,000 = 2 x 4,500.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.bracket-order-sets-the-bill.c5",
+      "text": "For a longer chain, trying every split point of every sub-chain, shortest sub-chains first, finds the cheapest order.",
+      "support": "source",
+      "source": "CLRS 4e section 14.2: optimal substructure over split points k and the bottom-up MATRIX-CHAIN-ORDER, which fills the table by increasing chain length (O(n^3) time). 3e section 15.2. · Fact-check pass 21 2026-10-14: The method is right but the wording is not: 'cheapest sub-chains first' reads as processing sub-chains in order of cost. MATRIX-CHAIN-ORDER (CLRS 4e 14.2, recalled, not opened) solves sub-chains in order of length, shortest first. Own check: bottom-up by length equals brute force over all bracketings on 2,000 random chains (fc21/mc.mjs). Fix (builder): 'shortest sub-chains first' in Demo.tsx reveal and claim text. · Builder 2026-10-14 (W-196): reworded per pass 21; awaiting re-check. · Fact-check pass 23 2026-10-14: Reveal text matches. Re-derived optimal substructure (cost = left + right + p(i-1)p(k)p(j)); own bottom-up-by-length DP equals brute force over all bracketings on 2,000 chains of 2-7 matrices. CLRS not opened; not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You must multiply three matrices of sizes 2x50, 50x2 and 2x50. Which order should you multiply first?",
+    "options": [
+      "The first two, because the middle result is only 2x2",
+      "The last two, because the middle result is only 2x2",
+      "It does not matter: the answer is the same matrix"
+    ],
+    "answer": 0,
+    "why": "The first pair makes a 2x2 box for 2·50·2 = 200, then 2·2·50 = 200: 400 in all. The last pair makes a 50x50 box for 50·2·50 = 5,000, then 2·50·50 = 5,000 more. Same answer, 25 times the price."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:matrix-chain-order",
+    "also": [],
+    "prerequisites": [
+      "cs:rod-cutting"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 14,
+        "section": "14.2"
+      }
+    ],
+    "tags": [
+      "dynamic-programming",
+      "matrix-chain",
+      "associativity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "side-by-side",
+    "step-run-button",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}

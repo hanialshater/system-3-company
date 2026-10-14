@@ -1,0 +1,113 @@
+{
+  "slug": "fewest-exits-first-tour",
+  "title": "Fewest exits first: a knight's tour",
+  "hook": "Does it matter which square the knight tries next?",
+  "domain": "cs",
+  "concept": "knights-tour-warnsdorff",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sd"
+  },
+  "learner": {
+    "knows": [
+      "backtracking prunes a search (four-queens-pruning)",
+      "a greedy rule can fail (coin-greedy-trap)"
+    ],
+    "doesNotKnow": [
+      "that a one-line greedy rule often completes a tour that naive move order cannot"
+    ]
+  },
+  "misconception": "Walking a knight to any unvisited square is as good as any other rule.",
+  "objective": "The learner can explain that moving to the square with the fewest onward moves uses up hard-to-reach squares while they are still reachable: on 5×5 from the corner it visits all 25 squares, while taking the first legal move gets stuck after 21, and that the rule is a heuristic, not a guarantee.",
+  "claims": [
+    {
+      "id": "cs.fewest-exits-first-tour.c1",
+      "text": "From the top-left corner, with moves tried in the order (1,2) (2,1) (2,-1) (1,-2) (-1,-2) (-2,-1) (-2,1) (-1,2) as (right, down): taking the first legal move visits 21 squares of a 5×5 board and 36 of an 8×8 board; going to the square with the fewest onward moves to unvisited squares (ties to the first in that order) visits all 25 and all 64.",
+      "support": "simulation",
+      "source": "Builder's node script (algo2-sd, 2026-10-14), same move order, onward count and tie rule as Demo.tsx: 5×5 A 21 (stuck at (1,3)), B 25 (ends at (0,2)); 8×8 A 36 (28 unvisited), B 64. Matches the brief and company/design/specs/fewest-exits-first-tour.md. | FACT-CHECK 2026-10-14 (pass 22): Own knight simulation (scratchpad fc22/kn.mjs, same move order and tie rule, written independently): 5x5 A 21 ends (1,3), B 25 ends (0,2); 8x8 A 36 (28 unvisited), B 64.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.fewest-exits-first-tour.c2",
+      "text": "On 5×5 both rules first move to (1,2); at move 2 the five legal squares have 3, 3, 3, 3 and 1 onward moves, so rule A goes to (2,4) and rule B to (0,4).",
+      "support": "simulation",
+      "source": "Builder's node script: first three squares A (0,0) (1,2) (2,4), B (0,0) (1,2) (0,4). Shown on the stage as the onward-move badges. | FACT-CHECK 2026-10-14 (pass 22): Own sim: move 2 legal squares (2,4) (3,3) (3,1) (2,0) (0,4) with onward counts 3,3,3,3,1; A takes (2,4), B takes (0,4). Same as the stage badges (onward() in Demo.tsx).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.fewest-exits-first-tour.c3",
+      "text": "Rule A gets stuck after 21 squares with the bottom-left corner unvisited, and by then no move reaches it.",
+      "support": "simulation",
+      "source": "Builder's node script: unvisited squares at the end of rule A on 5×5 are (0,2) (0,3) (0,4) (1,4), the bottom-left corner; the knight at (1,3) has no legal move to an unvisited square. | FACT-CHECK 2026-10-14 (pass 22): Own sim: A's unvisited squares (0,2) (0,3) (0,4) (1,4); (0,4) is the bottom-left (row 0 at top); knight at (1,3) has no legal move, and neither knight-neighbour of (0,4), (1,2) and (2,3), is unvisited, so nothing could reach it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.fewest-exits-first-tour.c4",
+      "text": "Going to the square with the fewest ways on uses awkward squares while they can still be reached.",
+      "support": "derivation",
+      "source": "A square with few onward moves can be entered from few squares; each visit elsewhere can remove one of them. Visiting it early avoids leaving it with no way in. Seen on the stage: B takes the badge-1 corner square at move 2. | FACT-CHECK 2026-10-14 (pass 22): Derivation (explanatory, hedged by c5): B takes the onward-1 corner (0,4) at move 2 (own sim). Accepted as an explanation of the run shown, not a general proof.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.fewest-exits-first-tour.c5",
+      "text": "The fewest-onward-moves rule is a rule of thumb, not a guarantee: it can fail on some boards and starts.",
+      "support": "derivation",
+      "source": "Counterexample: the lesson's exact rule B (fewest onward moves to unvisited squares, ties to the first in move order) started on 8x8 from (4,2) gets stuck after 60 of 64 squares (also 6x6 from (3,3): stuck after 34 of 36; squares as (column, row) as in Demo.tsx), although knight's tours exist on both boards. Found by the fact-checker's independent simulation of the lesson's rule in pass 22 (company/reviews/fewest-exits-first-tour/2026-10-14-fact-check.md, scratchpad fc22/kn.mjs) and re-run by the builder with a copy of choose() (60 and 34). One failing start is enough to show 'can fail on some boards and starts'. Background, not relied on and not opened: Warnsdorff (1823) proposed the rule; Squirrel & Cull (1996) on tie-breaking. | History: H. C. von Warnsdorff (1823) proposed the rule. Squirrel & Cull (1996), 'A Warnsdorff-rule algorithm for knight's tours on square chessboards': the plain rule with arbitrary tie-breaking can fail; their tie-breaking variant succeeds for the board sizes they tested. Written from the brief; builder has not opened the paper (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Verified independently of the unopened sources: own sim of the lesson's exact rule (fewest onward moves, ties to first in order) fails on 8x8 from (4,2) (60 of 64) and on 6x6 from (3,3) (34 of 36), boards where tours exist. Warnsdorff 1823 and Squirrel & Cull 1996 NOT opened (host blocked; search snippets only say tie-breaking matters and correctness is unproven). Learner text does not name them; builder should cite the counterexample instead. | Builder fix (demo-builder, 2026-10-14): W-210: source now rests on the 8x8-from-(4,2) counterexample; learner text unchanged. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Re-ran the counterexample with my own copy of the choose() rule (fewest onward moves to unvisited squares, ties to the first in MOVES order). 8x8 from (4,2) is stuck at 60 and 6x6 from (3,3) is stuck at 34, and (4,2) is the only failing 8x8 start of 64. Lesson starts check: 8x8 (0,0) 64, 5x5 (0,0) 25. 8x8 and 6x6 both have closed knight's tours, so a tour exists from every start; this is standard and confident, from memory. The source now rests only on the reproducible counterexample. Warnsdorff and Squirrel & Cull are background and were not opened. The reveal text (line 248) matches the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A knight's-tour rule says: always move to the square with the fewest onward moves. Why does that help?",
+    "options": [
+      "It uses up hard-to-reach squares before they are cut off",
+      "It makes the knight's path shorter",
+      "It is guaranteed to finish on every board"
+    ],
+    "answer": 0,
+    "why": "Squares with few ways in are the first to become unreachable. Visiting them early keeps the tour alive, though the rule is a heuristic and can still fail."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:knights-tour-warnsdorff",
+    "also": [],
+    "prerequisites": [
+      "cs:n-queens-backtracking",
+      "cs:greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "greedy",
+      "heuristic",
+      "knights-tour",
+      "graph-search"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

@@ -12,3 +12,11 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 
 Locked stage drew a level plank with the 20 kg child at the ground; it now tips the 40 kg side down (only that child is aboard), so no balance is shown before the guess.
 Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Locked: the 20 kg child waits on the ground ('not on yet') and the slider reads 'not on yet'. Reveal quotes the last unbalanced spot rested on 300 ms, defaulting to 3.0 m (the start position, on the tipped plank when the stage unlocks). Bar caption 'turning effect = kg × 9.81 × m from the middle'.
+- Claims reopened (status unverified): new c5, c6.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

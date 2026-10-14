@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-14: release-manager wave D publish
+- `node tools/publish-ready.mjs --publish`: 198 candidates, 197 published, 1 refused by the gate (continental-jigsaw: claims not verified, geography.continental-jigsaw.c1; route to fact-checker). 78 not candidates: 60 verdict revise, 3 fatal, 2 older-version, 10 on company/ops/publish-holds.json (unchanged). Launch review records still to be written in company/rituals/records/.
+- Smoke: 10 lessons across 10 domains return 200 at localhost:3450/d/<slug>. The served build bakes status from meta.json at build time (registry.generated), so they still show "In review" until the next build; no rebuild done. `npm run check` passed.
+
 ## 2026-10-14: platform-engineer W-139 follow-ups to the W-135 reveal fit
 - DemoCard `useRevealFit` re-fits on card-body resize (ResizeObserver + `orientationchange`) while the reveal shows, and stops auto-scrolling once the learner scrolls the card after the reveal (the 400 ms re-check no longer pulls them back; a width change, i.e. rotation, re-arms it). `tools/reveal-fit.mjs --rotate WxH` measures after turning the phone. Full `npm run verify` 1056/1056 before and after. Reveal fit (523 lessons): portrait 515 fit / 0 clip / 7 thumb / 8 unmeasurable; rotated to 844×390 0 clip, top always visible, but 495 need a scroll (the landscape card body is ~164px).
 

@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 2.6em; }
+.hit { cursor: pointer; }
+.edge { stroke: var(--muted); stroke-width: 1.5; opacity: 0.7; }
+.edgeGroup { stroke: var(--warn); stroke-width: 2.5; }
+.edgeUsed { stroke: var(--domain); stroke-width: 5; }
+.student { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.housed { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.sel { stroke: var(--fg); stroke-width: 4; }
+.room { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.5; }
+.roomFull { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.roomGroup { stroke: var(--warn); stroke-width: 4; }
+.lab { fill: var(--fg); font-size: 15px; font-weight: 900; pointer-events: none; }
+.out { fill: var(--bad); font-size: 11px; font-weight: 700; pointer-events: none; }
+.arrow { color: var(--muted); font-weight: 800; }

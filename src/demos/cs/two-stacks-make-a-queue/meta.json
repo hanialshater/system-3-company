@@ -26,18 +26,18 @@
   "claims": [
     {
       "id": "cs.two-stacks-make-a-queue.c1",
-      "text": "Adding 1, 2, 3, 4 to the in-stack and then removing four times (pop the out-stack; pour the whole in-stack over only when the out-stack is empty) takes exactly 1 pour; each of the 4 items is moved once, 4 moves in total, and the items leave in the order 1 2 3 4.",
+      "text": "For the tape add 1, add 2, remove, add 3, add 4, remove, remove, remove (pop the out-stack; pour the whole in-stack over only when the out-stack is empty) there are exactly 2 pours: the first moves 2 then 1, the second moves 4 then 3; every item is moved once (each 'moved' badge stops at 1), 4 moves in total, and the items leave in the order 1 2 3 4.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule. | FACT-CHECK 2026-10-14 (pass 19): Own node sim of the rule: 1 pour, moved {1:1,2:1,3:1,4:1}, left 1 2 3 4; matches simulate() and the reveal.",
+      "source": "simulate() in Demo.tsx v3 with OPS = add, add, rem, add, add, rem, rem, rem; traced by hand 2026-10-14 by the builder (not a verification). | Builder's node script (2026-10-14), written from the rule in the question: pours 1, moved {1:1, 2:1, 3:1, 4:1}, left order 1,2,3,4. The first removal pours 4, 3, 2, 1 (1 ends on top); removals 2 to 4 find the out-stack non-empty. Demo.tsx runs the same rule. | FACT-CHECK 2026-10-14 (pass 19): Own node sim of the rule: 1 pour, moved {1:1,2:1,3:1,4:1}, left 1 2 3 4; matches simulate() and the reveal. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Own node trace of the v3 tape: pours at tile 3 (moves 2 then 1) and tile 7 (moves 4 then 3); moved {1:1,2:1,3:1,4:1}; 4 moves; left 1 2 3 4.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.two-stacks-make-a-queue.c2",
-      "text": "Each item is poured at most once in its life, so the average cost per operation stays constant (amortized O(1)).",
+      "text": "An item crosses from the in-stack to the out-stack at most once in its life, so a slow removal pays for the fast ones around it and the average cost per operation stays constant (amortized O(1)).",
       "support": "source",
-      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in. | FACT-CHECK 2026-10-14 (pass 19): Derivation: items move only in->out, so moves <= adds (own random sim of 100,000 ops confirms). CLRS 3e exercise 10.1-6 and ch. 17 accounting method (4e: ch. 16).",
+      "source": "CLRS 3rd ed., exercise 10.1-6 (implement a queue using two stacks) and chapter 17, accounting method: charge each item 1 extra unit when added to pay for its single later move. Derivation: an item is only ever moved from in to out, and nothing moves from out back to in. | FACT-CHECK 2026-10-14 (pass 19): Derivation: items move only in->out, so moves <= adds (own random sim of 100,000 ops confirms). CLRS 3e exercise 10.1-6 and ch. 17 accounting method (4e: ch. 16). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Derivation: items move only in->out, so moves <= adds (own random 100,000-op sim). CLRS 3e ex. 10.1-6 and ch. 17 from my knowledge, not opened; the sentence rests on the derivation.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -59,6 +59,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.two-stacks-make-a-queue.c5",
+      "text": "The second pour never touched 1 or 2: they had already crossed to out and left.",
+      "support": "derivation",
+      "source": "Trace of simulate() in Demo.tsx: after the first removal out holds [2]; the second removal pops 2 without a pour; the third removal finds out empty and pours in = [3, 4]. Reveal paragraph 2. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own trace: at the second pour (the 3rd removal, tile 7) both 1 and 2 have already LEFT; out is empty, which is why it pours. So '(1 has left, 2 is in out)' is false at that moment, and the reveal's 'they were already in out' reads as if they sat in out during the pour. Fix (builder): 'The second pour never touched 1 or 2: they had already crossed to out and left.' | Builder fix (demo-builder, 2026-10-14): W-213: reveal and claim now use the fact-checker's wording; at the second pour (3rd removal, tile 7) both 1 and 2 have already been removed and out is empty. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own node trace of the tape. Tile 3 pours 2 then 1, and 1 leaves. Tile 6 pops 2, no pour. Tile 7 pours 4 then 3, and at that moment 1 and 2 have both already left, so out is empty and holds only 3 and 4 after the pour. 'Crossed to out and left' is true for both: each crossed in the first pour. The reveal (line 246) uses the pass 22 wording word for word.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -74,11 +83,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/two-stacks-make-a-queue/2026-10-14-learner-adult-beginner-r5.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 4,
   "curriculum": {
     "primary": "cs:queue-two-stacks",
     "also": [

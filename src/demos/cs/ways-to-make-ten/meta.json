@@ -1,7 +1,7 @@
 {
   "slug": "ways-to-make-ten",
   "title": "Ways to make ten",
-  "hook": "Coins 1, 2 and 5 can make 10 in one count, or in 128 if you count the order too.",
+  "hook": "Coins 1, 2 and 5. How many different mixes make 10?",
   "domain": "cs",
   "concept": "coin-change-ways",
   "format": "Storyboard / scrub",
@@ -61,9 +61,18 @@
     },
     {
       "id": "cs.ways-to-make-ten.c5",
-      "text": "Adding one coin kind per row counts each mix once, because each mix is built in one fixed order of coin kinds.",
+      "text": "Adding one coin kind per row counts each mix once, because each mix is built one way only, in one fixed order of coin kinds (all 1s, then 2s, then 5s), as the mixes drawn under the table show.",
       "support": "derivation",
-      "source": "Each cell splits the ways into those that use no coin of the new kind (the cell above) and those that use at least one (remove one coin: the cell c to the left), so a mix is counted in exactly one place. Method: the dynamic-programming table of CLRS ch. 15 style; generating-function view in Polya 1956, 'On picture-writing', Amer. Math. Monthly 63 (to be located by the verifier). · Fact-check pass 19 2026-10-14: verified by derivation (each cell partitions mixes by whether they use the new kind; removing one coin of that kind is a bijection to the cell c to the left) and own brute-force enumeration of all mixes matching every row. Polya 1956 not opened and not relied on.",
+      "source": "Each cell splits the ways into those that use no coin of the new kind (the cell above) and those that use at least one (remove one coin: the cell c to the left), so a mix is counted in exactly one place. Method: the dynamic-programming table of CLRS ch. 15 style; generating-function view in Polya 1956, 'On picture-writing', Amer. Math. Monthly 63 (to be located by the verifier). · Fact-check pass 19 2026-10-14: verified by derivation (each cell partitions mixes by whether they use the new kind; removing one coin of that kind is a bijection to the cell c to the left) and own brute-force enumeration of all mixes matching every row. Polya 1956 not opened and not relied on. | FACT-CHECK 2026-10-14 (pass 21): Re-verified pass 21: own brute-force combination counts match all three table rows (1..10); each mix is written once in 1s-2s-5s order (Demo mixes()). Derivation: split by use of the new kind; removing one coin is a bijection to the cell c left. Polya 1956 not opened, not relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ways-to-make-ten.c6",
+      "text": "When order matters, the number of coin sequences making total t is the sum of the counts for t − 1, t − 2 and t − 5 (the cells 1, 2 and 5 to the left in the any-order row).",
+      "support": "derivation",
+      "source": "Condition on the last coin of the sequence: it is 1, 2 or 5, and what precedes it is any sequence for the remainder. Demo.tsx ANY[] recurrence; values 1 1 2 3 5 9 15 26 44 75 128 (see c1). | FACT-CHECK 2026-10-14 (pass 21): Own enumeration of coin sequences by brute force: 1 1 2 3 5 9 15 26 44 75 128 for t = 0..10, identical to ANY[t] = ANY[t-1] + ANY[t-2] + ANY[t-5]; conditioning on the last coin is a partition.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -82,11 +91,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/ways-to-make-ten/2026-10-14-learner-sequence-learner-r5.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:coin-change-ways",
     "also": [],

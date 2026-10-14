@@ -41,21 +41,27 @@ const px = (r: number) => L + ((r - DOWN) / (UP - DOWN)) * (R - L);
 const py = (p: number) => BOT - (p / 0.5) * (BOT - TOP);
 const BW = 22;
 
-function Stage({ ctx, n, setN }: { ctx: StageContext; n: number; setN: (n: number) => void }) {
-  const { locked, interact } = ctx;
+function Stage({ ctx, n: chosen, setN }: { ctx: StageContext; n: number; setN: (n: number) => void }) {
+  const { locked, interact, phase } = ctx;
+  // At the reveal the stage pins the 2-bet chart, the state the reveal explains, so its 25% is on screen.
+  const pinned = phase === "reveal";
+  const n = pinned ? Q_N : chosen;
   const { reach } = useMilestones(interact, MILESTONES);
   const set = (v: number) => {
     setN(v);
     if (v === Q_N) reach("two-bets");
   };
   const os = outcomes(n);
+  // Ticks under every bar, plus 0% when no bar sits near it.
+  const ticks = os.map((o) => o.r);
+  if (!ticks.some((r) => Math.abs(r) < 4)) ticks.push(0);
 
   return (
     <div className={s.wrap}>
-      <p className={s.chip}>Model: independent coin-flip bets</p>
+      <p className={s.chip}>{pinned ? "Showing 2 bets, as the answer explains" : "Model: independent coin-flip bets"}</p>
       <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={locked ? "Chances of each result" : `${n} bets: chance of a loss ${pct(lossChance(n))}`}>
         <line x1={L} y1={BOT} x2={R} y2={BOT} stroke="var(--line)" />
-        {[DOWN, 0, AVG, UP].map((r) => (
+        {ticks.map((r) => (
           <text key={r} x={px(r)} y={BOT + 14} textAnchor="middle" className={s.axis}>
             {ret(r)}
           </text>
@@ -75,6 +81,11 @@ function Stage({ ctx, n, setN }: { ctx: StageContext; n: number; setN: (n: numbe
               <text x={px(o.r)} y={py(o.p) - 4} textAnchor="middle" className={s.value}>
                 {pct(o.p)}
               </text>
+              {o.r === 0 && (
+                <text x={px(o.r)} y={py(o.p) - 17} textAnchor="middle" className={s.axis}>
+                  break even
+                </text>
+              )}
             </g>
           ))}
         <line x1={px(AVG)} y1={TOP - 14} x2={px(AVG)} y2={BOT} className={s.ghost} />
@@ -84,7 +95,7 @@ function Stage({ ctx, n, setN }: { ctx: StageContext; n: number; setN: (n: numbe
       </svg>
 
       <Row>
-        <Slider label="Bets the money is split across" value={n} min={1} max={N_MAX} disabled={locked} onChange={set} />
+        <Slider label="Bets the money is split across" value={n} min={1} max={N_MAX} disabled={locked || pinned} onChange={set} />
       </Row>
       <Row>
         <Readout label="Chance of a loss" value={locked ? "?" : pct(lossChance(n))} />
@@ -116,7 +127,7 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With two bets you lose only if <strong>both</strong> fall: ½ × ½ = <strong>{pct(lossChance(Q_N))}</strong>.
+            On the stage now, two bets: you lose only if <strong>both</strong> fall: ½ × ½ = <strong>{pct(lossChance(Q_N))}</strong>.
             Half the time one rises and one falls, for {ret(outcomes(2)[1].r)}. The average stayed {ret(AVG)}, as with one bet.
           </p>
           <p>

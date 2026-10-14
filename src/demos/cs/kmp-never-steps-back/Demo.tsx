@@ -3,9 +3,10 @@
 // Two searches for AAAB in AAAAAAAAB run side by side, one letter comparison per press. "Restart one on" slides the
 // pattern one place after each miss and starts reading again from there (24 comparisons). "Reuse the match" (KMP) keeps
 // what matched: the fallback table under the pattern says how much to keep, and the text arrow only moves right
-// (14 comparisons). The reveal unlocks at the first miss (comparison 4) and quotes only the comparisons reached.
+// (14 comparisons). v3: the reveal unlocks only after the learner passes the first miss and both searches reach
+// the end (24 and 14 on the stage, "Run to end" animates it); the table is labelled; the moved-back tally is coloured.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -75,7 +76,7 @@ function Panel({ y, title, steps, k, table }: { y: number; title: string; steps:
     <g>
       <text x={X0} y={y + 12} className={s.axis}>
         {title}
-        {found ? ` · found at ${n}` : ""}
+        {table ? " · numbers under AAAB: A's kept after a miss" : ""}
       </text>
       {T.split("").map((ch, c) => {
         const mark = cur && c >= off && c <= ti ? (c === ti && !cur.ok ? "✗" : "✓") : null;
@@ -136,19 +137,39 @@ function Panel({ y, title, steps, k, table }: { y: number; title: string; steps:
       <text x={X0 + ti * CW + CW / 2} y={y + (table ? 120 : 106)} textAnchor="middle" className={s.hi}>
         ▲
       </text>
-      <text x={X0} y={y + (table ? 135 : 121)} className={s.axis}>
-        Comparisons {n} · arrow moved back {backs(steps, n)}
+      <text x={X0} y={y + (table ? 136 : 122)} className={s.tally}>
+        {found ? `Found at comparison ${n}` : `Comparisons ${n}`} · arrow moved back{" "}
+        <tspan className={backs(steps, n) ? s.back : s.zero}>{backs(steps, n)}</tspan>
       </text>
     </g>
   );
 }
 
+// Reaches the milestones from an effect (never during render): past the first miss, and both searches finished.
+function Watch({ k, total, reach }: { k: number; total: number; reach: (name: string) => void }) {
+  useEffect(() => {
+    if (k > FIRST_MISS) reach("first-miss");
+    if (k >= total) reach("both-done");
+  }, [k, total, reach]);
+  return null;
+}
+
 export default function KmpNeverStepsBack({ slug }: { slug: string }) {
   const [k, setK] = useState(0);
+  const [running, setRunning] = useState(false);
   const total = NAIVE.length; // 24
-  const nb = backs(NAIVE, Math.min(k, NAIVE.length));
-  const kb = backs(KMP, Math.min(k, KMP.length));
-  const kmpDone = k >= KMP.length;
+  const nb = backs(NAIVE, total);
+  const kb = backs(KMP, KMP.length);
+  // "Run to end": one comparison every 120 ms until both searches have finished.
+  useEffect(() => {
+    if (!running) return;
+    if (k >= total) {
+      setRunning(false);
+      return;
+    }
+    const id = setTimeout(() => setK((x) => Math.min(total, x + 1)), 120);
+    return () => clearTimeout(id);
+  }, [running, k, total]);
 
   return (
     <Lesson
@@ -159,58 +180,50 @@ export default function KmpNeverStepsBack({ slug }: { slug: string }) {
         options: ["24", "14", "4"],
         answer: 1,
       }}
-      exploreHint="Compare until the first miss, then watch the two arrows."
-      minInteractions={1}
+      exploreHint="Compare past the first miss and watch the arrows. Then run both to the end."
+      minInteractions={2}
       reveal={() => (
         <>
-          {k <= FIRST_MISS ? (
-            <p>
-              Both searches missed on comparison {FIRST_MISS}: the B in the pattern met an A. Press Compare again to see
-              where each one goes next.
-            </p>
-          ) : (
-            <p>
-              Both missed on comparison {FIRST_MISS}. After {k} comparisons, restarting one on has moved its arrow back{" "}
-              <strong>{nb}</strong> {nb === 1 ? "time" : "times"}, re-reading letters it had already matched. Reusing the
-              match has moved its arrow back <strong>{kb}</strong> times.
-            </p>
-          )}
-          {kmpDone && (
-            <p>
-              Reusing the match found AAAB at comparison <strong>{KMP.length}</strong>
-              {k >= total ? `; restarting one on needed ${total}` : `, when restarting one on was still searching`}.
-            </p>
-          )}
-          <p className="muted">
-            What matched is known text. The table under AAAB (0 1 2 0) says how much of it still matches after a miss, so
-            the pattern slides on and the text arrow only moves right.
+          <p>
+            Restarting one on needed <strong>{total}</strong> comparisons and moved its arrow back <strong>{nb}</strong>{" "}
+            times, re-reading A's it had already matched. Reusing the match found AAAB at comparison{" "}
+            <strong>{KMP.length}</strong> and moved back {kb} times.
           </p>
+          <p>
+            Why {KMP.length}: every miss came after AAA had matched, and those A's are known text. The number
+            under the third A, 2, said keep two of them, so the pattern slid one place and the next comparison was the
+            same text letter, never one to its left: 3 + 2 × 5 + 1 = {KMP.length}.
+          </p>
+          <p className="muted">That table (0 1 2 0) is the fallback table of the KMP search.</p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["first-miss"]}>
+        <Milestones interact={interact} names={["first-miss", "both-done"]}>
           {(reach) => {
             const step = (by: number) => {
               const next = Math.min(total, k + by);
               if (next === k) return;
               setK(next);
-              if (next >= FIRST_MISS) reach("first-miss");
             };
             const over = k >= total;
             return (
               <div className={s.wrap}>
                 <p className={s.rule}>Find AAAB. Both count every letter comparison.</p>
+                <Watch k={k} total={total} reach={reach} />
                 <svg viewBox="0 0 340 300" className="stage-svg" role="img" aria-label={`After ${k} comparisons`}>
                   <Panel y={0} title="Restart one on" steps={NAIVE} k={k} table={false} />
                   <Panel y={146} title="Reuse the match" steps={KMP} k={k} table />
                 </svg>
                 <Row>
-                  <Control className={s.tap} disabled={locked || over} onClick={() => step(1)}>
+                  <Control className={s.tap} disabled={locked || over || running} onClick={() => step(1)}>
                     Compare
                   </Control>
-                  <Control className={s.tap} disabled={locked || over} onClick={() => step(4)}>
+                  <Control className={s.tap} disabled={locked || over || running} onClick={() => step(4)}>
                     Compare ×4
+                  </Control>
+                  <Control className={s.tap} disabled={locked || over || running} onClick={() => setRunning(true)}>
+                    Run to end
                   </Control>
                 </Row>
               </div>

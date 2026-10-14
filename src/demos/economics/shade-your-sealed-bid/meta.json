@@ -1,0 +1,117 @@
+{
+  "slug": "shade-your-sealed-bid",
+  "title": "Bid what it's worth? Not here.",
+  "hook": "Pay your own bid, and bidding your full value earns nothing. So how far below?",
+  "domain": "economics",
+  "concept": "first-price-shading",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e01"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "learner": {
+    "knows": [
+      "in a second-price auction you bid your value",
+      "expected value: a payoff times its chance"
+    ],
+    "doesNotKnow": [
+      "that when you pay your own bid, the best bid is well below your value"
+    ]
+  },
+  "misconception": "In a first-price sealed auction you should bid what the item is worth to you.",
+  "objective": "The learner can explain that in a first-price auction a lower bid keeps more per win but wins less often, and find that with value $80 against a rival bidding half of an evenly spread $0-100 value the best bid is $40 (expected $32).",
+  "claims": [
+    {
+      "id": "economics.shade-your-sealed-bid.c1",
+      "text": "Against a rival who bids half of a value spread evenly on $0 to $100, a bid of b wins with chance b/50 up to $50, and every time above $50.",
+      "support": "derivation",
+      "source": "Lesson rule: rival value uniform on [0,100], rival bid = value/2, so rival bid uniform on [0,50]; P(rival bid < b) = min(b,50)/50 (ties have probability 0). Builder's seeded Monte Carlo (mulberry32-style, 200,000 draws) gives 0.80 win chance at $40. Demo.tsx winChance. | FACT-CHECK 2026-10-14 (pass 22): Own derivation: rival bid uniform on [0,50], P(win) = min(b,50)/50. Own LCG Monte Carlo (400,000 draws, scratchpad fc22/bid.mjs): 0.801 at $40, 1 at $50 and $60.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.shade-your-sealed-bid.c2",
+      "text": "With value $80, expected profit (80 minus bid, times the win chance) is $0 at a bid of $80, $30 at $50, $20 at $60 and $32 at $40, the highest of any bid.",
+      "support": "derivation",
+      "source": "Builder's node grid over whole-dollar bids 0..100 (scratchpad ncm-e01-checks/check.mjs): (80-b)*min(b,50)/50; max 32 at b=40; 30 at 50, 20 at 60, 0 at 80. Calculus: for b<=50, d/db (80b - b^2)/50 = 0 at b=40. Demo.tsx expected and BEST. | FACT-CHECK 2026-10-14 (pass 22): Own grid (0.01 steps, 0..100): (80-b)min(b,50)/50 maximal at b = 40.00 with $32; $30 at 50, $20 at 60, $0 at 80; $31.98 at 39 and 41.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.shade-your-sealed-bid.c3",
+      "text": "From $80 down to $50 the bid still wins every time; below $50 each dollar shaved costs 2 points of win chance.",
+      "support": "derivation",
+      "source": "From c1: win chance is 1 for b >= 50, and b/50 below, which falls 0.02 per dollar. | FACT-CHECK 2026-10-14 (pass 22): From c1: chance 1 for b >= 50; slope 1/50 = 2 points per dollar below 50.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.shade-your-sealed-bid.c4",
+      "text": "With two bidders whose values are spread evenly, bidding half your value is the equilibrium of the first-price auction.",
+      "support": "source",
+      "source": "Standard result for two bidders with independent uniform private values: the symmetric equilibrium bid is v/2. W. Vickrey, Journal of Finance 16(1), 8-37 (1961); E&K ch. 9 (first-price auctions; section unconfirmed). Consistent with c2: the best reply to a rival bidding half is $40, half of $80. Citation from memory; fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): Own derivation: against a rival bidding v/2 (v uniform 0..100), the best reply for every value v = 1..100 is v/2 (grid search, max deviation 0.000), so bidding half is a symmetric equilibrium (the standard symmetric one). Vickrey, J. Finance 16(1):8-37 (1961) confirmed as bibliographic data via search snippets; paper NOT opened. E&K ch. 9 (Auctions) placement agrees with my knowledge; section not checked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.shade-your-sealed-bid.c5",
+      "text": "The stage is a model: one rival, values spread evenly, and the rival's bidding rule known.",
+      "support": "convention",
+      "source": "Modelling choice stated in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Convention, on stage: chip \"Worth $80 to you · rival bids half of a $0-100 value\"; reveal \"A model: one rival, values spread evenly.\"",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "recall": {
+    "question": "In a sealed auction where the winner pays their own bid, what happens if you bid exactly what the item is worth to you?",
+    "options": [
+      "You maximise your expected profit",
+      "You gain nothing even when you win",
+      "You never win"
+    ],
+    "answer": 1,
+    "why": "Paying your full value leaves nothing over; a lower bid keeps something per win at the cost of winning less often, and the best bid balances the two."
+  },
+  "curriculum": {
+    "primary": "economics:first-price-shading",
+    "also": [
+      "probability:expected-value"
+    ],
+    "prerequisites": [
+      "probability:expected-value"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 9
+      }
+    ],
+    "tags": [
+      "auctions",
+      "expected value"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

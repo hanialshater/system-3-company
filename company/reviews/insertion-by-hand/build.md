@@ -9,3 +9,7 @@
 
 Hook no longer states 10. A "Pairs out of order" readout falls by one with every slide, and the finished message says how many pairs the hand began with, so the pair-counting payoff is seen. Title changed.
 Edited claims are unverified for the fact-checker. QA and walkthrough run after this edit.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: locked stage showed PAIRS 10 next to option 10; lockstep seen once. Changes: Slides and Pairs read "?" while locked; "Finish this hand" now plays the remaining slides one every 0.38 s so both counters are seen falling together (result recorded at the press so QA order still unlocks). No claim text changed.

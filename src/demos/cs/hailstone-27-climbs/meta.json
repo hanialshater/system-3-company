@@ -1,0 +1,111 @@
+{
+  "slug": "hailstone-27-climbs",
+  "title": "Small start, long climb",
+  "hook": "A tiny rule and a small number. How long can it run?",
+  "domain": "cs",
+  "concept": "collatz-steps",
+  "format": "storyboard-scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sd"
+  },
+  "learner": {
+    "knows": [
+      "a rule can be applied repeatedly (call-stack-depth)"
+    ],
+    "doesNotKnow": [
+      "that tiny rules make wildly different run lengths, and nobody has proved they all stop"
+    ]
+  },
+  "misconception": "If a rule is simple and the starting number is small, the run is short and predictable.",
+  "objective": "The learner can explain that the halve-or-3n+1 rule gives wildly different run lengths for neighbouring starts (27 takes 111 steps and climbs to 9,232, 26 takes 10, 28 takes 18) and that nobody has proved every start reaches 1.",
+  "claims": [
+    {
+      "id": "cs.hailstone-27-climbs.c1",
+      "text": "Starting at 27, with even n halved and odd n replaced by 3n + 1, it takes 111 steps to reach 1 and climbs to 9,232 (at step 77) on the way.",
+      "support": "simulation",
+      "source": "Builder's node script (algo2-sd, 2026-10-14), same rule and step count (rule applications until 1) as Demo.tsx: 27 -> 111 steps, peak 9,232 at step 77; first values 82, 41, 124, 62, 31, 94. Matches the brief and company/design/specs/hailstone-27-climbs.md. | FACT-CHECK 2026-10-14 (pass 22): Own node: 27 takes 111 steps, peak 9,232 at step 77; first values 82, 41, 124, 62, 31, 94.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c2",
+      "text": "26 takes 10 steps and 28 takes 18; 97 takes 118 steps and also peaks at 9,232.",
+      "support": "simulation",
+      "source": "Builder's node script: 26 -> 10 steps (peak 40); 28 -> 18 (peak 52); 97 -> 118 (peak 9,232 at step 84). 97 is the longest-running start under 100 (not on the stage). | FACT-CHECK 2026-10-14 (pass 22): Own node: 26 -> 10 (peak 40), 28 -> 18 (peak 52), 97 -> 118 (peak 9,232 at step 84); 97 is the longest under 100.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c3",
+      "text": "The start number tells you almost nothing about how long the run is.",
+      "support": "derivation",
+      "source": "Interpretive line resting on c1 and c2: the neighbours 26, 27, 28 take 10, 111 and 18 steps, shown on the stage as three lines and in the runs table. | FACT-CHECK 2026-10-14 (pass 22): Interpretive line resting on c1/c2 (10, 111, 18 for neighbours); holds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c4",
+      "text": "Every start that computers have checked reaches 1.",
+      "support": "source",
+      "source": "Barina (2021), 'Convergence verification of the Collatz problem', The Journal of Supercomputing 77: every start below 2^68 verified. Written from the brief, marked there 'check before building'; the stage gives no number so the claim does not depend on the exact bound. Builder has not opened the paper. | FACT-CHECK 2026-10-14 (pass 22): Learner sentence has no bound. Not opened (fit.vut.cz blocked). Search-result text: Barina, J. Supercomputing 77(3):2681-2688 (2021) confirmed as a paper, but the 2^68 bound was NOT confirmed from that text; Barina 2025 (J. Supercomputing 81) reports 2^71; Oliveira e Silva in Lagarias (2010) reports about 5.76 x 10^18. Builder should correct the bound in this source field or drop it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.hailstone-27-climbs.c5",
+      "text": "Nobody has proved that every start reaches 1: the Collatz conjecture is still open.",
+      "support": "source",
+      "source": "Lagarias (ed.) (2010), The Ultimate Challenge: The 3x+1 Problem, American Mathematical Society: the conjecture is unresolved. Builder has not opened the book (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Lagarias (ed.) 2010, AMS, not opened; AMS book description and Lagarias overview (arXiv) state the problem is unsolved (search-result text). Consistent with my own knowledge to mid-2026.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the rule 'halve if even, 3n + 1 if odd', two starting numbers differ by 1. What can you say about how many steps each takes to reach 1?",
+    "options": [
+      "Very little: neighbours can take wildly different numbers of steps",
+      "About the same number of steps",
+      "The bigger number always takes longer"
+    ],
+    "answer": 0,
+    "why": "26 takes 10 steps and 27 takes 111. A tiny rule can make run lengths that jump around, and no one has proved every run even ends."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:collatz-steps",
+    "also": [],
+    "prerequisites": [
+      "cs:recursion"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "iteration",
+      "collatz",
+      "open-problem"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "scrubber-timeline",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "slug": "rotation-untangles-the-chain",
+  "title": "A tree that fixes itself",
+  "hook": "Keys arrive in sorted order. Does the search tree have to become a chain?",
+  "domain": "cs",
+  "concept": "avl-rotation",
+  "format": "before-after",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sd"
+  },
+  "learner": {
+    "knows": [
+      "insert order shapes a search tree (lopsided-tree)"
+    ],
+    "doesNotKnow": [
+      "that a tree can fix itself with a local rotation and stay in order"
+    ]
+  },
+  "misconception": "Ordered input always gives a chain; the only cure is shuffling the input first.",
+  "objective": "The learner can explain that a rotation lifts the middle key while keeping the left-to-right order, so a tree that rotates whenever one side is two levels deeper takes keys 1 to 7 in order and stays 3 levels tall instead of becoming a chain of 7.",
+  "claims": [
+    {
+      "id": "cs.rotation-untangles-the-chain.c1",
+      "text": "Inserting keys 1 to 7 in order, counting height in levels (a single node is height 1): a plain search tree becomes a chain of height 7, and a tree that rotates whenever one side of a node is two levels deeper than the other (AVL) ends 3 levels tall with root 4, after 4 rotations.",
+      "support": "simulation",
+      "source": "Builder's node script (algo2-sd, 2026-10-14), standard AVL insertion: heights after each key 1, 2, 2, 3, 3, 3, 3; root 4; 4 rotations; plain BST heights 1..7. Same insertion as Demo.tsx. Matches the brief and company/design/specs/rotation-untangles-the-chain.md. Counted in edges the heights would be 2 and 6. | FACT-CHECK 2026-10-14 (pass 22): Own node AVL (levels): heights 1,2,2,3,3,3,3, root 4, 4 rotations; plain BST heights 1..7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.rotation-untangles-the-chain.c2",
+      "text": "The four rotations happen at node 1 (inserting 3), node 3 (inserting 5), node 2 (inserting 6) and node 5 (inserting 7), and each is a single left rotation. At key 3, 2 rises above 1 and 3 and becomes the root.",
+      "support": "simulation",
+      "source": "Builder's node script: unbalanced node at each rotation 1, 3, 2, 5 with the new key in the right child's right subtree (single left rotation). After key 3 the tree is 2 with children 1 and 3. Shown on the stage as the note 'Rotated at X: Y moves up' and the dashed ghost. | FACT-CHECK 2026-10-14 (pass 22): Own node log: rotations at 1 (key 3), 3 (key 5), 2 (key 6), 5 (key 7), all single left; after key 3 the root is 2 with children 1 and 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.rotation-untangles-the-chain.c3",
+      "text": "A rotation keeps the left-to-right order of the keys, so every search stays valid.",
+      "support": "derivation",
+      "source": "A left rotation at x with right child y turns x(A, y(B, C)) into y(x(A, B), C); the in-order sequence A x B y C is unchanged. CLRS 4e (clrs-4e) section 13.2, Rotations. On the stage each key keeps its own column. | FACT-CHECK 2026-10-14 (pass 22): x(A,y(B,C)) -> y(x(A,B),C) keeps in-order A x B y C; own node in-order check after every insert. CLRS 4e sec. 13.2 'Rotations' placement correct to my knowledge (not opened).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.rotation-untangles-the-chain.c4",
+      "text": "Rotating whenever one side gets two levels deeper keeps the height close to log₂ of the number of keys.",
+      "support": "source",
+      "source": "Adelson-Velsky & Landis (1962), 'An algorithm for the organization of information', Doklady Akademii Nauk SSSR 146: an AVL tree with n keys has height below about 1.44 log2(n + 2). Bound written from the brief; builder has not opened the paper (check before verifying). | FACT-CHECK 2026-10-14 (pass 22): Own derivation: min nodes for height h is N(h)=N(h-1)+N(h-2)+1, giving h < 1.4405 log2(n+2) - 0.3277 (checked h=1..29 in node); any binary tree has h >= log2(n+1). 'Close to log2' holds within a factor 1.44. Adelson-Velsky & Landis 1962 (Doklady 146) not opened; sentence does not depend on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.rotation-untangles-the-chain.c5",
+      "text": "In a plain search tree smaller keys go left and bigger keys go right, with no rotations.",
+      "support": "convention",
+      "source": "Definition of a binary search tree insertion (CLRS 4e ch. 12). Stage rule line in plain mode. | FACT-CHECK 2026-10-14 (pass 22): Matches the stage rule line and plainInsert() (BST insertion definition).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search tree rotates at a node to fix a lopsided side. What is guaranteed to stay the same?",
+    "options": [
+      "The left-to-right order of the keys",
+      "Which key is at the root",
+      "The height of every node"
+    ],
+    "answer": 0,
+    "why": "A rotation moves keys up and down but never past each other, so the in-order sequence, and every search, still works."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:avl-rotation",
+    "also": [],
+    "prerequisites": [
+      "cs:binary-search-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 13,
+        "section": "13.2",
+        "note": "rotations"
+      }
+    ],
+    "tags": [
+      "trees",
+      "balanced-tree",
+      "avl",
+      "rotation"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

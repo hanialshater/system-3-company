@@ -1,0 +1,119 @@
+{
+  "slug": "hawks-never-take-over",
+  "title": "Why hawks never take over",
+  "hook": "Fighting wins the prize. So why does a population never end up all fighters?",
+  "domain": "life",
+  "concept": "hawk-dove-ess",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "aggressive and peaceful strategies",
+      "fitness comes from the meetings an animal has"
+    ],
+    "doesNotKnow": [
+      "that the population settles where hawks and doves score equally, a hawk share of V/C (here 2/3), from any start"
+    ]
+  },
+  "misconception": "Aggression always wins in evolution, so hawks take over.",
+  "objective": "The learner can explain that hawks grow while rare (they take the prize from doves) and shrink while common (fights between hawks cost more than they win), so from 10% or 90% the hawk share settles at 2/3 = V/C, where hawks and doves score the same.",
+  "claims": [
+    {
+      "id": "life.hawks-never-take-over.c1",
+      "text": "With a prize of 4 and an injury cost of 6, the scores per meeting are: hawk vs hawk −1, hawk vs dove 4, dove vs hawk 0, dove vs dove 2.",
+      "support": "derivation",
+      "source": "Hawk vs hawk: each wins half the time, (4 − 6)/2 = −1. Hawk vs dove: the hawk takes the prize, 4 and 0. Dove vs dove: they share, 4/2 = 2. Demo.tsx scoreH/scoreD. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation and Demo scoreH/scoreD: (4-6)/2 = -1, 4, 0, 4/2 = 2; matches the stage table.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.hawks-never-take-over.c2",
+      "text": "With hawk share x, a hawk averages 4 − 5x and a dove 2 − 2x; they are equal at x = 2/3, so hawks score more below 2/3 and less above it (at 10% hawks: 3.5 vs 1.8; at 90%: −0.5 vs 0.2).",
+      "support": "derivation",
+      "source": "Hawk: −1·x + 4(1 − x) = 4 − 5x. Dove: 0·x + 2(1 − x) = 2 − 2x. Equal when 2 = 3x. Builder re-ran in Node, 2026-10-14. · Fact-check pass 21 2026-10-14: VERIFIED: node hawk.mjs: H(.1) = 3.5, D(.1) = 1.8, H(.9) = -0.5, D(.9) = 0.2, equal at 2/3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.hawks-never-take-over.c3",
+      "text": "In the stage's update rule (offspring = 10 + score, share x' = x·W_hawk / mean W), every start from 1% to 99% hawks reads 67% at generation 150, including the 10% and 90% starts.",
+      "support": "simulation",
+      "source": "Builder's Node run, 2026-10-14 (deterministic, no random seed): all starts 1..99 round to 67% at generation 150; 10% gives 0.6666, 90% gives 0.6667; both 0.66667 at generation 400. The baseline 10 is a modelling choice that keeps offspring positive; it changes the speed, not where the share settles. · Fact-check pass 21 2026-10-14: VERIFIED: node, Demo trajectory copied: all starts 1..99 round to 67% at generation 150 (10%: 0.66662, 90%: 0.66669). Baselines 5 and 20 settle at 2/3 too.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.hawks-never-take-over.c4",
+      "text": "When the cost of fighting exceeds the prize, the evolutionarily stable share of hawks is prize ÷ cost (here 4 ÷ 6 = 2/3).",
+      "support": "source",
+      "source": "Maynard Smith J. (1982) Evolution and the Theory of Games, Cambridge University Press (hawk-dove game); Easley & Kleinberg (2010) Networks, Crowds, and Markets, ch. 7 (section unconfirmed). Attribution: fact-checker to confirm. The algebra is c2. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: equal payoffs at x = V/C (c2), hawks gain below and lose above, so V/C is the stable mix. Maynard Smith 1982 not opened; secondary sources found by web search state ESS p = V/C for V < C. Easley and Kleinberg ch. 7 is 'Evolutionary game theory' (library catalogue via web search); the section (I believe 7.5, evolutionarily stable mixed strategies) is from memory and unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.hawks-never-take-over.c5",
+      "text": "The model is a toy: one-off meetings at random in a very large population, with chosen payoffs; it is not a claim about real animals.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx, stated in the reveal. · Fact-check pass 21 2026-10-14: VERIFIED: Demo model (deterministic shares, random pairing implicit, chosen payoffs) and the muted reveal paragraph say exactly this.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In the hawk-dove game, with fights costing more than the prize, why do hawks never take over the whole population?",
+    "options": [
+      "When hawks are common they mostly fight each other and score less than doves",
+      "Doves breed faster",
+      "Hawks are killed by doves",
+      "The share is set by the starting mix"
+    ],
+    "answer": 0,
+    "why": "A hawk does best among doves. As hawks become common, costly hawk-vs-hawk fights drag their average below the dove's, so the share settles where the two score the same."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:hawk-dove-ess",
+    "also": [
+      "economics:hawk-dove-chicken"
+    ],
+    "prerequisites": [
+      "life:evolution-of-cooperation"
+    ],
+    "level": "core",
+    "strand": "genetics-evolution",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 7
+      }
+    ],
+    "tags": [
+      "evolution",
+      "game theory",
+      "ESS"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
+}

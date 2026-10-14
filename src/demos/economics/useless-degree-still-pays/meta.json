@@ -1,0 +1,118 @@
+{
+  "slug": "useless-degree-still-pays",
+  "title": "A useless degree that still pays",
+  "hook": "The degree teaches nothing. Firms still pay more for it, and they aren't wrong. How?",
+  "domain": "economics",
+  "concept": "signaling-education",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "employers can't see ability directly (lemon-market-unravels)"
+    ],
+    "doesNotKnow": [
+      "that a credential can pay even if it teaches nothing, because it costs able people less to earn"
+    ]
+  },
+  "misconception": "A degree is only worth getting if it makes you more productive.",
+  "objective": "The learner can explain that because the degree costs able workers $20k and others $60k, only the able find it worth it ($80k vs $50k; $40k vs $50k), so holding one reveals ability and paying holders $100k is correct, though the degree teaches nothing.",
+  "claims": [
+    {
+      "id": "economics.useless-degree-still-pays.c1",
+      "text": "With the degree, able workers net $100k - $20k = $80k against $50k without; the others net $100k - $60k = $40k, less than $50k.",
+      "support": "derivation",
+      "source": "100 - 20 = 80 > 50; 100 - 60 = 40 < 50. Demo.tsx net(), takes(); re-run in node (ncm-e00). | FC pass 22 (fact-checker, 2026-10-14): 100-20 = 80 > 50; 100-60 = 40 < 50; net(), takes() and reveal match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.useless-degree-still-pays.c2",
+      "text": "So only the able get the degree; holding one reveals ability, and firms are right to pay holders $100k though nobody learned a thing.",
+      "support": "derivation",
+      "source": "From c1: every holder is able and produces $100k, so the $100k pay matches output. Stage message 'Only the able get it: the degree reveals ability.' | FC pass 22 (fact-checker, 2026-10-14): with costs 20/60 only the able take it, so every holder produces 100 and pay 100 matches output; stage message 'Only the able get it: the degree reveals ability.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.useless-degree-still-pays.c3",
+      "text": "If the degree costs the others less than $50k, they get it too, and firms pay $100k to workers who produce $50k: the degree stops meaning anything; it signals ability only because it costs the able less to earn.",
+      "support": "derivation",
+      "source": "Others take it when 100 - cost > 50, i.e. cost < 50 (preset $40k: 60 > 50). Demo.tsx takes(); stage message for the pooling state. | FC pass 22 (fact-checker, 2026-10-14): takes(c) iff 100 - c > 50 iff c < 50; preset $40k: 60 > 50, both types take it (with able at 20), status 'pool', message 'firms pay $100k for $50k workers'. At exactly 50 the stage says 'tie: skips'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.useless-degree-still-pays.c4",
+      "text": "This is Spence's job-market signalling model.",
+      "support": "source",
+      "source": "Spence 1973, 'Job Market Signaling', Quarterly Journal of Economics 87(3); Easley and Kleinberg 2010, ch. 22. Fact-checker to confirm. | FC pass 22 (fact-checker, 2026-10-14): Spence, 'Job Market Signaling', QJE 87(3):355-374 (1973) confirmed bibliographically via search (JSTOR record); not opened. A costless-to-output education that separates types only through differing costs is Spence's model (knowledge). E&K ch. 22 placement (asymmetric information / signalling sections after the lemons market): moderately confident from memory, section unconfirmed; not shown to learners.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.useless-degree-still-pays.c5",
+      "text": "The lesson is a simplified model with invented numbers (two types, a fixed firm pay rule, ties skip the degree); it does not claim real degrees teach nothing.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: the degree teaches nothing' and the reveal's last line. Lesson rule from the brief (claim 4). | FC pass 22 (fact-checker, 2026-10-14): Demo.tsx constants and rules (two types, fixed pay rule, tie skips); chip and muted reveal line match.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A certificate teaches nothing. Holders are paid $30k more. It costs strong workers $10k and weak workers $40k. Who gets it?",
+    "options": [
+      "Everyone",
+      "Only the strong workers",
+      "No one"
+    ],
+    "answer": 1,
+    "why": "Strong workers gain $30k - $10k = $20k; weak workers would lose $40k - $30k = $10k. Only the strong get it, so it signals strength."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:signaling-education",
+    "also": [
+      "economics:adverse-selection"
+    ],
+    "prerequisites": [
+      "economics:adverse-selection"
+    ],
+    "level": "stretch",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 22
+      }
+    ],
+    "tags": [
+      "information",
+      "signalling",
+      "labour"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "slug": "new-server-moves-few-keys",
+  "title": "One new server, how many keys move?",
+  "hook": "Add a fifth server to four. Does it take a fifth of the keys, or reshuffle them all?",
+  "domain": "cs",
+  "concept": "consistent-hashing",
+  "format": "before-after",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a key lands in the bucket given by hash mod size (hash-bucket-pileup)"
+    ],
+    "doesNotKnow": [
+      "that changing the number of servers by one moves most keys under mod, but about 1/n of them on a ring"
+    ]
+  },
+  "misconception": "Adding one server to a cache cluster moves only the keys the new server takes over.",
+  "objective": "The learner can explain that under key mod n, going from 4 to 5 servers moves 16 of 20 keys, while on a ring (each key goes to the next server clockwise) a new server only takes keys from its neighbour, about 1/n of them.",
+  "claims": [
+    {
+      "id": "cs.new-server-moves-few-keys.c1",
+      "text": "Under key mod n, adding E (4 to 5 servers) moved 16 of the 20 keys: only keys 0 to 3 kept their server.",
+      "support": "derivation",
+      "source": "Enumeration of k = 0..19 (Demo.tsx owner(); builder's node script, 2026-10-14): k mod 4 = k mod 5 only for k = 0, 1, 2, 3 (both equal k, since k < 4). For 4 <= k < 20 they differ, so 16 keys move. Same as the brief's check. | FACT-CHECK 2026-10-14 (pass 21): Own copy of owner() (scratchpad fc21/ns.mjs): mod scheme moves keys 4-19 (16), keeps 0-3; matches reveal and table.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-server-moves-few-keys.c2",
+      "text": "On the ring, adding E moved 4 of the 20 keys, all to E, all from its neighbour A. E's spot was picked to give it an even fifth.",
+      "support": "derivation",
+      "source": "Designed layout, not a hash (spec company/design/specs/new-server-moves-few-keys.md): key k sits at k/20 of the circle; A, B, C, D sit at 4.5, 9.5, 14.5, 19.5 (5 keys each); E at 3.5. Next server clockwise: keys 0-3 go from A to E and nothing else changes (Demo.tsx owner(); builder's node script, 2026-10-14). The position of E was chosen to show one even share; a hashed position could give E anything from 0 to 15 keys. | FACT-CHECK 2026-10-14 (pass 21): Own copy of owner() with RING_POS: ring moves keys 0-3, all A->E, nothing else; E ends with 4 = 20/5 (A keeps 1, B-D 5 each). Designed layout is disclosed in the reveal ('E's spot was picked').",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-server-moves-few-keys.c3",
+      "text": "On a ring a key belongs to the next server clockwise, so a new server only takes keys from the one after it.",
+      "support": "derivation",
+      "source": "Inserting a server at position p changes the owner only of keys whose next server clockwise is now p: exactly the keys between p and the previous server, which belonged to the next server after p. All other keys still meet the same server first. Karger et al. 1997 (c6). | FACT-CHECK 2026-10-14 (pass 21): Derivation re-checked; holds for any insertion point (only keys between the new point and its predecessor change owner, all from the successor).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-server-moves-few-keys.c4",
+      "text": "A formula like key mod n reassigns nearly every key when n changes.",
+      "support": "derivation",
+      "source": "If k mod n = k mod (n + 1) = r, then r < n and, since n and n + 1 are coprime, k leaves remainder r on division by n(n + 1) (Chinese remainder theorem). So over a block of n(n + 1) consecutive keys, the two residues agree for exactly n keys (k = 0..n-1 of each block), so a fraction 1/(n + 1) stays and n/(n + 1) moves (80% for 4 to 5). Checked by enumeration for n = 4 in c1. | FACT-CHECK 2026-10-14 (pass 21): CRT argument re-checked; enumeration n = 2..9 over 7 blocks gives exactly 1/(n+1) kept each time.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-server-moves-few-keys.c5",
+      "text": "With hashed spots, 1,000 per server, and 20,000 keys, about 20% moved, all to E: about 1/n.",
+      "support": "simulation",
+      "source": "Builder's node script (2026-10-14): 32-bit FNV-1a, servers A-D then A-E, 1,000 ring points per server named '<server>#<i>', keys 'key-<k>' for k = 0..19,999, next point clockwise. 20.4% moved, all to E. The result depends on the naming: '<server>-<i>' and '<k>' gave 18.3%; the brief's own script gave 19.6% (cm-cs-algorithms, not re-run by the builder). With 100 points per server the builder got 22.7%; the ideal is 1/5 = 20%. The stage does not hash. | FACT-CHECK 2026-10-14 (pass 21): Re-implemented 32-bit FNV-1a ring: 1,000 points '<s>#<i>', keys 'key-<k>' -> 20.415% moved, all to E; '-' and bare keys -> 18.28%; 100 points -> 22.74%. All match the builder; 'about 20%' fair.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.new-server-moves-few-keys.c6",
+      "text": "This is consistent hashing (Karger and others, 1997).",
+      "support": "source",
+      "source": "D. Karger, E. Lehman, T. Leighton, R. Panigrahy, M. Levine, D. Lewin, 'Consistent hashing and random trees: distributed caching protocols for relieving hot spots on the World Wide Web', Proc. 29th ACM STOC, 1997, pp. 654-663. Builder has not opened the paper in this session. | FACT-CHECK 2026-10-14 (pass 21): Paper not opened (cs.brown.edu, Wikipedia blocked). Title, authors, STOC '97 pp. 654-663 and that the paper introduced the term 'consistent hashing' corroborated by web-search results (Wikipedia 'Consistent hashing' snippet, course mirrors of the STOC PDF).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A cache spreads keys over 9 servers. A 10th server joins. Which scheme moves only about a tenth of the keys?",
+    "options": [
+      "Server = key mod n, with n going from 9 to 10",
+      "A ring where each key goes to the next server clockwise",
+      "Both move about the same share"
+    ],
+    "answer": 1,
+    "why": "On the ring the new server only takes the keys just before it, from its neighbour: about 1/10 of them. Under mod n, nearly every key's remainder changes when n does."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:consistent-hashing",
+    "also": [],
+    "prerequisites": [
+      "cs:hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "hashing",
+      "distributed-systems",
+      "caching",
+      "modular-arithmetic"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "preset-buttons",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}

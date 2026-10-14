@@ -4,7 +4,7 @@
   "hook": "Training randomly switches half the units off. Does the output shrink?",
   "domain": "ai",
   "concept": "dropout",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-ai",
@@ -80,9 +80,12 @@
     "why": "Each unit is on half the time at double strength, so its average output is unchanged."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/switch-half-off/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/switch-half-off/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/switch-half-off/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/switch-half-off/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []

@@ -5,6 +5,9 @@
 // Corner angles come from the 3-D tangent vectors at each corner; the area from d3-geo geoArea on
 // a sphere of radius EARTH_RADIUS_KM. Both readouts use the same corners the globe draws.
 // Key state: the third corner at 90°E, where all three angles are right angles.
+// v3: the slider starts at 30°E in steps of 30°, and the reveal waits for three sizes (30, 60, 90 on the
+// QA path: two arrow presses). A record line keeps each size seen with its sum and share of Earth, so
+// "the extra over 180° tracks the area" is seen across sizes. No radians: 1° over 180° = 1/720 of Earth.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -17,7 +20,7 @@ type P = [number, number];
 const W = 320;
 const H = 252;
 const RAD = Math.PI / 180;
-const START = 60;
+const START = 30;
 const KEY = 90;
 const POLE: P = [0, 90];
 const ORIGIN: P = [0, 0];
@@ -47,10 +50,12 @@ function triangle(lon: number) {
 }
 
 const mkm = (km2: number) => `${(km2 / 1e6).toFixed(1)} M km²`;
+const pct = (km2: number) => `${((km2 / SPHERE_KM2) * 100).toFixed(1)}%`;
 const projection = geoOrthographic().rotate([-55, -30]).translate([W / 2, 128]).scale(118).clipAngle(90);
 
 export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
   const [lon, setLon] = useState(START);
+  const [seen, setSeen] = useState<number[]>([START]); // slider positions seen, in order
   const key = triangle(KEY);
 
   return (
@@ -62,8 +67,8 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
         options: ["180°", "210°", `${Math.round(key.sum)}°`, "360°"],
         answer: 2,
       }}
-      exploreHint="Slide the third corner east along the equator to 90°E."
-      minInteractions={2}
+      exploreHint="Slide the third corner east and watch the angle sum and the area."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -71,9 +76,10 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
             times and is home. 180° holds only on a flat sheet. On a ball the sides bulge outward, and the angles add up to more.
           </p>
           <p>
-            The extra over 180° is the <strong>excess</strong>, and it measures the area: excess in radians × R² is exactly the area. At
-            90°E that is π/2 × R² = {mkm(key.areaKm2)}, one-eighth ({((key.areaKm2 / SPHERE_KM2) * 100).toFixed(1)}%) of the Earth&rsquo;s {Math.round(SPHERE_KM2 / 1e6)} M km². Tiny triangles
-            have almost no excess, which is why your school ruler never noticed.
+            The extra over 180° is the <strong>excess</strong>, and it measures the area. Look at your record: {START}° over gave{" "}
+            {pct(triangle(START).areaKm2)} of the Earth and 90° over gave {pct(key.areaKm2)}. Each degree over 180° is 1/720 of the
+            Earth&rsquo;s surface, so at 90°E the triangle covers {mkm(key.areaKm2)}, one-eighth of the Earth&rsquo;s{" "}
+            {Math.round(SPHERE_KM2 / 1e6)} M km². Tiny triangles have almost no excess, which is why your school ruler never noticed.
           </p>
         </>
       )}
@@ -82,7 +88,7 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
         const shown = locked ? KEY : lon;
         const t = triangle(shown);
         return (
-        <Milestones interact={interact} names={["moved", "octant"]}>
+        <Milestones interact={interact} names={["moved", "octant", "three-sizes"]}>
           {(reach) => (
             <div className={s.wrap}>
               <WorldMap
@@ -114,12 +120,6 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
                           </g>
                         );
                       })}
-                      <text x={6} y={H - 18} className={s.small}>
-                        Excess = angle sum − 180°, in radians.
-                      </text>
-                      <text x={6} y={H - 6} className={s.small}>
-                        Excess × R² (R = Earth&apos;s radius) is the area.
-                      </text>
                     </>
                   );
                 }}
@@ -128,22 +128,33 @@ export default function TriangleThreeRightAngles({ slug }: { slug: string }) {
                 <Slider
                   label="Third corner"
                   value={lon}
-                  min={15}
-                  max={135}
-                  step={15}
+                  min={30}
+                  max={150}
+                  step={30}
                   disabled={locked}
                   format={(v) => `${v}°E`}
                   onChange={(v) => {
                     setLon(v);
+                    const next = seen.includes(v) ? seen : [...seen, v];
+                    setSeen(next);
                     if (v !== START) reach("moved");
                     if (v === KEY) reach("octant");
+                    if (next.length >= 3 && next.includes(KEY)) reach("three-sizes");
                   }}
                 />
               </Row>
+              <p className={s.record} aria-live="polite">
+                {locked
+                  ? " "
+                  : `Seen: ${[...seen]
+                      .sort((x, y) => x - y)
+                      .map((v) => `${v}°E ${Math.round(triangle(v).sum)}°, ${pct(triangle(v).areaKm2)} of Earth`)
+                      .join(" · ")}`}
+              </p>
               <Row>
                 <Readout label="Angle sum" value={locked ? "?" : `${Math.round(t.sum)}°`} />
-                <Readout label="Area" value={locked ? "?" : `${mkm(t.areaKm2)} · ${((t.areaKm2 / SPHERE_KM2) * 100).toFixed(1)}% of Earth`} />
-                <Readout label="Excess × R²" value={locked ? "?" : mkm(t.excessKm2)} />
+                <Readout label="Over 180°" value={locked ? "?" : `${Math.round(t.sum - 180)}°`} />
+                <Readout label="Area" value={locked ? "?" : `${mkm(t.areaKm2)} · ${pct(t.areaKm2)} of Earth`} />
               </Row>
             </div>
           )}

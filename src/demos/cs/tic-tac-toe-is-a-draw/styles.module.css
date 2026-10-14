@@ -15,3 +15,7 @@
 .bad { font-size: 11px; font-weight: 800; fill: var(--bad); }
 .res.good, .res.even, .res.bad { font-size: 10.5px; }
 .count { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+/* r5: the bridge row stays at its natural height so its tap targets line up with the boards. */
+.tree svg.bridge { max-height: none; }
+.lab { font-size: 10.5px; }
+.res.good, .res.even, .res.bad { font-size: 11.5px; }

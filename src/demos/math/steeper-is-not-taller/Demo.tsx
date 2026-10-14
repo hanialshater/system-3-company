@@ -5,6 +5,8 @@
 // over both ramps and reads off how far each has climbed over the same distance across
 // (B continues dashed past its end, labelled as "if it kept going").
 // Key state: the line at B's full run (4 across), where A has climbed 1 and B 2.
+// v3: while locked only the grid, the ground and the shared foot are drawn; the ramps appear after the
+// prediction, so the question is answered from the numbers, not read off a to-scale picture.
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -75,7 +77,7 @@ function Stage({ locked, interact, x, setX }: StageContext & { x: number; setX: 
 
   return (
     <div className={s.wrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Ramps A and B; line at ${x} across`}>
+      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "Empty grid; both ramps start at the same foot" : `Ramps A and B; line at ${x} across`}>
         {Array.from({ length: MAXX + 1 }, (_, i) => (
           <line key={`v${i}`} x1={px(i)} y1={py(0)} x2={px(i)} y2={py(MAXY)} className={s.grid} />
         ))}
@@ -92,14 +94,25 @@ function Stage({ locked, interact, x, setX }: StageContext & { x: number; setX: 
             </text>
           </>
         )}
-        <line x1={px(0)} y1={py(0)} x2={px(A.run)} y2={py(A.rise)} className={s.rampA} />
-        <line x1={px(0)} y1={py(0)} x2={px(B.run)} y2={py(B.rise)} className={s.rampB} />
-        <text x={px(A.run) - 4} y={py(A.rise) - 7} textAnchor="end" className={s.labA}>
-          A: up {A.rise} over {A.run}
-        </text>
-        <text x={px(B.run) - 6} y={py(B.rise) - 8} textAnchor="end" className={s.labB}>
-          B: up {B.rise} over {B.run}
-        </text>
+        {locked ? (
+          <>
+            <circle cx={px(0)} cy={py(0)} r={4} className={s.dotA} />
+            <text x={px(0) + 8} y={py(0) - 6} className={s.labA}>
+              both ramps start here
+            </text>
+          </>
+        ) : (
+          <>
+            <line x1={px(0)} y1={py(0)} x2={px(A.run)} y2={py(A.rise)} className={s.rampA} />
+            <line x1={px(0)} y1={py(0)} x2={px(B.run)} y2={py(B.rise)} className={s.rampB} />
+            <text x={px(A.run) - 4} y={py(A.rise) - 7} textAnchor="end" className={s.labA}>
+              A: up {A.rise} over {A.run}
+            </text>
+            <text x={px(B.run) - 6} y={py(B.rise) - 8} textAnchor="end" className={s.labB}>
+              B: up {B.rise} over {B.run}
+            </text>
+          </>
+        )}
 
         {!locked && (
           <g>

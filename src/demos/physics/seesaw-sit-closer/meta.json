@@ -58,6 +58,24 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.seesaw-sit-closer.c5",
+      "text": "At a spot other than 4.0 m the bars were unequal and one side went down: e.g. at 3.0 m, 589 N·m against 785 N·m, and the 40 kg side went down.",
+      "support": "derivation",
+      "source": "20 × 9.81 × 3.0 = 588.6 N·m < 40 × 9.81 × 2.0 = 784.8 N·m, so the net torque turns the 40 kg side down (sign of net in Demo.tsx). The reveal quotes the learner's last rested unbalanced spot (300 ms), or 3.0 m, where the child sits when the stage unlocks; beyond 4.0 m the 20 kg side goes down. Added v3 2026-10-14 by demo-builder. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. 20 x 9.81 x 3.0 = 588.6 -> '589 N·m'; 40 x 9.81 x 2.0 = 784.8 -> '785 N·m' (toFixed(0)); net < 0 tips the 40 kg side down; beyond 4.0 m the 20 kg side. Demo `other` starts at 3.0 (on screen at unlock) and updates only after a 300 ms rest at a non-balanced spot, so the quoted spot was seen; every slider spot 0.5-5.0 gives the right side.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "physics.seesaw-sit-closer.c6",
+      "text": "Turning effect = kg × 9.81 × metres from the middle (in N·m).",
+      "support": "derivation",
+      "source": "Torque about the pivot = weight × perpendicular distance = m g d with g = 9.81 m/s² (the plank's tilt is ignored for the comparison, as in the model; both sides scale by the same cos of the tilt). Stage caption above the torque bars. Added v3 2026-10-14 by demo-builder. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Torque about the pivot = m g d for a weight at horizontal distance d; tilt multiplies both sides by cos(theta), so the comparison is unchanged. kg x m/s^2 x m = N·m. Stage caption 'turning effect = kg × 9.81 × m from the middle' matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -76,12 +94,13 @@
       "company/reviews/seesaw-sit-closer/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/seesaw-sit-closer/2026-10-14-learner-adult-beginner.md"
+      "company/reviews/seesaw-sit-closer/2026-10-14-learner-adult-beginner.md",
+      "company/reviews/seesaw-sit-closer/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:torque-lever",
     "prerequisites": [

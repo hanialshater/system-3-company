@@ -1,0 +1,109 @@
+{
+  "slug": "second-trader-pays-the-seller",
+  "title": "A second trader pays the seller",
+  "hook": "A middleman keeps $1. A rival middleman arrives. Do they split the dollar?",
+  "domain": "economics",
+  "concept": "trader-competition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a middleman buys low and sells high"
+    ],
+    "doesNotKnow": [
+      "that once a second trader can reach the seller, competition bids the price up to the buyer's value and the traders earn nothing"
+    ]
+  },
+  "misconception": "Adding a second middleman just splits the middleman's profit in two.",
+  "objective": "The learner can explain that because each trader can resell for $1, each prefers outbidding by a cent to losing the item, so the bid rises to $1: the seller gets the whole $1 and the traders earn nothing.",
+  "claims": [
+    {
+      "id": "economics.second-trader-pays-the-seller.c1",
+      "text": "With one trader linked to the seller ($0) and a buyer ($1), the trader can bid $0 and sell for $1, keeping the whole $1.",
+      "support": "derivation",
+      "source": "Model rule: the seller has no other buyer and the buyer no other seller. Demo.tsx monopoly state (seller 0, T1 1, buyer 0). | FACT-CHECK 2026-10-14 (pass 22): Monopoly state in Demo.tsx: bid 0, T1 keeps 1 - 0 = $1; follows from the model rules.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.second-trader-pays-the-seller.c2",
+      "text": "With two traders able to buy from the seller, each with her own $1 buyer, each prefers outbidding by a cent to losing the item, so the bid climbs to $1.00, where bidding more would lose money: the seller takes the whole $1 and the traders keep $0; a second trader does not halve the profit, it goes to the seller.",
+      "support": "derivation",
+      "source": "Alternating 1-cent best responses from $0: 100 outbids to $1.00, trader profit 1 - 1 = 0. Demo.tsx go(); re-run in node (ncm-e00); matches the brief's check. | FACT-CHECK 2026-10-14 (pass 22): Own node of alternating 1-cent outbids: 100 outbids, bid $1.00 (T1 leads, even), profit 0, seller $1. Note for the builder (non-blocking): the last outbid, $0.99 to $1.00, is a tie (0 either way), so 'would rather outbid' is weak preference there; the limit result is standard Bertrand competition.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.second-trader-pays-the-seller.c3",
+      "text": "The lesson simplifies the trading-network model of Blume, Easley, Kleinberg and Tardos.",
+      "support": "source",
+      "source": "Blume, Easley, Kleinberg and Tardos, 'Trading networks with price-setting agents', Games and Economic Behavior 67(1), 2009; Easley and Kleinberg 2010, ch. 11. Fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 22): BEKT, 'Trading networks with price-setting agents', Games Econ. Behav. 67(1) 36-50 (2009) confirmed by web search (IDEAS/RePEc listing in results; paper not opened). Abstract-level result in search: trader profit requires an essential connection, consistent with two competing traders earning 0. E&K ch. 11 'Network models of markets with intermediaries' confirmed via library-catalogue TOC in web search.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.second-trader-pays-the-seller.c4",
+      "text": "The lesson is a simplified model: each trader resells to her own buyer for the buyer's full $1, bids move a cent at a time, T1 bids first.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: each trader resells to her own $1 buyer' and the reveal's last line. | FACT-CHECK 2026-10-14 (pass 22): Matches the stage chip and the reveal's muted line; Demo.tsx go() and leader rule.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An artist values a sketch at $0. Two dealers can each buy it, and each has her own collector who will pay $500. What does the artist end up getting?",
+    "options": [
+      "About $250",
+      "About $500",
+      "$0"
+    ],
+    "answer": 1,
+    "why": "Each dealer can resell for $500, so each outbids the other until the bid reaches $500 and neither keeps a profit."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:trader-competition",
+    "also": [
+      "economics:monopoly-pricing"
+    ],
+    "prerequisites": [
+      "economics:supply-demand"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 11
+      }
+    ],
+    "tags": [
+      "markets",
+      "intermediaries",
+      "competition"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

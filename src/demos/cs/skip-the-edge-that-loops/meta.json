@@ -26,36 +26,46 @@
       "id": "cs.skip-the-edge-that-loops.c1",
       "text": "Testing A-C 1, B-C 2, D-E 3, A-B 4, B-D 5, A-D 7, C-D 8, C-E 10 cheapest first builds A-C, B-C, D-E and B-D and skips the other four: 4 roads, total cost 11.",
       "support": "simulation",
-      "source": "Demo.tsx run(), a union-find replay the stage itself uses; builder re-ran it in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: built AC, BC, DE, BD, total 11. Matches brief cs.algorithms #50.",
-      "status": "unverified"
+      "source": "Demo.tsx run(), a union-find replay the stage itself uses; builder re-ran it in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: built AC, BC, DE, BD, total 11. Matches brief cs.algorithms #50. · Fact-check pass 21 2026-10-14: Own union-find replay (fc21/mst.mjs): build AC, BC, DE; skip AB; build BD; skip AD, CD, CE; total 1 + 2 + 3 + 5 = 11.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.skip-the-edge-that-loops.c2",
       "text": "A-B (cost 4) is skipped although it is cheaper than B-D (cost 5), because A and B are already joined through C.",
       "support": "simulation",
-      "source": "Same replay: after A-C and B-C, find(A) = find(B). Demo.tsx run().",
-      "status": "unverified"
+      "source": "Same replay: after A-C and B-C, find(A) = find(B). Demo.tsx run(). · Fact-check pass 21 2026-10-14: Same replay: after AC and BC, A and B share a root; AB (4) skipped, BD (5) built. Reveal reads CHEAPEST_SKIP and ROADS[4].",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.skip-the-edge-that-loops.c3",
       "text": "A road is skipped only when its towns are already connected; building it would close a loop.",
       "support": "derivation",
-      "source": "If u and v are already connected, a path u..v exists among built roads, and adding u-v closes a cycle with it; otherwise no such path exists and the road joins two groups. CLRS 4e section 21.2 (MST-KRUSKAL tests FIND-SET(u) != FIND-SET(v)).",
-      "status": "unverified"
+      "source": "If u and v are already connected, a path u..v exists among built roads, and adding u-v closes a cycle with it; otherwise no such path exists and the road joins two groups. CLRS 4e section 21.2 (MST-KRUSKAL tests FIND-SET(u) != FIND-SET(v)). · Fact-check pass 21 2026-10-14: Cycle argument as given; Demo.tsx run() skips exactly when find(a) === find(b). CLRS 4e 21.2 recalled, not opened; derivation is self-contained.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.skip-the-edge-that-loops.c4",
       "text": "Kruskal's method ends with one road fewer than towns, and no tree joining all five towns costs less than 11.",
       "support": "source",
-      "source": "Any spanning tree on n vertices has n - 1 edges (CLRS 4e appendix B.5.1). Kruskal returns a minimum spanning tree by the cut property (CLRS 4e section 21.1, Corollary 21.2; 21.2). Builder also enumerated all spanning trees of this 8-road map in node (scratchpad algo2b0/check2.mjs): minimum total 11, achieved only by AC, BC, DE, BD.",
-      "status": "unverified"
+      "source": "Any spanning tree on n vertices has n - 1 edges (CLRS 4e appendix B.5.1). Kruskal returns a minimum spanning tree by the cut property (CLRS 4e section 21.1, Corollary 21.2; 21.2). Builder also enumerated all spanning trees of this 8-road map in node (scratchpad algo2b0/check2.mjs): minimum total 11, achieved only by AC, BC, DE, BD. · Fact-check pass 21 2026-10-14: Own enumeration of all 4-edge subsets: 40 spanning trees, minimum 11, unique (AC, BC, DE, BD); n - 1 = 4 roads. CLRS section numbers recalled, not opened; the claim rests on the enumeration.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.skip-the-edge-that-loops.c5",
       "text": "Towns in the same colour are already connected by built roads.",
       "support": "convention",
-      "source": "Stage convention: each town is coloured by its union-find representative (alphabetically first town in its group). Demo.tsx COLOUR / run().",
-      "status": "unverified"
+      "source": "Stage convention: each town is coloured by its union-find representative (alphabetically first town in its group). Demo.tsx COLOUR / run(). · Fact-check pass 21 2026-10-14: Demo.tsx fills each town with COLOUR[group[t]]; union keeps the alphabetically smaller root, so the root is the group's first town. Stage note 'Same colour = already connected.'",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

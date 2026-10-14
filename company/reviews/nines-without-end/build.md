@@ -8,3 +8,11 @@
 
 From the adult-beginner learner review. 'All of them' needs at least 4 nines (new '+ three more 9s' control makes that quick). Reveal and caption quote the learner's own nines and gap. Forever-state caption asks the question rather than asserting. Option 3 reworded ('Never zero: always a little short'). c5 added. Not changed: the 1/3 argument stays in paragraph 2.
 All new or edited claims are unverified, for the fact-checker.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: 'Name a gap' slider (0.0...01 with z zeros): the stage says z + 2 nines beat it. Gate: two named gaps + 'all of them'. The 1/3 check is drawn in the forever view. Third option now 'Zero only at the end, which never comes'. Start-over/gap-0.1 frame at reveal not changed (minor).
+- Claims reopened (status unverified): c4, c5; new c6.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

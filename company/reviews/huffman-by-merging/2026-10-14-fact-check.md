@@ -12,3 +12,15 @@ Checker: fact-checker. Scope: claims still unverified after wave C revisions. Me
 | c5 Huffman proved that always joining the two rarest groups gives the few... | verified | Huffman 1952, Proc. IRE 40(9):1098-1101; optimality among prefix codes is CLRS 3rd ed. Thm 16.4 (greedy choice Lemma 16.2, optimal substructure Lemma 16.3). Claim limits itself to prefix codes: correct. |
 
 Result: 4 verified, 0 disputed.
+
+## Pass 22
+
+Checker: fact-checker (did not write these claims). Scope: the claims left unverified after the wave D wording reopen. Method: read Demo.tsx (and model.ts where used) against each sentence, then re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc22-5); sources opened where reachable, otherwise marked as not opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own node port of join()/lightest() (fc22-5/huff.mjs): two presses of 'Join the two rarest' give (CD), then ((CD)B) and the automatic join with A; joins 2 + 4 + 8 = 14; codes C 000, D 001, B 01, A 1, so lengths 1,2,3,3 and 4+4+3+3 = 14. Bits readout text is joins.join(' + ') + ' = 14'. |
+| c6 | verified | join() in Demo.tsx: when next.length === 2 it merges the two at once, so the forest goes 4 -> 3 -> 1 and is never left at 2. The caption 'Join two of these. The last two then join on their own.' shows when forest.length is 3 (not 4, not done, nothing selected, not in the 10-bit view). Every manual order ends with a join of 8 (all 10 distinct totals enumerated). |
+| c8 | verified | SHORT_BITS recomputed: 4x1 + 2x1 + 1x2 + 1x2 = 10. '00' parses as C or A A, '01' as D or A B, so the set is not uniquely decodable. Stage message: '10 bits, but is "00" C, or A then A? A's 0 starts C's 00.' |
+
+**Result:** every claim in this pass verified.

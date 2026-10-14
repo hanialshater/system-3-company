@@ -8,3 +8,11 @@
 ## Revision v2
 
 Learner review 2026-10-13. Added a line listing the steps in the order they ran ("A reads, B reads, A adds ..."), so the interleaving is visible after either preset. "holds" is now a larger "copy" so the private copy is the most visible number. Hook asks what the counter ends at. c5 back to unverified. The stale "0/5 claims checked" footer in the review was a build issue, not in the lesson.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: 'Order run' line replaced by a step trace (A copy, B copy, counter per step); a stale copy (read before the counter last changed, not yet written) is red and says 'stale'; the lost write's counter cell is red. Milestone 'one' needs a finished run with a lost write. 'thread' glossed in the stem; title says threads.
+- Claims reopened (status unverified): c1, c5; new c6.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

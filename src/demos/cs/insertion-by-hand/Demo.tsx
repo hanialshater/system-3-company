@@ -5,7 +5,7 @@
 // a sorted hand costs nothing. Same five cards, wildly different work.
 // One representation: the hand of cards, with a slide count under each card.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
 import s from "./styles.module.css";
@@ -54,6 +54,19 @@ export default function InsertionByHand({ slug }: { slug: string }) {
   const [hand, setHand] = useState<Hand>(() => fresh(STARTS[0]));
   const [results, setResults] = useState<Record<number, number>>({}); // start index -> slides when finished
 
+  // "Finish this hand" plays the remaining slides one at a time, so the Slides and Pairs counters are seen moving
+  // in lockstep. The result is recorded at the press (the hand-button log shows it at once).
+  const [playing, setPlaying] = useState(false);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stop = () => {
+    if (timer.current) clearInterval(timer.current);
+    timer.current = null;
+    setPlaying(false);
+  };
+  useEffect(() => () => {
+    if (timer.current) clearInterval(timer.current);
+  }, []);
+
   const done = hand.i >= N;
   const moving = done ? null : hand.arr[hand.pos];
 
@@ -66,7 +79,7 @@ export default function InsertionByHand({ slug }: { slug: string }) {
         options: ["4", "10", "15"],
         answer: 1,
       }}
-      exploreHint="Slide the glowing card left until it fits. Finish two different hands."
+      exploreHint="Slide the glowing card once, then let Finish play the rest. Watch both counters. Finish two different hands."
       minInteractions={2}
       reveal={() => (
         <>
@@ -97,17 +110,34 @@ export default function InsertionByHand({ slug }: { slug: string }) {
           }
         };
         const step = () => {
-          if (locked || done) return;
+          if (locked || done || playing) return;
           finish(slide(hand));
         };
         const runAll = () => {
-          if (locked || done) return;
+          if (locked || done || playing) return;
+          const frames: Hand[] = [];
           let h = hand;
-          while (h.i < N) h = slide(h);
-          finish(h);
+          while (h.i < N) {
+            h = slide(h);
+            frames.push(h);
+          }
+          if (results[start] === undefined) {
+            setResults((r) => ({ ...r, [start]: h.slides }));
+            interact();
+          }
+          setHand(frames[0]);
+          if (frames.length === 1) return;
+          let k = 1;
+          setPlaying(true);
+          timer.current = setInterval(() => {
+            setHand(frames[k]);
+            k += 1;
+            if (k >= frames.length) stop();
+          }, 380);
         };
         const pick = (k: number) => {
           if (locked) return;
+          stop();
           const h = fresh(STARTS[k]);
           setStart(k);
           setHand(h);
@@ -142,14 +172,14 @@ export default function InsertionByHand({ slug }: { slug: string }) {
             </div>
 
             <Row>
-              <Control className="active" disabled={locked || done} onClick={step} aria-label="Slide the glowing card one place left">
+              <Control className="active" disabled={locked || done || playing} onClick={step} aria-label="Slide the glowing card one place left">
                 ◀ Slide
               </Control>
-              <Control disabled={locked || done} onClick={runAll}>
+              <Control disabled={locked || done || playing} onClick={runAll}>
                 Finish this hand
               </Control>
-              <Readout label="Slides" value={hand.slides} />
-              <Readout label="Pairs out of order" value={pairsOut(hand.arr)} />
+              <Readout label="Slides" value={locked ? "?" : hand.slides} />
+              <Readout label="Pairs out of order" value={locked ? "?" : pairsOut(hand.arr)} />
             </Row>
 
             <div className={s.starts}>

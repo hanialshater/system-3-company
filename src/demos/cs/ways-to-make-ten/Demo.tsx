@@ -29,13 +29,14 @@ for (let t = 1; t <= T; t++) ANY[t] = COINS.reduce((acc, c) => acc + (t >= c ? A
 
 const ABOVE = (k: number, t: number) => (k === 0 ? (t === 0 ? 1 : 0) : TABLE[k - 1][t]);
 
-// Mixes (fives, twos, ones) that make t using the first k+1 kinds, as a coin list.
+// Mixes that make t using the first k+1 kinds, as a coin list written in the table's one fixed
+// order: all 1s, then all 2s, then all 5s.
 function mixes(k: number, t: number): number[][] {
   const out: number[][] = [];
   for (let f = 0; f <= (k >= 2 ? Math.floor(t / 5) : 0); f++)
     for (let w = 0; w <= (k >= 1 ? Math.floor((t - 5 * f) / 2) : 0); w++) {
       const o = t - 5 * f - 2 * w;
-      out.push([...Array(f).fill(5), ...Array(w).fill(2), ...Array(o).fill(1)]);
+      out.push([...Array(o).fill(1), ...Array(w).fill(2), ...Array(f).fill(5)]);
     }
   return out;
 }
@@ -50,7 +51,8 @@ const X = (t: number) => LX + t * CWD + CWD / 2;
 const TOP = (r: number) => HEAD + r * PITCH + 3; // r: 0 none, 1..3 coin rows, 4 any order
 const H = HEAD + 5 * PITCH + 4;
 
-const RADIUS: Record<number, number> = { 1: 3, 2: 5, 5: 7.5 };
+const RADIUS: Record<number, number> = { 1: 4.5, 2: 6.5, 5: 9 };
+const SHOW = 4; // mixes drawn at a time, big enough to read on a phone
 
 function Stack({ coins, x, y, w, bad }: { coins: number[]; x: number; y: number; w: number; bad?: boolean }) {
   let cx = 1;
@@ -76,7 +78,7 @@ function Stack({ coins, x, y, w, bad }: { coins: number[]; x: number; y: number;
         <g key={i}>
           <circle cx={d.x} cy={d.y} r={RADIUS[d.c]} fill="var(--bg-2)" stroke="var(--fg)" strokeWidth={1} />
           {d.c > 1 && (
-            <text x={d.x} y={d.y + (d.c === 5 ? 3 : 2.5)} textAnchor="middle" className={s.coin} style={{ fontSize: d.c === 5 ? 9 : 7 }}>
+            <text x={d.x} y={d.y + (d.c === 5 ? 3.5 : 3)} textAnchor="middle" className={s.coin} style={{ fontSize: d.c === 5 ? 11 : 9 }}>
               {d.c}
             </text>
           )}
@@ -199,23 +201,30 @@ function Table({ main, any, last, started }: { main: number; any: number; last: 
 function MixStrip({ last, ordered }: { last: Last; ordered: boolean }) {
   if (ordered) {
     return (
-      <svg viewBox="0 0 366 60" className="stage-svg" role="img" aria-label="Total 3: the table counts 1+1+1 and 1+2; any order also counts 2+1">
-        <text x={4} y={9} className={s.cap}>Table, total 3: 2 ways</text>
-        <Stack coins={[1, 1, 1]} x={6} y={16} w={36} />
-        <Stack coins={[1, 2]} x={52} y={16} w={36} />
-        <text x={200} y={9} className={s.cap}>Any order, total 3: 3 ways</text>
-        <Stack coins={[1, 1, 1]} x={202} y={16} w={36} />
-        <Stack coins={[1, 2]} x={248} y={16} w={36} />
-        <Stack coins={[2, 1]} x={294} y={16} w={36} bad />
-        <text x={294} y={52} className={s.capBad}>2+1: same coins, new order</text>
+      <svg viewBox="0 0 366 64" className="stage-svg" role="img" aria-label="Total 3: the table counts 1+1+1 and 1+2; any order also counts 2+1">
+        <text x={4} y={11} className={s.cap}>Table, total 3: 2 ways</text>
+        <Stack coins={[1, 1, 1]} x={6} y={18} w={40} />
+        <Stack coins={[1, 2]} x={56} y={18} w={40} />
+        <text x={190} y={11} className={s.cap}>Any order, total 3: 3 ways</text>
+        <Stack coins={[1, 1, 1]} x={192} y={18} w={40} />
+        <Stack coins={[1, 2]} x={242} y={18} w={40} />
+        <Stack coins={[2, 1]} x={300} y={18} w={40} bad />
+        <text x={362} y={58} textAnchor="end" className={s.capBad}>2+1: new order, counted again</text>
       </svg>
     );
   }
   const list = last && last.row < 3 ? mixes(last.row, last.t) : [];
+  const shown = list.slice(-SHOW);
+  const kinds = last && last.row < 3 ? COINS.slice(0, last.row + 1).map((c) => `${c}s`).join(", ") : "";
   return (
-    <svg viewBox="0 0 366 60" className="stage-svg" role="img" aria-label={`${list.length} ways for the last cell`}>
-      {list.map((coins, i) => (
-        <Stack key={i} coins={coins} x={4 + i * 36} y={4} w={33} />
+    <svg viewBox="0 0 366 64" className="stage-svg" role="img" aria-label={`${list.length} ways for the last cell`}>
+      {list.length > 0 && (
+        <text x={4} y={11} className={s.cap}>
+          {`${list.length} ${list.length === 1 ? "mix" : "mixes"}, in one order: ${kinds}${list.length > SHOW ? ` (last ${SHOW})` : ""}`}
+        </text>
+      )}
+      {shown.map((coins, i) => (
+        <Stack key={i} coins={coins} x={4 + i * 90} y={18} w={84} />
       ))}
     </svg>
   );
@@ -297,7 +306,11 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
 
   return (
     <div className={s.wrap}>
-      <p className={s.model}>Each cell: ways without this coin (above) plus ways using one more (c cells left).</p>
+      <p className={s.model}>
+        {started
+          ? "Any order: add the cells 1, 2 and 5 to the left in this row."
+          : "Cell = ways above (no coin c) + ways c cells left (one more c). c = the coin."}
+      </p>
       <Table main={main} any={any} last={last} started={started} />
       <p className={s.formula} aria-live="polite">
         {formula}
@@ -336,12 +349,11 @@ export default function WaysToMakeTen({ slug }: { slug: string }) {
       }}
       exploreHint="Build the rows one coin kind at a time, then let order matter."
       minInteractions={2}
-      reveal={({ correct }) => (
+      reveal={() => (
         <>
           <p>
-            {correct ? "Your prediction held." : "Not quite."} Your table reached 10 at total 10: 6 ways without a 5, plus 4
-            that use one more 5. Adding one coin kind per row builds every mix in one fixed order, so each mix is counted
-            once.
+            Your table reached 10 at total 10: 6 ways without a 5, plus 4 that use one more 5. Each row adds one coin kind,
+            so every mix under the table was built one way only (1s, then 2s, then 5s), and each mix is counted once.
           </p>
           <p>
             When order mattered, the same coins in a new order counted again (1+2 and 2+1 at total 3), and your row climbed

@@ -51,11 +51,11 @@ function witnessAt(c: number[]) {
 }
 const COPRIME = Array.from({ length: N - 1 }, (_, i) => i + 1).filter((a) => gcd(a, N) === 1);
 const FERMAT_ONES = COPRIME.filter((a) => powMod(a, N - 1, N) === 1).length; // 320
-// strong liars among 2..560 (pass Miller-Rabin although 561 is composite)
-const LIARS = COPRIME.filter((a) => a > 1).filter((a) => {
+// strong liars among all 320 coprime bases, base 1 included (pass Miller-Rabin although 561 is composite)
+const LIARS = COPRIME.filter((a) => {
   const c = chain(a);
   return c[0] === 1 || c.slice(0, S).includes(N - 1);
-}).length; // 9
+}).length; // 10
 
 export default function EveryBaseFoolsFermat({ slug }: { slug: string }) {
   const [base, setBase] = useState<number | null>(null);

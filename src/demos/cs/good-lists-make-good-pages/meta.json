@@ -1,0 +1,114 @@
+{
+  "slug": "good-lists-make-good-pages",
+  "title": "Is every link the same vote?",
+  "hook": "X has 3 in-links, Y has 2. Does the count decide which page ranks higher?",
+  "domain": "cs",
+  "concept": "hubs-authorities",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "ncm-c"
+  },
+  "learner": {
+    "knows": [
+      "pages link to pages",
+      "counting in-links is one way to rank pages"
+    ],
+    "doesNotKnow": [
+      "that a link counts for more when it comes from a page that lists other good pages"
+    ]
+  },
+  "misconception": "The page with the most in-links ranks highest.",
+  "objective": "The learner can explain that in hubs and authorities a page's authority is the sum of the hub scores of the lists pointing at it, and a list's hub score is the sum of the authority scores it points to, so on this graph Y (2 in-links from strong lists) ends at 0.277 while X (3 in-links, mostly from lists that name only X) ends at 0.099.",
+  "claims": [
+    {
+      "id": "cs.good-lists-make-good-pages.c1",
+      "text": "After 50 updates Y's authority score is 0.277 and X's is 0.099, though X has 3 in-links and Y has 2; W, also with 3 in-links, ends highest at 0.346.",
+      "support": "derivation",
+      "source": "Demo.tsx hits(): links h1, h2 -> Y, Z, W; h3, h4 -> X; h5 -> X, W. Round 0: hubs 0.2 each, authority = in-link counts normalised (X 0.300, W 0.300, Y 0.200, Z 0.200). Each update: hub = sum of the authority scores it points to, then authority = sum of hub scores pointing at it, each normalised to sum 1. Builder's node re-run of the same loop (scratchpad ncmc/hits.mjs), 2026-10-14: after 50 updates Y 0.277, Z 0.277, W 0.346, X 0.099; hubs h1 0.368, h2 0.368, h5 0.182, h3 0.041, h4 0.041. Settled to 3 decimals by update 10. Matches brief cs.algorithms NCM #2 (which updates authority first; the 50-round values agree). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own node (fc21/hits.mjs), same update order (hub then authority, normalised to sum 1): after 50 updates X 0.099, Y 0.277, Z 0.277, W 0.346; already settled at update 10. W highest, X lowest, as the reveal says.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.good-lists-make-good-pages.c2",
+      "text": "Starting from in-link counts, X (0.300) scores above Y (0.200).",
+      "support": "derivation",
+      "source": "In-link counts X 3, W 3, Y 2, Z 2, total 10, normalised to sum 1 (Demo.tsx IN, round 0). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. In-link counts X 3, W 3, Y 2, Z 2 of 10: X 0.300, Y 0.200 at round 0 (own run).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.good-lists-make-good-pages.c3",
+      "text": "A page's authority score is the sum of the hub scores of the pages pointing to it, and a page's hub score is the sum of the authority scores of the pages it points to (then each is normalised); each score feeds the other.",
+      "support": "source",
+      "source": "Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (hubs and authorities); Kleinberg J. (1999), 'Authoritative sources in a hyperlinked environment', J. ACM 46(5). Attribution for the fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Mutual hub/authority update: Kleinberg 1999, 'Authoritative sources in a hyperlinked environment', J. ACM 46(5) (citation from memory, not opened). Easley and Kleinberg ch. 14 'Link analysis and Web search' confirmed by library-catalog search snippet (book host blocked); hubs and authorities is its section 14.2 from my knowledge. The rule is also exactly what Demo.tsx hits() does. Kleinberg normalises by sum of squares, E&K by sum; the sentence just says 'normalised', which covers both.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.good-lists-make-good-pages.c4",
+      "text": "h3 and h4 list only X, so their hub scores fall (to 0.041) and their links to X count for little; h1 and h2 list Y, Z and W and rise to 0.368.",
+      "support": "derivation",
+      "source": "Hub values from the same run as c1 (scratchpad ncmc/hits.mjs, 50 updates). | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own run: h3 and h4 hub 0.041 (from 0.200), h1 and h2 0.368, h5 0.182.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.good-lists-make-good-pages.c5",
+      "text": "Page X has 3 in-links, mostly from pages that list only X; page Y has 2, from pages that list several pages.",
+      "support": "convention",
+      "source": "Stage graph in Demo.tsx LINKS: X's in-links come from h3 and h4 (list only X) and h5 (lists X and W); Y's from h1 and h2 (each lists Y, Z, W). 'Mostly' per the brief's acceptance edit. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Demo LINKS: X from h3, h4 (only X) and h5 (X, W): 2 of 3 from single-page lists = 'mostly'; Y from h1, h2 (Y, Z, W each). Predict says 'several good pages'; that is the question's framing, consistent with Y, Z, W ending as top authorities.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two pages each get 3 links. Page P's links come from lists that link only to P; page Q's come from lists that also link to many well-linked pages. Under hubs and authorities, which ends with more authority?",
+    "options": [
+      "Q, because its links come from strong lists",
+      "P, because its fans are loyal to it alone",
+      "A tie: same number of links"
+    ],
+    "answer": 0,
+    "why": "Authority adds up the hub scores of the lists pointing at a page, and a list is a strong hub when it points to strong pages. Lists that name only one page stay weak hubs, so their links carry little weight."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:hubs-authorities",
+    "also": [],
+    "prerequisites": [
+      "cs:graph-shortest-path"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 14
+      }
+    ],
+    "tags": [
+      "web",
+      "link analysis"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

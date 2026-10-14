@@ -1,0 +1,112 @@
+{
+  "slug": "the-grid-takes-up-to-three-eighths",
+  "title": "How picky can a grid be?",
+  "hook": "A block of early adopters on a grid. Can a big enough start beat any threshold?",
+  "domain": "math",
+  "concept": "cascade-capacity",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the threshold rule q from cluster-stops-the-cascade: a person adopts once at least a share q of their neighbours have"
+    ],
+    "doesNotKnow": [
+      "that each network has a largest q at which a small group of early adopters can take the whole thing, and that it depends on the network's shape"
+    ]
+  },
+  "misconception": "Any threshold can be beaten if the starting group is big enough.",
+  "objective": "The learner can explain that next to a square block on an 8-neighbour grid a newcomer sees at most 3 adopting neighbours of 8, so the block takes the whole grid at q = 3/8 and stalls above it however big it is, while on a line a newcomer sees 1 of 2, so the limit there is 1/2; this largest q is the network's cascade capacity.",
+  "claims": [
+    {
+      "id": "math.the-grid-takes-up-to-three-eighths.c1",
+      "text": "On an 8-neighbour grid a 5x5 block takes everyone at q = 3/8 (and at 1/4) and stays at 25 people at q = 2/5, 1/2 and 3/5.",
+      "support": "simulation",
+      "source": "Builder's node run of the Demo.tsx simulate() on a 41 x 41 grid whose outer ring is a frozen frame (the 39 x 39 = 1,521 people inside each have 8 neighbours), synchronous rounds, 2026-10-14: q = 1/4 all 1,521 in 34 rounds; 3/8 all 1,521 in 51 rounds; 2/5, 1/2, 3/5 stay at 25. Deterministic, no randomness. | FACT-CHECK 2026-10-14 (pass 22): Own node copy of simulate() on the framed 41x41 grid: 5x5 takes 1,521 at 1/4 (34 rounds) and 3/8 (51); stays 25 at 2/5, 1/2, 3/5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.the-grid-takes-up-to-three-eighths.c2",
+      "text": "Next to the block, a person facing the middle of a side sees 3 adopters among 8 neighbours, one near a corner sees 2, and one off a corner sees 1.",
+      "support": "derivation",
+      "source": "Counting the 8 neighbours of the cells around a 5x5 block (node check 2026-10-14: 3, 2, 1). The stage draws these counts. | FACT-CHECK 2026-10-14 (pass 22): Own node neighbour counts beside a 5x5 block: side middle 3, near corner 2, off corner 1; max outside 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.the-grid-takes-up-to-three-eighths.c3",
+      "text": "Above 3/8 a newcomer needs 4 of 8 adopting neighbours, which nobody beside a square block has, so a bigger block stalls too.",
+      "support": "derivation",
+      "source": "For q in (3/8, 1/2] the rule needs ceil(8q) = 4; outside a square block every cell touches at most 3 block cells. Node run 2026-10-14: a 7x7 block stays at 49 for q = 2/5, 1/2, 3/5 and takes all 1,521 at 1/4 and 3/8. Stated for square blocks; the general claim is c5. | FACT-CHECK 2026-10-14 (pass 22): Own node: 7x7 stays at 49 at 2/5, 1/2, 3/5, takes all at 1/4 and 3/8. Any cell outside a rectangle touches at most 3 of its cells.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.the-grid-takes-up-to-three-eighths.c4",
+      "text": "On a line two neighbouring adopters take everyone when q is at most 1/2 and no one else when q is above 1/2, since each newcomer sees 1 of 2 neighbours.",
+      "support": "derivation",
+      "source": "Builder's node run on a 201-person path, middle two adopting, 2026-10-14: all 201 at q = 1/4, 3/8, 2/5, 1/2 (100 rounds); only the 2 at q = 3/5. Brief's own check: 0.4 and 0.5 all, 0.51 and 0.6 only 2. | FACT-CHECK 2026-10-14 (pass 22): Own node on 201-person path: all 201 at 1/4, 3/8, 2/5, 1/2 (100 rounds); only 2 at 0.51 and 3/5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.the-grid-takes-up-to-three-eighths.c5",
+      "text": "That largest q is the network's cascade capacity: 1/2 for a line, 3/8 for this grid.",
+      "support": "source",
+      "source": "Definition: the cascade capacity is the largest q at which some finite set of early adopters can spread to the whole (infinite) network. Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 19 (advanced material); S. Morris, 'Contagion', Review of Economic Studies 67 (2000). Values from the brief, supported here by the finite simulations in c1 and c4 only (the stage simulates a 1,521-person grid and a 201-person line, not infinite networks, and tries only square seeds). Attribution: fact-checker confirms; do not present 3/8 as the book's figure until a human with the book checks it. | FACT-CHECK 2026-10-14 (pass 22): Verified on own derivation for the infinite networks, not the book: q > 3/8 needs 4 of 8, and no cell outside a finite set's bounding box touches more than 3 cells inside it, so no finite seed spreads; at q <= 3/8 a kxk block (k>=3) fills its four side rows and then corners, giving a (k+2)x(k+2) block, so it grows forever. Same bounding-interval argument gives 1/2 for the line. Definition and E&K ch. 19, sec. 19.7 'Advanced Material: The Cascade Capacity' confirmed via web-search TOC; the book's own 3/8 figure not opened (host blocked). Morris 2000 not opened. The reveal does not attribute 3/8 to the book, so nothing learner-visible depends on the unopened text.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a long line, two neighbours adopt first. Each person adopts once at least a share q of their 2 neighbours has. Highest q that takes everyone?",
+    "options": [
+      "1/4",
+      "1/2",
+      "Any q, with a big enough start"
+    ],
+    "answer": 1,
+    "why": "Next to the adopters a newcomer sees 1 adopting neighbour of 2, however many started. So the spread works up to q = 1/2 and stops above it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:cascade-capacity",
+    "also": [],
+    "prerequisites": [],
+    "level": "stretch",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 19
+      }
+    ],
+    "tags": [
+      "cascades",
+      "thresholds"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

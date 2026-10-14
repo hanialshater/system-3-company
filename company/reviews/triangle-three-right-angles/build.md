@@ -14,3 +14,8 @@ Learner review (2026-10-13) findings:
 - Locked stage showed a 60E triangle and its area, which disagreed with the question. Locked, the globe shows only the three corner dots (third corner at 90E, as the question says), no triangle fill, no area.
 - "EXCESS (RAD) x R^2" was unreadable: tile is now "Excess x R^2" and the stage caption defines it in two short lines. c2 reworded to match (unverified).
 - Not changed: 510 M km^2 and "tiny triangles" stay as told facts in the reveal (c3, c5); reveal clipping is a kit matter.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+Slider starts at 30E in 30-degree steps; gate needs three sizes including 90E (QA: two arrow presses, 60 then 90). A record line keeps each size with its sum and share of Earth. Radians and R-squared removed from the stage and reveal: each degree over 180 is 1/720 of Earth. Hint no longer names the destination. Reopened c2, c3; added c6.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

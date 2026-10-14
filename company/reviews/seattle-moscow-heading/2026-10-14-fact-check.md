@@ -11,3 +11,13 @@ Checker: fact-checker (wrote none of these claims). Read Demo.tsx (and model.ts 
 Disputes: none.
 
 Result: 1 verified, 0 disputed, 0 withdrawn.
+
+## Pass 21 (2026-10-14)
+
+Checker: fact-checker (wrote and built none of these claims). Method: read Demo.tsx (predict, stage, readouts, reveal) against each claim, then re-ran the numbers in my own node scripts copying the lesson's logic (session scratchpad fc21/). Primary sources were unreachable (proxy blocks the hosts); rows say where a verdict rests on derivation or on web-search secondary text instead.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c8 | verified | Own node: initial bearing 11.5 deg; for headings 10-13 deg the 9,500 km route peaks at 81-83 N near 34 W and stays within -80..+85 deg of the 42 W map centre (no wrap), so on the equirectangular map it is an arch bending north. On the azimuthal equidistant map centred on Seattle every great circle through the centre is a straight line. The 'flat-hit' gate shows the on-target route on the flat map. |
+
+**Result:** 1 verified, 0 disputed, 0 withdrawn.

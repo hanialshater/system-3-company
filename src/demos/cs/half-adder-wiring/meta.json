@@ -25,18 +25,18 @@
   "claims": [
     {
       "id": "cs.half-adder-wiring.c1",
-      "text": "1 + 1 = 2, which is 10 in binary: carry 1, sum 0; in binary counting goes 0, 1, 10, 11.",
+      "text": "1 + 1 = 10 in binary (carry 1, sum 0); the goal digits (carry, sum) for 0+0, 0+1, 1+0, 1+1 are 00, 01, 01, 10.",
       "support": "derivation",
-      "source": "Binary place value; Demo.tsx rightOn() checks (carry, sum) against floor((a+b)/2) and (a+b) mod 2. | FACT-CHECK 2026-10-14 (pass 12): node: (2).toString(2) = '10'; 0,1,2,3 = 0,1,10,11; rightOn() compares carry with floor((a+b)/2) and sum with (a+b) mod 2.",
+      "source": "Binary place value; Demo.tsx rightOn() checks (carry, sum) against floor((a+b)/2) and (a+b) mod 2. | FACT-CHECK 2026-10-14 (pass 12): node: (2).toString(2) = '10'; 0,1,2,3 = 0,1,10,11; rightOn() compares carry with floor((a+b)/2) and sum with (a+b) mod 2. | v3 2026-10-14 (demo-builder): 'counting goes 0, 1, 10, 11' removed from the stem; the goal digits now appear in the stage's check table (hidden while locked). Reopened. | FACT-CHECK 2026-10-14 (pass 21): Own node: (2).toString(2) = '10'; goal (carry, sum) = 00, 01, 01, 10. Predict question and stage goal row (Demo PAIRS) match.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.half-adder-wiring.c2",
-      "text": "XOR outputs 1 when exactly one input is 1; AND outputs 1 only when both inputs are 1; OR outputs 1 when at least one is 1; the stage shows the rule for each chosen gate.",
+      "text": "XOR outputs 1 when exactly one input is 1; AND outputs 1 only when both inputs are 1; OR outputs 1 when either input is 1; the predict options and the stage show these rules.",
       "support": "convention",
-      "source": "Truth tables (definition). Patterson and Hennessy, Computer Organization and Design, Appendix B (A.2 in some editions) 'Gates, Truth Tables, and Logic Equations'. | FACT-CHECK 2026-10-14 (pass 12): Truth tables: XOR = a^b, AND = a&b, OR = a|b (apply() in Demo.tsx); RULE text shown for the selected sum and carry gates ('OR: 1 if either is 1' = at least one).",
+      "source": "Truth tables (definition). Patterson and Hennessy, Computer Organization and Design, Appendix B (A.2 in some editions) 'Gates, Truth Tables, and Logic Equations'. | FACT-CHECK 2026-10-14 (pass 12): Truth tables: XOR = a^b, AND = a&b, OR = a|b (apply() in Demo.tsx); RULE text shown for the selected sum and carry gates ('OR: 1 if either is 1' = at least one). | v3 2026-10-14 (demo-builder): the gate rules now also appear as the predict options ('OR: 1 if either input is 1', 'AND: 1 only if both are 1', 'XOR: 1 if exactly one is 1'). Reopened. | FACT-CHECK 2026-10-14 (pass 21): Own truth tables: AND 0001, OR 0111, XOR 0110 on 00,01,10,11; RULE strings and predict options state these rules. Patterson & Hennessy appendix lettering varies by edition, not opened; definitions do not depend on it.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -49,6 +49,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.half-adder-wiring.c4",
+      "text": "The sum digits in the goal row are 0, 1, 1, 0: 1 when exactly one input is 1, which is XOR. OR fails on the 1 + 1 column, where it gives 1. The carry digits, 0, 0, 0, 1, are 1 only when both inputs are 1, which is AND.",
+      "support": "derivation",
+      "source": "Goal digits floor((a+b)/2), (a+b) mod 2 for the four PAIRS in Demo.tsx; OR(1,1) = 1 versus goal sum 0 (apply()). The check table shows each pair's goal and circuit digits with a tick or cross. Reveal paragraph 1. Added v3 2026-10-14 by demo-builder. | FACT-CHECK 2026-10-14 (pass 21): Own node: sum digits 0,1,1,0 = XOR; OR(1,1) = 1 vs goal 0; carry 0,0,0,1 = AND. Reveal text matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -68,12 +77,13 @@
     ],
     "simulatedLearner": [
       "company/reviews/half-adder-wiring/2026-10-13-learner-adult-beginner.md",
-      "company/reviews/half-adder-wiring/2026-10-14-learner-adult-beginner-r2.md"
+      "company/reviews/half-adder-wiring/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/half-adder-wiring/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:logic-gates",
     "prerequisites": [

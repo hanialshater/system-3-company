@@ -11,7 +11,7 @@ Rule: even → n/2, odd → 3n + 1, stop at 1; a step is one application.
 
 ## Stage at 390×844 (~380 px at predict, ~520 px in explore)
 1. Rule line (muted, 9 words): "Even: halve it. Odd: times 3, plus 1. Stop at 1."
-2. **Chart**, 342 × 240 px. x axis: steps 0–120 (ticks 0, 40, 80, 120). y axis: value, **linear**, and it **grows to fit the highest value drawn so far** (rounded up to 100, 1,000 or 10,000, three ticks), never shrinking. At 27's peak it reads 0, 5,000, 10,000. A linear axis is honest and makes the point: 26's whole run is a flat smear along the bottom, and 27's is a mountain. The current run is a 2 px `--fg` line with a dot at each step once fewer than 20 steps are shown. Earlier runs are 1 px `--muted` lines, named in the table, not by end labels (they all end at 1 on the floor, where labels would collide).
+2. **Chart**, 342 × 240 px. x axis: steps 0–120 (ticks 0, 40, 80, 120). y axis: value, **linear**, and it **grows to fit the highest value drawn so far** (rounded up to 100, 1,000 or 10,000, three ticks), never shrinking. At 27's peak it reads 0, 5,000, 10,000. A linear axis is honest and makes the point: 26's whole run is a flat smear along the bottom, and 27's is a mountain. **27's run is always the 2 px `--fg` line** (the question's run, pinned). Any other start is a `--muted` line: 1.5 px while its chip is active, 1 px otherwise. A dot marks each step while a run has fewer than 20 steps. (Wireframe check: 97's run is 27's shifted 7 steps right, so if the active run were the bold one, the QA path would end with 97's mountain drawn over 27's and the reveal's subject would be the faint line. Pinning 27 avoids that.) Runs are named in the table, not by end labels (they all end at 1 on the floor, where labels would collide). The y tick labels sit in a 40 px left gutter.
 3. **Cursor**: a vertical line at the scrubbed step, with its readout above the chart: "Start 27 · step 77 · value 9,232".
 4. **Runs table** (readouts), one row per start that has reached 1: "27 · 111 steps · peak 9,232". It has four rows at most.
 5. Controls, below.
@@ -38,7 +38,7 @@ QA path (each control once, DOM order): Step (27 → 82) · Run to 1 (111 steps,
 - **Scrubbing:** the cursor walks back along the learner's own run, and the readout changes with every step.
 - **26 / 28:** short runs (10 and 18 steps) that never leave the floor at this scale. They sit next to 27's mountain.
 - **97:** 118 steps, also topping out at 9,232.
-- **Reveal:** the stage stays as left (97 bold, the others thin), and the table holds every run. The reveal quotes only rows the table has: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118. The start number tells you almost nothing about the run. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."
+- **Reveal:** the stage stays as left: 27 bold, 97 active (1.5 px muted, cursor and readout on it), 26 and 28 thin. The table holds every run. The reveal quotes only rows the table has: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118. The start number tells you almost nothing about the run. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."
 
 Milestones (`minInteractions=2`): `27-at-1`, `another-start` (any other start reaches 1).
 

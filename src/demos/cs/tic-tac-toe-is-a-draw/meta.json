@@ -1,7 +1,7 @@
 {
   "slug": "tic-tac-toe-is-a-draw",
   "title": "Can the first player always win?",
-  "hook": "X moves first. Does that decide the game? Score an endgame to see how it's solved.",
+  "hook": "X moves first. Does that decide the game? Solve an endgame, then the empty board.",
   "domain": "cs",
   "concept": "minimax",
   "format": "Single card",
@@ -24,18 +24,18 @@
   "claims": [
     {
       "id": "cs.tic-tac-toe-is-a-draw.c1",
-      "text": "From the empty board, perfect play by both players ends in a draw.",
+      "text": "The bottom row is the same two rules, run by computer from the empty board. Corner, edge and centre each scored a draw, so X's best first move is a draw: perfect players always draw.",
       "support": "simulation",
-      "source": "TOLD, NOT SHOWN: the stage scores a 3-empty-square endgame only. Builder's node script (company/reviews/tic-tac-toe-is-a-draw/verify.mjs): memoized minimax (X max, O min, win = +1, draw = 0, loss = -1) from the empty board gives 0; each first move for X (corner, edge, centre) also gives 0. Written without reference to library code. | FACT-CHECK 2026-10-14 (pass 19): Own node minimax (fc19b6/ttt.mjs, not the builder's script): empty board 0; all 9 first moves 0.",
+      "source": "SHOWN in v3: the stage's bridge row runs a memoized minimax in Demo.tsx (solve) on the corner, edge and centre first moves and displays each value; the empty board takes their max. The other six first moves are mirror/rotation copies (not shown). Builder's node script (company/reviews/tic-tac-toe-is-a-draw/verify.mjs): memoized minimax (X max, O min, win = +1, draw = 0, loss = -1) from the empty board gives 0; each first move for X (corner, edge, centre) also gives 0. Written without reference to library code. | r5 revision 2026-10-14: sentence reworded for v3; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 21): Own plain minimax (fc21/ttt.mjs, no memo): empty board 0; all nine first moves 0, so corner, edge, centre each draw. Matches Demo.tsx solve() and the v3 bridge row.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c2",
-      "text": "There are 255,168 complete games of tic-tac-toe from the empty board.",
+      "text": "That search covers all 255,168 possible games.",
       "support": "simulation",
-      "source": "Builder's node script: exhaustive count of move sequences from the empty board that end in a win or a full board, stopping a game at the first three in a row. Result 255,168. TOLD, NOT SHOWN. | FACT-CHECK 2026-10-14 (pass 19): Own exhaustive count: 255,168 games (131,184 X wins, 77,904 O wins, 46,080 draws), the published totals.",
+      "source": "Builder's node script: exhaustive count of move sequences from the empty board that end in a win or a full board, stopping a game at the first three in a row. Result 255,168. TOLD, NOT SHOWN (context outside the brief's gap). | r5 revision 2026-10-14: sentence reworded for v3; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 21): Own exhaustive enumeration stopping at the first three-in-a-row or full board: 255,168 games.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -51,9 +51,9 @@
     },
     {
       "id": "cs.tic-tac-toe-is-a-draw.c4",
-      "text": "In that endgame X has two moves (right middle and bottom right) with a win underneath, but in each O's best reply takes it away.",
+      "text": "In your endgame, X had two moves with a win underneath (struck out), but in each O's best reply took it away.",
       "support": "simulation",
-      "source": "From c3's script: right middle has an X win after O bottom left but O's reply bottom right gives a draw; bottom right has an X win after O bottom left but O's reply right middle wins for O. O picks the lower of the two in each case. Stage scored values: draw, O wins, O wins. | FACT-CHECK 2026-10-14 (pass 19): Follows from c3: X-win leaves exist under right middle and bottom right; O's min reply removes each; stage scores draw, O wins, O wins.",
+      "source": "From c3's script: right middle has an X win after O bottom left but O's reply bottom right gives a draw; bottom right has an X win after O bottom left but O's reply right middle wins for O. O picks the lower of the two in each case. Stage scored values: draw, O wins, O wins. | r5 revision 2026-10-14: sentence reworded for v3; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 21): Own minimax on START XOX/OO./.X.: right middle -> O bottom left gives X win, O bottom right draw (value draw); bottom left -> O right middle O wins, O bottom right draw (value O wins); bottom right -> O right middle O wins, O bottom left X win (value O wins). Two X moves have a struck X-win leaf. The stage also strikes the draw leaf under bottom left; the sentence does not contradict that.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -90,11 +90,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/tic-tac-toe-is-a-draw/2026-10-14-learner-adult-beginner-r5.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:minimax",
     "also": [],

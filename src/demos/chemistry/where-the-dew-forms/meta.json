@@ -35,27 +35,36 @@
     },
     {
       "id": "chemistry.where-the-dew-forms.c2",
-      "text": "Relative humidity is the water vapour in the air as a share of the most that can stay vapour at that temperature.",
+      "text": "Relative humidity is the water vapour in the air divided by the most that can stay vapour at that temperature (Water divided by Max on the stage), and warm air allows far more.",
       "support": "convention",
-      "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure.",
+      "source": "WMO Guide to Instruments and Methods of Observation (WMO-No. 8), relative humidity as ratio of vapour pressure to saturation vapour pressure. | v3 2026-10-14 (demo-builder): reveal now points at the stage's Water and Max readouts (vapour and es(t) in Demo.tsx; Fullness = Water / Max). Reopened. · Fact-check pass 21 2026-10-14: VERIFIED: Convention matches WMO-No. 8 / AMS definition (from memory, not opened; the definition is standard). Demo Fullness = min(1, E/es(t)), shown beside Water and Max readouts; es(30)/es(10) = 3.46 supports 'far more'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.where-the-dew-forms.c3",
-      "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour, which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point).",
+      "text": "Air at 30 °C and 50% relative humidity holds about 2.12 kPa of water vapour (half of 4.24 kPa), which is the full maximum at about 18 °C, so dew first forms at about 18 °C (the dew point), between 20 and 15 °C.",
       "support": "derivation",
-      "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD).",
+      "source": "e = 0.5 × 4.2367 = 2.118 kPa; Td = 243.04 ln(e/0.61094) / (17.625 − ln(e/0.61094)) = 18.45 °C (node; Demo.tsx TD). Option 18 °C = floor(TD). | v3 2026-10-14 (demo-builder): the predict options are now brackets (25-20, 20-15, below 15 °C; key 'Between 20 and 15 °C'), because the presets show 91% and no dew at 20 °C and dew at 15 °C (fullness 0.908 at 20, 1.245 at 15 by es()). The stage marks the crossing 'dew point ≈ 18 °C' once the learner cools past it. Reopened. · Fact-check pass 21 2026-10-14: VERIFIED: node: es(30) = 4.2367, E = 2.1183 kPa, Td = 18.45 C (toFixed(0) = 18, as stage and reveal print); fullness 0.908 at 20 C, 1.0 at 15 C; 18.45 is in the 20-15 bracket (predict key).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.where-the-dew-forms.c4",
       "text": "Below the dew point the extra water condenses as dew, so the vapour that remains is the full maximum for that temperature.",
       "support": "source",
       "source": "Definition of dew point (WMO-No. 8; American Meteorological Society Glossary, 'dew point'). The stage keeps the air's total water fixed and ignores pressure changes on cooling (small). | FACT-CHECK 2026-10-14 (pass 19): Matches the stage model (vapour = min(E, es(t)), excess shown as dew) and the AMS Glossary definition of dew point (saturation on cooling at constant pressure and water content). Assumes equilibrium (no supersaturation), as the stage does.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "chemistry.where-the-dew-forms.c5",
+      "text": "Until the dew point, cooling never changed your air's water (2.12 kPa); it lowered the maximum, so Fullness rose until the curve met your line at about 18 °C: 100% full, and the first dew.",
+      "support": "derivation",
+      "source": "Stage model in Demo.tsx: vapour = min(E, es(t)) with E = 2.118 kPa constant above TD = 18.45 °C; es(t) falls as t falls (Magnus formula, see c1). Reveal paragraph 1. Added v3 2026-10-14 by demo-builder. · Fact-check pass 21 2026-10-14: VERIFIED: Demo: vapour = min(E, es(t)) stays 2.12 kPa above Td; es falls with t, so Fullness rises to 100% at Td. Minor display note: at 18.5 C the readout rounds 99.7% to 100% while Dew says none.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -77,12 +86,13 @@
       "company/reviews/where-the-dew-forms/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/where-the-dew-forms/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/where-the-dew-forms/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/where-the-dew-forms/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:vapor-pressure-humidity",
     "prerequisites": [

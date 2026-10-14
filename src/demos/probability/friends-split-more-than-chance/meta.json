@@ -1,0 +1,124 @@
+{
+  "slug": "friends-split-more-than-chance",
+  "title": "Is one in five a lot or a little?",
+  "hook": "One friendship in five crosses groups. Without a yardstick, that number tells you nothing.",
+  "domain": "probability",
+  "concept": "homophily-test",
+  "format": "simulation-run",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "groups and proportions"
+    ],
+    "doesNotKnow": [
+      "that the yardstick for 'friends sort by group' is the cross-group share random pairing would give (about 2pq)"
+    ]
+  },
+  "misconception": "If one in five friendships crosses groups, that is about what you'd expect when one in three people is in the smaller group.",
+  "objective": "The learner can explain that with 20 and 10 students, random friendships would cross groups about 46% of the time (200 of 435 pairs), so a class where 9 of 45 friendships cross (20%) shows homophily: the gap from the chance yardstick is the evidence.",
+  "claims": [
+    {
+      "id": "probability.friends-split-more-than-chance.c1",
+      "text": "With 20 and 10 students there are 435 possible pairs, and 200 of them (46%) cross groups.",
+      "support": "derivation",
+      "source": "C(30,2) = 435; 20 x 10 = 200 cross pairs; 200/435 = 0.4598. Builder's node check, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 21): node: C(30,2) = 435, 20 x 10 = 200, 200/435 = 0.4598 -> 46%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.friends-split-more-than-chance.c2",
+      "text": "The stage's real class has 45 friendships, 9 of them crossing groups (20%).",
+      "support": "convention",
+      "source": "Lesson rule (brief): a made-up class. Demo.tsx REAL lays out 28 friendships inside the 20, 8 inside the 10 and 9 crossing, placed with mulberry32(7). | FACT-CHECK 2026-10-14 (pass 21): Re-ran Demo.tsx REAL with mulberry32(7): 45 distinct friendships, 9 crossing (28 in A, 8 in B). 9/45 = 20%. Made-up class is a convention.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.friends-split-more-than-chance.c3",
+      "text": "In a random class each of the 45 friendships is an independent random pair, so on average about 46% cross groups.",
+      "support": "derivation",
+      "source": "Lesson rule (Demo.tsx drawClasses: each friendship a uniform pair of the 435, independently); the crossing count is Binomial(45, 200/435), mean 20.69. Builder's seeded run (mulberry32(41), first random class then 1,000 more, the QA path): 1,001 classes averaging 20.88 crossing (46%). | FACT-CHECK 2026-10-14 (pass 21): drawClasses draws each of 45 friendships uniformly from 435 pairs, independently (repeats possible). Mean 45 x 200/435 = 20.69. Own seeded run mulberry32(41): first class 26, 1,001 classes average 20.877 (46.4%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.friends-split-more-than-chance.c4",
+      "text": "If each of 45 friendships crosses groups with chance 46%, 9 or fewer crossing has probability about 1 in 4,000.",
+      "support": "derivation",
+      "source": "Exact binomial, builder's node run 2026-10-14: P(X <= 9) for X ~ Binomial(45, 200/435) = 0.000264 (1 in 3,790). Matches the strand manager's edit in company/domains/briefs/probability.statistics.md (0.00026). Seeded run (seed 41, not chosen for its result): none of the first 1,001 random classes had 9 or fewer; the fewest was 11. | FACT-CHECK 2026-10-14 (pass 21): Exact binomial in node: P(X <= 9), X ~ Bin(45, 200/435) = 0.000264 (1 in 3,790) -> 'about 1 in 4,000' fair. Seed-41 run: 0 of 1,001 had <= 9, fewest 11.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.friends-split-more-than-chance.c5",
+      "text": "For large groups with shares 2/3 and 1/3 the chance share of crossing friendships is 2 x 2/3 x 1/3, about 44%.",
+      "support": "source",
+      "source": "2pq with p = 2/3, q = 1/3 gives 4/9 = 0.444 (derivation); the 2pq yardstick is from E&K ch. 4 (section unconfirmed). | FACT-CHECK 2026-10-14 (pass 21): 2 x 2/3 x 1/3 = 4/9 = 0.444. E&K (2010) not opened (host blocked); from my own knowledge the 2pq homophily test is in ch. 4 ('Networks in Their Surrounding Contexts'), section 4.1 'Homophily'. Placement: confident.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.friends-split-more-than-chance.c6",
+      "text": "A cross-group share well below the chance share is the evidence that friends sort by group (homophily).",
+      "support": "source",
+      "source": "E&K ch. 4 homophily test (compare the observed cross-group fraction with 2pq). | FACT-CHECK 2026-10-14 (pass 21): E&K ch. 4, section 4.1 (not opened; own knowledge): 'if the fraction of cross-gender edges is significantly less than 2pq, then there is evidence for homophily'. Learner sentence matches that test.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A club is half red members and half blue. 15% of its friendships are red–blue. Is that evidence that friends stick to their own colour?",
+    "options": [
+      "No: 15% is a normal share for two groups",
+      "Yes: random pairing would make about 50% cross",
+      "Only if red members have more friends"
+    ],
+    "answer": 1,
+    "why": "The yardstick is the share of pairs that cross: 2pq = 2 x 1/2 x 1/2 = 50%. 15% is far below it, and that gap is the evidence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:homophily-test",
+    "also": [],
+    "prerequisites": [
+      "probability:sample-size-noise"
+    ],
+    "level": "core",
+    "strand": "statistics",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 4
+      }
+    ],
+    "tags": [
+      "homophily",
+      "hypothesis test",
+      "networks"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

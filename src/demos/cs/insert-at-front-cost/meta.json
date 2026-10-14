@@ -34,12 +34,12 @@
     },
     {
       "id": "cs.insert-at-front-cost.c2",
-      "text": "Inserting at the front of a chain moves no items: the new box's arrow and the start arrow are set, 2 arrows in all.",
+      "text": "Inserting at the front of a chain moves no items: 2 arrows are redrawn (the start arrow now points to the new box, and the new box points to the old first box); the stage shows the old start arrow faded.",
       "support": "derivation",
-      "source": "LIST-INSERT in CLRS 3rd ed., 10.2 (singly linked case: x.next = L.head; L.head = x). Demo.tsx CHAIN_MOVES = 0, CHAIN_ARROWS = 2. | FACT-CHECK 2026-10-13 (pass 6): Note for source tidy: CLRS 3rd ed. LIST-INSERT (10.2) is written for the doubly linked list; the singly linked two-pointer insert is the same idea but not the printed code. The claim itself (2 arrows set, 0 items moved) is right.",
+      "source": "LIST-INSERT in CLRS 3rd ed., 10.2 (singly linked case: x.next = L.head; L.head = x). Demo.tsx CHAIN_MOVES = 0, CHAIN_ARROWS = 2. | FACT-CHECK 2026-10-13 (pass 6): Note for source tidy: CLRS 3rd ed. LIST-INSERT (10.2) is written for the doubly linked list; the singly linked two-pointer insert is the same idea but not the printed code. The claim itself (2 arrows set, 0 items moved) is right. · Fact-check pass 21 2026-10-14: Demo.tsx chain view after insert: start arrow redrawn to the new box, new box's arrow to the old first box (both styled 'changed'), old start arrow drawn faded and labelled 'old start arrow'; CHAIN_MOVES 0, CHAIN_ARROWS 2. Correct for a singly linked list by derivation. Source tidy still open: CLRS 3e LIST-INSERT is the doubly linked version (sets prev too).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.insert-at-front-cost.c3",
@@ -85,12 +85,13 @@
       "company/reviews/insert-at-front-cost/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/insert-at-front-cost/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/insert-at-front-cost/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/insert-at-front-cost/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:linked-list-vs-array",
     "prerequisites": [],

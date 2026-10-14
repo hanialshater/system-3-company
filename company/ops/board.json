@@ -2333,6 +2333,386 @@
       "domain": null,
       "created": "2026-10-14",
       "links": []
+    },
+    {
+      "id": "W-181",
+      "title": "Algo batch 2 brief fixes found by specs (s1): one-crowded-bucket — the spread hand's 1 comparison is 64 and 70 in 61-70 (not 12 and 3); 45 is the clumped values in descending order (the hand reversed gives 28); boyer-moore-skips-ahead — Horspool uses 5 alignments (0,7,9,15,17), not 4. Answers unchanged. See company/design/specs/<slug>.md",
+      "owner": "cm-cs-algorithms",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-182",
+      "title": "Mockups for algo batch 2 specs (s1): shell-gaps-shrink-the-shuffles, one-crowded-bucket, ternary-asks-more, fewest-exits-first-tour, boyer-moore-skips-ahead, rotation-untangles-the-chain, gray-code-one-flip, hailstone-27-climbs, keep-one-of-a-stream, turns-beat-first-come-first (wireframes beside each spec in company/design/specs/)",
+      "owner": "mockup-artist",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-183",
+      "title": "weak-links-hold-it-together brief: (a) question says 'fewest shared friends' but the model ranks by overlap ratio; align wording or claim 2 (results identical, checked in node); (b) optional: 30% cut is robust to tie rule, 20% needs seeded-random ties; (c) replace seed-33 Check figures (do not reproduce). See company/design/specs/weak-links-hold-it-together.md",
+      "owner": "cm-probability-chance",
+      "state": "next",
+      "domain": "probability",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-184",
+      "title": "all-lines-meet-in-one-mother claim 2: call 2N(1-1/N)=98 an approximation; exact expectation for the discrete model is 96.97 (node Markov chain). See company/design/specs/all-lines-meet-in-one-mother.md",
+      "owner": "cm-life-genetics-evolution",
+      "state": "next",
+      "domain": "life",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-185",
+      "title": "Design review: NCM specs the-loser-flips-the-winner, weak-links-hold-it-together, two-public-clues-break-the-herd, all-lines-meet-in-one-mother (company/design/specs/)",
+      "owner": "design-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-186",
+      "title": "Mockups for NCM specs the-loser-flips-the-winner, weak-links-hold-it-together, two-public-clues-break-the-herd, all-lines-meet-in-one-mother (wireframes in company/design/specs/*.svg; wireframes show long stage labels, specs give the short ones)",
+      "owner": "mockup-artist",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-187",
+      "title": "NCM brief template: 'citation' is not a valid claim support (use source); decide rename of three-students-two-rooms (now 4 students); broker framing (Hana not best-connected); bridge-carries brief 'also: probability:independence'",
+      "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-188",
+      "title": "Rule on arrows vs outlines for no-best-move-one-stable-pair; categorical palette for multi-server lessons (new-server-moves-few-keys)",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-189",
+      "title": "who-pays-same-filter: take or reject stem fix 'a filter, $100 a year' (spec company/design/specs/who-pays-same-filter.md, Brief check)",
+      "owner": "cm-economics-markets",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-190",
+      "title": "Design review: who-pays-same-filter spec (side-by-side, 5 controls; decide whether offer chips hide prices until commit)",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-191",
+      "title": "Mockup for who-pays-same-filter from spec + wireframe (two stacked panels; equal Total bars and opposite money arrows are the picture)",
+      "owner": "mockup-artist",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-192",
+      "title": "Fix FC pass 21 dispute every-base-fools-fermat c7: strong-liar count is 10 of 320 (or 9 of 319); see company/reviews/every-base-fools-fermat/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-193",
+      "title": "Fix FC pass 21 dispute selfish-routes-cost-a-third-more c4: 4/3 bound is for affine delays (fixed + proportional), not 'in proportion'; see company/reviews/selfish-routes-cost-a-third-more/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-194",
+      "title": "Fix FC pass 21 dispute the-pivotal-juror-convicts c3: Demo pGuilt = guilt(g,1) should be guilt(g,3-g) (stage shows 30%/50%, not 7%/30%); see company/reviews/the-pivotal-juror-convicts/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-195",
+      "title": "deleted-key-breaks-search c3 disputed (pass 21): claim text says emptying a slot breaks search for 'every key stored past it'; false for keys whose home slot is past the gap. Reword per company/reviews/deleted-key-breaks-search/2026-10-14-fact-check.md, then fact-check again",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-196",
+      "title": "Fix disputed bracket-order-sets-the-bill c5: reveal says 'cheapest sub-chains first'; should be 'shortest sub-chains first' (fact-check pass 21, company/reviews/bracket-order-sets-the-bill/2026-10-14-fact-check.md)",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-197",
+      "title": "Fix one-cell-rule-30 c1 (disputed, FC pass 21): reveal says Rule 30 counts 1,3,3,6,4,9,5,12,7 went 'with no pattern', but odd steps read 3,6,9,12. Drop 'with no pattern' or say the run breaks at step 9 (12). See company/reviews/one-cell-rule-30/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-198",
+      "title": "Fix disputed newton-doubles-the-digits c5: 'the same rule as the ancient Babylonian one' is unsourced history; reword to 'the rule known as the Babylonian (or Heron's) method' or cite an opened source (fact-check pass 21, company/reviews/newton-doubles-the-digits/2026-10-14-fact-check.md)",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-199",
+      "title": "continental-jigsaw c1 disputed (FC pass 21): human source check of Bullard, Everett & Smith 1965 Table 1 fit 9 (44.0 N, 30.6 W, 57.0 deg); secondary sources conflict (Virtual Explorer gives 42.9/-30.1/57.1). See company/reviews/continental-jigsaw/2026-10-14-fact-check.md",
+      "owner": "cm-geography-earth-climate",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-200",
+      "title": "queue-or-stack-same-search meta curriculum reference: work clrs-4e but chapter 22 / section 22.2 is 3rd-ed numbering (4e BFS = 20.2). Align work id and chapter.",
+      "owner": "cm-cs-algorithms",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-201",
+      "title": "kitchen-crowding: fact-check pass 21 disputed c2 (claim text says 'highest' worker; code quotes latest) and c5 (reveal's second-oven sentence false at 1 worker; gate it to n >= 2). See company/reviews/kitchen-crowding/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-202",
+      "title": "last-digit-first: fact-check pass 21 disputed c2 and c3: stage shows only the last-touched run, so the reveal's 'ringed bucket on pass 3' / 'red > marks' pointers can point at the wrong run. Name the bucket in the reveal or keep both runs visible. See company/reviews/last-digit-first/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-203",
+      "title": "pairs-cancel-under-xor c2 disputed (fact-check pass 21): stage and reveal say 'the lamps it switched on switch back off', but in 7 3 5 4 5 3 4 the first 3 turns lamps off and its partner turns them on. Reword to 'its partner flips the same lamps back', then reopen c2. See company/reviews/pairs-cancel-under-xor/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-204",
+      "title": "Claim-text tidy from fact-check pass 21 (no dispute): random-surfer-finds-the-rank c1 parenthetical wrongly says the reveal quotes the learner's own count (it quotes the fixed 100,000 run); ring-buffer-wraps-around: fold reveal phrase 'went round two and a half times' into c1. See the 2026-10-14-fact-check.md files",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-205",
+      "title": "Re-check kitchen-crowding c2,c5 and last-digit-first c2,c3 (v4)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-206",
+      "title": "Re-check reworded claims: deleted-key-breaks-search c3, bracket-order-sets-the-bill c5, newton-doubles-the-digits c1+c5, pairs-cancel-under-xor c2, random-surfer-finds-the-rank c1, ring-buffer-wraps-around c1 (W-195/196/198/203/204)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-207",
+      "title": "karatsuba-three-not-four c5 disputed: reveal states 59,049 products for 1,024-digit numbers as fact; lesson's own kara() gives ~86,000 (carries). Qualify as ideal no-carry count or give real figure. See company/reviews/karatsuba-three-not-four/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-208",
+      "title": "ramp-same-work c2 disputed: log/reveal print '122.6 N x 4 m = 490.5 J' (122.6x4 = 490.4; also 2, 6, 7, 8 m mismatch). Use '≈' or show push as 490.5 / L. See company/reviews/ramp-same-work/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-209",
+      "title": "kmp-never-steps-back c7 DISPUTED (fact-check pass 22): reveal says next comparison is 'the same text letter, never one already read', but text positions 3-7 are each read twice. Change to 'never one to its left', then reopen c7. See company/reviews/kmp-never-steps-back/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-210",
+      "title": "bank-lends-it-again (non-blocking, fact-check pass 22): round caption rounds both sides to whole dollars, so some states read e.g. '$12 = 80% of round 20's $14' (true 11.20). Consider '≈' or cents below $100. Also fewest-exits-first-tour c5: cite the own-rule counterexample (8x8 from (4,2) visits 60) since Warnsdorff/Squirrel-Cull were not opened.",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-211",
+      "title": "same-revenue-any-rule c6 disputed (pass 22): reveal says first-price charges less than second-price; averages are equal. Reword; see claim source",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-212",
+      "title": "enemies-allow-three-camps c6 disputed (pass 22): reveal says 'you saw 2, 3 and 6 camps' but the milestones need only one other split. Name viewed splits only",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-213",
+      "title": "two-stacks-make-a-queue c5 disputed (fact-check pass 22): at the second pour 1 and 2 have already left, out is empty; fix reveal/claim to 'they had already crossed to out and left'. See company/reviews/two-stacks-make-a-queue/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-214",
+      "title": "four-in-a-row-two-thirds c6 (disputed, pass 22): reveal says settled at $0.667 by round 8 and A kept $0.333, but the round-8 readout shows $0.666 / $0.334; set TOL 0.0005 (round 9) or reword; Demo comment says 9. bridge-carries-news-not-habits c5 (disputed): 'Researchers find the same split in real networks' rests on model papers; reword or cite an openable empirical source",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-215",
+      "title": "penalty-on-wiggle c6 (disputed, pass 22): pressing 'Penalty 10' straight from 0 meets both milestones with no moderate visit, so the reveal falls back to '0.44 with no penalty, 0.72 now' at penalty 10 as 'the other story'; gate on a moderate visit or quote the best moderate penalty in the fallback",
+      "owner": "demo-builder",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": [],
+      "updated": "2026-10-14"
+    },
+    {
+      "id": "W-216",
+      "title": "Re-check Pass 22 builder fixes (W-207..W-215): karatsuba c5, ramp c2, kmp c7, bank c7, fewest-exits c5, same-revenue c6, enemies c6, two-stacks c5, four-in-a-row c1+c6, bridge c5, penalty-on-wiggle c6 (all unverified)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-217",
+      "title": "FC pass 23: weak-links-hold-it-together c4 disputed: reveal says 'a link with few shared friends usually runs between groups', but in the lesson's own networks most zero-overlap links are inside groups (bridges are 10-12 of 18-29). Reword to the converse (see company/reviews/weak-links-hold-it-together/2026-10-14-fact-check.md, Pass 23)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-218",
+      "title": "FC pass 23: accurate-bettor-takes-the-pot c5 disputed: not a learner sentence, and wrong if 'closest' means percentage points (truth 80%: 99% belief loses to 60% belief in 100/100 runs). Withdraw or reword to relative entropy (company/reviews/accurate-bettor-takes-the-pot/2026-10-14-fact-check.md)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-219",
+      "title": "FC pass 23: every-base-fools-fermat c7 disputed: 'never more than a quarter' fails at n = 9 counted over coprime bases (2 of 6). Add 'for odd numbers above 9' or count bases 1 to n-1 (company/reviews/every-base-fools-fermat/2026-10-14-fact-check.md)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-220",
+      "title": "FC pass 23: newton-doubles-the-digits c5 held unverified: the 'known as the Babylonian (or Heron's) method' naming needs an opened source; a human opens one, or the builder drops the clause",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
     }
   ]
 }

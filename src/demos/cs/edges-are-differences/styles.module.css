@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
+.weight { fill: var(--domain); font-size: 11px; font-weight: 800; }
+.val { font-size: 13px; font-weight: 800; }
+.idx { fill: var(--muted); font-size: 9px; font-weight: 600; }
+.win { transition: x 0.2s ease; }
+.out { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.outOn { fill: #0d0f14; }
+@media (prefers-reduced-motion: reduce) { .win { transition: none; } }

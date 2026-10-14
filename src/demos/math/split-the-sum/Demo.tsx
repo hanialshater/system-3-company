@@ -4,11 +4,13 @@
 // two pieces' areas are a x 7 and b x 7 and always add to 13 x 7 = 91. Key states: the cut at 10
 // (70 and 21 side by side) and "any other cut still adds to the same total". The slider starts at 8
 // so two arrow presses (the QA path) pass 9 and land on 10. Every number comes from LEN, ROWS, TEN.
+// v3: a cut only counts as read when the learner stops on it (a −1/+1 press, or the slider resting
+// for 300 ms). The reveal waits for a stop at 10 and a stop elsewhere, and quotes the last other stop.
 
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "./styles.module.css";
 
 const LEN = 13;
@@ -26,6 +28,10 @@ const H = PAD_Y + ROWS * U + 14;
 export default function SplitTheSum({ slug }: { slug: string }) {
   const [cut, setCut] = useState(START);
   const [other, setOther] = useState<number | null>(null);
+  const rest = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (rest.current) clearTimeout(rest.current);
+  }, []);
 
   return (
     <Lesson
@@ -35,7 +41,7 @@ export default function SplitTheSum({ slug }: { slug: string }) {
         options: [`Only a cut at ${TEN}`, "Any cut", "Only a cut near the middle"],
         answer: 1,
       }}
-      exploreHint={`Drag the cut to ${TEN}, then to any other column, and read the areas.`}
+      exploreHint={`Stop the cut at ${TEN} and read the areas. Then stop at another column and read them again.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -46,7 +52,7 @@ export default function SplitTheSum({ slug }: { slug: string }) {
           </p>
           <p>
             {other !== null
-              ? `Your cut at ${other} gave ${other * ROWS} + ${(LEN - other) * ROWS} = ${total} too. `
+              ? `You also stopped at ${other}: ${other * ROWS} + ${(LEN - other) * ROWS} = ${total}, the same total. `
               : ""}
             The pieces always fill the same rectangle, so any cut works. Pick the one that makes easy products: times {TEN} is
             easy.
@@ -59,6 +65,21 @@ export default function SplitTheSum({ slug }: { slug: string }) {
           {(reach) => {
             const a = cut;
             const b = LEN - cut;
+            // A stop: the learner has settled on this cut, so its areas were on screen to read.
+            const stop = (v: number) => {
+              if (v === TEN) reach("ten");
+              else {
+                setOther(v);
+                reach("elsewhere");
+              }
+            };
+            const move = (v: number, settled: boolean) => {
+              const k = Math.max(1, Math.min(LEN - 1, v));
+              setCut(k);
+              if (rest.current) clearTimeout(rest.current);
+              if (settled) stop(k);
+              else rest.current = setTimeout(() => stop(k), 300);
+            };
             const caption = locked
               ? "Make a prediction to start."
               : `The ${LEN} × ${ROWS} rectangle is cut in two. A piece's area is its width × ${ROWS}.`;
@@ -95,15 +116,16 @@ export default function SplitTheSum({ slug }: { slug: string }) {
                   min={1}
                   max={LEN - 1}
                   disabled={locked}
-                  onChange={(v) => {
-                    setCut(v);
-                    if (v === TEN) reach("ten");
-                    else {
-                      setOther(v);
-                      reach("elsewhere");
-                    }
-                  }}
+                  onChange={(v) => move(v, false)}
                 />
+                <Row>
+                  <Control disabled={locked || cut <= 1} onClick={() => move(cut - 1, true)} aria-label="Move the cut one column left">
+                    −1 column
+                  </Control>
+                  <Control disabled={locked || cut >= LEN - 1} onClick={() => move(cut + 1, true)} aria-label="Move the cut one column right">
+                    +1 column
+                  </Control>
+                </Row>
                 <Row>
                   <Readout label="Left piece" value={locked ? "?" : `${a}×${ROWS}=${a * ROWS}`} />
                   <Readout label="Right piece" value={locked ? "?" : `${b}×${ROWS}=${b * ROWS}`} />

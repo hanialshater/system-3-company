@@ -1,0 +1,148 @@
+{
+  "slug": "ternary-asks-more",
+  "title": "Thirds sound faster than halves",
+  "hook": "Cut a sorted list into thirds each round: do you find things sooner?",
+  "domain": "cs",
+  "concept": "ternary-search",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sc"
+  },
+  "format": "side-by-side",
+  "learner": {
+    "knows": [
+      "binary search cuts the list in half per question"
+    ],
+    "doesNotKnow": [
+      "that cutting in thirds takes more comparisons in total, not fewer"
+    ]
+  },
+  "misconception": "Splitting into more parts per step must need fewer steps, so ternary search beats binary search.",
+  "objective": "The learner can explain that a ternary round costs two questions to keep a third while two halving questions keep a quarter, so on 1,000 sorted numbers ternary search's worst case is 13 comparisons against binary search's 10.",
+  "claims": [
+    {
+      "id": "cs.ternary-asks-more.c1",
+      "text": "Searching 1 to 1,000 for 721, halving needs 10 questions and thirds needs 13.",
+      "support": "simulation",
+      "source": "Builder's node script (2026-10-14, algo2-sc) and halves()/thirds() in Demo.tsx. A question is one three-way comparison of the target with one list number. Halving probes floor((lo + hi) / 2): 500 750 625 687 718 734 726 722 720 721. Thirds (the brief's variant: both probes every round, lo + floor((hi - lo) / 3) and hi - floor((hi - lo) / 3)) probes 334 667 778 890 704 741 716 729 720 725 722 723 721. | FACT-CHECK 2026-10-14 (pass 22): Own node re-implementation (scratchpad fc22/tern.mjs): halving probes 500 750 625 687 718 734 726 722 720 721 (10), thirds 334 667 778 890 704 741 716 729 720 725 722 723 721 (13); matches halves()/thirds() and the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c2",
+      "text": "Over all 1,000 targets the worst cases are 10 questions for halving and 13 for thirds, with averages about 9.0 and 11.2 (8.99 and 11.19).",
+      "support": "simulation",
+      "source": "Builder's node script and stats() in Demo.tsx, every target 1..1000: worst 10 and 13, averages 8.987 and 11.192 (shown to one decimal). For 100 numbers: 7 and 9. Robustness: a ternary that skips the second probe when the first says 'less' still has worst case 13 (average 9.634). | FACT-CHECK 2026-10-14 (pass 22): Own re-run over 1..1000: worst 10 and 13, averages 8.987 and 11.192, shown toFixed(1) as 9.0 and 11.2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c3",
+      "text": "The stage searches for 721.",
+      "support": "convention",
+      "source": "Chosen target (pattern disclose-chosen-seeds): the spec (company/design/specs/ternary-asks-more.md) picked 721 as one of 131 targets in 1..1000 that are a worst case for both methods (halving 10, thirds 13); builder's script reproduces the 131. A typical target needs fewer questions (see c2 averages), which is why 'Try all 1,000 targets' is on the stage. | FACT-CHECK 2026-10-14 (pass 22): 721 is worst case for both (10 and 13); own count of such targets = 131. Disclosed as chosen; stage offers all 1,000 targets.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c4",
+      "text": "After two questions on 721, halving has 249 numbers left (501 to 749) and thirds has 333 (668 to 1,000).",
+      "support": "simulation",
+      "source": "Builder's node script: numbers left after each question. Halving: 500, 249, 124, 62, 31, 15, 7, 3, 1, found at 10. Thirds: 666, 333, 110, 110, 73, 36, 24, 12, 8, 4, 1, 1, found at 13. | FACT-CHECK 2026-10-14 (pass 22): Own re-run: after 2 questions halving range 501-749 (249), thirds 668-1000 (333); reveal prints left(HQ,2) and left(TQ,2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c5",
+      "text": "Some ternary questions cut nothing: on 721 the 4th and 12th questions leave as many numbers as before.",
+      "support": "simulation",
+      "source": "Builder's node script: questions 4 (probe 890) and 12 (probe 723) are second probes of a round whose first probe already showed the target is below it, so the range is unchanged (110 and 1 left). Drawn as hollow ticks. | FACT-CHECK 2026-10-14 (pass 22): Own re-run, numbers left per question 666 333 110 110 73 36 24 12 8 4 1 1 found: only questions 4 (890) and 12 (723) leave the count unchanged; these are the hollow ticks (lo===a && hi===b).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c6",
+      "text": "A ternary round costs two questions and keeps a third; two halving questions keep a quarter, so per question halving wins.",
+      "support": "derivation",
+      "source": "Each halving question keeps at most about 1/2, so two keep about 1/4; a ternary round asks two questions and keeps about 1/3 > 1/4. Worst-case counts: about log2(n) for halving against 2 log3(n) = 1.26 log2(n) for thirds. | FACT-CHECK 2026-10-14 (pass 22): Re-derived: halving keeps <= 1/2 per question, 1/4 per two; a ternary round spends two questions to keep about 1/3; 2 log3 n = (2/log2 3) log2 n = 1.26 log2 n. Consistent with worst cases 10 vs 13.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c7",
+      "text": "Of the 1,000 targets, 489 need 10 halving questions and 272 need 13 ternary questions, the most common counts.",
+      "support": "simulation",
+      "source": "Builder's node script: histograms by number of questions. Halving 1:1 2:2 3:4 4:8 5:16 6:32 7:64 8:128 9:256 10:489. Thirds 1:1 2:1 3:3 4:3 5:9 6:9 7:27 8:27 9:81 10:81 11:243 12:243 13:272. | FACT-CHECK 2026-10-14 (pass 22): Own histograms match exactly (halving 10:489, thirds 13:272, both the modal counts); stage labels the peak bar 'q: count'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c8",
+      "text": "Ternary search earns its place elsewhere: finding the top of a smooth hill.",
+      "support": "derivation",
+      "source": "For a unimodal function on an interval, comparing f at two interior points tells which outer third cannot hold the maximum, so ternary search finds the maximum; binary search on a sorted list cannot do this because one probe does not show which way the hill rises. Standard result (CLRS 4e does not cover it; check a textbook before publishing). | FACT-CHECK 2026-10-14 (pass 22): Search corroboration (cp-algorithms ternary search, Wikipedia 'Ternary search', USACO Guide; pages not opened, network blocked): ternary search finds the max of a unimodal function by comparing f at two interior points and discarding an outer third. 'Smooth hill' is a loose word for unimodal; acceptable.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.ternary-asks-more.c9",
+      "text": "Each question compares 721 with one number.",
+      "support": "convention",
+      "source": "Counting rule of the lesson (brief #46 and spec): one three-way comparison (equal, less or more) with one list element counts as one question. | FACT-CHECK 2026-10-14 (pass 22): Stage rule text 'Each question compares 721 with one number.'; halves()/thirds() push one Q per comparison.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search asks two comparisons per round and keeps one third of a sorted list. Compared with halving, it needs:",
+    "options": [
+      "More comparisons in the worst case",
+      "Fewer comparisons in the worst case",
+      "Exactly the same number"
+    ],
+    "answer": 0,
+    "why": "Two halving comparisons keep a quarter; two comparisons that keep a third waste work, so per comparison halving wins."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "cs:ternary-search",
+    "also": [],
+    "prerequisites": [
+      "cs:binary-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "searching",
+      "ternary-search",
+      "binary-search",
+      "comparisons"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

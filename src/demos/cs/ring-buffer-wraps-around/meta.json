@@ -26,31 +26,39 @@
   "claims": [
     {
       "id": "cs.ring-buffer-wraps-around.c1",
-      "text": "Writing 1 to 10 into a 4-slot ring buffer, item i goes into slot (i - 1) mod 4: 5 and 9 land on slot 0, 6 and 10 on slot 1, so the slots read 9, 10, 7, 8 (the newest four, 7 to 10). The next write goes to slot 2, over 7, the oldest.",
+      "text": "Writing 1 to 10 into a 4-slot ring buffer, the pointer went round two and a half times: item i goes into slot (i - 1) mod 4, so 5 and 9 land on slot 0, 6 and 10 on slot 1, and the slots read 9, 10, 7, 8 (the newest four, 7 to 10). The next write goes to slot 2, over 7, the oldest.",
       "support": "simulation",
-      "source": "Demo.tsx history(10) (FINAL, NEXT_AFTER); builder's node script (2026-10-14): slots [9, 10, 7, 8], next slot 10 mod 4 = 2. The stage's per-write note ('Wrote n into slot j, over m') and struck-out values come from the same history().",
-      "status": "unverified"
+      "source": "Demo.tsx history(10) (FINAL, NEXT_AFTER); builder's node script (2026-10-14): slots [9, 10, 7, 8], next slot 10 mod 4 = 2. The stage's per-write note ('Wrote n into slot j, over m') and struck-out values come from the same history(). | FACT-CHECK 2026-10-14 (pass 21): Own copy of history(10): slots [9,10,7,8], 5 and 9 on slot 0, 6 and 10 on slot 1; next slot 10 mod 4 = 2 holding 7, the oldest. Unrecorded but true reveal phrase 'went round two and a half times' (10 writes / 4 slots) should be folded into this claim by the builder. · Builder 2026-10-14 (W-204): reworded per pass 21; awaiting re-check. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own copy of history(10): [[1,5,9],[2,6,10],[3,7],[4,8]], so the slots read 9, 10, 7, 8, with 5 and 9 on slot 0 and 6 and 10 on slot 1. The next slot is 10 mod 4 = 2, which holds 7, the oldest of 7-10. 'Two and a half times' = 10 writes / 4 slots = 2.5 turns, and the pointer stops at slot 2, half way round. The text matches reveal para 1 (lines 56-58); the pass 21 fold-in request is done.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ring-buffer-wraps-around.c2",
       "text": "The write pointer is (count mod capacity): after 10 writes, 10 mod 4 = 2.",
       "support": "derivation",
-      "source": "Slots are numbered from 0 and filled in turn, so after count writes the next free position is count; wrapping at the capacity gives count mod capacity. Equivalent to the wrap-around tail index of an array queue in CLRS 4e chapter 10 (section 10.1, ENQUEUE: if Q.tail == Q.size then Q.tail = 1 else Q.tail + 1, one-based).",
-      "status": "unverified"
+      "source": "Slots are numbered from 0 and filled in turn, so after count writes the next free position is count; wrapping at the capacity gives count mod capacity. Equivalent to the wrap-around tail index of an array queue in CLRS 4e chapter 10 (section 10.1, ENQUEUE: if Q.tail == Q.size then Q.tail = 1 else Q.tail + 1, one-based). | FACT-CHECK 2026-10-14 (pass 21): Demo.tsx next = count % CAP; 10 mod 4 = 2. Derivation holds. CLRS 4e section 10.1 ENQUEUE not opened; matches my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ring-buffer-wraps-around.c3",
       "text": "Each write touches one slot and nothing shifts, so the buffer always holds the latest 4 items in the same fixed memory.",
       "support": "derivation",
-      "source": "A write stores one value at the pointer and advances the pointer: constant work, no other slot read or moved, and the array is allocated once at the capacity. Once full, the overwritten slot always holds the oldest item (it was written exactly capacity writes ago), so the slots hold the latest capacity items. CLRS 4e chapter 10 (array queue with wrap-around: O(1) per operation).",
-      "status": "unverified"
+      "source": "A write stores one value at the pointer and advances the pointer: constant work, no other slot read or moved, and the array is allocated once at the capacity. Once full, the overwritten slot always holds the oldest item (it was written exactly capacity writes ago), so the slots hold the latest capacity items. CLRS 4e chapter 10 (array queue with wrap-around: O(1) per operation). | FACT-CHECK 2026-10-14 (pass 21): Derivation holds: one store per write, fixed array of CAP, overwritten slot was written exactly CAP writes ago. CLRS not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ring-buffer-wraps-around.c4",
       "text": "Logs, audio streams and keyboard queues rely on it.",
       "support": "source",
-      "source": "Logs: the Linux kernel log buffer is a ring buffer (dmesg(1) man page: 'print or control the kernel ring buffer'). Audio: ALSA's PCM interface exchanges samples through a ring buffer (ALSA project documentation, 'PCM (digital audio) interface', ring buffer section). Keyboard: the IBM PC BIOS keeps keystrokes in a 16-word circular buffer at 0040:001E with head and tail pointers (IBM PC Technical Reference, BIOS listing; also Ralf Brown's memory map). Builder has not opened these sources in this session; needs checking.",
-      "status": "unverified"
+      "source": "Logs: the Linux kernel log buffer is a ring buffer (dmesg(1) man page: 'print or control the kernel ring buffer'). Audio: ALSA's PCM interface exchanges samples through a ring buffer (ALSA project documentation, 'PCM (digital audio) interface', ring buffer section). Keyboard: the IBM PC BIOS keeps keystrokes in a 16-word circular buffer at 0040:001E with head and tail pointers (IBM PC Technical Reference, BIOS listing; also Ralf Brown's memory map). Builder has not opened these sources in this session; needs checking. | FACT-CHECK 2026-10-14 (pass 21): Sources not opened directly (man7.org, alsa-project.org blocked). Web-search copies corroborate each: dmesg(1) NAME line 'print or control the kernel ring buffer'; alsa-lib PCM docs 'ALSA uses the ring buffer to store outgoing (playback) and incoming (capture, record) samples'; BIOS Data Area references: 16-keystroke circular keyboard buffer at 0040:001E with head/tail words at 0040:001A/001C.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -70,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:circular-buffer",
     "also": [],

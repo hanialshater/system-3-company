@@ -13,3 +13,14 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx first 
 | c5 | verified | Derivation: a cell (c,r) has g >= c + /r-3/ and h = (6-c) + /r-3/, so f >= 6 + 2/r-3/: row 3 scores 6, every other cell >= 8. Node settle order is exactly the 7 row-3 cells, numbered 1 to 7 on the stage. |
 
 **Result:** every claim verified or withdrawn.
+
+## Pass 22
+
+Checker: fact-checker (did not write these claims). Scope: the claims left unverified after the wave D wording reopen. Method: read Demo.tsx (and model.ts where used) against each sentence, then re-ran the numbers in my own node ports of the lesson's logic (scratchpad fc22-5); sources opened where reachable, otherwise marked as not opened.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node port of search() (fc22-5/astar.mjs): open grid guess route 6 = no-guess 6; wall guess route 10 = no-guess 10 (BFS shortest 10). Own derivation: Manhattan is admissible and consistent on a 4-way unit grid, so the first time a cell is settled its steps are minimal; checked on 20,000 random wall layouts (30% walls), guided route length = flood length in every case. Hart, Nilsson & Raphael 1968 not opened (all PDF mirrors unreachable); citation details (IEEE TSSC 4(2):100-107) corroborated by web search only. The learner-visible sentence rests on the derivation, not the unopened paper. |
+| c6 | verified | GUESS_AT_S = /0-6/ + /3-3/ = 6; own BFS with the wall gives 10. Stage line 'Guess at S: 6. Route: 10.' Legend 'Numbers: settle order. Dashed: waiting to settle.' matches num() = settleIdx+1 and isFrontier (joined frontier at disc <= k, not yet settled). |
+
+**Result:** every claim in this pass verified.

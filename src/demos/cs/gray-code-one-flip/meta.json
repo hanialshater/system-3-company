@@ -1,0 +1,115 @@
+{
+  "slug": "gray-code-one-flip",
+  "title": "Count with one switch at a time",
+  "hook": "Can you count 0 to 7 flipping just one bit per step?",
+  "domain": "cs",
+  "concept": "gray-code",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sc"
+  },
+  "format": "side-by-side",
+  "learner": {
+    "knows": [
+      "binary counting (binary-numbers, titled Eight switches)"
+    ],
+    "doesNotKnow": [
+      "that a counting order exists where only one bit changes per step"
+    ]
+  },
+  "misconception": "Counting up in any base-2 order needs several bits to change at once at some steps.",
+  "objective": "The learner can explain that Gray code (g = n XOR (n >> 1)) changes exactly one bit per step, so counting 0 to 7 takes 7 flips against binary's 11, and 3 to 4 flips one bit instead of three.",
+  "claims": [
+    {
+      "id": "cs.gray-code-one-flip.c1",
+      "text": "Going from 3 to 4, binary flips all three bits (011 to 100) and Gray code flips one (010 to 110).",
+      "support": "simulation",
+      "source": "Builder's node script (2026-10-14, algo2-sc) and gray() in Demo.tsx: 3 XOR 1 = 2 = 010, 4 XOR 2 = 6 = 110; popcount(011 XOR 100) = 3, popcount(010 XOR 110) = 1. | FACT-CHECK 2026-10-14 (pass 22): Own node: gray(3)=010, gray(4)=110; popcount(011^100)=3, popcount(010^110)=1. Reveal renders str(gray(3)) to str(gray(4)).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.gray-code-one-flip.c2",
+      "text": "Counting 0 to 7, binary makes 11 bit flips and Gray code makes 7, exactly one per step.",
+      "support": "simulation",
+      "source": "Builder's node script: Gray sequence 000 001 011 010 110 111 101 100; binary flips per step 1 2 1 3 1 2 1 (11), Gray 1 1 1 1 1 1 1 (7). | FACT-CHECK 2026-10-14 (pass 22): Own node: Gray sequence 000 001 011 010 110 111 101 100; binary flips 1 2 1 3 1 2 1 = 11, Gray 7 x 1 = 7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.gray-code-one-flip.c3",
+      "text": "Gray code: g = n XOR (n shifted right one place).",
+      "support": "derivation",
+      "source": "Definition of the binary-reflected Gray code. One bit per step: going from n to n+1 flips a run of trailing bits (lowest 0 and the 1s below it); g(n) XOR g(n+1) = (n XOR (n+1)) XOR ((n XOR (n+1)) >> 1), and n XOR (n+1) = 2^(t+1) - 1, so the result is 2^t, a single bit. | FACT-CHECK 2026-10-14 (pass 22): Stage rule matches gray() = n ^ (n >> 1). Derivation re-checked; own node check: g(n) XOR g(n+1) has one bit for all n < 4096.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.gray-code-one-flip.c4",
+      "text": "If a sensor reads halfway between two marks, a Gray reading can be off by one position, never a jumble of bits.",
+      "support": "derivation",
+      "source": "Adjacent positions differ in one bit, so a reading taken mid-change can only return one of the two neighbouring codes. In binary, 011 -> 100 changes three bits, and a mid-change read can mix them into any of 8 codes (e.g. 111 = 7). | FACT-CHECK 2026-10-14 (pass 22): Follows from c3: neighbours differ in one bit, so a read during one transition gives one of the two neighbouring codes (ideal per-bit sensing). Search snippets on encoders (control.com 'An Introduction to Gray Code for Encoders'; Omron FAQ) say the same: a misread is at most one step.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.gray-code-one-flip.c5",
+      "text": "Rotary encoders use Gray code for this reason.",
+      "support": "source",
+      "source": "Frank Gray, 'Pulse code communication', US patent 2,632,058 (filed 1947, granted 1953): brief marks the number 'check before building'; not checked by the builder and not quoted on the stage. Absolute rotary encoders commonly use Gray code (e.g. Knuth, TAOCP vol. 4A, section 7.2.1.1, from memory). Needs a fact-checker to open a source. | FACT-CHECK 2026-10-14 (pass 22): Patent US 2,632,058 NOT opened (patents.google.com blocked); search snippets give 'Pulse Code Communication', F. Gray, filed 13 Nov 1947, granted 17 Mar 1953, but the patent is about pulse-code transmission, not encoders, and is not on the stage. The learner sentence (encoders use Gray code to avoid mid-transition misreads) is corroborated by search snippets from several independent sources (control.com, Omron, NIST DADS entry with a rotary-encoder figure); no page opened. Knuth TAOCP 4A not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A dial sensor might be read just as it moves from one position to the next. Why number its positions in Gray code?",
+    "options": [
+      "Neighbouring positions differ in one bit, so a half-read is off by at most one",
+      "Gray code uses fewer bits than binary",
+      "Gray code numbers are larger, so errors are easier to spot"
+    ],
+    "answer": 0,
+    "why": "Only one bit changes between neighbours, so a reading caught mid-change is one of the two neighbouring positions, not a random code."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "cs:gray-code",
+    "also": [
+      "cs:hamming-code"
+    ],
+    "prerequisites": [
+      "cs:binary-numbers",
+      "cs:bit-masks"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "bits",
+      "gray-code",
+      "xor",
+      "encoders"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "side-by-side",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

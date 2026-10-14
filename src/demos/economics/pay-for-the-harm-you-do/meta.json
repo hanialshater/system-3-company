@@ -1,0 +1,118 @@
+{
+  "slug": "pay-for-the-harm-you-do",
+  "title": "Pay for the harm you do",
+  "hook": "Two ad slots, three bidders. If the winner doesn't pay their own bid, what do they pay?",
+  "domain": "economics",
+  "concept": "vcg-mechanism",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "second-price auctions"
+    ],
+    "doesNotKnow": [
+      "that charging each winner the value their presence costs everyone else makes honest bids best, even with several slots"
+    ]
+  },
+  "misconception": "In a multi-slot ad auction each winner should pay their own bid.",
+  "objective": "The learner can explain that under VCG the top winner pays the value the others lose because of them (here $65 without X minus $30 with X, so $35), and that no bid leaves X better off than the honest one.",
+  "claims": [
+    {
+      "id": "economics.pay-for-the-harm-you-do.c1",
+      "text": "Without X, Y and Z get $65 of value (Y takes the top slot, 10 x $6 = $60, Z the second, 5 x $1 = $5); with X on top, Y gets 5 x $6 = $30 and Z gets nothing; so X pays the $35 gap, not the $70 its own bid would charge.",
+      "support": "derivation",
+      "source": "Others' best value without X: 60 + 5 = 65; with X in slot 1: 30; payment 65 - 30 = 35. Demo.tsx outcome(7); re-run in node (scratch check, ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own independent VCG script: others' welfare without X 60 + 5 = 65, with X on top 30, X pays 35, keeps 70 - 35 = 35. Reveal computes from outcome(7).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.pay-for-the-harm-you-do.c2",
+      "text": "By the same rule, with honest bids Y pays $5 and Z pays $0.",
+      "support": "derivation",
+      "source": "Y: others' value without Y = 7 x 10 + 1 x 5 = 75, with Y = 70, so 5. Z: without Z = 70 + 30 = 100, with Z = 100, so 0. Re-run in node (ncm-e00). | FACT-CHECK 2026-10-14 (pass 22): Own VCG script: Y pays 75 - 70 = 5, Z pays 100 - 100 = 0 (Z unplaced).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.pay-for-the-harm-you-do.c3",
+      "text": "With Y bidding $6 and Z $1, no bid from $0 to $10 gives X more than the honest $7: bids of $6 to $10 tie at $35 kept, bids of $1 to $5 put X in the second slot keeping $30; X's bid only picks the slot, the others' bids set the price.",
+      "support": "derivation",
+      "source": "X's profit by bid 0..10 = [0,30,30,30,30,30,35,35,35,35,35] (ties go to X; a $0 bid takes no slot). Demo.tsx outcome(b); matches the brief's re-run. | FACT-CHECK 2026-10-14 (pass 22): Own script, X's kept value for bids 0..10 with ties to X = 0,30,30,30,30,30,35,35,35,35,35; reveal prints outcome(7).keep and outcome(3).keep.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.pay-for-the-harm-you-do.c4",
+      "text": "This payment rule is the VCG mechanism, under which bidding your true value is a dominant strategy.",
+      "support": "source",
+      "source": "Vickrey 1961 (J. Finance 16), Clarke 1971 (Public Choice 11), Groves 1973 (Econometrica 41); Easley and Kleinberg 2010, ch. 15. Fact-checker to confirm attribution. | FACT-CHECK 2026-10-14 (pass 22): Attribution from own knowledge (sources not opened, network blocked): Vickrey 1961 J. Finance 16 'Counterspeculation, auctions, and competitive sealed tenders'; Clarke 1971 Public Choice 11 'Multipart pricing of public goods'; Groves 1973 Econometrica 41 'Incentives in teams'. Truthful bidding is a dominant strategy under VCG (standard; also stated as the VCG benchmark in the EOS 2007 abstract snippet). E&K ch. 15 'Sponsored Search Markets' covers VCG (placement from own knowledge, confident).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.pay-for-the-harm-you-do.c5",
+      "text": "The lesson is a simplified model: fixed clicks per slot, invented values, Y and Z bid their values, ties go to X.",
+      "support": "convention",
+      "source": "Assumptions of Demo.tsx; stage chip 'Model: Y bids $6, Z bids $1; ties go to X' and the reveal's last line. | FACT-CHECK 2026-10-14 (pass 22): Matches the reveal's muted line and stage chip; outcome() implements fixed clicks, invented values, ties to X.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the pay-the-harm rule, the others would get $50 of value without you and $20 with you in the top slot. What do you pay?",
+    "options": [
+      "$20",
+      "$30",
+      "$50"
+    ],
+    "answer": 1,
+    "why": "You pay the value your presence costs everyone else: $50 without you minus $20 with you, $30."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:vcg-mechanism",
+    "also": [
+      "economics:externality"
+    ],
+    "prerequisites": [
+      "economics:externality"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 15
+      }
+    ],
+    "tags": [
+      "auctions",
+      "mechanism design",
+      "advertising"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

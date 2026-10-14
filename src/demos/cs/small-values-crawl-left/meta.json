@@ -1,0 +1,111 @@
+{
+  "slug": "small-values-crawl-left",
+  "title": "Turtles and rabbits",
+  "hook": "Same six cards. Does it matter where the odd one sits?",
+  "domain": "cs",
+  "concept": "bubble-turtles",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adjacent swaps can order a list"
+    ],
+    "doesNotKnow": [
+      "that one pass carries a big value all the way right but a small value only one step left"
+    ]
+  },
+  "misconception": "Bubble sort treats big and small values the same, so any 6-card list needs about the same number of passes.",
+  "objective": "The learner can explain that one bubble-sort sweep carries a large value all the way right but moves a small value left by only one place, so 2 3 4 5 6 1 needs 5 swapping sweeps while 6 1 2 3 4 5 needs 1.",
+  "claims": [
+    {
+      "id": "cs.small-values-crawl-left.c1",
+      "text": "Bubble sort sweeps left to right, swapping neighbours that are out of order, and repeats until a sweep makes no swap (question and stage rule line).",
+      "support": "source",
+      "source": "Knuth, TAOCP vol. 3 (2nd ed.), section 5.2.2, Algorithm B (bubble sort), which stops after a pass with no exchange. The stage's sweep is the same: ladder() in Demo.tsx compares each adjacent pair once, left to right, swapping as it goes. | FACT-CHECK 2026-10-14 (pass 21): verified. ladder() matches the stated rule. Knuth TAOCP 3, 5.2.2 Algorithm B cited from memory, not opened; the sentence is the stage's own rule.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.small-values-crawl-left.c2",
+      "text": "X = 2 3 4 5 6 1 takes 5 sweeps that swap; Y = 6 1 2 3 4 5 takes 1. Each is followed by one sweep with no swap.",
+      "support": "simulation",
+      "source": "Demo.tsx ladder() (X.swapping, Y.swapping), which the stage and reveal print. Builder's node script (2026-10-14) re-ran both: X rows 234561, 234516, 234156, 231456, 213456, 123456, 123456; Y rows 612345, 123456, 123456. Matches the brief's check. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran ladder(): X 5 swapping sweeps (rows 234561..123456, then a no-swap row), Y 1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.small-values-crawl-left.c3",
+      "text": "In one sweep a value can move right many places but left at most one place (reveal: 'one sweep carried the 6 past every card', 'the 1 could only move one place per sweep', 'moves a small value left only one place').",
+      "support": "derivation",
+      "source": "A value moves left only when the item just left of it is compared with it and swapped, and the sweep then moves on past it, so at most one left step per sweep; a value larger than everything after it is swapped at every later comparison and is carried to the end. Builder's node script (2026-10-14) checked all 720 orderings of 1-6: the largest left move in one sweep is 1. | FACT-CHECK 2026-10-14 (pass 21): verified. All 720 orders of 1..6: largest left move in one sweep is 1. Note for builder (not a dispute): the reveal's 'A sweep carries a large value all the way right' is true of the largest value met so far, not of every large value; 'the largest value' would be exact.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.small-values-crawl-left.c4",
+      "text": "Small values near the end are called turtles and large values near the start rabbits; turtles set the cost.",
+      "support": "source",
+      "source": "Terminology from Lacey and Box, 'A fast, easy sort', Byte 16(4), April 1991 (check before building: written from memory). 'Turtles set the cost' follows from c3: a value k places from its spot on the left needs at least k swapping sweeps. | FACT-CHECK 2026-10-14 (pass 21): verified. Terms 'turtles' (small values near the end) and 'rabbits' (large near the start) confirmed in Wikipedia's Comb sort / Bubble sort articles (web-search extract). Attribution of the terms to Lacey and Box (Byte 16(4), April 1991, pp. 315-320) not confirmed; it is not shown to learners. 'Turtles set the cost': a value k places right of its spot needs >= k swapping sweeps, checked on all 720 orders.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.small-values-crawl-left.c5",
+      "text": "Comb sort fixes this by first comparing items far apart, with a gap that shrinks.",
+      "support": "source",
+      "source": "Dobosiewicz, 'An efficient variation of bubble sort', Information Processing Letters 11(1), 1980; Lacey and Box, Byte 1991 (both cited from the brief, check before building). | FACT-CHECK 2026-10-14 (pass 21): verified. Comb sort = bubble sort with a shrinking gap (Wikipedia, Comb sort, via search; Dobosiewicz 1980 IPL 11(1) and Lacey & Box 1991 listed there). Primary sources not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Bubble sort sweeps left to right. Which list is slower to sort: 1 2 3 4 5 6 7 0 or 7 0 1 2 3 4 5 6?",
+    "options": [
+      "1 2 3 4 5 6 7 0, because the 0 can move left only one place per sweep",
+      "7 0 1 2 3 4 5 6, because the 7 has the farthest to go",
+      "Both take the same number of sweeps"
+    ],
+    "answer": 0,
+    "why": "One sweep carries the 7 all the way right, but the 0 at the end moves left only one place per sweep, so it needs 7 swapping sweeps against 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:bubble-turtles",
+    "also": [],
+    "prerequisites": [
+      "cs:insertion-sort"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "sorting",
+      "bubble-sort",
+      "comb-sort"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

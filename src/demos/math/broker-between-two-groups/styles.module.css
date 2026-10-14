@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 0 1 auto; min-height: 140px; max-height: 36dvh; }
+.edge { stroke: var(--line); stroke-width: 1.5; }
+.mine { stroke: var(--domain); stroke-width: 2.5; }
+.path { stroke: var(--good); stroke-width: 4; }
+.gap { stroke: var(--bad); stroke-width: 2; stroke-dasharray: 5 4; }
+.person { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.5; }
+.named { fill: var(--bg-2); stroke: var(--fg); stroke-width: 2; }
+.friend { fill: color-mix(in srgb, var(--domain) 45%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.5; }
+.picked { fill: var(--domain); stroke: var(--fg); stroke-width: 2.5; }
+.end { stroke: var(--good); stroke-width: 3.5; }
+.label { font-size: 13px; font-weight: 700; fill: var(--fg); text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.86rem; min-height: 1.4em; }
+.controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.tap { min-height: 44px; }
+.wrap :global(.row) { justify-content: center; margin-top: 0; }

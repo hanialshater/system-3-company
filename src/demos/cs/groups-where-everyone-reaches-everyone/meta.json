@@ -29,36 +29,46 @@
       "id": "cs.groups-where-everyone-reaches-everyone.c1",
       "text": "With one-way roads 1 to 2, 2 to 3, 3 to 1, 3 to 4, 4 to 5, 5 to 6, 6 to 4, 7 to 6, there are 3 groups where every town can reach every other: {1, 2, 3}, {4, 5, 6} and {7}.",
       "support": "simulation",
-      "source": "Builder's node script (2026-10-14): brute-force reachability from every town, grouping towns that reach each other both ways, gives [1,2,3], [4,5,6], [7]; Kosaraju (Demo.tsx GROUPS) gives the same three.",
-      "status": "unverified"
+      "source": "Builder's node script (2026-10-14): brute-force reachability from every town, grouping towns that reach each other both ways, gives [1,2,3], [4,5,6], [7]; Kosaraju (Demo.tsx GROUPS) gives the same three. | FACT-CHECK 2026-10-14 (pass 21): Own node brute force (fc21b/scc.mjs): mutual reachability groups [1,2,3], [4,5,6], [7].",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c2",
       "text": "Pass 1, a depth-first search from town 1 (smaller towns and roads first), finishes the towns in the order 6, 5, 4, 3, 2, 1, 7 (shown as 1st to 7th).",
       "support": "simulation",
-      "source": "Demo.tsx FINISH: DFS over towns 1..7 in order, out-roads sorted ascending; builder's node script: discovery 1-6 at times 1-6, finish 6, 5, 4, 3, 2, 1 at times 7-12, then 7 (times 13, 14). The order depends on the start town and neighbour order chosen (a convention); any DFS order gives the same groups.",
-      "status": "unverified"
+      "source": "Demo.tsx FINISH: DFS over towns 1..7 in order, out-roads sorted ascending; builder's node script: discovery 1-6 at times 1-6, finish 6, 5, 4, 3, 2, 1 at times 7-12, then 7 (times 13, 14). The order depends on the start town and neighbour order chosen (a convention); any DFS order gives the same groups. | FACT-CHECK 2026-10-14 (pass 21): Own DFS (towns in order, out-roads ascending): discovery 1..6 at 1..6, finish 6,5,4,3,2,1 at 7..12, town 7 at 13/14. Finish order 6,5,4,3,2,1,7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c3",
       "text": "Pass 2 reverses every road and floods from the uncoloured town that finished last: from 7 it reaches only {7}; from 1, {1, 2, 3}; from 4, {4, 5, 6}, with 3 and 7 already coloured. Every reversed road leaving a new group led into a town already coloured (4 to 3, 6 to 7), so each flood stayed inside its own group.",
       "support": "simulation",
-      "source": "Demo.tsx GROUPS (flood over REVERSED in decreasing finish order); builder's node script gives starts 7, 1, 4 and groups [7], [1,2,3], [4,5,6]; the only reversed roads leaving a group are 4 to 3 and 6 to 7, both into coloured towns. Kosaraju's method and its correctness: CLRS 4e section 20.5 (STRONGLY-CONNECTED-COMPONENTS and its correctness theorem; builder did not check the lemma numbers).",
-      "status": "unverified"
+      "source": "Demo.tsx GROUPS (flood over REVERSED in decreasing finish order); builder's node script gives starts 7, 1, 4 and groups [7], [1,2,3], [4,5,6]; the only reversed roads leaving a group are 4 to 3 and 6 to 7, both into coloured towns. Kosaraju's method and its correctness: CLRS 4e section 20.5 (STRONGLY-CONNECTED-COMPONENTS and its correctness theorem; builder did not check the lemma numbers). | FACT-CHECK 2026-10-14 (pass 21): Own pass 2 on reversed roads in decreasing finish order: starts 7, 1, 4; groups [7], [1,2,3], [4,5,6]; only reversed roads leaving a group are 4->3 and 6->7, both into already coloured towns. Kosaraju's method in CLRS 4e sec. 20.5 (chapter placement from memory; not opened); the sentence rests on the computation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c4",
       "text": "Every town is on one map, but town 3 can reach 4 and 4 cannot reach back, so the two loops are different groups. Town 7 reaches the right loop, and nothing reaches 7, so it is a group on its own.",
       "support": "simulation",
-      "source": "Ignoring direction, a search from town 1 reaches all 7 towns (builder's node script). With direction, reach(4) = {4, 5, 6} excludes 3; no road ends at 7, so reach-back to 7 is impossible from any other town.",
-      "status": "unverified"
+      "source": "Ignoring direction, a search from town 1 reaches all 7 towns (builder's node script). With direction, reach(4) = {4, 5, 6} excludes 3; no road ends at 7, so reach-back to 7 is impossible from any other town. | FACT-CHECK 2026-10-14 (pass 21): Own check: undirected search from 1 reaches all 7; reach(4) = {4,5,6}; no road ends at 7.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.groups-where-everyone-reaches-everyone.c5",
       "text": "Shrinking each group to a point leaves 7 → {4, 5, 6} ← {1, 2, 3}: no loops left. That is why the groups can be put in order.",
       "support": "source",
-      "source": "The only roads between groups are 3 to 4 and 7 to 6 (builder's node script), giving the shrunk graph above with no cycle. In general the component graph is a directed acyclic graph: CLRS 4e section 20.5 (lemma that the component graph is acyclic; number not checked by the builder), so it has a topological order (CLRS 4e section 20.4).",
-      "status": "unverified"
+      "source": "The only roads between groups are 3 to 4 and 7 to 6 (builder's node script), giving the shrunk graph above with no cycle. In general the component graph is a directed acyclic graph: CLRS 4e section 20.5 (lemma that the component graph is acyclic; number not checked by the builder), so it has a topological order (CLRS 4e section 20.4). | FACT-CHECK 2026-10-14 (pass 21): Own check: inter-group roads are 3->4 and 7->6, so the shrunk graph is {1,2,3} -> {4,5,6} <- 7, acyclic. General fact re-derived: a cycle among components would make them mutually reachable, i.e. one component.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

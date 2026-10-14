@@ -1,0 +1,169 @@
+/* Fill the stage; the picture shrinks to fit instead of overflowing the centred stage. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 130px;
+  height: auto;
+}
+
+/* The kit slider is flex: 1 1 160px, which in a column container means a 160px height. */
+.wrap > :global(.slider) {
+  flex: none;
+}
+
+.chip {
+  align-self: center;
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+}
+
+.axis {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.big {
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.msg {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.ghost {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.track {
+  fill: var(--bg-2);
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.line {
+  fill: none;
+  stroke: color-mix(in srgb, var(--domain) 80%, var(--fg) 20%);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.line2 {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.main {
+  fill: color-mix(in srgb, var(--domain) 75%, var(--fg) 25%);
+}
+
+.soft {
+  fill: color-mix(in srgb, var(--domain) 35%, transparent);
+  stroke: var(--domain);
+  stroke-width: 1.5;
+}
+
+.badFill {
+  fill: color-mix(in srgb, var(--bad) 60%, transparent);
+}
+
+.goodFill {
+  fill: color-mix(in srgb, var(--good) 70%, transparent);
+}
+
+.mutedFill {
+  fill: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+
+.bracket {
+  fill: none;
+  stroke: var(--bad);
+  stroke-width: 2;
+}
+
+.bracketText {
+  font-size: 12px;
+  font-weight: 800;
+  fill: var(--bad);
+}
+
+.edge {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.edgeOn {
+  stroke: var(--domain);
+  stroke-width: 3.5;
+}
+
+.node {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.nodeOn {
+  fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2));
+  stroke: var(--domain);
+  stroke-width: 2.5;
+}
+
+.nodeText {
+  font-size: 12px;
+  font-weight: 800;
+  fill: var(--fg);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.small {
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.dot {
+  fill: var(--fg);
+}
+
+.good {
+  color: var(--good);
+}
+
+.bad {
+  color: var(--bad);
+}

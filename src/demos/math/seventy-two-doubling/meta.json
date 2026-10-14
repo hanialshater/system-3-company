@@ -1,6 +1,6 @@
 {
   "slug": "seventy-two-doubling",
-  "title": "The rule of 72",
+  "title": "When does 100 become 200?",
   "hook": "Money grows 8% a year. How long until it doubles?",
   "domain": "math",
   "concept": "rule-of-72",
@@ -52,18 +52,18 @@
     },
     {
       "id": "math.seventy-two-doubling.c4",
-      "text": "72 / rate gives 9 at 8%, 12 at 6% and 6 at 12%, and is within about 0.2 years of the exact doubling time for every whole-number rate from 5% to 20%.",
+      "text": "72 / rate gives 9 at 8% and is within about 0.2 years of the exact doubling time for every whole-number rate from 5% to 20%; the reveal also quotes 72 / rate against the exact time (ln 2 / ln(1 + r)) at the other rate the learner set, e.g. 8.0 vs 8.0 years at 9%.",
       "support": "derivation",
-      "source": "Tabulated in node for whole rates 2..20%: abs(72/r - ln2/ln(1+r)) = 1.00 (2%), 0.55 (3%), 0.33 (4%), then at most 0.20 for 5% to 20% (0.19 at 5%, 0.20 at 20%).",
+      "source": "Tabulated in node for whole rates 2..20%: abs(72/r - ln2/ln(1+r)) = 1.00 (2%), 0.55 (3%), 0.33 (4%), then at most 0.20 for 5% to 20% (0.19 at 5%, 0.20 at 20%). | FACT-CHECK 2026-10-14 (pass 21): node: |72/r - ln2/ln(1+r)| for r = 5..20 max 0.202 (20%), 0.193 (5%); 8% gives 9.0 vs 9.006; 9% prints 8.0 vs 8.0 (8.043). Reveal computes the other rate live.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.seventy-two-doubling.c5",
-      "text": "72 is close to 100 x ln 2 (about 69.3) and divides evenly by many whole rates, which is why the rule of 72 uses it.",
+      "text": "72 divides evenly by many whole rates (2, 3, 4, 6, 8, 9, 12), which is one reason the rule uses 72.",
       "support": "derivation",
-      "source": "100 ln 2 = 69.31; 72 has divisors 2, 3, 4, 6, 8, 9, 12. Standard explanation of the rule of 72.",
+      "source": "Divisors of 72: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72. The other reason (72 is close to 100 × ln 2 ≈ 69.3, nudged up for typical rates) was removed from the learner text in v3 as beyond the boundary; see Wikipedia 'Rule of 72' and Brealey, Myers & Allen, Principles of Corporate Finance. | FACT-CHECK 2026-10-14 (pass 21): Divisors of 72 include 2, 3, 4, 6, 8, 9, 12 (node). 'One reason' corroborated by web-search copies of Wikipedia 'Rule of 72' ('a convenient choice of numerator, since it has many small divisors'); Wikipedia itself and Brealey, Myers & Allen not opened.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -86,12 +86,13 @@
       "company/reviews/seventy-two-doubling/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/seventy-two-doubling/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/seventy-two-doubling/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/seventy-two-doubling/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:rule-of-72",
     "prerequisites": [

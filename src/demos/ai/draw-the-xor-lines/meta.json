@@ -1,6 +1,6 @@
 {
   "slug": "draw-the-xor-lines",
-  "title": "One line can't. Two can.",
+  "title": "Can one straight line split these?",
   "hook": "Four dots, two colours. How many straight cuts does it take to separate them?",
   "domain": "ai",
   "concept": "hidden-layers-xor",
@@ -25,12 +25,12 @@
   "claims": [
     {
       "id": "ai.draw-the-xor-lines.c1",
-      "text": "No single straight line puts (0,0) and (1,1) on one side and (0,1) and (1,0) on the other: both pairs have the same midpoint (0.5, 0.5), and a side that contains two points contains their midpoint.",
+      "text": "Your best with one line was 3 of 4, and no line in this toy does better. The middle dot sits halfway between the two blues and halfway between the two oranges; a side that holds both blues must hold it, and so must a side that holds both oranges. A line's two sides cannot share a point, so one line always misses a dot.",
       "support": "derivation",
-      "source": "Half-planes are convex, so a half-plane holding both blues holds (0.5, 0.5), and so does the half-plane holding both oranges; the two sides of a line cannot share a point. Toy check: the best of all 24 lines in the toy is 3 of 4 (bestOneLine in Demo.tsx), and 20,000 random lines also never exceed 3 (node script).",
+      "source": "Half-planes are convex, so a half-plane holding both blues holds (0.5, 0.5), and so does the half-plane holding both oranges; the two sides of a line cannot share a point. Toy check: the best of all 24 lines in the toy is 3 of 4 (bestOneLine in Demo.tsx), and 20,000 random lines also never exceed 3 (node script). | v4 2026-10-14 (demo-builder): reveal reworded to point at the middle dot (now filled with the model's colour at (0.5, 0.5)) and to state the last step. '3 of 4' is the learner's own best, which the gate ('ceiling') requires to equal bestOneLine() = 3. Reopened. | FACT-CHECK 2026-10-14 (pass 21): verified. Ran the Demo.tsx MODEL block: bestOneLine() = 3, START1 scores 2, 20,000 random lines max 3. Gate 'ceiling' needs one line at bestOneLine(), so bestSingle = 3 at reveal. Midpoint argument re-derived (on side is an open half-plane, off side closed; both convex).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.draw-the-xor-lines.c2",
@@ -52,21 +52,21 @@
     },
     {
       "id": "ai.draw-the-xor-lines.c4",
-      "text": "In the toy each line turns in 45° steps and slides through three positions; the shading shows what the model says at every point.",
+      "text": "In the toy each line turns in 45° steps and slides through three positions; the shading shows what the model says at every point, each line marks its 'on' side, and the middle dot shows the model's answer at (0.5, 0.5).",
       "support": "convention",
-      "source": "The lesson's own controls in Demo.tsx (OFFSETS, Line.turn); the shading is predict() evaluated on a 20 × 20 grid.",
+      "source": "The lesson's own controls in Demo.tsx (OFFSETS, Line.turn); the shading is predict() evaluated on a 20 × 20 grid. | v4 2026-10-14 (demo-builder): added the 'on 1' / 'on 2' labels (onMark, placed on the side where onSide() is true) and the coloured middle dot. Reopened. | FACT-CHECK 2026-10-14 (pass 21): verified. OFFSETS has 3 values, turn in 8 x 45 deg; shading = predict() on a 20 x 20 grid; onMark sits 0.13 inside the on side and stays in view; middle dot fill = predict(l1, l2, 0.5, 0.5).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.draw-the-xor-lines.c5",
-      "text": "Two lines solve it by labelling orange where exactly one line says 'on', for example a band between them when the lines are parallel.",
+      "text": "Your two lines got all 4: the shading is orange where a point is on the 'on' side of exactly one line (each line marks its 'on' side).",
       "support": "derivation",
-      "source": "Reveal paragraph 2. CONCERN from the fact-checker: the band is true only for the 18 parallel solutions; 36 of the toy's 54 solving two-line settings are non-parallel lines, where 'exactly one on' gives two opposite wedges (e.g. the lines x=0.5 and y=0.5 give opposite quadrants), not a band (xor.mjs). The recorded c2 says 'for example parallel' and is accurate; the reveal wording is narrower than what learners can build. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: 'a band between them' holds only for parallel lines. Of the toy's solving two-line settings, non-parallel ones give two opposite wedges, not a band, and learners can build those. Fix: 'for example a band when the lines are parallel'. | CLAIM FIX 2026-10-13: Was 'which makes a band between them' (disputed: crossing lines give opposite wedges, not a band). | FACT-CHECK 2026-10-13 (pass 4): Rechecked: 'for example a band when parallel' is an example. Note: parallel lines with same-direction normals give an orange band; opposite normals give orange outside a band.",
+      "source": "Reveal paragraph 2. CONCERN from the fact-checker: the band is true only for the 18 parallel solutions; 36 of the toy's 54 solving two-line settings are non-parallel lines, where 'exactly one on' gives two opposite wedges (e.g. the lines x=0.5 and y=0.5 give opposite quadrants), not a band (xor.mjs). The recorded c2 says 'for example parallel' and is accurate; the reveal wording is narrower than what learners can build. Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: 'a band between them' holds only for parallel lines. Of the toy's solving two-line settings, non-parallel ones give two opposite wedges, not a band, and learners can build those. Fix: 'for example a band when the lines are parallel'. | CLAIM FIX 2026-10-13: Was 'which makes a band between them' (disputed: crossing lines give opposite wedges, not a band). | FACT-CHECK 2026-10-13 (pass 4): Rechecked: 'for example a band when parallel' is an example. Note: parallel lines with same-direction normals give an orange band; opposite normals give orange outside a band. | v4 2026-10-14 (demo-builder): the band example is gone from the reveal; the sentence now describes the rule (predict() with two lines = XOR of onSide) and points at the 'on' labels. The gate ('solved') requires 4 of 4 with two lines, and line 2 is added in a non-solving position (startLine2), so the learner moved a line to get there. Reopened. | FACT-CHECK 2026-10-14 (pass 21): verified. predict() with two lines is onSide(l1) !== onSide(l2), i.e. exactly one 'on'. startLine2 never starts at a solving position (0 of 24 line-1 settings), 54 solving pairs exist. Independence: the current wording is the v4 builder's; an earlier fact-checker only recorded the stage sentence.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -85,12 +85,13 @@
       "company/reviews/draw-the-xor-lines/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/draw-the-xor-lines/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/draw-the-xor-lines/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/draw-the-xor-lines/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "ai:hidden-layers-xor",
     "prerequisites": [

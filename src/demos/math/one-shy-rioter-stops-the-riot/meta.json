@@ -1,0 +1,113 @@
+{
+  "slug": "one-shy-rioter-stops-the-riot",
+  "title": "Can one shy person stop a riot?",
+  "hook": "Two crowds of 100 differ in one person's nerve. Do they behave almost the same?",
+  "domain": "math",
+  "concept": "heterogeneous-thresholds",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "people join once enough others have"
+    ],
+    "doesNotKnow": [
+      "that a crowd's outcome can hinge on one person's threshold, not on the crowd's average mood"
+    ]
+  },
+  "misconception": "Two crowds with almost identical people behave almost identically.",
+  "objective": "The learner can explain that with thresholds 0, 1, ..., 99 each joiner brings the count to the next person's threshold, so all 100 join; changing the single threshold of 1 to 2 leaves no one who joins at a count of 1, so only the first mover joins, though the average threshold moves only from 49.5 to 49.51.",
+  "claims": [
+    {
+      "id": "math.one-shy-rioter-stops-the-riot.c1",
+      "text": "With thresholds 0, 1, 2, ..., 99 and everyone seeing everyone, all 100 people join, one more each round.",
+      "support": "derivation",
+      "source": "Builder's node run 2026-10-14 (synchronous rounds, person joins when joined count >= threshold): 100 join; in round r exactly the person with threshold r - 1 joins, 100 rounds. Same joinRounds() as Demo.tsx. | FC pass 22 (fact-checker, 2026-10-14): own copy of joinRounds() (scratchpad fc22/riot.mjs): 100 join, person i joins in round i+1, 100 rounds.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.one-shy-rioter-stops-the-riot.c2",
+      "text": "Changing the single threshold of 1 to 2 leaves only 1 person joining: after the first mover, everyone left needs at least 2 others.",
+      "support": "derivation",
+      "source": "Builder's node run 2026-10-14: thresholds 0, 2, 2, 3, ..., 99 stop at 1. After round 1 the count is 1 and the smallest remaining threshold is 2. | FC pass 22 (fact-checker, 2026-10-14): same script with threshold of person 1 set to 2: 1 joins.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.one-shy-rioter-stops-the-riot.c3",
+      "text": "The change moves the average threshold only from 49.5 to 49.51.",
+      "support": "derivation",
+      "source": "Sum 0..99 = 4950, mean 49.5; raising one value by 1 gives 4951 / 100 = 49.51. | FC pass 22 (fact-checker, 2026-10-14): 4950/100 = 49.5; 4951/100 = 49.51 (node); readout uses mean().toFixed(2).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.one-shy-rioter-stops-the-riot.c4",
+      "text": "A chain like this needs a next person at every count, so one missing link stops it.",
+      "support": "derivation",
+      "source": "With joined count k, the process continues only if some non-joiner has threshold <= k. Node check 2026-10-14: raising any single threshold j to j + 1 in 0..99 stops the crowd at exactly j (tried j = 0, 1, 2, 10, 50, 98, 99). | FC pass 22 (fact-checker, 2026-10-14): exhaustive check: raising threshold j to j+1 for every j = 0..99 stops the crowd at exactly j (no exceptions).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.one-shy-rioter-stops-the-riot.c5",
+      "text": "This example is Granovetter's threshold model of collective behaviour.",
+      "support": "source",
+      "source": "M. Granovetter, 'Threshold Models of Collective Behavior', American Journal of Sociology 83(6) (1978); also Easley & Kleinberg (2010) ch. 19. Citation from the brief; attribution for the fact-checker to confirm (the 0..99 riot is the paper's well-known example). | FC pass 22 (fact-checker, 2026-10-14): Granovetter, 'Threshold Models of Collective Behavior', AJS 83(6):1420-1443 (1978) confirmed bibliographically via search (Stanford/JSTOR listing); PDF host blocked, not opened. The 0..99 riot with the 1 replaced by a 2 is the paper's illustration (my knowledge, consistent with secondary sources). E&K ch. 19 (cascading behaviour in networks, threshold rule): placement from memory, I am not sure ch. 19 cites Granovetter by name; not shown to learners.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "50 people with thresholds 0, 1, 2, ..., 49 (everyone sees everyone). The person whose threshold is 10 is changed to 11. How many join?",
+    "options": [
+      "10",
+      "11",
+      "50"
+    ],
+    "answer": 0,
+    "why": "People with thresholds 0 to 9 join one by one, bringing the count to 10. Nobody left needs only 10, so the chain stops at 10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:heterogeneous-thresholds",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 19
+      }
+    ],
+    "tags": [
+      "cascades",
+      "thresholds",
+      "collective behaviour"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

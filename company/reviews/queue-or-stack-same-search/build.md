@@ -21,3 +21,12 @@ Side-by-side comparison per `company/design/specs/queue-or-stack-same-search.md`
 - Hops labels are 8.5 px text in a ~180 px wide panel; check readability on the walkthrough sheet.
 - All 5 claims start unverified; fact-checker owns c4 (CLRS Theorem 22.5, 3rd ed. numbering; `clrs-4e` is the only work in content/works.json).
 - Full typecheck was killed by memory pressure on the shared box; next dev/build compiled the files, QA results recorded in the handoff.
+
+
+## r5 revision (v3, 2026-10-14, wave D)
+Answers 2026-10-14-learner-adult-beginner-r5.md (revise).
+- Reveal crop: each panel's SVG carried the flex sizing; the global reveal rule `.lesson[data-phase="reveal"] .stage .stage-svg { flex: none }` overrode it, so each SVG took 100% of the row and both were drawn at full stage width and cropped. Flex sizing now lives on a wrapper div; the SVG is width 100% of it.
+- Visited nodes keep their letter; the visit number moves to a small badge at the node's upper right. At the end both panels draw a dashed ring round E, which the reveal now points at ("the circled E", via B vs via C and F).
+- Hop labels and to-do captions raised from 8.5/9 px to 10 px; viewBox grown 6 units so the badge on A clears the title.
+- Gate unchanged: the reveal still needs both runs finished (the state it describes). Claim c3 reworded and set unverified.
+- Not run (coordinator order): next build, QA, walkthrough, tsc. A TypeScript transpile (syntax only) passed; `npm run registry` and `npm run check` passed.

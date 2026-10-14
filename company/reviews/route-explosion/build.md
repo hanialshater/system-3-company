@@ -15,3 +15,8 @@ From the latest learner review and fact-check (batch 03).
 - Adding a city now shows the count as the previous count times the city count (6, 24, 120 ... 362,880) at once, with the drawing optional.
 - Reveal keeps one explanation (choices multiply) and drops the insertion argument; new "Try 19 cities" control shows 19 cities and the 3.9-year figure on the stage.
 - c3, c4 unverified.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+Running chain (6 x4 24 x5 120 ... x9 362,880) under the map; gate now needs 9 cities on stage. New 'Add up to 9' steps 5..9 in about 300 ms so QA's single press reaches it; 'Add a city' stays as the step control. Caption says routes leave home. Reopened c3; added c6.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

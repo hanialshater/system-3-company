@@ -1,0 +1,117 @@
+{
+  "slug": "stable-until-mutants-meet",
+  "title": "Stable, until the mutants meet",
+  "hook": "No one gains by switching alone. Can a mutant still take over?",
+  "domain": "life",
+  "concept": "nash-not-ess",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "ESS (bigger-beetles-everyone-loses) and Nash equilibrium"
+    ],
+    "doesNotKnow": [
+      "that if mutants tie with residents but beat each other, they creep in and then take over"
+    ]
+  },
+  "misconception": "If no single individual gains by switching, no mutant can ever spread.",
+  "objective": "The learner can explain that all-A is a Nash equilibrium (B ties A against A) but not an ESS (B scores 3 against B, A only 1), so B's edge, which grows with how often B's meet, lets 1% B creep to 2% by generation 50 and then sweep to 99% by generation 111.",
+  "claims": [
+    {
+      "id": "life.stable-until-mutants-meet.c1",
+      "text": "With payoff = surviving offspring and no baseline (A vs A 2, A vs B 1, B vs A 2, B vs B 3), everyone playing A is a Nash equilibrium: B earns 2 against A, the same as A, so no one gains by switching alone.",
+      "support": "derivation",
+      "source": "Against an all-A population: A earns 2, B earns 2; switching gives no gain. Demo.tsx wA/wB. Our own payoffs. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Against all-A: A earns 2, B earns 2 (stage table, Demo wA/wB at y = 0); no strict gain from switching, so (A, A) is a (non-strict) Nash equilibrium.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.stable-until-mutants-meet.c2",
+      "text": "With these payoffs (surviving offspring, no baseline) all-A is not an evolutionarily stable strategy, because B ties A against A and does better against B (3) than A does against B (1).",
+      "support": "derivation",
+      "source": "ESS conditions (Maynard Smith & Price 1973): A is an ESS iff E(A,A) > E(B,A), or E(A,A) = E(B,A) and E(A,B) > E(B,B). Here E(A,A) = E(B,A) = 2 and E(A,B) = 1 < E(B,B) = 3. Easley & Kleinberg (2010) ch. 7 (section unconfirmed). Attribution: fact-checker to confirm. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Maynard Smith ESS conditions (Maynard Smith and Price 1973, Nature 246, 'The logic of animal conflict', from memory, not opened): E(A,A) = E(B,A) = 2 and E(A,B) = 1 < E(B,B) = 3, so A fails. Easley and Kleinberg's ch. 7 definition (A's fitness strictly above the invader's for every small invading share) fails too: 2 - y < 2 + y. Chapter 7 'Evolutionary game theory' confirmed by library-catalog search snippet (book host blocked); ESS is its section 7.2 from my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.stable-until-mutants-meet.c3",
+      "text": "In the stage's update rule (surviving offspring, no baseline; share y' = y·W_B / mean W), B rises from 1% to 1.1% by generation 10, 2.0% by 50, 21% by 100 and 99% by 111.",
+      "support": "simulation",
+      "source": "Builder's Node run, 2026-10-14 (deterministic, no random seed): 0.0111 at 10, 0.0196 at 50, 0.2104 at 100, first ≥ 0.99 at 111 (0.9963). The no-baseline choice matters: with a baseline of 10 offspring the climb is about six times slower (2.9% at generation 400 in the builder's run), so the stage says 'no baseline'. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own node (fc21/ess.mjs): 0.01109 at 10, 0.01960 at 50, 0.2104 at 100, first >= 0.99 at 111 (0.9963; 0.9891 at 110). Baseline-10 check: 2.9% at generation 400. Reveal '1% to only 2% by 50' rounds 1.96%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.stable-until-mutants-meet.c4",
+      "text": "With B share y, A averages 2 − y and B averages 2 + y, so B's edge is 2y: 0.02 at 1%, 0.42 at 21%; it grows as B's meet each other more often.",
+      "support": "derivation",
+      "source": "A: 2(1 − y) + 1·y = 2 − y. B: 2(1 − y) + 3y = 2 + y. Stage readout 'B's edge over A'. Builder's Node run, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. 2(1 - y) + y = 2 - y; 2(1 - y) + 3y = 2 + y; edge 2y: 0.02 at 1%, 0.42 at 21% (stage shows +0.42 at generation 100, y = 0.2104).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.stable-until-mutants-meet.c5",
+      "text": "The model is a toy: chosen payoffs, no baseline offspring, random meetings in a very large population; it is not a claim about a real species.",
+      "support": "convention",
+      "source": "Model choice in Demo.tsx, stated on the stage and in the reveal. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Disclosed in the stage line 'Score = surviving offspring, no baseline. Meetings are random.' and the muted last line of the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Mutants tie with residents when they meet residents, but do better than residents when they meet each other. What happens to a few mutants?",
+    "options": [
+      "They creep in slowly, then take over",
+      "They die out, because nobody gains by switching alone",
+      "They stay at the same small share forever",
+      "They take over at once"
+    ],
+    "answer": 0,
+    "why": "Their edge comes only from meeting each other, which is rare at first. As their share grows the edge grows, so the spread speeds up. A Nash equilibrium is not necessarily evolutionarily stable."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:nash-not-ess",
+    "also": [
+      "economics:nash-equilibrium"
+    ],
+    "prerequisites": [
+      "life:ess-arms-race"
+    ],
+    "level": "stretch",
+    "strand": "genetics-evolution",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 7
+      }
+    ],
+    "tags": [
+      "evolution",
+      "ESS",
+      "Nash"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

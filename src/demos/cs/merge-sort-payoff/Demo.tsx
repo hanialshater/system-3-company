@@ -7,6 +7,9 @@
 // v2: the reveal is earned. Two milestones (useMilestones): "saw-split" (the learner opens
 // where the piles came from: 8 single cards, made with zero comparisons) and "merged" (the
 // final merge of the two 4-card piles is complete, by taps or by "Finish for me").
+// v4: "saw-split" now opens all three rounds at once (8 singles: 0, pairs: 4, piles A and B: 6), stacked,
+// and the finished merge adds its count to a running total set against 28 for every pair, so the
+// payoff of splitting (every round costs fewer comparisons than there are cards) is on the stage.
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -91,14 +94,12 @@ function deal(seed: number) {
   return {
     left: fours[0],
     right: fours[1],
+    pairCost,
+    fourCost,
     rounds: [
-      { groups: [deck], label: "The unsorted deck" },
       { groups: singles, label: "Split into 8 single cards: 0 comparisons" },
-      { groups: pairs, label: `Merge into pairs: ${pairCost} comparisons` },
-      {
-        groups: fours,
-        label: `Piles A and B: ${fourCost} comparisons. Worst case for all 8 cards: 4 + 6 + 7 = 17, against 28 for every pair.`,
-      },
+      { groups: pairs, label: `Merge singles into pairs: ${pairCost} comparisons` },
+      { groups: fours, label: `Merge pairs into piles A and B: ${fourCost} comparisons` },
     ],
   };
 }
@@ -117,30 +118,47 @@ function Milestones({
   return <>{children(reach)}</>;
 }
 
-function RoundStrip({ groups }: { groups: number[][] }) {
-  // One row of 8 cards; a gap between groups shows which cards are already one sorted pile.
-  const gap = 10;
-  const gaps = groups.length - 1;
-  const w = (320 - gap * gaps) / N;
-  let x = 0;
-  const cells: { x: number; v: number; g: number }[] = [];
-  groups.forEach((g, gi) => {
-    g.forEach((v) => {
-      cells.push({ x, v, g: gi });
-      x += w;
-    });
-    x += gap;
-  });
+const ROW_H = 44;
+
+function RoundsStack({ rounds }: { rounds: { groups: number[][]; label: string }[] }) {
+  // One row of 8 cards per round, stacked top to bottom; a gap between groups shows which cards are
+  // already one sorted pile. Each row carries its own comparison count.
   return (
-    <svg className="stage-svg" viewBox="0 0 320 34" role="img" aria-label={groups.map((g) => g.join(" ")).join(" | ")}>
-      {cells.map((c, i) => (
-        <g key={i}>
-          <rect x={c.x + 1} y={2} width={w - 2} height={30} rx={5} className={css.cell} />
-          <text x={c.x + w / 2} y={22} textAnchor="middle" className={css.num}>
-            {c.v}
-          </text>
-        </g>
-      ))}
+    <svg
+      className="stage-svg"
+      viewBox={`0 0 320 ${ROW_H * rounds.length}`}
+      role="img"
+      aria-label={rounds.map((r) => `${r.label}: ${r.groups.map((g) => g.join(" ")).join(" | ")}`).join(". ")}
+    >
+      {rounds.map((round, ri) => {
+        const gap = 10;
+        const w = (320 - gap * (round.groups.length - 1)) / N;
+        const y0 = ri * ROW_H;
+        let x = 0;
+        const cells: { x: number; v: number }[] = [];
+        round.groups.forEach((g) => {
+          g.forEach((v) => {
+            cells.push({ x, v });
+            x += w;
+          });
+          x += gap;
+        });
+        return (
+          <g key={ri}>
+            <text x={160} y={y0 + 11} textAnchor="middle" className={css.rowLabel}>
+              {round.label}
+            </text>
+            {cells.map((c, i) => (
+              <g key={i}>
+                <rect x={c.x + 1} y={y0 + 15} width={w - 2} height={26} rx={5} className={css.cell} />
+                <text x={c.x + w / 2} y={y0 + 33} textAnchor="middle" className={css.num}>
+                  {c.v}
+                </text>
+              </g>
+            ))}
+          </g>
+        );
+      })}
     </svg>
   );
 }
@@ -153,7 +171,8 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
   const [out, setOut] = useState<number[]>([]);
   const [comparisons, setComparisons] = useState(0);
   const [miss, setMiss] = useState<"left" | "right" | null>(null);
-  const [round, setRound] = useState(-1); // -1 hidden; 0..3 index into piles.rounds
+  const [showRounds, setShowRounds] = useState(false);
+  const [sawRounds, setSawRounds] = useState(false);
   const [auto, setAuto] = useState(false);
   const [lastMerge, setLastMerge] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -181,8 +200,8 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
     setOut([]);
     setComparisons(0);
     setMiss(null);
-    setRound((r) => (r >= 0 ? 0 : -1));
   };
+  const before = piles.pairCost + piles.fourCost; // comparisons in the rounds before the last merge
 
   return (
     <Lesson
@@ -203,16 +222,18 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
             empties, the rest slides over for free. Piles that interleave to the end need all 7.
           </p>
           <p>
-            That is why Merge Sort splits: splitting compares nothing, and one card is a sorted pile. Each round of
-            merges places every card once, so it costs fewer comparisons than there are cards. Halving 1,000 cards down
-            to single cards takes 10 rounds, so fewer than 10,000 comparisons. Checking every pair (28 for 8 cards)
-            would take 499,500.
+            That is why Merge Sort splits: splitting compares nothing, and one card is a sorted pile. Your stacked rounds
+            cost 0, then {piles.pairCost}, then {piles.fourCost}
+            {lastMerge !== null ? `, then ${lastMerge}: ${before + lastMerge} in all` : ""}, against 28 for checking every
+            pair. Each round places every card once, so it costs fewer comparisons than there are cards. Halving 1,000
+            cards down to single cards takes 10 rounds, so fewer than 10,000 comparisons; checking every pair would take
+            499,500.
           </p>
           <p className="muted">The splitting is setup. The merge is the payoff.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["saw-split", "merged"]}>
           {(reach) => {
             const place = (side: "left" | "right", counted: boolean) => {
@@ -278,26 +299,31 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
               timer.current = setInterval(tick, 160);
             };
 
-            const nextRound = () => {
+            const toggleRounds = () => {
               if (locked) return;
-              setRound((r) => (r >= 3 ? -1 : r < 1 ? 1 : r + 1));
+              setShowRounds((v) => !v);
+              setSawRounds(true);
               reach("saw-split");
             };
-
-            const shown = round >= 0 ? piles.rounds[round] : null;
 
             return (
               <div className="ms">
                 <div className={css.rounds}>
-                  {shown && (
+                  {showRounds && (
                     <>
-                      <RoundStrip groups={shown.groups} />
-                      <p className={css.roundLabel}>{shown.label}</p>
+                      <RoundsStack rounds={piles.rounds} />
+                      <p className={css.roundLabel}>
+                        {done
+                          ? `Whole sort: 0 + ${piles.pairCost} + ${piles.fourCost} + ${comparisons} = ${before + comparisons}, against 28 for every pair.`
+                          : `So far 0 + ${piles.pairCost} + ${piles.fourCost} = ${before}. The last merge adds at most 7.`}
+                      </p>
                     </>
                   )}
-                  <Control disabled={locked} onClick={nextRound} className={css.roundBtn}>
-                    {round < 0 ? "Where did the piles come from?" : round >= 3 ? "Hide" : "Next round"}
-                  </Control>
+                  {phase !== "reveal" && (
+                    <Control disabled={locked} onClick={toggleRounds} className={css.roundBtn}>
+                      {showRounds ? "Hide the rounds" : "Where did the piles come from?"}
+                    </Control>
+                  )}
                 </div>
 
                 <div className="ms-piles">
@@ -352,7 +378,7 @@ export default function MergeSortPayoff({ slug }: { slug: string }) {
                       : done
                         ? `Merged with ${comparisons} comparison${comparisons === 1 ? "" : "s"}.${
                             comparisons < 7 ? " Piles that interleave to the end need 7." : ""
-                          }`
+                          }${sawRounds && !showRounds ? ` Whole sort: ${before + comparisons}, against 28.` : ""}`
                         : oneSideEmpty
                           ? "One pile is empty. The rest needs no comparisons."
                           : "Which top card is smaller?"}

@@ -10,3 +10,11 @@
 ## Revision v2
 
 Review: title stated the answer; reveal quoted 4 across, which the slider could skip. Changes: title and hook neutral; buttons Line at 4 across and Line at 12 across, both required; B's dashed extension hidden while locked. c3 unverified. Version 2.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Locked stage shows only the grid, ground and the shared foot; ramps appear after the prediction. Hook neutral.
+- Claims reopened (status unverified): new c4.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

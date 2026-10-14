@@ -1,0 +1,133 @@
+/* Fill the stage; the picture shrinks to fit instead of overflowing the centred stage. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wrap :global(.stage-svg) {
+  flex: 1 1 0;
+  min-height: 120px;
+  height: auto;
+}
+
+.chip {
+  align-self: center;
+  margin: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+}
+
+.msg {
+  margin: 0;
+  min-height: 1.3em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 800;
+  fill: var(--fg);
+}
+
+.node {
+  fill: var(--bg-2);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.trader {
+  fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2));
+  stroke: var(--domain);
+  stroke-width: 2;
+}
+
+.gone {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.edge {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.edgeOn {
+  stroke: color-mix(in srgb, var(--domain) 80%, var(--fg) 20%);
+  stroke-width: 3.5;
+}
+
+.edgeGone {
+  stroke: var(--line);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: 0.6;
+}
+
+.goodText {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--good);
+}
+
+.badText {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--bad);
+}
+
+.cell {
+  fill: var(--bg-2);
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.cellOn {
+  fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2));
+  stroke: var(--domain);
+  stroke-width: 2.5;
+}
+
+.cellAlt {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+
+.big {
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.pays {
+  font-size: 10px;
+  font-weight: 800;
+  fill: var(--fg);
+}
+
+.price {
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--domain);
+}

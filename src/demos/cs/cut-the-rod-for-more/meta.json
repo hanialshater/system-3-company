@@ -28,36 +28,46 @@
       "id": "cs.cut-the-rod-for-more.c1",
       "text": "Prices: a piece of length 1 sells for $1, length 2 for $5, length 3 for $8, and length 4 (the whole rod) for $9.",
       "support": "convention",
-      "source": "The lesson's price list (PRICE in Demo.tsx), the first four prices of the CLRS rod-cutting example (CLRS 4e section 14.1, Figure 14.1; 3e section 15.1, Figure 15.1).",
-      "status": "unverified"
+      "source": "The lesson's price list (PRICE in Demo.tsx), the first four prices of the CLRS rod-cutting example (CLRS 4e section 14.1, Figure 14.1; 3e section 15.1, Figure 15.1). · Fact-check pass 21 2026-10-14: VERIFIED: Demo PRICE = [1,5,8,9], shown in the predict stem and stage note. CLRS Figure 14.1 prices from memory (1 5 8 9 10 17 17 20 24 30), not opened; the prices are a lesson convention either way.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-rod-for-more.c2",
       "text": "With these prices, best(1) to best(4) are $1, $5, $8, $10; the length-4 rod's best is two pieces of length 2 ($5 + $5 = $10), which beats selling it whole ($9) and cutting off a length-3 piece and selling the leftover ($8 + $1 = $9).",
       "support": "simulation",
-      "source": "Demo.tsx solve() (the recurrence below) gives 1, 5, 8, 10 with best cut 2 + 2. Builder's node script (2026-10-14) enumerated all 8 ordered cuttings of length 4: 4, 7, 7, 9, 7, 10, 9, 9; only 2 + 2 reaches 10.",
-      "status": "unverified"
+      "source": "Demo.tsx solve() (the recurrence below) gives 1, 5, 8, 10 with best cut 2 + 2. Builder's node script (2026-10-14) enumerated all 8 ordered cuttings of length 4: 4, 7, 7, 9, 7, 10, 9, 9; only 2 + 2 reaches 10. · Fact-check pass 21 2026-10-14: VERIFIED: node rod.mjs, Demo solve(): 1 5 8 10, cut 2+2. Own enumeration of the 8 ordered cuttings of 4: 4 7 7 9 7 10 9 9; only 2+2 = 10.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-rod-for-more.c3",
       "text": "The best price of a rod is the largest, over every first-piece length, of that piece's price plus the best price of the rest (stage: 'best(n) = largest of: first piece + best of the rest'; the choice list shows each cut k: price(k) + best(n - k)).",
       "support": "source",
-      "source": "CLRS 4e section 14.1, recurrence r(n) = max over 1 <= i <= n of (p(i) + r(n - i)), with r(0) = 0; it relies on optimal substructure (the rest of an optimal cutting is itself cut optimally), same section.",
-      "status": "unverified"
+      "source": "CLRS 4e section 14.1, recurrence r(n) = max over 1 <= i <= n of (p(i) + r(n - i)), with r(0) = 0; it relies on optimal substructure (the rest of an optimal cutting is itself cut optimally), same section. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: every cutting has some first piece k, and the rest is a cutting of n-k worth at most best(n-k), achieved by its best cutting; so best(n) = max_k p(k) + best(n-k). Matches Demo solve() and the choice list. CLRS 14.1 from memory, not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-rod-for-more.c4",
       "text": "Each shorter rod is solved once and reused.",
       "support": "derivation",
-      "source": "Bottom-up order in Demo.tsx: best(n) reads only best(0..n-1), which are already in the table, so each length is computed once (n lengths, at most n choices each: O(n^2) work). CLRS 4e section 14.1, BOTTOM-UP-CUT-ROD.",
-      "status": "unverified"
+      "source": "Bottom-up order in Demo.tsx: best(n) reads only best(0..n-1), which are already in the table, so each length is computed once (n lengths, at most n choices each: O(n^2) work). CLRS 4e section 14.1, BOTTOM-UP-CUT-ROD. · Fact-check pass 21 2026-10-14: VERIFIED: Demo TABLE = solve(PRICE) computed once; choices(n) reads TABLE[n-k] for k = 1..n, all already filled because the learner fills in order.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.cut-the-rod-for-more.c5",
       "text": "With prices 1, 5, 8, 9, 10, 17, 17, 20 for lengths 1 to 8, a length-8 rod sells for $22 (pieces 2 + 6), not $20 whole.",
       "support": "simulation",
-      "source": "Demo.tsx BIG = solve([1, 5, 8, 9, 10, 17, 17, 20]): best(8) = 22, first cut found 2 then 6 (5 + 17). Builder's node script (2026-10-14) agrees. The prices are CLRS 4e Figure 14.1 (lengths 1-8), whose text gives r(8) = 22 from 2 + 6.",
-      "status": "unverified"
+      "source": "Demo.tsx BIG = solve([1, 5, 8, 9, 10, 17, 17, 20]): best(8) = 22, first cut found 2 then 6 (5 + 17). Builder's node script (2026-10-14) agrees. The prices are CLRS 4e Figure 14.1 (lengths 1-8), whose text gives r(8) = 22 from 2 + 6. · Fact-check pass 21 2026-10-14: VERIFIED: node: Demo solve on 1 5 8 9 10 17 17 20 gives best 1 5 8 10 13 17 18 22, pieces 2 + 6; own brute force over all 128 compositions of 8 also gives 22.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

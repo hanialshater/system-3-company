@@ -1,0 +1,123 @@
+{
+  "slug": "enemies-allow-three-camps",
+  "title": "Can a feud have three sides?",
+  "hook": "The enemy of my enemy need not be my friend. How many camps can a feud hold then?",
+  "domain": "math",
+  "concept": "weak-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the balance rule from enemy-of-my-enemy (at most two camps)"
+    ],
+    "doesNotKnow": [
+      "that if an all-enemy triangle is allowed, the network can split into any number of camps"
+    ]
+  },
+  "misconception": "Hostile networks always end up as two sides.",
+  "objective": "The learner can explain that when only the 'two friends who are enemies' triangle is banned, any split into camps (friends inside, enemies across) is stable, because two friends of anyone share a camp; only the strict ban on all-enemy triangles forces two sides.",
+  "claims": [
+    {
+      "id": "math.enemies-allow-three-camps.c1",
+      "text": "Under the weaker rule the only banned triangle has two friendly links and one hostile link (someone with two friends who are enemies); all-enemy triangles are allowed.",
+      "support": "convention",
+      "source": "Definition of weak structural balance, Easley and Kleinberg (2010) ch. 5; J. A. Davis, 'Clustering and Structural Balance in Graphs', Human Relations 20 (1967). Brief 7 edit: the banned triangle is two friendly links and one hostile link. | FACT-CHECK 2026-10-14 (pass 22): VERDICT/kindOf: exactly two friendly links = banned; all-enemy allowed. Matches weak balance (Davis 1967, Human Relations 20; secondary search-result text: a complete signed graph is weakly balanced iff no triangle has exactly one negative edge). Davis not opened. Easley-Kleinberg ch. 5 (positive and negative relationships; weaker form of structural balance) placement matches my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c2",
+      "text": "Six people split into three pairs form 20 triangles: 0 banned, 12 with one friendly pair, and 8 all-enemy triangles (one person from each camp).",
+      "support": "derivation",
+      "source": "tally(3) in Demo.tsx; builder re-run in node 2026-10-14 over all 20 triangles of 6 people: banned 0, one friendly 12, all-enemy 8 (2 x 2 x 2). | FACT-CHECK 2026-10-14 (pass 22): Own node over 20 triangles, split [0,0,1,1,2,2]: banned 0, one-friend 12, all-enemy 8.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c3",
+      "text": "With 2 camps of 3 or 6 camps of 1 there are also 0 banned triangles (with 0 and 20 all-enemy triangles respectively).",
+      "support": "derivation",
+      "source": "tally(2), tally(6) in Demo.tsx; builder re-run in node 2026-10-14: 2 camps: banned 0, all-enemy 0, one friendly 18, all-friend 2; 6 camps: banned 0, all-enemy 20. | FACT-CHECK 2026-10-14 (pass 22): Own node: 2 camps: banned 0, all-enemy 0, one-friend 18, all-friend 2; 6 camps: banned 0, all-enemy 20.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c4",
+      "text": "When friends are exactly the people in your camp, any two friends of yours are friends too, so no split into camps has a banned triangle, whatever the number of camps.",
+      "support": "derivation",
+      "source": "Being in the same camp is transitive: if a~b and a~c then b~c, so a triangle cannot have exactly two friendly links. | FACT-CHECK 2026-10-14 (pass 22): Same-camp is an equivalence relation, so no triangle has exactly two friendly links.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c5",
+      "text": "The strict rule (the enemy of my enemy is my friend) also bans all-enemy triangles, and that ban is what limits a network to two sides.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010) ch. 5 (structural balance: at most two camps); weak balance relaxes exactly the all-enemy triangle (Davis 1967). Attribution: fact-checker confirms (flag carried from the brief). | FACT-CHECK 2026-10-14 (pass 22): Strong balance bans triangles with one or three hostile links; complete strongly balanced graphs split into at most two groups (balance theorem, Easley-Kleinberg ch. 5, not opened); weak balance allows k clusters (Davis 1967, search-result text).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "math.enemies-allow-three-camps.c6",
+      "text": "Allow it, and any number of camps is stable: you saw [the splits the learner viewed with all 20 triangles checked, e.g. 2 and 3] camps each with 0 banned triangles, and [the remaining of 2, 3, 6] camps give 0 too (the second clause only when some split was not seen this way).",
+      "support": "derivation",
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 22, 2026-10-14) in the reveal's second paragraph; sentence is the builder's, recorded here verbatim. | FACT-CHECK 2026-10-14 (pass 22): DISPUTED. The counts hold (c3), but 'you saw 2, 3 and 6 camps' is not guaranteed. The reveal needs only the milestones checked-all and other-split, and other-split is reached by any one chip other than 3, so a learner can reach the reveal having seen only 3 and 2 (or 3 and 6) camps. Fix (builder): track which splits were viewed and name only those, or say '2, 3 and 6 camps each give 0 banned triangles' without 'you saw'. | Builder fix (demo-builder, 2026-10-14): W-212: Demo.tsx now records a split as seen only when it is displayed with all 20 triangles checked (Check all / last Next in that split, or switching to it after all are checked), and the reveal quotes only those; unseen splits are stated without 'you saw' (counts from c3: 0 banned for 2, 3 and 6 camps). Fallback with nothing seen (unreachable, checked-all is required): '2, 3 and 6 camps each give 0 banned triangles.' · Fact-check pass 23 2026-10-14: v2 Demo: see() is called only when all 20 triangles are checked in the current split (Next to 20, Check all, or a chip after checking all), and the reveal names only those as 'you saw'; the others are listed as 'give 0 too'. checked-all always calls see(), so 'seen' is never empty at the reveal. Own count: banned 0 for 2, 3 and 6 camps.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a group, two of anyone's friends are always friends, but three people can all dislike each other. What can the group look like?",
+    "options": [
+      "Exactly two rival sides",
+      "Any number of camps, friendly inside and hostile across",
+      "One big group of friends"
+    ],
+    "answer": 1,
+    "why": "Only a person with two friends who are enemies is ruled out. Friends-inside camps never make one, and all-enemy triangles across three or more camps are allowed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "math:weak-balance",
+    "also": [],
+    "prerequisites": [
+      "math:parity-rules"
+    ],
+    "level": "stretch",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 5
+      }
+    ],
+    "tags": [
+      "signed networks",
+      "balance"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

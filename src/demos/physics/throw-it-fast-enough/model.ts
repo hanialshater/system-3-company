@@ -20,7 +20,15 @@ export interface Flight {
   dist: number;
   /** time of flight (s), or time to come round to the peak again */
   time: number;
+  /** after one minute (null if it has landed): angle travelled, height, and how far it has fallen below
+   * the straight sideways line from the peak, against how far the ground has curved away below that line
+   * (measured from the peak's height), both in m. */
+  minute: { ang: number; h: number; fell: number; groundAway: number } | null;
 }
+
+export const MINUTE = 60; // s
+/** Height above the ground (m) of the straight sideways line from the peak, at angle `ang` from the peak. */
+export const lineHeight = (ang: number) => (R_E + PEAK) / Math.cos(ang) - R_E;
 
 export function fly(v: number): Flight {
   const d = 1;
@@ -32,6 +40,7 @@ export function fly(v: number): Flight {
   let unwrapped = 0;
   let prev = 0;
   const pts: [number, number][] = [[0, PEAK]];
+  let minute: Flight["minute"] = null;
   for (let i = 0; i < 20000; i++) {
     const r = Math.hypot(x, y);
     const ax = (-GM * x) / r ** 3;
@@ -49,15 +58,19 @@ export function fly(v: number): Flight {
     const total = ang + unwrapped;
     if (r2 <= R_E) {
       pts.push([total, 0]);
-      return { v, pts, lands: true, dist: total * R_E, time: t };
+      return { v, pts, lands: true, dist: total * R_E, time: t, minute };
+    }
+    if (t === MINUTE) {
+      const L = lineHeight(total);
+      minute = { ang: total, h: r2 - R_E, fell: L - (r2 - R_E), groundAway: L - PEAK };
     }
     if (total >= 2 * Math.PI) {
       pts.push([2 * Math.PI, r2 - R_E]);
-      return { v, pts, lands: false, dist: 2 * Math.PI * R_E, time: t };
+      return { v, pts, lands: false, dist: 2 * Math.PI * R_E, time: t, minute };
     }
     if (i % 5 === 0) pts.push([total, r2 - R_E]);
   }
-  return { v, pts, lands: false, dist: 2 * Math.PI * R_E, time: t };
+  return { v, pts, lands: false, dist: 2 * Math.PI * R_E, time: t, minute };
 }
 
 export const FLIGHTS = SPEEDS.map(fly);

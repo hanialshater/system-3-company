@@ -5,6 +5,10 @@
 // corn given up for that ton (1, 3, 5, … 19). The drops get longer: increasing opportunity cost.
 // Key state: wheat pushed to 10 tons (corn 0), where the last ton costs 19 corn.
 // Model: the curve is invented to show the shape; it is not data.
+// v2: the cause is on the stage. A strip of 10 fields under the wheat axis, one per ton, sorted worst to
+// best for corn. Field k grew 2k − 1 tons of corn (tinted darker for better corn land); pushing wheat turns
+// fields to wheat in that order, so each drop on the staircase is the corn that field used to grow.
+// The formula is gone from the question and the chip, and the locked strip is plain (no tint, no numbers).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -22,7 +26,7 @@ const stepCost = (w: number) => corn(w - 1) - corn(w); // corn lost for the w-th
 const FIRST = stepCost(1); // 1
 const LAST = stepCost(W_MAX); // 19
 
-// Geometry (viewBox 320 × 210).
+// Geometry (viewBox 320 × 256): chart, then the field strip.
 const L = 40;
 const R = 286;
 const TOP = 26;
@@ -40,7 +44,7 @@ export default function BendingFrontier({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A farm can make corn = ${CORN_MAX} − wheat² (wheat 0 to ${W_MAX} tons). Moving from 0 to 1 ton of wheat costs ${FIRST} ton of corn. What does moving from ${W_MAX - 1} to ${W_MAX} tons cost?`,
+        question: `A farm has ${W_MAX} fields; each can grow 1 ton of wheat or some corn. Switching the first field to wheat costs ${FIRST} ton of corn. What does switching the last one, from ${W_MAX - 1} to ${W_MAX} tons of wheat, cost?`,
         options: [String(FIRST), String(W_MAX), String(LAST)],
         answer: 2,
       }}
@@ -53,8 +57,9 @@ export default function BendingFrontier({ slug }: { slug: string }) {
             to {corn(W_MAX)}. The first ton cost {FIRST}. The drops grew by 2 every step: {Array.from({ length: W_MAX }, (_, i) => stepCost(i + 1)).join(", ")}.
           </p>
           <p>
-            The frontier bends because land is not all alike. The first wheat goes on the fields worst for corn, so little corn is
-            lost; the last wheat takes the best corn fields. Each extra ton of wheat costs more corn than the one before.
+            Look at the fields under the chart: they are not all alike. The first wheat went on the field worst for corn,
+            which grew only {FIRST}; the last took the best corn field, which grew {LAST}. Each drop on the staircase is
+            the corn its field used to grow, and that is why the frontier bends.
           </p>
           <p className="muted">A model: the curve is made up to show the shape, not data from a real farm.</p>
         </>
@@ -70,9 +75,9 @@ export default function BendingFrontier({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Made-up farm: corn = 100 − wheat²</p>
+                <p className={s.chip}>Made-up farm: 10 fields, worst to best for corn</p>
                 <svg
-                  viewBox="0 0 320 210"
+                  viewBox="0 0 320 256"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "Corn and wheat frontier" : `${w} tons wheat, ${corn(w)} tons corn`}
@@ -109,6 +114,32 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                     </text>
                   )}
                   {!locked && <circle cx={px(w)} cy={py(corn(w))} r={6} className={s.dot} />}
+                  {Array.from({ length: W_MAX }, (_, i) => i + 1).map((k) => {
+                    const wheat = !locked && k <= w;
+                    const pct = Math.round(15 + (70 * (stepCost(k) - FIRST)) / (LAST - FIRST));
+                    return (
+                      <g key={`f${k}`}>
+                        <rect
+                          x={px(k - 1) + 1}
+                          y={BOT + 34}
+                          width={px(k) - px(k - 1) - 2}
+                          height={22}
+                          rx={3}
+                          fill={locked ? "var(--bg-2)" : wheat ? "var(--warn)" : `color-mix(in srgb, var(--good) ${pct}%, var(--bg-2))`}
+                          stroke={locked ? "var(--line)" : k === w ? "var(--fg)" : "none"}
+                          strokeWidth={2}
+                        />
+                        {!locked && (
+                          <text x={(px(k - 1) + px(k)) / 2} y={BOT + 49} textAnchor="middle" className={s.small}>
+                            {stepCost(k)}
+                          </text>
+                        )}
+                      </g>
+                    );
+                  })}
+                  <text x={10} y={BOT + 70} className={s.axis}>
+                    {locked ? "the 10 fields" : "number = corn the field grew · yellow = wheat"}
+                  </text>
                 </svg>
 
                 <Row>

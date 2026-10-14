@@ -16,3 +16,15 @@ Checker: fact-checker (wrote none of these claims). Read Demo.tsx (and model.ts 
 Disputes: none. Suggested source tweak (builder, optional): cite "TAOCP Vol. 2, 3.1, exercises 6-7".
 
 Result: 6 verified, 0 disputed, 0 withdrawn.
+
+## Pass 22 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx (stage, reveal, model) before claim sources; re-ran the numbers with my own node scripts copying the lesson's logic (scratchpad fc22); sources checked by web search where reachable. Source hosts (JSTOR mirrors, Wikipedia, the E&K book host) were blocked, so citations are confirmed bibliographically only and say so per claim.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | own trace (scratchpad fc22/tort.mjs): gapOf() 3, 2, 1, 0 at ticks 2-5, equal to a forward walk count along the arrows from fast to slow; meet on box 6 at tick 5. Arc drawn only for gap > 0, so the arcs are 3, 2, 1. |
+| c3 | verified | both in the ring: ((s+1) - (f+2)) mod 5 = gap - 1, so the forward gap falls by exactly 1 per tick and reaches 0 without skipping. |
+| c7 | verified | Demo.tsx gapText/gapWhy render 'Gap n boxes fast must run to reach slow (green arc)', 'Gap —: slow not in the loop yet' (tick 1, slow on 2), 'Gap —: no loop here' when nowhere; GapArc steps 72° from fast's box in arrow order (angOf matches CENTRE). |
+
+**Result:** every claim open at this pass is now verified.

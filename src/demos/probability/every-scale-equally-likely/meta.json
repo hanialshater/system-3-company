@@ -1,0 +1,124 @@
+{
+  "slug": "every-scale-equally-likely",
+  "title": "Near or far: where do 1/d links land?",
+  "hook": "If nearer links are likelier, most links should be short. Are they?",
+  "domain": "probability",
+  "concept": "distance-scales",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "1/d long links route fastest (near-and-far-links-find-the-way)"
+    ],
+    "doesNotKnow": [
+      "why: with chance ∝ 1/d, a link is equally likely to land 1–2, 2–4, … or 256–512 away"
+    ]
+  },
+  "misconception": "With 1/d links most links are very short.",
+  "objective": "The learner can explain that with chance ∝ 1/d each doubling band of distances holds twice as many distances, each half as likely, so every band gets about the same share of links (2–3 away: 12.2%; 256–512 away: 10.2% on a ring of 1,024).",
+  "claims": [
+    {
+      "id": "probability.every-scale-equally-likely.c1",
+      "text": "With chance ∝ 1/d on a ring of 1,024, the band 2–3 away gets 12.2% of links and the band 256–512 away gets 10.2%.",
+      "support": "derivation",
+      "source": "Demo.tsx shares(): exact sums over d = 1..512 with 2 people at each d < 512 and 1 at d = 512, weight (people at d)/d, bands 1, 2–3, 4–7, …, 128–255, 256–512. Builder's Node run 2026-10-14: 14.7, 12.2, 11.1, 10.6, 10.4, 10.3, 10.2, 10.2, 10.2 (%). Matches the brief's check. | FACT-CHECK 2026-10-14 (pass 21): Own node sums (fc21b/ring.mjs), people(d) = 2 for d < 512, 1 at 512: q=1 bands 14.7 12.2 11.1 10.6 10.4 10.3 10.2 10.2 10.2 (%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c2",
+      "text": "With 1/d links, every band from 2–3 out gets 10–12% of links.",
+      "support": "derivation",
+      "source": "Same sums as c1: bands 2 to 9 range from 12.2% down to 10.2%; the band of distance 1 alone gets 14.7%. | FACT-CHECK 2026-10-14 (pass 21): Same sums: bands 2-3 to 256-512 run 12.2% to 10.2%, i.e. 10-12% to whole percent (12.2 rounds to 12). Builder may prefer 'about 10-12%' since the stage shows 12.2%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c3",
+      "text": "Each band holds twice as many distances as the one before, and with 1/d each of those distances is half as likely, so the two cancel.",
+      "support": "derivation",
+      "source": "Band [2^k, 2^(k+1)) has 2^k distances, each with weight between 2^-(k+1) and 2^-k, so its total weight is between 1/2 and 1 for every k (it tends to ln 2 ≈ 0.69 of a unit). | FACT-CHECK 2026-10-14 (pass 21): Re-derived: band [2^k, 2^(k+1)) has 2^k distances, each weight in (2^-(k+1), 2^-k], total in (1/2, 1], tending to ln 2. Last band 256-512 holds 257 distances (one person at 512), approximately double.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c4",
+      "text": "Uniform links put 50.1% of links in the farthest band (256–512); 1/d² links put 60.9% at distance 1.",
+      "support": "derivation",
+      "source": "Demo.tsx shares() with q = 0 and q = 2: uniform 513 of 1,023 people are 256–512 away = 50.1%; 1/d² band 1 = 2/(sum of people(d)/d²) = 60.9% (builder's Node run, 2026-10-14). | FACT-CHECK 2026-10-14 (pass 21): Own sums: q=0 last band 513/1023 people = 50.15% -> 50.1%; q=2 band 1 = 60.9%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c5",
+      "text": "Wherever a message is, a link that halves its remaining distance is about equally likely; that is why 1/d links route fast.",
+      "support": "source",
+      "source": "Easley and Kleinberg (2010) ch. 20 (advanced material on decentralised search); Kleinberg (2000), Nature 406 and STOC 2000. From the brief; builder has not opened these. Attribution: fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 21): Own check on this ring: probability one 1/d link lands within D/2 of the target from distance D is 10.6, 8.7, 8.2, 8.1, 10.2% for D = 4, 16, 64, 256, 512 (uniform: 0.5% to 50%; 1/d^2: 15% to 0.1%), so roughly constant only for 1/d. Own greedy-routing simulation (400 trials): mean steps q=0 28.5, q=1 24.0, q=2 116.9, so 1/d does route fast here; note q=0.5 gave 21.7, so at n = 1,024 1/d is fast but not measurably the fastest, and the lesson must not say it is. Kleinberg (2000, Nature 406; STOC 2000) and E&K ch. 20 (advanced section on decentralized search) cited from memory, not opened (hosts blocked); the sentence is verified on the derivation and simulation.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.every-scale-equally-likely.c6",
+      "text": "Band 2–3 holds two distances against 257 in band 256–512, yet with 1/d links the two get about equal shares.",
+      "support": "derivation",
+      "source": "Unrecorded reveal sentence found by fact-checker pass 21 (2026-10-14), reveal paragraph 1: \"two distances against 257, about equal\". Recorded, not verified by the recorder; needs an independent check (bands from Demo BANDS: 2–3 and 256–512; shares from c1). · Fact-check pass 23 2026-10-14: Own sums, ring of 1,024 with 1/d: band 2-3 gets 12.2%, band 256-512 gets 10.2%; distances 2 vs 512 - 256 + 1 = 257. 'About equal' against a 128-fold difference in distances is fair. The sentence is the builder's; a pass-21 fact-checker session recorded it, and this is a separate session.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Long links land at distance d with chance ∝ 1/d. Which is more likely: a link 4–7 away, or one 128–255 away?",
+    "options": [
+      "4–7 away, by far",
+      "About equally likely",
+      "128–255 away, by far"
+    ],
+    "answer": 1,
+    "why": "The far band holds 32 times as many distances, but each is about 32 times less likely, so the two bands get about the same share (11.1% vs 10.2% on a ring of 1,024)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:distance-scales",
+    "also": [],
+    "prerequisites": [
+      "probability:decentralized-search"
+    ],
+    "level": "stretch",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 20
+      }
+    ],
+    "tags": [
+      "small world",
+      "log scale"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}

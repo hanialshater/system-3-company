@@ -26,29 +26,37 @@
       "id": "cs.same-letters-same-key.c1",
       "text": "With sorted letters as the key, the ten words fall into 4 bins: eilnst (listen, silent, enlist, tinsel), eggloo (google, gogole), act (cat, act, tac) and dgo (dog).",
       "support": "simulation",
-      "source": "Demo.tsx keyOf() / binsFor(), the same code the stage uses; builder re-ran the grouping in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14. Matches brief cs.algorithms #57.",
-      "status": "unverified"
+      "source": "Demo.tsx keyOf() / binsFor(), the same code the stage uses; builder re-ran the grouping in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14. Matches brief cs.algorithms #57. · Fact-check pass 21 2026-10-14: VERIFIED: node: grouping by sorted letters gives eilnst(4) eggloo(2) act(3) dgo(1), same as Demo binsFor.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.same-letters-same-key.c2",
       "text": "Two words are anagrams exactly when their sorted letters match.",
       "support": "derivation",
-      "source": "Anagrams are rearrangements of the same multiset of letters; sorting maps every arrangement of a multiset to the same string, and two different multisets sort to different strings.",
-      "status": "unverified"
+      "source": "Anagrams are rearrangements of the same multiset of letters; sorting maps every arrangement of a multiset to the same string, and two different multisets sort to different strings. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation; independent node check by letter counts finds the same 10 anagram pairs as key equality.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.same-letters-same-key.c3",
       "text": "Checking every pair of the ten words would take 45 comparisons.",
       "support": "derivation",
-      "source": "10 choose 2 = 10 x 9 / 2 = 45 (computed in node, scratchpad algo2b0/check2.mjs).",
-      "status": "unverified"
+      "source": "10 choose 2 = 10 x 9 / 2 = 45 (computed in node, scratchpad algo2b0/check2.mjs). · Fact-check pass 21 2026-10-14: VERIFIED: node: 10 x 9 / 2 = 45 pairs.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.same-letters-same-key.c4",
       "text": "Grouping by this key needs no word-to-word checks: each word is handled once and sent to the bin its key names; with a hash table, one pass is enough.",
       "support": "source",
-      "source": "Hash-table insert and search take O(1) expected time under simple uniform hashing (CLRS 4e ch. 11), so one pass costs expected time linear in the total letters plus the sorting of each word. The stage readout 'Word-to-word checks 0' counts direct comparisons between two words, which the method never makes.",
-      "status": "unverified"
+      "source": "Hash-table insert and search take O(1) expected time under simple uniform hashing (CLRS 4e ch. 11), so one pass costs expected time linear in the total letters plus the sorting of each word. The stage readout 'Word-to-word checks 0' counts direct comparisons between two words, which the method never makes. · Fact-check pass 21 2026-10-14: VERIFIED: Derivation: each word is keyed and placed once. Note: a hash-table lookup (and Demo's bins.find) compares the new key with stored bin keys; that is key-to-bin, not word-to-word, so the stage's 'Word-to-word checks 0' holds under the claim's own definition. CLRS ch. 11 O(1) expected time from memory, not opened.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -1,0 +1,105 @@
+{
+  "slug": "two-thirds-of-the-average",
+  "title": "Guess two thirds of the average",
+  "hook": "Guess two thirds of everyone's average. If everyone reasons perfectly, what wins?",
+  "domain": "economics",
+  "concept": "iterated-dominance",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e01"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "learner": {
+    "knows": [
+      "a dominated choice is never best"
+    ],
+    "doesNotKnow": [
+      "that if everyone is rational and knows it, deleting dominated choices round after round leaves only 0"
+    ]
+  },
+  "misconception": "The rational guess is about 33 (two thirds of an average of 50).",
+  "objective": "The learner can explain that guesses above 66.7 always do worse than 66.7, that each round of 'everyone knows that' cuts the ceiling by a third (44.4, 29.6, ...), and that with any real number allowed only 0 survives every round.",
+  "claims": [
+    {
+      "id": "economics.two-thirds-of-the-average.c1",
+      "text": "Because the average is at most 100, the target is at most 66.7, so any guess above 66.7 always does worse than guessing 66.7.",
+      "support": "derivation",
+      "source": "Target t = (2/3) x average <= 200/3 = 66.67. For x > 66.67 >= t, |66.67 - t| < |x - t|. Same step at each round with the previous ceiling. | FACT-CHECK 2026-10-14 (pass 22): Own derivation, including the guesser's own effect on the average: with all guesses <= 100, target t(g) <= 200/3 and |g - t(g)| is increasing in g for g >= t(g); random check (200,000 cases, n = 2..21) found 0 cases where 66.67 was not strictly closer than any guess above it. \"Worse\" here means farther from the target.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.two-thirds-of-the-average.c2",
+      "text": "After k rounds of deleting such guesses the ceiling is 100 × (2/3)^k: 66.7, 44.4, 29.6, ...; it falls below 33 at round 3 and under 1 at round 12.",
+      "support": "derivation",
+      "source": "Builder's node script (scratchpad ncm-e01-checks/check.mjs): [100, 66.667, 44.444, 29.63, 19.753, 13.169, 8.779, 5.853, 3.902, 2.601, 1.734, 1.156, 0.771]; first value < 1 at k = 12. Demo.tsx ceiling, PAST_33, UNDER_1. The lesson does not say the bound reaches 0 after any finite number of rounds. | FACT-CHECK 2026-10-14 (pass 22): Own node: 100(2/3)^k = 66.667, 44.444, 29.630, ..., 1.156, 0.771; first below 33 at k = 3, first below 1 at k = 12.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.two-thirds-of-the-average.c3",
+      "text": "With any real number from 0 to 100 allowed, the only guess that survives every round is 0.",
+      "support": "derivation",
+      "source": "Every x > 0 exceeds 100 x (2/3)^k for large enough k, so it is deleted; 0 is never above a positive ceiling. Requires real-valued guesses: with whole numbers only, 1 survives (at all-1s the target is 0.67, nearer to 1 than to 0), as the brief's edit notes. The stage says 'decimals allowed'. | FACT-CHECK 2026-10-14 (pass 22): Derivation: every x > 0 exceeds 100(2/3)^k for large k; 0 never deleted. Stage chip says \"decimals allowed\".",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.two-thirds-of-the-average.c4",
+      "text": "The 0 answer needs everyone to be rational and to know that everyone else is, round after round; without that, the best guess changes.",
+      "support": "derivation",
+      "source": "Each deletion round uses one more level of 'everyone knows everyone is rational'. If others' guesses average m > 0, the best reply is (2/3)m (for a negligible own effect), which is not 0. No empirical claim about how real people guess is made (Nagel 1995 is flagged for a human source check and kept out of learner text). | FACT-CHECK 2026-10-14 (pass 22): Derivation: each round uses one more level of mutual knowledge of rationality; if others average m > 0 the best reply is positive. No empirical claim made. E&K ch. 6 (dominated strategies, advanced section) placement agrees with the course map (snippet-confirmed) and my knowledge.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "recall": {
+    "question": "Everyone picks any number from 0 to 100 and the closest to 2/3 of the average wins. If all are rational and know everyone is, what is picked?",
+    "options": [
+      "33",
+      "About 22",
+      "0"
+    ],
+    "answer": 2,
+    "why": "Above 66.7 can never be best; once everyone knows that, above 44.4 can't either, and so on. Each round cuts a third, and only 0 survives them all."
+  },
+  "curriculum": {
+    "primary": "economics:iterated-dominance",
+    "also": [],
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 6
+      }
+    ],
+    "tags": [
+      "game theory",
+      "rationality"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}

@@ -20,3 +20,7 @@
 ## Revision v3
 
 Review: dashed 50% line visible while locked; 1/R0 told; reveal quoted day 900 when the card could be at another day; only wave 1 seen. Changes: half line and outline hidden while locked; settled milestone needs day 900; reveal derives 1/R0 (each infects 2 at full, 1 at half) and quotes only the wave seen and the 100-day town; the message says whether cases are growing or shrinking. c2, c3 changed. Version 3 (it was v2). Not done: W-138 thumbnail.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v4. Review: reveal never unlocked on the panel's path (other-immunity needed exactly day 900); 200 d button clipped; growing/shrinking read as noise. Changes: other immunity counts from day 800; trend text now names the cause ("over/under half can catch it", exact for SIRS since dI/dt = I(beta S - gamma)); susceptible share shows two decimals near half; legend shortened, chart key moved into the chart, town smaller, immunity row compacted. Reopened c2; new c7. Phone fit not verified in a browser.

@@ -3,7 +3,9 @@
 // Toy tokenizer: a vocabulary of three multi-letter pieces (un, happi, ness) plus every single
 // letter. Greedy longest match from the left: at each position take the longest piece that fits.
 // unhappiness -> un | happi | ness (3); with the three pieces off -> 11 letters; zyxxy -> 5 letters.
-// Deterministic (no randomness).
+// Deterministic (no randomness). A record line under the boxes keeps each count the learner
+// has seen (11 letters -> 3 tokens, 11 letters -> 11 with no pieces, zyxxy 5 letters -> 5), so the
+// common-vs-rare contrast is on the stage; in the reveal the stage returns to the 3-token split.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -56,20 +58,21 @@ export default function WordInPieces({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With all three pieces on, &lsquo;{WORDS[0]}&rsquo; split into {tokenize(WORDS[0], PIECES).join(" | ")}:{" "}
-            {Q_ALL} tokens. {sawNone ? `With the pieces off you watched it fall apart into ${Q_NONE} single letters.` : ""}{" "}
+            The stage is back to the start: with all three pieces on, &lsquo;{WORDS[0]}&rsquo; splits into{" "}
+            {tokenize(WORDS[0], PIECES).join(" | ")}: {Q_ALL} tokens. {sawNone ? `With the pieces off you watched it fall apart into ${Q_NONE} single letters.` : ""}{" "}
             {sawRare ? `'${WORDS[1]}' matched no piece and cost ${RARE}.` : ""}
           </p>
           <p>
-            A model built on a tokenizer like this does not receive the word or its letters. It receives a row of piece
-            numbers. A common chunk costs one; a rare string falls into many. Real tokenizers learn their piece lists from
-            large amounts of text, so frequent chunks get pieces.
+            Look at your record under the boxes: {WORDS[0].length} letters cost {Q_ALL} tokens, but {WORDS[1].length}{" "}
+            letters of &lsquo;{WORDS[1]}&rsquo; cost {RARE}. A chunk in the list costs one; a string with no piece falls into
+            single letters. A model built on a tokenizer like this does not receive the word, only the row of piece numbers. Real tokenizers learn
+            their piece lists from large amounts of text, so frequent chunks get pieces.
           </p>
           <p>What a model &ldquo;reads&rdquo; depends on its piece list, not on the word you see.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["pieces-off", "rare-word"]}>
           {(reach) => {
             const toggle = (p: string) => {
@@ -92,10 +95,20 @@ export default function WordInPieces({ slug }: { slug: string }) {
                 reach("pieces-off");
               }
             };
+            // In the reveal the stage shows the answer state again: unhappiness, all pieces on.
+            const done = phase === "reveal";
+            const shownWord = done ? WORDS[0] : word;
+            const shownTokens = done ? tokenize(WORDS[0], PIECES) : tokens;
+            const off = locked || done;
             const W = 300;
-            const n = tokens.length;
+            const n = shownTokens.length;
             const gap = 3;
-            const unit = (W - gap * (n - 1)) / word.length;
+            const unit = (W - gap * (n - 1)) / shownWord.length;
+            const record = [
+              `${WORDS[0].length} letters, all pieces: ${Q_ALL}`,
+              sawNone ? `no pieces: ${Q_NONE}` : null,
+              sawRare ? `${WORDS[1]}, ${WORDS[1].length} letters: ${RARE}` : null,
+            ].filter(Boolean);
             let x = 10;
             return (
               <div className={s.wrap}>
@@ -105,22 +118,22 @@ export default function WordInPieces({ slug }: { slug: string }) {
                   {PIECES.map((p) => (
                     <Control
                       key={p}
-                      className={on[p] ? "active" : ""}
-                      aria-pressed={on[p]}
-                      disabled={locked}
+                      className={done || on[p] ? "active" : ""}
+                      aria-pressed={done || on[p]}
+                      disabled={off}
                       onClick={() => toggle(p)}
                     >
-                      {on[p] ? `✓ ${p}` : `✗ ${p}`}
+                      {done || on[p] ? `✓ ${p}` : `✗ ${p}`}
                     </Control>
                   ))}
                 </Row>
-                <svg viewBox="0 0 320 110" className="stage-svg" role="img" aria-label={locked ? word : `${word}: ${tokens.join(" | ")}`}>
+                <svg viewBox="0 0 320 110" className="stage-svg" role="img" aria-label={locked ? shownWord : `${shownWord}: ${shownTokens.join(" | ")}`}>
                   {locked ? (
                     <text x={160} y={62} textAnchor="middle" className={s.big} fill="var(--fg)">
-                      {word}
+                      {shownWord}
                     </text>
                   ) : (
-                    tokens.map((t, i) => {
+                    shownTokens.map((t, i) => {
                       const w = unit * t.length;
                       const x0 = x;
                       x += w + gap;
@@ -148,9 +161,12 @@ export default function WordInPieces({ slug }: { slug: string }) {
                     })
                   )}
                 </svg>
+                <p className={s.caption} aria-live="polite">
+                  {locked ? "" : `Tokens seen · ${record.join(" · ")}`}
+                </p>
                 <Row>
                   {WORDS.map((w) => (
-                    <Control key={w} className={word === w ? "active" : ""} disabled={locked || word === w} onClick={() => pick(w)}>
+                    <Control key={w} className={shownWord === w ? "active" : ""} disabled={off || word === w} onClick={() => pick(w)}>
                       {w}
                     </Control>
                   ))}

@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "open-addressing",
   "format": "Simulation run",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -82,9 +82,12 @@
     "why": "Slot 16 catches keys hashing to 10, 11, 12, 13, 14, 15 or 16: 7 hash values against 1. Full runs catch more and grow faster."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/probing-clusters-grow/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/probing-clusters-grow/2026-10-14-learner-adult-beginner.md"
+      "company/reviews/probing-clusters-grow/2026-10-14-learner-adult-beginner.md",
+      "company/reviews/probing-clusters-grow/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []

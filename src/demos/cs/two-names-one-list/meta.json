@@ -4,7 +4,7 @@
   "hook": "Make a list a, set b = a, then change b. What happens to a?",
   "domain": "cs",
   "concept": "references-aliasing",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -79,9 +79,12 @@
     "why": "y = x gives the list a second name, so appending through y changes the one list that x also points at."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/two-names-one-list/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/two-names-one-list/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/two-names-one-list/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/two-names-one-list/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []

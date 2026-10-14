@@ -1,0 +1,114 @@
+{
+  "slug": "outside-option-sets-the-split",
+  "title": "The offer you never take",
+  "hook": "A could walk away with $0.40 but never does. Does that $0.40 still change the deal?",
+  "domain": "economics",
+  "concept": "nash-bargaining",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e01"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "learner": {
+    "knows": [
+      "splitting $1 by agreement",
+      "opportunity cost: what you give up by not taking the next best option"
+    ],
+    "doesNotKnow": [
+      "that under Nash bargaining each side first gets its outside option and the rest is split equally"
+    ]
+  },
+  "misconception": "A better outside option only matters if you actually walk away.",
+  "objective": "The learner can compute a Nash bargaining split (outside options first, the rest halved), finding A $0.70 and B $0.30 when A's option is $0.40 and B's is $0, and explain that the option moves the split without being used.",
+  "claims": [
+    {
+      "id": "economics.outside-option-sets-the-split.c1",
+      "text": "With outside options $0.40 for A and $0 for B, the Nash bargaining split of $1 gives A $0.40 + $0.30 = $0.70 and B $0.30.",
+      "support": "derivation",
+      "source": "A = 0.4 + (1 - 0.4 - 0)/2 = 0.70, B = 0.30. Builder's node check (scratchpad ncm-e01-checks/check.mjs): maximising the Nash product (A - 0.4)(B - 0) over A in [0.4, 1] in 0.001 steps gives A = 0.70. Demo.tsx split(). | FACT-CHECK 2026-10-14 (pass 22): Own node: maximiser of (A-40)(100-A) over whole cents is A=70; formula 0.4+0.3 = 0.70, B 0.30.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.outside-option-sets-the-split.c2",
+      "text": "The Nash bargaining solution gives each side its outside option plus half of the remaining surplus.",
+      "support": "source",
+      "source": "J. F. Nash, 'The bargaining problem', Econometrica 18(2), 155-162 (1950); E&K ch. 12 (section unconfirmed). Holds for money-like (linear, transferable) payoffs, as the reveal's model line says. Citation from memory; fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): Verified on derivation: with linear payoffs, max (A-a)(B-b) s.t. A+B=1 gives A = a + (1-a-b)/2 (own node for a = 0..80 cents). Nash 1950, Econometrica 18(2) 155-162 correct to my knowledge (not opened). E&K ch. 12 'Bargaining and Power in Networks' confirmed via library-catalogue TOC in web search; section (I believe 12.5) unconfirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.outside-option-sets-the-split.c3",
+      "text": "Every 10 cents added to A's outside option moves 5 cents of the deal to A.",
+      "support": "derivation",
+      "source": "With B's option 0, A = a + (1 - a)/2 = 0.5 + a/2, so dA/da = 1/2. Builder's node table: a = 0, 0.1, ..., 1 gives A = 0.50, 0.55, ..., 1.00. | FACT-CHECK 2026-10-14 (pass 22): A = 0.5 + a/2: own node table a = 0..80 gives 50, 55, ..., 90 cents.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.outside-option-sets-the-split.c4",
+      "text": "In the model the deal always happens, so A never takes the outside option; the option only moves the split.",
+      "support": "derivation",
+      "source": "For any a < 1, the deal gives A = 0.5 + a/2 > a and B = (1 - a)/2 > 0, so both prefer the deal to no deal. Model assumption: the agreement is reached. | FACT-CHECK 2026-10-14 (pass 22): For a < 1, A = 0.5 + a/2 > a and B = (1-a)/2 > 0 (own node, all slider values). Model assumption stated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "economics.outside-option-sets-the-split.c5",
+      "text": "The stage is a model: money payoffs, both sides value a dollar the same, and the deal is sure to happen.",
+      "support": "convention",
+      "source": "Modelling choice stated in the reveal. | FACT-CHECK 2026-10-14 (pass 22): Matches the reveal's muted model line.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "recall": {
+    "question": "Two people split $1 by Nash bargaining. A can get $0.60 elsewhere, B nothing. What does A get?",
+    "options": [
+      "$0.50",
+      "$0.60",
+      "$0.80"
+    ],
+    "answer": 2,
+    "why": "A first gets the $0.60 fallback; the remaining $0.40 is split evenly, so A gets $0.80 without ever taking the outside offer."
+  },
+  "curriculum": {
+    "primary": "economics:nash-bargaining",
+    "also": [],
+    "prerequisites": [
+      "economics:opportunity-cost"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 12
+      }
+    ],
+    "tags": [
+      "bargaining"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

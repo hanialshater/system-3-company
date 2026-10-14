@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
+.wrap :global(.tap) { min-height: 44px; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 1.3em; }
+.circle { width: 340px; max-width: 100%; height: auto; }
+.disc { transition: fill 200ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .disc { transition: none; } }
+.key { fill: var(--fg); font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.letter { fill: var(--fg); font-size: 14px; font-weight: 900; }
+.ghost { fill: var(--muted); font-size: 11px; font-weight: 700; text-decoration: line-through; }
+.server { fill: var(--fg); font-size: 14px; font-weight: 900; }
+.table { display: grid; grid-template-columns: auto auto; gap: 3px 8px; font-size: 0.8rem; align-items: center; }
+.th { color: var(--muted); font-weight: 600; text-align: right; }
+.td { padding: 3px 8px; border-radius: 6px; background: var(--bg-2); color: var(--muted); font-variant-numeric: tabular-nums; }
+.on { color: var(--fg); font-weight: 700; }
+.lab { font-size: 0.75rem; color: var(--muted); }

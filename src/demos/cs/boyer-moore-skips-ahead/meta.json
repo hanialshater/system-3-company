@@ -1,0 +1,144 @@
+{
+  "slug": "boyer-moore-skips-ahead",
+  "title": "Read the pattern from its end",
+  "hook": "Must a search look at every letter of the text?",
+  "domain": "cs",
+  "concept": "boyer-moore-horspool",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "algo2-sc"
+  },
+  "format": "side-by-side",
+  "learner": {
+    "knows": [
+      "KMP never moves back in the text (kmp-never-steps-back)"
+    ],
+    "doesNotKnow": [
+      "that comparing the pattern from its end lets you skip text and look at fewer characters than the text has"
+    ]
+  },
+  "misconception": "Any search must look at every character of the text at least once.",
+  "objective": "The learner can explain that a mismatch against a text letter that is not in the pattern rules out every placement covering it, so Horspool finds EXAMPLE in a 24-letter text with 15 comparisons in 5 placements and never reads 11 letters, while the plain method reads all 24 with 27 comparisons.",
+  "claims": [
+    {
+      "id": "cs.boyer-moore-skips-ahead.c1",
+      "text": "Horspool finds EXAMPLE in \"HERE IS A SIMPLE EXAMPLE\" with 15 character comparisons in 5 placements.",
+      "support": "simulation",
+      "source": "Builder's node script (2026-10-14, algo2-sc) and HORS in Demo.tsx: compare right to left; on a miss slide by the table entry of the text letter under the pattern's last position. Placements 0, 7, 9, 15, 17; slide log 0:S->7, 7:P->2, 9:E->6, 15:P->2, 17:match. A comparison is one text letter against one pattern letter. The brief said 4 alignments; the spec corrected it to 5 and this build reproduces 5. | FACT-CHECK 2026-10-14 (pass 22): Own Horspool in node (scratchpad fc22/bm.mjs, written independently): 15 comparisons, 5 placements 0,7,9,15,17; slides 0:S->7, 7:P->2, 9:E->6, 15:P->2, 17:match. Matches HORS in Demo.tsx and the reveal (computed from HORS).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c2",
+      "text": "The plain left-to-right method takes 27 comparisons over 18 placements and reads all 24 letters.",
+      "support": "simulation",
+      "source": "Builder's node script and PLAIN in Demo.tsx: placements 0..17, each reading left to right until a miss or a full match; 27 comparisons; the set of text positions read has 24 members. | FACT-CHECK 2026-10-14 (pass 22): Own naive search (scratchpad fc22/bm.mjs): 27 comparisons, 18 placements (0..17), 24 distinct text positions read; match at 17. Matches PLAIN in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c3",
+      "text": "Horspool never reads 11 of the 24 letters.",
+      "support": "simulation",
+      "source": "Builder's node script: the set of text positions Horspool compares has 13 members (position 13 is read twice), so 24 - 13 = 11 are never read. | FACT-CHECK 2026-10-14 (pass 22): Own Horspool: 13 distinct text positions read, 24 - 13 = 11 never read. Reveal and lane readout compute T.length - read.size.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c4",
+      "text": "The slide table for EXAMPLE is E 6, X 5, A 4, M 3, P 2, L 1, any other letter 7.",
+      "support": "derivation",
+      "source": "Horspool's table: for each letter in the pattern except the last position, the distance from its last occurrence to the end (E at 0 -> 6, X 5, A 4, M 3, P 2, L 1); letters not in P[0..5] get the pattern length 7. Horspool 1980, Software: Practice and Experience 10(6) (from memory, not opened). | FACT-CHECK 2026-10-14 (pass 22): Derivation re-done: shift(c) = m-1-(last index of c in P[0..5]); E (index 0; the E at 6 is excluded) 6, X 5, A 4, M 3, P 2, L 1, absent 7. Own node table matches SHIFT/TABLE in Demo.tsx and the stage's Slide row.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c5",
+      "text": "The first check met S; S is not in EXAMPLE, so no placement covering it could match, and the pattern jumped 7.",
+      "support": "derivation",
+      "source": "At placement 0 the pattern's last letter E is under text position 6, which is S. Every placement 1..6 would put some pattern letter over that S, and S is not in EXAMPLE, so none can match; the next possible placement is 7. Node log confirms the first slide is 7. | FACT-CHECK 2026-10-14 (pass 22): At placement 0 text[6] = S (pattern end), S not in EXAMPLE; placements 1..6 all put a pattern letter over position 6, so none can match; own run's first slide is 7. Reveal sentence computed from HORS[0].",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c6",
+      "text": "Horspool compares from the pattern's end and, on a miss, slides by the table entry of the text letter under the pattern's end.",
+      "support": "source",
+      "source": "Horspool 1980, 'Practical fast searching in strings', Software: Practice and Experience; a simplification of Boyer and Moore 1977, 'A fast string searching algorithm', Commun. ACM 20(10). CLRS 4e ch. 32 (chapter only). Citations from memory; check before publishing. | FACT-CHECK 2026-10-14 (pass 22): The sentence describes the stage's algorithm, which I traced (c1). Attribution: Horspool, Software: Practice and Experience 10(6):501-506 (1980) confirmed as bibliographic data by web-search snippets (Wikipedia, NIST DADS listings); the paper PDF host was blocked (proxy 403), so the paper itself was NOT opened. Boyer-Moore 1977 CACM 20(10) and CLRS ch. 32 not opened (from memory).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c7",
+      "text": "Longer patterns can skip further.",
+      "support": "derivation",
+      "source": "The largest slide equals the pattern length (for a text letter not in the pattern), so a longer pattern allows longer jumps; on typical text Horspool reads about n/m letters, while its worst case is O(nm) (Horspool 1980; from memory). | FACT-CHECK 2026-10-14 (pass 22): Derivation: the largest table entry is the pattern length m (letter absent from the pattern), so the maximum jump grows with m. The O(nm) worst case / ~n/m typical in the source note is not learner-visible and was not checked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.boyer-moore-skips-ahead.c8",
+      "text": "The text \"HERE IS A SIMPLE EXAMPLE\" has 24 characters, counting spaces.",
+      "support": "derivation",
+      "source": "Count: T.length = 24 in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 22): Own count: \"HERE IS A SIMPLE EXAMPLE\".length = 24 (node).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Searching right to left from a pattern's end, you meet a text letter that does not occur in the pattern at all. What can you do?",
+    "options": [
+      "Slide the pattern past that letter entirely",
+      "Slide the pattern one place",
+      "Go back and re-read the text from the start"
+    ],
+    "answer": 0,
+    "why": "No placement that covers a letter missing from the pattern can match, so the whole pattern jumps past it and those letters are never read."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "curriculum": {
+    "primary": "cs:boyer-moore-horspool",
+    "also": [],
+    "prerequisites": [
+      "cs:kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 32,
+        "note": "String matching (chapter only)"
+      }
+    ],
+    "tags": [
+      "string-search",
+      "boyer-moore",
+      "horspool",
+      "skip-table"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "two-panel-shared-control",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

@@ -43,9 +43,9 @@
     },
     {
       "id": "life.keeping-the-bad-gene.c3",
-      "text": "When w is rare almost no young get two copies while some get one and survive best, so w rises; when w is common a large share of young get two copies and die, so w falls. On the stage the young with two copies are q^2 of the young and those with one copy 2pq (1% w: about 0% and 2%; 50% w: 25% and 50%).",
+      "text": "When w is rare almost no young get two copies while some get one and survive best, so w rises; when w is common a large share of young get two copies and die, so w falls; at the balance it holds steady. On the stage the young with two copies are q^2 of the young and those with one copy 2pq (1% w: about 0% and 2%; 50% w: 25% and 50%), and an arrow beside each share shows the direction of next generation's change (↑, ↓, or = when the change is under 0.05 percentage points).",
       "support": "derivation",
-      "source": "Rare w: almost all w copies are in Aw (fitness 1 > mean fitness), so q rises; common w: the ww share q^2 grows, mean fitness of w copies falls below the mean (Hartl & Clark 2007 ch. 5).",
+      "source": "Rare w: almost all w copies are in Aw (fitness 1 > mean fitness), so q rises; common w: the ww share q^2 grows, mean fitness of w copies falls below the mean (Hartl & Clark 2007 ch. 5). · Fact-check pass 21 2026-10-14: Own run of Demo.tsx trajectory/pull: gen 0 at 85%, 1% start: q² 0.01% → 0%, 2pq 1.98% → 2%, arrow ↑; 50% start: 25%, 50%, arrow ↓; gen 60 both '='. Threshold |Δq| < 0.0005 = 0.05 pp as stated. Note for builder (not blocking): at 95% no-w survival the 1% start reads '=' from gen 0 to gen 60 while still rising (4.1% at gen 60 vs balance 4.8%), so '=' means 'change too small to show', not 'at the balance'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -76,6 +76,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "life.keeping-the-bad-gene.c7",
+      "text": "In the question, the lower survival of animals with no w is given a reason: say, a disease that one copy of w protects against (a made-up example, the pattern of heterozygote advantage).",
+      "support": "convention",
+      "source": "Framing of the made-up species (Demo.tsx v5 question); the real pattern it echoes is c4 (sickle-cell trait and malaria: Allison 1954, BMJ 1(4857):290). · Fact-check pass 21 2026-10-14: Question text in Demo.tsx: 'No copies: 85% survive (say, a disease that one copy of w protects against)'. Species is made up; heterozygote advantage pattern. Allison (1954) BMJ 1(4857):290 recalled, not opened; c7 is a framing convention and does not depend on it.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -97,12 +106,13 @@
     "simulatedLearner": [
       "company/reviews/keeping-the-bad-gene/2026-10-13-learner-adult-beginner.md",
       "company/reviews/keeping-the-bad-gene/2026-10-13-learner-adult-beginner-v2.md",
-      "company/reviews/keeping-the-bad-gene/2026-10-14-learner-adult-beginner-r2.md"
+      "company/reviews/keeping-the-bad-gene/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/keeping-the-bad-gene/2026-10-14-learner-adult-beginner-r5.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "life:heterozygote-advantage",
     "prerequisites": [
