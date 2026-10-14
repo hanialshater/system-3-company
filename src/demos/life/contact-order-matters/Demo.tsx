@@ -244,7 +244,7 @@ export default function ContactOrderMatters({ slug }: { slug: string }) {
             Overlap is a different change, not another order: here every pair meets on each of days 1 to 4, so infection can run both ways, and from E all four were reached.
           </p>
           <p className="muted">
-            In real populations, partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and
+            In models of real populations, partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and
             Kretzschmar, 1997). Real contacts are not certain to pass it on.
           </p>
         </>
