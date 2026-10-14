@@ -44,3 +44,15 @@ r7 top finding: the Tried trace kept four of five positions, so (1, 4) with 3 cr
 6. **Reset.** No Reset control; moving the point never clears Seen. Reveal from that run: "In the gap, from (3, 4), the ray crossed 2 edges: into the right arm at x = 4, and out again at x = 6. From (1, 4) it crossed 3: odd, inside. Look at the ray: at each numbered crossing it switches between solid (inside) and dashed (outside), and past the last crossing it is always outside. So counting back from the far end, an odd count means inside and an even count means outside, however central the point looks. ..."
 
 Not seen in a browser (no build/QA this wave).
+
+## Pre-flight v4 (demo-builder, 2026-10-14, wave H, learner r8 / W-318)
+
+Changes: when the reveal opens the stage draws the first odd-count point's ray again (readout label "Point (again)"; any tap or drag after that shows the learner's point), so "Look at the ray from (1, 4), drawn again above: at each numbered crossing ..." points at three numbered crossings on screen. The tie-rule sentence is cut (c3 withdrawn). New Point readout; at the reveal the note line (same words as the readouts) and the Tried trace (not quoted; the Seen line is) step aside. Presets fit one row (padding 8 px, 44 px tall). Seen line verdicts shortened to "in"/"out". Axis labels 9 → 10 px. Presets Row opts in to the fold (no Readout, reveal quotes the Seen line); on the QA path it does not pay, so nothing folds.
+
+1. Title and hook: unchanged. (The r7/r8 should-fix, that looking answers the question, stays with the learning designer.)
+2. Options: unchanged.
+3. Locked stage: unchanged plus a Point readout "(7, 4)", which is where the dot is drawn.
+4. Reveal values: (3, 4) and 2 crossings (b) notch milestone record; (1, 4) and 3 (b) inside-odd record, also the replayed ray and readouts at the reveal.
+5. QA path: (1, 4), (3, 4), (5, 4), (3, 1), (7, 4); both milestones. At the reveal the stage shows (1, 4) again with crossings 1, 2, 3, solid/dashed stretches, and the Seen line.
+6. Reset: none. Reveal (QA path, 81 words): "In the gap, from (3, 4), the ray crossed 2 edges: into the right arm at x = 4, and out again at x = 6. From (1, 4) it crossed 3: odd, inside. Look at the ray from (1, 4), drawn again above: at each numbered crossing it switches between solid (inside) and dashed (outside), and past the last crossing it is always outside. So odd means inside and even means outside, however central the point looks, with any number of notches."
+7. Phone fit (reveal-fit, localhost:3530, 2026-10-14): crop 180 px → 0 px; hiddenBelow 0; namedHidden 0; phoneFit true; reveal 111 → 86 words as measured (verdict included). Stage 489 → 367 px. Screenshot: artifacts/reveal-fit/ray-counts-crossings.png.

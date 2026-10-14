@@ -116,7 +116,7 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                       </text>
                     </g>
                   ))}
-                  <text x={L - 4} y={TOP + 15} textAnchor="end" className={s.small}>
+                  <text x={2} y={TOP + 28} textAnchor="start" className={s.small}>
                     mmol/L
                   </text>
                   {[0, 20, 40, 60].map((t) => (

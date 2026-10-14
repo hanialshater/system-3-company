@@ -61,14 +61,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A guitarist plucks one string to play a higher note, which vibrates more times a second. On that same string, what happens to the speed of the waves?",
+    "question": "You send waves down a long slinky, then wiggle its end three times as often. How do the new waves travel?",
     "options": [
-      "It goes up",
-      "It stays the same; the waves get shorter",
-      "It goes down"
+      "Three times as fast",
+      "At the same speed, with crests three times closer",
+      "At the same speed, with crests three times further apart"
     ],
     "answer": 1,
-    "why": "Wave speed is set by the string's tension and mass per length. More vibrations a second only shorten the wavelength (wavelength = speed / frequency)."
+    "why": "The slinky's tension and mass per length set the wave speed. Wiggling more often only shortens the wavelength (wavelength = speed / frequency)."
   },
   "evidence": {
     "qa": [],
@@ -84,8 +84,17 @@
     "level": "core",
     "strand": "waves",
     "references": [],
-    "tags": ["waves", "wavelength", "frequency"]
+    "tags": [
+      "waves",
+      "wavelength",
+      "frequency"
+    ]
   },
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate", "simulation-run"]
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "simulation-run"
+  ]
 }
