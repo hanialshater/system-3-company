@@ -4,7 +4,7 @@
   "hook": "The first ton of wheat costs 1 ton of corn. What does the tenth cost?",
   "domain": "economics",
   "concept": "production-possibilities",
-  "status": "published",
+  "status": "review",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-economics",
@@ -27,37 +27,29 @@
       "id": "economics.bending-frontier.c1",
       "text": "On this made-up farm (frontier corn = 100 − wheat², not shown to the learner), switching the first field to wheat (0 to 1 ton) costs 1 ton of corn, and switching the last (9 to 10 tons) costs 19.",
       "support": "derivation",
-      "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost(). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): corn(w) = 100 - w^2: stepCost(1) = 1, stepCost(10) = 19; the formula appears in neither the question nor the chip (Demo.tsx v2).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost(). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): corn(w) = 100 - w^2: stepCost(1) = 1, stepCost(10) = 19; the formula appears in neither the question nor the chip (Demo.tsx v2). | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c2",
       "text": "The corn lost per ton runs 1, 3, 5, … 19, growing by 2 each step.",
       "support": "derivation",
-      "source": "corn(w − 1) − corn(w) = 2w − 1.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "corn(w − 1) − corn(w) = 2w − 1. | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c3",
       "text": "The frontier bends because the fields are not all alike: the first wheat goes on the field worst for corn (it grew 1 ton of corn), the last takes the best corn field (19), and each drop on the staircase is the corn its field used to grow (increasing opportunity cost).",
       "support": "source",
-      "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Model part checked in Demo.tsx: field strip k shows stepCost(k) = 2k - 1, turned to wheat in order 1..10, so each drop equals that field's corn. The general principle (bowed-out PPF because resources are not equally suited) is corroborated by secondary search-result text; Mankiw ch. 2 not opened. The learner sentence is about the farm on screen, so it does not depend on the unopened source.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Model part checked in Demo.tsx: field strip k shows stepCost(k) = 2k - 1, turned to wheat in order 1..10, so each drop equals that field's corn. The general principle (bowed-out PPF because resources are not equally suited) is corroborated by secondary search-result text; Mankiw ch. 2 not opened. The learner sentence is about the farm on screen, so it does not depend on the unopened source. | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c4",
-      "text": "The curve is made up to show the shape, not data from a real farm.",
+      "text": "The curve is made up, not data from a real farm.",
       "support": "convention",
-      "source": "Stage chip 'Made-up farm'; reveal's last line.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Stage chip 'Made-up farm'; reveal's last line. | REOPENED 2026-10-14 (v4, W-265 phone fit, demo-builder): reveal sentence reworded to fit 390x844 (decision 2026-10-14-reveal-fits-with-its-picture); needs a fresh check against the reveal.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c5",
@@ -94,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:production-possibilities",
     "prerequisites": [
