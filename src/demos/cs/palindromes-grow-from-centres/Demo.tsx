@@ -11,6 +11,9 @@
 // letter changed). In "abaa" three centres stop at a red mismatch and the whole word is never
 // tested, because its middle "ba" failed. A tested-substrings readout makes that countable. The
 // centre buttons keep their labels; per-centre counts are drawn under each word.
+// v3 (r7): the locked readouts showed "0 / 7" and "0 / 10", two of the three options, as denominators.
+// Before the commit the readouts now show bare counts; the totals appear after the commit. Once every
+// centre is grown, the "abaa tested" readout also names the one substring never tested ("not abaa").
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -75,7 +78,7 @@ export default function PalindromesFromCentres({ slug }: { slug: string }) {
           </p>
           <p>
             Change one letter and the mirrors break. In &quot;{ALT}&quot; the same {CENTRES} centres found {foundAlt}, and {failsAlt}{" "}
-            stopped at a red mismatch. The fingers looked at {testedAlt} of its {SUBSTRINGS} substrings: &quot;{ALT}&quot; itself was
+            stopped at a red mismatch. Your tested readout reads {testedAlt} / {SUBSTRINGS}, not &quot;{ALT}&quot;: the whole word was
             never tested, because its middle, &quot;{MID_FAIL ? ALT.slice(MID_FAIL[0], MID_FAIL[1] + 1) : ""}&quot;, had already failed.
           </p>
           <p>
@@ -175,10 +178,19 @@ export default function PalindromesFromCentres({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <Row>
-                  <Readout label="Centres grown" value={`${done.length} / ${CENTRES}`} />
+                  <Readout label="Centres grown" value={locked ? `${done.length}` : `${done.length} / ${CENTRES}`} />
                   <Readout label={`${WORD} found`} value={found} />
                   <Readout label={`${ALT} found`} value={foundAlt} />
-                  <Readout label={`${ALT} tested`} value={`${testedAlt} / ${SUBSTRINGS}`} />
+                  <Readout
+                    label={`${ALT} tested`}
+                    value={
+                      locked
+                        ? `${testedAlt}`
+                        : done.length === CENTRES
+                          ? `${testedAlt} / ${SUBSTRINGS}, not "${ALT}"`
+                          : `${testedAlt} / ${SUBSTRINGS}`
+                    }
+                  />
                 </Row>
               </div>
             );

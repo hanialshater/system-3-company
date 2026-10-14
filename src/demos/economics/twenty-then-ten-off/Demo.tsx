@@ -4,6 +4,9 @@
 // percentage of the price at that moment. "Swap order" replays them the other way round.
 // Key states: both discounts applied ($72, 28% off) and the order swapped (still $72).
 // Model: two percentage discounts on one item; numbers are illustrative.
+// v3 (r7): Reset cleared every number the reveal quotes. Each finished order is now recorded on a
+// "Seen" line under the readouts (cuts, the price each second cut was taken of, final price and
+// total %); Reset clears the bar, not the Seen lines, and the reveal quotes the Seen lines.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -31,11 +34,18 @@ const TOTAL_PCT = Math.round(((PRICE - FINAL) / PRICE) * 1000) / 10; // 28
 const SWAPPED = run([...OFFS].reverse());
 const usd = (v: number) => `$${Number.isInteger(v) ? v : v.toFixed(2)}`;
 
+type Run = ReturnType<typeof run>;
+const key = (order: number[]) => order.join(">");
+const pctOff = (price: number) => Math.round(((PRICE - price) / PRICE) * 1000) / 10;
+const seenLine = (r: Run) =>
+  `Seen ${r.cuts[0].pct}% then ${r.cuts[1].pct}%: ${usd(r.cuts[0].amount)} off, then ${usd(r.cuts[1].amount)} of ${usd(r.cuts[1].base)} → ${usd(r.price)} (${pctOff(r.price)}% off)`;
+
 const L = 12;
 const W = 296;
 
 export default function TwentyThenTenOff({ slug }: { slug: string }) {
   const [order, setOrder] = useState<number[]>([]);
+  const [seen, setSeen] = useState<Record<string, Run>>({}); // finished orders; Reset keeps them
 
   return (
     <Lesson
@@ -48,16 +58,18 @@ export default function TwentyThenTenOff({ slug }: { slug: string }) {
       exploreHint="Tap both discounts, then swap their order."
       minInteractions={MILESTONES.length}
       reveal={() => {
-        const first = run([...OFFS]);
+        // both orders are on the required path: "swapped" needs one finished order reversed
+        const first = seen[key([...OFFS])] ?? run([...OFFS]);
+        const other = seen[key([...OFFS].reverse())] ?? SWAPPED;
         return (
           <>
             <p>
-              {OFFS[0]}% off took {usd(first.cuts[0].amount)}, leaving {usd(first.cuts[0].base - first.cuts[0].amount)}. The next {OFFS[1]}% was
-              of that sale price, only {usd(first.cuts[1].amount)}, not $10. The coat ended at <strong>{usd(FINAL)}</strong>:{" "}
-              <strong>{TOTAL_PCT}% off</strong>.
+              Your Seen lines: {OFFS[0]}% off took {usd(first.cuts[0].amount)}, leaving {usd(first.cuts[0].base - first.cuts[0].amount)}. The next {OFFS[1]}% was
+              of that sale price, only {usd(first.cuts[1].amount)}, not $10. The coat ended at <strong>{usd(first.price)}</strong>:{" "}
+              <strong>{pctOff(first.price)}% off</strong>.
             </p>
             <p>
-              Swapped, the cuts were {usd(SWAPPED.cuts[0].amount)} then {usd(SWAPPED.cuts[1].amount)}, and the price was still {usd(SWAPPED.price)}.
+              Swapped, the cuts were {usd(other.cuts[0].amount)} then {usd(other.cuts[1].amount)}, and the price was still {usd(other.price)}.
               Percent changes multiply (0.8 x 0.9 = 0.9 x 0.8), so stacked discounts are less than their sum and the order does not matter.
             </p>
             <p className="muted">Illustrative numbers: one item, two percentage discounts.</p>
@@ -70,10 +82,14 @@ export default function TwentyThenTenOff({ slug }: { slug: string }) {
           {(reach) => {
             const { price, cuts } = run(order);
             const both = order.length === OFFS.length;
+            const record = (o: number[]) => setSeen((m) => ({ ...m, [key(o)]: run(o) }));
             const add = (pct: number) => {
               const next = [...order, pct];
               setOrder(next);
-              if (next.length === OFFS.length) reach("stacked");
+              if (next.length === OFFS.length) {
+                record(next);
+                reach("stacked");
+              }
             };
             let cx = L + (price / PRICE) * W;
             return (
@@ -100,8 +116,15 @@ export default function TwentyThenTenOff({ slug }: { slug: string }) {
                 </svg>
                 <Row>
                   <Readout label="Price now" value={usd(price)} />
-                  <Readout label="Total discount" value={locked ? "?" : `${Math.round(((PRICE - price) / PRICE) * 1000) / 10}%`} />
+                  <Readout label="Total discount" value={locked ? "?" : `${pctOff(price)}%`} />
                 </Row>
+                {[key([...OFFS]), key([...OFFS].reverse())].map((k) =>
+                  seen[k] ? (
+                    <p key={k} className={s.seen}>
+                      {seenLine(seen[k])}
+                    </p>
+                  ) : null,
+                )}
                 <Row>
                   {OFFS.map((pct) => (
                     <Control key={pct} disabled={locked || order.includes(pct)} onClick={() => add(pct)}>
@@ -111,7 +134,9 @@ export default function TwentyThenTenOff({ slug }: { slug: string }) {
                   <Control
                     disabled={locked || !both}
                     onClick={() => {
-                      setOrder([...order].reverse());
+                      const next = [...order].reverse();
+                      setOrder(next);
+                      record(next);
                       reach("swapped");
                     }}
                   >

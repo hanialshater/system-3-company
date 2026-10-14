@@ -8,8 +8,13 @@
 // plots only the splits the learner has visited, as a trace. The hidden cost is on stage: for the
 // split last visited (0-95% on B) a line shows what the next 5 of 100 drivers gain by joining B and
 // what the drivers already on B lose. The reveal quotes that recorded split, so it survives moving on.
+// v4 (r7): the "Half on each" preset named the planner's split before the commit and handed over the
+// optimum. It is gone. "Try every split" sweeps 100% -> 0% in 5% steps (~340 ms) and leaves the whole
+// trace, so the stage shows the bottom and the rise on both sides; the gate needs 50% and a split
+// below it. A "Lowest seen" readout records the best visited split, and the hidden-cost line is now
+// for that split (it no longer changes with the last move), so the reveal quotes two persistent rows.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -21,6 +26,8 @@ const timeB = (pct: number) => (A_MIN * pct) / 100;
 const avg = (pct: number) => ((100 - pct) / 100) * A_MIN + (pct / 100) * timeB(pct);
 const BEST = 50; // grid search over 0..100: avg(50) = 45 is the minimum
 const fmt = (m: number) => (Number.isInteger(m) ? String(m) : m.toFixed(1));
+const reducedMotion = () =>
+  typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 /** Out of 100 drivers, with pct on B: what the next STEP drivers moving A -> B gain, and what the pct already on B lose. */
 const joinCost = (pct: number) => {
@@ -42,10 +49,21 @@ const py = (min: number) => Y0 - ((Y0 - Y1) * (min - 30)) / 35;
 export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) {
   const [onB, setOnB] = useState(100);
   const [seen, setSeen] = useState<number[]>([100]); // splits visited, for the trace
-  const [join, setJoin] = useState<Join | null>(null); // the hidden-cost line for the last split below 100
+  const [busy, setBusy] = useState(false);
+  const seenRef = useRef<number[]>([100]);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(
+    () => () => {
+      if (timer.current) clearInterval(timer.current);
+    },
+    [],
+  );
   const b = timeB(onB);
   const a = avg(onB);
   const best = seen.reduce((m, p) => (avg(p) < avg(m) ? p : m), seen[0]);
+  // the hidden-cost line, for the lowest-average split visited (0 < best < 100)
+  const join: Join | null = best > 0 && best < 100 ? joinCost(best) : null;
+  const roseBelow = seen.some((p) => p < best);
   const trace = [...seen].sort((p, q) => p - q);
 
   return (
@@ -57,19 +75,20 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
         options: ["No, 60 is best", "Yes, to 45", "Yes, to 30"],
         answer: 1,
       }}
-      exploreHint="Slide drivers off road B onto A and watch the average trip."
+      exploreHint="Slide drivers off road B onto A, or try every split. Find the lowest average."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            Selfish drivers all pile onto B, because B is never slower than A: everyone takes 60 minutes and no one gains by
-            switching. The lowest average you found was {fmt(avg(best))} minutes, with {best}% on B
-            {best === BEST ? ", where B takes 30" : ""}. 30 is out of reach: whoever stays on A still takes 60.
+            Selfish drivers all pile onto B, which is never slower than A: everyone takes 60 minutes. Your Lowest seen
+            readout reads {fmt(avg(best))} min at {best}% on B
+            {best === BEST ? ", where B takes 30" : ""}
+            {roseBelow ? ", and your trace rises on both sides" : ""}. 30 is out of reach: whoever stays on A still takes 60.
           </p>
           {join && (
             <p>
               The line under the chart is why. At {join.pct}% on B, the next {STEP} drivers to join each save {fmt(join.savedEach)}{" "}
-              minutes, {fmt(join.saved)} in all, and they feel it. The {join.pct} already on B each lose {fmt(join.lostEach)}, {fmt(join.lost)}{" "}
+              minutes, {fmt(join.saved)} in all, and feel it. The {join.pct} already on B each lose {fmt(join.lostEach)}, {fmt(join.lost)}{" "}
               in all, and nobody choosing feels that.
             </p>
           )}
@@ -81,15 +100,39 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["tried-a-split", "found-best"]}>
+        <Milestones interact={interact} names={["tried-a-split", "found-bottom"]}>
           {(hit) => {
-            const set = (v: number) => {
-              if (locked || v === onB) return;
+            // visit a split; reads the ref, not render state, so the sweep's interval can call it
+            const visit = (v: number) => {
               setOnB(v);
-              setSeen((xs) => (xs.includes(v) ? xs : [...xs, v]));
-              if (v > 0 && v < 100) setJoin(joinCost(v));
+              if (!seenRef.current.includes(v)) seenRef.current = [...seenRef.current, v];
+              setSeen(seenRef.current);
               if (v < 100) hit("tried-a-split");
-              if (v === BEST) hit("found-best");
+              // the bottom is found once 50% and a split below it have both been seen
+              if (seenRef.current.includes(BEST) && seenRef.current.some((p) => p < BEST)) hit("found-bottom");
+            };
+            const set = (v: number) => {
+              if (locked || busy || v === onB) return;
+              visit(v);
+            };
+            const sweep = () => {
+              if (locked || busy) return;
+              if (timer.current) clearInterval(timer.current);
+              const all = Array.from({ length: 100 / STEP + 1 }, (_, i) => 100 - i * STEP);
+              if (reducedMotion()) {
+                all.forEach(visit);
+                return;
+              }
+              setBusy(true);
+              let i = 0;
+              timer.current = setInterval(() => {
+                visit(all[i]);
+                i++;
+                if (i >= all.length) {
+                  if (timer.current) clearInterval(timer.current);
+                  setBusy(false);
+                }
+              }, 16);
             };
             const note =
               onB === 100
@@ -138,23 +181,32 @@ export default function SelfishRoutesCostAThirdMore({ slug }: { slug: string }) 
                     {fmt(a)} min
                   </text>
                 </svg>
-                <Slider label="Drivers on road B" value={onB} min={0} max={100} step={STEP} onChange={set} disabled={locked} format={(v) => `${v}%`} />
+                <Slider
+                  label="Drivers on road B"
+                  value={onB}
+                  min={0}
+                  max={100}
+                  step={STEP}
+                  onChange={set}
+                  disabled={locked || busy}
+                  format={(v) => `${v}%`}
+                />
                 <Row>
-                  <Control disabled={locked || onB === 100} onClick={() => set(100)}>
+                  <Control disabled={locked || busy || onB === 100} onClick={() => set(100)}>
                     All on B (selfish)
                   </Control>
-                  <Control disabled={locked || onB === BEST} onClick={() => set(BEST)}>
-                    Half on each
+                  <Control disabled={locked || busy || seen.length > 100 / STEP} onClick={sweep}>
+                    Try every split
                   </Control>
                 </Row>
                 <Row>
-                  <Readout label="Road A" value="60 min" />
                   <Readout label="Road B" value={`${fmt(b)} min`} />
                   <Readout label="Average" value={`${fmt(a)} min`} />
+                  <Readout label="Lowest seen" value={locked || seen.length < 2 ? "—" : `${fmt(avg(best))} min at ${best}%`} />
                 </Row>
                 <p className={s.note}>
                   {join
-                    ? `Of 100 drivers, at ${join.pct}% on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
+                    ? `Of 100 drivers, at your lowest split, ${join.pct}% on B: ${STEP} more join, saving ${fmt(join.saved)} min; the ${join.pct} on B lose ${fmt(join.lost)}.`
                     : ""}
                 </p>
               </div>

@@ -8,6 +8,9 @@
 // v2 (r6): options are three bands ("111" was the only exact one); title no longer says "long climb";
 // the table shows every start with "?" until its run reaches 1, under "Only running a start fills its ?.",
 // so "you have to run it" (the stand-in for "nobody has proved they all stop") is on stage.
+// v4 (r7): the reveal named 97's join value (94) that the stage never showed. Now the join point is
+// ringed on 97's line and a stage line "97 meets 27's path at value 94 (its step 13)." appears once 97's
+// run passes it (and stays); the reveal quotes that line and prints the join only after it was shown.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -30,7 +33,8 @@ const SEQ: Record<Start, number[]> = { 26: hailstone(26), 27: hailstone(27), 28:
 const STEPS = (n: Start) => SEQ[n].length - 1;
 const peakOf = (n: Start) => Math.max(...SEQ[n]);
 // the first value on 97's run that is also on 27's run (94): from there the two runs are the same
-const JOIN97 = fmt0(SEQ[97].find((v) => SEQ[27].includes(v))!);
+const JOIN97_STEP = SEQ[97].findIndex((v) => SEQ[27].includes(v)); // 13
+const JOIN97 = fmt0(SEQ[97][JOIN97_STEP]);
 function fmt0(v: number) {
   return v.toLocaleString("en-US");
 }
@@ -58,6 +62,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
   const [ymax, setYmax] = useState(100);
   const [done, setDone] = useState<Start[]>([]);
   const [busy, setBusy] = useState(false);
+  const [joinSeen, setJoinSeen] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(
     () => () => {
@@ -88,7 +93,11 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
         if (has(26) && has(28)) parts.push(`Its neighbours were tiny: 26 took ${STEPS(26)} steps, 28 took ${STEPS(28)}.`);
         else if (has(26)) parts.push(`Its neighbour 26 took only ${STEPS(26)} steps.`);
         else if (has(28)) parts.push(`Its neighbour 28 took only ${STEPS(28)} steps.`);
-        if (has(97)) parts.push(`97 took ${STEPS(97)}: at ${JOIN97} it lands on 27's path and follows it down.`);
+        if (has(97) && joinSeen)
+          parts.push(
+            `97 took ${STEPS(97)} steps: as your stage line says, at the value ${JOIN97} (its step ${JOIN97_STEP}) it lands on 27's path and follows it down.`,
+          );
+        else if (has(97)) parts.push(`97 took ${STEPS(97)} steps.`);
         return (
           <>
             <p>{parts.join(" ")} The start number tells you almost nothing about the run.</p>
@@ -107,6 +116,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
             const show = (n: Start, steps: number) => {
               setDrawn((d) => ({ ...d, [n]: steps }));
               setCursor(steps);
+              if (n === 97 && steps >= JOIN97_STEP) setJoinSeen(true);
               const hi = Math.max(...SEQ[n].slice(0, steps + 1));
               setYmax((m) => Math.max(m, scaleFor(hi)));
               if (steps >= STEPS(n)) {
@@ -211,6 +221,17 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
+                  {(drawn[97] ?? 0) >= JOIN97_STEP && (
+                    <circle
+                      cx={xs(JOIN97_STEP)}
+                      cy={ys(SEQ[97][JOIN97_STEP])}
+                      r={5}
+                      fill="none"
+                      stroke="var(--bad)"
+                      strokeWidth={2}
+                      data-join={JOIN97}
+                    />
+                  )}
                   <line
                     x1={xs(Math.min(cursor, k))}
                     x2={xs(Math.min(cursor, k))}
@@ -254,6 +275,11 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                   )}
                 </div>
                 <p className={s.note}>Only running a start fills its ?.</p>
+                {joinSeen && (
+                  <p className={s.join}>
+                    97 meets 27&apos;s path at value {JOIN97} (its step {JOIN97_STEP}), ringed.
+                  </p>
+                )}
                 <Row>
                   <Control className="tap" disabled={locked || busy || atOne} onClick={step}>
                     Step

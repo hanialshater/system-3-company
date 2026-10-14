@@ -10,6 +10,9 @@
 // v4 (r6): the two slider presses pass one halving in ~450 ms, so the single "Rate vs start"
 // readout never showed 2nd-order 1/4 for long. Now a rate row per order keeps every halving
 // reached (1/4 → 1/16), and the reveal quotes those rows. Title no longer says "slows down".
+// v5 (r7): the reveal quoted the 2nd-order wait bars (10, 20 min) after the learner had switched
+// to 1st order, so those bars were gone. Now each order has a "waits" row next to its rate row
+// that keeps every wait reached, and the reveal quotes that row. Rate rows say "vs start".
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -60,6 +63,8 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
   // The reveal quotes this trace, so every rate it names is still on the stage.
   const rateRow = (o: Order) =>
     seen[o] > 0 ? Array.from({ length: seen[o] }, (_, i) => rate(o, i + 1)).join(" → ") : "—";
+  const waitRow = (o: Order) =>
+    seen[o] > 0 ? `${Array.from({ length: seen[o] }, (_, i) => wait(o, i + 1)).join(", ")} min` : "—";
   const brackets = Array.from({ length: n }, (_, i) => i + 1);
 
   return (
@@ -75,15 +80,12 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You saw the second-order waits grow:{" "}
-            <strong>
-              {Array.from({ length: Math.max(2, seen[2]) }, (_, i) => wait(2, i + 1)).join(", ")} min
-            </strong>
-            . Each half takes twice as long as the last. The first-order run kept the same {T_HALF1} min every time.
+            Your 2nd-order waits row reads <strong>{waitRow(2)}</strong>: each half takes twice as long as the
+            last. Your 1st-order waits row reads <strong>{waitRow(1)}</strong>: the same {T_HALF1} min every time.
           </p>
           <p>
             A second-order reaction needs two reactant molecules to meet, so halving the crowd makes meetings four
-            times rarer: your 2nd-order rate row reads <strong>{rate(2, 1)}</strong> after one halving and{" "}
+            times rarer: your 2nd-order rate row (vs the start) reads <strong>{rate(2, 1)}</strong> after one halving and{" "}
             <strong>{rate(2, 2)}</strong> after two. As the line under it said, each halving leaves half as much to lose at a quarter of the rate, so the
             wait doubles. In 1st order the rate only halved ({rateRow(1)}), so the wait stayed the same. Radioactive decay is first
             order: one fixed half-life.
@@ -175,9 +177,12 @@ export default function TheSlowingHalfLife({ slug }: { slug: string }) {
                   ))}
                 </Row>
                 <Row>
-                  <Readout label="Last wait" value={n ? `${wait(order, n)} min` : "none yet"} />
-                  <Readout label="2nd-order rate" value={rateRow(2)} />
-                  <Readout label="1st-order rate" value={rateRow(1)} />
+                  <Readout label="2nd-order waits" value={waitRow(2)} />
+                  <Readout label="2nd-order rate vs start" value={rateRow(2)} />
+                </Row>
+                <Row>
+                  <Readout label="1st-order waits" value={waitRow(1)} />
+                  <Readout label="1st-order rate vs start" value={rateRow(1)} />
                 </Row>
                 <p className={s.why} aria-live="polite">
                   {locked

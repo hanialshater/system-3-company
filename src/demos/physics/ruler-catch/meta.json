@@ -1,7 +1,7 @@
 {
   "slug": "ruler-catch",
-  "title": "How fast is your reflex?",
-  "hook": "A falling ruler can time a blink-quick reaction. How long does a catch really take?",
+  "title": "How long does a catch take?",
+  "hook": "A falling ruler can time a reaction. How long does a catch really take?",
   "domain": "physics",
   "concept": "reaction-time-ruler",
   "status": "review",
@@ -33,10 +33,10 @@
     },
     {
       "id": "physics.ruler-catch.c2",
-      "text": "A catch at 20 cm means t = √(2 × 0.20 / 9.81) = 0.20 s.",
+      "text": "A catch at 20 cm means t = √(2 × 0.20 / 9.81) = 0.20 s. (Reveal: 'for 20 cm, t = √(2 × 0.200 m ÷ 9.81) = 0.20 s', the stage's working-line format.)",
       "support": "derivation",
-      "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor).",
-      "status": "verified",
+      "source": "Recomputed in node: Math.sqrt(0.4 / 9.81) = 0.2019 s (Demo.tsx timeFor). | Builder revision v3 (demo-builder, 2026-10-14): (r7) The time scale is now drawn only after the commit (it put 0.20 s beside 20 cm on the locked stage), and the reveal writes out the conversion in the same form as the new stage working line. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
@@ -69,10 +69,10 @@
     },
     {
       "id": "physics.ruler-catch.c6",
-      "text": "The learner's own catches (between the smallest and largest distances shown) convert to times on the scale by the same formula.",
+      "text": "The learner's own catches (between the smallest and largest distances caught so far) convert to times by the same formula. (Stage: a working line 'x cm: t = √(2 × d m ÷ 9.81) = t s' for the latest catch, and a 'Seen: N catches, lo to hi cm = t_lo to t_hi s' row that Clear does not erase.)",
       "support": "derivation",
-      "source": "Reveal computes min, max of the learner's catches from TRIALS and converts each with timeFor.",
-      "status": "verified",
+      "source": "Reveal computes min, max of the learner's catches from TRIALS and converts each with timeFor. | Builder revision v3 (demo-builder, 2026-10-14): (r7) Added the working line (working(cm) = 't = √(2 × cm/100 m ÷ 9.81) = timeFor(cm) s', two decimals as on the readout) and the persistent Seen row; the reveal quotes the Seen row. Title and hook no longer say 'your reflex' or 'blink-quick' (the catcher is simulated; 'blink-quick' pointed at a short time). Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     }
@@ -100,7 +100,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:reaction-time-ruler",
     "prerequisites": [
