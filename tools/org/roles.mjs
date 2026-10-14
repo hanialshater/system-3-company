@@ -652,6 +652,9 @@ roles.push(
   cm("cm-geography", "geography", "Geography & Maps", "maps, projections, distances, climate and the shape of the Earth, drawn with real world data", "Map claims need the projection and the data resolution stated; distances are great-circle on a sphere unless said otherwise."),
   cm("cm-lifehacks", "lifehacks", "Life Hacks", "practical how-to (WikiHow-like) where the learner predicts which method works and the stage shows why: cooking, cleaning, home repair, money habits, study and sleep", "Every life-hack claim needs a cited source or a demonstrable mechanism, and anything touching food, chemicals, heat, electricity, health or money passes the Life Hacks safety reviewer before it ships."),
   cm("cm-chemistry", "chemistry", "Chemistry", "scales and rates the learner cannot see: logs, half-lives, equilibria", "Quantities need units and approximate values need 'about'."),
+  // 2026-10-14, founder request (company/decisions/2026-10-14-books-and-big-ideas.md).
+  cm("cm-books", "books", "Book Summaries", "the core ideas of widely read non-fiction, one book idea per lesson, told in our own words, each tested on the stage and followed by whether the idea holds up; multi-card sequence once the kit supports it, single card until then", "Every claim is either \"the book argues X\" with a chapter citation (confirmed against the book by the fact-checker) or a separate claim on whether X holds up, sourced to the research. Never reproduce the book's text: quote at most one short attributed line, and summarise in our own words."),
+  cm("cm-big-ideas", "big-ideas", "Big Ideas", "ideas that change how people see the world, across science, society and the mind, each shown as one prediction the idea overturns", "Teach the idea as the evidence supports it, not as pop science tells it: state where it applies and where it fails, and source the strong form or say it is contested."),
 );
 
 // ------------------------------------------------------------------ life hacks, personalization, international (2026-10-13, founder request)
@@ -1130,8 +1133,16 @@ export const SUBAREAS = {
   life: [["genetics-evolution", "Genetics & Evolution"], ["health-epidemiology", "Health & Epidemiology"], ["ecology-body", "Ecology & the Human Body"]],
   chemistry: [["matter-reactions", "Matter & Reactions"], ["solutions-acids", "Solutions, Acids & Bases"], ["energy-rates", "Energy, Rates & Equilibrium"]],
   geography: [["maps-projections", "Maps & Projections"], ["earth-climate", "Earth, Sky & Climate"], ["people-places", "People & Places"]],
+  // 2026-10-14, founder request (company/decisions/2026-10-14-books-and-big-ideas.md).
+  books: [["business", "Business & Strategy"], ["psychology", "Psychology & Self"], ["science-history", "Science & History"]],
+  "big-ideas": [["science", "Science"], ["society", "Society & Economics"], ["mind", "Mind & Philosophy"]],
 };
-const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps" };
+const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps", books: "Book Summaries", "big-ideas": "Big Ideas" };
+// Extra scope for strands whose category has its own rules (charter section named here).
+const STRAND_RULES = {
+  books: "Book rules (company/domains/books.md): one book idea per concept (2 to 4 per book); every brief separates \"the book argues X\" (chapter cited, marked unconfirmed until the fact-checker checks it against the book) from \"does X hold up\" (sourced to research, or said to be untested); no text reproduced, at most one short attributed quote; multi-card sequence only once the kit stepper lands, single card until then",
+  "big-ideas": "Big Ideas rules (company/domains/big-ideas.md): before briefing an idea, find the subject category that already teaches its mechanism and name that concept as a prerequisite or in `also`; brief the shift in view, not a re-run of the subject lesson; state where the idea fails or is contested",
+};
 
 for (const [domain, subs] of Object.entries(SUBAREAS))
   for (const [sub, name] of subs)
@@ -1150,6 +1161,7 @@ for (const [domain, subs] of Object.entries(SUBAREAS))
         `company/domains/briefs/${domain}.${sub}.md: ranked briefs for this strand (claim.mjs hands them out with the domain's). Each brief names a format from company/design/formats.md`,
         "Checking every brief's answer in node before it goes on the list (builders keep finding wrong brief answers)",
         "Overlap check (`node tools/overlap.mjs`) before adding a brief: say how it differs from its nearest lesson",
+        ...(STRAND_RULES[domain] ? [STRAND_RULES[domain]] : []),
       ],
       outOfScope: ["Other strands' concepts", "Building or verifying lessons", "Changing the domain charter (category lead)"],
       authority: { may: ["Add concepts and briefs in the strand"], mayNot: ["Publish", "Reorder other strands"] },
