@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 28 (W-262, eratosthenes-shadow v4 c1/c5/c6)
+
+- Changed: I re-checked c1, c5 and c6 against Demo.tsx v4 on every path (predict, opening state, story chip, story slider, modern chip/slider, reveal). Result: c5 and c6 verified, c1 disputed. meta.json has the status, checkedBy, checkedOn and an "FC pass 28" source note. A Pass 28 table is appended to company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md. Board: W-262 done. Added W-272 (demo-builder: distance-line fix) and W-273 (fact-checker: re-check c1 after it). No code or claim text edited, nothing built.
+- Believe: high confidence. The numbers were re-run in node (scratchpad fact-checker-w262/): only 7.20 fires the account milestone, it shows 50 / 250,000, and the reveal needs both milestones. No claim among c1, c5 and c6 asserts what a historical source says. The c1 dispute: in story mode the stage line "Distance Syene to Alexandria: 5,000 stadia." has no story frame, on every path. That is the kind of bare sentence W-258 ruled out. The fix is one string. The v4 walkthrough transcript is stale (still v3).
+- Next: demo-builder W-272, then fact-checker W-273. Walkthrough and QA of v4 are still to run. c4 (from memory) is still with cm-geography.
+- Blocked: eratosthenes-shadow cannot publish until c1 is fixed and re-checked.
+
 ## 2026-10-14 demo-builder: W-266 midnight-sun-line v4 (reveal fits with its picture)
 
 - Changed: I applied cm-geography's W-266 reveal text as given (81 words rendered, budget 90 or fewer). c4 withdrawn with a note. c3, c5 and c7 reset to unverified. c1 untouched. Version 3 to 4. Status published to review, on the coordinator's instruction, so the launch gate is not broken. Updated the Demo.tsx header and added `## Pre-flight v4` to company/reviews/midnight-sun-line/build.md. tsc and check pass. W-266 is now in review.
