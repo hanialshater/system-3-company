@@ -73,3 +73,31 @@ A pass means the contract held in a browser; it is not evidence of learning.
 
 ## Housekeeping
 No lessons or tests edited, nothing committed. tsconfig.json and AGENTS.md unchanged by the build. Not mine: company/ops/inbox/session-2.md and company/reviews/schelling-on-new-york/ were already modified or untracked.
+
+## Final (PR #3 head)
+Tested head c9e4df0d (branch ccr-rnd-ncm), build `NEXT_DIST_DIR=.next-final next build` (Turbopack, succeeded), served on 3951 with tools/serve.sh; all 17 /d/<slug> pages returned 200. Server stopped. tsconfig.json and AGENTS.md unchanged (nothing to revert). No lessons or tests edited; nothing committed.
+
+### Contract QA (QA_ONLY=17 slugs, QA_PORT 3951, QA_OUT test-results-final, 2 workers, no retries)
+Result: 7 of 17 lessons FAIL, all on one assertion, "tap targets at least 24px" (contract.spec.ts line 118, measured after the reveal): below-critical-mass (phone, desktop), bid-what-its-worth (phone, desktop), penalty-kick-mix (phone, desktop), contact-order-matters (phone, desktop), two-said-blue (phone, desktop), mild-preferences-sharp-divides (phone only), prices-sort-the-buyers (desktop only). 10 pass both viewports: agenda-picks-the-winner, news-comes-from-acquaintances, enemy-of-my-enemy, cluster-stops-the-cascade, web-bow-tie-reach, one-good-link-beats-many, new-road-slower-trip, few-shortcuts-shrink-the-world, same-songs-different-hits, the-giant-appears.
+Rerun of the 7 at 1 worker: 12 of 14 fail again (mild-preferences desktop passed, prices phone passed in that rerun; first run the reverse set). So the pattern is stable, the exact set varies a little with layout. Not flake-to-green: the first run is the one recorded.
+My own measurement after the reveal (artifact script, not committed): controls under 24px high. below-critical-mass: Start 18/19/21/25%, Start slider, Step, To the end are 14-15px high. two-said-blue: 60/80/2-in-3 right, Run 1/100/10,000, Show the crowd are 20-21px high. contact-order-matters: Day slider 15-21px; at desktop Day 4, Order A to E, Order E to A, Overlap, "Make A/E the first case" 21px. bid-what-its-worth (desktop): Rival buttons 20px, Your bid slider 16px. penalty-kick-mix (desktop): Left-shot score slider 20px. prices-sort-the-buyers (desktop): Restart, Raise, Run, Compare 22px. Cause: after reveal the stage is scaled down (see reveal frames), shrinking controls below 24px. Same scaled-stage pattern as noted above; the contract counts it. Before this run these 7 passed (per the earlier 16-lesson pass in this file); the changed condition is the current head, not verified which commit.
+Feed.spec "subject chips filter the feed" failed under QA_ONLY (both viewports) as predicted; I reran feed.spec without QA_ONLY on the same server: 10/10 pass. So that failure is a harness artifact of QA_ONLY, confirmed.
+
+### qa-record
+Run with QA_OUT=test-results-final. Records written for all 17 (company/reviews/<slug>/2026-10-14-qa.md): 10 pass, 7 FAIL as above (failures are recorded as failures, not filed into evidence.qa). agenda-picks-the-winner now has a passing qa-tester record and evidence.qa lists it (src/demos/math/agenda-picks-the-winner/meta.json, the only meta.json changed). The other 9 passing lessons already listed their record path (file rewritten for the current run). The 7 failing lessons have a fail record on disk but no passing record for this version.
+
+### Walkthroughs
+Regenerated for all 17 with WALKTHROUGH_URL=http://localhost:3951; all 17 sheet.png looked at (artifacts/walkthroughs/<slug>/sheet.png).
+- No answer visible before predict in any sheet. "Show me why" appears only after exploring everywhere. No blank stage after the first interaction.
+- cluster-stops-the-cascade (REAL, unchanged): "Start 8,9 / Start 0,1" row is cut off at the stage's bottom edge in steps 1-13; whole only from step 15.
+- two-said-blue 01-predict: stage cut mid-controls (Run row partly visible, Pool the clues and later controls hidden/clipped); fine after step 1.
+- below-critical-mass 01-predict: stage collapsed to a thin strip with clipped caption ("The chart appears after..."); fine after step 1. Same collapsed-stage look in bid-what-its-worth 01-predict (tiny chart, overlapping "Pick a rival bid" and "$50" labels) and penalty-kick-mix 01-predict (small, controls greyed). Cosmetic, pre-prediction only.
+- Reveal frames show a scaled-down stage with top-cut in several lessons (the cause of the tap-target failures above); content below reads fine.
+- agenda-picks-the-winner: clean in all 5 frames (footer 2/5 claims checked, not mine to judge).
+- Others (mild-preferences, prices, news-comes-from-acquaintances, enemy-of-my-enemy, web-bow-tie, one-good-link, new-road, few-shortcuts, same-songs, the-giant-appears, contact-order): no broken state seen.
+
+### Next
+Owner: builders (via evaluation-steward) to decide whether to keep the scaled reveal stage or enlarge controls in the 7 failing lessons; I did not fix. A contract proposal for the steward: the tap-target check measures post-reveal scaled controls, so it fails lessons whose explore state is fine; decide whether the check should run in the explore phase.
+A pass is not evidence of learning.
+
+Note: HEAD moved to af2cca5c during this run; everything above was tested at c9e4df0d (built tree at start). Diff c9e4df0d..HEAD should be checked by the caller.
