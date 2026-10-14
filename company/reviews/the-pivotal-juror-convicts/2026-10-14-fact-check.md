@@ -22,3 +22,14 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c3 | verified | Demo.tsx now sets pGuilt = guilt(g, 3 - g), with g = the others' guilty votes, and innocent clues = your 1 + (2 - g) = 3 - g, which is correct under the 'votes own clue' assumption the stage states. Own node with the Demo guilt(): g = 0 gives 0.0730 = 7%, g = 1 gives 0.3000 = 30%, g = 2 gives 0.7000 = 70%. The bar label 'Chance of guilt from all three clues' now matches on all three states. The pass 21 bug is fixed. |
 
 **Result:** every claim in this lesson is now verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims reopened by the v3 wave E revision. Method: read v3 Demo.tsx (clue chips, vote tags, bar, post-commit line, buttons, reveal; no Reset) before the sources, then recomputed the posteriors by my own likelihood product in node.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Prior 1/2, r = 0.7: I alone 0.30; G, G, I 0.70; G alone 0.70; I, I, I 0.073 (locked 7%). |
+| c5 | verified | Bar depends only on the other jurors' clues; your vote enters only the verdict. Wording note: 'Votes are not clues.' is broader than the claim; 'Your vote is not a clue.' would match it. |
+
+**Result:** every claim open at this pass is now verified.

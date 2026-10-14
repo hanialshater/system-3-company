@@ -36,8 +36,10 @@
       "id": "probability.the-pivotal-juror-convicts.c2",
       "text": "With clues right 70% of the time and an even prior (stated in the question), one innocent clue alone gives a 30% chance of guilt (stage: 'Your clue alone: 30%'); two guilty clues and one innocent give 70%, the same as one guilty clue alone.",
       "support": "derivation",
-      "source": "Bayes, builder's node check 2026-10-14: P(G | g guilty, i innocent) = 0.7^g 0.3^i / (0.7^g 0.3^i + 0.3^g 0.7^i). (g,i) = (0,1): 0.3; (2,1): 0.147/0.21 = 0.7; (1,0): 0.7. Matches the brief's check line. | FACT-CHECK 2026-10-14 (pass 21): Own node: P(G|g,i) with r = 0.7, prior 1/2: (0,1) = 0.30, (2,1) = 0.70, (1,0) = 0.70. | REWORDED v3 (builder, 2026-10-14): Numbers unchanged; the 30% is now a stage line and the prior is stated in the stem. Demo computes both with guilt(0,1) and guilt(2,1). Unverified.",
-      "status": "unverified"
+      "source": "Bayes, builder's node check 2026-10-14: P(G | g guilty, i innocent) = 0.7^g 0.3^i / (0.7^g 0.3^i + 0.3^g 0.7^i). (g,i) = (0,1): 0.3; (2,1): 0.147/0.21 = 0.7; (1,0): 0.7. Matches the brief's check line. | FACT-CHECK 2026-10-14 (pass 21): Own node: P(G|g,i) with r = 0.7, prior 1/2: (0,1) = 0.30, (2,1) = 0.70, (1,0) = 0.70. | REWORDED v3 (builder, 2026-10-14): Numbers unchanged; the 30% is now a stage line and the prior is stated in the stem. Demo computes both with guilt(0,1) and guilt(2,1). Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own Bayes by direct likelihood product (prior 1/2, r = 0.7): one innocent clue 0.300; guilty, guilty, innocent 0.700; one guilty 0.700 (also G,I,I 0.300 and I,I,I 0.073, the locked 7%). Stem now states the even prior; stage line 'Your clue alone: 30%' renders after the commit from guilt(0, 1); reveal prints guilt(2, 1) = 70% and guilt(0, 1) = 30%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-pivotal-juror-convicts.c3",
@@ -61,8 +63,10 @@
       "id": "probability.the-pivotal-juror-convicts.c5",
       "text": "Your vote moves the verdict, never the bar: it is not a clue. (Stage: 'Votes are not clues.')",
       "support": "derivation",
-      "source": "Builder (2026-10-14, v3): in Demo.tsx the bar is guilt(g, 3 - g) where g counts only the other jurors' guilty clues (they vote their clues); your clue is fixed innocent and `mine` (your vote) enters only verdictGuilty. In the model your vote carries no information about guilt. Unverified.",
-      "status": "unverified"
+      "source": "Builder (2026-10-14, v3): in Demo.tsx the bar is guilt(g, 3 - g) where g counts only the other jurors' guilty clues (they vote their clues); your clue is fixed innocent and `mine` (your vote) enters only verdictGuilty. In the model your vote carries no information about guilt. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Read Demo.tsx: the bar is guilt(g, 3 - g) with g counted from the other two jurors only; 'mine' enters only verdictGuilty, so 'Flip your vote' changes Verdict (when pivotal) and never the bar. In the model your vote carries no information, so 'it is not a clue' holds. Note for the builder (not a dispute): the stage line's general form 'Votes are not clues.' sits awkwardly with the reveal's point that the others' votes reveal their clues; 'Your vote is not a clue.' would say exactly what c5 claims.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

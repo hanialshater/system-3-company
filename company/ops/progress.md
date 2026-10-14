@@ -3,6 +3,25 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 24 batch 3 (17 wave E lessons, 36 open claims)
+
+**What changed**
+- Set status on all 36 unverified claims in the 17 lessons listed in the pass 24 batch 3 file: 34 verified, 2 disputed, 0 withdrawn. Each has checkedBy/checkedOn and a 'FACT-CHECK 2026-10-14 (pass 24)' note appended to its source.
+- Appended a 'Pass 24' table to company/reviews/<slug>/2026-10-14-fact-check.md for each of the 17 slugs.
+- Board: W-232 (iss-gravity-still-there c6) and W-233 (continental-jigsaw c4), both owner demo-builder.
+- No code or lesson text edited; no builds. `npm run check` passes.
+
+**What I believe (and how sure)**
+- High on the 34 verified: every number was re-run in my own node copies of the lesson logic (scratchpad fc24/), including the branches I could reach and the state after reset.
+- iss c6: high that 'every angle true' is false under the radial height stretch (only the direction from Earth's centre is kept).
+- jigsaw c4: the source is unopened (all hosts 403), and search text puts the 500-fathom fit contour on the continental slope, not the shelf edge. Medium on the wording issue.
+
+**Next**
+- demo-builder: reword iss c6 and jigsaw c4 (W-232, W-233), then the fact-checker re-checks. A human with web access should open Bullard et al. 1965 (the abstract is enough for c4).
+
+**Blocked**
+- Source hosts are blocked from the sandbox (proxy 403).
+
 ## 2026-10-14, learner evaluator (Sam): r6 learner reviews of the 8 held geography lessons, screenshots seen
 
 **What changed**
