@@ -69,7 +69,21 @@ export function clustering(adj: number[][]): number {
   return sum / N;
 }
 
-export const measure = (count: number, seed = SEED) => {
+/** One shortest route (list of people) from `from` to `to`, by BFS in fixed neighbour order. */
+export function route(count: number, from: number, to: number, seed = SEED): number[] {
+  const adj = adjacency(shortcuts(count, seed));
+  const prev = new Array(N).fill(-1);
+  prev[from] = from;
+  const q = [from];
+  for (let h = 0; h < q.length; h++) {
+    for (const v of adj[q[h]]) if (prev[v] < 0) { prev[v] = q[h]; q.push(v); }
+  }
+  const out = [to];
+  while (out[0] !== from) out.unshift(prev[out[0]]);
+  return out;
+}
+
+export const measure =(count: number, seed = SEED) => {
   const adj = adjacency(shortcuts(count, seed));
   return { steps: averageSteps(adj), clustering: clustering(adj) };
 };
