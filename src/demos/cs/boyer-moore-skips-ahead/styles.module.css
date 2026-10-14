@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.rule { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.note { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--fg); }
+.title { font-size: 10px; font-weight: 700; fill: var(--fg); }
+.read { font-size: 8.5px; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.letter { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 700; fill: var(--fg); }
+.space { font-size: 11px; fill: var(--muted); }
+.ghost { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; fill: var(--muted); }
+.ok { font-size: 10px; font-weight: 800; fill: var(--good); }
+.bad { font-size: 10px; font-weight: 800; fill: var(--bad); }
+.cell { font-size: 9px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.axis { font-size: 9px; fill: var(--muted); }
+.slide { transition: transform 200ms ease; }
+.tap { min-height: 44px; }
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition: none; }
+}

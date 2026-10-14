@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.rule { margin: 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.head { font-size: 10px; font-weight: 700; fill: var(--muted); }
+.num { font-size: 11px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.digits { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: var(--fg); }
+.total { font-size: 11px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.tap { min-height: 44px; }
