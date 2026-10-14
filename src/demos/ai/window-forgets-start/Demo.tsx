@@ -26,16 +26,6 @@ function drops(seed: number) {
   return Array.from({ length: DROPS }, () => 1 + Math.floor(rng() * LEN));
 }
 const hits = (seed: number, w: number) => drops(seed).filter((p) => visible(p, w)).length;
-function spread(w: number, runs: number) {
-  let lo = DROPS;
-  let hi = 0;
-  for (let sd = 1; sd <= runs; sd++) {
-    const h = hits(sd, w);
-    lo = Math.min(lo, h);
-    hi = Math.max(hi, h);
-  }
-  return { lo, hi };
-}
 // MODEL END
 
 const START_FACT = 5;
@@ -47,11 +37,11 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
   const [w, setW] = useState<number>(LEN);
   const [fact, setFact] = useState(START_FACT);
   const [draw, setDraw] = useState(0);
+  const [drawW, setDrawW] = useState<number>(LEN);
   const [darkSeen, setDarkSeen] = useState<number | null>(null);
 
   const usable = visible(fact, w);
   const dropped = draw > 0 ? drops(draw) : [];
-  const SPREAD_RUNS = 500;
 
   return (
     <Lesson
@@ -64,18 +54,19 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
       exploreHint="Shrink the window and move the fact. When does the model lose it?"
       minInteractions={1}
       reveal={() => {
-        const sp = spread(Q_W, SPREAD_RUNS);
         return (
           <>
             <p>
               With a window of {Q_W}, only positions {firstVisible(Q_W)}–{LEN} reach the model: {Q_W} of {LEN}, so{" "}
               <strong>{Math.round(share(Q_W) * 100)}%</strong> of places a fact could sit.{" "}
-              {darkSeen !== null ? `Your fact at position ${darkSeen} went dark.` : "A fact at position 5 goes dark."}
+              {darkSeen !== null ? `Your fact at position ${darkSeen} went dark.` : ""}
             </p>
-            <p>
-              Dropping a fact at {DROPS} random spots lands {sp.lo}–{sp.hi} inside the window across {SPREAD_RUNS} seeded tries;
-              on average {Math.round(share(Q_W) * DROPS)}.
-            </p>
+            {draw > 0 && (
+              <p>
+                Your {DROPS} random drops at window {drawW} put {hits(draw, drawW)} inside, {Math.round((hits(draw, drawW) / DROPS) * 100)}%
+                {drawW === Q_W ? "; the long-run share is 40%." : `; the long-run share for window ${drawW} is ${Math.round(share(drawW) * 100)}%.`}
+              </p>
+            )}
             <p>
               Text before the window is not remembered faintly; for that answer it is not there at all. Real models have
               windows of thousands of tokens or more, but the edge works the same way.
@@ -97,7 +88,7 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <span className={`tag ${s.model}`}>Toy: {LEN}-token document · ★ = the fact</span>
+                <span className={`tag ${s.model}`}>Toy: {LEN}-token document · ★ = fact · dots = drops</span>
                 <svg viewBox="0 0 320 140" className="stage-svg" role="img" aria-label={`Window of ${w} tokens, fact at ${fact}`}>
                   <text x={160} y={16} textAnchor="middle" className={s.small} fill="var(--muted)">
                     {locked ? "The model answers after token 20" : `Model sees the last ${w} tokens (${firstVisible(w)}–${LEN})`}
@@ -143,13 +134,17 @@ export default function WindowForgetsStart({ slug }: { slug: string }) {
                   <Control aria-label="Move the fact later" disabled={locked || fact === LEN} onClick={() => update(w, fact + 1)}>
                     ★ ▶
                   </Control>
-                  <Control disabled={locked} onClick={() => setDraw((d) => d + 1)}>
+                  <Control disabled={locked} onClick={() => {
+                      setDraw((d) => d + 1);
+                      setDrawW(w);
+                    }}>
                     Drop at {DROPS} random spots
                   </Control>
                 </Row>
                 <Row>
                   <Readout label="Model can use ★" value={locked ? "–" : usable ? "yes" : "no: outside"} />
-                  <Readout label="Random spots in window" value={locked || draw === 0 ? "–" : `${hits(draw, w)} of ${DROPS}`} />
+                  <Readout label="Positions inside window" value={locked ? "–" : `${w} of ${LEN} = ${Math.round(share(w) * 100)}%`} />
+                  <Readout label="Random spots in window" value={locked || draw === 0 ? "–" : `${hits(draw, drawW)} of ${DROPS} (window ${drawW})`} />
                 </Row>
               </div>
             );

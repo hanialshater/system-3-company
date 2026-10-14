@@ -83,8 +83,8 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <Bar arm={B} y={106} name="B" combined={combined} />
       </svg>
       <p className={s.key}>
-        Width: patients. Filled height: cured. A gets {k} of the {TOTAL_LARGE} large-stone patients, B gets{" "}
-        {TOTAL_LARGE - k}.
+        Small stones left, large right. Width: patients. Filled: cured. A got {k} of the {TOTAL_LARGE} large-stone patients
+        (both treatments together), B {TOTAL_LARGE - k}.
       </p>
       <Row>
         <Control
@@ -112,6 +112,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       <Row>
         <Readout label="A overall" value={locked ? "?" : pct1(overall(A))} />
         <Readout label="B overall" value={locked ? "?" : pct1(overall(B))} />
+        <Readout label="Ahead overall" value={locked ? "?" : overall(A) > overall(B) ? "A" : overall(A) < overall(B) ? "B" : "tie"} />
       </Row>
       <Row>
         <Slider

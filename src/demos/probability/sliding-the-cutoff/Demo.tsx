@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
-import { BETTER, HIGH_CUT, LOW_CUT, SICK, START_CUT, errors, pct1, pdf } from "./model";
+import { BETTER, BETTER_HEALTHY, HIGH_CUT, LOW_CUT, SICK, START_CUT, errors, pct1, pdf } from "./model";
 import s from "./styles.module.css";
 
 const MILESTONES = ["raised", "lowered", "better"] as const;
@@ -34,7 +34,9 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const [cut, setCut] = useState(START_CUT);
   const [better, setBetter] = useState(false);
   const mean = better ? BETTER : SICK;
-  const e = errors(cut, mean);
+  const hmean = better ? BETTER_HEALTHY : 0;
+  const e = errors(cut, mean, hmean);
+  const old = errors(cut, SICK, 0);
   const move = (c: number) => {
     setCut(c);
     if (c >= HIGH_CUT) reach("raised");
@@ -50,12 +52,16 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           : "Flagged = score above the line. Missed: sick below it. False alarm: healthy above it."}
       </p>
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img" aria-label={`Cutoff ${cut.toFixed(1)}`}>
-        <path d={area(0, cut, X1)} className={s.fa} />
+        <path d={area(hmean, cut, X1)} className={s.fa} />
         <path d={area(mean, X0, cut)} className={s.miss} />
-        <path d={line(0)} className={s.healthy} fill="none" />
+        <path d={line(hmean)} className={s.healthy} fill="none" />
         <path d={line(mean)} className={s.sick} fill="none" />
+        <rect x={4} y={4} width={8} height={8} className={s.miss} />
+        <text x={15} y={11} className={s.lab}>missed sick</text>
+        <rect x={4} y={16} width={8} height={8} className={s.fa} />
+        <text x={15} y={23} className={s.lab}>false alarm</text>
         <line x1={px(cut)} x2={px(cut)} y1={6} y2={H - 14} className={s.cut} />
-        <text x={px(0)} y={H - 2} textAnchor="middle" className={s.lab}>healthy</text>
+        <text x={px(hmean)} y={H - 2} textAnchor="middle" className={s.lab}>healthy</text>
         <text x={px(mean)} y={H - 2} textAnchor="middle" className={s.lab}>sick</text>
       </svg>
       <Row>
@@ -76,8 +82,8 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <Slider label="Cutoff" value={Math.round(cut * 10)} min={-5} max={30} disabled={locked} format={(v) => (v / 10).toFixed(1)} onChange={(v) => move(v / 10)} />
       </Row>
       <Row>
-        <Readout label="Sick people missed" value={show(pct1(e.missed))} />
-        <Readout label="Healthy false alarms" value={show(pct1(e.falseAlarms))} />
+        <Readout label="Sick people missed" value={show(better ? `${pct1(e.missed)} (old test ${pct1(old.missed)})` : pct1(e.missed))} />
+        <Readout label="Healthy false alarms" value={show(better ? `${pct1(e.falseAlarms)} (old test ${pct1(old.falseAlarms)})` : pct1(e.falseAlarms))} />
       </Row>
     </div>
   );
@@ -106,7 +112,7 @@ export default function SlidingTheCutoff({ slug }: { slug: string }) {
             {pct1(LO.missed)} missed, {pct1(LO.falseAlarms)} false alarms.
           </p>
           <p>
-            Moving the line trades one mistake for the other. Only pulling the curves apart, as the better test did, shrinks both at once.
+            Moving the line trades one mistake for the other. Only pulling the curves apart, as the better test did, shrinks both at once, at the same cutoff.
           </p>
         </>
       )}

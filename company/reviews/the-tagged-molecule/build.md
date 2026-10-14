@@ -7,3 +7,10 @@
 ## v2 (claim fix 2026-10-13)
 
 Claim c4 disputed (count covered fewer ticks than printed when tags added/removed). Reveal now reports ticks followed per tag (history length - 1) instead of the lesson's total ticks. Claim rewritten; unverified.
+
+## Revision v3
+Learner review v2 (2026-10-13) findings:
+- Symbols unlabelled: bars now read "A 50" / "B 50", and a line under the grid gives the legend before play.
+- Shaded changed-cells unexplained and 12-and-12 only told: the line under the grid now reads "Shaded = changed this tick: n A->B, n B->A" after every tick, computed from the actual flips. The reveal says "you saw". c2 reworded (unverified).
+- Title and hook leaked the device / question: retitled "Does a settled mix stand still?", hook no longer asks "Has the reaction stopped?". The tag ring is hidden while the stage is locked.
+- Reveal cropped on phone: not addressed here (layout of the kit reveal); to check in the sheet.

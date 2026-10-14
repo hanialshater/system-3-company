@@ -9,3 +9,10 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Earned reveal: milestone 'loop'. Reveal quotes the fastest landing throw the learner saw and the loop time (85 min).
 - After screenshots: model chip overlapped the orbit line at the bottom; moved to top-left.
 - c5 (ISS 7.7 km/s) differs slightly from NASA's rounded "17,500 mph" (7.8 km/s); flagged for the fact-checker.
+
+## Revision v2
+Learner review (2026-10-13) findings:
+- Never saw a throw land or the landing creep round the planet: earlier landing throws now stay on screen as faint arcs with their landing dots, and the loop milestone (the reveal) counts only after at least two landing throws have been seen. The stage opens on the 7.8 km/s throw, so the QA path (two arrow presses: 7.85, then 7.9) still reaches the loop.
+- The reveal's "7.8 km/s ... came down X km" is now a throw the learner has actually seen (the opening state counts).
+- Locked picture description no longer says where the ball lands.
+- NOT done, and why: (a) the slider's maximum is still the answer: speeds above 7.9 km/s make elliptical orbits with an apogee hundreds of km up, which at x40 height exaggeration runs off the stage; that needs a different drawing (learning-designer call). (b) The zoomed 5 m / 8 km inset for the best idea in the lesson (c3) is still told in the reveal.

@@ -1,7 +1,7 @@
 {
   "slug": "the-contrary-program",
   "title": "Can a checker catch every loop?",
-  "hook": "You are the program that predicts other programs. One of them is out to prove you wrong.",
+  "hook": "You decide whether each program stops or runs forever. One of them asks you first.",
   "domain": "cs",
   "concept": "halting-problem",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "cs.the-contrary-program.c2",
-      "text": "From any checker H that claims to work on every program, we could build its own D.",
+      "text": "From any checker H that claims to work on every program, we could build its own D, which asks that H about D and does the opposite; so every such H gets the same trap.",
       "support": "source",
       "source": "Standard diagonal construction: Sipser, Introduction to the Theory of Computation (3rd ed.), Theorem 4.11 and its proof (machine D built from H). The stage simplifies 'D run on its own description' to 'D asks H about D'.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.the-contrary-program.c3",
@@ -80,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:halting-problem",
     "prerequisites": [

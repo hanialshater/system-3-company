@@ -61,12 +61,10 @@
     },
     {
       "id": "probability.sliding-the-cutoff.c5",
-      "text": "A better test, with the sick scores centred at 3 instead of 2, misses fewer sick people at the same cutoff with the same false alarms; at 1.5 both errors are 6.7%.",
+      "text": "A better test pulls the curves further apart (healthy scores centred at -0.5 and sick at 2.5, instead of 0 and 2); at the same cutoff both mistakes fall, e.g. at cutoff 1 each is 6.7% instead of 15.9%.",
       "support": "derivation",
       "source": "Phi(c - 3) < Phi(c - 2) for every cutoff c, while false alarms depend only on the healthy curve and c; at c = 1.5 both errors are 1 - Phi(1.5) = 6.7% (computed from errors(1.5, 3)).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "probability.sliding-the-cutoff.c6",
@@ -97,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "probability:sensitivity-specificity",
     "prerequisites": [

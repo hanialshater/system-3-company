@@ -4,7 +4,8 @@
 //   falseAlarms  = share of healthy people scoring above the cutoff = 1 - Phi(cutoff)
 
 export const SICK = 2;
-export const BETTER = 3;
+export const BETTER = 2.5; // better test: sick mean
+export const BETTER_HEALTHY = -0.5; // better test: healthy mean (curves 3 apart instead of 2)
 export const START_CUT = 1;
 export const HIGH_CUT = 1.5;
 export const LOW_CUT = 0.5;
@@ -19,7 +20,7 @@ function erf(x: number) {
 export const Phi = (x: number) => 0.5 * (1 + erf(x / Math.SQRT2));
 export const pdf = (x: number, mean: number) => Math.exp(-0.5 * (x - mean) ** 2) / Math.sqrt(2 * Math.PI);
 
-export function errors(cut: number, sickMean: number) {
-  return { missed: Phi(cut - sickMean), falseAlarms: 1 - Phi(cut) };
+export function errors(cut: number, sickMean: number, healthyMean = 0) {
+  return { missed: Phi(cut - sickMean), falseAlarms: 1 - Phi(cut - healthyMean) };
 }
 export const pct1 = (p: number) => `${(p * 100).toFixed(1)}%`;

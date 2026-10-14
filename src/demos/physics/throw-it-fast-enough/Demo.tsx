@@ -36,6 +36,7 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
   const [k, setK] = useState(DEFAULT);
   const [looped, setLooped] = useState(false);
   const [bestLanding, setBestLanding] = useState(DEFAULT);
+  const [tried, setTried] = useState<number[]>([DEFAULT]); // landing throws seen, kept on screen as faint arcs
   const f = FLIGHTS[k];
   const near = FLIGHTS[bestLanding];
   const loop = FLIGHTS[LOOP];
@@ -49,7 +50,7 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
         options: ["About 790 m/s", "About 7.9 km/s", "About 79 km/s"],
         answer: 1,
       }}
-      exploreHint="Throw faster and watch where the ball comes down."
+      exploreHint="Throw faster, step by step. Faint arcs show your earlier landings."
       reveal={() => (
         <>
           <p>
@@ -75,11 +76,25 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
             const [mx, my] = pt(0, 10_000);
             return (
               <div className={s.wrap}>
-                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={f.lands ? `Ball lands ${km(f.dist)} km away` : "Ball circles the planet"}>
+                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "Planet with a mountain peak" : f.lands ? `Ball lands ${km(f.dist)} km away` : "Ball circles the planet"}>
                   <circle cx={CX} cy={CY} r={RP} className={s.planet} />
                   <polygon points={`${CX - 7},${CY - RP + 1} ${mx},${my - 1} ${CX + 7},${CY - RP + 1}`} className={s.peak} />
                   {!locked && (
                     <>
+                      {tried
+                        .filter((i) => i !== k)
+                        .map((i) => {
+                          const g = FLIGHTS[i];
+                          const gd = g.pts.map(([a, h], j) => `${j ? "L" : "M"}${pt(a, h)[0].toFixed(1)},${pt(a, h)[1].toFixed(1)}`).join(" ");
+                          const ge = g.pts[g.pts.length - 1];
+                          const [gx, gy] = pt(ge[0], ge[1]);
+                          return (
+                            <g key={i}>
+                              <path d={gd} className={s.ghost} />
+                              <circle cx={gx} cy={gy} r={2.5} className={s.ghostDot} />
+                            </g>
+                          );
+                        })}
                       <path d={d} className={f.lands ? s.arc : s.orbit} />
                       {f.lands ? <circle cx={ex} cy={ey} r={4} className={s.land} /> : <circle cx={mx} cy={my - 4} r={4} className={s.ball} />}
                     </>
@@ -101,9 +116,11 @@ export default function ThrowItFastEnough({ slug }: { slug: string }) {
                     setK(v);
                     if (FLIGHTS[v].lands) {
                       if (v > bestLanding) setBestLanding(v);
+                      setTried((tr) => (tr.includes(v) ? tr : [...tr, v]));
                     } else {
                       setLooped(true);
-                      reach("loop");
+                      // Earn the loop: at least two landing throws must have been seen first.
+                      if (tried.length >= 2) reach("loop");
                     }
                   }}
                 />

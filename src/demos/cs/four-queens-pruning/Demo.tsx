@@ -5,7 +5,7 @@
 // stands, so hand play and the search share one board. From an empty board the full search
 // makes 16 placements and finds both solutions, out of 256 one-per-row boards.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import s from "./styles.module.css";
@@ -42,7 +42,20 @@ function step(st: S): S {
 
 export default function FourQueensPruning({ slug }: { slug: string }) {
   const [st, setSt] = useState<S>(EMPTY);
-  const { qs, count, sols, done } = st;
+  // Replay of a finished search: the final state is already committed; this only walks the board through the trace.
+  const [replay, setReplay] = useState<{ states: S[]; i: number } | null>(null);
+  useEffect(() => {
+    if (!replay) return;
+    if (replay.i >= replay.states.length - 1) {
+      setReplay(null);
+      return;
+    }
+    const id = setTimeout(() => setReplay({ ...replay, i: replay.i + 1 }), 170);
+    return () => clearTimeout(id);
+  }, [replay]);
+  const shown = replay ? replay.states[replay.i] : st;
+  const { qs, count } = shown;
+  const { sols, done } = st;
   const r = qs.length;
   const stuck = r < N && !Array.from({ length: N }, (_, c) => c).some((c) => safe(qs, r, c));
 
@@ -51,7 +64,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Place 4 queens, one per row, so none attack. There are 256 one-per-row boards. Placing a queen only on a safe square and backing up when a row has none, how many placements does finding every solution take?",
+          "Place 4 queens, one per row, so none attack. Checking every board blindly means 256. If you place only on safe squares and back up at a dead end, how many placements find every solution?",
         options: ["16", "64", "256"],
         answer: 0,
       }}
@@ -78,33 +91,45 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
           if (next.sols.length === 2 && sols.length < 2) interact();
         };
         const doStep = () => {
+          setReplay(null);
           if (locked || done) return;
           commit(step(st));
         };
         const run = () => {
           if (locked || done) return;
           let x = st;
-          for (let i = 0; i < 200 && !x.done; i++) x = step(x);
-          commit({ ...x, note: `Search done: ${x.count} placements${x.firstAt ? ` (first solution at ${x.firstAt})` : ""}.` });
+          const states: S[] = [x];
+          for (let i = 0; i < 200 && !x.done; i++) {
+            x = step(x);
+            states.push(x);
+          }
+          const fin = { ...x, note: `Search done: ${x.count} placements${x.firstAt ? ` (first solution at ${x.firstAt})` : ""}.` };
+          states[states.length - 1] = fin;
+          setReplay({ states, i: 0 });
+          commit(fin);
         };
         const startOver = () => {
+          setReplay(null);
           if (locked) return;
           setSt({ ...EMPTY, sols });
         };
         const tap = (row: number, c: number) => {
-          if (locked || row > r) return;
-          if (row < r && qs[row] === c) {
-            setSt({ ...st, qs: qs.slice(0, row), done: false, note: `Backed up to row ${row + 1}.` });
+          setReplay(null);
+          const sq = st.qs;
+          const sr = sq.length;
+          if (locked || row > sr) return;
+          if (row < sr && sq[row] === c) {
+            setSt({ ...st, qs: sq.slice(0, row), done: false, note: `Backed up to row ${row + 1}.` });
             return;
           }
-          if (!safe(qs, row, c)) return;
-          commit(record({ ...st, done: false, note: "" }, [...qs.slice(0, row), c], count + 1));
+          if (!safe(sq, row, c)) return;
+          commit(record({ ...st, done: false, note: "" }, [...sq.slice(0, row), c], st.count + 1));
         };
 
         const msg = locked
           ? "Make a prediction to start."
-          : st.note
-            ? st.note
+          : shown.note
+            ? shown.note
             : r === N
               ? "All four placed: a solution."
               : stuck
@@ -149,7 +174,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
             </div>
             <div className={s.readouts}>
               <span>
-                Placements <strong>{count}</strong>
+                Placements put down <strong>{count}</strong> (blind: 256 boards)
               </span>
               <span>
                 Solutions <strong>{sols.length}</strong> of 2

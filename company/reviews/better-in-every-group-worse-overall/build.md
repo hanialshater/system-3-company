@@ -11,3 +11,9 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 - Flip point never visited -> new button 'Share hard cases evenly' (A 172 / B 171); gate: groups combined AND A's overall above B's (milestone a-ahead-overall). Reveal's '220 or fewer' computed by flipK().
 - 'Weighted' undefined -> reveal: 'a weighted average: a bigger group counts for more'. Reveal labels the 78.0/82.6 figures 'in the real data'.
 - Hook leaked -> 'A beats B for small stones and for large. Overall, who wins?'. Claims unchanged.
+
+## Revision v3
+Learner review v2 (2026-10-13) findings:
+- Title "Better for everyone, worse overall?" leaked the answer: retitled "Kidney stones: who cured more?", hook asks "Which cures more overall?".
+- No legend for the two shades and 343 unexplained: the caption now says "Small stones left, large right" and that 343 is the large-stone patients of both treatments together.
+- The 220 threshold was told: a readout "Ahead overall" (A / B) now sits beside the slider so the learner sees the flip as they drag; the reveal still states 220 (claim c5, verified earlier, unchanged).
