@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: none; }
+.wrap :global(.row) { margin-top: 2px; justify-content: center; }
+.svg { flex-shrink: 0; max-height: 30dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 10px; }
+.bar { fill: var(--domain); opacity: 0.75; }
+.death { fill: var(--bad); }
+.lag { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.from { fill: none; stroke: var(--fg); stroke-width: 1.4; }
+.today { fill: var(--bad); stroke: var(--fg); stroke-width: 1; }
+.lagText { fill: var(--fg); font-size: 10px; font-weight: 700; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }
+.mark { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.markText { fill: var(--fg); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; }

@@ -1,0 +1,104 @@
+{
+  "slug": "twenty-cultures-twenty-plates",
+  "title": "Twenty cultures, twenty plates",
+  "hook": "Does a drug make bacteria resistant, or were the mutants already there? One test can tell.",
+  "domain": "life",
+  "concept": "mutation-randomness",
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "simulation-run",
+    "preset-buttons"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "resistant cells can exist before a drug arrives (antibiotic-already-there)"
+    ],
+    "doesNotKnow": [
+      "how anyone could tell random mutations before the drug from the drug making cells resistant",
+      "that the two ideas predict different spreads of counts across identical cultures"
+    ]
+  },
+  "misconception": "Mutations happen when the cell needs them: the drug makes some cells resistant. Then identical cultures should give similar counts.",
+  "objective": "The learner can explain that random mutations during growth give very uneven counts across identical cultures (many plates with none, a few jackpots from early mutations copied into every descendant), while resistance made by the drug gives similar counts, and that this difference is how the fluctuation test tells the two ideas apart.",
+  "claims": [
+    {
+      "id": "life.twenty-cultures-twenty-plates.c1",
+      "text": "Under the random-while-growing rule, counts across 20 identical cultures are very uneven: in the seed-1 run 9 of 20 plates had none and one had 128 (all counts: 1, 32, 6, 0, 0, 0, 8, 0, 0, 128, 1, 3, 0, 2, 8, 1, 0, 0, 0, 16).",
+      "support": "simulation",
+      "source": "Demo.tsx runGrowing(), mulberry32 seed 1 (the start seed, not chosen for its result; the brief's check gives the same 20 counts). Brief check over 10,000 seeded runs (seed 99): 95.9% had a largest plate at least 5 times the median. Later seeds vary: seed 2 gives 8 empty and a largest of 6 (the reveal then says there was no big jackpot).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.twenty-cultures-twenty-plates.c2",
+      "text": "When the drug makes the mutations, with the same average of about 10 per plate, every plate gets a similar count: in the seed-1 run 0 plates had none and counts ran from 5 to 15.",
+      "support": "simulation",
+      "source": "Demo.tsx runDrug(), Poisson(10) per plate, mulberry32 seed 1; Poisson variance = mean (brief: median variance/mean 1.0 over 10,000 runs).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.twenty-cultures-twenty-plates.c3",
+      "text": "A mutation early in growth is copied into every descendant, so it makes a large clone (a jackpot): a mutation at division g of 20 ends as 2^(20 - g) resistant cells, so the seed-1 plate of 128 came from one mutation at division 13.",
+      "support": "derivation",
+      "source": "Each resistant daughter doubles at every later division; 2^(20-13) = 128. Demo.tsx records the first mutation's division for the largest plate.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.twenty-cultures-twenty-plates.c4",
+      "text": "Luria and Delbrück found jackpots like these in 1943, with a virus instead of a drug: evidence that resistance mutations arise at random before the threat, not in answer to it.",
+      "support": "source",
+      "source": "Luria S.E. and Delbrück M. (1943) Mutations of bacteria from virus sensitivity to virus resistance, Genetics 28: 491-511 (brief citation). Unverified: needs a human source check, including the citation details. If it fails, cut this sentence from the reveal; the lesson stands on c1-c3.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.twenty-cultures-twenty-plates.c5",
+      "text": "20 identical cultures each grow from one cell to about a million (20 doublings); resistance mutations strike at random during divisions, about once per million. Under 'made by the drug' there are no mutations during growth and each cell on the plate turns resistant with chance 10 in 2^20.",
+      "support": "convention",
+      "source": "Toy choices from the brief (rates, 20 generations, every non-mutant cell dies on the plate), stated on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ten identical yeast cultures are tested for a rare resistance. Nine have no resistant cells and one has hundreds. Which idea does this fit better?",
+    "options": [
+      "Mutations arose at random during growth, before the test",
+      "The test itself made some cells resistant",
+      "Neither: the cultures cannot have been identical"
+    ],
+    "answer": 0,
+    "why": "Random mutations during growth give jackpots: an early mutant is copied into many descendants in one culture. Resistance caused by the test would give similar counts in every culture."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:mutation-randomness",
+    "also": [
+      "life:luria-delbruck",
+      "life:antibiotic-resistance"
+    ],
+    "prerequisites": [
+      "life:antibiotic-resistance"
+    ],
+    "level": "core",
+    "strand": "genetics-evolution",
+    "references": [],
+    "tags": [
+      "mutation",
+      "fluctuation test",
+      "simulation"
+    ]
+  }
+}

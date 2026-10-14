@@ -1,0 +1,16 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: none; }
+.wrap :global(.row) { margin-top: 2px; }
+.svg { flex-shrink: 0; max-height: 32dvh; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.88rem; font-weight: 600; }
+.fish { fill: var(--domain); }
+.gone { fill: none; stroke: var(--line); stroke-width: 0.8; }
+.grid { stroke: var(--line); stroke-width: 0.8; }
+.tick { fill: var(--muted); font-size: 10px; }
+.half { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.halfText { fill: var(--muted); font-size: 10px; font-weight: 600; paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
+.curve { fill: none; stroke: var(--domain); stroke-width: 2.5; }
+.trace { fill: none; stroke: var(--fg); stroke-width: 1.2; opacity: 0.35; }
+.endDot { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.traceDot { fill: var(--muted); }
+.endText { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.traceText { fill: var(--muted); font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }

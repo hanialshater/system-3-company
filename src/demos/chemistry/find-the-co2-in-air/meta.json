@@ -1,0 +1,114 @@
+{
+  "slug": "find-the-co2-in-air",
+  "title": "Find the CO₂ in the air",
+  "hook": "You breathe out carbon dioxide all day. How much of the air around you is it?",
+  "domain": "chemistry",
+  "concept": "parts-per-million",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a percentage is",
+      "that air is a mixture of gases",
+      "that a drop holds about 10^21 molecules (molecules-in-one-drop)"
+    ],
+    "doesNotKnow": [
+      "what a share of a few parts per million looks like",
+      "that a tiny share can still be an enormous count"
+    ]
+  },
+  "misconception": "Carbon dioxide is a sizeable part of air (several per cent or more), and 'a few parts per million' means 'almost none there'.",
+  "objective": "The learner can say that only about 4 in 10,000 molecules of dry air are CO2 (about 420 ppm, 0.042%), and that this tiny share is still about 5 x 10^18 molecules in one breath.",
+  "claims": [
+    {
+      "id": "chemistry.find-the-co2-in-air.c1",
+      "text": "Dry air is about 78.08% nitrogen, 20.95% oxygen and 0.93% argon by volume (molecule count): of 10,000 molecules, 7,808 nitrogen, 2,095 oxygen and 93 argon (stage legend; reveal: 'Of your 10,000 dots, 7,808 were nitrogen, 2,095 oxygen, 93 argon').",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Composition of dry air' / U.S. Standard Atmosphere 1976 (N2 78.084%, O2 20.946%, Ar 0.934%). Per 10,000: 7,808.4, 2,094.6, 93.4, rounded. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.find-the-co2-in-air.c2",
+      "text": "Carbon dioxide is about 420 parts per million of the atmosphere, 0.042%, about 4 of every 10,000 molecules (question answer; stage legend 'CO₂ 4'; reveal: 'only 4 carbon dioxide: about 420 parts per million, or 0.042%').",
+      "support": "source",
+      "source": "WMO Greenhouse Gas Bulletin No. 20 (October 2024): global mean 420.0 ppm for 2023; cross-check NOAA GML or Scripps Mauna Loa records. 420 ppm = 4.2 per 10,000 = 0.042%. Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.find-the-co2-in-air.c3",
+      "text": "The grid's 7,808 + 2,095 + 93 + 4 = 10,000 rounds each share and leaves out gases under 1 per 10,000 (neon, helium, methane, krypton, hydrogen and others, about 27 ppm in total).",
+      "support": "derivation",
+      "source": "Node arithmetic (demo-builder 2026-10-14) from c1 and c2. Not stated to the learner; disclosed here. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.find-the-co2-in-air.c4",
+      "text": "One breath of about 0.5 L of air at 25 °C and 1 atm holds about 5 x 10^18 CO2 molecules (stage: 'One breath, about 0.5 L: about 5 × 10¹⁸ CO₂ molecules'; reveal).",
+      "support": "derivation",
+      "source": "n = PV/RT = 101,325 Pa x 0.0005 m^3 / (8.314 x 298.15) = 0.0204 mol; x 6.02214076e23 x 420e-6 = 5.2e18 (node). Tidal volume about 0.5 L at rest: Guyton & Hall, Textbook of Medical Physiology, pulmonary ventilation. Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.find-the-co2-in-air.c5",
+      "text": "A part per million is a share, not an amount; a tiny share of a huge crowd is still a huge number, which is why trace gases are counted in ppm (reveal).",
+      "support": "convention",
+      "source": "Definition: 1 ppm = 1 part in 10^6 by count (mole fraction, for gases), e.g. IUPAC Gold Book on 'parts per million'; the 'huge number' follows from c4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.find-the-co2-in-air.c6",
+      "text": "The dot positions are a seeded layout, not a sample of real air (mulberry32, seed 42; seed picked so the four CO2 rings sit apart and away from the edge, which does not change any count).",
+      "support": "convention",
+      "source": "The lesson (Demo.tsx layout()). Brief claim 5; pattern disclose-chosen-seeds.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A gas makes up 2 parts per million of the air. In one litre of air, is there a lot of it or almost none?",
+    "options": [
+      "Almost none: 2 ppm rounds to zero",
+      "A lot: still about 5 x 10^16 molecules",
+      "Exactly 2 molecules"
+    ],
+    "answer": 1,
+    "why": "Parts per million is a share. A litre of air holds about 2.5 x 10^22 molecules, so 2 per million of them is still about 5 x 10^16 molecules."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:parts-per-million",
+    "also": [
+      "chemistry:atom-scale-size",
+      "chemistry:ideal-gas-law"
+    ],
+    "prerequisites": [
+      "chemistry:dilution",
+      "chemistry:moles-counting"
+    ],
+    "level": "intro",
+    "strand": "solutions-acids",
+    "references": [],
+    "tags": [
+      "ppm",
+      "air",
+      "carbon dioxide",
+      "scale"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

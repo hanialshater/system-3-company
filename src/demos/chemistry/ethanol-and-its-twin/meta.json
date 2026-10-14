@@ -1,0 +1,105 @@
+{
+  "slug": "ethanol-and-its-twin",
+  "title": "Ethanol and its twin",
+  "hook": "Same nine atoms, same mass, one atom moved. Does the twin boil at the same temperature?",
+  "domain": "chemistry",
+  "concept": "hydrogen-bonding",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that a liquid boils when its molecules escape into gas",
+      "that oxygen pulls electrons harder than hydrogen (bond polarity, who-grabs-the-electrons)"
+    ],
+    "doesNotKnow": [
+      "that an H on an O (or N, F) lets molecules cling to each other with hydrogen bonds",
+      "that this grip between molecules, not their mass, can decide a boiling point"
+    ]
+  },
+  "misconception": "Molecules made of the same atoms, with the same mass, boil at about the same temperature (boiling point follows weight).",
+  "objective": "The learner can explain that ethanol boils about 100 °C higher than dimethyl ether, though both are C2H6O, because only ethanol has an H on oxygen to form hydrogen bonds between molecules.",
+  "claims": [
+    {
+      "id": "chemistry.ethanol-and-its-twin.c1",
+      "text": "Ethanol and dimethyl ether are built from the same nine atoms, C2H6O, with a molar mass of about 46 u (question: 'built from the same nine atoms (C₂H₆O, 46 u)'; reveal: 'Same nine atoms, same 46 u').",
+      "support": "derivation",
+      "source": "Structure count (CH3-CH2-OH and CH3-O-CH3: 2 C, 6 H, 1 O each) and IUPAC 2021 standard atomic weights C 12.011, H 1.008, O 15.999: 2(12.011) + 6(1.008) + 15.999 = 46.07 u (node, demo-builder 2026-10-14). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ethanol-and-its-twin.c2",
+      "text": "At 1 atm ethanol boils at about 78 °C and dimethyl ether at about −24 °C, about 100 °C apart (question; stage record lines 'Ethanol boils 78 °C', 'Dimethyl ether boils −24 °C'; reveal: 'about 100 °C apart: ethanol about 78 °C, dimethyl ether about −24 °C').",
+      "support": "source",
+      "source": "CRC Handbook of Chemistry and Physics, 'Physical Constants of Organic Compounds': ethanol 78.29 °C, dimethyl ether −24.8 °C (brief claim 2); cross-check PubChem CID 702 and CID 8254. Flag for the fact-checker: −24.8 rounds to −25; the brief and the lesson say 'about −24 °C' (other references list −24 °C). Gap 78.3 − (−24.8) = 103 °C, 'about 100 °C'.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ethanol-and-its-twin.c3",
+      "text": "A hydrogen bond needs an H bonded to a strongly electronegative atom (N, O or F) on the donor; ethanol has one H on its O, dimethyl ether has none, so ether molecules cannot hydrogen-bond to each other (stage: H drawn only on ethanol's O; reveal: 'With the O in the middle, no H sits on oxygen: 0 dashes, nothing to break').",
+      "support": "source",
+      "source": "Arunan et al., 'Definition of the hydrogen bond (IUPAC Recommendations 2011)', Pure Appl. Chem. 83(8), 1637-1641; Atkins & de Paula, Physical Chemistry, intermolecular interactions. Structure: CH3-CH2-O-H vs CH3-O-CH3. Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ethanol-and-its-twin.c4",
+      "text": "Boiling pulls molecules apart, so the grip between them, the hydrogen bond, sets the boiling temperature here, not the weight (reveal).",
+      "support": "source",
+      "source": "Atkins & de Paula, Physical Chemistry, intermolecular interactions and vaporisation; follows from c1-c3 (same mass, different hydrogen bonding, ~100 °C difference). The lesson does not claim hydrogen bonding is the only intermolecular force (dispersion and dipole forces act in both).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.ethanol-and-its-twin.c5",
+      "text": "The ring of six molecules and its dashes are a schematic of one instant, not a measured count: 6 dashes in the ethanol ring, 2 broken when one molecule is pulled out, 0 for the ether (stage record lines; reveal: 'In your ethanol ring, 6 dashes linked an O–H to a neighbour's O, and pulling one molecule out broke 2').",
+      "support": "convention",
+      "source": "The lesson's own drawing (Demo.tsx hBonds(): each ethanol donates one H-bond to its neighbour; pulling molecule 0 breaks the two bonds it takes part in). Cyclic hydrogen-bonded clusters of alcohols exist, but the ring here is illustrative. Brief claim 5. The stage shows only heavy atoms and the H on O; the H atoms on carbon are omitted.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two liquids are made of molecules with the same atoms and the same mass. Only one has an H attached to an O. Which one most likely boils at the higher temperature?",
+    "options": [
+      "The one with the H on O",
+      "The one without it",
+      "They boil at the same temperature"
+    ],
+    "answer": 0,
+    "why": "An H on O lets molecules hydrogen-bond to their neighbours. Boiling has to pull them apart, so that grip, not the mass, raises the boiling point."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:hydrogen-bonding",
+    "also": [
+      "chemistry:bond-polarity",
+      "chemistry:states-of-matter"
+    ],
+    "prerequisites": [
+      "chemistry:temperature-particle-motion"
+    ],
+    "level": "core",
+    "strand": "matter-reactions",
+    "references": [],
+    "tags": [
+      "hydrogen bond",
+      "isomers",
+      "boiling point",
+      "intermolecular forces"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}

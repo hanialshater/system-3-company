@@ -1,0 +1,96 @@
+{
+  "slug": "steady-catch-from-a-lake",
+  "title": "A full lake, a steady catch",
+  "hook": "A lake of 1,000 fish. You take 130 a year, only 13%. Where does it end?",
+  "domain": "life",
+  "concept": "maximum-sustainable-yield",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-drives-live-chart",
+    "locked-readouts"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-life",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "logistic growth: a population grows fastest at half full (fastest-at-the-bend)"
+    ],
+    "doesNotKnow": [
+      "that this peak growth sets a hard ceiling on any fixed yearly catch",
+      "that a catch just above the ceiling empties a full lake slowly and then fast"
+    ]
+  },
+  "misconception": "A lake of 1,000 fish can supply 130 a year forever. That is only 13%, and it is full to start with.",
+  "objective": "The learner can explain that the model lake adds at most 125 fish a year (at half full), so a fixed catch of 130 empties it (in year 55) while a catch of 120 settles near 600.",
+  "claims": [
+    {
+      "id": "life.steady-catch-from-a-lake.c1",
+      "text": "In the lesson's model, a full lake of 1,000 fish with a fixed catch of 130 a year is empty in year 55 (54.9); with 120 a year it settles near 600 (600 at year 60). Other catches on the slider: 80 settles at 800, 90 at 765, 100 at 724, 110 at 673; 140 empties in year 29, 150 in year 21.",
+      "support": "simulation",
+      "source": "dN/dt = 0.5N(1 - N/1000) - H, N(0) = 1000, Euler dt 0.001 year, in Demo.tsx simulate(); re-run in node 2026-10-14 (matches the brief's check in company/domains/briefs/life.ecology-body.md).",
+      "status": "unverified"
+    },
+    {
+      "id": "life.steady-catch-from-a-lake.c2",
+      "text": "The most the model lake can add in a year is 125 fish, when it is half full (500 fish).",
+      "support": "derivation",
+      "source": "Growth 0.5N(1 - N/1000) peaks at N = K/2 with value rK/4 = 0.5 x 1000 / 4 = 125.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.steady-catch-from-a-lake.c3",
+      "text": "Any fixed catch above 125 a year takes more than the lake can ever replace, so it empties.",
+      "support": "derivation",
+      "source": "0.5N(1 - N/1000) <= 125 for all N, so dN/dt < 0 everywhere when H > 125.",
+      "status": "unverified"
+    },
+    {
+      "id": "life.steady-catch-from-a-lake.c4",
+      "text": "A lake holds at most 1,000 fish and starts full; a few fish multiply fast and a crowded lake barely grows. It is a toy lake: no weather, no luck.",
+      "support": "convention",
+      "source": "Model choice (logistic, r = 0.5, K = 1000, fixed catch; no weather, age structure or chance), stated on the stage and in the reveal. Context for the fact-checker, not on the card: the logistic surplus-production model is the textbook origin of maximum sustainable yield (Schaefer 1954; Hilborn and Walters 1992). Unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A pond's fish population can grow by at most 40 fish a year (when half full). It starts full. What happens if you take 45 fish every year?",
+    "options": [
+      "It settles a little below full",
+      "It slowly shrinks and then empties",
+      "It stays full: 45 is a small share"
+    ],
+    "answer": 1,
+    "why": "No level of the pond grows by 45 a year, so every year takes more than it adds; it shrinks slowly while crowded, then faster, and empties."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "life:maximum-sustainable-yield",
+    "also": [
+      "life:logistic-growth"
+    ],
+    "prerequisites": [
+      "life:logistic-growth"
+    ],
+    "level": "stretch",
+    "strand": "ecology-body",
+    "references": [],
+    "tags": [
+      "harvest",
+      "logistic growth",
+      "tipping point"
+    ]
+  }
+}

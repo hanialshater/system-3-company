@@ -1,0 +1,124 @@
+{
+  "slug": "one-gram-two-fires",
+  "title": "One gram, two fires",
+  "hook": "Burn a gram of carbon, or split a gram of uranium. How far apart are the two?",
+  "domain": "chemistry",
+  "concept": "nuclear-vs-chemical-energy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-chemistry",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "that burning releases energy stored in bonds (pay-first-then-profit)",
+      "that a nucleus is made of protons and neutrons (which-particle-names-it)"
+    ],
+    "doesNotKnow": [
+      "how large the gap between chemical and nuclear energy is",
+      "that the gap comes from what is rearranged: electrons in burning, the nucleus in fission"
+    ]
+  },
+  "misconception": "Nuclear fuel is 'stronger' by a factor of tens or hundreds, like a better fuel.",
+  "objective": "The learner can say that fully splitting 1 g of uranium-235 releases about 2.5 million times the energy of burning 1 g of carbon, and explain that burning rearranges electrons while fission rearranges the nucleus.",
+  "claims": [
+    {
+      "id": "chemistry.one-gram-two-fires.c1",
+      "text": "Burning carbon completely to CO2 releases about 33 kJ per gram (stage: '1 g carbon burned: 33 kJ' and readout; reveal: 'Burning 1 g of carbon gave about 33 kJ').",
+      "support": "derivation",
+      "source": "Standard enthalpy of formation of CO2(g) −393.51 kJ/mol (CODATA Key Values for Thermodynamics, 1989; CRC) / 12.011 g/mol = 32.76 kJ/g (node, demo-builder 2026-10-14). Demo.tsx C_PER_G. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c2",
+      "text": "Fission of one U-235 nucleus releases about 200 MeV (stage per-event label 'one U-235 fission: 200 MeV'; reveal: 'one fission about 200 MeV').",
+      "support": "source",
+      "source": "Krane, Introductory Nuclear Physics, fission chapter (about 200 MeV total per fission, about 190-200 MeV recoverable); cross-check from binding energies: about 7.6 MeV per nucleon at A = 235 against about 8.5 MeV per nucleon for the fragments, about 0.9 x 235 = about 210 MeV (AME2020). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c3",
+      "text": "Fully fissioning 1 g of U-235 releases about 82 GJ, about 2.5 million times the energy of burning 1 g of carbon (stage: '1 g U-235 split: 82 GJ' and readout 'Per gram: carbon · U-235 33 kJ · 82 GJ'; reveal: 'gave about 82 GJ, about 2.5 million times more').",
+      "support": "derivation",
+      "source": "(1/235.04) mol x 6.02214076e23 /mol x 200e6 eV x 1.602176634e-19 J/eV = 8.21e10 J; / 32.76e3 J = 2.51e6 (node, demo-builder 2026-10-14; NA and e exact, SI 2019). Nearest power of ten: log10 = 6.40, so 10^6 ('about 1 million times more'). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c4",
+      "text": "Burning about 2.5 tonnes of carbon matches the energy of 1 g of U-235; stepping the carbon up tenfold from 1 g passes it at the 7th step, 10 t (stage readout 'Carbon to match: 2.5 t (7 steps)'; reveal: 'Carbon passed it on tenfold step 7: about 2.5 t of carbon matches one gram').",
+      "support": "derivation",
+      "source": "8.21e10 J / 32.76e3 J/g = 2.506e6 g = 2.5 t; 10^6 g gives 3.3e10 J (< 8.2e10), 10^7 g gives 3.3e11 J (>), so the 7th tenfold step passes it. Demo.tsx MATCH_G and untilPasses().",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c5",
+      "text": "Forming one CO2 molecule from carbon and oxygen releases about 4 eV (stage per-event label 'one CO₂ formed: 4.1 eV'; reveal: 'forming one CO₂ frees about 4 eV').",
+      "support": "derivation",
+      "source": "393.51e3 J/mol / 96,485.33 C/mol (Faraday constant, exact via NA and e) = 4.08 eV per molecule (node). Brief claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c6",
+      "text": "Burning only moves electrons between atoms; fission rearranges the nucleus itself (reveal).",
+      "support": "source",
+      "source": "Any general chemistry or nuclear physics text (e.g. Krane, Introductory Nuclear Physics; Atkins, chemical bonding): chemical reactions change electron arrangements and bonds, leaving nuclei unchanged; fission splits the nucleus into two lighter nuclei.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.one-gram-two-fires.c7",
+      "text": "Idealisation (in the question, not repeated on stage): every atom in the gram of U-235 splits and the carbon is pure and burns completely. Real reactor fuel is mostly U-238 and only a few per cent fissions before refuelling; coal gives less per gram than pure carbon.",
+      "support": "convention",
+      "source": "Stated assumption, brief claim 5. The lesson quotes no burnup figure. Coal heating values about 24-35 MJ/kg against 32.8 MJ/kg for pure carbon (brief); fact-checker to confirm or drop if the coal range is ever shown.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A nuclear plant and a coal plant make the same electricity in a year. Roughly how does the mass of fuel they use compare?",
+    "options": [
+      "About the same",
+      "The coal plant burns tens of times more",
+      "The coal plant burns about a million times more mass"
+    ],
+    "answer": 2,
+    "why": "Per gram, fission releases millions of times more energy than burning, because it rearranges the nucleus rather than electrons. (Real fuel only partly fissions, so the real gap is smaller, but still huge.)"
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "chemistry:nuclear-vs-chemical-energy",
+    "also": [
+      "chemistry:bond-energy-enthalpy",
+      "chemistry:isotopes",
+      "chemistry:atom-scale-size"
+    ],
+    "prerequisites": [
+      "chemistry:bond-energy-enthalpy",
+      "chemistry:isotopes"
+    ],
+    "level": "core",
+    "strand": "matter-reactions",
+    "references": [],
+    "tags": [
+      "fission",
+      "combustion",
+      "energy",
+      "orders of magnitude",
+      "log scale"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "toggle-before-after",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
