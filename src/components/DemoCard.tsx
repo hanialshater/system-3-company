@@ -104,7 +104,7 @@ export function DemoCard({
  * scroll position means nothing in the new layout. Any other re-fit (the 400 ms re-check, a
  * height-only resize) is skipped once the learner has scrolled the card since the reveal began.
  *
- * W-146 (stage cropped at the reveal): scrolling alone put the reveal on screen by pushing the top of
+ * Stage crop at the reveal (2026-10-14, review W-237): scrolling alone put the reveal on screen by pushing the top of
  * the stage off the card, so reveal text that points at labels near the top pointed at nothing. Now the
  * fit first scales the stage down (a transform from its top centre, with a negative bottom margin
  * giving back the layout space) until stage + reveal fit the card body, so both are whole on screen.
@@ -176,7 +176,7 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       }
       userScrolled = false;
       expectedTop = body.scrollTop;
-      // W-146: a stage or reveal that grows after the tap (animation, late annotations) re-fits too.
+      // Stage crop fix: a stage or reveal that grows after the tap (animation, late annotations) re-fits too.
       const stage = stageOf();
       const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
       if (stage) ro?.observe(stage);

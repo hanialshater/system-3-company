@@ -64,6 +64,9 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
   const [pk, setPk] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [table, setTable] = useState<(Done | null)[]>([null, null]);
+  // True once the learner has watched the 9 on 8 ... 1 9 empty the stack one box at a time (animated, or
+  // stepped press by press under reduced motion). The reveal says "box by box" only then.
+  const [sawEmpty, setSawEmpty] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => () => {
     if (timer.current) clearInterval(timer.current);
@@ -71,7 +74,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
 
   const a = LISTS[list];
   const R = RUNS[list];
-  const finished = k >= N;
+  const finished = k >= N && pk === null;
   const done = R.steps.slice(0, k);
   // The latest number's step, cut to the pops shown so far (pk), so the stack empties one box at a time.
   const shown = (x: Step, i: number): Step =>
@@ -100,10 +103,12 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            On {CHIP[0]}, scanning took {d0.scanTotal} comparisons and the stack {d0.stackTotal}: each new number met one
+            On {CHIP[0]}, scanning took {d0.scanTotal} comparisons and the stack {d0.stackTotal}: each later number met one
             bigger top (a hollow tick) and was pushed.
             {table[1]
-              ? ` On ${CHIP[1]}, look at the 9's row: ${d1.pops} solid ticks marked "${d1.pops} pops", one for each waiting number, while the stack emptied box by box down to the 9. That run cost ${d1.stackTotal} in all, still against ${d1.scanTotal}.`
+              ? ` On ${CHIP[1]}, look at the 9's row: ${d1.pops} solid ticks marked "${d1.pops} pops", one for each waiting number${
+                  sawEmpty ? ", while the stack emptied box by box down to the 9" : ""
+                }. That run cost ${d1.stackTotal} in all, still against ${d1.scanTotal}.`
               : ""}
           </p>
           <p>
@@ -121,21 +126,20 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
               setTable((t) => t.map((x, i) => (i === l ? { scan: RUNS[l].scanTotal, stack: RUNS[l].stackTotal } : x)));
               reach(l === 0 ? "descending-done" : "pops-seen");
             };
-            const replay = (l: number, from: number) => {
+            const reducedMotion = () =>
+              typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+            // Play frames [k, pk] for numbers from..to-1 of list l: one per number, and a number that pops gets a
+            // frame on arrival and one per pop (8 ... 1 9: 18 frames, ~400 ms). Finishes the list if it reaches N.
+            const play = (l: number, from: number, to: number) => {
               if (timer.current) clearInterval(timer.current);
-              const reduced =
-                typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-              if (reduced || from >= N) {
-                setK(N);
-                setPk(null);
-                finish(l);
-                return;
-              }
-              // One frame per number; a number that pops gets a frame on arrival and one per pop (8 ... 1 9: 18 frames, ~400 ms).
               const frames: [number, number | null][] = [];
-              for (let i = from; i < N; i++) {
+              let pops = false;
+              for (let i = from; i < to; i++) {
                 const np = RUNS[l].steps[i].popped.length;
-                if (np > 0) for (let q = 0; q <= np; q++) frames.push([i + 1, q]);
+                if (np > 0) {
+                  pops = true;
+                  for (let q = 0; q <= np; q++) frames.push([i + 1, q]);
+                }
                 frames.push([i + 1, null]);
               }
               setBusy(true);
@@ -149,20 +153,53 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                   if (timer.current) clearInterval(timer.current);
                   timer.current = null;
                   setBusy(false);
-                  finish(l);
+                  if (pops && l === 1) setSawEmpty(true);
+                  if (to >= N) finish(l);
                 }
               }, 22);
             };
+            const replay = (l: number, from: number) => {
+              if (reducedMotion() || from >= N) {
+                // No animation: jump to the end. The stack was not seen emptying, so sawEmpty stays as it was.
+                if (timer.current) clearInterval(timer.current);
+                setK(N);
+                setPk(null);
+                finish(l);
+                return;
+              }
+              play(l, from, N);
+            };
             const next = () => {
               if (locked || busy || finished) return;
+              // Reduced motion, mid-pops: each press shows one more pop; the press after the last pushes the number.
+              if (pk !== null) {
+                const np = R.steps[k - 1].popped.length;
+                if (pk < np) {
+                  setPk(pk + 1);
+                  return;
+                }
+                setPk(null);
+                if (list === 1) setSawEmpty(true);
+                if (k >= N) finish(list);
+                return;
+              }
               const kk = k + 1;
+              if (R.steps[kk - 1].popped.length > 0) {
+                if (reducedMotion()) {
+                  setK(kk);
+                  setPk(0); // arrival frame; the pops follow press by press
+                } else {
+                  play(list, k, kk); // the pops step one box at a time, as in the replay
+                }
+                return;
+              }
               setK(kk);
               setPk(null);
               if (kk >= N) finish(list);
             };
             const rest = () => {
               if (locked || busy || finished) return;
-              replay(list, k);
+              replay(list, pk !== null ? k - 1 : k);
             };
             const pick = (l: number) => {
               if (locked || busy || l === list) return;

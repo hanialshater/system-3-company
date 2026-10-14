@@ -347,10 +347,13 @@ export default function RotationUntanglesTheChain({ slug }: { slug: string }) {
             };
             const switchMode = (m: Mode) => {
               if (locked || busy || m === mode) return;
-              const wasFull = i >= 7;
+              // A full tree replays the new tree to full, except the rotating tree before its first rotation has
+              // been stepped: then it starts again from keys 1 and 2, so "Insert next key" can show that rotation
+              // (otherwise Plain-first, filled, then Rotating would lock the first-rotation milestone out).
+              const full = i >= 7 && !(m === "rotating" && !first);
               setMode(m);
-              setI(wasFull ? 0 : START);
-              if (wasFull) replay(m, 0);
+              setI(full ? 0 : START);
+              if (full) replay(m, 0);
               else if (timer.current) clearInterval(timer.current);
             };
 

@@ -200,6 +200,6 @@ a { color: inherit; }
    min-height). At the reveal the stage is content-sized (rule above), so a zero flex-basis collapses
    the picture to its min-height: a 120-140px thumbnail. At the reveal the picture takes its natural
    height from its viewBox instead (still capped by any max-height the lesson sets). DemoCard then
-   scales the whole stage down until stage + reveal fit the card (W-146), and scrolls only what a
+   scales the whole stage down until stage + reveal fit the card (stage-crop fix, W-237), and scrolls only what a
    stage below the scale floor still leaves over. */
 .lesson[data-phase="reveal"] .stage .stage-svg { flex: none; height: auto; }
