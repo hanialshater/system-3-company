@@ -7,10 +7,10 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 - Map: WorldMap (kit, Natural Earth 1:110m) on conic equal-area, parallels 42/47 N, rotated to 84 W, fitted once to every point of every map, so the frame never moves between presets. At 110m the lakes are not cut out of the land, so the land is plain grey; lake names are left out, as the brief allows. The points carry the lesson: dots for true positions, rings for the map's positions, red error lines between them.
 - "Errors in km" swaps the map for an 11-row two-bar chart in the same frame (one picture at a time). The Coronelli and Melish rows are bold and carry their values "59 / 363" and "24 / 41"; the title reads "E-W worse on 9 of 11". This is the QA path's final state, so every quoted value is on the stage when the reveal opens.
 - Readout: one line, "Average error 59 km N-S · 363 km E-W" (two readouts wrapped to two rows on a phone).
-- Title and hook are mine (the brief gives none): "Where old maps put the Great Lakes" / "Eleven maps from 1688 to 1818 placed the same 39 lakeshore points. Which way did they miss?" For cm-history to confirm. The slug says "east-west", which points at the answer; renaming the slug is not the builder's call.
+- Title and hook are mine (the brief gives none): "Where old maps put the Great Lakes" / "Eleven maps, 1688 to 1818, placed the same 39 lakeshore points. Which way were they off?" For cm-history to confirm. The slug says "east-west", which points at the answer; renaming the slug is not the builder's call.
 
 ## Pre-flight v1
-1. **Title and hook.** "Where old maps put the Great Lakes" / "Eleven maps from 1688 to 1818 placed the same 39 lakeshore points. Which way did they miss?" No direction named.
+1. **Title and hook.** "Where old maps put the Great Lakes" / "Eleven maps, 1688 to 1818, placed the same 39 lakeshore points. Which way were they off?" No direction named.
 2. **Options.** "North-south" / "East-west" / "About equal": none numbered, same form.
 3. **Locked stage.** True positions only (39 dots, "true position" legend) on grey land with today's US-Canada border; disabled presets; readout "Average error -". No map points, no error lines, no maker name.
 4. **Reveal values.** 59 and 363: (b) milestone `coronelli` (readout), and on the final chart's Coronelli row. 41: (b) milestone `melish`, on the chart's Melish row. 9 of 11: (b) milestone `all`, chart title and readout. All computed from ACTUAL and MAPS.
