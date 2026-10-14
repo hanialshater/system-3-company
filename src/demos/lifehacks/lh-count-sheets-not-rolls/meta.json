@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-count-sheets-not-rolls.c4",
       "text": "Fictional packs: eight rolls of 150 sheets for €6, or four rolls of 300 sheets for €5. Which costs less per sheet? Correct: The four-roll pack. Both packs hold 1,200 sheets (rolls × sheets per roll), so the €5 pack costs less per sheet; the roll count hid that.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 8×150 = 4×300 = 1,200 sheets; €5 < €6, so the four-roll pack; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-count-sheets-not-rolls.c5",
@@ -67,8 +69,10 @@
       "id": "lifehacks.lh-count-sheets-not-rolls.c6",
       "text": "Six rolls or four rolls? The count inside each roll changes the arithmetic.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-count-sheets-not-rolls\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Six-rolls)=[\"/\", 6, [\"*\", 6, 120]]; B (Four-rolls)=[\"/\", 5, [\"*\", 4, \"x\"]]; x denotes Sheets/roll, 100 to 300, start 240. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-count-sheets-not-rolls\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Six-rolls)=[\"/\", 6, [\"*\", 6, 120]]; B (Four-rolls)=[\"/\", 5, [\"*\", 4, \"x\"]]; x denotes Sheets/roll, 100 to 300, start 240. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 6/(6×120) = €0.00833/sheet; B = 5/(4x): €0.0125 at 100, equal at 150, €0.0052 at 240; which pack is cheaper per sheet flips with sheets per roll, so the count inside each roll changes the result. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

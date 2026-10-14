@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-offcuts-not-one-piece.c4",
       "text": "You have two offcuts of 70cm each and need unjoined pieces of 100cm. How many 100cm pieces can you cut? Correct: 0. Each piece must fit inside one offcut, and neither is 100cm long; the pooled 140cm is not one continuous piece.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; floor(70/100)+floor(70/100) = 0; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-offcuts-not-one-piece.c5",
       "text": "A 90cm piece and a 50cm piece cannot supply two unjoined 60cm lengths.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-offcuts-not-one-piece\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"+\", [\"*\", [\"floor\", [\"/\", 90, \"x\"]], \"x\"], [\"*\", [\"floor\", [\"/\", 50, \"x\"]], \"x\"]]; B (Pooled-length)=[\"*\", [\"floor\", [\"/\", 140, \"x\"]], \"x\"]; x denotes Piece-size, 30 to 80, start 60. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-offcuts-not-one-piece\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"+\", [\"*\", [\"floor\", [\"/\", 90, \"x\"]], \"x\"], [\"*\", [\"floor\", [\"/\", 50, \"x\"]], \"x\"]]; B (Pooled-length)=[\"*\", [\"floor\", [\"/\", 140, \"x\"]], \"x\"]; x denotes Piece-size, 30 to 80, start 60. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): at 60 cm, separate floor(90/60)×60 + floor(50/60)×60 = 60 cm (one piece) vs pooled floor(140/60)×60 = 120 cm (two pieces): the two offcuts supply only one unjoined 60 cm length. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

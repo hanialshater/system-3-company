@@ -11,3 +11,7 @@
 - **Looked at:** headless Playwright at 390x844 on the dev server, before and after the comparison control (screenshots in my scratchpad, not kept).
 - **Claims:** all unverified. Version 1 → 2.
 - **Not done:** no build and no QA (the brief says so). Lesson QA and the walkthrough are still owed.
+
+## Pre-flight note (W-383, version unchanged)
+
+2026-10-14, demo-builder. From FC LH-2 (company/reviews/group-cables-with-ends/2026-10-14-fact-check.md, Pass LH-2). c1 support is retyped from source (Raymer & Smith 2007, which could not be opened) to derivation: a cord whose ends are held cannot change its knot type, so a middle tie leaves the end routes open. The text is unchanged and the status is unverified. The unrendered c5 transfer prompt is deleted. Nothing a learner sees changed, so the version stays 2.

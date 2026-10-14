@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-discount-round-trip.c4",
       "text": "A fictional €50 price falls by 20%, then rises by 20%. Where does it finish? Correct: €48. The rise starts from €40, so it adds €8, not €10: 0.8 × 1.2 = 0.96 of the start.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 50×0.8×1.2 = €48; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-discount-round-trip.c5",
       "text": "20% down, then 20% up: will the price return to its starting point?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-discount-round-trip\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"*\", \"x\", 0.8, 1.2]; x denotes Original, 50 to 150, start 100). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-discount-round-trip\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"*\", \"x\", 0.8, 1.2]; x denotes Original, 50 to 150, start 100). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: B = 0.8×1.2×x = 0.96x (96 at 100), below the original at every slider value. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

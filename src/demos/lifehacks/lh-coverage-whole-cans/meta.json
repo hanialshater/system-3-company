@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-coverage-whole-cans.c4",
       "text": "A fictional label states 8m² per litre; containers hold 1L and cannot be split. How many containers for 17m²? Correct: 3. 17 ÷ 8 = 2.125L exactly, and whole containers round that up to 3.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 17/8 = 2.125 L, ceil = 3 (lesson model 3 / 2.125 at 17 m²); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-coverage-whole-cans.c5",
       "text": "A label says 8m² per litre. Fractional need is not a whole-container order.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-coverage-whole-cans\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Whole-litres)=[\"ceil\", [\"/\", \"x\", 8]]; B (Exact-need)=[\"/\", \"x\", 8]; x denotes Area, 5 to 30, start 10. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-coverage-whole-cans\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Whole-litres)=[\"ceil\", [\"/\", \"x\", 8]]; B (Exact-need)=[\"/\", \"x\", 8]; x denotes Area, 5 to 30, start 10. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): at 10 m², exact need 10/8 = 1.25 L vs ceil = 2 whole litres; the stage label is the fictional 8 m²/L of the details line. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

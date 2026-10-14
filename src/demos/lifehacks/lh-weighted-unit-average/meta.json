@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-weighted-unit-average.c4",
       "text": "Fictional material A is €2/kg and B is €8/kg. You combine 3kg of A with 1kg of B. What is the average price per kilogram? Correct: €3.50. Total price ÷ total mass: (€6 + €8) ÷ 4kg = €3.50. The simple mean (€5) only holds for equal masses.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; (3×2 + 1×8)/4 = €3.50/kg; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

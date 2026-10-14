@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-parcel-fee-repeats.c4",
       "text": "A fictional parcel costs €3 plus €0.50 per item. Shipping ten items in ten separate parcels instead of one costs how much more? Correct: €27. The per-item charge is the same either way; only the €3 parcel fee repeats, nine extra times: €27.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×(3+0.5) − (3+10×0.5) = 35 − 8 = €27 (lesson model 27 at 10 items); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-parcel-fee-repeats.c5",
       "text": "A fixed parcel fee is different from a fee attached to each item.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-parcel-fee-repeats\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"*\", 3.5, \"x\"]; B (Combined)=[\"+\", 3, [\"*\", 0.5, \"x\"]]; x denotes Items, 1 to 10, start 4. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-parcel-fee-repeats\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"*\", 3.5, \"x\"]; B (Combined)=[\"+\", 3, [\"*\", 0.5, \"x\"]]; x denotes Items, 1 to 10, start 4. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): separate 3.5x vs combined 3+0.5x: the €3 fee is paid x times vs once (€14 vs €5 at 4 items); the €0.50 item charge is the same both ways. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

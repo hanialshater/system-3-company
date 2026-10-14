@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-flow-times-minutes.c4",
       "text": "A hypothetical constant flow of 8L/min runs for five minutes. What volume does it deliver? Correct: 40L. Litres per minute × minutes = litres: 8 × 5 = 40L. The rate alone is not the total.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,\"x\"]; B=[\"*\",3,\"x\"]; x denotes Minutes. At x=4, A=24, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,\"x\"]; B=[\"*\",3,\"x\"]; x denotes Minutes. At x=4, A=24, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 8×5 = 40 L; option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-flow-times-minutes.c5",
       "text": "A flow rate is not the final volume until duration joins it.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-flow-times-minutes\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (6L/min)=[\"*\", 6, \"x\"]; B (3L/min)=[\"*\", 3, \"x\"]; x denotes Minutes, 1 to 12, start 4. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-flow-times-minutes\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (6L/min)=[\"*\", 6, \"x\"]; B (3L/min)=[\"*\", 3, \"x\"]; x denotes Minutes, 1 to 12, start 4. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): volume = rate×minutes (24 L vs 12 L at 4 min); the stage computes volume only once minutes are applied. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

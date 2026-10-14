@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-two-for-one-boundary.c4",
       "text": "Singles cost €3 each; a two-for-one pair costs €4 and pairs cannot be split. You need five items. What does the pairs-only checkout cost? Correct: €12. Five items need three whole pairs (rounded up), so you pay €12 including one item you did not need.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; ceil(5/2) = 3 pairs × €4 = €12 (€10 is 2.5 pairs, €15 is five singles); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

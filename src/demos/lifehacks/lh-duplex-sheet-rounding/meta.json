@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-duplex-sheet-rounding.c4",
       "text": "Printing double-sided, with a blank final side allowed: how many sheets do eleven pages need? Correct: 6. 11 ÷ 2 = 5.5, rounded up to 6: the odd last page still takes a whole sheet.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; ceil(11/2) = 6 (lesson model 6 at 11 pages); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duplex-sheet-rounding.c5",
       "text": "Two pages per sheet: what happens when the page count is odd?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-duplex-sheet-rounding\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"ceil\", [\"/\", \"x\", 2]]; x denotes Pages, 1 to 15, start 7). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-duplex-sheet-rounding\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"ceil\", [\"/\", \"x\", 2]]; x denotes Pages, 1 to 15, start 7). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: ceil(7/2) = 4 sheets for 7 pages, the last sheet half used. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-pay-for-used-quantity.c4",
       "text": "Singles cost €0.50 each; a ten-pack costs €4 and unused pieces count for nothing. How many pieces must you use before the ten-pack's cost per used piece falls to €0.50? Correct: 8. Divide by pieces used, not bought: €4 ÷ 8 = €0.50; with fewer used, each used piece costs more.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 4/n ≤ 0.5 first at n = 8 (lesson model 4/min(x,10): 0.571 at 7, 0.5 at 8); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c5",
       "text": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-pay-for-used-quantity\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Singles)=0.5; B (Ten-pack)=[\"/\", 4, [\"min\", \"x\", 10]]; x denotes Used, 1 to 10, start 5. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-pay-for-used-quantity\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Singles)=0.5; B (Ten-pack)=[\"/\", 4, [\"min\", \"x\", 10]]; x denotes Used, 1 to 10, start 5. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): sticker €4/10 = €0.40 per piece < €0.50; cost per used piece 4/min(x,10) = €0.80 at 5 used, above €0.50 for 1..7 used. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

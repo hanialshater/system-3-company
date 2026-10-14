@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-watts-hours-trade.c4",
       "text": "Illustrative loads: 50W for two hours, or 10W for ten hours. Which uses more energy? Correct: They use the same. Energy is power × time: both are 100Wh (0.1kWh), so the lower watt number alone did not decide it.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,\"x\"],1000]; B=[\"/\",[\"*\",20,5,\"x\"],1000]; x denotes A-hours. At x=1, A=0.1, B=0.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 50 W×2 h = 10 W×10 h = 100 Wh; option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-watts-hours-trade.c5",

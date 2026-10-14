@@ -43,8 +43,10 @@
       "id": "lifehacks.flat-pack-volume-dimensions.c3",
       "text": "4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. W-367 (2026-10-14, demo-builder): A 40×30×30 box needs 4 panels 40×30 and 2 panels 30×30, not 6 of 40×30. Formula and the stage inputs line (home-models.ts flat-pack: \"4 panels 40×30 + 2 panels 30×30 · t=…cm\") changed; the stacked envelope 40×30×6t and assembled 40×30×30 values are unchanged because the 30×30 panels fit inside the 40×30 footprint. c1/c2 sources quote the new formula. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. W-367 (2026-10-14, demo-builder): A 40×30×30 box needs 4 panels 40×30 and 2 panels 30×30, not 6 of 40×30. Formula and the stage inputs line (home-models.ts flat-pack: \"4 panels 40×30 + 2 panels 30×30 · t=…cm\") changed; the stacked envelope 40×30×6t and assembled 40×30×30 values are unchanged because the 30×30 panels fit inside the 40×30 footprint. c1/c2 sources quote the new formula. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: a closed 40×30×30 box has faces 2×(40×30) top/bottom, 2×(40×30) sides, 2×(30×30) ends = 4 panels 40×30 + 2 panels 30×30; evaluateHome flat-pack gives assembled 40×30×30 = 36,000 cm³ and stack 40×30×6t (7,200 cm³ at t=1; 21,600 at t=3, still smaller); 30×30 panels sit inside the 40×30 footprint; stage inputs line reads \"4 panels 40×30 + 2 panels 30×30 · t=1cm\". Note (not this claim): the choice label \"Assembled cube\" names a 40×30×30 box, which is not a cube; see board. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.flat-pack-volume-dimensions.c4",

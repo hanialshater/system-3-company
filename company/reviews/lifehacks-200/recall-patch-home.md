@@ -23,3 +23,6 @@
 
 ## Confidence
 High on arithmetic and positions. One number is approximate: in `measure-diagonal-for-square` the diagonals are "about 104 and 96 cm". Medium on guessability: the learner evaluator (W-178) should confirm it. All 70 new claims need fact-check.
+
+## Amendments
+- 2026-10-14, demo-builder (W-388, W-389, after FC LH-3B disputes): `mug-handle-packing` question now says the handle points along the row; `seasonal-bin-rotation` question now states 3 other boxes sit between the front and back positions. Both whys were tightened to match. `.lines.txt` updated; both claims reset to unverified.

@@ -33,9 +33,11 @@
     {
       "text": "In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): DISPUTED: the stage numbers are right (round-robin of order three, two, one ends 30, 25, 15, first completion 15; whole-job one, two, three first completion 5), but the causal sentence is false: slicing does not cause the 5 → 15 change. Same order, sliced or whole: three, two, one gives first completion 15 both ways; one, two, three gives 5 both ways (queueResult and roundRobinQueue in node). The difference is the job order, because job one (5 min) fits in a single 5-minute turn. Fix (builder and cm decide): either compare the same order in both views with a first job longer than one turn (e.g. three 10-minute jobs: whole-job 10 vs round-robin 20, as the recall does), or reword to name the order (\"Running the 5-minute job first finishes it at minute 5; the opening view starts with the 15-minute job\"). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.work-in-process-limit.c2",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -47,17 +49,10 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "Recall question answer and rationale: One job to completion. In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
-      "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
-      "id": "lifehacks.work-in-process-limit.c4",
-      "status": "unverified"
-    },
-    {
       "id": "lifehacks.work-in-process-limit.recall",
       "text": "Rotating, the first task gets its second 5 minutes at 15–20, so it completes at 20, not 10.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a).",
       "status": "unverified"
     }
   ],

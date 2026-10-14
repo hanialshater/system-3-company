@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-fixed-energy-charge.c4",
       "text": "Fictional tariff A is €0.20/kWh plus €10; tariff B is €0.30/kWh with no fixed charge. Above what usage is A's bill lower? Correct: 100kWh. A's €10 fixed charge is recovered at €0.10 per kWh saved, so the bills match at 100kWh; below that, B is lower.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 0.2u+10 < 0.3u iff u > 100 (lesson model €30/€30 at 100 kWh); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c5",
@@ -74,8 +76,10 @@
       "id": "lifehacks.lh-fixed-energy-charge.c7",
       "text": "A lower per-kWh price can still produce a higher total at small usage.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 0.2u+10, B = 0.3u: at 40 kWh A €18 > B €12; A is higher below 100 kWh, equal at 100, lower above. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-each-cut-allowance.c4",
       "text": "Each panel needs 1.20m plus its own 0.05m allowance. What total length do ten panels need? Correct: 12.50m. The allowance is per panel, so it is multiplied by ten too: 10 × 1.25m = 12.50m.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×(1.20+0.05) = 12.50 m (12.05 adds the allowance once); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-each-cut-allowance.c5",
       "text": "Six panels each need a 5cm allowance. Is one 5cm allowance enough?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-each-cut-allowance\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", \"x\", 1.25]; B=[\"+\", [\"*\", \"x\", 1.2], 0.05]; x denotes Panels, 1 to 12, start 6). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-each-cut-allowance\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", \"x\", 1.25]; B=[\"+\", [\"*\", \"x\", 1.2], 0.05]; x denotes Panels, 1 to 12, start 6). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: 6 panels need 6×1.25 = 7.50 m vs 7.25 m with one 0.05 m (5 cm) allowance, so one allowance is not enough. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

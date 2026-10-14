@@ -19,3 +19,7 @@
 - **Claims:** c5 is unverified (text changed; food-safety source still owed to the fact-checker). Other claims untouched. Version 2 → 3.
 - **For the second reader:** a reader other than me confirms the wording on the stage at 390x844; the longer line may wrap to two or three lines.
 - **Not done:** no screenshot or computer-use QA of the stage.
+
+## Pre-flight note (W-383, version unchanged)
+
+2026-10-14, demo-builder. From FC LH-2 Pass LH-2. The c4 source note cited the old ten-portion recall (75 g × 10 = 750 g). It now gives the current recall's arithmetic (75 g × 2 = 150 g). The claim text and the FC LH-2 verdict are unchanged, because only the note was stale. Nothing a learner sees changed, so the version stays 3.

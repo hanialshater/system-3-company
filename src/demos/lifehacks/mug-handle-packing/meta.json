@@ -68,24 +68,22 @@
     },
     {
       "id": "lifehacks.mug-handle-packing.recall",
-      "text": "Each cup needs its full envelope, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles.",
+      "text": "Each cup needs its full envelope along the row, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): DISPUTED. Arithmetic is right (48/12=4; 48/9=5), but the question does not say which way the handles point. With the handles turned toward the tray depth instead of along the row, 5 cups (45 cm) fit side by side without handles overlapping, so option \"5\" is also correct on a literal reading, and the why's \"they collide at the handles\" holds only for handles along the row (as drawn in HomeLesson.tsx handle-envelope). Fix (example wording, owner decides): question \"Cups are 9 cm across, with a 3 cm handle pointing along the row. With handles not allowed to overlap, how many fit across a 48 cm tray?\" See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): DISPUTED. Arithmetic is right (48/12=4; 48/9=5), but the question does not say which way the handles point. With the handles turned toward the tray depth instead of along the row, 5 cups (45 cm) fit side by side without handles overlapping, so option \"5\" is also correct on a literal reading, and the why's \"they collide at the handles\" holds only for handles along the row (as drawn in HomeLesson.tsx handle-envelope). Fix (example wording, owner decides): question \"Cups are 9 cm across, with a 3 cm handle pointing along the row. With handles not allowed to overlap, how many fit across a 48 cm tray?\" See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Revised by demo-builder 2026-10-14 (W-388): question now states the fix (see recall-patch-home.lines.txt); status reset to unverified for fact-check re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Cups are 9 cm across, with a 3 cm handle. Side by side, with handles not allowed to overlap, how many fit across a 48 cm tray?",
+    "question": "Cups are 9 cm across, with a 3 cm handle pointing along the row. Side by side, with handles not allowed to overlap, how many fit across a 48 cm tray?",
     "options": [
       "5",
       "6",
       "4"
     ],
     "answer": 2,
-    "why": "Each cup needs its full envelope, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles."
+    "why": "Each cup needs its full envelope along the row, 9 + 3 = 12 cm: 48 ÷ 12 = 4. Counting only the 9 cm body gives 5, and they collide at the handles. Other layouts may interleave handles."
   },
   "evidence": {
     "qa": [],
@@ -93,7 +91,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:envelope-includes-protrusions",
     "prerequisites": [],

@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-idle-versus-active.c4",
       "text": "Illustrative day: active 40W for 1 hour, idle 2W for 23 hours. Which state uses more energy that day? Correct: Idle. Multiply each power by its own hours: active 40Wh, idle 46Wh. Neither the bigger wattage nor the longer time decides it alone.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; active 40 Wh vs idle 2×23 = 46 Wh; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-idle-versus-active.c5",
@@ -74,8 +76,10 @@
       "id": "lifehacks.lh-idle-versus-active.c7",
       "text": "A small load lasts many hours. Does duration make it larger than the active load?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-idle-versus-active\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 60, 2, \"x\"], 1000]; B=[\"/\", [\"*\", 3, 22, \"x\"], 1000]; x denotes Days, 1 to 30, start 5). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-idle-versus-active\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 60, 2, \"x\"], 1000]; B=[\"/\", [\"*\", 3, 22, \"x\"], 1000]; x denotes Days, 1 to 30, start 5). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: active 60W×2h = 0.12 kWh/day vs idle 3W×22h = 0.066 kWh/day; idle stays below active at every day count 1..30 (0.60 vs 0.33 at 5). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

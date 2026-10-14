@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: Four files; two are PDFs and two are Ana's. Which one matches both? What does adding an owner filter to PDF mean? Correct option: Both conditions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: plan.pdf (Ana), map.pdf (Bo), note.txt (Ana), list.txt (Bo); list.txt matches neither clue, so \"four files match one clue\" was false. Hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: plan.pdf (Ana), map.pdf (Bo), note.txt (Ana), list.txt (Bo); list.txt matches neither clue, so \"four files match one clue\" was false. Hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: fixture plan.pdf (Ana), map.pdf (Bo), note.txt (Ana), list.txt (Bo): four files, two PDFs, two Ana's; fileResult filter step 1 gives plan.pdf, map.pdf, step 2 gives plan.pdf only, so exactly one matches both and \"Both conditions\" is the correct option. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.file-type-then-owner.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
@@ -47,19 +49,10 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "Recall question answer and rationale: Both conditions. Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
-      "support": "derivation",
-      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "id": "lifehacks.file-type-then-owner.c4",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
-    },
-    {
       "id": "lifehacks.file-type-then-owner.recall",
       "text": "Combined filters keep only files that match both conditions: a spreadsheet owned by Lee.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a).",
       "status": "unverified"
     }
   ],

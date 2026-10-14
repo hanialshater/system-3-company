@@ -11,3 +11,7 @@
 - **Looked at:** headless Playwright at 390x844 on the dev server, before and after the comparison control (screenshots in my scratchpad, not kept).
 - **Claims:** all unverified. Version 1 → 2. c1 to c4 had fact-checker verdicts (FC LH-1) against the old box picture. The stage is new, so they were reset and need a re-check.
 - **Not done:** no build and no QA (the brief says so). Lesson QA and the walkthrough are still owed.
+
+## Pre-flight note (W-383, version unchanged)
+
+2026-10-14, demo-builder. From FC LH-2 Pass LH-2. The unrendered c5 transfer prompt is deleted (`.recall` replaces it). Nothing a learner sees changed, so the version stays 2.

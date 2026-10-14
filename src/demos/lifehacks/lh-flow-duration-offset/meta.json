@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-flow-duration-offset.c4",
       "text": "Hypothetical A runs at 10L/min for three minutes; B at 5L/min for six minutes. How do their volumes compare? Correct: They are equal. Half the rate for twice the time cancels: both deliver 30L.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",12,\"x\"]; B=[\"*\",6,2,\"x\"]; x denotes A-minutes. At x=2, A=24, B=24. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",12,\"x\"]; B=[\"*\",6,2,\"x\"]; x denotes A-minutes. At x=2, A=24, B=24. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×3 = 5×6 = 30 L; option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-flow-duration-offset.c5",
       "text": "Halving a flow rate and doubling duration: what happens to volume?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-flow-duration-offset\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", 12, \"x\"]; B=[\"*\", 6, 2, \"x\"]; x denotes A-minutes, 1 to 8, start 2). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-flow-duration-offset\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", 12, \"x\"]; B=[\"*\", 6, 2, \"x\"]; x denotes A-minutes, 1 to 8, start 2). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: 12x vs 6×2x are equal at every slider value (24 L each at 2 min). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

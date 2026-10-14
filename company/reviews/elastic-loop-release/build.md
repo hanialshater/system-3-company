@@ -11,3 +11,14 @@
 - **Looked at:** headless Playwright at 390x844 on the dev server, before and after the comparison control (screenshots in my scratchpad, not kept).
 - **Claims:** all unverified. Version 1 → 2.
 - **Not done:** no build and no QA (the brief says so). Lesson QA and the walkthrough are still owed.
+
+## Pre-flight v3
+
+2026-10-14, demo-builder. Board W-383 (from FC LH-2, company/reviews/elastic-loop-release/2026-10-14-fact-check.md, Pass LH-2).
+
+- **Drawing fix (learner-visible):** the orange crossing dot was drawn at (150,125), 8 px below where the two diagonals of the curl cross. The diagonals run (110,150)-(170,100) and (130,100)-(190,150), so they meet at (150, 350/3 ≈ 116.7). `homeCordScene` in `src/lib/lifehacks/home-models.ts` now draws the dot there. The count of drawn crossings (1 before, 0 after) does not change. New fixture in `tests/lifehacks/home.test.mjs` checks that the dot lies on both diagonals.
+- **c1 retyped:** support changes from source (Raymer & Smith 2007, which could not be opened) to derivation, using the Reidemeister I argument from the record. The text is unchanged. Status is unverified.
+- **c5 deleted:** the old transfer prompt is never rendered, and `.recall` replaces it.
+- **c3:** text and verdict unchanged. A source note records the moved dot.
+- **Not changed:** FC minor finding (2), that "End through loop" draws the untouched curl and does not show threading. This is a design question, not a factual error. It is left for the learning-designer.
+- Version 2 → 3. No build, no QA, no screenshots (per the brief). Lesson QA and the walkthrough are still owed (W-371).

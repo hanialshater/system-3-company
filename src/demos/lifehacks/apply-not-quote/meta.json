@@ -33,9 +33,11 @@
     {
       "text": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
       "support": "derivation",
-      "source": "Exercise fixture study_apply_not_quote in src/lib/lifehacks/studyCatalog.ts: words 2, 5, 9 are the ascending target; StudyLesson.tsx shows the input as 5, 9, 2 (visibleSourceWords uses [1,2,0]) after \"Try values\"; reconstructionMatches in studyModels.ts compares each position with the target. Fixture test: tests/lifehacks/study.test.mjs \"application sorts new visible values rather than recalling a hidden target\". Roediger & Karpicke (2006) removed as irrelevant to this sentence. W-367 (2026-10-14, demo-builder): Principle corrected: the target is the same 2, 5, 9, not new values. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "source": "Exercise fixture study_apply_not_quote in src/lib/lifehacks/studyCatalog.ts: words 2, 5, 9 are the ascending target; StudyLesson.tsx shows the input as 5, 9, 2 (visibleSourceWords uses [1,2,0]) after \"Try values\"; reconstructionMatches in studyModels.ts compares each position with the target. Fixture test: tests/lifehacks/study.test.mjs \"application sorts new visible values rather than recalling a hidden target\". Roediger & Karpicke (2006) removed as irrelevant to this sentence. W-367 (2026-10-14, demo-builder): Principle corrected: the target is the same 2, 5, 9, not new values. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: fixture words 2, 5, 9 are the target; after \"Try values\" the input row shows 5, 9, 2 (visibleSourceWords [1,2,0]) and rearranging is only enabled then; reconstructionMatches compares positions with 2, 5, 9; test \"application sorts new visible values rather than recalling a hidden target\" exists in tests/lifehacks/study.test.mjs. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.apply-not-quote.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "The displayed match count compares the learner’s ordering of 2, 5, 9 with ascending order. The unsorted input stays visible while they work. There is no measured learning or productivity gain.",
@@ -57,7 +59,7 @@
       "id": "lifehacks.apply-not-quote.recall",
       "text": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it.",
       "support": "derivation",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a).",
       "status": "unverified"
     }
   ],

@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-double-container-radius.c4",
       "text": "Two ideal cylinders have equal height; one has radius 4cm and the other 12cm. How many times as much does the wider one hold? Correct: 9. Capacity scales with radius squared: three times the radius gives 3² = 9 times the base area and volume.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; (12/4)² = 9; option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-double-container-radius.c5",
       "text": "Two ideal cylinders have equal height and radii of 3cm and 6cm.",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-double-container-radius\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 3.141592653589793, 9, \"x\"], 1000]; B=[\"/\", [\"*\", 3.141592653589793, 36, \"x\"], 1000]; x denotes Height, 1 to 20, start 10). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-double-container-radius\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 3.141592653589793, 9, \"x\"], 1000]; B=[\"/\", [\"*\", 3.141592653589793, 36, \"x\"], 1000]; x denotes Height, 1 to 20, start 10). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): stipulation matches the spec: radii 3 and 6 cm (π×9×h vs π×36×h) at equal height; resourceCylinderDimensions draws radius 3 and 6. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

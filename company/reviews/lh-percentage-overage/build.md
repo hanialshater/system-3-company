@@ -11,3 +11,13 @@
 - **Fixture:** a new test in `tests/lifehacks/resources.test.mjs`, "ceil and floor ignore floating-point noise…", checks 100→[110,110], 50, 90, 95 and 110. `npm run test:lifehacks` passes.
 - **Claims:** c1 to c4 are all unverified. Version 1 → 2.
 - **Not done:** no build and no QA (the brief says so). Lesson QA and the walkthrough are still owed.
+
+## Pre-flight v3
+
+2026-10-14, demo-builder. Board W-384 (FC LH-2 dispute of c5, company/reviews/lh-percentage-overage/2026-10-14-fact-check.md, Pass LH-2).
+
+- **Hook (learner-visible):** "A fixed spare count and a percentage spare count diverge as a job grows." was false on the stage, where the two counts converge and then cross. It now reads "Ten extra or 10% extra: which order is bigger depends on the job size." (70 characters, under the 90 bound). Changed in `resource-specs.json` and in `meta.json` hook.
+- **No answer before the commit:** the hook names no crossover value (91, 95 or 100) and does not say which order wins at which size. It says only that the winner changes, which the question already implies.
+- **c5:** the text is the new hook, support is derivation (B>A below 95, a tie at 95 and 100, A>B from 105 on the slider), and status is unverified. The fact-checker re-checks it.
+- **Ownership:** W-384 was owned by cm-lifehacks. The coordinator gave the wording and dispatched the builder, so cm-lifehacks should confirm it.
+- Version 2 → 3. No build, no QA (per the brief).

@@ -3,6 +3,24 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (head-of-product, W-392, Life Hacks charter co-sign)
+
+- **Changed:**
+  - Co-signed the Life Hacks growth rule and the applied 136-concept curriculum, with amendments A1–A5. They are in `company/domains/lifehacks.md`, "Head of product co-sign".
+  - Recorded the founder's override in `company/decisions/2026-10-14-pr2-lifehacks-scope.md`, "Head of product co-sign".
+  - The amendments:
+    - A1: a closed strand stays open to its own uncovered demand-3 concepts (digital batteries and backups were locked out).
+    - A2: "gaps first" is now binding: no new demand-1 or demand-2 brief while an open strand has an uncovered demand-3 concept.
+    - A3: a tripwire for kitchen and cleaning at the next OP planning.
+    - A4: corrections to how my objections are stated.
+    - A5: the curriculum's `note` line must be rewritten.
+  - Board: W-392 done. W-400 is new (cm-lifehacks: fold in the amendments, fix the note line). W-401 is new (cm-lifehacks: next briefs `interleaved-practice` and `learning-styles-debunk`).
+- **Believe:**
+  - High: the charter's counts match the tree (strand totals, 120/136 covered, 11 demand-3 uncovered, 4 concepts over two lessons).
+  - Medium: A1–A3 are enough to keep the gaps from waiting behind the 200. The open risk is reviewer and builder capacity, which A3 watches.
+- **Next:** cm-lifehacks takes W-400 and W-401. Demo-builder takes W-393. At the next OP planning, check A3's tripwire and whether slot allocation reads the uncovered demand-3 list.
+- **Blocked:** nothing.
+
 ## 2026-10-14 (cm-lifehacks, W-381, curriculum-200 applied)
 
 Changed: content/curriculum/lifehacks.json `concepts` replaced with the 136 from company/domains/lifehacks-scope/curriculum-200.compact.md (other fields kept; `subarea` carries the strand, omitted for viral-hack-debunk). In all 200 lifehacks meta.json files, a script changed only `concept`, `curriculum.primary` and, for the 15 D lessons, `curriculum.also` (economics:/math:/physics:/cs: ids). Diff check: no other field changed. Charter has a new "Curriculum applied as proposed, pending co-sign" section. Board: W-381 done; W-392 head-of-product co-sign; W-393 demo-builder re-derives level/prerequisites/strand.

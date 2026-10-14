@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-small-leak-large-duration.c4",
       "text": "A hypothetical constant 10mL/min flow runs for one whole day. What volume is that? Correct: 14.4L. A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10 mL × 1,440 min = 14,400 mL = 14.4 L (0.6 L is one hour); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

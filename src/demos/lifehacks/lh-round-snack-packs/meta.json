@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-round-snack-packs.c4",
       "text": "Each guest gets three items; packs hold ten and cannot be split. For nine guests, how many items are bought? Correct: 30. Nine guests need 27; divide by ten and round up to three packs, so 30 are bought and 3 are left over.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,[\"ceil\",[\"/\",[\"*\",3,\"x\"],10]]]; B=[\"*\",3,\"x\"]; x denotes Guests. At x=7, A=30, B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",10,[\"ceil\",[\"/\",[\"*\",3,\"x\"],10]]]; B=[\"*\",3,\"x\"]; x denotes Guests. At x=7, A=30, B=21. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 9×3 = 27, ceil(27/10) = 3 packs = 30 items, 3 left; option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -79,7 +79,7 @@ const seenLine = (h: Hand) => {
   const n = `${m.total} comparison${m.total === 1 ? "" : "s"}`;
   if (m.full >= 0) return `clumped: all 10 in ${range(m.full)}; ${m.terms.join("+")} = ${n}`;
   const sh = m.shared.map((x) => x.join(" & ")).join(", ");
-  return `spread: ${m.used} buckets${sh ? `, ${sh} shared one` : ""}; ${n}`;
+  return `spread: ${m.used} buckets${sh ? `, ${sh} shared` : ""}; ${n}`;
 };
 
 type View = { hand: Hand; k: number; step: number; sorted: boolean; flash: boolean };
@@ -92,10 +92,10 @@ const reducedMotion = () =>
 const COL = 32;
 const GAP = 2;
 const TOP = 2;
-const STACK = 15;
+const STACK = 14;
 const DEPTH = STACK * 10 + 2;
 const BOTTOM = TOP + DEPTH;
-const VH = BOTTOM + 44;
+const VH = BOTTOM + 30;
 const colX = (b: number) => 1 + b * (COL + GAP);
 
 export default function OneCrowdedBucket({ slug }: { slug: string }) {
@@ -128,10 +128,10 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              Spread out, the ten numbers landed in {sp.used} buckets{shared ? `; only ${shared} shared one` : ""}, so
-              sorting took {sp.total} comparison{sp.total === 1 ? "" : "s"}. Clumped, all ten fell into {range(cl.full)},
-              and the &ldquo;tiny&rdquo; sorts became one insertion sort of ten numbers. Each newcomer slid past every
-              bigger number already there: {cl.terms.join(" + ")} = {cl.total} comparisons.
+              Spread out, the hand landed in {sp.used} buckets{shared ? `; only ${shared} shared one` : ""}:{" "}
+              {sp.total} comparison{sp.total === 1 ? "" : "s"}. Clumped, all ten fell into {range(cl.full)},
+              and the &ldquo;tiny&rdquo; sorts became one insertion sort of ten. Each newcomer slid past every
+              bigger number already there: {cl.terms.join("+")} = {cl.total} comparisons.
             </p>
             <p>
               Bucket sort only splits the work when the values spread evenly over the buckets. When the data clump, it
@@ -224,10 +224,6 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                 ? Array.from({ length: 10 }, (_, b) => p.dropped[b].filter((x) => dropped.has(x)))
                 : p.frames[v.step];
             const flashPair = v.flash && v.step > 0 ? p.events[v.step - 1].pair : null;
-            const perBucket = Array.from({ length: 10 }, (_, b) =>
-              p.events.slice(0, v.step).filter((e) => e.b === b).length,
-            );
-            const sortedAny = v.step > 0;
             const comps = v.step;
             const full = buckets.findIndex((x) => x.length === 10);
             const label =
@@ -247,7 +243,7 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                     </span>
                   ))}
                   <br />
-                  <span className={s.how}>Drop into buckets of ten, then insertion-sort each bucket.</span>
+                  <span className={s.how}>Drop into buckets of ten, then sort each.</span>
                 </p>
                 <svg viewBox={`0 0 340 ${VH}`} className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
                   {buckets.map((col, b) => {
@@ -276,15 +272,15 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                                 strokeWidth={hot ? 2 : 1}
                               />
                               <text
-                                x={v.sorted ? x + 11 : x + COL / 2}
-                                y={y + 11}
+                                x={v.sorted ? x + 11.5 : x + COL / 2}
+                                y={y + 10.5}
                                 textAnchor="middle"
                                 className={s.bnum}
                               >
                                 {val}
                               </text>
                               {v.sorted && (p.slides.get(val) ?? 0) > 0 && (
-                                <text x={x + COL - 2.5} y={y + 11} textAnchor="end" className={s.slide}>
+                                <text x={x + COL - 2} y={y + 10.5} textAnchor="end" className={s.slide}>
                                   {p.slides.get(val)}
                                 </text>
                               )}
@@ -294,11 +290,6 @@ export default function OneCrowdedBucket({ slug }: { slug: string }) {
                         <text x={x + COL / 2} y={BOTTOM + 13} textAnchor="middle" className={s.lo}>
                           {b * 10 + 1}
                         </text>
-                        {sortedAny && perBucket[b] > 0 && (
-                          <text x={x + COL / 2} y={BOTTOM + 27} textAnchor="middle" className={s.count}>
-                            {perBucket[b]}
-                          </text>
-                        )}
                       </g>
                     );
                   })}

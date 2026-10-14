@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-turn-container-volume.c4",
       "text": "An ideal box measures 30cm × 20cm × 10cm inside (6L). What happens to its internal capacity when it is turned onto another face? Correct: It stays 6L on any face. Capacity is the product of the same three lengths, and order does not change a product; only fit can change.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 30×20×10 cm = 6,000 cm³ = 6 L on any face (product is order-free); option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

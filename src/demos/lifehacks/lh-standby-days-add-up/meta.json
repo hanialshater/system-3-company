@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-standby-days-add-up.c4",
       "text": "An illustrative constant 3W load runs 24 hours a day for 365 days. About how much energy does it accumulate? Correct: 26.3kWh. 3W × 24h × 365 days = 26,280Wh, about 26.3kWh: a small daily amount repeats every day.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 3×24×365 = 26,280 Wh ≈ 26.3 kWh (0.072 is one day, 1.1 drops the 24 h); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c5",

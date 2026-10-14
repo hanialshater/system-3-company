@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-count-before-dispatch.c4",
       "text": "The record says 20 units, but a physical count finds 17. You then dispatch four. How many are really left? Correct: 13. Correct the record to the count first (17), then subtract the dispatch: 13. The record's 16 keeps the old error.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",\"x\",5]; B=[\"-\",\"x\",3]; x denotes Record. At x=10, A=5, B=7. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"-\",\"x\",5]; B=[\"-\",\"x\",3]; x denotes Record. At x=10, A=5, B=7. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 17−4 = 13 (record path 20−4 = 16); option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-count-before-dispatch.c5",
       "text": "The record says ten, the shelf has eight. Which count remains after shipping three?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-count-before-dispatch\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"-\", \"x\", 5]; B=[\"-\", \"x\", 3]; x denotes Record, 5 to 20, start 10). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-count-before-dispatch\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"-\", \"x\", 5]; B=[\"-\", \"x\", 3]; x denotes Record, 5 to 20, start 10). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: at record 10, counted 10−2−3 = 5 vs record 10−3 = 7 (8 on the shelf minus 3 = 5). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

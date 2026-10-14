@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-indivisible-shares.c4",
       "text": "Three recipients each get the same whole-number count; remainders stay aside. With 14 objects, how many stay aside? Correct: 2. Floor division gives four each (12 objects); the 2 left over stay in the inventory.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; floor(14/3) = 4 each, 12 given, 2 aside (lesson model: 14 − 12 = 2); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-indivisible-shares.c5",
       "text": "Ten objects among three people: where does the tenth go?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-indivisible-shares\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", 3, [\"floor\", [\"/\", \"x\", 3]]]; B=\"x\"; x denotes Objects, 1 to 20, start 10). Not a measurement.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-indivisible-shares\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", 3, [\"floor\", [\"/\", \"x\", 3]]]; B=\"x\"; x denotes Objects, 1 to 20, start 10). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: at 10, distributed 3×floor(10/3) = 9, available 10, one kept aside. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

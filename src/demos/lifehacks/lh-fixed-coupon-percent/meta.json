@@ -53,15 +53,19 @@
       "id": "lifehacks.lh-fixed-coupon-percent.c4",
       "text": "A fictional basket can take either 20% off or €5 off. From what basket total does 20% off give the lower final total? Correct: Above €25. 20% of €25 is €5; below that the fixed €5 removes more, above it the percentage does, so the answer depends on basket size.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8]; B=[\"-\",\"x\",5]; x denotes Basket. At x=20, A=16, B=15. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 0.8x < x−5 iff x > 25; at 25 both €20; option 0 only (the lesson model gives 20/20 at 25). Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-coupon-percent.c5",
       "text": "€5 off and 20% off cross over at a particular basket size.",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-coupon-percent\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (20%-off)=[\"*\", \"x\", 0.8]; B (€5-off)=[\"-\", \"x\", 5]; x denotes Basket, 10 to 40, start 20. Values are fictional/ideal assumptions, not measurements.",
-      "status": "unverified"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-coupon-percent\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (20%-off)=[\"*\", \"x\", 0.8]; B (€5-off)=[\"-\", \"x\", 5]; x denotes Basket, 10 to 40, start 20. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): 0.8x vs x−5 are equal at x=25 (20 = 20), €5 off lower below, 20% off lower above; 25 is inside the slider 10..40. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

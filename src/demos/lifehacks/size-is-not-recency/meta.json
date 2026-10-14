@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the latest fixture file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data. The stage caption reads: d = day modified; higher = more recent.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): FileStage caption for this slug (StudyLesson.tsx) now states the day-number direction (fixture: movie d1, slides d5, notes d9). Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): FileStage caption for this slug (StudyLesson.tsx) now states the day-number direction (fixture: movie d1, slides d5, notes d9). Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: FileStage caption for this slug reads \"d = day modified; higher = more recent\"; fixture movie 90MB d1, slides 8MB d5, notes 2MB d9; sort by day (descending) puts notes first, so Modified day is the correct option. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
       "id": "lifehacks.size-is-not-recency.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
@@ -47,17 +49,10 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "Recall question answer and rationale: Modified day. The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
-      "support": "derivation",
-      "source": "Derivation from the exercise fixture study_size_is_not_recency in src/lib/lifehacks/studyCatalog.ts (movie 90MB d1, slides 8MB d5, notes 2MB d9) and the \"sort\" operation in fileResult (src/lib/lifehacks/studyModels.ts): size order puts movie first, day order puts notes (d9, latest) first. Google Drive Help citation removed as off-topic. W-367 (2026-10-14, demo-builder): Source replaced; text unchanged. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
-      "id": "lifehacks.size-is-not-recency.c4",
-      "status": "unverified"
-    },
-    {
       "id": "lifehacks.size-is-not-recency.recall",
       "text": "Size and name do not record when a file changed; sort by the field that answers the question.",
       "support": "convention",
-      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.json). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1.",
+      "source": "Recall item for this lesson: stipulated example data and the rule taught in the lesson (company/reviews/lifehacks-200/recall-patch-study.md + recall-patch-study.lines.txt). Applies to the example only; no empirical effect is claimed. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. Pointer corrected by demo-builder 2026-10-14 (W-391a).",
       "status": "unverified"
     }
   ],

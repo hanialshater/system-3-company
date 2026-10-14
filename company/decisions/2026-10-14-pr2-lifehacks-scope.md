@@ -209,3 +209,16 @@ Consequences:
 - The blocker-5 recall fix (answers that are almost always option 0) now applies to all 200.
 - cm-lifehacks still writes the charter edit (strand tags, growth rule), now covering 200. The head of product co-signs, recording the founder's override.
 - The 10 safety "pass with changes" items and the principal engineer's changes (drop the `safety` field and the collection file, add a lib/claims check) still apply before merge.
+
+## Head of product co-sign, 2026-10-14 (W-392)
+
+**I record the founder's override, and I co-sign the charter growth rule and the applied 136-concept curriculum, with amendments A1–A5.** The amendments are in `company/domains/lifehacks.md`, "Head of product co-sign".
+
+- **Override recorded.** My decision above (a capped subset of at most 25) is superseded by the founder's "Go ahead, all 200". That was the reopening condition in objection 4, met in the founder's own words. My objections are not withdrawn. They stand as accepted costs, and the charter's "Accepted costs" section states them faithfully, except for the corrections in A4: the "25" means the 25 out-of-scope lessons; "no debunks among the 200" was missing; and I add the review-capacity cost.
+- **What the caps and closed strands protect, and what they did not.** I checked the counts in the tree: shopping 36, time 32, digital 26, fix 25, storage 24, laundry 19 are closed; 11 demand-3 concepts are uncovered.
+  - The closure stops more stock in the over-weighted strands. That works.
+  - It also locked out digital's own gaps (batteries, backups). **A1** adds an exception for a closed strand's own uncovered demand-3 concepts.
+  - "Gaps first" was advisory, and travel, energy and study had room for demand-1 and demand-2 ideas. **A2** makes it binding: no new demand-1 or demand-2 brief while an open strand has an uncovered demand-3 concept.
+  - Kitchen and cleaning sit behind review gates whose reviewers now owe the 200. **A3** adds a tripwire at the next OP planning.
+- **Curriculum.** I co-sign it as applied, after checking it against item 7. One fix is owed by cm-lifehacks: the `note` line in `content/curriculum/lifehacks.json` (**A5**).
+- **What still applies from the founder decision:** the full pipeline on all 200, the recall fix on all 200, and the pre-merge changes. These do not change.

@@ -22,9 +22,9 @@ It tests a popular hack against the mechanism behind it: why salt makes ice cold
 
 ## Portfolio rules (growth rule, 2026-10-14)
 
-Source: `company/decisions/2026-10-14-pr2-lifehacks-scope.md` item 6, adjusted for its "Founder decision" section (all 200 PR #2 lessons land). Co-sign: head-of-product, pending (she records the founder's override in that decision record). Written by cm-lifehacks in session 2; received by message and committed by session 1.
+Source: `company/decisions/2026-10-14-pr2-lifehacks-scope.md` item 6, adjusted for its "Founder decision" section (all 200 PR #2 lessons land). Co-sign: head-of-product, **co-signed with amendments A1–A5 on 2026-10-14** (see "Head of product co-sign" at the end of this section; the founder's override is recorded in the decision record). Written by cm-lifehacks in session 2; received by message and committed by session 1.
 
-### Curriculum applied as proposed, pending co-sign (2026-10-14, W-381)
+### Curriculum applied as proposed (2026-10-14, W-381; co-signed by head-of-product 2026-10-14, see A5)
 - cm-lifehacks applied `lifehacks-scope/curriculum-200.compact.md` unchanged: `content/curriculum/lifehacks.json` now holds the 136 concepts (15 kept, two-minute-rule demand 3→2 and unit-price-shopping 3→1). All 200 lessons have `concept` and `curriculum.primary` from its lessons map, and the 15 D lessons name the receiving concept in `curriculum.also`. Coverage reads 120/136, 11 demand-3 concepts uncovered.
 - This was applied **before** the head of product's co-sign on this charter. It is a proposal in force, not a ratified map. If she declines or changes it, the curriculum and the 200 meta.json fields are re-applied from the decision, and this note says what happened.
 - Not changed, on purpose (other agents are editing these lessons): each lesson's `curriculum.level`, `curriculum.prerequisites` and `curriculum.strand` still come from the old one-concept-per-slug map (39 levels and 15 prerequisite lists disagree with the new concept; no lesson has `strand`). That re-derivation is on the board for demo-builder.
@@ -84,3 +84,33 @@ These objections come from `company/decisions/2026-10-14-pr2-lifehacks-scope.md`
    - This was cm-lifehacks's objection, and the head of product declined it.
    - The cost is accepted. If grouped sub-area roles are ever generated keyed on `subarea`, re-tagging is a one-file edit, or a `strand` field EDD gets commissioned.
    - HQ shows strand ids as raw ids until `content/domains.json` gets lifehacks subareas. That file is generated from `tools/org`, and changing it is an org change.
+
+### Head of product co-sign (2026-10-14, W-392)
+
+**Co-signed, with amendments A1–A5.** Signed by head-of-product (Priya). The founder's override is recorded in `company/decisions/2026-10-14-pr2-lifehacks-scope.md` ("Head of product co-sign"). Where an amendment and the text above disagree, the amendment governs. cm-lifehacks may rewrite the text above to absorb it, keeping its substance.
+
+What I checked, against the tree and not the account: `content/curriculum/lifehacks.json` has 136 concepts (19 demand 3, 61 demand 2, 56 demand 1). Every concept has a `subarea` except `viral-hack-debunk`. All 200 lessons point at a known concept. Coverage reads 120/136 with 11 demand-3 concepts uncovered. Lessons per strand: shopping 36, time 32, digital 26, fix 25, storage 24, laundry 19, energy 13, study 12, travel 9, kitchen 4, cleaning 0, garden 0. Four concepts are over two lessons, 46 concepts have one lesson, and 25 lessons sit on the 15 "(out of scope)" concepts. Each of these matches the text above.
+
+**A1. Gap exception to the closed strands. This fixes a contradiction.** Digital is closed at 26, but two of the uncovered demand-3 concepts, `battery-partial-charging` and `backup-3-2-1`, live in digital. As written, the closure locks out the gap the next line says to fill first. The amended rule: a closed strand stays closed **except to its own uncovered demand-3 concepts**. Each such concept may get one lesson once its strand's wave is open, even if the strand is over 15. That lesson counts on the strand's total. Nothing else enters a closed strand.
+
+**A2. Gap priority is binding, not advisory.** "New slots go first to the gaps" left the remaining room in under-cap strands (travel 6 slots, study 3, energy 2) free to fill with demand-1 and demand-2 ideas while the gaps wait for their waves. The amended rule: while an open strand has an uncovered demand-3 concept, **no new Life Hacks brief is written on a concept of demand 1 or 2, in any strand.** Rebuilds, fixes and merges of landed lessons are not new briefs. Today this means the next two new Life Hacks briefs are `interleaved-practice` and `learning-styles-debunk` (study, wave 1). Digital's two gaps come next, when wave 2 opens. Which idea fills each concept is cm-lifehacks's call.
+
+**A3. The 200 must not starve the gap strands.** Kitchen (wave 3) and cleaning (wave 4) wait on review gates, and the same reviewers now owe attestations on 200 lessons. Wave order is unchanged. Two things are added:
+- Kitchen briefs and the kitchen safety pattern note are prepared during wave 2 (README §6.1), whatever the state of the 200's queue.
+- **Tripwire:** if no kitchen brief and no cleaning brief exists at the next OP planning, I reopen the wave order with the founder, with the trade-off written down. It does not drift.
+
+**A4. Corrections to how my objections are stated** ("Accepted costs" above):
+- Item 4 says "the 25 lessons that land". It means the **25 out-of-scope lessons** (on 15 concepts marked "(out of scope)" in their names, with demand 1) out of the 200 that land. "Tagged out of scope" is a name suffix, not a field. A tool cannot filter on it. That is accepted, and nothing new keys on it.
+- Item 5 leaves out part of the objection: **none of the 200 is framed as a debunk**, although the charter says debunks count as much as tips. This cost is accepted. Debunk concepts count as gaps: `learning-styles-debunk` is already first in line under A2.
+- My objection 4 ("the 200 figure is the contributor's account") is **resolved, not overridden**. The founder said "Go ahead, all 200" in their own words, which is the reopening condition I wrote.
+- I add one cost: review capacity spent on the 200 is capacity not spent on the gap strands. A3 is how it is watched.
+- Items 1, 2, 3 and 6 state my objections faithfully.
+
+**A5. The curriculum as applied is co-signed, with one fix owed.**
+- The 136-concept map meets the acceptance conditions of decision item 7: ids named for ideas (`tags-are-not-copies` matches its slug but is an idea name, so it is accepted), demand set per concept, and strands in `subarea`.
+- **Owed by cm-lifehacks:** the file's `note` line still reads "Founder-requested 200-lesson review collection … Each concept requires safety review before first publication". The collection file does not exist. Safety review applies to the classes in "How claims get checked here", not to every concept. Rewrite the note to match this charter.
+- W-393 (demo-builder: re-derive level, prerequisites and strand in the 200 meta.json) still stands.
+
+**This co-sign would be wrong if:**
+- slot allocation turns out not to read the uncovered demand-3 list (checked at the next OP planning);
+- or the study gaps get briefs but no lesson because the 200's pipeline is holding the builders. In that case A2 has only moved the queue, and I take the capacity question to the founder.

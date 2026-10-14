@@ -53,8 +53,10 @@
       "id": "lifehacks.lh-round-replenishment.c4",
       "text": "Five usable units are in stock; new stock comes only in boxes of six. You need fourteen. How many units do you order? Correct: 12. Compute the shortage first (14 − 5 = 9), then round that up to whole boxes: two boxes, 12 units.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 14−5 = 9 short, ceil(9/6) = 2 boxes = 12 (18 skips the stock); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
