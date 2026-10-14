@@ -21,3 +21,19 @@
 4. Reveal values: 4.7 km for 1.7 m (b) milestone `eyes`, Seen row; 170 m → 47 km (b) `hundred`; "10 times farther" computed from the two recorded stops; 828 m → 103 km (b) `tower`; refraction "a few per cent" told (claim c4).
 5. QA path: the three chips in order (all three milestones), then the slider. All three Seen rows are on the stage at reveal.
 6. Reset: no Reset control; the slider cannot clear the Seen rows. Reveal: "4.7 km. Your Seen line: 1.7 m → 4.7 km. Your line of sight grazes the curved sea and then leaves it; the horizon is that grazing point, not the limit of your eyes. The sight line meets the radius at a right angle there, so by Pythagoras the distance is the square root of 2 × Earth's radius × your height. / Square root means slow growth: you saw 170 m → 47 km, 100 times higher but only 10 times farther, and 828 m → 103 km from the tower. Air bends light a little, so real horizons are a few per cent farther." (Composed from the code, not from a run.)
+
+## v3 (2026-10-14): W-250, the reveal can open again
+
+Problem (FC pass 26, non-claim finding): Milestones got `names={["eyes", "hundred"]}` but the lesson set `minInteractions={3}`. `reach("tower")` was ignored (useMilestones drops names not in the list), so interact() fired at most twice and the reveal never unlocked. v2's note said three milestones; the code registered two.
+Change: `MILESTONES = STOPS.map((st) => st.key)` (eyes, hundred, tower) is passed as `names`, and `minInteractions={STOPS.length}` (3). Both come from the same list, so they cannot drift apart again.
+Reachability: each stop has its own chip, enabled whenever the lesson is unlocked and that stop is not the current height. The start height is 30 m, which is none of the stops, so all three chips are live after the commit. Each chip calls set(st.m) with the exact value, and STOPS.find matches it, so reach(key) fires once per stop. All three milestones the reveal quotes (1.7, 170 and 828 m) can be reached in three taps. No claim text changed; no claim status changed. Version 2 -> 3.
+Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
+
+## Pre-flight v3
+
+1. Title and hook unchanged: "How far away is the horizon?" / "Ships vanish over the horizon long before your eyes give up. So where is that edge?"
+2. Options unchanged: "1.5 km" / "4.7 km" / "15 km".
+3. Locked stage unchanged: eye at 30 m, no distance label, readout "?", Seen "nothing yet".
+4. Reveal values unchanged from v2: 4.7 km (b) `eyes`; 170 m → 47 km (b) `hundred`; 10 times farther computed from those two; 828 m → 103 km (b) `tower` (now registered); refraction told (c4).
+5. QA path: the three chips in order (eyes, hundred, tower). These are 3 distinct milestones, which equals minInteractions 3, so the reveal unlocks after the third. All three Seen rows are on the stage.
+6. Reset: none. Reveal text identical to v2's pre-flight item 6.
