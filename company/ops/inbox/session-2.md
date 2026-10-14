@@ -67,6 +67,31 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+- 2026-10-14 cm-lifehacks (Tess), PR #2 after the founder's "all 200" decision.
+  - **(1) Charter.** I rewrote the Portfolio rules section of `company/domains/lifehacks.md`.
+    - Every concept gets a strand in `subarea` (12 strands; `viral-hack-debunk` is the one exception, untagged and proposed for retirement).
+    - Waves are ordered by safety class, then demand.
+    - Caps: 5 lessons per strand before its first review, 15 in total. The 200 PR lessons are exempt when they land.
+    - Strands left over 15 by the merge (shopping 36, time 32, digital 26, fix 25, storage 24, laundry 19) are closed to new lessons until they are back at 15 or the head of product raises the cap.
+    - The two-per-concept rule, the launch gate and the refuse list are unchanged.
+    - New "Out of scope" line: office process, shop stock-keeping, UI how-tos.
+    - The head of product's 6 objections are recorded as accepted costs, each with what happened to it.
+    - The head of product's co-sign is marked pending.
+  - **(2) Proposed curriculum.** `company/domains/lifehacks-scope/curriculum-200.json`, for merge time only; `content/curriculum/lifehacks.json` is untouched.
+    - 136 concepts: the 15 existing, 112 new idea-named, and 9 demand-3 gap concepts with no lessons.
+    - All 200 slugs are mapped and strand-tagged; I set demand myself.
+    - About 120 of 136 concepts will read as covered, and 11 demand-3 concepts stay uncovered.
+    - 4 concepts are over two lessons: `surface-area-drying` 4, `round-up-to-whole-packs` 4, `measure-the-inside` 3, `see-it-to-find-it` 3.
+    - The file includes instructions for applying it.
+  - **(3) Duplicates.** The 15 lessons are in that file under `duplicates`, each with the existing lesson it duplicates, plus 1 extra the decision missed: `lh-area-scales-square` duplicates math `double-the-size`.
+  - **Belief:** medium. The groupings come from PR title, hook and objective; I ran no walkthrough.
+  - **Proposed board items:**
+    - head-of-product: co-sign the charter edit;
+    - demo-builder, at merge: set each lesson's `concept` and `curriculum.primary` from the file;
+    - cm-economics, cm-math, cm-physics, cm-cs: accept or decline the transfers;
+    - org owner: add lifehacks subareas to `content/domains.json`.
+  - Board, progress, events and src untouched. `npm run check` passes. Nothing committed.
+
 - 2026-10-14 learning-designer (Lena), PR #2 blocker 5, home share: wrote `company/reviews/lifehacks-200/recall-patch-home.json` (70 entries) + `recall-patch-home.md`. The 63 shared generic option sets are replaced with lesson-specific transfer recalls (3 options, misconception distractor). Correct positions 23/23/24 at 0/1/2; correct option strictly longest in 3/70. Each entry carries a `claim` (`lifehacks.<slug>.recall`, unverified; 5 source-backed, rest derivation). The 6 old `c5` recall claims are to be deleted. `alphabet-sort-search` keeps the option text `study.test.mjs` asserts. Apply after merge to `meta.json` → `recall`; the lib `recall` string is unrendered, so leave it. Next: fact-checker (70 claims), learner-evaluator W-178 (guessability on artifact). Board, progress, events and src untouched; nothing committed. Belief: high on arithmetic and positions, medium on guessability.
 
 - 2026-10-14 fact-checker (Ingrid), Pass LH-1 (pre-merge, read-only) on Life Hacks batch B3 (25 lessons, 120 claims, PR #2 head): **115 verified, 3 disputed, 2 unverified (source unreachable), 0 withdrawn.** Disputed: suitcase-rotate-block c3 (formula says floor(24/itemH), stage uses a 36 cm bag; also a tie at W 36-40), agenda-needs-an-outcome c1 (hook says three topics, stage shows one), apply-not-quote c2 (Roediger & Karpicke cited for an arithmetic sentence; 'new values' wording). Unverified: square-bow-stays-tied c1 and c5 (Fieggen page unreachable; openstax, arxiv, rei, ginetex also blocked, search snippets only corroborate). Records: company/reviews/<slug>/2026-10-14-fact-check.md ("## Pass LH-1") and company/reviews/lifehacks-200/fact-check-B3.json, to be applied to meta.json after the merge. Nothing else touched; nothing committed.
