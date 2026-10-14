@@ -16,7 +16,7 @@ Decide what Chemistry should teach next and why, and keep the category's map hon
 
 - content/curriculum/chemistry.json: concepts, levels, prerequisites, demand (1–3)
 - company/domains/chemistry.md: the category charter, audience and quality bar
-- Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first)
+- Lesson briefs: concept, audience, the misconception worth breaking, why this one next, and a format from company/design/formats.md (a new format goes to the design lead first). Also name the metadata the builder copies into meta.json (company/product/lesson-metadata.md): extra concepts it teaches (`also`, any domain), and references to works in content/works.json (book, chapter, section) when the brief follows one
 - Category OP narrative and its slice of the cycle budget
 - Retiring lessons that no longer help (retirement review)
 - Focus: scales and rates the learner cannot see: logs, half-lives, equilibria

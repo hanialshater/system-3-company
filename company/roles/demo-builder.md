@@ -13,6 +13,7 @@ Make the design executable: the picture has to pay its debts. Every control does
 
 ## In scope
 
+- meta.json v2 (company/product/lesson-metadata.md): the curriculum block (primary, also, prerequisites, level, strand, references, tags), format and interactions, copied from the brief and spec
 - Local servers only through `/home/user/system-3-company/tools/serve.sh start|stop <port>` (it can stop a server by port even without a pid file); never `pkill -f`, which kills your own shell
 - Getting work from the queue: `node /home/user/system-3-company/tools/claim.mjs next <domain> --agent=<your label>` hands out the next unbuilt brief with an exclusive lock (prints NONE when the domain is done); never pick briefs by hand while other builders run. If you abandon a brief, `claim.mjs release <slug>`
 - src/demos/<domain>/<slug>/Demo.tsx, styles.module.css, meta.json (mechanics and claim text)
