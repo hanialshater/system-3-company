@@ -90,9 +90,10 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              The stage shows the first core page you tried{firsts.core ? `, ${firsts.core}` : ""}; rings mark the first IN and OUT pages
-              you tried. {said} Links point one way, so &ldquo;joined&rdquo; is not &ldquo;reachable&rdquo;. From CORE you can click out
-              to OUT, but nothing leads back to IN, and OUT leads almost nowhere.
+              The stage shows the first core page you tried{firsts.core ? `, ${firsts.core}` : ""}; dashed rings mark the first IN and OUT
+              pages you tried. {said} Ten pages are joined to the core (all but K and L, which link only to each other), yet links point
+              one way, so joined is not reachable. From CORE (A to D) you can click out to OUT (G, H, I), but nothing leads back to IN (E, F), and OUT leads almost
+              nowhere.
             </p>
             <p>
               The real web has this shape too. Broder and colleagues (2000) mapped about 200 million pages and found a tightly linked
@@ -124,8 +125,8 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
               ? `Start ${showing}: reach ${shown.size} of 12 pages.`
               : "12 pages, no start chosen.";
             return (
-              <div className={s.wrap}>
-                <p className={s.msg} aria-live="polite">
+              <div className={phase === "reveal" ? `${s.wrap} ${s.compact}` : s.wrap}>
+                <p className={s.msg} aria-live="polite" hidden={phase === "reveal"}>
                   {showing ? <>From {showing}: reach <b>{shown.size}</b> of 12</> : "Tap a page to start there."}
                 </p>
                 <div className={s.stage}>
@@ -158,7 +159,7 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                       );
                     })}
                     {tags && TAGS.map(([txt, x, y]) => (
-                      <text key={txt} x={x} y={y} textAnchor="middle" fontSize={11} fontWeight={700} letterSpacing={1} fill="var(--muted, var(--fg))">
+                      <text key={txt} x={x} y={y} textAnchor="middle" fontSize={phase === "reveal" ? 15 : 11} fontWeight={700} letterSpacing={1} fill="var(--muted, var(--fg))">
                         {txt}
                       </text>
                     ))}
@@ -178,7 +179,7 @@ export default function WebBowTieReach({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <p className="muted small" style={{ margin: 0, textAlign: "center" }}>
-                  {phase === "reveal" ? "Ring: shown start. Dashed: other pages you tried. Filled: reachable." : "Ring: start. Filled: reachable."}
+                  {phase === "reveal" ? "Ring: shown start. Dashed: other pages you tried. Filled: reachable. Groups: IN = E, F. CORE = A, B, C, D. OUT = G, H, I. Tendril = J. Detached = K, L." : "Ring: start. Filled: reachable."}
                 </p>
               </div>
             );
