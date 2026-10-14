@@ -1,0 +1,87 @@
+{
+  "slug": "lh-lead-time-stock",
+  "title": "Stock during a delivery delay",
+  "hook": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
+  "domain": "lifehacks",
+  "concept": "lh-lead-time-stock",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate the stock on hand when ordering to cover a stated delivery delay and retain a stated reserve."
+    ]
+  },
+  "misconception": "Delivery lead time has no effect on the quantity consumed before arrival.",
+  "objective": "Calculate the stock on hand when ordering to cover a stated delivery delay and retain a stated reserve.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-lead-time-stock.c1",
+      "text": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve. Scaled model; constant toy demand; buffer=8; no policy advice.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Lead-days=3, A=20items and B=12items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",4,\"x\"],8]; B=[\"*\",4,\"x\"]; x denotes Lead-days. At x=3, A=20, B=12; Transfer recall: 4×6+8=32 units on hand when ordering. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c3",
+      "text": "Multiply daily use by waiting days, then add the reserve. This is the stock left when ordering under the toy rule, not the quantity to buy. Real demand and delays can vary; the rule is illustrative.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",4,\"x\"],8]; B=[\"*\",4,\"x\"]; x denotes Lead-days. At x=3, A=20, B=12; Transfer recall: 4×6+8=32 units on hand when ordering. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c4",
+      "text": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering? Correct: 32 units. 4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve.",
+      "support": "derivation",
+      "source": "Declared toy demand and delivery delay. Six days × 4 units/day consumes 24 units; to retain 8 units at arrival requires 24+8=32 units initially. This is stock on hand at ordering, not the order quantity.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering?",
+    "options": [
+      "32 units",
+      "24 units",
+      "8 units"
+    ],
+    "answer": 0,
+    "why": "4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-lead-time-stock",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

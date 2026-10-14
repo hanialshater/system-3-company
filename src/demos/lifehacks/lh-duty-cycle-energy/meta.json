@@ -1,0 +1,101 @@
+{
+  "slug": "lh-duty-cycle-energy",
+  "title": "Rated power and active time",
+  "hook": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
+  "domain": "lifehacks",
+  "concept": "lh-duty-cycle-energy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Use a stated duty fraction rather than treating rated power as continuous."
+    ]
+  },
+  "misconception": "Every elapsed hour must be charged at full on-state power.",
+  "objective": "Use a stated duty fraction rather than treating rated power as continuous.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c1",
+      "text": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Scaled model; illustrative:100W-on;0W-off;25%-or-100%;€0.30/kWh.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Hours=8h, A=0.2kWh and B=0.8kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c3",
+      "text": "Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c4",
+      "text": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Change only Hours to 11h. What is B (Always-on) now? Correct: 1.1kWh. Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8; recall at x=11: B=1.1. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c5",
+      "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
+      "support": "source",
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-duty-cycle-energy/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Change only Hours to 11h. What is B (Always-on) now?",
+    "options": [
+      "1.1kWh",
+      "0.275kWh",
+      "3.1kWh"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-duty-cycle-energy",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "separate-confusable-pairs",
+  "title": "Separate similar pairs",
+  "hook": "Two almost identical labels need a distinguishing cue.",
+  "domain": "lifehacks",
+  "concept": "separate-confusable-pairs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Check the specific difference between two arbitrary codes."
+    ]
+  },
+  "misconception": "Shared description only",
+  "objective": "Check the specific difference between two arbitrary codes.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Two almost identical labels need a distinguishing cue. Which notes distinguish these codes? Correct option: Code plus distinguishing field. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.separate-confusable-pairs.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The last digit distinguishes the two codes in the fixture. The same shared description would not identify which code was intended.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.separate-confusable-pairs.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, separate-confusable-pairs fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "id": "lifehacks.separate-confusable-pairs.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Code plus distinguishing field. The last digit distinguishes the two codes in the fixture. The same shared description would not identify which code was intended.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.separate-confusable-pairs.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which notes distinguish these codes?",
+    "options": [
+      "Code plus distinguishing field",
+      "Shared description only"
+    ],
+    "answer": 0,
+    "why": "The last digit distinguishes the two codes in the fixture. The same shared description would not identify which code was intended."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:separate-confusable-pairs",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

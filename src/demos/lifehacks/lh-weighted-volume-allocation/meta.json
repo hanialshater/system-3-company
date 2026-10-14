@@ -1,0 +1,87 @@
+{
+  "slug": "lh-weighted-volume-allocation",
+  "title": "Allocate by the stated weight",
+  "hook": "Three trays have weights 2:1:1. Does an equal split follow those weights?",
+  "domain": "lifehacks",
+  "concept": "lh-weighted-volume-allocation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Allocate a conserved volume according to stated relative weights."
+    ]
+  },
+  "misconception": "An equal split satisfies every weighted allocation rule.",
+  "objective": "Allocate a conserved volume according to stated relative weights.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-weighted-volume-allocation.c1",
+      "text": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray. Scaled model; empty trays; arithmetic allocation only.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-volume-allocation.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Total=8L, A=4L and B=2.667L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2]; B=[\"/\",\"x\",3]; x denotes Total. At x=8, A=4, B=2.66666666667; recall at x=11: B=3.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-volume-allocation.c3",
+      "text": "The weights add to four. The first tray receives two of four units, or half the total. Splitting into three equal shares uses a different rule and produces a different allocation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2]; B=[\"/\",\"x\",3]; x denotes Total. At x=8, A=4, B=2.66666666667; recall at x=11: B=3.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-weighted-volume-allocation.c4",
+      "text": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray. Change only Total to 11L. What is B (Equal) now? Correct: 3.667L. Use B's stated rule with Total=11L: it gives 3.667L. The weights add to four. The first tray receives two of four units, or half the total. Splitting into three equal shares uses a different rule and produces a different allocation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",2]; B=[\"/\",\"x\",3]; x denotes Total. At x=8, A=4, B=2.66666666667; recall at x=11: B=3.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray. Change only Total to 11L. What is B (Equal) now?",
+    "options": [
+      "3.667L",
+      "5.5L",
+      "5.667L"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Total=11L: it gives 3.667L. The weights add to four. The first tray receives two of four units, or half the total. Splitting into three equal shares uses a different rule and produces a different allocation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-weighted-volume-allocation",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

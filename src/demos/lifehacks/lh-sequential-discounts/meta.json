@@ -1,0 +1,87 @@
+{
+  "slug": "lh-sequential-discounts",
+  "title": "Two discounts do not add",
+  "hook": "20% off, then 10% off: is that a 30% price cut?",
+  "domain": "lifehacks",
+  "concept": "lh-sequential-discounts",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate sequential discounts from the reduced base."
+    ]
+  },
+  "misconception": "Sequential percentage reductions add directly.",
+  "objective": "Calculate sequential discounts from the reduced base.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-sequential-discounts.c1",
+      "text": "A applies 20% off and then 10% off the reduced price. B applies 30% off once. Scaled model; fictional offers; no other fees.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-sequential-discounts.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Original=100€, A=€72 and B=€70. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8,0.9]; B=[\"*\",\"x\",0.7]; x denotes Original. At x=100, A=72, B=70; recall at x=115: B=80.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-sequential-discounts.c3",
+      "text": "The second percentage acts on what remains. Multiplying 0.8 by 0.9 leaves 0.72 of the original price, not 0.70. The changed base explains the gap on the receipts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8,0.9]; B=[\"*\",\"x\",0.7]; x denotes Original. At x=100, A=72, B=70; recall at x=115: B=80.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-sequential-discounts.c4",
+      "text": "A applies 20% off and then 10% off the reduced price. B applies 30% off once. Change only Original to 115€. What is B (30%-off) now? Correct: €80.5. Use B's stated rule with Original=115€: it gives €80.5. The second percentage acts on what remains. Multiplying 0.8 by 0.9 leaves 0.72 of the original price, not 0.70. The changed base explains the gap on the receipts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.8,0.9]; B=[\"*\",\"x\",0.7]; x denotes Original. At x=100, A=72, B=70; recall at x=115: B=80.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A applies 20% off and then 10% off the reduced price. B applies 30% off once. Change only Original to 115€. What is B (30%-off) now?",
+    "options": [
+      "€80.5",
+      "€82.8",
+      "€82.5"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Original=115€: it gives €80.5. The second percentage acts on what remains. Multiplying 0.8 by 0.9 leaves 0.72 of the original price, not 0.70. The changed base explains the gap on the receipts."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-sequential-discounts",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

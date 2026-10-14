@@ -1,0 +1,93 @@
+{
+  "slug": "spacer-protects-clearance",
+  "title": "A fit with no margin is fragile",
+  "hook": "Which fit check includes the pictured size uncertainty?",
+  "domain": "lifehacks",
+  "concept": "spacer-protects-clearance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Subtracting the largest plausible object size from the smallest plausible opening produces a more conservative margin than comparing nominal values. The card makes the uncertainty allowance visible."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Subtracting the largest plausible object size from the smallest plausible opening produces a more conservative margin than comparing nominal values. The card makes the uncertainty allowance visible.",
+  "claims": [
+    {
+      "id": "lifehacks.spacer-protects-clearance.c1",
+      "text": "Subtracting the largest plausible object size from the smallest plausible opening produces a more conservative margin than comparing nominal values. The card makes the uncertainty allowance visible.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Nominal margin=opening−28; bounded margin=(opening−1)−(28+1) cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.spacer-protects-clearance.c2",
+      "text": "The one-centimetre bounds are hypothetical; measure real parts and use appropriate tolerances.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Nominal margin=opening−28; bounded margin=(opening−1)−(28+1) cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.spacer-protects-clearance.c3",
+      "text": "Nominal margin=opening−28; bounded margin=(opening−1)−(28+1) cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.spacer-protects-clearance.c4",
+      "text": "Which fit check includes the pictured size uncertainty?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.spacer-protects-clearance.c5",
+      "text": "Which extremes should be compared for a conservative clearance check?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which extremes should be compared for a conservative clearance check?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Subtracting the largest plausible object size from the smallest plausible opening produces a more conservative margin than comparing nominal values. The card makes the uncertainty allowance visible. The one-centimetre bounds are hypothetical; measure real parts and use appropriate tolerances."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:spacer-protects-clearance",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "laundry-gap-air-path",
+  "title": "A gap is an air path",
+  "hook": "Which layout leaves clear paths between these items?",
+  "domain": "lifehacks",
+  "concept": "laundry-gap-air-path",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off.",
+  "claims": [
+    {
+      "id": "lifehacks.laundry-gap-air-path.c1",
+      "text": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-gap-air-path.c2",
+      "text": "The diagram does not calculate airflow or real drying time; fabric shapes and room ventilation matter.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-gap-air-path.c3",
+      "text": "Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-gap-air-path.c4",
+      "text": "Which layout leaves clear paths between these items?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.laundry-gap-air-path.c5",
+      "text": "What changes when a rack is full enough that neighbouring garments touch?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What changes when a rack is full enough that neighbouring garments touch?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off. The diagram does not calculate airflow or real drying time; fabric shapes and room ventilation matter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:laundry-gap-air-path",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

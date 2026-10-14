@@ -1,0 +1,87 @@
+{
+  "slug": "lh-overlap-material-area",
+  "title": "The overlap needs material too",
+  "hook": "A 2cm overlap repeats along a 20cm edge. Where does its area go?",
+  "domain": "lifehacks",
+  "concept": "lh-overlap-material-area",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Include a seam or overlap strip in area requirements."
+    ]
+  },
+  "misconception": "Hidden overlap does not contribute to material area.",
+  "objective": "Include a seam or overlap strip in area requirements.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-overlap-material-area.c1",
+      "text": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap. Scaled model; ideal paper; overlap=2cm; no cutting guidance.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-overlap-material-area.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Width=30cm, A=640cm² and B=600cm². Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",[\"+\",\"x\",2],20]; B=[\"*\",\"x\",20]; x denotes Width. At x=30, A=640, B=600; recall at x=45: B=900. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-overlap-material-area.c3",
+      "text": "The extra strip has width two and length twenty, so it adds forty square centimetres. The overlap is material that exists even when it is hidden beneath another layer.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",[\"+\",\"x\",2],20]; B=[\"*\",\"x\",20]; x denotes Width. At x=30, A=640, B=600; recall at x=45: B=900. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-overlap-material-area.c4",
+      "text": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap. Change only Width to 45cm. What is B (No-overlap) now? Correct: 900cm². Use B's stated rule with Width=45cm: it gives 900cm². The extra strip has width two and length twenty, so it adds forty square centimetres. The overlap is material that exists even when it is hidden beneath another layer.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",[\"+\",\"x\",2],20]; B=[\"*\",\"x\",20]; x denotes Width. At x=30, A=640, B=600; recall at x=45: B=900. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap. Change only Width to 45cm. What is B (No-overlap) now?",
+    "options": [
+      "900cm²",
+      "940cm²",
+      "902cm²"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Width=45cm: it gives 900cm². The extra strip has width two and length twenty, so it adds forty square centimetres. The overlap is material that exists even when it is hidden beneath another layer."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-overlap-material-area",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

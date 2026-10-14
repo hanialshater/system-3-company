@@ -1,0 +1,84 @@
+{
+  "slug": "file-modified-not-created",
+  "title": "Modified is not created",
+  "hook": "A newly edited old file and a newly created file answer different searches.",
+  "domain": "lifehacks",
+  "concept": "file-modified-not-created",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish creation and modification date filters."
+    ]
+  },
+  "misconception": "Created date",
+  "objective": "Distinguish creation and modification date filters.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A newly edited old file and a newly created file answer different searches. For recent edits, which field matters? Correct option: Modified date. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.file-modified-not-created.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The fixture stores both dates. A recently modified file may have been created long before; the field must match the question.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.file-modified-not-created.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, file-modified-not-created fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.file-modified-not-created.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Modified date. The fixture stores both dates. A recently modified file may have been created long before; the field must match the question.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.file-modified-not-created.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For recent edits, which field matters?",
+    "options": [
+      "Modified date",
+      "Created date"
+    ],
+    "answer": 0,
+    "why": "The fixture stores both dates. A recently modified file may have been created long before; the field must match the question."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:file-modified-not-created",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

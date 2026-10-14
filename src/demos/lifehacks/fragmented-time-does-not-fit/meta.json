@@ -1,0 +1,84 @@
+{
+  "slug": "fragmented-time-does-not-fit",
+  "title": "Thirty scattered minutes",
+  "hook": "Three gaps total thirty minutes. A single thirty-minute task still may not fit.",
+  "domain": "lifehacks",
+  "concept": "fragmented-time-does-not-fit",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish total free time from one continuous interval."
+    ]
+  },
+  "misconception": "Any three 10-minute gaps",
+  "objective": "Distinguish total free time from one continuous interval.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Three gaps total thirty minutes. A single thirty-minute task still may not fit. What does an unsplittable 30-minute block require? Correct option: A continuous 30-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fragmented-time-does-not-fit.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fragmented-time-does-not-fit.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, fragmented-time-does-not-fit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.fragmented-time-does-not-fit.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: A continuous 30-minute gap. This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.fragmented-time-does-not-fit.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does an unsplittable 30-minute block require?",
+    "options": [
+      "A continuous 30-minute gap",
+      "Any three 10-minute gaps"
+    ],
+    "answer": 0,
+    "why": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:fragmented-time-does-not-fit",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

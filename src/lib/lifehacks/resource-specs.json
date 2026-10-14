@@ -1,0 +1,3287 @@
+[
+  {
+    "slug": "lh-big-pack-price",
+    "title": "The big pack can cost more",
+    "hook": "A larger pack looks like a bargain. What happens per kilogram?",
+    "concept": "lh-big-pack-price",
+    "family": "receipt",
+    "aLabel": "500g",
+    "bLabel": "900g",
+    "formulaA": [
+      "/",
+      3,
+      0.5
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      0.9
+    ],
+    "variable": {
+      "label": "Large-price",
+      "start": 6,
+      "min": 3,
+      "max": 12,
+      "unit": "€",
+      "step": 0.5
+    },
+    "unit": "€/kg",
+    "question": "A costs €3 for 500g. B costs €6 for 900g. Which costs less per kilogram at B=€6?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; prices fictional; same product.",
+    "details": "A costs €3 for 500g. B costs €6 for 900g.",
+    "principle": "Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
+    "objective": "Normalize different pack masses to cost per kilogram.",
+    "misconception": "The largest pack always has the lowest unit price.",
+    "recall": {
+      "question": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now?",
+      "options": [
+        "8.333€/kg",
+        "6€/kg",
+        "10.333€/kg"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together."
+    }
+  },
+  {
+    "slug": "lh-align-price-units",
+    "title": "Align the shelf-label units",
+    "hook": "€0.80 per 100g or €7 per kg: which label is lower?",
+    "concept": "lh-align-price-units",
+    "family": "receipt",
+    "aLabel": "100g-label",
+    "bLabel": "kg-label",
+    "formulaA": [
+      "*",
+      0.8,
+      10
+    ],
+    "formulaB": "x",
+    "variable": {
+      "label": "Kg-price",
+      "start": 7,
+      "min": 3,
+      "max": 12,
+      "unit": "€",
+      "step": 0.5
+    },
+    "unit": "€/kg",
+    "question": "A is €0.80 per 100g. B is €7 per kg. Which unit price is lower at B=€7?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional prices; 1kg=1000g.",
+    "details": "A is €0.80 per 100g. B is €7 per kg.",
+    "principle": "A kilogram contains ten 100g units. Multiply the 100g price by ten before comparing. A smaller printed price can describe a smaller amount rather than a cheaper product.",
+    "objective": "Convert prices quoted per 100g and per kilogram to a common unit.",
+    "misconception": "The smaller number on a price label is always cheaper.",
+    "recall": {
+      "question": "A is €0.80 per 100g. B is €7 per kg. Change only Kg-price to 8.5€. What is B (kg-label) now?",
+      "options": [
+        "8.5€/kg",
+        "8€/kg",
+        "10.5€/kg"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Kg-price=8.5€: it gives 8.5€/kg. A kilogram contains ten 100g units. Multiply the 100g price by ten before comparing. A smaller printed price can describe a smaller amount rather than a cheaper product."
+    }
+  },
+  {
+    "slug": "lh-count-sheets-not-rolls",
+    "title": "Count sheets, not just rolls",
+    "hook": "Six rolls or four rolls? The count inside each roll changes the arithmetic.",
+    "concept": "lh-count-sheets-not-rolls",
+    "family": "receipt",
+    "aLabel": "Six-rolls",
+    "bLabel": "Four-rolls",
+    "formulaA": [
+      "/",
+      6,
+      [
+        "*",
+        6,
+        120
+      ]
+    ],
+    "formulaB": [
+      "/",
+      5,
+      [
+        "*",
+        4,
+        "x"
+      ]
+    ],
+    "variable": {
+      "label": "Sheets/roll",
+      "start": 240,
+      "min": 100,
+      "max": 300,
+      "unit": "",
+      "step": 10
+    },
+    "unit": "€/sheet",
+    "question": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Which costs less per sheet at B=240 sheets/roll?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; identical sheet size; fictional prices.",
+    "details": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets.",
+    "principle": "The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality.",
+    "objective": "Calculate the usable unit count inside multipacks before comparing prices.",
+    "misconception": "More rolls necessarily means more usable paper.",
+    "recall": {
+      "question": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Change only Sheets/roll to 270. What is B (Four-rolls) now?",
+      "options": [
+        "0.005€/sheet",
+        "0.008€/sheet",
+        "2.005€/sheet"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Sheets/roll=270: it gives 0.005€/sheet. The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality."
+    }
+  },
+  {
+    "slug": "lh-two-for-one-boundary",
+    "title": "Two-for-one has a boundary",
+    "hook": "A promotion can change its effective price when you need an odd quantity.",
+    "concept": "lh-two-for-one-boundary",
+    "family": "receipt",
+    "aLabel": "Singles",
+    "bLabel": "Pairs",
+    "formulaA": [
+      "*",
+      3,
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      4,
+      [
+        "ceil",
+        [
+          "/",
+          "x",
+          2
+        ]
+      ]
+    ],
+    "variable": {
+      "label": "Items",
+      "start": 3,
+      "min": 1,
+      "max": 9,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. For three required items, which checkout is lower?",
+    "options": [
+      "Singles",
+      "Pairs",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional offer; pair-only purchase.",
+    "details": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible.",
+    "principle": "A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
+    "objective": "Account for indivisible promotional bundles and odd demand.",
+    "misconception": "Two-for-one always halves the checkout cost for the exact quantity needed.",
+    "recall": {
+      "question": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Change only Items to 6. What is B (Pairs) now?",
+      "options": [
+        "€12",
+        "€18",
+        "€14"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Items=6: it gives €12. A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total."
+    }
+  },
+  {
+    "slug": "lh-fixed-coupon-percent",
+    "title": "Fixed coupon or percentage",
+    "hook": "€5 off and 20% off cross over at a particular basket size.",
+    "concept": "lh-fixed-coupon-percent",
+    "family": "receipt",
+    "aLabel": "20%-off",
+    "bLabel": "€5-off",
+    "formulaA": [
+      "*",
+      "x",
+      0.8
+    ],
+    "formulaB": [
+      "-",
+      "x",
+      5
+    ],
+    "variable": {
+      "label": "Basket",
+      "start": 20,
+      "min": 10,
+      "max": 40,
+      "unit": "€",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "A fictional basket can receive either 20% off or €5 off, with no exclusions. At €20, which final total is lower?",
+    "options": [
+      "20% off",
+      "€5 off",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional offers; one coupon only.",
+    "details": "A fictional basket can receive either 20% off or €5 off, with no exclusions.",
+    "principle": "The percentage scales with the basket; the fixed deduction does not. Their deductions match at €25 because 20% of €25 is €5. The lower result depends on the basket size.",
+    "objective": "Find the crossover of fixed and percentage discounts.",
+    "misconception": "A percentage discount is always larger than a fixed coupon.",
+    "recall": {
+      "question": "A fictional basket can receive either 20% off or €5 off, with no exclusions. Change only Basket to 23€. What is B (€5-off) now?",
+      "options": [
+        "€18",
+        "€18.4",
+        "€20"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Basket=23€: it gives €18. The percentage scales with the basket; the fixed deduction does not. Their deductions match at €25 because 20% of €25 is €5. The lower result depends on the basket size."
+    }
+  },
+  {
+    "slug": "lh-free-shipping-gap",
+    "title": "The free-shipping gap",
+    "hook": "Adding an item can remove shipping while raising the total you pay.",
+    "concept": "lh-free-shipping-gap",
+    "family": "receipt",
+    "aLabel": "Pay-shipping",
+    "bLabel": "Reach-threshold",
+    "formulaA": [
+      "+",
+      "x",
+      [
+        "*",
+        4,
+        [
+          "-",
+          1,
+          [
+            "floor",
+            [
+              "min",
+              1,
+              [
+                "/",
+                "x",
+                50
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "formulaB": [
+      "max",
+      "x",
+      50
+    ],
+    "variable": {
+      "label": "Basket",
+      "start": 42,
+      "min": 20,
+      "max": 54,
+      "unit": "€",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. At a €42 basket, which checkout is lower?",
+    "options": [
+      "Pay shipping",
+      "Reach €50",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional policy; added goods optional.",
+    "details": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50.",
+    "principle": "Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving.",
+    "objective": "Compare total checkout cost when adding merchandise to reach a shipping threshold.",
+    "misconception": "Free shipping means a lower checkout total.",
+    "recall": {
+      "question": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Change only Basket to 45€. What is B (Reach-threshold) now?",
+      "options": [
+        "€50",
+        "€49",
+        "€52"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Basket=45€: it gives €50. Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving."
+    }
+  },
+  {
+    "slug": "lh-split-order-fixed-fee",
+    "title": "One fixed fee per order",
+    "hook": "The same goods can produce different totals when a fee repeats.",
+    "concept": "lh-split-order-fixed-fee",
+    "family": "receipt",
+    "aLabel": "Split",
+    "bLabel": "Combined",
+    "formulaA": [
+      "+",
+      24,
+      [
+        "*",
+        4,
+        "x"
+      ]
+    ],
+    "formulaB": 28,
+    "variable": {
+      "label": "Orders",
+      "start": 2,
+      "min": 1,
+      "max": 6,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "The same goods total €24. Each order adds a fictional €4 delivery fee. For two separate orders, which receipt is lower?",
+    "options": [
+      "Split",
+      "Combined",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; same goods; €4/order; no discounts.",
+    "details": "The same goods total €24. Each order adds a fictional €4 delivery fee.",
+    "principle": "A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged.",
+    "objective": "Separate per-order charges from per-item costs.",
+    "misconception": "Equal merchandise subtotals guarantee equal checkout totals.",
+    "recall": {
+      "question": "The same goods total €24. Each order adds a fictional €4 delivery fee. Change only Orders to 5. What is B (Combined) now?",
+      "options": [
+        "€28",
+        "€44",
+        "€30"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Orders=5: it gives €28. A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged."
+    }
+  },
+  {
+    "slug": "lh-voucher-minimum",
+    "title": "The voucher has a minimum",
+    "hook": "A €5 voucher can leave a small basket unchanged.",
+    "concept": "lh-voucher-minimum",
+    "family": "receipt",
+    "aLabel": "No-voucher",
+    "bLabel": "Voucher",
+    "formulaA": "x",
+    "formulaB": [
+      "-",
+      "x",
+      [
+        "*",
+        5,
+        [
+          "floor",
+          [
+            "min",
+            1,
+            [
+              "/",
+              "x",
+              30
+            ]
+          ]
+        ]
+      ]
+    ],
+    "variable": {
+      "label": "Basket",
+      "start": 28,
+      "min": 10,
+      "max": 40,
+      "unit": "€",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "A fictional voucher subtracts €5 only when the basket is at least €30. At €28, how do the totals compare?",
+    "options": [
+      "No-voucher lower",
+      "Voucher lower",
+      "Equal"
+    ],
+    "answer": 2,
+    "assumptions": "Scaled model; fictional rule; €30 qualifying minimum.",
+    "details": "A fictional voucher subtracts €5 only when the basket is at least €30.",
+    "principle": "The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
+    "objective": "Apply a discontinuous minimum-purchase rule accurately.",
+    "misconception": "Every basket gets the advertised voucher deduction.",
+    "recall": {
+      "question": "A fictional voucher subtracts €5 only when the basket is at least €30. Change only Basket to 31€. What is B (Voucher) now?",
+      "options": [
+        "€26",
+        "€31",
+        "€28"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Basket=31€: it gives €26. The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility."
+    }
+  },
+  {
+    "slug": "lh-sequential-discounts",
+    "title": "Two discounts do not add",
+    "hook": "20% off, then 10% off: is that a 30% price cut?",
+    "concept": "lh-sequential-discounts",
+    "family": "receipt",
+    "aLabel": "Sequential",
+    "bLabel": "30%-off",
+    "formulaA": [
+      "*",
+      "x",
+      0.8,
+      0.9
+    ],
+    "formulaB": [
+      "*",
+      "x",
+      0.7
+    ],
+    "variable": {
+      "label": "Original",
+      "start": 100,
+      "min": 50,
+      "max": 150,
+      "unit": "€",
+      "step": 5
+    },
+    "unit": "€",
+    "question": "A applies 20% off and then 10% off the reduced price. B applies 30% off once. At an original €100, which final price is lower?",
+    "options": [
+      "Sequential",
+      "30% once",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional offers; no other fees.",
+    "details": "A applies 20% off and then 10% off the reduced price. B applies 30% off once.",
+    "principle": "The second percentage acts on what remains. Multiplying 0.8 by 0.9 leaves 0.72 of the original price, not 0.70. The changed base explains the gap on the receipts.",
+    "objective": "Calculate sequential discounts from the reduced base.",
+    "misconception": "Sequential percentage reductions add directly.",
+    "recall": {
+      "question": "A applies 20% off and then 10% off the reduced price. B applies 30% off once. Change only Original to 115€. What is B (30%-off) now?",
+      "options": [
+        "€80.5",
+        "€82.8",
+        "€82.5"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Original=115€: it gives €80.5. The second percentage acts on what remains. Multiplying 0.8 by 0.9 leaves 0.72 of the original price, not 0.70. The changed base explains the gap on the receipts."
+    }
+  },
+  {
+    "slug": "lh-discount-round-trip",
+    "title": "The discount round trip",
+    "hook": "20% down, then 20% up: will the price return to its starting point?",
+    "concept": "lh-discount-round-trip",
+    "family": "receipt",
+    "aLabel": "Original",
+    "bLabel": "Down-up",
+    "formulaA": "x",
+    "formulaB": [
+      "*",
+      "x",
+      0.8,
+      1.2
+    ],
+    "variable": {
+      "label": "Original",
+      "start": 100,
+      "min": 50,
+      "max": 150,
+      "unit": "€",
+      "step": 5
+    },
+    "unit": "€",
+    "question": "B reduces the original price by 20%, then raises that reduced price by 20%. At an original €100, where does B finish?",
+    "options": [
+      "Below original",
+      "At original",
+      "Above original"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional prices; changing percentage base.",
+    "details": "B reduces the original price by 20%, then raises that reduced price by 20%.",
+    "principle": "The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts.",
+    "objective": "Explain why opposite percentage changes do not cancel.",
+    "misconception": "Equal percentage increases and decreases cancel out.",
+    "recall": {
+      "question": "B reduces the original price by 20%, then raises that reduced price by 20%. Change only Original to 115€. What is B (Down-up) now?",
+      "options": [
+        "€110.4",
+        "€115",
+        "€112.4"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts."
+    }
+  },
+  {
+    "slug": "lh-pay-for-used-quantity",
+    "title": "Price per item you actually use",
+    "hook": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+    "concept": "lh-pay-for-used-quantity",
+    "family": "receipt",
+    "aLabel": "Singles",
+    "bLabel": "Ten-pack",
+    "formulaA": 0.5,
+    "formulaB": [
+      "/",
+      4,
+      [
+        "min",
+        "x",
+        10
+      ]
+    ],
+    "variable": {
+      "label": "Used",
+      "start": 5,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€/used",
+    "question": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. If five pieces are used, which cost per used piece is lower?",
+    "options": [
+      "Singles",
+      "Ten-pack",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; unused pieces valued zero; fictional prices.",
+    "details": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model.",
+    "principle": "Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
+    "objective": "Distinguish purchase unit price from cost per utilized unit.",
+    "misconception": "Lower cost per purchased piece guarantees lower cost per used piece.",
+    "recall": {
+      "question": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now?",
+      "options": [
+        "0.5€/used",
+        "1.5€/used",
+        "2.5€/used"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later."
+    }
+  },
+  {
+    "slug": "lh-deposit-checkout-net",
+    "title": "Checkout cost versus net cost",
+    "hook": "A refundable deposit changes checkout cash without changing the modeled net price.",
+    "concept": "lh-deposit-checkout-net",
+    "family": "receipt",
+    "aLabel": "After-return",
+    "bLabel": "Checkout",
+    "formulaA": [
+      "*",
+      2.4,
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      2.65,
+      "x"
+    ],
+    "variable": {
+      "label": "Containers",
+      "start": 4,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. For four items, which amount is higher?",
+    "options": [
+      "After return",
+      "Checkout",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional deposit; full return assumed.",
+    "details": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return.",
+    "principle": "The checkout includes a deposit for each container. The after-return amount subtracts those same deposits. These are different moments in the arithmetic; the scenario does not describe any region’s actual deposit law.",
+    "objective": "Separate upfront deposits from net cost after a stated full refund.",
+    "misconception": "Upfront cash paid and net cost after refunds are always the same.",
+    "recall": {
+      "question": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. Change only Containers to 7. What is B (Checkout) now?",
+      "options": [
+        "€18.55",
+        "€16.8",
+        "€20.55"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Containers=7: it gives €18.55. The checkout includes a deposit for each container. The after-return amount subtracts those same deposits. These are different moments in the arithmetic; the scenario does not describe any region’s actual deposit law."
+    }
+  },
+  {
+    "slug": "lh-scale-recipe-portions",
+    "title": "Scale the portions, not the pan",
+    "hook": "A four-portion recipe uses 300g. How much corresponds to six portions?",
+    "concept": "lh-scale-recipe-portions",
+    "family": "allocation",
+    "aLabel": "Scaled",
+    "bLabel": "Unchanged",
+    "formulaA": [
+      "*",
+      75,
+      "x"
+    ],
+    "formulaB": 300,
+    "variable": {
+      "label": "Portions",
+      "start": 6,
+      "min": 1,
+      "max": 12,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "g",
+    "question": "The quantity-only recipe uses 300g for four equal portions. How many grams preserve the same amount per portion for six portions?",
+    "options": [
+      "450g",
+      "300g",
+      "600g"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; quantities only; no cooking guidance.",
+    "details": "The quantity-only recipe uses 300g for four equal portions.",
+    "principle": "The original rate is 75g per portion. Multiply that rate by the new portion count to keep the same amount per person. This demonstrates proportional quantity arithmetic, not cooking or nutritional advice.",
+    "objective": "Scale a recipe quantity while preserving quantity per portion.",
+    "misconception": "The same ingredient quantity serves more people without changing portion size.",
+    "recall": {
+      "question": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions?",
+      "options": [
+        "750g",
+        "300g",
+        "450g"
+      ],
+      "answer": 0,
+      "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
+    },
+    "warning": "Cooking times do not scale with quantity."
+  },
+  {
+    "slug": "lh-round-snack-packs",
+    "title": "Round the pack, keep the remainder",
+    "hook": "Three items per guest, ten per pack: how much extra appears?",
+    "concept": "lh-round-snack-packs",
+    "family": "allocation",
+    "aLabel": "Packed",
+    "bLabel": "Required",
+    "formulaA": [
+      "*",
+      10,
+      [
+        "ceil",
+        [
+          "/",
+          [
+            "*",
+            3,
+            "x"
+          ],
+          10
+        ]
+      ]
+    ],
+    "formulaB": [
+      "*",
+      3,
+      "x"
+    ],
+    "variable": {
+      "label": "Guests",
+      "start": 7,
+      "min": 1,
+      "max": 15,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Each guest receives three items. Packs contain ten items and cannot be split at purchase. For seven guests, which count is larger?",
+    "options": [
+      "Purchased",
+      "Required",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; quantity-only model; indivisible ten-packs.",
+    "details": "Each guest receives three items. Packs contain ten items and cannot be split at purchase.",
+    "principle": "First compute the exact requirement, then divide by pack size and round up. Purchased quantity is a multiple of ten. The gap is an explicit remainder rather than a change in portions.",
+    "objective": "Round purchases to whole packs and compute excess quantity.",
+    "misconception": "Buying whole packs provides exactly the required quantity.",
+    "recall": {
+      "question": "Each guest receives three items. Packs contain ten items and cannot be split at purchase. Change only Guests to 10. What is B (Required) now?",
+      "options": [
+        "30items",
+        "31items",
+        "32items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Guests=10: it gives 30items. First compute the exact requirement, then divide by pack size and round up. Purchased quantity is a multiple of ten. The gap is an explicit remainder rather than a change in portions."
+    }
+  },
+  {
+    "slug": "lh-weighted-bill-share",
+    "title": "Equal people, unequal portions",
+    "hook": "Two full portions and one half portion: what does one full portion represent?",
+    "concept": "lh-weighted-bill-share",
+    "family": "allocation",
+    "aLabel": "Weighted",
+    "bLabel": "Equal-people",
+    "formulaA": [
+      "/",
+      "x",
+      2.5
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      3
+    ],
+    "variable": {
+      "label": "Bill",
+      "start": 30,
+      "min": 10,
+      "max": 60,
+      "unit": "€",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people. At €30, which assigns more to a full-portion share?",
+    "options": [
+      "Weighted",
+      "Equal people",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional bill; agreed portion weights.",
+    "details": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people.",
+    "principle": "A weighted split divides by 2.5 portion units rather than three people. A full portion gets one unit; the half portion gets half a unit. This is arithmetic under an agreed rule, not a recommendation for splitting bills.",
+    "objective": "Calculate a weighted share and distinguish it from equal-person division.",
+    "misconception": "Equal headcounts and equal consumption weights always produce the same split.",
+    "recall": {
+      "question": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people. Change only Bill to 33€. What is B (Equal-people) now?",
+      "options": [
+        "€11",
+        "€13.2",
+        "€13"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Bill=33€: it gives €11. A weighted split divides by 2.5 portion units rather than three people. A full portion gets one unit; the half portion gets half a unit. This is arithmetic under an agreed rule, not a recommendation for splitting bills."
+    }
+  },
+  {
+    "slug": "lh-indivisible-shares",
+    "title": "The leftover after equal shares",
+    "hook": "Ten objects among three people: where does the tenth go?",
+    "concept": "lh-indivisible-shares",
+    "family": "allocation",
+    "aLabel": "Distributed",
+    "bLabel": "Available",
+    "formulaA": [
+      "*",
+      3,
+      [
+        "floor",
+        [
+          "/",
+          "x",
+          3
+        ]
+      ]
+    ],
+    "formulaB": "x",
+    "variable": {
+      "label": "Objects",
+      "start": 10,
+      "min": 1,
+      "max": 20,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Three recipients each receive the same whole-number count. Remainders are kept aside. At ten objects, which count is larger?",
+    "options": [
+      "Distributed",
+      "Available",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; whole objects; three equal shares.",
+    "details": "Three recipients each receive the same whole-number count. Remainders are kept aside.",
+    "principle": "Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
+    "objective": "Preserve the remainder after dividing indivisible resources equally.",
+    "misconception": "Equal whole-number shares distribute every object automatically.",
+    "recall": {
+      "question": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now?",
+      "options": [
+        "13items",
+        "12items",
+        "15items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule."
+    }
+  },
+  {
+    "slug": "lh-weighted-volume-allocation",
+    "title": "Allocate by the stated weight",
+    "hook": "Three trays have weights 2:1:1. Does an equal split follow those weights?",
+    "concept": "lh-weighted-volume-allocation",
+    "family": "allocation",
+    "aLabel": "Weighted",
+    "bLabel": "Equal",
+    "formulaA": [
+      "/",
+      "x",
+      2
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      3
+    ],
+    "variable": {
+      "label": "Total",
+      "start": 8,
+      "min": 4,
+      "max": 16,
+      "unit": "L",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray. At 8L total, which assigns more to tray one?",
+    "options": [
+      "Weighted",
+      "Equal",
+      "Same"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; empty trays; arithmetic allocation only.",
+    "details": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray.",
+    "principle": "The weights add to four. The first tray receives two of four units, or half the total. Splitting into three equal shares uses a different rule and produces a different allocation.",
+    "objective": "Allocate a conserved volume according to stated relative weights.",
+    "misconception": "An equal split satisfies every weighted allocation rule.",
+    "recall": {
+      "question": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray. Change only Total to 11L. What is B (Equal) now?",
+      "options": [
+        "3.667L",
+        "5.5L",
+        "5.667L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Total=11L: it gives 3.667L. The weights add to four. The first tray receives two of four units, or half the total. Splitting into three equal shares uses a different rule and produces a different allocation."
+    }
+  },
+  {
+    "slug": "lh-coverage-whole-cans",
+    "title": "Coverage and whole containers",
+    "hook": "A label says 8m² per litre. Fractional need is not a whole-container order.",
+    "concept": "lh-coverage-whole-cans",
+    "family": "allocation",
+    "aLabel": "Whole-litres",
+    "bLabel": "Exact-need",
+    "formulaA": [
+      "ceil",
+      [
+        "/",
+        "x",
+        8
+      ]
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      8
+    ],
+    "variable": {
+      "label": "Area",
+      "start": 10,
+      "min": 5,
+      "max": 30,
+      "unit": "m²",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact. For 10m², which volume is larger?",
+    "options": [
+      "Whole containers",
+      "Exact need",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; hypothetical coverage; no application guidance.",
+    "details": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact.",
+    "principle": "Area divided by coverage gives modeled exact volume. The whole-container order rounds that result up. This ignores surface losses and product variation, so it teaches order arithmetic rather than actual application instructions.",
+    "objective": "Distinguish continuous material need from indivisible container purchases.",
+    "misconception": "A fractional material requirement can always be purchased exactly.",
+    "recall": {
+      "question": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact. Change only Area to 13m². What is B (Exact-need) now?",
+      "options": [
+        "1.625L",
+        "2L",
+        "3.625L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Area=13m²: it gives 1.625L. Area divided by coverage gives modeled exact volume. The whole-container order rounds that result up. This ignores surface losses and product variation, so it teaches order arithmetic rather than actual application instructions."
+    }
+  },
+  {
+    "slug": "lh-percentage-overage",
+    "title": "Ten extra or ten percent extra",
+    "hook": "A fixed spare count and a percentage spare count diverge as a job grows.",
+    "concept": "lh-percentage-overage",
+    "family": "allocation",
+    "aLabel": "10%-extra",
+    "bLabel": "Ten-extra",
+    "formulaA": [
+      "ceil",
+      [
+        "*",
+        "x",
+        1.1
+      ]
+    ],
+    "formulaB": [
+      "+",
+      "x",
+      10
+    ],
+    "variable": {
+      "label": "Required",
+      "start": 40,
+      "min": 20,
+      "max": 120,
+      "unit": "tiles",
+      "step": 5
+    },
+    "unit": "tiles",
+    "question": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. For 40 required tiles, which order is larger?",
+    "options": [
+      "10% extra",
+      "Ten extra",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; quantity-only model; no installation advice.",
+    "details": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles.",
+    "principle": "A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover.",
+    "objective": "Distinguish a proportional allowance from a fixed spare count.",
+    "misconception": "Ten percent extra always means ten extra pieces.",
+    "recall": {
+      "question": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles. Change only Required to 55tiles. What is B (Ten-extra) now?",
+      "options": [
+        "65tiles",
+        "61tiles",
+        "67tiles"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Required=55tiles: it gives 65tiles. A fixed extra count stays ten. A percentage extra grows with the requirement. At forty, 10% is four; at one hundred, 10% is ten. The formulas match only at that crossover."
+    }
+  },
+  {
+    "slug": "lh-each-cut-allowance",
+    "title": "The allowance repeats each time",
+    "hook": "Six panels each need a 5cm allowance. Is one 5cm allowance enough?",
+    "concept": "lh-each-cut-allowance",
+    "family": "allocation",
+    "aLabel": "Each-panel",
+    "bLabel": "Once",
+    "formulaA": [
+      "*",
+      "x",
+      1.25
+    ],
+    "formulaB": [
+      "+",
+      [
+        "*",
+        "x",
+        1.2
+      ],
+      0.05
+    ],
+    "variable": {
+      "label": "Panels",
+      "start": 6,
+      "min": 1,
+      "max": 12,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "m",
+    "question": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once. For six panels, which modeled length is larger?",
+    "options": [
+      "Each panel",
+      "Once",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; length-only model; no cutting instructions.",
+    "details": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once.",
+    "principle": "An allowance attached to every panel is a per-unit term. Multiply both the main length and allowance by the panel count. Adding the allowance once treats it as a single job-level term.",
+    "objective": "Differentiate per-piece allowances from one-time allowances.",
+    "misconception": "A per-piece allowance only needs to be added once.",
+    "recall": {
+      "question": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once. Change only Panels to 9. What is B (Once) now?",
+      "options": [
+        "10.85m",
+        "11.25m",
+        "12.85m"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Panels=9: it gives 10.85m. An allowance attached to every panel is a per-unit term. Multiply both the main length and allowance by the panel count. Adding the allowance once treats it as a single job-level term."
+    }
+  },
+  {
+    "slug": "lh-lead-time-stock",
+    "title": "Stock during a delivery delay",
+    "hook": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
+    "concept": "lh-lead-time-stock",
+    "family": "inventory",
+    "aLabel": "With-buffer",
+    "bLabel": "No-buffer",
+    "formulaA": [
+      "+",
+      [
+        "*",
+        4,
+        "x"
+      ],
+      8
+    ],
+    "formulaB": [
+      "*",
+      4,
+      "x"
+    ],
+    "variable": {
+      "label": "Lead-days",
+      "start": 3,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve. How many units must be on hand when ordering for A?",
+    "options": [
+      "20 units",
+      "12 units",
+      "8 units"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; constant toy demand; buffer=8; no policy advice.",
+    "details": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve.",
+    "principle": "Multiply daily use by waiting days, then add the reserve. This is the stock left when ordering under the toy rule, not the quantity to buy. Real demand and delays can vary; the rule is illustrative.",
+    "objective": "Calculate the stock on hand when ordering to cover a stated delivery delay and retain a stated reserve.",
+    "misconception": "Delivery lead time has no effect on the quantity consumed before arrival.",
+    "recall": {
+      "question": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering?",
+      "options": [
+        "32 units",
+        "24 units",
+        "8 units"
+      ],
+      "answer": 0,
+      "why": "4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve."
+    }
+  },
+  {
+    "slug": "lh-buy-only-stock-gap",
+    "title": "Subtract what is already there",
+    "hook": "Seven in stock and twelve needed: how many are missing?",
+    "concept": "lh-buy-only-stock-gap",
+    "family": "inventory",
+    "aLabel": "Gap",
+    "bLabel": "Ignore-stock",
+    "formulaA": [
+      "max",
+      0,
+      [
+        "-",
+        "x",
+        7
+      ]
+    ],
+    "formulaB": "x",
+    "variable": {
+      "label": "Required",
+      "start": 12,
+      "min": 1,
+      "max": 20,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Seven usable units are already available. A orders only the gap; B orders the whole requirement. At twelve required units, which order is smaller?",
+    "options": [
+      "Gap",
+      "Whole requirement",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; usable stock=7; no hidden commitments.",
+    "details": "Seven usable units are already available. A orders only the gap; B orders the whole requirement.",
+    "principle": "Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation.",
+    "objective": "Calculate nonnegative replenishment after counting available stock.",
+    "misconception": "A shopping requirement is always the quantity that must be ordered.",
+    "recall": {
+      "question": "Seven usable units are already available. A orders only the gap; B orders the whole requirement. Change only Required to 15. What is B (Ignore-stock) now?",
+      "options": [
+        "15items",
+        "8items",
+        "17items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Required=15: it gives 15items. Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation."
+    }
+  },
+  {
+    "slug": "lh-committed-stock",
+    "title": "On the shelf is not all free",
+    "hook": "Six units are promised. Can every unit on the shelf serve a new request?",
+    "concept": "lh-committed-stock",
+    "family": "inventory",
+    "aLabel": "Free",
+    "bLabel": "Physical",
+    "formulaA": [
+      "max",
+      0,
+      [
+        "-",
+        "x",
+        6
+      ]
+    ],
+    "formulaB": "x",
+    "variable": {
+      "label": "On-shelf",
+      "start": 10,
+      "min": 6,
+      "max": 20,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. At ten on-shelf units, which count is smaller?",
+    "options": [
+      "Free",
+      "Physical",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; six committed; no incoming stock.",
+    "details": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts.",
+    "principle": "Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
+    "objective": "Separate physical inventory from uncommitted availability.",
+    "misconception": "Every item physically present is available for a new request.",
+    "recall": {
+      "question": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Change only On-shelf to 13. What is B (Physical) now?",
+      "options": [
+        "13items",
+        "7items",
+        "15items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy."
+    }
+  },
+  {
+    "slug": "lh-round-replenishment",
+    "title": "Subtract stock before rounding",
+    "hook": "Boxes hold six. Does twelve required mean ordering two boxes?",
+    "concept": "lh-round-replenishment",
+    "family": "inventory",
+    "aLabel": "Box-order",
+    "bLabel": "Exact-gap",
+    "formulaA": [
+      "*",
+      6,
+      [
+        "ceil",
+        [
+          "/",
+          [
+            "max",
+            0,
+            [
+              "-",
+              "x",
+              3
+            ]
+          ],
+          6
+        ]
+      ]
+    ],
+    "formulaB": [
+      "max",
+      0,
+      [
+        "-",
+        "x",
+        3
+      ]
+    ],
+    "variable": {
+      "label": "Required",
+      "start": 12,
+      "min": 1,
+      "max": 24,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "Three usable units are in stock. New orders come only in six-unit boxes. At twelve required, which new quantity is larger?",
+    "options": [
+      "Box order",
+      "Exact gap",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; stock=3; indivisible six-unit boxes.",
+    "details": "Three usable units are in stock. New orders come only in six-unit boxes.",
+    "principle": "Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count.",
+    "objective": "Apply package rounding to the shortage rather than total demand.",
+    "misconception": "Package rounding should be applied before existing stock is subtracted.",
+    "recall": {
+      "question": "Three usable units are in stock. New orders come only in six-unit boxes. Change only Required to 15. What is B (Exact-gap) now?",
+      "options": [
+        "12items",
+        "13items",
+        "14items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Required=15: it gives 12items. Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count."
+    }
+  },
+  {
+    "slug": "lh-pool-spare-stock",
+    "title": "A spare elsewhere changes the gap",
+    "hook": "Two here, five freely available there: how many new units are missing?",
+    "concept": "lh-pool-spare-stock",
+    "family": "inventory",
+    "aLabel": "Local-only",
+    "bLabel": "Pooled",
+    "formulaA": [
+      "max",
+      0,
+      [
+        "-",
+        "x",
+        2
+      ]
+    ],
+    "formulaB": [
+      "max",
+      0,
+      [
+        "-",
+        "x",
+        7
+      ]
+    ],
+    "variable": {
+      "label": "Required",
+      "start": 10,
+      "min": 1,
+      "max": 20,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. For ten required units, which external order is smaller?",
+    "options": [
+      "Local only",
+      "Pooled",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; transfer allowed; zero modeled transfer cost.",
+    "details": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost.",
+    "principle": "Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions.",
+    "objective": "Account for transferable surplus before computing external replenishment.",
+    "misconception": "Only items already in the destination count toward its shortage.",
+    "recall": {
+      "question": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Change only Required to 13. What is B (Pooled) now?",
+      "options": [
+        "6items",
+        "11items",
+        "8items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Required=13: it gives 6items. Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions."
+    }
+  },
+  {
+    "slug": "lh-merge-overlapping-lists",
+    "title": "Merge lists without counting twice",
+    "hook": "Two requests overlap on three items. Adding the list lengths overcounts.",
+    "concept": "lh-merge-overlapping-lists",
+    "family": "inventory",
+    "aLabel": "Added",
+    "bLabel": "Unique",
+    "formulaA": [
+      "+",
+      "x",
+      6
+    ],
+    "formulaB": [
+      "-",
+      [
+        "+",
+        "x",
+        6
+      ],
+      3
+    ],
+    "variable": {
+      "label": "List-A",
+      "start": 8,
+      "min": 3,
+      "max": 14,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. At A=8 items, which merged count is smaller?",
+    "options": [
+      "Added lengths",
+      "Unique items",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; exact three-item overlap; unique items per list.",
+    "details": "List A has eight distinct items; list B has six. Exactly three items occur on both lists.",
+    "principle": "Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates.",
+    "objective": "Use inclusion-exclusion for two overlapping resource lists.",
+    "misconception": "The size of a merged list is always the sum of both list lengths.",
+    "recall": {
+      "question": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Change only List-A to 11. What is B (Unique) now?",
+      "options": [
+        "14items",
+        "17items",
+        "16items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates."
+    }
+  },
+  {
+    "slug": "lh-use-deadline-tickets",
+    "title": "Use the tickets with a deadline",
+    "hook": "Six tickets expire after this event. Which choice leaves fewer of them unused?",
+    "concept": "lh-use-deadline-tickets",
+    "family": "inventory",
+    "aLabel": "Deadline-first",
+    "bLabel": "Other-first",
+    "formulaA": [
+      "max",
+      0,
+      [
+        "-",
+        6,
+        "x"
+      ]
+    ],
+    "formulaB": 6,
+    "variable": {
+      "label": "Used",
+      "start": 4,
+      "min": 1,
+      "max": 6,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "tickets",
+    "question": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline. Which choice leaves fewer expiring tickets unused?",
+    "options": [
+      "Deadline first",
+      "Other first",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional tickets; equal acceptance; no food guidance.",
+    "details": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline.",
+    "principle": "Using deadline tickets first reduces the expiring remainder. Using the other tickets leaves all six deadline tickets unused. This is a declared ticket-validity model, not guidance about food or unsafe expired goods.",
+    "objective": "Choose among equivalent resources using a stated expiration deadline.",
+    "misconception": "Equivalent resources have identical consequences regardless of deadline.",
+    "recall": {
+      "question": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline. Change only Used to 6. What is B (Other-first) now?",
+      "options": [
+        "6tickets",
+        "0tickets",
+        "8tickets"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Used=6: it gives 6tickets. Using deadline tickets first reduces the expiring remainder. Using the other tickets leaves all six deadline tickets unused. This is a declared ticket-validity model, not guidance about food or unsafe expired goods."
+    }
+  },
+  {
+    "slug": "lh-count-before-dispatch",
+    "title": "A count correction travels forward",
+    "hook": "The record says ten, the shelf has eight. Which count remains after shipping three?",
+    "concept": "lh-count-before-dispatch",
+    "family": "inventory",
+    "aLabel": "Counted",
+    "bLabel": "Recorded",
+    "formulaA": [
+      "-",
+      "x",
+      5
+    ],
+    "formulaB": [
+      "-",
+      "x",
+      3
+    ],
+    "variable": {
+      "label": "Record",
+      "start": 10,
+      "min": 5,
+      "max": 20,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "items",
+    "question": "The physical count is two below the record. Three units are then dispatched. At a record of ten, which remaining count is lower?",
+    "options": [
+      "Counted",
+      "Old record",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; count difference=2; dispatch=3; no receipts.",
+    "details": "The physical count is two below the record. Three units are then dispatched.",
+    "principle": "Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation.",
+    "objective": "Propagate a counted inventory discrepancy through a later transaction.",
+    "misconception": "A later dispatch automatically fixes an earlier inventory error.",
+    "recall": {
+      "question": "The physical count is two below the record. Three units are then dispatched. Change only Record to 13. What is B (Recorded) now?",
+      "options": [
+        "10items",
+        "8items",
+        "12items"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Record=13: it gives 10items. Subtract the discrepancy before updating the dispatch. Shipping three from an already incorrect record preserves its two-unit error. A corrected observation needs to travel into the next calculation."
+    }
+  },
+  {
+    "slug": "lh-watts-hours-trade",
+    "title": "Power and duration trade places",
+    "hook": "100W for one hour or 20W for five: compare the energy, not just watts.",
+    "concept": "lh-watts-hours-trade",
+    "family": "energy",
+    "aLabel": "100W",
+    "bLabel": "20W",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        100,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        20,
+        5,
+        "x"
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "A-hours",
+      "start": 1,
+      "min": 1,
+      "max": 8,
+      "unit": "h",
+      "step": 1
+    },
+    "unit": "kWh",
+    "question": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. At A=1h, which uses more energy?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 2,
+    "assumptions": "Scaled model; illustrative:100W×h;20W×5h;tariff=€0.30/kWh.",
+    "details": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s.",
+    "principle": "Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total.",
+    "objective": "Compare energy use while accounting for both constant power and duration.",
+    "misconception": "Lower power always means lower total energy consumption.",
+    "recall": {
+      "question": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s. Change only A-hours to 4h. What is B (20W) now?",
+      "options": [
+        "0.4kWh",
+        "1.4kWh",
+        "2.4kWh"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with A-hours=4h: it gives 0.4kWh. Energy is power multiplied by duration. Here the fivefold duration exactly offsets the fivefold power difference. A low watt number alone cannot identify the lower energy total."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-idle-versus-active",
+    "title": "Long idle, short active",
+    "hook": "A small load lasts many hours. Does duration make it larger than the active load?",
+    "concept": "lh-idle-versus-active",
+    "family": "energy",
+    "aLabel": "Active",
+    "bLabel": "Idle",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        60,
+        2,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        3,
+        22,
+        "x"
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Days",
+      "start": 5,
+      "min": 1,
+      "max": 30,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "kWh",
+    "question": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed. Over five days, which modeled energy total is higher?",
+    "options": [
+      "Active",
+      "Idle",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative:60W×2h/day;3W×22h/day;€0.30/kWh.",
+    "details": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed.",
+    "principle": "Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied.",
+    "objective": "Compare separate operating-state energy contributions.",
+    "misconception": "The state lasting the most hours must consume the most energy.",
+    "recall": {
+      "question": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed. Change only Days to 8. What is B (Idle) now?",
+      "options": [
+        "0.528kWh",
+        "0.96kWh",
+        "2.528kWh"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Days=8: it gives 0.528kWh. Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-standby-days-add-up",
+    "title": "A tiny load accumulates",
+    "hook": "Two watts over a whole day and over one hour are different annual totals.",
+    "concept": "lh-standby-days-add-up",
+    "family": "energy",
+    "aLabel": "24h/day",
+    "bLabel": "1h/day",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        2,
+        24,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        2,
+        "x"
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Days",
+      "start": 365,
+      "min": 100,
+      "max": 400,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "kWh",
+    "question": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Over 365 days, which accumulates more energy?",
+    "options": [
+      "24h/day",
+      "1h/day",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative:2W;24h/day-or-1h/day;€0.30/kWh.",
+    "details": "A constant illustrative 2W load runs for either 24h/day or 1h/day.",
+    "principle": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
+    "objective": "Convert a small stated constant load into a multiday energy quantity.",
+    "misconception": "A small wattage cannot accumulate a meaningful quantity over many days.",
+    "recall": {
+      "question": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now?",
+      "options": [
+        "0.736kWh",
+        "17.664kWh",
+        "2.736kWh"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-duty-cycle-energy",
+    "title": "Rated power and active time",
+    "hook": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
+    "concept": "lh-duty-cycle-energy",
+    "family": "energy",
+    "aLabel": "Quarter-on",
+    "bLabel": "Always-on",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        100,
+        0.25,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        100,
+        "x"
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Hours",
+      "start": 8,
+      "min": 1,
+      "max": 24,
+      "unit": "h",
+      "step": 1
+    },
+    "unit": "kWh",
+    "question": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Over eight hours, which modeled energy total is lower?",
+    "options": [
+      "Quarter-on",
+      "Always-on",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative:100W-on;0W-off;25%-or-100%;€0.30/kWh.",
+    "details": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously.",
+    "principle": "Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model.",
+    "objective": "Use a stated duty fraction rather than treating rated power as continuous.",
+    "misconception": "Every elapsed hour must be charged at full on-state power.",
+    "recall": {
+      "question": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Change only Hours to 11h. What is B (Always-on) now?",
+      "options": [
+        "1.1kWh",
+        "0.275kWh",
+        "3.1kWh"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Hours=11h: it gives 1.1kWh. Multiply elapsed time by the on-time fraction before applying constant on-power. A nameplate-sized number cannot replace the duration actually spent at that power in this toy model."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-fixed-energy-charge",
+    "title": "The fixed charge changes the bill",
+    "hook": "A lower per-kWh price can still produce a higher total at small usage.",
+    "concept": "lh-fixed-energy-charge",
+    "family": "energy",
+    "aLabel": "Low-rate+fee",
+    "bLabel": "No-fee",
+    "formulaA": [
+      "+",
+      [
+        "*",
+        "x",
+        0.2
+      ],
+      10
+    ],
+    "formulaB": [
+      "*",
+      "x",
+      0.3
+    ],
+    "variable": {
+      "label": "Usage",
+      "start": 40,
+      "min": 10,
+      "max": 140,
+      "unit": "kWh",
+      "step": 10
+    },
+    "unit": "€",
+    "question": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. At 40kWh, which modeled bill is lower?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
+    "details": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
+    "principle": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
+    "objective": "Compare fixed and usage-dependent charges in a stated bill model.",
+    "misconception": "The smallest per-kWh rate always makes the smallest total bill.",
+    "recall": {
+      "question": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. Change only Usage to 70kWh. What is B (No-fee) now?",
+      "options": [
+        "€21",
+        "€24",
+        "€23"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Usage=70kWh: it gives €21. A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-same-energy-new-tariff",
+    "title": "Same energy, different tariff",
+    "hook": "Moving a hypothetical load changes its price while leaving its energy unchanged.",
+    "concept": "lh-same-energy-new-tariff",
+    "family": "energy",
+    "aLabel": "Peak",
+    "bLabel": "Off-peak",
+    "formulaA": [
+      "*",
+      "x",
+      0.4
+    ],
+    "formulaB": [
+      "*",
+      "x",
+      0.2
+    ],
+    "variable": {
+      "label": "Energy",
+      "start": 3,
+      "min": 1,
+      "max": 12,
+      "unit": "kWh",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Which modeled cost is lower at 3kWh?",
+    "options": [
+      "Peak",
+      "Off-peak",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional:€0.40/kWh-or-€0.20/kWh;same kWh.",
+    "details": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges.",
+    "principle": "The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time.",
+    "objective": "Distinguish a cost change from an energy-use change.",
+    "misconception": "A lower electricity charge necessarily means fewer kilowatt-hours were used.",
+    "recall": {
+      "question": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Change only Energy to 6kWh. What is B (Off-peak) now?",
+      "options": [
+        "€1.2",
+        "€2.4",
+        "€3.2"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Energy=6kWh: it gives €1.2. The cost changes because the price multiplier changes. The energy quantity stays the same. This isolates tariff arithmetic and does not imply that every load can safely or practically move to another time."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-annual-label-cost",
+    "title": "Read the annual-energy number",
+    "hook": "Two illustrative annual labels differ. How does that difference repeat over years?",
+    "concept": "lh-annual-label-cost",
+    "family": "energy",
+    "aLabel": "200kWh/year",
+    "bLabel": "350kWh/year",
+    "formulaA": [
+      "*",
+      200,
+      "x",
+      0.3
+    ],
+    "formulaB": [
+      "*",
+      350,
+      "x",
+      0.3
+    ],
+    "variable": {
+      "label": "Years",
+      "start": 2,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year. At two years, which modeled running cost is lower?",
+    "options": [
+      "200kWh/year",
+      "350kWh/year",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative:200-or-350kWh/year;€0.30/kWh;constant years.",
+    "details": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year.",
+    "principle": "Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product.",
+    "objective": "Translate a stated annual energy figure into a multiyear running-cost model.",
+    "misconception": "An annual energy label is already the multiyear cost.",
+    "recall": {
+      "question": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year. Change only Years to 5. What is B (350kWh/year) now?",
+      "options": [
+        "€525",
+        "€300",
+        "€527"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Years=5: it gives €525. Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product."
+    }
+  },
+  {
+    "slug": "lh-purchase-plus-running",
+    "title": "Price tag plus running cost",
+    "hook": "A higher upfront price can cross a lower one after repeated running costs.",
+    "concept": "lh-purchase-plus-running",
+    "family": "energy",
+    "aLabel": "Lower-tag",
+    "bLabel": "Lower-running",
+    "formulaA": [
+      "+",
+      80,
+      [
+        "*",
+        120,
+        0.3,
+        "x"
+      ]
+    ],
+    "formulaB": [
+      "+",
+      140,
+      [
+        "*",
+        60,
+        0.3,
+        "x"
+      ]
+    ],
+    "variable": {
+      "label": "Years",
+      "start": 2,
+      "min": 1,
+      "max": 8,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. At two years, which modeled total is lower?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative:€80+120kWh/y;€140+60kWh/y;€0.30/kWh.",
+    "details": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh.",
+    "principle": "Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
+    "objective": "Combine an upfront amount and repeated operating charges without assuming the same winner at every horizon.",
+    "misconception": "The lower initial price guarantees a lower total at every future horizon.",
+    "recall": {
+      "question": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Change only Years to 5. What is B (Lower-running) now?",
+      "options": [
+        "€230",
+        "€260",
+        "€232"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation."
+    },
+    "warning": "Tariffs and appliance ratings vary: check your own."
+  },
+  {
+    "slug": "lh-flow-times-minutes",
+    "title": "Flow times minutes",
+    "hook": "A flow rate is not the final volume until duration joins it.",
+    "concept": "lh-flow-times-minutes",
+    "family": "water",
+    "aLabel": "6L/min",
+    "bLabel": "3L/min",
+    "formulaA": [
+      "*",
+      6,
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      3,
+      "x"
+    ],
+    "variable": {
+      "label": "Minutes",
+      "start": 4,
+      "min": 1,
+      "max": 12,
+      "unit": "min",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes. Which modeled volume is lower?",
+    "options": [
+      "6L/min",
+      "3L/min",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; illustrative constant flows; no fixture instructions.",
+    "details": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes.",
+    "principle": "A volume per minute multiplied by minutes gives volume. Keeping duration equal isolates the flow-rate difference. Actual flow can vary, so the picture demonstrates the stated arithmetic only.",
+    "objective": "Convert a constant flow rate and duration into volume.",
+    "misconception": "Litres per minute already states total litres used.",
+    "recall": {
+      "question": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes. Change only Minutes to 7min. What is B (3L/min) now?",
+      "options": [
+        "21L",
+        "42L",
+        "23L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Minutes=7min: it gives 21L. A volume per minute multiplied by minutes gives volume. Keeping duration equal isolates the flow-rate difference. Actual flow can vary, so the picture demonstrates the stated arithmetic only."
+    }
+  },
+  {
+    "slug": "lh-flow-duration-offset",
+    "title": "A slower flow runs longer",
+    "hook": "Halving a flow rate and doubling duration: what happens to volume?",
+    "concept": "lh-flow-duration-offset",
+    "family": "water",
+    "aLabel": "12L/min",
+    "bLabel": "6L/min",
+    "formulaA": [
+      "*",
+      12,
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      6,
+      2,
+      "x"
+    ],
+    "variable": {
+      "label": "A-minutes",
+      "start": 2,
+      "min": 1,
+      "max": 8,
+      "unit": "min",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration. At A=2min, which modeled volume is larger?",
+    "options": [
+      "A",
+      "B",
+      "Equal"
+    ],
+    "answer": 2,
+    "assumptions": "Scaled model; illustrative:12L/min×t;6L/min×2t;constant flow.",
+    "details": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration.",
+    "principle": "The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes.",
+    "objective": "Explain the offset between rate and duration under a fixed proportional change.",
+    "misconception": "Half the flow rate always means half the volume.",
+    "recall": {
+      "question": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration. Change only A-minutes to 5min. What is B (6L/min) now?",
+      "options": [
+        "60L",
+        "61L",
+        "62L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with A-minutes=5min: it gives 60L. The half-rate and double-duration factors cancel. Both deliver the same modeled volume. A rate reduction by itself does not state the final volume when the duration also changes."
+    }
+  },
+  {
+    "slug": "lh-fixed-volume-fill",
+    "title": "Fill time is not water saved",
+    "hook": "A slower flow takes longer to fill the same bucket.",
+    "concept": "lh-fixed-volume-fill",
+    "family": "water",
+    "aLabel": "5L/min",
+    "bLabel": "2.5L/min",
+    "formulaA": [
+      "/",
+      "x",
+      5
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      2.5
+    ],
+    "variable": {
+      "label": "Bucket",
+      "start": 10,
+      "min": 1,
+      "max": 20,
+      "unit": "L",
+      "step": 1
+    },
+    "unit": "min",
+    "question": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Which modeled fill time is longer?",
+    "options": [
+      "5L/min",
+      "2.5L/min",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; illustrative rates; fixed volume; no spills.",
+    "details": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur.",
+    "principle": "Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions.",
+    "objective": "Distinguish fixed-volume filling from fixed-duration water use.",
+    "misconception": "A slower flow necessarily uses less water to fill a fixed container.",
+    "recall": {
+      "question": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Change only Bucket to 13L. What is B (2.5L/min) now?",
+      "options": [
+        "5.2min",
+        "2.6min",
+        "7.2min"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Bucket=13L: it gives 5.2min. Divide the required volume by flow rate to get fill time. Both cases deliver the same bucket volume; the slower case only takes longer under these assumptions."
+    }
+  },
+  {
+    "slug": "lh-small-leak-large-duration",
+    "title": "Small flow, long duration",
+    "hook": "A millilitre-per-minute amount repeats many more times in a day than in an hour.",
+    "concept": "lh-small-leak-large-duration",
+    "family": "water",
+    "aLabel": "One-day",
+    "bLabel": "One-hour",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        "x",
+        1440
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        "x",
+        60
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Flow",
+      "start": 5,
+      "min": 1,
+      "max": 15,
+      "unit": "mL/min",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "A hypothetical constant 5mL/min flow continues for either one hour or one day. Which modeled volume is larger?",
+    "options": [
+      "One day",
+      "One hour",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; illustrative constant flow; 24h/day; 1000mL/L.",
+    "details": "A hypothetical constant 5mL/min flow continues for either one hour or one day.",
+    "principle": "A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation.",
+    "objective": "Convert a small continuous flow to hourly and daily volumes.",
+    "misconception": "A small rate remains a small total regardless of duration.",
+    "recall": {
+      "question": "A hypothetical constant 5mL/min flow continues for either one hour or one day. Change only Flow to 8mL/min. What is B (One-hour) now?",
+      "options": [
+        "0.48L",
+        "11.52L",
+        "2.48L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Flow=8mL/min: it gives 0.48L. A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation."
+    }
+  },
+  {
+    "slug": "lh-jug-rounding-extra",
+    "title": "The whole-litre rounding gap",
+    "hook": "250mL per cup can leave a whole-litre fill above the exact requirement.",
+    "concept": "lh-jug-rounding-extra",
+    "family": "water",
+    "aLabel": "Exact",
+    "bLabel": "Whole-litres",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        "x",
+        250
+      ],
+      1000
+    ],
+    "formulaB": [
+      "ceil",
+      [
+        "/",
+        [
+          "*",
+          "x",
+          250
+        ],
+        1000
+      ]
+    ],
+    "variable": {
+      "label": "Cups",
+      "start": 5,
+      "min": 1,
+      "max": 12,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. For five cups, which modeled volume is larger?",
+    "options": [
+      "Exact",
+      "Whole litres",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; empty cups; volume only; no heating guidance.",
+    "details": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres.",
+    "principle": "Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities.",
+    "objective": "Compute excess created by rounding a volume to coarse increments.",
+    "misconception": "A rounded fill volume always equals the exact serving volume.",
+    "recall": {
+      "question": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Change only Cups to 8. What is B (Whole-litres) now?",
+      "options": [
+        "2L",
+        "3L",
+        "4L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Cups=8: it gives 2L. Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities."
+    }
+  },
+  {
+    "slug": "lh-water-meter-units",
+    "title": "Litres and cubic metres",
+    "hook": "A thousand litres is not a thousand cubic metres.",
+    "concept": "lh-water-meter-units",
+    "family": "water",
+    "aLabel": "Converted",
+    "bLabel": "Same-digits",
+    "formulaA": [
+      "/",
+      "x",
+      1000
+    ],
+    "formulaB": "x",
+    "variable": {
+      "label": "Litres",
+      "start": 1500,
+      "min": 1000,
+      "max": 3000,
+      "unit": "L",
+      "step": 100
+    },
+    "unit": "m³",
+    "question": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits. For 1,500L, which result has the correct cubic-metre unit?",
+    "options": [
+      "Converted",
+      "Same digits",
+      "Both"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; unit model; 1000L=1m³; B deliberately wrong.",
+    "details": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits.",
+    "principle": "Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume.",
+    "objective": "Convert a meter quantity from litres to cubic metres.",
+    "misconception": "A number can keep the same digits when its volume unit changes.",
+    "recall": {
+      "question": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits. Change only Litres to 1800L. What is B (Same-digits) now?",
+      "options": [
+        "1,800m³",
+        "1.8m³",
+        "1,802m³"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Litres=1800L: it gives 1,800m³. Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume."
+    }
+  },
+  {
+    "slug": "lh-turn-container-volume",
+    "title": "Turn it; volume stays the same",
+    "hook": "Swapping the height and width of an ideal box changes its drawing, not its capacity.",
+    "concept": "lh-turn-container-volume",
+    "family": "geometry",
+    "aLabel": "Upright",
+    "bLabel": "Rotated",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        20,
+        10,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        20,
+        "x",
+        10
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Third-side",
+      "start": 15,
+      "min": 1,
+      "max": 30,
+      "unit": "cm",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Which modeled internal capacity is larger?",
+    "options": [
+      "Upright",
+      "Rotated",
+      "Equal"
+    ],
+    "answer": 2,
+    "assumptions": "Scaled model; ideal inner dimensions; 1000cm³/L.",
+    "details": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions.",
+    "principle": "The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
+    "objective": "Separate ideal container capacity from the orientation of its dimensions.",
+    "misconception": "Turning a rectangular box changes its ideal internal volume.",
+    "recall": {
+      "question": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now?",
+      "options": [
+        "3.6L",
+        "4.6L",
+        "5.6L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation."
+    }
+  },
+  {
+    "slug": "lh-double-container-radius",
+    "title": "Double the radius, not the volume",
+    "hook": "Two ideal cylinders have equal height and radii of 3cm and 6cm.",
+    "concept": "lh-double-container-radius",
+    "family": "geometry",
+    "aLabel": "3cm-radius",
+    "bLabel": "6cm-radius",
+    "formulaA": [
+      "/",
+      [
+        "*",
+        3.141592653589793,
+        9,
+        "x"
+      ],
+      1000
+    ],
+    "formulaB": [
+      "/",
+      [
+        "*",
+        3.141592653589793,
+        36,
+        "x"
+      ],
+      1000
+    ],
+    "variable": {
+      "label": "Height",
+      "start": 10,
+      "min": 1,
+      "max": 20,
+      "unit": "cm",
+      "step": 1
+    },
+    "unit": "L",
+    "question": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Which capacity is four times the other?",
+    "options": [
+      "3cm radius",
+      "6cm radius",
+      "Neither"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; ideal cylinders; V=πr²h; 1000cm³/L.",
+    "details": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm.",
+    "principle": "Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements.",
+    "objective": "Predict cylinder capacity scaling when radius doubles at fixed height.",
+    "misconception": "Doubling radius only doubles an ideal cylinder’s capacity.",
+    "recall": {
+      "question": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Change only Height to 13cm. What is B (6cm-radius) now?",
+      "options": [
+        "1.47L",
+        "0.368L",
+        "3.47L"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Height=13cm: it gives 1.47L. Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements."
+    }
+  },
+  {
+    "slug": "lh-area-scales-square",
+    "title": "Double the side, quadruple area",
+    "hook": "Two square surfaces have side lengths 2m and 4m. Is the second only twice as large?",
+    "concept": "lh-area-scales-square",
+    "family": "geometry",
+    "aLabel": "Side-x",
+    "bLabel": "Side-2x",
+    "formulaA": [
+      "*",
+      "x",
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      2,
+      "x",
+      2,
+      "x"
+    ],
+    "variable": {
+      "label": "Side",
+      "start": 2,
+      "min": 1,
+      "max": 6,
+      "unit": "m",
+      "step": 1
+    },
+    "unit": "m²",
+    "question": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Which area is four times the other?",
+    "options": [
+      "A",
+      "B",
+      "Neither"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; ideal squares; area=side×side.",
+    "details": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s.",
+    "principle": "Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice.",
+    "objective": "Apply square scaling to area coverage.",
+    "misconception": "Doubling a square’s side only doubles the area to cover.",
+    "recall": {
+      "question": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Change only Side to 5m. What is B (Side-2x) now?",
+      "options": [
+        "100m²",
+        "25m²",
+        "102m²"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Side=5m: it gives 100m². Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice."
+    }
+  },
+  {
+    "slug": "lh-subtract-openings-area",
+    "title": "Subtract the opening once",
+    "hook": "A rectangular panel includes a 2m² opening. Counting the outline counts too much surface.",
+    "concept": "lh-subtract-openings-area",
+    "family": "geometry",
+    "aLabel": "Net-surface",
+    "bLabel": "Outline",
+    "formulaA": [
+      "-",
+      [
+        "*",
+        "x",
+        3
+      ],
+      2
+    ],
+    "formulaB": [
+      "*",
+      "x",
+      3
+    ],
+    "variable": {
+      "label": "Width",
+      "start": 4,
+      "min": 1,
+      "max": 8,
+      "unit": "m",
+      "step": 1
+    },
+    "unit": "m²",
+    "question": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering. Which area corresponds to the remaining surface?",
+    "options": [
+      "Net surface",
+      "Full outline",
+      "Both"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; ideal dimensions; fixed 2m² opening.",
+    "details": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering.",
+    "principle": "Multiply width by height for the outline, then subtract the opening’s area once. The outline is a boundary enclosing both material and empty space; it is not automatically the area needing coverage.",
+    "objective": "Subtract a stated opening from rectangular coverage area.",
+    "misconception": "The outer rectangle always equals the area requiring material.",
+    "recall": {
+      "question": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering. Change only Width to 7m. What is B (Outline) now?",
+      "options": [
+        "21m²",
+        "19m²",
+        "23m²"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Width=7m: it gives 21m². Multiply width by height for the outline, then subtract the opening’s area once. The outline is a boundary enclosing both material and empty space; it is not automatically the area needing coverage."
+    }
+  },
+  {
+    "slug": "lh-overlap-material-area",
+    "title": "The overlap needs material too",
+    "hook": "A 2cm overlap repeats along a 20cm edge. Where does its area go?",
+    "concept": "lh-overlap-material-area",
+    "family": "geometry",
+    "aLabel": "With-overlap",
+    "bLabel": "No-overlap",
+    "formulaA": [
+      "*",
+      [
+        "+",
+        "x",
+        2
+      ],
+      20
+    ],
+    "formulaB": [
+      "*",
+      "x",
+      20
+    ],
+    "variable": {
+      "label": "Width",
+      "start": 30,
+      "min": 20,
+      "max": 60,
+      "unit": "cm",
+      "step": 5
+    },
+    "unit": "cm²",
+    "question": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap. Which modeled paper area includes the overlap?",
+    "options": [
+      "With overlap",
+      "No overlap",
+      "Both"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; ideal paper; overlap=2cm; no cutting guidance.",
+    "details": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap.",
+    "principle": "The extra strip has width two and length twenty, so it adds forty square centimetres. The overlap is material that exists even when it is hidden beneath another layer.",
+    "objective": "Include a seam or overlap strip in area requirements.",
+    "misconception": "Hidden overlap does not contribute to material area.",
+    "recall": {
+      "question": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap. Change only Width to 45cm. What is B (No-overlap) now?",
+      "options": [
+        "900cm²",
+        "940cm²",
+        "902cm²"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Width=45cm: it gives 900cm². The extra strip has width two and length twenty, so it adds forty square centimetres. The overlap is material that exists even when it is hidden beneath another layer."
+    }
+  },
+  {
+    "slug": "lh-around-versus-across",
+    "title": "Around is not across",
+    "hook": "A perimeter measurement and a corner-to-corner measurement follow different paths.",
+    "concept": "lh-around-versus-across",
+    "family": "geometry",
+    "aLabel": "Perimeter",
+    "bLabel": "Diagonal",
+    "formulaA": [
+      "*",
+      2,
+      [
+        "+",
+        "x",
+        3
+      ]
+    ],
+    "formulaB": [
+      "sqrt",
+      [
+        "+",
+        [
+          "*",
+          "x",
+          "x"
+        ],
+        9
+      ]
+    ],
+    "variable": {
+      "label": "Width",
+      "start": 4,
+      "min": 1,
+      "max": 8,
+      "unit": "m",
+      "step": 1
+    },
+    "unit": "m",
+    "question": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal. Which path needs more length?",
+    "options": [
+      "Perimeter",
+      "Diagonal",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; ideal rectangle; length only.",
+    "details": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal.",
+    "principle": "Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements.",
+    "objective": "Select the correct length formula for boundary versus corner-to-corner routes.",
+    "misconception": "Every measurement associated with a rectangle is its perimeter.",
+    "recall": {
+      "question": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal. Change only Width to 7m. What is B (Diagonal) now?",
+      "options": [
+        "7.616m",
+        "20m",
+        "9.616m"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Width=7m: it gives 7.616m. Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements."
+    }
+  },
+  {
+    "slug": "lh-reuse-cost-per-use",
+    "title": "When reuse catches up",
+    "hook": "€12 once or €0.20 each use: when do their modeled costs per use match?",
+    "concept": "lh-reuse-cost-per-use",
+    "family": "reuse",
+    "aLabel": "Reusable",
+    "bLabel": "Single-use",
+    "formulaA": [
+      "/",
+      12,
+      "x"
+    ],
+    "formulaB": 0.2,
+    "variable": {
+      "label": "Uses",
+      "start": 50,
+      "min": 40,
+      "max": 80,
+      "unit": "",
+      "step": 5
+    },
+    "unit": "€/use",
+    "question": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded. At fifty uses, which modeled cost per use is lower?",
+    "options": [
+      "Reusable",
+      "Single-use",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional prices; upkeep excluded; equivalent service.",
+    "details": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded.",
+    "principle": "Divide a one-time amount by uses to obtain its modeled cost per use. Here it matches €0.20 at sixty uses. This omits upkeep, lifespan and environmental impacts and makes no purchasing recommendation.",
+    "objective": "Find a reuse cost-per-use crossover under explicitly limited costs.",
+    "misconception": "A reusable purchase is automatically cheaper at every use count.",
+    "recall": {
+      "question": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match?",
+      "options": [
+        "90 uses",
+        "18 uses",
+        "60 uses"
+      ],
+      "answer": 0,
+      "why": "At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions."
+    }
+  },
+  {
+    "slug": "lh-duplex-sheet-rounding",
+    "title": "The last sheet can be half-used",
+    "hook": "Two pages per sheet: what happens when the page count is odd?",
+    "concept": "lh-duplex-sheet-rounding",
+    "family": "reuse",
+    "aLabel": "Single-sided",
+    "bLabel": "Double-sided",
+    "formulaA": "x",
+    "formulaB": [
+      "ceil",
+      [
+        "/",
+        "x",
+        2
+      ]
+    ],
+    "variable": {
+      "label": "Pages",
+      "start": 7,
+      "min": 1,
+      "max": 15,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "sheets",
+    "question": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. For seven pages, which sheet count is smaller?",
+    "options": [
+      "Single-sided",
+      "Double-sided",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; page-count model; two printable sides/sheet.",
+    "details": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed.",
+    "principle": "Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet.",
+    "objective": "Compute whole-sheet needs for odd double-sided page counts.",
+    "misconception": "Double-sided printing always uses exactly half a sheet per page.",
+    "recall": {
+      "question": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Change only Pages to 10. What is B (Double-sided) now?",
+      "options": [
+        "5sheets",
+        "10sheets",
+        "7sheets"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Pages=10: it gives 5sheets. Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet."
+    }
+  },
+  {
+    "slug": "lh-offcuts-not-one-piece",
+    "title": "Two offcuts are not one long piece",
+    "hook": "A 90cm piece and a 50cm piece cannot supply two unjoined 60cm lengths.",
+    "concept": "lh-offcuts-not-one-piece",
+    "family": "reuse",
+    "aLabel": "Separate",
+    "bLabel": "Pooled-length",
+    "formulaA": [
+      "+",
+      [
+        "*",
+        [
+          "floor",
+          [
+            "/",
+            90,
+            "x"
+          ]
+        ],
+        "x"
+      ],
+      [
+        "*",
+        [
+          "floor",
+          [
+            "/",
+            50,
+            "x"
+          ]
+        ],
+        "x"
+      ]
+    ],
+    "formulaB": [
+      "*",
+      [
+        "floor",
+        [
+          "/",
+          140,
+          "x"
+        ]
+      ],
+      "x"
+    ],
+    "variable": {
+      "label": "Piece-size",
+      "start": 60,
+      "min": 30,
+      "max": 80,
+      "unit": "cm",
+      "step": 5
+    },
+    "unit": "cm",
+    "question": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Which result represents usable separate pieces at 60cm?",
+    "options": [
+      "Separate",
+      "Pooled length",
+      "Both"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; no joining; cut loss=0; lengths only.",
+    "details": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss.",
+    "principle": "Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison.",
+    "objective": "Respect indivisible stock-piece boundaries when counting reusable offcuts.",
+    "misconception": "Adding offcut lengths makes them equivalent to one continuous piece.",
+    "recall": {
+      "question": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Change only Piece-size to 75cm. What is B (Pooled-length) now?",
+      "options": [
+        "75cm",
+        "76cm",
+        "77cm"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Piece-size=75cm: it gives 75cm. Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison."
+    }
+  },
+  {
+    "slug": "lh-material-reuse-account",
+    "title": "Count material, state the boundary",
+    "hook": "A heavier reusable container and light replacements accumulate material differently.",
+    "concept": "lh-material-reuse-account",
+    "family": "reuse",
+    "aLabel": "Reusable",
+    "bLabel": "Replaced",
+    "formulaA": [
+      "+",
+      200,
+      [
+        "*",
+        2,
+        "x"
+      ]
+    ],
+    "formulaB": [
+      "*",
+      20,
+      "x"
+    ],
+    "variable": {
+      "label": "Uses",
+      "start": 10,
+      "min": 1,
+      "max": 30,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "g",
+    "question": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. At ten uses, which modeled material total is lower?",
+    "options": [
+      "Reusable",
+      "Replacements",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; toy masses; material only; no lifecycle claim.",
+    "details": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g.",
+    "principle": "Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact.",
+    "objective": "Compare cumulative material amounts while stating what the account excludes.",
+    "misconception": "A material-mass comparison alone proves the lower environmental impact.",
+    "recall": {
+      "question": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Change only Uses to 13. What is B (Replaced) now?",
+      "options": [
+        "260g",
+        "226g",
+        "262g"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Uses=13: it gives 260g. Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact."
+    }
+  },
+  {
+    "slug": "lh-visit-fee-crossover",
+    "title": "Entry fee versus per-visit fee",
+    "hook": "A fixed access fee and a smaller visit charge cross a pay-per-visit total.",
+    "concept": "lh-visit-fee-crossover",
+    "family": "receipt",
+    "aLabel": "Per-visit",
+    "bLabel": "Fee+visits",
+    "formulaA": [
+      "*",
+      10,
+      "x"
+    ],
+    "formulaB": [
+      "+",
+      30,
+      [
+        "*",
+        4,
+        "x"
+      ]
+    ],
+    "variable": {
+      "label": "Visits",
+      "start": 3,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent. At three visits, which modeled total is lower?",
+    "options": [
+      "Per visit",
+      "Fee + visits",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional prices; equivalent service; no recommendation.",
+    "details": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent.",
+    "principle": "Separate the one-time term from the per-visit term. The two totals match at five visits in this model. The comparison does not determine which service fits someone’s needs or predict future attendance.",
+    "objective": "Calculate a fixed-access versus per-visit crossover.",
+    "misconception": "A smaller per-visit charge guarantees a smaller total.",
+    "recall": {
+      "question": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent. Change only Visits to 6. What is B (Fee+visits) now?",
+      "options": [
+        "€54",
+        "€60",
+        "€56"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Visits=6: it gives €54. Separate the one-time term from the per-visit term. The two totals match at five visits in this model. The comparison does not determine which service fits someone’s needs or predict future attendance."
+    }
+  },
+  {
+    "slug": "lh-billing-rounds-hours",
+    "title": "Billing rounds the quantity",
+    "hook": "Three and a half hours can be billed as four complete hours.",
+    "concept": "lh-billing-rounds-hours",
+    "family": "receipt",
+    "aLabel": "Hourly",
+    "bLabel": "Daily",
+    "formulaA": [
+      "*",
+      4,
+      [
+        "ceil",
+        "x"
+      ]
+    ],
+    "formulaB": [
+      "*",
+      20,
+      [
+        "ceil",
+        [
+          "/",
+          "x",
+          24
+        ]
+      ]
+    ],
+    "variable": {
+      "label": "Duration",
+      "start": 3.5,
+      "min": 1,
+      "max": 8,
+      "unit": "h",
+      "step": 0.5
+    },
+    "unit": "€",
+    "question": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period. At 3.5h, which modeled bill is lower?",
+    "options": [
+      "Hourly",
+      "Daily",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional rules; each begun unit billed.",
+    "details": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period.",
+    "principle": "The billing unit can differ from measured duration. A rounds each begun hour upward; B rounds each begun day upward. Apply the declared rounding rule before multiplying by its price.",
+    "objective": "Apply billing increments and ceiling rules to fractional duration.",
+    "misconception": "A partial hour is always billed as the exact fraction used.",
+    "recall": {
+      "question": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period. Change only Duration to 5.0h. What is B (Daily) now?",
+      "options": [
+        "€20",
+        "€21",
+        "€22"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Duration=5.0h: it gives €20. The billing unit can differ from measured duration. A rounds each begun hour upward; B rounds each begun day upward. Apply the declared rounding rule before multiplying by its price."
+    }
+  },
+  {
+    "slug": "lh-ticket-bundle-unused",
+    "title": "A bundle includes unused tickets",
+    "hook": "Five-ticket bundles can force a second bundle for the sixth trip.",
+    "concept": "lh-ticket-bundle-unused",
+    "family": "receipt",
+    "aLabel": "Singles",
+    "bLabel": "Five-packs",
+    "formulaA": [
+      "*",
+      2,
+      "x"
+    ],
+    "formulaB": [
+      "*",
+      8,
+      [
+        "ceil",
+        [
+          "/",
+          "x",
+          5
+        ]
+      ]
+    ],
+    "variable": {
+      "label": "Trips",
+      "start": 6,
+      "min": 1,
+      "max": 12,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here. For six trips, which checkout is lower?",
+    "options": [
+      "Singles",
+      "Five-packs",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; fictional fares; leftover value=0; no recommendation.",
+    "details": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here.",
+    "principle": "A sixth required trip needs a second complete bundle under this rule. The checkout pays for unused tickets too. Effective use count and purchased count are different denominators.",
+    "objective": "Compare exact-demand tickets with indivisible ticket bundles.",
+    "misconception": "A discounted bundle is cheaper for every required trip count.",
+    "recall": {
+      "question": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here. Change only Trips to 9. What is B (Five-packs) now?",
+      "options": [
+        "€16",
+        "€17",
+        "€18"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Trips=9: it gives €16. A sixth required trip needs a second complete bundle under this rule. The checkout pays for unused tickets too. Effective use count and purchased count are different denominators."
+    }
+  },
+  {
+    "slug": "lh-parcel-fee-repeats",
+    "title": "One parcel fee, many item charges",
+    "hook": "A fixed parcel fee is different from a fee attached to each item.",
+    "concept": "lh-parcel-fee-repeats",
+    "family": "receipt",
+    "aLabel": "Separate",
+    "bLabel": "Combined",
+    "formulaA": [
+      "*",
+      3.5,
+      "x"
+    ],
+    "formulaB": [
+      "+",
+      3,
+      [
+        "*",
+        0.5,
+        "x"
+      ]
+    ],
+    "variable": {
+      "label": "Items",
+      "start": 4,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. For four items, which charge is lower?",
+    "options": [
+      "Separate parcels",
+      "One parcel",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional policy; shared parcel permitted; no other fees.",
+    "details": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel.",
+    "principle": "The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per.",
+    "objective": "Separate per-parcel overhead from per-item charges when aggregating shipments.",
+    "misconception": "Combining parcels removes every charge, including per-item charges.",
+    "recall": {
+      "question": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Change only Items to 7. What is B (Combined) now?",
+      "options": [
+        "€6.5",
+        "€24.5",
+        "€8.5"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Items=7: it gives €6.5. The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per."
+    }
+  },
+  {
+    "slug": "lh-weighted-unit-average",
+    "title": "Average the quantities too",
+    "hook": "Mixing different quantities makes a simple average of unit prices misleading.",
+    "concept": "lh-weighted-unit-average",
+    "family": "allocation",
+    "aLabel": "Equal-weights",
+    "bLabel": "Chosen-weights",
+    "formulaA": 4.5,
+    "formulaB": [
+      "/",
+      [
+        "+",
+        [
+          "*",
+          3,
+          "x"
+        ],
+        6
+      ],
+      [
+        "+",
+        "x",
+        1
+      ]
+    ],
+    "variable": {
+      "label": "Cheap-mass",
+      "start": 2,
+      "min": 1,
+      "max": 5,
+      "unit": "kg",
+      "step": 1
+    },
+    "unit": "€/kg",
+    "question": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Which mixture has the lower average price at A=2kg?",
+    "options": [
+      "Equal weights",
+      "Chosen weights",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; fictional prices; additive masses; no mixing guidance.",
+    "details": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B.",
+    "principle": "Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward.",
+    "objective": "Compute a quantity-weighted average rather than averaging unit prices blindly.",
+    "misconception": "A mixture’s average unit price is always the simple mean of its labels.",
+    "recall": {
+      "question": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Change only Cheap-mass to 5kg. What is B (Chosen-weights) now?",
+      "options": [
+        "3.5€/kg",
+        "4.5€/kg",
+        "5.5€/kg"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward."
+    }
+  },
+  {
+    "slug": "lh-capacity-batch-count",
+    "title": "Capacity changes batch count",
+    "hook": "Twenty objects and a six-object carrier: a remainder still needs another trip.",
+    "concept": "lh-capacity-batch-count",
+    "family": "allocation",
+    "aLabel": "Six-capacity",
+    "bLabel": "Eight-capacity",
+    "formulaA": [
+      "ceil",
+      [
+        "/",
+        "x",
+        6
+      ]
+    ],
+    "formulaB": [
+      "ceil",
+      [
+        "/",
+        "x",
+        8
+      ]
+    ],
+    "variable": {
+      "label": "Objects",
+      "start": 20,
+      "min": 1,
+      "max": 36,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "batches",
+    "question": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable. For twenty objects, which needs fewer batches?",
+    "options": [
+      "Six capacity",
+      "Eight capacity",
+      "Equal"
+    ],
+    "answer": 1,
+    "assumptions": "Scaled model; ideal usable capacities; no weight or safety claim.",
+    "details": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable.",
+    "principle": "Divide object count by usable capacity and round up. The partial final batch still counts as a complete trip in this quantity-only model. Volume, weight and safe carrying limits would require separate constraints.",
+    "objective": "Calculate whole batch counts using a stated usable capacity.",
+    "misconception": "A fractional last batch can be ignored when counting trips.",
+    "recall": {
+      "question": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable. Change only Objects to 23. What is B (Eight-capacity) now?",
+      "options": [
+        "3batches",
+        "4batches",
+        "5batches"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Objects=23: it gives 3batches. Divide object count by usable capacity and round up. The partial final batch still counts as a complete trip in this quantity-only model. Volume, weight and safe carrying limits would require separate constraints."
+    }
+  },
+  {
+    "slug": "lh-cents-euros-conversion",
+    "title": "Move the decimal with the unit",
+    "hook": "125 cents is not €12.50. The unit tells you the conversion factor.",
+    "concept": "lh-cents-euros-conversion",
+    "family": "receipt",
+    "aLabel": "Hundredths",
+    "bLabel": "Tenths",
+    "formulaA": [
+      "/",
+      "x",
+      100
+    ],
+    "formulaB": [
+      "/",
+      "x",
+      10
+    ],
+    "variable": {
+      "label": "Cents",
+      "start": 125,
+      "min": 100,
+      "max": 300,
+      "unit": "c",
+      "step": 5
+    },
+    "unit": "€",
+    "question": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. For 125 cents, which conversion is correct?",
+    "options": [
+      "Hundredths",
+      "Tenths",
+      "Both"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; unit arithmetic; 100 cents/€; B deliberately wrong.",
+    "details": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead.",
+    "principle": "The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason.",
+    "objective": "Convert cents to euros using the stated unit relationship.",
+    "misconception": "Converting cents to euros requires moving the decimal only one place.",
+    "recall": {
+      "question": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Change only Cents to 140c. What is B (Tenths) now?",
+      "options": [
+        "€14",
+        "€1.4",
+        "€16"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Cents=140c: it gives €14. The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason."
+    }
+  },
+  {
+    "slug": "lh-round-lines-versus-total",
+    "title": "Round lines or round the total",
+    "hook": "Rounding three tiny lines separately can differ from rounding their sum once.",
+    "concept": "lh-round-lines-versus-total",
+    "family": "receipt",
+    "aLabel": "Each-line",
+    "bLabel": "Total-once",
+    "formulaA": [
+      "*",
+      "x",
+      [
+        "round",
+        0.335
+      ]
+    ],
+    "formulaB": [
+      "round",
+      [
+        "*",
+        "x",
+        0.335
+      ]
+    ],
+    "variable": {
+      "label": "Lines",
+      "start": 3,
+      "min": 1,
+      "max": 10,
+      "unit": "",
+      "step": 1
+    },
+    "unit": "€",
+    "question": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. For three lines, which modeled result is higher?",
+    "options": [
+      "Each line",
+      "Total once",
+      "Equal"
+    ],
+    "answer": 0,
+    "assumptions": "Scaled model; toy rule: nearest cent, half upward; no billing-law claim.",
+    "details": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once.",
+    "principle": "Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
+    "objective": "Compare line-level rounding with aggregate rounding under a stated convention.",
+    "misconception": "Rounding before summing is always identical to rounding after summing.",
+    "recall": {
+      "question": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now?",
+      "options": [
+        "€2.01",
+        "€2.04",
+        "€4.01"
+      ],
+      "answer": 0,
+      "why": "Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule."
+    }
+  }
+]

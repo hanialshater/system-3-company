@@ -1,0 +1,84 @@
+{
+  "slug": "explain-the-link",
+  "title": "Remember the links",
+  "hook": "A list of words is not yet an explanation.",
+  "domain": "lifehacks",
+  "concept": "explain-the-link",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Reconstruct an explicit cause-and-consequence chain without its source."
+    ]
+  },
+  "misconception": "Alphabetical words",
+  "objective": "Reconstruct an explicit cause-and-consequence chain without its source.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: A list of words is not yet an explanation. Which test preserves the explanatory links? Correct option: Ordered cause chain. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.explain-the-link.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The example says cloud then rain then puddle. This checks the stated chain, not whether every cloud produces rain.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.explain-the-link.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, explain-the-link fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "id": "lifehacks.explain-the-link.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Ordered cause chain. The example says cloud then rain then puddle. This checks the stated chain, not whether every cloud produces rain.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.explain-the-link.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which test preserves the explanatory links?",
+    "options": [
+      "Ordered cause chain",
+      "Alphabetical words"
+    ],
+    "answer": 0,
+    "why": "The example says cloud then rain then puddle. This checks the stated chain, not whether every cloud produces rain."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:explain-the-link",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "slug": "square-bow-stays-tied",
+  "title": "Which way does your bow lie?",
+  "hook": "Which wrap pattern tends to hold better?",
+  "domain": "lifehacks",
+  "concept": "shoelace-square-bow",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose.",
+  "claims": [
+    {
+      "id": "lifehacks.square-bow-stays-tied.c1",
+      "text": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose.",
+      "support": "source",
+      "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c2",
+      "text": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Illustrative remaining loop=20−steps×rate mm, clipped at 0; matching rate=0.8, opposing=0.3. No claimed empirical lifetime.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c3",
+      "text": "Both illustrative loops start at 20 mm at step 0. Changing the second wrap changes its geometry and model loss rate without advancing steps. Walk 20 steps advances from 0 to 20: remaining loop = max(0, 20 − steps × rate) mm, with matching rate 0.8 and opposing rate 0.3. The displayed results are 4 mm and 14 mm. No empirical lifetime is claimed.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts and src/components/lifehacks/HomeLesson.tsx: 20 − 20 × 0.8 = 4 mm; 20 − 20 × 0.3 = 14 mm. The zero-step initial value is in src/lib/lifehacks/home-lessons.ts. Rates are illustrative coefficients, not measurements.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c4",
+      "text": "Which wrap pattern tends to hold better?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.square-bow-stays-tied.c5",
+      "text": "Recall: Your first stage is left-over-right; the second is also left-over-right and the bow points along the shoe. Which change makes the stages oppose? Correct answer: Make the second stage right-over-left. Right-over-left opposes the left-over-right first stage, producing the balanced slipped reef bow in the stated schematic. The bow tends to sit across the shoe, but it can still fail. The drawing is not a tying tutorial.",
+      "support": "source",
+      "source": "Focused transfer prompt. Scenario inputs are stipulated. Apply lifehacks.square-bow-stays-tied.c1–c3; Right-over-left opposes the left-over-right first stage, producing the balanced slipped reef bow in the stated schematic. The bow tends to sit across the shoe, but it can still fail. The drawing is not a tying tutorial.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Your first stage is left-over-right; the second is also left-over-right and the bow points along the shoe. Which change makes the stages oppose?",
+    "options": [
+      "Keep both stages left-over-right and pull harder",
+      "Make the second stage right-over-left",
+      "Assume any across-shoe bow can never fail"
+    ],
+    "answer": 1,
+    "why": "Right-over-left opposes the left-over-right first stage, producing the balanced slipped reef bow in the stated schematic. The bow tends to sit across the shoe, but it can still fail. The drawing is not a tying tutorial."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:shoelace-square-bow",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "side-by-side",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart",
+    "two-panel-shared-control"
+  ]
+}

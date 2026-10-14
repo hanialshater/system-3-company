@@ -1,0 +1,93 @@
+{
+  "slug": "half-size-two-towels",
+  "title": "Cut size, keep area",
+  "hook": "Does splitting this fully exposed sheet add face area?",
+  "domain": "lifehacks",
+  "concept": "half-size-two-towels",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation.",
+  "claims": [
+    {
+      "id": "lifehacks.half-size-two-towels.c1",
+      "text": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.c2",
+      "text": "Edges and fabric thickness are omitted from this area comparison.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.c3",
+      "text": "Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.c4",
+      "text": "Does splitting this fully exposed sheet add face area?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.c5",
+      "text": "How is cutting one flat sheet different from opening a folded one?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How is cutting one flat sheet different from opening a folded one?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation. Edges and fabric thickness are omitted from this area comparison."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:half-size-two-towels",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "include-the-wrap-up",
+  "title": "The finish is not the end",
+  "hook": "The call ends, but notes still need ten minutes.",
+  "domain": "lifehacks",
+  "concept": "include-the-wrap-up",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Include a required follow-up block in total calendar capacity."
+    ]
+  },
+  "misconception": "Call alone",
+  "objective": "Include a required follow-up block in total calendar capacity.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The call ends, but notes still need ten minutes. Which plan counts the follow-up? Correct option: Call plus notes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.include-the-wrap-up.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.include-the-wrap-up.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, include-the-wrap-up fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.include-the-wrap-up.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Call plus notes. The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.include-the-wrap-up.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which plan counts the follow-up?",
+    "options": [
+      "Call plus notes",
+      "Call alone"
+    ],
+    "answer": 0,
+    "why": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:include-the-wrap-up",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

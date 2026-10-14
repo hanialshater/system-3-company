@@ -1,0 +1,87 @@
+{
+  "slug": "lh-two-for-one-boundary",
+  "title": "Two-for-one has a boundary",
+  "hook": "A promotion can change its effective price when you need an odd quantity.",
+  "domain": "lifehacks",
+  "concept": "lh-two-for-one-boundary",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Account for indivisible promotional bundles and odd demand."
+    ]
+  },
+  "misconception": "Two-for-one always halves the checkout cost for the exact quantity needed.",
+  "objective": "Account for indivisible promotional bundles and odd demand.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-two-for-one-boundary.c1",
+      "text": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Scaled model; fictional offer; pair-only purchase.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-two-for-one-boundary.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Items=3, A=€9 and B=€8. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-two-for-one-boundary.c3",
+      "text": "A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-two-for-one-boundary.c4",
+      "text": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Change only Items to 6. What is B (Pairs) now? Correct: €12. Use B's stated rule with Items=6: it gives €12. A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Change only Items to 6. What is B (Pairs) now?",
+    "options": [
+      "€12",
+      "€18",
+      "€14"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Items=6: it gives €12. A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-two-for-one-boundary",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "wet-knit-hang-stretch",
+  "title": "Hanging concentrates the load",
+  "hook": "Which ideal support shares less load per point?",
+  "domain": "lifehacks",
+  "concept": "wet-knit-hang-stretch",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "In an ideal equal-share model, more support points reduce the load assigned to each. A garment’s care label can require flat drying; this drawing explains support sharing without predicting fabric stretch."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "In an ideal equal-share model, more support points reduce the load assigned to each. A garment’s care label can require flat drying; this drawing explains support sharing without predicting fabric stretch.",
+  "claims": [
+    {
+      "id": "lifehacks.wet-knit-hang-stretch.c1",
+      "text": "In an ideal equal-share model, more support points reduce the load assigned to each. A garment’s care label can require flat drying; this drawing explains support sharing without predicting fabric stretch.",
+      "support": "source",
+      "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wet-knit-hang-stretch.c2",
+      "text": "Real knit deformation is not calculated. Follow the garment’s drying instructions.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Load per point=water-plus-garment mass/2 or /6 g-equivalent; equal sharing assumed.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wet-knit-hang-stretch.c3",
+      "text": "Load per point=water-plus-garment mass/2 or /6 g-equivalent; equal sharing assumed.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wet-knit-hang-stretch.c4",
+      "text": "Which ideal support shares less load per point?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.wet-knit-hang-stretch.c5",
+      "text": "Why should a flat-dry instruction take priority over a convenient hanger?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why should a flat-dry instruction take priority over a convenient hanger?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "In an ideal equal-share model, more support points reduce the load assigned to each. A garment’s care label can require flat drying; this drawing explains support sharing without predicting fabric stretch. Real knit deformation is not calculated. Follow the garment’s drying instructions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:wet-knit-hang-stretch",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "lh-split-order-fixed-fee",
+  "title": "One fixed fee per order",
+  "hook": "The same goods can produce different totals when a fee repeats.",
+  "domain": "lifehacks",
+  "concept": "lh-split-order-fixed-fee",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Separate per-order charges from per-item costs."
+    ]
+  },
+  "misconception": "Equal merchandise subtotals guarantee equal checkout totals.",
+  "objective": "Separate per-order charges from per-item costs.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c1",
+      "text": "The same goods total €24. Each order adds a fictional €4 delivery fee. Scaled model; same goods; €4/order; no discounts.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Orders=2, A=€32 and B=€28. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c3",
+      "text": "A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c4",
+      "text": "The same goods total €24. Each order adds a fictional €4 delivery fee. Change only Orders to 5. What is B (Combined) now? Correct: €28. Use B's stated rule with Orders=5: it gives €28. A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The same goods total €24. Each order adds a fictional €4 delivery fee. Change only Orders to 5. What is B (Combined) now?",
+    "options": [
+      "€28",
+      "€44",
+      "€30"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Orders=5: it gives €28. A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-split-order-fixed-fee",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

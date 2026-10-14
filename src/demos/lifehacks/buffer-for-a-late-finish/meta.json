@@ -1,0 +1,84 @@
+{
+  "slug": "buffer-for-a-late-finish",
+  "title": "Leave a finish buffer",
+  "hook": "One task runs five minutes late. Which appointment absorbs it?",
+  "domain": "lifehacks",
+  "concept": "buffer-for-a-late-finish",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish planned slack from overlapping bookings."
+    ]
+  },
+  "misconception": "Touching blocks",
+  "objective": "Distinguish planned slack from overlapping bookings.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: One task runs five minutes late. Which appointment absorbs it? What keeps five minutes of delay from overlapping the next task? Correct option: A five-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.buffer-for-a-late-finish.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "A gap can absorb up to its length of delay in this schedule. It is a stated allowance, not a guarantee about real tasks.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.buffer-for-a-late-finish.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, buffer-for-a-late-finish fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline).",
+      "id": "lifehacks.buffer-for-a-late-finish.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: A five-minute gap. A gap can absorb up to its length of delay in this schedule. It is a stated allowance, not a guarantee about real tasks.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.buffer-for-a-late-finish.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What keeps five minutes of delay from overlapping the next task?",
+    "options": [
+      "A five-minute gap",
+      "Touching blocks"
+    ],
+    "answer": 0,
+    "why": "A gap can absorb up to its length of delay in this schedule. It is a stated allowance, not a guarantee about real tasks."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:buffer-for-a-late-finish",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

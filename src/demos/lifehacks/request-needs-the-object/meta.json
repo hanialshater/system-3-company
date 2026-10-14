@@ -1,0 +1,84 @@
+{
+  "slug": "request-needs-the-object",
+  "title": "Point to the exact object",
+  "hook": "“Review the document” is ambiguous when three drafts exist.",
+  "domain": "lifehacks",
+  "concept": "request-needs-the-object",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Specify artifact version and review scope."
+    ]
+  },
+  "misconception": "The document",
+  "objective": "Specify artifact version and review scope.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: “Review the document” is ambiguous when three drafts exist. Which request points to one review target? Correct option: Version plus scope. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.request-needs-the-object.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The named version and scope identify the requested object and inspection. The exercise does not assume the reviewer has permissions or has accepted the request.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.request-needs-the-object.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, request-needs-the-object fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.request-needs-the-object.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Version plus scope. The named version and scope identify the requested object and inspection. The exercise does not assume the reviewer has permissions or has accepted the request.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.request-needs-the-object.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which request points to one review target?",
+    "options": [
+      "Version plus scope",
+      "The document"
+    ],
+    "answer": 0,
+    "why": "The named version and scope identify the requested object and inspection. The exercise does not assume the reviewer has permissions or has accepted the request."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:request-needs-the-object",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

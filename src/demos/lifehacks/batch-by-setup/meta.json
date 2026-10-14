@@ -1,0 +1,84 @@
+{
+  "slug": "batch-by-setup",
+  "title": "Batch the shared setup",
+  "hook": "Changing contexts costs two minutes here. Count the changes.",
+  "domain": "lifehacks",
+  "concept": "batch-by-setup",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Compare setup overhead under an explicit switching cost."
+    ]
+  },
+  "misconception": "Alternate tags",
+  "objective": "Compare setup overhead under an explicit switching cost.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Changing contexts costs two minutes here. Count the changes. Which order needs fewer setup switches? Correct option: Group equal tags. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.batch-by-setup.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.batch-by-setup.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, batch-by-setup fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.batch-by-setup.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Group equal tags. Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.batch-by-setup.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which order needs fewer setup switches?",
+    "options": [
+      "Group equal tags",
+      "Alternate tags"
+    ],
+    "answer": 0,
+    "why": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:batch-by-setup",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

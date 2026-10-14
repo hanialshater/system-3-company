@@ -1,0 +1,93 @@
+{
+  "slug": "measure-diagonal-for-square",
+  "title": "Equal sides do not prove square",
+  "hook": "Which shape has equal diagonals in this example?",
+  "domain": "lifehacks",
+  "concept": "measure-diagonal-for-square",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "A parallelogram can retain opposite side lengths while its corners skew. Its two diagonals differ unless the included angle is ninety degrees in this example; a diagonal comparison detects the skew."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "A parallelogram can retain opposite side lengths while its corners skew. Its two diagonals differ unless the included angle is ninety degrees in this example; a diagonal comparison detects the skew.",
+  "claims": [
+    {
+      "id": "lifehacks.measure-diagonal-for-square.c1",
+      "text": "A parallelogram can retain opposite side lengths while its corners skew. Its two diagonals differ unless the included angle is ninety degrees in this example; a diagonal comparison detects the skew.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; For side lengths60 and input cm: square diagonals=sqrt(a²+b²); skew angle70° gives sqrt(a²+b²±2abcos70°).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.measure-diagonal-for-square.c2",
+      "text": "Equal diagonals alone do not prove every arbitrary quadrilateral is a rectangle; the parallelogram condition matters.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; For side lengths60 and input cm: square diagonals=sqrt(a²+b²); skew angle70° gives sqrt(a²+b²±2abcos70°).",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.measure-diagonal-for-square.c3",
+      "text": "For side lengths60 and input cm: square diagonals=sqrt(a²+b²); skew angle70° gives sqrt(a²+b²±2abcos70°).",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.measure-diagonal-for-square.c4",
+      "text": "Which shape has equal diagonals in this example?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.measure-diagonal-for-square.c5",
+      "text": "Which shape assumption makes this diagonal check informative?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which shape assumption makes this diagonal check informative?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "A parallelogram can retain opposite side lengths while its corners skew. Its two diagonals differ unless the included angle is ninety degrees in this example; a diagonal comparison detects the skew. Equal diagonals alone do not prove every arbitrary quadrilateral is a rectangle; the parallelogram condition matters."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:measure-diagonal-for-square",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

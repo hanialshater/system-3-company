@@ -1,0 +1,93 @@
+{
+  "slug": "duplicates-two-stations",
+  "title": "One tool or two locations?",
+  "hook": "Which layout removes the shown shuttle trips?",
+  "domain": "lifehacks",
+  "concept": "duplicates-two-stations",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The example alternates between two stations. A tool at each avoids carrying one back and forth, while increasing the number of tools stored; the stage makes that trade-off explicit."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The example alternates between two stations. A tool at each avoids carrying one back and forth, while increasing the number of tools stored; the stage makes that trade-off explicit.",
+  "claims": [
+    {
+      "id": "lifehacks.duplicates-two-stations.c1",
+      "text": "The example alternates between two stations. A tool at each avoids carrying one back and forth, while increasing the number of tools stored; the stage makes that trade-off explicit.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Travel=distance×4 transfers or0; stored tools=1 or2.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.duplicates-two-stations.c2",
+      "text": "This is a chosen route, not a claim that duplicates always improve organisation.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Travel=distance×4 transfers or0; stored tools=1 or2.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.duplicates-two-stations.c3",
+      "text": "Travel=distance×4 transfers or0; stored tools=1 or2.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.duplicates-two-stations.c4",
+      "text": "Which layout removes the shown shuttle trips?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.duplicates-two-stations.c5",
+      "text": "Which cost increases when duplicates remove a shared-tool route?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which cost increases when duplicates remove a shared-tool route?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The example alternates between two stations. A tool at each avoids carrying one back and forth, while increasing the number of tools stored; the stage makes that trade-off explicit. This is a chosen route, not a claim that duplicates always improve organisation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:duplicates-two-stations",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "drawer-divider-cost",
+  "title": "Dividers eat drawer width",
+  "hook": "Which estimate leaves room for four compartments?",
+  "domain": "lifehacks",
+  "concept": "drawer-divider-cost",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Dividers occupy space too. The usable width of each compartment is the drawer width minus the internal walls, divided by the number of compartments."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Dividers occupy space too. The usable width of each compartment is the drawer width minus the internal walls, divided by the number of compartments.",
+  "claims": [
+    {
+      "id": "lifehacks.drawer-divider-cost.c1",
+      "text": "Dividers occupy space too. The usable width of each compartment is the drawer width minus the internal walls, divided by the number of compartments.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Four compartments: naive width=W/4; actual width=(W−3×1)/4 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drawer-divider-cost.c2",
+      "text": "Use inside dimensions and the actual material thickness; this is a straight rectangular drawer.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Four compartments: naive width=W/4; actual width=(W−3×1)/4 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drawer-divider-cost.c3",
+      "text": "Four compartments: naive width=W/4; actual width=(W−3×1)/4 cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drawer-divider-cost.c4",
+      "text": "Which estimate leaves room for four compartments?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.drawer-divider-cost.c5",
+      "text": "Why can four ten-centimetre compartments fail in a forty-centimetre drawer?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can four ten-centimetre compartments fail in a forty-centimetre drawer?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Dividers occupy space too. The usable width of each compartment is the drawer width minus the internal walls, divided by the number of compartments. Use inside dimensions and the actual material thickness; this is a straight rectangular drawer."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:drawer-divider-cost",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

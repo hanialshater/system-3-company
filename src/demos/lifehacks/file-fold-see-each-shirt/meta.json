@@ -1,0 +1,93 @@
+{
+  "slug": "file-fold-see-each-shirt",
+  "title": "See every shirt edge",
+  "hook": "Which arrangement exposes every coloured edge?",
+  "domain": "lifehacks",
+  "concept": "file-fold-see-each-shirt",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The benefit here is selection, not a magical volume reduction."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The benefit here is selection, not a magical volume reduction.",
+  "claims": [
+    {
+      "id": "lifehacks.file-fold-see-each-shirt.c1",
+      "text": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The benefit here is selection, not a magical volume reduction.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Visible edges=1 for stack or N for row; hidden=N−visible. No claimed retrieval-time measurement.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.file-fold-see-each-shirt.c2",
+      "text": "Choose a stable arrangement and drawer depth suited to the garments.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Visible edges=1 for stack or N for row; hidden=N−visible. No claimed retrieval-time measurement.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.file-fold-see-each-shirt.c3",
+      "text": "Visible edges=1 for stack or N for row; hidden=N−visible. No claimed retrieval-time measurement.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.file-fold-see-each-shirt.c4",
+      "text": "Which arrangement exposes every coloured edge?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.file-fold-see-each-shirt.c5",
+      "text": "What does file folding improve even when it saves no material volume?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What does file folding improve even when it saves no material volume?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "This drawing counts visible item edges. A horizontal stack hides the lower tops, while a standing row exposes each edge. The benefit here is selection, not a magical volume reduction. Choose a stable arrangement and drawer depth suited to the garments."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:file-fold-see-each-shirt",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "care-label-first-choice",
+  "title": "The label beats the fastest layout",
+  "hook": "Which layout follows the shown flat-dry instruction?",
+  "domain": "lifehacks",
+  "concept": "care-label-first-choice",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space.",
+  "claims": [
+    {
+      "id": "lifehacks.care-label-first-choice.c1",
+      "text": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space.",
+      "support": "source",
+      "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.c2",
+      "text": "Read the real label; different garments permit different processes. No care-symbol artwork is reproduced.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Compatible items=0 if all chosen garments hang, or N when placed flat, given the stated flat-dry instruction.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.c3",
+      "text": "Compatible items=0 if all chosen garments hang, or N when placed flat, given the stated flat-dry instruction.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.c4",
+      "text": "Which layout follows the shown flat-dry instruction?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.c5",
+      "text": "Which information should you check before applying a generic drying hack?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which information should you check before applying a generic drying hack?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space. Read the real label; different garments permit different processes. No care-symbol artwork is reproduced."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:care-label-first-choice",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

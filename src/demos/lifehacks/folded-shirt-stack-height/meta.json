@@ -1,0 +1,93 @@
+{
+  "slug": "folded-shirt-stack-height",
+  "title": "Half the footprint, twice the stack",
+  "hook": "What changes when you halve the footprint again?",
+  "domain": "lifehacks",
+  "concept": "folded-shirt-stack-height",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
+  "claims": [
+    {
+      "id": "lifehacks.folded-shirt-stack-height.c1",
+      "text": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.folded-shirt-stack-height.c2",
+      "text": "Real fabrics compress and trap air; these are sheet-model dimensions.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.folded-shirt-stack-height.c3",
+      "text": "Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.folded-shirt-stack-height.c4",
+      "text": "What changes when you halve the footprint again?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.folded-shirt-stack-height.c5",
+      "text": "Why can smaller folded shirts make a drawer too shallow?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can smaller folded shirts make a drawer too shallow?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume. Real fabrics compress and trap air; these are sheet-model dimensions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:folded-shirt-stack-height",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

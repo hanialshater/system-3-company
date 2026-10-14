@@ -1,0 +1,93 @@
+{
+  "slug": "cm-to-inches",
+  "title": "An inch is exactly 2.54cm",
+  "hook": "Which conversion avoids the shown rounding shortcut?",
+  "domain": "lifehacks",
+  "concept": "cm-to-inches",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length.",
+  "claims": [
+    {
+      "id": "lifehacks.cm-to-inches.c1",
+      "text": "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length.",
+      "support": "source",
+      "source": "NIST, SI Units - Length, https://www.nist.gov/pml/owm/si-units-length (opened 2026-10-14), exact inch definition 25.4mm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cm-to-inches.c2",
+      "text": "Measurement uncertainty remains even when the conversion factor is exact.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Inches=centimetres/2.5 for shortcut or /2.54 exact; absolute difference shown.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cm-to-inches.c3",
+      "text": "Inches=centimetres/2.5 for shortcut or /2.54 exact; absolute difference shown.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cm-to-inches.c4",
+      "text": "Which conversion avoids the shown rounding shortcut?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.cm-to-inches.c5",
+      "text": "Does an exact conversion factor make an imprecise measurement exact?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does an exact conversion factor make an imprecise measurement exact?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The inch is defined as exactly 25.4 millimetres. Dividing centimetres by 2.54 gives inches; using 2.5 is a convenient approximation with a visible error that grows with length. Measurement uncertainty remains even when the conversion factor is exact."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:cm-to-inches",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

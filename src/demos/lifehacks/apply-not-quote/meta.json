@@ -1,0 +1,92 @@
+{
+  "slug": "apply-not-quote",
+  "title": "Apply the rule",
+  "hook": "Can you put the values in ascending order without quoting the rule?",
+  "domain": "lifehacks",
+  "concept": "apply-not-quote",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Apply a stated sorting rule to visible values rather than repeat its wording."
+    ]
+  },
+  "misconception": "Any arrangement containing the right values applies ascending order.",
+  "objective": "Apply a stated sorting rule to visible values rather than repeat its wording.",
+  "claims": [
+    {
+      "text": "The prediction asks whether every arrangement of the three numbers is ascending. Only smallest-to-largest order satisfies that rule. Exercise values 2,5,9 are conventions, not measured learning data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.apply-not-quote.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.apply-not-quote.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "The displayed match count compares the learner’s ordering of 2, 5, 9 with ascending order. The unsorted input stays visible while they work. There is no measured learning or productivity gain.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, apply-not-quote fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three. Application refinement presents new unsorted input 5, 9, 2 and leaves it visible while the learner rearranges the separate attempt row. No Cover control is offered; a real swap is required before checking. Feedback marks which attempt positions match ascending order 2, 5, 9 after Check; the unsorted input remains unchanged. This is a rule-application fixture, not a recall or retention test.",
+      "id": "lifehacks.apply-not-quote.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "For the fresh recall values 7,1,4, ascending order is 1,4,7 because 1<4<7.",
+      "support": "derivation",
+      "source": "Direct arithmetic comparison of the distinct recall fixture, independent of the stage values 2,5,9.",
+      "id": "lifehacks.apply-not-quote.c4",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.apply-not-quote.c5",
+      "text": "One short reconstruction; not a retention experiment.",
+      "support": "convention",
+      "source": "Boundary caption rendered from src/lib/lifehacks/studyCatalog.ts (study_apply_not_quote.boundary). Recorded at the PR #2 merge because the stage shows it and no claim held it (claims-match fixture).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Arrange the new values 7,1,4 in ascending order. Which result applies the rule?",
+    "options": [
+      "1→4→7",
+      "7→1→4",
+      "4→7→1"
+    ],
+    "answer": 0,
+    "why": "Ascending means smallest to largest: 1 is below 4, and 4 is below 7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:apply-not-quote",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

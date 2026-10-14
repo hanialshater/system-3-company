@@ -1,0 +1,365 @@
+{
+  "_note": "The contributor's own safety classification from PR #2 @ 71e99fee, removed from meta.json by the 2026-10-14 engineering review. Contributor's account, untrusted; not a safety verdict.",
+  "lessons": {
+    "lh-align-price-units": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A is €0.80 per 100g. B is €7 per kg.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-annual-label-cost": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-area-scales-square": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-around-versus-across": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-big-pack-price": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A costs €3 for 500g. B costs €6 for 900g.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-billing-rounds-hours": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Fictional A charges €4 per begun hour. B charges €20 per begun 24h period.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-buy-only-stock-gap": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Seven usable units are already available. A orders only the gap; B orders the whole requirement.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-capacity-batch-count": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Ideal carriers hold exactly six or eight identical objects. Objects cannot be split; capacity is assumed usable.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-cents-euros-conversion": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-committed-stock": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-count-before-dispatch": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "The physical count is two below the record. Three units are then dispatched.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-count-sheets-not-rolls": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-coverage-whole-cans": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-deposit-checkout-net": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-discount-round-trip": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "B reduces the original price by 20%, then raises that reduced price by 20%.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-double-container-radius": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-duplex-sheet-rounding": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-duty-cycle-energy": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-each-cut-allowance": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-fixed-coupon-percent": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A fictional basket can receive either 20% off or €5 off, with no exclusions.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-fixed-energy-charge": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-fixed-volume-fill": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-flow-duration-offset": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Hypothetical A is 12L/min for two minutes. B is 6L/min for twice A’s duration.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-flow-times-minutes": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Two hypothetical constant flows are 6L/min and 3L/min, each running four minutes.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-free-shipping-gap": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-idle-versus-active": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-indivisible-shares": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Three recipients each receive the same whole-number count. Remainders are kept aside.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-jug-rounding-extra": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-lead-time-stock": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Four units leave each day. After ordering, delivery takes three days. A must still have eight units when it arrives; B keeps no reserve.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-material-reuse-account": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-merge-overlapping-lists": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "List A has eight distinct items; list B has six. Exactly three items occur on both lists.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-offcuts-not-one-piece": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-overlap-material-area": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "An ideal paper rectangle is 20cm long. Its 30cm width needs a further 2cm overlap.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-parcel-fee-repeats": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-pay-for-used-quantity": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-percentage-overage": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Compare an order with 10% extra, rounded up, against an order with ten extra tiles.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-pool-spare-stock": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-purchase-plus-running": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-reuse-cost-per-use": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A reusable item costs €12 once. Equivalent single-use items cost €0.20 each. Ongoing costs are excluded.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-round-lines-versus-total": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-round-replenishment": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Three usable units are in stock. New orders come only in six-unit boxes.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-round-snack-packs": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Each guest receives three items. Packs contain ten items and cannot be split at purchase.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-same-energy-new-tariff": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-scale-recipe-portions": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "The quantity-only recipe uses 300g for four equal portions.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-sequential-discounts": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A applies 20% off and then 10% off the reduced price. B applies 30% off once.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-small-leak-large-duration": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "A hypothetical constant 5mL/min flow continues for either one hour or one day.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-split-order-fixed-fee": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "The same goods total €24. Each order adds a fictional €4 delivery fee.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-standby-days-add-up": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "A constant illustrative 2W load runs for either 24h/day or 1h/day.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-subtract-openings-area": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "An ideal panel is 3m high and 4m wide, with one 2m² opening that needs no covering.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-ticket-bundle-unused": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Fictional singles cost €2. A five-ticket bundle costs €8 and cannot be split; leftover tickets are unused here.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-turn-container-volume": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-two-for-one-boundary": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-use-deadline-tickets": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-visit-fee-crossover": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Fictional A charges €10 per visit. B charges €30 once plus €4 per visit; service is assumed equivalent.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-voucher-minimum": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "A fictional voucher subtracts €5 only when the basket is at least €30.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-water-meter-units": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-watts-hours-trade": {
+      "classification": "electricity",
+      "reviewRequired": true,
+      "assumptions": "Illustrative A runs at 100W for one hour; B at 20W for five hours. B’s duration stays five times A’s.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-weighted-bill-share": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Two full portions and one half portion total 2.5 portion units. A splits by units; B by three people.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-weighted-unit-average": {
+      "classification": "money-arithmetic",
+      "reviewRequired": true,
+      "assumptions": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    },
+    "lh-weighted-volume-allocation": {
+      "classification": "quantity-only",
+      "reviewRequired": true,
+      "assumptions": "Three empty trays have allocation weights 2:1:1. Compare volume assigned to the first tray.",
+      "excluded": "No chemical mixtures, medical advice, wiring, safety-device bypass, actual tariffs, financial recommendations, temperature, food-storage or food-safety instructions. All energy powers, durations and tariffs are illustrative."
+    }
+  }
+}

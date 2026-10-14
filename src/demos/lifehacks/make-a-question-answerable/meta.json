@@ -1,0 +1,84 @@
+{
+  "slug": "make-a-question-answerable",
+  "title": "Bound the question",
+  "hook": "“What do you think?” can ask for almost anything.",
+  "domain": "lifehacks",
+  "concept": "make-a-question-answerable",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Specify the decision and the requested response."
+    ]
+  },
+  "misconception": "What do you think?",
+  "objective": "Specify the decision and the requested response.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: “What do you think?” can ask for almost anything. Which request defines the decision being asked for? Correct option: Choose A or B. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.make-a-question-answerable.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The fixture asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.make-a-question-answerable.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, make-a-question-answerable fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: count present fields from the fixture checklist; additions insert their labelled values.",
+      "id": "lifehacks.make-a-question-answerable.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Choose A or B. The fixture asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections.",
+      "support": "derivation",
+      "source": "Explicit communication checklist convention in this fixture. No empirical claim about response rates, meeting efficiency or persuasion. Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.make-a-question-answerable.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which request defines the decision being asked for?",
+    "options": [
+      "Choose A or B",
+      "What do you think?"
+    ],
+    "answer": 0,
+    "why": "The fixture asks for a choice between named alternatives. A bounded response makes the requested decision explicit, while leaving room for objections."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:make-a-question-answerable",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

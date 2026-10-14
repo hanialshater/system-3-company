@@ -1,0 +1,101 @@
+{
+  "slug": "lh-purchase-plus-running",
+  "title": "Price tag plus running cost",
+  "hook": "A higher upfront price can cross a lower one after repeated running costs.",
+  "domain": "lifehacks",
+  "concept": "lh-purchase-plus-running",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Combine an upfront amount and repeated operating charges without assuming the same winner at every horizon."
+    ]
+  },
+  "misconception": "The lower initial price guarantees a lower total at every future horizon.",
+  "objective": "Combine an upfront amount and repeated operating charges without assuming the same winner at every horizon.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c1",
+      "text": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Scaled model; illustrative:€80+120kWh/y;€140+60kWh/y;€0.30/kWh.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Years=2, A=€152 and B=€176. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c3",
+      "text": "Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c4",
+      "text": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Change only Years to 5. What is B (Lower-running) now? Correct: €230. Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c5",
+      "text": "For a stated constant load, kWh = watts × hours ÷ 1000. Running cost = kWh × the stated price per kWh; stated fixed costs are added separately.",
+      "support": "source",
+      "source": "https://www.energy.gov.au/households/energy-rating Australian Government, Energy Ratings, sections Electrical appliances without a star rating / Estimate running costs. Opened 2026-10-13. This supports the general calculation, not the invented model ratings or tariff.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-purchase-plus-running.c6",
+      "text": "Tariffs and appliance ratings vary: check your own.",
+      "support": "source",
+      "source": "Safety-required stage line (company/reviews/lh-purchase-plus-running/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Change only Years to 5. What is B (Lower-running) now?",
+    "options": [
+      "€230",
+      "€260",
+      "€232"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-purchase-plus-running",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

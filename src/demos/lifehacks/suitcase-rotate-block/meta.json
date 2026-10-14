@@ -1,0 +1,93 @@
+{
+  "slug": "suitcase-rotate-block",
+  "title": "Rotate before buying a bigger bag",
+  "hook": "Which orientation fits more identical blocks?",
+  "domain": "lifehacks",
+  "concept": "suitcase-rotate-block",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block.",
+  "claims": [
+    {
+      "id": "lifehacks.suitcase-rotate-block.c1",
+      "text": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-rotate-block.c2",
+      "text": "No compression or overlapping is permitted; real clothes are not rigid rectangles.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-rotate-block.c3",
+      "text": "Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-rotate-block.c4",
+      "text": "Which orientation fits more identical blocks?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.suitcase-rotate-block.c5",
+      "text": "Why does equal empty area not imply room for another packing block?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does equal empty area not imply room for another packing block?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block. No compression or overlapping is permitted; real clothes are not rigid rectangles."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:suitcase-rotate-block",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "nested-box-retrieval",
+  "title": "Saved space can cost access",
+  "hook": "Which layout gives the inner target fewer blockers?",
+  "domain": "lifehacks",
+  "concept": "nested-box-retrieval",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Nesting can share empty envelope space while adding objects that must be removed to reach an inner target. Separate storage trades a larger footprint for immediate access in this drawing."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Nesting can share empty envelope space while adding objects that must be removed to reach an inner target. Separate storage trades a larger footprint for immediate access in this drawing.",
+  "claims": [
+    {
+      "id": "lifehacks.nested-box-retrieval.c1",
+      "text": "Nesting can share empty envelope space while adding objects that must be removed to reach an inner target. Separate storage trades a larger footprint for immediate access in this drawing.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Blockers=N−1 nested containers or0 separately accessible containers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.nested-box-retrieval.c2",
+      "text": "The best choice depends on use frequency and space; this is not a universal ranking.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Blockers=N−1 nested containers or0 separately accessible containers.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.nested-box-retrieval.c3",
+      "text": "Blockers=N−1 nested containers or0 separately accessible containers.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.nested-box-retrieval.c4",
+      "text": "Which layout gives the inner target fewer blockers?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.nested-box-retrieval.c5",
+      "text": "Which second metric should accompany space saved by nesting?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which second metric should accompany space saved by nesting?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Nesting can share empty envelope space while adding objects that must be removed to reach an inner target. Separate storage trades a larger footprint for immediate access in this drawing. The best choice depends on use frequency and space; this is not a universal ranking."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:nested-box-retrieval",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "small-items-in-mesh",
+  "title": "Count items inside the boundary",
+  "hook": "Which boundary keeps the pictured small items together?",
+  "domain": "lifehacks",
+  "concept": "small-items-in-mesh",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "The closed bag in this simplified drawing keeps the listed items in one group. The useful question is whether the closure and mesh suit the items; merely placing them near one another adds no boundary."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "The closed bag in this simplified drawing keeps the listed items in one group. The useful question is whether the closure and mesh suit the items; merely placing them near one another adds no boundary.",
+  "claims": [
+    {
+      "id": "lifehacks.small-items-in-mesh.c1",
+      "text": "The closed bag in this simplified drawing keeps the listed items in one group. The useful question is whether the closure and mesh suit the items; merely placing them near one another adds no boundary.",
+      "support": "source",
+      "source": "Bosch manufacturer, product 00461036 Wäschenetz, https://www.bosch-home.com/de/de/product/waschen-trocknen/zubehoer-trockner/wollekorb-trockner/00461036 (retrieved 2026-10-14); two nets for delicate/small items. Card only models retaining items, not measured damage reduction.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.small-items-in-mesh.c2",
+      "text": "Follow appliance and garment guidance. The picture does not estimate damage prevention or cleaning performance.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Contained count=0 with no boundary or N with a closed ideal bag; all items larger than openings.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.small-items-in-mesh.c3",
+      "text": "Contained count=0 with no boundary or N with a closed ideal bag; all items larger than openings.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.small-items-in-mesh.c4",
+      "text": "Which boundary keeps the pictured small items together?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.small-items-in-mesh.c5",
+      "text": "Which two properties matter when a bag is meant to retain small items?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which two properties matter when a bag is meant to retain small items?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "The closed bag in this simplified drawing keeps the listed items in one group. The useful question is whether the closure and mesh suit the items; merely placing them near one another adds no boundary. Follow appliance and garment guidance. The picture does not estimate damage prevention or cleaning performance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:small-items-in-mesh",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

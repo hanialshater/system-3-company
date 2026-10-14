@@ -1,0 +1,87 @@
+{
+  "slug": "lh-buy-only-stock-gap",
+  "title": "Subtract what is already there",
+  "hook": "Seven in stock and twelve needed: how many are missing?",
+  "domain": "lifehacks",
+  "concept": "lh-buy-only-stock-gap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate nonnegative replenishment after counting available stock."
+    ]
+  },
+  "misconception": "A shopping requirement is always the quantity that must be ordered.",
+  "objective": "Calculate nonnegative replenishment after counting available stock.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-buy-only-stock-gap.c1",
+      "text": "Seven usable units are already available. A orders only the gap; B orders the whole requirement. Scaled model; usable stock=7; no hidden commitments.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-buy-only-stock-gap.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Required=12, A=5items and B=12items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",7]]; B=\"x\"; x denotes Required. At x=12, A=5, B=12; recall at x=15: B=15. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-buy-only-stock-gap.c3",
+      "text": "Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",7]]; B=\"x\"; x denotes Required. At x=12, A=5, B=12; recall at x=15: B=15. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-buy-only-stock-gap.c4",
+      "text": "Seven usable units are already available. A orders only the gap; B orders the whole requirement. Change only Required to 15. What is B (Ignore-stock) now? Correct: 15items. Use B's stated rule with Required=15: it gives 15items. Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",7]]; B=\"x\"; x denotes Required. At x=12, A=5, B=12; recall at x=15: B=15. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Seven usable units are already available. A orders only the gap; B orders the whole requirement. Change only Required to 15. What is B (Ignore-stock) now?",
+    "options": [
+      "15items",
+      "8items",
+      "17items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Required=15: it gives 15items. Required quantity minus available stock gives the shortage. The maximum with zero prevents a negative order when stock already covers demand. Existing usable units belong in the calculation."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-buy-only-stock-gap",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

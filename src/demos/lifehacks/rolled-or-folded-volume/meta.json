@@ -1,0 +1,93 @@
+{
+  "slug": "rolled-or-folded-volume",
+  "title": "Rolling cannot erase the cloth",
+  "hook": "With no compressed air, which uses less cloth volume?",
+  "domain": "lifehacks",
+  "concept": "rolled-or-folded-volume",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Changing shape does not remove material. This ideal sheet has the same volume rolled or folded. Real space differences come from air gaps, compression and how shapes share a bag."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Changing shape does not remove material. This ideal sheet has the same volume rolled or folded. Real space differences come from air gaps, compression and how shapes share a bag.",
+  "claims": [
+    {
+      "id": "lifehacks.rolled-or-folded-volume.c1",
+      "text": "Changing shape does not remove material. This ideal sheet has the same volume rolled or folded. Real space differences come from air gaps, compression and how shapes share a bag.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Material volume=30×20×0.2 cm³ per sheet; total=input count×120, unchanged by layout.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rolled-or-folded-volume.c2",
+      "text": "This is a volume conservation check, not a claim that rolling always wins or loses.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Material volume=30×20×0.2 cm³ per sheet; total=input count×120, unchanged by layout.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rolled-or-folded-volume.c3",
+      "text": "Material volume=30×20×0.2 cm³ per sheet; total=input count×120, unchanged by layout.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rolled-or-folded-volume.c4",
+      "text": "With no compressed air, which uses less cloth volume?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.rolled-or-folded-volume.c5",
+      "text": "What could change real packing volume even if the cloth amount stays the same?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What could change real packing volume even if the cloth amount stays the same?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Changing shape does not remove material. This ideal sheet has the same volume rolled or folded. Real space differences come from air gaps, compression and how shapes share a bag. This is a volume conservation check, not a claim that rolling always wins or loses."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:rolled-or-folded-volume",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

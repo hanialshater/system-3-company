@@ -1,0 +1,93 @@
+{
+  "slug": "bag-weight-before-volume",
+  "title": "A half-empty bag can be overweight",
+  "hook": "Which check notices the illustrated weight limit?",
+  "domain": "lifehacks",
+  "concept": "bag-weight-before-volume",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total.",
+  "claims": [
+    {
+      "id": "lifehacks.bag-weight-before-volume.c1",
+      "text": "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Volume not used in this calculation.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c2",
+      "text": "The five-kilogram limit is chosen for this example, not an airline or manufacturer rule.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Volume not used in this calculation.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c3",
+      "text": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Volume not used in this calculation.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c4",
+      "text": "Which check notices the illustrated weight limit?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.bag-weight-before-volume.c5",
+      "text": "Can empty space make a bag meet a weight limit?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can empty space make a bag meet a weight limit?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Capacity in litres and a weight limit answer different questions. The example sums the contents’ masses; unused space does not subtract from that total. The five-kilogram limit is chosen for this example, not an airline or manufacturer rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:bag-weight-before-volume",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

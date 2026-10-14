@@ -1,0 +1,94 @@
+{
+  "slug": "lh-count-sheets-not-rolls",
+  "title": "Count sheets, not just rolls",
+  "hook": "Six rolls or four rolls? The count inside each roll changes the arithmetic.",
+  "domain": "lifehacks",
+  "concept": "lh-count-sheets-not-rolls",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Calculate the usable unit count inside multipacks before comparing prices."
+    ]
+  },
+  "misconception": "More rolls necessarily means more usable paper.",
+  "objective": "Calculate the usable unit count inside multipacks before comparing prices.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c1",
+      "text": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Scaled model; identical sheet size; fictional prices.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Sheets/roll=240, A=0.008€/sheet and B=0.005€/sheet. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c3",
+      "text": "The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c4",
+      "text": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Change only Sheets/roll to 270. What is B (Four-rolls) now? Correct: 0.005€/sheet. Use B's stated rule with Sheets/roll=270: it gives 0.005€/sheet. The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c5",
+      "text": "A unit price expresses cost per stated quantity; comparable unit-price labels use consistent units of measure.",
+      "support": "source",
+      "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1181e2025/NIST.SP.1181e2025.html NIST SP 1181-2025, Definitions / Unit Pricing and E-Commerce. Opened 2026-10-13. Dataset prices and package amounts are invented for the arithmetic demonstration.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Change only Sheets/roll to 270. What is B (Four-rolls) now?",
+    "options": [
+      "0.005€/sheet",
+      "0.008€/sheet",
+      "2.005€/sheet"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Sheets/roll=270: it gives 0.005€/sheet. The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-count-sheets-not-rolls",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

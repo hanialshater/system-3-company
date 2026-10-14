@@ -1,0 +1,84 @@
+{
+  "slug": "keep-the-error-feedback",
+  "title": "Keep the correction",
+  "hook": "An answer attempt is useful evidence only if you compare it with the target.",
+  "domain": "lifehacks",
+  "concept": "keep-the-error-feedback",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Use feedback to locate a specific mismatch instead of only counting attempts."
+    ]
+  },
+  "misconception": "Attempt count alone",
+  "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: An answer attempt is useful evidence only if you compare it with the target. Which feedback locates the mistake? Correct option: Target beside attempt. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.keep-the-error-feedback.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.keep-the-error-feedback.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, keep-the-error-feedback fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three.",
+      "id": "lifehacks.keep-the-error-feedback.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Target beside attempt. Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
+      "support": "derivation",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
+      "id": "lifehacks.keep-the-error-feedback.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which feedback locates the mistake?",
+    "options": [
+      "Target beside attempt",
+      "Attempt count alone"
+    ],
+    "answer": 0,
+    "why": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:keep-the-error-feedback",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

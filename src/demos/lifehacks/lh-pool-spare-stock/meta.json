@@ -1,0 +1,87 @@
+{
+  "slug": "lh-pool-spare-stock",
+  "title": "A spare elsewhere changes the gap",
+  "hook": "Two here, five freely available there: how many new units are missing?",
+  "domain": "lifehacks",
+  "concept": "lh-pool-spare-stock",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Account for transferable surplus before computing external replenishment."
+    ]
+  },
+  "misconception": "Only items already in the destination count toward its shortage.",
+  "objective": "Account for transferable surplus before computing external replenishment.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-pool-spare-stock.c1",
+      "text": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Scaled model; transfer allowed; zero modeled transfer cost.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pool-spare-stock.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Required=10, A=8items and B=3items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pool-spare-stock.c3",
+      "text": "Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pool-spare-stock.c4",
+      "text": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Change only Required to 13. What is B (Pooled) now? Correct: 6items. Use B's stated rule with Required=13: it gives 6items. Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Change only Required to 13. What is B (Pooled) now?",
+    "options": [
+      "6items",
+      "11items",
+      "8items"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Required=13: it gives 6items. Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-pool-spare-stock",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

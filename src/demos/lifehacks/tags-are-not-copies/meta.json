@@ -1,0 +1,84 @@
+{
+  "slug": "tags-are-not-copies",
+  "title": "Two tags, one file",
+  "hook": "One document belongs to two topics without becoming two copies.",
+  "domain": "lifehacks",
+  "concept": "tags-are-not-copies",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Distinguish multiple labels from separate document identity."
+    ]
+  },
+  "misconception": "Two",
+  "objective": "Distinguish multiple labels from separate document identity.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: One document belongs to two topics without becoming two copies. How many underlying documents have two labels here? Correct option: One. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.tags-are-not-copies.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Both labels point to the same fixture identifier. Multiple category links need not create separate copies with diverging contents.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.tags-are-not-copies.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, tags-are-not-copies fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.tags-are-not-copies.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: One. Both labels point to the same fixture identifier. Multiple category links need not create separate copies with diverging contents.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.tags-are-not-copies.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "How many underlying documents have two labels here?",
+    "options": [
+      "One",
+      "Two"
+    ],
+    "answer": 0,
+    "why": "Both labels point to the same fixture identifier. Multiple category links need not create separate copies with diverging contents."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:tags-are-not-copies",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

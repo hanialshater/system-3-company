@@ -23,6 +23,24 @@ npm run verify                      # check + typecheck + build + computer-use Q
 
 Pages: `/` feed · `/d/<slug>` one lesson · `/catalog` the map of what we teach and don't teach yet.
 
+## Life Hacks review collection
+
+The 200 Life Hacks lessons (`src/demos/lifehacks/`) cover household
+organisation and mechanisms (70), study/planning/digital work (70), and shopping/resource
+arithmetic (60). Each lesson has its own prediction, interactive example, recall question
+and addressed claims. Shared stages reuse interaction mechanics, with explicit model limits.
+
+Open `/catalog` and find Life Hacks in a local or review-enabled preview, or try
+`/d/towel-spread-dries-first`, `/d/spaced-beats-cram` and `/d/lh-big-pack-price`.
+The category remains incubating and these lessons remain in review. Independent source,
+safety and learner gates still apply before publication; illustrative quantities are not
+measured personal outcomes or purchase recommendations.
+
+`npm run test:lifehacks` runs independent arithmetic and state-transition fixtures.
+`npm run verify` includes those fixtures and the existing browser contract. The contributor's three topic
+manifests in `company/reviews/lifehacks-200/contributor/briefs/` record source retrieval and scope;
+the [interaction specification](company/design/specs/lifehacks-batch-200.md) records the design.
+
 ## Deploy (Vercel)
 
 The release manager deploys with `npm run deploy -- preview` or `npm run deploy -- production`

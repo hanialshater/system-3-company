@@ -1,0 +1,93 @@
+{
+  "slug": "group-cables-with-ends",
+  "title": "A bundle still has loose ends",
+  "hook": "Which layout removes the depicted free-end paths?",
+  "domain": "lifehacks",
+  "concept": "group-cables-with-ends",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
+  "claims": [
+    {
+      "id": "lifehacks.group-cables-with-ends.c1",
+      "text": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes.",
+      "support": "source",
+      "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.group-cables-with-ends.c2",
+      "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.group-cables-with-ends.c3",
+      "text": "Free ends=2×cord count before,0 depicted accessible ends after securing; knots/tangles not simulated.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.group-cables-with-ends.c4",
+      "text": "Which layout removes the depicted free-end paths?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.group-cables-with-ends.c5",
+      "text": "Why might a tie around the middle leave an end-related tangle pathway?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why might a tie around the middle leave an end-related tangle pathway?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Bundling the middle leaves ends that can still weave through loops. The drawing distinguishes keeping strands together from restricting the ends’ routes. Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:group-cables-with-ends",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

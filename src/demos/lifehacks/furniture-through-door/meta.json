@@ -1,0 +1,93 @@
+{
+  "slug": "furniture-through-door",
+  "title": "Volume is not doorway fit",
+  "hook": "Which face clears the pictured opening?",
+  "domain": "lifehacks",
+  "concept": "furniture-through-door",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension.",
+  "claims": [
+    {
+      "id": "lifehacks.furniture-through-door.c1",
+      "text": "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Clearance=opening−object width; broad face=80cm, narrow=60cm. Height/depth not checked here.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.furniture-through-door.c2",
+      "text": "Only a straight opening is modelled; corners, hands and trim need further measurements. Do not lift heavy furniture alone.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Clearance=opening−object width; broad face=80cm, narrow=60cm. Height/depth not checked here.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.furniture-through-door.c3",
+      "text": "Clearance=opening−object width; broad face=80cm, narrow=60cm. Height/depth not checked here.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.furniture-through-door.c4",
+      "text": "Which face clears the pictured opening?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.furniture-through-door.c5",
+      "text": "Which measurements matter more than litres when checking a doorway?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which measurements matter more than litres when checking a doorway?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "An object can have a small volume yet fail an opening. This drawing compares a rigid box’s two widths with the clear doorway width. Turning it changes the blocking dimension. Only a straight opening is modelled; corners, hands and trim need further measurements. Do not lift heavy furniture alone."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:furniture-through-door",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

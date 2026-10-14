@@ -1,0 +1,93 @@
+{
+  "slug": "fitted-sheet-corners-nest",
+  "title": "Put the corner inside the corner",
+  "hook": "Which ideal arrangement uses less pocket envelope?",
+  "domain": "lifehacks",
+  "concept": "fitted-sheet-corners-nest",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner.",
+  "claims": [
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.c1",
+      "text": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Separate height=count×8cm; nested height=8+(count−1)×2cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.c2",
+      "text": "Real elastic and seams change the envelope; this is a nesting model, not a complete folding tutorial.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Separate height=count×8cm; nested height=8+(count−1)×2cm.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.c3",
+      "text": "Separate height=count×8cm; nested height=8+(count−1)×2cm.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.c4",
+      "text": "Which ideal arrangement uses less pocket envelope?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.c5",
+      "text": "Why can nesting hollow shapes save envelope space without removing material?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can nesting hollow shapes save envelope space without removing material?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner. Real elastic and seams change the envelope; this is a nesting model, not a complete folding tutorial."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:fitted-sheet-corners-nest",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

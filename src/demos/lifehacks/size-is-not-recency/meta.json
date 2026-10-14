@@ -1,0 +1,84 @@
+{
+  "slug": "size-is-not-recency",
+  "title": "Large is not recent",
+  "hook": "Sorting by size answers a different question from sorting by date.",
+  "domain": "lifehacks",
+  "concept": "size-is-not-recency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Choose sorting metadata that matches the retrieval goal."
+    ]
+  },
+  "misconception": "Size",
+  "objective": "Choose sorting metadata that matches the retrieval goal.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the latest fixture file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.size-is-not-recency.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
+      "support": "derivation",
+      "source": "Derivation from the explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and transformations in src/lib/lifehacks/studyModels.ts; app documentation below provides command/filter context, not evidence of productivity gains or of every fixture-specific choice. Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.size-is-not-recency.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, size-is-not-recency fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply labelled predicate, string sort or explicit transformation to the shown records; count selected rows or unique identities.",
+      "id": "lifehacks.size-is-not-recency.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Modified day. The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
+      "support": "derivation",
+      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour.",
+      "id": "lifehacks.size-is-not-recency.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To find the latest fixture file, which sort fits?",
+    "options": [
+      "Modified day",
+      "Size"
+    ],
+    "answer": 0,
+    "why": "The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:size-is-not-recency",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

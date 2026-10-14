@@ -1,0 +1,84 @@
+{
+  "slug": "delegate-the-whole-handoff",
+  "title": "Delegation includes a handoff",
+  "hook": "The helper saves work only after receiving the input.",
+  "domain": "lifehacks",
+  "concept": "delegate-the-whole-handoff",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Include coordination as a prerequisite instead of ignoring it."
+    ]
+  },
+  "misconception": "Unrelated editing",
+  "objective": "Include coordination as a prerequisite instead of ignoring it.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: The helper saves work only after receiving the input. What must precede the helper task here? Correct option: Handoff. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.delegate-the-whole-handoff.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "The handoff releases the helper’s input. This single-resource model checks order only; it makes no claim about real delegation speedups.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.delegate-the-whole-handoff.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, delegate-the-whole-handoff fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order.",
+      "id": "lifehacks.delegate-the-whole-handoff.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Handoff. The handoff releases the helper’s input. This single-resource model checks order only; it makes no claim about real delegation speedups.",
+      "support": "derivation",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.delegate-the-whole-handoff.c4",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What must precede the helper task here?",
+    "options": [
+      "Handoff",
+      "Unrelated editing"
+    ],
+    "answer": 0,
+    "why": "The handoff releases the helper’s input. This single-resource model checks order only; it makes no claim about real delegation speedups."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:delegate-the-whole-handoff",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

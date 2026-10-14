@@ -1,0 +1,93 @@
+{
+  "slug": "lids-match-by-size",
+  "title": "Fit needs diameter, not a colour",
+  "hook": "Which lid matches the pictured round opening?",
+  "domain": "lifehacks",
+  "concept": "lids-match-by-size",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "This fit test compares the opening diameter with lid diameter. A matching colour supplies no geometric constraint; the selected equal-diameter example meets the simplified size condition."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "This fit test compares the opening diameter with lid diameter. A matching colour supplies no geometric constraint; the selected equal-diameter example meets the simplified size condition.",
+  "claims": [
+    {
+      "id": "lifehacks.lids-match-by-size.c1",
+      "text": "This fit test compares the opening diameter with lid diameter. A matching colour supplies no geometric constraint; the selected equal-diameter example meets the simplified size condition.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Mismatch=abs(opening−20cm) for colour choice or0 for a selected matching-diameter lid.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lids-match-by-size.c2",
+      "text": "Real lids also need the right rim, seal and shape; equal diameter alone does not guarantee compatibility.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Mismatch=abs(opening−20cm) for colour choice or0 for a selected matching-diameter lid.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lids-match-by-size.c3",
+      "text": "Mismatch=abs(opening−20cm) for colour choice or0 for a selected matching-diameter lid.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lids-match-by-size.c4",
+      "text": "Which lid matches the pictured round opening?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lids-match-by-size.c5",
+      "text": "Why does equal diameter still fail to guarantee a real lid fit?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does equal diameter still fail to guarantee a real lid fit?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "This fit test compares the opening diameter with lid diameter. A matching colour supplies no geometric constraint; the selected equal-diameter example meets the simplified size condition. Real lids also need the right rim, seal and shape; equal diameter alone does not guarantee compatibility."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:lids-match-by-size",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}

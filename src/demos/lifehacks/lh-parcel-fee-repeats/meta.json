@@ -1,0 +1,87 @@
+{
+  "slug": "lh-parcel-fee-repeats",
+  "title": "One parcel fee, many item charges",
+  "hook": "A fixed parcel fee is different from a fee attached to each item.",
+  "domain": "lifehacks",
+  "concept": "lh-parcel-fee-repeats",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "basic addition, multiplication and division",
+      "that a model can declare hypothetical quantities"
+    ],
+    "doesNotKnow": [
+      "Separate per-parcel overhead from per-item charges when aggregating shipments."
+    ]
+  },
+  "misconception": "Combining parcels removes every charge, including per-item charges.",
+  "objective": "Separate per-parcel overhead from per-item charges when aggregating shipments.",
+  "claims": [
+    {
+      "id": "lifehacks.lh-parcel-fee-repeats.c1",
+      "text": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Scaled model; fictional policy; shared parcel permitted; no other fees.",
+      "support": "convention",
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-parcel-fee-repeats.c2",
+      "text": "The stage's two results are computed by the printed expressions. At Items=4, A=€14 and B=€5. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-parcel-fee-repeats.c3",
+      "text": "The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-parcel-fee-repeats.c4",
+      "text": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Change only Items to 7. What is B (Combined) now? Correct: €6.5. Use B's stated rule with Items=7: it gives €6.5. The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Change only Items to 7. What is B (Combined) now?",
+    "options": [
+      "€6.5",
+      "€24.5",
+      "€8.5"
+    ],
+    "answer": 0,
+    "why": "Use B's stated rule with Items=7: it gives €6.5. The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "side-by-side",
+  "curriculum": {
+    "primary": "lifehacks:lh-parcel-fee-repeats",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "two-panel-shared-control",
+    "slider-drives-live-chart"
+  ]
+}

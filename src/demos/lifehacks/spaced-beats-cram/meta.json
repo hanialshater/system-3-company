@@ -1,0 +1,93 @@
+{
+  "slug": "spaced-beats-cram",
+  "title": "Same hours, different calendar",
+  "hook": "Three hours in one block or across three days: what changes a month later?",
+  "domain": "lifehacks",
+  "concept": "spaced-repetition-study",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "reading short labels and comparing simple counts"
+    ],
+    "doesNotKnow": [
+      "Separate the research-supported spacing effect from invented memory curves."
+    ]
+  },
+  "misconception": "Equal study hours imply equal long-term recall regardless of calendar.",
+  "objective": "Separate the research-supported spacing effect from invented memory curves.",
+  "claims": [
+    {
+      "text": "Scenario, hook and prediction: Three hours in one block or across three days: what changes a month later? For equal study time, which plan generally supports longer-term verbal recall? Correct option: Distributed sessions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
+      "id": "lifehacks.spaced-beats-cram.c1",
+      "status": "unverified"
+    },
+    {
+      "text": "Research on verbal recall supports distributed practice. The curves illustrate that idea; they do not predict your memory.",
+      "support": "source",
+      "source": "Cepeda et al. (2006), Distributed practice in verbal recall tasks, Psychological Bulletin132(3),354–380, DOI10.1037/0033-2909.132.3.354, author abstract via https://pubmed.ncbi.nlm.nih.gov/16719566/ retrieved2026-10-13; 839 assessments in317 experiments. Rawson & Kintsch(2005), Rereading Effects Depend on Time of Test, JEP97(1),70–80, DOI10.1037/0022-0663.97.1.70, author abstract search record https://eric.ed.gov/?id=EJ688037 retrieved2026-10-13 (direct page timed out). Retrieval line supported separately by Roediger & Karpicke(2006), Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner.",
+      "id": "lifehacks.spaced-beats-cram.c2",
+      "status": "unverified"
+    },
+    {
+      "text": "Every displayed result is computed from the visible exercise state: spacing. Illustrative curves; not personal memory predictions. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "support": "derivation",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, spaced-beats-cram fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cram=exp(-day/7), distributed=exp(-day/18); illustrative parameters, not fitted data. Marker visits gate the reveal; three sessions on days-2,-1,0 are calendar markers, not fitted review boosts. Future decay curves, scrub marker and retention-point markers are not rendered before prediction; only neutral stipulated calendars and chart axes are shown while locked.",
+      "id": "lifehacks.spaced-beats-cram.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Recall question answer and rationale: Distributed sessions. Research on verbal recall supports distributed practice. The curves illustrate that idea; they do not predict your memory.",
+      "support": "source",
+      "source": "Cepeda et al. (2006), Distributed practice in verbal recall tasks, Psychological Bulletin132(3),354–380, DOI10.1037/0033-2909.132.3.354, author abstract via https://pubmed.ncbi.nlm.nih.gov/16719566/ retrieved2026-10-13; 839 assessments in317 experiments. Rawson & Kintsch(2005), Rereading Effects Depend on Time of Test, JEP97(1),70–80, DOI10.1037/0022-0663.97.1.70, author abstract search record https://eric.ed.gov/?id=EJ688037 retrieved2026-10-13 (direct page timed out). Retrieval line supported separately by Roediger & Karpicke(2006), Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner.",
+      "id": "lifehacks.spaced-beats-cram.c4",
+      "status": "unverified"
+    },
+    {
+      "text": "Massed rereading can perform better on an immediate test while distributed rereading can perform better on a delayed test; this does not establish the model curves or next-morning performance.",
+      "support": "source",
+      "source": "Rawson & Kintsch(2005) author abstract via ERIC EJ688037. Retrieval is supported separately by Roediger & Karpicke(2006), publisher abstract. The lesson does not use Cepeda2006 as evidence for immediate-test reversal.",
+      "id": "lifehacks.spaced-beats-cram.c5",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "For equal study time, which plan generally supports longer-term verbal recall?",
+    "options": [
+      "Distributed sessions",
+      "One massed session",
+      "Calendar cannot matter"
+    ],
+    "answer": 0,
+    "why": "Research on verbal recall supports distributed practice. The curves illustrate that idea; they do not predict your memory."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:spaced-repetition-study",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "storyboard-scrub",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "scrubber-timeline",
+    "preset-buttons"
+  ]
+}

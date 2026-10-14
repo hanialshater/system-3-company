@@ -1,0 +1,93 @@
+{
+  "slug": "transparent-box-visibility",
+  "title": "See through, or open it",
+  "hook": "Which layout shows the orange item without opening boxes?",
+  "domain": "lifehacks",
+  "concept": "transparent-box-visibility",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-lifehacks",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Everyday objects have sizes, positions and amounts"
+    ],
+    "doesNotKnow": [
+      "Under this ideal clear-front assumption, contents are visible from the shown viewpoint. Opaque boxes require another cue such as an address; transparency changes observation, not where the item is."
+    ]
+  },
+  "misconception": "The two pictured methods are interchangeable without checking their mechanism or constraints.",
+  "objective": "Under this ideal clear-front assumption, contents are visible from the shown viewpoint. Opaque boxes require another cue such as an address; transparency changes observation, not where the item is.",
+  "claims": [
+    {
+      "id": "lifehacks.transparent-box-visibility.c1",
+      "text": "Under this ideal clear-front assumption, contents are visible from the shown viewpoint. Opaque boxes require another cue such as an address; transparency changes observation, not where the item is.",
+      "support": "derivation",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Visible target=0 in opaque model,1 in clear model; possible boxes=N.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.transparent-box-visibility.c2",
+      "text": "Real translucent materials, crowded contents and lighting can still obscure objects.",
+      "support": "convention",
+      "source": "Scope limits and illustrative assumptions of this card; Visible target=0 in opaque model,1 in clear model; possible boxes=N.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.transparent-box-visibility.c3",
+      "text": "Visible target=0 in opaque model,1 in clear model; possible boxes=N.",
+      "support": "derivation",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.transparent-box-visibility.c4",
+      "text": "Which layout shows the orange item without opening boxes?",
+      "support": "convention",
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.transparent-box-visibility.c5",
+      "text": "What can still prevent identification through a clear container?",
+      "support": "convention",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What can still prevent identification through a clear container?",
+    "options": [
+      "Check the mechanism and its stated constraints",
+      "Assume the layout always works",
+      "Ignore the stated inputs"
+    ],
+    "answer": 0,
+    "why": "Under this ideal clear-front assumption, contents are visible from the shown viewpoint. Opaque boxes require another cue such as an address; transparency changes observation, not where the item is. Real translucent materials, crowded contents and lighting can still obscure objects."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "lifehacks:transparent-box-visibility",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "locked-readouts",
+    "milestone-gate",
+    "toggle-before-after",
+    "slider-drives-live-chart"
+  ]
+}
