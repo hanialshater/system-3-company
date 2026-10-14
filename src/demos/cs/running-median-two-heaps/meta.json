@@ -1,0 +1,109 @@
+{
+  "slug": "running-median-two-heaps",
+  "title": "A median that never re-sorts",
+  "hook": "Numbers keep arriving. Must you re-sort them all to know the middle one each time?",
+  "domain": "cs",
+  "concept": "two-heap-median",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a heap hands back its top item fast (heap-bubble-up)",
+      "the median is the middle value, or the mean of the two middle values"
+    ],
+    "doesNotKnow": [
+      "that a max-heap of the lower half and a min-heap of the upper half keep the median at their tops"
+    ]
+  },
+  "misconception": "The median of a growing stream needs a re-sort every time a number arrives.",
+  "objective": "The learner can explain that keeping the lower half in a max-heap and the upper half in a min-heap, balanced in size, puts the median at the tops, so the stream 5, 15, 1, 3 gives medians 5, 10, 5, 4 with one heap insert and at most one move per number.",
+  "claims": [
+    {
+      "id": "cs.running-median-two-heaps.c1",
+      "text": "For the stream 5, 15, 1, 3 the medians after each number are 5, 10, 5, 4.",
+      "support": "simulation",
+      "source": "Sorted prefixes [5], [5,15], [1,5,15], [1,3,5,15] give 5, 10, 5, (3+5)/2 = 4. Builder re-ran this in node (scratchpad algo2b0/check.mjs), 2026-10-14, and the stage computes the same values with its own two heaps (Demo.tsx feed()). Matches brief cs.algorithms #64.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.running-median-two-heaps.c2",
+      "text": "Trace: 5 starts the lower half; 15 > 5 goes to the upper half; 1 ≤ 5 goes to the lower half; 3 ≤ 5 goes to the lower half, which is then too big, so 5 moves up. At the end the lower half is 1, 3 and the upper half is 5, 15, and the median is (3 + 5) / 2 = 4.",
+      "support": "simulation",
+      "source": "Demo.tsx feed() with array heaps push()/pop(); rule: insert into the lower half if it is empty or x ≤ its top, else the upper half; then move a top across if the lower half has 2 more or the upper half has more. Builder's independent trace in node (scratchpad algo2b0/check.mjs) gives the same halves.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.running-median-two-heaps.c3",
+      "text": "With the halves balanced, the median is the top of the lower half (odd count) or the mean of both tops (even count).",
+      "support": "derivation",
+      "source": "Every item in the lower half is ≤ every item in the upper half (invariant kept by the insert rule and by moving only tops across), and the sizes differ by at most one in favour of the lower half; so the lower top is the middle item, or the two tops are the two middle items.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.running-median-two-heaps.c4",
+      "text": "Each new number costs one heap insert and at most one move, about log n steps: around 19 levels for a million numbers.",
+      "support": "source",
+      "source": "Heap insert and extract take O(log n) (CLRS 4e ch. 6). Each half of a million numbers holds 500,000 items; a heap of 500,000 items has floor(log2 500000) + 1 = 19 levels (computed in Demo.tsx MILLION_LEVELS).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.running-median-two-heaps.c5",
+      "text": "The lower half keeps its biggest on top; the upper half keeps its smallest on top.",
+      "support": "convention",
+      "source": "Max-heap and min-heap properties (CLRS 4e section 6.1). Stage labels.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A running median keeps the lower half in a max-heap and the upper half in a min-heap. The halves hold 3 and 3 numbers, with tops 8 and 12. What is the median?",
+    "options": [
+      "10",
+      "8",
+      "12"
+    ],
+    "answer": 0,
+    "why": "With an even count and balanced halves, the two tops are the two middle numbers, so the median is their mean: (8 + 12) / 2 = 10."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:two-heap-median",
+    "also": [
+      "cs:quickselect"
+    ],
+    "prerequisites": [
+      "cs:heap-priority-queue"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 6,
+        "note": "Heaps and priority queues (chapter only)"
+      }
+    ],
+    "tags": [
+      "heaps",
+      "median",
+      "streams",
+      "priority-queue"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}

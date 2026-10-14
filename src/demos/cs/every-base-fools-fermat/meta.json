@@ -1,0 +1,123 @@
+{
+  "slug": "every-base-fools-fermat",
+  "title": "The number that fools every base",
+  "hook": "A quick test says 561 is prime, whatever base you try. It isn't. How is it caught?",
+  "domain": "cs",
+  "concept": "carmichael-fermat",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "fast powers mod n by repeated squaring (squaring-shortcut)",
+      "two numbers are coprime when their greatest common divisor is 1"
+    ],
+    "doesNotKnow": [
+      "that a composite number can pass Fermat's primality test for every coprime base",
+      "that a stronger test, checking square roots of 1, catches it"
+    ]
+  },
+  "misconception": "If a^(n-1) leaves remainder 1 for a coprime base, then n is prime (or at worst the test fails for only a few bases).",
+  "objective": "The learner can explain that 561 = 3 x 11 x 17 passes Fermat's test for all 320 coprime bases (a Carmichael number), and that the stronger Miller-Rabin test catches it because the squaring chain for base 2 (263, 166, 67, 1) contains 67, a square root of 1 other than 1 and 560, which cannot happen modulo a prime.",
+  "claims": [
+    {
+      "id": "cs.every-base-fools-fermat.c1",
+      "text": "For a prime n, a^(n-1) mod n = 1 for every base a coprime to n.",
+      "support": "source",
+      "source": "Fermat's little theorem; CLRS 4e ch. 31 (Theorem 31.31 in 3rd ed. numbering).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c2",
+      "text": "561 = 3 x 11 x 17, and all 320 bases coprime to 561 give a^560 mod 561 = 1.",
+      "support": "simulation",
+      "source": "Demo.tsx COPRIME / FERMAT_ONES computed in the lesson; builder re-ran it with BigInt in a separate node script (scratchpad algo2b0/check.mjs), 2026-10-14: 320 coprime bases, 320 give 1. phi(561) = 2 x 10 x 16 = 320. Matches brief cs.algorithms #69.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c3",
+      "text": "561 is a Carmichael number, and the smallest one: Fermat's test cannot tell it from a prime.",
+      "support": "source",
+      "source": "Carmichael (1910), 'Note on a new number theory function', Bull. AMS 16; OEIS A002997 (first term 561). Builder checked in node that no composite below 561 passes for every coprime base (scratchpad algo2b0/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c4",
+      "text": "The stronger test writes 560 = 35 x 2^4, starts at a^35 and squares 4 times. For base 2 the chain is 263, 166, 67, 1, 1, so 67 squared leaves 1.",
+      "support": "simulation",
+      "source": "Demo.tsx chain(); builder re-ran it in node (scratchpad algo2b0/check.mjs): base 2 gives [263, 166, 67, 1, 1]; 67^2 = 4489 = 8 x 561 + 1. Miller-Rabin as in CLRS 4e ch. 31 (WITNESS).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c5",
+      "text": "Modulo a prime, only 1 and n - 1 square to 1, so a different square root of 1 proves the number composite.",
+      "support": "derivation",
+      "source": "x^2 = 1 mod p means p divides (x - 1)(x + 1), so p divides one factor: x = 1 or x = p - 1. CLRS 4e ch. 31 (Corollary 31.35 in 3rd ed. numbering).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c6",
+      "text": "The stage offers bases 2, 5, 7, 10 and 13; each gives a^560 mod 561 = 1, and the stronger test catches 561 with each of them.",
+      "support": "simulation",
+      "source": "Chosen bases (disclosed per pattern disclose-chosen-seeds): picked as small coprime bases that are not strong liars. Chains from node: 5: 23, 529, 463, 67, 1; 7: 241, 298, 166, 67, 1; 10: 439, 298, 166, 67, 1; 13: 208, 67, 1, 1, 1 (scratchpad algo2b0/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.every-base-fools-fermat.c7",
+      "text": "A few bases still slip past the stronger test (9 of the 320 here), but never more than a quarter, so several random bases make an error very unlikely.",
+      "support": "source",
+      "source": "9 strong liars among bases 2..560 coprime to 561 (50, 101, 103, 256, 305, 458, 460, 511, 560; base 1 excluded), Demo.tsx LIARS and builder's node script. Bound: at most 1/4 of bases are strong liars for any odd composite n > 9 (Rabin 1980, J. Number Theory 12; Monier 1980); CLRS 4e ch. 31 proves a 1/2 bound. Each extra independent random base multiplies the error chance by at most 1/4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A number n gives a^(n-1) mod n = 1 for every base you try. What can you conclude?",
+    "options": [
+      "It may still be composite; a stronger test is needed",
+      "It is definitely prime",
+      "It is definitely composite"
+    ],
+    "answer": 0,
+    "why": "Carmichael numbers such as 561 pass Fermat's test for every coprime base. The Miller-Rabin test also looks for square roots of 1 other than 1 and n - 1, which only composites have."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:carmichael-fermat",
+    "also": [],
+    "prerequisites": [
+      "cs:fast-exponentiation",
+      "cs:euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 31,
+        "note": "Primality testing (chapter only)"
+      }
+    ],
+    "tags": [
+      "primality",
+      "number-theory",
+      "miller-rabin",
+      "carmichael"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
