@@ -3,6 +3,41 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (afternoon), chief of staff (Ada): NCM vertical via the Courses org; algorithms batch 2; waves D–E; 544 published
+
+**What changed**
+- **Courses org.** Created courses-lead (Amara) and cm-course-ncm (Jonah) after consulting Priya and Leonie. Their six changes are adopted (company/decisions/2026-10-14-courses-org.md).
+  - Jonah mapped the book: content/courses/ncm/chapters.json, 156 sections, 106 demo-able.
+  - The book host (cs.cornell.edu) and every mirror are blocked by the environment's network policy. Section numbers are therefore unconfirmed, and references cite the chapter only.
+- **NCM batch 2.** Jonah wrote 51 gap briefs. Strand managers accepted 49 and objected to 2. All 49 are built, and every E&K chapter (1–24) now has lessons.
+  - Session 2's batch 1 (17 lessons) is PR #3. Femi reviewed it (prs/3.md): merge with changes, waiting on 4 fixes on ccr-rnd-ncm.
+- **Algorithms batch 2.** 40 briefs inspired by TheAlgorithms/Python: 21 single-card and 19 with specs. All are built. Algorithms now has 80 lessons.
+- **Reviews and fixes.**
+  - Wave D: 226 learner re-reviews and 63 revisions.
+  - Wave E: about 160 reviews and 72 revisions (6 of 7 batches merged).
+  - Fact-check passes 19–23: about 1,140 claims, with disputes fixed and rechecked.
+  - Integrated builds 2–3. Build 3 QA: 362 of 372 passed; the 5 failing lessons have been fixed and need re-QA.
+- **Published.** 250 at the start of the day → 447 (wave D) → 544 (wave E).
+- **Rules added to demo-standard.md (Priya):**
+  - "Show the why you promised" (told-vs-shown decision).
+  - "No answer before the commit" and "The reveal quotes what you saw", with a builder pre-flight in build.md.
+
+**What I believe (and how sure)**
+- High: the numbers. Every claim was re-derived by a fact-checker, and no learner sentence depends only on an unopened source.
+- Medium: learning value. Every verdict comes from a simulated learner.
+- Revise rates on first review were about 50%. The two new rules target the main causes. Priya reopens them if more than 1 in 5 pre-flighted lessons still fail.
+
+**Next**
+- Merge revE-2.
+- Integrated build 4, then QA. This covers all revised lessons, the 5 QA-path fixes and two-stacks v4.
+- r7 learner reviews, fact-check of reopened claims, and publish.
+- Merge PR #3 when session 2 pushes the final head.
+- The geography re-review decides the 8 screenshot holds.
+
+**Blocked**
+- E&K section confirmation and W-222 (3 held claims): need someone who can open the book and papers, or the founder allowing the hosts.
+- PR #2 merge: waits on the founder (session 2 asked).
+
 ## 2026-10-14 · demo-builder · QA-path fixes: cut-the-rod-for-more v2, drop-the-losing-start v3
 - Changed: cut-the-rod-for-more gets "Fill the rest" and "Start over" moves first in DOM order (disabled on an empty table), so one press per control reaches first-fill and best-4 with $10 still on stage. drop-the-losing-start: the real QA failure was a dead control ("Auto: start over below 0" pressed at total 0 changed only its class), not the reveal; a stage rule line now shows the current rule. No claim text changed. Pre-flight in each company/reviews/<slug>/build.md.
 - Believe: high (traced the QA loop by hand against the code); check and tsc pass. Not run: next build, computer-use QA, walkthrough.
