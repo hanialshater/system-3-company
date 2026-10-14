@@ -104,6 +104,37 @@ who no longer exists: check what you rely on.
 - **Next:** builders claim 6 and 8. head-of-product rules on W-632. demo-builder handles W-633 to W-635 now, and W-636 after research-lead's W-622.
 - **Blocked:** the DLR five is short one lesson until W-632 is decided.
 
+## 2026-10-14 · platform-engineer · scale-stage0: review blocker fixed, main merged, board renumbered (W-076)
+- **Changed (branch `scale-stage0`, not pushed, not merged to main, not deployed):**
+  - `src/components/Feed.tsx`: review finding 1 (blocker). A failed page fetch marks the list `failed`; prefetch stops; the sentinel shows "Couldn't load more lessons." and a "Tap to retry" button (`feed-retry`, 44 px). The chip path gets the same, so no more "Loading more lessons…" for ever. Finding 3: revisits are placed only after the card the learner is on when they arrive, and the 12 cap applies after the status filter.
+  - Merged `origin/ccr-4c6c7654-ew9ko1` (main, 38 commits). progress.md and changelog.md kept both sides. The registry was already up to date.
+  - Board: the branch's W-477/478/479 were deleted and re-added by the tool as W-666 (review, done), W-667 and W-668 (evaluation-steward). The review's items: W-669 CSS strategy EDD (A), W-670 option 4 sequencing, blocked on W-667 (B), W-671 feed contract coverage (C, evaluation-steward, amendment), W-672 `feedOrder` prefix test (F). D went into W-609.
+- **Verified (integrated tree):** `npm run check` passes (941 lessons, no duplicate IDs). `tsc --noEmit` passes. `next build` (`.next-scale`) passes; I deleted it afterwards. On :3580: `/` HTML is 303,965 B (40,250 B gz) with **734** stylesheet links (672 before main's lessons), so it sits at the 300 KB budget line again, already. Contract QA on 20 random lessons, phone + desktop, 1 worker: 40/40 in 14.4 min. Feed spec without `QA_ONLY`: 10/10. Failure path (`tests/scratch-feed-failure/failure.spec.ts`, outside the contract): /api/feed aborted or 404 gives exactly 1 request after 3 s idle, a 44 px `<button>` "Tap to retry", one request per tap, and recovery once unblocked; the chip page-0 failure is the same. 6/6. Not run: the full `npm run verify` over all lessons.
+- **Believe:** the loop is gone (sure: the prefetch effect is gated on `failed`, and the scratch Playwright spec counts requests with /api/feed blocked). Revisit placement is fine for the "arrive late" case; the trailing revisits (only once `next === null`) are unchanged.
+- **Next:** principal-engineer re-reads the fix and the full `npm run verify` on the integrated tree (the review's condition c; I ran a 20-lesson sample, not all lessons). Then the founder merges. evaluation-steward: W-667, W-668, W-671.
+- **Blocked:** option 4 (W-670) on AMD-001 (c2).
+
+## 2026-10-14 · platform-engineer · EDD-003 stage 0: slim feed index, paginated feed, QA only what changed (W-076, branch scale-stage0)
+- **Changed (branch `scale-stage0`, not merged, not deployed):**
+  - The feed renders a slim index: 30 cards in the HTML, more from static `/api/feed/<filter>/<page>`, and full meta on demand from static `/api/meta/<slug>` for the trust sheet and revisits.
+  - New `tools/qa-changed.mjs` prints `QA_ONLY` for the lessons whose import closure changed since a ref or since their last green QA record.
+  - No protected file was touched.
+- **Measured** (879 lessons, `.next-scale` on :3580, before = cc37658 in a clean worktree):
+  - `/` HTML: 5,836,934 B → 282,163 B (budget 300 KB).
+  - First-load JS: 8.47 MB → 8.39 MB (unchanged in substance).
+  - Phone emulation, interactive: 48 s → 17 s. The machine was heavily loaded, so this is directional.
+  - Details and the remaining costs are in company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md.
+- **QA:** 30 seeded-random lessons, contract 60/60. Six load timeouts on the 3-worker pass re-ran green on 1 worker. Feed spec 10/10, run without `QA_ONLY`; with `QA_ONLY` the chip test fails, as it did before this change. I filed no qa-record.
+- **Believe:**
+  - HTML budget met: sure, it's measured.
+  - It won't hold at 2,000 lessons: fairly sure. About 182 KB of what remains is 672 hoisted lesson stylesheets, and that part grows with the catalog.
+  - First-load JS won't move until option 4 lands: sure. DemoHost imports the registry, and the registry holds every meta. That is blocked on AMD-001 (c2), which hasn't been ratified.
+  - qa-changed selection is right on three historical commits: geo kit 48/48, Life Hacks engines 147. I'm fairly sure of it, with blind spots listed in the note.
+- **Next:**
+  - principal-engineer reviews (W-666, was branch W-477) and decides on a CSS strategy EDD.
+  - evaluation-steward: AMD-001 (c2) ratification and the qa-record hash request (W-667, was branch W-478); stale QA records, 855/879 selected (W-668, was branch W-479).
+  - The founder merges the branch.
+- **Blocked:** option 4 and the lesson version hash in records, both on amendments. Disk was full (38 MB free) at session start from other worktrees' `.next-*` dirs. I deleted none of them, but the next builder may hit the same wall.
 ## 2026-10-14 design-engineer (Tomoko): W-604 (C1) sequence probe, W-605 (C2) kit dev warnings
 
 - **Changed:** added `tools/sequence-probe.mjs` (C1) and dev warnings in `src/kit/sequence.tsx` (C2): unknown revealCard, dropped non-SubCard children, sub-cards with no milestones. Wrote the results in EDD-006 "Results after review" and a changelog line. Board: W-604 and W-605 moved to review. Added W-630 for design-lead (C1/C2 done; the formats.md row is theirs to flip). I did not edit formats.md: the catalogue says the design lead changes it, after W-601 and W-602. No build and no commit.

@@ -1088,7 +1088,7 @@
       "id": "W-076",
       "title": "EDD-001 trigger fired: feed HTML 1.82 MB vs 300 KB, all metas (1.29 MB) on every page; implement slim index + pagination",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-13",
       "links": [],
@@ -1097,7 +1097,8 @@
         "at": "2026-10-13",
         "by": "portfolio-manager",
         "note": "Still real: no slim index or pagination in src/app or src/lib. EDD-001 trigger measured (feed HTML 1.82 MB vs 300 KB; 1.29 MB of metas on every page). Must land before any deploy (F-04)."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-077",
@@ -8426,7 +8427,7 @@
     },
     {
       "id": "W-609",
-      "title": "W-477 post-deploy smoke (with the W-534 deploy, founder-approved): prod + custom domain /spike and /spike?cdn=https://example.com return 404; a lesson /d/<slug> beacon POST /api/events returns 204 and logs in Vercel; POST with Origin: null returns 403; Vercel env has no SPIKE_ENABLED. If the beacon fails, revert the events-route half and reopen W-477. See company/engineering/reviews/2026-10-14-w477-spike-review.md",
+      "title": "W-477 post-deploy smoke (with the W-534 deploy, founder-approved): prod + custom domain /spike and /spike?cdn=https://example.com return 404; a lesson /d/<slug> beacon POST /api/events returns 204 and logs in Vercel; POST with Origin: null returns 403; Vercel env has no SPIKE_ENABLED. If the beacon fails, revert the events-route half and reopen W-477. See company/engineering/reviews/2026-10-14-w477-spike-review.md Also, once scale-stage0 is deployed: curl -sI <prod>/api/feed/all/1 is 200 with x-vercel-cache: HIT on the second request; curl -sI <prod>/api/meta/<slug> is 200 and cached; curl -sI <prod>/api/feed/all/999 is 404 with no function invocation in the Vercel logs (company/engineering/reviews/2026-10-14-scale-stage0-review.md finding 4).",
       "owner": "release-manager",
       "state": "next",
       "domain": null,
@@ -8984,6 +8985,69 @@
       "created": "2026-10-14",
       "links": [],
       "updated": "2026-10-14"
+    },
+    {
+      "id": "W-666",
+      "title": "Review EDD-003 stage 0 on branch scale-stage0 (slim feed index + pagination + tools/qa-changed.mjs): / HTML 5.84 MB -> 282 KB, first-load JS unchanged 8.4 MB (registry metas in DemoHost chunk: option 4 needs AMD-001 c2), 672 hoisted lesson CSS files = ~182 KB of the HTML. Done: approve with changes, company/engineering/reviews/2026-10-14-scale-stage0-review.md (was branch W-477)",
+      "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-667",
+      "title": "Bring AMD-001 part (c2) (registry generator to tools/registry.mjs) to ratification: it is the only blocker for EDD-001 option 4, which removes the 4.5 MB meta chunk from every page's first-load JS (company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md). Also the unnumbered qa-record request (lesson version hash in the record header). (c2) is decided at main's W-479 (constitutional review 2026-10-14, founder). (was branch W-478)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-668",
+      "title": "QA records are stale vs code: tools/qa-changed.mjs (default mode) selects 855/879 lessons, 399 because src/kit/controls.tsx changed after their last green record, 201 package.json, 247 own Demo/CSS. Decide whether a full contract run + qa-record is due (not from a branch build). Note: company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md (was branch W-479)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-669",
+      "title": "CSS strategy EDD (principal-engineer reviews): every lesson's styles.module.css is hoisted onto every page: 672 render-blocking stylesheets, 650 KB (269 KB gz), about 182 KB of /'s 282 KB HTML; projected about 470 KB of HTML at 2,000 lessons. Options: EDD-003 stage 1 (lesson code out of the app's static import graph), per-lesson CSS loaded with the lesson chunk, or shared kit CSS plus a lint against new per-lesson modules. Measure link count, gz CSS and first paint per option. Option 4 does not fix this. Ref: company/engineering/reviews/2026-10-14-scale-stage0-review.md finding 5",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-670",
+      "title": "BLOCKED on AMD-001 (c2) (W-632). EDD-001 option 4 sequencing: once (c2) is ratified, split tools/registry.mjs output into index.generated.ts (server metas) and loaders.generated.ts (Demo imports only); point DemoHost at loaders; re-measure first-load JS (projected 8.4 MB -> about 3.9 MB); decide the /api/meta learner subset and whether drafts get a meta file (review finding 8); then the shared geo chunk (3.2 MB). Order: c2 ratified, option 4, CSS EDD decision (W-634), geo. turbopackTreeShaking ruled out. Ref: company/engineering/reviews/2026-10-14-scale-stage0-review.md",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-671",
+      "title": "Feed contract coverage (amendment to tests/qa/, protected): (1) the feed-path trust sheet: open it from a feed card (which fetches /api/meta/<slug>) and wait for 'address:'; today the spec opens it on /d/<slug>, which never fetches; (2) the chip test fails under any QA_ONLY sample: make it ignore QA_ONLY; (3) optionally the page-fetch failure path (feed-retry button, no request loop): a scratch spec that does this is at tests/scratch-feed-failure/failure.spec.ts (outside the contract, 6/6 on 2026-10-14). Until it lands, DemoCard fetch changes need a manual feed check. Ref: company/engineering/reviews/2026-10-14-scale-stage0-review.md findings 2 and 7",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-672",
+      "title": "feedOrder prefix unit test (review finding 6): each domain queue in 'all' must be a prefix of that subject's order (rank then slug) in src/lib/feed-index.ts; about 10 lines, run in check or verify. Ref: company/engineering/reviews/2026-10-14-scale-stage0-review.md",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
     }
   ]
 }
