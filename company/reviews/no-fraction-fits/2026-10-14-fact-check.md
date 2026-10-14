@@ -22,3 +22,13 @@ Checker: fact-checker (did not write these claims). Scope: the claims left unver
 | c7 | verified | Own node with twos(): 256 has 8, 49 has 0, 50 has 1, 288 has 5; for every q in 1..70 both bracketing squares have even counts and 2q^2 odd. 16^2 is shown at q = 12 (288 between 256 and 289), 7^2 at q = 5. Stage labels '2s: n (even)' and '2s: n (odd)'. |
 
 **Result:** every claim in this pass verified.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c8 | verified | split(): 50, 16, 49, 9800 as quoted; all gloss numbers for q = 1..70 factor correctly. |
+
+**Result:** every claim open at this pass is now verified.

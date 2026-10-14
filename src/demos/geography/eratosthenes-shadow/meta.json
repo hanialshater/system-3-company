@@ -45,8 +45,10 @@
       "id": "geography.eratosthenes-shadow.c3",
       "text": "With modern numbers, 7.11 degrees and 843 km give 50.6 arcs and 42,684 km, within 7% of the true 40,008 km.",
       "support": "simulation",
-      "source": "Latitudes Alexandria 31.20 N 29.92 E and Aswan 24.09 N 32.90 E (gazetteer, from memory, not checked online); difference 7.11 degrees; great-circle distance 843.2 km by geoDistance with R = 6,371.0088 km, computed in Demo.tsx; 843 x 360 / 7.11 = 42,684 km, which the stage's Seen line and the reveal both show as 42,684 km (the circumference readout's rounding); 360 / 7.11 = 50.6 at the arcs readout's one decimal. 40,008 km is the WGS84 meridional circumference (about 40,007.86 km, from memory). The cities are not on one meridian (3 degrees of longitude apart), which accounts for much of the excess.",
-      "status": "unverified"
+      "source": "Latitudes Alexandria 31.20 N 29.92 E and Aswan 24.09 N 32.90 E (gazetteer, from memory, not checked online); difference 7.11 degrees; great-circle distance 843.2 km by geoDistance with R = 6,371.0088 km, computed in Demo.tsx; 843 x 360 / 7.11 = 42,684 km, which the stage's Seen line and the reveal both show as 42,684 km (the circumference readout's rounding); 360 / 7.11 = 50.6 at the arcs readout's one decimal. 40,008 km is the WGS84 meridional circumference (about 40,007.86 km, from memory). The cities are not on one meridian (3 degrees of longitude apart), which accounts for much of the excess. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Coordinates checked against GeoNames (npm cities.json, GeoNames gazetteer extract, opened locally): Alexandria 31.20176 N 29.91582 E, Aswan 24.09082 N 32.89942 E, which round to the lesson's 31.20/29.92 and 24.09/32.90. 40,008 km: GeographicLib (npm geographiclib-geodesic) WGS84 a = 6378137 m, f = 1/298.257223563, 4 x geodesic(0,0 -> 90,0) = 40,007.86 km. Own node with d3-geo geoDistance and R = 6,371.0088: 7.11 degrees, 843.2 km (843), 360/7.11 = 50.6, 843 x 360/7.11 = 42,684 km, 6.7% over (prints 7%). With unrounded GeoNames coordinates the circumference is 42,700 km, still within 7%.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.eratosthenes-shadow.c4",
@@ -61,8 +63,10 @@
       "id": "geography.eratosthenes-shadow.c5",
       "text": "At Syene at noon the Sun was straight overhead, which is why the well had no shadow.",
       "support": "derivation",
-      "source": "A vertical well shows no shadow on its sides only when the Sun is at the zenith (rays parallel to the well's axis). This is the reading of the account in Cleomedes I.7; Syene is in fact about 0.65 degrees north of the Tropic of Cancer (brief caveat 4), so the 'as the account tells it' framing applies. Stage label: 'Syene: Sun overhead, no shadow'.",
-      "status": "unverified"
+      "source": "A vertical well shows no shadow on its sides only when the Sun is at the zenith (rays parallel to the well's axis). This is the reading of the account in Cleomedes I.7; Syene is in fact about 0.65 degrees north of the Tropic of Cancer (brief caveat 4), so the 'as the account tells it' framing applies. Stage label: 'Syene: Sun overhead, no shadow'. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The derivation (no shadow down a vertical well only with the Sun at the zenith) holds, but the sentence states as fact that the Sun was straight overhead at Syene. It was not quite: Syene is at 24.09 N (GeoNames), north of the Tropic of Cancer (about 0.65 degrees north today per the lesson's own brief caveat 4; still a few tenths of a degree in Eratosthenes' time). The brief asked for 'in the account' framing; the reveal sentence ('At Syene the Sun was straight overhead, so the well had no shadow.') and the stage label ('Syene: Sun overhead, no shadow') carry none, and the 'as the account tells it' phrase belongs to the next sentence. Fix (demo-builder): frame it as the account, e.g. 'In the account, the Sun stood straight overhead at Syene at noon on the summer solstice, so the well had no shadow.' Related: the question says 'At noon a well in Syene has no shadow' with no date; c1 has 'on the solstice'.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

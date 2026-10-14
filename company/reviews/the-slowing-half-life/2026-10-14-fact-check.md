@@ -43,3 +43,22 @@ Checker: fact-checker (wrote and built none of these claims). Method: read Demo.
 | c3 | held unverified | Stage half checked: waitRow(1) re-run gives "10, 10 min" / "10, 10, 10 min"; t1/2 = ln2/k has no concentration term; reveal needs first-twice so the row has >= 2 entries. "Radioactive decay is first order" rests only on sources (Atkins; IUPAC Gold Book) that I could not open this pass (goldbook.iupac.org, openstax.org, libretexts, wikipedia all fail DNS), and pass 22 rested it on search snippets. Needs a checker who can open a source, or a coordinator ruling. |
 
 **Result:** 1 verified, 0 disputed, 1 held unverified.
+
+## Ruling on W-247: c3 held claim (2026-10-14, evaluation-steward)
+
+Ruler: evaluation-steward (wrote, built and checked none of these claims). Inputs: c3 in meta.json, Demo.tsx line 90 (reveal), Pass 22 and Pass 26 rows above, and the W-222 precedent (board W-222 done; lobby note tx-a5ad8baee5 in company/ops/events.jsonl: three claims resting on unopenable papers were "rewritten to say only what the stage shows" and re-checked in pass 25).
+
+**Ruling: (b) reword to stage-only.** Options weighed:
+
+- (a) "textbook-standard facts may be verified by derivation or by agreement across snippets": rejected. Derivation cannot establish this half: that radioactive decay is first order is an empirical fact about nuclei, not a consequence of t1/2 = ln2/k. Snippet agreement is exactly what pass 26 declined to accept, and a standing rule that lowers the evidence bar for "textbook-standard" sentences would loosen the judge with no clear edge for what counts as textbook-standard. If the company wants that rule, it belongs in the claim-status gate (tools/company.mjs, protected) by ratified amendment; W-028 ("source not opened" status, needs AMD) is the existing item for it. One lesson's held claim is not the place to set it.
+- (c) hold: rejected. Hosts have failed in passes 22, 24 and 26 with no date for access, so a hold blocks the lesson with no end.
+- (b) chosen: matches W-222, and the stage fully supports what remains.
+
+**Exact reword (demo-builder):**
+
+- Demo.tsx reveal (line ~90): replace `so the wait stayed the same. Radioactive decay is first order: one fixed half-life.` with `so the wait stayed the same: one fixed half-life.`
+- meta.json c3 `text`: replace with `A first-order reaction keeps one fixed half-life (here 10 min each time).`
+- meta.json c3 `source`: drop the IUPAC Gold Book sentence; keep the t1/2 = ln 2 / k basis, append a note citing this ruling; status stays `unverified` (builder does not self-verify).
+- Then a fact-checker re-checks c3. The stage half was already checked in Pass 26, so this should be a short re-check.
+
+**Objection (cost of this ruling), and its answer:** the radioactive-decay sentence is the bridge back to the prior lesson the learner is assumed to know (content/curriculum/chemistry.json "Radioactive half-life"; meta learner.knows "half-life lesson"), so cutting it weakens the "why does this matter" link. Answer: the stage-only reword stands for now, because a learner-facing fact with no opened source is worse than a missing bridge. The sentence may come back unchanged as soon as any checker can open a source (IUPAC Gold Book "half life", OpenStax Chemistry 2e ch. 21, or any general-chemistry text). cm-chemistry owns whether the bridge is worth reopening; it does not block this lesson.

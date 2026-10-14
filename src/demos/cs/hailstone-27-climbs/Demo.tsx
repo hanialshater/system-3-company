@@ -11,6 +11,7 @@
 // v4 (r7): the reveal named 97's join value (94) that the stage never showed. Now the join point is
 // ringed on 97's line and a stage line "97 meets 27's path at value 94 (its step 13)." appears once 97's
 // run passes it (and stays); the reveal quotes that line and prints the join only after it was shown.
+// v5 (W-245): the line ends ", ringed." only while the ring is drawn (97's line at or past step 13).
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -163,6 +164,9 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
               if (finished) runOut(n, 0);
             };
 
+            // The ring is drawn only while 97's line reaches the join; the stage line says "ringed" only then
+            // (re-picking 97 resets its line to step 0, but the line stays: the learner has seen the join).
+            const ringOn = (drawn[97] ?? 0) >= JOIN97_STEP;
             const lines = (Object.keys(drawn).map(Number) as Start[]).sort((a, b) => (a === 27 ? 1 : b === 27 ? -1 : 0));
             const xTicks = done.length > 0;
             const cv = SEQ[cur][Math.min(cursor, k)];
@@ -221,7 +225,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  {(drawn[97] ?? 0) >= JOIN97_STEP && (
+                  {ringOn && (
                     <circle
                       cx={xs(JOIN97_STEP)}
                       cy={ys(SEQ[97][JOIN97_STEP])}
@@ -277,7 +281,7 @@ export default function Hailstone27Climbs({ slug }: { slug: string }) {
                 <p className={s.note}>Only running a start fills its ?.</p>
                 {joinSeen && (
                   <p className={s.join}>
-                    97 meets 27&apos;s path at value {JOIN97} (its step {JOIN97_STEP}), ringed.
+                    97 meets 27&apos;s path at value {JOIN97} (its step {JOIN97_STEP}){ringOn ? ", ringed." : "."}
                   </p>
                 )}
                 <Row>

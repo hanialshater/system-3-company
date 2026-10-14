@@ -35,8 +35,10 @@
       "id": "life.all-lines-meet-in-one-mother.c2",
       "text": "Theory for this model with 50 women expects about 97 generations; 2N(1 − 1/N) = 98 is an approximation.",
       "support": "derivation",
-      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6). · Fact-check pass 23 2026-10-14: Own exact expectation by value iteration on the lines Markov chain (occupancy transitions, 20,000 sweeps): 96.971, rounds to 97; 2N(1 - 1/N) = 98 for N = 50. | REVISED v2 2026-10-14 (demo-builder, wave G): Reveal wording shortened to 'Theory for 50 expects about 97; 2N(1 − 1/N) = 98 is an approximation.' Same numbers (exactExpectation() and APPROX).",
-      "status": "unverified"
+      "source": "Exact expectation for the discrete model: Markov chain on the number of lines, transition = occupancy of N = 50 bins by k draws; E = 96.97 (exactExpectation in Demo.tsx, builder re-run 2026-10-14; matches the spec's node check). 2N(1 − 1/N) = Σ_{k=2..N} N / C(k,2) = 98 is the continuous-time coalescent approximation for haploid Wright–Fisher (brief claim 2, worded as an approximation per cm-life-genetics-evolution's edit). The 1,000-run mean (96.0) sits within sampling error of 97 (standard error about 1.6). · Fact-check pass 23 2026-10-14: Own exact expectation by value iteration on the lines Markov chain (occupancy transitions, 20,000 sweeps): 96.971, rounds to 97; 2N(1 - 1/N) = 98 for N = 50. | REVISED v2 2026-10-14 (demo-builder, wave G): Reveal wording shortened to 'Theory for 50 expects about 97; 2N(1 − 1/N) = 98 is an approximation.' Same numbers (exactExpectation() and APPROX). | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (v2 wording). Own value iteration on the lines Markov chain (occupancy transitions): E = 96.971 for N = 50, rounds to 97; 2N(1 - 1/N) = 98 (JS prints exactly 98). Reveal prints Math.round(EXACT) and APPROX; it is inside the mean !== null branch, which every reveal reaches (thousand is required).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "life.all-lines-meet-in-one-mother.c3",
@@ -78,8 +80,10 @@
       "id": "life.all-lines-meet-in-one-mother.c7",
       "text": "Over the same 1,000 seeds (7001-8000) with the same draw rule, all lines met on average 46 generations back with 25 women and 197 with 100 (96 with 50): double the women, roughly double the wait, about 2N generations.",
       "support": "simulation",
-      "source": "meanFor(n) in Demo.tsx (meetTime with n women per generation, seeds 7001-8000), shown on the stage as 'Mean wait: 25 women 46 · 50 women 96 · 100 women 197' after 'Same with 25 and 100 women'. Builder run 2026-10-14 (node strip-types, same function): 25 -> 46.17 (median 39), 50 -> 96.03 (median 84), 100 -> 197.43 (median 171); 2N(1 − 1/N) gives 48, 98, 198. Seeds are the existing run block, not chosen for these sizes. Added v2 (demo-builder, wave G) for the r7 finding that 'about 2N' was told with one N.",
-      "status": "unverified"
+      "source": "meanFor(n) in Demo.tsx (meetTime with n women per generation, seeds 7001-8000), shown on the stage as 'Mean wait: 25 women 46 · 50 women 96 · 100 women 197' after 'Same with 25 and 100 women'. Builder run 2026-10-14 (node strip-types, same function): 25 -> 46.17 (median 39), 50 -> 96.03 (median 84), 100 -> 197.43 (median 171); 2N(1 − 1/N) gives 48, 98, 198. Seeds are the existing run block, not chosen for these sizes. Added v2 (demo-builder, wave G) for the r7 finding that 'about 2N' was told with one N. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node port of meetTime/mulberry32, seeds 7001-8000: 25 women mean 46.175 (46), 50 women 96.033 (96), 100 women 197.433 (197); medians 39, 84, 170-171; standard errors 0.8, 1.6, 3.4; exact expectations 47.2, 97.0, 196.7; 2N = 50, 100, 200. meanFor uses the same RUN_SEEDS block as runThousand (seed choice as stated). The sizes milestone is required, so the reveal's 'With 25 women ... 46, with 100, 197' always prints and matches the Mean wait row.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

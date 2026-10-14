@@ -28,22 +28,28 @@
       "id": "cs.proposers-get-the-best.c1",
       "text": "With Ann and Bea ranking X > Y > Z, Cal Z > X > Y, X ranking Cal > Ann > Bea, and Y and Z ranking Ann > Bea > Cal, students proposing gives Ann-X, Bea-Y, Cal-Z: 2 students and 0 hospitals get their first choice.",
       "support": "simulation",
-      "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice. · v4 (2026-10-14, learner r7): example changed to 3 x 3 so each run has a clash; picked by builder search (scratchpad g3a0cd_sm.py: all 3 x 3 rankings where both DOM-order runs finish with one press per proposer, each run has a refusal, and every student's partner differs between runs). Builder Python deferred acceptance: Ann-X, Bea-Y, Cal-Z for every press order. Needs re-check.",
-      "status": "unverified"
+      "source": "Builder's node script of deferred acceptance (students propose): Ann offers X, Bea offers Y, no offer is refused. Matching Ann-X, Bea-Y; Ann's and Bea's first choices; both hospitals get their second choice. · v4 (2026-10-14, learner r7): example changed to 3 x 3 so each run has a clash; picked by builder search (scratchpad g3a0cd_sm.py: all 3 x 3 rankings where both DOM-order runs finish with one press per proposer, each run has a refusal, and every student's partner differs between runs). Builder Python deferred acceptance: Ann-X, Bea-Y, Cal-Z for every press order. Needs re-check. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node port of Demo.tsx offer() (scratchpad fc26-b1/proposers.mjs), every press sequence including re-presses after a bump (7 paths): students proposing always ends Ann-X, Bea-Y, Cal-Z; firsts(): students 2 (Ann, Cal), hospitals 0. Example meets the stated selection criteria: DOM order Ann > Bea > Cal finishes in 3 presses, one refusal (Bea at X), and every student's partner differs from the hospitals' run. Selection search itself not re-run.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c2",
       "text": "With the same rankings, hospitals proposing gives Ann-Y, Bea-Z, Cal-X: 2 hospitals and 0 students get their first choice.",
       "support": "simulation",
-      "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice. · v4: new 3 x 3 example; builder Python (hospitals propose, all 6 press orders) gives X-Cal, Y-Ann, Z-Bea. Needs re-check.",
-      "status": "unverified"
+      "source": "Builder's node script (hospitals propose): X offers Bea, Y offers Ann, no refusals. Matching Bea-X, Ann-Y; X's and Y's first choices; both students get their second choice. · v4: new 3 x 3 example; builder Python (hospitals propose, all 6 press orders) gives X-Cal, Y-Ann, Z-Bea. Needs re-check. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Same port, all 7 press paths with hospitals proposing: Ann-Y, Bea-Z, Cal-X; hospitals 2 (X-Cal, Y-Ann), students 0. DOM order X > Y > Z finishes in 3 presses with one refusal (Z at Ann).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c3",
       "text": "Both matchings are stable: of the 6 other student-hospital pairs in each, 0 say yes both ways to a swap (the stage counts them).",
       "support": "simulation",
-      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks. · v4: builder Python checked all 6 matchings of the new example: only Ann-X/Bea-Y/Cal-Z and Ann-Y/Bea-Z/Cal-X have no blocking pair; each has 5 other pairs with one yes and 0 with two. Stage swapCount() computes it live.",
-      "status": "unverified"
+      "source": "Builder's node check of all student-hospital pairs against both matchings (the stage log also computes it): no blocking pair in either. Each side that is not at its first choice would have to move to a partner that already has a better one. | REVISED v3 (demo-builder, 2026-10-14): v3 shows the check on stage: 'Would a pair rather swap?' prints e.g. 'Swap? Ann–Y: Ann no, Y yes. Bea–X: Bea no, X yes. No double yes: stable.' for each finished run, computed by swapRows/isStable in Demo.tsx; the reveal quotes who said no. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own node check of both 2 x 2 matchings against the rankings: students' (Ann-X, Bea-Y): Ann-Y Ann no / Y yes, Bea-X Bea no / X yes; hospitals' (X-Bea, Y-Ann): Ann-X Ann yes / X no, Bea-Y Bea yes / Y no; 0 blocking pairs in each. In this 2 x 2 no offer is ever refused, so each mode has one outcome whatever the press order. v3 check line and reveal (whoSaysNo from the recorded check, milestone checked-both requires both) print exactly these yes/no values; the switch keeps the log and checks. · v4: builder Python checked all 6 matchings of the new example: only Ann-X/Bea-Y/Cal-Z and Ann-Y/Bea-Z/Cal-X have no blocking pair; each has 5 other pairs with one yes and 0 with two. Stage swapCount() computes it live. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own swapCount() port on both matchings: 6 other pairs each, 5 with one yes, 0 with two. Brute force over all 6 matchings: only these two have 0 double-yes pairs (others 1, 1, 2, 3). Check line prints 'Swap? 0 of 6 other pairs say yes both ways: stable.'; checked-both needs both runs checked and is one of 3 required milestones, so the reveal's '0 and 0' and 'both matchings are stable' are always the recorded values.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c4",
@@ -65,15 +71,19 @@
       "id": "cs.proposers-get-the-best.c6",
       "text": "Each run has a clash: two offers reach one receiver, it keeps the one it ranks higher, and the other moves down its list (students proposing: Ann and Bea both offer to X, which keeps Ann; hospitals proposing: Y and Z both offer to Ann, who keeps Y).",
       "support": "simulation",
-      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text. · v4: builder Python traced all 6 press orders per run: the clash at X (students) and at Ann (hospitals) happens in every order, as a refusal or as a bump. Now shown to the learner (reveal paragraph 1; dashed ✕ lines on the stage).",
-      "status": "unverified"
+      "source": "Builder's node trace: both runs end after two offers with no refusals. Stage behaviour for refusals (receiver keeps the better offer, loser's line struck) is built but not on the QA path. Not shown to the learner as text. · v4: builder Python traced all 6 press orders per run: the clash at X (students) and at Ann (hospitals) happens in every order, as a refusal or as a bump. Now shown to the learner (reveal paragraph 1; dashed ✕ lines on the stage). | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Every press path records exactly one refusal per run: students [Bea, X] (X keeps Ann, by refusal or by bumping Bea), hospitals [Z, Ann] (Ann keeps Y). No path has X and another hospital reach the same student, so the named clashes are the only ones. Reveal sentence is unconditional and true for every reachable run; dashed lines show only the current run (the toggle clears them), which the claim does not contradict.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.proposers-get-the-best.c7",
       "text": "Swapping which side proposes changes the pairs, and the side making offers does better in its own run (students: 2 first choices when they propose, 0 when hospitals do).",
       "support": "simulation",
-      "source": "Builder Python on the v4 example: students-proposing and hospitals-proposing matchings share no pair; every student strictly prefers their students-proposing partner, every hospital its hospitals-proposing partner. The reveal computes the sentence from the two recorded runs. Builder statement, not self-verified.",
-      "status": "unverified"
+      "source": "Builder Python on the v4 example: students-proposing and hospitals-proposing matchings share no pair; every student strictly prefers their students-proposing partner, every hospital its hospitals-proposing partner. The reveal computes the sentence from the two recorded runs. Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own check: the two matchings share no pair; Ann X>Y, Bea Y>Z, Cal Z>X (every student prefers the students-proposing partner); X Cal>Ann, Y Ann>Bea, Z Bea>Cal (every hospital prefers the hospitals-proposing partner). Students 2 first choices proposing, 0 receiving. Each mode has one outcome, so the reveal's 'Same pairs.' branch is unreachable and the 'different pairs, the side making offers did better' branch always prints.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

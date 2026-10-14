@@ -77,7 +77,8 @@ function Stage({
   const [combined, setCombined] = useState<string | null>(null); // "lo-hi-edits" when combined
   const [changed, setChanged] = useState(false);
   const [prev, setPrev] = useState<number | null>(null); // the value at EDIT_AT before the last change
-  // Recorded when the question's own range is combined; stays on the stage after the range moves.
+  // Recorded the first time the question's own range is combined, and never rewritten; stays on the
+  // stage after the range moves or a value changes.
   const [seenMin, setSeenMin] = useState<number | null>(null);
 
   const min = (b: Block) => Math.min(...vals.slice(b.l, b.r + 1));
@@ -97,7 +98,7 @@ function Stage({
     setCombined(`${lo}-${hi}-${edits}`);
     setChanged(false);
     if (lo === Q_LO && hi === Q_HI) {
-      setSeenMin(answer);
+      if (seenMin === null) setSeenMin(answer);
       reach("combined");
     }
   };
@@ -128,7 +129,10 @@ function Stage({
         {BLOCKS.map((b) => {
           const on = usedKeys.has(key(b));
           const onPath = changed && b.l <= EDIT_AT && EDIT_AT <= b.r;
-          const trace = !on && !onPath && seenMin !== null && Q_KEYS.has(key(b));
+          // The Seen row's blocks keep a dashed outline whenever they are not lit, including when one is
+          // also on a change path (then the dashes are drawn in the path's green).
+          const dashed = !on && seenMin !== null && Q_KEYS.has(key(b));
+          const trace = dashed && !onPath;
           return (
             <g key={key(b)}>
               <rect
@@ -141,7 +145,7 @@ function Stage({
                 fillOpacity={on ? 0.85 : 1}
                 stroke={onPath ? "var(--good)" : on ? "var(--fg)" : trace ? "var(--domain)" : "var(--line)"}
                 strokeWidth={onPath ? 3 : on ? (isCombined ? 2.5 : 1.5) : trace ? 2 : 1}
-                strokeDasharray={trace ? "4 3" : undefined}
+                strokeDasharray={dashed ? "4 3" : undefined}
               />
               <text x={bx(b) + bw(b) / 2} y={by(b) + 17} textAnchor="middle" className={`${s.v} ${on ? s.vOn : ""}`}>
                 {min(b)}
@@ -163,7 +167,7 @@ function Stage({
       </Row>
       {seenMin !== null && (
         <p className={s.seen}>
-          Seen: {Q_LO} to {Q_HI} = {Q_LABELS.join(" + ")}, {Q_COUNT} nodes, minimum {seenMin}
+          Seen (first combine): {Q_LO} to {Q_HI} = {Q_LABELS.join(" + ")}, {Q_COUNT} nodes, minimum {seenMin}
         </p>
       )}
       <Row>

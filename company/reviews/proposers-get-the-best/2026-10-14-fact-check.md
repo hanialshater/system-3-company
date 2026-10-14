@@ -32,3 +32,17 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c3 | verified | Students' matching: Ann and Bea say no, Y and X yes; hospitals' matching: X and Y say no, Ann and Bea yes; no blocking pair in either. Each mode has one outcome in any press order. Stage check lines and reveal match. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own port of offer(), all 7 press paths: Ann-X, Bea-Y, Cal-Z; students 2, hospitals 0. Example meets its stated selection criteria (3 DOM-order presses, one refusal, partners differ). |
+| c2 | verified | Hospitals proposing, all 7 paths: Ann-Y, Bea-Z, Cal-X; hospitals 2, students 0. |
+| c3 | verified | swapCount on both: 6 other pairs, 0 double yes; of all 6 matchings only these two are stable. checked-both required, so reveal values are recorded ones. |
+| c6 | verified | One refusal per run in every path: Bea at X (X keeps Ann), Z at Ann (Ann keeps Y). |
+| c7 | verified | No shared pair; every student prefers the students-proposing partner, every hospital the hospitals-proposing one. 'Same pairs' branch unreachable. |
+
+**Result:** every claim open at this pass is now verified.

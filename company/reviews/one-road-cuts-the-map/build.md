@@ -35,3 +35,16 @@ r7 findings: DFS notation "↑highest climb back" read backwards and had no lege
 6. **Reset.** "Reopen all" keeps tallies and the walk. Reveal after it: "You closed all 7 roads. 6 of them left the map whole; only 3–4 cut towns 4, 5 and 6 off from 1, 2 and 3. Towns 3 and 4 each touch three roads, but closing any of their other roads changed nothing: those roads sit on loops, so traffic went the other way round. A road on a loop has a detour; a bridge is a road on no loop. Your depth-first walk found it in one pass: town 4 was visited #3, and the earliest visit anything from there on can loop back to is #3 (↩#3). Town 3, #2, came earlier and no loop reaches it, so no other road gets around 3–4."
 
 Not seen in a browser (no build/QA this wave).
+
+## Pre-flight v4
+
+W-246 (FC pass 26, c6 disputed): pressing "Walk depth-first" with a road still closed drew the badges with no legend (the note was the closure message), and a closed 1-2 or 4-5 showed red dashes instead of the "road back" dotting. Also, the badges are the full-map DFS, so drawing them over a map with a road closed was wrong in itself. Fix: "Walk depth-first" reopens every road first. The walk marks (badges, dotted roads, thick 3-4) and the legend note now share one condition, walked and no road closed, so the legend shows exactly when the marks it describes do. Closing a road after the walk hides the marks and the note reads e.g. "4–6 closed: every town is still reachable. Reopen all to see the walk." The "Walk: town 4 #3 ↩#3, town 3 #2. Bridge: 3–4." row stays once walked. c6 reworded to match, set unverified.
+
+1. **Title and hook.** Unchanged from v3.
+2. **Options.** Unchanged.
+3. **Locked stage.** Unchanged; no DFS marks before the walk.
+4. **Reveal values.** Unchanged text. "town 4 #3", "↩#3", "town 3 #2", "3–4": milestone "dfs-walk"; at that moment all roads are open, so the badges, dotted 1-2 and 4-5, thick 3-4 and the legend are all on stage, and the Walk row stays after any later closure.
+5. **QA path.** The seven road chips, then "Walk depth-first" (now reopens 4–6 itself) reaches all three milestones in 8 presses; the old 9-press path with "Reopen all" still works. Either way the legend is on screen when dfs-walk fires.
+6. **Reset.** "Reopen all" after a post-walk closure brings the marks and legend back; tallies and Walk row stay.
+
+Not seen in a browser (no build/QA this wave; tsc and check only).

@@ -80,8 +80,10 @@
       "id": "math.no-fraction-fits.c8",
       "text": "Stage gloss: '2s' is how many 2s multiply into a number, shown by splitting off its 2s, e.g. 50 = 2 × 25 (one 2), 16 = 2 × 2 × 2 × 2 (four), 49 = 49 (no 2s), 9800 = 2 × 2 × 2 × 1225 (three).",
       "support": "derivation",
-      "source": "Demo.tsx split(n): twos(n) factors of 2, then the odd part n / 2^twos(n), omitted when it is 1. Arithmetic: 50 = 2·25, 16 = 2^4, 49 odd, 9800 = 8·1225. Builder revision v5 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified.",
-      "status": "unverified"
+      "source": "Demo.tsx split(n): twos(n) factors of 2, then the odd part n / 2^twos(n), omitted when it is 1. Arithmetic: 50 = 2·25, 16 = 2^4, 49 odd, 9800 = 8·1225. Builder revision v5 (demo-builder, 2026-10-14, wave G r7). Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node of twos()/split(): 50 = 2 × 25, 16 = 2 × 2 × 2 × 2, 49 = 49 (no 2s), 9800 = 2 × 2 × 2 × 1225; for every q = 1..70 both gloss numbers (2q^2 and the nearest p^2) split into a product equal to the number with an odd remainder (0 failures). 16 appears at q = 3 (p = 4), 9800 at q = 70. Gloss row shows only after the commit.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

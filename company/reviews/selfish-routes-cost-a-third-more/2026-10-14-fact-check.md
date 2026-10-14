@@ -36,3 +36,14 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 **Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
 
 **Non-blocking note for the builder:** the reveal quotes the last split visited. Below 50% on B the joiners' gain beats the loss (20%: 225 vs 60), so 'The line under the chart is why' does not show the waste at those splits. The numbers are still right.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Grid and continuous: unique min 45 at 50%; B 30; avg >= 45. found-bottom forces best = 50 and a split below; 100 always seen. |
+| c3 | verified | joinCost(50): 27 each, 135; 3 each, 150; difference 15 = 100 x (avg55 - avg50). Line now for best split. |
+
+**Result:** every claim open at this pass is now verified.

@@ -21,3 +21,13 @@ Checker: fact-checker. Wave E revisions (build.md Pre-flight read after the code
 | Claim | Verdict | Basis |
 |---|---|---|
 | c6 | verified | Own node of plan(): clumped tests per number in arrival order 0, 1, 1, 3, 3, 2, 6, 3, 6, 5 = 30; equals (# bigger earlier) + (1 if any smaller earlier) for every number; 42 and 44 tie at 6. Spread hand: 1 (70 vs 64). Tile with 0 tests (47) shows no number. |
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | plan() tests 0,1,1,3,3,2,6,3,6,5 = 30, equal to the independent count; Seen row and reveal terms match; 42 and 44 at 6. |
+
+**Result:** every claim open at this pass is now verified.

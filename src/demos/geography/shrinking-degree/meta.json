@@ -32,12 +32,10 @@
     },
     {
       "id": "geography.shrinking-degree.c2",
-      "text": "At 60°N one degree of longitude is 55.6 km, half the equator's 111.2 km; at 80°N it is 19.3 km.",
+      "text": "On the lesson's globe, a sphere of radius 6,371 km, one degree of longitude at 60°N is 55.6 km, half the equator's 111.2 km; at 80°N it is 19.3 km.",
       "support": "derivation",
-      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The sphere arithmetic is right (node: pi*6371.0088/180*cos(lat) = 55.598 at 60 N, 19.309 at 80 N, 111.195 at the equator; readouts print 55.6, 19.3, 111.2 and the reveal quotes them). But the sentence states one-decimal values as the length on Earth, and on the WGS84 ellipsoid they are 55.80 km at 60 N, 19.39 km at 80 N and 111.32 km at the equator (pi*a*cos(lat)/(180*sqrt(1-e^2 sin^2 lat))); the lesson's own c4 tells learners the equator degree is 111.3 km, while c2 calls it 111.2. Nothing on the stage or in the reveal says the globe is a sphere (caption: 'A globe.'). Pass 9 verified the old 'about 56' / 'about 19', which hold for the real Earth. Fix (builder): either say the model on stage and in the claim (e.g. caption 'A globe, treated as a sphere of radius 6,371 km' and claim 'On a sphere of radius 6,371 km, ...'), or drop to the precision that holds for Earth ('about 56 km', 'about 19 km', 'about 111 km').",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Length of a degree along a parallel = 111.195 x cos(latitude): cos 60 = 0.5 gives 55.6 km; cos 80 = 0.1736 gives 19.3 km. v2: 'zero at the pole' removed from the reveal (the slider stops at 80°N); 80°N is quoted at the readout's one decimal (19.3 km), only when the learner stopped there. | FC pass 26 (fact-checker, 2026-10-14): DISPUTED. The sphere arithmetic is right (node: pi*6371.0088/180*cos(lat) = 55.598 at 60 N, 19.309 at 80 N, 111.195 at the equator; readouts print 55.6, 19.3, 111.2 and the reveal quotes them). But the sentence states one-decimal values as the length on Earth, and on the WGS84 ellipsoid they are 55.80 km at 60 N, 19.39 km at 80 N and 111.32 km at the equator (pi*a*cos(lat)/(180*sqrt(1-e^2 sin^2 lat))); the lesson's own c4 tells learners the equator degree is 111.3 km, while c2 calls it 111.2. Nothing on the stage or in the reveal says the globe is a sphere (caption: 'A globe.'). Pass 9 verified the old 'about 56' / 'about 19', which hold for the real Earth. Fix (builder): either say the model on stage and in the claim (e.g. caption 'A globe, treated as a sphere of radius 6,371 km' and claim 'On a sphere of radius 6,371 km, ...'), or drop to the precision that holds for Earth ('about 56 km', 'about 19 km', 'about 111 km'). | Builder revision v3 (demo-builder, 2026-10-14, W-243): the stage now names its model. Caption 'A globe, treated as a sphere of radius 6,371 km.' and the reveal's 'Your Seen line, on this sphere of radius 6,371 km: ...' (R_LABEL = Math.round(EARTH_RADIUS_KM)). Readouts unchanged at one decimal. c2 now speaks only of the sphere; c4 speaks of the real Earth (111.3 km on WGS84), so the two no longer give the same quantity two values. Builder statement, not self-verified.",
+      "status": "unverified"
     },
     {
       "id": "geography.shrinking-degree.c3",
@@ -108,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:degree-length-by-latitude",
     "prerequisites": [

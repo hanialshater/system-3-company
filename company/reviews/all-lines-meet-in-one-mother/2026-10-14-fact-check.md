@@ -14,3 +14,14 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c6 | verified | Stage rule text matches verbatim; N = 50, mother = floor(rng() x 50) per line. |
 
 **Result:** 6 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own value iteration: 96.971 -> 97; 2N(1 - 1/N) = 98. |
+| c7 | verified | Own port, seeds 7001-8000: 46.175, 96.033, 197.433 -> 46, 96, 197; same RUN_SEEDS block as the 1,000-run. |
+
+**Result:** every claim open at this pass is now verified.

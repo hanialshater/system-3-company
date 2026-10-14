@@ -27,8 +27,10 @@
       "id": "geography.horizon-ruler.c1",
       "text": "The sight line to the horizon meets the Earth's radius at a right angle, so by Pythagoras the distance is the square root of 2 x Earth's radius x your height.",
       "support": "derivation",
-      "source": "(R + h)^2 = R^2 + d^2, so d = sqrt(2 R h + h^2), which is about sqrt(2 R h) since h << R. R = 6,371.0088 km (EARTH_RADIUS_KM). Computed in Demo.tsx.",
-      "status": "unverified"
+      "source": "(R + h)^2 = R^2 + d^2, so d = sqrt(2 R h + h^2), which is about sqrt(2 R h) since h << R. R = 6,371.0088 km (EARTH_RADIUS_KM). Computed in Demo.tsx. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. (R + h)^2 = R^2 + d^2 gives d = sqrt(2Rh + h^2); sqrt(2Rh) is off by under 0.004% up to 1,000 m (own node: 828 m: 102.715 vs 102.718 km; ground arc 102.710 km). Stage geometry checked: cosA = RD/(RD + hd) puts the eye directly above the centre and the sight direction is proportional to (cosA, sinA), whose dot product with the radius direction (-sinA, cosA) is 0, so the drawn right-angle mark is a true right angle. Separate, non-claim finding routed to demo-builder: Milestones names are ['eyes', 'hundred'] but minInteractions is 3, so interact() can fire only twice and the reveal cannot unlock (the 'tower' reach is ignored).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.horizon-ruler.c2",

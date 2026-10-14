@@ -34,3 +34,14 @@ Checker: fact-checker (Ingrid). I did not write or build any of these claims. Sc
 | c7 | verified | Own sums: sum_{d=2..3} 1/d = 0.833 (/2 = 0.42), sum_{d=256..512} 1/d = 0.696 (/257 = 0.0027), sig2 -> 0.42, 0.83, 0.0027, 0.70. The people-weighted shares (2 per distance, 1 at 512) are 12.2% and 10.2%. The compare line is shown under 1/d (milestone q1 is required). |
 
 **Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | 0.42, 0.0027, 12.2%, 10.2%; compare line rebuilt in node equals the quote; stays once 1/d seen. |
+| c8 | verified | Ratio 1.199 unrounded, 1.196 at the stage rounding -> 1.2; per-distance about 154x; key 'About 1×'. |
+
+**Result:** every claim open at this pass is now verified.

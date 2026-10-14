@@ -10,6 +10,9 @@
 // v3 (wave G r7): the climb-back mark reads as "earliest visit it can loop back to" (↩#low, smaller = earlier),
 // with a legend on the stage for ↩ and for dotted roads; a "Walk" line under the readouts keeps the
 // numbers the reveal quotes (town 4 #3 ↩#3, town 3 #2) in a stage row.
+// v4 (W-246, FC pass 26): the walk is computed on the full map, so "Walk depth-first" reopens every road and the
+// walk marks (badges, dotted roads, bridge) and their legend show exactly when walked and no road is closed; closing
+// a road afterwards hides the marks (the note says so) instead of drawing badges that belong to a different map.
 // One representation: the map; reachable towns from town 1 in the domain colour, cut-off towns red.
 
 import { useState } from "react";
@@ -150,18 +153,22 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
             };
             const walk = () => {
               if (locked || walked) return;
+              setClosed(null);
               setWalked(true);
               hit("dfs-walk");
             };
 
+            // walk marks belong to the full map: shown only after the walk and while every road is open
+            const marks = walked && closed === null;
+            const hidden = walked ? " Reopen all to see the walk." : "";
             const note =
               closed === null
-                ? walked
+                ? marks
                   ? `Depth-first from 1. #visit order; ↩ earliest # it loops back to. Dotted: road back.`
                   : "Tap a road below to close it."
                 : SPLITS[closed]
-                  ? `${name(ROADS[closed])} closed: the map splits in two.`
-                  : `${name(ROADS[closed])} closed: every town is still reachable.`;
+                  ? `${name(ROADS[closed])} closed: the map splits in two.${hidden}`
+                  : `${name(ROADS[closed])} closed: every town is still reachable.${hidden}`;
 
             return (
               <div className={s.wrap}>
@@ -172,8 +179,8 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                     const [x2, y2] = POS[r[1]];
                     const isClosed = i === closed;
                     const isTested = tested.includes(i);
-                    const dfsBridge = walked && isDfsBridge(r);
-                    const back = walked && !isTree(r);
+                    const dfsBridge = marks && isDfsBridge(r);
+                    const back = marks && !isTree(r);
                     return (
                       <g key={name(r)}>
                         <line
@@ -205,7 +212,7 @@ export default function OneRoadCutsTheMap({ slug }: { slug: string }) {
                         <text x={x} y={y + 6} textAnchor="middle" className={s.town}>
                           {t}
                         </text>
-                        {walked ? (
+                        {marks ? (
                           <text x={x + ox} y={y + oy + 4} textAnchor="middle" className={s.badge}>
                             #{DFS.disc[t]} ↩#{DFS.low[t]}
                           </text>

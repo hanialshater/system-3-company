@@ -26,3 +26,13 @@ Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope:
 | c7 | verified | Captions and the ratio readout match the code; printed product equals the readout's change. Side note: Pool's win odds at race 500 read 59.9% in runs 2 and 5. |
 
 **Result:** every claim open at this pass is now verified.
+
+## Pass 26 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: claims open after the wave G revision. Method: read Demo.tsx (and model.ts) for every reachable branch, Reset and reduced motion before the claim sources, then re-ran the numbers in my own node scripts (scratchpad fc26-b1/). No build run.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | Caption strings read; pick() sets from = 0; caption product equals the money ratio readout in all 2,495 run/race cases. Seen row contents match. |
+
+**Result:** every claim open at this pass is now verified.
