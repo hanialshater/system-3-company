@@ -1,4 +1,4 @@
-# Reveal stage crop on phones (W-135 family): scale the stage instead of scrolling it away
+# Reveal stage crop on phones (W-135 family): shrink the picture instead of scrolling it away
 
 owner: platform-engineer · date: 2026-10-14 · tier: 2 (proposed; it changes every lesson's reveal
 layout). Review: W-237 (principal-engineer). This note is the EDD-lite and rollback plan.
@@ -23,52 +23,62 @@ put the reveal's bottom on screen, and that scroll is the crop. No `scrollIntoVi
 lesson or kit code calls it). The CSS rule only makes the overflow bigger; the scroll causes the crop.
 `tools/reveal-fit.mjs` did not see it: it checks only that the reveal is visible, not the stage top.
 
-## Fix
+## Fix (final, commit 1a879c6)
 
-`useRevealFit` now fits before it scrolls. On the reveal (and on every re-fit: the 400 ms re-check,
-resize, rotation, and now a resize of the stage or reveal) it clears any earlier scale, measures
-`over = body.scrollHeight - body.clientHeight`, and if over > 1 it scales the stage by
-`k = max(0.4, (h - over - 4) / h)` with `transform: scale(k)` from top centre and
-`margin-bottom: -(1-k)·h px` to give back the layout space. `data-reveal-scale` on the stage records k.
-Then the old scroll runs, and only matters for stages that would need k < 0.4.
-A transform, not `zoom` or shrinking the svg: pointer hit-testing, `getScreenCTM` and HTML overlays
-positioned over a picture stay correct. Leaving the reveal phase removes the scale.
+`useRevealFit` now fits before it scrolls. On the reveal and on every re-fit (400 ms re-check, resize,
+rotation, a resize of the stage or reveal) it clears any earlier fit, measures
+`over = body.scrollHeight - body.clientHeight`, and shrinks the stage's pictures: outermost
+`svg[viewBox]` elements that hold no `[data-qa="control"]`, largest first, each via an inline
+`max-height` (and `min-height: 0`, since a lesson min-height would win) down to at most 40% of its
+natural height. The viewBox letterboxes the drawing. Shrunk svgs carry `data-reveal-fit` (their natural
+height). Then the old scroll runs for whatever is still over, so the reveal stays fully visible.
+Controls never scale.
+
+First version (superseded, shipped by snapshot in 740f5a1/01006ec): a `transform: scale(k)` on the
+whole stage. It fitted everything but shrank stage controls to 14-22px, so lessons failed the QA
+contract's 24px tap-target check after the reveal (39 of the first 124 contract tests on :3490;
+session 2 saw it in 7 NCM lessons). Coordinator direction: scale only the picture.
 
 ## Measurement (390×844, touch; build 4 on :3480 before, `.next-pf` on :3490 after)
 
-Stage top cropped (px above the card body) / reveal hidden (px):
+Stage top cropped (px) before → transform version → final picture-only version. Reveal hidden is
+0-1px in every case.
 
-| lesson | before | after | scale |
-|---|---|---|---|
-| bending-frontier | 187 / 0 | 0 / 0 | 0.59 |
-| one-odd-loop-blocks-two-camps | 155 / 1 | 0 / 0 | 0.67 |
-| a-star-heads-for-goal | 351 / 0 | 0 / 0 | 0.44 |
-| every-second-seat-out | 467 / 0 | 0 / 0 | 0.46 |
-| midnight-sun-line | 231 / 1 | 0 / 0 | 0.55 |
-| good-lists-make-good-pages (NCM) | 103 / 1 | 0 / 0 | 0.74 |
+| lesson | before | transform (withdrawn) | final | picture natural → fitted |
+|---|---|---|---|---|
+| bending-frontier | 187 | 0 | 33 | 256 → 102 |
+| one-odd-loop-blocks-two-camps | 155 | 0 | 45 | 184 → 74 |
+| a-star-heads-for-goal | 351 | 0 | 200 | 252 → 101 |
+| every-second-seat-out | 467 | 0 | 275 | 320 → 128 |
+| midnight-sun-line | 231 | 0 | 99 | 220 → 88 |
+| good-lists-make-good-pages (NCM) | 103 | 0 | 0 | 216 → 110 |
 
-Random 30-lesson sample (29 measurable): before 22 cropped (median 95px, max 400px), 7 whole;
-after 28 whole, 1 at the 0.4 floor still crops 79px (keeping-the-bad-gene). Scale: 7 unscaled,
-median 0.80, 4 of 29 under 0.6.
+Random 30-lesson sample (29 measurable): before 7 whole / 22 cropped (median 95px, max 400px); final
+19 whole / 10 cropped (median 112px, max 319px).
 
-## Trade-offs and open questions for the review
+Contract QA (tests/qa/contract.spec.ts, phone + desktop) against the final build: all 29 NCM-tagged
+lessons 58/58; the 39 lessons that failed under the transform version plus the 5 named above 88/88.
 
-1. **Small text at low scale.** At k ≈ 0.45 stage text is drawn at about 6px (a-star-heads-for-goal).
-   Nothing is cropped but labels are hard to read. Stages that need k < 0.6 are too tall for a phone
-   reveal; that is a lesson-design fix (trim controls at the reveal), for builders and the design lead.
-2. **Tap targets.** Stage controls stay live at the reveal and shrink with k (below 44px). Explore is
-   unaffected.
-3. **reveal-fit's thumbnail flag.** `tools/reveal-fit.mjs` compares the drawn picture with the
-   unscaled stage width, so every scaled stage now reads "thumb" (the 6 lessons above: before pass,
-   after fit+thumb). W-135's "no thumbnail" bar and "whole stage visible" now pull against each other;
-   the tool should count stage-top crop and report scale instead. Not changed here.
-4. **Floor 0.4** is a judgment call. The other option is a floor near 0.6 plus a scroll, which brings
-   back a smaller crop.
+## What is left (not a kit fix)
+
+Where the stage's controls and text plus the reveal are taller than the card body, no picture shrink
+can make room, and the card still scrolls the stage top away. In midnight-sun-line the globe the reveal
+names ("the orange gap on the globe") is still off screen. The remaining options are design or lesson
+decisions: trim or hide stage controls at the reveal, shorten the reveal, or let the reveal scroll inside
+itself (that would relax the W-135 guarantee). Routed to the design lead (board).
+
+## Other notes for the review
+
+- `tools/reveal-fit.mjs` does not measure stage-top crop; its thumbnail flag will flag shrunk pictures.
+  Board item for platform-engineer.
+- Overlays: HTML positioned over an svg by percentage could drift when the svg letterboxes. None seen in
+  the screenshots checked; this is a risk, not a measured defect.
+- An inline `min-height` set by a lesson on its svg is cleared when the fit is undone (rare).
 
 ## Rollback
 
-Revert the `useRevealFit` change in `src/components/DemoCard.tsx` (scaleStage/unscale and the stage
-and reveal observers). The globals.css change is a comment only.
+Revert 1a879c6 and the useRevealFit part of the snapshot commits (scaleStage/unscale and the stage and
+reveal observers in `src/components/DemoCard.tsx`). The globals.css change is a comment only.
 
 ## Possible amendment (not required)
 

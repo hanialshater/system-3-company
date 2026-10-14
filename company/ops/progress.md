@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, platform-engineer: reveal stage crop on phones (W-135 family; review W-237; commit 1a879c6)
+
+- Changed: `src/components/DemoCard.tsx` `useRevealFit` now shrinks the stage's pictures (outermost control-free `svg[viewBox]`, largest first, inline max-height, floor 40%) before it scrolls the card body at the reveal; controls never scale. A first version that scaled the whole stage with a transform reached the shared branch by snapshot (740f5a1, 01006ec) and broke the QA contract's 24px tap-target check. 1a879c6 replaces it (coordinator direction). The globals.css change is a comment. tsconfig.json was reverted. Note and EDD-lite: company/engineering/notes/2026-10-14-reveal-stage-crop.md. Changelog line added. Board: W-237 (principal-engineer, tier-2 review), W-259 (design-lead, remaining crop), W-242 (mine, reveal-fit should measure stage-top crop); W-241 dropped (it was about the withdrawn transform version).
+- Believe: the cause is certain. W-135's scroll to the reveal's bottom pushes a content-sized stage off the top, and no scrollIntoView is involved. The tap-target regression is gone: contract QA on :3490 passed 29 NCM lessons 58/58 and 44 others 88/88. The crop is only partly fixed (medium confidence that this is the best kit-only fix). At 390×844 the stage-top crop went from 187/155/351/467/231/103 px to 33/45/200/275/99/0 (bending-frontier, one-odd-loop, a-star, every-second-seat, midnight-sun, good-lists). In a 29-lesson sample, cropped lessons went from 22 to 10. Where the controls plus the reveal are taller than the card, only a design change can help.
+- Next: the principal engineer reviews W-237, the design lead decides W-259, and I do W-242. A full `npm run verify` has not run on the final build: only the contract on 73 lessons, plus `npm run check`.
+- Blocked: nothing.
+
+## 2026-10-14, evaluation-steward: W-258 ruling (eratosthenes-shadow c5 and c1)
+
+- Changed: ruled that both c5 and c1 get a stage-only reword ("This lesson's story: ..."), following W-222 and W-247. Neither is held. The ruling, its objection and the exact text are in company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md under "Ruling on W-258". Board: W-260 (demo-builder: question, Syene label, chip, reveal, c1/c5 text, and the hook, which is an unrecorded claim) and W-261 (demo-builder: the-slowing-half-life c3 support becomes derivation). W-258 is done. No lesson files edited.
+- Believe: "In the account, X" is still a checkable historical claim that rests only on snippets, and c1 has the same weakness as c5. The history is context, not the objective. About 85% sure. The cost: the answer to the misconception is weaker, and Eratosthenes is now named only in c4 (verified from memory). That is routed to cm-geography, not ruled.
+- Next: demo-builder W-260 and W-261, then a fact-checker re-checks c1 and c5 against the stage.
+- Blocked: eratosthenes-shadow cannot publish until W-260 and the re-check are done.
+
 ## 2026-10-14, fact-checker: pass 27 (re-check of 8 pass 26 claims, W-252/253/254/256)
 
 - Changed: re-checked the-slowing-half-life c3, hailstone-27-climbs c6, one-road-cuts-the-map c6, range-min-in-four-nodes c7, eratosthenes-shadow c5, shrinking-degree c2, enemies-allow-three-camps c5 and throw-it-fast-enough c6 against the new Demo.tsx, including each path that failed in pass 26. 7 verified, 0 disputed, 1 held unverified (eratosthenes c5). Each meta.json has status, checkedBy and checkedOn set, plus an "FC pass 27" source note. A Pass 27 table was appended to each company/reviews/<slug>/2026-10-14-fact-check.md. horizon-ruler v3 code check: all three milestones are reachable by the chips (the slider never hits a stop exactly), so the reveal can open. This was a code read plus a node simulation, recorded in its review file. Board: W-252, W-253, W-254, W-256 done, and W-246, W-248, W-249, W-250 closed. Added W-258 (evaluation-steward) for eratosthenes c5. No code or claim text edited, nothing built.
