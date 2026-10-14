@@ -11,6 +11,7 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
+import { Row } from "@/kit/controls";
 import s from "./styles.module.css";
 
 type Name = "Ann" | "Bea" | "Cal" | "X" | "Y" | "Z";
@@ -33,10 +34,16 @@ type Run = {
   next: Record<Name, number>;
   refused: [Name, Name][]; // [proposer, receiver] pairs turned down
 };
-const FRESH: Run = { held: {}, next: { Ann: 0, Bea: 0, Cal: 0, X: 0, Y: 0, Z: 0 }, refused: [] };
+const FRESH: Run = {
+  held: {},
+  next: { Ann: 0, Bea: 0, Cal: 0, X: 0, Y: 0, Z: 0 },
+  refused: [],
+};
 
-const heldBy = (run: Run, p: Name) => (Object.keys(run.held) as Name[]).find((r) => run.held[r] === p);
-const prefers = (who: Name, a: Name, b: Name) => PREF[who].indexOf(a) < PREF[who].indexOf(b);
+const heldBy = (run: Run, p: Name) =>
+  (Object.keys(run.held) as Name[]).find((r) => run.held[r] === p);
+const prefers = (who: Name, a: Name, b: Name) =>
+  PREF[who].indexOf(a) < PREF[who].indexOf(b);
 
 // Every student with every hospital they did not get: how many pairs have one yes, how many two.
 function swapCount(pairs: Pairs) {
@@ -49,7 +56,8 @@ function swapCount(pairs: Pairs) {
     for (const h of HOSPITALS) {
       if (h === hospOf(st)) continue;
       other++;
-      const yes = Number(prefers(st, h, hospOf(st))) + Number(prefers(h, st, studOf(h)));
+      const yes =
+        Number(prefers(st, h, hospOf(st))) + Number(prefers(h, st, studOf(h)));
       if (yes === 1) one++;
       if (yes === 2) both++;
     }
@@ -59,10 +67,12 @@ const firsts = (pairs: Pairs) => ({
   st: pairs.filter(([a, b]) => PREF[a][0] === b).length,
   ho: pairs.filter(([a, b]) => PREF[b][0] === a).length,
 });
-const pairText = (pairs: Pairs) => pairs.map(([a, b]) => `${a}–${b}`).join(", ");
+const pairText = (pairs: Pairs) =>
+  pairs.map(([a, b]) => `${a}–${b}`).join(", ");
 
 function Stage({
   locked,
+  compact,
   reach,
   found,
   setFound,
@@ -70,6 +80,7 @@ function Stage({
   setChecked,
 }: {
   locked: boolean;
+  compact: boolean;
   reach: (n: string) => void;
   found: Partial<Record<Mode, Pairs>>;
   setFound: (f: Partial<Record<Mode, Pairs>>) => void;
@@ -78,16 +89,23 @@ function Stage({
 }) {
   const [mode, setMode] = useState<Mode>("S");
   const [run, setRun] = useState<Run>(FRESH);
-  const unchecked = (["S", "H"] as Mode[]).filter((m) => found[m] && !checked[m]);
+  const unchecked = (["S", "H"] as Mode[]).filter(
+    (m) => found[m] && !checked[m],
+  );
 
   const proposers = mode === "S" ? STUDENTS : HOSPITALS;
   const done = proposers.every((p) => heldBy(run, p));
-  const partner = (n: Name): Name | undefined => (proposers.includes(n) ? heldBy(run, n) : run.held[n]);
+  const partner = (n: Name): Name | undefined =>
+    proposers.includes(n) ? heldBy(run, n) : run.held[n];
 
   // p offers down its list until someone holds it. If that bumps a held proposer, the bumped one is free again.
   const offer = (p: Name) => {
     if (locked || done || heldBy(run, p) || !proposers.includes(p)) return;
-    const nr: Run = { held: { ...run.held }, next: { ...run.next }, refused: [...run.refused] };
+    const nr: Run = {
+      held: { ...run.held },
+      next: { ...run.next },
+      refused: [...run.refused],
+    };
     for (;;) {
       const r = PREF[p][nr.next[p]];
       if (!r) break;
@@ -156,7 +174,7 @@ function Stage({
         <span className={s.list}>
           {PREF[n].map((o, i) => (
             <span key={o} className={done && mate === o ? s.mate : undefined}>
-              {i > 0 ? " › " : ""}
+              {i > 0 ? (compact ? "\u2009›\u2009" : " › ") : ""}
               {o}
             </span>
           ))}
@@ -165,12 +183,16 @@ function Stage({
     );
   };
 
-  const xOf = (n: Name) => 60 + 120 * (STUDENTS.includes(n) ? STUDENTS.indexOf(n) : HOSPITALS.indexOf(n));
+  const xOf = (n: Name) =>
+    60 +
+    120 * (STUDENTS.includes(n) ? STUDENTS.indexOf(n) : HOSPITALS.indexOf(n));
   const top = (n: Name) => STUDENTS.includes(n);
+  // v5 (learner r8): the offer strip is shorter at the reveal so the clash ✕ stays on screen with the cards.
+  const H = compact ? 52 : 80;
   const lineFor = (p: Name, r: Name, kind: "held" | "refused", k: number) => {
     const prop = top(p);
-    const y1 = prop ? 2 : 78;
-    const y2 = prop ? 78 : 2;
+    const y1 = prop ? 2 : H - 2;
+    const y2 = prop ? H - 2 : 2;
     return (
       <g key={`${kind}${p}${r}${k}`}>
         <line
@@ -185,7 +207,12 @@ function Stage({
           markerEnd="url(#offer-arrow)"
         />
         {kind === "refused" && (
-          <text x={(xOf(p) + xOf(r)) / 2} y={44} textAnchor="middle" className={s.x}>
+          <text
+            x={(xOf(p) + xOf(r)) / 2}
+            y={H / 2 + 4}
+            textAnchor="middle"
+            className={s.x}
+          >
             ✕
           </text>
         )}
@@ -200,31 +227,55 @@ function Stage({
   };
   const checkLine = (m: Mode) => {
     const c = swapCount(found[m]!);
-    return `Swap? ${c.both} of ${c.other} other pairs say yes both ways: ${c.both === 0 ? "stable" : "unstable"}.`;
+    return `${c.both === 0 ? "Stable" : "Unstable"}: ${c.both} of ${c.other} other pairs say yes both ways.`;
   };
 
   return (
-    <div className={s.wrap}>
-      <p className={s.rule}>Tap a free card to offer down its list. Receivers keep their best offer.</p>
+    <div className={`${s.wrap} ${compact ? s.compact : ""}`}>
+      {!compact && (
+        <p className={s.rule}>
+          Tap a free card to offer down its list. Receivers keep their best
+          offer.
+        </p>
+      )}
       <div className={s.row}>{STUDENTS.map(card)}</div>
-      <button
-        type="button"
-        data-qa="control"
-        className={`control tap ${s.toggle}`}
-        aria-pressed={mode === "H"}
-        disabled={locked}
-        onClick={toggle}
+      {/* Fold opt-in (W-330): no Readout, no reveal sentence reads this switch, and the arrow direction shows the mode. */}
+      <Row foldAtReveal>
+        <button
+          type="button"
+          data-qa="control"
+          className={`control tap ${s.toggle}`}
+          aria-pressed={mode === "H"}
+          disabled={locked}
+          onClick={toggle}
+        >
+          {mode === "S" ? "Students propose ↓" : "Hospitals propose ↑"}
+        </button>
+      </Row>
+      <svg
+        viewBox={`0 0 360 ${H}`}
+        style={{ height: H }}
+        className={`stage-svg ${s.lines}`}
+        role="img"
+        aria-label="Offers between students and hospitals"
       >
-        {mode === "S" ? "Students propose ↓" : "Hospitals propose ↑"}
-      </button>
-      <svg viewBox="0 0 360 80" className={`stage-svg ${s.lines}`} role="img" aria-label="Offers between students and hospitals">
         <defs>
-          <marker id="offer-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+          <marker
+            id="offer-arrow"
+            viewBox="0 0 8 8"
+            refX="7"
+            refY="4"
+            markerWidth="7"
+            markerHeight="7"
+            orient="auto"
+          >
             <path d="M0,0 L8,4 L0,8 z" fill="var(--fg)" />
           </marker>
         </defs>
         {run.refused.map(([p, r], k) => lineFor(p, r, "refused", k))}
-        {(Object.keys(run.held) as Name[]).map((r) => lineFor(run.held[r]!, r, "held", 0))}
+        {(Object.keys(run.held) as Name[]).map((r) =>
+          lineFor(run.held[r]!, r, "held", 0),
+        )}
       </svg>
       <div className={s.row}>{HOSPITALS.map(card)}</div>
       <div className={s.log} aria-live="polite">
@@ -239,15 +290,18 @@ function Stage({
           <p>Matchings: ?</p>
         )}
       </div>
-      <button
-        type="button"
-        data-qa="control"
-        className={`control tap ${s.toggle}`}
-        disabled={locked || unchecked.length === 0}
-        onClick={check}
-      >
-        Would a pair rather swap?
-      </button>
+      {/* Fold opt-in: the reveal quotes the check lines in the log above, never this button. */}
+      <Row foldAtReveal>
+        <button
+          type="button"
+          data-qa="control"
+          className={`control tap ${s.toggle}`}
+          disabled={locked || unchecked.length === 0}
+          onClick={check}
+        >
+          Would a pair rather swap?
+        </button>
+      </Row>
     </div>
   );
 }
@@ -259,7 +313,8 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
   const fh = found.H ? firsts(found.H) : null;
   const cs = found.S ? swapCount(found.S) : null;
   const ch = found.H ? swapCount(found.H) : null;
-  const same = !!found.S && !!found.H && pairText(found.S) === pairText(found.H);
+  const same =
+    !!found.S && !!found.H && pairText(found.S) === pairText(found.H);
   return (
     <Lesson
       slug={slug}
@@ -278,26 +333,36 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Students proposing gave {found.S ? pairText(found.S) : "(not run)"}: first choices for students{" "}
-            {fs ? fs.st : "?"}, hospitals {fs ? fs.ho : "?"}. Hospitals proposing gave{" "}
-            {found.H ? pairText(found.H) : "(not run)"}: students {fh ? fh.st : "?"}, hospitals {fh ? fh.ho : "?"}.
-            {same ? " Same pairs." : " Same rankings, different pairs, and the side making offers did better."} Each run had
-            a clash: two offers reached one receiver, it kept the one it ranked higher, and the other moved down its list.
+            Students proposing gave {found.S ? pairText(found.S) : "(not run)"}:
+            first choices for students {fs ? fs.st : "?"}, hospitals{" "}
+            {fs ? fs.ho : "?"}. Hospitals proposing gave{" "}
+            {found.H ? pairText(found.H) : "(not run)"}: students{" "}
+            {fh ? fh.st : "?"}, hospitals {fh ? fh.ho : "?"}.
+            {same
+              ? " Same pairs."
+              : " Same rankings, different pairs, and the side making offers did better."}{" "}
+            Each run had a clash (dashed ✕): the receiver kept the offer it
+            ranked higher.
           </p>
           <p>
-            Your swap check found {cs && checked.S ? cs.both : "?"} and {ch && checked.H ? ch.both : "?"} pairs that
-            wanted each other both ways, so both matchings are stable. Deferred acceptance always ends stable and gives the
-            proposing side its best stable partner (Gale and Shapley 1962).
+            Your swap check found {cs && checked.S ? cs.both : "?"} and{" "}
+            {ch && checked.H ? ch.both : "?"} pairs that wanted each other both
+            ways, so both matchings are stable. Deferred acceptance always ends
+            stable (Gale and Shapley 1962); who makes the offers decides who is
+            favoured.
           </p>
-          <p className="muted">A fair-looking procedure can still have a side it favours.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
-        <Milestones interact={interact} names={["students-proposed", "hospitals-proposed", "checked-both"]}>
+      {({ locked, interact, phase }) => (
+        <Milestones
+          interact={interact}
+          names={["students-proposed", "hospitals-proposed", "checked-both"]}
+        >
           {(reach) => (
             <Stage
               locked={locked}
+              compact={phase === "reveal"}
               reach={reach}
               found={found}
               setFound={setFound}

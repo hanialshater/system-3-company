@@ -13,8 +13,9 @@
 // is still on the stage; the step line names its second factor (the responder's share if they propose next).
 // v5 (learner r8, phone fit): reveal cut to <= 90 words; the model caveat moved onto the chart as its caption; the
 // readouts row is gone (the step line says what the proposer keeps, the chart footer says the rounds); the shrink
-// buttons read "Shrink 10%", "30%", "50%" so they fit one row; the "1 round" button is gone (bar 1 of the chart always
-// shows the one-round 100%); the chart is 48 units shorter.
+// buttons read "Shrink 10%", "30%", "50%" so they fit one row; the "1 round" button is folded into the "400 rounds"
+// button, which reads "Back to 1" once the game has 400 rounds (bar 1 of the chart always shows the one-round 100%);
+// the chart is 48 units shorter.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -154,8 +155,8 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                   <Control disabled={locked || n >= LONG} onClick={() => set(shrink, Math.min(LONG, n + 10))}>
                     +10 rounds
                   </Control>
-                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, LONG)}>
-                    {LONG} rounds
+                  <Control disabled={locked} onClick={() => set(shrink, n >= LONG ? 1 : LONG)}>
+                    {n >= LONG ? "Back to 1" : `${LONG} rounds`}
                   </Control>
                 </Row>
                 <Row>

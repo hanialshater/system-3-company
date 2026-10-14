@@ -1365,7 +1365,7 @@ export const homeLessons: HomeSpec[] = [
       6
     ],
     "choices": [
-      "Assembled cube",
+      "Assembled box",
       "Panels stacked"
     ],
     "question": "Which empty-object envelope is smaller?",

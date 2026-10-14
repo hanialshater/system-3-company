@@ -1,5 +1,15 @@
 # Build note: lh-scale-recipe-portions
 
+## Pre-flight (W-404, no version change)
+
+2026-10-14, demo-builder. Board W-404 (FC LH-4 found on the way).
+
+- **Problem:** the old ten-portion recall note was still in sources. It survived in c2 and c3 ("Transfer recall: A at x=10 gives ..."), and in c4 as a history aside, which is what FC LH-4 read as stale.
+- **Fix:** c2 and c3 sources now give the current recall (A at x=2 gives 150g, 300÷4×2). The c4 source drops the history aside. The meta.json no longer contains "750".
+- **Claims:** c2, c3 and c4 are unverified because their sources changed. Their claim texts are unchanged. Re-check owed.
+- **Learner-visible change:** none, so no version bump (stays 3).
+- **Checks:** `npm run test:lifehacks` 53/53, `tsc` clean, `npm run check`.
+
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-361(b).

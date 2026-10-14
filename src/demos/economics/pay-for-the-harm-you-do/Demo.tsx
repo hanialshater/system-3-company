@@ -10,10 +10,13 @@
 // v2 (wave E r6): the stage now writes the sums the bracket rests on ("Without X: Y $60 + Z $5 =
 // $65 · With X: Y $30 + Z $0 = $30"), so the harm is a subtraction the learner can do; the bracket
 // caption is kept inside the frame; the chip says Y and Z bid their values.
+// v4 (learner r8, phone fit): reveal cut to <= 90 words (the Y/Z payments sentence and the VCG name are gone; the
+// model caveat is on the chip); the three readouts are gone: X's slot and profit are one line in the picture above the
+// keep chart, X's payment is the bracket; the keep chart is 22 units shorter.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -112,16 +115,15 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              At the honest {usd(HONEST)}, the line under the bars read: without X, Y and Z get {usd(h.othersWithout)}. With X on top, Y drops to the second slot and
-              gets {usd(h.othersWith)}, and Z gets nothing. That gap, <strong>{usd(h.pay)}</strong>, is X&apos;s price, not the $70
-              X&apos;s own bid would charge.
+              At the honest {usd(HONEST)}, the line under the bars read: without X, Y and Z get {usd(h.othersWithout)}; with X on
+              top, Y drops a slot and they get {usd(h.othersWith)}. That gap, <strong>{usd(h.pay)}</strong>, is X&apos;s
+              price, not the $70 X&apos;s own bid would charge.
             </p>
             <p>
-              No bid beat the honest $7: bids of $6 to $10 tied at {usd(h.keep)}, while $1 to $5 dropped X to the second slot and{" "}
-              {usd(outcome(3).keep)}. X&apos;s bid only picks the slot; the others set the price.
+              No bid beat the honest $7: $6 to $10 tied at {usd(h.keep)}, while $1 to $5 dropped X to the second slot and{" "}
+              {usd(outcome(3).keep)}. X&apos;s bid only picks the slot; the others set the price. Honest bidding is a dominant
+              strategy.
             </p>
-            <p>By the same rule Y pays $5 and Z $0. This is the VCG mechanism: honest bidding is a dominant strategy.</p>
-            <p className="muted">A simplified model: fixed clicks per slot, the others bid their values, ties go to X.</p>
           </>
         );
       }}
@@ -138,9 +140,9 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
             const gapX = L + px(o.othersWith);
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: Y and Z bid their values, $6 and $1; ties go to X</p>
+                <p className={s.chip}>Model: fixed clicks; Y, Z bid their values; ties to X</p>
                 <svg
-                  viewBox="0 0 320 220"
+                  viewBox="0 0 320 196"
                   className="stage-svg"
                   role="img"
                   aria-label={locked ? "Y and Z's value with and without X" : `X bids ${usd(bid)}, pays ${usd(o.pay)}, keeps ${usd(o.keep)}`}
@@ -164,39 +166,39 @@ export default function PayForTheHarm({ slug }: { slug: string }) {
                       </text>
                     </g>
                   )}
-                  <text x={8} y={110} className={s.axis}>
+                  <text x={8} y={102} className={s.axis}>
                     X keeps, for each bid
                   </text>
+                  {!locked && (
+                    <text x={312} y={102} className={s.value} textAnchor="end">
+                      X now: {o.slot < 0 ? "no slot" : `${slotName(o.slot)} slot`}, keeps {usd(o.keep)}
+                    </text>
+                  )}
                   {BIDS.map((b) => {
                     const k = outcome(b).keep;
                     const x = 22 + b * 26;
-                    const h = (k / 40) * 70;
+                    const h = (k / 40) * 48;
                     const on = !locked && b === bid;
                     return (
                       <g key={b}>
-                        <rect x={x} y={120} width={20} height={70} className={s.track} />
-                        {!locked && <rect x={x} y={190 - h} width={20} height={h} className={on ? s.main : s.mutedFill} />}
+                        <rect x={x} y={118} width={20} height={48} className={s.track} />
+                        {!locked && <rect x={x} y={166 - h} width={20} height={h} className={on ? s.main : s.mutedFill} />}
                         {on && (
-                          <text x={x + 10} y={186 - h} className={s.small} textAnchor="middle">
+                          <text x={x + 10} y={162 - h} className={s.small} textAnchor="middle">
                             {usd(k)}
                           </text>
                         )}
-                        <text x={x + 10} y={204} className={b === HONEST ? s.value : s.small} textAnchor="middle">
+                        <text x={x + 10} y={180} className={b === HONEST ? s.value : s.small} textAnchor="middle">
                           {b === HONEST ? "$7" : b}
                         </text>
                       </g>
                     );
                   })}
-                  <text x={22 + HONEST * 26 + 10} y={214} className={s.small} textAnchor="middle">
+                  <text x={22 + HONEST * 26 + 10} y={191} className={s.small} textAnchor="middle">
                     honest
                   </text>
                 </svg>
                 <p className={s.sums}>{locked ? "" : sums(o)}</p>
-                <Row>
-                  <Readout label="X's slot" value={locked ? "?" : slotName(o.slot)} />
-                  <Readout label="X pays" value={locked ? "?" : usd(o.pay)} />
-                  <Readout label="X keeps" value={locked ? "?" : usd(o.keep)} />
-                </Row>
                 <Row>
                   {[HONEST, 3, 10].map((v) => (
                     <Control key={v} className={bid === v ? "active" : ""} disabled={locked || bid === v} onClick={() => set(v)}>

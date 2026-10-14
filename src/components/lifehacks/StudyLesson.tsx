@@ -39,7 +39,7 @@ function observation(spec: StudySpec,state: State): string {
   if(spec.family==="order") {
     const roundRobin=spec.slug==="work-in-process-limit"&&state.step<2;
     const v=queueResult(spec,state.order,roundRobin);
-    if(spec.slug==="work-in-process-limit") return `Your ${roundRobin?"five-minute round-robin":"whole-job"} schedule first completes a task at minute ${v.firstFinish}. All jobs together still require ${v.time} minutes of execution. Starting and finishing are different events.`;
+    if(spec.slug==="work-in-process-limit") return `In order ${state.order.map(i=>spec.labels[i]).join(" → ")}, your ${roundRobin?"five-minute-turn":"whole-job"} schedule first completes a task at minute ${v.firstFinish}. All jobs together still require ${v.time} minutes of execution. Starting and finishing are different events.`;
     return `Your order ${state.order.map(i=>spec.labels[i]).join(" → ")} gives ${v.waiting} total waiting minutes, ${v.late} late jobs and ${v.breaches} prerequisite breaches. ${spec.switchCost?`Each context change adds ${spec.switchCost} minutes.`:"All jobs are ready except for the stated prerequisites."}`;
   }
   if(spec.family==="recall") {
@@ -141,12 +141,14 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     </div>;
   }
   if(spec.family==="order") {
-    const roundRobin=spec.slug==="work-in-process-limit"&&state.step<2;
+    // W-403: work-in-process-limit compares ONE order in both views; only the view toggles, never the order.
+    const wip=spec.slug==="work-in-process-limit";
+    const roundRobin=wip&&state.step<2;
     const v=queueResult(spec,state.order,roundRobin);
     const target=state.order.every((id,i)=>id===spec.target[i]);
     const x=(time:number)=>74+time/80*225;
     return <div className={s.wrap}>
-      <div className={s.caption}>{roundRobin?"Slice=5m · duration/due":spec.switchCost?`Setup=${spec.switchCost}m/switch`:"Exercise · duration/due"}</div>
+      <div className={s.caption}>{roundRobin?"Slice=5m · duration/due":wip?"Whole jobs · duration/due":spec.switchCost?`Setup=${spec.switchCost}m/switch`:"Exercise · duration/due"}</div>
       <Frame label={`Queue order: ${state.order.map(id=>`${spec.labels[id]}, duration ${spec.durations[id]} minutes, due at minute ${spec.due[id]}${spec.dependencies[String(id)]!==undefined?`, requires ${spec.labels[spec.dependencies[String(id)]]}`:""}`).join("; ")}. ${roundRobin?"Five-minute slices.":spec.switchCost?`Each context change adds ${spec.switchCost} minutes.`:"Whole-job execution."} ${state.step&&!locked?`${spec.metric==="completion"?`First completion at minute ${v.firstFinish}`:`Total waiting ${v.waiting} minutes`}; ${v.late} late jobs; ${spec.metric==="switches"?`${v.switches} context switches`:`${v.breaches} prerequisite breaches`}.`:"Results not yet tested."}`}>
         {state.order.map((id,i)=><g key={id}>
           <text x="2" y={29+i*35} fill={textColor} className={s.rowLabel}>{spec.labels[id]}</text>
@@ -159,8 +161,13 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
       <div className={s.results}><Result label={spec.metric==="completion"?"First":"Wait"} value={state.step?`${spec.metric==="completion"?v.firstFinish:v.waiting}m`:"?"}/><Result label="Late" value={state.step?v.late:"?"}/><Result label={spec.metric==="switches"?"Switches":"Prereq"} value={state.step?(spec.metric==="switches"?v.switches:v.breaches):"?"}/></div>
       <div className={s.controls}>
         <Control disabled={locked||state.step>0} onClick={()=>step(1)}>Run queue</Control>
-        <Control disabled={locked||!state.step} onClick={()=>{setState(p=>({...p,step:2,order:swapPositions(p.order,0,1)}));reach("key-comparison");}}>Swap first</Control>
-        <Control disabled={locked||!state.step||target} onClick={()=>{setState(p=>({...p,step:2,order:[...spec.target]}));reach("key-comparison");}}>Try target</Control>
+        {wip?<>
+          <Control disabled={locked||!state.step||state.step===2} onClick={()=>step(2)}>Whole jobs</Control>
+          <Control disabled={locked||state.step!==2} onClick={()=>setState(p=>({...p,step:1}))}>5-min turns</Control>
+        </>:<>
+          <Control disabled={locked||!state.step} onClick={()=>{setState(p=>({...p,step:2,order:swapPositions(p.order,0,1)}));reach("key-comparison");}}>Swap first</Control>
+          <Control disabled={locked||!state.step||target} onClick={()=>{setState(p=>({...p,step:2,order:[...spec.target]}));reach("key-comparison");}}>Try target</Control>
+        </>}
       </div>
     </div>;
   }

@@ -1,0 +1,103 @@
+{
+  "slug": "two-right-angles-never-meet",
+  "title": "Two right angles in one triangle?",
+  "hook": "Put two square corners on one base. What would the third corner have to look like?",
+  "domain": "math",
+  "concept": "proof-by-contradiction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "wave-i-math"
+  },
+  "learner": {
+    "knows": [
+      "a flat triangle's corners add to 180° (tear-the-corners)",
+      "what a right angle is"
+    ],
+    "doesNotKnow": [
+      "proof by contradiction as a method: assume the thing and follow it until it breaks"
+    ]
+  },
+  "misconception": "\"No triangle has two right angles\" is a rule you are told, not something you can show. A tall enough triangle might manage it.",
+  "objective": "The learner can explain that assuming a flat triangle has two right angles leaves 0° for the third corner, which they saw as the sides running parallel, so the assumption is false: proof by contradiction.",
+  "claims": [
+    {
+      "id": "math.two-right-angles-never-meet.c1",
+      "text": "The corners of a triangle on a flat page add to 180°, so two right angles (90° + 90°) would use all 180° and leave 0° for the third corner.",
+      "support": "derivation",
+      "source": "Draw the parallel to the base through the top corner; alternate angles give the sum 180° (Euclid, Elements I.32). 180 − 90 − 90 = 0.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-right-angles-never-meet.c2",
+      "text": "With a right angle at one end of a base and angle B at the other, the sides meet tan(B) bases up and the top corner is 90° − B: at 89° that is 57.3 bases up with a 1° tip (stage readouts 'Sides meet' and 'Top corner').",
+      "support": "derivation",
+      "source": "Right triangle: opposite / adjacent = tan B. node: Math.tan(89*Math.PI/180) = 57.29; tan 85° = 11.43; tan 60° = 1.73. The stage prints meet(B) = tan(B) with fmtH (2 decimals under 10, 1 decimal under 100) and 90 − B. The reveal quotes the largest B from 85° to 89° the learner set.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-right-angles-never-meet.c3",
+      "text": "On a flat page, two lines both at right angles to the same base are parallel and never meet (stage: at 90° the readout says 'never').",
+      "support": "derivation",
+      "source": "If they met, the triangle formed would have corners summing to more than 180° once the top corner is counted, against c1 (Euclid, Elements I.27-28). The stage draws both sides vertical at B = 90° and meet(90) returns null.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-right-angles-never-meet.c4",
+      "text": "If an assumption leads to something impossible, the assumption is false; showing a statement this way is proof by contradiction.",
+      "support": "convention",
+      "source": "Definition of proof by contradiction (reductio ad absurdum) in any introductory logic or proof text; no number to check.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.two-right-angles-never-meet.c5",
+      "text": "The lesson is set on a flat page: the stage caption says 'Flat page'. (On a sphere a triangle can have two or three right angles, which is why the condition is stated; the lesson does not claim anything about spheres.)",
+      "support": "convention",
+      "source": "Scope statement from the brief (company/domains/briefs/math.md #56, 'Not claimed'). The learner only sees 'Flat page' / 'On a flat page'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "On a flat page, can a triangle have one right angle and one corner of 100°?",
+    "options": [
+      "Yes, if it is tall enough",
+      "No, never",
+      "Yes, if its base is short enough"
+    ],
+    "answer": 1,
+    "why": "Assume it could: 90° + 100° is already more than 180°, the most a flat triangle's corners can add to. The assumption breaks, so no such triangle exists."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:proof-by-contradiction",
+    "also": [
+      "math:angle-sum-triangle"
+    ],
+    "prerequisites": [
+      "math:angle-sum-triangle"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "proof",
+      "contradiction",
+      "angles"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts",
+    "preset-buttons"
+  ]
+}

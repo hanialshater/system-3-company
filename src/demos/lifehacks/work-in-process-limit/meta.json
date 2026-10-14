@@ -18,35 +18,29 @@
       "Compare serial completion to round-robin partial progress."
     ]
   },
-  "misconception": "Split five minutes across jobs",
+  "misconception": "Rotate 5-minute turns",
   "objective": "Compare serial completion to round-robin partial progress.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Three started tasks are not three finished tasks. Which completes the first five-minute job at minute five? Correct option: One job to completion. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three started tasks are not three finished tasks. Same three jobs, same order A, B, C. Which plan finishes its first job sooner? Correct option: Whole jobs, one at a time. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. W-403 (2026-10-14, demo-builder): Re-worded after FC LH-4 (company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md): both views now use the one order A (10 min), B (15 min), C (5 min). Whole jobs first completion 10 (queueResult, ends 10, 25, 30); 5-minute turns first completion 15 (roundRobinQueue, ends A 20, B 30, C 15). Options are \"Whole jobs, one at a time\" / \"Rotate 5-minute turns\". Awaiting fact-checker re-check.",
       "id": "lifehacks.work-in-process-limit.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
-      "text": "In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
+      "text": "Same order A, B, C and the same 30 minutes of work. Run whole, A is done at minute 10. In 5-minute turns the first job done is C, at minute 15, and A waits until minute 20. Starting and finishing are different counts.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): DISPUTED: the stage numbers are right (round-robin of order three, two, one ends 30, 25, 15, first completion 15; whole-job one, two, three first completion 5), but the causal sentence is false: slicing does not cause the 5 → 15 change. Same order, sliced or whole: three, two, one gives first completion 15 both ways; one, two, three gives 5 both ways (queueResult and roundRobinQueue in node). The difference is the job order, because job one (5 min) fits in a single 5-minute turn. Fix (builder and cm decide): either compare the same order in both views with a first job longer than one turn (e.g. three 10-minute jobs: whole-job 10 vs round-robin 20, as the recall does), or reword to name the order (\"Running the 5-minute job first finishes it at minute 5; the opening view starts with the 15-minute job\"). Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (study_work_in_process_limit: durations C=5, A=10, B=15; order A, B, C in both views, initial = target = [1,2,0]) and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-403 (2026-10-14, demo-builder): Fix for the FC LH-4 dispute (company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md: the old 5 → 15 change came from job order, not slicing). The stage now compares ONE order. \"Run queue\" shows 5-minute turns in order A, B, C: A 0–5, B 5–10, C 10–15 (C done 15), A 15–20 (A done 20), B 20–30 (B done 30); first completion 15 (roundRobinQueue). \"Whole jobs\" keeps the order: A 0–10, B 10–25, C 25–30; first completion 10 (queueResult). Total 5+10+15 = 30 both ways. The first job in line (A, 10 min) is longer than one 5-minute turn, so slicing really delays it (10 → 20). Recall (three 10-minute tasks: 10 one by one, 20 rotating) applies the same rule. Earlier history: W-367 fixed the FC LH-1 dispute with the sentence FC LH-4 then disputed. Awaiting fact-checker re-check.",
       "id": "lifehacks.work-in-process-limit.c2",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
-      "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "text": "Every displayed result is computed from the visible exercise state: order and view (whole jobs or 5-minute turns). Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-in-process-limit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. For the initial schedule, every unfinished task receives one five-minute slice per round; displayed rectangles are actual execution slices. First completion is min of completion times. The alternate schedule runs whole jobs serially. No switching overhead or empirical efficiency is assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-in-process-limit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. For the initial schedule, every unfinished task receives one five-minute slice per round; displayed rectangles are actual execution slices. First completion is min of completion times. The alternate schedule runs whole jobs serially in the same order; \"Whole jobs\" and \"5-min turns\" toggle only the view, never the order. No switching overhead or empirical efficiency is assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. W-403 (2026-10-14, demo-builder): text now names the view as state; controls changed (Swap first / Try target replaced by Whole jobs / 5-min turns for this lesson). Awaiting fact-checker re-check.",
       "id": "lifehacks.work-in-process-limit.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "lifehacks.work-in-process-limit.recall",
@@ -73,7 +67,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:limit-work-in-progress",
     "prerequisites": [],

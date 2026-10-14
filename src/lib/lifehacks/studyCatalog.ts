@@ -242,7 +242,7 @@ export const study_apply_not_quote = {
   ],
   "answer": 0,
   "principle": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
-  "boundary": "One short reconstruction; not a retention experiment.",
+  "boundary": "There is no measured learning or productivity gain.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Quote the definition",
   "labels": [
@@ -1221,20 +1221,20 @@ export const study_work_in_process_limit = {
   "title": "Finish before starting more",
   "hook": "Three started tasks are not three finished tasks.",
   "objective": "Compare serial completion to round-robin partial progress.",
-  "question": "Which completes the first five-minute job at minute five?",
+  "question": "Same three jobs, same order A, B, C. Which plan finishes its first job sooner?",
   "options": [
-    "One job to completion",
-    "Split five minutes across jobs"
+    "Whole jobs, one at a time",
+    "Rotate 5-minute turns"
   ],
   "answer": 0,
-  "principle": "In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
+  "principle": "Same order A, B, C and the same 30 minutes of work. Run whole, A is done at minute 10. In 5-minute turns the first job done is C, at minute 15, and A waits until minute 20. Starting and finishing are different counts.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
-  "misconception": "Split five minutes across jobs",
+  "misconception": "Rotate 5-minute turns",
   "labels": [
-    "one",
-    "two",
-    "three"
+    "C",
+    "A",
+    "B"
   ],
   "durations": [
     5,
@@ -1247,13 +1247,13 @@ export const study_work_in_process_limit = {
     50
   ],
   "target": [
-    0,
     1,
-    2
+    2,
+    0
   ],
   "initial": [
-    2,
     1,
+    2,
     0
   ],
   "metric": "completion",

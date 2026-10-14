@@ -7,6 +7,8 @@
 // (40 more from the same noisy curve) the miss usually falls at a moderate lambda and rises
 // again when lambda is too strong. Seed 1 is the first seed, untuned; "New data" steps through
 // seeds 2, 3, ... In seeds 1-500 some lambda in 0.0001..1 beats lambda = 0 on held-out in 490.
+// v7 (learner r8, phone fit): reveal cut to <= 90 words (the 490-of-500 sentence is gone); the held-out readouts are
+// one ("Held-out (no penalty)": now and with none); the buttons have their own row; the plot is 28 units shorter.
 
 import { useMemo, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -88,9 +90,9 @@ function scores(seed: number, li: number) {
 
 const fmtL = (li: number) => (LAMBDAS[li] === 0 ? "0 (none)" : String(LAMBDAS[li]));
 
-// Plot geometry: x in [-1.05, 1.05] -> 14..306, y in [-2, 2] -> 176..20.
+// Plot geometry: x in [-1.05, 1.05] -> 14..306, y in [-2, 2] -> 150..22.
 const px = (x: number) => 14 + ((x + 1.05) / 2.1) * 292;
-const py = (y: number) => 98 - y * 39;
+const py = (y: number) => 86 - y * 32;
 
 export default function PenaltyOnWiggle({ slug }: { slug: string }) {
   const [li, setLi] = useState(0);
@@ -149,56 +151,45 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
       }}
       exploreHint="Turn the penalty up a little, then all the way to 10. Watch both misses."
       minInteractions={2}
-      reveal={() => {
-        // Spread over seeds 1-500, from the same model the stage draws.
-        let wins = 0;
-        for (let sd = 1; sd <= 500; sd++) {
-          const d = makeData(sd);
-          const h0 = rms(fit(d.train, 0), d.held);
-          if (LAMBDAS.slice(1, 6).some((l) => rms(fit(d.train, l), d.held) < h0)) wins++;
-        }
-        return (
-          <>
-            <p>
-              With no penalty the curve hit every training dot: miss <strong>0</strong>. The penalty charges for big
-              coefficients, so the best curve no longer threads every dot. On your data at penalty {fmtL(li)} the training miss
-              is <strong>{now.trainMiss.toFixed(2)}</strong>{li === 0 ? " (turn it up to see it rise)" : ""}. Worse on training,
-              by design.
-            </p>
-            <p>
-              The held-out dots tell the other story:{" "}
-              {mod
-                ? `at penalty ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none${mod.held < mod.none ? "" : " (that one did not win)"}.`
-                : (() => {
-                    // No moderate penalty visited (e.g. a jump straight to 10): quote the best moderate one on this data set.
-                    const d = makeData(seed);
-                    const h0 = rms(fit(d.train, 0), d.held);
-                    let bi = 1;
-                    for (let i = 2; i < LAMBDAS.length - 1; i++)
-                      if (rms(fit(d.train, LAMBDAS[i]), d.held) < rms(fit(d.train, LAMBDAS[bi]), d.held)) bi = i;
-                    const hb = rms(fit(d.train, LAMBDAS[bi]), d.held);
-                    return `on data set ${seed} the best moderate penalty, ${fmtL(bi)}, gives ${hb.toFixed(2)} against ${h0.toFixed(2)} with none.`;
-                  })()}{" "}
-              In{" "}
-              {wins} of 500 data sets some moderate penalty (the best of five, 0.0001 to 1) beat none on held-out dots. Push
-              to 10 and the curve goes much flatter:{" "}
-              {big
-                ? `on data set ${big.seed} you saw held-out ${big.held.toFixed(2)} at 10 against ${big.none.toFixed(2)} with none, so too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
-                : "it usually loses again."}{" "}
-              A worse fit to training can be a better model.
-            </p>
-          </>
-        );
-      }}
+      reveal={() => (
+        <>
+          <p>
+            With no penalty the curve hit every training dot: miss <strong>0</strong>. The penalty charges for big coefficients,
+            so the curve stops threading the dots: at penalty {fmtL(li)} your training miss is{" "}
+            <strong>{now.trainMiss.toFixed(2)}</strong>
+            {li === 0 ? " (turn it up to see it rise)" : ", worse by design"}.
+          </p>
+          <p>
+            Held-out dots tell the other story:{" "}
+            {mod
+              ? `at ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none${mod.held < mod.none ? "" : " (that one did not win)"}.`
+              : (() => {
+                  // No moderate penalty visited (e.g. a jump straight to 10): quote the best moderate one on this data set.
+                  const d = makeData(seed);
+                  const h0 = rms(fit(d.train, 0), d.held);
+                  let bi = 1;
+                  for (let i = 2; i < LAMBDAS.length - 1; i++)
+                    if (rms(fit(d.train, LAMBDAS[i]), d.held) < rms(fit(d.train, LAMBDAS[bi]), d.held)) bi = i;
+                  const hb = rms(fit(d.train, LAMBDAS[bi]), d.held);
+                  return `on data set ${seed} the best moderate penalty, ${fmtL(bi)}, gives ${hb.toFixed(2)} against ${h0.toFixed(2)} with none.`;
+                })()}{" "}
+            At 10 the curve goes much flatter
+            {big
+              ? `, and on data set ${big.seed} held-out was ${big.held.toFixed(2)} against ${big.none.toFixed(2)}: too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
+              : " and usually loses again."}{" "}
+            A worse fit to training can be a better model.
+          </p>
+        </>
+      )}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
         return (
           <div className={s.wrap}>
-            <svg viewBox="0 0 320 196" className="stage-svg" role="img" aria-label={`Penalty ${fmtL(li)}`}>
+            <svg viewBox="0 0 320 168" className="stage-svg" role="img" aria-label={`Penalty ${fmtL(li)}`}>
               <defs>
                 <clipPath id="pow-clip">
-                  <rect x={10} y={18} width={300} height={160} />
+                  <rect x={10} y={18} width={300} height={136} />
                 </clipPath>
               </defs>
               <text x={160} y={12} textAnchor="middle" className={s.small} fill="var(--muted)">
@@ -215,7 +206,7 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
               {now.train.map(([x, y], i) => (
                 <circle key={`t${i}`} cx={px(x)} cy={py(y)} r={5} fill="var(--fg)" />
               ))}
-              <text x={306} y={192} textAnchor="end" className={s.tiny} fill="var(--muted)">
+              <text x={306} y={164} textAnchor="end" className={s.tiny} fill="var(--muted)">
                 data set {seed}
               </text>
             </svg>
@@ -225,8 +216,9 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             }} />
             <Row>
               <Readout label="Training miss" value={locked ? "–" : now.trainMiss.toFixed(2)} />
-              <Readout label="Held-out miss" value={locked ? "–" : now.heldMiss.toFixed(2)} />
-              <Readout label="No-penalty held-out" value={none.heldMiss.toFixed(2)} />
+              <Readout label="Held-out (no penalty)" value={`${locked ? "–" : now.heldMiss.toFixed(2)} (${none.heldMiss.toFixed(2)})`} />
+            </Row>
+            <Row>
               <Control
                 disabled={locked || li === LAMBDAS.length - 1}
                 onClick={() => {

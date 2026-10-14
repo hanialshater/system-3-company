@@ -1,0 +1,97 @@
+{
+  "slug": "times-can-shrink",
+  "title": "Where does 0.6 × 0.7 land?",
+  "hook": "Two decimals, one product. Does it land above them, between them, or below them?",
+  "domain": "math",
+  "concept": "multiplying-below-one",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "wave-i-math"
+  },
+  "learner": {
+    "knows": [
+      "multiplication as a rectangle's area (split-the-sum)",
+      "decimals as parts of 1"
+    ],
+    "doesNotKnow": [
+      "that multiplying by a number below 1 gives a smaller result"
+    ]
+  },
+  "misconception": "Multiplying always makes bigger.",
+  "objective": "The learner can explain that 0.6 × 0.7 = 0.42 is smaller than both, because multiplying by 0.7 keeps seven tenths of the 0.6 strip, and that a product grows only when the other number is above 1.",
+  "claims": [
+    {
+      "id": "math.times-can-shrink.c1",
+      "text": "0.6 × 0.7 = 0.42, which is smaller than 0.6 and smaller than 0.7.",
+      "support": "derivation",
+      "source": "60 × 70 = 4,200 ten-thousandths = 0.42. node: 6*7/100 = 0.42. The stage computes area in tenths, (6 × h10) / 100, so it prints 0.42 exactly.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.times-can-shrink.c2",
+      "text": "The area of a rectangle 0.6 wide and h tall is 0.6 × h, also when the sides are not whole numbers (stage: the shaded rectangle and the 'Area' readout).",
+      "support": "derivation",
+      "source": "Cut the rectangle into hundredth squares: 6 × 7 tenth-by-tenth squares of 1/100 each = 42/100. The stage draws the rectangle 0.6 × h units and labels it with area(h10).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.times-can-shrink.c3",
+      "text": "Multiplying by 0.7 keeps seven tenths of the 0.6 strip, so it shrinks it.",
+      "support": "derivation",
+      "source": "0.6 × 0.7 is 7/10 of 0.6 × 1. On the stage the strip (0.6 × 1) is outlined and the shaded part at h = 0.7 covers 7 of its 10 tenth-rows.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.times-can-shrink.c4",
+      "text": "At height 1 the area stays 0.6, and above 1 (for example 0.6 × 1.5 = 0.9) it grows: for a positive number a, a × b is smaller than a when b < 1, equal when b = 1 and larger when b > 1.",
+      "support": "derivation",
+      "source": "a·b − a = a(b − 1), which has the sign of b − 1 when a > 0. node: 0.6*0.5 = 0.3, 0.6*1 = 0.6, 0.6*1.5 = 0.9 (tenths arithmetic). The reveal quotes the largest h above 1 the learner set, from area(h10).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Without working it out exactly: is 8 × 0.9 more or less than 8?",
+    "options": [
+      "More than 8",
+      "Exactly 8",
+      "Less than 8"
+    ],
+    "answer": 2,
+    "why": "0.9 is below 1, so 8 × 0.9 keeps nine tenths of 8 (7.2). Multiplying makes bigger only when the other number is above 1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:multiplying-below-one",
+    "also": [
+      "math:multiplication-as-area"
+    ],
+    "prerequisites": [
+      "math:multiplication-as-area"
+    ],
+    "level": "intro",
+    "strand": "algebra",
+    "references": [],
+    "tags": [
+      "multiplication",
+      "decimals",
+      "number sense"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "locked-readouts",
+    "preset-buttons",
+    "slider-drives-live-chart"
+  ]
+}

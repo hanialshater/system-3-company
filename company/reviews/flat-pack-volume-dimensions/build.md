@@ -1,5 +1,16 @@
 # Build note: flat-pack-volume-dimensions
 
+## Pre-flight v3
+
+2026-10-14, demo-builder. Board W-404 (FC LH-4 found on the way).
+
+- **Problem:** the choice label "Assembled cube" (predict option, toggle and reveal "The current assembled cube setting...") names a 40×30×30 box, which is not a cube. No claim recorded the label.
+- **Fix:** `home-lessons.ts` choices[0] is now "Assembled box". New claim c6 records both choice labels (unverified).
+- **Recall check:** recall uses its own 40×40×40 cube scenario, where "cube" is correct. Unchanged.
+- **Claims:** c6 is new and unverified. Other claims unchanged. Version 2 → 3.
+- **Checks:** `npm run test:lifehacks` 53/53, `tsc` clean, `npm run check`.
+- **Not done:** no build, no QA and no walkthrough.
+
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-367 (FC LH-1 dispute, company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md).

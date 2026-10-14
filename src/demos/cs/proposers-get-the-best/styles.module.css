@@ -16,8 +16,13 @@
 .list { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .mate { text-decoration: underline; color: var(--fg); font-weight: 700; }
 .toggle { width: 100%; }
-.lines { height: 80px; width: 100%; }
-.x { font-size: 12px; fill: var(--bad); font-weight: 800; }
+.lines { width: 100%; }
+.x { font-size: 16px; fill: var(--bad); font-weight: 800; }
 .log { min-height: 3.2em; font-size: 0.85rem; }
 .log p { margin: 0; }
 .check { color: var(--muted); }
+/* v5: at the reveal the cards and gaps tighten so the clash, both card rows and the log fit with the reveal. */
+.compact { gap: 4px; }
+.compact .card { min-height: 46px; padding: 3px 1px; gap: 0; min-width: 0; }
+.compact .who { line-height: 1.2; }
+.compact .list { white-space: nowrap; line-height: 1.2; }

@@ -4541,19 +4541,21 @@
       "id": "W-403",
       "title": "FC LH-4 dispute: work-in-process-limit c2/c4 (principle in studyCatalog.ts) say slicing into 5-min turns delays first completion 5 -> 15, but the stage changes order too: same order sliced or whole gives the same first completion (three,two,one: 15/15; one,two,three: 5/5). Fix by comparing one order in both views with a first job longer than a turn (e.g. 3x10 min: 10 vs 20), or reword to name the order; reword c1 predict question with it (splitting also finishes a 5-min first job at 5). See company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-404",
       "title": "FC LH-4 found on the way: flat-pack-volume-dimensions choice label 'Assembled cube' names a 40x30x30 box (not a cube): rename e.g. 'Assembled box'; apply-not-quote c5 records spec.boundary as a stage line but StudyLesson.tsx never renders boundary: render it or drop the claim; lh-scale-recipe-portions c4 source still cites the old 750 g recall. See company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-405",
@@ -4862,6 +4864,33 @@
       "id": "W-437",
       "title": "Build chemistry briefs from round 2026-10-14 via claim queue: ethanol-and-its-twin (fills hydrogen-bonding, last uncovered chem concept), one-gram-two-fires, find-the-co2-in-air, acid-diluted-a-thousandfold. Briefs in company/domains/briefs/chemistry.matter-reactions.md #1-2 and chemistry.solutions-acids.md #3-4; re-run each Check in node; claims stay unverified for fact-checker",
       "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-438",
+      "title": "Re-check after W-403/W-404: work-in-process-limit c1/c2/c3 (one order A,B,C in both views: whole 10 vs 5-min turns 15, A done 20; new Whole jobs / 5-min turns controls), flat-pack-volume-dimensions c6 (new: 'Assembled box' label), lh-scale-recipe-portions c2/c3/c4 (sources only: stale 750g recall note removed). apply-not-quote c5 deleted (boundary never rendered). Build notes: company/reviews/<slug>/build.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-439",
+      "title": "tests/lifehacks/study.test.mjs 'round-robin activity does not imply the first task is complete' pins orders [2,1,0]/[0,1,2], no longer the work-in-process-limit stage order after W-403. Add an assertion for the stage order [1,2,0]: roundRobinQueue ends [20,30,15] (first 15), queueResult ends [10,25,30] (first 10). See company/reviews/work-in-process-limit/build.md",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-440",
+      "title": "Walkthrough + QA at 390x844 for work-in-process-limit v3 (three controls in one row: Run queue / Whole jobs / 5-min turns) and flat-pack-volume-dimensions v3 ('Assembled box' label); not built in W-403/W-404",
+      "owner": "qa-tester",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",

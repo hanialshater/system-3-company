@@ -3,6 +3,19 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: Life Hacks W-403 and W-404 (FC LH-4 follow-ups)
+- **Changed:**
+  - **W-403, work-in-process-limit v2 → v3:** the stage now compares ONE order in both views. The fixture keeps durations 5, 10, 15, relabelled C, A, B, with initial = target = order A (10), B (15), C (5). Whole jobs finish first at 10. 5-minute turns finish first at 15 (C), and A is done at 20. In StudyLesson.tsx, for this lesson only, "Swap first"/"Try target" became "Whole jobs"/"5-min turns" (view toggle, order fixed), and the reveal names the order. New question, options, principle and misconception. c1, c2 and c3 are unverified. The recall (10 vs 20) is unchanged and agrees.
+  - **W-404:**
+    - flat-pack-volume-dimensions v2 → v3: "Assembled cube" is now "Assembled box"; new claim c6 records the labels (unverified).
+    - apply-not-quote: c5 deleted (the boundary was never rendered). The catalog `boundary` is now c3's sentence, so claims-match holds. No learner change, so no bump.
+    - lh-scale-recipe-portions: the stale ten-portion recall note was in the c2 and c3 sources (and a history aside in c4). All are fixed and the meta.json has no "750" left. c2, c3 and c4 are unverified (sources only). No bump.
+  - Pre-flight notes are at the top of each lesson's company/reviews/<slug>/build.md. W-403 and W-404 → review. New board items: W-438 (fact-checker re-check), W-439 (evaluation-steward: add a stage-order test, since the existing test pins orders the stage no longer uses), W-440 (qa-tester: walkthrough and QA for both v3 lessons).
+- **Believe:** high on the numbers (re-run in node through queueResult/roundRobinQueue). test:lifehacks 53/53, tsc clean. Medium on layout: not built (as asked), so whether three controls fit one row at 390x844 is unseen.
+- **check:** fails with 4 errors, all from a concurrent math session: more-digits-not-bigger and six-students-per-professor have empty dirs, two-right-angles-never-meet has a 92-character hook, and the registry is stale as a result. None are in lifehacks. I left them to that session.
+- **Next:** W-438 fact-checker; W-440 qa-tester; W-439 evaluation-steward.
+- **Blocked:** nothing.
+
 ## 2026-10-14 (fact-checker, W-380, FC LH-4: Life Hacks re-checks)
 
 - **Changed:** set status on 100 lifehacks claims (98 verified, 2 disputed), each with checkedBy, checkedOn and an "FC LH-4" source note. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.

@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 700; }
+.ruler { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.line { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 4px; }
+.rl { font-size: 0.7rem; color: var(--muted); text-align: center; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tile { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 64px; padding: 8px 2px; }
+.word { font-size: 1.05rem; font-weight: 800; }
+.code { font-size: 0.85rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+:global(.active) .code { color: var(--fg); }
+.faint { margin: 0; min-height: 1.4em; text-align: center; font-size: 0.85rem; color: var(--muted); }
+.fl { font-weight: 700; }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.controls > button { min-height: 44px; font-weight: 700; }

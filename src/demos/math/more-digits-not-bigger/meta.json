@@ -1,0 +1,90 @@
+{
+  "slug": "more-digits-not-bigger",
+  "title": "Which decimal is the biggest?",
+  "hook": "One has one digit after the point, one has two, one has three. Which counts for most?",
+  "domain": "math",
+  "concept": "decimal-magnitude",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "wave-i-math"
+  },
+  "learner": {
+    "knows": [
+      "place value for whole numbers (add-a-zero)",
+      "that 0.5 is a half"
+    ],
+    "doesNotKnow": [
+      "how to compare decimals of different lengths"
+    ]
+  },
+  "misconception": "The decimal with more digits is bigger, so 0.125 > 0.25 > 0.3 (\"longer is larger\").",
+  "objective": "The learner can explain that 0.3 > 0.25 > 0.125 because each decimal place is worth a tenth of the one before, so decimals are compared from the first digit after the point.",
+  "claims": [
+    {
+      "id": "math.more-digits-not-bigger.c1",
+      "text": "0.3 is 3 tenths, 0.25 is 2 tenths and 5 hundredths, and 0.125 is 1 tenth, 2 hundredths and 5 thousandths (stage: blocks, slivers and hairlines).",
+      "support": "convention",
+      "source": "Decimal notation: 0.3 = 3/10, 0.25 = 25/100, 0.125 = 125/1000. The stage adds digit d at place p as d pieces of width 10^-(p+1) on a 0-to-1 scale (true to scale).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.more-digits-not-bigger.c2",
+      "text": "0.3 is the largest of the three and its bar is the longest: 0.3 > 0.25 > 0.125 (300 > 250 > 125 thousandths).",
+      "support": "derivation",
+      "source": "Convert to thousandths. node: [0.3, 0.25, 0.125].sort((a,b)=>a-b) = [0.125, 0.25, 0.3]. The stage computes values in integer thousandths (thousandths()) and the reveal names the largest from that sort.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.more-digits-not-bigger.c3",
+      "text": "The five hundredth-slivers of 0.25 add 0.05, which is less than the one more tenth-block (0.1) it would need to reach 0.3.",
+      "support": "derivation",
+      "source": "5 × 0.01 = 0.05 < 0.1; 0.2 + 0.05 = 0.25 < 0.3. node check.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.more-digits-not-bigger.c4",
+      "text": "Each decimal place is worth one tenth of the place to its left, so extra digits only add smaller and smaller pieces; compare decimals from the first digit after the point.",
+      "support": "convention",
+      "source": "Place value definition: the k-th place after the point is worth 10^-k. Because any digits after place k add less than one unit of place k (at most 0.0999… of it), the first differing digit decides.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.more-digits-not-bigger.c5",
+      "text": "Stage legend: a block is 0.1, a sliver is 0.01 and a hairline is 0.001.",
+      "support": "convention",
+      "source": "Definition of the stage pieces (widths SCALE/10, SCALE/100, SCALE/1000 in Demo.tsx).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which is larger: 0.4 or 0.375?",
+    "options": [
+      "0.375, it has more digits",
+      "0.4",
+      "They are equal"
+    ],
+    "answer": 1,
+    "why": "Compare from the first digit after the point: 4 tenths beat 3 tenths. The 75 thousandths of 0.375 add less than one more tenth."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:decimal-magnitude",
+    "also": ["math:place-value"],
+    "prerequisites": ["math:place-value"],
+    "level": "intro",
+    "strand": "algebra",
+    "references": [],
+    "tags": ["decimals", "place value", "number sense"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "step-run-button"]
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "zebra-sorts-before-apple",
+  "title": "Where does a computer put apple?",
+  "hook": "Sort apple, Banana and Zebra by the numbers a computer stores. Where does each land?",
+  "domain": "cs",
+  "concept": "text-encoding",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "binary numbers (binary-numbers)",
+      "alphabetical order"
+    ],
+    "doesNotKnow": [
+      "that each character is stored as a number code",
+      "that every capital letter's code is smaller than every small letter's, so sorting by the stored numbers is not dictionary order"
+    ]
+  },
+  "misconception": "A computer stores letters as letters, so when it sorts words it puts them in dictionary order.",
+  "objective": "The learner can say that each letter is stored as a number (A 65 to Z 90, a 97 to z 122), so sorting by code puts every capitalised word before every lowercase one (Banana, Zebra, apple), and that ignoring case or language-aware rules give dictionary order.",
+  "claims": [
+    {
+      "id": "cs.zebra-sorts-before-apple.c1",
+      "text": "In ASCII, and in Unicode's first 128 code points, A is 65, B 66, Z 90, a 97, z 122 (stage ruler 'A 65 … Z 90 · a 97 … z 122'; tile codes Z = 90, a = 97, B = 66).",
+      "support": "derivation",
+      "source": "Builder re-ran in node 2026-10-14: 'A'.charCodeAt(0) = 65, B 66, Z 90, a 97, b 98, z 122. RFC 20 (ASCII format for network interchange, 1969) code table; Unicode Standard, Basic Latin chart U+0000-U+007F. Demo.tsx computes every code with charCodeAt.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.zebra-sorts-before-apple.c2",
+      "text": "Sorting Zebra, apple, Banana by character code gives Banana, Zebra, apple, so Banana and Zebra come ahead of apple.",
+      "support": "simulation",
+      "source": "Node 2026-10-14: ['Zebra','apple','Banana'].sort() = [Banana, Zebra, apple] (default sort compares UTF-16 code units, ECMA-262 Array.prototype.sort). Demo.tsx uses the same code-unit comparison.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.zebra-sorts-before-apple.c3",
+      "text": "Ignoring case (comparing lowercased letters) gives apple, Banana, Zebra, so apple comes first.",
+      "support": "simulation",
+      "source": "Node 2026-10-14: sorting on toLowerCase() keys gives [apple, Banana, Zebra]. Demo.tsx byLower.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.zebra-sorts-before-apple.c4",
+      "text": "Each small letter's code is its capital's code plus 32.",
+      "support": "derivation",
+      "source": "Node loop over A-Z 2026-10-14: lowercase code minus capital code = 32 for all 26 letters (32 = 2^5, one bit). Demo.tsx computes GAP = 'a' - 'A'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.zebra-sorts-before-apple.c5",
+      "text": "Real apps sort text with language rules, not raw codes.",
+      "support": "source",
+      "source": "Unicode Technical Standard #10 (Unicode Collation Algorithm); node 2026-10-14: ['Zebra','apple','Banana'].sort(new Intl.Collator('en').compare) = [apple, Banana, Zebra]. Wording is general ('real apps'); the fact-checker should judge whether 'usually' is needed.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.zebra-sorts-before-apple.c6",
+      "text": "A computer stores each letter as a number, and every capital (65 to 90) comes before every small letter (97 to 122).",
+      "support": "derivation",
+      "source": "Follows from c1: the capital range 65-90 ends below the small-letter range 97-122. Character encodings (ASCII, Unicode) assign each character a number; RFC 20; Unicode Standard ch. 2.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A program sorts the words cat and Dog by their stored letter codes. Which comes first?",
+    "options": [
+      "Dog",
+      "cat",
+      "They tie"
+    ],
+    "answer": 0,
+    "why": "Capitals have smaller codes than small letters (D is 68, c is 99), so Dog sorts before cat by code, even though c comes before d in the alphabet."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:text-encoding",
+    "also": [],
+    "prerequisites": [
+      "cs:binary-numbers"
+    ],
+    "level": "intro",
+    "references": [],
+    "tags": [
+      "text",
+      "ASCII",
+      "Unicode",
+      "sorting"
+    ]
+  },
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}
