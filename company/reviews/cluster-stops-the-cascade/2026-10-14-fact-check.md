@@ -46,3 +46,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 No open claims. v3 sets quoted = sawIn, so the reveal quotes a person only for a group member focused on the 0,1 final, as c4 says (closes the NCM-2 advisory). No other change. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
 
 **Result:** 0 status changes.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c6, reset to unverified after the v4 seed-location reveal.
+
+| Claim | Check | Result |
+|---|---|---|
+| c6 | Brute force over all 4,095 non-empty seed sets with simulate() as in Demo.tsx: {0,1} -> 8 of 12 (round 6); {8,9} -> 12 of 12 (round 8); 255 of 255 sets with no member among 8-11 stall short of 12, and in none of them does any of 8-11 join; 2,816 of 2,816 sets with two or more of 8-11 reach 12. Reveal para 1 ('Where the seeds are decides it, not how many ... More starters outside the four would not help, because none of them can be the first of the four to join') matches; both runs are gated by 'stopped' and 'planted'. | verified |
+
+Reveal check: para 1 rests on the two gated runs plus c6; para 2 on c4 (quoted only for a group member focused on the 0,1 final) and c5; para 3 is c7. No unbacked sentence.
+
+Result: 1 verified, 0 disputed. Lesson: no open claims.

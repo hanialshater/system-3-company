@@ -44,3 +44,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 No open claims. Demo.tsx and meta.json unchanged since NCM-2. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
 
 **Result:** 0 status changes.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c10, new in v3 (total value defined in the predict; Compare chips decoded).
+
+| Claim | Check | Result |
+|---|---|---|
+| c10 | Each square's top line renders 'value − price', so the predict's 'first number in each square' is the value; total(pm) sums V with no prices; chips render buyer+house pairs then the total, so [a,c,b] reads 'xa yc zb 23' (12 + 6 + 5). The Compare rule line reads 'Each chip: who gets which house (xa = x gets a), then that match's total value.' | verified |
+
+Reveal check: unchanged since NCM-3 apart from the added stage text; 'the highest of the six totals you compared' is gated by 'compared'.
+
+Result: 1 verified, 0 disputed. Lesson: no open claims.

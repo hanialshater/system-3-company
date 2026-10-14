@@ -55,8 +55,10 @@
       "id": "economics.bid-what-its-worth.c4",
       "text": "At value $70 and a rival bid of $60, a bid of $50 loses and earns $0, while a bid of $70 wins, pays $60 and keeps $10; the $50 bid earns less than the $70 bid against every whole-dollar rival bid from $50 to $69.",
       "support": "derivation",
-      "source": "Address: reveal para 1; stage bars at Rival $60 (the stage is pinned there at the reveal) and the sweep chart. Arithmetic 70 - 60 = 10. Node: profit(50,60) = 0, profit(70,60) = 10; over whole-dollar rival bids $0-$130, profit(50,r) < profit(70,r) exactly for r = 50..69 (20 values). v3 (2026-10-14 polish): added the sweep-range sentence.",
-      "status": "unverified"
+      "source": "Address: reveal para 1; stage bars at Rival $60 (the stage is pinned there at the reveal) and the sweep chart. Arithmetic 70 - 60 = 10. Node: profit(50,60) = 0, profit(70,60) = 10; over whole-dollar rival bids $0-$130, profit(50,r) < profit(70,r) exactly for r = 50..69 (20 values). v3 (2026-10-14 polish): added the sweep-range sentence. | FACT-CHECK 2026-10-14 (pass NCM-5): VERIFIED. Demo.tsx rule (tie to the rival): profit(50,60) = 0, profit(70,60) = 10; over whole-dollar rival bids 0-120 (the sweep chart's range), profit(50,r) < profit(70,r) exactly for r = 50..69 (20 values) and equal elsewhere. Reveal pins the stage to Rival $60, your bid $50, so the dashed (stroke-dasharray, your $50) line sits under the solid $70 line exactly as paragraph 1 says. Rival $60 and $75 are milestone-gated.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.bid-what-its-worth.c5",

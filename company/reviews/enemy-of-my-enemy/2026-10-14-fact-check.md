@@ -46,3 +46,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 No open claims. v3 added legend swatches and a screen-reader live line ("n of 10 trios unbalanced; camps ..."), computed from the same unbalancedTrios() and camps() as the readouts. No reveal text changed. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
 
 **Result:** 0 status changes.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: re-read c3 after the told-vs-shown rewording (status stayed verified; source rewritten by demo-builder).
+
+| Claim | Check | Result |
+|---|---|---|
+| c3 | Node over all 3,125 camp labelings of 5 people (31,250 trios): a trio is unbalanced exactly when its three people sit in three different camps (0 mismatches). Reveal para 1 now lists seen.three.trios, recorded from the setting the stage showed (names under the readout appear for 1-4 unbalanced trios; three camps always leave 3 or 4), then 'Each takes one person from each camp, so all three pairs are −'. Preset ABC | D | E gives ADE, BDE, CDE. Claim text unchanged; meaning matches the new wording. | verified (stands) |
+
+Reveal check: para 1 quotes zero-unbalanced splits ('zero'), the not-camps count ('mixed') and the three-camps trios ('three', built by tap); para 2 is c2/c3/c4; para 3 is c6.
+
+Result: 0 status changes (c3 re-attested). Lesson: no open claims.

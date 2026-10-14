@@ -58,3 +58,18 @@ Checker: fact-checker (did not write these claims). Scope: c4, reset to unverifi
 | c4 | Round 51: Y 0.374, X 0.053, H 0.422; round 50 identical to 3 dp (max change 0.00015). Reveal: "Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead." X is exactly 0.05325 in rounds 2, 3 and 51; Y > X in every round 2 to 51 (X led only in round 1, 0.27 vs 0.1, which the reveal states separately). The NCM-3 dispute is resolved. | verified |
 
 Result: c4 verified. Lesson: no open claims. No fresh walkthrough (read from code).
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c5 and c8, reset to unverified after v5 (Run reaches round 51; reveal quotes the reached round).
+
+| Claim | Check | Result |
+|---|---|---|
+| c5 | model.ts: passed(r,'P') = 0.01275 for every round 2-51, rendered 0.013. Reveal para 2 quotes round rq = max(round, 2), the round on the stage. | verified |
+| c8 | score(1,H) 0.440 -> passed(2,H) 0.374; score(50,H) 0.4223 -> passed(51,H) 0.359; Y(51) = 0.015 + 0.359 = 0.374. | verified |
+
+Reveal check: para 1 quotes round 1 (always seen: Run is disabled before round 1), round 2 only if seen, round 51 only if reached, and 'X has not moved since round 2' only when round 2 was seen (c3/c4). Para 2 quotes the stage's current round, equal to the arrow labels. Para 3 is c6, para 4 c7.
+
+Advisory (non-blocking, builder's choice): the learner can Step on past round 2 before opening the reveal; para 2 then quotes that round (e.g. round 3: H passes 0.190, Y 0.205). The numbers are true and on the stage, but c8's text names only rounds 2 and 51. If the builder wants the claim to cover it, add 'or whichever round the stage shows' to c8.
+
+Result: 2 verified, 0 disputed. Lesson: no open claims.

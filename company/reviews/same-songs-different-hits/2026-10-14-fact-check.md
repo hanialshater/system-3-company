@@ -44,3 +44,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 **Reveal check:** top shares 34.9-48.2% on vs max 17.6% (shown 18%) off (c2); both states milestone-gated (copy-1000, nocopy-1000). Paragraph 2 = c5; footer c6.
 
 **Result:** 1 verified, 0 disputed. Lesson now: 9 verified.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c10, new (gated 100-listener checkpoint; reveal compares early and final rank, head-of-product ruling 4).
+
+| Claim | Check | Result |
+|---|---|---|
+| c10 | Independent re-run (kit mulberry32, the Demo.tsx single-draw rule): world 3 with copying on, best song 2 picks at 100 listeners (7th; song 7 leads with 43), 28 at 1,000 (7th; song 7 has 482); it is 7th at all ten checkpoints. The sentence renders only when early = true, set by reaching 100 listeners with copying on, where the world-3 panel shows '7th' with the lowest-world frame. early100 === on.low, so the 'did not move it' branch is the one shown. | verified |
+
+Reveal check: para 1 quotes stats at 1,000 for both modes (gated 'copy-1000', 'nocopy-1000'; c1, c2, c9); para 2 is c10 (gated 'early-100'); para 3 is c5; muted line c6. No unbacked sentence.
+
+Result: 1 verified, 0 disputed. Lesson: no open claims.

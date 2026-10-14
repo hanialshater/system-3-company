@@ -40,3 +40,15 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 No open claims. Demo.tsx and meta.json unchanged since NCM-2. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
 
 **Result:** 0 status changes.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c4, reset to unverified after v3 (sweep-range sentence; stage pinned at reveal).
+
+| Claim | Check | Result |
+|---|---|---|
+| c4 | Demo.tsx profit() (tie to the rival): profit(50,60) = 0, profit(70,60) = 10; over rival bids 0-120 (the chart's range) profit(50,r) < profit(70,r) exactly for r = 50..69, equal elsewhere. At the reveal the stage is pinned to Rival $60 and your bid $50, so the dashed line is the $50 bid (lineMine has stroke-dasharray; line70 is solid), as para 1 says. | verified |
+
+Reveal check: para 1 quotes Rival $60 and $75, both milestone-gated, and the pinned chart; para 2 is c2/c6; para 3 is c5/c7. No unbacked sentence.
+
+Result: 1 verified, 0 disputed. Lesson: no open claims.

@@ -47,3 +47,17 @@ Checker: fact-checker (did not write these claims). Scope: every claim still `un
 No open claims. v3 changed only the replay timing (8 frames, 45 ms), the stage-fit floor and a chip aria-label ("Moves if under p% like neighbours", matches the rule in the predict and c1). No model or reveal text changed. Re-read predict and reveal against the verified claims; no new learner-visible claim found.
 
 **Result:** 0 status changes.
+
+## Pass NCM-5 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read the current Demo.tsx at HEAD 3e1fb604 (predict, stage text, readouts, reveal, and the milestones and pins that gate it), re-ran the lesson's rule in node 22 via tsx (model files imported directly, or the Demo.tsx function reproduced verbatim), and traced each reveal sentence to a milestone-guaranteed state or a claim. No fresh walkthrough: the transcripts predate this revision and no build was run in the shared checkout, so stage text was read from code. Scope: c5, reset to unverified after v4 (running unsettled total on the stage, quoted in the reveal).
+
+| Claim | Check | Result |
+|---|---|---|
+| c5 | abm.ts, threshold 30%, seeds 1-100, independent replay tracking agent ids: every cell in unsettled[t] is unhappy after tick t and its agent was happy before it (0 violations), so 'all of them content until a neighbour moved' holds per counted household. End totals: seed 1 157 (tick 15), seed 2 165 (tick 13), seed 3 162 (tick 18); 98-176 over 100 seeds; every run settles. pin() puts the stage on the learner's last settled 30% run at its final tick, where the 'M so far' readout equals the quoted pinRun.rung. | verified |
+
+Reveal check: para 1 quotes the pinned run (milestone 'settled-30') and finished other-threshold runs ('other-threshold'); para 2's count is the pinned readout; c4 and c8 cover the told sentences; para 3 is c6/c7.
+
+Advisory (non-blocking): the total counts ring-instances; a household unsettled in two ticks counts twice (distinct 155/161/156 for seeds 1-3; at most 6% over distinct in 100 seeds). The reveal says 'the stage's count of unsettled households', which is the readout, so it is not false. 'unsettlings' would be more exact if the builder wants it.
+
+Result: 1 verified, 0 disputed. Lesson: no open claims.
