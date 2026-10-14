@@ -6631,18 +6631,31 @@
     },
     {
       "id": "W-477",
-      "title": "Security P2: src/app/spike (SPIKE-001 host) was merged in f6c710c and ships to production; ?cdn= lets any site be framed under our domain, and its progress/track messages write the learner's real localStorage and /api/events. Remove the route from the app build or notFound() in production (like HQ). See company/rituals/records/2026-10-13-eng-review-lesson-storage.md, PE finding 1",
+      "title": "Security S1 (was P2): src/app/spike (SPIKE-001 host) merged in f6c710c ships to production; ?cdn= framed any site under our domain and wrote real localStorage and /api/events. FIXED, in review by principal-engineer. See company/rituals/records/2026-10-13-eng-review-lesson-storage.md PE finding 1 and company/engineering/operations/2026-10-14-ops-review.md",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "src/lib/spike.ts",
+        "src/app/spike/page.tsx",
+        "src/app/spike/SpikeHost.tsx",
+        "src/app/api/events/route.ts",
+        "tests/spike/spike-guard.test.mjs",
+        "company/ops/changelog.md"
+      ],
       "updated": "2026-10-14",
       "priority": 1,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Raised P2 to P1 (ops review 2026-10-14): /spike ?cdn= is S1, exploitable with a URL on production; it holds all app deploys (W-534)."
+      },
+      "reviewer": "principal-engineer",
+      "change": {
+        "at": "2026-10-14",
+        "by": "platform-engineer",
+        "note": "(1) /spike returns notFound() unless NODE_ENV=development or server-side SPIKE_ENABLED=1 (src/lib/spike.ts spikeEnabled; force-dynamic so the flag is read per request). (2) When reachable, the cdn is resolved on the server from the SPIKE_CDN_ORIGINS allow-list (default http://localhost:3141); ?cdn= only selects an entry, and the string used is always the allow-list entry, so nothing from the query string becomes a frame, fetch or script source. Manifest frame paths go through frameUrlOn and are refused if they leave that origin (@host, //host). SpikeHost no longer reads ?cdn= or NEXT_PUBLIC_SPIKE_CDN. (3) Spike progress writes go to s3c:spike:progress:v1, never the learner key; spike frame events are no longer forwarded to /api/events. (4) /api/events returns 403 for Origin: null (sandboxed frames), any other Origin, Sec-Fetch-Site cross-site/cross-origin, a foreign Referer or a /spike Referer; same-host requests (incl. Host/X-Forwarded-Host behind a proxy) and Origin-less requests still 204. Progress has no server API (localStorage only). (5) Spike harness config sets SPIKE_ENABLED=1 for next start. Evidence: npm run test:spike 5/5 (prod guard, allow-list, frame paths, event intake both ways); tsc --noEmit -p . exit 0; npm run check passed; dev :3530 /spike?cdn=https://example.com -> 200 with cdn resolved to http://localhost:3141 (example.com only in Next router URL echo); ?cdn=http://localhost:3141@example.com -> same; POST /api/events with Origin: null -> 403, with /spike Referer -> 403, same-origin /d/ lesson -> 204. Not done: next build / prod run (machine overloaded, told not to), live site not checked. Reviewer questions: is the Origin-less pass acceptable; is 403 vs silent 204 right for the analytics steward; should the route leave the app build entirely at stage 1. Deploy hold W-534 stays with release-manager until this is reviewed and deployed with founder approval."
       }
     },
     {
@@ -7261,7 +7274,9 @@
       "state": "backlog",
       "domain": "lifehacks",
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/design/specs/lifehacks-engines-v2.md"
+      ],
       "priority": 3,
       "triage": {
         "at": "2026-10-14",
@@ -8280,7 +8295,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [
+        "company/design/specs/lifehacks-engines-v2.md"
+      ]
     },
     {
       "id": "W-599",
@@ -8289,7 +8306,9 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [
+        "company/design/specs/lifehacks-engines-v2.md"
+      ]
     },
     {
       "id": "W-600",
@@ -8361,6 +8380,15 @@
       "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-608",
+      "title": "Life Hacks engines v2 (Home, Study, Resource, AlphabetSearch) per company/design/specs/lifehacks-engines-v2.md: neutral start, Seen table keeping both modes, amounts row, active mode shown pressed (never dimmed), DOM order A, B, slider; fields behind engine: 2; migrate batch D's 14 first. START ONLY AFTER W-557..W-561 (a11y) land: same lines.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "lifehacks",
       "created": "2026-10-14",
       "links": []
     }
