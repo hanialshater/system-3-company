@@ -24,3 +24,12 @@ Checks per lesson, all passed:
 Holds removed and lessons published (225 -> 240): chain-of-blame, flip-twenty-percent, keep-the-top-85, noisy-compass, twins-never-split, which-question-splits, helium-leaks-first, pencil-lead-vs-diamond, every-message-is-possible, four-words-beat-eight-letters, hamming-points-at-the-bug, in-order-is-sorted, three-pizzas-four-people, red-apple-green-light, stop-when-it-looks-significant.
 
 Holds kept: none of the 15. Unrelated holds (cards-do-remember, salt-ions-count-double, 8 geography lessons) were not in this task and remain.
+
+## Wave C3
+
+Date: 2026-10-14 · executed by: release manager (Diego)
+
+- `node tools/publish-ready.mjs` listed 10 candidates. Each checked: latest learner review (r2/r3) is launch for the current version, all meta.json claims verified (fact-check pass 14), 2026-10-14 QA record pass on phone and desktop with 0 retries, and Demo.tsx not newer than the QA record.
+- Published (10, company gates ran): rsa-lock-with-public-key, two-pointers-meet, ambulance-pitch-drop, big-number-swallows-one, binary-search, bend-at-double-speed, clay-boat, double-the-size, distance-is-area, plus-and-minus-chips.
+- ambulance-pitch-drop: the r3 reviewer's N1 (ring-gap labels 36.8 m / 31.8 m visible while the stage is locked) is a minor leak. My call: publish. The reviewer said launch, the leak only helps a careful reader infer "ahead is higher", and the real choice between options 2 and 3 survives. Not publishing around a gate. Fix routed to the lesson builder as board W-164 (also the beside-you 704 Hz clause).
+- Published count: 240 before, 250 after.
