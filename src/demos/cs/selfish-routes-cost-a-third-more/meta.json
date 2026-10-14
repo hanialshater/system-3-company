@@ -33,19 +33,19 @@
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c2",
-      "text": "Sending half the drivers to A cuts B to 30 minutes and the average trip to 45 minutes, the lowest any split reaches; an average of 30 is out of reach because drivers on A still take 60. The reveal quotes the lowest average among the splits the learner visited.",
+      "text": "Sending half the drivers to A cuts B to 30 minutes and the average trip to 45 minutes, the lowest any split reaches; the average rises again on both sides of 50%. An average of 30 is out of reach because drivers on A still take 60. The reveal quotes the stage's 'Lowest seen' readout (the lowest average among the splits the learner visited) and says the trace rises on both sides only if a split below it was visited.",
       "support": "derivation",
-      "source": "avg(x) = (1 - x)·60 + x·60x, derivative 120x - 60 = 0 at x = 0.5, avg = 45; builder grid over 0..100 in steps of 5 (2026-10-14). Avg 30 would need everyone at 30 or below, but A is fixed at 60 and B reaches 30 only at x = 0.5. v3: the 'Half on each' button and the QA path reach 50% (milestone found-best). | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own grid 0..100 step 5: avg(50) = 45 is the unique minimum (45.15 at 45 and 55). B at 50% = 30. found-best is required, so the reveal's best = 50 and ', where B takes 30' always prints. Avg >= 45 > 30 everywhere.",
-      "status": "verified",
+      "source": "avg(x) = (1 - x)·60 + x·60x, derivative 120x - 60 = 0 at x = 0.5, avg = 45; builder grid over 0..100 in steps of 5 (2026-10-14). Avg 30 would need everyone at 30 or below, but A is fixed at 60 and B reaches 30 only at x = 0.5. v3: the 'Half on each' button and the QA path reach 50% (milestone found-best). | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own grid 0..100 step 5: avg(50) = 45 is the unique minimum (45.15 at 45 and 55). B at 50% = 30. found-best is required, so the reveal's best = 50 and ', where B takes 30' always prints. Avg >= 45 > 30 everywhere. | Builder revision v4 (demo-builder, 2026-10-14): (r7) 'Half on each' preset removed; a 'Try every split' sweep (100% to 0% in 5% steps) and a 'Lowest seen' readout added; gate 'found-bottom' needs 50% and a split below 50% visited. avg(p) = (1 - p)60 + p*60p: avg(45) = avg(55) = 45.15, avg(50) = 45, so 50% is the unique minimum on the 5% grid. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.selfish-routes-cost-a-third-more.c3",
-      "text": "Of 100 drivers, at 50% on B the next 5 to join B each save 27 minutes (135 in all), while the 50 already on B each lose 3 minutes (150 in all): the joiners feel their gain, and nobody choosing feels the loss.",
+      "text": "Of 100 drivers, at 50% on B the next 5 to join B each save 27 minutes (135 in all), while the 50 already on B each lose 3 minutes (150 in all): the joiners feel their gain, and nobody choosing feels the loss. (Stage line, for the learner's lowest-average split: 'Of 100 drivers, at your lowest split, 50% on B: 5 more join, saving 135 min; the 50 on B lose 150.')",
       "support": "derivation",
-      "source": "Demo.tsx joinCost(50): B goes from 30 to 33 min, so each joiner saves 60 - 33 = 27 (x5 = 135); each B driver loses 60·5/100 = 3 (x50 = 150). Check: 100·(avg(55) - avg(50)) = 15 = 150 - 135 (builder's Node run, 2026-10-14). The stage line and the reveal quote the last split visited between 5% and 95%, computed by the same function. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own joinCost(50): after 33, 27 each, 135 in all; 50 x 3 = 150; 100 x (avg 55 - avg 50) = 15. Non-blocking for the builder: the reveal quotes the LAST split visited, and below 50% the joiners' gain beats the loss (20%: 225 vs 60), so 'The line under the chart is why' does not show the waste there. Every sentence is still true.",
-      "status": "verified",
+      "source": "Demo.tsx joinCost(50): B goes from 30 to 33 min, so each joiner saves 60 - 33 = 27 (x5 = 135); each B driver loses 60·5/100 = 3 (x50 = 150). Check: 100·(avg(55) - avg(50)) = 15 = 150 - 135 (builder's Node run, 2026-10-14). The stage line and the reveal quote the last split visited between 5% and 95%, computed by the same function. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own joinCost(50): after 33, 27 each, 135 in all; 50 x 3 = 150; 100 x (avg 55 - avg 50) = 15. Non-blocking for the builder: the reveal quotes the LAST split visited, and below 50% the joiners' gain beats the loss (20%: 225 vs 60), so 'The line under the chart is why' does not show the waste there. Every sentence is still true. | Builder revision v4 (demo-builder, 2026-10-14): (r7) The hidden-cost line is now computed for the lowest-average visited split (joinCost(best)), not the last move; at best = 50: savedEach = 60 - 33 = 27, saved 135, lostEach 3, lost 150. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -90,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:price-of-anarchy",
     "also": [

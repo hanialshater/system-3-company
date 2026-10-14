@@ -1,11 +1,11 @@
 {
   "slug": "outside-option-sets-the-split",
-  "title": "The offer you never take",
-  "hook": "A could walk away with $0.40 but never does. What does A end up with?",
+  "title": "What is A's way out worth?",
+  "hook": "A could get $0.40 elsewhere; B gets nothing elsewhere. How does the $1 get split?",
   "domain": "economics",
   "concept": "nash-bargaining",
   "status": "draft",
-  "version": 2,
+  "version": 3,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-economics",
@@ -82,10 +82,10 @@
     },
     {
       "id": "economics.outside-option-sets-the-split.c6",
-      "text": "Moving A's outside option from one value to another moves A's deal by half the change: for example from $0.70 to $0.80 takes A's deal from $0.85 to $0.90.",
+      "text": "Moving A's outside option from one value to another moves A's deal by half the change: for example from $0.40 to $0.80 (40 cents) takes A's deal from $0.70 to $0.90 (20 cents). (Stage: the 'Tried (option → A gets)' row lists every option set; the reveal quotes its lowest and highest entries.)",
       "support": "derivation",
-      "source": "A = a + (1 - a)/2 = 1/2 + a/2 with B's option 0, so dA = da/2. Demo.tsx v2 reveal computes the learner's last change from split(prev) and split(a); the dashed 'before' line marks split(prev).A. Builder, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. A = a + (100 - a)/2, so dA = da/2. Own node over every reachable option (0..80 step 10): 70 -> 85, 80 -> 90; all whole cents. Reveal computes from split(prev) and split(a).",
-      "status": "verified",
+      "source": "A = a + (1 - a)/2 = 1/2 + a/2 with B's option 0, so dA = da/2. Demo.tsx v2 reveal computes the learner's last change from split(prev) and split(a); the dashed 'before' line marks split(prev).A. Builder, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. A = a + (100 - a)/2, so dA = da/2. Own node over every reachable option (0..80 step 10): 70 -> 85, 80 -> 90; all whole cents. Reveal computes from split(prev) and split(a). | Builder revision v3 (demo-builder, 2026-10-14): (r7) The reveal no longer quotes the last slider stop (a two-press slider move passed $0.70 in a blink); it quotes the lowest and highest options in the persistent Tried row, lo -> hi, and split(lo).A -> split(hi).A. A = a + (100 - a)/2 cents, so the change in A is (hi - lo)/2 for any pair. Title and hook rewritten so they no longer say A never walks away (that ruled out the $0.40 option before the commit). Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }

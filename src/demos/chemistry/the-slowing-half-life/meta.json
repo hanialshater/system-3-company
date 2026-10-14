@@ -26,8 +26,8 @@
       "id": "chemistry.the-slowing-half-life.c1",
       "text": "A second-order reaction that takes 10 min to go from 80 to 40 mmol/L takes about 20 min to go from 40 to 20 mmol/L, and about 40 min more to reach 10 mmol/L.",
       "support": "derivation",
-      "source": "Integrated rate law 1/[A] = 1/[A]0 + kt: k = (1/40 - 1/80)/10 = 1/800 L/(mmol min); t(20) - t(40) = (1/20 - 1/40) x 800 = 20 min; t(10) - t(20) = 40 min (node; Demo.tsx timeTo()).",
-      "status": "verified",
+      "source": "Integrated rate law 1/[A] = 1/[A]0 + kt: k = (1/40 - 1/80)/10 = 1/800 L/(mmol min); t(20) - t(40) = (1/20 - 1/40) x 800 = 20 min; t(10) - t(20) = 40 min (node; Demo.tsx timeTo()). | Builder revision v5 (demo-builder, 2026-10-14): (r7) The reveal now quotes a persistent '2nd-order waits' row, waitRow(2) = wait(2,1..seen[2]) joined ', ' + ' min' (gate: seen[2] >= 2, so '10, 20 min' or '10, 20, 40 min'), instead of the wait bars, which only show the current order. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
@@ -44,8 +44,8 @@
       "id": "chemistry.the-slowing-half-life.c3",
       "text": "A first-order reaction keeps one fixed half-life (here 10 min each time); radioactive decay is first order.",
       "support": "source",
-      "source": "t1/2 = ln 2 / k, independent of concentration (Atkins & de Paula, ch. on kinetics). Radioactive decay is first order (IUPAC Gold Book, 'half life'). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22 re-check of v3: own Euler integration of dA/dt = -kA (k = ln2/10): waits 10.00, 10.00, 10.00 min; t1/2 = ln2/k has no concentration term. \"Radioactive decay is first order\" confirmed only via web-search snippets of general-chemistry texts (LibreTexts/Averill 14.5); Atkins and the IUPAC Gold Book entry were NOT opened (hosts blocked).",
-      "status": "verified",
+      "source": "t1/2 = ln 2 / k, independent of concentration (Atkins & de Paula, ch. on kinetics). Radioactive decay is first order (IUPAC Gold Book, 'half life'). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Pass 22 re-check of v3: own Euler integration of dA/dt = -kA (k = ln2/10): waits 10.00, 10.00, 10.00 min; t1/2 = ln2/k has no concentration term. \"Radioactive decay is first order\" confirmed only via web-search snippets of general-chemistry texts (LibreTexts/Averill 14.5); Atkins and the IUPAC Gold Book entry were NOT opened (hosts blocked). | Builder revision v5 (demo-builder, 2026-10-14): (r7) The reveal now quotes a persistent '1st-order waits' row, waitRow(1) ('10, 10 min' after milestone first-twice; '10, 10, 10 min' after three halvings). Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -93,7 +93,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "chemistry:reaction-order",
     "prerequisites": [

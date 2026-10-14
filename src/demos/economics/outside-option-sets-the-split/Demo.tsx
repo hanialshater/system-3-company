@@ -8,6 +8,9 @@
 // v2: the rule labels ("A's fallback, then half the rest") appear only after the commit; the previous split stays as
 // a dashed "before" line, and the reveal quotes the learner's last change (previous option -> current option).
 // Milestones: moved (any change of A's option), at-question ($0.40).
+// v3 (r7): the reveal quoted the last slider stop ($0.70 -> $0.80), which a two-press slider move passes
+// in a blink. Now every option the learner has set is logged in a "Tried" row under the bar
+// (option -> A's deal, sorted), and the reveal quotes the lowest and highest tries from that row.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,9 +35,12 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
   const [a, setA] = useState(0);
   const [prev, setPrev] = useState<number | null>(null); // A's option before the latest change
   const [sawQ, setSawQ] = useState(false); // the $0.40 case has been set at least once (its line stays on stage)
+  const [tried, setTried] = useState<number[]>([0]); // every option set so far, sorted (the "Tried" row)
   const { A, B, rest } = split(a);
   const pA = prev === null ? null : split(prev).A;
   const q = split(QUESTION);
+  const lo = tried[0];
+  const hi = tried[tried.length - 1];
 
   return (
     <Lesson
@@ -55,10 +61,10 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
             $0.30 = $0.70.
           </p>
           <p>
-            {prev !== null && pA !== null && prev !== a
-              ? `Your last change took A's option from ${usd(prev)} to ${usd(a)} and A's deal from ${usd(pA)} to ${usd(A)} (the dashed line): `
+            {hi > lo
+              ? `Your Tried row: raising A's option from ${usd(lo)} to ${usd(hi)} (${hi - lo} cents) moved A's deal from ${usd(split(lo).A)} to ${usd(split(hi).A)} (${split(hi).A - split(lo).A} cents). `
               : ""}
-            every 10 cents added to A&apos;s option moved 5 cents of the deal to A. The option works as a threat, not as a move:
+            Every 10 cents added to A&apos;s option moves 5 cents of the deal to A. The option works as a threat, not as a move:
             it matters even though A never uses it.
           </p>
           <p className="muted">A model: money payoffs, both value a dollar the same, and the deal is sure to happen.</p>
@@ -72,6 +78,7 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
               if (v === a) return;
               setPrev(a);
               setA(v);
+              setTried((t) => (t.includes(v) ? t : [...t, v].sort((x, y) => x - y)));
               reach("moved");
               if (v === QUESTION) {
                 setSawQ(true);
@@ -151,6 +158,11 @@ export default function OutsideOptionSetsTheSplit({ slug }: { slug: string }) {
                   <Readout label="A gets" value={usd(A)} />
                   <Readout label="B gets" value={usd(B)} />
                 </Row>
+                <p className={s.tried} aria-live="polite">
+                  {locked || tried.length < 2
+                    ? " "
+                    : `Tried (option → A gets): ${tried.map((t) => `${usd(t)} → ${usd(split(t).A)}`).join(" · ")}`}
+                </p>
               </div>
             );
           }}

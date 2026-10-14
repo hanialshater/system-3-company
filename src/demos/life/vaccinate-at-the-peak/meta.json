@@ -34,10 +34,10 @@
     },
     {
       "id": "life.vaccinate-at-the-peak.c2",
-      "text": "Vaccinating 20% of the town at once, all people not yet infected, brings the final infected share to 70% on day 0 and 76% at the peak (day 19): the peak saves 18.4 of the 23.8 points that day 0 saves, 77.5% of the benefit (shown as 78%). On day 40 the final share is 94%.",
+      "text": "Vaccinating 20% of the town at once, all people not yet infected, brings the final infected share to 70% on day 0 and 76% at the peak (day 19), against 94% with no vaccine: in the stage's whole percents the peak saves 18 of the 24 points that day 0 saves, about 75% of the benefit (unrounded 18.4 of 23.8, 77.5%). On day 40 the final share is 94%. (Stage: 'Seen, infected in the end: none 94% · day 0 70% · day 19 76% · ...'.)",
       "support": "simulation",
-      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'sus'): day 0 0.7031, day 19 0.7566, day 40 0.9359, none 0.9407; fraction 0.775. The brief's check (50%, 56%, 87%) did not reproduce in this model; see company/reviews/vaccinate-at-the-peak/build.md.",
-      "status": "verified",
+      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'sus'): day 0 0.7031, day 19 0.7566, day 40 0.9359, none 0.9407; fraction 0.775. The brief's check (50%, 56%, 87%) did not reproduce in this model; see company/reviews/vaccinate-at-the-peak/build.md. | Builder revision v4 (demo-builder, 2026-10-14): (r7) The reveal now does its arithmetic in the stage's rounding: whole(0.94) - whole(0.76) = 18, whole(0.94) - whole(0.70) = 24, round(100 x 18 / 24) = 75. A Seen row keeps the quoted finals. Builder node re-run of simulate(): none 94%, day 0 70%, day 19 76%, day 40 94%. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
@@ -76,6 +76,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.vaccinate-at-the-peak.c7",
+      "text": "From day 23 on, fewer than 20% of the town are still not yet infected, so the dose is capped at what is left: on day 40 only 6% are not yet infected, so only 6% can be vaccinated. (Stage line: 'Day 40 (after the peak): only 6% not yet infected, so only 6% vaccinated. Final: 94% infected.')",
+      "support": "simulation",
+      "source": "Demo.tsx simulate(): v = min(DOSE, S) at the vaccination day. Builder node re-run (2026-10-14): first day with S < 0.2 is day 23 (S = 17.57%); day 40 S = 6.41%, vaccinated 6.41%, final 94%. Builder statement, not self-verified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -102,7 +109,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "life:sir-epidemic-curve",
     "prerequisites": [

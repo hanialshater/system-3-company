@@ -39,3 +39,14 @@ c7 was held: "no known formula" rests on Lagarias 1985, which nobody here can op
 - The stage note now reads "Only running a start fills its ?." (it was "No known formula fills a ?. Run it."). The reveal now reads "Each ? in your table stayed a ? until you ran that start: only running the rule filled it in."
 - c7 is reworded to describe only what the stage does and is set to unverified. c5 (the Collatz conjecture is open) is unchanged.
 - No mechanics changed, so the every-control path is the same as Pre-flight v2. Not run: build, QA, walkthrough.
+
+## Pre-flight v4
+
+Revision for r7 (knows-repeated-rules): the reveal's "at 94 it lands on 27's path" named a value the stage never showed, and read as a step or a value. Now, once 97's run passes its step 13, a ring marks the join on 97's line and a stage line appears and stays: "97 meets 27's path at value 94 (its step 13), ringed." The reveal says "at the value 94 (its step 13)" and prints the join sentence only after that line was shown. c6 reworded, unverified. Not addressed here: the reveal frame cropping the plot top (kit fix in progress); 26/28 traces flat at the 10,000 scale (minor, the table carries the contrast).
+
+1. **Title and hook.** "How many steps does 27 take?" / "A tiny rule and a small number. How long can it run?" Neither says long or short.
+2. **Options.** "Under 30", "30 to 100", "Over 100": three numbered bands, same precision.
+3. **Locked stage.** Rule line, "Start 27 · step 0 · value 27", one dot at 27 on a 0–100 axis, no x tick labels, table all "?", the note. No join line, no ring. Nothing matches "Over 100".
+4. **Reveal values.** 111, 9,232: SEQ[27], milestone "27-at-1", table column 27. 10, 18, 118: printed only if that start is in `done`, shown in its table column. 94 and step 13: JOIN97 / JOIN97_STEP computed from SEQ, printed only when joinSeen (set when 97's run is drawn to step >= 13), the same text as the stage line, which persists.
+5. **QA path.** Step, Run to 1 ("27-at-1"), Step to show slider, chips 26 ("another-start"), 27, 28, 97 (each runs out in < 400 ms; 97 sets joinSeen). Both milestones; table full and the join line visible when the reveal opens.
+6. **Reset.** No Reset control; `done` and joinSeen never clear. Reveal from that run: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118 steps: as your stage line says, at the value 94 (its step 13) it lands on 27's path and follows it down. The start number tells you almost nothing about the run. Each ? in your table stayed a ? until you ran that start: only running the rule filled it in. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."

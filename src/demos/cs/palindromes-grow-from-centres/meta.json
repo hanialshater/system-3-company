@@ -62,10 +62,10 @@
     },
     {
       "id": "cs.palindromes-grow-from-centres.c7",
-      "text": "In \"abaa\" the same 7 centres find 6 palindromes (1, 0, 2, 0, 1, 1, 1) and 3 of them stop at a mismatch; the fingers look at 9 of its 10 substrings, and \"abaa\" itself is never tested because its middle, \"ba\", fails first.",
+      "text": "In \"abaa\" the same 7 centres find 6 palindromes (1, 0, 2, 0, 1, 1, 1) and 3 of them stop at a mismatch; the fingers look at 9 of its 10 substrings, and \"abaa\" itself is never tested because its middle, \"ba\", fails first. (Stage readout once all 7 centres are grown: 'abaa tested 9 / 10, not \"abaa\"'.)",
       "support": "simulation",
-      "source": "Demo.tsx grow('abaa', k) for k = 0..6; builder's Node run, 2026-10-14: counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also gives 6; fails at centres 1, 3, 4; tested = palindromes + failed comparisons = 6 + 3 = 9; the middle centre (gap 3) fails on [1, 2] = 'ba', so [0, 3] = 'abaa' is never reached. | FC pass 24 (fact-checker, 2026-10-14): Own port: abaa per-centre counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also 6; fails at centres 1, 3, 4; tested set (spans + fail cells) has 9 distinct substrings, the only untested one is [0, 3] = 'abaa'; middle centre (k = 3) fails on [1, 2] = 'ba'. Reveal needs all-centres, so the computed foundAlt/failsAlt/testedAlt equal these totals at reveal time (taps only add).",
-      "status": "verified",
+      "source": "Demo.tsx grow('abaa', k) for k = 0..6; builder's Node run, 2026-10-14: counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also gives 6; fails at centres 1, 3, 4; tested = palindromes + failed comparisons = 6 + 3 = 9; the middle centre (gap 3) fails on [1, 2] = 'ba', so [0, 3] = 'abaa' is never reached. | FC pass 24 (fact-checker, 2026-10-14): Own port: abaa per-centre counts 1+0+2+0+1+1+1 = 6, brute force over all 10 substrings also 6; fails at centres 1, 3, 4; tested set (spans + fail cells) has 9 distinct substrings, the only untested one is [0, 3] = 'abaa'; middle centre (k = 3) fails on [1, 2] = 'ba'. Reveal needs all-centres, so the computed foundAlt/failsAlt/testedAlt equal these totals at reveal time (taps only add). | Builder revision v3 (demo-builder, 2026-10-14): (r7) The tested readout now names the untested substring once all centres are grown, and the reveal quotes that readout. Builder hand trace of grow('abaa', k): tested substrings [0,0],[0,1],[1,1],[0,2],[1,2],[2,2],[1,3],[2,3],[3,3]; the only untested one of the 10 is [0,3] = 'abaa'. Builder statement, not self-verified.",
+      "status": "unverified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -92,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:palindrome-centres",
     "also": [],

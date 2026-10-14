@@ -7,6 +7,11 @@
 // vaccinated, hollow = never infected. Dashed outline: ever infected with no vaccination.
 // Deterministic. If doses went to random people instead, the peak result is much smaller
 // (see RANDOM below; stated in the reveal).
+// v4 (r7): the reveal's arithmetic used decimals the stage never shows (18.4 of 23.8 points, 78%).
+// It now works from the stage's whole percents (94 - 76 = 18 of 94 - 70 = 24 points, 75%). A "Seen"
+// row keeps every final the reveal quotes (none, day 0, the peak, the last other date) and the
+// peak's "not yet infected" share, so moving on does not erase them. When fewer than 20% are left
+// to vaccinate (from day 23 on), the stage line says the dose was capped.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -48,9 +53,15 @@ const NONE = simulate(null);
 const PEAK_DAY = Math.round(NONE.peakT); // 19
 const RUNS = Array.from({ length: MAX_DAY + 1 }, (_, d) => simulate(d));
 const D0 = RUNS[0], DP = RUNS[PEAK_DAY];
-const FRAC = (NONE.ever - DP.ever) / (NONE.ever - D0.ever); // ~0.77
 const RANDOM_FRAC = (NONE.ever - simulate(PEAK_DAY, true).ever) / (NONE.ever - simulate(0, true).ever); // ~0.29
 const pct = (x: number) => `${Math.round(100 * x)}%`;
+const whole = (x: number) => Math.round(100 * x); // the stage's rounding, in points
+// Reveal arithmetic in the stage's rounding: 94 - 76 = 18 of 94 - 70 = 24 points -> 75%
+const SAVED_P = whole(NONE.ever) - whole(DP.ever);
+const SAVED_0 = whole(NONE.ever) - whole(D0.ever);
+const FRAC_SHOWN = Math.round((100 * SAVED_P) / SAVED_0);
+
+type Seen = { d0: boolean; peak: boolean; other: number | null };
 
 function outline(n: number) {
   const full = Math.floor(n / COLS), part = n % COLS, W = COLS * GAP;
@@ -58,7 +69,7 @@ function outline(n: number) {
   return part === 0 ? `M0,0 H${W} V${y1} H0 Z` : `M0,0 H${W} V${y1} H${part * GAP} V${y2} H0 Z`;
 }
 
-function Stage({ locked, v, setV }: { locked: boolean; v: number | null; setV: (d: number | null) => void }) {
+function Stage({ locked, v, setV, seen }: { locked: boolean; v: number | null; setV: (d: number | null) => void; seen: Seen }) {
   const out = v === null ? NONE : RUNS[v];
   const nInf = Math.round(TOWN * out.ever);
   const nVax = Math.round(TOWN * out.vax);
@@ -67,7 +78,15 @@ function Stage({ locked, v, setV }: { locked: boolean; v: number | null; setV: (
     ? `Make a prediction to start. Toy: R0 ${R0}, 20% vaccinated at once, all not yet infected.`
     : v === null
       ? `No vaccination: ${pct(NONE.ever)} infected in the end.`
-      : `Day ${v}${when}: ${pct(out.sAtV)} not yet infected. Final: ${pct(out.ever)} infected (none: ${pct(NONE.ever)}).`;
+      : out.vax < DOSE - 1e-9
+        ? `Day ${v}${when}: only ${pct(out.sAtV)} not yet infected, so only ${pct(out.vax)} vaccinated. Final: ${pct(out.ever)} infected.`
+        : `Day ${v}${when}: ${pct(out.sAtV)} not yet infected. Final: ${pct(out.ever)} infected (none: ${pct(NONE.ever)}).`;
+  const finals = [
+    `none ${pct(NONE.ever)}`,
+    ...(seen.d0 ? [`day 0 ${pct(D0.ever)}`] : []),
+    ...(seen.peak ? [`day ${PEAK_DAY} ${pct(DP.ever)}`] : []),
+    ...(seen.other !== null ? [`day ${seen.other} ${pct(RUNS[seen.other].ever)}`] : []),
+  ];
 
   return (
     <div className={s.wrap}>
@@ -87,6 +106,12 @@ function Stage({ locked, v, setV }: { locked: boolean; v: number | null; setV: (
       </div>
 
       <p className={s.msg} aria-live="polite">{msg}</p>
+      {!locked && (seen.d0 || seen.peak || seen.other !== null) && (
+        <p className={s.seen}>
+          Seen, infected in the end: {finals.join(" · ")}
+          {seen.peak ? `. Day ${PEAK_DAY}: ${pct(DP.sAtV)} not yet infected.` : ""}
+        </p>
+      )}
 
       <Row>
         <Control className={v === 0 ? "active" : ""} disabled={locked || v === 0} onClick={() => setV(0)}>Day 0</Control>
@@ -101,6 +126,7 @@ function Stage({ locked, v, setV }: { locked: boolean; v: number | null; setV: (
 
 export default function VaccinateAtThePeak({ slug }: { slug: string }) {
   const [v, setVState] = useState<number | null>(null);
+  const [seen, setSeen] = useState<Seen>({ d0: false, peak: false, other: null });
   return (
     <Lesson
       slug={slug}
@@ -114,10 +140,10 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With no vaccine {pct(NONE.ever)} are infected in the end. Day 0 brings that to {pct(D0.ever)}; the peak, to {pct(DP.ever)}. So the
-            peak saves {(100 * (NONE.ever - DP.ever)).toFixed(1)} of the {(100 * (NONE.ever - D0.ever)).toFixed(1)} points day 0 saves: <strong>{pct(FRAC)}</strong>{" "}
-            of the benefit.
-            {v !== null && v !== 0 && v !== PEAK_DAY ? ` Your last date, day ${v}, ended at ${pct(RUNS[v].ever)}.` : ""}
+            Your Seen row: with no vaccine {pct(NONE.ever)} are infected in the end. Day 0 brings that to {pct(D0.ever)}; the peak, to{" "}
+            {pct(DP.ever)}. So the peak saves {SAVED_P} of the {SAVED_0} points day 0 saves: <strong>about {FRAC_SHOWN}%</strong> of the
+            benefit.
+            {seen.other !== null ? ` Your other date, day ${seen.other}, ended at ${pct(RUNS[seen.other].ever)}.` : ""}
           </p>
           <p>
             The peak is not the end of the epidemic: on day {PEAK_DAY}, {pct(DP.sAtV)} of the town had never been infected.
@@ -136,8 +162,12 @@ export default function VaccinateAtThePeak({ slug }: { slug: string }) {
             <Stage
               locked={locked}
               v={v}
+              seen={seen}
               setV={(d) => {
                 setVState(d);
+                setSeen((p) =>
+                  d === 0 ? { ...p, d0: true } : d === PEAK_DAY ? { ...p, peak: true } : d === null ? p : { ...p, other: d },
+                );
                 if (d === 0) reach("day-0");
                 else if (d === PEAK_DAY) reach("peak");
                 else {

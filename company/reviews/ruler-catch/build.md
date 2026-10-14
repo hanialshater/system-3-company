@@ -12,3 +12,16 @@ Built by demo-builder (sonnet build, EXP-003). Kept from evaluators until they r
 ## Revision v2 (wave C)
 
 Clear no longer empties the reveal: it uses the most catches seen, so no Infinity or NaN.
+
+## Pre-flight v3
+
+builder: demo-builder (wave G revisions, batch 2) · 2026-10-14 · answers r7 learner review `2026-10-14-learner-knows-reflexes-and-falling-r7.md`
+
+Changes: (1) the time scale (0.20 s beside 20 cm) is drawn only after the commit; its label now reads "time, d = ½gt²". (2) The conversion is on stage: a working line turns the latest catch into a time ("12.6 cm: t = √(2 × 0.126 m ÷ 9.81) = 0.16 s"); Clear keeps it. (3) A Seen row records the catches so far ("Seen: 6 catches, 12.6 to 27.4 cm = 0.16 to 0.24 s") and survives Clear; 27.4 is now printed. The reveal quotes the Seen row and points at the working line, writing out 20 cm the same way. Title "How fast is your reflex?" -> "How long does a catch take?" (the catcher is simulated); hook drops "blink-quick" (it pointed at a short time). c2, c6 reworded, unverified.
+
+1. **Title and hook.** "How long does a catch take?" / "A falling ruler can time a reaction. How long does a catch really take?" No size of time named or implied. No.
+2. **Options.** "0.02 s" / "0.2 s" / "2 s". All numbered, one significant figure.
+3. **Locked stage.** The cm ruler (0-45, labels every 10), "cm fallen", caption "Make a prediction to start.", readouts "?" and "?", blank working and Seen lines. No time scale, no 0.20 s, nothing at 20 cm.
+4. **Reveal values.** "6 catches ... 12.6 and 27.4 cm ... 0.16 to 0.24 s": computed from seen (the most catches on the ruler at once; milestone five), the same strings as the Seen row. "20 cm means 0.20 s" and "√(2 × 0.200 m ÷ 9.81) = 0.20 s": the question's case, computed with working(20), the same format and rounding as the stage working line and the 0.20 s scale tick. "about 5 thousandths": computed, told context (c5).
+5. **QA path.** Drop once (16.4 cm), Drop 5 times (6 catches; five), Clear. 1 of 1 milestone. At reveal the Seen row, the working line for 12.6 cm and the time scale are on stage.
+6. **Reset.** Clear pressed last: the ruler empties and the readouts read 0 and ?, the Seen row and working line stay. Reveal from that run: "Your Seen row: 6 catches closed between 12.6 and 27.4 cm, which is 0.16 to 0.24 s on the scale. A catch at 20 cm means 0.20 s. / The working line under the ruler is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for 20 cm, t = √(2 × 0.200 m ÷ 9.81) = 0.20 s. Distance grows with the square of the time. That makes a few centimetres a fine clock: near 20 cm, each extra centimetre is about 5 thousandths of a second. No air drag; the catcher here is simulated." (Read from the code; this batch does not run QA. Seeded TRIALS re-run in node: 16.4, 27.4, 22.2, 24.2, 13.3, 12.6.)
