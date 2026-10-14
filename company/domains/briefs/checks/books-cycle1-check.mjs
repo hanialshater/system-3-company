@@ -4,6 +4,8 @@
 // Every brief's stated answer is recomputed here; a mismatch exits non-zero.
 // The models are the briefs' stated toy models, not claims about the world.
 
+import fs from "node:fs";
+
 let fail = 0;
 const ok = (name, cond, detail) => { console.log(`${cond ? "ok  " : "FAIL"} ${name}: ${detail}`); if (!cond) fail++; };
 const r = (x, d = 3) => Number(x.toFixed(d));
@@ -85,6 +87,19 @@ const r = (x, d = 3) => Number(x.toFixed(d));
   const cum = neu.reduce((a, x) => [...a, (a.at(-1) ?? 0) + x], []);
   const rising = cum.every((x, i) => i === 0 || x > cum[i - 1]);
   ok("8 vanity: cumulative rises while conversion falls", rising && cum.at(-1) === 450, `new ${neu.join(", ")}; cumulative ${cum.join(", ")} (answer: can't tell from the total; here it fell)`);
+  // "Getting better" preset (W-623 re-check, cm-books 2026-10-14): rising conversion reaches the same total.
+  const up = [5, 6, 7, 8, 9, 10].map((c) => 1000 * c / 100).reduce((a, x) => [...a, (a.at(-1) ?? 0) + x], []);
+  const upRising = up.every((x, i) => i === 0 || x > up[i - 1]);
+  ok("8 vanity: getting better also rises, to the same total", upRising && up.at(-1) === cum.at(-1), `cumulative ${up.join(", ")}; final ${up.at(-1)} = ${cum.at(-1)} (answer D: the total can't tell them apart)`);
+  // Brief text: stage question <= 25 words, reveal <= 90 and equal to its stated count.
+  const md = fs.readFileSync(new URL("../books.md", import.meta.url), "utf8");
+  const b8 = md.slice(md.indexOf("### 8. total-signups-hide-the-slide"), md.indexOf("### 9. "));
+  const words = (s) => s.trim().split(/\s+/).filter(Boolean).length;
+  const q = b8.match(/Prediction \(stage text\): "([^"]+)"/);
+  const rv = b8.match(/Reveal payoff \(draft, (\d+) words\): "([^"]+)"/);
+  ok("8 vanity: stage question <= 25 words", q && words(q[1]) <= 25, q ? `${words(q[1])} words` : "no question");
+  ok("8 vanity: reveal <= 90 words, count stated", rv && words(rv[2]) <= 90 && Number(rv[1]) === words(rv[2]), rv ? `${words(rv[2])} words (stated ${rv[1]})` : "no reveal");
+  ok("8 vanity: answer letter D", /\(answer: D\)/.test(b8), "D");
 }
 
 // 9. fact-gap-instinct: four income levels, 2017, billions of people (book: about 1, 3, 2, 1).
