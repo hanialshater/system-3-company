@@ -29,7 +29,10 @@ const median = (xs) => { const s = [...xs].sort((a, b) => a - b); return s.lengt
 // Incidents and COEs.
 const incidents = events.filter((e) => e.type === "incident");
 const coes = fs.readdirSync("company/rituals/records").filter((f) => /coe/.test(f));
-const lastOps = fs.readdirSync("company/rituals/records").filter((f) => /ops-review/.test(f)).sort().pop();
+// Ops reviews live in company/engineering/operations/ (principal-engineer-ops) or company/rituals/records/;
+// read both, so a held review is never reported as "never held" (W-542).
+const OPS_DIRS = ["company/rituals/records", "company/engineering/operations"];
+const lastOps = OPS_DIRS.flatMap((d) => (fs.existsSync(d) ? fs.readdirSync(d) : []).filter((f) => /^\d{4}-\d{2}-\d{2}.*ops-review/.test(f))).sort().pop();
 
 // Tier registry: anything not ok, worst tier first.
 const reg = ["services", "data", "security", "ux_deficits"].flatMap((k) => (tiers[k] ?? []).map((x) => ({ ...x, kind: k })));

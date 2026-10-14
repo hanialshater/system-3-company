@@ -12,7 +12,33 @@ const triggers = JSON.parse(fs.readFileSync(path.join(ROOT, "company/rituals/tri
 const events = fs.existsSync(path.join(ROOT, "company/ops/events.jsonl"))
   ? fs.readFileSync(path.join(ROOT, "company/ops/events.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)).sort((a, b) => a.ts.localeCompare(b.ts))
   : [];
-export const due = (now = Date.now()) => computeDue(triggers, events, now);
+// A ritual record on disk also counts as "held" (2026-10-14 operating audit): the event log stopped
+// recording dispatches and rituals after 16:00 that day, so rituals that were held looked overdue.
+// Records: company/rituals/records/<date>-<ritual>*.md and company/engineering/operations/<date>-ops-review*.md.
+// Time held = the file's last commit time. Uncommitted drafts do not count: a ritual is held when its record is on disk in git.
+import { execFileSync } from "node:child_process";
+const RECORD_DIRS = ["company/rituals/records", "company/engineering/operations"];
+function recordEvents() {
+  const out = [];
+  for (const d of RECORD_DIRS) {
+    const dir = path.join(ROOT, d);
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir)) {
+      const m = f.match(/^(\d{4}-\d{2}-\d{2})-(.+)\.md$/);
+      if (!m) continue;
+      const tr = triggers.find((t) => m[2] === t.ritual || m[2].startsWith(t.ritual + "-"));
+      if (!tr) continue;
+      let ts = "";
+      try { ts = execFileSync("git", ["log", "-1", "--format=%cI", "--", path.join(d, f)], { cwd: ROOT, encoding: "utf8" }).trim(); } catch {}
+      if (!ts) continue;
+      ts = new Date(ts).toISOString();
+      out.push({ ts, type: "ritual", room: tr.room, actor: "record", summary: `${d}/${f}` });
+    }
+  }
+  return out;
+}
+const all = [...events, ...recordEvents()].sort((a, b) => a.ts.localeCompare(b.ts));
+export const due = (now = Date.now()) => computeDue(triggers, all, now);
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
   const d = due();
