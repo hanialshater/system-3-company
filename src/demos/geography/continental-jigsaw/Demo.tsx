@@ -1,7 +1,9 @@
 "use client";
 
 // South America (its 1:110m countries, plus French Guiana) is turned as one rigid piece on the
-// sphere about the Bullard, Everett and Smith (1965) fit pole, 44°N 30.6°W, by up to 57°.
+// sphere about a pole at 44°N 30.6°W, by up to 57° (parameters recalled from the Bullard, Everett and Smith
+// 1965 fit; v3: their table could not be opened and secondary sources disagree, so the learner is no longer
+// told these are the published values; the reveal says only what the stage did).
 // A rotation on the sphere keeps its size and shape; only its place changes. The learner closes
 // the Atlantic and sees where Brazil's eastern bulge lands.
 
@@ -66,6 +68,10 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
     [sa, turn],
   );
   const tip = projection(turn(TIP));
+  // In the reveal the stage shows the closed fit the reveal describes, even if the learner went back to today.
+  const full = useMemo(() => rotation(POLE, ANGLE), []);
+  const closed = useMemo(() => ({ ...sa, features: sa.features.map((f) => mapFeature(f, full)) }), [sa, full]);
+  const closedTip = projection(full(TIP));
 
   const set = (v: number, interact: () => void) => {
     setPct(v);
@@ -80,7 +86,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "Turn South America across the Atlantic towards Africa. Where does Brazil's eastern bulge tuck in?",
-        options: ["Southern Africa", "The Horn of Africa", "The Gulf of Guinea, West Africa"],
+        options: ["Southern Africa", "The Horn of Africa", "The Gulf of Guinea"],
         answer: 2,
       }}
       exploreHint="Close the Atlantic all the way and watch the red dot."
@@ -89,30 +95,33 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
         <>
           <p>
             It tucks into the <strong>Gulf of Guinea</strong>, under West Africa&rsquo;s coast near Nigeria and Cameroon.
-            You turned South America as one solid piece, {ANGLE}° about a single point in the North Atlantic, which is the
-            fit Bullard, Everett and Smith published in 1965. The two coasts close up with only small gaps and overlaps,
-            as you saw in the outline.
+            You turned South America as one solid piece, {ANGLE}° about a single point in the North Atlantic, and its
+            coast closed against Africa&rsquo;s with only small gaps and overlaps, as you saw in the outline.
           </p>
           <p>
-            The fit here is rough: their fit used the edge of the continental shelf, not today&rsquo;s beaches, and these
-            outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
+            The fit here is rough: published fits use the edge of the continental shelf, not today&rsquo;s beaches, and
+            these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
             were once joined.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => {
+        const showFit = phase === "reveal" && fitted;
+        const shape = showFit ? closed : moved;
+        const dot = showFit ? closedTip : tip;
+        return (
         <div className={s.wrap}>
           <WorldMap
             projection={projection}
             width={W}
             height={H}
             graticule={false}
-            label={`Orthographic view of the South Atlantic. South America turned ${pct}% of the way to its fit against Africa.`}
+            label={`Orthographic view of the South Atlantic. South America turned ${showFit ? 100 : pct}% of the way to its fit against Africa.`}
           >
             {({ path }) => (
               <>
-                <path d={path(moved)} className={s.sa} />
+                <path d={path(shape)} className={s.sa} />
                 {REGIONS.map(({ t, p, a }) => {
                   const q = projection(p)!;
                   return (
@@ -124,7 +133,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
                     </g>
                   );
                 })}
-                {tip && <circle cx={tip[0]} cy={tip[1]} r={3.2} className={s.tip} />}
+                {dot && <circle cx={dot[0]} cy={dot[1]} r={3.2} className={s.tip} />}
               </>
             )}
           </WorldMap>
@@ -141,7 +150,8 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
             </Control>
           </Row>
         </div>
-      )}
+        );
+      }}
     </Lesson>
   );
 }

@@ -7,6 +7,9 @@
 // of 256 one-per-row boards.
 // v3: solutions appear only when the search reaches them; the reveal waits until a search from
 // an empty board has finished (the counter shows 16); the counter is called "Tries".
+// v4: "Finish the run" (enabled only while the run animates) completes the same search at once, so each control
+// pressed once reaches the reveal. The finished run is kept in a line under the board that Start over does not
+// clear. Options are ranges, so the right one is not the board's 16 squares.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -55,7 +58,7 @@ function step(st: S): S {
 export default function FourQueensPruning({ slug }: { slug: string }) {
   const [st, setSt] = useState<S>(EMPTY);
   const [running, setRunning] = useState(false);
-  const [result, setResult] = useState<{ count: number; firstAt: number | null } | null>(null);
+  const [result, setResult] = useState<{ count: number; firstAt: number | null; found: number } | null>(null);
   const interactRef = useRef<() => void>(() => {});
 
   // A finished search from an empty board is the state the reveal explains.
@@ -64,7 +67,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
     if (!next.done) return;
     setRunning(false);
     if (next.clean && !result) {
-      setResult({ count: next.count, firstAt: next.firstAt });
+      setResult({ count: next.count, firstAt: next.firstAt, found: next.sols.length });
       interactRef.current();
     }
   };
@@ -84,8 +87,8 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Place 4 queens, one per row, so none attack. Checking every board blindly means 256. If you place only on safe squares and back up at a dead end, how many placements find every solution?",
-        options: ["16", "64", "256"],
+          "4 queens, one per row, none attacking. A blind check tries 256 boards. Placing only on safe squares and backing up at dead ends, how many tries find every solution?",
+        options: ["Under 30", "30 to 150", "Over 150"],
         answer: 0,
       }}
       exploreHint="Place queens by hand, then run the search from empty to the end."
@@ -93,14 +96,13 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your search from an empty board made <strong>{result?.count ?? 16}</strong> tries and found both solutions;
+            Your search from an empty board made <strong>{result?.count ?? 16}</strong> tries and found {result?.found ?? 2} solutions;
             the first came at try {result?.firstAt ?? 8}. A blind check would look at all 256 one-per-row boards.
           </p>
           <p>
             Placing only on safe squares notices a clash the moment it happens (the × marks), so every board that
             starts that way is skipped at once. The saving grows fast: 8 queens have 16,777,216 one-per-row boards, but
-            backtracking makes 2,056 placements to find all 92 solutions. So 16 matching the board's 16 squares is a
-            coincidence.
+            backtracking makes 2,056 placements to find all 92 solutions.
           </p>
           <p className="muted">Pruning early is what makes search possible.</p>
         </>
@@ -113,6 +115,12 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
           if (busy) return;
           setSt(EMPTY);
           setRunning(true);
+        };
+        const finishRun = () => {
+          if (locked || !running) return;
+          let x = st;
+          while (!x.done) x = step(x);
+          settle(x);
         };
         const doStep = () => {
           if (busy || done) return;
@@ -150,8 +158,11 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
               {msg}
             </p>
             <Row>
-              <Control className="active" disabled={busy} onClick={run}>
+              <Control disabled={busy} onClick={run}>
                 Run from empty
+              </Control>
+              <Control disabled={locked || !running} onClick={finishRun}>
+                Finish the run
               </Control>
               <Control disabled={busy || done} onClick={doStep}>
                 Step
@@ -165,7 +176,7 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
                 Array.from({ length: N }, (_, c) => {
                   const queen = qs[row] === c && row < r;
                   const attacked = row >= r && !safe(qs, row, c);
-                  const open = row === r && !attacked;
+                  const open = !locked && row === r && !attacked;
                   return (
                     <Control
                       key={`${row}-${c}`}
@@ -188,6 +199,11 @@ export default function FourQueensPruning({ slug }: { slug: string }) {
                 Solutions <strong>{sols.length}</strong> of 2
               </span>
             </div>
+            {result && (
+              <p className={s.msg}>
+                Your run from empty: {result.count} tries, {result.found} solutions, the first at try {result.firstAt}.
+              </p>
+            )}
             <div className={s.sols}>
               {sols.map((k) => (
                 <svg key={k} viewBox="0 0 40 40" className={s.mini} role="img" aria-label={`Solution: columns ${k.split("").map((x) => Number(x) + 1).join(", ")}`}>

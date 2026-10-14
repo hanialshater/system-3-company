@@ -5,6 +5,9 @@
 // edge as signed slivers: the strip between each edge and the x-axis, (x_i - x_(i+1)) * (y_i + y_(i+1)) / 2, which
 // adds up to the same total (the extra terms telescope away). Leftward edges add, rightward edges subtract.
 // In order: 12. Reversed: -12. (0,0) (4,3) (4,0) (0,3): a bow-tie, two slivers of +6 and -6, total 0.
+// v2: the reveal needs the bow-tie (0), one anticlockwise round (+12) and one clockwise round (−12). "Go round ↺" and
+// "Go round ↻" lay the boundary orders in one press each (or tap them by hand). Every closed path is logged under
+// the grid ("Your orders"), which Reset does not clear, and the reveal quotes that log.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -21,6 +24,11 @@ const RECT: P[] = [
 ];
 const BOW: P[] = [RECT[0], RECT[2], RECT[1], RECT[3]]; // the question's second order; also the button order
 const fmt = (p: P) => `(${p[0]},${p[1]})`;
+const num = (v: number) => (v < 0 ? `−${-v}` : String(v)); // true minus, as on the stage
+const ROUND_CCW: P[] = RECT;
+const ROUND_CW: P[] = [RECT[0], RECT[3], RECT[2], RECT[1]];
+const same = (a: P[], b: P[]) => a.length === b.length && a.every((p, i) => p === b[i]);
+type Done = { order: string; area: number };
 
 function shoelace(path: P[]): number {
   let sum = 0;
@@ -42,7 +50,17 @@ const OY = 178;
 const sx = (x: number) => OX + x * U;
 const sy = (y: number) => OY - y * U;
 
-function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
+function Stage({
+  locked,
+  reach,
+  log,
+  onLog,
+}: {
+  locked: boolean;
+  reach: (n: string) => void;
+  log: Done[];
+  onLog: (d: Done[]) => void;
+}) {
   const [path, setPath] = useState<P[]>([]);
   const closed = path.length === RECT.length;
   const edges: [P, P][] = path.slice(1).map((p, i) => [path[i], p]);
@@ -54,7 +72,20 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
     if (locked || path.includes(p)) return;
     const next = [...path, p];
     setPath(next);
-    if (next.length === RECT.length && shoelace(next) === 0) reach("zero");
+    if (next.length === RECT.length) closeOn(next);
+  };
+  const closeOn = (next: P[]) => {
+    const a = shoelace(next);
+    const order = next.map(fmt).join(" ");
+    if (!log.some((d) => d.order === order)) onLog([...log, { order, area: a }]);
+    if (a === 0) reach("zero");
+    else if (a > 0) reach("anticlockwise");
+    else reach("clockwise");
+  };
+  const goRound = (order: P[]) => {
+    if (locked || same(path, order)) return;
+    setPath(order);
+    closeOn(order);
   };
   const reset = () => {
     if (locked) return;
@@ -69,7 +100,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         ? "Each edge adds the strip under it: + going left, − going right."
         : area === 0
           ? "The path crosses itself: the + and − strips cancel to 0."
-          : `Closed path, signed area ${area}: ${area! > 0 ? "anticlockwise, +" : "clockwise, −"}.`;
+          : `Closed path, signed area ${num(area!)}: ${area! > 0 ? "anticlockwise, +" : "clockwise, −"}.`;
 
   return (
     <div className={s.wrap}>
@@ -148,42 +179,63 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         </Control>
       </Row>
       <Row>
-        <Readout label="Corners" value={`${path.length} of ${RECT.length}`} />
-        <Readout label={closed ? "Signed area" : "Sum so far"} value={closed ? area : total} />
+        <Control className={s.tap} disabled={locked || same(path, ROUND_CCW)} onClick={() => goRound(ROUND_CCW)}>
+          Go round ↺
+        </Control>
+        <Control className={s.tap} disabled={locked || same(path, ROUND_CW)} onClick={() => goRound(ROUND_CW)}>
+          Go round ↻
+        </Control>
       </Row>
+      <Row>
+        <Readout label="Corners" value={`${path.length} of ${RECT.length}`} />
+        <Readout label={closed ? "Signed area" : "Sum so far"} value={path.length < 2 ? "–" : num(closed ? area! : total)} />
+      </Row>
+      {log.length > 0 && (
+        <div className={s.log}>
+          <span className="muted small">Your orders</span>
+          {log.map((d) => (
+            <span key={d.order}>
+              {d.order}: <strong>{num(d.area)}</strong>
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 export default function ShoelaceOrderMatters({ slug }: { slug: string }) {
+  const [log, setLog] = useState<Done[]>([]);
+  const ccw = log.find((d) => d.area > 0);
+  const cw = log.find((d) => d.area < 0);
   return (
     <Lesson
       slug={slug}
       predict={{
         question: `A rectangle with corners ${RECT.map(fmt).join(" ")}, listed in order, has shoelace area ${IN_ORDER}. List the same corners as ${BOW.map(fmt).join(" ")}. What does the formula give?`,
-        options: [`${IN_ORDER}, the same corners`, String(BOW_AREA), String(2 * IN_ORDER)],
+        options: [String(IN_ORDER), String(BOW_AREA), String(2 * IN_ORDER)],
         answer: 1,
       }}
-      exploreHint="Tap the corners in the question's second order, then try your own."
-      minInteractions={1}
+      exploreHint="Tap the corners in the question's second order, then go round the rectangle both ways."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
             The question's order gave <strong>{BOW_AREA}</strong>. The formula adds a signed strip under each edge: the
             edge from (0,0) to (4,3) gave −6 and the edge from (4,0) to (0,3) gave +6. They cancelled, though the bow-tie
-            you drew encloses two triangles of area 3, one traced each way round.
+            encloses two triangles of area 3, one traced each way round.
           </p>
           <p>
-            Area from corners depends on the order: listed round the boundary, the same four corners give {IN_ORDER}; the
-            other way round, {REVERSED}. The sign tells you the direction, positive when the corners go anticlockwise. A path
-            that crosses itself makes some parts count positive and some negative.
+            Area from corners depends on the order. Going round the boundary, your anticlockwise order gave{" "}
+            {num(ccw?.area ?? IN_ORDER)} and your clockwise order gave {num(cw?.area ?? REVERSED)}: the size is the area, and
+            the sign tells you the direction. A path that crosses itself makes some parts count positive and some negative.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["zero"]}>
-          {(reach) => <Stage locked={locked} reach={reach} />}
+        <Milestones interact={interact} names={["zero", "anticlockwise", "clockwise"]}>
+          {(reach) => <Stage locked={locked} reach={reach} log={log} onLog={setLog} />}
         </Milestones>
       )}
     </Lesson>

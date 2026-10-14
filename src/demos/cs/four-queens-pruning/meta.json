@@ -35,12 +35,10 @@
     },
     {
       "id": "cs.four-queens-pruning.c2",
-      "text": "A full backtracking search from an empty 4 x 4 board (first safe column, back up at a dead row) makes 16 safe placements ('tries'), finds the first solution at try 8, and finds both solutions; the reveal quotes the count and first-solution try from the learner's own finished run.",
+      "text": "A full backtracking search from an empty 4 x 4 board (first safe column, back up at a dead row) makes 16 safe placements ('tries'), finds the first solution at try 8, and finds both solutions; the reveal and a line under the board quote the count, the number of solutions and the first-solution try from the learner's own finished run.",
       "support": "simulation",
-      "source": "Re-run of step() from Demo.tsx v3 on 2026-10-14: 17 steps, count 16, first solution at 8, solutions columns 2-4-1-3 and 3-1-4-2. | Builder's node script (scratchpad checks/all.mjs), counting each placement of a queen on a square not attacked by the queens above: 16 total, 8 at the first solution, 2 solutions (columns 2 4 1 3 and 3 1 4 2). The stage's Run button uses the same rule and shows the counts. | FACT-CHECK 2026-10-14 (pass 10): Own DFS and a copy of the stage's step(): 16 placements, first solution at 8, solutions 2 4 1 3 and 3 1 4 2. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Own node copy of v3 step() from empty: 17 steps, 16 tries, first solution at try 8, solutions 2-4-1-3 and 3-1-4-2; independent DFS also 16. Reveal uses the learner's clean run, which can only come from EMPTY via step().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Re-run of step() from Demo.tsx v3 on 2026-10-14: 17 steps, count 16, first solution at 8, solutions columns 2-4-1-3 and 3-1-4-2. | Builder's node script (scratchpad checks/all.mjs), counting each placement of a queen on a square not attacked by the queens above: 16 total, 8 at the first solution, 2 solutions (columns 2 4 1 3 and 3 1 4 2). The stage's Run button uses the same rule and shows the counts. | FACT-CHECK 2026-10-14 (pass 10): Own DFS and a copy of the stage's step(): 16 placements, first solution at 8, solutions 2 4 1 3 and 3 1 4 2. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check. | FACT-CHECK 2026-10-14 (pass 22): Own node copy of v3 step() from empty: 17 steps, 16 tries, first solution at try 8, solutions 2-4-1-3 and 3-1-4-2; independent DFS also 16. Reveal uses the learner's clean run, which can only come from EMPTY via step(). | REVISED v4 (demo-builder, 2026-10-14): v4 adds 'Finish the run', which completes the same search at once (same step function), and a persistent line 'Your run from empty: 16 tries, 2 solutions, the first at try 8.'; reveal now prints the recorded solution count. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.four-queens-pruning.c3",
@@ -68,15 +66,6 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
-    },
-    {
-      "id": "cs.four-queens-pruning.c6",
-      "text": "That the 4-queens search takes 16 tries, the same as the board's 16 squares, is a coincidence (8 queens: 64 squares but 2,056 placements).",
-      "support": "derivation",
-      "source": "Follows from c2 and c5: the placement count is not tied to the square count. Reveal paragraph 2 of Demo.tsx. | Added 2026-10-14 (v3) by demo-builder. | FACT-CHECK 2026-10-14 (pass 22): Own node: same step() at N=8 gives 2,056 placements and 92 solutions; 64 squares. The 16 = 16 match does not recur.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -101,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:n-queens-backtracking",
     "prerequisites": [
