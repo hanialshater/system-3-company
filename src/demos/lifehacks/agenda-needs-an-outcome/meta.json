@@ -26,7 +26,10 @@
       "text": "Scenario and prediction: The agenda item reads 'Topic: plan'. With only 'Topic: plan' on the agenda, who decides what? Correct option: The agenda doesn't say. All fixture labels, example words and names are stipulated exercise data.",
       "support": "convention",
       "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Fixture: one topic field filled, outcome and owner empty in mode A; the stage names no decider, so \"The agenda doesn't say\" is the only option the page supports. Stipulated data."
     },
     {
       "text": "The agenda’s checklist requires topic, outcome and decision owner. It records what the meeting is meant to produce, not whether the meeting will be effective.",
@@ -51,21 +54,30 @@
       "text": "Only 'picks' names the choice the meeting must end with and who makes it. Presenting or discussing names a topic and a person, not a decision.",
       "support": "convention",
       "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Reads the three stipulated agenda items: only \"picks\" names a choice and a decider. Convention, consistent with the lesson."
     },
     {
       "id": "lifehacks.agenda-needs-an-outcome.c4",
       "text": "A topic-only agenda tells the room the topic only; with outcome and owner added, it names the choice and who decides (Bo).",
       "support": "derivation",
       "source": "The fixture's fields (consequence field in studyCatalog.ts); this reads what the page says, not how a real meeting goes. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 6), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): consequence a/b and fields 1/3 vs 3/3 re-run; words plan/choose/Bo. scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     },
     {
       "id": "lifehacks.agenda-needs-an-outcome.seen",
       "text": "Seen table and first reveal sentence: Topic only: the room knows the topic only; fields 1/3. All three fields: the room knows the topic, the choice, who decides (Bo); fields 3/3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run for predictions 0-2 (optionToMode a,a,a): identical to this text on every path. scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

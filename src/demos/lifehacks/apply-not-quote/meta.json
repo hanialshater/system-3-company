@@ -26,7 +26,10 @@
       "text": "Scenario and prediction: A checker passes 9, 2, 5 because all three numbers are there. Under the ascending rule, how many of 9, 2, 5 are already in the right place? Correct option: 0 of 3 (ascending is 2, 5, 9). Exercise values are conventions, not measured learning data.",
       "support": "derivation",
       "source": "reconstructionMatches on [2,0,1] against 2, 5, 9 (studyModels.ts). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 7), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Attempt [2,0,1] over words 2,5,9 reads 9, 2, 5; positions vs 2, 5, 9 all differ: 0 of 3. Re-run in a copy of reconstructionMatches."
     },
     {
       "text": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
@@ -51,14 +54,20 @@
       "text": "Ascending means smallest to largest: 0.125 < 0.25 < 0.5. The last option only repeats the given order, which passes 'all three are there' but not the rule.",
       "support": "derivation",
       "source": "Recall why; values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 7), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 0.125 < 0.25 < 0.5; the third option equals the given order 0.25, 0.5, 0.125."
     },
     {
       "id": "lifehacks.apply-not-quote.seen",
       "text": "Seen table and first reveal sentence: Any order: match not checked. Rule: ascending: match 0/3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Numbers re-run over every prediction and every Yours state; 0 mismatches between table and reveal. The column order in this text is one path: the reveal quotes optionToMode[prediction] first, so some learners read the same two sentences in the other order, and a Yours sentence is appended when the learner moved the stage to a third state (its numbers match the Yours column). The keyed prediction (0) reads \"Rule: ascending: match 0/3.\" first. Yours reachable: 3/3, 1/3."
     }
   ],
   "confidence": "",

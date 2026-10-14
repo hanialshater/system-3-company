@@ -26,14 +26,20 @@
       "text": "Scenario and prediction: Your flashcard just says 'Capital?'. Your notes cover three countries. How many answers in them fit the card 'Capital?'? Correct option: 3: one per country. Fixture notes: Tokyo is the capital of Japan, Nairobi of Kenya, Lima of Peru.",
       "support": "source",
       "source": "Any atlas (fact-checker picks one) for the three capitals; convention for the rest. Fallback of block 12 applied: the files-family move waits for W-610. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Capitals checked in two opened datasets: geonamescache 3.0.2 (PyPI, GeoNames countries.json: JP Tokyo, KE Nairobi, PE Lima) and mledoze/countries countries.json (GitHub raw: same three). Count 3 is the fixture. Source field still says \"any atlas\"; demo-builder may name these."
     },
     {
       "id": "lifehacks.cue-needs-a-boundary.c2",
       "text": "'Capital?' fits all three notes, so it cannot tell you which one to recall. 'Kenya's capital?' fits one.",
       "support": "derivation",
       "source": "Principle field; candidates {a:3, b:1} in studyCatalog.ts (recall family kept: fallback, W-610 open). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Fixture: one note per country; candidates a = 3, b = 1."
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -49,14 +55,20 @@
       "text": "A cue that names its river fits one fact in these notes. 'The river' and 'a long river' could each be any of the three.",
       "support": "convention",
       "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 12), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Stipulated notes on three rivers; only a cue naming its river picks one. Convention."
     },
     {
       "id": "lifehacks.cue-needs-a-boundary.seen",
       "text": "Seen table and first reveal sentence: Capital?: answers this cue fits 3; match not checked. Kenya's capital?: answers this cue fits 1; match 0/3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Disputed. The numbers are what the engine computes, but the sentence a learner reads, \"Kenya's capital?: answers this cue fits 1; match 0/3.\", pins a 0/3 failure on the specific cue. The 0/3 is the fixed wrong attempt (Lima, Tokyo, Nairobi), which is the same in both modes and has nothing to do with the cue; mode A just shows \"not checked\". On stage this contradicts c2. Fix: W-610 (files family), or drop the Match row for lessons that declare candidates."
     }
   ],
   "confidence": "",

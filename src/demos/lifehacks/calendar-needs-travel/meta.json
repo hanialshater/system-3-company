@@ -26,7 +26,10 @@
       "text": "Scenario and prediction: The calendar shows the meeting slot free. You leave at 0 and travel 15 minutes. The meeting is booked for 10. How do you arrive? Correct option: Late by 5 min. All fixture labels and durations are stipulated exercise data.",
       "support": "derivation",
       "source": "Fixture rows in studyCatalog.ts: travel 0–15, meeting at 10. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 9), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Travel 0-15 vs meeting at 10: arrive at 15, 5 min after 10. Stipulated data."
     },
     {
       "text": "Travel time occupies a block just as the meeting does. In this fixture, an overlap means the same person is booked twice.",
@@ -60,7 +63,10 @@
       "text": "Seen table and first reveal sentence: Meeting at 10: gap before meeting 5 min short; overlap 5 min (travel × meeting). Meeting at 15: gap before meeting 0 min; overlap 0 min.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run for predictions 0-2 and all 71 Start positions from both fixtures: table and reveal agree; Yours names the pair (travel × meeting or meeting × email). scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

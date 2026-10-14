@@ -53,7 +53,10 @@
       "text": "Scenario and prediction: The label says 40 cm wide. The shelf opening is 42 cm. Does this box, as drawn, fit the 42 cm opening? Correct option: No, it is too wide (40 + 2 × 3 = 46 cm against a 42 cm opening).",
       "support": "derivation",
       "source": "home-models.ts case 'clearance'; values [40, 3], initial 42. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 1), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 40 + 2 × 3 = 46 cm > 42 cm; clearance 42 - 46 = -4 cm. The v2 drawing shows both handles at predict on one 4 px/cm scale, so \"as drawn\" holds."
     },
     {
       "id": "lifehacks.box-handle-clearance.c5",
@@ -78,14 +81,20 @@
       "text": "Width tested: 40 cm with the body only; 46 cm including both 3 cm handles. Clearance at a 42 cm opening: +2 cm (fits) and −4 cm (too wide).",
       "support": "derivation",
       "source": "home-models.ts case 'clearance'; the amounts and verdict fields in home-lessons.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 1), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): A 42 - 40 = +2 (fits), B 42 - 46 = -4 (too wide); re-run in a copy of the clearance model and the verdict rule."
     },
     {
       "id": "lifehacks.box-handle-clearance.seen",
       "text": "Seen table and first reveal sentence at the starting shelf opening of 42 cm; recomputed live as the slider moves: Body only: width tested 40 cm; clearance +2 cm (fits). Include handles: width tested 46 cm; clearance −4 cm (too wide).",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run at all 15 openings 38-52: reveal equals table; exact fit shown at 40 (A) and 46 (B); the drawing's dimension text uses the same 40/46 cm and the \"<p> cm opening\" label. scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

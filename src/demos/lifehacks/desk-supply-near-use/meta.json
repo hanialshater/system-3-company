@@ -53,7 +53,10 @@
       "text": "Scenario and prediction: You need the tape six times while you work. The tape sits 4 m from your desk and you fetch it 6 times. How far do you walk? Correct option: 48 m (6 round trips of 8 m).",
       "support": "derivation",
       "source": "home-models.ts case 'distance-use'; values [6], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 5), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 2 × 4 m × 6 = 48 m; 6 round trips of 8 m."
     },
     {
       "id": "lifehacks.desk-supply-near-use.c5",
@@ -78,14 +81,20 @@
       "text": "Round trip per fetch: 8 m across the room, 0 m with a copy at the desk. Walked over 6 fetches: 48 m and 0 m.",
       "support": "derivation",
       "source": "home-models.ts case 'distance-use'. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 5), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Round trip 8 m vs 0 m; 48 m vs 0 m."
     },
     {
       "id": "lifehacks.desk-supply-near-use.seen",
       "text": "Seen table and first reveal sentence at the starting distance of 4 m; recomputed live as the slider moves: Across the room: round trip per fetch 8 m; walked, 6 fetches 48 m. Copy at desk: round trip per fetch 0 m; walked, 6 fetches 0 m.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run at all 13 distances 2-8: reveal equals table (e.g. 2 m → 4 m / 24 m). scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

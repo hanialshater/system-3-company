@@ -53,7 +53,10 @@
       "text": "Scenario and prediction: Same 2 m cord, coiled in loops twice as wide. Against the base coil, how sharp is the bend with loops of twice the radius? Correct option: Half as sharp (curvature 1 ÷ 2r is half of 1 ÷ r).",
       "support": "derivation",
       "source": "home-models.ts case 'coil-radius'. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 4), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Curvature 1/(2r) = (1/r)/2 at every r; stage B is always half of A."
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.recall",
@@ -69,14 +72,20 @@
       "text": "At a 10 cm base radius: cord per turn 62.8 cm and 126 cm; turns of the 200 cm cord 3.18 and 1.59; bend 0.100 per cm (sharper) and 0.050 per cm (gentler).",
       "support": "derivation",
       "source": "home-models.ts case 'coil-radius', values [200], initial 10; amounts in home-lessons.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 4), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 2π·10 = 62.8 cm, 4π·10 = 126 cm; 200/62.83 = 3.18, 200/125.66 = 1.59; 1/10 = 0.100, 1/20 = 0.050 per cm. The engine uses π = 3.14159, which changes no shown digit."
     },
     {
       "id": "lifehacks.coiled-cord-bend-radius.seen",
       "text": "Seen table and first reveal sentence at the starting base radius of 10 cm; recomputed live as the slider moves: Base radius r: cord per turn 62.8 cm; bend (1 ÷ radius) 0.100 per cm (sharper). Double, 2 × r: cord per turn 126 cm; bend (1 ÷ radius) 0.050 per cm (gentler).",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run at all 31 radii 5-20: reveal equals table; sharper/gentler labels hold everywhere (B always half of A). scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

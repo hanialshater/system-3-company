@@ -26,14 +26,20 @@
       "text": "Scenario and prediction: You work on UTC. Your colleague works on UTC+9. Your colleague reads 'Due 16 Oct, 15:00' as their own time. When is that for you? Correct option: 06:00 UTC, 9 h early. Fixture zones and times are stipulated.",
       "support": "derivation",
       "source": "15:00 at UTC+9 = 06:00 UTC. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 15:00 at UTC+9 = 06:00 UTC (node Date.parse \"2026-10-16T15:00:00+09:00\" → 06:00Z); 9 h before 15:00 UTC."
     },
     {
       "id": "lifehacks.deadline-needs-a-reference.c2",
       "text": "A date, a clock time and a zone fix one moment. Without the zone, a reader on UTC+9 who assumes their own time aims 9 hours early. Daylight-saving rules are outside this exercise.",
       "support": "derivation",
       "source": "Principle field in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Same arithmetic; a zone-less reader on UTC+9 aims 9 h early. DST disclaimer accurate."
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: message. Exercise checklist; no promised communication outcome. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -49,28 +55,40 @@
       "text": "UTC is one shared reference, so 17:00 UTC is one moment everywhere. 'Local' and 'close of day' each mean a different moment in each city.",
       "support": "convention",
       "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): On Fri 16 Oct 2026, London is UTC+1 (BST until 25 Oct) and Tokyo UTC+9 (tzdata 2026e from PyPI wheel and the system zoneinfo): 17:00 local = 16:00Z vs 08:00Z, different moments; 17:00 UTC is one moment."
     },
     {
       "id": "lifehacks.deadline-needs-a-reference.c4",
       "text": "A UTC+9 reader who takes 'Due 16 Oct, 15:00' as local time aims for 06:00 UTC, 9 hours before 15:00 UTC.",
       "support": "derivation",
       "source": "15:00 − 9 h = 06:00; consequence field in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 15:00 - 9 h = 06:00 UTC; matches the consequence cell."
     },
     {
       "id": "lifehacks.deadline-needs-a-reference.c5",
       "text": "16 October 2026 is a Friday.",
       "support": "source",
       "source": "Any 2026 calendar (needed because the recall says 'Fri 16 Oct'). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 13), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Friday, by four independent computations: JS Date (UTC), Zeller's congruence, a day count from Sat 1 Jan 2000 (9,785 days, 9785 mod 7 = 6 → Friday), and GNU date / Python datetime. 14 Oct 2026 is a Wednesday, so the patch's fix is right. Derived from the Gregorian calendar, no outside source needed."
     },
     {
       "id": "lifehacks.deadline-needs-a-reference.seen",
       "text": "Seen table and first reveal sentence: No zone: your colleague aims for 06:00 UTC, 9 h early; fields 2/3. With zone: your colleague aims for 15:00 UTC; fields 3/3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run for predictions 0-2: identical on every path; A shows Date 16 Oct, Time 15:00, Zone missing (aFields 2). scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

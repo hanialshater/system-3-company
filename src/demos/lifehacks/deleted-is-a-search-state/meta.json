@@ -26,14 +26,20 @@
       "text": "Scenario and prediction: You search for a note you deleted yesterday. The search lists active files. Is 'notes' in the list? Correct option: No, it is left out. Fixture files are stipulated.",
       "support": "convention",
       "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Fixture notes deleted: true; active-only step drops it (Matches 2, Not in results 1)."
     },
     {
       "id": "lifehacks.deleted-is-a-search-state.c2",
       "text": "The note is marked as deleted. A search of active files leaves it out; including deleted items brings it back here. Real products keep deleted files for different lengths of time.",
       "support": "source",
       "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Not opened from this host (FC LH-3A, FC pass 35). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): First two sentences are the fixture (B: 3 matches). \"Real products keep deleted files for different lengths of time\": the Google Drive page is still not openable, but two opened product docs support it: nextcloud/server config.sample.php (trashbin_retention_obligation: default keeps trash at least 30 days, configurable D1/D2 days or disabled = kept forever) and owncloud/core config.sample.php (default up to 30 days, configurable), both via GitHub raw. Demo-builder: add these to the source field."
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: files. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -49,14 +55,20 @@
       "text": "If the file was deleted, a search of active files will keep missing it. Including deleted items can show it, within the product's own retention rules. Narrowing cannot find what the search leaves out.",
       "support": "source",
       "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Not opened from this host (FC LH-3A, FC pass 35). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 14), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Hedged and logical given deletion; \"within the product's own retention rules\" is supported by the same two opened docs. Narrowing cannot add results by definition. Drive Help itself remains unopened."
     },
     {
       "id": "lifehacks.deleted-is-a-search-state.seen",
       "text": "Seen table and first reveal sentence: Active only: not in results 1; matches 2. Include deleted: not in results 0; matches 3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run for predictions 0-2: identical on every path. scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

@@ -44,14 +44,20 @@
       "text": "Total=variable load+2kg; chosen limit=5kg; overload=max(0,total−5). Space used is a fixed 10 of 20 L at every load; it does not enter the mass.",
       "support": "derivation",
       "source": "home-models.ts case 'weight-limit' and the formula field in home-lessons.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Matches home-models weight-limit (B value max(0,p+2-5)) and the fixed \"10 of 20\" amount row; mass row b = p+2."
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c4",
       "text": "Scenario and prediction: Half its space is still free. This 2 kg bag holds 4 kg of things and is half empty. Does it pass a 5 kg limit? Correct option: No, it is over the limit (2 + 4 = 6 kg, 1 kg over).",
       "support": "derivation",
       "source": "home-models.ts case 'weight-limit'; values [2, 5], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 2 + 4 = 6 kg; max(0, 6 - 5) = 1 kg over; stage B reads \"1 kg · over\" at the initial 4 kg."
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c5",
@@ -67,28 +73,40 @@
       "text": "How full a bag is says nothing about its mass, so fullness rules neither bag in nor out. Only the masses decide. The limit is an example, not a carrier's rule.",
       "support": "derivation",
       "source": "Recall why; scenario values stipulated in the question. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): True as worded: fullness alone fixes no mass, only the masses decide; the limit is stipulated. Advisory to cm-lifehacks (pedagogy, not fact): naming pillows gives a sensible reason to skip weighing that bag."
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c6",
       "text": "Example bag: 20 L of space, with the contents filling 10 L at every load shown. The space used does not change the total mass.",
       "support": "convention",
       "source": "Stipulated example; this patch. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Stipulated example; the amount row is the literal \"10 of 20\" at every slider load 2-7 kg (checked at every 0.1 step) and does not enter the result."
     },
     {
       "id": "lifehacks.bag-weight-before-volume.c7",
       "text": "Total mass: 2 kg bag + 4 kg contents = 6 kg, 1 kg over the example 5 kg limit.",
       "support": "derivation",
       "source": "home-models.ts case 'weight-limit'; values [2, 5], initial 4. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 2), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): 2 + 4 = 6 kg, 1 kg over 5 kg; Total mass row reads 6 kg at p = 4."
     },
     {
       "id": "lifehacks.bag-weight-before-volume.seen",
       "text": "Seen table and first reveal sentence at the starting contents of 4 kg; recomputed live as the slider moves: Judge by space: space used 10 of 20 L; against 5 kg limit looks fine (not weighed). Weigh it: space used 10 of 20 L; against 5 kg limit 1 kg (over).",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Re-run at all 51 slider values (exact and float-accumulated steps): reveal equals table on every one; at 4 kg exactly this text. Below 3 kg B reads \"0 kg (within limit)\", above it the overload with \"over\". scripts in the fact-checker scratchpad fc-w740/ (home.mjs, study.mjs, misc.mjs: re-typed copies of engine-v2.ts and the models, cross-run against the real engine, 0 mismatches)."
     }
   ],
   "confidence": "",

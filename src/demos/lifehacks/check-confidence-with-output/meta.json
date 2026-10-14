@@ -26,7 +26,10 @@
       "text": "Scenario and prediction: You studied map, key, route and feel sure of the order. Your attempt feels familiar. Before checking it, how many places do you know are right? Correct option: Unknown until checked. All fixture words are stipulated exercise data.",
       "support": "convention",
       "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Before the check, mode A reads \"not checked\": no place is known; stipulated fixture."
     },
     {
       "text": "The check counts matching positions. It can expose a mismatch, but this single attempt cannot estimate future retention or general ability.",
@@ -51,21 +54,30 @@
       "text": "The written check found the one step the feeling missed. One attempt does not predict later recall, but it does show which step to fix.",
       "support": "convention",
       "source": "Recall why; stipulated example. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Held. \"One attempt does not predict later recall\" is an empirical claim marked convention, and no openable source supports it (Roediger & Karpicke 2006 is not openable here and is about retention, not prediction). It overstates the verified c2 boundary. Suggested fix (cm-lifehacks): \"One check cannot tell you how well you will remember it later, but it does show which step to fix.\""
     },
     {
       "id": "lifehacks.check-confidence-with-output.c4",
       "text": "Checked against the studied order map, key, route, the familiar-feeling attempt route, map, key matches 0 of 3 places.",
       "support": "derivation",
       "source": "reconstructionMatches on [2,0,1] (studyModels.ts). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Attempt [2,0,1] = route, map, key vs map, key, route: 0 of 3 positions match."
     },
     {
       "id": "lifehacks.check-confidence-with-output.seen",
       "text": "Seen table and first reveal sentence: Feels familiar: match not checked. Check it: match 0/3.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Numbers re-run over every prediction and every Yours state; 0 mismatches between table and reveal. The column order in this text is one path: the reveal quotes optionToMode[prediction] first, so some learners read the same two sentences in the other order, and a Yours sentence is appended when the learner moved the stage to a third state (its numbers match the Yours column). Keyed prediction (1) reads \"Check it: match 0/3.\" first. Yours reachable: 3/3, 1/3."
     }
   ],
   "confidence": "",

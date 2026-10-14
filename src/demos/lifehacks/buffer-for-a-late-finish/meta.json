@@ -26,7 +26,10 @@
       "text": "Scenario and prediction: The draft overruns by five minutes. The draft runs 5 minutes over. Which plan has no clash with the call? Correct option: Gap, call at 25. All fixture labels and durations are stipulated exercise data.",
       "support": "convention",
       "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 8), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): With the event applied (draft 0-25): A call 20-35 overlaps 5 min; B call 25-40, notes 45-55, 0 min. Only \"Gap, call at 25\" has no clash. Stipulated data."
     },
     {
       "text": "A gap can absorb up to its length of delay in this schedule. It is a stated allowance, not a guarantee about real tasks.",
@@ -60,14 +63,20 @@
       "text": "With the draft running 5 minutes over (0–25): touching blocks put the call at 20, a 5-minute overlap (draft × call); a 5-minute gap puts the call at 25, no overlap.",
       "support": "derivation",
       "source": "calendarResult with the event applied to row 0 (engine-v2.ts scheduleRows). Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 8), applied by demo-builder for W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Union-overlap and pair re-run in my copy of calendarResult/calendarClashes: 5 min (draft × call) vs 0 min."
     },
     {
       "id": "lifehacks.buffer-for-a-late-finish.seen",
       "text": "Seen table and first reveal sentence: Touching: gap before call 0 min; overlap 5 min (draft × call). 5-min gap: gap before call 5 min; overlap 0 min.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (studyRevealLine) from this lesson's spec; engines v2 (company/design/specs/lifehacks-engines-v2.md R3, R6), demo-builder W-608 (2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "FC W-740 (2026-10-14): Numbers re-run over every prediction and every Yours state; 0 mismatches between table and reveal. The column order in this text is one path: the reveal quotes optionToMode[prediction] first, so some learners read the same two sentences in the other order, and a Yours sentence is appended when the learner moved the stage to a third state (its numbers match the Yours column). Keyed prediction (2) reads the \"5-min gap\" sentence first. Note: \"Gap before call\" is the planned gap (ignores the overrun), so a Yours layout can read \"gap 1 min; overlap 4 min\", which is true but worth a look by interaction-designer."
     }
   ],
   "confidence": "",
