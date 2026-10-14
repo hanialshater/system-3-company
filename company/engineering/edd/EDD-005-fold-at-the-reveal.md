@@ -88,9 +88,11 @@ Order of events when the learner taps "Show me why":
    - Measure `stage.getBoundingClientRect().height`, then `flushSync` the store to folded (React hides the
      rows and renders the toggle before the first eligible row in DOM order), and measure again.
    - Net-saving rule (item 2, W-349): `saved = before - after` already pays for the toggle (it is in
-     `after`). Keep the fold only if `saved >= max(44, toggle outer height)`; otherwise `flushSync` back to
+     `after`). Keep the fold only if `saved >= max(44, toggle border-box height)` (the toggle's margin is charged inside `saved`, not added to the bar, as item 2 and W-348 word it); otherwise `flushSync` back to
      unfolded. Both renders happen before paint, so the learner never sees either.
-   - Focus: if `document.activeElement` was inside a folded row, focus the toggle (`preventScroll`).
+   - Focus: if `document.activeElement` was inside a folded row, focus the toggle (`preventScroll`). If
+     focus already fell to `<body>` (a lesson that disables its controls in the reveal commit), the card's
+     last `focusin` target inside the body stands in for it (found in testing on natural-selection).
 3. Then, as today, `requestAnimationFrame(bringIntoView)` runs the W-287 picture shrink on the folded
    layout, then scrolls. So the fold is the first step of the fit, and pictures shrink less.
 4. Re-fits (400 ms timer, ResizeObserver, rotation, content growth) call only `bringIntoView`. They never
@@ -148,6 +150,20 @@ When `data-phase` leaves `reveal`, or the card unmounts, the store resets: rows 
   small row on the test lesson).
 - would_be_wrong_if: rows visibly vanish after the reveal paints (fold not before paint); a re-fit (400 ms
   or resize) changes the fold state; the contract fails on any non-opted lesson; expanding scrolls the card.
+
+Results (2026-10-14, build `.next-pf3` at :3540, natural-selection opted in locally on its slider row and
+button row, Readout moved to its own plain row; not committed):
+- Fold: crop 360 -> 309 px at 390x844 (the two rows net 51 px after the toggle); toggle present at the first
+  animation frame after the tap; label "Show more controls" (edge controls stay); 44x320 px in a 340 px stage;
+  no horizontal overflow; focus moved to the toggle from the slider.
+- Expand: toggle moved 0 px, card scrollTop unchanged, focus on the toggle, rows back in DOM order, smallest
+  restored control 28 px. Hide: rows `display: none` again, focus on the toggle.
+- Net-saving rule: slider row alone (nets about 2 px) does not fold; a row holding a Readout is refused
+  (`data-fold-refused="readout"`) and does not fold.
+- First build used `toggle + margin` (52 px) as the bar and refused this 51 px fold; corrected to the
+  spec's bar (the toggle's own height). The focus fallback was added after the same test.
+- Contract QA phone + desktop, 20 random lessons + natural-selection: 42/42. On Pixel 7 (contract phone)
+  natural-selection fits, so nothing folded there: the contract did not exercise the folded state (W-334).
 
 ## Rollout and rollback
 

@@ -203,3 +203,11 @@ a { color: inherit; }
    shrinks the stage's pictures (never its controls) until stage + reveal fit the card (W-237), and scrolls only what a
    picture floor still leaves over. */
 .lesson[data-phase="reveal"] .stage .stage-svg { flex: none; height: auto; }
+
+/* EDD-005 fold at the reveal: the kit toggle that stands in for folded <Row foldAtReveal> rows.
+   Placeholder look (kit Control + chevron, full stage width, >= 44px); the final look is W-350. */
+.fold-toggle { display: flex; width: 100%; box-sizing: border-box; min-height: 44px; margin-top: 8px; align-items: center; justify-content: center; gap: 8px; }
+.fold-chevron { display: inline-block; transition: transform 0.15s; }
+.fold-toggle.expanded .fold-chevron { transform: rotate(180deg); }
+/* The toggle keeps its on-screen position on expand: no browser scroll anchoring against it. */
+.card-body:has([data-fold-toggle]) { overflow-anchor: none; }
