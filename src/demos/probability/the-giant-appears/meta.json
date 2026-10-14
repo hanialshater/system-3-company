@@ -1,0 +1,102 @@
+{
+  "slug": "the-giant-appears",
+  "title": "Where the giant group appears",
+  "hook": "Double the random friendships. Does the biggest group of friends double too?",
+  "domain": "probability",
+  "concept": "giant-component",
+  "format": "Simulation run",
+  "interactions": ["choice-before-reveal", "preset-buttons", "milestone-gate"],
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "people can be linked in pairs",
+      "connected means a chain of links"
+    ],
+    "doesNotKnow": [
+      "random links make one huge group appear suddenly, not gradually"
+    ]
+  },
+  "misconception": "Doubling the number of random links roughly doubles the size of the biggest connected group.",
+  "objective": "The learner can explain that connection does not grow in proportion to links: past about one friend each, small groups join into one giant group that holds most people (200 people: 18% at 100 links, 74% at 200).",
+  "claims": [
+    {
+      "id": "probability.the-giant-appears.c1",
+      "text": "In the lesson's world of 200 people (seed 1), 100 random friendships give a biggest connected group of 36 people (18%) and 200 friendships give 148 people (74%); 50 give 9, 150 give 110 (55%) and 300 give 183 (92%).",
+      "support": "simulation",
+      "source": "model.ts: mulberry32(1); each link is a random pair a != b not already linked (a = floor(rng()*200), b = floor(rng()*200)); the first m links form the world with m links; biggest group by union-find. Node re-run reproduces 9, 36, 110, 148, 183 at m = 50, 100, 150, 200, 300 (183/200 = 91.5%, shown rounded as 92%; 9/200 = 4.5% shown as 5%). Seed 1 was the first seed tried, but it is one world: see c2 for the spread.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-giant-appears.c2",
+      "text": "Across 20 random worlds of 200 people the biggest group averages 16.8% at one friend each and 79.4% at two (not shown to learners as a number; the lesson shows one world).",
+      "support": "simulation",
+      "source": "Same rule as c1 with seeds 1 to 20; means 3.9%, 16.8%, 59.1%, 79.4%, 94.0% at 0.5, 1, 1.5, 2, 3 friends each; at 2.0 the 20 seeds range 72.0% to 85.5%. Re-run in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-giant-appears.c3",
+      "text": "In random links among a very large crowd, a giant group appears once the average number of friends passes one; at two friends each it holds about 80% of people.",
+      "support": "derivation",
+      "source": "Erdős and Rényi (1960), On the evolution of random graphs, Publ. Math. Inst. Hung. Acad. Sci. 5: 17-61. Large-n share S solves S = 1 - exp(-cS): 79.7% at c = 2, 58.3% at c = 1.5, 94.1% at c = 3. The threshold at average degree 1 is Erdős-Rényi, not derived in the book ch. 2. Fact-checker to confirm the citation. Reveal states only the threshold ('near one friend each').",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-giant-appears.c4",
+      "text": "With 200 people, 100 links is one friend each on average, and the average number of friends is 2 x links / people (50 links 0.5, 100 links 1.0, 150 links 1.5, 200 links 2.0, 300 links 3.0).",
+      "support": "derivation",
+      "source": "Each link gives one friend to each of its two people, so total friends = 2 x links; average = 2 x links / 200.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-giant-appears.c5",
+      "text": "Early on a new random link usually joins two small groups; once groups are big, a new link between two of them merges both, so one giant group absorbs most of the crowd.",
+      "support": "derivation",
+      "source": "Mechanism of the union-find run in model.ts: the biggest group grows by the size of whatever it merges with. Qualitative; consistent with c1 and c3. Fact-checker to confirm wording is not overclaiming ('usually').",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-giant-appears.c6",
+      "text": "The lesson is a model of random links in one made-up crowd; real networks are not claimed to behave this way.",
+      "support": "derivation",
+      "source": "Scope statement. Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 2 §2.2 (section unconfirmed), defines the giant component and shows it in real networks. No real-data numbers are stated in the lesson. Fact-checker to confirm the section.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A crowd of 1,000 people makes random friendships, starting from none. Roughly when does one big connected group appear?",
+    "options": [
+      "Gradually, in proportion to the friendships",
+      "Suddenly, once people have about one friend each on average",
+      "Only when everyone has at least 10 friends"
+    ],
+    "answer": 1,
+    "why": "Past about one friend each, small groups join into one giant group that holds most people; below it, groups stay small."
+  },
+  "evidence": {
+    "qa": ["company/reviews/the-giant-appears/2026-10-14-qa.md"],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:giant-component",
+    "prerequisites": [],
+    "level": "core",
+    "strand": "chance",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 2,
+        "section": "2.2"
+      }
+    ],
+    "also": []
+  }
+}

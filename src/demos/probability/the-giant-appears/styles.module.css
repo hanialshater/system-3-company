@@ -1,0 +1,11 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 4px; }
+.svg { flex-shrink: 0; max-height: 25dvh; }
+.edge { stroke: var(--line); stroke-width: 1; }
+.edgeBig { stroke: var(--muted); stroke-width: 1; }
+.dot { fill: var(--bg); stroke: var(--fg); stroke-width: 1.2; }
+.dotBig { fill: var(--domain); stroke: var(--fg); stroke-width: 1; }
+.legend { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+.chips { justify-content: center; }
+.chips > button { min-width: 52px; min-height: 44px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.lab { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
