@@ -1,0 +1,758 @@
+[
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c1",
+  "status": "verified",
+  "note": "Sortedness: if value[mid]<target then every key at positions <=mid is <target, so lo=mid+1 is safe. compareLabel code does exactly this. True only for sorted keys (stated)."
+ },
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c2",
+  "status": "verified",
+  "note": "node shuffledLabels(n) for n=4..10: first n-1 letters reversed, largest last (n=10: IHGFEDCBAJ); scan checks = n (4..10). Slider is 4..10. Statement 'not typical search data' is a fair disclosure."
+ },
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c3",
+  "status": "verified",
+  "note": "node compareLabel: mid=floor((lo+hi)/2); keptLo/keptHi follow the three-way result; scan count = scanLabels(...).checked.length. Rendered aria-label lists 'Remaining candidates' and the tiles fade, so the interval is shown."
+ },
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c4",
+  "status": "verified",
+  "note": "node, n=10 target J: mids E,H,I,J -> 4 checks; scan 10. Trace string renders E<J, H<J, I<J, J=J. (Claim's 'E,J then H,J ...' is the same sequence.) Also n=4..10 sorted counts 3,3,3,3,4,4,4 = floor(log2 n)+1 for each n, scan = n."
+ },
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c5",
+  "status": "verified",
+  "note": "Scope statement; reveal says 'this exercise counts only search comparisons'. True."
+ },
+ {
+  "slug": "alphabet-sort-search",
+  "claimId": "lifehacks.alphabet-sort-search.c6",
+  "status": "verified",
+  "note": "Recall key 0 'Put labels in alphabetical order' is correct; shuffled positions give no ordering guarantee. This lesson's recall is the only one in B1 with option text that answers its question."
+ },
+ {
+  "slug": "bag-weight-before-volume",
+  "claimId": "lifehacks.bag-weight-before-volume.c1",
+  "status": "verified",
+  "note": "node: 2 kg base + load 4 kg = 6 kg vs chosen 5 kg limit -> over by 1; at load 2 -> 4 kg (0 over); at load 7 -> 9 kg (4 over). Volume does not enter. Mass-vs-capacity distinction is true."
+ },
+ {
+  "slug": "bag-weight-before-volume",
+  "claimId": "lifehacks.bag-weight-before-volume.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "bag-weight-before-volume",
+  "claimId": "lifehacks.bag-weight-before-volume.c3",
+  "status": "verified",
+  "note": "Matches 'weight-limit' (value=max(0,p+a-b), a=2, b=5). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "bag-weight-before-volume",
+  "claimId": "lifehacks.bag-weight-before-volume.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Check mass' correct at the default (load 4 kg exceeds the limit)."
+ },
+ {
+  "slug": "bag-weight-before-volume",
+  "claimId": "lifehacks.bag-weight-before-volume.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: No. Mass is summed regardless of unused space, so a half-empty bag can still exceed the limit. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "box-handle-clearance",
+  "claimId": "lifehacks.box-handle-clearance.c1",
+  "status": "verified",
+  "note": "node: opening 42 cm: body 40 -> +2 cm, with handles 40+2x3=46 -> -4 cm (collision). Protrusions belong in the fit test: true."
+ },
+ {
+  "slug": "box-handle-clearance",
+  "claimId": "lifehacks.box-handle-clearance.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "box-handle-clearance",
+  "claimId": "lifehacks.box-handle-clearance.c3",
+  "status": "verified",
+  "note": "Matches 'clearance' (other=a+2b). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "box-handle-clearance",
+  "claimId": "lifehacks.box-handle-clearance.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Include handles' correct at default 42 cm. Note the answer flips for openings >=46 cm (slider reaches 52); the prediction is asked at the default, so this holds."
+ },
+ {
+  "slug": "box-handle-clearance",
+  "claimId": "lifehacks.box-handle-clearance.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The outermost points, including the handles (body 40 cm plus 2 x 3 cm). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "breeze-is-not-extra-surface",
+  "claimId": "lifehacks.breeze-is-not-extra-surface.c1",
+  "status": "verified",
+  "note": "node: rate = area x flux, still 1, moving 2: at 1 m2 -> 1 and 2; at 3 m2 -> 3 and 6. Area unchanged by flux: true. SUPPORT NOTE: the cited OpenStax page (unreachable) is only context ('evaporation is inhibited by humidity'); the claim is the card's own multiplicative model. Retype support to 'derivation' when applying."
+ },
+ {
+  "slug": "breeze-is-not-extra-surface",
+  "claimId": "lifehacks.breeze-is-not-extra-surface.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "breeze-is-not-extra-surface",
+  "claimId": "lifehacks.breeze-is-not-extra-surface.c3",
+  "status": "verified",
+  "note": "Matches 'flux' (value=p*other, other=2 or 1). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "breeze-is-not-extra-surface",
+  "claimId": "lifehacks.breeze-is-not-extra-surface.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Moving-air model' correct (the only one with flux 2)."
+ },
+ {
+  "slug": "breeze-is-not-extra-surface",
+  "claimId": "lifehacks.breeze-is-not-extra-surface.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: No. Airflow changes the flux, not the exposed area; a folded-shut inner face stays hidden. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "care-label-first-choice",
+  "claimId": "lifehacks.care-label-first-choice.c1",
+  "status": "unverified",
+  "note": "SOURCE UNREACHABLE: ginetex.net is blocked by the egress proxy (CONNECT 403/DNS). Search snippets (Wikipedia 'Laundry symbol', wunderlabel, a GINETEX PDF) agree that the natural-drying symbols are one horizontal line = flat dry, one vertical = line dry, drip variants, oblique line = shade, standardised in ISO 3758. The lesson's own claim (an example garment with a flat-dry instruction; hanging it does not obey it) is a hypothetical and logically true. Re-check from a connected host."
+ },
+ {
+  "slug": "care-label-first-choice",
+  "claimId": "lifehacks.care-label-first-choice.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "care-label-first-choice",
+  "claimId": "lifehacks.care-label-first-choice.c3",
+  "status": "verified",
+  "note": "Matches 'label-rule' (value=0 hanging, N flat). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "care-label-first-choice",
+  "claimId": "lifehacks.care-label-first-choice.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Respect flat-dry text' correct."
+ },
+ {
+  "slug": "care-label-first-choice",
+  "claimId": "lifehacks.care-label-first-choice.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The garment's care label (its drying instruction). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "circle-tray-square-corners",
+  "claimId": "lifehacks.circle-tray-square-corners.c1",
+  "status": "verified",
+  "note": "node: floor(W/10)^2 = 4 at W=22 and 28, 9 at W=34; identical before and after rotating. Rotation of a circle is the identity on the shape: true."
+ },
+ {
+  "slug": "circle-tray-square-corners",
+  "claimId": "lifehacks.circle-tray-square-corners.c2",
+  "status": "verified",
+  "note": "Checked by hand: a 28 cm tray with 10 cm discs fits 4 in a square grid but 6 in staggered rows (row spacing 8.66 cm, 3 rows x 2). 'staggered rows can behave differently' is true."
+ },
+ {
+  "slug": "circle-tray-square-corners",
+  "claimId": "lifehacks.circle-tray-square-corners.c3",
+  "status": "verified",
+  "note": "Matches 'circle-fit'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "circle-tray-square-corners",
+  "claimId": "lifehacks.circle-tray-square-corners.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 2 'Same outcome' correct (index 2 is the appended 'Same outcome')."
+ },
+ {
+  "slug": "circle-tray-square-corners",
+  "claimId": "lifehacks.circle-tray-square-corners.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: A different arrangement, for example staggered rows, not rotation. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "cm-to-inches",
+  "claimId": "lifehacks.cm-to-inches.c1",
+  "status": "unverified",
+  "note": "SOURCE UNREACHABLE: nist.gov blocked by the egress proxy. Independent search snippets give the 1959 international yard and pound agreement: yard = 0.9144 m exactly, hence inch = 25.4 mm = 2.54 cm exactly. The arithmetic part is checked: 30 cm -> 12.000 in with /2.5 vs 11.811 in with /2.54 (difference 0.189 in, 1.6 %, proportional to length: 20 cm 0.126 in, 40 cm 0.252 in). I have no doubt of the content, but the NIST page was not opened. Recommend accepting on the secondary corroboration or re-checking from a connected host."
+ },
+ {
+  "slug": "cm-to-inches",
+  "claimId": "lifehacks.cm-to-inches.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "cm-to-inches",
+  "claimId": "lifehacks.cm-to-inches.c3",
+  "status": "verified",
+  "note": "Matches 'conversion' (p/b vs p/a; other=|p/b-p/a|). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "cm-to-inches",
+  "claimId": "lifehacks.cm-to-inches.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Use exact 2.54' correct."
+ },
+ {
+  "slug": "cm-to-inches",
+  "claimId": "lifehacks.cm-to-inches.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: No. An exact factor converts units exactly but measurement uncertainty remains. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "coiled-cord-bend-radius",
+  "claimId": "lifehacks.coiled-cord-bend-radius.c1",
+  "status": "verified",
+  "note": "node: curvature 1/r: r=5 -> 0.2, 10 -> 0.1, 20 -> 0.05 cm^-1; doubling r halves it. Circumference 2 pi r (turns = 200/(2 pi r) are not displayed). True."
+ },
+ {
+  "slug": "coiled-cord-bend-radius",
+  "claimId": "lifehacks.coiled-cord-bend-radius.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "coiled-cord-bend-radius",
+  "claimId": "lifehacks.coiled-cord-bend-radius.c3",
+  "status": "verified",
+  "note": "Matches 'coil-radius'. The 'turns' term in the formula is not shown on the stage (harmless). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "coiled-cord-bend-radius",
+  "claimId": "lifehacks.coiled-cord-bend-radius.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Double radius' correct."
+ },
+ {
+  "slug": "coiled-cord-bend-radius",
+  "claimId": "lifehacks.coiled-cord-bend-radius.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The radius of the bend (a larger radius is gentler). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "desk-supply-near-use",
+  "claimId": "lifehacks.desk-supply-near-use.c1",
+  "status": "verified",
+  "note": "node: 2 x 4 m x 6 uses = 48 m across the room vs 0 m at the use point (2 m -> 24, 8 m -> 96). The extra-storage trade-off is stated. True."
+ },
+ {
+  "slug": "desk-supply-near-use",
+  "claimId": "lifehacks.desk-supply-near-use.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "desk-supply-near-use",
+  "claimId": "lifehacks.desk-supply-near-use.c3",
+  "status": "verified",
+  "note": "Matches 'distance-use'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "desk-supply-near-use",
+  "claimId": "lifehacks.desk-supply-near-use.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'At work point' correct."
+ },
+ {
+  "slug": "desk-supply-near-use",
+  "claimId": "lifehacks.desk-supply-near-use.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: When the same item is used repeatedly at a spot far from where it is stored. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "door-swing-clearance",
+  "claimId": "lifehacks.door-swing-clearance.c1",
+  "status": "verified",
+  "note": "node: door 70-100 cm, basket centre at 65 cm -> margin -5 to -35 (inside the swept quarter circle); at door+10 -> +10 cm. Geometry (point basket vs radius = door width) true. Advisory: the basket is a point in the model while the drawing shows a 35-unit square; the limit line already warns about real basket sizes."
+ },
+ {
+  "slug": "door-swing-clearance",
+  "claimId": "lifehacks.door-swing-clearance.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "door-swing-clearance",
+  "claimId": "lifehacks.door-swing-clearance.c3",
+  "status": "verified",
+  "note": "Matches 'swing'. Door sweeps 90 degrees is drawn as a quarter circle. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "door-swing-clearance",
+  "claimId": "lifehacks.door-swing-clearance.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Beyond swing' correct."
+ },
+ {
+  "slug": "door-swing-clearance",
+  "claimId": "lifehacks.door-swing-clearance.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The area the door sweeps (its swing arc). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "drawer-divider-cost",
+  "claimId": "lifehacks.drawer-divider-cost.c1",
+  "status": "verified",
+  "note": "node: W=40: naive 10.00 cm, actual (40-3x1)/4 = 9.25 cm; W=30: 7.5 vs 6.75; W=50: 12.5 vs 11.75. 4 compartments need 3 walls: true."
+ },
+ {
+  "slug": "drawer-divider-cost",
+  "claimId": "lifehacks.drawer-divider-cost.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "drawer-divider-cost",
+  "claimId": "lifehacks.drawer-divider-cost.c3",
+  "status": "verified",
+  "note": "Matches 'divider' (other=(a-1)b). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "drawer-divider-cost",
+  "claimId": "lifehacks.drawer-divider-cost.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Count walls' correct."
+ },
+ {
+  "slug": "drawer-divider-cost",
+  "claimId": "lifehacks.drawer-divider-cost.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Because three divider walls take width, leaving 9.25 cm per compartment. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "drying-room-water-load",
+  "claimId": "lifehacks.drying-room-water-load.c1",
+  "status": "verified",
+  "note": "node: 250 g x count (1 -> 250, 4 -> 1000, 8 -> 2000 g). Conservation of mass: water that leaves the laundry as vapour enters the room air (or condenses elsewhere). The claim limits itself to a mass balance. True. SUPPORT NOTE: cited OpenStax page is context only; retype to derivation."
+ },
+ {
+  "slug": "drying-room-water-load",
+  "claimId": "lifehacks.drying-room-water-load.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "drying-room-water-load",
+  "claimId": "lifehacks.drying-room-water-load.c3",
+  "status": "verified",
+  "note": "Matches 'water-load'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "drying-room-water-load",
+  "claimId": "lifehacks.drying-room-water-load.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Whole load' correct."
+ },
+ {
+  "slug": "drying-room-water-load",
+  "claimId": "lifehacks.drying-room-water-load.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Released water scales with the number of items (count x 250 g). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "duplicates-two-stations",
+  "claimId": "lifehacks.duplicates-two-stations.c1",
+  "status": "verified",
+  "note": "node: 4 transfers x distance: 3 m -> 12, 5 m -> 20, 9 m -> 36 m with one tool; 0 m with a tool at each; stored tools 1 vs 2. True and trade-off stated."
+ },
+ {
+  "slug": "duplicates-two-stations",
+  "claimId": "lifehacks.duplicates-two-stations.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "duplicates-two-stations",
+  "claimId": "lifehacks.duplicates-two-stations.c3",
+  "status": "verified",
+  "note": "Matches 'two-stations'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "duplicates-two-stations",
+  "claimId": "lifehacks.duplicates-two-stations.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'One at each desk' correct."
+ },
+ {
+  "slug": "duplicates-two-stations",
+  "claimId": "lifehacks.duplicates-two-stations.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The number of tools stored (and bought): 2 instead of 1. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "elastic-loop-release",
+  "claimId": "lifehacks.elastic-loop-release.c1",
+  "status": "disputed",
+  "note": "The topology is true (an open cord with a free end and one diagram crossing is unknotted and can be slid off), but the claim says 'the shown crossing' and this stage shows none: view 'cord' is not handled in HomeLesson.tsx Scene() (falls to the default branch, which draws a box outline with an X after the toggle). Only a text readout 'Drawn crossing 1 -> 0' exists. The cited source (Raymer and Smith 2007, agitated-string knotting probability) does not support a claim about sliding a loop off; mit.edu and pnas.org are blocked (search snippets confirm the paper's setup: 0.30 m box, 1 rev/s, 10 s, no knots below 0.46 m). FIX: (a) builder adds a cord/loop drawing for view 'cord' (or removes 'shown'/'drawn' from c1, c3, c4 and the stage question), and (b) retype support to derivation (topology) or cite a knot-theory source; keep Raymer and Smith only where knotting probability is stated. Re-check after."
+ },
+ {
+  "slug": "elastic-loop-release",
+  "claimId": "lifehacks.elastic-loop-release.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "elastic-loop-release",
+  "claimId": "lifehacks.elastic-loop-release.c3",
+  "status": "disputed",
+  "note": "Arithmetic is right (crossings 1 -> 0; free end 15-35 cm vs 10 cm travel: always releasable, the slider never changes the outcome) but 'Depicted crossings' is a readout, not a depiction; same fix as c1."
+ },
+ {
+  "slug": "elastic-loop-release",
+  "claimId": "lifehacks.elastic-loop-release.c4",
+  "status": "disputed",
+  "note": "Key 1 'Slide loop off' is correct, but the question text 'the drawn crossing' presupposes a drawing that does not exist; same fix as c1."
+ },
+ {
+  "slug": "elastic-loop-release",
+  "claimId": "lifehacks.elastic-loop-release.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: A free, accessible end lets the loop slide off; with no free end a crossing may be a real knot. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "file-fold-see-each-shirt",
+  "claimId": "lifehacks.file-fold-see-each-shirt.c1",
+  "status": "verified",
+  "note": "node: visible edges 1 (stack) vs N (row), N=5,8,12; hidden = N-1. True under the stated top-view convention ('hides the lower tops'). The text says the benefit is selection, not volume: fine."
+ },
+ {
+  "slug": "file-fold-see-each-shirt",
+  "claimId": "lifehacks.file-fold-see-each-shirt.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "file-fold-see-each-shirt",
+  "claimId": "lifehacks.file-fold-see-each-shirt.c3",
+  "status": "verified",
+  "note": "Matches 'visibility'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "file-fold-see-each-shirt",
+  "claimId": "lifehacks.file-fold-see-each-shirt.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Vertical row' correct."
+ },
+ {
+  "slug": "file-fold-see-each-shirt",
+  "claimId": "lifehacks.file-fold-see-each-shirt.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Visibility: you can see and pick any shirt. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "fitted-sheet-corners-nest",
+  "claimId": "lifehacks.fitted-sheet-corners-nest.c1",
+  "status": "verified",
+  "note": "node: separate 8 x count (count 3 -> 24, 4 -> 32, 7 -> 56 cm); nested 8+(count-1) x 2 (12, 14, 20 cm). 8 cm and 2 cm are stated assumptions. True as a nesting model."
+ },
+ {
+  "slug": "fitted-sheet-corners-nest",
+  "claimId": "lifehacks.fitted-sheet-corners-nest.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "fitted-sheet-corners-nest",
+  "claimId": "lifehacks.fitted-sheet-corners-nest.c3",
+  "status": "verified",
+  "note": "Matches 'nest' (value=a+(p-1)b vs p*a). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "fitted-sheet-corners-nest",
+  "claimId": "lifehacks.fitted-sheet-corners-nest.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Nested pockets' correct."
+ },
+ {
+  "slug": "fitted-sheet-corners-nest",
+  "claimId": "lifehacks.fitted-sheet-corners-nest.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Nested corners share one hollow; only a thin layer allowance is added for each. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "flat-pack-volume-dimensions",
+  "claimId": "lifehacks.flat-pack-volume-dimensions.c1",
+  "status": "verified",
+  "note": "node: stacked envelope 40x30x6t = 3600 / 7200 / 21600 cm3 at t=0.5/1/3 vs reference 36000 cm3. Qualitatively true (the hollow disappears)."
+ },
+ {
+  "slug": "flat-pack-volume-dimensions",
+  "claimId": "lifehacks.flat-pack-volume-dimensions.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "flat-pack-volume-dimensions",
+  "claimId": "lifehacks.flat-pack-volume-dimensions.c3",
+  "status": "disputed",
+  "note": "Six identical 40x30 panels cannot form a 40x30x30 box: its faces are four 40x30 panels plus two 30x30 panels (by hand: 4x1200+2x900 = 6600 cm2 of panel, not 7200). The stack ENVELOPE 40x30x6t is still right if two panels are 30x30 (they fit inside the 40x30 footprint), so the numbers on screen are fine but the label '6panels=40x30xt' (learner-visible) is wrong. FIX: input line / formula to read '4 panels 40x30 + 2 panels 30x30, thickness t; stack envelope 40x30x6t; assembled reference 40x30x30'."
+ },
+ {
+  "slug": "flat-pack-volume-dimensions",
+  "claimId": "lifehacks.flat-pack-volume-dimensions.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Panels stacked' correct for every thickness 0.5-3 cm (21600 < 36000)."
+ },
+ {
+  "slug": "flat-pack-volume-dimensions",
+  "claimId": "lifehacks.flat-pack-volume-dimensions.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The enclosed hollow in the envelope. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "folded-shirt-stack-height",
+  "claimId": "lifehacks.folded-shirt-stack-height.c1",
+  "status": "verified",
+  "note": "node: height N x 0.4 x layers: N=4 -> 3.2 cm (2 layers) vs 6.4 cm (4 layers); N=6 -> 4.8 vs 9.6; N=12 -> 9.6 vs 19.2. Halving the footprint doubles the layers: true for an ideal incompressible sheet (stated)."
+ },
+ {
+  "slug": "folded-shirt-stack-height",
+  "claimId": "lifehacks.folded-shirt-stack-height.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "folded-shirt-stack-height",
+  "claimId": "lifehacks.folded-shirt-stack-height.c3",
+  "status": "verified",
+  "note": "Matches 'layers' (other=2b, value=p*a*other). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "folded-shirt-stack-height",
+  "claimId": "lifehacks.folded-shirt-stack-height.c4",
+  "status": "disputed",
+  "note": "The predict question 'What changes when you halve the footprint again?' is not answerable from the options 'One fold / Two folds / Same outcome' (the keyed 'Two folds' names a layout, not a change). The stage compares stack heights. FIX: ask 'Which fold count gives the taller stack of the same shirts?' (key: Two folds, 4 layers, 2x the height), or change the options to 'Stack gets taller / shorter / same'."
+ },
+ {
+  "slug": "folded-shirt-stack-height",
+  "claimId": "lifehacks.folded-shirt-stack-height.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The stack gets taller: each extra fold doubles the layers, so height doubles (for example 4.8 -> 9.6 cm for 6 shirts). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "furniture-through-door",
+  "claimId": "lifehacks.furniture-through-door.c1",
+  "status": "verified",
+  "note": "node: opening 75: broad face 80 -> -5 cm (blocked), narrow 60 -> +15 cm. Volume does not decide fit: true; height and depth not checked, as stated."
+ },
+ {
+  "slug": "furniture-through-door",
+  "claimId": "lifehacks.furniture-through-door.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "furniture-through-door",
+  "claimId": "lifehacks.furniture-through-door.c3",
+  "status": "verified",
+  "note": "Matches 'fit' (other=a or b). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "furniture-through-door",
+  "claimId": "lifehacks.furniture-through-door.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Narrow face' correct at the default 75 cm (flips at >=80 cm, slider max 95)."
+ },
+ {
+  "slug": "furniture-through-door",
+  "claimId": "lifehacks.furniture-through-door.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The object's widths compared with the clear opening width (not litres). Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "garment-overlap-hides-face",
+  "claimId": "lifehacks.garment-overlap-hides-face.c1",
+  "status": "verified",
+  "note": "node: 2 sheets x 100x60 x 2 faces = 24000 cm2; overlap 10 / 30 / 60 cm hides 2 x overlap x 60 = 1200 / 3600 / 7200 -> exposed 22800 / 20400 / 16800; separate 24000. Geometry true. SUPPORT NOTE: cited OpenStax page is context only (does not discuss overlap); retype to derivation."
+ },
+ {
+  "slug": "garment-overlap-hides-face",
+  "claimId": "lifehacks.garment-overlap-hides-face.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "garment-overlap-hides-face",
+  "claimId": "lifehacks.garment-overlap-hides-face.c3",
+  "status": "verified",
+  "note": "Matches 'overlap' (4ab-2*overlap*b). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "garment-overlap-hides-face",
+  "claimId": "lifehacks.garment-overlap-hides-face.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Separate' correct."
+ },
+ {
+  "slug": "garment-overlap-hides-face",
+  "claimId": "lifehacks.garment-overlap-hides-face.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Overlapping hides the touching faces from the air even in the same outline. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "group-cables-with-ends",
+  "claimId": "lifehacks.group-cables-with-ends.c1",
+  "status": "disputed",
+  "note": "Claim says 'the drawing distinguishes keeping strands together from restricting the ends' routes'; this stage draws no cords: view 'cord' falls to the default box branch of HomeLesson.tsx Scene() (code read, not run; confirm in QA). The physics (ends can still weave through loops) is the end-weaving mechanism of Raymer and Smith 2007, consistent with their snippets, but the paper (mit.edu, pnas.org: unreachable) was not opened. FIX: builder adds a cord-bundle drawing (loose ends vs secured ends) or drops the 'drawing' sentence from c1/c3/c4; then source-check Raymer and Smith p.16435 from a connected host."
+ },
+ {
+  "slug": "group-cables-with-ends",
+  "claimId": "lifehacks.group-cables-with-ends.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "group-cables-with-ends",
+  "claimId": "lifehacks.group-cables-with-ends.c3",
+  "status": "disputed",
+  "note": "Arithmetic is right (accessible ends 2 x cords: 4, 8, 16 -> 0 after securing) but 'depicted accessible ends' refers to a picture that is absent; same fix as c1."
+ },
+ {
+  "slug": "group-cables-with-ends",
+  "claimId": "lifehacks.group-cables-with-ends.c4",
+  "status": "disputed",
+  "note": "Key 1 'Secure bundle ends' is correct, but 'the depicted free-end paths' presupposes the absent drawing; same fix as c1."
+ },
+ {
+  "slug": "group-cables-with-ends",
+  "claimId": "lifehacks.group-cables-with-ends.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The ends stay free to weave through loops even when the middle is tied. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "half-size-two-towels",
+  "claimId": "lifehacks.half-size-two-towels.c1",
+  "status": "verified",
+  "note": "node: both-face area 2 x width x 120/10000 m2 is the same for one piece or two halves (60 -> 1.44, 80 -> 1.92, 100 -> 2.40 m2). Cutting adds edges, no face area: true."
+ },
+ {
+  "slug": "half-size-two-towels",
+  "claimId": "lifehacks.half-size-two-towels.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "half-size-two-towels",
+  "claimId": "lifehacks.half-size-two-towels.c3",
+  "status": "verified",
+  "note": "Matches 'split-area' (each half 60 cm tall). Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "half-size-two-towels",
+  "claimId": "lifehacks.half-size-two-towels.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 2 'Same outcome' correct (before = after)."
+ },
+ {
+  "slug": "half-size-two-towels",
+  "claimId": "lifehacks.half-size-two-towels.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Cutting preserves the total face area; opening a fold reveals hidden faces. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "heavy-book-close-to-back",
+  "claimId": "lifehacks.heavy-book-close-to-back.c1",
+  "status": "verified",
+  "note": "node: moment = m x 9.81 x d/100: 2 kg at 30 cm = 5.886 N m, at 10 cm = 1.962 N m (1 kg 2.943/0.981; 4 kg 11.772/3.924). Smaller lever arm, smaller moment: true. SUPPORT NOTE: REI (unreachable; search found other outdoor guides agreeing: heavy items against the back, centred) supports the packing advice only, not 'static moment'. Retype to derivation."
+ },
+ {
+  "slug": "heavy-book-close-to-back",
+  "claimId": "lifehacks.heavy-book-close-to-back.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "heavy-book-close-to-back",
+  "claimId": "lifehacks.heavy-book-close-to-back.c3",
+  "status": "verified",
+  "note": "Matches 'torque'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "heavy-book-close-to-back",
+  "claimId": "lifehacks.heavy-book-close-to-back.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Near back' correct."
+ },
+ {
+  "slug": "heavy-book-close-to-back",
+  "claimId": "lifehacks.heavy-book-close-to-back.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: The lever arm shrinks, so the static moment falls; the weight is unchanged. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "humidity-evaporation-gap",
+  "claimId": "lifehacks.humidity-evaporation-gap.c1",
+  "status": "unverified",
+  "note": "SOURCE UNREACHABLE: openstax.org blocked by the egress proxy. Search snippets of the same section (13.6) and mirrors state that relative humidity compares vapour with the maximum possible, saturation is RH 100 % where evaporation is inhibited, and high humidity hinders evaporation. The claim itself (at equal temperature the gap between saturation vapour pressure and ambient vapour pressure is (1-RH) x p_sat) is standard and consistent. The OpenStax page was not opened; re-check from a connected host or accept on corroboration."
+ },
+ {
+  "slug": "humidity-evaporation-gap",
+  "claimId": "lifehacks.humidity-evaporation-gap.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "humidity-evaporation-gap",
+  "claimId": "lifehacks.humidity-evaporation-gap.c3",
+  "status": "verified",
+  "note": "node: gap 1-RH/100; default RH 70 -> 0.30 vs comparison RH max(0,70-30)=40 -> 0.60; RH 40 -> 0.6/0.9; RH 90 -> 0.1/0.4. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "humidity-evaporation-gap",
+  "claimId": "lifehacks.humidity-evaporation-gap.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Drier setting' correct (0.60 > 0.30)."
+ },
+ {
+  "slug": "humidity-evaporation-gap",
+  "claimId": "lifehacks.humidity-evaporation-gap.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: Smaller vapour-pressure gap: humid air is already near saturation. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ },
+ {
+  "slug": "jacket-last-first",
+  "claimId": "lifehacks.jacket-last-first.c1",
+  "status": "verified",
+  "note": "node: pack 1..N means the first-needed item has N-1 items above it (N=3,4,7 -> 2,3,6); packing N..1 gives 0. Last-in first-out: true."
+ },
+ {
+  "slug": "jacket-last-first",
+  "claimId": "lifehacks.jacket-last-first.c2",
+  "status": "verified",
+  "note": "Scope/limit statement; true of this card's code and drawing."
+ },
+ {
+  "slug": "jacket-last-first",
+  "claimId": "lifehacks.jacket-last-first.c3",
+  "status": "verified",
+  "note": "Matches 'reverse-order'. Re-run in node from home-models.ts (evaluateHome) at min/default/max inputs, before and after."
+ },
+ {
+  "slug": "jacket-last-first",
+  "claimId": "lifehacks.jacket-last-first.c4",
+  "status": "verified",
+  "note": "Predict key checked against the model: Key 1 'Reverse use order' correct."
+ },
+ {
+  "slug": "jacket-last-first",
+  "claimId": "lifehacks.jacket-last-first.c5",
+  "status": "unverified",
+  "note": "Recall (c5): the question is interrogative; the keyed answer is the generic option 0 'Check the mechanism and its stated constraints', which does not answer it. Correct answer: A top-access stack is last-in, first-out. Pending the learning-designer recall patch (PR #2 blocker 5); re-check the new key then."
+ }
+]
