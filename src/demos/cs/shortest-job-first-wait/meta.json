@@ -1,0 +1,83 @@
+{
+  "slug": "shortest-job-first-wait",
+  "title": "Who should print first?",
+  "hook": "The same four jobs, the same printer. One order makes everyone wait three times as long.",
+  "domain": "cs",
+  "concept": "shortest-job-first",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a queue serves jobs one at a time (back-button-stack)"
+    ],
+    "doesNotKnow": [
+      "that the order of jobs changes the total waiting",
+      "shortest job first scheduling"
+    ]
+  },
+  "misconception": "The total time people spend waiting is the same whatever order the jobs run in.",
+  "objective": "The learner can explain that a job at the front delays every job behind it, so running 8, 4, 2, 1 longest first gives a total wait of 34 minutes and shortest first gives 11; and that shortest first can starve a long job.",
+  "claims": [
+    {
+      "id": "cs.shortest-job-first-wait.c1",
+      "text": "Run longest first (8, 4, 2, 1 minutes), the jobs wait 0 + 8 + 12 + 14 = 34 minutes in total.",
+      "support": "derivation",
+      "source": "Each job waits for the sum of the jobs before it. Checked in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shortest-job-first-wait.c2",
+      "text": "Shortest first (1, 2, 4, 8), the total wait is 0 + 1 + 3 + 7 = 11 minutes, about a third of 34.",
+      "support": "derivation",
+      "source": "Arithmetic; 11/34 = 0.32. Checked in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shortest-job-first-wait.c3",
+      "text": "A job at the front makes every job behind it wait, so its length counts once for each job behind it; shortest first gives the smallest total wait.",
+      "support": "source",
+      "source": "Total wait = sum over positions of duration x (jobs behind it); exchange argument. Smith, 'Various optimizers for single-stage production', Naval Research Logistics Quarterly 3 (1956): shortest processing time first minimises total completion time on one machine.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.shortest-job-first-wait.c4",
+      "text": "If short jobs keep arriving, a long job can wait forever under shortest first.",
+      "support": "derivation",
+      "source": "If a new shorter job is always waiting when the machine frees up, the long job is never chosen (starvation). Silberschatz, Galvin, Gagne, Operating System Concepts, CPU scheduling chapter (SJF and starvation).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three customers need 10, 1 and 1 minutes at one counter. To make their total waiting time as small as possible, who goes first?",
+    "options": [
+      "The 10-minute customer, to get it over with",
+      "A 1-minute customer",
+      "It makes no difference"
+    ],
+    "answer": 1,
+    "why": "The first job's length is added to every wait behind it. 1, 1, 10 gives waits 0 + 1 + 2 = 3; 10 first gives 0 + 10 + 11 = 21."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:shortest-job-first",
+    "prerequisites": [
+      "cs:stack-and-queue"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

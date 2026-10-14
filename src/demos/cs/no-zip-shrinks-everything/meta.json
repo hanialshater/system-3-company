@@ -1,0 +1,98 @@
+{
+  "slug": "no-zip-shrinks-everything",
+  "title": "The file that will not shrink",
+  "hook": "A clever enough zip could make any file smaller. Try fitting eight into seven.",
+  "domain": "cs",
+  "concept": "compression-limits",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "bits and binary strings",
+      "compression by runs (runs-that-grow)"
+    ],
+    "doesNotKnow": [
+      "that no lossless method can shrink every input",
+      "the counting (pigeonhole) argument behind it"
+    ]
+  },
+  "misconception": "A clever enough compressor could make any file smaller.",
+  "objective": "The learner can explain that there are 8 files of 3 bits but only 7 shorter strings, so no lossless compressor can shrink them all; in general 2^n files against 2^n - 1 shorter strings, so shrinking some files means growing others.",
+  "claims": [
+    {
+      "id": "cs.no-zip-shrinks-everything.c1",
+      "text": "There are 8 different 3-bit files.",
+      "support": "derivation",
+      "source": "Each of 3 bits is 0 or 1: 2 x 2 x 2 = 8 (000 to 111, all shown on the stage).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.no-zip-shrinks-everything.c2",
+      "text": "There are only 1 + 2 + 4 = 7 strings shorter than 3 bits: the empty string, 0, 1, 00, 01, 10 and 11.",
+      "support": "derivation",
+      "source": "Strings of length 0, 1 and 2 number 2^0 + 2^1 + 2^2 = 7. Checked in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.no-zip-shrinks-everything.c3",
+      "text": "Two files cannot share one compressed string: the decompressor would have no way to tell which one was meant.",
+      "support": "source",
+      "source": "Lossless decompression is a function of the compressed string, so the compressor must be one-to-one (pigeonhole). MacKay, Information Theory, Inference, and Learning Algorithms (2003), ch. 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.no-zip-shrinks-everything.c4",
+      "text": "For any length n there are 2^n files of n bits and only 2^n - 1 shorter strings.",
+      "support": "derivation",
+      "source": "Sum of 2^k for k = 0..n-1 is 2^n - 1 (geometric series).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.no-zip-shrinks-everything.c5",
+      "text": "A lossless compressor that shrinks some files must make others longer.",
+      "support": "derivation",
+      "source": "Counting: if no file of length at most n grows, the 2^(n+1) - 1 files of length at most n map one-to-one onto the 2^(n+1) - 1 strings of length at most n, a rearrangement that keeps total length; so if any file shrinks, another must grow. MacKay (2003), ch. 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.no-zip-shrinks-everything.c6",
+      "text": "Zip works because real files repeat themselves.",
+      "support": "source",
+      "source": "Dictionary compressors (LZ77, used in zip's DEFLATE) replace repeated substrings with back-references; Ziv and Lempel, 'A universal algorithm for sequential data compression', IEEE Trans. Inf. Theory 23 (1977). Statement is about why it works on typical files, not a guarantee.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A company says its tool makes every possible 1 MB file at least one bit smaller, and gets each one back exactly. Can that be true?",
+    "options": [
+      "Yes, if the method is clever enough",
+      "No: there are fewer shorter files than 1 MB files",
+      "Yes, but it would be slow"
+    ],
+    "answer": 1,
+    "why": "There are 2^n files of n bits and only 2^n - 1 shorter strings, so two files would have to share a shorter version and could not both come back."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:compression-limits",
+    "prerequisites": [
+      "cs:binary-numbers"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

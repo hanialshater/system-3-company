@@ -1,0 +1,78 @@
+{
+  "slug": "union-find-shortcut",
+  "title": "Who is your group's leader?",
+  "hook": "Are these two people in the same group? You do not have to ask everyone.",
+  "domain": "cs",
+  "concept": "union-find",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "trees with a root (in-order-is-sorted)",
+      "Kruskal's loop check (connect-the-towns-cheaply)"
+    ],
+    "doesNotKnow": [
+      "how a program answers 'are these two already connected?' quickly",
+      "union by size"
+    ]
+  },
+  "misconception": "To check whether two people are in the same group you have to trace through everyone.",
+  "objective": "The learner can explain that if each group is a tree under a leader and the smaller group always hangs under the bigger group's leader, nobody among 8 people is more than 3 hops from their leader, because a person only gets one hop further when their group at least doubles.",
+  "claims": [
+    {
+      "id": "cs.union-find-shortcut.c1",
+      "text": "With 8 people, hanging the smaller group under the bigger group's leader, nobody ends more than 3 hops from their leader; merging equal groups in pairs reaches exactly 3.",
+      "support": "derivation",
+      "source": "Union by size bounds tree height by floor(log2 n) = 3 for n = 8 (see c3). Pairing merges (1+1, 2+2, 4+4) give height 3, shown by the stage's 'tallest way' button. CLRS 3rd ed. 21.3; exercise 21.4-2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.union-find-shortcut.c2",
+      "text": "In 1,000 random merge orders the worst tree was 3 hops tall.",
+      "support": "simulation",
+      "source": "Stage button and builder's uf.mjs: random pairs of people (mulberry32 seed 1, not chosen; the first seed tried) until one group: worst height 3 (heights 1: 157, 2: 833, 3: 10). Also 20,000 orders at seed 7: worst 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.union-find-shortcut.c3",
+      "text": "A person moves one hop further from their leader only when their group joins one at least as big, so their group at least doubles; from 1 to 8 that can happen only 3 times.",
+      "support": "derivation",
+      "source": "A node's depth grows by 1 only when its root is hung under another root of a group at least as large, so its group size at least doubles; sizes go 1 -> at most 8, so at most log2 8 = 3 doublings. CLRS 3rd ed. 21.3-21.4.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "1,024 people are merged into groups, always hanging the smaller group's leader under the bigger group's leader. At most how many hops is anyone from their leader?",
+    "options": [
+      "10",
+      "512",
+      "1,023"
+    ],
+    "answer": 0,
+    "why": "A person only moves a hop further when their group at least doubles, and 1 can double only 10 times before reaching 1,024 (2^10)."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:union-find",
+    "prerequisites": [
+      "cs:minimum-spanning-tree",
+      "cs:tree-traversal"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

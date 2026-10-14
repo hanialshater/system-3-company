@@ -1,0 +1,14 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 1.4em; text-align: center; font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bad { color: var(--bad); }
+.board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; width: min(100%, 264px); margin: 0 auto; }
+.sq { aspect-ratio: 1; min-height: 44px; padding: 0; border-radius: 6px; font-size: 1.6rem; line-height: 1; background: var(--bg-2); }
+.dark { background: color-mix(in srgb, var(--line) 70%, var(--bg-2)); }
+.attacked { color: var(--bad); font-size: 1rem; background: color-mix(in srgb, var(--bad) 12%, var(--bg-2)); }
+.open { border-color: var(--domain); border-width: 2px; }
+.queen { color: var(--fg); border-color: var(--domain); border-width: 2px; }
+.sq:disabled { opacity: 1; }
+.readouts { display: flex; justify-content: center; gap: 18px; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.sols { display: flex; justify-content: center; gap: 10px; min-height: 40px; }
+.mini { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 4px; }

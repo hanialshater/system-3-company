@@ -1,0 +1,17 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.95rem; font-weight: 600; }
+.bad { color: var(--bad); }
+.label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+.files { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.file { min-height: 44px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 800; font-size: 1rem; padding: 4px; }
+.placed { opacity: 0.45; text-decoration: line-through; }
+.stranded { border-color: var(--bad) !important; color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, var(--bg-2)) !important; }
+.group { display: flex; align-items: stretch; gap: 6px; }
+.bits { flex: 0 0 44px; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; }
+.slot { flex: 1 1 0; min-height: 48px; min-width: 44px; padding: 2px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+.slotName { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 800; }
+.holds { font-size: 0.7rem; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.filled { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 18%, var(--bg-2)); }
+.filled:disabled { opacity: 1; }
+.filled .holds { color: var(--fg); font-weight: 700; }
+.count { margin: 2px 0 0; text-align: center; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }

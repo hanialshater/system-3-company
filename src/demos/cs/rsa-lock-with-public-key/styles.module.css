@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 2.8em; text-align: center; font-size: 0.92rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.keys { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.key { padding: 6px 10px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line); font-weight: 700; font-variant-numeric: tabular-nums; }
+.tag { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.closed { border-style: dashed; color: var(--muted); }
+.open { border-color: var(--good); color: var(--good); }
+.flow { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.box {
+  flex: 1 1 0; max-width: 104px; padding: 8px 4px; border-radius: 12px; background: var(--bg-2); border: 2px solid var(--line);
+  display: flex; flex-direction: column; align-items: center;
+}
+.lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.val { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.arrow { color: var(--muted); font-weight: 800; }
+.lockedBox { border-color: var(--domain); }
+.good { border-color: var(--good); color: var(--good); }
+.bad { border-color: var(--bad); color: var(--bad); }

@@ -1,0 +1,88 @@
+{
+  "slug": "fair-shuffle-trap",
+  "title": "The shuffle that plays favourites",
+  "hook": "Swap every card with a random spot. It feels fair. Count the runs.",
+  "domain": "cs",
+  "concept": "fisher-yates-shuffle",
+  "format": "Simulation run",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "3 cards can be in 6 orders (shown on the stage)"
+    ],
+    "doesNotKnow": [
+      "that a plausible shuffle can be unfair",
+      "the Fisher-Yates shuffle"
+    ]
+  },
+  "misconception": "Swapping each card with a random position gives a fair shuffle.",
+  "objective": "The learner can explain that swapping each position with any of 3 positions has 27 equally likely runs, which cannot split evenly over 6 orders (4s and 5s), while swapping only with an unplaced card has 3 x 2 x 1 = 6 runs, one per order.",
+  "claims": [
+    {
+      "id": "cs.fair-shuffle-trap.c1",
+      "text": "Swapping each of 3 positions with any of the 3 positions gives 27 equally likely runs: ACB, BAC and BCA come up 5 times each, ABC, CAB and CBA 4 times each.",
+      "support": "simulation",
+      "source": "Exhaustive enumeration, no randomness: the stage and the builder's node script (scratchpad checks/all.mjs) list all 3 x 3 x 3 runs; counts ABC 4, ACB 5, BAC 5, BCA 5, CAB 4, CBA 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.fair-shuffle-trap.c2",
+      "text": "Those three orders are 25% more likely than the others.",
+      "support": "derivation",
+      "source": "5/27 against 4/27: ratio 5/4 = 1.25.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.fair-shuffle-trap.c3",
+      "text": "27 runs cannot split evenly over 6 orders, because 27 is not a multiple of 6.",
+      "support": "derivation",
+      "source": "27 / 6 = 4.5. Equal probability for 6 orders from 27 equally likely runs would need each order to get 4.5 runs.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.fair-shuffle-trap.c4",
+      "text": "Swapping only with a card not yet placed has 3 x 2 x 1 = 6 runs, exactly one per order: this is the Fisher-Yates shuffle.",
+      "support": "source",
+      "source": "Exhaustive enumeration on the stage (6 runs, each order once). Knuth, TAOCP Vol. 2, 3.4.2, Algorithm P; CLRS 3rd ed. 5.3, RANDOMIZE-IN-PLACE: each permutation has probability 1/n!.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.fair-shuffle-trap.c5",
+      "text": "A fair shuffle needs a number of equally likely runs that the number of orders divides evenly.",
+      "support": "derivation",
+      "source": "If R equally likely runs map to n! orders with equal probability, each order gets R/n! runs, which must be a whole number. (Necessary, not sufficient.)",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A shuffle of 4 cards makes 4 x 4 x 4 x 4 = 256 equally likely runs. There are 24 orders. Can every order be equally likely?",
+    "options": [
+      "Yes, with that many runs it evens out",
+      "No: 256 is not a multiple of 24",
+      "Only if the cards start sorted"
+    ],
+    "answer": 1,
+    "why": "Each order would need 256 / 24 runs, which is not a whole number, so some orders must come up more often."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:fisher-yates-shuffle",
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

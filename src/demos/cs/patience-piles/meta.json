@@ -1,0 +1,90 @@
+{
+  "slug": "patience-piles",
+  "title": "A card game that counts rising runs",
+  "hook": "Deal eight cards into piles. The number of piles answers a question you never asked.",
+  "domain": "cs",
+  "concept": "longest-increasing-subsequence",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sorted order (insertion-by-hand)"
+    ],
+    "doesNotKnow": [
+      "that a card game finds the longest rising run with skips",
+      "longest increasing subsequence by name"
+    ]
+  },
+  "misconception": "The longest rising sequence starts at the smallest number.",
+  "objective": "The learner can explain that dealing 3 1 4 1 5 9 2 6 onto the leftmost pile whose top is not smaller makes 4 piles, that a rising run uses at most one card per pile, and that back-pointers give a run as long as the number of piles, so the longest rising run has 4 cards (e.g. 3 4 5 9 or 1 4 5 6).",
+  "claims": [
+    {
+      "id": "cs.patience-piles.c1",
+      "text": "Dealing 3 1 4 1 5 9 2 6 onto the leftmost pile whose top is not smaller makes 4 piles.",
+      "support": "simulation",
+      "source": "Builder's node script (scratchpad checks/all.mjs): piles [3,1,1] [4,2] [5] [9,6].",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c2",
+      "text": "The longest rising run (each card bigger than the last, skipping allowed) in 3 1 4 1 5 9 2 6 has 4 cards, for example 1 4 5 6 or 3 4 5 9.",
+      "support": "simulation",
+      "source": "Builder's node dynamic programming over the 8 cards: longest strictly increasing subsequence length 4. Both examples checked by hand against the order of the cards.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c3",
+      "text": "A longest rising run need not start at the smallest card.",
+      "support": "derivation",
+      "source": "3 4 5 9 has length 4, the maximum (c2), and starts with 3 while the smallest card is 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c4",
+      "text": "A rising run can use at most one card from each pile, since each pile goes downward.",
+      "support": "derivation",
+      "source": "Cards on a pile are placed on tops not smaller than themselves, so each pile is non-increasing from bottom to top in deal order; two cards of a strictly rising run cannot both lie on one pile.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c5",
+      "text": "Every card on pile k points back to a smaller, earlier card on pile k - 1, so a run as long as the number of piles always exists: the number of piles equals the length of the longest rising run.",
+      "support": "source",
+      "source": "When a card lands on pile k, the top of pile k - 1 is smaller (else the card would have gone there) and was dealt earlier. Aldous and Diaconis, 'Longest increasing subsequences: from patience sorting to the Baik-Deift-Johansson theorem', Bull. AMS 36 (1999).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You deal a row of cards into piles, each card on the leftmost pile whose top is not smaller, and end with 6 piles. What does that tell you?",
+    "options": [
+      "The longest rising run (with skips) has 6 cards",
+      "There are 6 cards smaller than the first",
+      "The cards were already sorted"
+    ],
+    "answer": 0,
+    "why": "A rising run takes at most one card from each pile, and the back-pointers always build a run with one card per pile, so the pile count is the longest run's length."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:longest-increasing-subsequence",
+    "prerequisites": [
+      "cs:dp-grid-paths"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

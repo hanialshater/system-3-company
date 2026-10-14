@@ -1,0 +1,85 @@
+{
+  "slug": "undo-a-bad-push",
+  "title": "Take the water back",
+  "hook": "Push water down any open route until none is left. You can still be one short.",
+  "domain": "cs",
+  "concept": "max-flow",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 70,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "paths in a graph (wave-from-the-corner)",
+      "a greedy choice can fail (coin-greedy-trap)"
+    ],
+    "doesNotKnow": [
+      "that sending flow back along a pipe can increase the total",
+      "max flow equals min cut"
+    ]
+  },
+  "misconception": "Push water along any open route until none is left, and you have the most water possible.",
+  "objective": "The learner can explain that pushing s-a-b-t first blocks every forward route at a total of 1, that sending that unit back along a-b opens s-b-a-t for a total of 2, and that 2 is the most because only 2 pipes leave s (the smallest cut).",
+  "claims": [
+    {
+      "id": "cs.undo-a-bad-push.c1",
+      "text": "With five one-unit pipes s-a, s-b, a-b, a-t, b-t, pushing s -> a -> b -> t first leaves every forward route with a full pipe: stuck at a total of 1.",
+      "support": "simulation",
+      "source": "Builder's node check of forward-only greedy pushes: starting with s-a-b-t gives 1; starting with s-a-t or s-b-t gives 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.undo-a-bad-push.c2",
+      "text": "Sending that unit back along a-b opens s -> b -> a -> t, for a total of 2.",
+      "support": "derivation",
+      "source": "Residual network after the first push has s-b, b-a (reverse of a-b) and a-t free; augmenting along it gives flows s-a 1, s-b 1, a-t 1, b-t 1, a-b 0. CLRS 3rd ed. 26.2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.undo-a-bad-push.c3",
+      "text": "Both pipes out of s are full, so nothing can beat 2: no flow is bigger than the smallest cut.",
+      "support": "source",
+      "source": "Builder's node enumeration of s-t cuts: {s} 2, {s,a} 3, {s,b} 2, {s,a,b} 2; minimum 2. Any flow is at most the capacity of any cut: CLRS 3rd ed. 26.2, Corollary 26.5.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.undo-a-bad-push.c4",
+      "text": "Letting a new route cancel an earlier push is how the Ford-Fulkerson method fixes greedy mistakes; when no route is left, the flow equals the smallest cut.",
+      "support": "source",
+      "source": "Ford and Fulkerson, 'Maximal flow through a network', Canadian Journal of Mathematics 8 (1956); CLRS 3rd ed. 26.2, Theorem 26.6 (max-flow min-cut).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A flow method pushes water along routes until no route has room. When can it still be improved?",
+    "options": [
+      "Never: no open route means the most water",
+      "When a route that sends some water back along a used pipe would carry more",
+      "Only if the pipes are made wider"
+    ],
+    "answer": 1,
+    "why": "Cancelling part of an earlier push can open a new route, as s -> b -> a -> t did. Only when no such route is left is the flow the most possible, equal to the smallest cut."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:max-flow",
+    "prerequisites": [
+      "cs:graph-shortest-path",
+      "cs:greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "also": []
+  }
+}

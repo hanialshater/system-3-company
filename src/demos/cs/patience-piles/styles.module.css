@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.msg { margin: 0; min-height: 2.6em; text-align: center; font-size: 0.92rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.hand { display: flex; justify-content: center; gap: 4px; flex-wrap: nowrap; }
+.card, .pcard {
+  display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 40px; border-radius: 6px;
+  background: var(--bg-2); border: 1.5px solid var(--line); font-weight: 800; font-size: 1.05rem; font-variant-numeric: tabular-nums;
+}
+.gone { opacity: 0.3; }
+.next { border-color: var(--domain); border-width: 2.5px; }
+.traced { border-color: var(--good) !important; background: color-mix(in srgb, var(--good) 22%, var(--bg-2)) !important; opacity: 1; }
+.piles { display: flex; justify-content: center; gap: 6px; align-items: flex-start; }
+.pile {
+  flex: 0 1 60px; min-width: 48px; min-height: 150px; padding: 4px; display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; gap: 3px; border-radius: 10px;
+}
+.empty { border-style: dashed; }
+.pileName { font-size: 0.66rem; color: var(--muted); }
+.plus { font-size: 1.4rem; color: var(--muted); margin-top: 20px; }
+.count { margin: 0; text-align: center; font-size: 0.88rem; color: var(--muted); font-variant-numeric: tabular-nums; }
