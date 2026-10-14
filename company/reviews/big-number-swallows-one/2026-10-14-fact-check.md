@@ -12,3 +12,14 @@ Checker: fact-checker (did not write these claims). Method: read each Demo.tsx a
 | c5 | verified | node: 9007199254740992n + 1n = 9007199254740993n. BigInt is the ECMAScript arbitrary-precision integer type (ES2020+); reveal wording matches. |
 
 **Result:** c2 disputed (blocks publishing). Builder fix as stated in the row, then a fact-checker re-check.
+
+## Pass 14 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including dynamic ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc14/a.mjs, b.mjs: own BigInt powmod, own two-pointer trace, own xorshift32 quickselect/quicksort simulation, own copies of rightSum, rMin, cup()) and checked citations.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | IEEE 754-2019 binary64: 52 stored fraction bits + 1 implicit = 53-bit significand (precision p = 53, Table 3.5); ECMA-262 Number type is binary64. 2^53 = 53 twos multiplied together. Predict text matches. |
+| c4 | verified | Own node: 2^53 + 1 = 9007199254740992, 2^53 + 2 = 9007199254740994, (2^53 + 2) + 1 = 9007199254740996 (tie rounds to even). Between 2^53 and 2^54 spacing is 2, so +1 is a tie. Reveal quotes the learner's own + 2 result; stage dots use a BigInt round-trip test. |
+
+**Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).

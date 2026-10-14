@@ -11,3 +11,15 @@ Checker: fact-checker (did not write these claims). Method: read each Demo.tsx a
 | c4 | verified | Demo.tsx: only Back / Visit / Start over controls (no Forward); tags 'ahead' for i > at and 'Back goes here' for i = at - 1 (after prediction). |
 
 **Result:** all claims in this pass verified.
+
+## Pass 14 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including dynamic ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc14/a.mjs, b.mjs: own BigInt powmod, own two-pointer trace, own xorshift32 quickselect/quicksort simulation, own copies of rightSum, rMin, cup()) and checked citations.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own trace: A,B,C at C; Back -> B; visit D drops C -> A,B,D; Back -> B. Demo.tsx back()/visit() do exactly this; reveal says the same. Real browsers agree: WHATWG HTML session history, navigating removes the forward entries. |
+| c2 | verified | WHATWG HTML Living Standard, session history: on navigation, entries after the current one are removed; until then they remain (forward). Demo.tsx visit() drops pages.slice(at + 1); pages with i > at are tagged 'ahead'. |
+| c4 | verified | Demo.tsx: one pages array, only Back / Visit / Start over controls (no Forward); tag 'ahead' for i > at, 'Back goes here' for i = at - 1 when unlocked. |
+
+**Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).

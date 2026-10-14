@@ -81,15 +81,19 @@
       "id": "physics.ambulance-pitch-drop.c7",
       "text": "Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m apart; from the ambulance at 25 m/s they are 31.8 m apart ahead and 36.8 m behind, so ahead crests arrive more often (higher pitch) and behind less often (lower pitch).",
       "support": "derivation",
-      "source": "Arithmetic: 343 x 0.1 = 34.3; (343 - 25) x 0.1 = 31.8; (343 + 25) x 0.1 = 36.8. Revision v6: the 1.08 ratio and 'up to 755 Hz' were dropped from the stage because the learner never saw them.",
-      "status": "unverified"
+      "source": "Arithmetic: 343 x 0.1 = 34.3; (343 - 25) x 0.1 = 31.8; (343 + 25) x 0.1 = 36.8. Revision v6: the 1.08 ratio and 'up to 755 Hz' were dropped from the stage because the learner never saw them. | FACT-CHECK 2026-10-14 (pass 14): Own node: 343 x 0.1 = 34.3; 318 x 0.1 = 31.8; 368 x 0.1 = 36.8. Demo.tsx rings: centre x - V tau, radius C tau, so the front edges are (C - V) x 0.1 apart and the rear edges (C + V) x 0.1; gap labels compute the same. Frequency = crests per second (SI hertz).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.ambulance-pitch-drop.c8",
       "text": "The rings mark where sound sent out 0.1, 0.2 ... 0.6 s ago has reached. They are not crests: a real 700 Hz siren sends 70 crests between rings. Hz = crests per second.",
       "support": "derivation",
-      "source": "Revision v6. Ring radius = 343 m/s x time since sending, centred where the ambulance was then (Demo.tsx rings, tau = 0.1 ... 0.6 s). 700 Hz x 0.1 s = 70 crests between rings 0.1 s apart. Hz as cycles per second is the definition.",
-      "status": "unverified"
+      "source": "Revision v6. Ring radius = 343 m/s x time since sending, centred where the ambulance was then (Demo.tsx rings, tau = 0.1 ... 0.6 s). 700 Hz x 0.1 s = 70 crests between rings 0.1 s apart. Hz as cycles per second is the definition. | FACT-CHECK 2026-10-14 (pass 14): Demo.tsx rings tau = 0.1 ... 0.6 s, radius 343 tau, centred at the emission point. 700 Hz x 0.1 s = 70 cycles between rings. Hz = s^-1, cycles per second (SI Brochure, 9th ed., Table 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

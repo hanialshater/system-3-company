@@ -62,9 +62,11 @@
     {
       "text": "A prime is a whole number above 1 that cannot be split into smaller whole factors, like 2, 3, 5 and 7.",
       "support": "convention",
-      "source": "Standard definition (a prime is an integer greater than 1 whose only positive divisors are 1 and itself). Revision v3 per fact-check pass 11: 'above 1' added in the claim, the predict text and the opening caption.",
+      "source": "Standard definition (a prime is an integer greater than 1 whose only positive divisors are 1 and itself). Revision v3 per fact-check pass 11: 'above 1' added in the claim, the predict text and the opening caption. | FACT-CHECK 2026-10-14 (pass 14): Standard definition (integer > 1 whose only positive divisors are 1 and itself; Hardy and Wright, An Introduction to the Theory of Numbers, 1.2). 'Cannot be split into smaller whole factors' is equivalent. Predict text matches. Non-blocking: the opening caption (Demo.tsx ~line 176) says 'no smaller factors', which read literally excludes 1; builder may reuse the claim's wording.",
       "id": "math.one-recipe-for-sixty.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "You started 60 as the splits you chose; different starts grow different trees, but every entry on the shelf reads 2, 2, 3, 5.",

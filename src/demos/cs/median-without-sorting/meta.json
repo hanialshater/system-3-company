@@ -64,8 +64,10 @@
       "id": "cs.median-without-sorting.c5",
       "text": "On 1,000 shuffled cards, finding the median this way takes about 3,300 comparisons against about 11,000 for sorting.",
       "support": "simulation",
-      "source": "Revision v2, rounded per fact-check pass 10. Expected values for first-card pivots on a random permutation: 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort. Builder's simulation (mulberry32 seeds 1-50, first 50 in order) gave 3,465 and 11,003, a high sample mean, so the stage no longer quotes it. Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2.",
-      "status": "unverified"
+      "source": "Revision v2, rounded per fact-check pass 10. Expected values for first-card pivots on a random permutation: 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort. Builder's simulation (mulberry32 seeds 1-50, first 50 in order) gave 3,465 and 11,003, a high sample mean, so the stage no longer quotes it. Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2. | FACT-CHECK 2026-10-14 (pass 14): Own node: Knuth formula for k = 500, n = 1000 gives 3,336.3; quicksort 2(n+1)H_n - 4n = 10,985.9. Own simulation (xorshift32, 20,000 shuffles, n - 1 comparisons per split as in Demo.tsx split()): quickselect 3,341.8, quicksort 10,987.3. 'About 3,300' and 'about 11,000' are right. Stage 9-card values 17 and 18 re-confirmed.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

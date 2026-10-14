@@ -28,15 +28,19 @@
       "id": "cs.back-button-stack.c1",
       "text": "After visiting A, B, C, pressing Back once, visiting D and pressing Back once more, you are on B.",
       "support": "simulation",
-      "source": "Stack model: Back moves down one entry (A, B, C -> on B); visiting D from B discards everything above B (C), giving A, B, D; Back from D goes to B. Revision v4: the question was shortened from two Backs to one so the stage can reach it with one press per control.",
-      "status": "unverified"
+      "source": "Stack model: Back moves down one entry (A, B, C -> on B); visiting D from B discards everything above B (C), giving A, B, D; Back from D goes to B. Revision v4: the question was shortened from two Backs to one so the stage can reach it with one press per control. | FACT-CHECK 2026-10-14 (pass 14): Own trace: A,B,C at C; Back -> B; visit D drops C -> A,B,D; Back -> B. Demo.tsx back()/visit() do exactly this; reveal says the same. Real browsers agree: WHATWG HTML session history, navigating removes the forward entries.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c2",
       "text": "After going back, the later pages stay in the pile, marked ahead, until you visit a new page, which throws them away.",
       "support": "source",
-      "source": "Unchanged text; stage behaviour in Demo.tsx visit(): pages after the current one are dropped. Revision v4 (START is now A, B, C).",
-      "status": "unverified"
+      "source": "Unchanged text; stage behaviour in Demo.tsx visit(): pages after the current one are dropped. Revision v4 (START is now A, B, C). | FACT-CHECK 2026-10-14 (pass 14): WHATWG HTML Living Standard, session history: on navigation, entries after the current one are removed; until then they remain (forward). Demo.tsx visit() drops pages.slice(at + 1); pages with i > at are tagged 'ahead'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c3",
@@ -51,8 +55,10 @@
       "id": "cs.back-button-stack.c4",
       "text": "The stage models history as one pile and has no Forward button; it marks pages above the current page as ahead and the page just below it as where Back goes.",
       "support": "convention",
-      "source": "Unchanged text; Demo.tsx draws 'ahead' for i > at and 'Back goes here' for i = at - 1. Revision v4.",
-      "status": "unverified"
+      "source": "Unchanged text; Demo.tsx draws 'ahead' for i > at and 'Back goes here' for i = at - 1. Revision v4. | FACT-CHECK 2026-10-14 (pass 14): Demo.tsx: one pages array, only Back / Visit / Start over controls (no Forward); tag 'ahead' for i > at, 'Back goes here' for i = at - 1 when unlocked.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

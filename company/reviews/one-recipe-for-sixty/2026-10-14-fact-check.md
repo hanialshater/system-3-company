@@ -11,3 +11,13 @@ Checker: fact-checker. Scope: claims still unverified after wave C revisions. Me
 | c6 You started 60 as the splits you chose; different starts grow differen... | verified | Own node run of grow() for all five 60 starts: sorted leaves 2,2,3,5 each time; shelf sorts leaves (line 188); reveal quotes tried. |
 
 Result: 2 verified, 1 disputed.
+
+## Pass 14 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including dynamic ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc14/a.mjs, b.mjs: own BigInt powmod, own two-pointer trace, own xorshift32 quickselect/quicksort simulation, own copies of rightSum, rMin, cup()) and checked citations.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Standard definition (integer > 1 whose only positive divisors are 1 and itself; Hardy and Wright, An Introduction to the Theory of Numbers, 1.2). 'Cannot be split into smaller whole factors' is equivalent. Predict text matches. Non-blocking: the opening caption (Demo.tsx ~line 176) says 'no smaller factors', which read literally excludes 1; builder may reuse the claim's wording. |
+
+**Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).

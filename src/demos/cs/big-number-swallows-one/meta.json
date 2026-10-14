@@ -36,8 +36,10 @@
       "id": "cs.big-number-swallows-one.c2",
       "text": "A JavaScript number has room for only 53 binary digits (bits) of detail (a double, IEEE 754 binary64), and 2^53 is 53 twos multiplied together.",
       "support": "source",
-      "source": "IEEE 754 binary64: 52 stored significand bits plus 1 implicit = 53. 2^53 = 53 twos multiplied together (52 multiplications). Revision v4 per fact-check pass 12; same wording in the predict question.",
-      "status": "unverified"
+      "source": "IEEE 754 binary64: 52 stored significand bits plus 1 implicit = 53. 2^53 = 53 twos multiplied together (52 multiplications). Revision v4 per fact-check pass 12; same wording in the predict question. | FACT-CHECK 2026-10-14 (pass 14): IEEE 754-2019 binary64: 52 stored fraction bits + 1 implicit = 53-bit significand (precision p = 53, Table 3.5); ECMA-262 Number type is binary64. 2^53 = 53 twos multiplied together. Predict text matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.big-number-swallows-one.c3",
@@ -52,8 +54,10 @@
       "id": "cs.big-number-swallows-one.c4",
       "text": "Past 2^53, adding 1 lands halfway between two storable numbers and is rounded to one of them, so the 1 can vanish; adding 2 moves 9007199254740992 to 9007199254740994.",
       "support": "simulation",
-      "source": "IEEE 754-2019 4.3.1 roundTiesToEven; node: 2^53 + 1 = 9007199254740992, 2^53 + 2 = 9007199254740994, (2^53+2)+1 = 9007199254740996. Revision v4: 'or jumps by 2' dropped because the stage never showed +1 jumping; the reveal also now calls storable numbers filled dots and unstorable ones red dashed marks, matching the stage.",
-      "status": "unverified"
+      "source": "IEEE 754-2019 4.3.1 roundTiesToEven; node: 2^53 + 1 = 9007199254740992, 2^53 + 2 = 9007199254740994, (2^53+2)+1 = 9007199254740996. Revision v4: 'or jumps by 2' dropped because the stage never showed +1 jumping; the reveal also now calls storable numbers filled dots and unstorable ones red dashed marks, matching the stage. | FACT-CHECK 2026-10-14 (pass 14): Own node: 2^53 + 1 = 9007199254740992, 2^53 + 2 = 9007199254740994, (2^53 + 2) + 1 = 9007199254740996 (tie rounds to even). Between 2^53 and 2^54 spacing is 2, so +1 is a tie. Reveal quotes the learner's own + 2 result; stage dots use a BigInt round-trip test.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.big-number-swallows-one.c5",

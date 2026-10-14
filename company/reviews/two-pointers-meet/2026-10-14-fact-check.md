@@ -13,3 +13,15 @@ Checker: fact-checker (did not write these claims; any claim marked 'recorded by
 | c5 | verified | Own node: rule's answer agrees with brute force for every target 0..40 on this list and on 20,000 random sorted lists (n 2..11), and never exceeds n - 1 sums. CLRS 3rd ed. exercise 2.3-7 is the pair-sum problem. |
 
 **Result:** disputed: c2. Publishing blocked until the builder fixes and a fact-checker re-checks.
+
+## Pass 14 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every learner-visible string, including dynamic ones) before the claim sources, then re-derived each number in my own node scripts (scratchpad fc14/a.mjs, b.mjs: own BigInt powmod, own two-pointer trace, own xorshift32 quickselect/quicksort simulation, own copies of rightSum, rMin, cup()) and checked citations.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node trace of the rule on 1 3 4 6 8 11 13 15, target 24: sums 16, 18, 19, 21, 23, 26, 24 (7 checks, ends on 11 + 13). Ruled-out set (row < i or column > j at i = 11, j = 13) = 27 of 28; 27 - 6 checked = 21 never looked at; matches Demo.tsx reveal ruledCount - (checks - 1). Max over targets 0..60 is 7. |
+| c3 | verified | Sorted list: 1 + x <= 1 + 15 = 16 < 24 for every x (own node check). Same sentence in the reveal. |
+| c4 | verified | Gap j - i starts at 7 and drops by 1 per check, so at most 7 checks; own node over targets 0..60: max 7. Stage starts checks at 1 and moveLeft/moveRight refuse off-rule moves, so the reveal's 'This search used all 7' always holds. |
+
+**Result:** all open claims verified; no disputes. Non-blocking notes, if any, are in the Basis column (builder owns any wording fix).

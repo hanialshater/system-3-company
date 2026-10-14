@@ -66,8 +66,10 @@
       "id": "cs.binary-search.c5",
       "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes; the stage calls a guess that keeps more than half (after x 2 > before) a weak guess.",
       "support": "derivation",
-      "source": "Revision v5 per fact-check pass 12: the weak-guess test is now after*2 > before (was before + 1, which missed odd counts). A middle guess of m keeps at most floor(m/2), so after*2 <= before and it is never flagged; a guess keeping more than half always is.",
-      "status": "unverified"
+      "source": "Revision v5 per fact-check pass 12: the weak-guess test is now after*2 > before (was before + 1, which missed odd counts). A middle guess of m keeps at most floor(m/2), so after*2 <= before and it is never flagged; a guess keeping more than half always is. | FACT-CHECK 2026-10-14 (pass 14): Own node: for every range size 1..1000 and every guess, after*2 > before is exactly 'keeps more than half'; for middle guesses floor((lo+hi)/2) over 60,000 ranges it never fires (max kept = floor(L/2)). Matches Demo.tsx msg.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.binary-search.c6",
