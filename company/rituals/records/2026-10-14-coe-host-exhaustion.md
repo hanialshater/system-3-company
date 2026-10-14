@@ -77,6 +77,14 @@ Read after the author's record, against the patterns in company/knowledge/patter
 - **Objection to the record.** The Pattern update's falsifier ("a day at or under the caps with dispatch-check run before every dispatch still exhausts the host") would not fire on the 19:01 disk state, which comes from worktrees and build output outside dispatch. I added disk growth from existing worktrees to the refutation: a day at the caps whose disk falls under 10 GB without any new dispatch refutes "dispatch-check is the allocator". W-525 (prune) is the mechanism for that half. Also, dispatch-check was written by the same day's operator and untested: I treat it as a candidate, not a confirmation.
 - **Refutation.** As in the pattern file: a green-meter, run-before-every-dispatch day that still exhausts the host.
 
+### Re-review (pattern-librarian, 2026-10-14, after b2f27bd)
+verdict: accept
+- Objection (falsifier missed the 19:01 disk state): fixed. The Pattern update has halves (a) CPU and (b) disk from existing worktrees, names the 19:01 state as a case of (b), and says dispatch-check is a candidate, untested (W-715). W-525 is the mechanism for (b). The author's 11 GB / 17-worktree recheck agrees with it.
+- measure-the-fit: errors and passes under load are both rerun (W-771, W-787). The author proposes W-783 also stamp load and free disk; that is tools-lead's call, and I support it.
+- New patterns, containment-needs-a-drain "weak case": agreed.
+- Pattern files updated to match: shared-resource-needs-owner-and-allocator now has the disk-growth refutation and the 19:01 case in its `would_be_wrong_if` and `known_failure`. No case deleted.
+- Still open, not a blocker: free disk is near the guard and nothing prunes worktrees (W-525 due now).
+
 ## Review (evaluation-steward, 2026-10-14)
 verdict: revise (fix the board ids, narrow one QA claim, add one action; the five whys and the root cause stand)
 reviewed against: the record, `tools/reveal-fit.mjs` lines 218 to 250, `tools/dispatch-check.mjs`, the board, the deploy-bypass COE, `df -h /` (11 GB free, 74%, at review time). Builder notes not read.

@@ -86,6 +86,14 @@ Read after the author's record, against the patterns in company/knowledge/patter
 - **Objection to the record.** The Pattern update asks for "an allocator before a cleanup". W-774 (drain) is correctly first in time, so the pattern's order (owner, meter, allocator, cleanup) describes the target state, not the sequence of work today. Both W-776 (meter) and W-777 (back-pressure) have owners; the CI budget itself still has no owner. Suggest the chief of staff names one when W-531 is decided; I did not edit the board.
 - **Refutation.** If W-481 (2026-10-16) passes with W-774 and W-775 done and no meter or push gate (W-776, W-777), the allocator half is not needed for CI. If it fails with all four done, the pattern is wrong about the cause.
 
+### Re-review (pattern-librarian, 2026-10-14, after 375ff76)
+verdict: accept
+- Recurs / confirmed / new patterns: linked in the Pattern update. Fixed.
+- Objection (order is target state, not sequence): wording fixed.
+- Budget owner timing: the author disagrees with "name it when W-531 is decided" and I accept the reason. W-776's red thresholds (queued > 20, oldest > 30 min) are budget numbers, and a meter should not ship with a threshold nobody owns. The author also offers to fold W-779 into W-531 at no loss. My suggestion was about timing, not substance; W-779 first is better. Open point, not a blocker: W-779 is still unnamed on the board, and W-776 should not ship thresholds before it is.
+- Refutation: the W-481 row now records which of W-774 to W-777 were done. Fixed. Retest W-780.
+- Pattern file updated: shared-resource-needs-owner-and-allocator now cites W-779 as the proposed CI-budget owner.
+
 ## Review (evaluation-steward, 2026-10-14)
 verdict: revise (small: two action rows change scope; no change to the five whys or the root cause)
 reviewed against: the record, `git log --all` for protected paths since 10-14 00:00, `tools/dispatch-check.mjs` + `tools/lib/coe-coverage.mjs`, `npm run test:dispatch` (pass), the amendments README. Builder notes not read.

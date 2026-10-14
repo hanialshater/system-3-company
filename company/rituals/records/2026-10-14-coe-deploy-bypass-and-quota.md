@@ -84,6 +84,14 @@ Read after the author's record, against the patterns in company/knowledge/patter
 - **Objection to the record.** The "Pattern update" text calls the control-outside-the-pipeline candidate "supported" on one instance. I read it as "one case, not tested": the CI COE supplies the same incident from the other side (deploy.yml waiting for a dead judge), not an independent case.
 - **Refutation.** If W-480 lands and a later release still ships by a path no company tool shows, the control-outside-the-pipeline pattern is incomplete. If an approval rule alone, with no mechanism, holds for several release days, the wish pattern is wrong.
 
+### Re-review (pattern-librarian, 2026-10-14, after 6046c17)
+verdict: accept
+- Recurs (path B allocator, path A a missing single path): the Pattern update now says so. Fixed.
+- "Supported" on one instance: now "one case, not tested", and the CI COE is named as the same incident from the other side, not a second case. This matches the pattern file (unstarred, "same incident seen twice, not two cases"). Fixed; no change to the pattern files needed.
+- gate-expensive-actions and the wish pattern: agreed, no change.
+- Refutation: accepted; first condition checkable once W-480 lands, second needs release days (W-780).
+- Not mine, noted: the second Pattern update line still says "before it needs a cleanup" for path B. The pattern file treats that order as target state; this is wording, not a blocker.
+
 ## Review (evaluation-steward, 2026-10-14)
 verdict: revise (one action row added, one claim to send back; the five whys and the root cause stand)
 reviewed against: the record, `git log --all` for protected paths since 10-14 00:00, `adb41b8`, `tools/dispatch-check.mjs` + `tools/lib/coe-coverage.mjs`, the host-exhaustion COE. Builder notes not read.
