@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · fact-checker · Pass 23 batch 1: 18 lessons, 41 open claims + 2 unrecorded
+- Changed: meta.json status for the 5 new lessons: only-the-needed-trader-profits c1-c6, harm-prices-clear-the-market c1-c5, lower-bid-takes-the-top-ad c1-c5 + new c6, who-pays-same-filter c1-c5, two-public-clues-break-the-herd c1-c5 + new c6. Also the 15 re-checks: last-digit c2/c3, four-in-a-row c1/c6, penalty c6, deleted-key c3, fewest-exits c5, kmp c7, pairs-xor c2, ring-buffer c1, two-stacks c5, same-revenue c6, bridge c5, ramp c2, pivotal-juror c3. Result: 37 verified, 3 disputed (last-digit-first c2, lower-bid c6 new, two-public-clues c6 new), 3 held unverified (bridge c5, only-the-needed c5, who-pays c3), 0 withdrawn. "Pass 23" tables were added to company/reviews/<slug>/2026-10-14-fact-check.md, and the files were created for the 5 new lessons. Board: W-221 (demo-builder, disputes) and W-222 (source checks for the held claims) added; W-216 moved to done (batch 0 covered karatsuba, bank and enemies; this batch covered the rest).
+- Believe (high): I re-ran every number in my own node copies of the lesson logic (scratchpad fc23/: radix, pow.ts, vcg, vcg4, sr, plus one-liners). The disputes rest on my own arithmetic. No source host was reachable (proxy 403 / DNS), so I opened no paper or book. Claims verified despite an unopened citation were verified by derivation or simulation, and each source note says so (e.g. harm-prices c4: 3,150 random markets, VCG = minimum clearing prices, 0 counterexamples). The three held claims rest on an attribution or a general theorem I could not re-derive.
+- Note: the dispatch named the-loser-flips-the-winner, weak-links-hold-it-together and all-lines-meet-in-one-mother, but they were in batch 0 (see the entry below), not in this batch's list. The fc23/ scratch dir is shared with batch 0, so same-named helper scripts (set.mjs, add.mjs, radix.mjs) may have been overwritten. Their results are already on disk.
+- Next: demo-builder W-221 (3 wording fixes; last-digit c2 is a claim-text change only), then a fact-checker re-check. Penalty-on-wiggle c6 carries an advisory, not a dispute: 'the other story' can print a moderate held-out miss worse than none. Someone with source access does W-222. ramp-same-work's meta objective still says '122.6 N x 4 m = 490.5 J'; it is not learner text, but cm-physics may want it aligned. Nothing blocked.
+
 
 
 
