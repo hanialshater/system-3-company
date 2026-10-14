@@ -9,7 +9,7 @@
 // Every number comes from meet(B).
 
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -25,7 +25,8 @@ const BASE = 80;
 const BX0 = 120;
 const BX1 = BX0 + BASE;
 const BY = 186;
-const TOP = 20;
+const TOP = 26;
+const RX = 226; // readouts drawn in the picture
 
 const rad = (d: number) => (d * Math.PI) / 180;
 /** Height in bases where the two sides meet; null when they are parallel (B = 90°). */
@@ -103,7 +104,7 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                   {ghost && (
                     <>
                       <line x1={BX1} y1={BY} x2={ghost.x} y2={ghost.y} className={s.ghost} />
-                      <text x={ghost.x - 4} y={TOP - 6} className={s.ghostLab} textAnchor="end">
+                      <text x={ghost.x - 4} y={TOP - 10} className={s.ghostLab} textAnchor="end">
                         {near}° → {nearH} up
                       </text>
                     </>
@@ -111,7 +112,7 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                   {saw90 && (
                     <>
                       <line x1={BX1} y1={BY} x2={BX1} y2={TOP} className={s.ghost} />
-                      <text x={BX1 + 6} y={TOP - 6} className={s.ghostLab}>
+                      <text x={BX1 + 6} y={TOP - 10} className={s.ghostLab}>
                         90° → never
                       </text>
                     </>
@@ -156,6 +157,19 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                       <path d={`M${side.x - 5} ${TOP + 7} L${side.x} ${TOP} L${side.x + 5} ${TOP + 7}`} className={s.mark} />
                     </>
                   )}
+                  {/* readouts, folded into the picture */}
+                  <text x={RX} y={92} className={s.small}>
+                    sides meet
+                  </text>
+                  <text x={RX} y={110} className={s.value}>
+                    {locked ? "?" : h === null ? "never" : `${fmtH(h)} bases up`}
+                  </text>
+                  <text x={RX} y={136} className={s.small}>
+                    top corner
+                  </text>
+                  <text x={RX} y={154} className={s.value}>
+                    {locked ? "?" : `${90 - b}°`}
+                  </text>
                 </svg>
 
                 <p className={s.caption} aria-live="polite">
@@ -179,8 +193,6 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                   <Control disabled={locked || b === 90} onClick={() => go(90)}>
                     Set 90°
                   </Control>
-                  <Readout label="Sides meet" value={locked ? "?" : h === null ? "never" : `${fmtH(h)} bases up`} />
-                  <Readout label="Top corner" value={locked ? "?" : `${90 - b}°`} />
                 </Row>
               </div>
             );

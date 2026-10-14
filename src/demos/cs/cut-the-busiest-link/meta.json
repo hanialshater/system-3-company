@@ -1,0 +1,108 @@
+{
+  "slug": "cut-the-busiest-link",
+  "title": "Cut one link: what do the others carry?",
+  "hook": "Two friend groups, two links between them. Cut one and watch the shortest paths move.",
+  "domain": "cs",
+  "concept": "edge-betweenness-communities",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "shortest paths in a graph (wave-from-the-corner)",
+      "a person between two groups carries many shortest paths (broker-between-two-groups)"
+    ],
+    "doesNotKnow": [
+      "that link loads must be recounted after every cut",
+      "that cutting the busiest link and recounting splits a network into its communities (Girvan–Newman)"
+    ]
+  },
+  "misconception": "Rank the links by how many shortest paths they carry once, then cut down the list; removing one link leaves the others' loads where they were.",
+  "objective": "The learner can explain that cutting one of the two links between two groups sends all 24 cross-group shortest paths through the other (12 to 24) and shifts loads inside the groups, so link counts must be recounted after every cut, which is the Girvan–Newman method: cut the busiest link, recount, repeat until the network splits into its groups.",
+  "claims": [
+    {
+      "id": "cs.cut-the-busiest-link.c1",
+      "text": "At the start each of the two links between the groups (5–6 and 3–7) carries 12 shortest paths, and no other link carries more than 5.",
+      "support": "derivation",
+      "source": "Builder's node Brandes-style count 2026-10-14 on the 17-link edge list in Demo.tsx (every unordered pair once; a pair with k shortest paths gives 1/k to each): 5-6 = 12, 3-7 = 12, others 0-1 4, 0-2 4, 0-3 5, 0-4 2, 0-5 5, 2-3 5, 3-4 4, 4-5 4, 1-5 5, 6-7 4, 7-8 4, 8-9 1, 6-9 4, 6-8 4, 7-9 4. Demo.tsx loads() computes the labels the stage draws. Fact-checker: re-run with an independent method (enumerate shortest paths per pair).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-busiest-link.c2",
+      "text": "After one between-group link is cut, the other carries 24: all 6 × 4 = 24 pairs with one person in each group must use it, so its count doubles; links inside the groups change too (cutting 5–6: 0–3 goes 5 → 12.5; cutting 3–7: 0–5 goes 5 → 12.5).",
+      "support": "derivation",
+      "source": "Every cross pair's shortest paths all cross the one remaining bridge. Builder's node 2026-10-14: cut 3-7 gives 5-6 = 24, 0-5 = 12.5, 4-5 = 8; cut 5-6 gives 3-7 = 24, 0-3 = 12.5, 3-4 = 8. The stage trace quotes the inner link whose count changed most.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-busiest-link.c3",
+      "text": "After both between-group links are cut, the network is two groups of 6 and 4.",
+      "support": "derivation",
+      "source": "The only links between {0..5} and {6..9} are 5-6 and 3-7; each group is connected inside. Demo.tsx pieces().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-busiest-link.c4",
+      "text": "A list ranked once goes stale after every cut, so the Girvan–Newman method cuts the busiest link, recounts, and repeats.",
+      "support": "source",
+      "source": "Girvan and Newman (2002), 'Community structure in social and biological networks', PNAS 99(12): 7821-7826 (remove the edge of highest betweenness, recalculate betweenness for all affected edges, repeat); Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 3, section 3.6. Not opened by the builder; fact-checker confirms attribution.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-busiest-link.c5",
+      "text": "The number on a link is the shortest paths it carries: each pair of people counted once, a pair with several shortest paths sharing its 1 evenly among them.",
+      "support": "convention",
+      "source": "Edge betweenness as defined by Girvan and Newman (2002) and computed by Brandes (2001), 'A faster algorithm for betweenness centrality', J. Math. Sociology 25(2); unordered pairs, split evenly over shortest paths. Stage legend: 'Number on a link: shortest paths it carries.'",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You rank a network's links by shortest paths carried, then cut the top one. Before cutting the next, what should you do?",
+    "options": [
+      "Recount every link's shortest paths",
+      "Cut the second link on the old list",
+      "Cut the link with the fewest paths"
+    ],
+    "answer": 0,
+    "why": "A cut reroutes shortest paths, so counts change (a remaining bridge can double). Girvan–Newman recounts after every cut, then cuts the new busiest link."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:edge-betweenness-communities",
+    "also": [
+      "cs:graph-shortest-path"
+    ],
+    "prerequisites": [
+      "cs:graph-shortest-path"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 3,
+        "section": "3.6"
+      }
+    ],
+    "tags": [
+      "networks",
+      "betweenness",
+      "communities"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate"
+  ]
+}

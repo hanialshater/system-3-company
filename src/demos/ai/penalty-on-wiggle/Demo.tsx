@@ -162,7 +162,7 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
           <p>
             Held-out dots tell the other story:{" "}
             {mod
-              ? `at ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none${mod.held < mod.none ? "" : " (that one did not win)"}.`
+              ? `at ${fmtL(mod.li)} on set ${mod.seed} you saw ${mod.held.toFixed(2)} vs ${mod.none.toFixed(2)} with none${mod.held < mod.none ? "" : " (that one did not win)"}.`
               : (() => {
                   // No moderate penalty visited (e.g. a jump straight to 10): quote the best moderate one on this data set.
                   const d = makeData(seed);
@@ -171,11 +171,11 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
                   for (let i = 2; i < LAMBDAS.length - 1; i++)
                     if (rms(fit(d.train, LAMBDAS[i]), d.held) < rms(fit(d.train, LAMBDAS[bi]), d.held)) bi = i;
                   const hb = rms(fit(d.train, LAMBDAS[bi]), d.held);
-                  return `on data set ${seed} the best moderate penalty, ${fmtL(bi)}, gives ${hb.toFixed(2)} against ${h0.toFixed(2)} with none.`;
+                  return `on data set ${seed} the best moderate penalty, ${fmtL(bi)}, gives ${hb.toFixed(2)} vs ${h0.toFixed(2)} with none.`;
                 })()}{" "}
             At 10 the curve goes much flatter
             {big
-              ? `, and on data set ${big.seed} held-out was ${big.held.toFixed(2)} against ${big.none.toFixed(2)}: too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
+              ? `, and on set ${big.seed} held-out was ${big.held.toFixed(2)} vs ${big.none.toFixed(2)}: too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
               : " and usually loses again."}{" "}
             A worse fit to training can be a better model.
           </p>

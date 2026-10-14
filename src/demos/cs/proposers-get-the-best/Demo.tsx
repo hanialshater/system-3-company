@@ -188,7 +188,7 @@ function Stage({
     120 * (STUDENTS.includes(n) ? STUDENTS.indexOf(n) : HOSPITALS.indexOf(n));
   const top = (n: Name) => STUDENTS.includes(n);
   // v5 (learner r8): the offer strip is shorter at the reveal so the clash ✕ stays on screen with the cards.
-  const H = compact ? 52 : 80;
+  const H = compact ? 44 : 80;
   const lineFor = (p: Name, r: Name, kind: "held" | "refused", k: number) => {
     const prop = top(p);
     const y1 = prop ? 2 : H - 2;
@@ -341,15 +341,14 @@ export default function ProposersGetTheBest({ slug }: { slug: string }) {
             {same
               ? " Same pairs."
               : " Same rankings, different pairs, and the side making offers did better."}{" "}
-            Each run had a clash (dashed ✕): the receiver kept the offer it
-            ranked higher.
+            Each run had a clash (dashed ✕): the receiver kept its
+            higher-ranked offer.
           </p>
           <p>
             Your swap check found {cs && checked.S ? cs.both : "?"} and{" "}
-            {ch && checked.H ? ch.both : "?"} pairs that wanted each other both
-            ways, so both matchings are stable. Deferred acceptance always ends
-            stable (Gale and Shapley 1962); who makes the offers decides who is
-            favoured.
+            {ch && checked.H ? ch.both : "?"} pairs wanting each other both
+            ways, so both are stable: deferred acceptance always ends stable
+            (Gale and Shapley 1962).
           </p>
         </>
       )}

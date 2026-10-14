@@ -1,0 +1,92 @@
+{
+  "slug": "two-cells-sum-any-range",
+  "title": "What does a range total cost?",
+  "hook": "Eight days of sales, running totals ready. How much reading to total days 3 to 7?",
+  "domain": "cs",
+  "concept": "prefix-sums",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "adding a list of numbers",
+      "a running total"
+    ],
+    "doesNotKnow": [
+      "that one pass of running totals lets you total any stretch of the list with a single subtraction",
+      "that the cost is paid when a number changes"
+    ]
+  },
+  "misconception": "Totalling a stretch of a list always means adding every number in it, so longer stretches always take longer.",
+  "objective": "The learner can explain that after one pass of running totals (7 additions for 8 days) the total of days l to r is the running total at r minus the running total at l - 1 (days 3 to 7: 25 - 4 = 21), so any range costs two reads and one subtraction however long, and that changing one day makes every later running total stale.",
+  "claims": [
+    {
+      "id": "cs.two-cells-sum-any-range.c1",
+      "text": "The running totals of 3 1 4 1 5 9 2 6 are 3, 4, 8, 9, 14, 23, 25, 31 (each new total = the total to its left + the day above).",
+      "support": "derivation",
+      "source": "Arithmetic; builder re-ran in node 2026-10-14. Demo.tsx prefix() computes the row the stage shows.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-cells-sum-any-range.c2",
+      "text": "The total of days l to r equals the running total at r minus the running total at l - 1; days 3 to 7 give 25 - 4 = 21, the same as 4 + 1 + 5 + 9 + 2. The total up to day 7 already holds days 1 and 2, so subtracting the total up to day 2 leaves the range.",
+      "support": "derivation",
+      "source": "The sum to r is the sum to l - 1 plus the range. Builder's node check 2026-10-14: all 36 ranges l..r of the 8 days match P[r] - P[l-1] (P0 = 0).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-cells-sum-any-range.c3",
+      "text": "Building the 8 running totals takes 7 additions, once; after that any range costs two reads and one subtraction, however long.",
+      "support": "derivation",
+      "source": "The first total copies day 1; each of the other 7 is one addition. A range l..r reads P[r] and P[l-1] and subtracts. Edge case: a range starting at day 1 needs only P[r] (1 read, no subtraction); the stage shows 'reads 1' for it. Fact-checker: judge whether 'any range costs one subtraction' needs 'at most'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-cells-sum-any-range.c4",
+      "text": "Adding 1 to day 3 makes the running totals of days 3 to 8 stale (6 of 8); that is the price of the fast ranges.",
+      "support": "derivation",
+      "source": "Every running total from day 3 on includes day 3. Builder's node check 2026-10-14: 6 of 8 totals change. Demo.tsx counts built totals that differ from prefix(current values).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Running totals of a list of 1,000 numbers are ready. How many of them do you need to total items 200 to 900?",
+    "options": [
+      "2",
+      "701",
+      "900"
+    ],
+    "answer": 0,
+    "why": "The running totals at 900 and at 199: their difference is the total of items 200 to 900, however long the range."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:prefix-sums",
+    "also": [],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "arrays",
+      "range query",
+      "running total"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
+}
