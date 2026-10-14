@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 domain-scout (Kofi): next-category and second-course assessment
+
+- **Changed:** wrote company/domains/proposals/2026-10-14-next-categories.md (six categories, three course candidates, probes of npm/PyPI/GitHub raw, regex overlap over 945 meta.json). Board W-685 (owner founder) asks the founder to choose. Nothing built or committed. A stray `board add --help` created an empty W-685; I removed it and re-added the real item under the same id.
+- **Believe:** Astronomy first, Language second (medium confidence); Engineering, Music, Psychology wait; Health declined (refuse list). Course: Thinking in Systems anchor, but premature until NCM data. Demand figures are estimates.
+- **Next:** head-of-product Domain Launch Review; founder picks. Astronomy starts only after History's first batch passes review (W-556).
+- **Blocked:** nothing; Meadows chapter list and stats textbook unconfirmed from this host.
+
 ## 2026-10-14 demo-builder (demo-builder-bigideas-pilot): Big Ideas pilot builds 6 and 8, plus W-633/634/635 revisions
 
 - **Changed:** built `big-ideas/one-ten-thousandth-apart` and `big-ideas/same-grey-in-shadow`, both claimed with `claim.mjs next big-ideas`, status draft, all claims unverified. They follow the briefs' W-537 re-check lines: presets in DOM order, one held citation each with its fallback written into the claim. Revised the drafts to v2. two-four-six-rule (W-633): Popper replaced by the board's fallback and the Wason credit taken off the stage, so c4 is the one held citation. ten-times-taller-giant (W-634): fallback written for c3, labels 11 to 12 px. earth-history-in-a-day (W-635): river transfer recall; writing removed (c4 withdrawn); the reveal now has one dated event; Hutton and earliest life marked "cut if not checkable" with fallbacks; the asteroid taken out of the limit; dial labels raised to clear the 10 px floor. Build notes with pre-flight are in company/reviews/<slug>/build.md. Board: W-633/634/635 moved to review. Added W-683 (cm-big-ideas: accept the departures) and W-684 (chief-of-staff: route the walks). Nothing committed or built.
