@@ -27,3 +27,22 @@ builder: demo-builder (builder-wavej-math) · 2026-10-14 · v1 draft · brief: c
 - QA: the official command (tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wavej-math) ran twice and timed out on both projects at "lesson renders" (15 s, page still "Loading…"/"Compiling"), so it is not a pass. A scratch copy of the spec with only the goto/render timeouts raised (and the test timeout) passed phone and desktop (desktop failed once on the React dev warning "Can't perform a React state update on a component that hasn't mounted yet" while the server was compiling, then passed on a rerun; the lesson has no effects or async updates, so I read it as dev-server noise, not proven). Run the official QA on a quiet server or a build before review.
 - Labels: smallest SVG text is 11 px in its viewBox, drawn at 10.4 px or larger at 390 px wide (smallest: the "mirror" label in minus-one-flips-the-order, 11 px in a 360-wide viewBox); stage numbers 12 px. Targets: every control has min-height 44 px.
 - QA (official spec, run 3): `tests/qa/contract.spec.ts` unmodified, with the CLI flag `--timeout=600000` (test timeout only; the 15 s render wait is the spec's own), QA_OUT=artifacts/qa-wavej-math: phone and desktop passed.
+
+## v2: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/divide-six-by-zero/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Reveal p1 answers the infinity chooser: '… took 2, 6 and 60, climbing with no ceiling. The climb never lands on a count, and infinity scoops of nothing would still hold nothing.'
+- Reveal p2 ties 'undefined' to the check: 'No number passes the check, so 6 ÷ 0 has no answer: it is left undefined.' c3, c4 rewritten (unverified). No stage change.
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Unchanged.
+4. Reveal values unchanged (scoop list and counts from state; 1,000 tries).
+5. QA path unchanged.
+6. Reset: trace keeps every quoted line (about 74 words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 87 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

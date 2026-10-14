@@ -23,3 +23,23 @@ builder: demo-builder (demo-builder-wavej-life) · 2026-10-14 · v1 draft · bri
 7. **Phone fit.** Measured with the `tools/reveal-fit.mjs` logic on the :3530 dev server (a copy with longer page-load timeouts only, artifacts/wavej-life-tools/reveal-fit-slow.mjs, because the shared dev server took 30 s or more a page): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; revealWords 88 (tool count, verdict line included). Stage parts: picture 208 (the card fitted the grid 208/265), controls 44, text 32. Smallest rendered SVG label over the QA path and at the reveal: 10.2 px (the key under the grid, at the reveal). On screen with the reveal's last line: the grid, the run log "70: gone, year 21" and "30 drained: 8 ponds". Screenshot artifacts/reveal-fit/empty-ponds-still-left.png.
 
 QA: `tests/qa/contract.spec.ts` on :3530 (QA_ONLY, QA_OUT=artifacts/qa-wavej-life, `--timeout=300000` because page loads took 20 to 60 s): phone and desktop pass. An earlier run with the default 45 s timeout failed on page.goto only; one longer-timeout run logged the React "state update on a component that hasn't mounted yet" console error once (same-dose-levels-off, desktop), not reproduced in the next run; other builders attribute it to Fast Refresh rebuilds on the shared server.
+
+## v2: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/empty-ponds-still-left/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- The refill formula left the stage: 'an empty pond refills more often when more ponds have frogs' (formula kept in c5).
+- Reveal's 60% line is now the average-model line and drain 50's extinctions are said: 'Averaged out, frogs vanish once 60% are drained, the share that had them. Short of that, bad luck can still end them: drained 50, half the runs die out.' Node re-run: mean-field settles at 27.3 / 9.2 / 0.1 / 0.0 frog ponds for drain 30/50/60/70; seeds 1-1,000 die out by year 100 in 0 / 496 / 921 / 996.
+- Mechanism and threshold paragraphs merged (fit). c3, c4, c5 rewritten (unverified).
+
+## Pre-flight v2
+
+1. Unchanged.
+2. Unchanged.
+3. Unchanged.
+4. Reveal values: year 21 and 8 ponds (current run, log line); 60% and 'half the runs' told (c4).
+5. QA path unchanged.
+6. Reset: no Reset (about 77 reveal words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 88 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

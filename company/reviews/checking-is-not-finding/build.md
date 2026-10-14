@@ -28,3 +28,23 @@
 Fact-check 2026-10-14 disputed c4 (W-686): 'nobody knows a method that always finds one without a search that grows this fast' is false, since meet-in-the-middle grows about 1.41x per number, not 2x. The reveal now reads '...yet nobody knows a method that finds one quickly in every case.' c4 rewritten and reset to unverified. Still open: c4 needs an openable source for subset-sum NP-completeness (CLRS 34.5.5 and Karp 1972 were not opened).
 
 Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. reveal-fit at 390x844 (REVEAL_FIT_TIMEOUT_MS=300000, --shots, artifacts/reveal-fit/wj-disputes.json): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true.
+
+## v3: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/checking-is-not-finding/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- The Groups readout says why: 'Groups: each number in or out' = '2⁶ = 64' (2⁷ = 128 with a 7th number). The 'Groups tried' readout was removed (the status line carries it) so the stage fits.
+- The search is framed as one by one: question 'Trying groups one by one, how many to prove none sums to 13?', status 'Nothing makes 13 · all 64 tried, one by one'; reveal p2 opens 'A shortcut can help on one list, but for problems like this, …' (this list has a shortcut: 34 and 12 cannot be in a 13; disclosed in c2).
+- When the reveal opens after Reset, the stage returns to the all-64 grid (none13). c1, c2, c4 rewritten (unverified); c3 unchanged.
+
+## Pre-flight v3
+
+1. Title/hook unchanged.
+2. Options '6', '12', '64': all numbered.
+3. Locked stage: six chips only, no grid.
+4. Reveal values: 21 and 64 (b, milestones; trace line and restored grid), 128 (b, trace).
+5. QA path unchanged; Reset last, the reveal restores the 64 grid.
+6. Reset: reveal text unchanged apart from p2's first clause (74 words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 84 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

@@ -1,7 +1,7 @@
 {
   "slug": "earth-history-in-a-day",
   "title": "Earth's whole history in one day",
-  "hook": "Squeeze 4.5 billion years into 24 hours. How late in the day do we turn up?",
+  "hook": "Squeeze 4.54 billion years into 24 hours. How late in the day do we turn up?",
   "domain": "big-ideas",
   "concept": "deep-time",
   "status": "draft",
@@ -24,10 +24,11 @@
   "claims": [
     {
       "id": "big-ideas.earth-history-in-a-day.c1",
-      "text": "Earth is about 4.5 billion years old (the clock uses 4.54 billion).",
+      "text": "Earth is about 4.54 billion years old (hook and question; the clock uses 4.54 billion).",
       "support": "source",
       "source": "Dalrymple, G. B. (2001), 'The age of the Earth in the twentieth century: a problem (mostly) solved', Geological Society, London, Special Publications 190, 205-221: 4.54 ± 0.05 Ga. Not opened by the builder.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): hook and question now say 4.54 billion, matching the readout (learner r10); previously unverified."
     },
     {
       "id": "big-ideas.earth-history-in-a-day.c2",
@@ -59,10 +60,11 @@
     },
     {
       "id": "big-ideas.earth-history-in-a-day.c6",
-      "text": "From James Hutton in the 1780s, geologists argued that slow processes, given this much time, carve valleys and raise mountains.",
+      "text": "From (James) Hutton in the 1780s, geologists argued that slow processes, given this much time, do big things (reveal: 'From Hutton in the 1780s, geologists argued that slow processes, given this much time, do big things').",
       "support": "source",
       "source": "Hutton, J. (1788), 'Theory of the Earth', Transactions of the Royal Society of Edinburgh 1, 209-304 (public domain; read to the society in 1785); Lyell, C. (1830-33), Principles of Geology. Builder's change from the brief draft: the brief said these geologists realised slow processes 'move continents'; continental drift came later (Wegener, 1912; plate tectonics 1960s), so the sentence says valleys and mountains. Flag for cm-big-ideas-science. Not opened by the builder. v2 (W-635): class P (public domain, 1788). Cut if not checkable; fallback: 'Given this much time, even a process too slow to see can do large things.' (no name; support: derivation from c7, the clock's scale).",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal sentence changed to point at the Grand Canyon event on the stage (learner r10); previously unverified."
     },
     {
       "id": "big-ideas.earth-history-in-a-day.c7",
@@ -77,6 +79,14 @@
       "support": "derivation",
       "source": "A linear clock maps duration only; it says nothing about rates within an interval (derivation). v2 (W-635): the example (the end-Cretaceous impact, c3) left the reveal so the limit rests on no held citation.",
       "status": "unverified"
+    },
+    {
+      "id": "big-ideas.earth-history-in-a-day.c9",
+      "text": "The Colorado River carved most of the Grand Canyon, about 1.8 km deep, in roughly the last 6 million years, about 0.3 mm a year on average; on the clock that is 23:58:05, the last two minutes (stage list: '23:58:05 Grand Canyon carved, 1.8 km'; reveal: 'A river cutting about 0.3 mm a year carved the Grand Canyon's 1.8 km in the last two minutes').",
+      "support": "source",
+      "source": "US National Park Service, Grand Canyon geology pages (canyon about 6,000 ft / 1.8 km deep; carved by the Colorado River over about the last 5-6 million years); Karlstrom et al. (2008), 'Model for tectonically driven incision of the younger than 6 Ma Grand Canyon', Geology 36(11): 835-838. Not opened by the builder; the age of the canyon is debated (some segments are argued to be far older), which the fact-checker should weigh. Arithmetic (builder node, 2026-10-14): 1.8 km / 6 million years = 0.3 mm a year; clock second 86,400 - 6e6/4.54e9 x 86,400 = 86,285.8 = 23:58:05, 114 s before midnight.",
+      "status": "unverified",
+      "note": "Added by demo-builder (W-839, 2026-10-14); needs the fact-checker."
     }
   ],
   "confidence": "",
@@ -100,7 +110,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "big-ideas:deep-time",
     "also": [],

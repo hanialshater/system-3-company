@@ -21,3 +21,23 @@ Brief: `company/domains/briefs/ai.md` item 62 (Wave J). Status draft, version 1.
 
 ## QA (builder's local run, 2026-10-14)
 Same command as the other wave-J ai lessons (`--timeout=240000` only raises Playwright's per-test limit; the stock 45 s limit timed out on `page.goto` on the overloaded shared dev server). Final run: phone passed, desktop failed once at "lesson renders": the screenshot shows the Next dev overlay "Console Error: Can't perform a React state update on a component that hasn't mounted yet" over "This page couldn't load" (the app shell failed to load, so the lesson never rendered). The same warning failed an earlier phone run of this slug. A rerun with `--repeat-each=2` passed 4 of 4 (artifacts/qa-wavej-ai-rerun). The lesson calls setState only in click handlers. Other builders logged the same dev warning on unrelated lessons today (company/ops/progress.md), so I read it as dev-server noise, but that is not proven. It needs a run on a release build.
+
+## v2: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/deleted-column-still-there/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- The model's rule is now in the question: 'A model sees only neighbourhood, and approves a whole one if most past applicants there were approved.' (explore hint shortened).
+- Mixed case reworded: 'When you mixed the neighbourhoods, neighbourhood no longer tracked group, so the model could not tell them apart: it approved everyone.'
+- When the reveal opens after Reset, the question's case (80% together) comes back, so the filled grids are on screen. c1, c3 rewritten (unverified); c2 unchanged.
+
+## Pre-flight v2
+
+1. Title/hook unchanged.
+2. Options unchanged.
+3. Locked stage unchanged (header, empty grids).
+4. Reveal values: 80% and 20% (b, question-case milestone; restored grids and summary).
+5. QA path: Train without group, Mixed, 90% together, Reset; the reveal restores 80% together.
+6. Reset: reveal matches the restored grid (83 words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 98 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

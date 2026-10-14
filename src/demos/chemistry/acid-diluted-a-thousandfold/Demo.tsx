@@ -71,7 +71,7 @@ export default function AcidDilutedAThousandfold({ slug }: { slug: string }) {
       }}
       exploreHint="Dilute step by step: ×10, ×100, ×1,000, then one step further. Watch the water's own bar."
       minInteractions={2}
-      reveal={() => {
+      reveal={({ prediction }) => {
         const now = solve(dil);
         const r = Number((now.water / now.acid).toPrecision(2));
         const share =
@@ -81,13 +81,13 @@ export default function AcidDilutedAThousandfold({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              At 1,000-fold dilution your pH stopped at <strong>{at1000 ? ph2(at1000.pH) : "?"}</strong>, not 8, and one
+              {prediction === 0 ? "Dilution does move pH. " : ""}At 1,000-fold dilution your pH stopped at <strong>{at1000 ? ph2(at1000.pH) : "?"}</strong>, not 8, and one
               more tenfold reached only {beyond !== null ? ph2(beyond) : "?"}. On your bars now ({times(dil)}), {share}.
             </p>
             <p>
-              Water always splits a little: at 25 °C, [H⁺] × [OH⁻] stays 10⁻¹⁴, so neutral water holds 10⁻⁷ mol/L of
-              each. As the acid&apos;s share shrank, water&apos;s grew, so adding water brings an acid toward pH 7, never
-              past it.
+              Water splits into equal H⁺ and OH⁻, and at 25 °C [H⁺] × [OH⁻] stays 10⁻¹⁴. Strong acid squeezes OH⁻
+              down, and water&apos;s H⁺ comes paired with it, so water&apos;s bar started tiny. As the acid thinned,
+              water&apos;s share grew toward 10⁻⁷ mol/L each: pH 7, never past it.
             </p>
           </>
         );

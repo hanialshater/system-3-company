@@ -27,3 +27,23 @@ Same as total-signups-hide-the-slide: the dev server's 50-105 s loads exceeded r
 
 ## QA (local, dev server 3530)
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=total-signups-hide-the-slide,biased-judge-noisy-judge QA_OUT=artifacts/qa-books-pilot npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=400000`: 4 passed (phone and desktop, both lessons), report `artifacts/qa-books-pilot/qa-report.json`. Final reveal-fit re-run on the current code: both fit, crop 0, namedHidden 0, phoneFit true (89 and 86 measured words).
+
+## v2: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/biased-judge-noisy-judge/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- Question now says 'Judge B is right on average, with a typical miss of 2 years either way. Whose squared error (the average of each miss squared) is bigger?'
+- Under the readout a new line shows how the score is made for the focused judge: 'Misses²: 0, 0, 1, 1, 1, 1, 9, 9, 9, 9 → average 4.0' (C: 1, 1, 1, 1, 4, 4, 9, 9, 25, 25 → 8.0). It replaces the Seen row (each strip already shows 'error 4.0').
+- Reveal p1: 'Both scored 4.0 on squared error: a scatter of 2 costs as much as a bias of 2.' (the honest version of 'same size'). Buttons shortened to 'A: biased', 'B: noisy', 'C: both' (one row). c1, c2 rewritten (unverified); book claims untouched.
+
+## Pre-flight v2
+
+1. Title/hook unchanged.
+2. Options unchanged (none numbered).
+3. Locked stage: two empty strips, no dots, no values.
+4. Reveal values: 4.0 (b, a-seen), 8.0 (b, c-seen), both on the strips.
+5. QA path: A, B, C (all milestones).
+6. Reset: no Reset; 86 reveal words.
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 99 tool words.
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).

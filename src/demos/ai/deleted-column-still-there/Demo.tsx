@@ -7,9 +7,11 @@
 // seg 80%: N1 (40 A + 10 B) past (32 + 4) / 50 = 72% -> approve; N2 (10 A + 40 B) (8 + 16) / 50 = 48% -> reject.
 //   model approves A 40/50 = 80%, B 10/50 = 20%.
 // seg 50%: both 60% -> both approved, A 100%, B 100%.  seg 90%: N1 76%, N2 44%; A 90%, B 10%.
+// Learner r10 (W-839): the model's rule is in the question; at the reveal, if Reset left the grids empty, the
+// question's case (80% together) comes back so the filled grids the reveal quotes are on screen.
 // Dot positions inside a box are shuffled by mulberry32 seed 1 (first seed, untuned; positions do not change any number).
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -60,6 +62,15 @@ function layout(a: number, b: number) {
   return kinds;
 }
 
+/** Runs once when the reveal opens (restores the question's case after a Reset). */
+function OnReveal({ reveal, run }: { reveal: boolean; run: () => void }) {
+  useEffect(() => {
+    if (reveal) run();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reveal]);
+  return null;
+}
+
 type Rec = Partial<Record<Preset["id"], { a: number; b: number }>>;
 
 export default function DeletedColumnStillThere({ slug }: { slug: string }) {
@@ -74,11 +85,11 @@ export default function DeletedColumnStillThere({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Lenders approved 80% of group A, 40% of B. A model sees only neighbourhood; 4 in 5 of each group live together. Its approvals:",
+          "Lenders approved 80% of group A, 40% of B. A model sees only neighbourhood, and approves a whole one if most past applicants there were approved. 4 in 5 of each group live together. Its approvals:",
         options: ["Equal for A and B", "Unequal, but less than before", "As unequal as before, or more"],
         answer: 2,
       }}
-      exploreHint="The model approves a whole neighbourhood if most past applicants there were approved. Try each layout."
+      exploreHint="Try each layout and compare A with B."
       minInteractions={MILESTONES.length}
       reveal={() => {
         const q = rec.q ?? world(0.8);
@@ -90,14 +101,14 @@ export default function DeletedColumnStillThere({ slug }: { slug: string }) {
               decisions, and neighbourhood told it the group: most A lived in N1, most B in N2.
             </p>
             <p>
-              When you mixed the neighbourhoods, the same model approved both groups alike. Deleting the column deletes the label,
+              When you mixed the neighbourhoods, neighbourhood no longer tracked group, so the model could not tell them apart: it approved everyone. Deleting the column deletes the label,
               not the pattern. Fairness has to be checked on outcomes by group, not on inputs.
             </p>
           </>
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, phase, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const pick = (p: Preset | null) => {
@@ -111,6 +122,7 @@ export default function DeletedColumnStillThere({ slug }: { slug: string }) {
             const applied = !locked && !!preset;
             return (
               <div className={s.wrap}>
+                <OnReveal reveal={phase === "reveal"} run={() => !preset && rec.q && setPreset(PRESETS[0])} />
                 <svg
                   viewBox="0 0 340 134"
                   className={`stage-svg ${s.svg}`}

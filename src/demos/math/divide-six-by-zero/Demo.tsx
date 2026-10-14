@@ -56,11 +56,12 @@ export default function DivideSixByZero({ slug }: { slug: string }) {
           <>
             <p>
               6 ÷ a scoop size asks how many scoops fill the jug. Your scoops of {list(sz.map(String))} took{" "}
-              {list(sz.map((v) => String(count(v))))}: smaller scoops, more of them, with no ceiling.
+              {list(sz.map((v) => String(count(v))))}, climbing with no ceiling. The climb never lands on a count, and
+              infinity scoops of nothing would still hold nothing.
             </p>
             <p>
               A scoop of 0 filled nothing after {fmt(ZERO_TRIES)} tries, and the check showed why: any number times 0 is 0,
-              never 6. So 6 ÷ 0 is not 0, and no huge number works either. It is left undefined.
+              never 6. No number passes the check, so 6 ÷ 0 has no answer: it is left undefined.
             </p>
           </>
         );

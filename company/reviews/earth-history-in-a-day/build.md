@@ -45,3 +45,23 @@ This pre-flight describes the v1 build. Board items W-633 to W-636 (from cm-big-
 5. **QA path.** Slider ×2, Last hour, Last minute (dinos), Next event (humans, 23:59:54.3). After that, Next event is disabled because writing is gone. The QA contract passed, phone and desktop (artifacts/qa-bigideas-pilot).
 6. **Reset.** No Reset control. Reveal on the QA path: "Our species appeared at 23:59:54, about six seconds before midnight. On this clock, one second is about 52,500 years. From James Hutton in the 1780s, geologists argued that slow processes, given this much time, carve valleys and raise mountains. Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide sudden events."
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530` (next dev): fit, crop 0 px, namedHidden 0, phoneFit true, 70 words (tool count), thumb (see above). Smallest stage text 10.6 px at predict and at the reveal.
+
+## v3: learner r10 fixes (W-839, demo-builder, 2026-10-14)
+
+Review: company/reviews/earth-history-in-a-day/2026-10-14-learner-adult-beginner-r10.md. Changed claims are reset to unverified; no claim marked verified by the builder.
+
+- One slow-process event on the clock: 'Grand Canyon carved, 1.8 km' at 23:58:05 (about 6 million years ago). The Hutton sentence now quotes it: 'From Hutton in the 1780s, geologists argued that slow processes, given this much time, do big things: a river cutting about 0.3 mm a year carved the Grand Canyon's 1.8 km in the last two minutes.' New claim c9 (unverified; the canyon's age is debated, flagged for the fact-checker).
+- Hook and question now say 4.54 billion (as the readout does).
+- Buttons shortened ('Day', 'Last hour', 'Last min', 'Next ▸') so the four share one row. Not done: naming the dinosaur end as a sudden event (v2 cut the asteroid claim on purpose); an afternoon event at the learner's 6 pm; the pre-existing 'thumb' dial (0.53 scale, two-column layout; also thumb on HEAD).
+
+## Pre-flight v3
+
+1. Hook now 'Squeeze 4.54 billion years into 24 hours. How late in the day do we turn up?'
+2. Options unchanged (all clock times).
+3. Locked stage unchanged.
+4. Reveal values: 23:59:54 (b, humans milestone); 52,500 years (scale, stage header); 0.3 mm, 1.8 km, last two minutes (canyon in the found list once passed).
+5. QA path: slider, Last hour, Last min (passes 23:58:05 and the dinosaurs), Next (humans).
+6. Reset: no Reset (84 tool words).
+7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 84 tool words, thumb true (pre-existing, see above).
+
+QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
