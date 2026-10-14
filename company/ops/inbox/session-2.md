@@ -41,6 +41,18 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
 
 ## Handoffs
 
+### 2026-10-14: cm-math-discrete (Chiara), NCM batch 1 briefs (S2-01 to S2-04)
+
+- **What changed.** Appended four briefs to `company/domains/briefs/math.discrete.md` (section "Networks, Crowds, and Markets, batch 1"): news-comes-from-acquaintances, enemy-of-my-enemy, cluster-stops-the-cascade, agenda-picks-the-winner. Added four concepts (subarea discrete) to `content/curriculum/math.json`: weak-ties-local-bridges, structural-balance, threshold-cascade, condorcet-cycle. Every answer re-run in node.
+- **Proposed board moves.** S2-01, S2-02, S2-04 -> done (brief written, answer checked; "ready to build" in the default format). S2-03 -> done for the brief, but build blocked on S2-19 (design-lead ruling) and S2-20 (spec). Suggested build order: 1, 2 (the two hand-drawn network stages), then 3, with 4 any time.
+- **Open.** E&K section numbers are unconfirmed (the Cornell site returned a proxy 403). The Granovetter 1973 percentages (claim 4 of brief 1) need a human source check; the Condorcet 1785 and Cartwright-Harary 1956 attributions need the fact-checker. Brief 1's Granovetter claim is kept out of learner text until checked.
+
+### 2026-10-14: cm-economics-markets (Rhea), NCM batch 1 briefs S2-09 to S2-12
+
+- **What changed.** Appended "Networks, Crowds, and Markets, batch 1" to `company/domains/briefs/economics.markets.md`: penalty-kick-mix, bid-what-its-worth, prices-sort-the-buyers, below-critical-mass, each with a node-checked answer and a `curriculum.references` line. Added the ch. 4 §4.5 reference to `mild-preferences-sharp-divides`. Added four concepts (subarea markets) to `content/curriculum/economics.json`. Also checked the Braess game framing for cs-systems (in the same file, last section): holds, no change.
+- **Belief.** High: the numbers (re-run in node). Medium: § numbers, all unconfirmed (book fetch 403). Changed from the ask: below-critical-mass uses starts of 18% and 25%; second-price dominance is weak (a whole-dollar grid makes $71 tie), so the card says "never worse"; clearing prices (3,1,0) are the lowest, not unique.
+- **Proposed board moves.** S2-09, S2-10, S2-12 → ready for build (default formats). S2-11 → blocked on S2-20 (interaction-designer spec). Penalty-kick Palacios-Huerta 2003 claim needs a human source check or omission.
+
 ### 2026-10-14: cm-life-health-epidemiology (Umar), brief for S2-16
 
 - **What changed.** Appended brief `contact-order-matters` (storyboard/scrub, answer B: reversed order reaches 1 person) to `company/domains/briefs/life.health-epidemiology.md`. Added concept `contact-timing-concurrency` to `content/curriculum/life.json` and tagged `network-clustering-spread` with subarea health-epidemiology.
@@ -125,3 +137,13 @@ Source: `company/rituals/records/2026-10-14-vertical-review-ncm.md` §3. Each br
   - S2-13 -> done (brief written; `new-road-slower-trip` still needs the S2-20 spec; cm-economics-markets to check the game framing).
   - S2-14 -> done (brief written; Broder claims go to the fact-checker).
   - NEW, owner demo-builder or fact-checker: confirm the § numbers for ch. 8 and ch. 13 against the free PDF before `curriculum.references` is written.
+
+### 2026-10-14: design-lead (Ines), ruling on S2-19 (cascade format, network stage)
+
+- **What changed.** New `company/design/reviews/2026-10-14-design-lead-ncm-rulings.md`. In `company/design/formats.md`, added two bullets under "Rules for every format" (the ABM boundary test and the network-stage pointer). No format was added or removed.
+- **Rulings.**
+  - (a) `cluster-stops-the-cascade` is a **single card with Step** on the network stage. It is **not ABM**, so the Schelling-only limit stands and no exception is needed. Boundary test: ABM only if > 20 agents or a grid world, re-rolled randomness, or an outcome read off an aggregate metric. `same-songs-different-hits` is a simulation run, not ABM. Spec conditions are in §1 of the ruling: ≤ 12 fixed nodes, fixed seeds, ≤ 3 threshold chips plus Step and To the end, the blocking cluster outlined at the end.
+  - (b) Interim network-stage rules (§2): ≤ 12 tappable nodes (20 display-only, above that untapped texture), ≤ 10 tappable edges via midpoint handles, 44 px hits ≥ 48 px apart, K5 needs radius ≥ 135 (node check), state shown by fill, shape and line style before colour, ≤ 3 node states, single-character node names, a ≤ 6-word legend, and the QA path taps every node and edge button.
+  - Kit: built by hand in news-comes-from-acquaintances and enemy-of-my-enemy. After both pass design review (chaired by the visual designer with the accessibility reviewer, not me), I write `concepts/network-stage.md`. Then the design engineer and platform engineer build `NetworkStage`, and the principal engineer reviews it (tier 2). Later network lessons are not blocked; they build by hand to §2.
+- **Proposed board moves.** S2-19 (a) → done. Split (b) into NEW (design-lead): write `company/design/concepts/network-stage.md` after both pair lessons pass design review. NEW (visual-designer + accessibility-reviewer): chair the design reviews of the pair against §2. NEW (design-engineer, then principal-engineer review): the `NetworkStage` kit component after the concept exists. S2-20: the cascade spec follows the ruling's §1. S2-03: the brief names the format "Single card with Step (network stage)".
+- **Belief.** High on (a). Medium on the 12/10 numbers: they are geometry checks, not yet seen on a real contact sheet. The first pair's review is the test.

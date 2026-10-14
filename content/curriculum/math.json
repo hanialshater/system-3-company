@@ -473,6 +473,45 @@
       "prerequisites": [
         "parity-rules"
       ]
+    },
+    {
+      "id": "weak-ties-local-bridges",
+      "name": "Weak ties: the only link between two groups cannot be a close one",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "handshake-counting"
+      ]
+    },
+    {
+      "id": "structural-balance",
+      "name": "Structural balance: balanced friends and enemies split into two camps",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "parity-rules",
+        "handshake-counting"
+      ]
+    },
+    {
+      "id": "threshold-cascade",
+      "name": "Threshold cascades stop at a tightly knit cluster",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "weak-ties-local-bridges"
+      ]
+    },
+    {
+      "id": "condorcet-cycle",
+      "name": "Majority preferences can cycle, so the agenda picks the winner",
+      "subarea": "discrete",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": []
     }
   ]
 }
