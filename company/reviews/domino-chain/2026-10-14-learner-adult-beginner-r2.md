@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review (round 2): domino-chain
-lesson version: VERSION
+lesson version: v1
 boundary: an adult beginner with school maths; has never seen a proof by induction; thinks "you can't know without checking".
 Screenshots seen: yes (sheet.png, 4 frames, phone viewport). Re-review after the kit fix for clipped reveals (W-135); written fresh from this walkthrough.
 
@@ -16,3 +16,9 @@ Screenshots seen: yes (sheet.png, 4 frames, phone viewport). Re-review after the
 
 Fixes (owner: builder, optional): ask about the millionth domino, with a "you would have to check" option ("Can we be sure the millionth falls? Yes, from the two facts / Only by checking / No, too far"), so the misconception is on the table.
 
+## 2. After reading the brief
+
+- Misconception: "proving it for every whole number needs checking each one". The prediction does not put that option on the table; the recall does ("Each number up to a million"). Objective (start + step covers every number; one broken step stops the chain) is shown well by the two buttons.
+- 4 claims verified by others; I cannot vouch for them. Round-1 clipping resolved on this build. I pass it: the prediction is weak, not wrong, and nothing on the stage misleads.
+
+Verdict: launch
