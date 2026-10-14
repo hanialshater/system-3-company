@@ -1,0 +1,100 @@
+{
+  "slug": "the-pivotal-juror-convicts",
+  "title": "The juror whose vote decides",
+  "hook": "Your clue says innocent. Is voting innocent the rational thing to do?",
+  "domain": "probability",
+  "concept": "pivotal-voting",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-probability",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Bayes' rule (which-coin-is-it)",
+      "a unanimous jury needs every vote to convict"
+    ],
+    "doesNotKnow": [
+      "that your vote matters only when you are pivotal, and being pivotal is itself evidence"
+    ]
+  },
+  "misconception": "A juror should simply vote what their own clue says.",
+  "objective": "The learner can explain that under unanimity a juror's vote changes the verdict only when both others vote guilty, so in that case two guilty clues outweigh their one innocent clue and guilt is 70% likely, not the 30% their clue alone suggests.",
+  "claims": [
+    {
+      "id": "probability.the-pivotal-juror-convicts.c1",
+      "text": "Under unanimity, your vote changes the verdict only when both other jurors vote guilty; otherwise one innocent vote already acquits.",
+      "support": "derivation",
+      "source": "Rule: convict only if all three vote guilty. If either other juror votes innocent the verdict is acquit whatever you vote.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-pivotal-juror-convicts.c2",
+      "text": "With clues right 70% of the time and an even prior, one innocent clue alone gives a 30% chance of guilt; two guilty clues and one innocent give 70%, the same as one guilty clue alone.",
+      "support": "derivation",
+      "source": "Bayes, builder's node check 2026-10-14: P(G | g guilty, i innocent) = 0.7^g 0.3^i / (0.7^g 0.3^i + 0.3^g 0.7^i). (g,i) = (0,1): 0.3; (2,1): 0.147/0.21 = 0.7; (1,0): 0.7. Matches the brief's check line.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-pivotal-juror-convicts.c3",
+      "text": "On the stage the bar shows 7% guilt when both others vote innocent and 30% when they split.",
+      "support": "derivation",
+      "source": "Same formula: (0,3) = 0.027/0.37 = 0.073; (1,2) = 0.3. Assumes the other two vote their own clues (stage note 'votes own clue'), so their votes reveal their clues.",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.the-pivotal-juror-convicts.c4",
+      "text": "Because the other jurors vote their clues, being pivotal tells you that both of their clues said guilty, evidence a juror who just votes their own clue throws away.",
+      "support": "derivation",
+      "source": "Under sincere voting a guilty vote occurs exactly when the clue says guilty; pivotal = both others guilty = both clues guilty. E&K ch. 23 (pivotal-voter reasoning); Feddersen and Pesendorfer (1998), Am. Political Science Rev. 92(1), from the brief, not opened by builder.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under a unanimity rule, when does your single vote change a jury's verdict, and what does that tell you?",
+    "options": [
+      "Always; it tells you nothing about the others",
+      "Only when every other juror votes to convict, which is evidence of guilt",
+      "Only when the jury is split evenly"
+    ],
+    "answer": 1,
+    "why": "One acquittal is enough to acquit, so your vote decides only when all others convict, and their convicting votes carry their guilty clues."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "probability:pivotal-voting",
+    "also": [
+      "probability:bayesian-updating"
+    ],
+    "prerequisites": [
+      "probability:bayesian-updating"
+    ],
+    "level": "stretch",
+    "strand": "statistics",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 23
+      }
+    ],
+    "tags": [
+      "voting",
+      "Bayes",
+      "juries"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate"
+  ]
+}
