@@ -1,7 +1,7 @@
 // Reveal fit (W-135): on a phone, can the learner read the whole reveal?
 //
 //   node tools/reveal-fit.mjs --url http://localhost:3471 [<slug> ...] [--jobs 6] [--width 390 --height 844]
-//                             [--out artifacts/reveal-fit/<name>.json] [--shots]
+//                             [--out artifacts/reveal-fit/<name>.json] [--shots] [--rotate 844x390]
 //
 // Needs a running build (NEXT_DIST_DIR=.next-fit npm run build; tools/serve.sh start <port> .next-fit).
 // For each lesson it opens /d/<slug> at 390×844 (touch, mobile), commits the first option, follows the
@@ -18,6 +18,8 @@
 // scale the stage width allows and under 200px tall (height-squeezed into a thumbnail).
 // Pass (the W-135 bar) = fit or scroll, and no thumb. "fit" is the stricter count: the learner did not
 // have to discover a scroll. Exit code 1 if any lesson fails the bar or errors.
+// --rotate WxH: reveal at --width x --height, then resize the viewport to WxH (turning the phone after
+// the reveal, W-139 follow-up 2) and measure there instead.
 // No dependencies beyond @playwright/test, which QA already uses.
 
 import { chromium } from "@playwright/test";
@@ -29,7 +31,7 @@ const opt = (k, d) => {
   const i = args.indexOf(`--${k}`);
   return i >= 0 ? args[i + 1] : d;
 };
-const valued = new Set(["url", "jobs", "width", "height", "out"].map((k) => `--${k}`));
+const valued = new Set(["url", "jobs", "width", "height", "out", "rotate"].map((k) => `--${k}`));
 const base = opt("url", process.env.REVEAL_FIT_URL);
 if (!base) {
   console.log("usage: node tools/reveal-fit.mjs --url http://localhost:<port> [<slug> ...] [--jobs 6] [--out file.json] [--shots]");
@@ -39,6 +41,7 @@ const width = Number(opt("width", 390));
 const height = Number(opt("height", 844));
 const jobs = Number(opt("jobs", 6));
 const shots = args.includes("--shots");
+const rotate = opt("rotate", null)?.split("x").map(Number) ?? null;
 
 function allLessons() {
   const root = "src/demos";
@@ -158,6 +161,10 @@ async function run(page, slug, settle = 120, deep = false) {
   await btn.click();
   await page.locator('[data-testid="reveal"]').waitFor();
   await page.waitForTimeout(900); // animations and any scroll-into-view settle
+  if (rotate) {
+    await page.setViewportSize({ width: rotate[0], height: rotate[1] });
+    await page.waitForTimeout(600);
+  }
   const m = await page.evaluate(measure);
   if (shots) {
     fs.mkdirSync("artifacts/reveal-fit", { recursive: true });
@@ -174,6 +181,7 @@ async function worker() {
   const page = await ctx.newPage();
   while (next < lessons.length) {
     const l = lessons[next++];
+    if (rotate) await page.setViewportSize({ width, height });
     let r;
     try {
       r = await run(page, l.slug);
@@ -196,7 +204,7 @@ await browser.close();
 results.sort((a, b) => a.slug.localeCompare(b.slug));
 const count = (f) => results.filter(f).length;
 const summary = {
-  viewport: `${width}x${height}`,
+  viewport: `${width}x${height}` + (rotate ? ` rotated to ${rotate.join("x")}` : ""),
   lessons: results.length,
   fit: count((r) => r.verdict === "fit"),
   scroll: count((r) => r.verdict === "scroll"),

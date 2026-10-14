@@ -7,6 +7,14 @@ Template:
 
 ```markdown
 
+## 2026-10-14 · platform-engineer · W-139 follow-ups: verify on the merged tree, rotation re-fit, no pull-back
+- Changed: `src/components/DemoCard.tsx` (`useRevealFit` re-fits on card-body resize and orientationchange while the reveal shows; no auto-scroll once the learner has scrolled after the reveal, and rotation re-arms it), `tools/reveal-fit.mjs` (`--rotate WxH`), changelog, follow-up status appended to company/rituals/records/2026-10-14-eng-review-W-135.md. Board: W-135 → done; added W-143 (feed measurement, me), W-144 (landscape layout, design-lead), W-145 (four-queens-pruning thumb, moon-hammer-feather unmeasurable, demo-builder). Committed in the worktree, not pushed.
+- Verify: on the merged tree (before my change) 1056/1056 QA (one run was split by a 2 h tool limit: 1038 + the 18 it had not reached), deploy tests, check, typecheck and build all passed. No revert. After my change, full verify passed again with 1056/1056.
+- Reveal fit (all 523): portrait 515 fit / 0 clip / 7 thumb / 8 unmeasurable. Rotated to 844×390: 0 clip, top always visible, but 495 need a scroll and 325 are thumbs, because the landscape body is ~164px. That limit is in the layout, not the hook (W-144).
+- Believe (high): the pull-back is fixed (reproduced in the old build on base-rates and tax-who-pays, gone in the new one), and rotation re-fits. Medium: touch-drag detection on real phones. Only wheel input was tested; a touchmove listener covers drags in principle.
+- Gotcha for the next worker: a full QA run takes 1.2-2 h on this box. Run it detached (setsid nohup) or it hits the 2 h background-tool limit.
+- Next: W-143 feed measurement (me); W-141 contract assertion (evaluation-steward); W-142 focus amendment (accessibility-reviewer). Blocked: nothing.
+
 ## 2026-10-14 · demo-builder (algo-builder) · First 14 CS algorithms lessons built (draft)
 - Changed: 14 new lessons in src/demos/cs/ from company/domains/briefs/cs.algorithms.md (single card / simulation run only): caesar-falls-to-frequency, no-zip-shrinks-everything, two-pointers-meet, fair-shuffle-trap, probing-clusters-grow, shortest-job-first-wait, four-queens-pruning, rsa-lock-with-public-key, patience-piles, median-without-sorting, union-find-shortcut, start-after-the-deficit, uphill-finds-a-peak, undo-a-bad-push. Each has meta.json with "format", all claims unverified, and a build note in company/reviews/<slug>/build.md. Board untouched.
 - Believe (high for the numbers, re-run in node; medium for teaching): every brief's answer held. Local computer-use QA passes on phone and desktop for all 14; `npm run check` and tsc pass. No QA records filed (qa-tester's job).
