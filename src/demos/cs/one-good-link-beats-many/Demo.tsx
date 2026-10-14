@@ -2,12 +2,13 @@
 
 // PageRank on ten pages. A (X's linker) and H (a hub) are hand-placed; node size is the score.
 // Trap: after round 1 X leads (0.270 v 0.100), which confirms "most links wins". The stage then
-// says "Step again", Run is disabled at round 0 and, from round 1, shows round 2 before jumping on; the reveal unlocks at round 2.
+// says "Step again"; Run is disabled at round 0 and goes straight to round 51; the reveal unlocks at round 2
+// (by Step) or at round 51 (by Run). The reveal quotes round 2 only if the learner stepped through it.
 // Arrow thickness and the numbers on the four arrows into X and Y show the score passed along links.
 // No Reset: the reveal always sits beside the round the learner reached.
 // Network stage rules: company/design/reviews/2026-10-14-design-lead-ncm-rulings.md section 2.
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { useMilestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -54,16 +55,7 @@ function Stage({ locked, interact, round, setRound }: {
     setRound(r);
     if (r >= 2) reach("round-two");
   };
-  const [running, setRunning] = useState(false);
-  // From round 1, Run shows round 2 for 1.5 s before jumping on, so nobody skips the flip.
-  useEffect(() => {
-    if (!running || round !== 2) return;
-    const t = setTimeout(() => { setRound(SETTLED_ROUND); setRunning(false); }, 1500);
-    return () => clearTimeout(t);
-  }, [running, round, setRound]);
-  const run = () => {
-    if (round < 2) { setRunning(true); go(2); } else go(SETTLED_ROUND);
-  };
+  const run = () => go(SETTLED_ROUND);
   const x = score(round, "X"), y = score(round, "Y");
   return (
     <div className={s.wrap}>
@@ -86,8 +78,8 @@ function Stage({ locked, interact, round, setRound }: {
       <p className={s.rule}>Each round a page passes {Math.round(S * 100)}% of its score down its links; every page also gets 1.5% free, links or not.</p>
       <p className={s.legend}>Size: score. Thick arrow: more passed.</p>
       <Row>
-        <Control disabled={locked || running || round >= SETTLED_ROUND} onClick={() => go(round + 1)}>Step</Control>
-        <Control disabled={locked || running || round < 1 || round >= SETTLED_ROUND} onClick={run}>Run to round {SETTLED_ROUND}</Control>
+        <Control disabled={locked || round >= SETTLED_ROUND} onClick={() => go(round + 1)}>Step</Control>
+        <Control disabled={locked || round < 1 || round >= SETTLED_ROUND} onClick={run}>Run to round {SETTLED_ROUND}</Control>
       </Row>
       <Row>
         <Readout label="Round" value={round} />
@@ -106,7 +98,11 @@ const hintFor = (round: number) =>
 
 export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
   const [round, setRound] = useState(0);
+  const [seen, setSeen] = useState<number[]>([0]);
+  const goRound = (r: number) => { setRound(r); setSeen((p) => (p.includes(r) ? p : [...p, r])); };
   const r51 = round === SETTLED_ROUND;
+  const saw2 = seen.includes(2);
+  const rq = Math.max(round, 2); // the round shown beside the reveal
 
   return (
     <Lesson
@@ -122,11 +118,12 @@ export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            After round 1, X led, <strong>{f3(score(1, "X"))}</strong> to {f3(score(1, "Y"))}. By round 2, Y had <strong>{f3(score(2, "Y"))}</strong> and X {f3(score(2, "X"))}.{" "}
-            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}. X has not moved since round 2, and Y has stayed ahead.</> : null}
+            After round 1, X led, <strong>{f3(score(1, "X"))}</strong> to {f3(score(1, "Y"))}.{" "}
+            {saw2 ? <>By round 2, Y had <strong>{f3(score(2, "Y"))}</strong> and X {f3(score(2, "X"))}. </> : null}
+            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}.{saw2 ? " X has not moved since round 2, and Y has stayed ahead." : ""}</> : null}
           </p>
           <p>
-            X&rsquo;s three links come from pages nobody links to, so in round 2 each passed on only about {f3(passed(2, "P"))}. Y&rsquo;s one link comes from H, which five pages link to (Y links back to it too), so H passed on {f3(passed(2, "H"))}.
+            X&rsquo;s three links come from pages nobody links to, so in round {rq} each passed on only about {f3(passed(rq, "P"))}. Y&rsquo;s one link comes from H, which five pages link to (Y links back to it too), so H passed on {f3(passed(rq, "H"))}.
           </p>
           <p>
             A link passes on a share of the linking page&rsquo;s own score. PageRank ranks a page by who links to it, weighted by how important those linkers are.
@@ -135,7 +132,7 @@ export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} round={round} setRound={setRound} />}
+      {({ locked, interact }) => <Stage locked={locked} interact={interact} round={round} setRound={goRound} />}
     </Lesson>
   );
 }

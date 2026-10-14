@@ -71,12 +71,10 @@
     },
     {
       "id": "math.cluster-stops-the-cascade.c6",
-      "text": "Not more seeds: two in a better place. From 0 and 1 two seeds stop at 8 of 12; the same number started at 8 and 9 reach all 12, so 'many more seeds' and 'those four are out of reach' are both false.",
+      "text": "Where the seeds are decides it, not how many. From 0 and 1 two seeds stop at 8 of 12; the same number started at 8 and 9, inside the four, reach all 12. Starters only outside the four never help, however many: none of them can be the first of the four to join. So 'many more people adopting first, outside those four' and 'those four are out of reach' are both false.",
       "support": "derivation",
-      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. simulate(): {0,1} -> 8 of 12 in 6 rounds; {8,9} -> 12 of 12 in 8 rounds. Same seed count, so neither 'many more' nor 'out of reach' holds. Both runs are milestone-gated ('stopped', 'planted').",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. simulate(): {0,1} -> 8 of 12 in 6 rounds; {8,9} -> 12 of 12 in 8 rounds. Same seed count, so neither 'many more' nor 'out of reach' holds. Both runs are milestone-gated ('stopped', 'planted'). | Builder revision (demo-builder, 2026-10-14, final-review polish): Node brute force 2026-10-14 over all 4096 seed sets with the exact rule of Demo.tsx: {0,1,8,9} reaches 12; all 256 seed sets with no member among 8-11 (up to all eight outside people) stall short of 12 (none reaches 12); all 2816 seed sets with at least two members among 8-11 reach 12. (A single member among 8-11 can also succeed if 7 is seeded too, which is why the reveal says outside-only starters fail, not that the four need two starters.) The predict options are 'Many more people adopting first, outside those four' (false), 'Nothing: those four are out of reach' (false, c3), 'Two people adopting first, among those four' (true).",
+      "status": "unverified"
     },
     {
       "id": "math.cluster-stops-the-cascade.c7",
@@ -125,7 +123,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "math:threshold-cascade",
     "prerequisites": [

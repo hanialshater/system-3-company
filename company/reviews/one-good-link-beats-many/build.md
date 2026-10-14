@@ -33,3 +33,10 @@
 ## Revision (v4, 2026-10-14, fact-check NCM-3)
 
 Reveal round-51 sentence now "Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead." (no "same as at round 2"). c4 reset to unverified. meta version 4.
+
+## Revision v5 (demo-builder, 2026-10-14, final-review polish)
+
+- "Run to round 51" now goes straight to round 51 (the 1.5 s hold at round 2 is removed). Run stays disabled at round 0, so round 1 is always seen; the reveal gate is unchanged (round >= 2, by Step or by Run).
+- Reveal quotes only reached rounds: round 1 always; round 2 numbers only if the learner stepped through round 2; the round-51 sentence only at 51 ("X has not moved since round 2, and Y has stayed ahead" only if round 2 was stepped through); paragraph 2 quotes the round shown (2, or 51: P still passes 0.013, H passes 0.359).
+- c5 and c8 text extended with round-51 figures -> unverified (node: passed(51,P) 0.01275, passed(51,H) 0.3590).
+- QA (.next-fin, QA_PORT=3972): lesson contract and the other lesson tests pass; only the non-lesson feed.spec "subject chips" fails on both viewports (as in earlier revisions).
