@@ -54,14 +54,14 @@
       "id": "big-ideas.same-grey-in-shadow.c5",
       "text": "Where it stops: the light you see is lighting times how much the surface reflects, so a shadowed square sending the same light really is lighter, and in a real scene the guess is usually right.",
       "support": "derivation",
-      "source": "Light reaching the eye = illumination × reflectance. Same light L, shade illumination below sun illumination, so reflectance in shade = L / E_shade > L / E_sun (cycle-1 check script, W-537 block: 0.8 against 0.2 in illustrative units). On the stage the shadow multiplies by 4/7 (210 → 120, 120 → 69), so B's surface is the light kind. The brief moved the Adelson limit citation off the learner path; the derivation carries the limit.",
+      "source": "Light reaching the eye = illumination × reflectance. Same light L, shade illumination below sun illumination, so reflectance in shade = L / E_shade > L / E_sun (cycle-1 check script, W-537 block: 0.8 against 0.2 in illustrative units). On the stage the shadow multiplies by 4/7 (210 → 120, 120 → about 69; c6), so B's surface is the light kind. The brief moved the Adelson limit citation off the learner path; the derivation carries the limit.",
       "status": "unverified"
     },
     {
       "id": "big-ideas.same-grey-in-shadow.c6",
-      "text": "The board's shading (light squares 210, dark squares 120 in the light, the shadow multiplying by 4/7) is the lesson's model, not a measurement.",
+      "text": "The board's shading (light squares 210 and dark squares 120 in the light; a shadow layer that takes light squares to 120 and dark ones to about 69) is the lesson's model, not a measurement.",
       "support": "convention",
-      "source": "Demo.tsx constants LIGHT_LIT, SAME, DARK_SHADE. Chosen so that a light square in shadow sends exactly the same value as a dark square in the light.",
+      "source": "Demo.tsx constants LIGHT_LIT (210), SAME (120) and SHADOW_OPACITY (3/7: 210 × 4/7 = 120, 120 × 4/7 ≈ 69), a black layer with a blurred edge. Square B is drawn again on top of the shadow from SAME, so its value is exactly 120 by construction. Chosen so that a light square in shadow sends the same value as a dark square in the light.",
       "status": "unverified"
     }
   ],

@@ -4,14 +4,15 @@
 // override the draft). An original checkerboard with a green cylinder whose shadow falls on the lower right.
 // Square A is a dark square in the light; square B is a light square in the shadow. Both are painted from ONE
 // constant, SAME (#787878 = brightness 120 of 255), which is not a theme variable, so it is identical in light
-// and dark mode. Shading model: light squares 210, dark squares 120 in the light; the shadow multiplies by 4/7,
-// so light-in-shadow = 120 (exactly SAME) and dark-in-shadow = 69.
+// and dark mode. Shading model: light squares 210, dark squares 120 in the light. The shadow is a black layer at
+// opacity 3/7 with a blurred edge, so in its core light squares become 120 and dark ones about 69. B is drawn again
+// on top of the shadow from SAME, so its pixel value is exactly 120 by construction, not by compositing.
 // Presets (DOM order = QA order): Sample A / Sample B (milestone sampled after both; the readout prints the value
 // as text, the non-visual path) / Connect them (a strip of SAME between A and B) / Remove the shadow (cylinder and
 // shadow gone, A and B keep their paint; milestone noshadow) / Reset. Samples are records and survive Reset.
 // Copyright: our own drawing, after a well-known checker-shadow illusion (caption; claim c2). Not traced.
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -20,22 +21,19 @@ import s from "./styles.module.css";
 const SAME = "#787878"; // brightness 120: square A, square B and the strip all use this one constant
 const SAME_VALUE = parseInt(SAME.slice(1, 3), 16); // 120
 const LIGHT_LIT = "#d2d2d2"; // 210
-const DARK_SHADE = "#454545"; // 69 = 120 x 4/7
+const SHADOW_OPACITY = 3 / 7; // 210 x 4/7 = 120
 const N = 5;
 const CELL = 36;
 const BX = 22;
 const BY = 30;
 const A: [number, number] = [1, 0]; // row, col: a dark square in the light
 const B: [number, number] = [3, 3]; // a light square in the shadow
-const SHADOW = new Set(["2,3", "2,4", "3,2", "3,3", "3,4", "4,1", "4,2", "4,3", "4,4"]);
 
 const isLight = (r: number, c: number) => (r + c) % 2 === 0;
 const same = (p: [number, number], r: number, c: number) => p[0] === r && p[1] === c;
-function fill(r: number, c: number, shadow: boolean) {
+function fill(r: number, c: number) {
   if (same(A, r, c) || same(B, r, c)) return SAME;
-  const shaded = shadow && SHADOW.has(`${r},${c}`);
-  if (isLight(r, c)) return shaded ? SAME : LIGHT_LIT;
-  return shaded ? DARK_SHADE : SAME;
+  return isLight(r, c) ? LIGHT_LIT : SAME;
 }
 const centre = (p: [number, number]): [number, number] => [BX + p[1] * CELL + CELL / 2, BY + p[0] * CELL + CELL / 2];
 
@@ -43,6 +41,7 @@ export default function SameGreyInShadow({ slug }: { slug: string }) {
   const [sampledA, setSampledA] = useState<number | null>(null);
   const [sampledB, setSampledB] = useState<number | null>(null);
   const [strip, setStrip] = useState(false);
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const [shadow, setShadow] = useState(true);
 
   const v = sampledB ?? sampledA ?? SAME_VALUE;
@@ -115,7 +114,7 @@ export default function SameGreyInShadow({ slug }: { slug: string }) {
                   height={CELL - 3}
                   fill="none"
                   stroke="#ff3b8d"
-                  strokeWidth={3}
+                  strokeWidth={2}
                 />
               );
             };
@@ -138,12 +137,43 @@ export default function SameGreyInShadow({ slug }: { slug: string }) {
                         y={BY + r * CELL}
                         width={CELL}
                         height={CELL}
-                        fill={fill(r, c, shadow)}
+                        fill={fill(r, c)}
                         data-cell={`${r},${c}`}
-                        data-fill={fill(r, c, shadow)}
+                        data-fill={fill(r, c)}
                       />
                     );
                   })}
+                  <defs>
+                    <filter id={`soft${uid}`} x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation={5} />
+                    </filter>
+                    <clipPath id={`board${uid}`}>
+                      <rect x={BX} y={BY} width={N * CELL} height={N * CELL} />
+                    </clipPath>
+                  </defs>
+                  {shadow ? (
+                    <g clipPath={`url(#board${uid})`} aria-hidden="true" data-shadow="on">
+                      <ellipse
+                        cx={156}
+                        cy={148}
+                        rx={78}
+                        ry={46}
+                        transform="rotate(-44 156 148)"
+                        fill="#000000"
+                        opacity={SHADOW_OPACITY}
+                        filter={`url(#soft${uid})`}
+                      />
+                    </g>
+                  ) : null}
+                  <rect
+                    x={BX + B[1] * CELL}
+                    y={BY + B[0] * CELL}
+                    width={CELL}
+                    height={CELL}
+                    fill={SAME}
+                    data-cell="B"
+                    data-fill={SAME}
+                  />
                   {strip ? (
                     <line x1={ax} y1={ay} x2={bx} y2={by} stroke={SAME} strokeWidth={12} data-strip={SAME} />
                   ) : null}

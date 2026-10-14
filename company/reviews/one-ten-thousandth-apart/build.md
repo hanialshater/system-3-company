@@ -1,0 +1,20 @@
+# Build note: one-ten-thousandth-apart
+
+Builder: demo-builder (demo-builder-bigideas-pilot) · 2026-10-14 · from brief big-ideas.md #6 with its W-537 re-check lines (they override the draft). Claimed with `claim.mjs next big-ideas`. Simulation run, deterministic.
+
+- Numbers re-run in node, the same double-precision iteration as the check script: gap 0.0001 splits (> 0.1) at step 11, gap at step 30 = 0.616; gap 0.0000001 splits at step 21 (+10); 1,000-step averages 0.51 (from 0.3) and 0.48 (from 0.3001). `0.3 + 1e-4` gives the same runs as the literal 0.3001.
+- Picture: one chart, steps 0-40 by value 0-1, two traces (solid fg from 0.3, dashed domain from 0.3 + gap). A dashed "split N" marker for each recorded split (red for the pair now drawn, muted for the other). "Average 1,000 steps" draws two dashed level lines labelled "avg 0.51" / "avg 0.48". Readout "step k · gap g".
+- Presets, DOM order: Run 30 steps (milestone `run`) / 1,000× more precise: run (milestone `precise`) / Average 1,000 steps (recorded, not a gate, as the brief says) / Step 1 (to step 40) / Reset. Reveal after `run` and `precise`. Records and their markers survive Reset; each preset is disabled when pressing it would change nothing.
+- Departures, flagged for cm-big-ideas: (1) option C reads "Up to 1 apart, like two random numbers" so that every option carries a number (pre-flight 2); the brief's was "As far apart as two random numbers". (2) Reveal: "agreed for {n} steps" became "stayed within 0.1 until step {n}" (the recorded value is the first step past 0.1). (3) The brief's last sentence ("That is why a forecast fades after days while long-run averages can still be estimated") was cut for the word budget; it would have been a second weather claim resting on Lorenz. (4) If Average was never pressed, the limit paragraph quotes no values: "chaos limits forecasting a particular day, not necessarily the average. Average 1,000 steps compares the two runs' long-run averages."
+- Claims c1-c5, all unverified. One held citation (c3 Lorenz 1963) with the brief's fallback in the claim. No "about two weeks" anywhere.
+
+## Pre-flight v1
+1. **Title and hook.** "One ten-thousandth apart" / "The rule is exact. The two starts differ by 0.0001. Where are they after 30 steps?" Neither says whether the gap grows.
+2. **Options.** "Still about 0.0001 apart" / "About 0.01 apart" / "Up to 1 apart, like two random numbers": all numbered.
+3. **Locked stage.** Empty axes 0-1 by 0-40, the two start dots on top of each other at 0.3, readout "step 0 · gap 0.0001". No markers, no averages.
+4. **Reveal values.** "step 11": (b) milestone `run`, recorded, marker "split 11" on the chart. "10 more steps": (b) milestone `precise` minus `run` (21 − 11), marker "split 21". "0.51 and 0.48": recorded by the Average preset; the sentence appears only if it was pressed, and the lines and labels stay on the chart.
+5. **QA path.** Run 30 steps (run) → 1,000× more precise: run (precise) → Average 1,000 steps → Step 1 → Reset. Both milestones in 2 presses; every press changed the stage (QA contract passed, phone and desktop).
+6. **Reset.** Reveal after Reset (reveal-fit and own probe on :3530): "The runs stayed within 0.1 until step 11, then wandered apart like strangers. A start 1,000 times more precise bought only 10 more steps: the gap roughly doubles each step. Edward Lorenz found this in a weather model in 1963. Where it stops: each step was unpredictable, but the long-run averages matched, 0.51 and 0.48. Chaos limits forecasting a particular day, not the average." The traces are gone after Reset (step 0); the split markers and the average lines stay.
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530` (next dev): fit, crop 0 px, namedHidden 0, phoneFit true, 76 words (tool count, includes the verdict line), not a thumbnail. Smallest stage label 11.3 px at 390 wide, at predict and at the reveal (builder's own font-size probe).
+
+Stage text at any moment: readout 4 words plus chart labels (split markers, avg labels) at most 8; preset labels 13.
