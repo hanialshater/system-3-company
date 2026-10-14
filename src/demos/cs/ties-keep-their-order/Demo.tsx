@@ -5,7 +5,7 @@
 // Each step adds one row to the lane's trail. Rows are computed once by code that mirrors the
 // node check recorded in meta.json. No randomness.
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -190,43 +190,28 @@ const inB = (rows: Row[]) =>
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [n, setN] = useState({ l: 0, r: 0 });
   const ref = useRef({ l: 0, r: 0 });
-  const [running, setRunning] = useState(false);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  useEffect(() => {
-    const t = timers.current;
-    return () => t.forEach(clearTimeout);
-  }, []);
 
+  // Swap 2 is the moment a tie is thrown past its equal: the learner makes it with the swap button.
+  const KEY_SWAP = RIGHT.findIndex((row) => row.passed.length > 0) + 1; // 2
+  const sync = () => {
+    setN({ ...ref.current });
+    if (ref.current.l === 3) reach("slide-done");
+    if (ref.current.r >= KEY_SWAP) reach("swap-passed");
+  };
   const bump = (lane: "l" | "r") => {
     if (ref.current[lane] >= 3) return;
     ref.current[lane]++;
-    setN({ ...ref.current });
-    if (ref.current[lane] === 3) reach(lane === "l" ? "slide-done" : "swap-done");
+    sync();
   };
-  const rest = () => {
-    const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const tick = () => {
-      bump("l");
-      bump("r");
-    };
-    const need = Math.max(3 - ref.current.l, 3 - ref.current.r);
-    if (reduce) {
-      for (let i = 0; i < need; i++) tick();
-      return;
-    }
-    setRunning(true);
-    for (let i = 0; i < need; i++) {
-      timers.current.push(
-        setTimeout(() => {
-          tick();
-          if (i === need - 1) setRunning(false);
-        }, i * 110),
-      );
-    }
+  // Finish the slide lane and bring the swap lane up to (not past) the key swap.
+  const fastForward = () => {
+    ref.current.l = 3;
+    ref.current.r = Math.max(ref.current.r, KEY_SWAP - 1);
+    sync();
   };
 
   const doneL = n.l === 3;
-  const doneR = n.r === 3;
+  const doneR = n.r >= KEY_SWAP; // the B order is final after the key swap
   const result = (rows: Row[], done: boolean) => {
     if (!done) return <p className={s.result}>Inside B: ?</p>;
     const names = inB(rows);
@@ -253,17 +238,17 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           {result(RIGHT, doneR)}
         </div>
       </div>
+      <Control className={`${s.tap} ${s.full}`} disabled={locked || (doneL && n.r >= KEY_SWAP - 1)} onClick={fastForward}>
+        Fast-forward to swap {KEY_SWAP}
+      </Control>
       <div className={s.btns}>
-        <Control className={s.tap} disabled={locked || running || doneL} onClick={() => bump("l")}>
+        <Control className={s.tap} disabled={locked || doneL} onClick={() => bump("l")}>
           Slide next card
         </Control>
-        <Control className={s.tap} disabled={locked || running || doneR} onClick={() => bump("r")}>
-          Swap smallest to front
+        <Control className={s.tap} disabled={locked || n.r === 3} onClick={() => bump("r")}>
+          {n.r === KEY_SWAP - 1 ? `Swap ${KEY_SWAP}: watch Ana` : "Swap smallest to front"}
         </Control>
       </div>
-      <Control className={`${s.tap} ${s.full}`} disabled={locked || running || (doneL && doneR)} onClick={rest}>
-        Both: rest of the steps
-      </Control>
     </div>
   );
 }
@@ -278,13 +263,14 @@ export default function TiesKeepTheirOrder({ slug }: { slug: string }) {
         options: ["Ana, as before", "Cal", "It depends on the sorting method"],
         answer: 2,
       }}
-      exploreHint="Run both lanes to the end and read the Bs."
+      exploreHint="Fast-forward, then make swap 2 yourself and watch Ana. Read the Bs."
       minInteractions={2}
-      reveal={({ correct }) => (
+      reveal={() => (
         <>
           <p>
-            {correct ? "Your prediction held." : "Not quite."} Both lanes put the As before the Bs. Sliding never moved a card
-            past an equal one, so the Bs kept name order: Ana, Cal. On swap 2, swapping threw Ana past Cal: Cal, Ana.
+            Both lanes put the As before the Bs. Sliding never moved a card past an equal one, so the Bs kept name order:
+            Ana, Cal. Your swap 2 sent Ana from slot 2 to the end, a long jump that threw her past Cal (red outlines):
+            Cal, Ana.
           </p>
           <p>
             A sort that never lets equal items pass is called <strong>stable</strong> (sliding is insertion sort; swapping is
@@ -295,7 +281,7 @@ export default function TiesKeepTheirOrder({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["slide-done", "swap-done"]}>
+        <Milestones interact={interact} names={["slide-done", "swap-passed"]}>
           {(reach) => <Stage locked={locked} reach={reach} />}
         </Milestones>
       )}

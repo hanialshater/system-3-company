@@ -25,8 +25,9 @@ const ROADS: Road[] = [
   { from: "B", to: "A", cost: -2 },
   { from: "A", to: "C", cost: 2 },
 ];
-// The order the passes check the roads: B>A comes first, so one pass is not enough.
-const PASS_ORDER: Road[] = [ROADS[2], ROADS[3], ROADS[0], ROADS[1]];
+// The order the passes check the roads (numbered on the stage): A>C is checked before B>A lowers A,
+// so pass 1 prices C at 4 from the old A, then fixes A to 1; pass 2 re-checks A>C and lowers C to 3.
+const PASS_ORDER: Road[] = [ROADS[0], ROADS[3], ROADS[1], ROADS[2]];
 
 const START: Labels = { S: 0, A: INF, B: INF, C: INF };
 const show = (v: number) => (v === INF ? "∞" : String(v).replace("-", "−"));
@@ -38,12 +39,14 @@ function Graph({
   d,
   settled = [],
   hot = [],
+  order = [],
   late = false,
   children,
 }: {
   d: Labels;
   settled?: Town[];
   hot?: Road[];
+  order?: Road[];
   late?: boolean;
   children?: React.ReactNode;
 }) {
@@ -91,6 +94,11 @@ function Graph({
               >
                 {show(r.cost)}
               </text>
+              {order.includes(r) && (
+                <text x={mx - nx * 13 * side} y={my - ny * 13 * side + 4} textAnchor="middle" className={s.order}>
+                  {`#${order.indexOf(r) + 1}`}
+                </text>
+              )}
             </g>
           );
         })}
@@ -196,8 +204,8 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       </section>
       <section className={s.panel} aria-label="Check every road">
         <h4 className={s.head}>Check every road</h4>
-        <p className={s.rule}>Each pass checks every road once.</p>
-        <Graph d={p2.d} hot={p2.changed} />
+        <p className={s.rule}>Each pass checks every road once, in order #1 to #4.</p>
+        <Graph d={p2.d} hot={p2.changed} order={PASS_ORDER} />
         <Row>
           <Control className={`tap ${p2.pass >= 1 ? "active" : ""}`} disabled={locked || p2.pass !== 0} onClick={runPass}>
             Pass 1
@@ -226,12 +234,12 @@ export default function NegativeEdgeFoolsDijkstra({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Cheapest-first locked A at 2. When B was settled, the −2 road offered 1: too late. Even a version that then
-            corrected A to 1 leaves C at 4, because C was already priced from the old A.
+            Cheapest-first locked A at 2. When B was settled, the −2 road offered 1: too late.
           </p>
           <p>
-            Checking every road found A = 1 on the second pass, and C = 3 with it. Settling assumes no later road can make
-            a settled town cheaper; a road that subtracts breaks that.
+            Pass 1 showed the knock-on: road #2 priced C at 4 from the old A, and only then did road #4 fix A to 1. C was
+            still 4. Pass 2 re-checked road #2 and lowered C to 3. Settling assumes no later road can make a settled town
+            cheaper; a road that subtracts breaks that, and every town priced from it inherits the error.
           </p>
           <p className="muted">Bellman-Ford keeps no locks and re-checks every road, at the cost of more checks.</p>
         </>

@@ -33,12 +33,10 @@
     },
     {
       "id": "ai.one-nudge-per-mistake.c2",
-      "text": "In this toy a zero score counts as a mistake, which is why the very first point is nudged when there is no line yet.",
+      "text": "In this toy a point is right when it sits on its own side of the line (+ in the shaded side, − outside); a zero score counts as wrong, so with no line every point counts as wrong and the very first point is nudged.",
       "support": "convention",
-      "source": "Toy convention stated on the stage (locked caption) and in Demo.tsx; brief 33 in company/domains/briefs/ai.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Toy convention stated on the locked caption in Demo.tsx (v2) and in checkOne(): wrong if label·score ≤ 0; shaded side is w·x + b ≥ 0. Brief 33 in company/domains/briefs/ai.md.",
+      "status": "unverified"
     },
     {
       "id": "ai.one-nudge-per-mistake.c3",
@@ -51,12 +49,17 @@
     },
     {
       "id": "ai.one-nudge-per-mistake.c4",
-      "text": "Each nudge moves the line toward putting the missed point on the right side: the missed point's score rises by |point|² + 1 (for a + point) or falls by as much (for a − point).",
+      "text": "Each nudge moves the line toward putting the missed point on its own side (on stage, a red ring turns green): the missed point's score rises by |point|² + 1 (for a + point) or falls by as much (for a − point); points already right change nothing.",
       "support": "derivation",
-      "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "After w ← w + l·(x, y, 1), the point's score changes by l·(x² + y² + 1). Bishop 2006 §4.1.7 (the update reduces that point's error). On stage: (1,1) and (−1,0) both turn from red to green after their nudges (trace in Demo.tsx header).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.one-nudge-per-mistake.c5",
+      "text": "The 'Rest of sweep' caption lists every nudge made in that sweep; on the recommended path it reads '(−1,0) −: score 0 → wrong, nudge. Then 3 points right, no change.', and each nudged point is labelled 'nudge 1', 'nudge 2' on the stage.",
+      "support": "derivation",
+      "source": "restOfSweep() in Demo.tsx v2: after nudge 1 w = (1,1,1); (−1,0) scores −1 + 0 + 1 = 0 → nudge to (2,1,0); (2,−1) scores 3, (−1,−2) scores −4, (0,2) scores 2: all right.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:perceptron-learning",
     "prerequisites": [],

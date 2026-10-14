@@ -25,21 +25,17 @@
   "claims": [
     {
       "id": "physics.dam-depth-not-width.c1",
-      "text": "In still fresh water, the pressure 10 m down (not counting the air above) is about 98.1 kPa, whatever the width of the container.",
+      "text": "In still fresh water, the pressure 10 m down (not counting the air above) is about 98.1 kPa, whatever the width of the container; the stage logs 98.1 kPa for every width the learner visits at 10 m (2 cm tube to 500 m lake), and the reveal names only those widths.",
       "support": "derivation",
       "source": "Hydrostatics, P = rho g h = 1000 x 9.81 x 10 = 98,100 Pa. Re-derived by integrating dP/dz = rho g down a column in artifacts/scratch/w4phys/check.mjs: 98.10 kPa at 10 m; 19.62 to 196.20 kPa for the stage's 2-20 m depths. No width term appears.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.dam-depth-not-width.c2",
-      "text": "Pressure at a depth is the weight of the column of water straight above each square metre, so a wider lake adds columns side by side, not taller ones.",
+      "text": "Pressure at a depth is the weight of the column of water straight above each square metre (drawn as a dashed column over the gauge), so a wider lake adds columns side by side, not taller ones.",
       "support": "source",
       "source": "OpenStax University Physics Vol. 1, section 14.1 Fluids, Density, and Pressure, subsection Variation of Pressure with Depth (the column argument); the hydrostatic paradox (Stevin, 1586; Pascal).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.dam-depth-not-width.c3",
@@ -81,7 +77,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:fluid-pressure-depth",
     "prerequisites": [

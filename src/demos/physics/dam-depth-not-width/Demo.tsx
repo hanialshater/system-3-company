@@ -6,8 +6,10 @@
 // scale (6 px per m); widths are NOT to scale (the stage says so) because a 2 cm tube and a
 // 500 m lake cannot share one honest horizontal scale on a phone.
 //
-// Earned reveal: milestones "width-changed" (a different width seen at 10 m depth) and
-// "depth-changed". QA path: width slider first (index 2 -> 4), then the depth slider (10 -> 14 m).
+// Earned reveal: milestones "width-changed" (a second width seen at 10 m depth; the start, the
+// question's 2 cm tube, counts as the first) and "depth-changed". A log under the picture lists
+// every width seen at 10 m with its reading, so the sameness is on screen at once.
+// QA path: width slider first (index 0 -> 2), then the depth slider (10 -> 14 m).
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -35,9 +37,9 @@ const K = 6; // px per m depth
 const CX = 170;
 
 export default function DamDepthNotWidth({ slug }: { slug: string }) {
-  const [wi, setWi] = useState(2);
+  const [wi, setWi] = useState(0);
   const [depth, setDepth] = useState(BASE_DEPTH);
-  const [widthsAt10, setWidthsAt10] = useState<number[]>([]);
+  const [widthsAt10, setWidthsAt10] = useState<number[]>([0]); // the start is seen once the stage unlocks
 
   return (
     <Lesson
@@ -47,20 +49,21 @@ export default function DamDepthNotWidth({ slug }: { slug: string }) {
         options: ["The lake", "The tube", "The same"],
         answer: 2,
       }}
-      exploreHint="Change the width at 10 m deep, then change the depth."
+      exploreHint="Start at the tube: widen it to a lake at 10 m deep, then change the depth."
       minInteractions={2}
       reveal={() => {
         const seen = widthsAt10.map((i) => WIDTHS[i].label);
         return (
           <>
             <p>
-              At {BASE_DEPTH} m deep the gauge read <strong>{fmtP(BASE_DEPTH)}</strong> for the{" "}
-              {seen.length ? seen.join(", ") : "every width"}: width changed nothing. Changing the depth to {depth} m
+              At {BASE_DEPTH} m deep the gauge read <strong>{fmtP(BASE_DEPTH)}</strong> for the {seen.join(", ")}, as your
+              log shows: width changed nothing. Changing the depth to {depth} m
               changed it to {fmtP(depth)}.
             </p>
             <p>
-              Pressure at a point is the weight of the water column straight above each square metre: ρ × g × h = 1000 ×
-              9.81 × {BASE_DEPTH} = {fmtP(BASE_DEPTH)}. A wider lake has more columns side by side, not taller ones.
+              Pressure at a point is the weight of the water column straight above each square metre (the dashed column
+              over the gauge): ρ × g × h = 1000 × 9.81 × {BASE_DEPTH} = {fmtP(BASE_DEPTH)}. A wider lake has more columns
+              side by side, not taller ones.
             </p>
             <p className="muted">
               The lake&apos;s whole bottom carries far more total force, spread over far more area. Gauge pressure: air
@@ -96,6 +99,15 @@ export default function DamDepthNotWidth({ slug }: { slug: string }) {
                   <rect x={left} y={top} width={w.px} height={depth * K} className={s.water} />
                   <path d={`M${left},${wallTop} L${left},${BOTTOM} L${left + w.px},${BOTTOM} L${left + w.px},${wallTop}`} className={s.wall} />
                   <line x1={left - 6} y1={top} x2={left + w.px + 6} y2={top} className={s.surface} />
+                  {/* the column straight above the gauge: same height whatever the width */}
+                  {!locked && (
+                    <>
+                      <rect x={CX - Math.min(4, w.px / 2 - 1)} y={top} width={Math.min(8, w.px - 2)} height={depth * K} className={s.column} />
+                      <text x={CX + 8} y={top + 10} className={s.tickLabel}>
+                        column
+                      </text>
+                    </>
+                  )}
                   {/* gauge at the bottom */}
                   <circle cx={CX} cy={BOTTOM} r={4} className={s.gauge} />
                   <text x={CX} y={BOTTOM + 14} textAnchor="middle" className={s.reading}>
@@ -103,6 +115,11 @@ export default function DamDepthNotWidth({ slug }: { slug: string }) {
                   </text>
                 </svg>
 
+                <p className={s.log} aria-live="polite">
+                  {locked
+                    ? "At 10 m: ?"
+                    : `At ${BASE_DEPTH} m: ${widthsAt10.map((i) => `${WIDTHS[i].label.split(" ").pop()} ${pKpa(BASE_DEPTH).toFixed(1)}`).join(" · ")} kPa`}
+                </p>
                 <Slider
                   label="Width"
                   value={wi}
@@ -114,11 +131,8 @@ export default function DamDepthNotWidth({ slug }: { slug: string }) {
                   onChange={(i) => {
                     setWi(i);
                     if (depth === BASE_DEPTH) {
-                      setWidthsAt10((xs) => {
-                        const base = xs.length ? xs : [wi];
-                        return base.includes(i) ? base : [...base, i];
-                      });
-                      reach("width-changed");
+                      setWidthsAt10((xs) => (xs.includes(i) ? xs : [...xs, i]));
+                      if (i !== 0 || widthsAt10.length > 1) reach("width-changed");
                     }
                   }}
                 />

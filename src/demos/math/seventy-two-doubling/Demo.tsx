@@ -4,11 +4,14 @@
 // Dashed line: simple interest, 100 (1 + r t), which is the "100 / r years" intuition.
 // The exact doubling time is ln 2 / ln(1 + r); 72 / r lands close to it for everyday rates.
 //   r = 8%: exact 9.006 years (1.08^9 = 1.999), 72/8 = 9, simple interest 12.5 years.
-// The reveal waits until the learner has looked at 8%.
+// The reveal waits until the learner has looked at 8% and then at one other rate, so the shortcut is
+// seen working at a rate it was not picked for. The slider starts at 7% (QA's two arrow presses
+// land on 8 and then 9).
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
-import { useEffect, useRef, useState } from "react";
+import { useMilestones } from "@/kit/milestones";
+import { useState } from "react";
 import s from "./styles.module.css";
 
 const W = 320;
@@ -22,9 +25,13 @@ const TOP = 230;
 
 const yOf = (v: number) => Y0 - (Math.min(v, TOP) / TOP) * (Y0 - Y1);
 const exactT = (r: number) => Math.log(2) / Math.log(1 + r / 100);
+const ASK = 8;
+const START = 7;
+const MILESTONES = ["at-ask", "other-rate"] as const;
 
 export default function SeventyTwoDoubling({ slug }: { slug: string }) {
-  const [rate, setRate] = useState(6);
+  const [rate, setRate] = useState(START);
+  const [other, setOther] = useState<number | null>(null); // the last rate other than 8 seen after 8
 
   return (
     <Lesson
@@ -34,7 +41,8 @@ export default function SeventyTwoDoubling({ slug }: { slug: string }) {
         options: ["12.5 years", "9 years", "6 years"],
         answer: 1,
       }}
-      exploreHint="Set 8% and see where the bars cross the doubled line."
+      exploreHint="Set 8% and see where the bars cross the doubled line. Then try another rate and compare the shortcut."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
@@ -43,25 +51,37 @@ export default function SeventyTwoDoubling({ slug }: { slug: string }) {
             the bars pull away and hit 200 sooner.
           </p>
           <p>
-            The shortcut: 72 divided by the rate. (72 is close to 100 × ln 2, about 69, and divides evenly by many rates.) At 8% that is 9, at 6% it is 12, at 12% it is 6. From 5% to 20% it
-            stays within about 0.2 years of the exact answer you saw.
+            The shortcut: 72 divided by the rate. At 8% that is 9.
+            {other !== null
+              ? ` At ${other}%, which you tried next, it gave ${(72 / other).toFixed(1)} against the exact ${exactT(other).toFixed(1)} years on the chart.`
+              : ""}{" "}
+            From 5% to 20% it stays within about 0.2 years of the exact answer, and 72 divides evenly by many rates (2, 3,
+            4, 6, 8, 9, 12).
           </p>
         </>
       )}
     >
-      {(ctx) => <Stage {...ctx} rate={rate} setRate={setRate} />}
+      {(ctx) => <Stage {...ctx} rate={rate} setRate={setRate} setOther={setOther} />}
     </Lesson>
   );
 }
 
-function Stage({ locked, interact, rate, setRate }: StageContext & { rate: number; setRate: (v: number) => void }) {
-  const fired = useRef(false);
-  useEffect(() => {
-    if (!locked && rate === 8 && !fired.current) {
-      fired.current = true;
-      interact();
+function Stage({
+  locked,
+  interact,
+  rate,
+  setRate,
+  setOther,
+}: StageContext & { rate: number; setRate: (v: number) => void; setOther: (v: number) => void }) {
+  const { reach, reached } = useMilestones(interact, MILESTONES);
+  const change = (v: number) => {
+    setRate(v);
+    if (v === ASK) reach("at-ask");
+    else if (reached("at-ask")) {
+      setOther(v);
+      reach("other-rate");
     }
-  }, [locked, rate, interact]);
+  };
 
   const r = rate / 100;
   const T = exactT(rate);
@@ -117,7 +137,7 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
             </text>
             {simpleT <= YEARS && <circle cx={xOf(simpleT)} cy={yOf(200)} r={3} className={s.simpleDot} />}
             {simpleT <= YEARS && (
-              <text x={xOf(simpleT)} y={yOf(200) - 7} textAnchor={xOf(simpleT) > W - 50 ? "end" : "middle"} className={s.axis}>
+              <text x={xOf(simpleT)} y={yOf(200) + 13} textAnchor={xOf(simpleT) > W - 50 ? "end" : "middle"} className={s.axis}>
                 simple: {simpleT.toFixed(1)}
               </text>
             )}
@@ -129,10 +149,10 @@ function Stage({ locked, interact, rate, setRate }: StageContext & { rate: numbe
         {locked ? "Make a prediction to start." : "Bars: compounded. Dashed: simple interest, where only the first 100 earns."}
       </p>
 
-      <Slider label="Growth per year" value={rate} min={2} max={20} disabled={locked} format={(v) => `${v}%`} onChange={setRate} />
+      <Slider label="Growth per year" value={rate} min={2} max={20} disabled={locked} format={(v) => `${v}%`} onChange={change} />
       <Row>
         <Readout label="Doubles in" value={locked ? "?" : `${T.toFixed(1)} yrs`} />
-        <Readout label="Shortcut 72 ÷ rate" value={locked ? "?" : `${(72 / rate).toFixed(1)}`} />
+        <Readout label={locked ? "Shortcut" : "Shortcut 72 ÷ rate"} value={locked ? "?" : `${(72 / rate).toFixed(1)}`} />
         <Readout label="Simple" value={locked ? "?" : `${simpleT.toFixed(1)} yrs`} />
       </Row>
     </div>

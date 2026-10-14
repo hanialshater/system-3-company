@@ -42,19 +42,17 @@
     },
     {
       "id": "chemistry.ten-to-one-buffer.c3",
-      "text": "Each tenfold change in the base-to-acid ratio moves the pH by 1; equal amounts give pH = pKa however much buffer there is.",
+      "text": "Each tenfold change in the base-to-acid ratio moves the pH by 1; equal amounts give pH = pKa however much buffer there is (on stage, after 100 acid : 10 base, the learner sets equal amounts other than 10 of each, e.g. 100 of each, and the marker sits back at 4.76).",
       "support": "derivation",
-      "source": "From c2: log10(10) = 1; log10(1) = 0 for any equal amounts (10:10 and 100:100 both give 4.76 on the stage).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "From c2: log10(10) = 1; log10(1) = 0 for any equal amounts (10:10, 100:100, 1:1 all give 4.76 on the stage). Demo.tsx v3: milestone scaled-equal requires equal amounts different from the start after the 10:1 state; the reveal quotes the amount the learner set.",
+      "status": "unverified"
     },
     {
       "id": "chemistry.ten-to-one-buffer.c4",
       "text": "More buffer only makes the pH harder to push (more buffer capacity).",
       "support": "source",
-      "source": "Buffer capacity grows with the total buffer concentration (Harris, Quantitative Chemical Analysis, ch. 9, 'buffer capacity'; one-dose-of-acid lesson).",
-      "status": "verified",
+      "source": "Buffer capacity grows with the total buffer concentration (Harris, Quantitative Chemical Analysis, ch. 9, 'buffer capacity'; one-dose-of-acid lesson). | WITHDRAWN v3 (demo-builder, 2026-10-14): sentence removed from the reveal; nothing on stage showed it (r5 finding).",
+      "status": "withdrawn",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
@@ -98,7 +96,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:henderson-hasselbalch",
     "prerequisites": [
