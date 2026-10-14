@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 150px; max-height: 32dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.presets :global(.row) > :global(.control) { flex: 1 1 40%; min-width: 0; white-space: nowrap; padding: 6px 4px; min-height: 44px; }
+.wrap :global(.readout) { flex: 1 1 0; min-width: 0; padding-top: 2px; padding-bottom: 2px; }
+.wrap :global(.readout-label), .wrap :global(.readout-value) { white-space: nowrap; }
+.grid { stroke: var(--line); stroke-width: 1; }
+.axis { stroke: var(--fg); stroke-width: 1.2; opacity: 0.7; }
+.tick { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.title { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.panel { fill: color-mix(in srgb, var(--fg) 4%, transparent); }
+.half { fill: var(--fg); font-size: 11px; font-weight: 700; }
+.allBar { fill: color-mix(in srgb, var(--muted) 55%, var(--bg-2)); }
+.quakeBar { fill: var(--domain); }
+.yearBar { fill: color-mix(in srgb, var(--domain) 55%, var(--bg-2)); }
+.topBar { fill: var(--fg); }
+.val { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.name { fill: var(--fg); font-size: 11px; }
+.note { fill: var(--muted); font-size: 11px; }
+.topNote { fill: var(--fg); font-size: 11px; font-weight: 700; }

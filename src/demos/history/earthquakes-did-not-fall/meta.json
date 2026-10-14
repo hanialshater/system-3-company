@@ -1,0 +1,104 @@
+{
+  "slug": "earthquakes-did-not-fall",
+  "title": "What did earthquake deaths do?",
+  "hook": "Disaster deaths fell. And earthquakes?",
+  "domain": "history",
+  "concept": "earthquake-deaths-record",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-3"
+  },
+  "learner": {
+    "knows": [
+      "that disasters kill fewer people than they used to",
+      "that a rate per person can fall while a count rises (probability:per-capita-rates)"
+    ],
+    "doesNotKnow": [
+      "that recorded earthquake deaths did not fall: they rose a little from 1900-1958 to 1959-2017, while all disaster deaths fell by 71%"
+    ]
+  },
+  "misconception": "Deaths from every kind of natural disaster have fallen alike.",
+  "objective": "The learner can say that in this record all natural-disaster deaths fell from 25.2 to 7.4 million between 1900-1958 and 1959-2017 while earthquake deaths rose from 1.21 to 1.37 million, that per person the yearly earthquake risk still fell (9.7 to 4.5 per million) because population more than doubled, and that three later years made up 53% of the later total.",
+  "claims": [
+    {
+      "id": "history.earthquakes-did-not-fall.c1",
+      "text": "Recorded deaths from all natural disasters: 25.2 million in 1900-1958 and 7.4 million in 1959-2017, about 70% (71%) fewer (question; stage bars 'All'; readout 'All disasters 25.2M → 7.4M'; reveal; hook 'Disaster deaths fell').",
+      "support": "source",
+      "source": "history-data.mjs: vega, vega-datasets-3.2.1 package/data/disasters.csv (EM-DAT via Our World in Data, per the package description), entity 'All natural disasters', column Deaths, summed 1900-1958 = 25,237,230 and 1959-2017 = 7,369,926 (one year, 1904, has no row and counts as zero). history-cycle2-check.mjs section 19 ('all disasters').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.earthquakes-did-not-fall.c2",
+      "text": "Recorded earthquake deaths rose from 1.21 million in 1900-1958 to 1.37 million in 1959-2017 (+14%, 'about 15%') (stage bars 'Quakes'; readout 'Earthquakes 1.21M → 1.37M'; reveal).",
+      "support": "source",
+      "source": "history-data.mjs: vega, disasters.csv, entity 'Earthquake', Deaths summed 1900-1958 = 1,205,549 and 1959-2017 = 1,371,252; years with no row (1900, 1904, 1911, 1916, 1919, 1921, 1937) count as zero. history-cycle2-check.mjs section 19 ('earthquakes', 'years with no earthquake row').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.earthquakes-did-not-fall.c3",
+      "text": "The world's population more than doubled between the halves (mean 2.11 bn to 5.19 bn), so earthquake deaths per million people a year fell from 9.7 to 4.5 (stage 'world 2.11 bn', 'world 5.19 bn', bars 9.7 and 4.5; readout 'Per million a year 9.7 → 4.5'; reveal).",
+      "support": "derivation",
+      "source": "history-data.mjs: gmpop (Gapminder world population), mean of 1900-1958 and of 1959-2017; deaths per million a year = half total / 59 / mean population × 10^6. history-cycle2-check.mjs section 19 ('per person').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.earthquakes-did-not-fall.c4",
+      "text": "Three years, 1976, 2004 and 2010, made up 53% of the 1959-2017 earthquake deaths (stage: those yearly bars marked, label '1976, 2004, 2010: 53%'; readout 'Top 3 later years 53%'; reveal). Years only: the file names no place or event.",
+      "support": "derivation",
+      "source": "history-data.mjs: vega, disasters.csv, Earthquake: 1976 276,994, 2004 227,290, 2010 226,733 of 1,371,252. history-cycle2-check.mjs section 19 ('three biggest years').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.earthquakes-did-not-fall.c5",
+      "text": "Where it stops: a single year can change a half-century's total, so a trend in earthquake deaths is hard to read (reveal).",
+      "support": "derivation",
+      "source": "From c2 and c4: the half-totals differ by 165,703 deaths, less than any one of the three biggest later years (each above 226,000). No held source sentence in this reveal (brief: 'Source, held: none').",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Deaths from a cause stay the same while the population doubles. What happens to the risk per person?",
+    "options": [
+      "It halves",
+      "It stays the same",
+      "It doubles"
+    ],
+    "answer": 0,
+    "why": "The same deaths spread over twice as many people is half the risk per person, which is why earthquake deaths could rise a little while the yearly risk per million fell from 9.7 to 4.5."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:earthquake-deaths-record",
+    "also": [],
+    "prerequisites": [
+      "probability:per-capita-rates"
+    ],
+    "level": "intro",
+    "strand": "events-data",
+    "references": [],
+    "tags": [
+      "earthquakes",
+      "natural disasters",
+      "EM-DAT",
+      "per capita",
+      "rare events"
+    ]
+  },
+  "format": "side-by-side",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts",
+    "side-by-side"
+  ]
+}
