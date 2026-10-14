@@ -1,0 +1,10 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.4em; }
+.key { margin: 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
+.outCell { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.inCell { fill: color-mix(in srgb, var(--domain) 60%, var(--bg-2)); stroke: var(--domain); stroke-width: 1; }
+.next { stroke: var(--good); stroke-width: 3; stroke-dasharray: 4 2; }
+.changed { stroke: var(--warn); stroke-width: 3.5; stroke-dasharray: none; }
+.lab { fill: var(--fg); font-size: 12px; font-weight: 700; pointer-events: none; font-variant-numeric: tabular-nums; }
+.labIn { fill: var(--fg); font-size: 12px; font-weight: 800; pointer-events: none; font-variant-numeric: tabular-nums; }
