@@ -105,7 +105,7 @@ export default function ClusterStopsTheCascade({ slug }: { slug: string }) {
   useEffect(() => {
     if (focus !== null && GROUP.includes(focus) && start === "01" && t >= RUN["01"].last) setSawIn(focus);
   }, [focus, start, t]);
-  const quoted = focus !== null && GROUP.includes(focus) && start === "01" ? focus : sawIn;
+  const quoted = sawIn; // only a group member focused on the 0,1 final
   const endFriends = (p: number) => NB[p].filter((j) => RUN["01"].at[j] >= 0).length;
 
   return (

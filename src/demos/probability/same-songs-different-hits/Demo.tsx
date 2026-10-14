@@ -99,8 +99,8 @@ export default function SameSongsDifferentHits({ slug }: { slug: string }) {
           <p>
             With copying on, the best song finished anywhere from {span(on.high, on.low).replace("–", " to ")} across the 8 worlds (lowest in
             world {on.lowWorlds.join(", ")}). With copying off, same songs and same listeners, only {span(off.high, off.low).replace("–", " to ")}.
-            Yet it was 1st in {on.first} of 8 worlds with copying on and {off.first} of 8 with it off: copying did not
-            hide quality, it made the result unpredictable. The top song in each world took {range(on.top)} of the
+            Copying did not stop the best song winning as often: {on.first} of 8 worlds with copying on and {off.first} of 8
+            with it off. It made the result unpredictable: the top song in each world took {range(on.top)} of the
             picks, against at most {Math.max(...off.top.map(pct))}% with copying off.
           </p>
           <p>
