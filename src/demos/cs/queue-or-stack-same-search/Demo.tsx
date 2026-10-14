@@ -13,12 +13,12 @@ import s from "./styles.module.css";
 
 const ADJ: Record<string, string> = { A: "BC", B: "ADE", C: "AF", D: "B", E: "BF", F: "CE" };
 const POS: Record<string, [number, number]> = {
-  A: [89, 30],
-  B: [50, 92],
-  C: [128, 92],
-  D: [26, 154],
-  E: [80, 154],
-  F: [140, 154],
+  A: [89, 36],
+  B: [50, 98],
+  C: [128, 98],
+  D: [26, 160],
+  E: [80, 160],
+  F: [140, 160],
 };
 const EDGES = ["AB", "AC", "BD", "BE", "CF", "EF"];
 const LETTERS = "ABCDEF";
@@ -49,13 +49,14 @@ function run(fromTop: boolean): Snap[] {
   return out;
 }
 
-function Panel({ title, snap, edge, explore }: { title: string; snap: Snap; edge: "front" | "top"; explore: boolean }) {
+function Panel({ title, snap, edge, explore, done }: { title: string; snap: Snap; edge: "front" | "top"; explore: boolean; done: boolean }) {
   const { took, todo, hops, from } = snap;
   const visited = new Set(took.split(""));
   const next = edge === "front" ? 0 : todo.length - 1;
   const label = `${title}: took ${took.split("").join(" ")}, to-do ${todo ? todo.split("").join(" ") : "empty"}`;
   return (
-    <svg viewBox="0 0 178 264" className={`stage-svg ${s.panel}`} role="img" aria-label={label}>
+    <div className={s.panel}>
+    <svg viewBox="0 0 178 270" className="stage-svg" role="img" aria-label={label}>
       <text x={89} y={11} textAnchor="middle" className={s.title}>
         {title}
       </text>
@@ -79,12 +80,22 @@ function Panel({ title, snap, edge, explore }: { title: string; snap: Snap; edge
         const on = visited.has(v);
         const h = hops[v];
         const side = v === "B" ? "L" : v === "C" || v === "A" ? "R" : "D";
+        const mark = done && v === "E";
         return (
           <g key={v}>
+            {mark && <circle cx={x} cy={y} r={20} fill="none" stroke="var(--fg)" strokeWidth={2} strokeDasharray="4 3" />}
             <circle cx={x} cy={y} r={15} fill={on ? "var(--domain)" : "var(--bg-2)"} stroke={on ? "var(--domain)" : "var(--line)"} strokeWidth={2} />
-            <text x={x} y={y + 4} textAnchor="middle" className={on ? s.numOn : s.letter}>
-              {on ? took.indexOf(v) + 1 : v}
+            <text x={x} y={y + 5} textAnchor="middle" className={on ? s.letterOn : s.letter}>
+              {v}
             </text>
+            {on && (
+              <g>
+                <circle cx={x + 12} cy={y - 12} r={7.5} fill="var(--bg)" stroke="var(--fg)" strokeWidth={1.2} />
+                <text x={x + 12} y={y - 8.8} textAnchor="middle" className={s.badge}>
+                  {took.indexOf(v) + 1}
+                </text>
+              </g>
+            )}
             {on && (
               <text
                 x={side === "L" ? x - 19 : side === "R" ? x + 19 : x}
@@ -98,11 +109,11 @@ function Panel({ title, snap, edge, explore }: { title: string; snap: Snap; edge
           </g>
         );
       })}
-      <text x={4} y={197} className={s.small}>
+      <text x={4} y={203} className={s.small}>
         to do:
       </text>
       {todo.length === 0 && (
-        <text x={46} y={197} className={s.small}>
+        <text x={46} y={203} className={s.small}>
           empty
         </text>
       )}
@@ -110,23 +121,24 @@ function Panel({ title, snap, edge, explore }: { title: string; snap: Snap; edge
         const isNext = explore && i === next;
         return (
           <g key={v}>
-            <rect x={6 + i * 29} y={203} width={25} height={25} rx={5} fill="var(--bg-2)" stroke={isNext ? "var(--fg)" : "var(--line)"} strokeWidth={isNext ? 3 : 1.5} />
-            <text x={18.5 + i * 29} y={220} textAnchor="middle" className={s.tile}>
+            <rect x={6 + i * 29} y={209} width={25} height={25} rx={5} fill="var(--bg-2)" stroke={isNext ? "var(--fg)" : "var(--line)"} strokeWidth={isNext ? 3 : 1.5} />
+            <text x={18.5 + i * 29} y={226} textAnchor="middle" className={s.tile}>
               {v}
             </text>
           </g>
         );
       })}
       {todo.length > 0 && (
-        <text x={18.5 + (edge === "front" ? 0 : todo.length - 1) * 29} y={240} textAnchor="middle" className={s.small}>
+        <text x={18.5 + (edge === "front" ? 0 : todo.length - 1) * 29} y={246} textAnchor="middle" className={s.small}>
           ↑ {edge}
         </text>
       )}
-      <text x={6} y={258} className={s.order}>
+      <text x={6} y={264} className={s.order}>
         Order: {took.split("").join(" ")}
         {took.length < 6 ? " …" : ""}
       </text>
     </svg>
+    </div>
   );
 }
 
@@ -160,8 +172,8 @@ function Stage({ locked, explore, interact }: { locked: boolean; explore: boolea
     <div className={s.wrap}>
       <p className={s.rule}>Take a place, add its unseen neighbours. One difference: take from the front, or the top.</p>
       <div className={s.panels}>
-        <Panel title="Queue" snap={queue[takes - 1]} edge="front" explore={explore && !done} />
-        <Panel title="Stack" snap={stack[takes - 1]} edge="top" explore={explore && !done} />
+        <Panel title="Queue" snap={queue[takes - 1]} edge="front" explore={explore && !done} done={done} />
+        <Panel title="Stack" snap={stack[takes - 1]} edge="top" explore={explore && !done} done={done} />
       </div>
       <Row>
         <button
@@ -206,8 +218,8 @@ export default function QueueOrStackSameSearch({ slug }: { slug: string }) {
             <strong>A C F E B D</strong>, going deep first.
           </p>
           <p>
-            Same steps; only which waiting place came next changed. Look at E: the queue found it 2 hops from A, the stack 3
-            (through C and F).
+            Same steps; only which waiting place came next changed. Look at the circled E: the queue found it 2 hops from A
+            (through B), the stack 3 (through C and F). The small numbers show each list&rsquo;s visit order.
           </p>
           <p className="muted">Taking ring by ring is why a queue finds routes with the fewest hops.</p>
         </>

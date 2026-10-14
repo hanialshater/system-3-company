@@ -23,3 +23,12 @@ Built from brief #24 and the spec `company/design/specs/tic-tac-toe-is-a-draw.md
 
 ## Checks skipped (coordinator order, machine out of memory)
 No next build, QA, walkthrough or full tsc ran. `npm run check` passed. An earlier tsc run found two missing-children errors in tic-tac-toe Demo.tsx, which were fixed but not retyped. Status stays draft; chief of staff runs integrated QA and walkthrough after merge.
+
+
+## r5 revision (v3, 2026-10-14, wave D)
+Answers 2026-10-14-learner-adult-beginner-r5.md (revise, top finding: the empty-board answer was told, not seen).
+- New bridge row under the endgame tree: the empty board (X to move) and X's three kinds of first move (corner, edge, centre). It unlocks after the endgame's top board is scored. Tapping a first move shows its value from the same two rules, computed in Demo.tsx by a memoized minimax (`solve`); tapping the empty board lets X pick the best and lines up the draws.
+- Gate: milestones o-scored, top-scored, empty-scored (minInteractions 3), so the reveal needs the empty-board state it explains. DOM order: 3 middles, top, 3 first moves, empty: 8 controls, each reachable by one press in order.
+- Leaves that O's pick avoids and that were better for X are struck through (minor finding 2); leaf captions and labels larger (finding 3).
+- Reveal and hook rewritten; c1, c2, c4 reworded and set unverified. The other six first moves are mirror copies: in a code comment and c1's source, not on the stage.
+- Not run (coordinator order): next build, QA, walkthrough, tsc. A TypeScript transpile (syntax only) passed; `npm run registry` and `npm run check` passed. The bridge SVG has max-height none so its overlay tap targets line up; check the total stage height on a phone in the walkthrough.
