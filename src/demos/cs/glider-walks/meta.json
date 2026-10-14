@@ -1,0 +1,91 @@
+{
+  "slug": "glider-walks",
+  "title": "Five cells, four steps",
+  "hook": "Every cell only counts its neighbours. Watch what five cells do in four steps.",
+  "domain": "cs",
+  "concept": "game-of-life",
+  "format": "Storyboard / scrub",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a grid of cells, each live or empty",
+      "a neighbour is one of the 8 cells touching a cell"
+    ],
+    "doesNotKnow": [
+      "that tiny local rules can make a pattern that travels",
+      "what a glider is"
+    ]
+  },
+  "misconception": "Simple rules about neighbours can only make simple, static or dying patterns.",
+  "objective": "The learner can explain that a glider keeps 5 live cells every step, that its shape returns after 4 steps one cell right and one down, and that no rule says to move.",
+  "claims": [
+    {
+      "id": "cs.glider-walks.c1",
+      "text": "A glider has 5 live cells at every generation from 0 to 4, and at generation 4 it is the generation-0 shape moved one cell right and one cell down.",
+      "support": "simulation",
+      "source": "Builder's node script: glider (1,0) (2,1) (0,2) (1,2) (2,2) (x right, y down), rule live-with-2-or-3-lives, empty-with-exactly-3-born, else dies; live counts 5,5,5,5,5; generation 4 = (2,1) (3,2) (1,3) (2,3) (3,3) = generation 0 shifted by (+1,+1). The stage places the glider at offset (1,1) on a 7x7 grid so it never meets the edge. TheAlgorithms/Python used only as a reference; no code copied.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.glider-walks.c2",
+      "text": "In the first step two cells die (the glider's cells with only 1 live neighbour) and two cells are born (empty cells with exactly 3 live neighbours); the other three live cells stay.",
+      "support": "simulation",
+      "source": "Builder's node script, gen 0 to gen 1 in the glider's own coordinates: (1,0) has 1 live neighbour and dies; (0,2) has 1 and dies; (2,1) has 3, (1,2) has 3 and (2,2) has 2 and live on; (0,1) and (1,3) have exactly 3 and are born. Stage neighbour counts come from the same function.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.glider-walks.c3",
+      "text": "The rule is: a live cell with 2 or 3 live neighbours stays alive, an empty cell with exactly 3 live neighbours comes alive, and every other cell dies or stays empty; this is Conway's Game of Life, and the five-cell pattern is called a glider.",
+      "support": "source",
+      "source": "Gardner, M. (1970), 'Mathematical Games: The fantastic combinations of John Conway's new solitaire game \"life\"', Scientific American, October 1970.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.glider-walks.c4",
+      "text": "Patterns in Conway's Game of Life can be built to compute anything a computer can.",
+      "support": "source",
+      "source": "Berlekamp, Conway and Guy, Winning Ways for your Mathematical Plays, 1982, ch. 25 (a Life computer built from gliders and guns; Life is Turing complete).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.glider-walks.c5",
+      "text": "No rule says move: each cell only counts its neighbours, and the pattern travels.",
+      "support": "derivation",
+      "source": "The rule in Demo.tsx step() reads only a cell's own state and its 8 neighbours; no cell or pattern has a position or velocity. Travel is the observed generation-4 result in c1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In Conway's Game of Life no rule says 'move'. Why does a glider still travel across the grid?",
+    "options": [
+      "Each step the neighbour-count rule rebuilds the same shape one cell over after 4 steps",
+      "Each live cell remembers which way to walk",
+      "The grid slides under the pattern"
+    ],
+    "answer": 0,
+    "why": "Cells only count live neighbours. Applied step after step, that rule gives the glider back after 4 generations shifted one cell right and one down."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "cs:game-of-life",
+    "also": [],
+    "prerequisites": ["cs:finite-state-machine"],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": ["cellular-automata", "game-of-life", "glider", "emergence"]
+  },
+  "interactions": ["choice-before-reveal", "storyboard-scrub", "step-run-button", "milestone-gate"]
+}
