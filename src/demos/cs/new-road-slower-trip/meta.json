@@ -126,9 +126,11 @@
       "id": "cs.new-road-slower-trip.c12",
       "text": "On the stage, a triangle marks the quicker of the two trips shown, and 'Switch back' is the trip time for one driver who leaves the new route for an old route.",
       "support": "convention",
-      "source": "Labels defined in Demo.tsx (Faster marker beside whichever of New route / Switch back is lower; Switch back = oldRoute(v), checked by c5 at s = 4,000). Reveal frame now also shows 'Before link 65' (c2).",
+      "source": "Labels defined in Demo.tsx (Faster marker beside whichever of New route / Switch back is lower; Switch back = oldRoute(v), checked by c5 at s = 4,000). Reveal frame now also shows 'Before link 65' (c2). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Demo.tsx draws the triangle (aria 'quicker') beside whichever of New route / Switch back is lower, only with the link open; stage note reads 'Switch back: one driver leaving the new route. ▲: the quicker trip.' Switch back = oldRoute(v) = (2000 + v/2)/100 + 45; a driver moving from S-A-B-E to S-A-E (or S-B-E) meets exactly that load on the busy road, so it is that driver's trip time (85 at 4,000, c5). Before link 65 shown in reveal frame (c2).",
       "address": "stage note under the readout",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

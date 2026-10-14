@@ -32,8 +32,10 @@
       "id": "probability.the-giant-appears.c1",
       "text": "In the lesson's world of 200 people (seed 1), 100 random friendships give a biggest connected group of 36 people (18%) and 200 friendships give 148 people (74%); 50 give 9, 125 give 76 (38%), 150 give 110 (55%) and 300 give 183 (92%).",
       "support": "simulation",
-      "source": "model.ts: mulberry32(1); each link is a random pair a != b not already linked (a = floor(rng()*200), b = floor(rng()*200)); the first m links form the world with m links; biggest group by union-find. Node re-run reproduces 9, 36, 110, 148, 183 at m = 50, 100, 150, 200, 300 (183/200 = 91.5%, shown rounded as 92%; 9/200 = 4.5% shown as 5%). Seed 1 was the first seed tried, but it is one world: see c2 for the spread. Revision v2: node re-run (tsx on model.ts) also gives 76 at m = 125 (76/200 = 38%); the jump from 36 to 76 takes only 25 links.",
-      "status": "unverified"
+      "source": "model.ts: mulberry32(1); each link is a random pair a != b not already linked (a = floor(rng()*200), b = floor(rng()*200)); the first m links form the world with m links; biggest group by union-find. Node re-run reproduces 9, 36, 110, 148, 183 at m = 50, 100, 150, 200, 300 (183/200 = 91.5%, shown rounded as 92%; 9/200 = 4.5% shown as 5%). Seed 1 was the first seed tried, but it is one world: see c2 for the spread. Revision v2: node re-run (tsx on model.ts) also gives 76 at m = 125 (76/200 = 38%); the jump from 36 to 76 takes only 25 links. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Current model.ts biggest() (tsx) and an independent regeneration of LINKS (kit mulberry32(1), same pair rule; arrays identical) with my own BFS components: 9, 36, 76, 110, 148, 183 at 50, 100, 125, 150, 200, 300 links (4.5, 18, 38, 55, 74, 91.5%). Predict (36, 18%; answer 'about 75%' = 74%) and reveal paragraph 1 compute from biggest().",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-giant-appears.c2",
@@ -57,15 +59,19 @@
       "id": "probability.the-giant-appears.c4",
       "text": "With 200 people, 100 links is one friend each on average, and the average number of friends is 2 x links / people (50 links 0.5, 100 links 1.0, 125 links 1.25, 150 links 1.5, 200 links 2.0, 300 links 3.0).",
       "support": "derivation",
-      "source": "Each link gives one friend to each of its two people, so total friends = 2 x links; average = 2 x links / 200.",
-      "status": "unverified"
+      "source": "Each link gives one friend to each of its two people, so total friends = 2 x links; average = 2 x links / 200. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. 2m/200 for m = 50, 100, 125, 150, 200, 300 = 0.5, 1.0, 1.25, 1.5, 2.0, 3.0; CHIPS and linksFor() match; readout formats 1.25 as '1.25'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-giant-appears.c5",
       "text": "Early on a new random link usually joins two small groups; once groups are big, a new link between two of them merges both, so the biggest group absorbs the second-biggest and most of the crowd.",
       "support": "derivation",
-      "source": "Mechanism of the union-find run in model.ts: the biggest group grows by the size of whatever it merges with. Qualitative; consistent with c1 and c3. Fact-checker to confirm wording is not overclaiming ('usually').",
-      "status": "unverified"
+      "source": "Mechanism of the union-find run in model.ts: the biggest group grows by the size of whatever it merges with. Qualitative; consistent with c1 and c3. Fact-checker to confirm wording is not overclaiming ('usually'). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Own union-find over the 300 links, per block of 50: links joining two groups neither of which is the biggest = 44, 42, 23, 4, 2, 2; links inside one group = 0, 0, 9, 30, 32, 42. So early links do usually join two small groups. 'Swallows the green group': at each chip from 100 on, every member of the green (second) group is inside the gold group at the next chip (100->125, 125->150, 150->200, 200->300 all true). Reveal paragraph 2 matches; the reveal still omits 'usually' (NCM-1 note 1), not false since early groups are all small.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.the-giant-appears.c6",
@@ -80,8 +86,10 @@
       "id": "probability.the-giant-appears.c7",
       "text": "In the lesson's world (seed 1), the second-biggest group has 9, 12, 23, 21, 3 and 3 people at 50, 100, 125, 150, 200 and 300 links; it is shown in green beside the biggest group in gold.",
       "support": "simulation",
-      "source": "Revision v2: model.ts biggest() second-biggest = largest group other than the biggest, re-run in node via tsx: 50 links 9 (tied with the biggest at 9), 100 links 12, 125 links 23, 150 links 21, 200 links 3, 300 links 3.",
-      "status": "unverified"
+      "source": "Revision v2: model.ts biggest() second-biggest = largest group other than the biggest, re-run in node via tsx: 50 links 9 (tied with the biggest at 9), 100 links 12, 125 links 23, 150 links 21, 200 links 3, 300 links 3. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. biggest().secondSize (tsx) and my own BFS component sizes agree: 9 (tied with biggest 9), 12, 23, 21, 3, 3 at 50, 100, 125, 150, 200, 300. Second group drawn with --good (#4fd1a5, green), biggest with --domain (probability #f6c453, gold); legend 'Gold: biggest group · Green: second biggest'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

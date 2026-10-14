@@ -38,8 +38,10 @@
       "id": "probability.two-said-blue.c2",
       "text": "Once one colour leads the picks by 2, every later person (clue right 2 times in 3) copies it whatever their own clue says, so the crowd adds no new information. On the stage the first person to see a lead of 2 is ringed, and later people whose pick goes against their own clue are outlined; the reveal counts them for the last crowd shown.",
       "support": "derivation",
-      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000. | REVISION v3 (builder): stage marker and reveal pointer added; text changed, so unverified.",
-      "status": "unverified"
+      "source": "Bayes' rule with equal priors: two net matching signals give posterior odds 2^2 = 4 to 1 for the leader; one opposing clue brings it to 2 to 1, still favouring the leader (a tie is broken by the own clue, per c1). Easley & Kleinberg 2010 ch. 16 (section unconfirmed; the book's urn model §16.2-16.4 from memory of the contents). | FACT-CHECK 2026-10-14 (pass NCM-1): Bayes with equal priors: net 2 matching revealed signals give 4:1, one opposing clue leaves 2:1 for the leader (holds for any accuracy > 1/2, so also at 60% and 80%). Simulation: 0 deviations from the locked colour after the lead first reached 2 in seeds 1-10,000. | REVISION v3 (builder): stage marker and reveal pointer added; text changed, so unverified. | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. Current model.ts, seeds 1-10,000 at each of the three accuracies: 0 picks differ from the ringed person's pick after the ring, 0 outlined (pick != clue) before the ring, 0 crowds with no ring. Ring = first person who saw |lead| >= 2; outline = pick != own clue, as the claim says. Reveal paragraph 3 ('the ring marks where the picks first led by 2, and after it no clue changed a pick. N people picked against their own clue (outlined)') matches. Bayes argument as in NCM-1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c3",
@@ -90,8 +92,10 @@
       "id": "probability.two-said-blue.c9",
       "text": "One person alone, with a clue right 2 times in 3, is wrong 1 time in 3 (33.3%; 40.0% at 60%, 20.0% at 80%), so a crowd wrong 1 time in 5 beats one person but is far worse than a plain vote. The reveal prints 1 minus the accuracy for the accuracy run most.",
       "support": "derivation",
-      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p).",
-      "status": "unverified"
+      "source": "Clue accuracy p means a lone person who follows their clue is wrong with probability 1-p: 1/3, 0.4, 0.2. Compared with model.ts exactWrong: 20.0%, 30.8%, 5.9% (all below 1-p). | FACT-CHECK 2026-10-14 (pass NCM-3): VERIFIED. 1 - p = 33.3%, 40.0%, 20.0%; exactWrong = 20.0%, 30.8%, 5.9% (each below 1 - p); plain vote of 100 clues wrong (binomial, ties excluded) 0.020%, 1.68%, ~0%. So the crowd beats one person and is far worse than a plain vote at every accuracy. Reveal paragraph 2 prints pct(1 - ACCS[q]). Advisory in the fact-check record: at 60% the reveal's 'a plain vote would almost never be wrong' (1.7%) exceeds the predict option's own 'under 1 time in 100'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c8",
