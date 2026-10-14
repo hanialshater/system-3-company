@@ -98,7 +98,9 @@
     "why": "R above 1 makes growth possible, not certain. Early on there are only a few cases, and each may infect nobody by chance; with Poisson spread and R = 2 about 20% of single introductions fizzle."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/outbreak-can-fizzle-above-one/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -106,13 +108,31 @@
   "version": 1,
   "curriculum": {
     "primary": "life:branching-extinction",
-    "also": ["probability:at-least-once"],
-    "prerequisites": ["life:reproduction-number-growth"],
+    "also": [
+      "probability:at-least-once"
+    ],
+    "prerequisites": [
+      "life:reproduction-number-growth"
+    ],
     "level": "core",
     "strand": "health-epidemiology",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 21 }],
-    "tags": ["epidemics", "branching process"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 21
+      }
+    ],
+    "tags": [
+      "epidemics",
+      "branching process"
+    ]
   },
   "format": "simulation-run",
-  "interactions": ["choice-before-reveal", "step-run-button", "preset-buttons", "tally-counters", "milestone-gate"]
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }
