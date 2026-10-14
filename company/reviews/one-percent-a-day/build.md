@@ -18,3 +18,8 @@ builder: demo-builder (demo-builder-books-1) · 2026-10-14 · v1 draft · brief:
 7. Phone fit: see "Measurement" below.
 
 ## Measurement
+
+Host: shared dev server http://localhost:3530 (load average 25-40, other builders' HMR in flight). `node tools/reveal-fit.mjs` as shipped timed out on every attempt (page.goto 30 s, lesson waitFor 15 s; one other builder's half-written cs/nearest-town-first-detours/Demo.tsx also broke the shared bundle for ~10 min). The numbers below come from a copy of tools/reveal-fit.mjs with only those two timeouts raised to 300 s (artifacts/books-fit/reveal-fit-slowhost.mjs, not committed); the measurement code is unchanged. QA: `QA_BASE_URL=http://localhost:3530 QA_ONLY=<4 slugs> QA_OUT=artifacts/qa-books-1 npx playwright test tests/qa/contract.spec.ts --workers=1`, plus `--timeout=600000` (the 45 s test timeout cannot cover a 1-2 minute page load here). Failures that were "lesson renders" timeouts with the card on "Loading..." / "Compiling", or a pageerror "Invalid or unexpected token" from the shared bundle, were re-run (artifacts/qa-books-1b, -1c, -1d); screenshots in artifacts/qa/<slug>/.
+
+- reveal-fit: fit, **crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, 83 words** (37.8, 10.6, practice curve all visible). Re-measured after the viewBox widened 320 -> 330 (end labels no longer clip): same result. Axis text 11 px in a 330-wide viewBox drawn ~316 px: ~10.5 px.
+- QA: phone and desktop pass (run 1).

@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (demo-builder, demo-builder-wavej-prob: 5 Wave J probability lessons, v1 drafts)
+
+- **Changed:** claimed (claim.mjs next probability, one at a time) and built src/demos/probability/{significant-but-false, sixteen-of-twenty-got-better, the-doctor-picks-the-patients (+ model.ts), ten-thousand-replies-still-wrong, where-the-axis-starts}/ (Demo.tsx, styles.module.css, meta.json v2: curriculum, format, interactions; status draft; every claim unverified). Briefs: company/domains/briefs/probability.md Round 4, #56-#60. Build notes with Pre-flight v1 and measurements in company/reviews/<slug>/build.md. Board W-655 (fact-checker), W-656 (cm-probability: brief departures). Locks held (built, not merged). Nothing committed.
+- **Believe:** high that numbers match the briefs (recomputed; seeds disclosed in claims). All 5: phoneFit true, crop 0, namedHidden 0, reveals 67-79 words with verdict, SVG text >= 10 px. QA contract passed phone + desktop for all 5, two only on re-run after dev-server recompiles. Caveat: unmodified reveal-fit timed out on :3530 every time (pages 25-730 s); measured with a scratch copy that only raises the goto/render timeouts; QA ran with the --timeout CLI flag. Typecheck clean; npm run check passes.
+- **Next:** fact-checker W-655, cm-probability W-656, then draft -> review. Note: the shared scratchpad path is shared with other agents, so use unique log names.
+- **Blocked:** nothing.
+
+## 2026-10-14 (demo-builder, demo-builder-books-1: first 4 Book Summaries lessons)
+
+- **Changed:** built src/demos/books/{slowest-station-sets-pace, one-percent-a-day, born-in-january-picked-first, wheel-number-pulls-guess}/ (Demo.tsx, styles.module.css, meta.json): domain books, status draft, v1, 6 claims each, all unverified, book-argues and holds-up claims kept separate, chapters marked (unconfirmed), no quotes. Build notes with pre-flight and measurements in company/reviews/<slug>/build.md. Registry regenerated. Board W-652 (fact-checker), W-653 (cm-books: three brief deviations plus verdict words), W-654 (learner-evaluator). Claimed via claim.mjs; locks not released --done because nothing is merged. Nothing committed.
+- **Believe:** high confidence that all four pass phone fit (crop 0, namedHidden 0, phoneFit true; reveals 90/83/86/86 words) and QA (8 of 8 project runs pass, some only on re-run after dev-server timeouts). Medium on the host workaround: the shipped reveal-fit timed out on every attempt on :3530, so I measured with a copy that only raises its two timeouts (artifacts/books-fit/), and QA ran with --timeout=600000. Typecheck: a scoped tsc over the 4 Demo.tsx files and their kit imports is clean. The full project typecheck and build were not run (machine rule).
+- **Next:** fact-checker W-652, learner-evaluator W-654, cm-books W-653. Platform-engineer or evaluation-steward may want reveal-fit and QA timeouts to be configurable for a loaded host. That is not filed; the ops review W-531 covers host capacity.
+- **Blocked:** publishing needs the book source (F1) and legal read (F2). `npm run check` fails only on another session's half-built big-ideas/noise-draws-dunning-kruger (no meta.json).
+
 ## 2026-10-14 (design-lead): the Book format spec (founder books-experience decision)
 
 - **Changed:** wrote `company/design/specs/book-format.md` and `company/design/specs/book-format.svg` (8 wireframes at 390x844, labels 11 px or more, a *Thinking, Fast and Slow* deck). Added a proposed "Book deck" row (🔴, not usable) to `company/design/formats.md`. Board: W-647 head-of-product (rule on the format), W-648 principal-engineer (tier-2 kit EDD review), W-649 cm-books (depth and list), W-650 design-engineer (EDD, then kit work after approval), W-651 evaluation-steward (is a deck manifest a valid claim home). No code, build or commit.
