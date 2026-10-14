@@ -33,12 +33,10 @@
     },
     {
       "id": "math.bridge-carries-news-not-habits.c2",
-      "text": "When the habit stops, Ben has 1 of his 5 friends adopting (20%), short of half, and nobody else in group B has any adopting friend.",
+      "text": "When the habit stops, Ben has 1 of his 5 friends adopting (20%), short of half, and nobody else in group B has any adopting friend. The habit row keeps this as 'Habit stuck: 5/10 / Ben 1 of 5 friends' after the news run.",
       "support": "derivation",
-      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5. | FACT-CHECK 2026-10-14 (pass 22): Own simulation: at the stuck state Ben 1/5 (20%), people 6-9 0/4 each.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Ben's friends are the 4 others in group B plus the bridge person; only the bridge person is in group A. adoptingFriends(BEN) in Demo.tsx = 1 of 5. | FACT-CHECK 2026-10-14 (pass 22): Own simulation: at the stuck state Ben 1/5 (20%), people 6-9 0/4 each. | v4 (demo-builder, 2026-10-14): learner r8: the habit row now keeps a trace once the habit is stuck ('Habit stuck: 5/10' and 'Ben 1 of 5 friends', computed from the habit run's own state), so the quoted 1 of 5 is on the stage when the reveal opens after the news run. Values unchanged. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "math.bridge-carries-news-not-habits.c3",
@@ -81,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "math:complex-contagion-bridges",
     "also": [

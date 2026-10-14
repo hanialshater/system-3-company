@@ -14,7 +14,7 @@
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -57,10 +57,10 @@ const frac = (n: number) => (n === 1 ? "1" : `1/${n.toLocaleString("en-US")}`);
 
 // chart
 const W = 320;
-const H = 200;
+const H = 158;
 const L = 10;
-const B = 168;
-const TOP = 22;
+const B = 128;
+const TOP = 20;
 const YMAX = 0.65;
 const bw = (W - 2 * L) / BANDS.length;
 const yOf = (v: number) => B - ((B - TOP) * v) / YMAX;
@@ -74,7 +74,7 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
   const q = rule === null ? 0 : RULES[rule].q;
   const b = BANDS[band];
   const count = b.hi - b.lo + 1;
-  const each = q === 0 ? "same as d = 1" : `${frac(b.lo ** q)} to ${frac(b.hi ** q)} of d = 1`;
+  const each = q === 0 ? "1" : `${frac(b.lo ** q)} to ${frac(b.hi ** q)}`;
 
   return (
     <Lesson
@@ -90,19 +90,13 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With 1/d links, the band 2–3 got {pct(SHARES[R1][1])} of links and 256–512 got {pct(SHARES[R1][8])}: about{" "}
-            {RATIO}× as many (the compare line), though each 2–3 distance is far likelier: 2 distances at about{" "}
-            {sig2(weight(BANDS[1], 1) / 2)} each against 257 at about {sig2(weight(BANDS[8], 1) / 257)} each. Every band from
-            2–3 out gets 10–12%.
+            With 1/d links, band 2–3 got {pct(SHARES[R1][1])} and 256–512 got {pct(SHARES[R1][8])}, about {RATIO}× as many
+            (the compare line), though each 2–3 distance is far likelier. Every band from 2–3 out gets 10–12%.
           </p>
           <p>
-            Each band holds twice as many distances as the one before, and each of those distances is half as likely, so
-            the two cancel. Uniform links put {pct(SHARES[R0][8])} in the farthest band; 1/d² links put {pct(SHARES[R2][0])}{" "}
-            at distance 1 (the dashed outlines).
-          </p>
-          <p>
-            So wherever a message is, a link that halves its remaining distance is about equally likely. That is why 1/d
-            links route fast.
+            Each band holds twice as many distances as the one before, each half as likely, so the two cancel. Wherever a
+            message is, a link that halves its remaining distance is about equally likely: that is why 1/d links route
+            fast.
           </p>
         </>
       )}
@@ -124,9 +118,6 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
               });
             return (
               <div className={s.wrap}>
-                <p className={s.note}>
-                  {locked || rule === null ? "Share of links landing in each band of distances." : `${RULES[rule].name}: share of links per band.`}
-                </p>
                 <svg viewBox={`0 0 ${W} ${H}`} className="stage-svg" role="img" aria-label="Share of links per distance band">
                   <line x1={L} y1={B} x2={W - L} y2={B} stroke="var(--line)" strokeWidth={1.5} />
                   {BANDS.map((bd, i) => {
@@ -185,11 +176,11 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
                       </g>
                     );
                   })}
-                  <text x={L} y={12} className={s.tick}>
-                    % of links
+                  <text x={L} y={11} className={s.title}>
+                    {locked || rule === null ? "% of links landing in each band" : `${RULES[rule].name}: % of links per band`}
                   </text>
                   <text x={W - L} y={H - 4} textAnchor="end" className={s.tick}>
-                    band: distances d to 2d − 1 (last: 256–512)
+                    band: d to 2d − 1 (last: 256–512)
                   </text>
                 </svg>
                 <Row>
@@ -200,26 +191,13 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
                       disabled={locked || rule === i}
                       onClick={() => pick(i)}
                     >
-                      {r.name}
+                      {r.short}
                     </Control>
                   ))}
                 </Row>
-                <Slider
-                  label="Band"
-                  value={band}
-                  min={0}
-                  max={BANDS.length - 1}
-                  disabled={locked}
-                  format={(v) => label(BANDS[v])}
-                  onChange={(v) => {
-                    if (locked) return;
-                    setBand(v);
-                    if (rule === R1) reach("band"); // only under the question's rule
-                  }}
-                />
                 {!locked && seenRules.includes(R1) && (
                   <p className={s.compare} data-testid="compare">
-                    1/d, distances × chance each:{" "}
+                    1/d, distances × chance each (vs d = 1):{" "}
                     {QB.map((k) => {
                       const bd = BANDS[k];
                       const n = bd.hi - bd.lo + 1;
@@ -228,11 +206,19 @@ export default function EveryScaleEquallyLikely({ slug }: { slug: string }) {
                     {`  ·  ratio ${RATIO}×`}
                   </p>
                 )}
-                <Row>
-                  <Readout label="Distances in band" value={count} />
-                  <Readout label="Each distance" value={locked || !sh ? "?" : each} />
-                  <Readout label="Band's share" value={locked || !sh ? "?" : pct(sh[band])} />
-                </Row>
+                <Slider
+                  label="Band"
+                  value={band}
+                  min={0}
+                  max={BANDS.length - 1}
+                  disabled={locked}
+                  format={(v) => `${label(BANDS[v])}: ${count} × ${locked || !sh ? "?" : each}${locked || !sh ? "" : ` → ${pct(sh[band])}`}`}
+                  onChange={(v) => {
+                    if (locked) return;
+                    setBand(v);
+                    if (rule === R1) reach("band"); // only under the question's rule
+                  }}
+                />
               </div>
             );
           }}

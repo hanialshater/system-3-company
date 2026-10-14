@@ -58,6 +58,18 @@ const STACK_BOTTOM = PANEL_Y + 14 + N * ROW;
 
 type Done = { scan: number; stack: number };
 
+/** Runs onReveal once when the lesson enters the reveal phase. */
+function OnReveal({ phase, onReveal }: { phase: string; onReveal: () => void }) {
+  const fn = useRef(onReveal);
+  useEffect(() => {
+    fn.current = onReveal;
+  });
+  useEffect(() => {
+    if (phase === "reveal") fn.current();
+  }, [phase]);
+  return null;
+}
+
 export default function EachElementPopsOnce({ slug }: { slug: string }) {
   const [list, setList] = useState(0);
   const [k, setK] = useState(0); // numbers fed in so far
@@ -118,7 +130,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["descending-done", "pops-seen"]}>
           {(reach) => {
             const finish = (l: number) => {
@@ -213,9 +225,22 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
               if (finished) replay(l, 0);
             };
 
+            // Opening the reveal mid-replay jumps the replay to its end, so the rows and readout the reveal
+            // quotes ("8 pops", "stack 15") are on the stage when it opens.
+            const snapToEnd = () => {
+              if (!busy || !timer.current) return;
+              clearTimeout(timer.current);
+              timer.current = null;
+              setBusy(false);
+              setK(N);
+              setPk(null);
+              finish(list);
+            };
+
             const caret = k > 0 ? k - 1 : null;
             return (
               <div className={s.wrap}>
+                <OnReveal phase={phase} onReveal={snapToEnd} />
                 <p className={s.rule}>Each new number pops smaller tops, then waits.</p>
                 <svg
                   viewBox={`0 0 360 ${STACK_BOTTOM + 6}`}
@@ -326,8 +351,13 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                   <line x1={186} x2={220} y1={STACK_BOTTOM} y2={STACK_BOTTOM} stroke="var(--fg)" strokeWidth={2} />
                 </svg>
                 <Row>
-                  <Readout label={CHIP[0]} value={table[0] ? `scan ${table[0].scan} · stack ${table[0].stack}` : "scan ? · stack ?"} />
-                  <Readout label={CHIP[1]} value={table[1] ? `scan ${table[1].scan} · stack ${table[1].stack}` : "scan ? · stack ?"} />
+                  {CHIP.map((c, i) => (
+                    <Readout
+                      key={c}
+                      label={`${c}: scan · stack`}
+                      value={table[i] ? `${table[i].scan} · ${table[i].stack}` : "? · ?"}
+                    />
+                  ))}
                 </Row>
                 <Row>
                   <Control className="tap" disabled={locked || busy || finished} onClick={next}>

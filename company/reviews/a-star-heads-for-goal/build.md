@@ -83,3 +83,25 @@ r6 main finding: the guess-vs-route line sat above the grid and scrolled out of 
 5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → No guess (no-guess wall, 46: plain-at-goal, wall-both) → With guess. Unchanged; still reaches all three. Dispute path Wall → Settle to goal → No guess now leaves guided-at-goal unreached until the open guided run is done.
 6. Reset: no reset. Reveal on the QA path (79 words): "Open grid: the guess settled 7 cells (route 6). Wall: no guess settled 46 cells, the guess 16; both routes 10 steps. / The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every direction. Look at the line under the table: at S the guess said 6 steps left; the wall route took 10. The guess can be too low, never too high, so it never makes a shorter route look worse."
 7. Phone fit: reveal at most 84 words (all four cells), 79 on the QA path. No layout change.
+
+## Revision v7 (phone fit, build 6 measurement, 2026-10-14)
+
+- Build 6 (W-287 10 px label floor) measured crop 165 px at 390×844 with the reveal open, "46" (table) off screen. Re-measured on the dev server before editing: 165 px; parts picture 252, controls 96, table 58, text 61; reveal 226 px of a 618 px window.
+- Changes:
+  - The four controls stand in one column beside the grid instead of two rows under it (DOM order: Settle next, Settle to goal, Wall, Guess). Saves the 96 px control block.
+  - "No guess" / "With guess" chips (plus the "Rank by" label) are one toggle, "Guess: on" / "Guess: off" (aria-pressed), like the Wall toggle. The brief (#18) already names it "the guess on/off toggle". Column height 4 × 44 + gaps = 188 px, so the row is no taller than the fitted grid.
+  - Grid labels 12 → 16 viewBox units, so the card's picture fit can draw the grid at 193 px (labels at 10 px, the W-287 floor) instead of stopping at 252. Settle numbers are larger than before (r7 minor: "hard to read").
+  - The tie-break moved from the rule line to the legend ("Numbers: settle order. Dashed: waiting. Ties: more steps taken first."); the rule line is one line. Stage gaps 5 → 3 px.
+  - Reveal text unchanged (82 words on the QA path, at most 84).
+- Claims reopened: c1 (tie-break stage address), c6 (legend wording). Claim text unchanged. c2-c5 untouched.
+- Measuring note: `tools/reveal-fit.mjs` waits 120 ms between control presses; a replay still running disables Wall / Guess, so on the dev server about half the runs end "reveal never unlocked". Same before this change (first baseline run). The QA contract waits 450 ms. Not a learner problem; not fixed here.
+
+## Pre-flight v7
+
+1. Title and hook: unchanged.
+2. Options: unchanged, "7" / "25" / "49".
+3. Locked stage: rule "Score = steps so far + guess of steps left.", empty grid with S and G beside a column of four controls, legend with the tie-break, table of "?", "Guess at S: 6. Real route with the wall: ?". Nothing equals 7 or highlights row 3.
+4. Reveal values: unchanged sources (table cells, GUESS_AT_S, filled("guess", true)).
+5. QA path: Settle next → Settle to goal (open guided, 7: guided-at-goal) → Wall (guided wall, 16) → Guess: on→off (no-guess wall, 46: plain-at-goal, wall-both). All three milestones reached.
+6. Reset: no reset. Reveal unchanged (79 words on the QA path; tool counts 82 with the verdict line).
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 a-star-heads-for-goal`, dev server): crop 0 px (was 165), hiddenBelow 0, phoneFit true. Named and visible: 46, 16, 10, open, wall, no guess, "7 cells route 6". Grid fitted 193/240 px (labels 10 px). Stage 367 px, reveal 226 px, 82 words.

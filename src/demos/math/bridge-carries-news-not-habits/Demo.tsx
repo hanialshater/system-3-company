@@ -9,6 +9,8 @@
 // last pressed. Habit: round 1 adds 2 and 3 (2 of 4 friends), round 2 adds Ava (4 of 5), round 3
 // adds no one: Ben sees 1 of 5 friends (20%) and the habit is stuck. News reaches all 10 in 3 rounds.
 // Key states (milestones): the habit stuck at the bridge, the news across it.
+// v4 (learner r8): once the habit is stuck its row keeps the trace "Habit stuck: 5/10 / Ben 1 of 5 friends",
+// so the state the reveal quotes is still on the stage after the news run replaces the picture.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control } from "@/kit/controls";
@@ -198,8 +200,13 @@ function Stage({
       {(["habit", "news"] as Rule[]).map((rule) => (
         <div key={rule} className={`${s.ruleRow} ${view === rule && !locked ? s.current : ""}`}>
           <span className={s.ruleName}>
-            {rule === "habit" ? "Habit: needs half" : "News: needs one"}
+            {rule === "habit" ? (runs.habit.stuck ? "Habit stuck:" : "Habit: needs half") : "News: needs one"}
             <strong className={s.count}>{locked ? "" : ` ${runs[rule].on.length}/${N}`}</strong>
+            {rule === "habit" && runs.habit.stuck && (
+              <span className={s.trace} data-testid="habit-trace">
+                Ben {adoptingFriends(BEN, new Set(runs.habit.on))} of {NB[BEN].length} friends
+              </span>
+            )}
           </span>
           <Control
             className={s.tap}

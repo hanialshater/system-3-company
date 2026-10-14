@@ -57,7 +57,7 @@ const rotated = (x: number) => {
 
 const C = 170; // centre
 const R_DOT = 125;
-const R_NUM = 150;
+const R_NUM = 147;
 const pos = (seat: number, n: number, r: number) => {
   const t = -Math.PI / 2 + (2 * Math.PI * (seat - 1)) / n;
   return [C + r * Math.cos(t), C + r * Math.sin(t)];
@@ -199,8 +199,8 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.rule}>Skip one, remove the next, until one is left.</p>
-                <svg viewBox="0 0 340 340" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-view={view}>
+                <div className={s.top}>
+                <svg viewBox="8 8 324 324" className={`stage-svg ${s.svg}`} role="img" aria-label={label} data-view={view}>
                   <circle cx={C} cy={C} r={R_DOT} fill="none" stroke="var(--line)" strokeWidth={1} />
                   {Array.from({ length: n }, (_, i) => i + 1).map((seat) => {
                     const [x, y] = pos(seat, n, R_DOT);
@@ -257,9 +257,14 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                   <text x={C} y={C + 26} textAnchor="middle" className={s.small}>
                     {end ? `survivor: ${f.standing[0]}` : `next skip: ${f.skip}`}
                   </text>
+                  {!locked && finished && (
+                    <text x={C} y={C + 50} textAnchor="middle" className={s.small} data-testid="binary">
+                      binary {bin(n)} → {rotated(n)}
+                    </text>
+                  )}
                 </svg>
 
-                <div className={s.grid3}>
+                <div className={s.col}>
                   <Control className="tap" disabled={locked || busy || finished} onClick={removeNext}>
                     Remove next
                   </Control>
@@ -270,6 +275,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                     Run to the end
                   </Control>
                 </div>
+                </div>
                 <p className={s.formula} aria-live="polite">
                   {!locked && made >= game.powFrame
                     ? `${n} = ${game.pow} + ${game.powFrame} → start 2 × ${game.powFrame} + 1 = ${game.frames[game.powFrame].skip}`
@@ -277,7 +283,7 @@ export default function EverySecondSeatOut({ slug }: { slug: string }) {
                 </p>
                 <p className={s.formula}>
                   {!locked && finished
-                    ? `Starts on ${game.laps[0].skip} at ${game.laps.map((l) => l.left).join(", ")} left. Binary ${bin(n)} → ${rotated(n)}`
+                    ? `Starts on ${game.laps[0].skip} at ${game.laps.map((l) => l.left).join(", ")} left.`
                     : ""}
                 </p>
                 <div className={s.scrub}>

@@ -33,3 +33,21 @@ Claims edited are unverified and need a fact-check pass. QA and walkthrough not 
 - Claims: c5 reworded to the ruling's text and reset to unverified (source line added: "Reworded W-274; FC pass 29 dispute resolved in text, pending opened-reference re-check (W-275)."). c7 claim text "In June" -> "On the June solstice", reset to unverified (learner sentence unchanged). New c8 records the hook "In June the far north gets a Sun that never sets." as unverified. c3 left held (unverified) and untouched, per the ruling. Version 4 to 5. Status stays review.
 - Pre-flight 7 (phone fit): NOT MEASURED. Build, QA and walkthrough were not allowed this session. The reveal grew 4 words (81 to 85), about one extra line at most at 390 px; v4's fit was itself never measured. Confirm with tools/reveal-fit.mjs.
 - tsc --noEmit: pass. npm run check: pass (638 lessons, 3456 claims, 0 warnings).
+
+## Revision v6 (build 6 phone fit, W-287 10px label floor, 2026-10-14)
+
+- Build 6 measured, at 390×844 with the reveal open: stage-top crop 169 px, reveal 87 words, "pole" (and so the orange gap the reveal points at) off screen. The v4/v5 estimates were wrong; since W-287 the kit no longer shrinks this labelled globe, so the stage had to get shorter.
+- Stage only; the reveal text is unchanged (cm-geography's W-266/W-274 strings stand).
+  - Globe: same projection and scale (sphere fitted to 320×220), shown in a 320×146 viewBox. Nothing the lesson uses lies below y ≈ 136: the 50 N town circle (the slider minimum) reaches y ≈ 129 at its nearest point, the pole sits at y ≈ 55 and the gap ends at y ≈ 97. Only the southern night shading is cut.
+  - The Daylight and Sun sets? readouts moved from their own row into the day strip's top line ("Daylight 24 h" … "Sun sets? No", 11 px, "?" while locked).
+  - The two sliders share one row (`.pair` in styles.module.css overrides the slider basis to 140 px; kit untouched).
+- Claims: no text changed, nothing reopened. Notes added to c2 (Daylight value now in the strip), c6 (strip svg gained the top line) and c7 (globe cropped, gap and pole kept).
+
+## Pre-flight v6
+
+1–2. Title, hook, question and options unchanged from v5.
+3. Locked stage: globe (no gap, no pole label), caption, strip with "Daylight ?" and "Sun sets? ?", chips 65/70/80, sliders at 60.0°N and 00:00 side by side.
+4. Reveal values unchanged: seen.sets / seen.never (milestones), LINE = 90 − 23.44.
+5. QA path unchanged (chips, then sliders).
+6. Reset: none. Reveal unchanged from v5.
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 midnight-sun-line`, dev server, 390×844): **stage-top crop 0 px** (build 6: 169 px), hidden below 0 px, reveal 87 words / 11 lines, stage 349 px (picture 146, controls 93, text 74) fully visible in a 618 px window. Named "pole" and "noon" visible; the orange gap is drawn between them in the visible globe. phoneFit true. Screenshot: artifacts/reveal-fit/midnight-sun-line.png.

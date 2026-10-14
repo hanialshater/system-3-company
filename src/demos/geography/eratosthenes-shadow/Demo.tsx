@@ -7,19 +7,24 @@
 // v3 (FC pass 26, W-249): Syene (24.09 N) is north of the Tropic, so "Sun overhead" is framed as the account's.
 // v4 (W-258 ruling, W-260): stage-only framing, "This lesson's story": the question, the Syene label, the chip
 // and the reveal stipulate the setup instead of reporting a source. Solstice dropped (the stage does not show a date).
+// v6 (build 6 phone fit, W-287 10px floor): measured crop 194px at 390x844. The picture is shorter (viewBox 320x176,
+// was 320x236; Earth radius 56, was 74), the two readouts and the distance line moved into the picture beside the
+// circle, and the caption sits in the bottom-left corner. The reveal drops the Syene sentence (the stage label
+// "Syene, in the story: Sun overhead, no shadow" carries it) and the bold "50 times." (the kit's verdict line says it),
+// and is 89 words as measured with the verdict line (was 112).
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { EARTH_RADIUS_KM, geoDistance } from "@/kit/geo";
 import s from "./styles.module.css";
 
 const W = 320;
-const H = 236;
+const H = 176;
 const CX = 160;
-const CY = 134;
-const R = 74;
+const CY = 102;
+const R = 56;
 const POLE = 28;
 const rad = Math.PI / 180;
 
@@ -78,13 +83,12 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>50 times.</strong> The Sun is so far away that its rays arrive parallel (the dashed lines), so the
-            shadow&rsquo;s angle in Alexandria is also the angle at the Earth&rsquo;s centre. This lesson&rsquo;s story: at
-            noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story&rsquo;s numbers.
+            The Sun is so far away that its rays arrive parallel (the dashed lines), so the
+            shadow&rsquo;s angle in Alexandria is also the angle at the Earth&rsquo;s centre. You saw {SEEN_ACCOUNT}: 50 × 5,000 stadia, the story&rsquo;s numbers.
           </p>
           <p>
             With modern numbers you saw {SEEN_MODERN}, within {Math.round((modernCirc / TRUE_MERIDIAN_KM - 1) * 100)}% of
-            the true {fmt(TRUE_MERIDIAN_KM)} km. Nobody knows the exact length of a stadion, so we cannot say how close
+            the true {fmt(TRUE_MERIDIAN_KM)} km. Nobody knows a stadion&rsquo;s exact length, so we cannot say how close
             Eratosthenes was in km. The method needed only a shadow and a distance.
           </p>
         </>
@@ -150,8 +154,37 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                   <text x={px - 8} y={py + 10} className={s.small} textAnchor="end">
                     Alexandria
                   </text>
-                  <text x={6} y={H - 6} className={s.small}>
-                    Angles true; well and pole not to scale.
+                  <text x={6} y={H - 13} className={s.small}>
+                    Angles true; well and
+                  </text>
+                  <text x={6} y={H - 3} className={s.small}>
+                    pole not to scale.
+                  </text>
+                  {/* readouts beside the circle */}
+                  <text x={6} y={CY - 6} className={s.small}>
+                    Arcs round
+                  </text>
+                  <text x={6} y={CY + 4} className={s.small}>
+                    the circle
+                  </text>
+                  <text x={6} y={CY + 22} className={s.big} data-testid="arcs">
+                    {locked ? "?" : arcsText(angle)}
+                  </text>
+                  <text x={W - 6} y={CY - 6} className={s.small} textAnchor="end">
+                    Circumference
+                  </text>
+                  <text x={W - 6} y={CY + 12} className={s.big} textAnchor="end" data-testid="circumference">
+                    {locked ? "?" : fmt(circ)}
+                  </text>
+                  <text x={W - 6} y={CY + 24} className={s.small} textAnchor="end">
+                    {locked ? "" : d.unit}
+                  </text>
+                  <text x={W - 6} y={H - 13} className={s.small} textAnchor="end">
+                    Distance Syene to Alexandria{modern ? ":" : ","}
+                  </text>
+                  <text x={W - 6} y={H - 3} className={s.small} textAnchor="end">
+                    {modern ? "" : "in the story: "}
+                    {fmt(d.dist)} {d.unit}
                   </text>
                 </svg>
                 <div className={s.chips} role="group" aria-label="Use numbers from">
@@ -165,13 +198,6 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                 <Row>
                   <Slider label="Shadow angle" value={angle} min={2} max={30} step={0.01} disabled={locked} format={(v) => `${v.toFixed(2)}°`} onChange={(v) => set(v, modern)} />
                 </Row>
-                <Row>
-                  <Readout label="Arcs round the circle" value={locked ? "?" : (Math.round(arcs * 10) / 10).toString()} />
-                  <Readout label="Circumference" value={locked ? "?" : `${fmt(circ)} ${d.unit}`} />
-                </Row>
-                <p className="muted tiny">
-                  Distance Syene to Alexandria{modern ? "" : ", in the story"}: {fmt(d.dist)} {d.unit}.
-                </p>
                 <p className="tiny" data-testid="seen">
                   Seen: {[seen.account ? SEEN_ACCOUNT : null, seen.modern ? SEEN_MODERN : null].filter(Boolean).join(" · ") || "nothing yet"}
                 </p>

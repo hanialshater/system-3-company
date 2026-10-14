@@ -18,9 +18,12 @@
 // shows its walk (also after "Try all 64 splits"); pressing Try (re-enabled once a loop is walked after it) shows the
 // best split again. Moving the enemy back to D-E awards odd-loop only while a walk is drawn, so odd-loop always
 // means a clash walk was on the stage.
+// v5 (build 6 phone fit, W-287 10px floor): measured crop 36px at 390x844. The two readouts ("Loop's enemy links",
+// "Splits that work") repeated the caption and the layout row, so the row is gone: the walk caption now says the
+// parity ("1 enemy link, odd"), and the split caption and the layout row already carry the 64-split counts.
 
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -205,7 +208,7 @@ function Stage({
         ? `0 of 64 splits work. Best try (filled vs dotted camps) still breaks ${split.broken.length} link (thick).`
         : `${split.working} of 64 work: one split, names swapped.`
       : loop && w
-        ? `${LOOPS[loop].label}: ${k} enemy link${k === 1 ? "" : "s"}. Walk from A, switching at each: back at A in the ${w.back ? "other camp: clash" : "same camp"}.`
+        ? `${LOOPS[loop].label}: ${k} enemy link${k === 1 ? "" : "s"}, ${k % 2 ? "odd" : "even"}. Walk from A, switching at each: back at A in the ${w.back ? "other camp: clash" : "same camp"}.`
         : "Pick a loop to walk it from A.";
   const rows = (Object.keys(seen) as Layout[])
     .filter((lay) => Object.keys(seen[lay].loops).length || seen[lay].working !== undefined)
@@ -283,10 +286,6 @@ function Stage({
           Enemy on C-D
         </Control>
       </div>
-      <Row>
-        <Readout label="Loop's enemy links" value={locked || !loop ? "?" : `${k}, ${k % 2 ? "odd" : "even"}`} />
-        <Readout label="Splits that work" value={locked || !result ? "?" : `${result.working}/64`} />
-      </Row>
       <p className={s.legend}>{locked ? "" : rows.join(" · ")}</p>
     </div>
   );

@@ -1,10 +1,11 @@
-.wrap { display: flex; flex-direction: column; gap: 5px; align-items: center; }
+.wrap { display: flex; flex-direction: column; gap: 3px; align-items: center; }
 .wrap > :global(.row) { margin-top: 0; justify-content: center; align-items: center; flex-wrap: wrap; }
 .wrap :global(.tap) { min-height: 44px; }
-.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 2.4em; }
-.grid { width: 252px; max-width: 100%; height: auto; }
-.mark { font-size: 12px; font-weight: 800; }
-.num { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
+.rule { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); line-height: 1.2; }
+.top { display: flex; gap: 6px; align-items: flex-start; justify-content: center; width: 100%; max-width: 360px; }
+.grid { width: 240px; flex: 0 1 240px; min-width: 0; height: auto; }
+.mark { font-size: 16px; font-weight: 800; }
+.num { font-size: 16px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .lab { font-size: 0.75rem; color: var(--muted); }
 .table { display: grid; grid-template-columns: auto 1fr 1fr; gap: 2px 6px; width: 100%; max-width: 340px; font-size: 0.72rem; align-items: center; }
 .tr { display: contents; }
@@ -12,6 +13,5 @@
 .td { white-space: nowrap; text-align: center; padding: 3px 2px; border-radius: 6px; background: var(--bg-2); color: var(--muted); font-variant-numeric: tabular-nums; }
 .on { color: var(--fg); font-weight: 700; }
 .guess { margin: 0; font-size: 0.8rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
-.controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; max-width: 340px; }
+.controls { display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 96px; max-width: 120px; }
 .controls :global(.tap) { padding: 6px 8px; line-height: 1.15; }
-.rank { text-align: right; align-self: center; padding-right: 2px; }

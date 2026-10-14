@@ -14,7 +14,7 @@
 // (split, count, example), so the reveal's 6 all-enemy and "4 turned banned, such as A, B, D" stay on the stage.
 
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -101,18 +101,18 @@ export default function EnemiesAllowThreeCamps({ slug }: { slug: string }) {
         <>
           <p>
             {seen.includes(3)
-              ? `Of the ${TRIANGLES.length} triangles in camps of 3 + 2 + 1, ${three.banned} are banned and ${three["all-enemy"]} are all enemies. `
+              ? `In 3 + 2 + 1 camps, ${three.banned} of ${TRIANGLES.length} triangles are banned, ${three["all-enemy"]} all enemies. `
               : ""}
-            Banned needs two friends of one person to be enemies, but friends share a camp: in A, B, C, B and C share
-            A&apos;s camp, so they are friends too.
+            Banned needs two friends of one person to be enemies, but friends share a camp: B and C share A&apos;s, so
+            they are friends.
             {bannedSeen
-              ? ` Making B and D friends across camps turned ${bannedSeen.n} banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}.`
+              ? ` Making B and D friends made ${bannedSeen.n} banned, such as ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}.`
               : ""}
           </p>
           <p>
-            The balance rule also bans the all-enemy triangle, and that is what forces two sides. Allow it, and any
-            number of camps is stable
-            {seen.length > 0 ? `: you saw ${listOf([...seen].sort((a, b) => a - b))} camps, each with 0 banned.` : "."}
+            The balance rule also bans all-enemy triangles, which forces two sides. Allow them, and any number of camps
+            is stable
+            {seen.length > 0 ? `: you saw ${listOf([...seen].sort((a, b) => a - b))}${seen.length === 1 ? " camps, with" : ", each with"} 0 banned.` : "."}
           </p>
         </>
       )}
@@ -208,7 +208,7 @@ function Stage({
       ? verdict(camp, link, t)
       : link
         ? bannedAll.length
-          ? `B–D friends: ${bannedAll.length} banned triangles (red).`
+          ? `B–D friends: ${bannedAll.length} banned (red), e.g. ${bannedAll[0].map((v) => NAMES[v]).join(", ")}.`
           : "B–D friends, but nobody has two friends."
         : checked === TRIANGLES.length
           ? `All ${TRIANGLES.length} triangles checked in camps of ${SPLIT_NAME[camps]}.`
@@ -237,6 +237,21 @@ function Stage({
             className={friendly(camp, link, a, b) ? s.friend : s.enemy}
           />
         ))}
+        {/* Counts folded into the picture (v6), left and right of the hexagon */}
+        <g className={s.count}>
+          <text x={6} y={34} className={s.countLab}>Checked</text>
+          <text x={6} y={58} className={s.countVal} data-testid="checked">
+            {locked ? "?" : `${checked}/${TRIANGLES.length}`}
+          </text>
+          <text x={334} y={34} textAnchor="end" className={s.countLab}>Banned</text>
+          <text x={334} y={58} textAnchor="end" className={s.countVal} data-testid="banned">
+            {locked ? "?" : counts.banned}
+          </text>
+          <text x={334} y={150} textAnchor="end" className={s.countLab}>All enemies</text>
+          <text x={334} y={174} textAnchor="end" className={s.countVal} data-testid="all-enemies">
+            {locked ? "?" : counts["all-enemy"]}
+          </text>
+        </g>
         {POS.map(([x, y], v) => (
           <g key={v}>
             <circle cx={x} cy={y} r={13} className={`${s.person} ${t?.includes(v) ? s.inTri : ""}`} />
@@ -277,21 +292,18 @@ function Stage({
           B–D friends
         </Control>
       </div>
-      <Row>
-        <Readout label="Checked" value={locked ? "?" : `${checked}/${TRIANGLES.length}`} />
-        <Readout label="Banned" value={locked ? "?" : counts.banned} />
-        <Readout label="All enemies" value={locked ? "?" : counts["all-enemy"]} />
-      </Row>
-      <p className={s.caption} data-testid="seen">
-        {seen.length
-          ? `Seen: ${seen.map((c, i) => (i === 0 ? `${c} camps ${tally(c).banned} banned, ${tally(c)["all-enemy"]} all-enemy` : `${c} camps ${tally(c).banned}, ${tally(c)["all-enemy"]}`)).join(" · ")}`
-          : ""}
-      </p>
-      <p className={s.caption}>
-        {bannedSeen
-          ? `B–D friends, ${bannedSeen.camps} camps: ${bannedSeen.n} banned, e.g. ${bannedSeen.example.map((v) => NAMES[v]).join(", ")}`
-          : ""}
-      </p>
+      {seen.length > 0 && (
+        <p className={s.seen} data-testid="seen">
+          Seen, banned / all-enemy:{" "}
+          {seen.map((c) => `${c} camps ${tally(c).banned} / ${tally(c)["all-enemy"]}`).join(" · ")}
+        </p>
+      )}
+      {bannedSeen && !(link && camps === bannedSeen.camps) && (
+        <p className={s.seen}>
+          B–D friends, {bannedSeen.camps} camps: {bannedSeen.n} banned, e.g.{" "}
+          {bannedSeen.example.map((v) => NAMES[v]).join(", ")}
+        </p>
+      )}
     </div>
   );
 }

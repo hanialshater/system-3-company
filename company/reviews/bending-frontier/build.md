@@ -42,3 +42,18 @@ builder: demo-builder · 2026-10-13
 5. QA path: unchanged (slider two ArrowRight → +1 → −1 → All 10 fields: last-ton). At the reveal the stage is at 10 with "−19", corn 0, all ten fields crossed out with their numbers.
 6. Reset: no reset control. Reveal on the QA path: "At 10 tons of wheat, corn hit 0, and the last ton cost 19 tons of corn. The drops grew by 2 every step: 1, 3, 5, … 19. / The fields under the chart are not alike: the first wheat went on the field worst for corn, which grew only 1; the last took the best, which grew 19. Each drop is the corn its field used to grow: that is why the frontier bends. / A model: the curve is made up, not data from a real farm."
 7. Phone fit: reveal 88 words. Named by the reveal: the field strip under the chart, the staircase drops. Stage-top crop: not measured (no build or walkthrough allowed this session; W-242 not landed). Estimated 33 px → 0 px. Needs a 390×844 screenshot of the open reveal from the next build.
+
+## Revision v5 (build 6 phone fit, W-287 10px label floor, 2026-10-14)
+
+- Build 6 measured crop 145 px at 390×844 with the reveal open (92 words): the v4 estimate was wrong, and since W-287 the kit no longer shrinks this labelled chart below 10 px text, so the stage itself had to get shorter.
+- Stage compacted: chart 102 units tall (was 154; viewBox 320×188, was 320×256); "wheat (tons)" sits on the tick row; the "Made-up farm: 10 fields, worst to best for corn" chip moved into the picture's top line (same words, svg text); +1 / −1 joined the readout row, so the slider and "All 10 fields" share one row.
+- Reveal: model line shortened to "The curve is made up, not real farm data." Paragraphs 1 and 2 unchanged from v4. 88 words.
+- Claims: c4 reopened (model line reworded). c5 text unchanged (chip words moved into the svg; noted in source). c1–c3 unchanged and left as they are.
+
+## Pre-flight v5
+
+1–3. Title, hook, options and locked stage: unchanged from v4, except the "Made-up farm" caption is the picture's top line instead of a chip above it, and the controls are two rows (Corn, Last ton cost, +1, −1 / Wheat slider, All 10 fields).
+4. Reveal values: unchanged from v4 (milestone last-ton; stepCost(); the strip numbers).
+5. QA path: unchanged (slider two ArrowRight → +1 → −1 → All 10 fields: last-ton).
+6. Reset: no reset control. Reveal on the QA path: "At 10 tons of wheat, corn hit 0, and the last ton cost 19 tons of corn. The drops grew by 2 every step: 1, 3, 5, … 19. / The fields under the chart are not alike: the first wheat went on the field worst for corn, which grew only 1; the last took the best, which grew 19. Each drop is the corn its field used to grow: that is why the frontier bends. / The curve is made up, not real farm data."
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 bending-frontier`, dev server, 390×844): **stage-top crop 0 px** (build 6: 145 px), hidden below 0 px, reveal 88 words / 11 lines, stage 328 px (picture 188, controls 92) fully visible in a 594 px window. Named labels "10", "corn", "19", "last ton cost" all visible; the field strip and staircase the reveal points at are inside the visible stage. phoneFit true.

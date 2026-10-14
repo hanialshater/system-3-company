@@ -82,3 +82,19 @@ Not done: north-south nit (optional, not in this ticket). Not run: next build, Q
 4. Reveal values unchanged from v4 (c1, c3, c4, c5 as listed there).
 5. QA path unchanged: story chip, modern chip, slider two presses. After the modern chip the line reads "Distance Syene to Alexandria: 843 km."; after the story chip it gets the story frame back.
 6. Reset: none. Reveal text unchanged from v4. The longer story line may wrap to two lines at 360 px (tiny muted text); not checked on a phone, since no build was run.
+
+## Revision v6 (build 6 phone fit, W-287 10px label floor, 2026-10-14)
+
+- Build 6 measured, at 390×844 with the reveal open: stage-top crop 194 px, reveal 112 words, "Alexandria" (named by the reveal) off screen. Since W-287 the kit no longer shrinks this labelled picture, so the stage had to get shorter.
+- Stage: picture viewBox 320×176 (was 320×236), Earth radius 56 (was 74), pole and labels unchanged in size. The "Arcs round the circle" and "Circumference" readouts moved into the picture, left and right of the circle (same rounding: arcsText / fmt; "?" while locked). The distance line moved into the bottom-right corner ("Distance Syene to Alexandria, / in the story: 5,000 stadia"; "…Alexandria: / 843 km" with modern numbers). The scale caption is two lines in the bottom-left corner. Chips, slider and the "Seen:" line are unchanged. Text sizes unchanged.
+- Reveal: cut the Syene sentence (the stage label "Syene, in the story: Sun overhead, no shadow" and the question carry it) and the bold "50 times." (the kit's verdict line already says it); "the exact length of a stadion" → "a stadion's exact length". Both quoted Seen values, "(the dashed lines)", "in Alexandria", "within 7% of the true 40,008 km" and the payoff "The method needed only a shadow and a distance." are kept.
+- Claims: c4 reopened (reworded); c5 reopened (its reveal sentence is cut; it now rests on the stage label and the question). c1 and c3 sentences unchanged; their stage text moved into the picture (noted in source, status left). c2, c6 unchanged.
+
+## Pre-flight v6
+
+1–2. Title, hook and options unchanged.
+3. Locked stage: picture with "?" for arcs and circumference inside it, distance "in the story: 5,000 stadia" in the bottom-right corner, slider at 20.00°. Nothing says 50.
+4. Reveal values: SEEN_ACCOUNT and SEEN_MODERN (milestones account / modern, also on the stage's "Seen:" line); 7% and 40,008 km are told.
+5. QA path unchanged: story chip, modern chip, slider two presses.
+6. Reset: none. Reveal on the QA path: "The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, the story's numbers. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows a stadion's exact length, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance."
+7. Phone fit (measured, `node tools/reveal-fit.mjs --url http://localhost:3530 eratosthenes-shadow`, dev server, 390×844): **stage-top crop 0 px** (build 6: 194 px), hidden below 0 px, reveal 89 words as measured (including the kit's verdict line) / 12 lines, stage 329 px (picture 176, controls 85, text 28) fully visible in a 618 px window. Named "alexandria" visible; the dashed rays are in the visible picture. phoneFit true. Screenshot: artifacts/reveal-fit/eratosthenes-shadow.png.

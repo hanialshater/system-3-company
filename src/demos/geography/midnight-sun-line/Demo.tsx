@@ -12,17 +12,22 @@
 // screen at 390x844. The no-air caveat left the reveal (the stage caption keeps "Toy: no air"); c4 withdrawn.
 // v5 (W-274, cm-geography ruling): predict question hedged to "Around June 21"; the reveal's Tropic clause ends
 // "on the June solstice" (85 words).
+// v6 (build 6 phone fit, W-287 10px floor): measured crop 169px at 390x844, "pole" off screen. The globe is drawn
+// at the same size but cropped below the town's lowest circle (viewBox 320x146, was 320x220: nothing the lesson uses
+// sits below y 136), the Daylight / Sun sets? readouts moved into the day strip's top line, and the two sliders share
+// one row.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { WorldMap, geoCircle, geoDistance, geoOrthographic } from "@/kit/geo";
 import s from "./styles.module.css";
 
 type Pt = [number, number];
 const W = 320;
-const H = 220;
+const H = 220; // the sphere is fitted to 320 x H
+const VIEW_H = 146; // ...and shown down to here: the 50 N circle's lowest point is at about y 129
 const DEC = 23.44;
 const rad = Math.PI / 180;
 const LINE = 90 - DEC; // where the night circle stops reaching at midnight
@@ -106,7 +111,7 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
                 <WorldMap
                   projection={projection}
                   width={W}
-                  height={H}
+                  height={VIEW_H}
                   label={`Globe on the June solstice at ${fmtHour(hour)} at the town. Town at ${fmtLat(lat)}, ${lit ? "in sunlight" : "in darkness"}.`}
                 >
                   {({ path }) => (
@@ -130,13 +135,19 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">Shaded: night. Dot: the town; the clock spins it round the blue circle. Orange: night edge to pole. Toy: no air.</p>
-                <svg viewBox="0 0 320 30" className="stage-svg" role="img" aria-label={locked ? "Day strip" : `Town's 24 hours: ${strip.filter(Boolean).length} lit`} style={{ flex: "0 0 auto", height: 30 }}>
+                <svg viewBox="0 0 320 46" className="stage-svg" role="img" aria-label={locked ? "Day strip" : `Town's 24 hours: ${strip.filter(Boolean).length} lit`} style={{ flex: "0 0 auto", height: 46 }}>
+                  <text x={8} y={11} fontSize={11} fill="var(--fg)" data-testid="daylight">
+                    Daylight <tspan fontWeight={800}>{locked ? "?" : fmtDay(hours)}</tspan>
+                  </text>
+                  <text x={312} y={11} textAnchor="end" fontSize={11} fill="var(--fg)" data-testid="sun-sets">
+                    Sun sets? <tspan fontWeight={800}>{locked ? "?" : hours >= 24 ? "No" : "Yes"}</tspan>
+                  </text>
                   {strip.map((on, h) => (
-                    <rect key={h} x={8 + h * 12.9} y={4} width={12} height={14} fill={on && !locked ? "#f5c542" : "var(--bg-2)"} stroke="var(--line)" strokeWidth={0.5} />
+                    <rect key={h} x={8 + h * 12.9} y={18} width={12} height={14} fill={on && !locked ? "#f5c542" : "var(--bg-2)"} stroke="var(--line)" strokeWidth={0.5} />
                   ))}
-                  <text x={8} y={28} className="muted" fontSize={8} fill="var(--muted)">midnight</text>
-                  <text x={164} y={28} textAnchor="middle" fontSize={8} fill="var(--muted)">noon</text>
-                  <text x={312} y={28} textAnchor="end" fontSize={8} fill="var(--muted)">midnight · yellow = Sun up</text>
+                  <text x={8} y={43} className="muted" fontSize={8} fill="var(--muted)">midnight</text>
+                  <text x={164} y={43} textAnchor="middle" fontSize={8} fill="var(--muted)">noon</text>
+                  <text x={312} y={43} textAnchor="end" fontSize={8} fill="var(--muted)">midnight · yellow = Sun up</text>
                 </svg>
                 <div className={s.chips} role="group" aria-label="Move the town">
                   {CHIPS.map((c) => (
@@ -145,14 +156,12 @@ export default function MidnightSunLine({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </div>
+                <div className={s.pair}>
                 <Row>
                   <Slider label="Town latitude" value={lat} min={50} max={85} step={0.1} disabled={locked} format={fmtLat} onChange={moveLat} />
                   <Slider label="Time at the town" value={hour} min={0} max={24} step={0.5} disabled={locked} format={fmtHour} onChange={setHour} />
                 </Row>
-                <Row>
-                  <Readout label="Daylight" value={locked ? "?" : fmtDay(hours)} />
-                  <Readout label="Sun sets?" value={locked ? "?" : hours >= 24 ? "No" : "Yes"} />
-                </Row>
+                </div>
               </div>
             );
           }}

@@ -203,7 +203,9 @@ function Stage({
   onSizes: () => void;
   onOneLine: () => void;
 }) {
-  const [back, setBack] = useState(0);
+  const [backState, setBack] = useState(0);
+  // v3: at the reveal the tree shows at least her generation, so the row the reveal quotes is on the stage.
+  const back = atReveal ? Math.max(backState, T) : backState;
   const anim = useRef<number | null>(null);
   useEffect(() => () => {
     if (anim.current !== null) cancelAnimationFrame(anim.current);

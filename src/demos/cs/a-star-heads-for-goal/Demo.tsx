@@ -4,7 +4,7 @@
 // right edge. The learner settles cells one at a time (or watches the rest replayed in order), then removes the
 // guess ("No guess") and sees the same grid flood. The reveal also waits for both runs with the wall on, so the
 // learner sees the guided route match the flood's length where the guess (6 at S) is lower than the real route (10).
-// Controls in DOM order: Settle next, Settle to goal, Wall, No guess, With guess (QA reaches all three milestones).
+// Controls in DOM order: Settle next, Settle to goal, Wall, Guess (QA reaches all three milestones).
 // Tie-break (disclosed in claim c1, used exactly here): lowest score first; equal scores, more steps taken
 // first; still equal, the cell added to the frontier first. The goal counts when it is settled.
 // One representation: the grid. The 2x2 table is a readout of what the learner has run.
@@ -15,6 +15,9 @@
 // v6 (W-282, fact-check pass 30 c1): milestone guided-at-goal is reached only by the guided run with the wall off,
 // so the open-grid case the prediction asks about is always run before the reveal. Reveal at most 84 words (all four
 // table cells filled): the approved cm-cs fallback cut (W-277) removed its last sentence.
+// v7 (phone fit, build 6 measured crop 165 px): the controls stand in a column beside the grid, No guess / With guess
+// are one toggle "Guess: on/off", the tie-break moved from the rule line to the legend, and grid labels are 16 units
+// so the card can fit the grid down to the 10 px label floor. Measured crop 0 at 390x844; reveal unchanged.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -231,10 +234,9 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.rule}>
-                  {v.mode === "guess"
-                    ? "Score = steps so far + guess of steps left. Ties: more steps taken first."
-                    : "Score = steps so far. Ties: more steps taken first."}
+                  {v.mode === "guess" ? "Score = steps so far + guess of steps left." : "Score = steps so far."}
                 </p>
+                <div className={s.top}>
                 <svg
                   viewBox={`0 0 ${N * CELL} ${N * CELL}`}
                   className={`stage-svg ${s.grid}`}
@@ -290,7 +292,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                         {set && (
                           <text
                             x={special ? x + 4 : x + CELL / 2}
-                            y={special ? y + 14 : y + CELL / 2 + 4}
+                            y={special ? y + 15 : y + CELL / 2 + 5}
                             textAnchor={special ? "start" : "middle"}
                             className={s.num}
                           >
@@ -312,7 +314,32 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     />
                   )}
                 </svg>
-                <p className={s.lab}>Numbers: settle order. Dashed: waiting to settle.</p>
+                <div className={s.controls}>
+                  <Control className="tap" disabled={locked || busy || atGoal} onClick={settleNext}>
+                    Settle next
+                  </Control>
+                  <Control className="tap" disabled={locked || busy || atGoal} onClick={settleToGoal}>
+                    Settle to goal
+                  </Control>
+                  <Control
+                    className="tap"
+                    aria-pressed={v.wall}
+                    disabled={locked || busy}
+                    onClick={() => restart(v.mode, !v.wall)}
+                  >
+                    {v.wall ? "Wall: on" : "Wall: off"}
+                  </Control>
+                  <Control
+                    className="tap"
+                    aria-pressed={v.mode === "guess"}
+                    disabled={locked || busy}
+                    onClick={() => restart(v.mode === "guess" ? "none" : "guess", v.wall)}
+                  >
+                    {v.mode === "guess" ? "Guess: on" : "Guess: off"}
+                  </Control>
+                </div>
+                </div>
+                <p className={s.lab}>Numbers: settle order. Dashed: waiting. Ties: more steps taken first.</p>
                 <div className={s.table} role="group" aria-label="Cells settled in each run">
                   <span />
                   <span className={s.th}>Open</span>
@@ -336,37 +363,6 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     ? `Guess at S: ${GUESS_AT_S}. Real route with the wall: ${filled("guess", true)!.route}.`
                     : `Guess at S: ${GUESS_AT_S}. Real route with the wall: ?`}
                 </p>
-                <div className={s.controls}>
-                  <Control className="tap" disabled={locked || busy || atGoal} onClick={settleNext}>
-                    Settle next
-                  </Control>
-                  <Control className="tap" disabled={locked || busy || atGoal} onClick={settleToGoal}>
-                    Settle to goal
-                  </Control>
-                  <Control
-                    className="tap"
-                    aria-pressed={v.wall}
-                    disabled={locked || busy}
-                    onClick={() => restart(v.mode, !v.wall)}
-                  >
-                    {v.wall ? "Wall: on" : "Wall: off"}
-                  </Control>
-                  <span className={`${s.lab} ${s.rank}`}>Rank by</span>
-                  <Control
-                    className={`tap ${v.mode === "none" ? "active" : ""}`}
-                    disabled={locked || busy || v.mode === "none"}
-                    onClick={() => restart("none", v.wall)}
-                  >
-                    No guess
-                  </Control>
-                  <Control
-                    className={`tap ${v.mode === "guess" ? "active" : ""}`}
-                    disabled={locked || busy || v.mode === "guess"}
-                    onClick={() => restart("guess", v.wall)}
-                  >
-                    With guess
-                  </Control>
-                </div>
               </div>
             );
           }}

@@ -6,6 +6,11 @@
 // told these are the published values; the reveal says only what the stage did).
 // A rotation on the sphere keeps its size and shape; only its place changes. The learner closes
 // the Atlantic and sees where Brazil's eastern bulge lands.
+// v6 (learner r8, phone fit): region labels 10.5px (they drew at 8.5px); at the reveal the slider and the two
+// buttons and the legend line are hidden (the stage is synced to 57°, the fit the reveal describes), so the globe top with the pivot
+// arrow, the readouts and the reveal's last line share a 390×844 screen. The told "small gaps and overlaps"
+// sentence left the reveal (nothing on the stage marks them). "Horn of Africa" now sits under its dot, clear of
+// the Gulf of Guinea label.
 
 import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -115,11 +120,10 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            It tucks into the <strong>Gulf of Guinea</strong>, under West Africa&rsquo;s coast near Nigeria and Cameroon.
+            It tucks into the <strong>Gulf of Guinea</strong>, near Nigeria and Cameroon.
             You turned South America as one solid piece, {ANGLE}° about the pivot in the North Atlantic: the red
             dot&rsquo;s trail is an arc around it. It looked bigger as it moved toward the middle of the globe, but its size
-            stayed {areaM(sa)} million km² the whole way. Its coast closed against Africa&rsquo;s with small gaps and
-            overlaps.
+            stayed {areaM(sa)} million km² the whole way.
           </p>
           <p>
             The fit here is rough: these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
@@ -150,7 +154,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
                   return (
                     <g key={t}>
                       <circle cx={q[0]} cy={q[1]} r={1.8} className={s.mark} />
-                      <text x={a ? q[0] - 4 : q[0]} y={a ? q[1] + 3 : q[1] - 5} className={s.region} textAnchor={a ?? "middle"}>
+                      <text x={a ? q[0] + 2 : q[0]} y={a ? q[1] + 14 : q[1] - 5} className={s.region} textAnchor={a ?? "middle"}>
                         {t}
                       </text>
                     </g>
@@ -178,14 +182,18 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">
-            Grey: today&rsquo;s coasts. Blue: South America, turned about the pivot. Red dot: the bulge, with its trail. The
-            globe squashes shapes near its edge.
-          </p>
+          {phase !== "reveal" && (
+            <p className="muted tiny">
+              Grey: today&rsquo;s coasts. Blue: South America, turned about the pivot. Red dot: the bulge, with its trail. The
+              globe squashes shapes near its edge.
+            </p>
+          )}
           <Row>
             <Readout label="Turned" value={`${deg(pct)}°`} />
             <Readout label="Size on the globe" value={`${area} million km²`} />
           </Row>
+          {phase !== "reveal" && (
+          <>
           <Row>
             <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${deg(v)}°`} onChange={(v) => set(v, interact)} />
           </Row>
@@ -197,6 +205,8 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
               Back to today
             </Control>
           </Row>
+          </>
+          )}
         </div>
         );
       }}
