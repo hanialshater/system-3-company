@@ -45,15 +45,19 @@
       "id": "ai.greedy-slot-machine.c3",
       "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls; the stage shows the first pulls (A won, B lost).",
       "support": "simulation",
-      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4).",
-      "status": "unverified"
+      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4). | FACT-CHECK 2026-10-14 (pass 16): Own reimplementation and the extracted MODEL block of Demo.tsx agree: seed 5 first pulls are A LOST and B LOST (first = [0,0]); seeds 1-4 and 6 are A lost, B won. The stage prints 'first pulls: A lost, B lost', so the claim's '(A won, B lost)' contradicts the stage. The rest holds: B pulled 1 of 500, wins per 100 = 40, 29, 23, 30, 41 (163/500 = 32.6, 'about 30'), stuck. Since both looked 0%, greedy stayed on A only because ties go to A. Fix (builder): change the parenthetical to '(A lost, B lost; with both at 0% the tie goes to A)'. The reveal text itself is not wrong.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.greedy-slot-machine.c4",
       "text": "In the toy, greedy ends up stuck on A in about 3 runs in 10, winning about 30 per 100 in those runs; the stage tallies how often it was stuck, and the average wins of greedy and the explorer over its last 100 pulls, across the runs the learner watches.",
       "support": "simulation",
-      "source": "Seeds 1-2000 of play() (node script): greedy stuck 30.2% (601 of 604 stuck runs began with B's first pull losing), greedy last-100 mean 57.7, explorer 67.95. The stage's own tallies are computed live from seeds 5 onward.",
-      "status": "unverified"
+      "source": "Seeds 1-2000 of play() (node script): greedy stuck 30.2% (601 of 604 stuck runs began with B's first pull losing), greedy last-100 mean 57.7, explorer 67.95. The stage's own tallies are computed live from seeds 5 onward. | FACT-CHECK 2026-10-14 (pass 16): node, own play() with kit mulberry32, seeds 1-2000: greedy stuck (under 50 B pulls in its last 100) in 30.2%; stuck runs average 29.8 wins in the last 100 and 30.0 per 100 over all 500; 601 of 604 stuck runs began with B's first pull losing; greedy last-100 mean 57.7, explorer 67.95. The learner's default path (Play run 1, Next run, Watch 100 more = seeds 5-106, 102 runs): stuck 33 (32%), greedy 57, explorer 67, so the reveal's hard-coded 'about 3 in 10' sits next to a matching tally.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.greedy-slot-machine.c5",

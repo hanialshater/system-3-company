@@ -27,8 +27,10 @@
       "id": "ai.king-queen-arrow.c1",
       "text": "The tidy toy map's positions were placed by hand: man (0,0), woman (0,1), king (1,0), queen (1,1), crown (1,0.4), prince (1,-0.5). The messier map is also placed by hand: man (0,0), woman (-0.1,1), king (1,0.1), queen (1.3,1.3), crown (1,0.75), prince (0.9,-0.4).",
       "support": "convention",
-      "source": "The lesson's own data in Demo.tsx (WORDS); the brief's coordinates, designed so the arithmetic is exact.",
-      "status": "unverified"
+      "source": "The lesson's own data in Demo.tsx (WORDS); the brief's coordinates, designed so the arithmetic is exact. | FACT-CHECK 2026-10-14 (pass 16): Demo.tsx WORDS and MESSY match every coordinate in the claim; the stage header says 'Tidy toy map / Messier toy map: positions placed by hand' and the reveal says both maps were placed by hand.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.king-queen-arrow.c2",
@@ -61,8 +63,10 @@
       "id": "ai.king-queen-arrow.c5",
       "text": "On the messier toy map, king + (woman - man) lands at (0.9, 1.1), 0.45 from queen and 0.36 from crown, so crown is the nearest word; prince is 1.50 away. The map was invented to show an analogy that only roughly holds.",
       "support": "derivation",
-      "source": "(1,0.1) + ((-0.1,1) - (0,0)) = (0.9,1.1); |(0.9,1.1) - (1.3,1.3)| = 0.447; |(0.9,1.1) - (1,0.75)| = 0.364; |(0.9,1.1) - (0.9,-0.4)| = 1.5. The messy map is chosen to show a miss (disclosed on the stage as hand-placed).",
-      "status": "unverified"
+      "source": "(1,0.1) + ((-0.1,1) - (0,0)) = (0.9,1.1); |(0.9,1.1) - (1.3,1.3)| = 0.447; |(0.9,1.1) - (1,0.75)| = 0.364; |(0.9,1.1) - (0.9,-0.4)| = 1.5. The messy map is chosen to show a miss (disclosed on the stage as hand-placed). | FACT-CHECK 2026-10-14 (pass 16): node: (1,0.1) + ((-0.1,1) - (0,0)) = (0.9,1.1); queen 0.4472 -> 0.45, crown 0.3640 -> 0.36, prince 1.5000 -> 1.50; nearest (skipping king, man, woman) = crown. Reading it the other way, woman + (king - man), gives the same point. Hand placement is disclosed on the stage. Advisory, non-blocking: the predict key 'Often, not always' rests on one hand-placed miss plus c3; no claim says how often a nudged map still lands on queen.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -45,15 +45,19 @@
       "id": "ai.memorise-coin-flips.c3",
       "text": "On label set 1 the degree-1 line misses by up to 1.51 and the degree-3 curve by 0.76; the degree-5 curve's largest miss is 0.00.",
       "support": "simulation",
-      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000. Degree 3 misses some dot in 967 of 1000 label sets.",
-      "status": "unverified"
+      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000. Degree 3 misses some dot in 967 of 1000 label sets. | FACT-CHECK 2026-10-14 (pass 16): Exact least squares (Python Fractions) on set 1 labels (-1,1,-1,-1,-1,1): the degree-1 line is -13/21 + (4/7)x, largest miss 158/105 = 1.50476, which the stage's f2() shows as '1.50', not 1.51. The degree-3 miss is 0.7619 ('0.76', right); the degree-5 miss is 8e-13 ('0.00', right). Fix (builder): 'misses by up to 1.50' in the claim and in the Demo.tsx header comment.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.memorise-coin-flips.c4",
       "text": "Because the labels are coin flips, the fitted curve's call on a new point (the stage's point at x = 0.5, with its own coin-flip label) is right only by chance, about half the time; the stage tallies it over the label sets the learner tries at degree 5.",
       "support": "derivation",
-      "source": "By construction: a new point's label is an independent fair coin flip (newLabel(set) in Demo.tsx, mulberry32(set * 7919 + 13)), so any guess matches it with probability 1/2 whatever the curve. The stage tally is computed live; the counts depend on the sets tried.",
-      "status": "unverified"
+      "source": "By construction: a new point's label is an independent fair coin flip (newLabel(set) in Demo.tsx, mulberry32(set * 7919 + 13)), so any guess matches it with probability 1/2 whatever the curve. The stage tally is computed live; the counts depend on the sets tried. | FACT-CHECK 2026-10-14 (pass 16): Demo.tsx: newLabel uses mulberry32(set x 7919 + 13), a stream separate from labelsFor(set), so P(call = label) = 1/2 whatever the curve. node (own least-squares fit): over sets 1-10,000 the degree-5 call at x = 0.5 is right in 49.6%; newLabel is +1 in 50.2%; on sets 1-22 (a typical learner path) it is right 12 of 22 (55%), so the stage shows 'about half'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.memorise-coin-flips.c5",

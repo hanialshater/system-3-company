@@ -35,15 +35,19 @@
       "id": "ai.confident-and-wrong.c2",
       "text": "Every halving of the chance on the truth adds the same 0.69 to the penalty; from 100%, 1% is about 6.6 halvings away, so it costs 6.6 times the first halving, and as the chance goes to 0% the penalty keeps rising without a ceiling.",
       "support": "derivation",
-      "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0.",
-      "status": "unverified"
+      "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0. | FACT-CHECK 2026-10-14 (pass 16): node: ln 2 = 0.6931; ln(100)/ln 2 = log2(100) = 6.644, shown as 6.6 (Q_ONE/Q_HALF); -ln p is unbounded as p -> 0. Stage halving chain from 50% adds 0.693 per step for nine steps. Advisory, non-blocking: the tenth tap clamps 0.098% to P_MIN 0.05% (not a true halving), adding 0.669, while the chain line still says 'each halving adds 0.69'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.confident-and-wrong.c3",
       "text": "For one example, the cross-entropy penalty is ln(1 ÷ the probability the model gave the true class), which equals −ln of that probability. Classifiers are commonly trained to make it small, so confident mistakes cost far more than hedged ones; other penalties exist.",
       "support": "source",
-      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2.",
-      "status": "unverified"
+      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2. | FACT-CHECK 2026-10-14 (pass 16): Derivation: cross-entropy H(q,p) = -sum q_i ln p_i with a one-hot q is -ln p_true = ln(1/p_true). 'Commonly trained to make it small': Goodfellow, Bengio & Courville 2016 s6.2.1.1 (deeplearningbook.org unreachable from here); corroborated by Srihari CSE676 slides 6.2 (cedar.buffalo.edu, search snippet: cost is the negative log-likelihood, equivalently the cross-entropy between training data and model distribution). Hedge 'other penalties exist' is right. Reveal paragraph 3 matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.confident-and-wrong.c4",

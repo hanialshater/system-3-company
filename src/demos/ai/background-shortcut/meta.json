@@ -36,8 +36,10 @@
       "id": "ai.background-shortcut.c2",
       "text": "The toy model uses one clue at a time and keeps the one with the higher training score: background. The stage lets the learner run either clue on either set of photos.",
       "support": "convention",
-      "source": "LEARNED in Demo.tsx.",
-      "status": "unverified"
+      "source": "LEARNED in Demo.tsx. | FACT-CHECK 2026-10-14 (pass 16): Demo.tsx: LEARNED = background because accuracy(TRAIN,'background') 0.95 >= accuracy(TRAIN,'shape') 0.8 (ties would also go to background); four buttons run each clue on each set (CELLS). Reveal paragraph 3 says 'one clue at a time'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.background-shortcut.c3",
@@ -61,8 +63,10 @@
       "id": "ai.background-shortcut.c5",
       "text": "Models tend to take an easy clue that works on their training data, and test photos drawn from the same source share the shortcut, so a high score there does not show the model learned the clue you meant.",
       "support": "source",
-      "source": "Reveal paragraph 2. Geirhos et al. 2020, Nature Machine Intelligence 2, 665-673 (shortcuts that work on i.i.d. test sets but fail out of distribution). 'Cheapest' is a loose paraphrase of simplicity/shortcut bias, not a measured quantity; the reviewer should confirm the wording is acceptable. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "unverified"
+      "source": "Reveal paragraph 2. Geirhos et al. 2020, Nature Machine Intelligence 2, 665-673 (shortcuts that work on i.i.d. test sets but fail out of distribution). 'Cheapest' is a loose paraphrase of simplicity/shortcut bias, not a measured quantity; the reviewer should confirm the wording is acceptable. Added by fact-checker 2026-10-13; needs an independent check. | FACT-CHECK 2026-10-14 (pass 16): Text is the builder's v-revision ('tend to take an easy clue'), not the wording a fact-checker added on 2026-10-13. Geirhos et al. 2020 abstract (arXiv 2004.07780, via bethgelab.org and search snippet; arxiv.org itself unreachable): shortcuts are 'decision rules that perform well on standard benchmarks but fail to transfer to more challenging testing conditions'. Same-source test sets share the shortcut = the paper's i.i.d. point. Hedged 'tend to' is fair. The source's note about 'cheapest' is stale: the word is gone from the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
