@@ -23,3 +23,14 @@ Urn model, truth blue. 100 people, clue right with probability p, copy a lead of
 
 ## QA
 Contract QA (phone and desktop) passes: company/reviews/two-said-blue/2026-10-14-qa.md. Walkthrough screenshots looked at, all 9 phone frames. Full QA run also executed feed.spec; its "subject chips filter the feed" test failed on both projects (feed spec, not this lesson; not investigated).
+
+## Revision v2 (demo-builder, 2026-10-14)
+Inputs: learner review (adult beginner) and fact-check pass NCM-1.
+- Rule before predicting: the prediction question now states the copy rule (lead of 2 or more is copied, else own clue). Stage message trimmed to "The urn is blue."
+- Correct option first: options reordered, answer 0 (recall options too, answer 0).
+- Reveal gap: reveal prints (1-p)^2 for the accuracy run most (11.1% at 2 in 3, 16.0% at 60%, 4.0% at 80%; node-checked) and says it is only the quickest route; red can also lead by 2 after a split start, so the total (20.0%, 30.8%, 5.9%) is higher. Also fixed "clue right 67%" to "2 in 3".
+- Jargon: "seeds" and "10,101" removed from reveal; readout "Runs (seeds 1 to n)" is now "Crowds run".
+- "Pooled wrong" is now "Pooled wrong (ties excluded)"; reveal says ties are not counted.
+- Stage text now about 23 words (message 4, legend 9, readout labels 10), was about 30.
+- Claims: c4, c5, c7 texts changed, now unverified. c1 text unchanged (source note added, address moved to the question). c8 stays withdrawn. References untouched.
+- QA: contract passes phone and desktop (QA_PORT 3661, own dist .next-tsb); walkthrough phone frames viewed; npm run check and typecheck pass.
