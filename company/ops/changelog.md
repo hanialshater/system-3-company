@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-14: release-manager wave E publish
+- Lifted 2 stale holds in company/ops/publish-holds.json (salt-ions-count-double, cards-do-remember): all 6 claims in each meta.json are now verified. The 8 geography screenshot holds stay (re-review running).
+- `node tools/publish-ready.mjs --publish`: 97 candidates (95 + the 2 lifted), 97 published, 0 refused by the gate. Not candidates: 12 verdict revise, 3 fatal, 4 older-version verdict, 8 geography holds. Launch review records still to be written in company/rituals/records/.
+- Smoke: 13 lessons across 8 domains (ai, chemistry, cs, economics, geography, life, math, physics, probability; includes NCM-tagged good-lists-make-good-pages and honest-bid-loses-in-gsp, and algorithms) return 200 at localhost:3470/d/<slug>. Served build bakes status at build time, so labels are stale until the next build; no rebuild done.
+
 ## 2026-10-14: release-manager wave D publish
 - `node tools/publish-ready.mjs --publish`: 198 candidates, 197 published, 1 refused by the gate (continental-jigsaw: claims not verified, geography.continental-jigsaw.c1; route to fact-checker). 78 not candidates: 60 verdict revise, 3 fatal, 2 older-version, 10 on company/ops/publish-holds.json (unchanged). Launch review records still to be written in company/rituals/records/.
 - Smoke: 10 lessons across 10 domains return 200 at localhost:3450/d/<slug>. The served build bakes status from meta.json at build time (registry.generated), so they still show "In review" until the next build; no rebuild done. `npm run check` passed.
