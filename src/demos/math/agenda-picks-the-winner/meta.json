@@ -1,0 +1,85 @@
+{
+  "slug": "agenda-picks-the-winner",
+  "title": "Who sets the order wins",
+  "hook": "Same three voters, same rankings. Change only the order of the votes.",
+  "domain": "math",
+  "concept": "condorcet-cycle",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a vote between two options goes to the one with more votes",
+      "what a ranking is"
+    ],
+    "doesNotKnow": [
+      "that majority preferences can go in a circle, so the order of the votes decides the winner"
+    ]
+  },
+  "misconception": "If a group prefers A to B and B to C, it prefers A to C; the group has a clear favourite, and the order of the votes cannot change it.",
+  "objective": "The learner can explain that with these three rankings each option beats one rival and loses to another by 2 to 1, so the option held to the last vote wins and whoever sets the agenda picks the winner.",
+  "claims": [
+    {
+      "id": "math.agenda-picks-the-winner.c1",
+      "text": "With the rankings A>B>C, B>C>A and C>A>B, A beats B, B beats C and C beats A, each by 2 votes to 1.",
+      "support": "derivation",
+      "source": "Pairwise count in node: A over B for voters 1 and 3; B over C for voters 1 and 2; C over A for voters 2 and 3. The stage prints each tally.",
+      "address": "stage (vote lines, arrows) and reveal paragraph 2",
+      "status": "unverified"
+    },
+    {
+      "id": "math.agenda-picks-the-winner.c2",
+      "text": "If every voter votes for the option they rank higher, the agenda 'A vs B, then C' elects C, 'B vs C, then A' elects A and 'A vs C, then B' elects B, so the option held back to the last vote wins.",
+      "support": "derivation",
+      "source": "Node run of the exact rule used in Demo.tsx (two-way majority, winner meets the held-back option) over all six agenda orders: each of A, B, C wins twice, always the one held to the last vote.",
+      "address": "hook, prediction (answer C), stage vote lines, reveal paragraph 1",
+      "status": "unverified"
+    },
+    {
+      "id": "math.agenda-picks-the-winner.c3",
+      "text": "Because each option loses 2 to 1 to another, no option beats every other in a pairwise vote, so there is no majority favourite and whoever sets the order of the votes picks the winner.",
+      "support": "derivation",
+      "source": "Follows from c1 and c2. A cycle of majority preferences is the topic of Easley & Kleinberg 2010, ch. 23 section 23.3 (section number unconfirmed; fact-checker to confirm against the book). No name or date is used in learner text.",
+      "address": "reveal paragraph 2",
+      "status": "unverified"
+    },
+    {
+      "id": "math.agenda-picks-the-winner.c4",
+      "text": "This holds when every voter backs the option they rank higher in each vote (sincere voting). The lesson does not claim that real elections have such cycles.",
+      "support": "convention",
+      "source": "Modelling assumption stated in the reveal; the brief excludes any claim about real elections.",
+      "address": "reveal paragraph 2",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three friends rank films: Ana P>Q>R, Ben Q>R>P, Cy R>P>Q. Everyone votes for the film they rank higher. They vote Q against R, then the winner against P. Which film wins?",
+    "options": ["P", "Q", "R"],
+    "answer": 0,
+    "why": "Q beats R 2 to 1 (Ana, Ben), then P beats Q 2 to 1 (Ana, Cy). The film held to the last vote wins, because the rankings form a cycle."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:condorcet-cycle",
+    "prerequisites": [],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      { "work": "easley-kleinberg-2010", "chapter": 23, "section": "23.3", "note": "section unconfirmed; fact-checker to confirm" }
+    ],
+    "also": [],
+    "tags": ["voting", "majority", "cycle", "agenda"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"]
+}

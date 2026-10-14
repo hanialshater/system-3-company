@@ -1,0 +1,21 @@
+.wrap { display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.voters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.voter { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 10px; padding: 6px 4px; background: var(--bg-2); }
+.vname { font-size: 0.75rem; color: var(--muted); }
+.rk { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em; white-space: nowrap; }
+.chips { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.chips :global(.control) { min-height: 44px; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+.lower { display: flex; align-items: center; gap: 8px; }
+.votes { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.vote { margin: 0; font-size: 0.95rem; font-variant-numeric: tabular-nums; display: flex; flex-direction: column; }
+.vn { font-size: 0.75rem; color: var(--muted); }
+.champ { margin: 2px 0 0; font-size: 1.15rem; font-weight: 800; }
+.tri { flex: 0 0 150px; width: 150px; height: 120px; }
+.unseen { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.beat { stroke: var(--fg); stroke-width: 2.5; }
+.node { fill: none; stroke: var(--fg); stroke-width: 2; }
+.nodeOn { fill: var(--domain); stroke: var(--fg); stroke-width: 2.5; }
+.lbl { fill: var(--fg); font-size: 14px; font-weight: 800; text-anchor: middle; }
+.lblOn { fill: var(--bg); font-size: 14px; font-weight: 800; text-anchor: middle; }
+.caption { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.legend { margin: 0; text-align: center; color: var(--muted); font-size: 0.75rem; }
