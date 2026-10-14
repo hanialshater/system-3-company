@@ -71,3 +71,18 @@ test('table knots look like the textbook: round strands, no long straight runs, 
     assert.ok(sharp / L <= 0.03, `${name}: ${Math.round((100 * sharp) / L)} % of the strands are sharp corners (at most 3 %)`)
   }
 })
+
+// Strands, not just crossing positions (added 2026-10-14 at promotion, W-162; company/rnd/evolution/knots-gen2.md,
+// "The crossing-change bug" and "Promotion re-score"). With the under-pass gap off, a drawing from a stored layout and
+// the drawing of the same layout after any crossing change must be the same set of curves (Hausdorff distance <= 0.5
+// in a 100-unit view box). L2a1 must be in the case set: a 2-edge component is the case that separates the ortho line.
+test('a stored layout keeps every strand where it was across a crossing change', () => {
+  assert.ok(K.KNOTS.L2a1?.pd?.length == 2, 'the case set must include the Hopf link L2a1')
+  const pts = (D) => D.edges.flatMap((e) => sample(e.d))
+  const far = (A, B) => Math.max(...A.map((a) => Math.min(...B.map((b) => Math.hypot(a[0] - b[0], a[1] - b[1])))))
+  const cases = [...Object.values(K.KNOTS).map((k) => k.pd), ...[1, 2, 3].map((s) => K.randomKnot(s).pd)].filter((pd) => pd.length)
+  for (const pd of cases) {
+    const L = K.layout(pd), A = pts(K.draw(pd, { layout: L, gap: 0 }))
+    for (let c = 0; c < pd.length; c++) { const B = pts(K.draw(K.crossingChange(pd, c), { layout: L, gap: 0 })); assert.ok(Math.max(far(A, B), far(B, A)) <= 0.5, `${JSON.stringify(pd)} @ ${c}`) }
+  }
+})
