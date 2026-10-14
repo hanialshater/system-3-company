@@ -27,4 +27,5 @@ Top finding: the stage shows the equilibrium bars move but not why the opponent'
 
 ## After reading the brief
 
-(see below)
+
+meta.json learner field: knows the keeper must guess, knows 0.9 means 9 in 10; does not know your mix is set by what makes the other side indifferent, or that improving your weapon can make you use it less. The second target idea is delivered by the bars (finding 4). The first (indifference) appears only as one abstract reveal sentence (finding 5), and the lesson's own boundary does not cover the unanswered 'why not keep 50/50' (finding 6). I did not read build.md for this review.

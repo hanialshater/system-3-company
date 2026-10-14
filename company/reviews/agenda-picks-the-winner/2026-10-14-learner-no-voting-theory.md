@@ -26,4 +26,5 @@ Top finding: the prediction is derivable from the card and the three agendas sho
 
 ## After reading the brief
 
-(see below)
+
+meta.json learner field: knows majority between two options and what a ranking is; does not know majority preferences can circle so the order decides. My boundary matched. The lesson's intended idea is shown (finding 4); what it leaves unsaid is that individual rankings stay consistent while the group's loop (finding 6). I did not read build.md for this review.

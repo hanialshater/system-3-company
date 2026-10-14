@@ -27,4 +27,5 @@ Top finding: the one sentence that carries the lesson's mechanism (finding 5) is
 
 ## After reading the brief
 
-(see below)
+
+meta.json learner field: knows segregation exists, people choose where to live, percentages; does not know mild preferences can add up to an extreme collective pattern, Schelling's model, or agent-based models. My boundary was close to the lesson's. The target idea (mild individual rule, extreme collective result) is the reveal's headline, but at the prediction's own 30% the run shows only moderate sorting (finding 6) and the 'unsettling' mechanism is unshown (finding 5), so intent and experience part at the exact point the lesson exists to make. I did not read build.md for this review.

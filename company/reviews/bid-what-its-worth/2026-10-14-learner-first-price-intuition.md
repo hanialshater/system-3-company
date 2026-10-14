@@ -27,4 +27,5 @@ Top finding: title and option wording give the correct answer away before the le
 
 ## After reading the brief
 
-(see below)
+
+meta.json learner field: knows what an auction is and wants to pay less than value; does not know shading never helps under second-price, or that inflating only adds losing wins. My boundary matched. The 'inflating adds losing wins' half is shown (red -$5). The 'shading never helps' half is shown once ($50 misses $10 at rival $60) but the title gives away the conclusion before the prediction (finding 1). I did not read build.md for this review.

@@ -27,4 +27,5 @@ Top finding: the question cannot be reasoned to without unexplained notation (fi
 
 ## After reading the brief
 
-(see below)
+
+meta.json learner field: knows a product is worth buying if value exceeds price; does not know that with value growing in users the same product and price can collapse or reach most of the market. The two-launch contrast is shown well (finding 5). But the lesson also demands the model notation of a learner who knows only 'value vs price' (finding 1), and its hook reveals the contrast (finding 2). I did not read build.md for this review.
