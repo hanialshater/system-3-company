@@ -111,3 +111,51 @@ Non-US and locale variants: unchanged from the first review. The card says "In U
 ## Overall verdict
 
 **Publishable after named fixes (1 to 5 above).** Not "block": the default, the first two seeds and every setting at or below 30% are clean, no banned word survives, the structural sentence is in the same block as the result in the right order, and the R8 drop is the right call. Fixes 1 and 2 are mine to hold the publish on; fix 3 depends on a decision I do not own; fixes 4 and 5 belong to other roles and are conditions I am recording, not checks I can do.
+
+# Pass 3 (v2). Re-rule on the rebuilt lesson
+
+- Reviewer: cultural-reviewer (Amira). Date: 2026-10-14. Session 2.
+- Method: artifact first. I built to `.next-cr`, served on port 3191 (after killing my own stale server from pass 1, which had been serving the old build) and ran `npm run walkthrough -- schelling-on-new-york` (phone, option 1). I read the transcript, `03-step-2.png` and `11-reveal.png`, then `Demo.tsx` (MAX, SEEDS), a banned-word grep over Demo.tsx, engine.ts, styles.module.css and meta.json, and the builder's `check.mjs` output. I wrote these findings before opening the v2 section of `2026-10-14-build.md`. My own word counts of the rendered text matched the builder's (reveal 120 with the longest verdict line; stage 24 before a run and 34 after, without the slider label).
+- Not checked: dark theme in a browser; a screen reader; any human reader; I did not rewrite my pass-1 seed scan and relied on `check.mjs`, whose 35 to 50% rows reproduce my pass-1 numbers exactly (2, 3, 4, 4 region-seeds), so I trust its 0 to 30% sweep.
+
+## Verdict: PUBLISHABLE after the remaining named conditions. Fixes 1 and 2 are met. Fix 3's trim is met; its decision is still open.
+
+## (1) Fixes 1 to 3
+
+| Fix | Result | Evidence |
+|---|---|---|
+| 1. Slider capped at 30% | **Met** | `MAX = 30`, `min 0`, `step 5` in Demo.tsx. Walkthrough: the slider loads at 30 and the label moved to 20 on one left move. `check.mjs`: all 1,865 frames of 48 seeds at 0 to 30%, no region (at least 10 agents) over 90% one group, worst 0.86; settled sweep rows 35% and above still show the problem (2, 3, 4, 4), so the cap is doing the work. c6 now states the range and the reason. Seeds 3 and 36 stay excluded and disclosed in c5, as ruled. |
+| 2. Reveal sentence rewritten | **Met** | Rendered: "In this model, a moving rule sorted the grid to 0.76. Without money or history, the model does not show why any real city looks as it does. In US cities, households did not all have the same choices: the documented history includes housing and lending discrimination, widening wealth gaps, and late-1930s government maps grading neighbourhoods for lending risk. The grades are associated with later home values and ownership; research is mixed on whether the maps caused this or recorded earlier practice." The referents are clear ("the maps", "The grades", "this"). "among it", "it widened", "recorded it" and "Lacking what the stage lists" are gone. The limit is one plain sentence. The history sits in the same paragraph as the result, after "In US cities", discrimination first. "census tract" is present. 120 words with the longest verdict line, at the cap and not over. |
+| 3. Stage trimmed | **Trim met; decision open** | Rendered stage: "Made-up equal groups, A and B. Not New York's population." / "Spread (0 even, 1 apart):" / "A setting, not a measure of anyone." / slider label unchanged / after a run "Not modelled: money, prices, jobs, history, who could live where." All three required meanings survive. Count: 24 before a run and 34 after (without the slider label; 33 and 43 with it) against the product standard of 25. No decision from the learning-designer is on disk (`company/decisions` has none for this). Still open, owner learning-designer with design-lead; my constraint stands: an exception may cover only the "Not modelled" line. |
+
+## (2) New history wording against R3 and R7
+
+- **c10a "late-1930s government maps grading neighbourhoods for lending risk" (Mapping Inequality). Pass.** No acronym, no neighbourhood named beside a grade, "US" given by the sentence's opening. "Late-1930s" is the safer word given that survey dates differ by city.
+- **c10d "associated with later home values and ownership" (Aaronson et al. 2021). Accept the builder's wording over my "lending patterns".** I withdraw my suggested noun. R7 required "associated with", no neighbourhood named, and no claim the card cannot source. Home values and ownership are what the paper measures; "lending patterns" would have put a mechanism the source infers, not measures, in a learner's head. "Associated with" understates an authors' causal claim; that is the safe direction and is disclosed in the claim's source. "Lending" still appears once, in what the maps graded ("for lending risk"), which is the maps' own purpose, not an outcome claim.
+- **c10e "research is mixed on whether the maps caused this or recorded earlier practice" (Fishback et al. 2024). Pass on R7**, which asked for the dispute to be visible and not buried. One precision point for the fact-checker, not a cultural fix: "this" on the card means home values and ownership, while Fishback et al. mainly address lending and earlier federal exclusion. The fact-checker should confirm the paper speaks to the maps' role in later neighbourhood outcomes, or the claim text should say what it measures. If it does not, fix the wording (for example "whether the maps created or recorded earlier practice"), without removing the clause. The clause stays either way.
+- Advisory: the sentence lists the maps as a third item beside discrimination and wealth gaps, but the maps are a case of the discrimination. Fine as it reads; do not spend words on it.
+
+## (3) Wealth without income against R3
+
+**Ruling: acceptable. R3 is amended: the order is "discrimination, then the money gap that followed", and wealth alone meets it.** R3 asked for "discrimination, then income" so that a learner does not read income as a neutral, separate cause of where people live. What mattered was (a) discrimination first and (b) money framed as downstream of it, not a rival explanation. The card has both: "housing and lending discrimination, widening wealth gaps". Home equity is the channel Rothstein's book argues, so wealth is the better-sourced word and c10b is a one-source claim. Dropping income also removes the weakest link (the Furman Center tables did not carry it).
+- Condition: the fact-checker must still find the Rothstein page for the wealth and home-equity argument (c10b is unverified). If it cannot be found, replace the source (for example a Federal Reserve wealth-gap source tied to housing), not the order.
+- If income is ever restored, it needs a source that ties discrimination to income, and it comes after discrimination. Do not restore it as a bare "income gaps" clause.
+- Residual risk, unchanged and for the learner probe: "Without money or history, the model does not show why..." plus a wealth clause could read as "money explains it". The sentence puts discrimination first and calls the wealth gap "widening", so I judge the risk low, but only a reader can show it.
+
+## (4) New banned words and one-group regions
+
+- Banned-word grep (R4) over learner-facing text: clean. The only hits are "prefers-reduced-motion" and "prefers-color-scheme" in code, a file path comment ("mild-preferences-sharp-divides") and "segregation" in the reveal, the recall question and tags. "Segregation" is not on the banned list and is the concept name; it is used for the index ("A segregation number needs its unit"), never of a group or place. New words in this version: "grades", "households", "ownership", "wealth", "discrimination", "government". None is banned or loaded.
+- Region frames: none reachable at 0 to 30% (above). No borough name, label or outline anywhere; alt text reads "A grid shaped like New York City. Tick 7: 518 squares in two equal groups, 100% would stay; spread on 2 by 2 blocks 0.76." No group is named anywhere on the card. In `03-step-2.png` the Staten Island and Manhattan areas are mixed.
+
+## Required before publish (carried forward and new)
+
+1. **Stage after-run overrun: a recorded decision** from the learning-designer with design-lead, exception limited to the "Not modelled" line (carried from fix 3). Owner: learning-designer.
+2. **Fact-checker re-reads c10a, c10b, c10d, c10e** from the pages: the Rothstein page for wealth and home equity, and that Fishback et al. speaks to the maps' effect on later neighbourhood outcomes and not only lending (see (2)). Cultural claims c10a to c10e cannot publish on memory. Owner: fact-checker. If c10e's referent fails, the builder fixes the wording and I do not need to re-review for a one-word change.
+3. **Learner probe** after the reveal ("Does this show why New York looks as it does?" and "What was left out of the model?"). Also ask whether "wealth gaps" reads as an alternative to discrimination. Owner: learning-designer (carried from fix 5).
+
+No further wording, seed or slider change is required from the builder. Advisory, unchanged: "neighbours" and "would stay" are undefined; neutral colour tokens.
+
+## Objections and what happened to them
+
+- Builder, v2 open item: "R3 asked for income; the clause went because no reachable source carries it." Answer: accepted, with R3 amended in (3) and the conditions above. Not noted.
+- Builder, v2 decision: "Lending wording: I did not use 'later lending patterns'." Answer: right, and my suggestion was wrong; I withdraw it in (2).
