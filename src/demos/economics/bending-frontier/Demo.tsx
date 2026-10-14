@@ -13,6 +13,8 @@
 // commit the curve and staircase are drawn only as far as the learner has pushed (the furthest point stays as a
 // faint trace when they step back). Wheat starts at 0; "All 10 fields" is a step button that reaches the key state.
 // Wheat fields are crossed out instead of relying on a colour word.
+// v4 (W-265, phone fit): the reveal is trimmed to 88 words (was 119) so the chart top stays on screen at 390x844
+// when the reveal opens: the drop list is "1, 3, 5, ... 19" and the repeated "first ton cost 1" is gone.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -60,15 +62,15 @@ export default function BendingFrontier({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            When you reached {W_MAX} tons of wheat, corn hit 0, and that last ton cost <strong>{LAST} tons of corn</strong>: from {corn(W_MAX - 1)} down
-            to {corn(W_MAX)}. The first ton cost {FIRST}. The drops grew by 2 every step: {Array.from({ length: W_MAX }, (_, i) => stepCost(i + 1)).join(", ")}.
+            At {W_MAX} tons of wheat, corn hit 0, and the last ton cost <strong>{LAST} tons of corn</strong>.
+            The drops grew by 2 every step: {FIRST}, {stepCost(2)}, {stepCost(3)}, … {LAST}.
           </p>
           <p>
-            Look at the fields under the chart: they are not all alike. The first wheat went on the field worst for corn,
-            which grew only {FIRST}; the last took the best corn field, which grew {LAST}. Each drop on the staircase is
-            the corn its field used to grow, and that is why the frontier bends.
+            The fields under the chart are not alike: the first wheat went on the field worst for corn,
+            which grew only {FIRST}; the last took the best, which grew {LAST}. Each drop is the corn its field used to
+            grow: that is why the frontier bends.
           </p>
-          <p className="muted">A model: the curve is made up to show the shape, not data from a real farm.</p>
+          <p className="muted">A model: the curve is made up, not data from a real farm.</p>
         </>
       )}
     >

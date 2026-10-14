@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-272 (eratosthenes-shadow v5 distance line)
+
+- Changed: Demo.tsx story-mode distance line now reads "Distance Syene to Alexandria, in the story: 5,000 stadia." (FC pass 28 wording); modern mode unchanged. meta.json version 4 -> 5; c1 set to unverified, checkedBy/checkedOn cleared, source stage quote updated. c1 text left as is: it already frames the distance as "this lesson's story" and W-272 said not to change it. build.md has v5 and Pre-flight v5. Board: W-272 done.
+- Believe (fairly sure): the stage line now matches c1 in story mode. tsc clean, `npm run check` passed. Not checked: the line may wrap at 360 px.
+- Next: W-273 (fact-checker) re-check c1. Build, QA and walkthrough for v5 were not run (caller's order); walkthrough transcript is still v3.
+- Blocked: nothing.
+
 ## 2026-10-14, fact-checker: pass 28 (W-262, eratosthenes-shadow v4 c1/c5/c6)
 
 - Changed: I re-checked c1, c5 and c6 against Demo.tsx v4 on every path (predict, opening state, story chip, story slider, modern chip/slider, reveal). Result: c5 and c6 verified, c1 disputed. meta.json has the status, checkedBy, checkedOn and an "FC pass 28" source note. A Pass 28 table is appended to company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md. Board: W-262 done. Added W-272 (demo-builder: distance-line fix) and W-273 (fact-checker: re-check c1 after it). No code or claim text edited, nothing built.

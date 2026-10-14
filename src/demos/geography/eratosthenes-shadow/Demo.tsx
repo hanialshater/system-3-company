@@ -170,7 +170,7 @@ export default function EratosthenesShadow({ slug }: { slug: string }) {
                   <Readout label="Circumference" value={locked ? "?" : `${fmt(circ)} ${d.unit}`} />
                 </Row>
                 <p className="muted tiny">
-                  Distance Syene to Alexandria: {fmt(d.dist)} {d.unit}.
+                  Distance Syene to Alexandria{modern ? "" : ", in the story"}: {fmt(d.dist)} {d.unit}.
                 </p>
                 <p className="tiny" data-testid="seen">
                   Seen: {[seen.account ? SEEN_ACCOUNT : null, seen.modern ? SEEN_MODERN : null].filter(Boolean).join(" · ") || "nothing yet"}

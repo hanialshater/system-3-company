@@ -64,3 +64,21 @@ Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
 4. Reveal values: 50 (answer); "7.2° → 50 arcs, 250,000 stadia" (b) milestone `account`, Seen row (c1); "7.11° → 50.6 arcs, 42,684 km" (b) milestone `modern`, Seen row; 7% and 40,008 km told (c3); the Sun overhead is the story's stipulation (c5), not a modern or historical fact.
 5. QA path unchanged: story chip, modern chip, slider two presses. Both milestones reached.
 6. Reset: none. Reveal after the QA path: "50 times. The Sun is so far away that its rays arrive parallel (the dashed lines), so the shadow's angle in Alexandria is also the angle at the Earth's centre. This lesson's story: at noon the Sun stands straight overhead at Syene, so the well there has no shadow. You saw 7.2° → 50 arcs, 250,000 stadia: 50 × 5,000 stadia, the story's numbers. / With modern numbers you saw 7.11° → 50.6 arcs, 42,684 km, within 7% of the true 40,008 km. Nobody knows the exact length of a stadion, so we cannot say how close Eratosthenes was in km. The method needed only a shadow and a distance." (Composed from the code, not from a run.)
+
+## v5 (2026-10-14): W-272, distance line framed as the story
+
+Problem (FC pass 28, company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md): in story mode, on every path, the stage read "Distance Syene to Alexandria: 5,000 stadia." with no story frame, a bare real-world distance in a unit of unknown length (c4).
+Changes:
+- Story mode distance line: "Distance Syene to Alexandria, in the story: 5,000 stadia." (the fact-checker's wording, verbatim). Modern mode unchanged: "Distance Syene to Alexandria: 843 km." (c3).
+- c1: text unchanged, since it already reads "This lesson's story: ... the distance is 5,000 stadia", which matches the new line (W-272 also said not to change it). Source's stage-basis quote updated to the v5 line. Status unverified, checkedBy/checkedOn cleared. Re-check is W-273 (fact-checker).
+- Version 4 -> 5.
+Not done: north-south nit (optional, not in this ticket). Not run: next build, QA, walkthrough (caller's order). Ran tsc and check.
+
+## Pre-flight v5
+
+1. Title and hook unchanged: "Measure the Earth with a shadow" / "Can a stick's shadow and one walk size the whole planet? How?"
+2. Options unchanged: "7 times" / "50 times" / "360 times".
+3. Locked stage: as v4, except the distance line now reads "Distance Syene to Alexandria, in the story: 5,000 stadia." Nothing says 50.
+4. Reveal values unchanged from v4 (c1, c3, c4, c5 as listed there).
+5. QA path unchanged: story chip, modern chip, slider two presses. After the modern chip the line reads "Distance Syene to Alexandria: 843 km."; after the story chip it gets the story frame back.
+6. Reset: none. Reveal text unchanged from v4. The longer story line may wrap to two lines at 360 px (tiny muted text); not checked on a phone, since no build was run.
