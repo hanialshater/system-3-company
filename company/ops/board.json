@@ -6633,7 +6633,7 @@
       "id": "W-477",
       "title": "Security S1 (was P2): src/app/spike (SPIKE-001 host) merged in f6c710c ships to production; ?cdn= framed any site under our domain and wrote real localStorage and /api/events. FIXED, in review by principal-engineer. See company/rituals/records/2026-10-13-eng-review-lesson-storage.md PE finding 1 and company/engineering/operations/2026-10-14-ops-review.md",
       "owner": "platform-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [
@@ -8389,6 +8389,15 @@
       "owner": "demo-builder",
       "state": "backlog",
       "domain": "lifehacks",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-609",
+      "title": "W-477 post-deploy smoke (with the W-534 deploy, founder-approved): prod + custom domain /spike and /spike?cdn=https://example.com return 404; a lesson /d/<slug> beacon POST /api/events returns 204 and logs in Vercel; POST with Origin: null returns 403; Vercel env has no SPIKE_ENABLED. If the beacon fails, revert the events-route half and reopen W-477. See company/engineering/reviews/2026-10-14-w477-spike-review.md",
+      "owner": "release-manager",
+      "state": "next",
+      "domain": null,
       "created": "2026-10-14",
       "links": []
     }

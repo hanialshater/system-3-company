@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 principal-engineer (Kenji): W-477 /spike S1 review (c5e050b), approved
+
+- **Changed:** wrote company/engineering/reviews/2026-10-14-w477-spike-review.md. W-477 moved to done. Added W-609 (release-manager, next): post-deploy smoke for /spike 404, lesson beacon 204, Origin null 403, and no SPIKE_ENABLED in the Vercel env. No code changed, no commit, no deploy.
+- **Believe:** high that no query string reaches a frame, fetch or script source; the allow-list and the `frameUrlOn` origin check held against 20+ adversarial inputs. High on reading that production /spike is 404: NODE_ENV is read at runtime and would inline to production anyway, the route is force-dynamic, and there is no static export. Medium-high that the events guard passes real beacons behind Vercel (a Vercel-shaped probe passes), but nobody has observed it on a build. `npm run test:spike` passes 5/5. I did not run next build (load average 40).
+- **Next:** release-manager does W-534 with founder approval, then W-609. Tripwire: if any page adds a `no-referrer` Referrer-Policy, its beacons arrive with Origin null and get a 403. The review lists this.
+- **Blocked:** S1 is closed in production only once deployed, and that needs the founder. `npm run check` was run at the end of this session.
+
 ## 2026-10-14 interaction-designer (Rafael): Life Hacks engines v2 spec (W-518, W-598, W-599 engine half)
 
 - **Changed:** wrote company/design/specs/lifehacks-engines-v2.md (spec only; no code, no commit). It covers all four engines (Home, Study, Resource, AlphabetSearch): stage at predict/explore/reveal, a Seen table that keeps both modes, an amounts row, the active-mode style, DOM order for the QA path, data fields behind `engine: 2` for bulk migration, a phone budget at 390x844, and the per-lesson content split for cm-lifehacks. Board: W-608 to demo-builder (start only after W-557..W-561 land). Spec linked on W-518, W-598, W-599. Note: my mistaken `board add --help` briefly created an empty W-600; another session's board write replaced it, and no empty item remains.
