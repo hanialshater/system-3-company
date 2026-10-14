@@ -21,3 +21,14 @@ The brief's 19.6% is not reproducible without its script (hash naming changes it
 
 ## Checks skipped
 next build, QA, walkthrough and tsc were not run (coordinator order). `npm run registry` and `npm run check` passed.
+
+## Pre-flight v2
+
+Changes for r6 (knows-hash-mod, revise): the question now asks how many keys **move** (options 4 / 10 / 16, answer 16), so the question, the readouts ("16 of 20 moved") and the reveal count the same thing (top finding). "Add server E" no longer relabels itself; a separate "Remove server E" comes last in DOM order. The ring rule line now says "the circle is now spots" (minor cue). Not fixed: the ring top cropped under the reveal (layout of the reveal panel over the stage; needs a walkthrough to see). No claim text changed. Not built, typechecked or QA'd (batch instruction).
+
+1. **Title and hook.** "One new server, how many keys move?" / "Add a fifth server to four. Does it take a fifth of the keys, or reshuffle them all?" No: the hook names the 4 reading ("a fifth") and the 16 reading ("reshuffle them all") equally.
+2. **Options.** "4", "10", "16": bare numbers, same precision.
+3. **Locked stage.** 20 discs lettered by key mod 4, rule "Server = key mod n … n = 4", table "key mod n: ? of 20 moved / Ring: ? of 20 moved". No moved count drawn.
+4. **Reveal values.** "moved 16 of your 20 keys": (b) milestone mod-moved, recorded in the table when E is added under mod; the row stays. "only 0 to 3 kept": same run, discs 0–3 are the unringed ones. "On the ring it moved 4, all to E, all from A": (b) milestone ring-moved, recorded in the table row. Hashed-spot 20% / 1/n: told context, claim c5, not quoted as seen.
+5. **QA path.** Add server E (mod-moved, table 16), key mod n (disabled, already mod), Ring (ring-moved with E present, table 4), Remove server E. Both milestones in three presses; nothing waits on an animation (the disc colour transition is cosmetic).
+6. **Reset.** No Reset control; the last press is Remove server E, which leaves the table as is. Reveal (traced from code, not run): "Under key mod n, adding E moved 16 of your 20 keys: only 0 to 3 kept their server. On the ring it moved 4, all to E, all from its neighbour A. / On a ring a key belongs to the next server clockwise, so a new server only takes keys from the one after it. A formula like key mod n reassigns nearly every key when n changes. / Here E's spot was picked to give it an even fifth. With hashed spots, 1,000 per server, and 20,000 keys, about 20% moved, all to E: about 1/n. This is consistent hashing (Karger and others, 1997)." Matches the table "16 of 20 moved / 4 of 20 moved".

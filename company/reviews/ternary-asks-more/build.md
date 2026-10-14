@@ -17,3 +17,14 @@ Built from brief #46 and spec company/design/specs/ternary-asks-more.md (+ .svg)
 
 ## Not run
 next build, typecheck, QA, walkthrough (as instructed). All claims unverified.
+
+## Pre-flight v2
+
+Changes for r6 (binary-search-graduate, revise): options are now "Fewer than 10" / "About 10" / "More than 10" (v1's "More: 13" was the only exact option). The title no longer says thirds only "sound" faster. The table gains a "left after 2" column (249 / 333) that fills once two questions have been asked and stays, so the reveal's two-question state is on stage on every path, including "Ask one question" then "Ask until found" (main finding). The per-target histograms are removed (one view fewer; claim c7 dropped with them). The zoomed tick strip is unchanged. Not built, typechecked or QA'd (batch instruction).
+
+1. **Title and hook.** "Halves or thirds: which finds it first?" / "Cut a sorted list into thirds each round: do you find things sooner?" No: both are open questions with no count or direction.
+2. **Options.** "Fewer than 10", "About 10", "More than 10": all anchored on the 10 given in the question, none exact.
+3. **Locked stage.** Two lines 1 to 1,000, "Questions: 0 · Left: 1,000" in each lane, table all "?". Nothing shows 13 or which lane wins.
+4. **Reveal values.** 10 and 13 on 721: (b) milestone both-found; table column "721". Worst 10 / 13, averages 9.0 / 11.2: (b) milestone all-targets; table columns, same toFixed(1) rounding. 249 / 333 after two questions: (b) on the required path, since both-found needs k = 13 and passes k = 2; the "left after 2" column shows them from then on.
+5. **QA path.** Ask one question (k = 1: 500 vs 666), Ask until found (25 ms per step, 12 steps, about 300 ms, inside the 450 ms wait; both-found; fills "left after 2"), Try all 1,000 targets (all-targets). Both milestones in three presses. Buttons keep their labels.
+6. **Reset.** The lesson has no Reset control and nothing clears the table. Reveal (traced from code, not run): "On 721, halving needed 10 questions; thirds needed 13. Over all 1,000 targets the worst cases were 10 and 13 (averages about 9.0 and 11.2). / Look at 'left after 2' in the table: halving had 249 numbers left, thirds 333. A third sounds smaller than a half, but it costs two questions, and two halvings leave a quarter. Per question, halving wins. / Ternary search earns its place elsewhere: finding the top of a smooth hill." Matches the table.

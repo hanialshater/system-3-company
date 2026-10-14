@@ -1,6 +1,6 @@
 {
   "slug": "random-surfer-finds-the-rank",
-  "title": "One link, almost three links' worth",
+  "title": "Where does the clicker spend its time?",
   "hook": "A random clicker roams five pages. Does the page with 3 in-links get 3 times the visits?",
   "domain": "cs",
   "concept": "pagerank-random-walk",
@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "cs.random-surfer-finds-the-rank.c1",
-      "text": "In the stage's seeded run of 100,000 clicks the surfer spends 31.2% of its time on A and 33.2% on C (the reveal always quotes this fixed 100,000-click run, not the learner's count where they stopped).",
+      "text": "In the stage's seeded run of 100,000 clicks the surfer spends 31.2% of its time on A and 33.2% on C (the reveal quotes this fixed run, which the learner must reach; after Reset the stage line 'Your 100,000 run: A 31.2%, C 33.2%. Arrows C→A 28.1%, D→C 2.5%, E→C 2.5%.' keeps it).",
       "support": "simulation",
-      "source": "Demo.tsx surf(): mulberry32 seed 146, two draws per click (jump test, then jump target), start on A, count the page reached after each click. Builder's run of the same loop in node (scratchpad ncmc/check.mjs), 2026-10-14: after 100,000 clicks A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (shares 0.3121, 0.2964, 0.3322, 0.0295, 0.0298); after 1,000 clicks A 31.9%, C 32.5%. Seed 146 is the one the brief's author used; it was the first seed tried and not picked for its result (seeds 7, 2026 and 14 give A 0.3122-0.3126 and C 0.3322-0.3326 at 100,000). All five shares are within 0.005 of claim c2. | FACT-CHECK 2026-10-14 (pass 21): Own copy of surf() with kit mulberry32: seed 146 at 100,000 -> A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (31.2%, 33.2%); 1,000 clicks A 31.9%, C 32.5%; seeds 7, 2026, 14 agree within 0.1 pt. Note for the builder: the claim's parenthetical is wrong: the reveal always quotes the fixed 100,000-click run (FINAL), not the learner's count at their stopping point. Harmless because the 'long-run' milestone forces 100,000, but fix the claim wording. · Builder 2026-10-14 (W-204): reworded per pass 21; awaiting re-check. · Fact-check pass 23 2026-10-14: Own mulberry32 copy of surf(): seed 146, 100,000 clicks: A 31,211, C 33,220 (31.2%, 33.2%). The reveal prints FINAL = surf(MAX), as the parenthetical now says.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx surf(): mulberry32 seed 146, two draws per click (jump test, then jump target), start on A, count the page reached after each click. Builder's run of the same loop in node (scratchpad ncmc/check.mjs), 2026-10-14: after 100,000 clicks A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (shares 0.3121, 0.2964, 0.3322, 0.0295, 0.0298); after 1,000 clicks A 31.9%, C 32.5%. Seed 146 is the one the brief's author used; it was the first seed tried and not picked for its result (seeds 7, 2026 and 14 give A 0.3122-0.3126 and C 0.3322-0.3326 at 100,000). All five shares are within 0.005 of claim c2. | FACT-CHECK 2026-10-14 (pass 21): Own copy of surf() with kit mulberry32: seed 146 at 100,000 -> A 31,211, B 29,645, C 33,220, D 2,948, E 2,976 (31.2%, 33.2%); 1,000 clicks A 31.9%, C 32.5%; seeds 7, 2026, 14 agree within 0.1 pt. Note for the builder: the claim's parenthetical is wrong: the reveal always quotes the fixed 100,000-click run (FINAL), not the learner's count at their stopping point. Harmless because the 'long-run' milestone forces 100,000, but fix the claim wording. · Builder 2026-10-14 (W-204): reworded per pass 21; awaiting re-check. · Fact-check pass 23 2026-10-14: Own mulberry32 copy of surf(): seed 146, 100,000 clicks: A 31,211, C 33,220 (31.2%, 33.2%). The reveal prints FINAL = surf(MAX), as the parenthetical now says. | REWORDED v3 (builder, 2026-10-14): Parenthetical updated: the run is now recorded on stage and survives Reset. Numbers unchanged; builder re-ran mulberry32(146), two draws per click: A 31.2%, C 33.2%. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c2",
@@ -51,12 +49,10 @@
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c4",
-      "text": "A's one link comes from C, so every visit to C is followed by a trip to A unless the surfer jumps; D and E have no in-links, so the surfer reaches them only by jumping.",
+      "text": "A's one link comes from C, the busiest page, so a visit to C is followed by a trip to A unless the surfer jumps; the surfer reaches D and E only by jumping.",
       "support": "derivation",
-      "source": "Read off the stage's link list (Demo.tsx OUT): C's only out-link is to A; no page links to D or E. D and E each get 0.15/5 = 0.03 of the time (claim c2), so their links pass little to C. | FACT-CHECK 2026-10-14 (pass 21): Demo.tsx OUT = A->B, B->C, C->A, D->C, E->C: C's only out-link is A; IN_LINKS D 0, E 0; D, E shares 0.03 each.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Read off the stage's link list (Demo.tsx OUT): C's only out-link is to A; no page links to D or E. D and E each get 0.15/5 = 0.03 of the time (claim c2), so their links pass little to C. | FACT-CHECK 2026-10-14 (pass 21): Demo.tsx OUT = A->B, B->C, C->A, D->C, E->C: C's only out-link is A; IN_LINKS D 0, E 0; D, E shares 0.03 each. | REWORDED v3 (builder, 2026-10-14): 'every visit' -> 'a visit'; the D/E clause now rests on the arrow shares shown on stage (c6). Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.random-surfer-finds-the-rank.c5",
@@ -66,6 +62,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.random-surfer-finds-the-rank.c6",
+      "text": "In the seeded 100,000-click run, the C to A arrow carried 28.1% of all clicks, and D to C and E to C carried 2.5% each (arrow width and label = share of clicks that followed that link).",
+      "support": "simulation",
+      "source": "Builder's node re-run (2026-10-14) of Demo.tsx surf(): mulberry32(146), two draws per click, a click follows page i's link when the first draw >= 0.15. Follows as share of 100,000 clicks: A to B 26.5%, B to C 25.1%, C to A 28.1%, D to C 2.5%, E to C 2.5%. Expected: 0.85 x 0.332 = 28.2% for C to A; 0.85 x 0.03 = 2.6% for D and E. Unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -87,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:pagerank-random-walk",
     "also": [

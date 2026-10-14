@@ -8,6 +8,8 @@
 // A's score so A takes the slot back.
 // Model (labelled on the card): rank by bid × quality; the top ad pays the least bid that keeps its
 // rank (next score ÷ own quality). Not a description of any real search engine.
+// v2: the price working is on stage ("B pays A's score 1.0 ÷ B's quality 1.0"), and every B bid tried under
+// bid × quality is logged ("$0.80 → A $1.60"); the reveal quotes that log, so it says only what was seen.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -36,9 +38,22 @@ const ROW_H = 70;
 const TOP_Y = 18;
 const bx = (v: number) => BAR_X + (v / 2) * BAR_W;
 
+type Seen = { b: number; top: string; pays: number | null };
+/** Who tops under bid × quality at B's bid b, and what the top ad pays (next score ÷ own quality). */
+function outcome(b: number): Seen {
+  const kA = key(A.bid, A.quality, "score");
+  const kB = key(b, B_QUALITY, "score");
+  if (kA === kB) return { b, top: "Tie", pays: null };
+  return kB > kA ? { b, top: "B", pays: A_SCORE / B_QUALITY } : { b, top: "A", pays: (b * B_QUALITY) / A.quality };
+}
+
 export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
   const [mode, setMode] = useState<Mode>("bid");
   const [bBid, setBBid] = useState(B_START);
+  const [seen, setSeen] = useState<Seen[]>([]); // B bids tried under bid × quality, in the order tried
+  const lowB = seen.find((x) => x.top === "A");
+  const bTops = seen.filter((x) => x.top === "B");
+  const sameAt = bTops.slice(1).map((x) => usd(x.b));
 
   return (
     <Lesson
@@ -53,13 +68,17 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Ranked by bid alone, A&apos;s {usd(A.bid)} took the top. Ranked by bid × quality, B scored {usd(B_START)} × {num(B_QUALITY)} ={" "}
+            Ranked by bid alone, A&apos;s {usd(A.bid)} took the top. By bid × quality, B scored {usd(B_START)} × {num(B_QUALITY)} ={" "}
             <strong>{num(B_START * B_QUALITY)}</strong> against A&apos;s {usd(A.bid)} × {A.quality} = {num(A_SCORE)}, so the lower bid won.
           </p>
           <p>
-            B only needs a score above A&apos;s {num(A_SCORE)}, so under this rule it pays {num(A_SCORE)} ÷ {num(B_QUALITY)} ={" "}
-            <strong>{usd(B_PRICE)}</strong> a click, less than A bid. When you dropped B to {usd(B_BIDS[B_BIDS.length - 1])}, its score
-            fell below {num(A_SCORE)} and A took the slot back. A high bid cannot make up for low quality.
+            The top ad pays the next score ÷ its own quality: {bTops.length ? `at ${usd(bTops[0].b)}, B paid` : "on top, B pays"}{" "}
+            {num(A_SCORE)} ÷ {num(B_QUALITY)} = <strong>{usd(B_PRICE)}</strong>, less than A bid
+            {sameAt.length ? `, and still ${usd(B_PRICE)} when B bid ${sameAt.join(" and ")}: A's score sets it, not B's bid` : ""}.
+            {lowB && lowB.pays !== null
+              ? ` At ${usd(lowB.b)}, A took the slot back and paid ${num(lowB.b * B_QUALITY)} ÷ ${A.quality} = ${usd(lowB.pays)}: dividing by A's quality ${A.quality} doubles it.`
+              : ""}{" "}
+            Quality multiplies the bid, so A, at half B&apos;s quality, would need more than {usd((B_START * B_QUALITY) / A.quality)} to beat B&apos;s {usd(B_START)}.
           </p>
           <p className="muted">A simplified model with invented numbers, not a description of any real search engine.</p>
         </>
@@ -69,7 +88,10 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const apply = (m: Mode, b: number) => {
-              if (m === "score") reach("score-rank");
+              if (m === "score") {
+                setSeen((xs) => (xs.some((x) => x.b === b) ? xs : [...xs, outcome(b)]));
+                reach("score-rank");
+              }
               if (m === "score" && key(b, B_QUALITY, m) < key(A.bid, A.quality, m)) reach("a-retakes");
             };
             const ads = [
@@ -86,7 +108,7 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
             const pays = mode === "score" && !tie ? (second.bid * second.quality) / top.quality : null;
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>Model: the top ad pays the least bid that keeps its slot</p>
+                <p className={s.chip}>Rule: the top ad pays the least bid that keeps its slot</p>
                 <svg viewBox="0 0 320 176" className="stage-svg" role="img" aria-label={`Two ad slots ranked by ${mode === "bid" ? "bid" : "bid times quality"}`}>
                   {[0, 1].map((slot) => (
                     <g key={slot}>
@@ -120,7 +142,13 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
                   })}
                 </svg>
                 <p className={s.msg} aria-live="polite">
-                  {locked ? "Predict first." : mode === "bid" ? "Ranked by bid alone." : `Dashed line: A's score ${num(A_SCORE)}.`}
+                  {locked
+                    ? "Predict first."
+                    : mode === "bid"
+                      ? "Ranked by bid alone."
+                      : tie
+                        ? `Tie: both score ${num(A_SCORE)}.`
+                        : `Dashed line: A's score ${num(A_SCORE)}. ${top.name} pays ${second.name}'s score ${num(second.bid * second.quality)} ÷ ${top.name}'s quality ${top.quality.toFixed(1)}.`}
                 </p>
                 <Row>
                   {(["bid", "score"] as const).map((m) => (
@@ -158,6 +186,11 @@ export default function LowerBidTakesTheTopAd({ slug }: { slug: string }) {
                   <Readout label="Top slot" value={locked ? "?" : tie ? "Tie" : `Ad ${top.name}`} />
                   <Readout label="Top ad pays per click" value={locked ? "?" : pays === null ? "—" : usd(pays)} />
                 </Row>
+                <p className={s.log} data-testid="price-log">
+                  {seen.length
+                    ? `B's bid → top, pays: ${seen.map((x) => `${usd(x.b)} → ${x.top}${x.pays === null ? "" : ` ${usd(x.pays)}`}`).join(" · ")}`
+                    : "Bids tried under bid × quality show here."}
+                </p>
               </div>
             );
           }}

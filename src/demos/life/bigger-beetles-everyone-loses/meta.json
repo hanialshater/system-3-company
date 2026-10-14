@@ -1,6 +1,6 @@
 {
   "slug": "bigger-beetles-everyone-loses",
-  "title": "Bigger beetles, everyone loses",
+  "title": "Bigger beetles take over. Then what?",
   "hook": "Large beetles out-breed small ones in every meeting. Is the population better off?",
   "domain": "life",
   "concept": "ess-arms-race",
@@ -33,12 +33,10 @@
     },
     {
       "id": "life.bigger-beetles-everyone-loses.c2",
-      "text": "In the stage's update rule (payoff = surviving offspring, no baseline; share x' = x·W_large / mean W), large rises from 1% to 99% by generation 24 (4.1% at 5, 16.3% at 10, 93.1% at 20).",
+      "text": "In the stage's update rule (payoff = surviving offspring, no baseline; share x' = x·W_large / mean W), large rises from 1% to 99% by generation 24 (4.1% at 5, 16.3% at 10, 93.1% at 20); the curve is marked '99% at gen 24'.",
       "support": "simulation",
-      "source": "Builder's Node run, 2026-10-14 (deterministic, no random seed): 0.0415 at 5, 0.1633 at 10, 0.9306 at 20, first ≥ 0.99 at generation 24 (0.9947). The no-baseline choice matters: with a baseline of 10 offspring the same climb takes 69 generations, so the stage says 'no baseline'. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran Demo.tsx next(): 0.0415 at 5, 0.1633 at 10, 0.9306 at 20, 0.9896 at 23, first >= 0.99 at 24 (0.9947). Baseline 10 gives 69, as stated.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's Node run, 2026-10-14 (deterministic, no random seed): 0.0415 at 5, 0.1633 at 10, 0.9306 at 20, first ≥ 0.99 at generation 24 (0.9947). The no-baseline choice matters: with a baseline of 10 offspring the same climb takes 69 generations, so the stage says 'no baseline'. | FACT-CHECK 2026-10-14 (pass 21): verified. Re-ran Demo.tsx next(): 0.0415 at 5, 0.1633 at 10, 0.9306 at 20, 0.9896 at 23, first >= 0.99 at 24 (0.9947). Baseline 10 gives 69, as stated. | REWORDED v2 (builder, 2026-10-14): Adds the on-stage mark (first generation with share >= 0.99, computed from the learner's run). Builder re-run: first gen >= 0.99 is 24. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "life.bigger-beetles-everyone-loses.c3",
@@ -51,12 +49,10 @@
     },
     {
       "id": "life.bigger-beetles-everyone-loses.c4",
-      "text": "Once nearly all beetles are large, a small mutant scores 2 where a large one scores 4, so small mutants shrink back; on the stage, turning 5% small at generation 30 is undone within a few generations.",
+      "text": "Once nearly all beetles are large, a small mutant scores about 2 where a large one scores about 4, so small mutants shrink back: on the stage, turning 5% small at generation 30 (mutants 2.2 vs 4.2) leaves 99.8% large five generations later (shown as 100%).",
       "support": "simulation",
-      "source": "Payoffs from c1; builder's Node run, 2026-10-14: from 0.9499 large (5% turned small at generation 30) the share is 0.9731, 0.9860, then 0.9929 (back above 0.99) after 3 generations. | FACT-CHECK 2026-10-14 (pass 21): verified. From 0.9499 at gen 30: 0.9731, 0.9860, 0.9929 (back above 0.99 after 3 generations). Near all-large, wS = 2.0003, wL = 4.0003.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Payoffs from c1; builder's Node run, 2026-10-14: from 0.9499 large (5% turned small at generation 30) the share is 0.9731, 0.9860, then 0.9929 (back above 0.99) after 3 generations. | FACT-CHECK 2026-10-14 (pass 21): verified. From 0.9499 at gen 30: 0.9731, 0.9860, 0.9929 (back above 0.99 after 3 generations). Near all-large, wS = 2.0003, wL = 4.0003. | REWORDED v2 (builder, 2026-10-14): Now shown: 'Turn 5% small, run 5' dips and steps 5 generations. Builder node re-run of the Demo update rule: x30 = 0.99992, dipped 0.94992 (small 2.20, large 4.20), then 97.31, 98.60, 99.29, 99.64, 99.82%. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "life.bigger-beetles-everyone-loses.c5",
@@ -97,7 +93,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:ess-arms-race",
     "also": [
