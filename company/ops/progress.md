@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 demo-builder: W-239 (each-element-pops-once pass 25 fixes)
+
+- Changed: in c2, "each new number" became "each later number ... (the first meets an empty stack)". This was the claim text only, because no stage string used the old wording. In c6, "stepped, or replayed with motion on" (a reduced-motion replay jumps), and the reveal now says, in the past tense, "the 9's row showed 8 solid ticks". c2 and c6 are unverified and the lesson is at v4, with the Pre-flight v4 in build.md. Notes: the "-00" in who-pays-same-filter c3 is now "$100" (the checker's quoted nit was left alone). I found no "CT-CHECK" typo in wheel-needs-four-colours c1 (every match is "FACT-CHECK"), so that file is unchanged.
+- Belief: high confidence that the text matches the code paths named in pass 25. check and tsc pass. Not run: build, QA, walkthrough.
+- Next: the fact-checker re-checks c2 and c6.
+
 ## 2026-10-14, fact-checker: pass 25 re-check (W-238, 12 lessons after the pass 24 fixes)
 
 **What changed**
