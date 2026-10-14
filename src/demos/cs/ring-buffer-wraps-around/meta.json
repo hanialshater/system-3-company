@@ -28,8 +28,10 @@
       "id": "cs.ring-buffer-wraps-around.c1",
       "text": "Writing 1 to 10 into a 4-slot ring buffer, the pointer went round two and a half times: item i goes into slot (i - 1) mod 4, so 5 and 9 land on slot 0, 6 and 10 on slot 1, and the slots read 9, 10, 7, 8 (the newest four, 7 to 10). The next write goes to slot 2, over 7, the oldest.",
       "support": "simulation",
-      "source": "Demo.tsx history(10) (FINAL, NEXT_AFTER); builder's node script (2026-10-14): slots [9, 10, 7, 8], next slot 10 mod 4 = 2. The stage's per-write note ('Wrote n into slot j, over m') and struck-out values come from the same history(). | FACT-CHECK 2026-10-14 (pass 21): Own copy of history(10): slots [9,10,7,8], 5 and 9 on slot 0, 6 and 10 on slot 1; next slot 10 mod 4 = 2 holding 7, the oldest. Unrecorded but true reveal phrase 'went round two and a half times' (10 writes / 4 slots) should be folded into this claim by the builder. · Builder 2026-10-14 (W-204): reworded per pass 21; awaiting re-check.",
-      "status": "unverified"
+      "source": "Demo.tsx history(10) (FINAL, NEXT_AFTER); builder's node script (2026-10-14): slots [9, 10, 7, 8], next slot 10 mod 4 = 2. The stage's per-write note ('Wrote n into slot j, over m') and struck-out values come from the same history(). | FACT-CHECK 2026-10-14 (pass 21): Own copy of history(10): slots [9,10,7,8], 5 and 9 on slot 0, 6 and 10 on slot 1; next slot 10 mod 4 = 2 holding 7, the oldest. Unrecorded but true reveal phrase 'went round two and a half times' (10 writes / 4 slots) should be folded into this claim by the builder. · Builder 2026-10-14 (W-204): reworded per pass 21; awaiting re-check. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own copy of history(10): [[1,5,9],[2,6,10],[3,7],[4,8]], so the slots read 9, 10, 7, 8, with 5 and 9 on slot 0 and 6 and 10 on slot 1. The next slot is 10 mod 4 = 2, which holds 7, the oldest of 7-10. 'Two and a half times' = 10 writes / 4 slots = 2.5 turns, and the pointer stops at slot 2, half way round. The text matches reveal para 1 (lines 56-58); the pass 21 fold-in request is done.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.ring-buffer-wraps-around.c2",

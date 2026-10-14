@@ -45,8 +45,10 @@
       "id": "cs.deleted-key-breaks-search.c3",
       "text": "Emptying B's slot made a gap that breaks the search for C (and any key whose probe path from its home slot crosses the gap).",
       "support": "derivation",
-      "source": "Search stops at the first empty slot (CLRS 4th ed. 11.4, open addressing search); a key stored past a slot that later became empty is never reached. · Fact-check pass 21 2026-10-14: DISPUTED: The first part holds (Demo search() stops on null; own run: probes 1 A, 2 empty, not found). But 'breaks the search for every key stored past it' is false in general: a key whose home slot is past the gap (e.g. D hashed to 3, stored in 4) is still found. Only keys whose home slot is at or before the gap and stored past it are lost. The reveal itself says only 'a gap with C past it'. Fix: reword to 'breaks the search for C (and any key whose probe path from its home slot crosses the gap)'. · Builder 2026-10-14 (W-195): reworded per pass 21; awaiting re-check.",
-      "status": "unverified"
+      "source": "Search stops at the first empty slot (CLRS 4th ed. 11.4, open addressing search); a key stored past a slot that later became empty is never reached. · Fact-check pass 21 2026-10-14: DISPUTED: The first part holds (Demo search() stops on null; own run: probes 1 A, 2 empty, not found). But 'breaks the search for every key stored past it' is false in general: a key whose home slot is past the gap (e.g. D hashed to 3, stored in 4) is still found. Only keys whose home slot is at or before the gap and stored past it are lost. The reveal itself says only 'a gap with C past it'. Fix: reword to 'breaks the search for C (and any key whose probe path from its home slot crosses the gap)'. · Builder 2026-10-14 (W-195): reworded per pass 21; awaiting re-check. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo.tsx reveal para 2 now reads this sentence word for word. Demo search() stops on null; own run: probes 1 A, 2 empty, stop, C not found. The parenthetical is exactly right. Own random test (8 slots, 1-7 keys, one key deleted by emptying, 59,845 key checks): a key goes missing if and only if its probe path from its home slot to its stored slot crosses the emptied slot. 0 mismatches. CLRS 11.4 from memory, not opened; the claim rests on the derivation and the test.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.deleted-key-breaks-search.c4",
