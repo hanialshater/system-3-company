@@ -4,7 +4,7 @@ owner: visual-designer (Kiri), with the accessibility reviewer · implemented by
 
 v0 records what exists today, so later changes are deliberate:
 - **Colour roles:** `--bg`, `--fg`, `--muted`, `--line`, `--accent`, `--good`, `--bad`, `--warn`, plus one `--domain` colour per category (`content/domains.json`). Light and dark mode via `prefers-color-scheme`.
-- **Type:** system UI sans. The stage text budget is ≤ 25 words, and the reveal is ≤ 90 words.
+- **Type:** system UI sans. The stage text budget is ≤ 25 words, and the reveal is ≤ 90 words (the same budget as `company/product/demo-standard.md`, set by decision `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`).
 - **Controls:** `Control`, `Slider`, `Readout`, `Row` from `src/kit/controls.tsx`. Tap targets ≥ 44 px. Sliders 28 px high.
 - **Charts and diagrams:** label the axes on the stage, name the model ("Toy model", the projection), show the answer readouts as "?" while locked.
 - **Motion:** settle within 450 ms (the QA wait), and respect `prefers-reduced-motion`.
