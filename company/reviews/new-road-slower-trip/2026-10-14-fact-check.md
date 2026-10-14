@@ -18,3 +18,16 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c10 | verified | "Can" statement shown by c4/c6; recall answer and why match. |
 
 **Result:** 10 verified, 0 disputed, 0 withdrawn.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c11 | verified | busyCars(4000) = 2,000 + 2,000 = 4,000; 4,000/100 = 40; newRoute(4000) = 80. Reveal reads furthest = 4,000 (the 'nobody-gains' milestone needs k = 4,000), so it prints 4,000 cars, 40 + 0 + 40 = 80. |
+
+**Reveal check:** Reveal uses the furthest state; milestone nobody-gains forces 4,000, and the 2,000 sentence prints only if 2,000 was seen. No unbacked sentence.
+
+**Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 11 verified.

@@ -21,3 +21,20 @@ Sources:
 Non-blocking note: none.
 
 Confidence: high on c2-c6, c8, c9 (deterministic re-run); medium-high on c1/c7 wording-level match to E&K (theorem confirmed through secondary teaching sources only).
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Ran Demo.tsx simulate() from {0,1}: adopters 0-7, last round 6; at that final 8 has 1/4 adopted friends, 9, 10, 11 have 0/3. Note: the reveal's quoted person is the current focus if it is a group member at start 0,1 (any round), but endFriends() always uses the final, and the reveal stage is pinned to the 0,1 final, so the pill shows the same number. Claim's 'focused on that final' slightly overstates the gate; not learner-facing. |
+| c5 | verified | Inside counts from NB in Demo.tsx: 8 3 of 4, 9/10/11 3 of 3. While none has adopted a member's adopted friends are outside: at most 1 of 4 or 0 of 3, below need = ceil(d/2) = 2. Stage focus line formula matches. |
+| c6 | verified | simulate(): {0,1} -> 8 of 12 in 6 rounds; {8,9} -> 12 of 12 in 8 rounds. Same seed count, so neither 'many more' nor 'out of reach' holds. Both runs are milestone-gated ('stopped', 'planted'). |
+
+**Reveal check:** Reveal quotes both runs (stopped and planted milestones) and the focused group member's final count, which the pinned reveal stage also shows.
+
+**Advisory (claim text):** c4 says the reveal quotes the count 'only for the group member the learner focused on that final'; the code quotes the current focus at start 0,1 at any round (endFriends always uses the final). The pinned reveal stage shows the same number, so the learner sees nothing unbacked.
+
+**Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

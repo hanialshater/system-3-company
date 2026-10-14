@@ -22,3 +22,12 @@ Method: I read meta.json, Demo.tsx and model.ts, then checked the stage and reve
 3. Finite-size caution: at 1.0 friends each the lesson world shows 18% (mean over 20 worlds 16.8%), while the large-n share there is 0. The lesson says the jump is "near one friend each", which is consistent; do not let later copy say "no giant below 1" for 200 people.
 4. Predict options read "about 36% of people", while the question gives 36 people (18%). The numbers are not wrong, but the 36 coincides with a count; pedagogy is out of my scope, flagging for the demo-critic.
 5. Walkthrough transcript was not present under artifacts/walkthroughs/the-giant-appears; I read Demo.tsx directly for rendered text.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+**Reveal check:** No unverified claims (6 of 6 verified in NCM-1). Re-read predict and reveal against c1, c3-c6; no new learner-visible claim found.
+
+**Result:** 0 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 6 verified.

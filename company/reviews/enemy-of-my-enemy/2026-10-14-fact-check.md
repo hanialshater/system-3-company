@@ -25,3 +25,16 @@ Claim: "... it holds for any number of people, and is due to Cartwright and Hara
 - Evidence: web search only (search-quoted Wikipedia "Signed graph" and "Balance theory", UMich deep blue record, U Toronto CSC303 and Cornell INFO 2040 notes). Every full-text host (Cornell, CUHK mirror, APA, arXiv, Wikipedia) returns a proxy 403 or DNS failure from this session, so I could not read either paper. Medium-high confidence: the 1953 priority is consistent across all sources found. The year is printed as 1953 (volume 2, 1953-54); one source gives 1954.
 
 Confidence: high on c1-c5 (exhaustive enumeration); c6 statement high, attribution medium-high.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Harary, 'On the notion of balance of a signed graph', Michigan Math. J. 2(2): 143-146 (1953) confirmed by search (one secondary source labels it 1954; journal details give 1953). Cartwright and Harary 1956 confirmed in NCM-1 (Psychol. Rev. 63(5): 277-293). The NCM-1 fix is applied in the claim and in reveal paragraph 3 ('Harary, 1953; Cartwright and Harary, 1956'). Theorem statement re-checked for n = 5 (16 balanced settings, all one or two camps). Primary papers not opened. |
+
+**Reveal check:** NCM-1 fix applied in reveal paragraph 3. Reveal paragraph 1 quotes only settings the learner reached by tapping. No unbacked sentence.
+
+**Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 6 verified.

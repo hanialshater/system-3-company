@@ -17,3 +17,19 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 Recall item checked: "likely" is hedged correctly under the lesson rule.
 
 **Result:** 7 verified, 0 disputed, 0 withdrawn.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Ran model.ts ROUNDS: round 51 Y 0.374, X 0.053, H 0.422 (A 0.060, others 0.015, sum 1.000); max change 50 -> 51 is 0.000151; equal to round 51 at 3 dp from round 40 on. |
+| c5 | verified | passed(2, 'P') = 0.85 x 0.015 = 0.01275, rendered 0.013 by f3 (float 0.012750000000000003). Matches reveal paragraph 2. |
+| c8 | verified | score(1, 'H') = 0.015 + 0.85 x 0.5 = 0.440; passed(2, 'H') = 0.374; Y round 2 = 0.015 + 0.374 = 0.389. passed() = S x score(round-1, from) / outDeg, as the claim says; arrows into X and Y are labelled with it. |
+| c9 | verified | Round 1: X 0.270 > Y 0.100 (hint 'X leads so far'); rounds 50 and 51 equal at 3 dp (hint at 51 'The scores have stopped changing'). Y > X in every round 2-51. |
+
+**Reveal check:** Reveal quotes rounds 1 and 2 (round-two milestone) and round 51 only when the learner is at round 51 (`r51`). No unbacked sentence.
+
+**Result:** 4 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

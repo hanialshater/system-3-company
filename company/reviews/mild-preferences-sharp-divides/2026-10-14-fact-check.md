@@ -25,3 +25,17 @@ Verdict: the citation as written (JMS 1(2): 143-186, 1971, doi:10.1080/0022250X.
 Unrecorded claims: none found. Every sentence in the hook, predict, stage and reveal maps to c1-c8.
 
 Result: 8 verified, 0 disputed, 0 withdrawn. All claims in this lesson are now verified.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Citation re-confirmed by search (bibliographic record and UZH full-text PDF listing): Schelling, 'Dynamic Models of Segregation', J. Math. Sociol. 1(2): 143-186 (1971), Taylor & Francis; the paper's simulation has two groups sorting into neighbourhoods. 'A simplified version' matches the stage rule (move to a random empty cell) and the reveal caveat. Primary PDF not opened through the proxy. |
+| c9 | verified | Ran the lesson's abm.ts run() for seeds 1-100: unhappy at tick 0 at 30% is 15.7-20.1% (mean 17.8%, about 1 in 6); all-like share at tick 0 0.5-2.4% (mean 1.2%); at the end, 10%: mean 2.2%; 30%: mean 30.6% (23.6-38.8); 50%: mean 58.4%. Seed 1: 247 of 1,440 unhappy, 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%. All 100 runs settle at 10/30/50%. Matches. |
+
+**Reveal check:** Reveal quotes only the learner's own finished runs (pinRun, others, cascade count from that run); the 30% run and another threshold are milestone-gated. No unbacked sentence.
+
+**Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

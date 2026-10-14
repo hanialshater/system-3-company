@@ -16,3 +16,12 @@ Recall (Ana P>Q>R, Ben Q>R>P, Cy R>P>Q; Q vs R, then P) is the same profile rela
 Unrecorded claims: none found.
 
 Result: 4 verified, 0 disputed, 0 withdrawn. All claims in this lesson are now verified.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+**Reveal check:** No unverified claims (4 of 4 verified in NCM-1). Re-read the reveal: it computes each agenda's winner with run() and all three agendas are milestones; no new learner-visible claim found.
+
+**Result:** 0 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 4 verified.

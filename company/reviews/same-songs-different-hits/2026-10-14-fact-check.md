@@ -16,3 +16,19 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c8 | verified | Not learner-facing. Ch. 18 "Power laws and rich-get-richer phenomena"; search-quoted section list puts rich-get-richer models 3rd and unpredictability 4th, consistent with 18.3-18.4. Sections stay `section_unconfirmed`. |
 
 **Result:** 8 verified, 0 disputed, 0 withdrawn. One advisory (c3 stage rule wording) for demo-builder.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Demo.tsx APPEAL = 1.0..1.7 (1.7/1.0 = 70% more); w = a x (1 + p[i]) with copying on, a with copying off; pick by cumulative interval of u x sum(w), i.e. chance proportional to the weight. Stage rule line now 'Pick weight = appeal x (1 + earlier picks)' / 'Pick weight = appeal only'. NCM-1 advisory resolved. |
+| c9 | verified | Ran Demo.tsx stats() at 1,000: on finishes 3,1,7,1,4,1,1,3 (1st in 4, range 1st-7th, lowest world 3); off 2,1,2,1,2,1,2,1 (1st in 4, range 1st-2nd). Both states milestone-gated (copy-1000, nocopy-1000). |
+
+**Reveal check:** Reveal numbers come from stats() at 1,000 listeners in both modes (both milestones).
+
+**Advisory (builder):** 'copying did not hide quality' sits beside a world where the best song finished 7th; it is backed by c9 (1st in 4 of 8 both ways), but 'copying did not stop the best song winning as often' would say exactly what c9 shows.
+
+**Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

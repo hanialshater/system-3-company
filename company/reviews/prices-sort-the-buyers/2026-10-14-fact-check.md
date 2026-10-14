@@ -22,3 +22,17 @@ Non-blocking notes for the builder (no status change):
 2. c2's source says "largest group gives a stopping at $4". My re-run agrees (a = 4 at the stop), but under that reading the largest group ties in rounds 0 and 1 ({a,b} and {a,c}). This is not learner-facing, so the result is unaffected.
 
 Confidence: high on c1-c6 and c8 (deterministic re-run plus a proof for c6); medium-high on c7 (standard result, confirmed only through secondary sources).
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Ran Demo.tsx rest(START): final prices (3,1,0); wants x {a}, y {b,c}, z {a,b}; exactly 1 of the 6 permutations lies inside the wants sets: x-a, y-c, z-b, total 23. b's values x 4, y 7, z 5 from V. |
+| c9 | verified | Ran Demo.tsx rest() and said(): 'Raised a; 3 buyers wanted only a.', 'Raised a; 2 buyers wanted only a.', 'Raised a and b together; 3 buyers wanted only a or b.' Own hand check of wants at (0,0,0), (1,0,0), (2,0,0) agrees. |
+
+**Reveal check:** Reveal's raise path prints only if rounds 1-3 were seen, otherwise falls back to the pinned final prices shown on stage; 'compared' is a milestone. No unbacked sentence.
+
+**Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

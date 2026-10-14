@@ -23,3 +23,18 @@ Also checked: the stage verdict "Holds at 20%." for a start of exactly 20 (0.2 -
 - Non-blocking: the recall question asks "What usually happens?" but the answer says "It can shrink"; outside the toy model "usually" is not supported. Consider "What can happen?" (pedagogy call for the CM; flagged, not judged).
 
 Result: 6 verified, 0 disputed, 0 withdrawn; 2 new claims recorded as unverified (c7, c8). The lesson cannot publish until c7 and c8 are reworded or sourced and checked by someone other than me.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | At full use (share 1) person x values it (1-x) > 0.16 for x < 0.84: 84% of people (own numeric check 0.840). Demo run(): 19 -> 16 -> 0, 18 -> 11 -> 0; so 'most people would buy if others used it' and 'still fails' both hold. |
+| c8 | verified | For 0 < s < 0.2, next(s) = 1 - 0.16/s < s (equivalently (s-0.2)(s-0.8) > 0); numeric scan of s in (0, 0.2) with Demo next(): always smaller. Share valuing it above price is 1 - 0.16/s < 0.2, so most (over 80%) value it below price. Matches. |
+| c9 | verified | Matches next() in Demo.tsx: value (1-x)*s rises with s for every x < 1, and the round joins exactly those with value > 0.16. Predict question wording matches the claim. |
+
+**Reveal check:** Reveal quotes the finished runs closest to 20% on each side; milestones force 19 and 21, so it prints 19% died in 2 rounds and 21% climbed to 80% in 8 (Demo run()). No unbacked sentence.
+
+**Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.

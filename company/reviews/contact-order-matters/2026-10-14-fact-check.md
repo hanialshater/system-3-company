@@ -15,3 +15,16 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c7 | verified | Disclosure is true of the model. |
 
 **Result:** 6 verified, 1 disputed (c5), 0 withdrawn. Lesson is blocked until the c5 wording is fixed.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | NCM-1 fix applied: reveal paragraph 2 and claim now say 'can overstate'. Time-respecting reach is a subset of diagram reach and is strictly smaller in E->A from A (1 of 4 vs 4 of 4), which the 'one-way' milestone guarantees the learner saw. |
+
+**Reveal check:** NCM-1 fix applied ('can overstate'). Reveal: E->A and A->E from A and Overlap from E are milestones; 'From E, A->E reached only D' prints only if reached.
+
+**Result:** 1 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.

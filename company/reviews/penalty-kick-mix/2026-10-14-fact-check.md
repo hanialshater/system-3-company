@@ -19,3 +19,20 @@ Stage game (Demo.tsx): rows Kick left / Kick right, columns Dives left / Dives r
 Unrecorded claims: none blocking. Reveal "Your own strength decides how much your opponent must guard it" is an interpretation of c1/c2. Recall "why" ("you use it less, yet you can score more overall") is the general form of c1-c3 ("can" is supported by this instance).
 
 Result: 4 verified, 1 disputed, 0 withdrawn.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Re-ran Demo.tsx mix() for 0.90..1.00 in steps of 0.02: p = 0.5000, 0.4878, 0.4762, 0.4651, 0.4545, 0.4444; by hand 0.4/0.8 and 0.4/0.9. Claim text now names the dive direction per kick, matching the stage table (Kick left/Dives right cell is the slider value). |
+| c6 | verified | mix(100, true): keeper left 0.700, right 0.750, kicker score 0.700 (= mix(90).score 0.700). By hand 0.25+0.45 and 0.5+0.25. Advisory (not a dispute, the sentence is claimed): milestone 'kept-50' fires at any slider value above 0.90 in keep mode, so a learner can earn the reveal having seen keep-50% at e.g. 0.94 (right dive 0.720), never at 1.00 where the reveal's 0.750 lives; gate kept-50 on v === BEST. |
+| c7 | verified | mix(100): kl = kr = ql = qr = 0.7222 at p 0.4444, q 0.5556 (own arithmetic matches). Reached state: 'best-left-shot' milestone requires 1.00 in best-mix mode, where the stage prints both indifference lines. |
+
+**Reveal check:** Reveal paragraph 1 quotes 0.90 (opening state) and 1.00 best mix (milestone best-left-shot). Paragraph 2's keep-50% numbers are claimed (c6) and reachable.
+
+**Advisory (builder):** milestone `kept-50` fires at any slider value above 0.90 in keep mode (`v > START && k`), so a learner can earn the reveal having seen keep-50% only at, say, 0.94 (right dive 0.720) while the reveal quotes 1.00 (0.750). Gate it on `v === BEST`. Backed by c6, so not a dispute.
+
+**Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified.

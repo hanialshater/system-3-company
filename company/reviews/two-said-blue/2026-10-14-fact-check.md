@@ -16,3 +16,18 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c8 | withdrawn | Not in learner text. Kept finding: Anderson & Holt (1997), "Information Cascades in the Laboratory", AER 87(5): 847-862 (RePEc via search) report cascades formed in most periods where an imbalance arose. It was a **laboratory**, not classroom, experiment ("classroom" is Anderson & Holt 1996, JEP "Classroom Games"). If reinstated, drop "classroom". |
 
 **Result:** 6 verified, 1 disputed (c4), 1 withdrawn (c8). Lesson is blocked until c4's reveal line is fixed.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; runMore seeds 1-10,000 badStart: 1,080 at 2/3, 1,575 at 60%, 395 at 80%. Reveal now prints pct((1 - ACCS[q])**2) for the accuracy run most, and the split-start sentence is right: exactWrong (20.0%, 30.8%, 5.9%) exceeds (1-p)^2 at every accuracy. NCM-1 dispute resolved. |
+| c5 | verified | Own exact binomial n = 100, p = 2/3: P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties. Readout label now 'Pooled wrong (ties excluded)' and reveal says '(ties not counted)'; counting code (poolBlue < 50) matches. |
+| c7 | verified | model.ts runMore iterates k = t.n+1..t.n+count with mulberry32(k), one Tally per accuracy; readout label is 'Crowds run'; no seed is printed on the stage or in the reveal. |
+
+**Reveal check:** NCM-1 dispute on c4 is resolved: the reveal now computes (1-p)^2 for the accuracy run most and names the split-start route. Reveal tallies are the learner's own runs. No unbacked sentence.
+
+**Result:** 3 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 7 verified, 1 withdrawn.

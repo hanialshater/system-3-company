@@ -18,3 +18,19 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 **Advisory, not a claim (route to builder / cm-probability):** the objective says shortcuts cut the average "by more than half (12.9 to 6.8 with 5 links)" and learner.doesNotKnow says "by half or more". 12.88 -> 6.78 is a 47% cut; only 20 links (62%) is more than half. Not learner-facing, but brief text should be corrected.
 
 **Result:** 8 verified, 0 disputed, 0 withdrawn.
+
+
+## Pass NCM-2 (2026-10-14)
+
+Checker: fact-checker (did not write these claims). Scope: every claim still `unverified` after the builder's revision. Method: read the current Demo.tsx (predict, stage text, readouts, reveal and the milestones that gate it) and model files, then re-ran the lesson's own code in node 22 via tsx (Demo.tsx copied to scratchpad with its internals exported, CSS import stubbed; model/abm files imported directly). Reveal check: every number or sentence the reveal prints was traced to a state the milestones guarantee the learner reached, or to a claim. The walkthrough transcript predates this revision (08:4x vs Demo.tsx 09:xx), so the stage was read from code, not from a fresh walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c8 | verified | Adding an edge cannot lengthen any shortest path, and any pair whose distance falls did so via a shortcut; model.ts adds shortcuts to an unchanged ringEdges(). Wording 'every pair it helps' as advised in NCM-1. |
+| c9 | verified | Ran Demo.tsx route(c, 3, 50) on the current code: 24, 9, 5, 4 for 0, 1, 5, 20 shortcuts (ring distance 47 -> ceil(47/2) = 24). The reveal's hopsAt(0/5/20) = 24, 5, 4 are all reached states (milestones c5 and c20; 0 is the opening state). |
+
+**Reveal check:** Specific check requested: the reveal's clustering sentence ('slid only from 0.500 to 0.435; a random network this size would sit near 0.04') quotes numbers that are no longer on the stage (the clustering readout and the 0.04 ghost mark were removed). Both numbers are values of states the learner does reach (0 and 20 shortcuts) and both are backed by verified claims (c3: 0.5000 and 0.4350 re-run today; c6: random-graph clustering near 0.04). So it is **not disputed** on fact-check grounds. The route sentence (24, 5, 4) and the averages (12.9, 6.8, 4.9) are all reached states (milestones c5 and c20).
+
+**Routed, not a dispute (evaluation / builder):** the brief's doesNotKnow says neighbourhoods 'stay tight' and the objective asks the learner to explain that 'clustering barely falls (0.500 to 0.435)'. With nothing on the stage standing for clustering, this is a told-only cause inside the brief's gap, which `company/decisions/2026-10-14-told-vs-shown.md` makes a revise, and it is the W-150 pattern (reveal quotes values the learner never saw). Fix options: (a) put a clustering readout back on the stage, or (b) drop clustering from the objective and doesNotKnow and keep the reveal sentence as claimed context. **Stale source:** c6's source still says the 0.04 is 'Shown as a ghost mark, labelled Random network 0.04'; it is now reveal-only text. Builder should update the source line.
+
+**Result:** 2 verified this pass, 0 disputed, 0 withdrawn. Lesson now: 9 verified.
