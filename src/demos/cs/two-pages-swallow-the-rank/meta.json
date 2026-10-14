@@ -91,7 +91,9 @@
     "why": "Score that enters a group with no links out never leaves, so it keeps draining in: a rank sink. Random jumps (scaled PageRank) stop it taking everything."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/two-pages-swallow-the-rank/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -99,11 +101,25 @@
   "version": 1,
   "curriculum": {
     "primary": "cs:rank-sink-scaled-pagerank",
-    "also": ["cs:pagerank-random-walk"],
-    "prerequisites": ["cs:pagerank"],
+    "also": [
+      "cs:pagerank-random-walk"
+    ],
+    "prerequisites": [
+      "cs:pagerank"
+    ],
     "level": "core",
     "strand": "algorithms",
-    "references": [{ "work": "easley-kleinberg-2010", "chapter": 14, "section_unconfirmed": "14.3" }],
-    "tags": ["web", "PageRank", "link analysis"]
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 14,
+        "section_unconfirmed": "14.3"
+      }
+    ],
+    "tags": [
+      "web",
+      "PageRank",
+      "link analysis"
+    ]
   }
 }

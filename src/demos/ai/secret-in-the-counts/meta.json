@@ -5,10 +5,17 @@
   "domain": "ai",
   "concept": "training-data-extraction",
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"],
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ],
   "status": "draft",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-ai", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
   "learner": {
     "knows": [
       "a language model picks the next word from counts of what followed (next-word-tally)",
@@ -61,15 +68,28 @@
     "answer": 0,
     "why": "If a context is unique in the training data, the most likely continuation is whatever followed it there, so text seen once can come back word for word."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/secret-in-the-counts/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "ai:training-data-extraction",
     "also": [],
-    "prerequisites": ["ai:next-token"],
+    "prerequisites": [
+      "ai:next-token"
+    ],
     "level": "core",
     "strand": "ai-society",
     "references": [],
-    "tags": ["privacy", "memorisation", "language models"]
+    "tags": [
+      "privacy",
+      "memorisation",
+      "language models"
+    ]
   }
 }

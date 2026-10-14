@@ -18,7 +18,10 @@
     "builder": "demo-builder"
   },
   "learner": {
-    "knows": ["confounding (hidden-third-cause)", "control groups (sixteen-of-twenty-got-better)"],
+    "knows": [
+      "confounding (hidden-third-cause)",
+      "control groups (sixteen-of-twenty-got-better)"
+    ],
     "doesNotKnow": [
       "that letting a person choose who is treated builds their judgement into the result, and that a coin breaks that link"
     ]
@@ -79,7 +82,9 @@
     "why": "When a person picks who is treated, their judgement (keen pupils, strong readers) rides along into the result. A coin breaks that link."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/the-doctor-picks-the-patients/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [],
     "pairwise": [],
     "humanLearners": []
@@ -87,11 +92,21 @@
   "version": 1,
   "curriculum": {
     "primary": "probability:random-assignment",
-    "also": ["probability:confounding", "probability:control-groups"],
-    "prerequisites": ["probability:confounding"],
+    "also": [
+      "probability:confounding",
+      "probability:control-groups"
+    ],
+    "prerequisites": [
+      "probability:confounding"
+    ],
     "level": "core",
     "strand": "statistics",
     "references": [],
-    "tags": ["experiments", "randomisation", "confounding", "trials"]
+    "tags": [
+      "experiments",
+      "randomisation",
+      "confounding",
+      "trials"
+    ]
   }
 }

@@ -5,12 +5,21 @@
   "domain": "ai",
   "concept": "vanishing-gradients",
   "format": "single-card",
-  "interactions": ["choice-before-reveal", "milestone-gate", "preset-buttons"],
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ],
   "status": "draft",
   "durationSec": 60,
-  "owner": { "categoryManager": "cm-ai", "builder": "demo-builder" },
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
   "learner": {
-    "knows": ["the error signal is passed back layer by layer by the chain rule (chain-of-blame)"],
+    "knows": [
+      "the error signal is passed back layer by layer by the chain rule (chain-of-blame)"
+    ],
     "doesNotKnow": [
       "that each layer multiplies the signal by its activation's slope, the sigmoid's slope is at most 0.25, so in a deep sigmoid stack the first layers get almost no signal and barely learn; a slope-1 activation (ReLU, on its active side) passes it through"
     ]
@@ -58,15 +67,28 @@
     "answer": 0,
     "why": "Going backwards, each sigmoid layer multiplies the error signal by its slope, at most 0.25, so the layers furthest from the output receive almost none of it and barely learn."
   },
-  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "evidence": {
+    "qa": [
+      "company/reviews/gradient-fades-with-depth/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
   "version": 1,
   "curriculum": {
     "primary": "ai:vanishing-gradients",
     "also": [],
-    "prerequisites": ["ai:backprop-chain"],
+    "prerequisites": [
+      "ai:backprop-chain"
+    ],
     "level": "core",
     "strand": "neural-language",
     "references": [],
-    "tags": ["backpropagation", "activations", "depth"]
+    "tags": [
+      "backpropagation",
+      "activations",
+      "depth"
+    ]
   }
 }
