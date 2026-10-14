@@ -14,7 +14,7 @@
 // both 20% cuts have been seen a stage row shows exactly those numbers; "seed" left the stage and reveal.
 
 import { Lesson } from "@/kit/Lesson";
-import { Control, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { mulberry32 } from "@/kit/random";
 import { useState } from "react";
@@ -132,6 +132,10 @@ interface View {
   visited: Record<Order, number>;
 }
 
+// v4 (learner r8, phone fit): one-line rule ("Link strength = share of friends in common."); "network N of 5" moved
+// into the chart's bottom-right corner; chart labels 9/10 -> 11 px (>= 10 px as drawn); the slider and the order
+// buttons are Row foldAtReveal (their state stays in the picture, the chart and the Seen row, which the reveal quotes);
+// Seen row and reveal trimmed. Crop 125 -> 0 px at 390x844.
 export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
   const [view, setView] = useState<View>({ seedIdx: 0, level: 0, order: "strong", visited: { strong: 0, weak: 0 } });
   const L = 2; // the question's case: 20% of links cut
@@ -155,11 +159,11 @@ export default function WeakLinksHoldItTogether({ slug }: { slug: string }) {
         <>
           <p>
             In network {view.seedIdx + 1}, cutting 20% ({k} links) closest first left {strong.largest} of 60 in one
-            piece. Cutting the {k} loosest first left a largest group of {weak.largest}: {weak.bridgesCut} of the 12 links between
-            groups were among them.
+            piece. Cutting the {k} loosest first left a largest group of {weak.largest}, with {weak.bridgesCut} of the 12 bridges
+            among them.
           </p>
           <p>
-            Here the links between groups all have few shared friends, so cutting the weakest first removes them and
+            Here the links between groups all have few shared friends, so cutting the weakest links first removes them and
             breaks the network apart. Close ties sit inside groups, and the groups hold together without them.
           </p>
         </>
@@ -208,7 +212,7 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>Link strength = share of friends the two have in common.</p>
+      <p className={s.rule}>Link strength = share of friends in common.</p>
       <svg viewBox="0 0 360 282" className={`stage-svg ${s.net}`} role="img" aria-label={aria}>
         {net.edges.map(([a, b], i) => {
           const gone = st.cut.has(i);
@@ -257,7 +261,7 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
         <text x={px(0) - 5} y={py(60) + 4} className={s.tickY}>
           60
         </text>
-        <text x={px(0) - 5} y={py(0) + 4} className={s.tickY}>
+        <text x={px(0) - 5} y={py(0) + 1} className={s.tickY}>
           0
         </text>
         {lines.map(({ o, pts }) =>
@@ -279,16 +283,18 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
             </text>
           ) : null,
         )}
+        <text x={360} y={105} className={s.seedLabel}>
+          network {view.seedIdx + 1} of {SEEDS.length}
+        </text>
       </svg>
-      <p className={s.seed}>network {view.seedIdx + 1} of {SEEDS.length}</p>
       {view.visited.strong >= 2 && view.visited.weak >= 2 && (
         <p className={s.rule} data-testid="seen">
           At 20% cut ({cutCount(net, 2)} links), network {view.seedIdx + 1}: strongest first {curves.strong[2].largest} of 60 ·
-          weakest first {curves.weak[2].largest} of 60, {curves.weak[2].bridgesCut} of 12 bridges cut
+          weakest first {curves.weak[2].largest}, {curves.weak[2].bridgesCut} of 12 bridges cut
         </p>
       )}
 
-      <div className={s.sliderWrap}>
+      <Row foldAtReveal>
         <Slider
           label="Links cut"
           value={view.level}
@@ -299,8 +305,9 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
           format={(l) => `${l * 10}% (${cutCount(net, l)} of ${total})`}
           onChange={(l) => apply({ ...view, level: l })}
         />
-      </div>
-      <div className={s.controls}>
+      </Row>
+      <Row foldAtReveal>
+        <div className={s.controls}>
         {(["strong", "weak"] as Order[]).map((o) => (
           <Control
             key={o}
@@ -319,7 +326,8 @@ function Stage({ locked, view, apply }: { locked: boolean; view: View; apply: (v
         >
           New network
         </Control>
-      </div>
+        </div>
+      </Row>
     </div>
   );
 }

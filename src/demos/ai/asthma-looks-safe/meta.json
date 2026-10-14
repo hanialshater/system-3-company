@@ -1,0 +1,102 @@
+{
+  "slug": "asthma-looks-safe",
+  "title": "The model's safest patients",
+  "hook": "Records say asthma patients with pneumonia die less. What if a model acts on that?",
+  "domain": "ai",
+  "concept": "prediction-not-intervention",
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after",
+    "locked-readouts"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a model learns patterns from past records"
+    ],
+    "doesNotKnow": [
+      "that records carry the effects of past decisions, so a model that predicts well can give the wrong answer to 'what should we do?', and acting on it removes the very care that made the pattern"
+    ]
+  },
+  "misconception": "If a model trained on hospital records predicts accurately that a group dies less, that group is low risk and can safely get less care.",
+  "objective": "The learner can explain that asthma patients died less in the records because they all got intensive care, so a model that ranks them lowest risk and sends them to the ward raises their deaths: prediction from past records is not the effect of changing care.",
+  "claims": [
+    {
+      "id": "ai.asthma-looks-safe.c1",
+      "text": "Under the old rule (every asthma patient to intensive care), 2 of 50 asthma patients (4%) and 12 of 150 others (8%) die; the toy risks are stated on the stage: ward 20% for asthma and 8% for others, intensive care cuts asthma's to 4%.",
+      "support": "derivation",
+      "source": "50 x 0.04 = 2, 150 x 0.08 = 12 (exact expected counts, no sampling); outcome('old') in Demo.tsx. Brief 57, company/domains/briefs/ai.ai-society.md.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.asthma-looks-safe.c2",
+      "text": "A model fitted to those records ranks asthma as the lowest-risk group ('Model learned from the old records: asthma 4% risk, others 8%. Asthma = lowest risk.').",
+      "support": "derivation",
+      "source": "The toy model is the group death rate in the old records: 2/50 = 4% < 12/150 = 8%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.asthma-looks-safe.c3",
+      "text": "When the model's ranking sends asthma patients to the ward, 10 of 50 (20%) die; the others stay at 12 of 150.",
+      "support": "derivation",
+      "source": "50 x 0.20 = 10; outcome('model') in Demo.tsx (ASTHMA_DIE_WARD has 10 entries, OTHERS_DIE 12). Total deaths rise from 14 to 22 (not in learner text).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.asthma-looks-safe.c4",
+      "text": "The patients, their risks and which dots die are a toy, labelled on the stage ('Toy pneumonia patients'); the dying dots are a fixed list, not a chosen seed.",
+      "support": "convention",
+      "source": "Brief 57. The real-world pattern this toy echoes: Caruana, Lou, Gehrke, Koch, Sturm and Elhadad (2015), 'Intelligible models for healthcare: predicting pneumonia risk and hospital 30-day readmission', KDD 2015 (a model learned that asthma lowers pneumonia death risk because asthmatic patients had been admitted directly to intensive care); Cooper et al. (1997), Artificial Intelligence in Medicine 9(2). The citation is not in learner text; if a later version names it, it needs the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.asthma-looks-safe.c5",
+      "text": "A model that predicts well from past records answers 'who did badly before?', not 'what happens if we change what we do?'.",
+      "support": "derivation",
+      "source": "The toy: the model's prediction (asthma 4%) was accurate for the old records, yet acting on it changed asthma's death rate to 20%, because the records were produced by a care policy the action removed. Standard prediction-versus-intervention distinction (Pearl, Causality, 2nd ed. 2009, ch. 1, do-operator); Caruana et al. (2015) above.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a firm's records, staff who got a mentor rarely quit, because managers gave mentors to people at risk of leaving. A model trained on the records says those people are safe. What happens if HR stops their mentoring on that advice?",
+    "options": [
+      "More of them quit: the records showed the mentoring working, not low risk",
+      "Nothing: the model predicted accurately, so they are low risk",
+      "Fewer quit, because the model found the safe group"
+    ],
+    "answer": 0,
+    "why": "The records carry the effect of a past decision. A model can predict who quit before without knowing what happens when you change what you do."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:prediction-not-intervention",
+    "also": [
+      "probability:confounding"
+    ],
+    "prerequisites": [
+      "probability:confounding"
+    ],
+    "level": "core",
+    "strand": "ai-society",
+    "references": [],
+    "tags": [
+      "causation",
+      "healthcare",
+      "deployment"
+    ]
+  }
+}

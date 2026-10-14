@@ -10,6 +10,11 @@
 // independently and moving together; together, any split is one bet again (50% / 50%). The stage
 // keeps a "seen" row of every state visited (n bets, independent or together, chance of a loss),
 // and the reveal quotes that row, so the stage no longer pins itself to 2 bets at the reveal.
+// v7 (learner r8, phone fit): the muted model line moved onto the stage chip ("Made-up model: ... Not advice.");
+// the Worst result / Chance of it readouts are gone (the −10% bar's label is the worst case's chance); slider and
+// Chance of a loss share a row, the mode buttons ("Together" / "Independent") share one with Average; viewBox
+// 200 -> 190; chart labels 12/13 px so the card's fit can shrink the chart and keep them >= 10 px.
+// Reveal 111 -> 76 words; crop 254 -> 0 px at 390x844.
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
@@ -178,7 +183,7 @@ export default function TwoBetsSplit({ slug }: { slug: string }) {
           </p>
           {together.length > 0 && (
             <p>
-              Moving together, {together.map((x) => `${x.n} bets`).join(" and ")} lost {pct(lossChance(together[0].n, "together"))} of
+              Moving together, {together[together.length - 1].n} bets lost {pct(lossChance(together[together.length - 1].n, "together"))} of
               the time, like one bet. Splitting only cancels risk when the bets do not fall together.
             </p>
           )}

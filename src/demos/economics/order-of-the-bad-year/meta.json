@@ -1,0 +1,73 @@
+{
+  "slug": "order-of-the-bad-year",
+  "title": "Does the order of the years matter?",
+  "hook": "One year up 25%, one year down 20%, and money comes out each year.",
+  "domain": "economics",
+  "concept": "sequence-of-returns",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "learner": {
+    "knows": ["a gain and a loss multiply (up-then-down-trap)"],
+    "doesNotKnow": ["that when money is taken out (or put in) each year, the order of the same returns changes the ending balance, even though without flows it does not"]
+  },
+  "misconception": "If the returns are the same, the order they come in does not matter.",
+  "objective": "The learner can explain that +25% and −20% end at the same $100k in either order when no money moves, but withdrawing $20k a year leaves $64k with the gain first and $55k with the loss first, because the withdrawal after the loss comes out of a smaller pot.",
+  "claims": [
+    {
+      "id": "economics.order-of-the-bad-year.c1",
+      "text": "With no withdrawals, $100k with one year of +25% and one of −20% ends at $100k in either order: ×1.25 then ×0.8 equals ×0.8 then ×1.25.",
+      "support": "derivation",
+      "source": "1.25 × 0.8 = 0.8 × 1.25 = 1 (multiplication commutes). Demo.tsx path(): flow 0 gives 100 for both orders (builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #56.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.order-of-the-bad-year.c2",
+      "text": "Withdrawing $20k at each year-end, gain first ends at $64k and loss first at $55k.",
+      "support": "derivation",
+      "source": "v = v × (1 + r) + flow: gain first 100 × 1.25 − 20 = 105, × 0.8 − 20 = 64; loss first 100 × 0.8 − 20 = 60, × 1.25 − 20 = 55 (Demo.tsx path(); builder node run, 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.order-of-the-bad-year.c3",
+      "text": "A withdrawal after the loss comes out of a smaller pot, and that money is not there for the recovery.",
+      "support": "derivation",
+      "source": "Loss first: the $20k leaves a $80k pot (25% of it), so only $60k earns the +25%; gain first: the $20k leaves a $125k pot and $105k takes the −20%. The withdrawn $20k after the loss would have grown by 25% (Demo.tsx path()).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.order-of-the-bad-year.c4",
+      "text": "Adding $20k at each year-end flips it: loss first ends at $145k and gain first at $136k, because the deposit went in low.",
+      "support": "derivation",
+      "source": "Loss first 80 + 20 = 100, × 1.25 + 20 = 145; gain first 125 + 20 = 145, × 0.8 + 20 = 136 (Demo.tsx path(); builder node run). Shown only if the learner reached deposit $20k with both orders shown; the stage record row then reads 'deposit $20k: gain first $136k, loss first $145k'.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.order-of-the-bad-year.c5",
+      "text": "The lesson is a two-year toy model: returns +25% and −20%, money moves at each year-end, no fees, taxes or inflation; not a forecast or advice.",
+      "support": "convention",
+      "source": "Stage chip 'Model: returns +25% and −20%; money moves at each year-end'; Demo.tsx RET and path(). Lesson rule, not an empirical claim.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two retirees start with the same savings, get the same good year and the same bad year in opposite orders, and withdraw the same amount each year. Who ends with more?",
+    "options": ["The one whose good year came first", "The one whose bad year came first", "They end the same"],
+    "answer": 0,
+    "why": "Without withdrawals the order would not matter. With them, a withdrawal after the bad year comes out of a smaller pot, so less money is left to recover in the good year."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:sequence-of-returns",
+    "also": ["economics:volatility-drag"],
+    "prerequisites": ["economics:volatility-drag"],
+    "level": "core",
+    "strand": "personal-finance",
+    "references": [],
+    "tags": ["investing", "withdrawals", "risk"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "toggle-before-after", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+}

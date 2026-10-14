@@ -27,46 +27,36 @@
       "id": "life.vaccinate-at-the-peak.c1",
       "text": "In the stage's toy SIR model (R0 = 3, 0.1% sick on day 0), with no vaccination 94% are eventually infected and new cases peak on day 19.",
       "support": "simulation",
-      "source": "Deterministic SIR, Euler step 0.01 day to day 200 (infection 0.6/day, recovery 0.2/day), replicated in artifacts/scratch/w3life/vacc.mjs: ever infected 0.9407, peak at day 19.19. No random seed.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Deterministic SIR, Euler step 0.01 day to day 200 (infection 0.6/day, recovery 0.2/day), replicated in artifacts/scratch/w3life/vacc.mjs: ever infected 0.9407, peak at day 19.19. No random seed. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): reveal sentence reworded ('Your Seen row: with no vaccine 94% are infected in the end; day 0 brings that to 70%, the peak to 76%.'). Numbers unchanged. Unverified because the text changed.",
+      "status": "unverified"
     },
     {
       "id": "life.vaccinate-at-the-peak.c2",
-      "text": "Vaccinating 20% of the town at once, all people not yet infected, brings the final infected share to 70% on day 0 and 76% at the peak (day 19), against 94% with no vaccine: in the stage's whole percents the peak saves 18 of the 24 points that day 0 saves, about 75% of the benefit (unrounded 18.4 of 23.8, 77.5%). On day 40 the final share is 94%. (Stage: 'Seen, infected in the end: none 94% · day 0 70% · day 19 76% · ...'.)",
+      "text": "Vaccinating 20% of the town at once, all people not yet infected, brings the final infected share to 70% on day 0 and 76% at the peak (day 19), against 94% with no vaccine: in the stage's whole percents the peak saves 18 of the 24 points that day 0 saves, about 75% of the benefit (unrounded 18.4 of 23.8, 77.5%). On day 40 the final share is 94%. (Stage: 'Seen, infected in the end: none 94% · day 0 70% · day 19 76% · day 40 94% · ...'; day 40 stays in the row once visited.)",
       "support": "simulation",
-      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'sus'): day 0 0.7031, day 19 0.7566, day 40 0.9359, none 0.9407; fraction 0.775. The brief's check (50%, 56%, 87%) did not reproduce in this model; see company/reviews/vaccinate-at-the-peak/build.md. | Builder revision v4 (demo-builder, 2026-10-14): (r7) The reveal now does its arithmetic in the stage's rounding: whole(0.94) - whole(0.76) = 18, whole(0.94) - whole(0.70) = 24, round(100 x 18 / 24) = 75. A Seen row keeps the quoted finals. Builder node re-run of simulate(): none 94%, day 0 70%, day 19 76%, day 40 94%. Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node port of simulate(): none 0.9407, day 0 0.7031, peak day round(19.19) = 19 0.7566, day 40 0.9359; whole percents 94, 70, 76, 94; 94 - 76 = 18, 94 - 70 = 24, round(100·18/24) = 75; unrounded 18.41 of 23.75 points = 0.775. Seen row lists none always, day 0 and day 19 once their milestones are hit (both needed for the reveal); peak clause \"Day 19: 35% not yet infected.\"",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'sus'): day 0 0.7031, day 19 0.7566, day 40 0.9359, none 0.9407; fraction 0.775. The brief's check (50%, 56%, 87%) did not reproduce in this model; see company/reviews/vaccinate-at-the-peak/build.md. | Builder revision v4 (demo-builder, 2026-10-14): (r7) The reveal now does its arithmetic in the stage's rounding: whole(0.94) - whole(0.76) = 18, whole(0.94) - whole(0.70) = 24, round(100 x 18 / 24) = 75. A Seen row keeps the quoted finals. Builder node re-run of simulate(): none 94%, day 0 70%, day 19 76%, day 40 94%. Builder statement, not self-verified. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED. Own node port of simulate(): none 0.9407, day 0 0.7031, peak day round(19.19) = 19 0.7566, day 40 0.9359; whole percents 94, 70, 76, 94; 94 - 76 = 18, 94 - 70 = 24, round(100·18/24) = 75; unrounded 18.41 of 23.75 points = 0.775. Seen row lists none always, day 0 and day 19 once their milestones are hit (both needed for the reveal); peak clause \"Day 19: 35% not yet infected.\" | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): the Seen row now keeps 'day 40 94%' once visited, as well as the last other date (r8 minor finding 2). Unverified because the stage behaviour changed.",
+      "status": "unverified"
     },
     {
       "id": "life.vaccinate-at-the-peak.c3",
       "text": "On day 19, the peak, about 35% of the town has never been infected; the peak comes when the susceptible share falls to 1/R0.",
       "support": "derivation",
-      "source": "dI/dt = (beta S - gamma) I = 0 at S = 1/3 (peak at day 19.19); S at day 19 = 0.3455 in the same run. DISPUTED 2026-10-13: Numbers right (S at day 19 = 34.5%; peak at S=1/R0) but the reveal says 'most infections were still to come' at the peak. node: at day 19, 65.5% of the town has already been infected; only 28.6 points remain, 30% of the eventual 94%. So most infections have already happened. Fix: 'about a third of the town had never been infected' or 'nearly a third of the town was still to be infected', and drop 'most' and 'the middle of the epidemic'. | CLAIM FIX 2026-10-13: Was '... so most of the epidemic's remaining infections are still to come' (disputed: 65.5% of the town has already been infected by day 19). Dropped 'most infections still to come' and 'the middle of the epidemic' from the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "dI/dt = (beta S - gamma) I = 0 at S = 1/3 (peak at day 19.19); S at day 19 = 0.3455 in the same run. DISPUTED 2026-10-13: Numbers right (S at day 19 = 34.5%; peak at S=1/R0) but the reveal says 'most infections were still to come' at the peak. node: at day 19, 65.5% of the town has already been infected; only 28.6 points remain, 30% of the eventual 94%. So most infections have already happened. Fix: 'about a third of the town had never been infected' or 'nearly a third of the town was still to be infected', and drop 'most' and 'the middle of the epidemic'. | CLAIM FIX 2026-10-13: Was '... so most of the epidemic's remaining infections are still to come' (disputed: 65.5% of the town has already been infected by day 19). Dropped 'most infections still to come' and 'the middle of the epidemic' from the reveal. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): reveal sentence reworded ('The peak is not the end: on day 19, 35% had never been infected. Protecting them still cuts the tail; by day 40 little is left to stop.'). Unverified because the text changed.",
+      "status": "unverified"
     },
     {
       "id": "life.vaccinate-at-the-peak.c4",
       "text": "If the 20% of doses went to random people (some already infected or recovered) instead of only to people not yet infected, vaccinating at the peak would keep only about 29% of the day-0 benefit.",
       "support": "simulation",
-      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'random', doses = 0.2 x S): day 0 0.7034, day 19 0.8727, fraction 0.286. Disclosed in the reveal because the lesson's headline depends on the targeting assumption.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "artifacts/scratch/w3life/vacc.mjs (mode 'random', doses = 0.2 x S): day 0 0.7034, day 19 0.8727, fraction 0.286. Disclosed in the reveal because the lesson's headline depends on the targeting assumption. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): withdrawn: the reveal clause 'Given to random people instead, the peak keeps about 29%.' was cut (told context, never on the stage; named as a candidate by the r8 review; 90-word budget). Cutting a claimed sentence is cm-life's call (board).",
+      "status": "withdrawn"
     },
     {
       "id": "life.vaccinate-at-the-peak.c5",
-      "text": "The model is a made-up disease with random mixing, instant and perfect protection, and doses only to people not yet infected; it is a model result, not guidance.",
+      "text": "The model is a made-up disease with random mixing, instant and perfect protection, and doses only to people not yet infected (the question says 'all not yet infected'; the reveal says 'Model, not guidance: instant, perfect protection.'); it is a model result, not guidance.",
       "support": "convention",
-      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... all not yet infected') and in the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Model choice in Demo.tsx; stated in the question, on the stage ('Toy: ... all not yet infected') and in the reveal. | v5 (demo-builder, 2026-10-14, learner r8 / W-298, phone fit): muted reveal line shortened to 'Model, not guidance: instant, perfect protection.' ('doses only to people not yet infected' cut: the question already says 'all not yet infected'). Unverified because the text changed; cm-life to confirm the cut.",
+      "status": "unverified"
     },
     {
       "id": "life.vaccinate-at-the-peak.c6",
@@ -112,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "life:sir-epidemic-curve",
     "prerequisites": [

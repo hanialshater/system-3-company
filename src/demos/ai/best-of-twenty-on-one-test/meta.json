@@ -1,0 +1,105 @@
+{
+  "slug": "best-of-twenty-on-one-test",
+  "title": "Twenty guessers, one test",
+  "hook": "No model here knows anything. How well does the leaderboard winner score?",
+  "domain": "ai",
+  "concept": "test-set-reuse",
+  "format": "simulation-run",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button",
+    "preset-buttons",
+    "locked-readouts"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "why we hold out a test set (ten-test-cases)",
+      "that a score is a sample, so it varies by luck"
+    ],
+    "doesNotKnow": [
+      "that choosing the best of many models by the same test set turns that test set into training data, so the winner's score is inflated even when no model has any skill, and only a fresh test set shows it"
+    ]
+  },
+  "misconception": "The top score on a leaderboard measures the top model's real skill; if no model is any good, no model will score well.",
+  "objective": "The learner can explain that the best of many skill-free models scores well above 50% on a shared test because picking the best picks the luckiest, that the lead vanishes on fresh questions, and that a final test set must be used only once.",
+  "claims": [
+    {
+      "id": "ai.best-of-twenty-on-one-test.c1",
+      "text": "With 20 models that each guess, scored on the same 100 questions, the best score averages about 59 of 100 (exact 59.31); the learner's run is one sample (seed 1: 56).",
+      "support": "derivation",
+      "source": "E[max of 20 Binomial(100, 0.5)] = sum over k of 1 - F(k)^20 = 59.31 (node, 2026-10-14); stage simulation board() in Demo.tsx averaged over seeds 1-20,000: 59.32. Seeds run 1, 2, 3, ... in press order, untuned; seed 1 is simply the first.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.best-of-twenty-on-one-test.c2",
+      "text": "The winner re-scored on fresh questions scores about 50% whatever it scored before: the lead was noise (seed 1: 49.7% on 1,000 fresh questions).",
+      "support": "derivation",
+      "source": "The fresh questions are independent of the choice, so the winner is still a 50% guesser: expected 50%. fresh() in Demo.tsx (1,000 questions, mulberry32(seed + 100000)) averaged over seeds 1-20,000: 50.0%. Over seeds 1-5,000 the fresh score reached the winner's shared score in 6 runs; the reveal has a branch for that case.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.best-of-twenty-on-one-test.c3",
+      "text": "The more models compete, the higher a skill-free winner climbs: on average about 50, 56, 59 and 62 of 100 for 1, 5, 20 and 100 models.",
+      "support": "derivation",
+      "source": "Exact expected maxima 50.00, 55.81, 59.31, 62.48 (node, 2026-10-14). With one seed the first m models of a larger board are the same models, so on the stage the best of 100 is never below the best of 20 for that seed (seed 1: 53, 54, 56, 59).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.best-of-twenty-on-one-test.c4",
+      "text": "Using one test set to choose among many models quietly trains on it; keep a final test set that is used once, after the choice.",
+      "support": "source",
+      "source": "Dwork, Feldman, Hardt, Pitassi, Reingold and Roth (2015), 'The reusable holdout: preserving validity in adaptive data analysis', Science 349(6248): 636-638; Hastie, Tibshirani and Friedman, The Elements of Statistical Learning, 2nd ed., section 7.2 (the test set kept 'in a vault' and used only at the end). About real systems; needs the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.best-of-twenty-on-one-test.c5",
+      "text": "The models are a toy that only guess (each question right with chance 50%), labelled on the stage ('Toy models that only guess').",
+      "support": "convention",
+      "source": "Brief 58, company/domains/briefs/ai.ml-basics.md. Departure: the fresh test has 1,000 questions (brief: 100) so one run shows the fall to about 50%.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A team tries 50 prompt variants and reports the one that scored best on their 200-question benchmark. What should you expect when it meets new questions?",
+    "options": [
+      "It scores lower than reported, because the best of 50 was partly luck",
+      "It scores about the same, because the benchmark measured it",
+      "It scores higher, because it was the best"
+    ],
+    "answer": 0,
+    "why": "Picking the best of many on one test set picks luck along with skill. Only a test used once, after the choice, gives an honest score."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:test-set-reuse",
+    "also": [
+      "probability:winners-curse",
+      "probability:multiple-comparisons"
+    ],
+    "prerequisites": [
+      "ai:train-test-split"
+    ],
+    "level": "core",
+    "strand": "ml-basics",
+    "references": [],
+    "tags": [
+      "evaluation",
+      "leaderboards",
+      "benchmarks"
+    ]
+  }
+}

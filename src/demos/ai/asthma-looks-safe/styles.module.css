@@ -1,0 +1,18 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
+.wrap :global(.row) { margin-top: 2px; }
+.svg { flex-shrink: 0; width: 100%; max-height: 34dvh; }
+.model { align-self: flex-start; font-size: 0.72rem; background: var(--bg-2); }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.8rem; font-weight: 600; }
+.rows { display: flex; flex-direction: column; gap: 1px; }
+.line { margin: 0; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.now { font-weight: 800; color: var(--fg); }
+.faint { color: var(--muted); }
+.label { font-size: 11px; font-weight: 800; }
+.small { font-size: 11px; font-weight: 700; }
+.asthma { fill: var(--domain); }
+.asthmaDead { fill: var(--fg); stroke: var(--domain); stroke-width: 2; }
+.other { fill: var(--muted); opacity: 0.4; }
+.dead { fill: var(--fg); }
+.icuBox { fill: none; stroke: var(--domain); stroke-width: 2; }
+.wardBox { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }

@@ -1,0 +1,66 @@
+{
+  "slug": "debt-grows-ratio-falls",
+  "title": "Does yearly borrowing raise the burden?",
+  "hook": "A government borrows every single year. Does its debt-to-GDP have to rise?",
+  "domain": "economics",
+  "concept": "debt-to-gdp-dynamics",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "learner": {
+    "knows": ["a deficit adds to the debt each year (bathtub-deficit-debt)"],
+    "doesNotKnow": ["that debt-to-GDP is a fraction, and growth in GDP can shrink it while the debt itself keeps rising"]
+  },
+  "misconception": "A government that borrows every year must see its debt burden (debt-to-GDP) keep rising.",
+  "objective": "The learner can explain that borrowing 3% of GDP a year while GDP grows 5% takes debt from $100 to $140 but debt-to-GDP from 100% to 85.7% in 10 years, because growth enlarges the bottom of the fraction faster than borrowing adds to the top.",
+  "claims": [
+    {
+      "id": "economics.debt-grows-ratio-falls.c1",
+      "text": "At 3% borrowing and 5% growth, from debt $100 and GDP $100, after 10 years debt is $140 (139.6), GDP $163 (162.9) and debt-to-GDP 85.7%; debt rises every year.",
+      "support": "derivation",
+      "source": "GDP_t = GDP_{t−1} × 1.05; debt_t = debt_{t−1} + 0.03 × GDP_t (Demo.tsx run(); builder node run, 2026-10-14): year 1 103.2 / 105.0 = 98.2%; year 10 139.6 / 162.9 = 85.7%. Debt increases each year because borrowing is positive. Brief: company/domains/briefs/economics.md #59.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.debt-grows-ratio-falls.c2",
+      "text": "The ratio is a fraction: borrowing adds to the top, growth enlarges the bottom.",
+      "support": "derivation",
+      "source": "Debt-to-GDP = debt / GDP; in the model borrowing increases debt (numerator) and growth increases GDP (denominator).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.debt-grows-ratio-falls.c3",
+      "text": "With borrowing raised to 5% at 5% growth, the year-10 ratio climbs to 101.9% (the reveal quotes the learner's own recorded rates and ratio).",
+      "support": "derivation",
+      "source": "Demo.tsx run(5, 5): year 10 debt 166.0, GDP 162.9, ratio 101.9%; other climbing cases: run(3, 2) 109.5%, run(3, 3) 100.8%, run(6, 0) 160.0% (builder node run). The record is set the first time a year-10 state has a ratio above 100.0% (milestone 'climb'); the QA path reaches it at 5%/5%. The record row shows the same value.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.debt-grows-ratio-falls.c4",
+      "text": "The lesson is a toy model: start debt $100 and GDP $100, money GDP grows first each year, then borrowing (a % of that year's GDP, interest included) adds to the debt; fixed rates, no recessions; not any real country.",
+      "support": "convention",
+      "source": "Stage chip 'Model: start debt $100, GDP $100. Each year GDP grows, then borrowing adds a % of that GDP.' and the reveal's last sentence. Lesson rule. No real-country fiscal rule is named, per the brief.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A country's debt keeps rising because it borrows every year, but its economy grows faster, in proportion, than the borrowing adds. What happens to its debt-to-GDP?",
+    "options": ["It must rise, because the debt rises", "It can fall", "It stays fixed"],
+    "answer": 1,
+    "why": "Debt-to-GDP is a fraction. Borrowing adds to the top, but if GDP grows faster the bottom grows more, so the ratio falls even while the debt grows."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:debt-to-gdp-dynamics",
+    "also": ["economics:stock-vs-flow", "economics:growth-rate-gap"],
+    "prerequisites": ["economics:stock-vs-flow"],
+    "level": "core",
+    "strand": "macro",
+    "references": [],
+    "tags": ["macro", "public debt", "ratios"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "step-run-button", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+}

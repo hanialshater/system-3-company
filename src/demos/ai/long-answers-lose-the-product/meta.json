@@ -1,0 +1,102 @@
+{
+  "slug": "long-answers-lose-the-product",
+  "title": "Which whole answer is more likely?",
+  "hook": "A model scores a whole answer by multiplying its tokens' chances. Which comes out on top?",
+  "domain": "ai",
+  "concept": "sequence-length-bias",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-run-button",
+    "slider-drives-live-chart",
+    "toggle-before-after"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a model picks the next token from probabilities (next-word-tally)",
+      "that a whole text's probability is the product along its path (greedy-word-trap)"
+    ],
+    "doesNotKnow": [
+      "that because every extra token multiplies by a number below 1, the most probable whole answer is biased toward short ones, so search for the single most likely text needs a length correction"
+    ]
+  },
+  "misconception": "The answer whose every token the model is more confident about is the more probable answer, so 'most likely' means 'best'.",
+  "objective": "The learner can explain that a 10-token answer at 85% per token (19.7%) loses to a 2-token answer at 50% per token (25%) because each extra token multiplies the whole by a number below 1, and that scoring per token removes this bias toward short answers.",
+  "claims": [
+    {
+      "id": "ai.long-answers-lose-the-product.c1",
+      "text": "0.5 x 0.5 = 25% and 0.85^10 = 19.7%, so the 2-token answer S is more probable than the 10-token answer L.",
+      "support": "derivation",
+      "source": "Arithmetic; whole() in Demo.tsx; node 2026-10-14: 0.25 and 0.19687.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.long-answers-lose-the-product.c2",
+      "text": "At 85% per token, L beats S's 25% only up to 8 tokens (0.85^8 = 27.2%, 0.85^9 = 23.2%).",
+      "support": "derivation",
+      "source": "CROSS in Demo.tsx computes 8; node: 0.85^8 = 0.2725, 0.85^9 = 0.2316. Stage lengths 1-10: 85.0, 72.3, 61.4, 52.2, 44.4, 37.7, 32.1, 27.2, 23.2, 19.7%.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.long-answers-lose-the-product.c3",
+      "text": "A whole answer's probability is the product of its tokens' probabilities, so each extra token multiplies the whole by something below 1 and can only lower it; therefore the single most probable answer tends to be a short one.",
+      "support": "derivation",
+      "source": "Chain rule of probability: P(w1..wn) = product of P(wi | w1..wi-1), each factor <= 1. The toy's per-token chances are fixed and invented (stage tag 'Invented token odds').",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.long-answers-lose-the-product.c4",
+      "text": "Scoring per token (the geometric mean of the token chances, a length-normalised score) puts L ahead: 85% against 50%, at every length.",
+      "support": "derivation",
+      "source": "(p^n)^(1/n) = p: S 0.5, L 0.85 for any n. Shown on the stage as 'per token: 85% (whole: ...)'.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.long-answers-lose-the-product.c5",
+      "text": "Real decoders add such a length correction (length penalty or normalisation), because exact or beam search for the most probable output favours short outputs.",
+      "support": "source",
+      "source": "Wu et al. (2016), 'Google's neural machine translation system', arXiv 1609.08144, section 7 (length normalisation in beam search); Murray and Chiang (2018), 'Correcting length bias in neural machine translation', WMT 2018. About real systems; needs the fact-checker. The brief's optional Stahlberg and Byrne (2019) sentence is not in learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search keeps the single most probable reply, scoring each reply by multiplying its token chances. Without any correction, which kind of reply does it tend to pick?",
+    "options": [
+      "Short replies, even when their tokens are less certain",
+      "Long replies, because they carry more information",
+      "Replies whose every token is the most confident"
+    ],
+    "answer": 0,
+    "why": "Every extra token multiplies the whole by a number below 1, so long replies lose probability. Real decoders add a length correction, such as scoring per token."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:sequence-length-bias",
+    "also": [],
+    "prerequisites": [
+      "ai:greedy-decoding"
+    ],
+    "level": "core",
+    "strand": "neural-language",
+    "references": [],
+    "tags": [
+      "decoding",
+      "beam search",
+      "likelihood"
+    ]
+  }
+}

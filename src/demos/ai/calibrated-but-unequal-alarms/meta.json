@@ -1,0 +1,105 @@
+{
+  "slug": "calibrated-but-unequal-alarms",
+  "title": "Same honest score, same false alarms?",
+  "hook": "One risk score is equally accurate for two groups. Who gets wrongly flagged?",
+  "domain": "ai",
+  "concept": "fairness-impossibility",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "side-by-side",
+    "slider-drives-live-chart"
+  ],
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-ai",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "false alarms and misses (flagged-means-what)",
+      "that a calibrated score means '80% means 80%' (say-seventy-mean-it)"
+    ],
+    "doesNotKnow": [
+      "that when two groups have different base rates, one calibrated score with one threshold must give them different false-alarm and miss rates, so 'fair' has to pick which equality it means"
+    ]
+  },
+  "misconception": "If a risk score is equally accurate (calibrated) for both groups and uses one threshold, it treats both groups' innocent people the same.",
+  "objective": "The learner can explain that a score calibrated in two groups with different base rates flags a larger share of the higher-base-rate group's innocent people, and that the error rates match only when the base rates match.",
+  "claims": [
+    {
+      "id": "ai.calibrated-but-unequal-alarms.c1",
+      "text": "In the toy, in both groups 80% of the people labelled high risk (ringed) and 20% of the others reoffend (the question and the stage message: '8 in 10 ringed dots reoffended, in A and in B').",
+      "support": "derivation",
+      "source": "By construction: reoffends(i, high) in Demo.tsx marks 4 in 5 of the ringed and 1 in 5 of the others by the pattern (i + row) % 5; exact for every slider value (multiples of 5). node: ringed reoffenders 40 of 50 (A), 16 of 20, 4 of 5, 28 of 35, 40 of 50 (B at 20, 5, 35, 50).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.calibrated-but-unequal-alarms.c2",
+      "text": "Group A (50 ringed): false alarms 10 of 50 non-reoffenders (20%), misses 10 of 50 reoffenders (20%). Group B with 20 ringed: false alarms 4 of 68 (5.9%, shown 6%), misses 16 of 32 (50%).",
+      "support": "derivation",
+      "source": "rates() in Demo.tsx; node 2026-10-14 matches brief 56 (company/domains/briefs/ai.ai-society.md). Other slider values: B at 5 ringed 1 of 77 (1%) and 19 of 23 (83%); at 35 ringed 7 of 59 (12%) and 13 of 41 (32%).",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.calibrated-but-unequal-alarms.c3",
+      "text": "A has more reoffenders, so more of A sits in the ringed rows; the two groups' false-alarm and miss rates are equal only when B has 50 ringed, where B's base rate matches A's (50%).",
+      "support": "derivation",
+      "source": "Slider sweep 5/20/35/50 (node, rates()): B false alarms 1.3/5.9/11.9/20.0%, misses 82.6/50.0/31.7/20.0%; A is 20.0/20.0. Reoffenders in B: 23/32/41/50 of 100.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.calibrated-but-unequal-alarms.c4",
+      "text": "With different base rates, no imperfect score is both calibrated and equal on both errors (false-positive and false-negative rates) across groups.",
+      "support": "source",
+      "source": "Kleinberg, Mullainathan and Raghavan (2017), 'Inherent trade-offs in the fair determination of risk scores', ITCS 2017 (arXiv 1609.05807); Chouldechova (2017), 'Fair prediction with disparate impact', Big Data 5(2): 153-163, eq. 2.1: FPR = p/(1-p) * (1-PPV)/PPV * (1-FNR); toy check A: 1 * 0.25 * 0.8 = 0.2, B: 0.32/0.68 * 0.25 * 0.5 = 0.0588. About real systems; needs the fact-checker.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.calibrated-but-unequal-alarms.c5",
+      "text": "The two groups, their sizes and the 80%/20% rates are a toy, labelled on the stage ('Toy groups of 100'); which dots reoffend is a fixed pattern, not a chosen seed.",
+      "support": "convention",
+      "source": "Brief 56 in company/domains/briefs/ai.ai-society.md. The optional COMPAS sentence (brief claim 5) is not in learner text.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A loan-default score is calibrated for two towns: '30% risk' means 30% default in both. Town X has many more defaulters. Using one cut-off, what happens to people who would have repaid?",
+    "options": [
+      "A larger share of X's repayers are refused",
+      "Both towns' repayers are refused at the same rate",
+      "A larger share of the other town's repayers are refused"
+    ],
+    "answer": 0,
+    "why": "More of X's people get high scores, so more of X's repayers land above the cut-off too. With different base rates a calibrated score cannot also equalise false alarms."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "ai:fairness-impossibility",
+    "also": [
+      "probability:base-rates"
+    ],
+    "prerequisites": [
+      "ai:calibration",
+      "ai:confusion-matrix"
+    ],
+    "level": "core",
+    "strand": "ai-society",
+    "references": [],
+    "tags": [
+      "fairness",
+      "calibration",
+      "false positives",
+      "base rates"
+    ]
+  }
+}

@@ -8,10 +8,16 @@
 // Controls in DOM order: Run backtracking, 3 colours, 4 colours, Ring of 5, Ring of 4, regions, colours, Undo.
 // Changing the colour count or the ring re-runs backtracking if its result is on the wheel (a-star pattern),
 // so pressing each control once reaches: dead end (5, 3), complete (5, 4), ring of 4 done with 3 colours.
+// v4 (learner r8, phone fit): when the reveal opens, the learner's recorded ring-of-5 dead end goes back on the wheel
+// (OnReveal), so the region the reveal names is the one on screen. "Colours used" / "Coloured" moved into the
+// picture's top corners; every control row is Row foldAtReveal (none holds a readout; the reveal quotes the runs line
+// and the wheel, not the controls). Reveal 123 -> 72 words: the "for big maps no fast method" sentence (c5) and the
+// even-ring clause were cut. Crop 341 -> 0 px at 390x844.
 
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
+import type { Phase } from "@/kit/Lesson";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -75,7 +81,7 @@ const labelAt = (ring: number, r: number) => {
 };
 
 /** What the learner has seen for one (ring, colours) setting. */
-type Seen = { ok: boolean; used: number; stuck: number; deadEnds: number | null };
+type Seen = { ok: boolean; used: number; stuck: number; deadEnds: number | null; col: Col };
 const keyOf = (ring: number, k: number) => `${ring}-${k}`;
 
 export default function WheelNeedsFourColours({ slug }: { slug: string }) {
@@ -121,23 +127,18 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
           <p>
             {s53 && !s53.ok
               ? `With three colours on the ring of five, region ${NAME(s53.stuck)} ran out: its neighbours held all three${
-                  s53.deadEnds !== null ? `, and backtracking hit ${s53.deadEnds} dead ends with no way through` : ""
+                  s53.deadEnds !== null ? ` (${s53.deadEnds} dead ends)` : ""
                 }. `
               : ""}
-            The centre takes one colour, so the ring regions have only two left, and two colours must alternate round the
-            ring. Five is odd, so the last region meets both.
-            {s54?.ok ? ` A fourth colour finished the ring of five: ${s54.used} colours used.` : ""}
+            The centre takes one colour, leaving two for the ring, and two colours must alternate. Five is odd, so the last
+            region meets both.
+            {s54?.ok ? ` A fourth colour finished it: ${s54.used} used.` : ""}
           </p>
-          <p>
-            {ring4
-              ? `On the ring of four the two colours alternated all the way round: done with ${ring4.used} colours. Four is even, so the last region meets only one of them. `
-              : ""}
-            For big maps no fast method is known for finding the fewest colours, so trying and undoing is often the tool.
-          </p>
+          {ring4 && <p>On the ring of four the two alternated all the way round, so {ring4.used} were enough.</p>}
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={["dead-end", "complete", "ring-of-four"]}>
           {(reach) => {
             // Record what the wheel now shows and reach the milestones it earns.
@@ -152,7 +153,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                   const prev = m[key];
                   // keep the first dead end; keep a colouring only if it uses fewer colours than the one kept
                   if (prev && (prev.ok ? !done || u >= prev.used : !done)) return m;
-                  return { ...m, [key]: { ok: done, used: u, stuck: st, deadEnds } };
+                  return { ...m, [key]: { ok: done, used: u, stuck: st, deadEnds, col: [...next] } };
                 });
               }
               if (rr === 5 && kk === 3 && st >= 0) reach("dead-end");
@@ -232,6 +233,17 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
               setMsg("Undone.");
             };
 
+            const showDeadEnd = () => {
+              if (!s53 || s53.ok) return;
+              setRing(5);
+              setK(3);
+              setCol(s53.col);
+              setHistory([]);
+              setAuto(true);
+              setClash(s53.stuck);
+              setSel(s53.stuck);
+              setMsg(`Your run, ring of 5, 3 colours: region ${NAME(s53.stuck)} touches all 3.`);
+            };
             const note = msg || "Touching regions must differ.";
             const log = [
               s53 ? `5 ring, 3 colours: ${s53.ok ? "done" : "dead end"}` : null,
@@ -240,6 +252,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
             ].filter(Boolean);
             return (
               <div className={s.wrap}>
+                <OnReveal phase={phase} run={showDeadEnd} />
                 <p className={s.note}>{note}</p>
                 <svg viewBox="0 0 320 210" className="stage-svg" role="img" aria-label={`Ring of ${ring}. Colours ${col.map((c) => (c === null ? "none" : COLOUR_NAMES[c])).join(", ")}`}>
                   {Array.from({ length: ring }, (_, i) => i + 1).map((r) => (
@@ -250,6 +263,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                       stroke={clash === r ? "var(--bad)" : sel === r ? "var(--fg)" : "var(--line)"}
                       strokeWidth={clash === r || sel === r ? 4 : 2}
                       className={`${s.region} ${clash === r ? s.flash : ""}`}
+                      aria-label={`Region ${NAME(r)}`}
                       onClick={() => pick(r)}
                     />
                   ))}
@@ -261,6 +275,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                     stroke={clash === 0 ? "var(--bad)" : sel === 0 ? "var(--fg)" : "var(--line)"}
                     strokeWidth={clash === 0 || sel === 0 ? 4 : 2}
                     className={`${s.region} ${clash === 0 ? s.flash : ""}`}
+                    aria-label="Region C"
                     onClick={() => pick(0)}
                   />
                   {Array.from({ length: N }, (_, r) => {
@@ -271,6 +286,12 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                       </text>
                     );
                   })}
+                  <g aria-hidden>
+                    <text x={4} y={14} className={s.cornerLab}>colours used</text>
+                    <text x={4} y={34} className={s.cornerVal} data-testid="colours-used">{used}</text>
+                    <text x={316} y={14} textAnchor="end" className={s.cornerLab}>coloured</text>
+                    <text x={316} y={34} textAnchor="end" className={s.cornerVal}>{`${filled} / ${N}`}</text>
+                  </g>
                   {stuck >= 0 && (
                     <text x={CX} y={205} textAnchor="middle" className={s.stuck}>
                       region {NAME(stuck)}: no colour left
@@ -280,12 +301,12 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                 <p className={s.log} data-testid="runs">
                   {log.length ? log.join(" · ") : "Runs: none yet"}
                 </p>
-                <Row>
+                <Row foldAtReveal>
                   <Control disabled={locked} onClick={() => !locked && run(ring, k)}>
                     Run backtracking
                   </Control>
                 </Row>
-                <Row>
+                <Row foldAtReveal>
                   {[3, 4].map((kk) => (
                     <Control
                       key={`k${kk}`}
@@ -309,14 +330,14 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                     </Control>
                   ))}
                 </Row>
-                <Row>
+                <Row foldAtReveal>
                   {Array.from({ length: N }, (_, r) => (
                     <Control key={`p${r}`} className={sel === r ? "active" : ""} disabled={locked} onClick={() => pick(r)} aria-label={`Region ${NAME(r)}`}>
                       {NAME(r)}
                     </Control>
                   ))}
                 </Row>
-                <Row>
+                <Row foldAtReveal>
                   {COLOURS.slice(0, k).map((c, i) => (
                     <Control
                       key={`c${i}`}
@@ -332,10 +353,6 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
                     Undo
                   </Control>
                 </Row>
-                <Row>
-                  <Readout label="Colours used" value={used} />
-                  <Readout label="Coloured" value={`${filled} / ${N}`} />
-                </Row>
               </div>
             );
           }}
@@ -343,4 +360,17 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
       )}
     </Lesson>
   );
+}
+
+/** v4: when the reveal opens, put the learner's recorded ring-of-5 dead end back on the wheel (once, before paint). */
+function OnReveal({ phase, run }: { phase: Phase; run: () => void }) {
+  const [done, setDone] = useState(false);
+  useLayoutEffect(() => {
+    if (phase === "reveal" && !done) {
+      setDone(true);
+      run();
+    }
+    if (phase !== "reveal" && done) setDone(false);
+  }, [phase, done, run]);
+  return null;
 }

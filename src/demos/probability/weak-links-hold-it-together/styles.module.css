@@ -1,4 +1,4 @@
-.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.wrap { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-height: 0; }
 .rule { margin: 0; color: var(--muted); font-size: 0.84rem; text-align: center; }
 .net { flex: 0 1 auto; min-height: 150px; max-height: 34dvh; }
 .link { stroke: var(--muted); stroke-linecap: round; }
@@ -10,15 +10,17 @@
 .bad { color: var(--bad); font-weight: 700; }
 .curve { width: 100%; height: auto; max-height: 14dvh; display: block; }
 .axis { stroke: var(--line); stroke-width: 1; }
-.tick { font-size: 9px; fill: var(--muted); text-anchor: middle; }
-.tickY { font-size: 9px; fill: var(--muted); text-anchor: end; }
+.tick { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+.tickY { font-size: 11px; fill: var(--muted); text-anchor: end; }
 .weakLine { fill: none; stroke: var(--bad); stroke-width: 2; }
 .strongLine { fill: none; stroke: var(--fg); stroke-width: 1.6; stroke-dasharray: 5 3; }
 .weakDot { fill: var(--bad); }
 .strongDot { fill: var(--fg); }
-.weakLabel { font-size: 10px; fill: var(--bad); font-weight: 700; }
-.strongLabel { font-size: 10px; fill: var(--fg); }
-.seed { margin: 0; text-align: right; font-size: 0.72rem; color: var(--muted); }
-.sliderWrap input { min-height: 44px; }
+.weakLabel { font-size: 11px; fill: var(--bad); font-weight: 700; }
+.strongLabel { font-size: 11px; fill: var(--fg); }
+.seedLabel { font-size: 11px; fill: var(--muted); text-anchor: end; }
+.wrap :global(.row) { margin-top: 0; }
+.wrap :global(.row) > * { flex: 1 1 100%; }
+.wrap :global(.slider) input { min-height: 44px; }
 .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .tap { min-height: 44px; }

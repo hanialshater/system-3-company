@@ -1,0 +1,66 @@
+{
+  "slug": "tax-now-or-tax-later",
+  "title": "Tax first or tax last?",
+  "hook": "Pay tax now and the growth is tax-free. Or let more money grow, and pay at the end?",
+  "domain": "economics",
+  "concept": "tax-timing-equivalence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": { "categoryManager": "cm-economics", "builder": "wave-i-economics" },
+  "learner": {
+    "knows": ["a flat tax rate takes the same share of any amount", "savings grow over time (compound-interest)"],
+    "doesNotKnow": ["that paying a flat tax before growth or after growth gives the same amount when the two rates are equal, because the order of multiplying does not matter; only the difference between today's rate and the later rate decides"]
+  },
+  "misconception": "Paying the tax now is better, because then all the growth is tax-free (or the mirror: deferring is better, because more money is growing).",
+  "objective": "The learner can explain that $10,000 taxed 25% then grown 4×, and grown 4× then taxed 25%, both end at $30,000 because both are $10,000 × 0.75 × 4, and that only a different later rate makes one bigger.",
+  "claims": [
+    {
+      "id": "economics.tax-now-or-tax-later.c1",
+      "text": "At 25% tax now and 25% later with 4× growth, both accounts end at $30,000: A pays $2,500 up front and its $7,500 grows to $30,000; B grows $10,000 to $40,000, then hands a quarter back.",
+      "support": "derivation",
+      "source": "A = 10,000 × 0.75 × 4 = 30,000; B = 10,000 × 4 × 0.75 = 30,000; B's tax = 40,000 × 0.25 = 10,000 (Demo.tsx accA(), accB(); builder node run, 2026-10-14). Brief: company/domains/briefs/economics.md #57.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.tax-now-or-tax-later.c2",
+      "text": "Both are $10,000 × 0.75 × 4, multiplied in a different order; for any growth, equal flat rates give equal results.",
+      "support": "derivation",
+      "source": "(1 − t) × G = G × (1 − t) for any growth factor G (commutativity). The stage's ×2 chip shows the same tie at $15,000.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.tax-now-or-tax-later.c3",
+      "text": "Only a change of rate decides it: with 4× growth, at a 35% later rate B ends at $26,000 and at 15% at $34,000, against A's $30,000 (the reveal quotes the learner's own recorded rate and growth).",
+      "support": "derivation",
+      "source": "B = 10,000 × G × (1 − later): ×4 at 35% = 26,000, at 15% = 34,000, at 30% = 28,000; ×2 at 35% = 13,000 vs A 15,000 (Demo.tsx accB(); builder node run). The reveal prints the record set at milestone 'rate', which the record row under the chart also shows. QA path ends at 35%, ×4.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.tax-now-or-tax-later.c4",
+      "text": "The tax system is made up: flat rates, today 25%, no contribution limits, fees or penalties; not advice about any real account.",
+      "support": "convention",
+      "source": "Stage chip 'Model: made-up flat tax. Today 25%. Later: slider.' and the reveal's last sentence. Lesson rule. No real account (e.g. any national tax-advantaged account) is named, per the brief.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two savers each put away $5,000. The flat tax is 20% both now and later, and both get the same growth. One pays the tax first; the other pays it on withdrawal. Who ends with more?",
+    "options": ["The one who paid first", "The one who paid on withdrawal", "Neither: they end the same"],
+    "answer": 2,
+    "why": "Taxing then growing is 5,000 × 0.8 × G; growing then taxing is 5,000 × G × 0.8. The same multiplication in a different order, so only a change in the rate could separate them."
+  },
+  "evidence": { "qa": [], "simulatedLearner": [], "pairwise": [], "humanLearners": [] },
+  "version": 1,
+  "curriculum": {
+    "primary": "economics:tax-timing-equivalence",
+    "also": [],
+    "prerequisites": ["economics:marginal-tax-rate", "economics:compound-interest"],
+    "level": "core",
+    "strand": "personal-finance",
+    "references": [],
+    "tags": ["tax", "saving", "accounts"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "preset-buttons", "slider-drives-live-chart", "milestone-gate", "locked-readouts"]
+}
