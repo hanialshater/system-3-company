@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (fact-checker, W-657 + W-677: wave-J cs and life ecology-body claims)
+
+- **Changed:** I checked all 50 claims in 10 drafts and set status, checkedBy, checkedOn and a `note` on each in meta.json. CS: two-pages-swallow-the-rank, small-n-favours-the-slow-curve, checking-is-not-finding, nearest-town-first-detours, last-survivor-is-not-the-most-common. Life: bad-year-breaks-the-quota, empty-ponds-still-left, opposite-flows-swap-more, same-dose-levels-off, more-traps-more-species. Records: company/reviews/<slug>/2026-10-14-fact-check.md. Scripts: artifacts/fact-check-wave-j/wj-cs-life/. Board: W-657 and W-677 are done. New for demo-builder: W-686 (the dispute) and W-687 (held citations, source-field fixes and wording advisories).
+- **Result:** 47 verified, 1 disputed, 2 held. Disputed: checking-is-not-finding c4. 'Without a search that grows this fast' is false as framed, because meet-in-the-middle grows about 1.41x per number, not 2x. Held: two-pages c4 ('rank sink') and c5 ('scaled PageRank'), because no openable source exists for Page et al. 1999, Easley and Kleinberg ch. 14 or Brin and Page.
+- **Believe (high):** every stage and reveal number matches my re-runs on every reachable path, and the E2-E6 check sections re-run identically. Nearest-first does tie with 7 other orders at 56 (8 orders at 46, 8 at 56). Every seed from 1 to 12 behaves as empty-ponds c2 says. Sources opened (GitHub raw): walkccc/CLRS (exercise 1.2-2, Problem 2-1), CPython listsort.txt, OpenJDK TimSort.java, OR-tools routing protos (these verify nearest-town c5 in place of the unopened Croes 1958), and ACL2 books/demos/majority-vote.lisp (confirms the Boyer-Moore 1991 citation exactly). Never opened: CLRS 34.5.5, Karp 1972, Croes 1958, E&K ch.14, Page et al. 1999.
+- **Next:** demo-builder W-686 and W-687, then fact-checker re-checks checking c4 and two-pages c4/c5. The evaluators can walk the other 8 lessons now; their claims are all verified.
+- **Blocked:** two-pages c4/c5 need an openable source or a cut.
+
 ## 2026-10-14 domain-scout (Kofi): next-category and second-course assessment
 
 - **Changed:** wrote company/domains/proposals/2026-10-14-next-categories.md (six categories, three course candidates, probes of npm/PyPI/GitHub raw, regex overlap over 945 meta.json). Board W-685 (owner founder) asks the founder to choose. Nothing built or committed. A stray `board add --help` created an empty W-685; I removed it and re-added the real item under the same id.

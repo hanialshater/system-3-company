@@ -26,42 +26,60 @@
       "text": "In the lesson's forest (seed 2), 50 insects contain 20 species, 500 contain 34 and 5,000 contain all 40. Seeds 3 and 1 (reachable with 'New forest seed') give 17/34/40 and 18/37/40; the reveal reads its numbers from the current seed. Reveal (seed 2): \"Ten times the catch found 34 species, not 200: under twice the 20 at 50.\" \"5,000 insects found all 40.\" Stage: the curve's labelled points 20, 34, 40 and \"caught: 5,000 · species found: 40\".",
       "support": "simulation",
       "source": "catchInsects() in Demo.tsx (kit mulberry32, one draw per insect, species by walking the shares in order). Builder re-run 2026-10-14 (node strip-types): seed 1 18/37/40, seed 2 20/34/40, seed 3 17/34/40. Matches check script E6 (company/domains/briefs/checks/life-wave-j-check.mjs). Seed 2 is the start because its 50-insect count (20) is near the expected 18.9 (chosen seed, disclosed; an illustration, not evidence). 'Under twice' / 'about twice' is computed: 34 < 2 x 20 and 34 < 2 x 17; 37 >= 2 x 18 gives 'about'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran catchInsects() copied from Demo.tsx with the kit's mulberry32. Seed 2: 20/34/40; seed 3: 17/34/40; seed 1: 18/37/40 (E6 re-run agrees). Rendered reveals: seed 2 'under twice the 20', seed 3 'about twice the 17', seed 1 'about twice the 18', and all 40 at 5,000 on every seed. All are true. Note-only slip in the source field: it says '34 < 2 x 17', but 34 = 2 x 17, so the code prints 'about' for seed 3, which is right. Builder: correct the note."
     },
     {
       "id": "life.more-traps-more-species.c2",
       "text": "The expected number of species found is the sum over species of 1 − (1 − p_i)^n: 18.9 at 50, 34.3 at 500, 40.0 at 5,000.",
       "support": "derivation",
       "source": "Each species is missed by n independent catches with probability (1 - p_i)^n. With p_i proportional to 0.88^i over 40 species: 18.9, 34.3, 40.0 (check E6). Not on the card; supports the choice of seed 2 as typical.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: E[species] = sum of 1 - (1 - p_i)^n with p_i proportional to 0.88^i: 18.86, 34.34, 39.97 (node; E6 agrees). The shares sum to 1; commonest 0.1207, rarest 0.00083."
     },
     {
       "id": "life.more-traps-more-species.c3",
       "text": "Common species turn up in the first few dozen insects; after that most of the catch is repeats, and each new species is a rarer one. Reveal: \"Common species turn up in the first few dozen insects. After that most of the catch is repeats, and each new species is a rarer one.\" Stage: the strip \"commonest species ... rarest\", filled when found.",
       "support": "simulation",
       "source": "Seed 2 first-catch insect numbers for the 10 commonest species (12.1% down to 3.8% each): 10, 12, 3, 2, 13, 4, 15, 6, 17, 53; for the 10 rarest: 377, 29, 94, 1488, 381, 603, 365, 766, 1860, 2057. Between insect 50 and 500, 14 new species appear in 450 insects, so about 97% of those insects are repeats. Shares: commonest 0.1207, rarest 0.00083 (builder re-run 2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Seed 2 first-catch insect numbers match the claim (10, 12, 3, 2, 13, 4, 15, 6, 17, 53 for the top 10). Repeats between insects 50 and 500 are 96.9% (seed 2), 96.2% (seed 3) and 95.8% (seed 1). On every reachable seed, the species first found after insect 50 are mostly from the rarer half (seed 2: ranks 22, 9, 28, 14, ...). 'Each new species is a rarer one' is loose but fair against the commonest species: by insect 50 the commonest 9 (seed 2), 10 (seed 3) and 13 (seed 1) species have all been found."
     },
     {
       "id": "life.more-traps-more-species.c4",
       "text": "So a species count depends on how hard you looked: compare two places only at the same catch size. Reveal: \"So a species count depends on how hard you looked: compare two places only at the same catch size.\"",
       "support": "derivation",
       "source": "Follows from claim 1 inside the model: the same forest gives 20, 34 or 40 species depending on catch size alone. Optional literature context (rarefaction, Gotelli and Colwell 2001, Ecology Letters 4) is not on the card: unverified, needs a human source check.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation inside the model: the same forest gives 20, 34 or 40 species by catch size alone (c1). No literature sentence is on the card."
     },
     {
       "id": "life.more-traps-more-species.c5",
       "text": "The forest is invented: 40 species, shares proportional to 0.88^i. Stage: \"A made-up forest: a few common species, many rare ones.\" Reveal: \"A made-up forest.\" (The brief's 'real ones hold far more rare species' clause was left out: the brief says cut it unless a fact-checker can support it.)",
       "support": "convention",
       "source": "The lesson's model (brief more-traps-more-species, company/domains/briefs/life.ecology-body.md #6).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the stage says 'A made-up forest: a few common species, many rare ones' and the shares are 0.88^i over 40, so it is accurate. The cut 'real forests' clause is not on the card."
     },
     {
       "id": "life.more-traps-more-species.c6",
       "text": "Locked-stage setup: Team A catches 50 insects in a forest and finds 20 species; Team B catches 500 in the same forest.",
       "support": "simulation",
       "source": "Seed 2's 50-insect count is 20 (claim 1).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Seed 2 (the start seed) has 20 species at 50. Other seeds change the reveal's numbers but not the locked premise, which is shown before any seed change."
     }
   ],
   "confidence": "",

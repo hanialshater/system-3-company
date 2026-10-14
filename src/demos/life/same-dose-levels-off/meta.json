@@ -26,28 +26,40 @@
       "text": "In the model, adding 100 every 6 hours with half cleared every 6 hours gives 100, 150, 175, 187.5, 193.8 just after the first five additions and 200 after the 40th. Reveal: \"Every 6 hours the level went 100, 150, 175, 188, 194, then stayed at 200.\" Stage: \"every 6 h, first 5: 100, 150, 175, 188, 194\" and \"just after the last addition: 200\".",
       "support": "derivation",
       "source": "course() in Demo.tsx: L(n) = L(n - 1) x 0.5^(I/6) + 100. Builder re-run 2026-10-14: 100, 150, 175, 187.50, 193.75, 196.88, ..., 199.99999999982 after the 40th (rounds to 200). Matches check script E5 (company/domains/briefs/checks/life-wave-j-check.mjs).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran course() copied from Demo.tsx: 100, 150, 175, 187.50, 193.75 -> r0 100, 150, 175, 188, 194; the 40th is 199.99999999982 -> 200. Check script E5 (re-run) agrees. Advisory, not blocking: the reveal's 'then stayed at 200' skips the next three values, 197, 198 and 199 (rounded); r0 first shows 200 at the 9th addition (48 h). Wording such as 'then crept up to 200 and stayed there' would match the stage exactly."
     },
     {
       "id": "life.same-dose-levels-off.c2",
       "text": "The level levels off at 100/(1 − f), where f is the share left after one interval: 200 for 6 h, 133.3 for 12 h, 341.4 for 3 h. Reveal (one branch, by which other interval the learner drew; 3 h preferred): \"Adding twice as often settled at 341: higher, but it still levelled off.\" or \"Adding half as often settled at 133: lower, but it still levelled off.\" Stage end labels: \"6 h: 200\", \"12 h: 133\", \"3 h: 341\".",
       "support": "derivation",
       "source": "Geometric series: L(n) = 100(1 - f^n)/(1 - f) -> 100/(1 - f). f = 0.5 (6 h), 0.25 (12 h), 0.5^0.5 = 0.7071 (3 h): 200, 133.33, 341.42. course() gives 133.33 after 20 additions and 341.42 after 80 (builder re-run).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: L(n) = 100(1 - f^n)/(1 - f) with f = 0.5, 0.25 and 0.7071 gives 200, 133.33 and 341.42. course(): 199.99999999982 (40), 133.33333333321 (20), 341.4213562370 (80) -> 200, 133, 341. The reveal branch picks 3 h when it was drawn (twice as often, higher), otherwise 12 h (half as often, lower), and both texts are true."
     },
     {
       "id": "life.same-dose-levels-off.c3",
       "text": "At the plateau, the amount cleared per interval equals one addition (half of 200 = 100), so in and out balance and the level stops rising, about a day in. Reveal: \"Clearing half removes more when there is more: at 200, half is 100, exactly one addition. In and out balance, so the level stops rising, about a day in.\"",
       "support": "derivation",
       "source": "At L = 200 just after an addition, 6 hours later 100 remain (half cleared = 100), and the next addition restores 200. 'About a day in': after 4 additions (18 h, within the first day) the level is 187.5, 94% of 200; after 5 (24 h) 193.8, 97%.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "At 200 just after an addition, 100 remain after 6 h, and the addition restores 200: last(six)/2 renders 100. 'About a day in' is approximate: after 4 additions (18 h) the level is 93.75% of 200, and after 5 (24 h) it is 96.9%. Advisory, not blocking: strictly, the level keeps rising after day 1, by 6 more units, and in and out balance only in the limit. 'Nearly stops rising about a day in' would be exact."
     },
     {
       "id": "life.same-dose-levels-off.c4",
       "text": "The substance, amounts and clearance are invented; the card makes no claim about any medicine or dose. Stage: \"A made-up substance\". Reveal: \"A made-up substance; this is not about any real medicine or dose.\"",
       "support": "convention",
       "source": "The lesson's model (brief same-dose-levels-off, company/domains/briefs/life.ecology-body.md #5).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the stage and the reveal say 'A made-up substance' and disclaim real medicines; no dosing claim appears."
     }
   ],
   "confidence": "",

@@ -33,35 +33,50 @@
       "text": "With the rule (same item as the candidate +1, different -1, at 0 the next item becomes the candidate), stream 1, A A A B B C C, ends with candidate C (counter 1), and stream 2, A A B A C A A, ends with candidate A (counter 3).",
       "support": "simulation",
       "source": "run() in src/demos/cs/last-survivor-is-not-the-most-common/model.ts. Builder's node run 2026-10-14: stream 1 counters A1 A2 A3 A2 A1 A0 C1; stream 2 A1 A2 A1 A2 A1 A2 A3. The fact-checker can redo both by hand (7 steps each).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran run() and did both by hand: stream 1 A1 A2 A3 A2 A1 A0 C1 (final C, counter 1); stream 2 A1 A2 A1 A2 A1 A2 A3 (final A, counter 3)."
     },
     {
       "id": "cs.last-survivor-is-not-the-most-common.c2",
       "text": "In stream 1, A appears 3 times and C 2 times, and no item fills more than half the stream (which needs 4 of 7); in stream 2, A fills 5 of 7.",
       "support": "derivation",
       "source": "Counting the tiles: stream 1 A 3, B 2, C 2; stream 2 A 5, B 1, C 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Counted: stream 1 A 3, B 2, C 2 (majority needs 4 of 7); stream 2 A 5, B 1, C 1. mostCommon() returns A for stream 1 (ties B/C do not matter). The stage prints 'C: 2 of 7 · not a majority · A had 3' and 'A: 5 of 7 · majority'."
     },
     {
       "id": "cs.last-survivor-is-not-the-most-common.c3",
       "text": "Each -1 cancels two different items, so if an item fills more than half the stream, that many copies cannot all be cancelled and it is the final candidate.",
       "support": "derivation",
       "source": "Each decrement pairs one copy of the candidate with one different item and removes both from consideration; a majority item has more copies than all other items together, so it cannot be fully paired off (Boyer and Moore's correctness argument).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: each decrement pairs one candidate copy with one different item, and a majority item outnumbers all others together. Opened: the ACL2 proof by Boyer and Moore (acl2/acl2 books/demos/majority-vote.lisp, GitHub raw). Its theorem majority-is-correct proves that if an element occurs more than half the time, the function returns it, and the function is exactly this rule (at 0 the next item becomes the candidate with count 1)."
     },
     {
       "id": "cs.last-survivor-is-not-the-most-common.c4",
       "text": "With no item in more than half the stream, the survivor proves nothing, so a second pass is needed to check that the candidate really is a majority.",
       "support": "derivation",
       "source": "Stream 1 is a counterexample: the survivor C is not the most common item (A, 3 vs 2) and not a majority. Counting the candidate in a second pass decides whether a majority exists.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Stream 1 is a counterexample: survivor C (2 of 7) is neither a majority nor the most common item (A, 3). The ACL2 file's corollary is conditional on a majority existing, so a second pass is needed to check."
     },
     {
       "id": "cs.last-survivor-is-not-the-most-common.c5",
       "text": "One counter finds a majority if there is one (the Boyer-Moore majority vote method).",
       "support": "source",
       "source": "Boyer and Moore (1991), 'MJRTY: A Fast Majority Vote Algorithm', in Automated Reasoning: Essays in Honor of Woody Bledsoe (Kluwer), 105-117. The lesson does not name the method on the learner's screen; the name is recorded here for the fact-checker. Attribution: fact-checker confirms.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened acl2/acl2 books/demos/majority-vote.lisp (written by J Moore, 2008): it cites 'MJRTY - A Fast Majority Vote Algorithm', R.S. Boyer and J Moore, in R.S. Boyer (ed.), Automated Reasoning: Essays in Honor of Woody Bledsoe, Kluwer, 1991, pp. 105-117, which matches the source field exactly. The theorem majority-is-correct covers 'finds a majority if there is one'."
     }
   ],
   "confidence": "",

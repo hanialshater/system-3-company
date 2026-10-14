@@ -34,35 +34,50 @@
       "text": "With towns at km -15, -3, 2 and 8 and the start at 0, always driving to the nearest unvisited town visits 2, -3, 8, -15 and returns: 2 + 5 + 11 + 23 + 15 = 56 km. No step has a tie.",
       "support": "derivation",
       "source": "nearestFirst() in src/demos/cs/nearest-town-first-detours/model.ts; by hand: from 0 nearest is 2 (2 vs 3); from 2, -3 (5 vs 6); from -3, 8 (11 vs 12); then -15 (23); home 15. Builder's node run 2026-10-14: hops 2, 5, 11, 23, 15, total 56.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran nearestFirst() and checked for ties: hops 0->2 (2), 2->-3 (5), -3->8 (11), 8->-15 (23), -15->0 (15) = 56. No step has a tie (2 v 3, 5 v 6, 11 v 12)."
     },
     {
       "id": "cs.nearest-town-first-detours.c2",
       "text": "Driving out to 8 first (0, 2, 8, -3, -15, 0) costs 2 + 6 + 11 + 12 + 15 = 46 km.",
       "support": "derivation",
       "source": "outTo8First() in model.ts; arithmetic.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "outTo8First(): 2 + 6 + 11 + 12 + 15 = 46 (node)."
     },
     {
       "id": "cs.nearest-town-first-detours.c3",
       "text": "Over all 24 visiting orders the shortest round trip is 46 km and the longest 56 km; nearest-first ties for the longest.",
       "support": "simulation",
       "source": "ALL_TOTALS in model.ts (all 24 permutations). Builder's node run 2026-10-14: min 46 (8 orders), max 56 (8 orders, nearest-first among them). The brief said 'nearest-first is the longest of all 24'; it ties with 7 other orders, so the reveal says 'tied for the longest'. Lower bound check: any tour from 0 that reaches both ends of the road costs at least 2 x (8 + 15) = 46.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Builder's correction confirmed. ALL_TOTALS over 24 orders takes only the values {46, 50, 52, 56}: 8 orders at 46 and 8 at 56. Nearest-first (2, -3, 8, -15) is one of the 8 at 56, so it ties with 7 other orders, and 'tied for the longest' is right. The lower bound of 2 x (8 + 15) = 46 holds. The predict answer ('about 10 km shorter') is 56 - 46 = 10."
     },
     {
       "id": "cs.nearest-town-first-detours.c4",
       "text": "Each greedy hop was cheapest at that moment, but the far towns it put off came due at the end.",
       "support": "derivation",
       "source": "From c1: the first three hops (2, 5, 11) were each the shortest available; the last two (23, 15) cross the road to the far end skipped earlier and come back.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "From c1: the first three hops are each the shortest available at the time; the last two (23 across the road, 15 home) pay for the far end skipped earlier."
     },
     {
       "id": "cs.nearest-town-first-detours.c5",
       "text": "Route planners use such tours only as a start, then repair them.",
       "support": "source",
       "source": "Croes (1958), 'A method for solving traveling-salesman problems', Operations Research 6(6): 791-812 (2-opt: improving a tour by swapping pairs of links); construction-then-improvement as standard TSP heuristic practice (e.g. Johnson and McGeoch (1997), 'The traveling salesman problem: a case study in local optimization'). Attribution: fact-checker confirms; if it cannot, cut this sentence (the brief allows it).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Verified on a different opened source than the one cited. Google OR-tools (GitHub raw): ortools/constraint_solver/routing_enums.proto calls FirstSolutionStrategy 'used as starting point of local search'. PATH_CHEAPEST_ARC is a nearest-next construction ('connect it to the node which produces the cheapest route segment, then extend the route by iterating on the last node added'). GREEDY_DESCENT 'accepts improving (cost-reducing) local search neighbors', and routing_parameters.proto has use_two_opt. Croes (1958) and Johnson and McGeoch (1997) were not opened. Builder: replace or extend the source field with the OR-tools reference."
     }
   ],
   "confidence": "",

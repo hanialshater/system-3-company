@@ -33,35 +33,50 @@
       "text": "On the stage's six pages the links are A->B, B->C, C->A, C->D, D->E, E->F and F->E: E and F link only to each other, so no link leaves the E + F group.",
       "support": "derivation",
       "source": "LINKS in src/demos/cs/two-pages-swallow-the-rank/model.ts; the graph is the brief's (company/domains/briefs/cs.algorithms.md #88).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Read LINKS in model.ts: A->B, B->C, C->A, C->D, D->E, E->F, F->E. E and F have no out-link to A-D. The stage draws exactly these arrows from LINKS."
     },
     {
       "id": "cs.two-pages-swallow-the-rank.c2",
       "text": "Under the basic rule (each page splits its whole score equally among its links, all six start at 1/6), E and F hold 79.2% of the score after 5 rounds and 100.0% (to one decimal) after 50 rounds, when A to D together hold 0.0%.",
       "support": "derivation",
       "source": "scores()/sinkShare() in model.ts (power iteration, s = 1). Re-run in node 2026-10-14 by the builder: E+F 79.17% at 5, 93.75% at 10, 99.35% at 20, 100.00% at 50 (E 0.4444, F 0.5556; A-D 0.0000 each). Matches the brief's check J4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran scores()/sinkShare() (node 22 strip-types, copy of model.ts) and an independent power iteration: E+F 79.2% at 5, 93.8% at 10, 99.3% at 20, 100.0% at 50 (E 0.4444, F 0.5556, A-D 0.0000), total 1.000000 every round. Round 0 (initial state) shows 33.3%. Reveal quotes sinkShare(50,false) and A-D = 0.0%, reached by milestone basic-50."
     },
     {
       "id": "cs.two-pages-swallow-the-rank.c3",
       "text": "With 15% random jumps (each page passes 85% of its score along its links and 15% is spread evenly over all 6 pages each round), E and F hold 64.8% after 5 rounds and 69.9% after 50 (the same at 200), and every page keeps some score (A 0.064, C 0.093 at 50 rounds).",
       "support": "derivation",
       "source": "scores(r, true) in model.ts (power iteration, s = 0.85, jump share 0.15/6 = 0.025 per page). Node 2026-10-14 by the builder: E+F 64.84% at 5, 69.85% at 50 and at 200; A 0.0644, B 0.0798, C 0.0928, D 0.0644. Matches the brief's check J4 (r50 0.6985). The 15% is the lesson's chosen value (s = 0.85, the value in Brin and Page 1998), not a claim about any search engine today.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran scores(r,true) and an independent loop: E+F 64.8% at 5, 69.85% at 50 and 200; A 0.0644, B 0.0798, C 0.0928, D 0.0644. Every page keeps at least 0.025 a round, so 'every page kept some' holds. Stage line '15% of each score jumps to a random page' matches the model (spread over all 6). The Brin and Page 0.85 attribution in the source field is not on the card and was not opened."
     },
     {
       "id": "cs.two-pages-swallow-the-rank.c4",
       "text": "Score that reaches E or F never comes back out, so round by round it drains in; a group of pages like this is called a rank sink.",
       "support": "source",
       "source": "Derivation for the first half: no link leaves E or F (c1), so under the basic rule their combined score never falls. Term 'rank sink': Page, Brin, Motwani and Winograd (1999), 'The PageRank citation ranking: bringing order to the web', Stanford InfoLab tech report; Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 unconfirmed). Fact-checker: confirm the term and the attribution.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held. First half verified by derivation: no link leaves E or F, so under s = 1 their combined score never falls (checked monotone in rounds 0-60). The name 'rank sink' is a terminology claim and needs a source: Page, Brin, Motwani and Winograd (1999) and Easley and Kleinberg ch. 14 could not be opened (ilpubs.stanford.edu does not resolve, cornell.edu 403, no GitHub raw copy found). Web-search snippets attribute the term to the 1999 report, but no verdict rests on them. Fix: an openable source, or drop 'That is a rank sink.'"
     },
     {
       "id": "cs.two-pages-swallow-the-rank.c5",
       "text": "Scaled PageRank adds random jumps to fix score draining into groups of pages with no links out.",
       "support": "source",
       "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 14 (section 14.3 unconfirmed: scaled PageRank as the fix for the problem in which a set of nodes with no links out absorbs all the PageRank); Brin and Page (1998), 'The anatomy of a large-scale hypertextual Web search engine', Computer Networks and ISDN Systems 30: 107-117 (damping factor d = 0.85). Attribution: fact-checker confirms.",
-      "status": "unverified"
+      "status": "unverified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Held. That 15% random jumps stop the drain is shown by c3 (derivation). That 'scaled PageRank' is the name and that jumps were added to fix this is a source claim: Easley and Kleinberg ch. 14 and Brin and Page (1998) could not be opened. networkx's pagerank docstring (GitHub raw, opened) confirms damping 0.85 and the Page et al. 1999 title, but says nothing about sinks or 'scaled PageRank'. Fix: an openable source, or reword to something derivable such as 'Random jumps fix sinks like this one.'"
     }
   ],
   "confidence": "",

@@ -34,35 +34,50 @@
       "text": "With costs 8·n² (insertion sort) and 64·n·log₂n (merge sort, rounded to whole steps), n = 20 gives 3,200 and 5,532 steps, n = 43 gives 14,792 and 14,933, n = 44 gives 15,488 and 15,374, and n = 100 gives 80,000 and 42,521.",
       "support": "derivation",
       "source": "insertion() and merge() in src/demos/cs/small-n-favours-the-slow-curve/model.ts; re-run in node by the builder 2026-10-14: 20 -> 3200 / 5532; 43 -> 14792 / 14933; 44 -> 15488 / 15374; 100 -> 80000 / 42521.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran insertion()/merge() from model.ts: 20 -> 3,200 / 5,532; 43 -> 14,792 / 14,933; 44 -> 15,488 / 15,374; 100 -> 80,000 / 42,521. fmt() renders with commas as stated."
     },
     {
       "id": "cs.small-n-favours-the-slow-curve.c2",
       "text": "Under this model insertion sort is cheaper for every n from 2 to 43 and merge sort for every n from 44 to 1,000.",
       "support": "derivation",
       "source": "Builder's node loop n = 2..1,000 on 2026-10-14: insertion cheaper for 42 consecutive sizes (2-43), merge cheaper for the remaining 957 (44-1,000). The cost formulas are CLRS 3e exercise 1.2-2 (whose answer is n <= 43).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Loop n = 2..1,000: insertion cheaper for 2-43 (42 sizes), merge for 44-1,000 (957); rounding merge to whole steps flips no size. n = 1 (merge 0) is outside the claim. Opened CLRS 3e exercise 1.2-2 statement and answer (2 <= n <= 43) in walkccc/CLRS docs/Chap01/1.2.md (GitHub raw; a solutions repo that quotes the exercise)."
     },
     {
       "id": "cs.small-n-favours-the-slow-curve.c3",
       "text": "The 64 in front of merge sort's cost outweighs its slower growth while n is small; growth rate tells you who wins eventually, not who wins at your size.",
       "support": "derivation",
       "source": "From c1 and c2: 8n² < 64 n log₂ n exactly when n < 8 log₂ n, which holds for n <= 43 and fails for n >= 44; for large n the n² term dominates any constant.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation: 8n^2 < 64 n log2 n iff n < 8 log2 n; 8 log2 43 = 43.41 > 43, 8 log2 44 = 43.68 < 44. For large n the n^2 term dominates any constant."
     },
     {
       "id": "cs.small-n-favours-the-slow-curve.c4",
       "text": "Fast merge sorts hand short pieces to insertion sort.",
       "support": "source",
       "source": "CLRS 3e Problem 2-1 ('Insertion sort on small arrays in merge sort': coarsening the leaves of the recursion). Practical hybrids (e.g. Timsort sorting short runs by binary insertion) do the same. Attribution: fact-checker confirms the problem number from the book; if 'fast merge sorts' cannot be supported, cut to 'merge sort can be sped up by handing short pieces to insertion sort'.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Opened: walkccc/CLRS mkdocs.yml lists '2-1 Insertion sort on small arrays in merge sort' and docs/Chap02/Problems/2-1.md quotes the problem (coarsen the leaves of merge sort with insertion sort, because insertion sort's constant factors make it faster for small sizes). Practice: CPython Objects/listsort.txt (binary insertion sort boosts short runs to minrun) and OpenJDK TimSort.java ('Small arrays are sorted in place, using a binary insertion sort'). So 'fast merge sorts hand short pieces to insertion sort' is supported. CLRS itself was read only through the walkccc quotation."
     },
     {
       "id": "cs.small-n-favours-the-slow-curve.c5",
       "text": "The step counts come from a cost model with chosen constants, not timings of real code.",
       "support": "convention",
       "source": "Stage caption. The constants 8 and 64 are those of CLRS 3e exercise 1.2-2; the lesson claims nothing about any machine.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the caption says 'Steps from a cost model, not timings'. The constants 8 and 64 match CLRS 3e exercise 1.2-2 as quoted in walkccc/CLRS (opened)."
     }
   ],
   "confidence": "",

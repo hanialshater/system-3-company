@@ -26,42 +26,60 @@
       "text": "In the lesson's model (seed 1), after 70 of 100 ponds are drained (19 good ponds with frogs left) the frogs are gone by year 23 though 30 good ponds remain; across seeds 1 to 1,000 they are gone by year 100 in 996. Reveal: \"With 70 ponds drained, the frogs were gone by year 23, though 30 good ponds were still there.\" (the year is read from the learner's current run: seed 2 gives 21). Stage: \"... 70: gone, year 23\" (run log; the first entry reads \"30 drained: 33 ponds\").",
       "support": "simulation",
       "source": "runPonds() in Demo.tsx (kit mulberry32, one stream per run, ponds in index order, drained ponds draw nothing). Builder re-run 2026-10-14 (node strip-types on the Demo.tsx function), seeds 1-12, drain 70: extinct in years 23, 21, 14, 19, 23, 24, 35, 21, 16, 29, 33, 60; start 19 frog ponds. Seeds 1-1,000 count (996 extinct by year 100) from check script E3, company/domains/briefs/checks/life-wave-j-check.mjs, same model and draw order (its mulberry32 matches the kit's on seeds 1-12 for all three drains).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Re-ran runPonds() copied from Demo.tsx with the kit's mulberry32: drain 70, seed 1, start 19, extinct year 23. Seeds 1-12: 23, 21, 14, 19, 23, 24, 35, 21, 16, 29, 33, 60. Seeds 1-1,000: 996 extinct by year 100. All match the claim and check script E3 (re-run)."
     },
     {
       "id": "life.empty-ponds-still-left.c2",
       "text": "After 30 ponds are drained, frogs persist (33 ponds at year 100, seed 1; no seed of 1,000 died out by year 100). The 'New seed' button cycles seeds 1 to 12; in all 12, drain 70 dies out by year 100 and drain 30 does not, so the reveal's sentence holds on every reachable seed. Reveal: \"Draining 30 left frogs in 33 ponds.\" (or, if only drain 50 was tried, its own result).",
       "support": "simulation",
       "source": "runPonds() seeds 1-12, drain 30 at year 100: 33, 8, 6, 26, 18, 26, 16, 28, 19, 12, 20, 29 ponds; drain 50: extinct in 67, 83, -, -, 32, 45, -, 66, -, 45, 43, - (5, 6, 9, 8, 7 ponds left where not). Check script E3: drain 30, seeds 1-1,000, none extinct, mean 25.8. Seed range 1-12 is the builder's choice (the first 12, not filtered), disclosed here.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Checked every seed 1-12, as the reveal can quote any seed New seed reaches (it cycles 12 -> 1). Drain 30 at year 100: 33, 8, 6, 26, 18, 26, 16, 28, 19, 12, 20, 29, never extinct. Drain 70: extinct in all 12, so the reveal's 'gone by year {extinctYear ?? 100}' never falls back to 100. Drain 50: extinct in 67, 83, -, -, 32, 45, -, 66, -, 45, 43, - (5, 6, 9, 8, 7 left otherwise). The reveal branch for a 50-only learner ('frogs until year 67' or 'frogs in 5 ponds') is true for each seed. Seeds 1-1,000: drain 30 never extinct, mean 25.84."
     },
     {
       "id": "life.empty-ponds-still-left.c3",
       "text": "Each pond's frogs die out now and then, and only frogs from other ponds refill it; with few occupied ponds, refills come too slowly to keep up. Stage: \"Start: 19 frog ponds, refill chance 9% a year\" against \"empties with chance 20%\".",
       "support": "derivation",
       "source": "Model rule: refill chance 1 - 0.995^n with n occupied ponds: n = 60 -> 26%, 42 -> 19%, 19 -> 9%. With 19 occupied of 30 good ponds, expected losses 0.2 x 19 = 3.8 a year vs gains 0.09 x 11 = 1.0 a year, so the count falls.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Model rule read in runPonds (refill 1 - 0.995^n with n counted at the start of the year). refill(): 60 -> 26%, 42 -> 19%, 19 -> 9% (0.0908). 0.2 x 19 = 3.8 losses against 0.0908 x 11 = 1.0 gains."
     },
     {
       "id": "life.empty-ponds-still-left.c4",
       "text": "In the simplest (deterministic, Levins) version of this model, the species is lost once the drained share reaches the share that had frogs before: 60% here. Reveal: \"In the simplest version of this model, the species is lost once the drained share reaches the share that had frogs before: 60% here.\"",
       "support": "derivation",
       "source": "Levins with habitat loss: dp/dt = c p (1 - D - p) - e p; equilibrium p* = 1 - D - e/c. Before loss (D = 0) p* = 1 - e/c = 0.6 (e/c = 0.4 as set by the brief; check E3 prints p* = 0.6, 0.3, 0.1, 0, 0 for D = 0, 0.3, 0.5, 0.6, 0.7). p* = 0 when D = 1 - e/c = 0.6. Optional literature context (Levins 1969; Nee and May 1992, J. Anim. Ecol. 61) is not on the card: unverified, needs a human source check. Note for the fact-checker: e/c = 0.4 is the brief's Levins analogue (die-out 0.2 vs colonisation 0.005 x 100 ponds = 0.5), not fitted to the stochastic grid.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Derivation re-done: dp/dt = c p (1 - D - p) - e p gives p* = 1 - D - e/c. With e = 0.2 and c = 0.005 x 100 = 0.5, e/c = 0.4: p*(0) = 0.6, which matches the 60 ponds that start occupied, and p* = 0 at D = 0.6. 'The simplest version' is the deterministic Levins analogue, as the source says. Levins (1969) and Nee and May (1992) are not on the card and were not opened."
     },
     {
       "id": "life.empty-ponds-still-left.c5",
       "text": "Rates, pond count and the drain pattern are invented: toy model. Stage: \"Each year a frog pond empties with chance 20%; an empty pond refills with chance 1 − 0.995ⁿ, n = frog ponds.\" Reveal: \"Habitat can outlast its species. Toy model.\"",
       "support": "convention",
       "source": "The lesson's model (brief empty-ponds-still-left, company/domains/briefs/life.ecology-body.md #3). 'Habitat can outlast its species' summarises claims 1 and 4 inside the model.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "Convention: the stage rule text matches the code (DIE 0.2, COL 0.005). 'Habitat can outlast its species' is a summary of c1 and c4 inside the model, flagged 'Toy model'."
     },
     {
       "id": "life.empty-ponds-still-left.c6",
       "text": "Locked stage: 100 ponds; 60 have frogs. Question: drain 70 ponds, 30 good ponds are left, 19 with frogs.",
       "support": "derivation",
       "source": "Ponds 0-59 start occupied; drained = (i x 37) mod 100 < 70 removes 70 ponds, 41 of them occupied, leaving 19 occupied of 30 good (runPonds start = 19).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14",
+      "note": "drainedAt(): 37 is coprime with 100, so drains 30/50/70 remove exactly 30/50/70 ponds, of which 18/30/41 were occupied. That leaves 42/30/19 occupied, and 19 of 30 good ponds at drain 70 (node)."
     }
   ],
   "confidence": "",
