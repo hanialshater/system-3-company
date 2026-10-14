@@ -1,0 +1,722 @@
+[
+  {
+    "slug": "lh-big-pack-price",
+    "question": "Fictional packs of the same product: 400g for €2, or 1kg for €6. Which costs less per kilogram?",
+    "options": [
+      "The 400g pack",
+      "The 1kg pack",
+      "They are equal"
+    ],
+    "answer": 0,
+    "why": "€2 ÷ 0.4kg = €5/kg, below €6/kg: divide price by mass, because pack size alone does not set the unit price.",
+    "where": "src/demos/lifehacks/lh-big-pack-price/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-big-pack-price, field recall; restate in meta.json claim lifehacks.lh-big-pack-price.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-align-price-units",
+    "question": "Two fictional shelf labels: €0.65 per 100g and €6 per kg. Which is lower per kilogram?",
+    "options": [
+      "€0.65 per 100g",
+      "They are equal",
+      "€6 per kg"
+    ],
+    "answer": 2,
+    "why": "A kilogram is ten 100g units, so €0.65 per 100g is €6.50 per kg; the smaller printed number described a smaller amount.",
+    "where": "src/demos/lifehacks/lh-align-price-units/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-align-price-units, field recall; restate in meta.json claim lifehacks.lh-align-price-units.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-count-sheets-not-rolls",
+    "question": "Fictional packs: eight rolls of 150 sheets for €6, or four rolls of 300 sheets for €5. Which costs less per sheet?",
+    "options": [
+      "The four-roll pack",
+      "The eight-roll pack",
+      "They are equal"
+    ],
+    "answer": 0,
+    "why": "Both packs hold 1,200 sheets (rolls × sheets per roll), so the €5 pack costs less per sheet; the roll count hid that.",
+    "where": "src/demos/lifehacks/lh-count-sheets-not-rolls/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-count-sheets-not-rolls, field recall; restate in meta.json claim lifehacks.lh-count-sheets-not-rolls.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-two-for-one-boundary",
+    "question": "Singles cost €3 each; a two-for-one pair costs €4 and pairs cannot be split. You need five items. What does the pairs-only checkout cost?",
+    "options": [
+      "€10",
+      "€12",
+      "€15"
+    ],
+    "answer": 1,
+    "why": "Five items need three whole pairs (rounded up), so you pay €12 including one item you did not need.",
+    "where": "src/demos/lifehacks/lh-two-for-one-boundary/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-two-for-one-boundary, field recall; restate in meta.json claim lifehacks.lh-two-for-one-boundary.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-fixed-coupon-percent",
+    "question": "A fictional basket can take either 20% off or €5 off. From what basket total does 20% off give the lower final total?",
+    "options": [
+      "Above €25",
+      "€5 off is lower at every basket",
+      "20% off is lower at every basket"
+    ],
+    "answer": 0,
+    "why": "20% of €25 is €5; below that the fixed €5 removes more, above it the percentage does, so the answer depends on basket size.",
+    "where": "src/demos/lifehacks/lh-fixed-coupon-percent/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-fixed-coupon-percent, field recall; restate in meta.json claim lifehacks.lh-fixed-coupon-percent.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-free-shipping-gap",
+    "question": "Fictional shipping costs €4 below €50. Your basket is €44. Compared with paying shipping, adding goods to reach €50 makes the checkout total:",
+    "options": [
+      "€4 lower",
+      "The same",
+      "€2 higher"
+    ],
+    "answer": 2,
+    "why": "Paying shipping totals €48; reaching €50 totals €50. Removing the shipping line is not the same as lowering the receipt.",
+    "where": "src/demos/lifehacks/lh-free-shipping-gap/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-free-shipping-gap, field recall; restate in meta.json claim lifehacks.lh-free-shipping-gap.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-split-order-fixed-fee",
+    "question": "The same goods total €24, and each order adds a fictional €4 delivery fee. Placing three orders instead of one adds how much to the receipts?",
+    "options": [
+      "€0",
+      "€8",
+      "€12"
+    ],
+    "answer": 1,
+    "why": "The fee repeats per order: three orders pay three fees, one order pays one, a difference of two fees (€8).",
+    "where": "src/demos/lifehacks/lh-split-order-fixed-fee/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-split-order-fixed-fee, field recall; restate in meta.json claim lifehacks.lh-split-order-fixed-fee.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-voucher-minimum",
+    "question": "A fictional voucher takes €5 off only when the basket is at least €30. What does a €29 basket cost?",
+    "options": [
+      "€24",
+      "€25",
+      "€29"
+    ],
+    "answer": 2,
+    "why": "€29 is below the threshold, so the deduction is zero; eligibility comes before the advertised discount.",
+    "where": "src/demos/lifehacks/lh-voucher-minimum/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-voucher-minimum, field recall; restate in meta.json claim lifehacks.lh-voucher-minimum.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-sequential-discounts",
+    "question": "A fictional €200 item gets 20% off, then 10% off the reduced price. What is the final price?",
+    "options": [
+      "€140",
+      "€144",
+      "€160"
+    ],
+    "answer": 1,
+    "why": "The second discount acts on €160, leaving 0.8 × 0.9 = 0.72 of €200, not 0.70.",
+    "where": "src/demos/lifehacks/lh-sequential-discounts/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-sequential-discounts, field recall; restate in meta.json claim lifehacks.lh-sequential-discounts.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-discount-round-trip",
+    "question": "A fictional €50 price falls by 20%, then rises by 20%. Where does it finish?",
+    "options": [
+      "€48",
+      "€50",
+      "€52"
+    ],
+    "answer": 0,
+    "why": "The rise starts from €40, so it adds €8, not €10: 0.8 × 1.2 = 0.96 of the start.",
+    "where": "src/demos/lifehacks/lh-discount-round-trip/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-discount-round-trip, field recall; restate in meta.json claim lifehacks.lh-discount-round-trip.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-pay-for-used-quantity",
+    "question": "Singles cost €0.50 each; a ten-pack costs €4 and unused pieces count for nothing. How many pieces must you use before the ten-pack's cost per used piece falls to €0.50?",
+    "options": [
+      "5",
+      "8",
+      "10"
+    ],
+    "answer": 1,
+    "why": "Divide by pieces used, not bought: €4 ÷ 8 = €0.50; with fewer used, each used piece costs more.",
+    "where": "src/demos/lifehacks/lh-pay-for-used-quantity/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-pay-for-used-quantity, field recall; restate in meta.json claim lifehacks.lh-pay-for-used-quantity.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-deposit-checkout-net",
+    "question": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. You buy ten and return all ten containers. What are the checkout and after-return amounts?",
+    "options": [
+      "€26.50 at checkout, €24.00 after return",
+      "€24.00 at both moments",
+      "€26.50 at both moments"
+    ],
+    "answer": 0,
+    "why": "The checkout includes ten €0.25 deposits; the return takes the same €2.50 back. They are two different moments.",
+    "where": "src/demos/lifehacks/lh-deposit-checkout-net/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-deposit-checkout-net, field recall; restate in meta.json claim lifehacks.lh-deposit-checkout-net.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-scale-recipe-portions",
+    "question": "A quantity-only recipe uses 300g for four equal portions. How many grams keep the same amount per portion for two portions?",
+    "options": [
+      "150g",
+      "300g",
+      "600g"
+    ],
+    "answer": 0,
+    "why": "The rate is 75g per portion; two portions × 75g = 150g. This is proportional quantity arithmetic only.",
+    "where": "src/demos/lifehacks/lh-scale-recipe-portions/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-scale-recipe-portions, field recall; restate in meta.json claim lifehacks.lh-scale-recipe-portions.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-round-snack-packs",
+    "question": "Each guest gets three items; packs hold ten and cannot be split. For nine guests, how many items are bought?",
+    "options": [
+      "27",
+      "30",
+      "40"
+    ],
+    "answer": 1,
+    "why": "Nine guests need 27; divide by ten and round up to three packs, so 30 are bought and 3 are left over.",
+    "where": "src/demos/lifehacks/lh-round-snack-packs/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-round-snack-packs, field recall; restate in meta.json claim lifehacks.lh-round-snack-packs.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-weighted-bill-share",
+    "question": "A fictional €50 bill is split by portion units: two full portions and one half portion. What does each full portion pay?",
+    "options": [
+      "€16.67",
+      "€20",
+      "€25"
+    ],
+    "answer": 1,
+    "why": "There are 2.5 portion units, so one unit is €50 ÷ 2.5 = €20; dividing by three people uses a different rule.",
+    "where": "src/demos/lifehacks/lh-weighted-bill-share/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-weighted-bill-share, field recall; restate in meta.json claim lifehacks.lh-weighted-bill-share.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-indivisible-shares",
+    "question": "Three recipients each get the same whole-number count; remainders stay aside. With 14 objects, how many stay aside?",
+    "options": [
+      "0",
+      "1",
+      "2"
+    ],
+    "answer": 2,
+    "why": "Floor division gives four each (12 objects); the 2 left over stay in the inventory.",
+    "where": "src/demos/lifehacks/lh-indivisible-shares/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-indivisible-shares, field recall; restate in meta.json claim lifehacks.lh-indivisible-shares.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-weighted-volume-allocation",
+    "question": "Three empty trays have allocation weights 2:1:1, and 12L is allocated. How much goes to tray one?",
+    "options": [
+      "4L",
+      "6L",
+      "8L"
+    ],
+    "answer": 1,
+    "why": "The weights add to four and tray one holds two of them: half of 12L is 6L. An equal split would give 4L.",
+    "where": "src/demos/lifehacks/lh-weighted-volume-allocation/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-weighted-volume-allocation, field recall; restate in meta.json claim lifehacks.lh-weighted-volume-allocation.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-coverage-whole-cans",
+    "question": "A fictional label states 8m² per litre; containers hold 1L and cannot be split. How many containers for 17m²?",
+    "options": [
+      "2",
+      "2.125",
+      "3"
+    ],
+    "answer": 2,
+    "why": "17 ÷ 8 = 2.125L exactly, and whole containers round that up to 3.",
+    "where": "src/demos/lifehacks/lh-coverage-whole-cans/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-coverage-whole-cans, field recall; restate in meta.json claim lifehacks.lh-coverage-whole-cans.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-percentage-overage",
+    "question": "An order with 10% extra (rounded up) is compared with an order with ten extra tiles. At what required count are the two orders equal?",
+    "options": [
+      "10 tiles",
+      "40 tiles",
+      "100 tiles"
+    ],
+    "answer": 2,
+    "why": "10% grows with the requirement and equals ten extra only at 100; below that, ten extra is larger.",
+    "where": "src/demos/lifehacks/lh-percentage-overage/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-percentage-overage, field recall; restate in meta.json claim lifehacks.lh-percentage-overage.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-each-cut-allowance",
+    "question": "Each panel needs 1.20m plus its own 0.05m allowance. What total length do ten panels need?",
+    "options": [
+      "12.05m",
+      "12.50m",
+      "13.00m"
+    ],
+    "answer": 1,
+    "why": "The allowance is per panel, so it is multiplied by ten too: 10 × 1.25m = 12.50m.",
+    "where": "src/demos/lifehacks/lh-each-cut-allowance/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-each-cut-allowance, field recall; restate in meta.json claim lifehacks.lh-each-cut-allowance.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-lead-time-stock",
+    "question": "Five units leave each day and delivery takes four days after ordering. To still have six units when it arrives, how many must be on hand when you order?",
+    "options": [
+      "6",
+      "20",
+      "26"
+    ],
+    "answer": 2,
+    "why": "Use during the wait (5 × 4 = 20) plus the reserve of 6 gives 26.",
+    "where": "src/demos/lifehacks/lh-lead-time-stock/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-lead-time-stock, field recall; restate in meta.json claim lifehacks.lh-lead-time-stock.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-buy-only-stock-gap",
+    "question": "You need nine units and already have twelve usable ones. How many do you order?",
+    "options": [
+      "0",
+      "9",
+      "21"
+    ],
+    "answer": 0,
+    "why": "The order is the shortage, need minus stock, and never below zero: stock already covers the need.",
+    "where": "src/demos/lifehacks/lh-buy-only-stock-gap/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-buy-only-stock-gap, field recall; restate in meta.json claim lifehacks.lh-buy-only-stock-gap.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-committed-stock",
+    "question": "Fifteen units are on the shelf and nine are already promised to earlier requests. How many can a new request take?",
+    "options": [
+      "6",
+      "9",
+      "15"
+    ],
+    "answer": 0,
+    "why": "Free units are physical minus committed: 15 − 9 = 6. The promised units are present but not available.",
+    "where": "src/demos/lifehacks/lh-committed-stock/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-committed-stock, field recall; restate in meta.json claim lifehacks.lh-committed-stock.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-round-replenishment",
+    "question": "Five usable units are in stock; new stock comes only in boxes of six. You need fourteen. How many units do you order?",
+    "options": [
+      "9",
+      "12",
+      "18"
+    ],
+    "answer": 1,
+    "why": "Compute the shortage first (14 − 5 = 9), then round that up to whole boxes: two boxes, 12 units.",
+    "where": "src/demos/lifehacks/lh-round-replenishment/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-round-replenishment, field recall; restate in meta.json claim lifehacks.lh-round-replenishment.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-pool-spare-stock",
+    "question": "Three usable units are here and four free units elsewhere can be transferred at no modeled cost. You need ten. How many must be ordered from outside?",
+    "options": [
+      "3",
+      "7",
+      "10"
+    ],
+    "answer": 0,
+    "why": "Pooled stock is 3 + 4 = 7, so the shortage is 10 − 7 = 3, provided those four are truly free to transfer.",
+    "where": "src/demos/lifehacks/lh-pool-spare-stock/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-pool-spare-stock, field recall; restate in meta.json claim lifehacks.lh-pool-spare-stock.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-merge-overlapping-lists",
+    "question": "List A has ten distinct items and list B has seven; four items are on both. How many unique items does the merged list have?",
+    "options": [
+      "9",
+      "13",
+      "17"
+    ],
+    "answer": 1,
+    "why": "Adding gives 17 but counts the four shared items twice; subtract them once: 13.",
+    "where": "src/demos/lifehacks/lh-merge-overlapping-lists/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-merge-overlapping-lists, field recall; restate in meta.json claim lifehacks.lh-merge-overlapping-lists.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-use-deadline-tickets",
+    "question": "Five tickets expire tonight; five others stay valid later. You use three tonight, choosing the expiring ones first. How many expiring tickets go unused?",
+    "options": [
+      "0",
+      "2",
+      "5"
+    ],
+    "answer": 1,
+    "why": "Using the expiring tickets first leaves 5 − 3 = 2 to expire; using the others first would leave all 5.",
+    "where": "src/demos/lifehacks/lh-use-deadline-tickets/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-use-deadline-tickets, field recall; restate in meta.json claim lifehacks.lh-use-deadline-tickets.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-count-before-dispatch",
+    "question": "The record says 20 units, but a physical count finds 17. You then dispatch four. How many are really left?",
+    "options": [
+      "13",
+      "16",
+      "17"
+    ],
+    "answer": 0,
+    "why": "Correct the record to the count first (17), then subtract the dispatch: 13. The record's 16 keeps the old error.",
+    "where": "src/demos/lifehacks/lh-count-before-dispatch/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-count-before-dispatch, field recall; restate in meta.json claim lifehacks.lh-count-before-dispatch.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-watts-hours-trade",
+    "question": "Illustrative loads: 50W for two hours, or 10W for ten hours. Which uses more energy?",
+    "options": [
+      "The 50W load",
+      "The 10W load",
+      "They use the same"
+    ],
+    "answer": 2,
+    "why": "Energy is power × time: both are 100Wh (0.1kWh), so the lower watt number alone did not decide it.",
+    "where": "src/demos/lifehacks/lh-watts-hours-trade/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-watts-hours-trade, field recall; restate in meta.json claim lifehacks.lh-watts-hours-trade.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-idle-versus-active",
+    "question": "Illustrative day: active 40W for 1 hour, idle 2W for 23 hours. Which state uses more energy that day?",
+    "options": [
+      "Idle",
+      "Active",
+      "They are equal"
+    ],
+    "answer": 0,
+    "why": "Multiply each power by its own hours: active 40Wh, idle 46Wh. Neither the bigger wattage nor the longer time decides it alone.",
+    "where": "src/demos/lifehacks/lh-idle-versus-active/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-idle-versus-active, field recall; restate in meta.json claim lifehacks.lh-idle-versus-active.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-standby-days-add-up",
+    "question": "An illustrative constant 3W load runs 24 hours a day for 365 days. About how much energy does it accumulate?",
+    "options": [
+      "0.072kWh",
+      "1.1kWh",
+      "26.3kWh"
+    ],
+    "answer": 2,
+    "why": "3W × 24h × 365 days = 26,280Wh, about 26.3kWh: a small daily amount repeats every day.",
+    "where": "src/demos/lifehacks/lh-standby-days-add-up/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-standby-days-add-up, field recall; restate in meta.json claim lifehacks.lh-standby-days-add-up.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-duty-cycle-energy",
+    "question": "An illustrative load draws 200W when on and 0W when off. It is on half the time over ten hours. How much energy does it use?",
+    "options": [
+      "0.1kWh",
+      "1kWh",
+      "2kWh"
+    ],
+    "answer": 1,
+    "why": "Charge only the on-time: 200W × (0.5 × 10h) = 1,000Wh = 1kWh, not 2kWh for the whole ten hours.",
+    "where": "src/demos/lifehacks/lh-duty-cycle-energy/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-duty-cycle-energy, field recall; restate in meta.json claim lifehacks.lh-duty-cycle-energy.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-fixed-energy-charge",
+    "question": "Fictional tariff A is €0.20/kWh plus €10; tariff B is €0.30/kWh with no fixed charge. Above what usage is A's bill lower?",
+    "options": [
+      "50kWh",
+      "100kWh",
+      "A is lower at every usage"
+    ],
+    "answer": 1,
+    "why": "A's €10 fixed charge is recovered at €0.10 per kWh saved, so the bills match at 100kWh; below that, B is lower.",
+    "where": "src/demos/lifehacks/lh-fixed-energy-charge/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-fixed-energy-charge, field recall; restate in meta.json claim lifehacks.lh-fixed-energy-charge.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-same-energy-new-tariff",
+    "question": "A modeled bill falls from €2.40 to €1.20 because the same use moved from a fictional €0.40/kWh rate to €0.20/kWh. How much energy was used each time?",
+    "options": [
+      "6kWh both times",
+      "6kWh, then 3kWh",
+      "3kWh both times"
+    ],
+    "answer": 0,
+    "why": "€2.40 ÷ €0.40 = 6kWh and €1.20 ÷ €0.20 = 6kWh: the price changed, the energy did not.",
+    "where": "src/demos/lifehacks/lh-same-energy-new-tariff/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-same-energy-new-tariff, field recall; restate in meta.json claim lifehacks.lh-same-energy-new-tariff.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-annual-label-cost",
+    "question": "An illustrative label states 250kWh per year. At an unchanged fictional €0.30/kWh, what is the modeled running cost over four years?",
+    "options": [
+      "€75",
+      "€300",
+      "€1,000"
+    ],
+    "answer": 1,
+    "why": "Annual energy × years × price: 250 × 4 × €0.30 = €300. The label is one year, not the multiyear cost.",
+    "where": "src/demos/lifehacks/lh-annual-label-cost/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-annual-label-cost, field recall; restate in meta.json claim lifehacks.lh-annual-label-cost.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-purchase-plus-running",
+    "question": "Illustrative A costs €80 plus 120kWh/year; B costs €140 plus 60kWh/year; electricity is a fictional €0.30/kWh. When does B's total become lower?",
+    "options": [
+      "After about 3.3 years",
+      "After 1 year",
+      "Never; A stays lower"
+    ],
+    "answer": 0,
+    "why": "B starts €60 higher but saves 60kWh × €0.30 = €18 a year, so it catches up after €60 ÷ €18 ≈ 3.3 years.",
+    "where": "src/demos/lifehacks/lh-purchase-plus-running/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-purchase-plus-running, field recall; restate in meta.json claim lifehacks.lh-purchase-plus-running.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-flow-times-minutes",
+    "question": "A hypothetical constant flow of 8L/min runs for five minutes. What volume does it deliver?",
+    "options": [
+      "8L",
+      "13L",
+      "40L"
+    ],
+    "answer": 2,
+    "why": "Litres per minute × minutes = litres: 8 × 5 = 40L. The rate alone is not the total.",
+    "where": "src/demos/lifehacks/lh-flow-times-minutes/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-flow-times-minutes, field recall; restate in meta.json claim lifehacks.lh-flow-times-minutes.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-flow-duration-offset",
+    "question": "Hypothetical A runs at 10L/min for three minutes; B at 5L/min for six minutes. How do their volumes compare?",
+    "options": [
+      "B is half of A",
+      "B is double A",
+      "They are equal"
+    ],
+    "answer": 2,
+    "why": "Half the rate for twice the time cancels: both deliver 30L.",
+    "where": "src/demos/lifehacks/lh-flow-duration-offset/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-flow-duration-offset, field recall; restate in meta.json claim lifehacks.lh-flow-duration-offset.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-fixed-volume-fill",
+    "question": "A 12L container is filled by a hypothetical constant 4L/min or 2L/min flow, with no spills. How much water does the slower flow use?",
+    "options": [
+      "6L",
+      "12L",
+      "24L"
+    ],
+    "answer": 1,
+    "why": "Both fill the same 12L; the slower flow only takes longer (6 minutes instead of 3).",
+    "where": "src/demos/lifehacks/lh-fixed-volume-fill/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-fixed-volume-fill, field recall; restate in meta.json claim lifehacks.lh-fixed-volume-fill.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-small-leak-large-duration",
+    "question": "A hypothetical constant 10mL/min flow runs for one whole day. What volume is that?",
+    "options": [
+      "0.6L",
+      "1.44L",
+      "14.4L"
+    ],
+    "answer": 2,
+    "why": "A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation.",
+    "where": "src/demos/lifehacks/lh-small-leak-large-duration/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-small-leak-large-duration, field recall; restate in meta.json claim lifehacks.lh-small-leak-large-duration.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-jug-rounding-extra",
+    "question": "Each cup is allocated 250mL and the fill is rounded up to whole litres. For nine cups, how much is the excess over the exact need?",
+    "options": [
+      "0L",
+      "0.75L",
+      "2.25L"
+    ],
+    "answer": 1,
+    "why": "Exact need is 9 × 250mL = 2.25L; rounding up gives 3L, an excess of 0.75L.",
+    "where": "src/demos/lifehacks/lh-jug-rounding-extra/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-jug-rounding-extra, field recall; restate in meta.json claim lifehacks.lh-jug-rounding-extra.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-water-meter-units",
+    "question": "A meter reading of 1,800 litres is converted to cubic metres. What is the correct value?",
+    "options": [
+      "1,800m³",
+      "18m³",
+      "1.8m³"
+    ],
+    "answer": 2,
+    "why": "One cubic metre holds 1,000 litres, so divide by 1,000: 1.8m³. Keeping the digits would describe a thousand times the volume.",
+    "where": "src/demos/lifehacks/lh-water-meter-units/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-water-meter-units, field recall; restate in meta.json claim lifehacks.lh-water-meter-units.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-turn-container-volume",
+    "question": "An ideal box measures 30cm × 20cm × 10cm inside (6L). What happens to its internal capacity when it is turned onto another face?",
+    "options": [
+      "It stays 6L on any face",
+      "It grows when stood on its smallest face",
+      "It shrinks when laid on its largest face"
+    ],
+    "answer": 0,
+    "why": "Capacity is the product of the same three lengths, and order does not change a product; only fit can change.",
+    "where": "src/demos/lifehacks/lh-turn-container-volume/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-turn-container-volume, field recall; restate in meta.json claim lifehacks.lh-turn-container-volume.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-double-container-radius",
+    "question": "Two ideal cylinders have equal height; one has radius 4cm and the other 12cm. How many times as much does the wider one hold?",
+    "options": [
+      "3",
+      "6",
+      "9"
+    ],
+    "answer": 2,
+    "why": "Capacity scales with radius squared: three times the radius gives 3² = 9 times the base area and volume.",
+    "where": "src/demos/lifehacks/lh-double-container-radius/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-double-container-radius, field recall; restate in meta.json claim lifehacks.lh-double-container-radius.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-area-scales-square",
+    "question": "An ideal square's side is halved, from 6m to 3m. What fraction of the original area is left to cover?",
+    "options": [
+      "One quarter",
+      "One half",
+      "The same"
+    ],
+    "answer": 0,
+    "why": "Both dimensions halve, so area is multiplied by ½ twice: 36m² becomes 9m², one quarter.",
+    "where": "src/demos/lifehacks/lh-area-scales-square/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-area-scales-square, field recall; restate in meta.json claim lifehacks.lh-area-scales-square.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-subtract-openings-area",
+    "question": "An ideal wall is 2.5m high and 5m wide, with two openings of 1.5m² each that need no covering. What area needs covering?",
+    "options": [
+      "12.5m²",
+      "11m²",
+      "9.5m²"
+    ],
+    "answer": 2,
+    "why": "Outline 12.5m² minus both openings (3m²) is 9.5m²; the outline includes empty space.",
+    "where": "src/demos/lifehacks/lh-subtract-openings-area/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-subtract-openings-area, field recall; restate in meta.json claim lifehacks.lh-subtract-openings-area.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-overlap-material-area",
+    "question": "An ideal paper rectangle is 25cm long. Its 40cm width needs a further 3cm overlap. What paper area is needed?",
+    "options": [
+      "1,000cm²",
+      "1,003cm²",
+      "1,075cm²"
+    ],
+    "answer": 2,
+    "why": "The hidden overlap is a 3cm × 25cm strip, adding 75cm² to the 1,000cm²: 43 × 25 = 1,075cm².",
+    "where": "src/demos/lifehacks/lh-overlap-material-area/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-overlap-material-area, field recall; restate in meta.json claim lifehacks.lh-overlap-material-area.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-around-versus-across",
+    "question": "An ideal rectangle is 8m wide and 6m high. How long is one corner-to-corner diagonal?",
+    "options": [
+      "10m",
+      "14m",
+      "28m"
+    ],
+    "answer": 0,
+    "why": "The diagonal is √(8² + 6²) = 10m; 28m is the perimeter, a different route.",
+    "where": "src/demos/lifehacks/lh-around-versus-across/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-around-versus-across, field recall; restate in meta.json claim lifehacks.lh-around-versus-across.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-reuse-cost-per-use",
+    "question": "A reusable item costs €15 once; equivalent single-use items cost €0.25 each; ongoing costs are excluded. At how many uses do their costs per use match?",
+    "options": [
+      "15",
+      "60",
+      "100"
+    ],
+    "answer": 1,
+    "why": "€15 ÷ uses = €0.25 when uses = 60; below that, the reusable item costs more per use in this model.",
+    "where": "src/demos/lifehacks/lh-reuse-cost-per-use/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-reuse-cost-per-use, field recall; restate in meta.json claim lifehacks.lh-reuse-cost-per-use.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-duplex-sheet-rounding",
+    "question": "Printing double-sided, with a blank final side allowed: how many sheets do eleven pages need?",
+    "options": [
+      "5",
+      "5.5",
+      "6"
+    ],
+    "answer": 2,
+    "why": "11 ÷ 2 = 5.5, rounded up to 6: the odd last page still takes a whole sheet.",
+    "where": "src/demos/lifehacks/lh-duplex-sheet-rounding/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-duplex-sheet-rounding, field recall; restate in meta.json claim lifehacks.lh-duplex-sheet-rounding.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-offcuts-not-one-piece",
+    "question": "You have two offcuts of 70cm each and need unjoined pieces of 100cm. How many 100cm pieces can you cut?",
+    "options": [
+      "0",
+      "1",
+      "2"
+    ],
+    "answer": 0,
+    "why": "Each piece must fit inside one offcut, and neither is 100cm long; the pooled 140cm is not one continuous piece.",
+    "where": "src/demos/lifehacks/lh-offcuts-not-one-piece/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-offcuts-not-one-piece, field recall; restate in meta.json claim lifehacks.lh-offcuts-not-one-piece.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-material-reuse-account",
+    "question": "Toy mass account: a reusable container is 200g plus 2g per use; each single-use replacement is 20g. From how many uses is the reusable total lower?",
+    "options": [
+      "10",
+      "12",
+      "100"
+    ],
+    "answer": 1,
+    "why": "At 11 uses it is 222g versus 220g; at 12 it is 224g versus 240g. Include the starting mass, and mass alone is not environmental impact.",
+    "where": "src/demos/lifehacks/lh-material-reuse-account/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-material-reuse-account, field recall; restate in meta.json claim lifehacks.lh-material-reuse-account.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-visit-fee-crossover",
+    "question": "Fictional A charges €9 per visit; B charges €24 once plus €5 per visit. At how many visits do the totals match?",
+    "options": [
+      "2",
+      "4",
+      "6"
+    ],
+    "answer": 2,
+    "why": "B's €24 one-time fee is recovered at €4 per visit, so totals match at 6 visits (€54 each).",
+    "where": "src/demos/lifehacks/lh-visit-fee-crossover/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-visit-fee-crossover, field recall; restate in meta.json claim lifehacks.lh-visit-fee-crossover.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-billing-rounds-hours",
+    "question": "Fictional A charges €4 per begun hour; B charges €20 per begun 24-hour period. At 5.5 hours, which bill is lower?",
+    "options": [
+      "Daily",
+      "Hourly",
+      "They are equal"
+    ],
+    "answer": 0,
+    "why": "5.5 hours bills as 6 begun hours (€24) against one begun day (€20): apply each rounding rule before pricing.",
+    "where": "src/demos/lifehacks/lh-billing-rounds-hours/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-billing-rounds-hours, field recall; restate in meta.json claim lifehacks.lh-billing-rounds-hours.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-ticket-bundle-unused",
+    "question": "Fictional singles cost €2; a five-ticket bundle costs €8 and cannot be split. For eleven trips using bundles only, what is the checkout?",
+    "options": [
+      "€17.60",
+      "€22",
+      "€24"
+    ],
+    "answer": 2,
+    "why": "Eleven trips need three whole bundles (€24), more than eleven singles (€22): unused tickets are paid for.",
+    "where": "src/demos/lifehacks/lh-ticket-bundle-unused/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-ticket-bundle-unused, field recall; restate in meta.json claim lifehacks.lh-ticket-bundle-unused.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-parcel-fee-repeats",
+    "question": "A fictional parcel costs €3 plus €0.50 per item. Shipping ten items in ten separate parcels instead of one costs how much more?",
+    "options": [
+      "€4.50",
+      "€27",
+      "€30"
+    ],
+    "answer": 1,
+    "why": "The per-item charge is the same either way; only the €3 parcel fee repeats, nine extra times: €27.",
+    "where": "src/demos/lifehacks/lh-parcel-fee-repeats/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-parcel-fee-repeats, field recall; restate in meta.json claim lifehacks.lh-parcel-fee-repeats.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-weighted-unit-average",
+    "question": "Fictional material A is €2/kg and B is €8/kg. You combine 3kg of A with 1kg of B. What is the average price per kilogram?",
+    "options": [
+      "€3.50",
+      "€5",
+      "€6.50"
+    ],
+    "answer": 0,
+    "why": "Total price ÷ total mass: (€6 + €8) ÷ 4kg = €3.50. The simple mean (€5) only holds for equal masses.",
+    "where": "src/demos/lifehacks/lh-weighted-unit-average/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-weighted-unit-average, field recall; restate in meta.json claim lifehacks.lh-weighted-unit-average.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-capacity-batch-count",
+    "question": "Ideal carriers hold exactly eight identical objects, which cannot be split. How many batches do 25 objects need?",
+    "options": [
+      "3",
+      "3.125",
+      "4"
+    ],
+    "answer": 2,
+    "why": "25 ÷ 8 = 3.125, and the partial last batch is still a whole trip: 4.",
+    "where": "src/demos/lifehacks/lh-capacity-batch-count/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-capacity-batch-count, field recall; restate in meta.json claim lifehacks.lh-capacity-batch-count.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-cents-euros-conversion",
+    "question": "A euro is 100 cents. How many euros is 305 cents?",
+    "options": [
+      "€30.50",
+      "€3.05",
+      "€0.305"
+    ],
+    "answer": 1,
+    "why": "Divide by 100, the number of cents per euro: €3.05. Dividing by ten gives €30.50.",
+    "where": "src/demos/lifehacks/lh-cents-euros-conversion/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-cents-euros-conversion, field recall; restate in meta.json claim lifehacks.lh-cents-euros-conversion.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  },
+  {
+    "slug": "lh-round-lines-versus-total",
+    "question": "Four fictional lines are each exactly €0.125, rounded half-up to cents. What do you get rounding each line first, and rounding the total once?",
+    "options": [
+      "€0.52 and €0.50",
+      "Both €0.50",
+      "Both €0.52"
+    ],
+    "answer": 0,
+    "why": "Each line rounds to €0.13, so four make €0.52; the exact total €0.50 needs no rounding. Rounding loses information each time.",
+    "where": "src/demos/lifehacks/lh-round-lines-versus-total/meta.json recall (the field the feed renders); same object in src/lib/lifehacks/resource-specs.json, entry slug=lh-round-lines-versus-total, field recall; restate in meta.json claim lifehacks.lh-round-lines-versus-total.c4 text, and drop the old 'recall at x=...' sentence from the c2, c3, c4 source strings"
+  }
+]

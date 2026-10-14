@@ -1,0 +1,626 @@
+[
+ {
+  "slug": "lh-percentage-overage",
+  "claimId": "lifehacks.lh-percentage-overage.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-percentage-overage",
+  "claimId": "lifehacks.lh-percentage-overage.c2",
+  "status": "disputed",
+  "note": "Stage prints ceil((x x 1.1)) but evaluates it in floating point: 50*1.1=55.00000000000001, 100*1.1=110.00000000000001, so the stage shows A=56 at Required=50 (exact 55), A=100 at 90 (exact 99), A=111 at 100 (exact 110) and A=122 at 110 (exact 121); the \"Full scale\" caption shows 133 where the exact maximum is 132. The claim \"results are computed by the printed expressions\" is false at those slider stops. FIX (builder, resource-specs.json): formulaA -> [\"ceil\",[\"/\",[\"*\",\"x\",11],10]] (integer arithmetic, exact for every slider stop). Then recheck A at 50/90/100/110 = 55/99/110/121 and full scale 132."
+ },
+ {
+  "slug": "lh-percentage-overage",
+  "claimId": "lifehacks.lh-percentage-overage.c3",
+  "status": "disputed",
+  "note": "\"The formulas match only at that crossover\" (one hundred) is false. Exactly, ceil(1.1x)=x+ceil(0.1x), equal to x+10 for every 90<x<=100, so the orders match at 95 and 100 on this slider. With the present float bug the stage instead shows a tie at 90 (A=100,B=100) and none at 100 (A=111,B=110), contradicting the sentence a second way. FIX (principle text, also reveal and recall.why, which copy it): replace the last sentence with \"The two orders are equal for requirements from 91 to 100 (95 and 100 on this slider); above 100 the percentage order is larger.\" Keep \"At forty, 10% is four; at one hundred, 10% is ten.\" (both true). Apply together with the c2 formula fix."
+ },
+ {
+  "slug": "lh-percentage-overage",
+  "claimId": "lifehacks.lh-percentage-overage.c4",
+  "status": "verified",
+  "note": "Required=55: B = 55+10 = 65; options 65/61/67, only 65 is B (61 is A, 67 matches nothing). The principle sentence copied into the claim text carries the c3 error; fix with c3."
+ },
+ {
+  "slug": "lh-pool-spare-stock",
+  "claimId": "lifehacks.lh-pool-spare-stock.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-pool-spare-stock",
+  "claimId": "lifehacks.lh-pool-spare-stock.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..20, step 1): all 2 x 20 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-pool-spare-stock",
+  "claimId": "lifehacks.lh-pool-spare-stock.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-pool-spare-stock",
+  "claimId": "lifehacks.lh-pool-spare-stock.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-purchase-plus-running",
+  "claimId": "lifehacks.lh-purchase-plus-running.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-purchase-plus-running",
+  "claimId": "lifehacks.lh-purchase-plus-running.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..8, step 1): all 2 x 8 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-purchase-plus-running",
+  "claimId": "lifehacks.lh-purchase-plus-running.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes. Break-even at 80+36y = 140+18y, y = 3.33 years (not stated to the learner; nothing to check)."
+ },
+ {
+  "slug": "lh-purchase-plus-running",
+  "claimId": "lifehacks.lh-purchase-plus-running.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-purchase-plus-running",
+  "claimId": "lifehacks.lh-purchase-plus-running.c5",
+  "status": "unverified",
+  "note": "Source https://www.energy.gov.au/households/energy-rating unreachable from this environment (proxy 403 on CONNECT; WebFetch DNS failure). The formula kWh = W x h / 1000 and cost = kWh x price is the definition of the kilowatt-hour and is correct; a search surfaced sa.gov.au's appliance running-cost estimator using watts and hours the same way, but I could not read the cited page or its section headings, so the citation itself is unchecked."
+ },
+ {
+  "slug": "lh-reuse-cost-per-use",
+  "claimId": "lifehacks.lh-reuse-cost-per-use.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-reuse-cost-per-use",
+  "claimId": "lifehacks.lh-reuse-cost-per-use.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (40..80, step 5): all 2 x 9 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-reuse-cost-per-use",
+  "claimId": "lifehacks.lh-reuse-cost-per-use.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-reuse-cost-per-use",
+  "claimId": "lifehacks.lh-reuse-cost-per-use.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-round-lines-versus-total",
+  "claimId": "lifehacks.lh-round-lines-versus-total.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-round-lines-versus-total",
+  "claimId": "lifehacks.lh-round-lines-versus-total.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..10, step 1): all 2 x 10 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-round-lines-versus-total",
+  "claimId": "lifehacks.lh-round-lines-versus-total.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes. Checked all 10 slider stops against exact half-up decimal rounding: per-line 0.34 each; totals 0.34,0.67,1.01,1.34,1.68,2.01,2.35,2.68,3.02,3.35 all match the model despite floating point (1.005 stored as 1.00499..., rescued by the +EPSILON)."
+ },
+ {
+  "slug": "lh-round-lines-versus-total",
+  "claimId": "lifehacks.lh-round-lines-versus-total.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-round-replenishment",
+  "claimId": "lifehacks.lh-round-replenishment.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-round-replenishment",
+  "claimId": "lifehacks.lh-round-replenishment.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..24, step 1): all 2 x 24 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-round-replenishment",
+  "claimId": "lifehacks.lh-round-replenishment.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-round-replenishment",
+  "claimId": "lifehacks.lh-round-replenishment.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-round-snack-packs",
+  "claimId": "lifehacks.lh-round-snack-packs.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-round-snack-packs",
+  "claimId": "lifehacks.lh-round-snack-packs.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..15, step 1): all 2 x 15 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-round-snack-packs",
+  "claimId": "lifehacks.lh-round-snack-packs.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-round-snack-packs",
+  "claimId": "lifehacks.lh-round-snack-packs.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-same-energy-new-tariff",
+  "claimId": "lifehacks.lh-same-energy-new-tariff.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-same-energy-new-tariff",
+  "claimId": "lifehacks.lh-same-energy-new-tariff.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..12, step 1): all 2 x 12 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-same-energy-new-tariff",
+  "claimId": "lifehacks.lh-same-energy-new-tariff.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-same-energy-new-tariff",
+  "claimId": "lifehacks.lh-same-energy-new-tariff.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-same-energy-new-tariff",
+  "claimId": "lifehacks.lh-same-energy-new-tariff.c5",
+  "status": "unverified",
+  "note": "Source https://www.energy.gov.au/households/energy-rating unreachable from this environment (proxy 403 on CONNECT; WebFetch DNS failure). The formula kWh = W x h / 1000 and cost = kWh x price is the definition of the kilowatt-hour and is correct; a search surfaced sa.gov.au's appliance running-cost estimator using watts and hours the same way, but I could not read the cited page or its section headings, so the citation itself is unchecked."
+ },
+ {
+  "slug": "lh-scale-recipe-portions",
+  "claimId": "lifehacks.lh-scale-recipe-portions.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-scale-recipe-portions",
+  "claimId": "lifehacks.lh-scale-recipe-portions.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..12, step 1): all 2 x 12 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-scale-recipe-portions",
+  "claimId": "lifehacks.lh-scale-recipe-portions.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-scale-recipe-portions",
+  "claimId": "lifehacks.lh-scale-recipe-portions.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-sequential-discounts",
+  "claimId": "lifehacks.lh-sequential-discounts.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-sequential-discounts",
+  "claimId": "lifehacks.lh-sequential-discounts.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (50..150, step 5): all 2 x 21 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-sequential-discounts",
+  "claimId": "lifehacks.lh-sequential-discounts.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-sequential-discounts",
+  "claimId": "lifehacks.lh-sequential-discounts.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-small-leak-large-duration",
+  "claimId": "lifehacks.lh-small-leak-large-duration.c1",
+  "status": "verified",
+  "note": "Declared hypothetical; 24 h/day, 60 min/h => 1,440 min/day, 1000 mL/L: all correct."
+ },
+ {
+  "slug": "lh-small-leak-large-duration",
+  "claimId": "lifehacks.lh-small-leak-large-duration.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..15, step 1): all 2 x 15 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-small-leak-large-duration",
+  "claimId": "lifehacks.lh-small-leak-large-duration.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-small-leak-large-duration",
+  "claimId": "lifehacks.lh-small-leak-large-duration.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-split-order-fixed-fee",
+  "claimId": "lifehacks.lh-split-order-fixed-fee.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-split-order-fixed-fee",
+  "claimId": "lifehacks.lh-split-order-fixed-fee.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..6, step 1): all 2 x 6 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-split-order-fixed-fee",
+  "claimId": "lifehacks.lh-split-order-fixed-fee.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-split-order-fixed-fee",
+  "claimId": "lifehacks.lh-split-order-fixed-fee.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-standby-days-add-up",
+  "claimId": "lifehacks.lh-standby-days-add-up.c1",
+  "status": "verified",
+  "note": "Declared hypothetical; kWh conversion W x h / 1000 correct. The assumptions line shows \"EUR 0.30/kWh\" but the stage never uses a price (cosmetic: delete it from the assumptions string)."
+ },
+ {
+  "slug": "lh-standby-days-add-up",
+  "claimId": "lifehacks.lh-standby-days-add-up.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (100..400, step 1): all 2 x 301 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-standby-days-add-up",
+  "claimId": "lifehacks.lh-standby-days-add-up.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-standby-days-add-up",
+  "claimId": "lifehacks.lh-standby-days-add-up.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-standby-days-add-up",
+  "claimId": "lifehacks.lh-standby-days-add-up.c5",
+  "status": "unverified",
+  "note": "Source https://www.energy.gov.au/households/energy-rating unreachable from this environment (proxy 403 on CONNECT; WebFetch DNS failure). The formula kWh = W x h / 1000 and cost = kWh x price is the definition of the kilowatt-hour and is correct; a search surfaced sa.gov.au's appliance running-cost estimator using watts and hours the same way, but I could not read the cited page or its section headings, so the citation itself is unchecked."
+ },
+ {
+  "slug": "lh-subtract-openings-area",
+  "claimId": "lifehacks.lh-subtract-openings-area.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-subtract-openings-area",
+  "claimId": "lifehacks.lh-subtract-openings-area.c2",
+  "status": "disputed",
+  "note": "Arithmetic is right (3x-2 and 3x at every width 1-8). But \"Geometry follows the declared dimension relationships\" fails at the slider minimum: the picture draws the 2 m2 opening as a fixed 2 m x 1 m cut-out (28 x 22 px at 14 px/m, 22 px/m) while the panel is Width x 14 px wide, so at Width=1 m the opening (2 m wide) is wider than the panel (1 m), and at 2 m it spans the whole panel. FIX (builder): raise variable.min in resource-specs.json from 1 to 3 (opening then lies inside the panel at every stop; start 4 and recall 7 unchanged) or draw the opening to fit."
+ },
+ {
+  "slug": "lh-subtract-openings-area",
+  "claimId": "lifehacks.lh-subtract-openings-area.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-subtract-openings-area",
+  "claimId": "lifehacks.lh-subtract-openings-area.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-ticket-bundle-unused",
+  "claimId": "lifehacks.lh-ticket-bundle-unused.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-ticket-bundle-unused",
+  "claimId": "lifehacks.lh-ticket-bundle-unused.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..12, step 1): all 2 x 12 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-ticket-bundle-unused",
+  "claimId": "lifehacks.lh-ticket-bundle-unused.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-ticket-bundle-unused",
+  "claimId": "lifehacks.lh-ticket-bundle-unused.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-turn-container-volume",
+  "claimId": "lifehacks.lh-turn-container-volume.c1",
+  "status": "verified",
+  "note": "Declared hypothetical; 1000 cm3 = 1 L correct by definition (litre = dm3). 20 x 10 x 15 cm = 3000 cm3 = 3 L."
+ },
+ {
+  "slug": "lh-turn-container-volume",
+  "claimId": "lifehacks.lh-turn-container-volume.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..30, step 1): all 2 x 30 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-turn-container-volume",
+  "claimId": "lifehacks.lh-turn-container-volume.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-turn-container-volume",
+  "claimId": "lifehacks.lh-turn-container-volume.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-two-for-one-boundary",
+  "claimId": "lifehacks.lh-two-for-one-boundary.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-two-for-one-boundary",
+  "claimId": "lifehacks.lh-two-for-one-boundary.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..9, step 1): all 2 x 9 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-two-for-one-boundary",
+  "claimId": "lifehacks.lh-two-for-one-boundary.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-two-for-one-boundary",
+  "claimId": "lifehacks.lh-two-for-one-boundary.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-use-deadline-tickets",
+  "claimId": "lifehacks.lh-use-deadline-tickets.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-use-deadline-tickets",
+  "claimId": "lifehacks.lh-use-deadline-tickets.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..6, step 1): all 2 x 6 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-use-deadline-tickets",
+  "claimId": "lifehacks.lh-use-deadline-tickets.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes. Q checked: using 4 deadline tickets leaves 2 expiring unused; using 4 others leaves all 6. Slider Used 1-6 only."
+ },
+ {
+  "slug": "lh-use-deadline-tickets",
+  "claimId": "lifehacks.lh-use-deadline-tickets.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-visit-fee-crossover",
+  "claimId": "lifehacks.lh-visit-fee-crossover.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-visit-fee-crossover",
+  "claimId": "lifehacks.lh-visit-fee-crossover.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..10, step 1): all 2 x 10 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-visit-fee-crossover",
+  "claimId": "lifehacks.lh-visit-fee-crossover.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-visit-fee-crossover",
+  "claimId": "lifehacks.lh-visit-fee-crossover.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-voucher-minimum",
+  "claimId": "lifehacks.lh-voucher-minimum.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-voucher-minimum",
+  "claimId": "lifehacks.lh-voucher-minimum.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (10..40, step 1): all 2 x 31 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-voucher-minimum",
+  "claimId": "lifehacks.lh-voucher-minimum.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes. Checked every stop 10-40: discount 0 below EUR 30, EUR 5 from EUR 30 (floor(min(1,x/30)))."
+ },
+ {
+  "slug": "lh-voucher-minimum",
+  "claimId": "lifehacks.lh-voucher-minimum.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-water-meter-units",
+  "claimId": "lifehacks.lh-water-meter-units.c1",
+  "status": "verified",
+  "note": "Declared hypothetical, plus the real conversion 1000 L = 1 m3: exact by definition (litre = dm3 = 0.001 m3; secondary sources, RSC and UKMA, via search; BIPM brochure itself not opened). Verified. Recommend the builder cite a primary source for the conversion rather than \"convention\"."
+ },
+ {
+  "slug": "lh-water-meter-units",
+  "claimId": "lifehacks.lh-water-meter-units.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1000..3000, step 100): all 2 x 21 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-water-meter-units",
+  "claimId": "lifehacks.lh-water-meter-units.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-water-meter-units",
+  "claimId": "lifehacks.lh-water-meter-units.c4",
+  "status": "verified",
+  "note": "Computation right (B keeps digits: 1,800 \"m3\" for 1,800 L; options 1,800/1.8/1,802). Wording risk for the builder, not a factual dispute: the claim text says \"Correct: 1,800m3\" for the deliberately wrong B, which a learner can read as 1,800 L = 1,800 m3. Suggest the recall option be phrased \"1,800m3 (digits kept)\" or the claim text say \"B shows\""
+ },
+ {
+  "slug": "lh-watts-hours-trade",
+  "claimId": "lifehacks.lh-watts-hours-trade.c1",
+  "status": "verified",
+  "note": "Declared hypothetical; 100 W x 1 h = 20 W x 5 h = 0.1 kWh. The assumptions line shows \"tariff=EUR 0.30/kWh\" that the stage never uses (cosmetic)."
+ },
+ {
+  "slug": "lh-watts-hours-trade",
+  "claimId": "lifehacks.lh-watts-hours-trade.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..8, step 1): all 2 x 8 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-watts-hours-trade",
+  "claimId": "lifehacks.lh-watts-hours-trade.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-watts-hours-trade",
+  "claimId": "lifehacks.lh-watts-hours-trade.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-watts-hours-trade",
+  "claimId": "lifehacks.lh-watts-hours-trade.c5",
+  "status": "unverified",
+  "note": "Source https://www.energy.gov.au/households/energy-rating unreachable from this environment (proxy 403 on CONNECT; WebFetch DNS failure). The formula kWh = W x h / 1000 and cost = kWh x price is the definition of the kilowatt-hour and is correct; a search surfaced sa.gov.au's appliance running-cost estimator using watts and hours the same way, but I could not read the cited page or its section headings, so the citation itself is unchecked."
+ },
+ {
+  "slug": "lh-weighted-bill-share",
+  "claimId": "lifehacks.lh-weighted-bill-share.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-weighted-bill-share",
+  "claimId": "lifehacks.lh-weighted-bill-share.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (10..60, step 1): all 2 x 51 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-weighted-bill-share",
+  "claimId": "lifehacks.lh-weighted-bill-share.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-weighted-bill-share",
+  "claimId": "lifehacks.lh-weighted-bill-share.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-weighted-unit-average",
+  "claimId": "lifehacks.lh-weighted-unit-average.c1",
+  "status": "verified",
+  "note": "Declared hypothetical. Ambiguity (not factual): the question says \"at A=2kg\" where A is the Material A mass and the answer buttons also use \"A\"/\"B\" for the mixtures."
+ },
+ {
+  "slug": "lh-weighted-unit-average",
+  "claimId": "lifehacks.lh-weighted-unit-average.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (1..5, step 1): all 2 x 5 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-weighted-unit-average",
+  "claimId": "lifehacks.lh-weighted-unit-average.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-weighted-unit-average",
+  "claimId": "lifehacks.lh-weighted-unit-average.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ },
+ {
+  "slug": "lh-weighted-volume-allocation",
+  "claimId": "lifehacks.lh-weighted-volume-allocation.c1",
+  "status": "verified",
+  "note": "Declared hypothetical inputs; claim text equals the details and assumptions lines the learner sees; no real-world fact asserted."
+ },
+ {
+  "slug": "lh-weighted-volume-allocation",
+  "claimId": "lifehacks.lh-weighted-volume-allocation.c2",
+  "status": "verified",
+  "note": "Re-derived the stage values in node against an independent integer/decimal oracle at every slider stop (4..16, step 1): all 2 x 13 outputs equal (3-decimal display). Start values in the claim text match."
+ },
+ {
+  "slug": "lh-weighted-volume-allocation",
+  "claimId": "lifehacks.lh-weighted-volume-allocation.c3",
+  "status": "verified",
+  "note": "Claim text is identical to the principle shown at reveal. Each sentence re-derived by hand and in node; no hidden assumption; see lesson notes."
+ },
+ {
+  "slug": "lh-weighted-volume-allocation",
+  "claimId": "lifehacks.lh-weighted-volume-allocation.c4",
+  "status": "verified",
+  "note": "Recall answer re-derived in node; marked option is the only correct one among the three distinct options; claim text matches the learner-visible question and why."
+ }
+]

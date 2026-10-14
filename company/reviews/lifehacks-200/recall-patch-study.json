@@ -1,0 +1,1262 @@
+[
+  {
+    "slug": "spaced-beats-cram",
+    "question": "You have four hours to learn vocabulary for a test in two weeks. Which plan fits the research this lesson summarises?",
+    "options": [
+      "Four one-hour sessions on different days",
+      "One four-hour session the night before",
+      "Any split works; only total hours count"
+    ],
+    "answer": 0,
+    "why": "Research on verbal recall generally favours spreading the same study time across sessions; total hours alone do not decide later recall.",
+    "where": "src/demos/lifehacks/spaced-beats-cram/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.spaced-beats-cram.recall",
+      "text": "Research on verbal recall generally favours spreading the same study time across sessions; total hours alone do not decide later recall.",
+      "support": "research",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "cover-before-recall",
+    "question": "You want to check that you know the Spanish words on a two-column list. Which check makes you retrieve each word?",
+    "options": [
+      "Reread both columns side by side",
+      "Fold over the Spanish column, then say each word",
+      "Tick each Spanish word you recognise"
+    ],
+    "answer": 1,
+    "why": "Hiding the answer removes the reading route, so you have to produce it; rereading and recognising still show it to you.",
+    "where": "src/demos/lifehacks/cover-before-recall/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.cover-before-recall.recall",
+      "text": "Hiding the answer removes the reading route, so you have to produce it; rereading and recognising still show it to you.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "one-question-one-card",
+    "question": "A card asks 'Who signed the treaty, where and when?' and you get it half right. What change shows which part you missed?",
+    "options": [
+      "Add more detail to the same card",
+      "Answer the same card faster next time",
+      "Split it into three cards, one fact each"
+    ],
+    "answer": 2,
+    "why": "With one target per cue, each miss points at one fact; a compound card hides which part failed.",
+    "where": "src/demos/lifehacks/one-question-one-card/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.one-question-one-card.recall",
+      "text": "With one target per cue, each miss points at one fact; a compound card hides which part failed.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "cue-needs-a-boundary",
+    "question": "Your notes cover three rivers. Which flashcard cue has exactly one right answer?",
+    "options": [
+      "Length?",
+      "Length of the Nile?",
+      "Which river is long?"
+    ],
+    "answer": 1,
+    "why": "A cue that names its context picks out one fact; 'Length?' could mean any of the three rivers.",
+    "where": "src/demos/lifehacks/cue-needs-a-boundary/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.cue-needs-a-boundary.recall",
+      "text": "A cue that names its context picks out one fact; 'Length?' could mean any of the three rivers.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "reverse-the-flashcard",
+    "question": "You can say 'dog' when you see 'perro'. Which check tests the other direction?",
+    "options": [
+      "See 'perro', say 'dog'",
+      "See both words together",
+      "See 'dog', say 'perro'"
+    ],
+    "answer": 2,
+    "why": "Swapping cue and answer tests the opposite mapping; success in one direction is not a test of the other.",
+    "where": "src/demos/lifehacks/reverse-the-flashcard/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.reverse-the-flashcard.recall",
+      "text": "Swapping cue and answer tests the opposite mapping; success in one direction is not a test of the other.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "rebuild-the-procedure",
+    "question": "You must remember the steps wash, rinse, dry. Which check tests their order, not just the words?",
+    "options": [
+      "Pick the three step words out of a list of six",
+      "Write the three steps in sequence from memory",
+      "Say each step word once, in any order"
+    ],
+    "answer": 1,
+    "why": "Order is checked by comparing positions; recognising the right words says nothing about their sequence.",
+    "where": "src/demos/lifehacks/rebuild-the-procedure/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.rebuild-the-procedure.recall",
+      "text": "Order is checked by comparing positions; recognising the right words says nothing about their sequence.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "note-gap-check",
+    "question": "Your meeting note has three fields: room, day and code. How do you find a value you do not actually know?",
+    "options": [
+      "Cover the values and fill each field from memory",
+      "Reread the note until it feels familiar",
+      "Check that all three fields have a value"
+    ],
+    "answer": 0,
+    "why": "Reconstructing each value exposes the specific gap; a complete-looking note can still hide one you could not produce.",
+    "where": "src/demos/lifehacks/note-gap-check/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.note-gap-check.recall",
+      "text": "Reconstructing each value exposes the specific gap; a complete-looking note can still hide one you could not produce.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "explain-the-link",
+    "question": "Your notes say: alarm rings, then you wake, then you catch the bus. Which check tests the explanation, not just the words?",
+    "options": [
+      "List the three events alphabetically",
+      "Count how many of the events you remember",
+      "Rebuild the chain from cause to result"
+    ],
+    "answer": 2,
+    "why": "The explanation is the ordered links; an alphabetical list or a count drops the cause-and-result order.",
+    "where": "src/demos/lifehacks/explain-the-link/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.explain-the-link.recall",
+      "text": "The explanation is the ordered links; an alphabetical list or a count drops the cause-and-result order.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "apply-not-quote",
+    "question": "Apply the ascending rule to 12, 3 and 8. Which order is correct?",
+    "options": [
+      "12, 8, 3",
+      "12, 3, 8",
+      "3, 8, 12"
+    ],
+    "answer": 2,
+    "why": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it.",
+    "where": "src/demos/lifehacks/apply-not-quote/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.apply-not-quote.recall",
+      "text": "Ascending means smallest to largest: 3 < 8 < 12. Quoting the rule is not the same as applying it.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "separate-confusable-pairs",
+    "question": "Parts BX7 and BX8 are both described as 'mounting bracket'. Which note tells them apart?",
+    "options": [
+      "BX7 bracket, BX8 bracket",
+      "BX7 left bracket, BX8 right bracket",
+      "Mounting bracket, see code"
+    ],
+    "answer": 1,
+    "why": "Confusable codes need a field that differs between them; a shared description fits both.",
+    "where": "src/demos/lifehacks/separate-confusable-pairs/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.separate-confusable-pairs.recall",
+      "text": "Confusable codes need a field that differs between them; a shared description fits both.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "check-confidence-with-output",
+    "question": "You feel sure you know a four-step route. Which gives you evidence you can check?",
+    "options": [
+      "Write the steps, then compare with notes",
+      "Rate your confidence out of ten",
+      "Skim it to see if it feels familiar"
+    ],
+    "answer": 0,
+    "why": "A written attempt can be compared step by step; a feeling of familiarity cannot be checked against anything.",
+    "where": "src/demos/lifehacks/check-confidence-with-output/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.check-confidence-with-output.recall",
+      "text": "A written attempt can be compared step by step; a feeling of familiarity cannot be checked against anything.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "keep-the-error-feedback",
+    "question": "You wrote a five-step sequence from memory. Which feedback tells you what to fix?",
+    "options": [
+      "'That was your third attempt'",
+      "Your attempt beside the target, mismatches marked",
+      "'Not quite, try again'"
+    ],
+    "answer": 1,
+    "why": "Side-by-side comparison locates the wrong position; a count or a bare 'wrong' does not say which item.",
+    "where": "src/demos/lifehacks/keep-the-error-feedback/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.keep-the-error-feedback.recall",
+      "text": "Side-by-side comparison locates the wrong position; a count or a bare 'wrong' does not say which item.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "calendar-needs-travel",
+    "question": "Your calendar is free 10:00–10:30, then a 10:30 meeting 25 minutes away (no delays). How much of that slot is really free?",
+    "options": [
+      "10:00–10:05",
+      "All 30 minutes",
+      "10:25–10:30"
+    ],
+    "answer": 0,
+    "why": "The 25-minute trip occupies 10:05–10:30, so only five minutes remain before you leave.",
+    "where": "src/demos/lifehacks/calendar-needs-travel/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.calendar-needs-travel.recall",
+      "text": "The 25-minute trip occupies 10:05–10:30, so only five minutes remain before you leave.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "buffer-for-a-late-finish",
+    "question": "A call booked 9:00–9:30 may run up to ten minutes over. When should the next task start so an overrun cannot collide?",
+    "options": [
+      "9:30",
+      "9:35",
+      "9:40"
+    ],
+    "answer": 2,
+    "why": "A gap absorbs delay up to its length; ten minutes of overrun needs a ten-minute gap, so 9:40.",
+    "where": "src/demos/lifehacks/buffer-for-a-late-finish/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.buffer-for-a-late-finish.recall",
+      "text": "A gap absorbs delay up to its length; ten minutes of overrun needs a ten-minute gap, so 9:40.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "work-back-from-a-deadline",
+    "question": "A 45-minute report is due at 17:00. What is the latest start?",
+    "options": [
+      "16:15",
+      "16:45",
+      "17:00"
+    ],
+    "answer": 0,
+    "why": "Latest start = deadline minus duration: 17:00 − 45 minutes = 16:15.",
+    "where": "src/demos/lifehacks/work-back-from-a-deadline/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.work-back-from-a-deadline.recall",
+      "text": "Latest start = deadline minus duration: 17:00 − 45 minutes = 16:15.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "meeting-and-preparation",
+    "question": "A 15:00 pitch needs 40 minutes of preparation, and you are free from 14:00. Which booking works?",
+    "options": [
+      "Pitch at 15:00, prep straight after",
+      "Prep 14:20–15:00, then pitch",
+      "Prep 14:40–15:20, alongside the pitch"
+    ],
+    "answer": 1,
+    "why": "Preparation must finish before the event that depends on it, so it needs its own block ending by 15:00.",
+    "where": "src/demos/lifehacks/meeting-and-preparation/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.meeting-and-preparation.recall",
+      "text": "Preparation must finish before the event that depends on it, so it needs its own block ending by 15:00.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "estimate-a-range",
+    "question": "A task takes 20 to 35 minutes. You start at 13:00 and have a fixed call at 13:30. What does checking the longer estimate show?",
+    "options": [
+      "It fits with 10 minutes to spare",
+      "Nothing; the midpoint is enough",
+      "It may run 5 minutes into the call"
+    ],
+    "answer": 2,
+    "why": "At the upper end 13:00 + 35 minutes = 13:35, past the 13:30 call; the short estimate hides that.",
+    "where": "src/demos/lifehacks/estimate-a-range/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.estimate-a-range.recall",
+      "text": "At the upper end 13:00 + 35 minutes = 13:35, past the 13:30 call; the short estimate hides that.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "one-person-two-jobs",
+    "question": "You put 'write report 10:00–11:00' and 'phone cover 10:30–11:00' on two calendar rows. Both are yours. How much time is double-booked?",
+    "options": [
+      "None; they are on separate rows",
+      "60 minutes",
+      "30 minutes"
+    ],
+    "answer": 2,
+    "why": "One person runs one block at a time; 10:30–11:00 is booked twice whichever row it is drawn on.",
+    "where": "src/demos/lifehacks/one-person-two-jobs/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.one-person-two-jobs.recall",
+      "text": "One person runs one block at a time; 10:30–11:00 is booked twice whichever row it is drawn on.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "fit-before-fixed-slot",
+    "question": "A fixed call runs 11:00–11:30. A movable 25-minute task must not overlap it and must be done before the call. What is its latest start?",
+    "options": [
+      "10:35",
+      "11:00",
+      "11:05"
+    ],
+    "answer": 0,
+    "why": "The call cannot move, so the task must end by 11:00: 11:00 − 25 minutes = 10:35.",
+    "where": "src/demos/lifehacks/fit-before-fixed-slot/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.fit-before-fixed-slot.recall",
+      "text": "The call cannot move, so the task must end by 11:00: 11:00 − 25 minutes = 10:35.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "include-the-wrap-up",
+    "question": "A client call runs 14:00–14:45 and needs 15 minutes of notes afterwards. When are you actually free?",
+    "options": [
+      "14:45",
+      "14:30",
+      "15:00"
+    ],
+    "answer": 2,
+    "why": "The notes are required work too: 14:45 + 15 minutes = 15:00.",
+    "where": "src/demos/lifehacks/include-the-wrap-up/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.include-the-wrap-up.recall",
+      "text": "The notes are required work too: 14:45 + 15 minutes = 15:00.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "fragmented-time-does-not-fit",
+    "question": "Your afternoon has free gaps of 20, 15 and 25 minutes. Does a 40-minute task that cannot be split fit?",
+    "options": [
+      "Yes; the gaps total 60 minutes",
+      "No; the longest gap is 25 minutes",
+      "Yes, using the two largest gaps"
+    ],
+    "answer": 1,
+    "why": "An unsplittable task needs one continuous gap at least as long as it; 25 < 40, whatever the total.",
+    "where": "src/demos/lifehacks/fragmented-time-does-not-fit/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.fragmented-time-does-not-fit.recall",
+      "text": "An unsplittable task needs one continuous gap at least as long as it; 25 < 40, whatever the total.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "handoff-after-finish",
+    "question": "Ana drafts 9:00–10:30. Bo reviews for 30 minutes and cannot review a partial draft. When can the review end, at the earliest?",
+    "options": [
+      "9:30",
+      "11:00",
+      "10:30"
+    ],
+    "answer": 1,
+    "why": "The review starts when the draft is released at 10:30, so it ends at 11:00 at the earliest.",
+    "where": "src/demos/lifehacks/handoff-after-finish/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.handoff-after-finish.recall",
+      "text": "The review starts when the draft is released at 10:30, so it ends at 11:00 at the earliest.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "count-setup-in-the-block",
+    "question": "A print job takes 20 minutes plus 10 minutes of printer setup. You have a 25-minute slot. Does it fit?",
+    "options": [
+      "Yes; the job is 20 minutes",
+      "No; it needs 30 minutes",
+      "Yes, with 5 minutes left over"
+    ],
+    "answer": 1,
+    "why": "The booking is setup plus work: 10 + 20 = 30 minutes, more than the 25-minute slot.",
+    "where": "src/demos/lifehacks/count-setup-in-the-block/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.count-setup-in-the-block.recall",
+      "text": "The booking is setup plus work: 10 + 20 = 30 minutes, more than the 25-minute slot.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "arrival-is-not-departure",
+    "question": "You must arrive at 9:00. The trip takes 35 minutes with no delay. When must you leave, at the latest?",
+    "options": [
+      "8:25",
+      "9:00",
+      "8:35"
+    ],
+    "answer": 0,
+    "why": "Departure = arrival minus trip: 9:00 − 35 minutes = 8:25.",
+    "where": "src/demos/lifehacks/arrival-is-not-departure/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.arrival-is-not-departure.recall",
+      "text": "Departure = arrival minus trip: 9:00 − 35 minutes = 8:25.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "reserve-an-unassigned-slot",
+    "question": "Your 9:00–12:00 is fully booked. An urgent 15-minute request arrives. Where can it go without moving anything?",
+    "options": [
+      "Nowhere; no 15 minutes are free",
+      "Anywhere; three hours is plenty",
+      "Into the longest booked task"
+    ],
+    "answer": 0,
+    "why": "Slack is explicit free time; a fully booked morning has none, however long it is.",
+    "where": "src/demos/lifehacks/reserve-an-unassigned-slot/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.reserve-an-unassigned-slot.recall",
+      "text": "Slack is explicit free time; a fully booked morning has none, however long it is.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "short-jobs-clear-a-queue",
+    "question": "Three people wait at one desk with jobs of 2, 8 and 20 minutes, all ready now. Which order gives the least total waiting?",
+    "options": [
+      "2, 8, 20",
+      "20, 8, 2",
+      "8, 2, 20"
+    ],
+    "answer": 0,
+    "why": "Total waiting is the sum of start times: 0 + 2 + 10 = 12 for 2, 8, 20, against 0 + 20 + 28 = 48 for 20, 8, 2.",
+    "where": "src/demos/lifehacks/short-jobs-clear-a-queue/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.short-jobs-clear-a-queue.recall",
+      "text": "Total waiting is the sum of start times: 0 + 2 + 10 = 12 for 2, 8, 20, against 0 + 20 + 28 = 48 for 20, 8, 2.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "earliest-deadline-first",
+    "question": "Job A takes 10 minutes and is due at minute 10. Job B takes 3 minutes and is due at minute 30. Which order misses no deadline?",
+    "options": [
+      "B, then A",
+      "A, then B",
+      "Either order"
+    ],
+    "answer": 1,
+    "why": "A then B finishes A at 10 and B at 13, both on time; B first pushes A to minute 13, past its deadline.",
+    "where": "src/demos/lifehacks/earliest-deadline-first/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.earliest-deadline-first.recall",
+      "text": "A then B finishes A at 10 and B at 13, both on time; B first pushes A to minute 13, past its deadline.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "dependency-before-priority",
+    "question": "'Send invoice' is top priority but needs a signed quote first. Which order is possible?",
+    "options": [
+      "Send the invoice first; it is top priority",
+      "Get the quote, then send the invoice",
+      "Do both at the same moment"
+    ],
+    "answer": 1,
+    "why": "A priority label does not remove a prerequisite; the invoice cannot go before its input exists.",
+    "where": "src/demos/lifehacks/dependency-before-priority/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.dependency-before-priority.recall",
+      "text": "A priority label does not remove a prerequisite; the invoice cannot go before its input exists.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "batch-by-setup",
+    "question": "Tasks: email, call, email, call. Each change between email and calls costs 2 minutes. Which order costs least switching?",
+    "options": [
+      "email, email, call, call",
+      "email, call, email, call",
+      "call, email, call, email"
+    ],
+    "answer": 0,
+    "why": "Grouping needs one switch (2 minutes); alternating needs three (6 minutes).",
+    "where": "src/demos/lifehacks/batch-by-setup/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.batch-by-setup.recall",
+      "text": "Grouping needs one switch (2 minutes); alternating needs three (6 minutes).",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "unlock-the-following-work",
+    "question": "A colleague's 2-hour build cannot start until you send a 5-minute config. You also have 30 minutes of tidying. What first?",
+    "options": [
+      "Do the tidying",
+      "Wait until the colleague asks",
+      "Send the config"
+    ],
+    "answer": 2,
+    "why": "The short input releases the dependent build; doing the tidying first delays the build by 30 minutes.",
+    "where": "src/demos/lifehacks/unlock-the-following-work/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.unlock-the-following-work.recall",
+      "text": "The short input releases the dependent build; doing the tidying first delays the build by 30 minutes.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "do-not-starve-the-long-job",
+    "question": "Three 5-minute jobs and a 20-minute job due at minute 22 are all ready. If you do the short jobs first, when does the long job finish?",
+    "options": [
+      "Minute 20, on time",
+      "Minute 35, late",
+      "Minute 22, just on time"
+    ],
+    "answer": 1,
+    "why": "5 + 5 + 5 + 20 = 35, past minute 22; starting the long job first would finish it at 20.",
+    "where": "src/demos/lifehacks/do-not-starve-the-long-job/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.do-not-starve-the-long-job.recall",
+      "text": "5 + 5 + 5 + 20 = 35, past minute 22; starting the long job first would finish it at 20.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "work-in-process-limit",
+    "question": "Three 10-minute tasks. You either finish them one by one, or rotate 5 minutes on each. When is the first task done in each plan?",
+    "options": [
+      "Minute 10 one by one; minute 20 rotating",
+      "Minute 10 in both plans",
+      "Minute 30 in both plans"
+    ],
+    "answer": 0,
+    "why": "Rotating, the first task gets its second 5 minutes at 15–20, so it completes at 20, not 10.",
+    "where": "src/demos/lifehacks/work-in-process-limit/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.work-in-process-limit.recall",
+      "text": "Rotating, the first task gets its second 5 minutes at 15–20, so it completes at 20, not 10.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "separate-ready-from-blocked",
+    "question": "'Print poster' is blocked until the logo arrives in an hour. 'Book the room' needs nothing. What can you do now?",
+    "options": [
+      "Book the room",
+      "Print the poster without the logo",
+      "Nothing until the logo arrives"
+    ],
+    "answer": 0,
+    "why": "Ready work has its inputs; the poster is blocked, but the room booking can run now.",
+    "where": "src/demos/lifehacks/separate-ready-from-blocked/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.separate-ready-from-blocked.recall",
+      "text": "Ready work has its inputs; the poster is blocked, but the room booking can run now.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "delegate-the-whole-handoff",
+    "question": "You ask Sam to format a report but have not sent him the file yet. When can Sam start?",
+    "options": [
+      "After you send the file",
+      "Right away",
+      "Once the deadline is close"
+    ],
+    "answer": 0,
+    "why": "Delegation includes the handoff; Sam's task has no input until the file arrives.",
+    "where": "src/demos/lifehacks/delegate-the-whole-handoff/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.delegate-the-whole-handoff.recall",
+      "text": "Delegation includes the handoff; Sam's task has no input until the file arrives.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "choose-the-metric-first",
+    "question": "Order X gives less total waiting. Order Y misses no deadline. Which order is better?",
+    "options": [
+      "Depends on the chosen goal",
+      "X; waiting is what counts",
+      "Y; deadlines are what count"
+    ],
+    "answer": 0,
+    "why": "Waiting and lateness measure different things; 'better' needs an objective chosen first.",
+    "where": "src/demos/lifehacks/choose-the-metric-first/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.choose-the-metric-first.recall",
+      "text": "Waiting and lateness measure different things; 'better' needs an objective chosen first.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "file-type-then-owner",
+    "question": "You filter by type = spreadsheet and owner = Lee. Which file matches?",
+    "options": [
+      "budget.xlsx, owner Lee",
+      "budget.xlsx, owner Kim",
+      "notes.docx, owner Lee"
+    ],
+    "answer": 0,
+    "why": "Combined filters keep only files that match both conditions: a spreadsheet owned by Lee.",
+    "where": "src/demos/lifehacks/file-type-then-owner/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.file-type-then-owner.recall",
+      "text": "Combined filters keep only files that match both conditions: a spreadsheet owned by Lee.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "mail-exact-phrase",
+    "question": "You search for \"red car\" in quotes. Which message matches?",
+    "options": [
+      "'The car was red'",
+      "'Red paint, car keys'",
+      "'I saw a red car'"
+    ],
+    "answer": 2,
+    "why": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches.",
+    "where": "src/demos/lifehacks/mail-exact-phrase/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.mail-exact-phrase.recall",
+      "text": "Quotes require the words next to each other in that order; only 'red car' as a sequence matches.",
+      "support": "research",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "mail-minus-noise",
+    "question": "You want messages about 'budget' but not the weekly digest. Which Gmail search fits?",
+    "options": [
+      "budget -digest",
+      "budget OR digest",
+      "budget digest"
+    ],
+    "answer": 0,
+    "why": "The minus sign excludes messages containing 'digest'; OR adds them, and 'budget digest' requires both words.",
+    "where": "src/demos/lifehacks/mail-minus-noise/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.mail-minus-noise.recall",
+      "text": "The minus sign excludes messages containing 'digest'; OR adds them, and 'budget digest' requires both words.",
+      "support": "research",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "file-modified-not-created",
+    "question": "Yesterday you edited a spreadsheet you created in 2019. Which filter finds it as yesterday's work?",
+    "options": [
+      "Created: yesterday",
+      "Modified: yesterday",
+      "Largest files first"
+    ],
+    "answer": 1,
+    "why": "Editing updates the modified date; the created date stays in 2019.",
+    "where": "src/demos/lifehacks/file-modified-not-created/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.file-modified-not-created.recall",
+      "text": "Editing updates the modified date; the created date stays in 2019.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "iso-date-filename-sort",
+    "question": "Which naming makes the 10 March 2025 file sort before the 5 January 2026 file alphabetically?",
+    "options": [
+      "10-03-2025 and 05-01-2026",
+      "2025-03-10 and 2026-01-05",
+      "Mar 10 2025 and Jan 5 2026"
+    ],
+    "answer": 1,
+    "why": "Year-first names put the largest unit first; '05-01-2026' and 'Jan' sort ahead of 2025 as text.",
+    "where": "src/demos/lifehacks/iso-date-filename-sort/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.iso-date-filename-sort.recall",
+      "text": "Year-first names put the largest unit first; '05-01-2026' and 'Jan' sort ahead of 2025 as text.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "version-nine-and-ten",
+    "question": "A plain text sort lists draft1, draft10, draft2. Which names sort as 1, 2, 10?",
+    "options": [
+      "draft1, draft2, draft10",
+      "draft-1, draft-2, draft-10",
+      "draft01, draft02, draft10"
+    ],
+    "answer": 2,
+    "why": "Text sort compares character by character, so '10' comes before '2'; padding to equal width fixes it.",
+    "where": "src/demos/lifehacks/version-nine-and-ten/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.version-nine-and-ten.recall",
+      "text": "Text sort compares character by character, so '10' comes before '2'; padding to equal width fixes it.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "project-prefix-filenames",
+    "question": "You email three attachments from three projects, each named budget.xlsx. Which naming keeps them distinguishable?",
+    "options": [
+      "budget.xlsx, kept in each folder",
+      "Atlas-budget.xlsx and so on",
+      "budget-final.xlsx for each"
+    ],
+    "answer": 1,
+    "why": "The folder does not travel with the attachment; a project prefix in the name does.",
+    "where": "src/demos/lifehacks/project-prefix-filenames/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.project-prefix-filenames.recall",
+      "text": "The folder does not travel with the attachment; a project prefix in the name does.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "show-the-file-extension",
+    "question": "Two files both display as 'invoice'. What tells you which one is the PDF?",
+    "options": [
+      "The modified date",
+      "The extension (.pdf)",
+      "The file size"
+    ],
+    "answer": 1,
+    "why": "The base names match; the extension is the field that differs by format, though it does not verify the contents.",
+    "where": "src/demos/lifehacks/show-the-file-extension/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.show-the-file-extension.recall",
+      "text": "The base names match; the extension is the field that differs by format, though it does not verify the contents.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "tags-are-not-copies",
+    "question": "A recipe is tagged 'dinner' and 'vegan'. You fix a typo after opening it from 'vegan'. What do you see when you open it from 'dinner'?",
+    "options": [
+      "The old typo",
+      "The fixed version",
+      "Nothing; the tag is gone"
+    ],
+    "answer": 1,
+    "why": "Both tags point to one document, so there is only one copy to edit.",
+    "where": "src/demos/lifehacks/tags-are-not-copies/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.tags-are-not-copies.recall",
+      "text": "Both tags point to one document, so there is only one copy to edit.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "equal-names-not-equal-files",
+    "question": "Two files are both named photo.jpg. How do you check whether they are duplicates?",
+    "options": [
+      "The same name is enough",
+      "Compare their folder names",
+      "Compare their contents"
+    ],
+    "answer": 2,
+    "why": "Names can collide; only matching contents show a duplicate.",
+    "where": "src/demos/lifehacks/equal-names-not-equal-files/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.equal-names-not-equal-files.recall",
+      "text": "Names can collide; only matching contents show a duplicate.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "shorter-folder-path",
+    "question": "Path A is home/work/2024/old/report. Path B is home/work/report. How many fewer folders do you open to reach B?",
+    "options": [
+      "One",
+      "None",
+      "Two"
+    ],
+    "answer": 2,
+    "why": "A passes through four folders and B through two; removing '2024' and 'old' saves two levels.",
+    "where": "src/demos/lifehacks/shorter-folder-path/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.shorter-folder-path.recall",
+      "text": "A passes through four folders and B through two; removing '2024' and 'old' saves two levels.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "size-is-not-recency",
+    "question": "You want the last file you worked on. Which sort puts it on top?",
+    "options": [
+      "Size, largest first",
+      "Name, A to Z",
+      "Date modified, newest first"
+    ],
+    "answer": 2,
+    "why": "Size and name do not record when a file changed; sort by the field that answers the question.",
+    "where": "src/demos/lifehacks/size-is-not-recency/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.size-is-not-recency.recall",
+      "text": "Size and name do not record when a file changed; sort by the field that answers the question.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "deleted-is-a-search-state",
+    "question": "A search for 'lease' finds nothing, but you are sure the file existed last week. What should you widen?",
+    "options": [
+      "Search for a longer word",
+      "Sort the results by size",
+      "Include deleted items (trash)"
+    ],
+    "answer": 2,
+    "why": "Active-only search leaves trashed files out; including that state can reveal it, within the product's retention rules.",
+    "where": "src/demos/lifehacks/deleted-is-a-search-state/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.deleted-is-a-search-state.recall",
+      "text": "Active-only search leaves trashed files out; including that state can reveal it, within the product's retention rules.",
+      "support": "research",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "search-the-document-body",
+    "question": "You remember a document mentions 'invoice 4471' but not its title. Which search can find it?",
+    "options": [
+      "Search titles for 4471",
+      "Search document contents for 4471",
+      "Sort titles A to Z"
+    ],
+    "answer": 1,
+    "why": "The number is in the body; a title-only search never looks there.",
+    "where": "src/demos/lifehacks/search-the-document-body/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.search-the-document-body.recall",
+      "text": "The number is in the body; a title-only search never looks there.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "mail-or-vs-and",
+    "question": "5 messages are from Ana, 8 have attachments, and 2 are both. How many messages match 'from Ana OR has an attachment'?",
+    "options": [
+      "11",
+      "2",
+      "13"
+    ],
+    "answer": 0,
+    "why": "OR counts the union: 5 + 8 − 2 shared = 11. AND would keep only the 2.",
+    "where": "src/demos/lifehacks/mail-or-vs-and/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.mail-or-vs-and.recall",
+      "text": "OR counts the union: 5 + 8 − 2 shared = 11. AND would keep only the 2.",
+      "support": "derivation",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "name-the-next-owner",
+    "question": "Which handoff line settles who does what next?",
+    "options": [
+      "'Mina: review the contract'",
+      "'Someone should review the contract'",
+      "'Mina, please look at things'"
+    ],
+    "answer": 0,
+    "why": "It names an owner, an action and an object; one line lacks the owner, the other the object.",
+    "where": "src/demos/lifehacks/name-the-next-owner/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.name-the-next-owner.recall",
+      "text": "It names an owner, an action and an object; one line lacks the owner, the other the object.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "make-a-question-answerable",
+    "question": "Which message asks for a decision someone can settle in one reply?",
+    "options": [
+      "'Venue: Hall A or Hall B? Reply by Friday'",
+      "'Any thoughts on the venue?'",
+      "'Let me know about the venue sometime'"
+    ],
+    "answer": 0,
+    "why": "Named alternatives and a reply time bound the decision; open prompts can mean almost anything.",
+    "where": "src/demos/lifehacks/make-a-question-answerable/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.make-a-question-answerable.recall",
+      "text": "Named alternatives and a reply time bound the decision; open prompts can mean almost anything.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "deadline-needs-a-reference",
+    "question": "Your team works in London and Tokyo. Which deadline means the same moment for both?",
+    "options": [
+      "Friday, end of day",
+      "Friday at 17:00",
+      "16 Oct, 17:00 UTC"
+    ],
+    "answer": 2,
+    "why": "A date, a clock time and a time zone fix one moment; 'end of day' and bare times depend on where you read them.",
+    "where": "src/demos/lifehacks/deadline-needs-a-reference/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.deadline-needs-a-reference.recall",
+      "text": "A date, a clock time and a time zone fix one moment; 'end of day' and bare times depend on where you read them.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "agenda-needs-an-outcome",
+    "question": "Which agenda item says what the meeting must produce?",
+    "options": [
+      "'Budget discussion'",
+      "'Budget: Ravi picks option A or B'",
+      "'Budget update from finance'"
+    ],
+    "answer": 1,
+    "why": "It names the outcome (a choice) and who decides; the others name only a topic.",
+    "where": "src/demos/lifehacks/agenda-needs-an-outcome/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.agenda-needs-an-outcome.recall",
+      "text": "It names the outcome (a choice) and who decides; the others name only a topic.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "record-the-reason",
+    "question": "Six months later someone asks why the team picked supplier B. Which record answers them?",
+    "options": [
+      "'Chose B (approved by Kim, 3 March)'",
+      "'Chose B after a long discussion'",
+      "'Chose B: only one able to deliver by June'"
+    ],
+    "answer": 2,
+    "why": "Only the record with the reason lets a later reader inspect the decision; who and when do not say why.",
+    "where": "src/demos/lifehacks/record-the-reason/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.record-the-reason.recall",
+      "text": "Only the record with the reason lets a later reader inspect the decision; who and when do not say why.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "handoff-needs-a-checkpoint",
+    "question": "You hand a half-done report to a colleague. Which note lets them restart without asking?",
+    "options": [
+      "'Nearly finished, just tidy it up'",
+      "'report-v2 attached, good luck'",
+      "'report-v2: intro done; next, check sources'"
+    ],
+    "answer": 2,
+    "why": "Artifact, last completed step and next check give a restart point; 'nearly finished' gives none.",
+    "where": "src/demos/lifehacks/handoff-needs-a-checkpoint/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.handoff-needs-a-checkpoint.recall",
+      "text": "Artifact, last completed step and next check give a restart point; 'nearly finished' gives none.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "bug-report-needs-reproduction",
+    "question": "Which bug report lets someone try to reproduce the problem?",
+    "options": [
+      "'Total is wrong, please fix'",
+      "'Entered 3 × 4, expected 12, got 7'",
+      "'Calculator broken since the update'"
+    ],
+    "answer": 1,
+    "why": "Input, expected and actual output let someone rerun the same case; a symptom alone does not.",
+    "where": "src/demos/lifehacks/bug-report-needs-reproduction/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.bug-report-needs-reproduction.recall",
+      "text": "Input, expected and actual output let someone rerun the same case; a symptom alone does not.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "request-needs-the-object",
+    "question": "There are three drafts of the proposal. Which request points at one review target?",
+    "options": [
+      "'Please review the proposal'",
+      "'Please review proposal v3, budget section'",
+      "'Please review the latest one'"
+    ],
+    "answer": 1,
+    "why": "Version and scope name exactly what to review; 'the latest' depends on which drafts each reader has.",
+    "where": "src/demos/lifehacks/request-needs-the-object/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.request-needs-the-object.recall",
+      "text": "Version and scope name exactly what to review; 'the latest' depends on which drafts each reader has.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "status-and-blocker-differ",
+    "question": "Which status update tells your manager what is stopping progress?",
+    "options": [
+      "'Draft done; blocked on sales data; asking Bo'",
+      "'Worked on the report all day'",
+      "'Report going well, very busy'"
+    ],
+    "answer": 0,
+    "why": "It separates what is done, the blocker and the next action; activity alone names no obstacle.",
+    "where": "src/demos/lifehacks/status-and-blocker-differ/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.status-and-blocker-differ.recall",
+      "text": "It separates what is done, the blocker and the next action; activity alone names no obstacle.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "link-label-names-the-target",
+    "question": "An email has three links. Which link text tells you where it goes before you click?",
+    "options": [
+      "'Click here'",
+      "'This link'",
+      "'Report v3, sources section'"
+    ],
+    "answer": 2,
+    "why": "A label that names the artifact, version and section states the destination; 'click here' does not.",
+    "where": "src/demos/lifehacks/link-label-names-the-target/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.link-label-names-the-target.recall",
+      "text": "A label that names the artifact, version and section states the destination; 'click here' does not.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "copy-keeps-the-original",
+    "question": "You copy paragraph 2 and paste it at the end. How many instances of paragraph 2 does the document now have?",
+    "options": [
+      "One, at the end",
+      "One, in its old place",
+      "Two"
+    ],
+    "answer": 2,
+    "why": "Copy leaves the source in place and adds an instance at the destination.",
+    "where": "src/demos/lifehacks/copy-keeps-the-original/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.copy-keeps-the-original.recall",
+      "text": "Copy leaves the source in place and adds an instance at the destination.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "cut-moves-the-selection",
+    "question": "In 'A B C D' you cut B and paste it after D. What is the result?",
+    "options": [
+      "A B C D B",
+      "A C D B",
+      "A C D"
+    ],
+    "answer": 1,
+    "why": "Cut removes B from its place; pasting puts it after D.",
+    "where": "src/demos/lifehacks/cut-moves-the-selection/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.cut-moves-the-selection.recall",
+      "text": "Cut removes B from its place; pasting puts it after D.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "undo-then-redo",
+    "question": "A word reads 'cat'. In one edit you change it to 'dog', then press Undo, then Redo. What does it read?",
+    "options": [
+      "dog",
+      "cat",
+      "Nothing; it was deleted"
+    ],
+    "answer": 0,
+    "why": "Undo steps back to 'cat'; Redo reapplies the change to 'dog'.",
+    "where": "src/demos/lifehacks/undo-then-redo/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.undo-then-redo.recall",
+      "text": "Undo steps back to 'cat'; Redo reapplies the change to 'dog'.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "select-before-replace",
+    "question": "Text: 'cat, cat, cat'. You select the second 'cat' and type 'dog'. What is the result?",
+    "options": [
+      "dog, dog, dog",
+      "cat, dog, cat",
+      "dog, cat, cat"
+    ],
+    "answer": 1,
+    "why": "Typing over a selection replaces only that position; replace-all would change every match.",
+    "where": "src/demos/lifehacks/select-before-replace/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.select-before-replace.recall",
+      "text": "Typing over a selection replaces only that position; replace-all would change every match.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "find-next-is-navigation",
+    "question": "You search for 'tax' and press Find next three times. What has changed in the document's text?",
+    "options": [
+      "Three 'tax' words were removed",
+      "Nothing",
+      "Each 'tax' is now bold"
+    ],
+    "answer": 1,
+    "why": "Find moves the highlight between matches; the stored text is unchanged.",
+    "where": "src/demos/lifehacks/find-next-is-navigation/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.find-next-is-navigation.recall",
+      "text": "Find moves the highlight between matches; the stored text is unchanged.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "plain-text-paste-scope",
+    "question": "You paste a bold red heading with 'paste as plain text'. What arrives?",
+    "options": [
+      "The words, still bold and red",
+      "Only the bold and red styling",
+      "The words, without bold or red"
+    ],
+    "answer": 2,
+    "why": "Plain-text paste keeps the words and drops the source styling; exact paste options vary by app.",
+    "where": "src/demos/lifehacks/plain-text-paste-scope/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.plain-text-paste-scope.recall",
+      "text": "Plain-text paste keeps the words and drops the source styling; exact paste options vary by app.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "preview-replace-all",
+    "question": "You plan to replace every 'Dr' with 'Drive' in an address list. What should you check in the preview first?",
+    "options": [
+      "Only the first 'Dr' found",
+      "The spelling of 'Drive'",
+      "Every match, e.g. 'Dr Smith'"
+    ],
+    "answer": 2,
+    "why": "A preview shows the full scope of a replace-all, including matches you did not mean, like the title in 'Dr Smith'.",
+    "where": "src/demos/lifehacks/preview-replace-all/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.preview-replace-all.recall",
+      "text": "A preview shows the full scope of a replace-all, including matches you did not mean, like the title in 'Dr Smith'.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "duplicate-before-experiment",
+    "question": "You want to try a risky reformat of a spreadsheet but may want the old version back. What do you do first?",
+    "options": [
+      "Duplicate it and edit the copy",
+      "Rename it, then edit it",
+      "Edit it, then press Save"
+    ],
+    "answer": 0,
+    "why": "A duplicate keeps the original beside the edited version; renaming or saving still changes the one file.",
+    "where": "src/demos/lifehacks/duplicate-before-experiment/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.duplicate-before-experiment.recall",
+      "text": "A duplicate keeps the original beside the edited version; renaming or saving still changes the one file.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "zoom-does-not-rewrite",
+    "question": "You zoom a document to 200%. What happens to its word count?",
+    "options": [
+      "It stays the same",
+      "It doubles",
+      "It halves"
+    ],
+    "answer": 0,
+    "why": "Zoom changes the view, not the stored text.",
+    "where": "src/demos/lifehacks/zoom-does-not-rewrite/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.zoom-does-not-rewrite.recall",
+      "text": "Zoom changes the view, not the stored text.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  },
+  {
+    "slug": "selection-not-focus",
+    "question": "A is selected in the left panel. You click into the right panel, which holds B, without selecting anything. In this lesson's model, what decides a command's target?",
+    "options": [
+      "The focused panel",
+      "The first item listed",
+      "The selected item"
+    ],
+    "answer": 2,
+    "why": "Focus and selection are separate state; the target is the selected item. Real apps differ in how focus and shortcuts behave.",
+    "where": "src/demos/lifehacks/selection-not-focus/meta.json -> recall (replace question, options, answer, why)",
+    "claim": {
+      "id": "lifehacks.selection-not-focus.recall",
+      "text": "Focus and selection are separate state; the target is the selected item. Real apps differ in how focus and shortcuts behave.",
+      "support": "convention",
+      "status": "unverified"
+    }
+  }
+]
