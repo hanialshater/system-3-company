@@ -104,16 +104,16 @@ export function DemoCard({
  * scroll position means nothing in the new layout. Any other re-fit (the 400 ms re-check, a
  * height-only resize) is skipped once the learner has scrolled the card since the reveal began.
  *
- * Stage crop at the reveal (2026-10-14, review W-237): scrolling alone put the reveal on screen by pushing the top of
- * the stage off the card, so reveal text that points at labels near the top pointed at nothing. Now the
- * fit first scales the stage down (a transform from its top centre, with a negative bottom margin
- * giving back the layout space) until stage + reveal fit the card body, so both are whole on screen.
- * The scale never goes below REVEAL_SCALE_FLOOR; a stage that would need less keeps the floor scale and
- * the card scrolls the remainder as before (the reveal stays fully visible either way). A transform
- * keeps HTML overlays, pointer hit-testing and getScreenCTM correct, which shrinking the svg alone
- * would not. The applied scale is on the stage as data-reveal-scale, for tools/reveal-fit.mjs.
+ * Stage crop at the reveal (2026-10-14, review W-237): scrolling alone put the reveal on screen by
+ * pushing the top of the stage off the card, so reveal text that points at labels near the top pointed
+ * at nothing. Now the fit first shrinks the stage's pictures (svg[viewBox], largest first, via an
+ * inline max-height so the viewBox letterboxes it) until stage + reveal fit the card body. Controls are
+ * never scaled: the QA contract's 24px tap-target rule holds after the reveal (a first version scaled
+ * the whole stage with a transform and broke it). An svg that holds a control is left alone. A picture
+ * never goes below PICTURE_FLOOR of its natural height; what is still over is scrolled as before, so
+ * the reveal stays fully visible either way. Shrunk pictures carry data-reveal-fit (the old height).
  */
-const REVEAL_SCALE_FLOOR = 0.4;
+const PICTURE_FLOOR = 0.4;
 function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
   useEffect(() => {
     const body = bodyRef.current;
@@ -125,25 +125,33 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
     const timers: number[] = [];
     const stageOf = () => body.querySelector<HTMLElement>('[data-testid="stage"]');
     const unscale = (stage: HTMLElement | null) => {
-      if (!stage || stage.dataset.revealScale === undefined) return;
-      stage.style.removeProperty("transform");
-      stage.style.removeProperty("transform-origin");
-      stage.style.removeProperty("margin-bottom");
-      delete stage.dataset.revealScale;
+      stage?.querySelectorAll<SVGSVGElement>("svg[data-reveal-fit]").forEach((svg) => {
+        svg.style.removeProperty("max-height");
+        svg.style.removeProperty("min-height");
+        delete svg.dataset.revealFit;
+      });
     };
     const scaleStage = () => {
       const stage = stageOf();
       if (!stage) return;
       unscale(stage); // measure the natural layout, then fit it
-      const over = body.scrollHeight - body.clientHeight;
-      const h = stage.offsetHeight;
-      if (over <= 1 || h <= 0) return;
-      const k = Math.max(REVEAL_SCALE_FLOOR, Math.min(1, (h - over - 4) / h));
-      if (k >= 0.995) return;
-      stage.style.transformOrigin = "top center";
-      stage.style.transform = `scale(${k.toFixed(4)})`;
-      stage.style.marginBottom = `${(-(1 - k) * h).toFixed(1)}px`;
-      stage.dataset.revealScale = k.toFixed(3);
+      let over = body.scrollHeight - body.clientHeight;
+      if (over <= 1) return;
+      const pictures = [...stage.querySelectorAll<SVGSVGElement>("svg[viewBox]")]
+        .filter((svg) => !svg.closest('[data-qa="control"]') && !svg.querySelector('[data-qa="control"]'))
+        .filter((svg) => !svg.parentElement?.closest("svg")) // outermost svgs only
+        .map((svg) => ({ svg, h: svg.getBoundingClientRect().height }))
+        .filter((p) => p.h >= 60)
+        .sort((x, y) => y.h - x.h);
+      for (const { svg, h } of pictures) {
+        if (over <= 1) break;
+        const target = Math.max(h * PICTURE_FLOOR, h - over - 4);
+        if (h - target < 1) continue;
+        svg.style.setProperty("max-height", `${target.toFixed(1)}px`, "important");
+        svg.style.setProperty("min-height", "0px", "important"); // a lesson min-height would win over max-height
+        svg.dataset.revealFit = h.toFixed(0);
+        over = body.scrollHeight - body.clientHeight;
+      }
     };
     const bringIntoView = () => {
       if (!revealed || userScrolled) return;
