@@ -1,0 +1,19 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
+.chart { max-height: 30dvh; flex-shrink: 0; }
+.axis { stroke: var(--line); stroke-width: 1; }
+.small { fill: var(--muted); font-size: 10px; }
+.big { fill: var(--muted); font-size: 22px; font-weight: 800; }
+.line { fill: none; stroke: var(--domain); stroke-width: 2.5; }
+.ghost { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 3 2; opacity: 0.8; }
+.dot { fill: var(--domain); }
+.endT { fill: var(--fg); font-size: 12px; font-weight: 800; }
+.msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; font-weight: 600; }
+.how { margin: 0; text-align: center; font-size: 0.72rem; color: var(--muted); }
+.chip { min-width: 88px; }
+.hawkT { color: color-mix(in srgb, var(--bad) 75%, var(--fg)); }
+.doveT { color: color-mix(in srgb, var(--good) 75%, var(--fg)); }
+.pay { width: 100%; max-width: 300px; margin: 0 auto; border-collapse: collapse; font-size: 0.8rem; text-align: center; }
+.pay th, .pay td { padding: 2px 6px; border-bottom: 1px solid var(--line); }
+.pay thead th { color: var(--muted); font-weight: 600; }
+.pay tbody th { text-align: left; font-weight: 700; }
+.pay td { font-variant-numeric: tabular-nums; font-weight: 700; }
