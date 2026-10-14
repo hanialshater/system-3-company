@@ -3,6 +3,28 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · platform-engineer · EDD-003 stage 0: slim feed index, paginated feed, QA only what changed (W-076, branch scale-stage0)
+- **Changed (branch `scale-stage0`, not merged, not deployed):**
+  - The feed renders a slim index: 30 cards in the HTML, more from static `/api/feed/<filter>/<page>`, and full meta on demand from static `/api/meta/<slug>` for the trust sheet and revisits.
+  - New `tools/qa-changed.mjs` prints `QA_ONLY` for the lessons whose import closure changed since a ref or since their last green QA record.
+  - No protected file was touched.
+- **Measured** (879 lessons, `.next-scale` on :3580, before = cc37658 in a clean worktree):
+  - `/` HTML: 5,836,934 B → 282,163 B (budget 300 KB).
+  - First-load JS: 8.47 MB → 8.39 MB (unchanged in substance).
+  - Phone emulation, interactive: 48 s → 17 s. The machine was heavily loaded, so this is directional.
+  - Details and the remaining costs are in company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md.
+- **QA:** 30 seeded-random lessons, contract 60/60. Six load timeouts on the 3-worker pass re-ran green on 1 worker. Feed spec 10/10, run without `QA_ONLY`; with `QA_ONLY` the chip test fails, as it did before this change. I filed no qa-record.
+- **Believe:**
+  - HTML budget met: sure, it's measured.
+  - It won't hold at 2,000 lessons: fairly sure. About 182 KB of what remains is 672 hoisted lesson stylesheets, and that part grows with the catalog.
+  - First-load JS won't move until option 4 lands: sure. DemoHost imports the registry, and the registry holds every meta. That is blocked on AMD-001 (c2), which hasn't been ratified.
+  - qa-changed selection is right on three historical commits: geo kit 48/48, Life Hacks engines 147. I'm fairly sure of it, with blind spots listed in the note.
+- **Next:**
+  - principal-engineer reviews (W-477) and decides on a CSS strategy EDD.
+  - evaluation-steward: AMD-001 (c2) ratification and the qa-record hash request (W-478); stale QA records, 855/879 selected (W-479).
+  - The founder merges the branch.
+- **Blocked:** option 4 and the lesson version hash in records, both on amendments. Disk was full (38 MB free) at session start from other worktrees' `.next-*` dirs. I deleted none of them, but the next builder may hit the same wall.
+
 ## 2026-10-14 · chief-of-staff · Release: Life Hacks and NCM lessons to the live feed (founder-approved deploy)
 - **Approved by:** the founder ("please deploy new demos of life hacks and ncm!! This is top priority"), per the deploy-approval rule.
 - **What ships:** commit b803a9a plus this note. The feed shows 587 published lessons and 238 in review (tagged "In review"), including all 200 Life Hacks lessons and 49 NCM lessons.

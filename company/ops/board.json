@@ -1087,7 +1087,7 @@
       "id": "W-076",
       "title": "EDD-001 trigger fired: feed HTML 1.82 MB vs 300 KB, all metas (1.29 MB) on every page; implement slim index + pagination",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-13",
       "links": [],
@@ -1096,7 +1096,8 @@
         "at": "2026-10-13",
         "by": "portfolio-manager",
         "note": "Still real: no slim index or pagination in src/app or src/lib. EDD-001 trigger measured (feed HTML 1.82 MB vs 300 KB; 1.29 MB of metas on every page). Must land before any deploy (F-04)."
-      }
+      },
+      "updated": "2026-10-14"
     },
     {
       "id": "W-077",
@@ -5265,6 +5266,33 @@
       "id": "W-476",
       "title": "Fact-check economics round 3 drafts (all claims unverified): order-of-the-bad-year, tax-now-or-tax-later, everyone-saves-nobody-does (c4: confirm 'paradox of thrift' name), debt-grows-ratio-falls; build notes in company/reviews/<slug>/build.md",
       "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-477",
+      "title": "Review EDD-003 stage 0 on branch scale-stage0 (slim feed index + pagination + tools/qa-changed.mjs): / HTML 5.84 MB -> 282 KB, first-load JS unchanged 8.4 MB (registry metas in DemoHost chunk: option 4 needs AMD-001 c2), 672 hoisted lesson CSS files = ~182 KB of the HTML and over budget again near 2k lessons. Decide: CSS strategy EDD, option 4 sequencing. Note: company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-478",
+      "title": "Bring AMD-001 part (c2) (registry generator to tools/registry.mjs) to ratification: it is the only blocker for EDD-001 option 4, which removes the 4.5 MB meta chunk from every page's first-load JS (measured 2026-10-14, company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md). Also: unnumbered qa-record request there (lesson version hash in the record header).",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-479",
+      "title": "QA records are stale vs code: tools/qa-changed.mjs (default mode) selects 855/879 lessons, 399 because src/kit/controls.tsx changed after their last green record, 201 package.json, 247 own Demo/CSS. Decide whether a full contract run + qa-record is due, and whether feed.spec.ts should ignore QA_ONLY in the chip test (it fails under any sample). Note: company/engineering/notes/2026-10-14-edd-003-stage0-feed-and-qa-changed.md",
+      "owner": "evaluation-steward",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
