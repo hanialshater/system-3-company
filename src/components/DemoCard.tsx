@@ -98,37 +98,74 @@ export function DemoCard({
  * bottom edge and the rest sat below the fold of an unmarked inner scroll: on a phone it read as
  * text clipped under "Why trust this?". The lesson contract (src/kit/Lesson.tsx) is protected, so
  * the card watches the lesson's data-phase from outside instead of the kit scrolling itself.
+ *
+ * W-139 (eng review follow-up 2): while the reveal is showing, the fit re-runs when the card body
+ * resizes (rotation, dvh changes). A width change (the phone turned) always re-fits, because the old
+ * scroll position means nothing in the new layout. Any other re-fit (the 400 ms re-check, a
+ * height-only resize) is skipped once the learner has scrolled the card since the reveal began.
  */
 function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
   useEffect(() => {
     const body = bodyRef.current;
     if (!body || !active || typeof MutationObserver === "undefined") return;
     let revealed = false;
+    let userScrolled = false;
+    let expectedTop = -1; // the scrollTop we set last; any other scroll position is the learner's
+    let lastWidth = body.clientWidth;
     const timers: number[] = [];
     const bringIntoView = () => {
+      if (!revealed || userScrolled) return;
       const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
       if (!reveal) return;
       const b = body.getBoundingClientRect();
       const r = reveal.getBoundingClientRect();
       const below = r.bottom - b.bottom + 4;
       if (below <= 0) return;
-      body.scrollTop += Math.max(0, Math.min(below, r.top - b.top - 12));
+      const by = Math.max(0, Math.min(below, r.top - b.top - 12));
+      if (by < 1) return;
+      body.scrollTop += by;
+      expectedTop = body.scrollTop;
+    };
+    const onScroll = () => {
+      if (revealed && Math.abs(body.scrollTop - expectedTop) > 1) userScrolled = true;
+    };
+    const onIntent = () => {
+      if (revealed) userScrolled = true;
     };
     const onChange = () => {
       const isReveal = body.querySelector('[data-testid="lesson"]')?.getAttribute("data-phase") === "reveal";
       if (isReveal === revealed) return;
       revealed = isReveal;
       if (!isReveal) return;
+      userScrolled = false;
+      expectedTop = body.scrollTop;
       requestAnimationFrame(bringIntoView);
       timers.push(window.setTimeout(bringIntoView, 400)); // a reveal that animates in may still be growing
     };
+    const onResize = () => {
+      const turned = Math.abs(body.clientWidth - lastWidth) > 1;
+      lastWidth = body.clientWidth;
+      if (turned) userScrolled = false;
+      expectedTop = body.scrollTop; // the browser may clamp scrollTop on resize; that is not the learner
+      requestAnimationFrame(bringIntoView);
+    };
     const mo = new MutationObserver(onChange);
     mo.observe(body, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-phase"] });
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(onResize);
+    ro?.observe(body);
+    window.addEventListener("orientationchange", onResize);
+    body.addEventListener("scroll", onScroll, { passive: true });
+    body.addEventListener("wheel", onIntent, { passive: true });
+    body.addEventListener("touchmove", onIntent, { passive: true });
     onChange();
     return () => {
       mo.disconnect();
+      ro?.disconnect();
+      window.removeEventListener("orientationchange", onResize);
+      body.removeEventListener("scroll", onScroll);
+      body.removeEventListener("wheel", onIntent);
+      body.removeEventListener("touchmove", onIntent);
       timers.forEach((t) => clearTimeout(t));
     };
   }, [bodyRef, active]);
 }
-

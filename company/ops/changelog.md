@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-14: platform-engineer W-139 follow-ups to the W-135 reveal fit
+- DemoCard `useRevealFit` re-fits on card-body resize (ResizeObserver + `orientationchange`) while the reveal shows, and stops auto-scrolling once the learner scrolls the card after the reveal (the 400 ms re-check no longer pulls them back; a width change, i.e. rotation, re-arms it). `tools/reveal-fit.mjs --rotate WxH` measures after turning the phone. Full `npm run verify` 1056/1056 before and after. Reveal fit (523 lessons): portrait 515 fit / 0 clip / 7 thumb / 8 unmeasurable; rotated to 844×390 0 clip, top always visible, but 495 need a scroll (the landscape card body is ~164px).
+
 ## 2026-10-14: platform-engineer W-135 reveal fit on phones
 - At the reveal the card body scrolls the reveal into view (DemoCard `useRevealFit`), and `.stage-svg` takes its natural height instead of collapsing to its min-height. Lesson.tsx unchanged. New `tools/reveal-fit.mjs`: at 390×844, 502/509 reveals fully visible (was 257), thumbnails 141 → 6 (lesson-level dvh caps). Note: company/engineering/notes/2026-10-14-W-135-reveal-fit.md.
 
