@@ -294,25 +294,33 @@ async function tabUntil(page, pred, max, seen, ringless) {
 }
 
 
-// Mouse/QA-style pressing: DOM order, once each, only when enabled at press time; two passes.
-async function pressAll(page, waitMs = 250, afterEach) {
+// QA-style pressing: DOM order, once each, only when enabled at press time; the list is re-read each
+// time because stages re-render; later passes pick up controls that were disabled or did not exist.
+async function pressAll(page, waitMs = 250, afterEach, keyboard = false) {
   const sel = '[data-testid="stage"] [data-qa="control"], [data-testid="stage"] input[type=range]';
-  const n = Math.min(await page.locator(sel).count(), 16);
   const done = new Set();
-  for (let pass = 0; pass < 2; pass++) {
-    for (let i = 0; i < n; i++) {
-      if (done.has(i)) continue;
+  let pressedCount = 0;
+  for (let pass = 0; pass < 3; pass++) {
+    for (let i = 0; i < Math.min(await page.locator(sel).count(), 16); i++) {
       const el = page.locator(sel).nth(i);
-      if (!(await el.isEnabled().catch(() => false))) continue;
-      done.add(i);
+      const key = "i" + i;
+      if (done.has(key)) continue;
+      if (!(await el.isEnabled().catch(() => false)) || !(await el.isVisible().catch(() => false))) continue;
+      done.add(key);
+      pressedCount++;
       try {
-        if ((await el.getAttribute("type")) === "range") { await el.focus(); await page.keyboard.press("ArrowRight"); await page.keyboard.press("ArrowRight"); }
+        if ((await el.getAttribute("type")) === "range") {
+          await el.focus();
+          const k = await el.evaluate((e) => (e.value === e.max ? "ArrowLeft" : "ArrowRight"));
+          await page.keyboard.press(k); await page.keyboard.press(k);
+        } else if (keyboard) { await el.focus(); await page.keyboard.press("Enter"); }
         else await el.click({ timeout: 1500 });
       } catch {}
       await sleep(waitMs);
       if (afterEach) await afterEach(i);
     }
   }
+  return pressedCount;
 }
 
 async function keyboardRun(page, findings, add) {
@@ -365,22 +373,10 @@ async function keyboardRun(page, findings, add) {
   if (trap) add("fail", "kit", "keyboard", "Keyboard trap: focus stopped moving during Tab.");
   for (const s of ringless) add("fix", /control|primary|option/.test(s) ? "kit" : "lesson", "focus-visible", `No visible focus indicator on ${s}.`);
 
-  // Activate each control with the keyboard, in DOM order, once each, only if enabled at press time
-  // (this is what QA does, plus a second pass for controls that were disabled on the first).
-  const ids = l1.items.filter((i) => i.inLesson && !/predict|commit|reveal/.test(i.sel)).slice(0, 16).map((i) => ({ id: i.id, range: i.type === "range" || i.role === "slider" }));
-  const pressed = new Set();
-  for (let pass = 0; pass < 2; pass++) {
-    for (const c of ids) {
-      if (pressed.has(c.id)) continue;
-      const ok = await page.evaluate((id) => { const e = document.querySelector(`[data-a11y-id="${id}"]`); if (!e || e.disabled || e.getAttribute("aria-disabled") === "true") return false; e.focus(); return document.activeElement === e; }, c.id);
-      if (!ok) continue;
-      pressed.add(c.id);
-      if (c.range) { await page.keyboard.press("ArrowRight"); await sleep(120); await page.keyboard.press("ArrowRight"); }
-      else await page.keyboard.press("Enter");
-      await sleep(300);
-    }
-  }
-  await sleep(500);
+  const ids = [];
+  const nPressed = await pressAll(page, 300, null, true);
+  info.pressed = nPressed;
+  for (let w = 0; w < 16; w++) { if (await page.evaluate(() => { const b = document.querySelector('[data-testid=reveal-button]'); return !b || !b.disabled; })) break; await sleep(250); }
 
   // REVEAL via keyboard
   const rv = await page.evaluate(() => { const b = document.querySelector('[data-testid=reveal-button]'); return b ? { disabled: b.disabled, text: b.textContent } : null; });
@@ -388,7 +384,7 @@ async function keyboardRun(page, findings, add) {
   if (!rv) {
     add("fail", "lesson", "keyboard", "No reveal button after the keyboard walk-through.");
   } else if (rv.disabled) {
-    add("fail", "lesson", "keyboard", `Reveal stays locked ("${rv.text}") after activating the first ${ids.length} controls with the keyboard (Enter / ArrowRight). A keyboard-only learner may be locked out; check whether the gesture needs a pointer.`);
+    add("fail", "lesson", "keyboard", `Reveal stays locked ("${rv.text}") after activating ${nPressed} controls with the keyboard (Enter / ArrowRight). A keyboard-only learner may be locked out; check whether the gesture needs a pointer.`);
   } else {
     await page.evaluate(() => document.querySelector('[data-testid=reveal-button]').focus());
     await page.keyboard.press("Enter");
@@ -471,6 +467,8 @@ async function scanLesson(browser, slug) {
       }
       // reveal
       const rb = p.locator('[data-testid="reveal-button"]');
+      await rb.waitFor({ state: "visible", timeout: 2000 }).catch(() => {});
+      for (let w = 0; w < 16 && !(await rb.isEnabled().catch(() => false)); w++) await sleep(250);
       if (await rb.isEnabled().catch(() => false)) {
         await rb.click(); await sleep(500);
         contrast.dark.reveal = await p.evaluate(() => window.__a11y.contrastScan());
@@ -510,6 +508,7 @@ async function scanLesson(browser, slug) {
       contrast.light.explore = await p.evaluate(() => window.__a11y.contrastScan());
       await pressAll(p, 250);
       const rb = p.locator('[data-testid="reveal-button"]');
+      for (let w = 0; w < 16 && !(await rb.isEnabled().catch(() => false)); w++) await sleep(250);
       if (await rb.isEnabled().catch(() => false)) { await rb.click(); await sleep(500); contrast.light.reveal = await p.evaluate(() => window.__a11y.contrastScan()); }
       if (SHOTS) await p.screenshot({ path: path.join(SHOTS, slug, "5-reveal-light.png") });
     } finally { await Bc.ctx.close(); }
