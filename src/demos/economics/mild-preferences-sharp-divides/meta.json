@@ -64,12 +64,10 @@
     },
     {
       "id": "economics.mild-preferences-sharp-divides.c5",
-      "text": "In the stage model, each move changes other households' streets: households that were happy at the start become unhappy and move too, and the grid sorts into same-group blocks.",
+      "text": "In the stage model, each move changes other households' streets: households that were content before a tick become unsettled by others' moves, and the grid sorts into same-group blocks.",
       "support": "simulation",
-      "source": "Engine bookkeeping in abm.ts run() (2026-10-14 v2): agent ids move with their agents; 'unsettled[t]' lists agents unhappy after tick t that did not move in it (every unhappy agent moves, so these were happy before the tick); 'cascade' counts distinct agents happy at tick 0 that became unhappy later. Frames are identical to v1 (checked for seeds 1-100 at 10/30/50/70). Threshold 30%, seeds 1-5: 239-263 of 1,440 unhappy at tick 0; cascade 137/143/142/100/95 (matches the fact-checker's NCM-1 tracking); seeds 1-100: cascade 86-164; unsettled at tick 1: 44-78. On the stage each such household gets a red ring for the frame it is unsettled, with a count ('N unsettled by a move'); the reveal quotes the learner's own run's cascade. Blocks: like share ~50% -> ~75% (c1) and all-like share (c9).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Engine bookkeeping in abm.ts run() (2026-10-14 v2): agent ids move with their agents; 'unsettled[t]' lists agents unhappy after tick t that did not move in it (every unhappy agent moves, so these were happy before the tick); 'cascade' counts distinct agents happy at tick 0 that became unhappy later. Frames are identical to v1 (checked for seeds 1-100 at 10/30/50/70). Threshold 30%, seeds 1-5: 239-263 of 1,440 unhappy at tick 0; cascade 137/143/142/100/95 (matches the fact-checker's NCM-1 tracking); seeds 1-100: cascade 86-164; unsettled at tick 1: 44-78. On the stage each such household gets a red ring for the frame it is unsettled, with a count ('N unsettled by a move'); the reveal quotes the learner's own run's cascade. v4 (2026-10-14 polish): the stage shows a running total 'N unsettled now, M so far' = sum of unsettled[t].length over ticks 0..t (a household can be counted in more than one tick); the reveal quotes that total at the run's end (seed 2, 30%: 165 over 13 ticks; seed 1: 157; seed 3: 162), not the distinct 'cascade' count, which is no longer shown. Blocks: like share ~50% -> ~75% (c1) and all-like share (c9).",
+      "status": "unverified"
     },
     {
       "id": "economics.mild-preferences-sharp-divides.c6",
@@ -127,7 +125,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:schelling-segregation",
     "also": [],
