@@ -13,13 +13,10 @@ import { Control, Row } from "@/kit/controls";
 import { useEffect, useRef, useState } from "react";
 import s from "./styles.module.css";
 
-const STARTS: [number, number][] = [
-  [2, 30],
-  [3, 20],
-  [4, 15],
-  [5, 12],
-  [6, 10],
-];
+const STARTS_BY: Record<number, [number, number][]> = {
+  60: [[2, 30], [3, 20], [4, 15], [5, 12], [6, 10]],
+  84: [[2, 42], [3, 28], [4, 21], [6, 14], [7, 12]],
+};
 
 type Node = { v: number; kids?: [Node, Node] };
 
@@ -74,35 +71,38 @@ function layout(root: Node): Placed[] {
   return out;
 }
 
-const primeClass = (v: number) => (v === 2 ? s.p2 : v === 3 ? s.p3 : s.p5);
+const primeClass = (v: number) => (v === 2 ? s.p2 : v === 3 ? s.p3 : s.p5); // 5 and 7 share a colour
 
 export default function OneRecipeForSixty({ slug }: { slug: string }) {
   const [start, setStart] = useState<number | null>(null);
-  const [tried, setTried] = useState<number[]>([]);
+  const [tried, setTried] = useState<number[]>([]); // first splits of 60 tried
+  const [num, setNum] = useState(60);
+  const [tried84, setTried84] = useState<number[]>([]);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: "Break 60 into primes by splitting it into factors, then splitting those, and so on. How many different prime recipes can you get (order ignored)?",
+        question: "Break 60 into primes (numbers that cannot be split further, like 2, 3, 5, 7) by splitting it into factors, then splitting those. How many different prime recipes can you get (order ignored)?",
         options: ["1", "2", "3"],
         answer: 0,
       }}
-      exploreHint="Start 60 three different ways and compare the primes at the bottom."
+      exploreHint="Start 60 three different ways and compare the primes at the bottom. Then try 84."
       reveal={() => (
         <>
           <p>
-            <strong>Just one.</strong> Different starts grow different trees: 6 × 10 splits into 2 · 3 and 2 · 5,
-            4 × 15 into 2 · 2 and 3 · 5. But every entry on your shelf read 2 · 2 · 3 · 5.
+            <strong>Just one.</strong> You started 60 as {tried.map((i) => STARTS_BY[60][i].join(" × ")).join(", ")}.
+            Different starts grow different trees, but every entry on your shelf read 2 · 2 · 3 · 5.
+            {tried84.length > 0 ? ` 84 did the same: every start you tried ended in 2 · 2 · 3 · 7.` : ""}
           </p>
           <p>
-            That is no accident with 60. Every whole number above 1 breaks into primes in exactly one way, apart from
+            That is no accident with 60 or 84. Every whole number above 1 breaks into primes in exactly one way, apart from
             order. Primes are the atoms of multiplication, and each number has one recipe.
           </p>
         </>
       )}
     >
-      {(ctx) => <Stage {...ctx} start={start} setStart={setStart} tried={tried} setTried={setTried} />}
+      {(ctx) => <Stage {...ctx} start={start} setStart={setStart} tried={tried} setTried={setTried} num={num} setNum={setNum} tried84={tried84} setTried84={setTried84} />}
     </Lesson>
   );
 }
@@ -114,9 +114,17 @@ function Stage({
   setStart,
   tried,
   setTried,
+  num,
+  setNum,
+  tried84,
+  setTried84,
 }: StageContext & {
+  num: number;
+  setNum: (v: number) => void;
+  tried84: number[];
+  setTried84: (v: number[]) => void;
   start: number | null;
-  setStart: (v: number) => void;
+  setStart: (v: number | null) => void;
   tried: number[];
   setTried: (v: number[]) => void;
 }) {
@@ -129,19 +137,21 @@ function Stage({
     }
   }, [locked, tried, interact]);
 
-  const root: Node = start === null ? { v: 60 } : { v: 60, kids: [grow(STARTS[start][0]), grow(STARTS[start][1])] };
+  const STARTS = STARTS_BY[num];
+  const list = num === 60 ? tried : tried84;
+  const root: Node = start === null ? { v: num } : { v: num, kids: [grow(STARTS[start][0]), grow(STARTS[start][1])] };
   const nodes = layout(root);
   const bottom = start === null ? [] : leaves(root).sort((a, b) => a - b);
 
   const pick = (i: number) => {
     setStart(i);
     setReplay((r) => r + 1);
-    if (!tried.includes(i)) setTried([...tried, i]);
+    if (!list.includes(i)) (num === 60 ? setTried : setTried84)([...list, i]);
   };
 
   return (
     <div className={s.wrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={start === null ? "60, not yet split" : `60 split as ${STARTS[start].join(" times ")}`}>
+      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={start === null ? `${num}, not yet split` : `${num} split as ${STARTS[start].join(" times ")}`}>
         <g key={replay}>
           {nodes.map((n, i) =>
             n.px !== undefined && n.py !== undefined ? (
@@ -163,18 +173,18 @@ function Stage({
         {locked
           ? "Make a prediction to start."
           : start === null
-            ? "Pick a first split for 60. Branches stop at primes (coloured)."
-            : tried.length < 3
+            ? `Pick a first split for ${num}. Branches stop at primes: numbers that cannot be split (coloured).`
+            : list.length < 3
               ? `Primes, in order: ${bottom.join(" · ")}. Try another start.`
               : `Every start ends in ${bottom.join(" · ")}.`}
       </p>
 
-      {tried.length > 0 && (
+      {list.length > 0 && (
         <ul className={s.shelf} aria-label="Trees you have grown">
-          {tried.map((i) => (
+          {list.map((i) => (
             <li key={i}>
               <span className={s.from}>{STARTS[i].join("×")}</span>
-              {[...leaves({ v: 60, kids: [grow(STARTS[i][0]), grow(STARTS[i][1])] })]
+              {[...leaves({ v: num, kids: [grow(STARTS[i][0]), grow(STARTS[i][1])] })]
                 .sort((a, b) => a - b)
                 .map((p, j) => (
                   <span key={j} className={`${s.chip} ${primeClass(p)}`}>
@@ -188,10 +198,19 @@ function Stage({
 
       <Row>
         {STARTS.map(([a, b], i) => (
-          <Control key={i} disabled={locked} onClick={() => pick(i)} className={start === i ? "active" : ""} aria-pressed={start === i} aria-label={`Split 60 as ${a} times ${b}`}>
+          <Control key={i} disabled={locked} onClick={() => pick(i)} className={start === i ? "active" : ""} aria-pressed={start === i} aria-label={`Split ${num} as ${a} times ${b}`}>
             {a} × {b}
           </Control>
         ))}
+        <Control
+          disabled={locked}
+          onClick={() => {
+            setNum(num === 60 ? 84 : 60);
+            setStart(null);
+          }}
+        >
+          {num === 60 ? "Try 84 instead" : "Back to 60"}
+        </Control>
       </Row>
     </div>
   );

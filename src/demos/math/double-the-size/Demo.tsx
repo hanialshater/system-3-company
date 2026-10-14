@@ -26,16 +26,16 @@ export default function DoubleTheSize({ slug }: { slug: string }) {
         options: ["2", "4", "3"],
         answer: 1,
       }}
-      exploreHint="Grow the pizza to 12 inches and count the small boxes."
+      exploreHint="Grow the pizza to 12 inches and count the 6-inch boxes."
       reveal={() => (
         <>
           <p>
             <strong>Four.</strong> Doubling the width also doubles the height, so the 12-inch box holds 2 × 2 = 4 of the
-            6-inch boxes. A pizza fills the same share of its box at any size, so the big pizza is 4 small ones.
+            6-inch boxes, each the size of one 6-inch pizza's box. A pizza fills the same share of its box at any size, so the big pizza is 4 small ones.
           </p>
           <p>
             Scale every length by k and the area grows by k × k: three times as wide is 9 times the pizza, four times is
-            16. This works for any shape, not just circles.
+            16. Slide to 18 and 24 inches to see 9 and 16 boxes.
           </p>
         </>
       )}
@@ -83,10 +83,10 @@ function Stage({ locked, interact, k, setK }: StageContext & { k: number; setK: 
         {locked
           ? "Make a prediction to start."
           : k === 1
-            ? "One 6-inch pizza in its box. Make it wider."
+            ? "One 6-inch pizza in its box, one box of area. Make it wider: try 12 inches."
             : asSmall
-              ? `${k * k} six-inch pizzas fill the box just as much as one ${6 * k}-inch.`
-              : `${k}× as wide and ${k}× as tall: ${k} × ${k} = ${k * k} small boxes.`}
+              ? `${k * k} six-inch pizzas, each leaving the same corners empty, hold as much pizza as one ${6 * k}-inch.`
+              : `${k}× as wide and ${k}× as tall: ${k} × ${k} = ${k * k} six-inch boxes.`}
       </p>
 
       <Slider label="Pizza width" value={k} min={1} max={4} disabled={locked} format={(v) => `${6 * v} inches`} onChange={setK} />
@@ -94,7 +94,7 @@ function Stage({ locked, interact, k, setK }: StageContext & { k: number; setK: 
         <Control disabled={locked} onClick={() => setAsSmall(!asSmall)} className={asSmall ? "active" : ""} aria-pressed={asSmall}>
           {asSmall ? "Show one big pizza" : "Fill with 6-inch pizzas"}
         </Control>
-        <Readout label="Small boxes" value={locked ? "?" : k * k} />
+        <Readout label="6-inch boxes" value={locked ? "?" : k * k} />
       </Row>
     </div>
   );

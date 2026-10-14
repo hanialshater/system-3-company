@@ -58,6 +58,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "text": "You added some nines, and the gap went from 0.1 down to 0.00...01 (one tenth smaller per nine). Is any positive number below 0.1, 0.01, 0.001... every one? No. Only 0 is.",
+      "support": "derivation",
+      "source": "Same argument as c3 (a positive number r is beaten by 10^-n once n is large enough); the reveal and caption quote the learner's own number of nines, via gap(n) in Demo.tsx (10^-n).",
+      "id": "math.nines-without-end.c5",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:repeating-nine",
     "prerequisites": [
@@ -92,5 +99,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

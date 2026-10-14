@@ -7,3 +7,8 @@
 - The stage says "place" and "row" rather than "diagonal"/"index". The reveal names Cantor's diagonal argument and claims no more than "no list holds them all".
 - After screenshots: the first draft's mid-run caption named only the first flipped row. It now counts the rows done.
 - All claims unverified, for the fact-checker.
+
+## Revision v2
+
+From the adult-beginner learner review. The learner now chooses: first tap writes the opposite digit, a second tap copies it (row turns red: not escaping that row). Added 'Try row 1,000,000' (enabled once all 8 are flipped) to show the endless case. Reveal quotes what was done and is shorter so the conclusion survives the phone fold. c2 edited, c4 added.
+All new or edited claims are unverified, for the fact-checker.

@@ -29,7 +29,7 @@ export default function DigitsAreLogs({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "2 doubled again and again: 2, 4, 8, 16, … After 100 doublings you reach 2¹⁰⁰. How many digits does it have?",
+        question: "2 doubled again and again: 2, 4, 8, 16, … (ten doublings give 1024). After 100 doublings you reach 2¹⁰⁰. How many digits does it have?",
         options: ["21", "31", "100"],
         answer: 1,
       }}
@@ -104,12 +104,15 @@ function Stage({ locked, interact, n, setN }: StageContext & { n: number; setN: 
               <text x={x} y={75} textAnchor="middle" className={s.tickLabel}>
                 {d}
               </text>
+              <text x={x - ((digitsAt(d) - digitsAt(d - 10)) * CELL) / 2} y={63} textAnchor="middle" className={s.plus}>
+                +{digitsAt(d) - digitsAt(d - 10)}
+              </text>
             </g>
           );
         })}
         {n >= 10 && (
           <text x={X0} y={91} className={s.axis}>
-            ticks: strip length after 10, 20, 30 … doublings
+            ticks mark the strip's length after 10, 20, 30 … doublings
           </text>
         )}
       </svg>
@@ -119,7 +122,7 @@ function Stage({ locked, interact, n, setN }: StageContext & { n: number; setN: 
           ? "Make a prediction to start."
           : n < 10
             ? "Each doubling is ×2. Ten of them are ×1024, about ×1000."
-            : "Every 10 doublings: ×1024, about ×1000, so about 3 more digits."}
+            : "Every 10 doublings: ×1024, about ×1000. Times 1000 adds three zeros, so 3 more digits."}
       </p>
 
       <Slider label="Doublings" value={n} min={0} max={MAX} disabled={locked} onChange={(v) => { setRunning(false); setN(v); }} />

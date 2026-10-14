@@ -58,6 +58,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "text": "Ten doublings give 1024. Times 1000 adds three zeros, so about 3 more digits; on the strip each 10 doublings add +3.",
+      "support": "derivation",
+      "source": "2^10 = 1024 (c1); multiplying a number by 1000 appends three zeros, adding 3 digits; the stage's +3 labels are digitsAt(d) - digitsAt(d - 10) for d = 10..100 (see c3).",
+      "id": "math.digits-are-logs.c5",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:logarithm-as-digit-count",
     "prerequisites": [
@@ -92,5 +99,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }
