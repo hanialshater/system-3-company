@@ -1,0 +1,7 @@
+.wrap { display: flex; flex-direction: column; gap: 6px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
+.svg { touch-action: none; cursor: crosshair; }
+.ax { fill: var(--muted); font-size: 9px; font-weight: 600; }
+.hit { fill: var(--fg); font-size: 10px; font-weight: 800; pointer-events: none; }
+.dot { cursor: grab; }
