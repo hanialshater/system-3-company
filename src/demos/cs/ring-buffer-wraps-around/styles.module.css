@@ -1,0 +1,8 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; }
+.note { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.3em; }
+.v { fill: var(--fg); font-size: 22px; font-weight: 900; }
+.vOn { fill: #0d0f14; font-size: 22px; font-weight: 900; }
+.slot { fill: var(--muted); font-size: 11px; font-weight: 700; }
+.gone { fill: var(--muted); font-size: 12px; font-weight: 700; text-decoration: line-through; }
+.oldest { fill: var(--warn); font-size: 11px; font-weight: 800; }

@@ -1,0 +1,109 @@
+{
+  "slug": "cut-the-rod-for-more",
+  "title": "Cut the rod for more money",
+  "hook": "A length-4 rod sells for $9 whole. Can cutting it ever pay more?",
+  "domain": "cs",
+  "concept": "rod-cutting",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "smaller answers combine into bigger ones (ways-to-make-ten)",
+      "adding prices"
+    ],
+    "doesNotKnow": [
+      "that the best price of a rod asks for the best price of every shorter rod",
+      "rod cutting as dynamic programming"
+    ]
+  },
+  "misconception": "The most money comes from selling the rod whole, or cutting off the best-priced piece once.",
+  "objective": "The learner can explain that the best price of a rod is the largest, over every first-piece length, of that piece's price plus the best price of the rest, so with prices $1, $5, $8, $9 the length-4 rod is worth $10 as 2 + 2, more than $9 whole.",
+  "claims": [
+    {
+      "id": "cs.cut-the-rod-for-more.c1",
+      "text": "Prices: a piece of length 1 sells for $1, length 2 for $5, length 3 for $8, and length 4 (the whole rod) for $9.",
+      "support": "convention",
+      "source": "The lesson's price list (PRICE in Demo.tsx), the first four prices of the CLRS rod-cutting example (CLRS 4e section 14.1, Figure 14.1; 3e section 15.1, Figure 15.1).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-rod-for-more.c2",
+      "text": "With these prices, best(1) to best(4) are $1, $5, $8, $10; the length-4 rod's best is two pieces of length 2 ($5 + $5 = $10), which beats selling it whole ($9) and cutting off a length-3 piece and selling the leftover ($8 + $1 = $9).",
+      "support": "simulation",
+      "source": "Demo.tsx solve() (the recurrence below) gives 1, 5, 8, 10 with best cut 2 + 2. Builder's node script (2026-10-14) enumerated all 8 ordered cuttings of length 4: 4, 7, 7, 9, 7, 10, 9, 9; only 2 + 2 reaches 10.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-rod-for-more.c3",
+      "text": "The best price of a rod is the largest, over every first-piece length, of that piece's price plus the best price of the rest (stage: 'best(n) = largest of: first piece + best of the rest'; the choice list shows each cut k: price(k) + best(n - k)).",
+      "support": "source",
+      "source": "CLRS 4e section 14.1, recurrence r(n) = max over 1 <= i <= n of (p(i) + r(n - i)), with r(0) = 0; it relies on optimal substructure (the rest of an optimal cutting is itself cut optimally), same section.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-rod-for-more.c4",
+      "text": "Each shorter rod is solved once and reused.",
+      "support": "derivation",
+      "source": "Bottom-up order in Demo.tsx: best(n) reads only best(0..n-1), which are already in the table, so each length is computed once (n lengths, at most n choices each: O(n^2) work). CLRS 4e section 14.1, BOTTOM-UP-CUT-ROD.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.cut-the-rod-for-more.c5",
+      "text": "With prices 1, 5, 8, 9, 10, 17, 17, 20 for lengths 1 to 8, a length-8 rod sells for $22 (pieces 2 + 6), not $20 whole.",
+      "support": "simulation",
+      "source": "Demo.tsx BIG = solve([1, 5, 8, 9, 10, 17, 17, 20]): best(8) = 22, first cut found 2 then 6 (5 + 17). Builder's node script (2026-10-14) agrees. The prices are CLRS 4e Figure 14.1 (lengths 1-8), whose text gives r(8) = 22 from 2 + 6.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You know the best price for every rod shorter than 5. How do you find the best price for a rod of length 5?",
+    "options": [
+      "For each first piece, add its price to the best price of what is left, and keep the largest",
+      "Compare selling it whole with cutting off the most expensive piece",
+      "List every way to cut it and price each one from scratch"
+    ],
+    "answer": 0,
+    "why": "The rest of a best cutting is itself cut the best way, so the best for 5 is the largest of price(k) + best(5 - k). The shorter answers are already known, so nothing is recomputed."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:rod-cutting",
+    "also": [],
+    "prerequisites": [
+      "cs:memoization",
+      "cs:coin-change-ways"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 14,
+        "section": "14.1"
+      }
+    ],
+    "tags": [
+      "dynamic-programming",
+      "optimal-substructure",
+      "rod-cutting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "slug": "ring-buffer-wraps-around",
+  "title": "The buffer that bites its own tail",
+  "hook": "Four slots, ten numbers. Where does each one land if nothing ever shifts?",
+  "domain": "cs",
+  "concept": "circular-buffer",
+  "format": "single-card",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a queue lets items leave in arrival order (back-button-stack)",
+      "an array has numbered slots"
+    ],
+    "doesNotKnow": [
+      "that a fixed array with a wrapping index keeps the newest N items with no copying",
+      "that the write position is the count mod the capacity"
+    ]
+  },
+  "misconception": "A queue in an array must shift every item left when one leaves.",
+  "objective": "The learner can explain that a ring buffer writes item i into slot (i - 1) mod capacity, overwriting the oldest, so after writing 1 to 10 into 4 slots they read 9, 10, 7, 8: the newest four, with the next write at slot 10 mod 4 = 2 and nothing ever shifted.",
+  "claims": [
+    {
+      "id": "cs.ring-buffer-wraps-around.c1",
+      "text": "Writing 1 to 10 into a 4-slot ring buffer, item i goes into slot (i - 1) mod 4: 5 and 9 land on slot 0, 6 and 10 on slot 1, so the slots read 9, 10, 7, 8 (the newest four, 7 to 10). The next write goes to slot 2, over 7, the oldest.",
+      "support": "simulation",
+      "source": "Demo.tsx history(10) (FINAL, NEXT_AFTER); builder's node script (2026-10-14): slots [9, 10, 7, 8], next slot 10 mod 4 = 2. The stage's per-write note ('Wrote n into slot j, over m') and struck-out values come from the same history().",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ring-buffer-wraps-around.c2",
+      "text": "The write pointer is (count mod capacity): after 10 writes, 10 mod 4 = 2.",
+      "support": "derivation",
+      "source": "Slots are numbered from 0 and filled in turn, so after count writes the next free position is count; wrapping at the capacity gives count mod capacity. Equivalent to the wrap-around tail index of an array queue in CLRS 4e chapter 10 (section 10.1, ENQUEUE: if Q.tail == Q.size then Q.tail = 1 else Q.tail + 1, one-based).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ring-buffer-wraps-around.c3",
+      "text": "Each write touches one slot and nothing shifts, so the buffer always holds the latest 4 items in the same fixed memory.",
+      "support": "derivation",
+      "source": "A write stores one value at the pointer and advances the pointer: constant work, no other slot read or moved, and the array is allocated once at the capacity. Once full, the overwritten slot always holds the oldest item (it was written exactly capacity writes ago), so the slots hold the latest capacity items. CLRS 4e chapter 10 (array queue with wrap-around: O(1) per operation).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.ring-buffer-wraps-around.c4",
+      "text": "Logs, audio streams and keyboard queues rely on it.",
+      "support": "source",
+      "source": "Logs: the Linux kernel log buffer is a ring buffer (dmesg(1) man page: 'print or control the kernel ring buffer'). Audio: ALSA's PCM interface exchanges samples through a ring buffer (ALSA project documentation, 'PCM (digital audio) interface', ring buffer section). Keyboard: the IBM PC BIOS keeps keystrokes in a 16-word circular buffer at 0040:001E with head and tail pointers (IBM PC Technical Reference, BIOS listing; also Ralf Brown's memory map). Builder has not opened these sources in this session; needs checking.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ring buffer has 8 slots, numbered 0 to 7. Items 1 to 20 have been written. Which slot does item 21 go into?",
+    "options": [
+      "Slot 4, over item 13",
+      "Slot 7, after everything shifts left",
+      "Slot 5, over item 5"
+    ],
+    "answer": 0,
+    "why": "The pointer is the count mod the capacity: 20 mod 8 = 4. Slot 4 last held item 13, the oldest of the 8 kept (13 to 20); nothing shifts."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:circular-buffer",
+    "also": [],
+    "prerequisites": [
+      "cs:stack-and-queue",
+      "cs:linked-list-vs-array"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [
+      {
+        "work": "clrs-4e",
+        "chapter": 10
+      }
+    ],
+    "tags": [
+      "queue",
+      "modular-index",
+      "fixed-memory"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "locked-readouts",
+    "milestone-gate"
+  ]
+}
