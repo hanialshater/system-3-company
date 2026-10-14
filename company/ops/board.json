@@ -3806,11 +3806,12 @@
       "id": "W-332",
       "title": "W-330 fold at the reveal: EDD then build (after W-287). Per-row opt-in on Row (src/kit/controls.tsx), fold only in reveal phase when stage+reveal overflow, fold BEFORE picture shrink, one 'Show controls' kit button (>=44px, aria-expanded, data-qa=control) at the first folded row; expand restores DOM order, natural size, state (display:none only, never height/scale/visibility). No src/kit/Lesson.tsx change; if the EDD needs one, stop and route to evaluation-steward. Spec: company/decisions/2026-10-14-reveal-fits-with-its-picture.md (Amendment, W-330)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "note": "2026-10-14 design-lead (W-347): spec revised with the five W-335 changes (Amendment items 1-8): evidence opt-in test (no Readout rows, kit-enforced), net-saving gate >= toggle height, fold decided once before the reveal's first paint, label 'Show more controls' when other stage controls stay visible, focus/no-scroll-jump rules. Build constraints in W-348. The title's 'Show controls' label is superseded by item 4."
+      "note": "2026-10-14 design-lead (W-347): spec revised with the five W-335 changes (Amendment items 1-8): evidence opt-in test (no Readout rows, kit-enforced), net-saving gate >= toggle height, fold decided once before the reveal's first paint, label 'Show more controls' when other stage controls stay visible, focus/no-scroll-jump rules. Build constraints in W-348. The title's 'Show controls' label is superseded by item 4.",
+      "updated": "2026-10-14"
     },
     {
       "id": "W-333",
@@ -3958,19 +3959,21 @@
       "id": "W-348",
       "title": "W-332 EDD constraints from the W-335 design review (company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted): net-saving gate (sum of folded row heights incl. margins minus toggle >= 44 px, else no fold); fold applied in the same layout pass that first shows the reveal (useLayoutEffect or before rAF paint), never from the 400 ms timer or resize; never fold a Row containing a Readout; label variant 'Show more controls' when any other [data-qa=control] on the stage stays visible; if document.activeElement is inside a folding row move focus to the toggle; on expand focus stays on the toggle and the toggle keeps its on-screen position (rows open below it, reveal moves down, no scroll jump); on hide, focus inside a hidden row returns to the toggle",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-349",
       "title": "W-333 addition from the W-335 design review (company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted): the fold simulation must charge the toggle (>= 44 px + row margin) against the saving and exclude Rows holding a Readout; report net px closed per lesson. The build-5 'controls block' height overstates the fold: in gradient-descent the only Row the reveal does not quote saves about one row, roughly the toggle's own height",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-350",
@@ -4803,6 +4806,42 @@
       "title": "Wave H batch 3 re-checks: mercator-greenland v5 c3, c13 (map now 200 px / 86N-40S; equal-area fitted 320x158); one-crowded-bucket v4 c6 (text narrowed, new stage); one-road-cuts-the-map v5 c3, c4, c6 (reveal reworded; Reopen all replaced by tap-again); only-the-needed-trader-profits v3 c6 (text matches chip); odds-average-the-bettors v4 c4 withdrawn (confirm). See each build.md",
       "owner": "fact-checker",
       "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-432",
+      "title": "Confirm or swap the reveal cuts made for the 90-word budget (r8): mercator-greenland v5 (cut 'Every flat map is a projection', 'which keeps sizes true instead'). See company/reviews/mercator-greenland/build.md v5",
+      "owner": "cm-geography",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-433",
+      "title": "Confirm or swap the reveal cuts made for the 90-word budget (r8): no-fraction-fits v6 (cut 'No, never.' opener, 'Close calls keep coming...' -> 'The 2s settle it.'). See company/reviews/no-fraction-fits/build.md v6",
+      "owner": "cm-math",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-434",
+      "title": "Confirm or swap the reveal cuts made for the 90-word budget (r8): odds-average-the-bettors v4 (model note cut, c4 withdrawn; three of four sliders removed) and only-the-needed-trader-profits v3 (hook-restating sentence and muted model line cut). See each build.md",
+      "owner": "cm-economics",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-435",
+      "title": "W-332 engineering review of EDD-005 / fold-at-reveal (d981bfc); open risk: flushSync from a MutationObserver microtask",
+      "owner": "principal-engineer",
+      "state": "next",
       "domain": null,
       "created": "2026-10-14",
       "links": []
