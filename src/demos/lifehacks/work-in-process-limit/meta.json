@@ -31,13 +31,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "The bars represent whole-task execution. Starting everything would spread progress without completing the first job; completion and activity are different counts.",
+      "text": "In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.work-in-process-limit.c2",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
@@ -49,13 +47,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "Recall question answer and rationale: One job to completion. The bars represent whole-task execution. Starting everything would spread progress without completing the first job; completion and activity are different counts.",
+      "text": "Recall question answer and rationale: One job to completion. In the whole-job view each bar is one job run to completion. Slicing the same 30 minutes of work into 5-minute turns delays the first completion from minute 5 to minute 15; starting and finishing are different counts.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Opening view (Run queue, step 1) is the 5-minute round-robin of order three, two, one: ends 30, 25, 15, first completion 15 (roundRobinQueue). \"Try target\" whole-job order one, two, three: first completion 5. \"Swap first\" (two, three, one) whole-job: first completion 10. Total 5+10+15=30 minutes. Fixture test \"round-robin activity does not imply the first task is complete\". Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.work-in-process-limit.c4",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "lifehacks.work-in-process-limit.recall",
@@ -82,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:work-in-process-limit",
     "prerequisites": [],

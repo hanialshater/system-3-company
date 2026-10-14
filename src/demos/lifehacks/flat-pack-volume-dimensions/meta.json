@@ -25,7 +25,7 @@
       "id": "lifehacks.flat-pack-volume-dimensions.c1",
       "text": "An empty assembled object includes a large hollow in its envelope. Stacking the ideal panels removes that hollow from the outside dimensions while retaining all panel material.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; 4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -34,19 +34,17 @@
       "id": "lifehacks.flat-pack-volume-dimensions.c2",
       "text": "Real hardware and edges add volume; never dismantle furniture unless its instructions permit it.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Scope limits and illustrative assumptions of this card; 4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.flat-pack-volume-dimensions.c3",
-      "text": "Six panels 40×30×input cm. Stack V=40×30×6×input; assembled reference envelope=40×30×30 cm³.",
+      "text": "4 panels 40×30 + 2 panels 30×30, thickness t; stack envelope 40×30×6t; assembled reference 40×30×30.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. W-367 (2026-10-14, demo-builder): A 40×30×30 box needs 4 panels 40×30 and 2 panels 30×30, not 6 of 40×30. Formula and the stage inputs line (home-models.ts flat-pack: \"4 panels 40×30 + 2 panels 30×30 · t=…cm\") changed; the stacked envelope 40×30×6t and assembled 40×30×30 values are unchanged because the 30×30 panels fit inside the 40×30 footprint. c1/c2 sources quote the new formula. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.flat-pack-volume-dimensions.c4",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:flat-pack-volume-dimensions",
     "prerequisites": [],

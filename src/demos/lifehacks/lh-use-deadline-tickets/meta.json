@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-use-deadline-tickets.c2",
       "text": "The stage's two results are computed by the printed expressions. At Used=4, A=2tickets and B=6tickets. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6; recall at x=6: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-use-deadline-tickets.c3",
       "text": "Using deadline tickets first reduces the expiring remainder. Using the other tickets leaves all six deadline tickets unused. This is a declared ticket-validity model, not guidance about food or unsafe expired goods.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6; recall at x=6: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-use-deadline-tickets.c4",
-      "text": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline. Change only Used to 6. What is B (Other-first) now? Correct: 6tickets. Use B's stated rule with Used=6: it gives 6tickets. Using deadline tickets first reduces the expiring remainder. Using the other tickets leaves all six deadline tickets unused. This is a declared ticket-validity model, not guidance about food or unsafe expired goods.",
+      "text": "Five tickets expire tonight; five others stay valid later. You use three tonight, choosing the expiring ones first. How many expiring tickets go unused? Correct: 2. Using the expiring tickets first leaves 5 − 3 = 2 to expire; using the others first would leave all 5.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6; recall at x=6: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",6,\"x\"]]; B=6; x denotes Used. At x=4, A=2, B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Six tickets expire at the event’s end. Six others remain valid later. Use four before the deadline. Change only Used to 6. What is B (Other-first) now?",
+    "question": "Five tickets expire tonight; five others stay valid later. You use three tonight, choosing the expiring ones first. How many expiring tickets go unused?",
     "options": [
-      "6tickets",
-      "0tickets",
-      "8tickets"
+      "0",
+      "2",
+      "5"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Used=6: it gives 6tickets. Using deadline tickets first reduces the expiring remainder. Using the other tickets leaves all six deadline tickets unused. This is a declared ticket-validity model, not guidance about food or unsafe expired goods."
+    "answer": 1,
+    "why": "Using the expiring tickets first leaves 5 − 3 = 2 to expire; using the others first would leave all 5."
   },
   "evidence": {
     "qa": [],

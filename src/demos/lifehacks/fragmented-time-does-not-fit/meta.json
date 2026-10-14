@@ -1,7 +1,7 @@
 {
   "slug": "fragmented-time-does-not-fit",
   "title": "Thirty scattered minutes",
-  "hook": "Three gaps total thirty minutes. A single thirty-minute task still may not fit.",
+  "hook": "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap.",
   "domain": "lifehacks",
   "concept": "fragmented-time-does-not-fit",
   "status": "draft",
@@ -22,13 +22,11 @@
   "objective": "Distinguish total free time from one continuous interval.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Three gaps total thirty minutes. A single thirty-minute task still may not fit. What does an unsplittable 30-minute block require? Correct option: A continuous 30-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap. What does an unsplittable 30-minute block require? Correct option: A continuous 30-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: call 10–20 and meeting 30–40, so before minute 40 the free gaps are 0–10 and 20–30 (two 10-minute gaps). FC wording \"Before minute 40 the calendar has two separate ten-minute gaps. A thirty-minute task needs one continuous gap.\" is 110 characters; the hook bound is 90 (tests/lifehacks/study.test.mjs), so the same content is shortened to 84 characters. Predict distractor \"Any three 10-minute gaps\" left as is (FC note on the recall distractor is moot after the recall patch). Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.fragmented-time-does-not-fit.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
@@ -82,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:fragmented-time-does-not-fit",
     "prerequisites": [],

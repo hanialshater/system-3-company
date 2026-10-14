@@ -26,7 +26,8 @@ import {
 } from "@/kit/geo";
 
 const W = 320;
-const H = 236;
+const H = 200; // v5: rows to about 40°S (was 236 / 61.6°S) so the map fits beside the reveal on a phone
+const EQ_H = 158; // Equal Earth is about 2.05:1, so at width W its oval is about this tall (no empty band below)
 const MILESTONES = ["equator", "equal"] as const;
 const NEAR_EQUATOR = 10; // degrees: on Mercator, within this of the equator drawn sizes are near true
 const EQUATOR = {
@@ -57,11 +58,11 @@ const RHUMB = (() => {
 
 function makeProjection(kind: "mercator" | "equal") {
   if (kind === "mercator") {
-    // Width spans 360°; rows from about 85°N (so all of Greenland is drawn) to 60°S.
+    // Width spans 360°; rows from about 86°N (so all of Greenland is drawn) to about 40°S.
     const s = W / (2 * Math.PI);
-    return geoMercator().scale(s).translate([W / 2, 166]).clipExtent([[0, 0], [W, H]]);
+    return geoMercator().scale(s).translate([W / 2, 160]).clipExtent([[0, 0], [W, H]]);
   }
-  return geoEqualEarth().fitSize([W, H], { type: "Sphere" });
+  return geoEqualEarth().fitSize([W, EQ_H], { type: "Sphere" });
 }
 const PATHS = { mercator: geoPath(makeProjection("mercator")), equal: geoPath(makeProjection("equal")) };
 const latText = (l: number) => (l === 0 ? "the equator" : `${l}°N`);
@@ -118,15 +119,14 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            They are about the same size, and Congo is slightly bigger: Greenland is about 2.17 million km², DR Congo
-            about 2.34 million. Your Seen line: on Mercator the drawn ratio went from {startText}× at {startLat}°N to{" "}
-            {seenEq?.ratio ?? "?"}× at {latText(seenEq?.lat ?? 0)}, and the equal-area map gave {seenEqual ?? "?"}×. The
-            land never changed as you slid it; the map did. Every flat map is a <strong>projection</strong>, and Mercator
+            They are about the same size; Congo is slightly bigger (2.17 vs 2.34 million km²). On your Seen line, Mercator
+            went from {startText}× at {startLat}°N to {seenEq?.ratio ?? "?"}× at {latText(seenEq?.lat ?? 0)}; equal-area
+            gave {seenEqual ?? "?"}×. The land never changed; the map did. Mercator, a <strong>projection</strong>,
             stretches areas more the farther they are from the equator.
           </p>
           <p>
-            Mercator was made for sailors: it keeps angles true, so the orange line of one compass bearing is straight on
-            it and bent on the equal-area map, which keeps sizes true instead. No flat map can keep both.
+            Made for sailors, it keeps angles true: the orange compass-bearing line is straight on it, bent on the
+            equal-area map. No flat map can keep both.
           </p>
         </>
       )}
@@ -138,7 +138,7 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
           <WorldMap
             projection={projection}
             width={W}
-            height={H}
+            height={kind === "mercator" ? H : EQ_H}
             highlight={["Dem. Rep. Congo"]}
             label={`World map, ${kind === "mercator" ? "Mercator" : "equal-area (Equal Earth)"} projection. Greenland moved ${south}° south, drawn ${mapRatio.toFixed(1)} times the size of DR Congo. An orange line of one compass bearing is ${kind === "mercator" ? "straight" : "bent"}.`}
           >
@@ -148,11 +148,14 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
                 {(() => {
                   const at = proj([-178, 0]);
                   return at ? (
-                    <text x={at[0] + 2} y={at[1] - 3} fontSize={9} fill="var(--fg)" opacity={0.8}>
+                    <text x={at[0] + 2} y={at[1] - 3} fontSize={11} fill="var(--fg)" opacity={0.8}>
                       equator
                     </text>
                   ) : null;
                 })()}
+                <text x={4} y={kind === "mercator" ? H - 6 : 12} fontSize={11} fill="var(--fg)" opacity={0.85}>
+                  {kind === "mercator" ? "Mercator" : "Equal-area"}
+                </text>
                 <path d={p(RHUMB)} fill="none" stroke="#e08a00" strokeWidth={1.6} strokeDasharray="4 2" />
                 {south > 0 && (
                   <path d={p(greenland)} fill="none" stroke="var(--fg)" strokeDasharray="2 2" strokeWidth={0.8} />
@@ -171,25 +174,8 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
                 check(kind, startLat);
               }}
             >
-              Slide to the equator
+              Slide to equator
             </Control>
-          </Row>
-          <Row>
-            <Slider
-              label="Slide Greenland south"
-              value={south}
-              min={0}
-              max={startLat}
-              disabled={locked}
-              format={(v) => (v === startLat ? "to the equator" : `${v}° (now ${startLat - v}°N)`)}
-              onChange={(v) => {
-                setSouth(v);
-                check(kind, v);
-              }}
-            />
-          </Row>
-          <Row>
-            <Readout label="On this map, Greenland ÷ Congo" value={`${mapRatio.toFixed(1)}×`} />
             <Control
               disabled={locked}
               className={kind === "equal" ? "active" : ""}
@@ -199,17 +185,31 @@ export default function MercatorGreenland({ slug }: { slug: string }) {
                 check(next, south);
               }}
             >
-              {kind === "mercator" ? "Show equal-area map" : "Show Mercator map"}
+              {kind === "mercator" ? "Equal-area map" : "Mercator map"}
             </Control>
           </Row>
-          <p className="muted tiny">
-            {kind === "mercator" ? "Mercator" : "Equal-area (Equal Earth)"}. Orange: one compass bearing.
-            {!locked && south > 0 ? " Dashed: where Greenland really is." : ""}
+          <Row>
+            <Slider
+              label="Slide south"
+              value={south}
+              min={0}
+              max={startLat}
+              disabled={locked}
+              format={(v) => (v === startLat ? "equator" : `${startLat - v}°N`)}
+              onChange={(v) => {
+                setSouth(v);
+                check(kind, v);
+              }}
+            />
+            <Readout label="Greenland ÷ Congo" value={`${mapRatio.toFixed(1)}×`} />
+          </Row>
+          <p className="muted tiny" style={{ margin: "6px 0 0" }}>
+            Orange: one compass bearing.{!locked && south > 0 ? " Dashed: its true place." : ""}
           </p>
-          <p className="tiny" data-testid="seen">
+          <p className="tiny" data-testid="seen" style={{ margin: "2px 0 0" }}>
             Seen: Mercator {startText}× at {startLat}°N
             {seenEq ? `, ${seenEq.ratio}× at ${latText(seenEq.lat)}` : ""}
-            {seenEqual ? ` · equal-area ${seenEqual}×` : ""}
+            {seenEqual ? `; equal-area ${seenEqual}×` : ""}
           </p>
         </div>
         );

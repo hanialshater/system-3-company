@@ -51,24 +51,22 @@
     },
     {
       "id": "lifehacks.lh-reuse-cost-per-use.c4",
-      "text": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match? Correct: 90 uses. At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions.",
+      "text": "A reusable item costs €15 once; equivalent single-use items cost €0.25 each; ongoing costs are excluded. At how many uses do their costs per use match? Correct: 60. €15 ÷ uses = €0.25 when uses = 60; below that, the reusable item costs more per use in this model.",
       "support": "derivation",
-      "source": "Equality in the fresh recall scenario: €18/use-count = €0.20/use, so use-count = 18÷0.20 = 90. Ongoing costs, useful life and environmental impacts are excluded. In the stage, the €12 version matches at 60 uses and the reveal is gated on observing that exact equality. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Equality in the fresh recall scenario: €18/use-count = €0.20/use, so use-count = 18÷0.20 = 90. Ongoing costs, useful life and environmental impacts are excluded. In the stage, the €12 version matches at 60 uses and the reveal is gated on observing that exact equality. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A reusable item costs €18 once. Equivalent single-use items cost €0.20 each. Ignoring ongoing costs, at how many uses do their modeled costs per use match?",
+    "question": "A reusable item costs €15 once; equivalent single-use items cost €0.25 each; ongoing costs are excluded. At how many uses do their costs per use match?",
     "options": [
-      "90 uses",
-      "18 uses",
-      "60 uses"
+      "15",
+      "60",
+      "100"
     ],
-    "answer": 0,
-    "why": "At equality, €18 ÷ uses = €0.20/use, so uses = 18 ÷ 0.20 = 90. A crossover comes from matching the cost-per-use expressions."
+    "answer": 1,
+    "why": "€15 ÷ uses = €0.25 when uses = 60; below that, the reusable item costs more per use in this model."
   },
   "evidence": {
     "qa": [],

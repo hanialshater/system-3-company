@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-weighted-unit-average.c2",
       "text": "The stage's two results are computed by the printed expressions. At Cheap-mass=2kg, A=4.5€/kg and B=4€/kg. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-weighted-unit-average.c3",
       "text": "Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-weighted-unit-average.c4",
-      "text": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Change only Cheap-mass to 5kg. What is B (Chosen-weights) now? Correct: 3.5€/kg. Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward.",
+      "text": "Fictional material A is €2/kg and B is €8/kg. You combine 3kg of A with 1kg of B. What is the average price per kilogram? Correct: €3.50. Total price ÷ total mass: (€6 + €8) ÷ 4kg = €3.50. The simple mean (€5) only holds for equal masses.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4; recall at x=5: B=3.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=4.5; B=[\"/\",[\"+\",[\"*\",3,\"x\"],6],[\"+\",\"x\",1]]; x denotes Cheap-mass. At x=2, A=4.5, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Material A costs €3/kg and B €6/kg. Compare 1kg of each with 2kg A plus 1kg B. Change only Cheap-mass to 5kg. What is B (Chosen-weights) now?",
+    "question": "Fictional material A is €2/kg and B is €8/kg. You combine 3kg of A with 1kg of B. What is the average price per kilogram?",
     "options": [
-      "3.5€/kg",
-      "4.5€/kg",
-      "5.5€/kg"
+      "€3.50",
+      "€5",
+      "€6.50"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Cheap-mass=5kg: it gives 3.5€/kg. Total price divided by total mass weights each unit price by its quantity. The simple mean of €3 and €6 only describes equal masses. A larger share of the cheaper material shifts the weighted mean downward."
+    "why": "Total price ÷ total mass: (€6 + €8) ÷ 4kg = €3.50. The simple mean (€5) only holds for equal masses."
   },
   "evidence": {
     "qa": [],

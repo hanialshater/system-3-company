@@ -40,13 +40,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "Every displayed result is computed from the visible exercise state: edit. Local command model; app and locale can differ. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "text": "Every displayed result is computed from the visible exercise state: edit. Local command model; app and locale can differ. The reveal reports this same state and never translates its score into a personal productivity or memory benefit. At the preview step the reveal reads: The preview marks 2 exact matches, at positions 1 and 3; previewing did not rewrite the tokens.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, preview-replace-all fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply the two stated local edit transformations and show their resulting tokens, style, focus, selection or highlight. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, preview-replace-all fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: apply the two stated local edit transformations and show their resulting tokens, style, focus, selection or highlight. W-367 (2026-10-14, demo-builder): observation() in StudyLesson.tsx gets a preview-replace-all branch at step 1; before, it said \"The highlighted position is 1\" while both red tokens (positions 1 and 3) were highlighted. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.preview-replace-all.c3",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Recall question answer and rationale: All affected matches. The preview marks every exact match. The applied edit changes each marked token, making its scope inspectable; it does not determine whether the replacement was appropriate.",
@@ -82,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:preview-replace-all",
     "prerequisites": [],

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-area-scales-square.c2",
       "text": "The stage's two results are computed by the printed expressions. At Side=2m, A=4m² and B=16m². Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-area-scales-square.c3",
       "text": "Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-area-scales-square.c4",
-      "text": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Change only Side to 5m. What is B (Side-2x) now? Correct: 100m². Use B's stated rule with Side=5m: it gives 100m². Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice.",
+      "text": "An ideal square's side is halved, from 6m to 3m. What fraction of the original area is left to cover? Correct: One quarter. Both dimensions halve, so area is multiplied by ½ twice: 36m² becomes 9m², one quarter.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16; recall at x=5: B=100. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",\"x\"]; B=[\"*\",2,\"x\",2,\"x\"]; x denotes Side. At x=2, A=4, B=16. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Compare an ideal square of side 2m with one of side 4m. B’s side remains twice A’s. Change only Side to 5m. What is B (Side-2x) now?",
+    "question": "An ideal square's side is halved, from 6m to 3m. What fraction of the original area is left to cover?",
     "options": [
-      "100m²",
-      "25m²",
-      "102m²"
+      "One quarter",
+      "One half",
+      "The same"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Side=5m: it gives 100m². Both dimensions double, so the product gets a factor of two twice. Four times the area means four times the material in an ideal area-only coverage model, rather than twice."
+    "why": "Both dimensions halve, so area is multiplied by ½ twice: 36m² becomes 9m², one quarter."
   },
   "evidence": {
     "qa": [],

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-double-container-radius.c2",
       "text": "The stage's two results are computed by the printed expressions. At Height=10cm, A=0.283L and B=1.131L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-double-container-radius.c3",
       "text": "Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-double-container-radius.c4",
-      "text": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Change only Height to 13cm. What is B (6cm-radius) now? Correct: 1.47L. Use B's stated rule with Height=13cm: it gives 1.47L. Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements.",
+      "text": "Two ideal cylinders have equal height; one has radius 4cm and the other 12cm. How many times as much does the wider one hold? Correct: 9. Capacity scales with radius squared: three times the radius gives 3² = 9 times the base area and volume.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529; recall at x=13: B=1.47026536188. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",3.141592653589793,9,\"x\"],1000]; B=[\"/\",[\"*\",3.141592653589793,36,\"x\"],1000]; x denotes Height. At x=10, A=0.282743338823, B=1.13097335529. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-double-container-radius.c5",
+      "text": "Two ideal cylinders have equal height and radii of 3cm and 6cm.",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-double-container-radius\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 3.141592653589793, 9, \"x\"], 1000]; B=[\"/\", [\"*\", 3.141592653589793, 36, \"x\"], 1000]; x denotes Height, 1 to 20, start 10). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Ideal cylinders have inner radii 3cm and 6cm; both have inner height 10cm. Change only Height to 13cm. What is B (6cm-radius) now?",
+    "question": "Two ideal cylinders have equal height; one has radius 4cm and the other 12cm. How many times as much does the wider one hold?",
     "options": [
-      "1.47L",
-      "0.368L",
-      "3.47L"
+      "3",
+      "6",
+      "9"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Height=13cm: it gives 1.47L. Cylinder capacity depends on radius squared. Doubling radius multiplies the circular base area by four; equal height then gives four times the volume. The dimensions here are ideal internal measurements."
+    "answer": 2,
+    "why": "Capacity scales with radius squared: three times the radius gives 3² = 9 times the base area and volume."
   },
   "evidence": {
     "qa": [],

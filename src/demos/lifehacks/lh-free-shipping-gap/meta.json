@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-free-shipping-gap.c2",
       "text": "The stage's two results are computed by the printed expressions. At Basket=42€, A=€46 and B=€50. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-free-shipping-gap.c3",
       "text": "Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-free-shipping-gap.c4",
-      "text": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Change only Basket to 45€. What is B (Reach-threshold) now? Correct: €50. Use B's stated rule with Basket=45€: it gives €50. Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving.",
+      "text": "Fictional shipping costs €4 below €50. Your basket is €44. Compared with paying shipping, adding goods to reach €50 makes the checkout total: Correct: €2 higher. Paying shipping totals €48; reaching €50 totals €50. Removing the shipping line is not the same as lowering the receipt.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50; recall at x=45: B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",[\"*\",4,[\"-\",1,[\"floor\",[\"min\",1,[\"/\",\"x\",50]]]]]]; B=[\"max\",\"x\",50]; x denotes Basket. At x=42, A=46, B=50. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-free-shipping-gap.c5",
+      "text": "Adding an item can remove shipping while raising the total you pay.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-free-shipping-gap\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Pay-shipping)=[\"+\", \"x\", [\"*\", 4, [\"-\", 1, [\"floor\", [\"min\", 1, [\"/\", \"x\", 50]]]]]]; B (Reach-threshold)=[\"max\", \"x\", 50]; x denotes Basket, 20 to 54, start 42. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Shipping costs €4 below €50. B adds exactly enough merchandise to reach €50. Change only Basket to 45€. What is B (Reach-threshold) now?",
+    "question": "Fictional shipping costs €4 below €50. Your basket is €44. Compared with paying shipping, adding goods to reach €50 makes the checkout total:",
     "options": [
-      "€50",
-      "€49",
-      "€52"
+      "€4 lower",
+      "The same",
+      "€2 higher"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Basket=45€: it gives €50. Removing a shipping line is not the same as reducing the whole receipt. At €42, shipping makes €46; reaching €50 adds €8 of goods. Compare totals before naming a saving."
+    "answer": 2,
+    "why": "Paying shipping totals €48; reaching €50 totals €50. Removing the shipping line is not the same as lowering the receipt."
   },
   "evidence": {
     "qa": [],

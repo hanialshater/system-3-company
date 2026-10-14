@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-jug-rounding-extra.c2",
       "text": "The stage's two results are computed by the printed expressions. At Cups=5, A=1.25L and B=2L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-jug-rounding-extra.c3",
       "text": "Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-jug-rounding-extra.c4",
-      "text": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Change only Cups to 8. What is B (Whole-litres) now? Correct: 2L. Use B's stated rule with Cups=8: it gives 2L. Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities.",
+      "text": "Each cup is allocated 250mL and the fill is rounded up to whole litres. For nine cups, how much is the excess over the exact need? Correct: 0.75L. Exact need is 9 × 250mL = 2.25L; rounding up gives 3L, an excess of 0.75L.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2; recall at x=8: B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",250],1000]; B=[\"ceil\",[\"/\",[\"*\",\"x\",250],1000]]; x denotes Cups. At x=5, A=1.25, B=2. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-jug-rounding-extra.c5",
+      "text": "250mL per cup can leave a whole-litre fill above the exact requirement.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-jug-rounding-extra\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Exact)=[\"/\", [\"*\", \"x\", 250], 1000]; B (Whole-litres)=[\"ceil\", [\"/\", [\"*\", \"x\", 250], 1000]]; x denotes Cups, 1 to 12, start 5. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Each empty cup is allocated 250mL. Compare exact total volume with that total rounded up to whole litres. Change only Cups to 8. What is B (Whole-litres) now?",
+    "question": "Each cup is allocated 250mL and the fill is rounded up to whole litres. For nine cups, how much is the excess over the exact need?",
     "options": [
-      "2L",
-      "3L",
-      "4L"
+      "0L",
+      "0.75L",
+      "2.25L"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Cups=8: it gives 2L. Multiply cup count by millilitres per cup, then convert to litres. Rounding up introduces an excess that is visible as the difference between the two results. Exact need and a coarse fill increment are different quantities."
+    "answer": 1,
+    "why": "Exact need is 9 × 250mL = 2.25L; rounding up gives 3L, an excess of 0.75L."
   },
   "evidence": {
     "qa": [],

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-pay-for-used-quantity.c2",
       "text": "The stage's two results are computed by the printed expressions. At Used=5, A=0.5€/used and B=0.8€/used. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-pay-for-used-quantity.c3",
       "text": "Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c4",
-      "text": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now? Correct: 0.5€/used. Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later.",
+      "text": "Singles cost €0.50 each; a ten-pack costs €4 and unused pieces count for nothing. How many pieces must you use before the ten-pack's cost per used piece falls to €0.50? Correct: 8. Divide by pieces used, not bought: €4 ÷ 8 = €0.50; with fewer used, each used piece costs more.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8; recall at x=8: B=0.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-pay-for-used-quantity.c5",
+      "text": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-pay-for-used-quantity\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Singles)=0.5; B (Ten-pack)=[\"/\", 4, [\"min\", \"x\", 10]]; x denotes Used, 1 to 10, start 5. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Singles cost €0.50 each. A ten-pack costs €4. Unused pieces receive zero value in this model. Change only Used to 8. What is B (Ten-pack) now?",
+    "question": "Singles cost €0.50 each; a ten-pack costs €4 and unused pieces count for nothing. How many pieces must you use before the ten-pack's cost per used piece falls to €0.50?",
     "options": [
-      "0.5€/used",
-      "1.5€/used",
-      "2.5€/used"
+      "5",
+      "8",
+      "10"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Used=8: it gives 0.5€/used. Here the relevant denominator is pieces used, not pieces purchased. Paying €4 and using five gives €0.80 per used piece. The model changes if the remaining pieces have value later."
+    "answer": 1,
+    "why": "Divide by pieces used, not bought: €4 ÷ 8 = €0.50; with fewer used, each used piece costs more."
   },
   "evidence": {
     "qa": [],

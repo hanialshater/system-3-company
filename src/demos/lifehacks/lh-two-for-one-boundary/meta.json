@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-two-for-one-boundary.c2",
       "text": "The stage's two results are computed by the printed expressions. At Items=3, A=€9 and B=€8. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-two-for-one-boundary.c3",
       "text": "A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-two-for-one-boundary.c4",
-      "text": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Change only Items to 6. What is B (Pairs) now? Correct: €12. Use B's stated rule with Items=6: it gives €12. A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
+      "text": "Singles cost €3 each; a two-for-one pair costs €4 and pairs cannot be split. You need five items. What does the pairs-only checkout cost? Correct: €12. Five items need three whole pairs (rounded up), so you pay €12 including one item you did not need.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8; recall at x=6: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,\"x\"]; B=[\"*\",4,[\"ceil\",[\"/\",\"x\",2]]]; x denotes Items. At x=3, A=9, B=8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. Change only Items to 6. What is B (Pairs) now?",
+    "question": "Singles cost €3 each; a two-for-one pair costs €4 and pairs cannot be split. You need five items. What does the pairs-only checkout cost?",
     "options": [
+      "€10",
       "€12",
-      "€18",
-      "€14"
+      "€15"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Items=6: it gives €12. A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total."
+    "answer": 1,
+    "why": "Five items need three whole pairs (rounded up), so you pay €12 including one item you did not need."
   },
   "evidence": {
     "qa": [],

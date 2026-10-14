@@ -46,10 +46,8 @@
       "id": "geography.mercator-greenland.c3",
       "text": "On the Mercator map in this lesson, Greenland at its real position is drawn about 15 times the area of DR Congo.",
       "support": "simulation",
-      "source": "v2: map extent reaches about 85.6°N (bottom 61.6°S), so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 at the real position. v3 re-measured by the builder (scratch script): 15.39, rounded to 15 in the question; the stage readout at the start now uses the same unmoved shape (15.4×) instead of the shape rotated to exactly 73°N (15.0×). The question text is computed from the same map, so they cannot disagree. Needs the fact-checker's re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "v2: map extent reaches about 85.6°N (bottom 61.6°S), so Greenland is drawn whole (bounds y 18.8–98.9 inside 0–236). Projected path areas with d3-geo geoMercator on the lesson data: ratio 15.39 at the real position. v3 re-measured by the builder (scratch script): 15.39, rounded to 15 in the question; the stage readout at the start now uses the same unmoved shape (15.4×) instead of the shape rotated to exactly 73°N (15.0×). The question text is computed from the same map, so they cannot disagree. Needs the fact-checker's re-check. | v5 (demo-builder, 2026-10-14): The Mercator map is now 200 px tall with the equator at y 160 (about 86°N to 40°S; was 236 px, 85.6°N to 61.6°S) so it fits beside the reveal on a phone. Greenland is still drawn whole and the question number is computed from the same map, so 15.4x should be unchanged (the r8-style tool run showed 'Seen: Mercator 15.4x at 73°N'), but the ratio has not been re-measured in a script. Reopened; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "geography.mercator-greenland.c4",
@@ -118,10 +116,8 @@
       "id": "geography.mercator-greenland.c13",
       "text": "A line of one constant compass bearing (a rhumb line) is straight on Mercator and drawn bent on an equal-area map such as Equal Earth.",
       "support": "simulation",
-      "source": "Demo.tsx RHUMB: points with longitude linear in the Mercator ordinate ln tan(45° + lat/2), from 50°W 45°S to 50°E 62°N, 121 samples; by construction a straight segment on Mercator (Snyder 1987, USGS PP 1395, Mercator: rhumb lines are straight). The same points drawn by geoEqualEarth form a curve because Equal Earth's y is not proportional to the Mercator ordinate. Not checked outside the page. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (advisory below). Construction: longitude linear in ln tan(45° + lat/2) is the definition of a rhumb line on Mercator; per-sample great-circle bearings stay 37.2-37.9° (one bearing up to the chord effect). Own d3-geo run on the lesson projections: rendered Mercator path deviates from its chord by at most 0.001 px (straight); on Equal Earth the same points bow 2.8 px off the chord of a 137 px line, so it is bent. Advisory, not a dispute: a 2.8 px (2%) bow on a dashed line may not read as \"bent\" on a phone; QA or a learner review should confirm it is visible.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx RHUMB: points with longitude linear in the Mercator ordinate ln tan(45° + lat/2), from 50°W 45°S to 50°E 62°N, 121 samples; by construction a straight segment on Mercator (Snyder 1987, USGS PP 1395, Mercator: rhumb lines are straight). The same points drawn by geoEqualEarth form a curve because Equal Earth's y is not proportional to the Mercator ordinate. Not checked outside the page. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (advisory below). Construction: longitude linear in ln tan(45° + lat/2) is the definition of a rhumb line on Mercator; per-sample great-circle bearings stay 37.2-37.9° (one bearing up to the chord effect). Own d3-geo run on the lesson projections: rendered Mercator path deviates from its chord by at most 0.001 px (straight); on Equal Earth the same points bow 2.8 px off the chord of a 137 px line, so it is bent. Advisory, not a dispute: a 2.8 px (2%) bow on a dashed line may not read as \"bent\" on a phone; QA or a learner review should confirm it is visible. | v5 (demo-builder, 2026-10-14): The orange line still runs from 50°W 45°S to 50°E 62°N, but the shorter Mercator map (bottom about 40°S) now clips its southern end; the equal-area map is now fitted to 320x158 (no empty band) and shows the whole line. The straight/bent behaviour should be re-checked on the new frames. Reopened; needs a fresh check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -149,7 +145,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "geography:map-projections-area",
     "prerequisites": [],

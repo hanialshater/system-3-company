@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-round-lines-versus-total.c2",
       "text": "The stage's two results are computed by the printed expressions. At Lines=3, A=€1.02 and B=€1.01. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-round-lines-versus-total.c3",
       "text": "Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-round-lines-versus-total.c4",
-      "text": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now? Correct: €2.01. Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule.",
+      "text": "Four fictional lines are each exactly €0.125, rounded half-up to cents. What do you get rounding each line first, and rounding the total once? Correct: €0.52 and €0.50. Each line rounds to €0.13, so four make €0.52; the exact total €0.50 needs no rounding. Rounding loses information each time.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01; recall at x=6: B=2.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",[\"round\",0.335]]; B=[\"round\",[\"*\",\"x\",0.335]]; x denotes Lines. At x=3, A=1.02, B=1.01. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Each fictional line is exactly €0.335 before rounding. A rounds each line to cents; B sums first and rounds once. Change only Lines to 6. What is B (Total-once) now?",
+    "question": "Four fictional lines are each exactly €0.125, rounded half-up to cents. What do you get rounding each line first, and rounding the total once?",
     "options": [
-      "€2.01",
-      "€2.04",
-      "€4.01"
+      "€0.52 and €0.50",
+      "Both €0.50",
+      "Both €0.52"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Lines=6: it gives €2.01. Rounding loses information at each application. Three rounded €0.34 lines sum to €1.02, while €1.005 rounded once gives €1.01 under the stated half-up rule. Actual billing conventions need their own rule."
+    "why": "Each line rounds to €0.13, so four make €0.52; the exact total €0.50 needs no rounding. Rounding loses information each time."
   },
   "evidence": {
     "qa": [],

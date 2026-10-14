@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-purchase-plus-running.c2",
       "text": "The stage's two results are computed by the printed expressions. At Years=2, A=€152 and B=€176. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-purchase-plus-running.c3",
       "text": "Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-purchase-plus-running.c4",
-      "text": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Change only Years to 5. What is B (Lower-running) now? Correct: €230. Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation.",
+      "text": "Illustrative A costs €80 plus 120kWh/year; B costs €140 plus 60kWh/year; electricity is a fictional €0.30/kWh. When does B's total become lower? Correct: After about 3.3 years. B starts €60 higher but saves 60kWh × €0.30 = €18 a year, so it catches up after €60 ÷ €18 ≈ 3.3 years.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176; recall at x=5: B=230. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",80,[\"*\",120,0.3,\"x\"]]; B=[\"+\",140,[\"*\",60,0.3,\"x\"]]; x denotes Years. At x=2, A=152, B=176. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-purchase-plus-running.c5",
@@ -75,14 +73,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Illustrative A costs €80 plus 120kWh/year. B costs €140 plus 60kWh/year. Electricity is €0.30/kWh. Change only Years to 5. What is B (Lower-running) now?",
+    "question": "Illustrative A costs €80 plus 120kWh/year; B costs €140 plus 60kWh/year; electricity is a fictional €0.30/kWh. When does B's total become lower?",
     "options": [
-      "€230",
-      "€260",
-      "€232"
+      "After about 3.3 years",
+      "After 1 year",
+      "Never; A stays lower"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Years=5: it gives €230. Add the upfront term to repeated running costs. A starts lower, while B’s modeled running cost grows more slowly. This arithmetic omits repair, lifespan and discounting and is not a purchasing recommendation."
+    "why": "B starts €60 higher but saves 60kWh × €0.30 = €18 a year, so it catches up after €60 ÷ €18 ≈ 3.3 years."
   },
   "evidence": {
     "qa": [],

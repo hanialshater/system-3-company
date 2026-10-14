@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-pool-spare-stock.c2",
       "text": "The stage's two results are computed by the printed expressions. At Required=10, A=8items and B=3items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-pool-spare-stock.c3",
       "text": "Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-pool-spare-stock.c4",
-      "text": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Change only Required to 13. What is B (Pooled) now? Correct: 6items. Use B's stated rule with Required=13: it gives 6items. Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions.",
+      "text": "Three usable units are here and four free units elsewhere can be transferred at no modeled cost. You need ten. How many must be ordered from outside? Correct: 3. Pooled stock is 3 + 4 = 7, so the shortage is 10 − 7 = 3, provided those four are truly free to transfer.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3; recall at x=13: B=6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",2]]; B=[\"max\",0,[\"-\",\"x\",7]]; x denotes Required. At x=10, A=8, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "There are two usable local units and five uncommitted units elsewhere that can be transferred at zero modeled cost. Change only Required to 13. What is B (Pooled) now?",
+    "question": "Three usable units are here and four free units elsewhere can be transferred at no modeled cost. You need ten. How many must be ordered from outside?",
     "options": [
-      "6items",
-      "11items",
-      "8items"
+      "3",
+      "7",
+      "10"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Required=13: it gives 6items. Pooling available stock changes the shortage from requirement minus two to requirement minus seven. The result depends on those other units actually being free and transferable under the stated assumptions."
+    "why": "Pooled stock is 3 + 4 = 7, so the shortage is 10 − 7 = 3, provided those four are truly free to transfer."
   },
   "evidence": {
     "qa": [],

@@ -25,7 +25,7 @@
       "id": "lifehacks.suitcase-rotate-block.c1",
       "text": "For these rigid rectangles, rotation changes how many complete rows and columns fit. Empty area can remain unusable when it is in strips narrower than another block.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Count=floor(W/itemW)×floor(36/itemH), item=18×12 or 12×18 cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -34,19 +34,17 @@
       "id": "lifehacks.suitcase-rotate-block.c2",
       "text": "No compression or overlapping is permitted; real clothes are not rigid rectangles.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Scope limits and illustrative assumptions of this card; Count=floor(W/itemW)×floor(36/itemH), item=18×12 or 12×18 cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.suitcase-rotate-block.c3",
-      "text": "Count=floor(W/itemW)×floor(24/itemH), item=18×12 or 12×18 cm.",
+      "text": "Count=floor(W/itemW)×floor(36/itemH), item=18×12 or 12×18 cm. The Bag width slider runs 28 to 35 cm; there the long way fits 3 and the quarter-turn fits 4.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. W-367 (2026-10-14, demo-builder): Bag height is 36 cm (values[0]); formula string corrected. Slider max 40 → 35, because from W=36 cm both orientations fit 6 (checked: floor(W/18)×3 and floor(W/12)×2 for W=28..35 give 3 and 4). Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.suitcase-rotate-block.c4",
@@ -91,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:suitcase-rotate-block",
     "prerequisites": [],

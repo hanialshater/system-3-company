@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-turn-container-volume.c2",
       "text": "The stage's two results are computed by the printed expressions. At Third-side=15cm, A=3L and B=3L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-turn-container-volume.c3",
       "text": "The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-turn-container-volume.c4",
-      "text": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now? Correct: 3.6L. Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation.",
+      "text": "An ideal box measures 30cm × 20cm × 10cm inside (6L). What happens to its internal capacity when it is turned onto another face? Correct: It stays 6L on any face. Capacity is the product of the same three lengths, and order does not change a product; only fit can change.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3; recall at x=18: B=3.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",20,10,\"x\"],1000]; B=[\"/\",[\"*\",20,\"x\",10],1000]; x denotes Third-side. At x=15, A=3, B=3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "An ideal internal box measures 20cm by 10cm by 15cm. B exchanges the last two dimensions. Change only Third-side to 18cm. What is B (Rotated) now?",
+    "question": "An ideal box measures 30cm × 20cm × 10cm inside (6L). What happens to its internal capacity when it is turned onto another face?",
     "options": [
-      "3.6L",
-      "4.6L",
-      "5.6L"
+      "It stays 6L on any face",
+      "It grows when stood on its smallest face",
+      "It shrinks when laid on its largest face"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Third-side=18cm: it gives 3.6L. The same three lengths remain in the product. Multiplication does not depend on their order, so rotation preserves the ideal internal volume. Real fitting constraints can still depend on orientation."
+    "why": "Capacity is the product of the same three lengths, and order does not change a product; only fit can change."
   },
   "evidence": {
     "qa": [],

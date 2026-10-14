@@ -6,11 +6,14 @@
 // exact. Horizon distance d = sqrt(2 R h), no refraction.
 // v3 (W-250): "tower" was not a registered milestone, so with minInteractions 3 the reveal could never open.
 // Milestone names and minInteractions are now both derived from STOPS.
+// v4 (wave H r8): the radius stub and its label are drawn at every height (the reveal names the radius); labels
+// are 10px; chips are one row; the Horizon readout tile is gone (the picture labels the distance on the sight
+// line); the reveal is <= 90 words so the stage top fits with it on a phone.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
-import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Control, Row, Slider } from "@/kit/controls";
 import { EARTH_RADIUS_KM } from "@/kit/geo";
 import s from "./styles.module.css";
 
@@ -22,9 +25,9 @@ const RD = 300; // drawn radius of the curve, px
 const K = 2.2; // px per km along the ground
 const EXAG = (EARTH_RADIUS_KM * K) / RD; // curve and heights stretched by this
 const STOPS = [
-  { label: "Your eyes, 1.7 m", m: 1.7, key: "eyes" },
-  { label: "100× higher, 170 m", m: 170, key: "hundred" },
-  { label: "Burj Khalifa, 828 m", m: 828, key: "tower" },
+  { label: "You: 1.7 m", m: 1.7, key: "eyes" },
+  { label: "100×: 170 m", m: 170, key: "hundred" },
+  { label: "Tower: 828 m", m: 828, key: "tower" },
 ];
 // Every stop is a milestone (the reveal quotes all three), so names and minInteractions both come from STOPS.
 const MILESTONES = STOPS.map((st) => st.key);
@@ -58,8 +61,8 @@ export default function HorizonRuler({ slug }: { slug: string }) {
   // Unit vector from the tangent point toward the Earth's centre.
   const rx = (X0 - tx) / RD;
   const ry = (cy - ty) / RD;
-  // Keep the stub above the caption line.
-  const stub = Math.max(8, Math.min(34, (H - 18 - ty) / ry));
+  // Radius stub toward the centre: at least 14 px, at most 34, kept above the bottom edge where it can be.
+  const stub = Math.max(14, Math.min(34, (H - 8 - ty) / ry));
   const ground = Array.from({ length: 41 }, (_, i) => {
     const a = (-0.05 + (i / 40) * 1.1) * 1.05;
     return `${(X0 + RD * Math.sin(a)).toFixed(1)},${(cy - RD * Math.cos(a)).toFixed(1)}`;
@@ -78,15 +81,14 @@ export default function HorizonRuler({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>{fmtKm(horizonKm(1.7))} km.</strong> Your Seen line: {stopText(1.7)}. Your line of sight grazes the
-            curved sea and then leaves it; the horizon is that grazing point, not the limit of your eyes. The sight line
-            meets the radius at a right angle there, so by Pythagoras the distance is the square root of 2 × Earth&rsquo;s
-            radius × your height.
+            <strong>{fmtKm(horizonKm(1.7))} km.</strong> Your Seen line: {stopText(1.7)}. Your sight line grazes the curved
+            sea at the horizon and meets the radius there at a right angle (the tick), so by Pythagoras the distance is the
+            square root of 2 × Earth&rsquo;s radius × your height.
           </p>
           <p>
             Square root means slow growth: you saw {stopText(170)}, 100 times higher but only{" "}
             {Math.round(horizonKm(170) / horizonKm(1.7))} times farther, and {stopText(828)} from the tower. Air bends
-            light a little, so real horizons are a few per cent farther.
+            light, so real horizons are a little farther.
           </p>
         </>
       )}
@@ -117,11 +119,9 @@ export default function HorizonRuler({ slug }: { slug: string }) {
                     points={`${tx + ux * 7},${ty + uy * 7} ${tx + ux * 7 + rx * 7},${ty + uy * 7 + ry * 7} ${tx + rx * 7},${ty + ry * 7}`}
                     className={s.rightAngle}
                   />
-                  {stub >= 20 && (
-                    <text x={tx + rx * stub - 3} y={ty + ry * stub} className={s.smallOnSea} textAnchor="end">
-                      radius
-                    </text>
-                  )}
+                  <text x={tx + rx * stub - 4} y={ty + ry * stub + 4} className={s.smallOnSea} textAnchor="end">
+                    radius
+                  </text>
                   <circle cx={tx} cy={ty} r={3} className={s.tangent} />
                   {!locked && (
                     <text x={(ex + tx) / 2 + uy * 12} y={(ey + ty) / 2 - ux * 12} className={s.dist} textAnchor="middle">
@@ -135,8 +135,12 @@ export default function HorizonRuler({ slug }: { slug: string }) {
                   <text x={W - 12 - 25 * K} y={13} className={s.small} textAnchor="middle">
                     50 km
                   </text>
+                  {/* Caption in two short lines at the bottom left, clear of the tangent point at every height. */}
+                  <text x={6} y={H - 18} className={s.smallOnSea}>
+                    Distances true. Curve and height
+                  </text>
                   <text x={6} y={H - 6} className={s.smallOnSea}>
-                    Distances true. Curve and height stretched {Math.round(EXAG)}×. No refraction.
+                    stretched {Math.round(EXAG)}×. No refraction.
                   </text>
                 </svg>
                 <div className={s.chips} role="group" aria-label="Eye height">
@@ -148,9 +152,6 @@ export default function HorizonRuler({ slug }: { slug: string }) {
                 </div>
                 <Row>
                   <Slider label="Eye height" value={toSlider(m)} min={0} max={100} disabled={locked} format={() => fmtM(m)} onChange={(v) => set(fromSlider(v))} />
-                </Row>
-                <Row>
-                  <Readout label="Horizon" value={locked ? "?" : `${fmtKm(d)} km`} />
                 </Row>
                 <p className="tiny" data-testid="seen">
                   Seen:{" "}

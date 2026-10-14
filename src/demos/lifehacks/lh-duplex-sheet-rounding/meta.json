@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-duplex-sheet-rounding.c2",
       "text": "The stage's two results are computed by the printed expressions. At Pages=7, A=7sheets and B=4sheets. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-duplex-sheet-rounding.c3",
       "text": "Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-duplex-sheet-rounding.c4",
-      "text": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Change only Pages to 10. What is B (Double-sided) now? Correct: 5sheets. Use B's stated rule with Pages=10: it gives 5sheets. Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet.",
+      "text": "Printing double-sided, with a blank final side allowed: how many sheets do eleven pages need? Correct: 6. 11 ÷ 2 = 5.5, rounded up to 6: the odd last page still takes a whole sheet.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4; recall at x=10: B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"ceil\",[\"/\",\"x\",2]]; x denotes Pages. At x=7, A=7, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duplex-sheet-rounding.c5",
+      "text": "Two pages per sheet: what happens when the page count is odd?",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-duplex-sheet-rounding\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"ceil\", [\"/\", \"x\", 2]]; x denotes Pages, 1 to 15, start 7). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "All pages can be printed one per side, either single-sided or on both sides. Blank final sides are allowed. Change only Pages to 10. What is B (Double-sided) now?",
+    "question": "Printing double-sided, with a blank final side allowed: how many sheets do eleven pages need?",
     "options": [
-      "5sheets",
-      "10sheets",
-      "7sheets"
+      "5",
+      "5.5",
+      "6"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Pages=10: it gives 5sheets. Divide pages by two and round up for double-sided sheets. An odd final page still occupies a whole sheet. The ceiling makes that partly unused final sheet visible instead of pretending it is half a physical sheet."
+    "answer": 2,
+    "why": "11 ÷ 2 = 5.5, rounded up to 6: the odd last page still takes a whole sheet."
   },
   "evidence": {
     "qa": [],

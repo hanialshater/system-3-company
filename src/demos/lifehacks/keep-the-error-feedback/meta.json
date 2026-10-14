@@ -1,7 +1,7 @@
 {
   "slug": "keep-the-error-feedback",
   "title": "Keep the correction",
-  "hook": "An answer attempt is useful evidence only if you compare it with the target.",
+  "hook": "Comparing your attempt with the target shows which item you got wrong.",
   "domain": "lifehacks",
   "concept": "keep-the-error-feedback",
   "status": "draft",
@@ -22,13 +22,11 @@
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: An answer attempt is useful evidence only if you compare it with the target. Which feedback locates the mistake? Correct option: Target beside attempt. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Comparing your attempt with the target shows which item you got wrong. Which feedback locates the mistake? Correct option: Target beside attempt. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): The old \"useful evidence only if you compare it\" overstated the case against Roediger & Karpicke 2006 (retrieval itself helps). New hook states only what the stage shows; hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.keep-the-error-feedback.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
@@ -82,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:keep-the-error-feedback",
     "prerequisites": [],

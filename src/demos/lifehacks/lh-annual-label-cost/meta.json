@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-annual-label-cost.c2",
       "text": "The stage's two results are computed by the printed expressions. At Years=2, A=€120 and B=€210. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210; recall at x=5: B=525. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-annual-label-cost.c3",
       "text": "Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210; recall at x=5: B=525. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-annual-label-cost.c4",
-      "text": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year. Change only Years to 5. What is B (350kWh/year) now? Correct: €525. Use B's stated rule with Years=5: it gives €525. Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product.",
+      "text": "An illustrative label states 250kWh per year. At an unchanged fictional €0.30/kWh, what is the modeled running cost over four years? Correct: €300. Annual energy × years × price: 250 × 4 × €0.30 = €300. The label is one year, not the multiyear cost.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210; recall at x=5: B=525. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-annual-label-cost.c5",
@@ -68,14 +66,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year. Change only Years to 5. What is B (350kWh/year) now?",
+    "question": "An illustrative label states 250kWh per year. At an unchanged fictional €0.30/kWh, what is the modeled running cost over four years?",
     "options": [
-      "€525",
+      "€75",
       "€300",
-      "€527"
+      "€1,000"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Years=5: it gives €525. Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product."
+    "answer": 1,
+    "why": "Annual energy × years × price: 250 × 4 × €0.30 = €300. The label is one year, not the multiyear cost."
   },
   "evidence": {
     "qa": [],

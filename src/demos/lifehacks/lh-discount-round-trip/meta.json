@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-discount-round-trip.c2",
       "text": "The stage's two results are computed by the printed expressions. At Original=100€, A=€100 and B=€96. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-discount-round-trip.c3",
       "text": "The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-discount-round-trip.c4",
-      "text": "B reduces the original price by 20%, then raises that reduced price by 20%. Change only Original to 115€. What is B (Down-up) now? Correct: €110.4. Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts.",
+      "text": "A fictional €50 price falls by 20%, then rises by 20%. Where does it finish? Correct: €48. The rise starts from €40, so it adds €8, not €10: 0.8 × 1.2 = 0.96 of the start.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96; recall at x=115: B=110.4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"*\",\"x\",0.8,1.2]; x denotes Original. At x=100, A=100, B=96. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-discount-round-trip.c5",
+      "text": "20% down, then 20% up: will the price return to its starting point?",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-discount-round-trip\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=\"x\"; B=[\"*\", \"x\", 0.8, 1.2]; x denotes Original, 50 to 150, start 100). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "B reduces the original price by 20%, then raises that reduced price by 20%. Change only Original to 115€. What is B (Down-up) now?",
+    "question": "A fictional €50 price falls by 20%, then rises by 20%. Where does it finish?",
     "options": [
-      "€110.4",
-      "€115",
-      "€112.4"
+      "€48",
+      "€50",
+      "€52"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Original=115€: it gives €110.4. The rise starts from the smaller base. Multiplying 0.8 by 1.2 gives 0.96, so the round trip finishes below the starting price. Equal percentages need not be equal amounts."
+    "why": "The rise starts from €40, so it adds €8, not €10: 0.8 × 1.2 = 0.96 of the start."
   },
   "evidence": {
     "qa": [],

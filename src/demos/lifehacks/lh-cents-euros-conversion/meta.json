@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-cents-euros-conversion.c2",
       "text": "The stage's two results are computed by the printed expressions. At Cents=125c, A=€1.25 and B=€12.5. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-cents-euros-conversion.c3",
       "text": "The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-cents-euros-conversion.c4",
-      "text": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Change only Cents to 140c. What is B (Tenths) now? Correct: €14. Use B's stated rule with Cents=140c: it gives €14. The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason.",
+      "text": "A euro is 100 cents. How many euros is 305 cents? Correct: €3.05. Divide by 100, the number of cents per euro: €3.05. Dividing by ten gives €30.50.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5; recall at x=140: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",100]; B=[\"/\",\"x\",10]; x denotes Cents. At x=125, A=1.25, B=12.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A euro contains 100 cents. A divides cents by 100; B deliberately divides by ten instead. Change only Cents to 140c. What is B (Tenths) now?",
+    "question": "A euro is 100 cents. How many euros is 305 cents?",
     "options": [
-      "€14",
-      "€1.4",
-      "€16"
+      "€30.50",
+      "€3.05",
+      "€0.305"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Cents=140c: it gives €14. The denominator comes from the unit definition: one hundred cents per euro. Dividing by ten changes the amount by the wrong factor. Carry the unit alongside the digits so the decimal movement has a reason."
+    "answer": 1,
+    "why": "Divide by 100, the number of cents per euro: €3.05. Dividing by ten gives €30.50."
   },
   "evidence": {
     "qa": [],

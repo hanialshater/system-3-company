@@ -4,10 +4,13 @@
 // humanity. Half is crossed at the seventh. The map is Equal Earth, so drawn area is real land
 // area, and the highlighted countries' share of the land is computed from the same shapes.
 // Populations: UN World Population Prospects 2024, medium variant, 1 July 2024 (millions).
+// v3 (wave H r8): phone fit. The three readout tiles became one status line, the bar label is 10px, the source
+// footnote hides when the reveal opens (the reveal names the source), and the reveal is <= 90 words, so the map
+// the reveal points at stays on screen with it.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Control, Readout, Row } from "@/kit/controls";
+import { Control } from "@/kit/controls";
 import { WorldMap, country, geoArea, geoEqualEarth, world } from "@/kit/geo";
 import s from "./styles.module.css";
 
@@ -91,27 +94,25 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>Seven.</strong> India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil hold{" "}
-            {ppl(top7Share)} of the world&rsquo;s {(WORLD_M / 1000).toFixed(1)} billion people (UN estimate for 2024); the
-            first six only {ppl(top6Share)}.
-            {crossed
-              ? crossed.inOrder
-                ? ` Your Seen line: the seventh took the bar from ${crossed.before} to ${crossed.after}.`
-                : ` You crossed half with ${crossed.count} countries (${crossed.before} to ${crossed.after}), because you did not add them strictly largest first.`
-              : ""}
+            <strong>Seven.</strong> India, China, the USA, Indonesia, Pakistan, Nigeria and Brazil
+            {crossed && crossed.inOrder
+              ? `: your Seen line shows the seventh took the bar from ${crossed.before} to ${crossed.after} of the world's ${(WORLD_M / 1000).toFixed(1)} billion people (UN, 2024).`
+              : ` hold ${ppl(top7Share)} of the world's ${(WORLD_M / 1000).toFixed(1)} billion people (UN, 2024); the first six only ${ppl(top6Share)}.${
+                  crossed ? ` You crossed half with ${crossed.count} countries (${crossed.before} to ${crossed.after}), because you did not add them largest first.` : ""
+                }`}
           </p>
           <p>
-            People are not spread evenly over the land. On this equal-area map, where drawn size is real size, your{" "}
-            {crossed?.count ?? 7} cover {crossed?.land ?? "25%"} of the land outside Antarctica, yet hold half of everyone.
+            On this equal-area map, drawn size is real size: your {crossed?.count ?? 7} cover {crossed?.land ?? "25%"} of the land
+            outside Antarctica, yet hold half of everyone.
             {russia
               ? ` Russia alone took land from ${russia.landBefore} to ${russia.landAfter}, people only from ${russia.pplBefore} to ${russia.pplAfter}.`
               : ""}{" "}
-            A map that shows area shows land, not people.
+            A map of area shows land, not people.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <div className={s.wrap}>
           <WorldMap
             projection={projection}
@@ -121,11 +122,11 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
             highlight={picked.map((i) => POP[i].ne)}
             label={`Equal Earth world map. ${picked.length} countries highlighted, ${share.toFixed(1)}% of humanity.`}
           />
-          <svg viewBox={`0 0 ${W} 30`} className={s.bar} role="img" aria-label={`Share of humanity: ${share.toFixed(1)}%`}>
+          <svg viewBox={`0 0 ${W} 32`} className={s.bar} role="img" aria-label={`Share of humanity: ${share.toFixed(1)}%`}>
             <rect x={10} y={6} width={barW} height={12} rx={3} className={s.track} />
             <rect x={10} y={6} width={(barW * Math.min(share, 100)) / 100} height={12} rx={3} className={share >= 50 ? s.fillDone : s.fill} />
             <line x1={10 + barW / 2} x2={10 + barW / 2} y1={2} y2={22} className={s.half} />
-            <text x={10 + barW / 2} y={29} className={s.small} textAnchor="middle">
+            <text x={10 + barW / 2} y={31} className={s.small} textAnchor="middle">
               half of humanity
             </text>
           </svg>
@@ -142,17 +143,16 @@ export default function HalfOfHumanity({ slug }: { slug: string }) {
               </Control>
             ))}
           </div>
-          <Row>
-            <Readout label="Countries" value={picked.length} />
-            <Readout label="Share of people" value={`${share.toFixed(1)}%`} />
-            <Readout label="Land (outside Antarctica)" value={lnd(landShare)} />
-          </Row>
+          <p className={s.status} aria-live="polite">
+            {locked ? "?" : picked.length} countries · {locked ? "?" : `${share.toFixed(1)}%`} of people · land outside Antarctica{" "}
+            {locked ? "?" : lnd(landShare)}
+          </p>
           <p className="tiny" data-testid="seen">
             Seen:{" "}
             {crossed ? `half crossed at ${crossed.count} countries, ${crossed.before} → ${crossed.after} of people, ${crossed.land} of land` : "nothing yet"}
             {russia ? ` · Russia: land ${russia.landBefore} → ${russia.landAfter}, people ${russia.pplBefore} → ${russia.pplAfter}` : ""}
           </p>
-          <p className="muted tiny">Equal-area map. Largest first. People: UN, 2024.</p>
+          {phase !== "reveal" && <p className="muted tiny">Equal-area map. Largest first. People: UN, 2024.</p>}
         </div>
       )}
     </Lesson>

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-small-leak-large-duration.c2",
       "text": "The stage's two results are computed by the printed expressions. At Flow=5mL/min, A=7.2L and B=0.3L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3; recall at x=8: B=0.48. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-small-leak-large-duration.c3",
       "text": "A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3; recall at x=8: B=0.48. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-small-leak-large-duration.c4",
-      "text": "A hypothetical constant 5mL/min flow continues for either one hour or one day. Change only Flow to 8mL/min. What is B (One-hour) now? Correct: 0.48L. Use B's stated rule with Flow=8mL/min: it gives 0.48L. A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation.",
+      "text": "A hypothetical constant 10mL/min flow runs for one whole day. What volume is that? Correct: 14.4L. A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3; recall at x=8: B=0.48. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A hypothetical constant 5mL/min flow continues for either one hour or one day. Change only Flow to 8mL/min. What is B (One-hour) now?",
+    "question": "A hypothetical constant 10mL/min flow runs for one whole day. What volume is that?",
     "options": [
-      "0.48L",
-      "11.52L",
-      "2.48L"
+      "0.6L",
+      "1.44L",
+      "14.4L"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Flow=8mL/min: it gives 0.48L. A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation."
+    "answer": 2,
+    "why": "A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation."
   },
   "evidence": {
     "qa": [],

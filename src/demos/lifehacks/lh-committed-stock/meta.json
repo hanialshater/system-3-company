@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-committed-stock.c2",
       "text": "The stage's two results are computed by the printed expressions. At On-shelf=10, A=4items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-committed-stock.c3",
       "text": "Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-committed-stock.c4",
-      "text": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Change only On-shelf to 13. What is B (Physical) now? Correct: 13items. Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy.",
+      "text": "Fifteen units are on the shelf and nine are already promised to earlier requests. How many can a new request take? Correct: 6. Free units are physical minus committed: 15 − 9 = 6. The promised units are present but not available.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"max\",0,[\"-\",\"x\",6]]; B=\"x\"; x denotes On-shelf. At x=10, A=4, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Six on-shelf units are already committed to earlier requests. Compare free and physical counts. Change only On-shelf to 13. What is B (Physical) now?",
+    "question": "Fifteen units are on the shelf and nine are already promised to earlier requests. How many can a new request take?",
     "options": [
-      "13items",
-      "7items",
-      "15items"
+      "6",
+      "9",
+      "15"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with On-shelf=13: it gives 13items. Subtract committed units from the physical count to find free units. Commitments do not make the objects disappear, but they change which requests those objects can satisfy."
+    "why": "Free units are physical minus committed: 15 − 9 = 6. The promised units are present but not available."
   },
   "evidence": {
     "qa": [],

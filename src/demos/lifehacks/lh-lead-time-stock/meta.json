@@ -51,24 +51,29 @@
     },
     {
       "id": "lifehacks.lh-lead-time-stock.c4",
-      "text": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering? Correct: 32 units. 4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve.",
+      "text": "Five units leave each day and delivery takes four days after ordering. To still have six units when it arrives, how many must be on hand when you order? Correct: 26. Use during the wait (5 × 4 = 20) plus the reserve of 6 gives 26.",
       "support": "derivation",
-      "source": "Declared toy demand and delivery delay. Six days × 4 units/day consumes 24 units; to retain 8 units at arrival requires 24+8=32 units initially. This is stock on hand at ordering, not the order quantity. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Declared toy demand and delivery delay. Six days × 4 units/day consumes 24 units; to retain 8 units at arrival requires 24+8=32 units initially. This is stock on hand at ordering, not the order quantity. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-lead-time-stock.c5",
+      "text": "Four units leave daily. A longer lead time changes the reorder arithmetic.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-lead-time-stock\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (With-buffer)=[\"+\", [\"*\", 4, \"x\"], 8]; B (No-buffer)=[\"*\", 4, \"x\"]; x denotes Lead-days, 1 to 10, start 3. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Four units leave each day. Delivery takes six days after ordering. To retain eight units when it arrives, how many units must be on hand when ordering?",
+    "question": "Five units leave each day and delivery takes four days after ordering. To still have six units when it arrives, how many must be on hand when you order?",
     "options": [
-      "32 units",
-      "24 units",
-      "8 units"
+      "6",
+      "20",
+      "26"
     ],
-    "answer": 0,
-    "why": "4 × 6 = 24 units leave while waiting; 24 + 8 = 32 units must be on hand when ordering to retain the eight-unit reserve."
+    "answer": 2,
+    "why": "Use during the wait (5 × 4 = 20) plus the reserve of 6 gives 26."
   },
   "evidence": {
     "qa": [],

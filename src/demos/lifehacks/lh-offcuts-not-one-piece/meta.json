@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-offcuts-not-one-piece.c2",
       "text": "The stage's two results are computed by the printed expressions. At Piece-size=60cm, A=60cm and B=120cm. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-offcuts-not-one-piece.c3",
       "text": "Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-offcuts-not-one-piece.c4",
-      "text": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Change only Piece-size to 75cm. What is B (Pooled-length) now? Correct: 75cm. Use B's stated rule with Piece-size=75cm: it gives 75cm. Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison.",
+      "text": "You have two offcuts of 70cm each and need unjoined pieces of 100cm. How many 100cm pieces can you cut? Correct: 0. Each piece must fit inside one offcut, and neither is 100cm long; the pooled 140cm is not one continuous piece.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120; recall at x=75: B=75. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",[\"floor\",[\"/\",90,\"x\"]],\"x\"],[\"*\",[\"floor\",[\"/\",50,\"x\"]],\"x\"]]; B=[\"*\",[\"floor\",[\"/\",140,\"x\"]],\"x\"]; x denotes Piece-size. At x=60, A=60, B=120. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-offcuts-not-one-piece.c5",
+      "text": "A 90cm piece and a 50cm piece cannot supply two unjoined 60cm lengths.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-offcuts-not-one-piece\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"+\", [\"*\", [\"floor\", [\"/\", 90, \"x\"]], \"x\"], [\"*\", [\"floor\", [\"/\", 50, \"x\"]], \"x\"]]; B (Pooled-length)=[\"*\", [\"floor\", [\"/\", 140, \"x\"]], \"x\"]; x denotes Piece-size, 30 to 80, start 60. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Unjoined usable pieces must each be 60cm. The available offcuts are 90cm and 50cm, with zero modeled cut loss. Change only Piece-size to 75cm. What is B (Pooled-length) now?",
+    "question": "You have two offcuts of 70cm each and need unjoined pieces of 100cm. How many 100cm pieces can you cut?",
     "options": [
-      "75cm",
-      "76cm",
-      "77cm"
+      "0",
+      "1",
+      "2"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Piece-size=75cm: it gives 75cm. Each required piece has to fit within one offcut. Count fits separately before adding them. Summing lengths first invents continuity between the two offcuts; the pooled result is an intentionally infeasible comparison."
+    "why": "Each piece must fit inside one offcut, and neither is 100cm long; the pooled 140cm is not one continuous piece."
   },
   "evidence": {
     "qa": [],

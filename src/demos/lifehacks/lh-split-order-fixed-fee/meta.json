@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-split-order-fixed-fee.c2",
       "text": "The stage's two results are computed by the printed expressions. At Orders=2, A=€32 and B=€28. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-split-order-fixed-fee.c3",
       "text": "A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-split-order-fixed-fee.c4",
-      "text": "The same goods total €24. Each order adds a fictional €4 delivery fee. Change only Orders to 5. What is B (Combined) now? Correct: €28. Use B's stated rule with Orders=5: it gives €28. A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged.",
+      "text": "The same goods total €24, and each order adds a fictional €4 delivery fee. Placing three orders instead of one adds how much to the receipts? Correct: €8. The fee repeats per order: three orders pay three fees, one order pays one, a difference of two fees (€8).",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28; recall at x=5: B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "The same goods total €24. Each order adds a fictional €4 delivery fee. Change only Orders to 5. What is B (Combined) now?",
+    "question": "The same goods total €24, and each order adds a fictional €4 delivery fee. Placing three orders instead of one adds how much to the receipts?",
     "options": [
-      "€28",
-      "€44",
-      "€30"
+      "€0",
+      "€8",
+      "€12"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Orders=5: it gives €28. A fixed fee repeats with each order. Combining changes the number of fees in this toy policy, not the merchandise subtotal. Count how many times each line is charged."
+    "answer": 1,
+    "why": "The fee repeats per order: three orders pay three fees, one order pays one, a difference of two fees (€8)."
   },
   "evidence": {
     "qa": [],

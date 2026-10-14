@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-merge-overlapping-lists.c2",
       "text": "The stage's two results are computed by the printed expressions. At List-A=8, A=14items and B=11items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-merge-overlapping-lists.c3",
       "text": "Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-merge-overlapping-lists.c4",
-      "text": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Change only List-A to 11. What is B (Unique) now? Correct: 14items. Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates.",
+      "text": "List A has ten distinct items and list B has seven; four items are on both. How many unique items does the merged list have? Correct: 13. Adding gives 17 but counts the four shared items twice; subtract them once: 13.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11; recall at x=11: B=14. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",\"x\",6]; B=[\"-\",[\"+\",\"x\",6],3]; x denotes List-A. At x=8, A=14, B=11. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-merge-overlapping-lists.c5",
+      "text": "Two requests overlap on three items. Adding the list lengths overcounts.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-merge-overlapping-lists\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Added)=[\"+\", \"x\", 6]; B (Unique)=[\"-\", [\"+\", \"x\", 6], 3]; x denotes List-A, 3 to 14, start 8. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "List A has eight distinct items; list B has six. Exactly three items occur on both lists. Change only List-A to 11. What is B (Unique) now?",
+    "question": "List A has ten distinct items and list B has seven; four items are on both. How many unique items does the merged list have?",
     "options": [
-      "14items",
-      "17items",
-      "16items"
+      "9",
+      "13",
+      "17"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with List-A=11: it gives 14items. Count the overlap once, not twice. Adding list sizes includes the shared items in both lists, so subtract their shared count once. This assumes each individual list already has no duplicates."
+    "answer": 1,
+    "why": "Adding gives 17 but counts the four shared items twice; subtract them once: 13."
   },
   "evidence": {
     "qa": [],

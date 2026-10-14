@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-big-pack-price.c2",
       "text": "The stage's two results are computed by the printed expressions. At Large-price=6€, A=6€/kg and B=6.667€/kg. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-big-pack-price.c3",
       "text": "Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c4",
-      "text": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now? Correct: 8.333€/kg. Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together.",
+      "text": "Fictional packs of the same product: 400g for €2, or 1kg for €6. Which costs less per kilogram? Correct: The 400g pack. €2 ÷ 0.4kg = €5/kg, below €6/kg: divide price by mass, because pack size alone does not set the unit price.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667; recall at x=7.5: B=8.33333333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",3,0.5]; B=[\"/\",\"x\",0.9]; x denotes Large-price. At x=6, A=6, B=6.66666666667. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-big-pack-price.c5",
@@ -68,14 +66,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A costs €3 for 500g. B costs €6 for 900g. Change only Large-price to 7.5€. What is B (900g) now?",
+    "question": "Fictional packs of the same product: 400g for €2, or 1kg for €6. Which costs less per kilogram?",
     "options": [
-      "8.333€/kg",
-      "6€/kg",
-      "10.333€/kg"
+      "The 400g pack",
+      "The 1kg pack",
+      "They are equal"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Large-price=7.5€: it gives 8.333€/kg. Dividing price by kilograms puts both packs on the same denominator. Pack size alone does not determine unit price; the receipt and quantity must travel together."
+    "why": "€2 ÷ 0.4kg = €5/kg, below €6/kg: divide price by mass, because pack size alone does not set the unit price."
   },
   "evidence": {
     "qa": [],

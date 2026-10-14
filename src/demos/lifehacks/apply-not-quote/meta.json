@@ -31,13 +31,11 @@
       "checkedOn": "2026-10-14"
     },
     {
-      "text": "The target uses new values ordered smallest to largest. Matching the rule requires applying it to the numbers shown.",
+      "text": "The target is 2, 5, 9 in ascending order, smallest to largest. Matching it requires applying the rule to the numbers shown.",
       "support": "derivation",
-      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Exercise fixture study_apply_not_quote in src/lib/lifehacks/studyCatalog.ts: words 2, 5, 9 are the ascending target; StudyLesson.tsx shows the input as 5, 9, 2 (visibleSourceWords uses [1,2,0]) after \"Try values\"; reconstructionMatches in studyModels.ts compares each position with the target. Fixture test: tests/lifehacks/study.test.mjs \"application sorts new visible values rather than recalling a hidden target\". Roediger & Karpicke (2006) removed as irrelevant to this sentence. W-367 (2026-10-14, demo-builder): Principle corrected: the target is the same 2, 5, 9, not new values. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.apply-not-quote.c2",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "The displayed match count compares the learner’s ordering of 2, 5, 9 with ascending order. The unsorted input stays visible while they work. There is no measured learning or productivity gain.",
@@ -80,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:apply-not-quote",
     "prerequisites": [],

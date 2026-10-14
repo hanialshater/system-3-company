@@ -9,8 +9,8 @@
 // first rotation (2 lifted above 1 and 3) as a step. "Insert the rest" stays disabled until that step. The ghost
 // shows only the keys that moved, with an arrow up the lifted key's column. The reveal quotes the recorded first
 // rotation and the recorded results, so switching trees cannot change them.
-// v4 (phone fit, build 6 measured crop 199 px): the picture is only as tall as its tree ever gets (rotating 4
-// levels with ghosts, plain 7), with the key row under the deepest level; the four controls share one row; the
+// v4 (phone fit, build 6 measured crop 199 px): one picture height for both trees, set by the rotating tree's 4
+// levels (with ghosts); the plain chain packs its 7 levels at half the pitch; the key row sits under the deepest level; the four controls share one row; the
 // rule lines are one line each; labels are 12-14 units for the 10 px floor. Measured crop 0 at 390x844.
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";

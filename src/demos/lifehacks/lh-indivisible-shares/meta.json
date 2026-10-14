@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-indivisible-shares.c2",
       "text": "The stage's two results are computed by the printed expressions. At Objects=10, A=9items and B=10items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-indivisible-shares.c3",
       "text": "Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-indivisible-shares.c4",
-      "text": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now? Correct: 13items. Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule.",
+      "text": "Three recipients each get the same whole-number count; remainders stay aside. With 14 objects, how many stay aside? Correct: 2. Floor division gives four each (12 objects); the 2 left over stay in the inventory.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10; recall at x=13: B=13. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3,[\"floor\",[\"/\",\"x\",3]]]; B=\"x\"; x denotes Objects. At x=10, A=9, B=10. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-indivisible-shares.c5",
+      "text": "Ten objects among three people: where does the tenth go?",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-indivisible-shares\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", 3, [\"floor\", [\"/\", \"x\", 3]]]; B=\"x\"; x denotes Objects, 1 to 20, start 10). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Three recipients each receive the same whole-number count. Remainders are kept aside. Change only Objects to 13. What is B (Available) now?",
+    "question": "Three recipients each get the same whole-number count; remainders stay aside. With 14 objects, how many stay aside?",
     "options": [
-      "13items",
-      "12items",
-      "15items"
+      "0",
+      "1",
+      "2"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Objects=13: it gives 13items. Floor division makes equal whole-number shares, but it can leave a remainder. Ten gives three each and one aside. A remainder has to stay in the inventory even when it cannot fit the equal-share rule."
+    "answer": 2,
+    "why": "Floor division gives four each (12 objects); the 2 left over stay in the inventory."
   },
   "evidence": {
     "qa": [],

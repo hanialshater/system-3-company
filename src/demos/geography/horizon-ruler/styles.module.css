@@ -1,6 +1,6 @@
 .wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .wrap p { margin: 0; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 .sea { fill: var(--domain); fill-opacity: 0.25; stroke: var(--domain); stroke-width: 1.2; }
 .sight { stroke: var(--fg); stroke-width: 1.4; }
 .sightFar { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 2; }
@@ -8,8 +8,9 @@
 .eye { fill: var(--bad); stroke: var(--fg); stroke-width: 0.8; }
 .tangent { fill: var(--good); stroke: var(--fg); stroke-width: 0.8; }
 .dist { font-size: 11px; font-weight: 800; fill: var(--fg); }
-.small { font-size: 8.5px; fill: var(--muted); }
-.smallOnSea { font-size: 8.5px; fill: var(--fg); opacity: 0.8; }
+.small { font-size: 10px; fill: var(--muted); }
+.smallOnSea { font-size: 10px; fill: var(--fg); opacity: 0.8; }
 .bar { stroke: var(--fg); stroke-width: 2; }
 .radius { stroke: var(--fg); stroke-width: 0.8; stroke-dasharray: 2 2; }
 .rightAngle { fill: none; stroke: var(--fg); stroke-width: 0.8; }
+.chips :global(.control) { padding-left: 10px; padding-right: 10px; }

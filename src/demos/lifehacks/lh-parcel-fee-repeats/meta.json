@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-parcel-fee-repeats.c2",
       "text": "The stage's two results are computed by the printed expressions. At Items=4, A=€14 and B=€5. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-parcel-fee-repeats.c3",
       "text": "The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-parcel-fee-repeats.c4",
-      "text": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Change only Items to 7. What is B (Combined) now? Correct: €6.5. Use B's stated rule with Items=7: it gives €6.5. The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per.",
+      "text": "A fictional parcel costs €3 plus €0.50 per item. Shipping ten items in ten separate parcels instead of one costs how much more? Correct: €27. The per-item charge is the same either way; only the €3 parcel fee repeats, nine extra times: €27.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5; recall at x=7: B=6.5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",3.5,\"x\"]; B=[\"+\",3,[\"*\",0.5,\"x\"]]; x denotes Items. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-parcel-fee-repeats.c5",
+      "text": "A fixed parcel fee is different from a fee attached to each item.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-parcel-fee-repeats\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Separate)=[\"*\", 3.5, \"x\"]; B (Combined)=[\"+\", 3, [\"*\", 0.5, \"x\"]]; x denotes Items, 1 to 10, start 4. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A fictional parcel costs €3 plus €0.50 per item. Items can share one parcel or each use a parcel. Change only Items to 7. What is B (Combined) now?",
+    "question": "A fictional parcel costs €3 plus €0.50 per item. Shipping ten items in ten separate parcels instead of one costs how much more?",
     "options": [
-      "€6.5",
-      "€24.5",
-      "€8.5"
+      "€4.50",
+      "€27",
+      "€30"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Items=7: it gives €6.5. The per-item charge repeats either way, but the fixed parcel fee repeats only with separate parcels. Labeling a cost as fixed requires naming the thing it is fixed per."
+    "answer": 1,
+    "why": "The per-item charge is the same either way; only the €3 parcel fee repeats, nine extra times: €27."
   },
   "evidence": {
     "qa": [],

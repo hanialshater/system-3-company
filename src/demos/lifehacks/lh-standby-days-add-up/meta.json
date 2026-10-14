@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-standby-days-add-up.c2",
       "text": "The stage's two results are computed by the printed expressions. At Days=365, A=17.52kWh and B=0.73kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-standby-days-add-up.c3",
       "text": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c4",
-      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now? Correct: 0.736kWh. Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
+      "text": "An illustrative constant 3W load runs 24 hours a day for 365 days. About how much energy does it accumulate? Correct: 26.3kWh. 3W × 24h × 365 days = 26,280Wh, about 26.3kWh: a small daily amount repeats every day.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73; recall at x=368: B=0.736. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c5",
@@ -75,14 +73,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Change only Days to 368. What is B (1h/day) now?",
+    "question": "An illustrative constant 3W load runs 24 hours a day for 365 days. About how much energy does it accumulate?",
     "options": [
-      "0.736kWh",
-      "17.664kWh",
-      "2.736kWh"
+      "0.072kWh",
+      "1.1kWh",
+      "26.3kWh"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Days=368: it gives 0.736kWh. A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment."
+    "answer": 2,
+    "why": "3W × 24h × 365 days = 26,280Wh, about 26.3kWh: a small daily amount repeats every day."
   },
   "evidence": {
     "qa": [],

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-round-replenishment.c2",
       "text": "The stage's two results are computed by the printed expressions. At Required=12, A=12items and B=9items. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9; recall at x=15: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,29 @@
       "id": "lifehacks.lh-round-replenishment.c3",
       "text": "Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9; recall at x=15: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-round-replenishment.c4",
-      "text": "Three usable units are in stock. New orders come only in six-unit boxes. Change only Required to 15. What is B (Exact-gap) now? Correct: 12items. Use B's stated rule with Required=15: it gives 12items. Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count.",
+      "text": "Five usable units are in stock; new stock comes only in boxes of six. You need fourteen. How many units do you order? Correct: 12. Compute the shortage first (14 − 5 = 9), then round that up to whole boxes: two boxes, 12 units.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9; recall at x=15: B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",6,[\"ceil\",[\"/\",[\"max\",0,[\"-\",\"x\",3]],6]]]; B=[\"max\",0,[\"-\",\"x\",3]]; x denotes Required. At x=12, A=12, B=9. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Three usable units are in stock. New orders come only in six-unit boxes. Change only Required to 15. What is B (Exact-gap) now?",
+    "question": "Five usable units are in stock; new stock comes only in boxes of six. You need fourteen. How many units do you order?",
     "options": [
-      "12items",
-      "13items",
-      "14items"
+      "9",
+      "12",
+      "18"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Required=15: it gives 12items. Compute the shortage first, then round that shortage to whole boxes. Rounding the total requirement before subtracting stock uses the wrong input. Extra units after delivery remain visible in the count."
+    "answer": 1,
+    "why": "Compute the shortage first (14 − 5 = 9), then round that up to whole boxes: two boxes, 12 units."
   },
   "evidence": {
     "qa": [],

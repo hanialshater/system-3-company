@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-each-cut-allowance.c2",
       "text": "The stage's two results are computed by the printed expressions. At Panels=6, A=7.5m and B=7.25m. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25; recall at x=9: B=10.85. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-each-cut-allowance.c3",
       "text": "An allowance attached to every panel is a per-unit term. Multiply both the main length and allowance by the panel count. Adding the allowance once treats it as a single job-level term.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25; recall at x=9: B=10.85. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-each-cut-allowance.c4",
-      "text": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once. Change only Panels to 9. What is B (Once) now? Correct: 10.85m. Use B's stated rule with Panels=9: it gives 10.85m. An allowance attached to every panel is a per-unit term. Multiply both the main length and allowance by the panel count. Adding the allowance once treats it as a single job-level term.",
+      "text": "Each panel needs 1.20m plus its own 0.05m allowance. What total length do ten panels need? Correct: 12.50m. The allowance is per panel, so it is multiplied by ten too: 10 × 1.25m = 12.50m.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25; recall at x=9: B=10.85. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",1.25]; B=[\"+\",[\"*\",\"x\",1.2],0.05]; x denotes Panels. At x=6, A=7.5, B=7.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-each-cut-allowance.c5",
+      "text": "Six panels each need a 5cm allowance. Is one 5cm allowance enough?",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-each-cut-allowance\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"*\", \"x\", 1.25]; B=[\"+\", [\"*\", \"x\", 1.2], 0.05]; x denotes Panels, 1 to 12, start 6). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Each panel requires 1.20m plus a separate 0.05m allowance. Compare repeating the allowance with adding it once. Change only Panels to 9. What is B (Once) now?",
+    "question": "Each panel needs 1.20m plus its own 0.05m allowance. What total length do ten panels need?",
     "options": [
-      "10.85m",
-      "11.25m",
-      "12.85m"
+      "12.05m",
+      "12.50m",
+      "13.00m"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Panels=9: it gives 10.85m. An allowance attached to every panel is a per-unit term. Multiply both the main length and allowance by the panel count. Adding the allowance once treats it as a single job-level term."
+    "answer": 1,
+    "why": "The allowance is per panel, so it is multiplied by ten too: 10 × 1.25m = 12.50m."
   },
   "evidence": {
     "qa": [],

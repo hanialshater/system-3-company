@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-count-sheets-not-rolls.c2",
       "text": "The stage's two results are computed by the printed expressions. At Sheets/roll=240, A=0.008€/sheet and B=0.005€/sheet. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-count-sheets-not-rolls.c3",
       "text": "The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-count-sheets-not-rolls.c4",
-      "text": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Change only Sheets/roll to 270. What is B (Four-rolls) now? Correct: 0.005€/sheet. Use B's stated rule with Sheets/roll=270: it gives 0.005€/sheet. The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality.",
+      "text": "Fictional packs: eight rolls of 150 sheets for €6, or four rolls of 300 sheets for €5. Which costs less per sheet? Correct: The four-roll pack. Both packs hold 1,200 sheets (rolls × sheets per roll), so the €5 pack costs less per sheet; the roll count hid that.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333; recall at x=270: B=0.00462962962963. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",6,[\"*\",6,120]]; B=[\"/\",5,[\"*\",4,\"x\"]]; x denotes Sheets/roll. At x=240, A=0.00833333333333, B=0.00520833333333. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-count-sheets-not-rolls.c5",
@@ -64,18 +62,25 @@
       "support": "source",
       "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1181e2025/NIST.SP.1181e2025.html NIST SP 1181-2025, Definitions / Unit Pricing and E-Commerce. Opened 2026-10-13. Dataset prices and package amounts are invented for the arithmetic demonstration.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-count-sheets-not-rolls.c6",
+      "text": "Six rolls or four rolls? The count inside each roll changes the arithmetic.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-count-sheets-not-rolls\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Six-rolls)=[\"/\", 6, [\"*\", 6, 120]]; B (Four-rolls)=[\"/\", 5, [\"*\", 4, \"x\"]]; x denotes Sheets/roll, 100 to 300, start 240. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A costs €6: six rolls of 120 sheets. B costs €5: four rolls of 240 sheets. Change only Sheets/roll to 270. What is B (Four-rolls) now?",
+    "question": "Fictional packs: eight rolls of 150 sheets for €6, or four rolls of 300 sheets for €5. Which costs less per sheet?",
     "options": [
-      "0.005€/sheet",
-      "0.008€/sheet",
-      "2.005€/sheet"
+      "The four-roll pack",
+      "The eight-roll pack",
+      "They are equal"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Sheets/roll=270: it gives 0.005€/sheet. The denominator is total sheets: rolls multiplied by sheets per roll. Comparing only roll counts hides the usable quantity. This model assumes equal sheet size and quality."
+    "why": "Both packs hold 1,200 sheets (rolls × sheets per roll), so the €5 pack costs less per sheet; the roll count hid that."
   },
   "evidence": {
     "qa": [],

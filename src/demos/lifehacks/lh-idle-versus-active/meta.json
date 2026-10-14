@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-idle-versus-active.c2",
       "text": "The stage's two results are computed by the printed expressions. At Days=5, A=0.6kWh and B=0.33kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33; recall at x=8: B=0.528. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,19 +44,17 @@
       "id": "lifehacks.lh-idle-versus-active.c3",
       "text": "Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33; recall at x=8: B=0.528. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-idle-versus-active.c4",
-      "text": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed. Change only Days to 8. What is B (Idle) now? Correct: 0.528kWh. Use B's stated rule with Days=8: it gives 0.528kWh. Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied.",
+      "text": "Illustrative day: active 40W for 1 hour, idle 2W for 23 hours. Which state uses more energy that day? Correct: Idle. Multiply each power by its own hours: active 40Wh, idle 46Wh. Neither the bigger wattage nor the longer time decides it alone.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33; recall at x=8: B=0.528. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",60,2,\"x\"],1000]; B=[\"/\",[\"*\",3,22,\"x\"],1000]; x denotes Days. At x=5, A=0.6, B=0.33. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-idle-versus-active.c5",
@@ -71,18 +69,25 @@
       "support": "source",
       "source": "Safety-required stage line (company/reviews/lh-idle-versus-active/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a national energy body or tariff regulator guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
       "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-idle-versus-active.c7",
+      "text": "A small load lasts many hours. Does duration make it larger than the active load?",
+      "support": "convention",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-idle-versus-active\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 60, 2, \"x\"], 1000]; B=[\"/\", [\"*\", 3, 22, \"x\"], 1000]; x denotes Days, 1 to 30, start 5). Not a measurement.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "Illustrative daily loads: active 60W for 2h, idle 3W for 22h. Constant power is assumed. Change only Days to 8. What is B (Idle) now?",
+    "question": "Illustrative day: active 40W for 1 hour, idle 2W for 23 hours. Which state uses more energy that day?",
     "options": [
-      "0.528kWh",
-      "0.96kWh",
-      "2.528kWh"
+      "Idle",
+      "Active",
+      "They are equal"
     ],
     "answer": 0,
-    "why": "Use B's stated rule with Days=8: it gives 0.528kWh. Multiply each power by its own duration before comparing. The longer idle period contributes energy, yet under these stated numbers it remains below active use. No actual appliance rating is implied."
+    "why": "Multiply each power by its own hours: active 40Wh, idle 46Wh. Neither the bigger wattage nor the longer time decides it alone."
   },
   "evidence": {
     "qa": [],

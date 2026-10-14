@@ -22,13 +22,11 @@
   "objective": "Choose sorting metadata that matches the retrieval goal.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the latest fixture file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Sorting by size answers a different question from sorting by date. To find the latest fixture file, which sort fits? Correct option: Modified day. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data. The stage caption reads: d = day modified; higher = more recent.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): FileStage caption for this slug (StudyLesson.tsx) now states the day-number direction (fixture: movie d1, slides d5, notes d9). Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.size-is-not-recency.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
@@ -51,11 +49,9 @@
     {
       "text": "Recall question answer and rationale: Modified day. The size and day fields disagree. Sorting by the field that answers the question is different from choosing the most prominent-looking file.",
       "support": "derivation",
-      "source": "Google Drive Help, Search for files in Google Drive, filtering and advanced search; retrieved 2026-10-13: https://support.google.com/drive/answer/2375114?hl=en . Exercise fixtures do not reproduce every Drive search behaviour. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Derivation from the exercise fixture study_size_is_not_recency in src/lib/lifehacks/studyCatalog.ts (movie 90MB d1, slides 8MB d5, notes 2MB d9) and the \"sort\" operation in fileResult (src/lib/lifehacks/studyModels.ts): size order puts movie first, day order puts notes (d9, latest) first. Google Drive Help citation removed as off-topic. W-367 (2026-10-14, demo-builder): Source replaced; text unchanged. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.size-is-not-recency.c4",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "lifehacks.size-is-not-recency.recall",
@@ -82,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:size-is-not-recency",
     "prerequisites": [],

@@ -35,7 +35,7 @@
       "id": "lifehacks.lh-material-reuse-account.c2",
       "text": "The stage's two results are computed by the printed expressions. At Uses=10, A=220g and B=200g. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -44,31 +44,36 @@
       "id": "lifehacks.lh-material-reuse-account.c3",
       "text": "Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-material-reuse-account.c4",
-      "text": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Change only Uses to 13. What is B (Replaced) now? Correct: 260g. Use B's stated rule with Uses=13: it gives 260g. Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact.",
+      "text": "Toy mass account: a reusable container is 200g plus 2g per use; each single-use replacement is 20g. From how many uses is the reusable total lower? Correct: 12. At 11 uses it is 222g versus 220g; at 12 it is 224g versus 240g. Include the starting mass, and mass alone is not environmental impact.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200; recall at x=13: B=260. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",200,[\"*\",2,\"x\"]]; B=[\"*\",20,\"x\"]; x denotes Uses. At x=10, A=220, B=200. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-material-reuse-account.c5",
+      "text": "A heavier reusable container and light replacements accumulate material differently.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-material-reuse-account\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Reusable)=[\"+\", 200, [\"*\", 2, \"x\"]]; B (Replaced)=[\"*\", 20, \"x\"]; x denotes Uses, 1 to 30, start 10. Values are fictional/ideal assumptions, not measurements.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A toy reusable container starts at 200g and uses 2g of replacement material/use. Single-use replacements each use 20g. Change only Uses to 13. What is B (Replaced) now?",
+    "question": "Toy mass account: a reusable container is 200g plus 2g per use; each single-use replacement is 20g. From how many uses is the reusable total lower?",
     "options": [
-      "260g",
-      "226g",
-      "262g"
+      "10",
+      "12",
+      "100"
     ],
-    "answer": 0,
-    "why": "Use B's stated rule with Uses=13: it gives 260g. Include the starting material and the repeated additions within the chosen boundary. This toy mass account excludes energy, cleaning, transport and disposal; lower mass here does not establish a lower environmental impact."
+    "answer": 1,
+    "why": "At 11 uses it is 222g versus 220g; at 12 it is 224g versus 240g. Include the starting mass, and mass alone is not environmental impact."
   },
   "evidence": {
     "qa": [],

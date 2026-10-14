@@ -1,7 +1,7 @@
 {
   "slug": "file-type-then-owner",
   "title": "Narrow with two filters",
-  "hook": "Four files match one clue. Which one matches both?",
+  "hook": "Four files; two are PDFs and two are Ana's. Which one matches both?",
   "domain": "lifehacks",
   "concept": "file-type-then-owner",
   "status": "draft",
@@ -22,13 +22,11 @@
   "objective": "Intersect type and owner filters.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Four files match one clue. Which one matches both? What does adding an owner filter to PDF mean? Correct option: Both conditions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Four files; two are PDFs and two are Ana's. Which one matches both? What does adding an owner filter to PDF mean? Correct option: Both conditions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): disputed; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: plan.pdf (Ana), map.pdf (Bo), note.txt (Ana), list.txt (Bo); list.txt matches neither clue, so \"four files match one clue\" was false. Hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check.",
       "id": "lifehacks.file-type-then-owner.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Combining these two filters requires both fields to match. The fixture counts the intersection, rather than adding the two result sets.",
@@ -82,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:file-type-then-owner",
     "prerequisites": [],

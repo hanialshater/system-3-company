@@ -49,31 +49,29 @@
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c4",
-      "text": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions? Correct: 750g. 300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor.",
+      "text": "A quantity-only recipe uses 300g for four equal portions. How many grams keep the same amount per portion for two portions? Correct: 150g. The rate is 75g per portion; two portions × 75g = 150g. This is proportional quantity arithmetic only.",
       "support": "derivation",
-      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Quantity-only arithmetic: 300g ÷ 4 portions = 75g/portion; 75g/portion × 10 portions = 750g. The recall asks for proportional quantity, not the unchanged comparison. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-scale-recipe-portions.c5",
-      "text": "Cooking times do not scale with quantity.",
+      "text": "Cooking times do not scale in proportion to quantity: follow the recipe's own times and check food is cooked through.",
       "support": "source",
-      "source": "Safety-required stage line (company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md, lifehacks-safety-reviewer). Source owed: a food-safety body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
+      "source": "Safety-required stage line; wording from the independent safety second reader (company/reviews/lh-scale-recipe-portions/2026-10-14-safety.md, lifehacks-safety-reviewer), applied 2026-10-14 by demo-builder (W-373). Source owed: a food-safety body guidance, to be found and checked by the fact-checker. The reviewer named none, and none is asserted here.",
       "status": "unverified"
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A quantity-only recipe uses 300g for four equal portions. How many grams preserve that amount per portion for ten portions?",
+    "question": "A quantity-only recipe uses 300g for four equal portions. How many grams keep the same amount per portion for two portions?",
     "options": [
-      "750g",
+      "150g",
       "300g",
-      "450g"
+      "600g"
     ],
     "answer": 0,
-    "why": "300g ÷ 4 = 75g per portion; 75g × 10 = 750g. Scaling the portion count scales the quantity by the same factor."
+    "why": "The rate is 75g per portion; two portions × 75g = 150g. This is proportional quantity arithmetic only."
   },
   "evidence": {
     "qa": [],
@@ -81,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:lh-scale-recipe-portions",
