@@ -11,3 +11,11 @@
 - Stage words: voter numbers, three chips (vs / then), "Vote 1", "Vote 2", "Winner", short caption, one legend line. Roughly 20 words not counting letters and numbers.
 - All claims are unverified, for the fact-checker. Not touched: kit, app shell, tests, board, progress, events.
 - Workspace note: the worktree had no node_modules, so `npm ci` was run (no dependency changes). The regenerated `src/demos/registry.generated.ts` shows a large diff (re-sorted), which other branches adding lessons will also touch; regenerate rather than merge by hand.
+
+## Revision v2 (demo-builder, 2026-10-14)
+
+Inputs: learner review r2 (2026-10-14-learner-no-voting-theory-r2.md).
+- **Reveal stage vs headline:** in the reveal the stage is pinned to the agenda the question asked about (A vs B, then C, winner C). The three chips are replaced by "Your question: A vs B, then C", which also frees the height, so the numbered ballots are no longer cropped (checked on the phone walkthrough).
+- **Consistent voters, looping group:** reveal paragraph 2 now says each voter's own ranking is consistent, yet the group's majorities loop. New claim c5 (unverified).
+- **Condition simplified:** "as long as each voter votes for the option they like better in every vote". c4 text changed, c3 re-opened (its paragraph was rewritten); both back to unverified.
+- QA: contract spec for the slug passed on phone and desktop (QA_PORT 3931, own dist .next-polish). Feed chip spec fails in this worktree for reasons outside the lesson. Walkthrough frames all looked at.

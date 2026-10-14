@@ -75,7 +75,7 @@ const Swatch = ({ cls }: { cls: string }) => (
 );
 
 const Faster = () => (
-  <svg width="10" height="9" viewBox="0 0 10 9" className={s.mark} role="img" aria-label="faster">
+  <svg width="10" height="9" viewBox="0 0 10 9" className={s.mark} role="img" aria-label="quicker">
     <polygon points="5,0 10,9 0,9" />
   </svg>
 );
@@ -127,10 +127,10 @@ function Stage({ locked, phase, interact, onSeen }: {
 
   return (
     <div className={s.wrap}>
-      <p className={s.rule}>
+      <p className={s.rule} hidden={reveal}>
         <Swatch cls={s.busy} /> Solid: cars ÷ 100 min. <Swatch cls={s.fixed} /> Dashed: 45 min.
       </p>
-      <svg viewBox="0 44 340 250" className={`stage-svg ${s.svg}`} role="img" aria-label={label}>
+      <svg viewBox="0 44 340 250" className={`stage-svg ${s.svg} ${reveal ? s.small : ""}`} role="img" aria-label={label}>
         <Road from="S" to="A" cls={s.busy} w={busyW} ink={ink} />
         <Road from="B" to="E" cls={s.busy} w={busyW} ink={ink} />
         <Road from="A" to="E" cls={s.fixed} w={2} ink={ink} />
@@ -171,10 +171,21 @@ function Stage({ locked, phase, interact, onSeen }: {
         </span>
         <span className={linkOn && od < nw ? s.win : ""}>
           <small>Switch back</small>
-          <b>{od}</b>
+          <b>
+            {od}
+            {linkOn && od < nw && <Faster />}
+          </b>
         </span>
+        {linkOn && (
+          <span>
+            <small>Before link</small>
+            <b>{BEFORE}</b>
+          </span>
+        )}
       </div>
+      {linkOn && <p className={s.rule}>Switch back: one driver leaving the new route. ▲: the quicker trip.</p>}
 
+      {!reveal && (
       <div className={s.controls}>
         <div className={s.chips} role="group" aria-label="Road network">
           <Control
@@ -211,6 +222,7 @@ function Stage({ locked, phase, interact, onSeen }: {
           Run
         </Control>
       </div>
+      )}
     </div>
   );
 }
