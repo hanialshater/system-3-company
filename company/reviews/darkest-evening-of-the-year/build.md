@@ -23,3 +23,9 @@ reveal-fit note: run through a preload that only raises Playwright's default nav
 ## Local QA (2026-10-14)
 
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J geography slugs> QA_OUT=artifacts/qa-wavej-geography npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=900000`. The `--timeout` flag is a time budget only, because the default 45 s test timeout expired in `page.goto` on the shared dev server in every run. No check was changed. Reports: artifacts/qa-wavej-geography/qa-report-5lessons.json (9 of 10 passed; the one failure was which-sea-gets-the-rain on desktop, a React "state update on a component that hasn't mounted yet" console warning, the dev-server Fast Refresh noise also seen in other wave J runs), qa-report-which-sea-rerun.json (phone and desktop pass), qa-report-which-way-rerun.json (phone and desktop pass, after the v1 sea-rectangle fix). No QA record was filed with `company qa-record`; that belongs to qa-tester.
+
+## Revision v2 (demo-builder, 2026-10-14, wave-J fact-check disputes)
+
+Fact-check 2026-10-14 disputed c3 (W-708): the reveal gave orbital speed as the cause and tilt as an add-on, but by solar.ts's own equation-of-time terms the tilt gives 5.9 of the 8.3 min drift (13 to 30 Dec). The reveal now reads '...mostly because of Earth's tilt, and partly because Earth moves fastest in early January.' c3 rewritten and reset to unverified.
+
+Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. reveal-fit at 390x844 (REVEAL_FIT_TIMEOUT_MS=300000, --shots, artifacts/reveal-fit/wj-disputes.json): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true.

@@ -9118,28 +9118,31 @@
       "id": "W-674",
       "title": "heat-the-ammonia-maker DISPUTED c2+c3: the stage shows the constant-dH/dS K and NH3 shares as fact. Full NASA TM-4513 data give K 0.39 at 200 °C and 4.9e-5 at 450 °C, shares 15% and 0.23%. Fix: add the assumption caption on the stage and in the c3 text, or switch to the full-data values. Also c6 (factories sentence) has no openable source: cut it per the brief (cm-chemistry call); c5 needs an openable kinetics source. Record: company/reviews/heat-the-ammonia-maker/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "chemistry",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-675",
       "title": "limestone-crossover c5 held: drop or reword the 'measured decomposition about 890 °C' sentence (no source could be opened; NASA TM-4513 data give 893 °C), then fact-checker re-checks. Optional: '(25 °C data)' near the dG readouts; 'estimate' in the recall. Record: company/reviews/limestone-crossover/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "chemistry",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-676",
       "title": "Withdraw or source the citation-only claims significant-but-false c5 (Ioannidis 2005) and ten-thousand-replies-still-wrong c5 (Literary Digest 1936). Both are held unverified because no source could be opened, and they block publishing. Records: company/reviews/<slug>/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "probability",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-677",
@@ -9231,10 +9234,11 @@
       "id": "W-686",
       "title": "Fact-check dispute: checking-is-not-finding c4. 'nobody knows a method that always finds one without a search that grows this fast' is false as framed: meet-in-the-middle needs 2^(n/2)+2^(n/2) sums (16 v 64; ~1.41x per number, not 2x). Reword the reveal, e.g. 'yet nobody knows a method that finds one quickly in every case', reset c4 to unverified, and give it an openable source for NP-completeness (CLRS 34.5.5 / Karp 1972 unopened). Record: company/reviews/checking-is-not-finding/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": "cs",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-687",
@@ -9420,19 +9424,21 @@
       "id": "W-707",
       "title": "duck-rides-the-wave c4 DISPUTED (fact-checker ruling on W-581): deep-water wave trains carry energy at group speed c/2 = 3.12 m/s, so the buoy 100 m away starts to bob at about 32 s, not 16 s. Fix Demo.tsx: envelope front moves at C/2 with the crests at C inside it, BUOY_T = BUOY/(C/2); then update the label, Seen row, reveal and c4 text. Optional: draw the 1-wave and 10-wave presets as a steady train. See company/reviews/duck-rides-the-wave/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "physics",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-708",
       "title": "darkest-evening-of-the-year c3 DISPUTED: the reveal says noon drifts 'because Earth moves fastest in early January and its tilt adds to the drift', but by solar.ts's own equation-of-time terms the tilt gives 5.9 of the 8.3 min (13 to 30 Dec). Reword so the tilt is the main cause, e.g. 'mostly because of Earth's tilt, and partly because Earth moves fastest in early January', in the reveal and in c3. See company/reviews/darkest-evening-of-the-year/2026-10-14-fact-check.md",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "geography",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-709",
@@ -9447,10 +9453,11 @@
       "id": "W-710",
       "title": "which-sea-gets-the-rain recall: the fact-checker recorded an unrecorded claim c5 (unverified). 'Most of its rain probably reaches the east coast' holds only if the country is wider than about 40 km. Give the recall a width (e.g. 'a country 300 km wide'), then a different fact-checker verifies c5",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "review",
       "domain": "geography",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-711",
@@ -9726,6 +9733,51 @@
         "by": "portfolio-manager",
         "note": "Founder ask 2026-10-14 (token budget and project approval); written by portfolio-manager, so it stays backlog until another role or the founder approves it; P4: cosmetic"
       }
+    },
+    {
+      "id": "W-732",
+      "title": "Re-check wave-J dispute fixes (fd53f77): heat-the-ammonia-maker c2/c3 (full NASA TM-4513 data), limestone-crossover c5, checking-is-not-finding c4, duck-rides-the-wave c4 (group speed 32 s), darkest-evening-of-the-year c3 (tilt first); which-sea-gets-the-rain c5 needs a checker other than its recorder",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-733",
+      "title": "heat-the-ammonia-maker: decide whether to cut the c6 factories sentence; find an openable kinetics source for c5 (left from W-674)",
+      "owner": "cm-chemistry",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-734",
+      "title": "checking-is-not-finding c4: find an openable source for subset-sum being NP-complete",
+      "owner": "cm-cs",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-735",
+      "title": "duck-rides-the-wave c5 (breaking waves rush forward near shore) is held: source it or cut it",
+      "owner": "cm-physics",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-736",
+      "title": "Re-run QA on the 8 v2 dispute-fix lessons on a release build (QA records are for v1)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
     }
   ]
 }

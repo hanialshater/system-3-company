@@ -36,23 +36,19 @@
     },
     {
       "id": "chemistry.heat-the-ammonia-maker.c2",
-      "text": "With ΔH° and ΔS° held at their 25 °C values, K is about 5.6 × 10^5 at 25 °C, about 0.62 at 200 °C and about 1.9 × 10^-4 at 450 °C, a fall by a factor of billions (stage dot labels '5.6 × 10⁵', '0.62', '1.9 × 10⁻⁴'; reveal: 'K fell from about 5.6 × 10⁵ at 25 °C to about 1.9 × 10⁻⁴ at 450 °C, a factor of billions').",
+      "text": "With ΔH° and ΔS° varying with temperature (full NASA TM-4513 data), K is about 5.6 × 10^5 at 25 °C, about 0.39 at 200 °C and about 4.9 × 10^-5 at 450 °C, a fall by a factor of billions (about 10^10) (stage dot labels '5.6 × 10⁵', '0.39', '4.9 × 10⁻⁵'; reveal: 'K fell from about 5.6 × 10⁵ at 25 °C to about 4.9 × 10⁻⁵ at 450 °C, a factor of billions').",
       "support": "derivation",
-      "source": "ΔG° = ΔH° − TΔS°, K = exp(−ΔG°/RT), R = 8.314 J/(mol K): ΔG° = −32.81, +1.86, +51.38 kJ/mol; K = 5.61e5, 0.624, 1.94e-4; ratio 2.9e9 (node). Demo.tsx kAt(). Constant ΔH° and ΔS° is an approximation; tabulated K values at high temperature differ somewhat but fall the same way (Atkins & de Paula, Physical Chemistry, van 't Hoff equation). The stage does not carry this caveat (text budget); fact-checker to judge whether the claim's 'about' and 'held at 25 °C values' suffice. Brief claim 2.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "The arithmetic is right under the stated assumption: 5.61e5, 0.624 and 1.94e-4. But the stage and the reveal show these Ks as the values at 200 °C and 450 °C, with no caveat (the brief asked for a stage caption). With full temperature-dependent data (NASA TM-4513 polynomials, opened, integrated in node) K is 5.60e5 at 25 °C, 0.39 at 200 °C and 4.9e-5 at 450 °C, because dH reaches -106 kJ/mol at 450 °C. The stage's 450 °C value is 4 times too high. 'A factor of billions' still holds (1.1e10). Fix, either one: (a) add the caption 'estimate: 25 °C dH and dS held constant' on the stage, as limestone-crossover does with '(25 °C data)'; or (b) switch to the full-data values 5.6 x 10^5, 0.39 and 4.9 x 10^-5, citing NASA TM-4513."
+      "source": "NASA-7 polynomials, McBride, Gordon & Reno, NASA TM-4513 (1993), as transcribed in Cantera data/nasa_gas.yaml (NH3, N2, H2; 200-1000 K range). ΔG°(T) = 2G(NH3) − G(N2) − 3G(H2) from the polynomials; K = exp(−ΔG°/RT): K = 5.60e5, 0.391, 4.91e-5; ratio 1.1e10 (node, demo-builder 2026-10-14, from Demo.tsx kAt()). At 25 °C the polynomials give ΔH° = −91.88 kJ/mol, ΔS° = −198.1 J/(mol K) (claim 1); at 450 °C ΔH° = −105.9 kJ/mol. Brief claim 2.",
+      "status": "unverified",
+      "note": "v2 (2026-10-14, W-674): switched from constant 25 °C ΔH°/ΔS° (0.62, 1.9e-4; disputed, no caveat on stage) to the full-data K the fact-checker computed from NASA TM-4513. Needs a fresh check."
     },
     {
       "id": "chemistry.heat-the-ammonia-maker.c3",
-      "text": "Starting from 1 N2 : 3 H2 at 1 bar total, ammonia is about 94% of the settled gas at 25 °C, about 17% at 200 °C and about 0.45% at 450 °C (stage bar 'NH₃ at the end, 25 °C: 94%' etc.).",
+      "text": "Starting from 1 N2 : 3 H2 at 1 bar total, ammonia is about 94% of the settled gas at 25 °C, about 15% at 200 °C and about 0.23% at 450 °C (stage bar 'NH₃ at the end, 25 °C: 94%' etc.).",
       "support": "simulation",
-      "source": "Ideal-gas equilibrium with the K of claim 2: K = x_NH3² / (x_N2 · x_H2³) at P = 1 bar = P°; with extent ξ, K = 4ξ²(4 − 2ξ)² / (27(1 − ξ)⁴), solved by bisection; share 2ξ/(4 − 2ξ) = 0.938, 0.175, 0.0045 (node, demo-builder 2026-10-14; Demo.tsx shareAt()). Not in the brief: added so the 'ammonia at the end' in the question is drawn, not only K. The 1 bar condition shows on the locked bar label only.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Derivation re-checked with two solvers: from 1 N2 : 3 H2 at 1 bar the shares are 93.8%, 17.5% and 0.449% under the constant-dH/dS K of c2, so the code matches c2. But the claim text states these shares as fact. With the full-data K they are 93.8%, 14.8% and 0.227% (at 450 °C half the stage's 0.45%). Same fix as c2: either state the assumption on the stage and in this claim's text, or use the full-data K."
+      "source": "Ideal-gas equilibrium with the K of claim 2: K = x_NH3² / (x_N2 · x_H2³) at P = 1 bar = P°; with extent ξ, K = 4ξ²(4 − 2ξ)² / (27(1 − ξ)⁴), solved by bisection; share 2ξ/(4 − 2ξ) = 0.938, 0.148, 0.0023 (node, demo-builder 2026-10-14; Demo.tsx shareAt()). Not in the brief: added so the 'ammonia at the end' in the question is drawn, not only K. The 1 bar condition shows on the locked bar label only.",
+      "status": "unverified",
+      "note": "v2 (2026-10-14, W-674): shares now from the full-data K of claim 2 (were 17% and 0.45% under constant ΔH°/ΔS°; disputed). Needs a fresh check."
     },
     {
       "id": "chemistry.heat-the-ammonia-maker.c4",
@@ -114,7 +110,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:temperature-shifts-equilibrium",
     "also": [

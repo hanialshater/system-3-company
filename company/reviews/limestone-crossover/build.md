@@ -17,3 +17,9 @@ Departures from the brief: ΔG lives in two recorded readouts ("ΔG at 25 °C", 
 ## QA (local)
 
 Computer-use QA 2026-10-14 against the shared dev server :3530: `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J slugs> QA_OUT=artifacts/qa-wavej-chemistry npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=300000`. The `--timeout` flag raises only the per-test time budget (the config's 45 s ran out on page load, with the server at 15-60 s a page); no check was changed. Result: phone and desktop pass. Not run: next build, npm run verify (shared machine), walkthrough.
+
+## Revision v2 (demo-builder, 2026-10-14, wave-J fact-check disputes)
+
+Fact-check 2026-10-14 held c5 (W-675): the 'measured decomposition about 890 °C' sentence had no openable source. Withdrawn from the claim (it was never shown to the learner); the claim keeps only the 845 °C estimate, which was verified on derivation. Took the non-blocking note too: the recall why now reads 'Limestone switches near 850 °C (an estimate from 25 °C data).' c5 reset to unverified; no stage change.
+
+Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. No stage change, so reveal-fit was not re-run.

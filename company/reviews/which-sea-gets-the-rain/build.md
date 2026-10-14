@@ -22,3 +22,9 @@ reveal-fit note: run through a preload that only raises Playwright's default nav
 ## Local QA (2026-10-14)
 
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=<5 wave-J geography slugs> QA_OUT=artifacts/qa-wavej-geography npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=900000`. The `--timeout` flag is a time budget only, because the default 45 s test timeout expired in `page.goto` on the shared dev server in every run. No check was changed. Reports: artifacts/qa-wavej-geography/qa-report-5lessons.json (9 of 10 passed; the one failure was which-sea-gets-the-rain on desktop, a React "state update on a component that hasn't mounted yet" console warning, the dev-server Fast Refresh noise also seen in other wave J runs), qa-report-which-sea-rerun.json (phone and desktop pass), qa-report-which-way-rerun.json (phone and desktop pass, after the v1 sea-rectangle fix). No QA record was filed with `company qa-record`; that belongs to qa-tester.
+
+## Revision v2 (demo-builder, 2026-10-14, wave-J fact-check disputes)
+
+Fact-check 2026-10-14 recorded the recall as unrecorded claim c5 (W-710): it holds only if the country is wider than about 40 km. The recall question now reads 'A country is 300 km wide, with a ridge 20 km from its west coast. Most of its rain probably reaches which coast?' and the why ends '...and that is 280 of the 300 km.' c5 rewritten and reset to unverified. The claim also records that rain is assumed to be spread evenly, as on the stage ('probably' carries this). A fact-checker other than the one who recorded c5 should check it.
+
+Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. No stage change, so reveal-fit was not re-run.

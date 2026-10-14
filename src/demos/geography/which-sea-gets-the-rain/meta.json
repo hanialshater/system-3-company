@@ -64,25 +64,23 @@
     },
     {
       "id": "geography.which-sea-gets-the-rain.c5",
-      "text": "Recall: a ridge 20 km from a country's west coast means most of its rain probably reaches the east coast ('everything east of the ridge drains east, and that is most of the land').",
+      "text": "Recall: in a country 300 km wide with a ridge 20 km from its west coast, most of its rain probably reaches the east coast ('everything east of the ridge drains east, and that is 280 of the 300 km').",
       "support": "derivation",
-      "source": "Unrecorded claim found by the fact-checker in meta.json recall (question and why). Rests on c3 plus an unstated assumption that the country is much wider than 40 km.",
+      "source": "Rests on c3 (the ridge is a divide). 300 − 20 = 280 km of the 300 km width lies east of the ridge (93%). Assumes rain spread roughly evenly across the land, as on the stage; a much wetter windward slope west of the ridge could shift the split, which 'probably' carries. Recorded by the fact-checker as an unrecorded claim (2026-10-14); v2 (demo-builder, W-710) states the width.",
       "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Recorded by the fact-checker as an unrecorded learner-facing claim (so I do not verify it myself). It holds only if the country is wider than twice the ridge's distance from the coast; the recall never says so. Fix for demo-builder: state a width (for example 'a country 300 km wide'), then a different checker verifies it."
+      "note": "v2 (2026-10-14, W-710): the recall now gives the width (300 km) and the why the split (280 of 300 km), per the fact-check. Needs a check by a different fact-checker than the one who recorded it."
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A ridge runs 20 km from a country's west coast. Most of its rain probably reaches which coast?",
+    "question": "A country is 300 km wide, with a ridge 20 km from its west coast. Most of its rain probably reaches which coast?",
     "options": [
       "The east coast",
       "The west coast",
       "Both about equally"
     ],
     "answer": 0,
-    "why": "The divide, not the distance, decides: everything east of the ridge drains east, and that is most of the land."
+    "why": "The divide, not the distance, decides: everything east of the ridge drains east, and that is 280 of the 300 km."
   },
   "evidence": {
     "qa": [
@@ -92,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:river-watersheds",
     "also": [],

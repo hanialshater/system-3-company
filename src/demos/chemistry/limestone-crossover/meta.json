@@ -65,13 +65,11 @@
     },
     {
       "id": "chemistry.limestone-crossover.c5",
-      "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (25 °C data)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'). Measured decomposition at 1 bar CO2 is about 890 °C.",
+      "text": "With 25 °C values held constant, ΔG° = 0 near 845 °C, an estimate (stage: 'switch ≈ 845 °C (25 °C data)'; reveal: 'The switch sits near 845 °C, where TΔS equals ΔH'; right option 'about 850 °C'; recall why: 'Limestone switches near 850 °C (an estimate from 25 °C data)').",
       "support": "derivation",
-      "source": "T = 179,190 / 160.19 = 1,118.6 K = 845.4 °C (node; Demo.tsx T_SWITCH). The 890 °C figure: Greenwood & Earnshaw, Chemistry of the Elements, calcium chapter, or CRC (dissociation pressure of CaCO3 against temperature); it is not shown to the learner. If it cannot be checked, drop that sentence and keep 'about 850 °C, an estimate'. Brief claim 4.",
+      "source": "T = 179,190 / 160.19 = 1,118.6 K = 845.4 °C (node; Demo.tsx T_SWITCH). Brief claim 4. v2: the unsourced 'measured decomposition about 890 °C' sentence is withdrawn (it was never shown to the learner).",
       "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Split. Part 1 verified on derivation: 179,190/160.19 = 1,118.6 K = 845.5 °C, shown as 845 °C and labelled '(25 °C data)'. Part 2 ('Measured decomposition at 1 bar CO2 is about 890 °C') held: Greenwood & Earnshaw and the CRC dissociation-pressure table could not be opened. In node, the NASA TM-4513 polynomials (calcite BAR 89, CaO J 6/73, CO2 L 7/88) give dG° = 0 at 893 °C. That is consistent with 890 °C, but it is evaluated data, not the cited measurement. Fix: drop the 'measured' sentence (the brief's instruction), or reword it to 'full-temperature data (NASA TM-4513, McBride et al. 1993) put dG° = 0 near 893 °C' and I will verify. The right option 'about 850 °C' is still the nearest at 893 °C."
+      "note": "v2 (2026-10-14, W-675): withdrew part 2 (measured ~890 °C, no openable source), as the fact-check advised; added 'an estimate from 25 °C data' to the recall why. Part 1 was verified on derivation in v1; needs a fresh check."
     },
     {
       "id": "chemistry.limestone-crossover.c6",
@@ -93,7 +91,7 @@
       "It goes by itself at any temperature, a little faster when hot"
     ],
     "answer": 1,
-    "why": "ΔG = ΔH − TΔS. Making gas raises entropy, and TΔS grows with temperature, so above T = ΔH/ΔS the change goes by itself. Limestone switches near 850 °C."
+    "why": "ΔG = ΔH − TΔS. Making gas raises entropy, and TΔS grows with temperature, so above T = ΔH/ΔS the change goes by itself. Limestone switches near 850 °C (an estimate from 25 °C data)."
   },
   "evidence": {
     "qa": [
@@ -103,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:gibbs-free-energy",
     "also": [
