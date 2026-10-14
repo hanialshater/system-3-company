@@ -1,5 +1,9 @@
 # Founder decision: Book Summaries is its own multi-card experience, with more per book
 
+owner: founder (recorded by chief-of-staff)
+date: 2026-10-14
+status: decided
+
 - **Date:** 2026-10-14
 - **Decided by:** founder (in conversation with the chief of staff)
 - **Answers:** Books F3 ("what does 'multiple cards' mean?") and part of F4 (depth per book)
