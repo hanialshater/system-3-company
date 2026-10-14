@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DemoCard } from "@/components/DemoCard";
 import { domains, findDemo, visibleDemos } from "@/lib/catalog";
+import { toFeedItem } from "@/lib/feed-index";
 
 export function generateStaticParams() {
   return visibleDemos({ includeDrafts: true }).map((d) => ({ slug: d.slug }));
@@ -28,7 +29,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
         </Link>
       </nav>
       <div className="slot-screen">
-        <DemoCard meta={meta} domain={domain} active standalone />
+        <DemoCard meta={toFeedItem(meta)} full={meta} domain={domain} active standalone />
       </div>
     </main>
   );

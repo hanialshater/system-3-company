@@ -1,8 +1,11 @@
 import { Feed } from "@/components/Feed";
 import { domains, visibleDemos } from "@/lib/catalog";
+import { feedPage } from "@/lib/feed-index";
 
+// EDD-001 options 2+3: the HTML carries the first page of the slim index, not every lesson's meta.
 export default function Home() {
   const demos = visibleDemos();
-  const used = new Set<string>(demos.map((d) => d.domain));
-  return <Feed demos={demos} domains={domains.filter((d) => used.has(d.id))} />;
+  const counts: Record<string, number> = { all: demos.length };
+  for (const d of demos) counts[d.domain] = (counts[d.domain] ?? 0) + 1;
+  return <Feed first={feedPage("all", 0)} counts={counts} domains={domains.filter((d) => counts[d.id])} />;
 }

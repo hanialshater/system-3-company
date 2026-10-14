@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { flushSync } from "react-dom";
 import type { DemoMeta } from "@/kit/types";
+import type { FeedItem } from "@/lib/feed-types";
 import { createFoldStore, FoldScope, FOLD_TOGGLE_MIN_PX, type FoldStore } from "@/kit/controls";
 import { DemoHost } from "./DemoHost";
 
@@ -14,19 +15,40 @@ export interface DomainInfo {
   color: string;
 }
 
+/**
+ * EDD-001 option 2: a card renders from the slim index (FeedItem). The claims ledger and evidence load
+ * only when the learner opens "Why trust this?" (from /api/meta/<slug>), unless the page already has
+ * the full meta (`full`, the single-lesson page).
+ */
 export function DemoCard({
   meta,
+  full: fullProp,
   domain,
   active,
   standalone = false,
 }: {
-  meta: DemoMeta;
+  meta: FeedItem;
+  full?: DemoMeta;
   domain: DomainInfo;
   active: boolean;
   standalone?: boolean;
 }) {
   const [trustOpen, setTrustOpen] = useState(false);
-  const verified = meta.claims.filter((c) => c.status === "verified").length;
+  const [fetched, setFetched] = useState<DemoMeta | null>(null);
+  const [fetchFailed, setFetchFailed] = useState(false);
+  const full = fullProp ?? fetched;
+  useEffect(() => {
+    if (!trustOpen || full) return;
+    let live = true;
+    setFetchFailed(false);
+    fetch(`/api/meta/${encodeURIComponent(meta.slug)}`)
+      .then((r) => (r.ok ? (r.json() as Promise<DemoMeta>) : Promise.reject(new Error(String(r.status)))))
+      .then((m) => live && setFetched(m))
+      .catch(() => live && setFetchFailed(true));
+    return () => {
+      live = false;
+    };
+  }, [trustOpen, full, meta.slug]);
   const bodyRef = useRef<HTMLDivElement>(null);
   const [fold] = useState(createFoldStore);
   useRevealFit(bodyRef, active, fold);
@@ -53,7 +75,7 @@ export function DemoCard({
 
       <footer className="card-foot">
         <button type="button" className="link" data-testid="trust-button" onClick={() => setTrustOpen(true)}>
-          Why trust this? <span className="muted">({verified}/{meta.claims.length} claims checked)</span>
+          Why trust this? <span className="muted">({meta.claims.verified}/{meta.claims.total} claims checked)</span>
         </button>
         {!standalone && (
           <Link className="link" href={`/d/${meta.slug}`}>
@@ -71,8 +93,15 @@ export function DemoCard({
                 Close
               </button>
             </div>
+            {!full && (
+              <p className="muted small" data-testid="trust-loading">
+                {fetchFailed ? "Could not load the claims. Close and try again." : "Loading the claims…"}
+              </p>
+            )}
+            {full && (
+            <>
             <ul className="claims">
-              {meta.claims.map((c) => (
+              {full.claims.map((c) => (
                 <li key={c.id}>
                   <p>{c.text}</p>
                   <p className="muted small">
@@ -84,10 +113,12 @@ export function DemoCard({
               ))}
             </ul>
             <p className="muted small">
-              Teaching evidence: {meta.evidence.humanLearners.length} human-learner studies,{" "}
-              {meta.evidence.simulatedLearner.length} simulated-learner reviews, {meta.evidence.qa.length} browser QA
+              Teaching evidence: {full.evidence.humanLearners.length} human-learner studies,{" "}
+              {full.evidence.simulatedLearner.length} simulated-learner reviews, {full.evidence.qa.length} browser QA
               runs. Simulated learners find problems; only people can show that a lesson teaches.
             </p>
+            </>
+            )}
           </div>
         </div>
       )}
