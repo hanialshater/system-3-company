@@ -13,3 +13,13 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c5 | verified | GROUPS 6 x SIZE 10, BRIDGES 12 distinct between-group links in makeNet(); predict text '60 people, 6 friend groups'. |
 
 **Result:** 4 verified, 1 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim reworded after the pass 23 dispute. Method: read v2 Demo.tsx (slider, order buttons, New network, readouts, curves, reveal at L = max(level, 2); no Reset) before the source, then replayed all five networks in my own node port (scratchpad fc24/weak.mjs).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Bridge overlap max 0.13 (in-group mean about 0.3). Weakest-first 20%: 12/10/12/12/12 bridges cut, largest 10/20/10/10/10. Strongest-first 20%: 0 bridges cut, 60 of 60 every time. Direction now correct; rests on the stage only. |
+
+**Result:** every claim open at this pass is now verified.

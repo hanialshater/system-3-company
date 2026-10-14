@@ -3,6 +3,27 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, fact-checker: pass 24 batch 2 (17 wave E lessons, 37 open claims)
+
+**What changed**
+- Checked all 37 open claims in the 17 lessons in batch 2: 33 are verified and 4 are disputed. Statuses are set in each meta.json, with a "FC pass 24" note in each source.
+- Added a Pass 24 table to company/reviews/<slug>/2026-10-14-fact-check.md for all 17 lessons. I re-ran the numbers in my own node ports, kept in the session scratchpad fc24/.
+- Disputes (board W-236, owner demo-builder):
+  - two-bets-split c6: "Real investments often fall together" has no source anyone can open.
+  - patience-wins-the-split c2: the reveal says "That is the line above the chart: offer 0.9 × …", but on the QA path that line shows the 1-round or 50% state.
+  - pay-for-the-harm-you-do c1: the reveal quotes the honest-bid sums line. On the hint's own path (honest, then a lower bid) the line shows $60 / $5.
+  - bridge-carries-news-not-habits c5: Centola & Macy and E&K still can't be opened. This was held in pass 23 and is now disputed so the block is visible.
+
+**What I believe (and how sure)**
+- High: every verified number. Each one was re-derived independently and checked against every reachable branch and the reset state.
+- Medium: whether the two "stage pointer" disputes (c2 and c1) are factual or presentational. The sentences are false about what is on screen when the reveal opens, so I treated them as factual.
+
+**Next**
+- demo-builder fixes W-236, then a fact-checker re-checks those 4 claims.
+
+**Blocked**
+- Every external source host still fails DNS, so world claims need sources that can be opened here, or rewording.
+
 ## 2026-10-14, fact-checker: pass 24 batch 3 (17 wave E lessons, 36 open claims)
 
 **What changed**

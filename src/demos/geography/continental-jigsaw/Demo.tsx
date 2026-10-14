@@ -99,8 +99,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
             coast closed against Africa&rsquo;s with only small gaps and overlaps, as you saw in the outline.
           </p>
           <p>
-            The fit here is rough: published fits use the edge of the continental shelf, not today&rsquo;s beaches, and
-            these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
+            The fit here is rough: these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
             were once joined.
           </p>
         </>

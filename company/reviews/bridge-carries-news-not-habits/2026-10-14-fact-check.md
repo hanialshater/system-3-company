@@ -23,3 +23,13 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c5 | held (unverified) | The pass 22 wording objection is resolved: 'Network researchers argue ... holds' no longer claims an empirical finding, and the reveal (line 109) matches. But the claim rests only on Centola & Macy (AJS 113(3), 2007, 702-34 per search snippet) and E&K ch. 19, and I could not open either. The UPenn repository, the UVM pdf, the NDG page, the journal, crossref, openalex, semantic scholar and Wikipedia were all unreachable (DNS failure or proxy 403). Search-result summaries of the abstract match the sentence ('as adoption thresholds increase, long ties can impede diffusion'; complex contagions need reinforcement from multiple sources), but a snippet is not an opened source, so per rule I do not verify. Needs: a checker with access opens the abstract, or the builder adds a source a checker can open. |
 
 **Result:** 0 verified, 0 disputed, 1 held this pass; the lesson cannot publish until c5 (unverified) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (wrote none of these claims; builder demo-builder). Scope: the claim still open from pass 23. Method: read Demo.tsx (the reveal paragraph 3 still carries the sentence verbatim), then tried to open the sources again.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | disputed | Sourcing only. The sentence rests on Centola & Macy 2007 (AJS, doi 10.1086/521848) and E&K ch. 19. Neither could be opened (DNS fails for repository.upenn.edu and journals.uchicago.edu). Search snippets agree, but they are not an opened source. Fix: open the abstract, add an openable source, or drop the sentence (nothing else depends on it). |
+
+**Result:** 0 verified, 1 disputed (c5). Publishing stays blocked on c5.

@@ -99,7 +99,11 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
 
   const s53 = seen[keyOf(5, 3)];
   const s54 = seen[keyOf(5, 4)];
-  const ring4 = seen[keyOf(4, 3)]?.ok ? seen[keyOf(4, 3)] : seen[keyOf(4, 4)]?.ok ? seen[keyOf(4, 4)] : undefined;
+  // ring of four: the finished run that used the fewest colours; the reveal quotes it only if it used 3
+  const best4 = [seen[keyOf(4, 3)], seen[keyOf(4, 4)]]
+    .filter((x): x is Seen => !!x && x.ok)
+    .sort((a, b) => a.used - b.used)[0];
+  const ring4 = best4 && best4.used <= 3 ? best4 : undefined;
 
   return (
     <Lesson
@@ -145,7 +149,9 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
               if (st >= 0 || done) {
                 setSeen((m) => {
                   const key = keyOf(rr, kk);
-                  if (m[key] && (m[key].ok || !done)) return m;
+                  const prev = m[key];
+                  // keep the first dead end; keep a colouring only if it uses fewer colours than the one kept
+                  if (prev && (prev.ok ? !done || u >= prev.used : !done)) return m;
                   return { ...m, [key]: { ok: done, used: u, stuck: st, deadEnds } };
                 });
               }
@@ -230,7 +236,7 @@ export default function WheelNeedsFourColours({ slug }: { slug: string }) {
             const log = [
               s53 ? `5 ring, 3 colours: ${s53.ok ? "done" : "dead end"}` : null,
               s54 ? `5 ring, 4: done, ${s54.used} used` : null,
-              ring4 ? `4 ring: done, ${ring4.used} used` : null,
+              best4 ? `4 ring: done, ${best4.used} used` : null,
             ].filter(Boolean);
             return (
               <div className={s.wrap}>

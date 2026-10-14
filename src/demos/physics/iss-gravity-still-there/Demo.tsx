@@ -14,7 +14,8 @@
 // Earned reveal: "iss" (at 400 km), "far" (20,200 km or more), "fell-short" (a slow throw landed),
 // "orbit-throw" (the 7.67 km/s throw).
 //
-// v3: zoomed-in view keeps Earth's radius and every angle true but stretches height above the ground about 6x
+// v3: zoomed-in view keeps Earth's radius and each point's direction from Earth's centre true but stretches height
+// above the ground about 6x (v4: no longer says 'every angle': a path's angle to the ground is drawn steeper)
 // (disclosed on stage), so the 400 km gap is 30 px and paths are visible on a phone. Every throw stays drawn,
 // slow ones end at a "x" and the readout says when they hit the ground. Height buttons come before the throws in
 // DOM order, so the QA path ends on the ISS picture with all paths; a "Seen:" row keeps the far stops' values.
@@ -83,7 +84,8 @@ const CY = 125;
 const RMAX = 112; // px for the outermost radius drawn
 const FAR_KPX = RMAX / (R_KM + 35786); // zoomed out: out to geostationary, one true scale
 // Zoomed in (ground and ISS height): Earth's radius to scale, height above the ground stretched so the
-// 400 km gap is 30 px. Angles are true, so every path lands where it really lands.
+// 400 km gap is 30 px. Each point's direction from Earth's centre is true, so every path lands where it
+// really lands; a path's angle to the ground is not true (drawn about 6x steeper).
 const E_PX = 82;
 const HPX = (RMAX - E_PX) / ISS_H; // px per km of height
 const STRETCH = Math.round(HPX / (E_PX / R_KM)); // about 6

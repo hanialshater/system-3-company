@@ -71,12 +71,10 @@
     },
     {
       "id": "physics.iss-gravity-still-there.c6",
-      "text": "At the far stops the stage draws Earth and the orbits to one scale; at ground and ISS height it zooms in, keeping Earth's radius and every angle true but stretching height above the ground about 6× (labelled 'Heights stretched 6×'). Earth is a round, non-spinning sphere with no air.",
+      "text": "At the far stops the stage draws Earth and the orbits to one scale; at ground and ISS height it zooms in, keeping Earth's radius and each point's direction from Earth's centre true (so throws land where they really land) but stretching height above the ground about 6× (labelled 'Heights stretched 6×'). Earth is a round, non-spinning sphere with no air.",
       "support": "convention",
-      "source": "Stated on stage ('To scale. Round Earth, spin ignored.'). Earth's oblateness and spin change surface g by about 0.5% (9.78 at the equator to 9.83 m/s^2 at the poles; WGS 84), small beside the effect shown. | REVISED v2 2026-10-14 (demo-builder, wave D r5): Added the zoomed-in view (same picture, same scale rule, smaller extent) and 'no air' for the throw model. | FACT-CHECK 2026-10-14 (pass 22): near = k <= 1 zooms to the ISS orbit (NEAR_KPX), else to geostationary (FAR_KPX); chips 'Zoomed in, to scale. Round Earth, no air.' / 'To scale. Round Earth, spin ignored.' Model has no spin or drag. WGS 84 g 9.780 to 9.832 m/s^2 is about 0.5% (my knowledge). | REWORDED v3 (builder, 2026-10-14): v3 changes the near view from true scale to a radial stretch of height (HPX = 30 px / 400 km vs Earth 82 px / 6,371 km: 0.075 / 0.01287 = 5.8, shown rounded as 6). Landing angles are unchanged, so where each path lands is still to scale along the ground. Unverified. | FACT-CHECK 2026-10-14 (pass 24): DISPUTED. Code: far stops one scale (FAR_KPX), chip 'To scale. Round Earth, spin ignored.'; near stops E_PX 82 px for R and HPX 30 px / 400 km: stretch 5.83, shown 'Heights stretched 6×. Round Earth, no air.' True so far. But the radial stretch keeps only each point's direction from Earth's centre; it does not keep 'every angle' (a path's angle to the ground is drawn about 6× steeper). Learner-visible in the claims list. Fix (builder): 'keeping Earth's radius and each point's direction from Earth's centre true (so throws land where they really land)'.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Stated on stage ('To scale. Round Earth, spin ignored.'). Earth's oblateness and spin change surface g by about 0.5% (9.78 at the equator to 9.83 m/s^2 at the poles; WGS 84), small beside the effect shown. | REVISED v2 2026-10-14 (demo-builder, wave D r5): Added the zoomed-in view (same picture, same scale rule, smaller extent) and 'no air' for the throw model. | FACT-CHECK 2026-10-14 (pass 22): near = k <= 1 zooms to the ISS orbit (NEAR_KPX), else to geostationary (FAR_KPX); chips 'Zoomed in, to scale. Round Earth, no air.' / 'To scale. Round Earth, spin ignored.' Model has no spin or drag. WGS 84 g 9.780 to 9.832 m/s^2 is about 0.5% (my knowledge). | REWORDED v3 (builder, 2026-10-14): v3 changes the near view from true scale to a radial stretch of height (HPX = 30 px / 400 km vs Earth 82 px / 6,371 km: 0.075 / 0.01287 = 5.8, shown rounded as 6). Landing angles are unchanged, so where each path lands is still to scale along the ground. Unverified. | FACT-CHECK 2026-10-14 (pass 24): DISPUTED. Code: far stops one scale (FAR_KPX), chip 'To scale. Round Earth, spin ignored.'; near stops E_PX 82 px for R and HPX 30 px / 400 km: stretch 5.83, shown 'Heights stretched 6×. Round Earth, no air.' True so far. But the radial stretch keeps only each point's direction from Earth's centre; it does not keep 'every angle' (a path's angle to the ground is drawn about 6× steeper). Learner-visible in the claims list. Fix (builder): 'keeping Earth's radius and each point's direction from Earth's centre true (so throws land where they really land)'. | Builder revision v4 (demo-builder, 2026-10-14, W-232): 'every angle true' replaced with 'each point's direction from Earth's centre true (so throws land where they really land)', per the pass 24 fix. The radial stretch maps (r, θ) to (R + 5.83·(r − R), θ): θ is kept, a path's angle to the ground is not. Same wording fixed in the Demo.tsx scale comments; the on-stage chips are unchanged.",
+      "status": "unverified"
     },
     {
       "id": "physics.iss-gravity-still-there.c7",
@@ -121,7 +119,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "physics:weightlessness",
     "prerequisites": [
