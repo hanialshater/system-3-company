@@ -26,28 +26,40 @@
       "text": "London christened 484,382 boys and 453,841 girls from 1629 to 1710 (82 years), with counts for each year.",
       "support": "source",
       "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, columns Males and Females (Arbuthnot 1710, per the HistData doc). Copied into Demo.tsx as CHRISTENED. Known trap (charter): the 1674 and 1704 rows are identical in the file; both are drawn as given.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). Arbuthnot.csv Males sum 484,382, Females 453,841, 82 rows 1629-1710; Demo.tsx CHRISTENED identical. The 1674 and 1704 rows are identical (6,113 / 5,738); the HistData doc (Zabell) says the 1704 values were 'probably copied erroneously from the former'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.more-boys-christened.c2",
       "text": "Boys outnumbered girls at christening in all 82 years, by about 107 to 100 overall; the closest year, 1703, had 101 boys for every 100 girls and the widest, 1661, had 116.",
       "support": "derivation",
       "source": "history-cycle2-check.mjs section 16: 82 of 82; 100 x 484,382 / 453,841 = 106.7 -> 107; min ratio 1703 (101.1 -> 101), max 1661 (115.6 -> 116). Demo.tsx computes the same from CHRISTENED; stage and reveal both use Math.round.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 82 of 82 years Males > Females; 106.73 (107); min 1703 101.07 (101); max 1661 115.61 (116). Note, not blocking: one of the 82 years (1704) is probably a copying error, so the record has 81 independent years. Arbuthnot's own argument used all 82, and the lesson draws them as given.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.more-boys-christened.c3",
       "text": "A small, steady difference shows every single year once the counts are in the thousands.",
       "support": "derivation",
       "source": "Each year's christenings of each sex in the file are between about 2,700 and 8,500 (CHRISTENED); with a surplus near 7%, the yearly surplus (82 to 800 on the stage) stays above zero in every year. The general point (a sign test / sampling noise falls with count) is owned by probability; stated here as what the record shows.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Each year's counts are 2,722-8,426 per sex; yearly surplus 82-800, all above zero. As stated.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.more-boys-christened.c4",
       "text": "Where it stops: these are christenings in London, not births, so babies who were never christened are missing.",
       "support": "source",
       "source": "history-data.mjs: arbuthnot, HistData Arbuthnot documentation (christenings by sex in London). Brief #16: no held source sentence.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): HistData Arbuthnot doc (opened), quoting Oeppen: 'Arbuthnot's data are annual counts of public baptisms, not births. Birth-baptism delay meant that infant deaths could occur before baptism.'",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

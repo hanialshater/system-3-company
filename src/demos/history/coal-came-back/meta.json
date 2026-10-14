@@ -28,49 +28,70 @@
       "text": "World fossil CO2 by source, every year 1750-2024, in million tonnes: coal, oil, gas, and 'Other' (the total minus those three) (stage: stacked shares and tonnes).",
       "support": "source",
       "source": "history-data.mjs: co2, owid-co2-data.csv, row World, columns coal_co2, oil_co2, gas_co2, co2, 1750-2024, rounded to 0.1 Mt in Demo.tsx. 'Other' is co2 - coal_co2 - oil_co2 - gas_co2 (the file's cement, flaring and other-industry columns are not drawn separately). World row only: no country named (care line). Brief claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). RAW coal/oil/gas/co2 in Demo.tsx = World row rounded to 0.1 Mt, 1750-2024 (275 values each, 0 mismatches). Codebook (opened) defines coal_co2, oil_co2, gas_co2, co2 in Mt.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c2",
       "text": "In 1900 coal made 96% of the world's fossil CO2 (stage label 'Coal 96%' at 1900; readout 'Coal 1900 96%'; reveal).",
       "support": "derivation",
       "source": "history-data.mjs: co2, World 1900 coal_co2 / co2 = 95.9%. history-cycle2-check.mjs section 17 (reveal value c1900 = 96).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1900 coal 1882.645 / 1962.884 = 95.9%.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c3",
       "text": "Oil's CO2 was above coal's in 1968-2004 (37 years), and coal has been ahead every year from 2005 (hook and question: 'Oil passed/overtook coal … in 1968'; stage bracket 'oil ahead, 1968-2004'; reveal 'coal took the lead back in 2005').",
       "support": "derivation",
       "source": "history-data.mjs: co2, World, years where oil_co2 > coal_co2: 1968 to 2004 (1968: oil 5,528 Mt, coal 5,320 Mt). history-cycle2-check.mjs section 17 ('oil ahead', 'coal back'). Demo.tsx AHEAD computes the same years from the rounded series.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): oil_co2 > coal_co2 in exactly 1968-2004 (37 years, contiguous); coal ahead every year 2005-2024. 1968: oil 5,528.2, coal 5,319.7.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c4",
       "text": "In 2024 coal made 41% of the world's fossil CO2 (15,805 Mt) and oil 32% (12,471 Mt) of 38,599 Mt; shares at the presets: 1968 coal 41%, oil 43%; 2005 coal 39%, oil 37% (stage labels; readout 'Coal, oil 2024 41%, 32%'; reveal).",
       "support": "derivation",
       "source": "history-data.mjs: co2, World 2024 coal_co2 15,805.3, oil_co2 12,470.6, gas_co2 8,009.8, co2 38,598.6. history-cycle2-check.mjs section 17 ('2024'). 1968 and 2005 shares from the same columns (node, builder, 2026-10-14).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 2024: coal 15,805.3 (40.9%), oil 12,470.6 (32.3%), gas 8,009.8, total 38,598.6; 1968 41.2/42.8; 2005 38.8/37.3. The denominator includes cement, flaring and other industry. That matches the Global Carbon Budget's 'fossil CO2' term (OWID metadata: 'fossil fuels and industry'), so 'fossil CO2' is right.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c5",
       "text": "Coal's emissions in 2024 were 3 times those of 1968, so a fuel can lose first place and still burn more (readout 'Coal since 1968 ×3 tonnes'; tonnes view; reveal).",
       "support": "derivation",
       "source": "history-data.mjs: co2, World coal_co2 2024 15,805 Mt / 1968 5,320 Mt = 2.97, shown as 3. history-cycle2-check.mjs section 17 ('tonnes').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 15,805.3 / 5,319.7 = 2.97, shown 3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c6",
       "text": "Where it stops: these are estimates rebuilt from records of fuel use (reveal). HELD: the one held source sentence. Fallback if not checkable: 'Where it stops: these are estimates, and the file is revised every year'.",
       "support": "source",
       "source": "OWID co2-data README and the Global Carbon Project methods (README reachable at raw.githubusercontent.com/owid/co2-data; not opened for this sentence). Brief claim 3, held.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held sentence checked against an opened source: OWID metadata for these indicators (raw.githubusercontent.com/owid/etl/master/etl/steps/data/garden/gcp/2025-11-13/global_carbon_budget.meta.yml, line 165): 'Fossil CO2 emissions are estimated using national statistics on energy use - such as coal, oil, and gas consumption - and industrial production'. Builder: re-cite the source to that file.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.coal-came-back.c7",
       "text": "The file is revised every year (reveal).",
       "support": "source",
       "source": "history-data.mjs: co2 is pinned on OWID's master branch and the charter's dataset table notes 'expect the pin to fail when OWID updates it'; the brief's fallback names this as the reason. Cut with c6 to the fallback if the fact-checker finds 'every year' unsupported by the README.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): OWID co2-data README (opened): 'Most metrics are published on an annual basis'; the changelog lists a new Global Carbon Budget each year (v2021, 2022, 2023, 2024, 2025). Pin check: I re-fetched owid-co2-data.csv from master today and its SHA-256 (7f78e2b2...) still equals the pin. So the numbers stand on today's master too. They will need re-checking when OWID next updates (expected with the next Global Carbon Budget).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

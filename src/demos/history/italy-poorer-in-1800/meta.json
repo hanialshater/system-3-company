@@ -26,42 +26,60 @@
       "text": "Maddison's series of income per person for north and central Italy, each year from 1310 to 1871, shown as an index with 1450 = 100.",
       "support": "source",
       "source": "history-data.mjs: maddison, maddison2020.csv, Entity 'Italy', column 'GDP per capita', 1310-1871 (562 values, none missing; copied into Demo.tsx unchanged). Maddison README (opened by cm-history): Italy 1310-1871 (North Italy), Malanima (2010). history-cycle2-check.mjs section 18.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). Italy 1310-1871: 562 values, no gaps, identical to Demo.tsx GDP. Maddison README (opened): 'Italy 1310-1871 (North Italy) Malanima, P. (2010), \"The long decline of a leading economy: GDP in central and northern Italy, 1300-1913\"', so 'north and central' is right.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.italy-poorer-in-1800.c2",
       "text": "In 1800 the index was about 75: a person in north and central Italy had about 75% of the income of one in 1450.",
       "support": "derivation",
       "source": "100 x 2,404 / 3,218 = 74.7, rounded to 75. history-cycle2-check.mjs section 18 '18 1450 and 1800'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1450 3,218.06; 1800 2,403.94; index 74.70, shown 75.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.italy-poorer-in-1800.c3",
       "text": "That is a fall of about 0.08% a year for 350 years.",
       "support": "derivation",
       "source": "100 x ((2,404 / 3,218)^(1/350) - 1) = -0.083%. history-cycle2-check.mjs section 18 '18 per year'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): (2403.94/3218.06)^(1/350) - 1 = -0.0833% a year, shown 0.08%.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.italy-poorer-in-1800.c4",
       "text": "The whole line: 1310 index 89, 1871 index 87.",
       "support": "derivation",
       "source": "100 x g / g(1450) for 1310 and 1871, rounded (1310 89 is in the script's output; 1871 computed the same way in Demo.tsx).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1310 2,857.08 -> 88.78 (89); 1871 2,811.12 -> 87.35 (87).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.italy-poorer-in-1800.c5",
       "text": "Income per person can shrink for centuries, not only grow.",
       "support": "derivation",
       "source": "Follows from c2 and c3 on this series (one reconstruction; see c6).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Follows from c2-c3 on this series; the reveal says 'On this series'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.italy-poorer-in-1800.c6",
       "text": "Where it stops: this is one reconstruction, it covers only the north and centre before 1871, and the copy we opened states no unit, so it is read as an index.",
       "support": "source",
       "source": "Maddison README (opened by cm-history): one source named for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871; the OWID copy's columns state no currency unit (history-data.mjs: maddison 'what'). history-cycle2-check.mjs section 18 '18 north and centre only before 1871'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): README opened: one source for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871. The CSV header is 'GDP per capita' with no unit, and the README states none.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

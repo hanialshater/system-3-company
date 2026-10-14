@@ -27,42 +27,60 @@
       "text": "World population by year, 1800 to 2023, in billions.",
       "support": "source",
       "source": "history-data.mjs: gmpop, gapminder-pop-global.csv, column pop (Gapminder Fast Track; estimates before 1950). The values for 1800-2024 are copied into Demo.tsx unchanged; the stage draws to 2023 only. history-cycle2-check.mjs section 15.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). POP in Demo.tsx = the file's pop column 1800-2024 (225 values, identical); stage draws to 2023.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.doubling-stopped-speeding-up.c2",
       "text": "World population first reached 1 billion in 1805, 2 billion in 1927, 4 billion in 1975 and 8 billion in 2022: the doublings took 122 years, then 48, then 47.",
       "support": "derivation",
       "source": "First year with pop >= 1e9, 2e9, 4e9, 8e9 in the column. Computed in Demo.tsx; history-cycle2-check.mjs section 15 '15 doubling years'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): First year >= threshold: 1 bn 1805 (1,002,667,483), 2 bn 1927, 4 bn 1975, 8 bn 2022 (8,021,407,192). 122, 48, 47. Same in Demo.tsx firstAt().",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.doubling-stopped-speeding-up.c3",
       "text": "Growth per year peaked at 2.25% in 1963 and was 0.87% in 2023.",
       "support": "derivation",
       "source": "Growth in year y = 100 x (pop[y+1] / pop[y] - 1), the check script's formula; peak over 1900-2023. Disclosure: the 2023 rate uses the file's 2024 value, which Gapminder marks as after its estimates (it may be a projection); the stage shows no year after 2023. history-cycle2-check.mjs section 15 '15 growth peak'.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): The peak holds (forward rate 100 x (P[y+1]/P[y] - 1) peaks at 2.245% in 1963; backward rate gives the same 2.245% labelled 1964). The 2023 figure does not hold as a record. 0.87% is pop(2024)/pop(2023) - 1, and the file's pop concept is v8 dated 'July 29, 2024' (ddf--concepts.csv, opened). A mid-2024 value published in July 2024 cannot be a counted record. It is a projection or a nowcast. The lesson's own limit sentence says the chart stops at the present and 'any later number is a projection, not a record', so the stage contradicts its own limit. I could not open Gapminder's pop documentation (gapm.io/dpop is unreachable) to see where its estimates end. Fix (history-builder): use only values up to 2023. Either (a) a backward rate throughout, 100 x (P[y]/P[y-1] - 1), giving peak 2.25% in 1964 and 0.88% in 2023, or (b) keep the forward rate and label the last value '2022 to 2023: 0.88%'. Then drop 2024 from POP. Either way the reveal says 0.88%, not 0.87%. Also bring the check script (history-cycle2-check.mjs section 15) into line.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.doubling-stopped-speeding-up.c4",
       "text": "A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.",
       "support": "derivation",
       "source": "Doubling time is set by the yearly rate (math:exponential-growth); 47 >= 48 - 1 and the rate falls after 1963 (c2, c3).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Follows from c2, c3: 47 vs 48 years, and the rate falls after the 1960s peak. Wording note, not blocking: the reveal says 'the last was no faster than the one before'. Read literally, 47 < 48 is one year faster, though that is within the one-year resolution of 'first year above'. Suggest 'about as fast as the one before'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.doubling-stopped-speeding-up.c5",
       "text": "Where it stops: early totals are the least certain, and the chart stops at the present; any later number is a projection, not a record.",
       "support": "convention",
       "source": "Brief 15 limit sentence. The pin's description says the series is estimates before 1950 and projections after the present. 'Early totals are the least certain' is a convention about reconstructed counts: cut it if the fact-checker wants a source.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Second half verified by definition (the stage stops at 2023; values after the present are projections). First clause 'early totals are the least certain' has no opened source. The pin description's 'estimates before 1950' is the pin author's note; it is not in ddf--concepts.csv or the open-numbers READMEs I opened. Fix (builder, as the source field offers): cut the clause, giving 'Where it stops: the chart stops at the present; any later number is a projection, not a record.'",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.doubling-stopped-speeding-up.c6",
       "text": "World population doubled faster and faster (hook): 1 to 2 billion took 122 years, 2 to 4 billion took 48.",
       "support": "derivation",
       "source": "c2: 1927 - 1805 = 122; 1975 - 1927 = 48 (history-cycle2-check.mjs section 15). The hook states only the first two doublings; the third is the question.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Hook: 1927-1805 = 122, 1975-1927 = 48 (c2). 'Doubled faster and faster' is true of those two spans.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

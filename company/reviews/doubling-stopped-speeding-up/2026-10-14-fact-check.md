@@ -1,0 +1,25 @@
+# Fact-check: doubling-stopped-speeding-up (2026-10-14)
+
+Lesson: src/demos/history/doubling-stopped-speeding-up/ (status draft, version 1; builder history-builder-1).
+
+## Pass 39
+
+Checker: fact-checker, a fresh instance (History set: the 15 history drafts on W-818, W-848, W-853). I did not write, build or record these claims. No walkthrough transcript exists yet for this lesson (artifacts/walkthroughs/doubling-stopped-speeding-up/ is absent), so I read Demo.tsx directly for every learner-visible string (title, hook, question, options, stage labels, readouts, reveal). Method: (1) `node company/domains/briefs/checks/history-data.mjs`: all 23 pins hold. (2) I re-derived every number with my own node scripts (my own CSV parser, written in the session scratchpad, not the builder's check scripts) from artifacts/history-data/. (3) I compared each data array copied into Demo.tsx with the pinned file, value by value. (4) I read the stage's formulas and checked they compute the claim the same way. (5) I opened source documentation from raw.githubusercontent.com: HistData docs via Rdatasets; the Maddison 2020 README (OWID copy); OWID co2-data README and codebook; OWID etl GCB metadata (global_carbon_budget.meta.yml, 2025-11-13); Gapminder Fast Track ddf--concepts.csv, datapackage.json and READMEs; vega-datasets 3.2.1 datapackage.json. Blocked: gapm.io, gapminder.org, datavis.ca, journals, Zenodo, ESSD, UN WPP, Wikipedia, Britannica, university pages (W-583). WebFetch fails DNS. WebSearch returns only summaries, which I did not count as opened sources. No verdict rests on a source I could not open.
+
+Unrecorded claims: None new; reveal wording 'no faster than the one before' noted under c4.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). POP in Demo.tsx = the file's pop column 1800-2024 (225 values, identical); stage draws to 2023. |
+| c2 | verified | First year >= threshold: 1 bn 1805 (1,002,667,483), 2 bn 1927, 4 bn 1975, 8 bn 2022 (8,021,407,192). 122, 48, 47. Same in Demo.tsx firstAt(). |
+| c3 | disputed | The peak holds (forward rate 100 x (P[y+1]/P[y] - 1) peaks at 2.245% in 1963; backward rate gives the same 2.245% labelled 1964). The 2023 figure does not hold as a record. 0.87% is pop(2024)/pop(2023) - 1, and the file's pop concept is v8 dated 'July 29, 2024' (ddf--concepts.csv, opened). A mid-2024 value published in July 2024 cannot be a counted record. It is a projection or a nowcast. The lesson's own limit sentence says the chart stops at the present and 'any later number is a projection, not a record', so the stage contradicts its own limit. I could not open Gapminder's pop documentation (gapm.io/dpop is unreachable) to see where its estimates end. Fix (history-builder): use only values up to 2023. Either (a) a backward rate throughout, 100 x (P[y]/P[y-1] - 1), giving peak 2.25% in 1964 and 0.88% in 2023, or (b) keep the forward rate and label the last value '2022 to 2023: 0.88%'. Then drop 2024 from POP. Either way the reveal says 0.88%, not 0.87%. Also bring the check script (history-cycle2-check.mjs section 15) into line. |
+| c4 | verified | Follows from c2, c3: 47 vs 48 years, and the rate falls after the 1960s peak. Wording note, not blocking: the reveal says 'the last was no faster than the one before'. Read literally, 47 < 48 is one year faster, though that is within the one-year resolution of 'first year above'. Suggest 'about as fast as the one before'. |
+| c5 | unverified | Second half verified by definition (the stage stops at 2023; values after the present are projections). First clause 'early totals are the least certain' has no opened source. The pin description's 'estimates before 1950' is the pin author's note; it is not in ddf--concepts.csv or the open-numbers READMEs I opened. Fix (builder, as the source field offers): cut the clause, giving 'Where it stops: the chart stops at the present; any later number is a projection, not a record.' |
+| c6 | verified | Hook: 1927-1805 = 122, 1975-1927 = 48 (c2). 'Doubled faster and faster' is true of those two spans. |
+
+**Result (Pass 39):** 4 verified, 1 disputed, 1 unverified.
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c3 (disputed): fix in the note above. Owner: history-builder-1.
+- c5 (unverified): fix in the note above. Owner: history-builder-1.

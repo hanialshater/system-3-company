@@ -27,35 +27,50 @@
       "text": "The latitude and longitude of 39 Great Lakes points as read from 11 maps (Coronelli 1688 to Melish 1818), and their actual positions.",
       "support": "source",
       "source": "history-data.mjs: oldmaps, OldMaps.csv, columns lat and long (Andrews & Herzberg 1985, Table 10.1, per the HistData doc). Absolute values used because of sign typos noted in the doc; copied into Demo.tsx as ACTUAL and MAPS.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). OldMaps.csv: 39 points, 11 maps, Coronelli 1688 to Melish 1818; Demo.tsx ACTUAL and MAPS equal the file in absolute value (ACTUAL longitudes stored as negative = west, a display convention). HistData doc (opened) cites Andrews & Herzberg (1985), Table 10.1, and notes the sign typos.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.lakes-misplaced-east-west.c2",
       "text": "On Coronelli's 1688 map the points were on average 59 km off north-south but 363 km off east-west; on Melish's 1818 map the east-west error was 41 km (north-south 24 km); east-west was the worse error on 9 of the 11 maps.",
       "support": "derivation",
       "source": "history-cycle1-check.mjs section 10: north-south = |dlat| x 111.32 km, east-west = |dlon| x 111.32 x cos(actual latitude), mean over 39 points. Coronelli 59 / 363 (x6.2), Melish 24 / 41, 9 of 11 (not Mitchell 1755 or Lattre 1784). Demo.tsx computes the same; stage and reveal both round to whole km (the brief's draft reveal rounded to tens: 60, 360, 40).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): My script: Coronelli NS 58.9 / EW 363.1 km; Melish NS 24.1 / EW 41.1; EW worse on 9 of 11 (not Mitchell 1755 47.5/46.1, Lattre 1784 50.2/39.9). Demo.tsx uses the same formulas (cos of actual latitude).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.lakes-misplaced-east-west.c3",
       "text": "Latitude can be taken from the height of the Sun or a star, while longitude needs a time difference.",
       "support": "derivation",
       "source": "Brief #10 claim (3): the longitude problem (prerequisite geography:sun-time-from-longitude; 15 degrees of longitude per hour of Earth's rotation). Not opened against a primary source by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Same derivation as rome-placed-too-far-east c6: latitude from the altitude of the Sun or a star; longitude needs a local-time difference at 15 degrees per hour.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.lakes-misplaced-east-west.c4",
       "text": "Where it stops: each map's 39 points were read off by hand.",
       "support": "source",
       "source": "history-data.mjs: oldmaps, HistData OldMaps documentation (opened per the brief): points read from the maps with a grid overlay and linear interpolation.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): HistData OldMaps doc (opened): coordinates 'were recorded using a grid overlaid on each of 11 old maps, and using linear interpolation'. 'Read off by hand' is a fair paraphrase.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.lakes-misplaced-east-west.c5",
       "text": "The map is drawn on a conic equal-area projection over the Great Lakes (parallels 42 and 47 N), with today's country outlines from Natural Earth 1:110m.",
       "support": "convention",
       "source": "Demo.tsx: geoConicEqualArea().parallels([42, 47]).rotate([84, 0]) from d3-geo via @/kit/geo; outlines from the kit's world-atlas 110m countries (coarse; lakes are not cut out). Outlines are context only; every error is computed from the point coordinates, not from the drawing.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Code checked: geoConicEqualArea().parallels([42, 47]).rotate([84, 0]) in Demo.tsx; WorldMap from src/kit/geo uses countries-110m.json (Natural Earth 1:110m).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

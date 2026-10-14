@@ -27,42 +27,60 @@
       "text": "The price of wheat (shillings per quarter) and the weekly wage of a good mechanic (shillings), every 5 years from 1565; wages stop at 1810.",
       "support": "source",
       "source": "history-data.mjs: wheat, Wheat.csv, columns Year, Wheat, Wages (Playfair 1821 via HistData; 'a good mechanic' per the HistData doc). The 53 rows are copied into Demo.tsx unchanged; check section 7 of company/domains/briefs/checks/history-cycle1-check.mjs.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). 53 rows 1565-1821; Wages blank for 1815, 1820, 1821, last wage 1810; HistData Wheat doc (opened): 'Price of Wheat (Shillings/Quarter bushel)', 'typical weekly wage for a \"good mechanic\" from 1565 to 1821'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.wages-bought-more-wheat.c2",
       "text": "From 1565 to 1810 the price of wheat rose about 2.4 times (41 to 99 shillings) and wages rose 6 times (5 to 30 shillings).",
       "support": "derivation",
       "source": "99 / 41 = 2.41; 30 / 5 = 6. Computed in Demo.tsx; history-cycle1-check.mjs section 7 '7 price and wage'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 99/41 = 2.415 (2.4); 30/5 = 6. Demo.tsx PRICE_X, WAGE_X.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.wages-bought-more-wheat.c3",
       "text": "A week's pay bought 2.5 times as much wheat in 1810 as in 1565 (0.12 to 0.30 quarters).",
       "support": "derivation",
       "source": "5/41 = 0.122; 30/99 = 0.303; ratio 2.48, shown as 2.5. history-cycle1-check.mjs section 7 '7 wheat per week's wage'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 5/41 = 0.122, 30/99 = 0.303, ratio 2.485 shown 2.5.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.wages-bought-more-wheat.c4",
       "text": "On his own figures the best year for wages in wheat was 1785 (0.55 quarters a week), not the last one; the worst was 1595 (0.09).",
       "support": "derivation",
       "source": "Max and min of Wages / Wheat over the rows with a wage: 1785, 23/42 = 0.548; 1595, 5.54/64 = 0.087. history-cycle1-check.mjs section 7 '7 best and worst'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Over the 50 rows with a wage: max Wages/Wheat 1785, 23/42 = 0.548; min 1595, 5.54/64 = 0.087. Matches.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.wages-bought-more-wheat.c5",
       "text": "Playfair drew price and wages on two different scales, which hides this ratio; dividing one by the other shows it as one line.",
       "support": "source",
       "source": "HELD (the reveal's one held source sentence). Playfair (1821), A Letter on our Agricultural Distresses (public domain; not opened); the HistData Wheat doc (opened by cm-history) describes the chart. Fallback if not checkable: 'Drawn on two scales, price and wages hide this ratio' (no name). The stage's two-axis view is our re-draw from the data, not a trace of the original.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held sentence checked against the HistData Wheat doc (opened; Playfair 1821 not opened): Playfair's graph 'commits the sin of showing two non-commensurable Y variables on different axes. Scatterplots of wages vs. price or plots of ratios (e.g., wages/price) are in some ways better'. That carries 'two different scales' and the ratio point. Source string should name the doc as the opened source.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.wages-bought-more-wheat.c6",
       "text": "Where it stops: this is one trade's wage and one food, not a cost of living.",
       "support": "convention",
       "source": "Brief 7 limit sentence: the file has one wage series ('a good mechanic') and one price (wheat), so it cannot be a cost-of-living index.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Convention, matches the file: one wage series (a good mechanic) and one price (wheat), per the HistData doc.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

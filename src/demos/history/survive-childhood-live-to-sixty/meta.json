@@ -26,42 +26,60 @@
       "text": "Halley's table gives the people alive at each age, out of one year's births: 1,000 at 1, 732 at 5, 531 at 30, 346 at 50, 142 at 70, 41 at 80 (the stage draws every age from 0 to 84).",
       "support": "source",
       "source": "history-data.mjs: halley, HalleyLifeTable.csv, column number (ages 1-84). Copied into Demo.tsx as SURVIVORS; history-cycle1-check.mjs section 1, 'survivors readout'.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). HalleyLifeTable number: 1 1000, 5 732, 30 531, 50 346, 70 142, 80 41; Demo.tsx SURVIVORS = [1238, ...file] (85 values).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.survive-childhood-live-to-sixty.c2",
       "text": "Halley took 1,238 births a year as the starting cohort (\"of 1,238 born\", age 0 on the chart).",
       "support": "source",
       "source": "history-data.mjs: halley, HistData documentation for HalleyLifeTable (opened); Halley 1693 itself not opened. history-cycle1-check.mjs section 1 uses P[0] = 1238.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): HistData HalleyLifeTable doc (opened): 'The data from Breslau had a mean of 1,238 births per year: this is the value that Halley took for the size, P_0 of the population cohort at age 0.'",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.survive-childhood-live-to-sixty.c3",
       "text": "The table is Halley's 1693 table for Breslau (question: \"Halley's 1693 Breslau table\"; hook: \"late-1600s Breslau\").",
       "support": "source",
       "source": "history-data.mjs: halley (what: 'Halley's 1693 Breslau life table'), HistData documentation for HalleyLifeTable (opened). Primary: Halley, E. (1693), Phil. Trans. 17: 596-610, not opened. Breslau data years 1687-1691 per the Breslau doc (c6).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): HistData docs (opened): HalleyLifeTable 'In 1693 ... Halley studied the birth and death records of the city of Breslau'; Breslau doc gives the years 1687-1691.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.survive-childhood-live-to-sixty.c4",
       "text": "From this table, life expectancy at birth is about 28 years; about 41% of those born died before age 5 (506 of 1,238); those alive at 30 died, on average, at about 58; those alive at 60 at about 72.",
       "support": "derivation",
       "source": "history-cycle1-check.mjs section 1: e0 = 27.87 (trapezoid between whole ages), 30 + e30 = 57.7 (at most 58.3 if the 20 people alive at 84 lived 16 more years each), 60 + e60 = 72.1, died before 5 = 40.9%. Demo.tsx computes the same values live from SURVIVORS with the same trapezoid rule (avgDeath) and rounds to whole numbers.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Trapezoid rule to age 84: e0 = 27.87 (28); 30 + e30 = 57.71 (58); 60 + e60 = 72.10 (72); died before 5 = 506/1238 = 40.9% (41). Demo.tsx avgDeath() is the same rule.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.survive-childhood-live-to-sixty.c5",
       "text": "Life expectancy at birth averages over everyone born, infants included, so a low number does not mean adults died young; people who got through childhood usually lived much longer.",
       "support": "derivation",
       "source": "Follows from c4: the average from birth (28) is below the average from 30 (58) because 41% of deaths came before age 5. Cross-check on separate records, not shown to the learner: Bellhouse's Breslau deaths 1687-91 give a mean age at death of 57.4 for those dying over 30 (history-data.mjs: breslau; history-cycle1-check.mjs section 1).",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Follows from c4. Cross-check note (not shown to learners): from Breslau.csv I get a mean age at death of 57.9 for deaths at ages 31-100, or 57.4 if each age is read as age - 0.5. The source string's 57.4 uses the half-year convention.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.survive-childhood-live-to-sixty.c6",
       "text": "Where it stops: this is one city's records over five years.",
       "support": "source",
       "source": "history-data.mjs: breslau, HistData documentation for Breslau (data years 1687-1691, one city). Brief #1 lists no held source sentence in the reveal.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Breslau doc (opened): deaths 'recorded in each of the years 1687:1691', one city; 'Halley's analysis was based on the total over those years.'",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

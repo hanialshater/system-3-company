@@ -28,63 +28,100 @@
       "text": "Income per person (GDP per capita) in the Maddison Project's United Kingdom series: 1,192 in 1270, 2,412 in 1700 and 38,058 in 2018 (stage: the index line, 1700 = 100; question: 'about doubled from 1270 to 1700').",
       "support": "source",
       "source": "history-data.mjs: maddison, maddison2020.csv (Maddison Project Database 2020, Bolt & van Zanden 2020, OWID's copy), entity 'United Kingdom', column 'GDP per capita', years 1270, 1700, 2018. Brief claim 1; check section 2 of history-cycle1-check.mjs.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). United Kingdom, GDP per capita: 1270 1,192; 1700 2,412; 2018 38,058.09.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c2",
       "text": "The stage line plots every year 1270-2018 of that series as an index (value / value in 1700 × 100), each value rounded to a whole number before indexing; no currency is shown because the copy opened states no unit (stage title 'Income per person, index (1700 = 100)').",
       "support": "source",
       "source": "history-data.mjs: maddison, maddison2020.csv, 'United Kingdom', 'GDP per capita', 749 annual rows 1270-2018 with no gaps (extracted by the builder with the check script's CSV reader, 2026-10-14). 'States no currency unit': check section 2 ('ratios only').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 749 annual rows 1270-2018, no gaps; Demo.tsx GDP string = the file rounded to whole numbers (749/749 identical).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c3",
       "text": "From 1270 to 1700 income per person grew ×2.0 (0.16% a year); from 1700 to 2018 it grew ×15.8 (0.87% a year), so the second span grew about 16-fold (readouts '×2.0 · 0.16%/yr', '×15.8 · 0.87%/yr'; reveal: 'grew 2.0-fold … 15.8-fold. Growth of 0.16% a year … 0.87% a year').",
       "support": "derivation",
       "source": "2,412 / 1,192 = 2.02; 38,058 / 2,412 = 15.78; annual rate = ratio^(1/years) − 1: 0.164% over 430 years, 0.871% over 318 years. history-cycle1-check.mjs section 2 ('1270 to 1700', '1700 to 2018'); Demo.tsx ratio() and rate() on the rounded series give the same values to the shown precision. Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 2412/1192 = 2.023; 38058/2412 = 15.779; 0.1640% and 0.8713% a year. On the rounded series 15.7786, same to shown precision.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c4",
       "text": "Growth of 0.87% a year doubles income about every 80 years (reveal: 'doubles income about every 80 years').",
       "support": "derivation",
       "source": "ln 2 / ln(1.00871) = 79.9, rounded to 80. history-cycle1-check.mjs section 2 ('doubling time after 1700: 80 years'). Brief claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): ln 2 / ln 1.008713 = 79.9, shown 80; Demo.tsx dbl() gives 80.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c5",
       "text": "Before 1700 the series fell as well as rose (for example 1,717 in 1400 and 1,446 in 1650), so the early record is not a slow steady climb (stage: the wiggling line before 1700).",
       "support": "source",
       "source": "history-data.mjs: maddison, 'United Kingdom', 'GDP per capita', years 1348, 1400, 1500, 1600, 1650. history-cycle1-check.mjs section 2 ('not smooth before 1700'). Not stated in words to the learner; it is what the line shows.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1348 1,229; 1400 1,717; 1500 1,697; 1600 1,691; 1650 1,446; pre-1700 index range 41-108 of 1700 = 100.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c6",
       "text": "The dashed lines are our model, not data: steady compound growth at each span's average rate, drawn from the series' value at the span's start (stage legend 'dashed: steady growth rate (our line)'; labels '0.16% a year', '0.87% a year'). On the log scale a steady rate is a straight line.",
       "support": "convention",
       "source": "Builder's model, labelled as ours beside the real series (charter: a model is allowed only when labelled as ours). index(t) = index(start) × (1 + r)^(t − start), r from c3. On a log axis log(index) is linear in t.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Convention: labelled as our line in the legend; index(start) x (1+r)^(t-start) is a straight line on a log axis.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c7",
       "text": "Growth of 0.16% a year is invisible in a lifetime, which is why most of history looks flat on this chart (reveal).",
       "support": "derivation",
       "source": "1.00164^70 = 1.12: about 12% over a 70-year life, smaller than the year-to-year swings in the series before 1700 (c5); against 0.87% a year, 1.00871^70 = 1.83. On the linear 0-1,600 axis the pre-1700 values (41-108) sit within the bottom 7% of the plot.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1.00164^70 = 1.122; 1.00871^70 = 1.835.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c8",
       "text": "The series covers England only before 1700 (reveal: 'the series covers England only before 1700'; question: 'Income per person in England').",
       "support": "source",
       "source": "Maddison Project Database 2020 README in OWID's copy (opened; history-data.mjs: maddison, doc): the UK series is England for 1252-1700 and Britain for 1700-1870, from Broadberry et al. (2015). Brief claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Maddison README opened: 'United Kingdom ... 1252-1700 (England) Broadberry ... (2015)'; '1700-1870 Broadberry ...' (the README does not write 'Britain' for 1700-1870, but it marks only the pre-1700 span as England). See c10 for the stage's other use of 'England'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.income-flat-then-sixteenfold.c9",
       "text": "These are reconstructions from wages, prices and output records, so early values are estimates (reveal, 'Where it stops'). HELD: one held source sentence. Fallback if not checkable: 'these are modern estimates, so early values are rough'.",
       "support": "source",
       "source": "Broadberry, Campbell, Klein, Overton & van Leeuwen (2015), British Economic Growth 1270-1870, Cambridge University Press (not opened). Brief claim 4, held.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held. Broadberry et al. (2015) not opened (publisher blocked). The Maddison README names the work but not its method. The named fallback 'early values are rough' is also unsourced. Fix (builder): 'Where it stops: these are modern reconstructions, and the series covers England only before 1700.' The README supports both halves: it names Broadberry et al. (2015) for the series, and the Project describes itself as 'Maddison style estimates'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "history.income-flat-then-sixteenfold.c10",
+      "text": "England's income per person grew about 16-fold from 1700 to 2018 (title 'How fast did England get richer?'; hook 'What did the next 318 years do?'; question 'Income per person in England ... From 1700 to 2018, how many times over did it grow?').",
+      "support": "source",
+      "source": "Recorded by the fact-checker (pass 39) as an unrecorded stage claim. Data: history-data.mjs: maddison, entity 'United Kingdom', 'GDP per capita' 1700 and 2018; the Maddison README labels only 1252-1700 as England.",
+      "status": "disputed",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Unrecorded claim found by the fact-checker (title, hook and stage question). The question reads 'Income per person in England about doubled from 1270 to 1700... From 1700 to 2018, how many times over did it grow?'. The hook reads 'England's income per person doubled in 430 years. What did the next 318 years do?', and the title is 'How fast did England get richer?'. All three credit England with the 15.8-fold rise. But the series after 1700 is not England: the README marks only 1252-1700 as England, Broadberry's 1700-1870 series is Britain, and after that it is the UK. The reveal's limit sentence says so, but the question has already made the claim. Fix (history-builder): name the measured entity for the second span, e.g. question '...From 1700 to 2018 (Britain, then the UK), how many times over did it grow?', hook 'Income per person in England doubled in 430 years. What did Britain's next 318 years do?', and a title such as 'How fast did Britain get richer?'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

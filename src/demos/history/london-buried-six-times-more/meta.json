@@ -27,28 +27,40 @@
       "text": "London's Bills of Mortality recorded burials, plague burials and christenings by year, 1629-1710: 15,453 burials in 1664, 97,306 in 1665 (68,596 put down to plague), 12,738 in 1666; 9,972 christenings in 1665; 1636: 10,400 plague of 23,359.",
       "support": "source",
       "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, columns Mortality (burials), Plague, Males + Females (christenings). HistData Arbuthnot, columns Mortality and Plague (source not named in the documentation); christenings from Arbuthnot (1710). Copied into Demo.tsx as BILLS. The fact-checker should confirm against a printed Bill for 1665 if one can be opened.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): The numbers verify against the pinned file. Arbuthnot.csv 1664 Mortality 15,453; 1665 97,306, Plague 68,596; 1666 12,738; 1665 christenings 5,114 + 4,858 = 9,972; 1636 Plague 10,400 of 23,359. Demo.tsx BILLS identical for all 82 years. The attribution does not verify. The HistData Arbuthnot doc (opened) says the Plague and Mortality columns are 'deaths from the plague and total mortality obtained by Campbell and from Creighton (1965)'. It does not say they are the Bills of Mortality's burial counts. (So the pin's note 'the doc does not name the source' is out of date: it names Campbell 2001 and Creighton 1965.) Web search snippets, not opened, match: 97,306 burials and 68,596 plague in the 1665 general bill. But no printed Bill, Creighton or Campbell page could be opened (all blocked). Fix: either a web-capable session (W-583) opens a 1665 general Bill or Creighton and verifies 'Bills of Mortality ... burials'; or the builder words it to the doc: 'London's yearly records of deaths and plague deaths (compiled by Creighton, 1965)'. That wording would change the question, hook and reveal from 'burials' to 'deaths'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.london-buried-six-times-more.c2",
       "text": "1665's burials were 6.3 times the year before; 70% were put down to plague; the city buried about 10 people for every child christened (9.8).",
       "support": "derivation",
       "source": "history-cycle1-check.mjs section 8: 97,306 / 15,453 = 6.30; 68,596 / 97,306 = 70.5% shown as Math.round = 70%; 97,306 / 9,972 = 9.8, rounded to 10 in the reveal. Demo.tsx computes the same values from BILLS. Stage readout for 1636 shows Math.round(44.52) = 45%.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Arithmetic on c1's numbers: 97,306/15,453 = 6.30; 68,596/97,306 = 70.5% (70); 97,306/9,972 = 9.76 (about 10); 1636 44.5% (45). Demo.tsx computes the same. The labels 'burials' and 'put down to plague' depend on c1.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.london-buried-six-times-more.c3",
       "text": "1665 was the year of the Great Plague (question text).",
       "support": "source",
       "source": "Context in the brief's stage question (cm-history, brief #8). Consistent with the Plague column (68,596 in 1665, the largest in the file). Common historical name; not separately sourced.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): '1665 was the year of the Great Plague' is a named historical event. The file only shows that 1665 has the largest plague count (68,596) in 1629-1710. No opened source names it (Britannica and Wikipedia blocked). Fix: verify in the W-583 session, or reword the question to the data: 'In 1665, the worst plague year in these records, about how many?'",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.london-buried-six-times-more.c4",
       "text": "Where it stops: these are recorded burials and recorded causes, not a count of every death or a doctor's diagnosis.",
       "support": "convention",
       "source": "What a Bill of Mortality records: burials and the cause written against them (brief #8). Brief: no held source sentence in the reveal; if the fact-checker wants a source for 'not a doctor's diagnosis', cut 'or a doctor's diagnosis'.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Depends on what a Bill recorded: burials, with causes entered by non-medical searchers. No source for that could be opened (see c1). The HistData doc says only 'total mortality'. Fix: verify with c1 in the W-583 session, or cut to 'Where it stops: these are recorded deaths and recorded causes, not a count of every death.' The source field already offers cutting 'or a doctor's diagnosis'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

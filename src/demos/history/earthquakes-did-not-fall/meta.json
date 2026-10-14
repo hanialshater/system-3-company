@@ -27,35 +27,50 @@
       "text": "Recorded deaths from all natural disasters: 25.2 million in 1900-1958 and 7.4 million in 1959-2017, about 70% (71%) fewer (question; stage bars 'All'; readout 'All disasters 25.2M → 7.4M'; reveal; hook 'Disaster deaths fell').",
       "support": "source",
       "source": "history-data.mjs: vega, vega-datasets-3.2.1 package/data/disasters.csv (EM-DAT via Our World in Data, per the package description), entity 'All natural disasters', column Deaths, summed 1900-1958 = 25,237,230 and 1959-2017 = 7,369,926 (one year, 1904, has no row and counts as zero). history-cycle2-check.mjs section 19 ('all disasters').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). disasters.csv 'All natural disasters': 1900-1958 25,237,230; 1959-2017 7,369,926; -70.8%. Only 1904 has no row. Demo.tsx RAW.all identical (118 values). vega datapackage.json (opened): 'Annual number of deaths from disasters, sourced from EM-DAT ... Processed by Our World in Data'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.earthquakes-did-not-fall.c2",
       "text": "Recorded earthquake deaths rose from 1.21 million in 1900-1958 to 1.37 million in 1959-2017 (+14%, 'about 15%') (stage bars 'Quakes'; readout 'Earthquakes 1.21M → 1.37M'; reveal).",
       "support": "source",
       "source": "history-data.mjs: vega, disasters.csv, entity 'Earthquake', Deaths summed 1900-1958 = 1,205,549 and 1959-2017 = 1,371,252; years with no row (1900, 1904, 1911, 1916, 1919, 1921, 1937) count as zero. history-cycle2-check.mjs section 19 ('earthquakes', 'years with no earthquake row').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Earthquake: 1,205,549 -> 1,371,252, +13.7% (shown 14%; the predict option 'about 15%' is a fair round). Missing years 1900, 1904, 1911, 1916, 1919, 1921, 1937 as stated.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.earthquakes-did-not-fall.c3",
       "text": "The world's population more than doubled between the halves (mean 2.11 bn to 5.19 bn), so earthquake deaths per million people a year fell from 9.7 to 4.5 (stage 'world 2.11 bn', 'world 5.19 bn', bars 9.7 and 4.5; readout 'Per million a year 9.7 → 4.5'; reveal).",
       "support": "derivation",
       "source": "history-data.mjs: gmpop (Gapminder world population), mean of 1900-1958 and of 1959-2017; deaths per million a year = half total / 59 / mean population × 10^6. history-cycle2-check.mjs section 19 ('per person').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Mean Gapminder pop 1900-1958 2.106 bn, 1959-2017 5.186 bn (x2.46); per million a year 9.70 and 4.48 (shown 9.7, 4.5). Demo.tsx POP identical to the file for 1900-2017.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.earthquakes-did-not-fall.c4",
       "text": "Three years, 1976, 2004 and 2010, made up 53% of the 1959-2017 earthquake deaths (stage: those yearly bars marked, label '1976, 2004, 2010: 53%'; readout 'Top 3 later years 53%'; reveal). Years only: the file names no place or event.",
       "support": "derivation",
       "source": "history-data.mjs: vega, disasters.csv, Earthquake: 1976 276,994, 2004 227,290, 2010 226,733 of 1,371,252. history-cycle2-check.mjs section 19 ('three biggest years').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): 1976 276,994, 2004 227,290, 2010 226,733 = 53.3% of 1,371,252.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "history.earthquakes-did-not-fall.c5",
       "text": "Where it stops: a single year can change a half-century's total, so a trend in earthquake deaths is hard to read (reveal).",
       "support": "derivation",
       "source": "From c2 and c4: the half-totals differ by 165,703 deaths, less than any one of the three biggest later years (each above 226,000). No held source sentence in this reveal (brief: 'Source, held: none').",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Half-total difference 165,703 is smaller than any of the three biggest later years. Follows.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
