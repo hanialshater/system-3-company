@@ -55,22 +55,28 @@
       "id": "math.cluster-stops-the-cascade.c4",
       "text": "At the end of the run from 0 and 1, person 8 had 1 of 4 friends adopted and 9, 10, 11 had 0 of 3. The stage shows this on a tapped person as 'n of d friends adopted' (pill n/d); the reveal quotes it only for the group member the learner focused on that final.",
       "support": "derivation",
-      "source": "Neighbours of 8 are 7, 9, 10, 11; at the 0,1 final only 7 has adopted (c2). 9, 10, 11 have neighbours only inside the group. Node 2026-10-14: 8 1/4, 9 0/3, 10 0/3, 11 0/3.",
-      "status": "unverified"
+      "source": "Neighbours of 8 are 7, 9, 10, 11; at the 0,1 final only 7 has adopted (c2). 9, 10, 11 have neighbours only inside the group. Node 2026-10-14: 8 1/4, 9 0/3, 10 0/3, 11 0/3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran Demo.tsx simulate() from {0,1}: adopters 0-7, last round 6; at that final 8 has 1/4 adopted friends, 9, 10, 11 have 0/3. Note: the reveal's quoted person is the current focus if it is a group member at start 0,1 (any round), but endFriends() always uses the final, and the reveal stage is pinned to the 0,1 final, so the pill shows the same number. Claim's 'focused on that final' slightly overstates the gate; not learner-facing.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.cluster-stops-the-cascade.c5",
       "text": "Each of the four has more than half its friends inside the group: 8 has 3 of 4, the others 3 of 3. While none of them has adopted, at most 1 of 4 (or 0 of 3) can have, under half, so none can join first. (Stage line on a tapped holdout at the 0,1 final: 'k of d are inside the group, so at most d-k; needs ceil(d/2)': 8 3 of 4, at most 1, needs 2; 9, 10, 11 3 of 3, at most 0, needs 2.)",
       "support": "derivation",
-      "source": "Inside counts from the edge list (node 2026-10-14): 8 3/4, 9 3/3, 10 3/3, 11 3/3 (density 0.75 > 1 - q = 0.5). While no member has adopted, a member's adopted friends are all outside the group: at most 1 of 4 for 8, 0 of 3 for the others, under 1/2, so the rule never admits the first member.",
-      "status": "unverified"
+      "source": "Inside counts from the edge list (node 2026-10-14): 8 3/4, 9 3/3, 10 3/3, 11 3/3 (density 0.75 > 1 - q = 0.5). While no member has adopted, a member's adopted friends are all outside the group: at most 1 of 4 for 8, 0 of 3 for the others, under 1/2, so the rule never admits the first member. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Inside counts from NB in Demo.tsx: 8 3 of 4, 9/10/11 3 of 3. While none has adopted a member's adopted friends are outside: at most 1 of 4 or 0 of 3, below need = ceil(d/2) = 2. Stage focus line formula matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.cluster-stops-the-cascade.c6",
       "text": "Not more seeds: two in a better place. From 0 and 1 two seeds stop at 8 of 12; the same number started at 8 and 9 reach all 12, so 'many more seeds' and 'those four are out of reach' are both false.",
       "support": "derivation",
-      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3.",
-      "status": "unverified"
+      "source": "Follows from c2 and c3: two seeds in both runs, different outcomes, and the run from 0 and 1 stops exactly at the group of c5. Predict options: 'many more' is not needed (two suffice), 'out of reach' is contradicted by c3. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. simulate(): {0,1} -> 8 of 12 in 6 rounds; {8,9} -> 12 of 12 in 8 rounds. Same seed count, so neither 'many more' nor 'out of reach' holds. Both runs are milestone-gated ('stopped', 'planted').",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.cluster-stops-the-cascade.c7",

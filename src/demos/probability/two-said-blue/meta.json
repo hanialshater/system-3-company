@@ -56,15 +56,19 @@
       "id": "probability.two-said-blue.c4",
       "text": "If the first two clues are both wrong, the crowd locks onto the wrong colour: chance (1-p)^2, which is 1/9 = 11.1% when clues are right 2 in 3 (0.16 at 60%, 0.04 at 80%). This is only one route: red can also reach a lead of 2 after a split start, so the total wrong chance (c3, c6) is higher. The reveal prints (1-p)^2 for the accuracy the learner ran most.",
       "support": "derivation",
-      "source": "Two red clues give two red picks, a lead of 2, so by c2 everyone copies red. P = (1/3)^2 = 1/9. Seeds 1..10,000: 1,080 of 10,000 start with two red clues (10.8%). | FACT-CHECK 2026-10-14 (pass NCM-1): The claim as written is right ((1/3)^2 = 1/9; 1,080 of seeds 1-10,000 start with two red clues), but the reveal prints \"(1 in 9)\" unconditionally while its first paragraph quotes the accuracy the learner ran most. If that is 60% or 80% (reachable: run 10,000 at 80%, 100 at 2 in 3), the stage says 1 in 9 where the true value is 0.16 (about 1 in 6) or 0.04 (1 in 25). Fix: write \"(1 in 9 when clues are right 2 in 3)\", or compute (1-ACCS[q])^2 and print it. | REVISION v2 (builder, 2026-10-14): text changed per the dispute; reveal now computes pct((1 - ACCS[q]) ** 2) and adds the split-start route. node: (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; total wrong = (1-p)^2/((1-p)^2+p^2) > (1-p)^2.",
-      "status": "unverified"
+      "source": "Two red clues give two red picks, a lead of 2, so by c2 everyone copies red. P = (1/3)^2 = 1/9. Seeds 1..10,000: 1,080 of 10,000 start with two red clues (10.8%). | FACT-CHECK 2026-10-14 (pass NCM-1): The claim as written is right ((1/3)^2 = 1/9; 1,080 of seeds 1-10,000 start with two red clues), but the reveal prints \"(1 in 9)\" unconditionally while its first paragraph quotes the accuracy the learner ran most. If that is 60% or 80% (reachable: run 10,000 at 80%, 100 at 2 in 3), the stage says 1 in 9 where the true value is 0.16 (about 1 in 6) or 0.04 (1 in 25). Fix: write \"(1 in 9 when clues are right 2 in 3)\", or compute (1-ACCS[q])^2 and print it. | REVISION v2 (builder, 2026-10-14): text changed per the dispute; reveal now computes pct((1 - ACCS[q]) ** 2) and adds the split-start route. node: (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; total wrong = (1-p)^2/((1-p)^2+p^2) > (1-p)^2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. (1/3)^2 = 11.1%, 0.4^2 = 16.0%, 0.2^2 = 4.0%; runMore seeds 1-10,000 badStart: 1,080 at 2/3, 1,575 at 60%, 395 at 80%. Reveal now prints pct((1 - ACCS[q])**2) for the accuracy run most, and the split-start sentence is right: exactWrong (20.0%, 30.8%, 5.9%) exceeds (1-p)^2 at every accuracy. NCM-1 dispute resolved.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c5",
       "text": "A plain vote of the same 100 clues (each right 2 times in 3) is wrong with probability about 0.0199% (about 1 in 5,000), plus 0.0220% for an exact 50-50 tie. On the stage, 'Pooled wrong (ties excluded)' counts the crowds whose 100 clues have a red majority; the reveal also says ties are not counted.",
       "support": "derivation",
-      "source": "Exact binomial, computed in node 2026-10-14: P(blue clues < 50) = 0.0001989, P(= 50) = 0.0002204 with 100 clues at p = 2/3. Seeds 1..10,000: 2 red majorities and 3 ties; seeds 1..10,101: 2 and 3. Reveal quotes the learner's own count of red majorities. | FACT-CHECK 2026-10-14 (pass NCM-1): Own exact binomial (n=100, p=2/3): P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties; 1-10,101: 2 and 3. Advisory: the stage label \"Pooled wrong\" does not say ties are excluded; at 60% ties (128) are comparable to wrongs (163). Not false as claimed. | REVISION v2 (builder): label renamed to say ties are excluded; reveal wording 'had a red majority in N (ties not counted)'. Counting code unchanged.",
-      "status": "unverified"
+      "source": "Exact binomial, computed in node 2026-10-14: P(blue clues < 50) = 0.0001989, P(= 50) = 0.0002204 with 100 clues at p = 2/3. Seeds 1..10,000: 2 red majorities and 3 ties; seeds 1..10,101: 2 and 3. Reveal quotes the learner's own count of red majorities. | FACT-CHECK 2026-10-14 (pass NCM-1): Own exact binomial (n=100, p=2/3): P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties; 1-10,101: 2 and 3. Advisory: the stage label \"Pooled wrong\" does not say ties are excluded; at 60% ties (128) are comparable to wrongs (163). Not false as claimed. | REVISION v2 (builder): label renamed to say ties are excluded; reveal wording 'had a red majority in N (ties not counted)'. Counting code unchanged. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Own exact binomial n = 100, p = 2/3: P(<50) = 0.00019893 (1 in 5,027), P(=50) = 0.00022041. runMore seeds 1-10,000: 2 red majorities, 3 ties. Readout label now 'Pooled wrong (ties excluded)' and reveal says '(ties not counted)'; counting code (poolBlue < 50) matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c6",
@@ -79,8 +83,10 @@
       "id": "probability.two-said-blue.c7",
       "text": "Crowd number k is generated from a fixed seed k (mulberry32(k), 1, 2, 3, ... in order), counted separately for each clue accuracy; the readout 'Crowds run' shows how many have been run. Seeds are not shown to the learner.",
       "support": "convention",
-      "source": "model.ts runMore() and sequence(); Demo.tsx readout label. Seeds are not chosen: they are 1, 2, 3, ... in order. | FACT-CHECK 2026-10-14 (pass NCM-1): runMore iterates k = t.n+1..t.n+count with a separate Tally per accuracy; readout label \"Runs (seeds 1 to n)\". | REVISION v2 (builder): readout label changed from 'Runs (seeds 1 to n)' to 'Crowds run' (jargon); seeds no longer printed.",
-      "status": "unverified"
+      "source": "model.ts runMore() and sequence(); Demo.tsx readout label. Seeds are not chosen: they are 1, 2, 3, ... in order. | FACT-CHECK 2026-10-14 (pass NCM-1): runMore iterates k = t.n+1..t.n+count with a separate Tally per accuracy; readout label \"Runs (seeds 1 to n)\". | REVISION v2 (builder): readout label changed from 'Runs (seeds 1 to n)' to 'Crowds run' (jargon); seeds no longer printed. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. model.ts runMore iterates k = t.n+1..t.n+count with mulberry32(k), one Tally per accuracy; readout label is 'Crowds run'; no seed is printed on the stage or in the reveal.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.two-said-blue.c8",

@@ -75,8 +75,10 @@
       "id": "economics.mild-preferences-sharp-divides.c6",
       "text": "The stage runs a simplified version of Thomas Schelling's model: T. C. Schelling, 'Dynamic models of segregation', Journal of Mathematical Sociology 1(2), 143-186 (1971).",
       "support": "source",
-      "source": "Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186. doi:10.1080/0022250X.1971.9989794. Fact-check NCM-1 confirmed journal, volume, pages and year from secondary records (issue and DOI moderately high; publisher page not opened). Also Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 4, sec. 4.5. The stage rule is a common simplified variant (moves to a random empty cell), not Schelling's exact 1971 procedure. v2 text adds 'a simplified version' at the fact-checker's suggestion (NCM-1); the reveal's caveat says 'A simplified version of Schelling's 1971 model'.",
-      "status": "unverified"
+      "source": "Schelling, T. C. (1971). Dynamic models of segregation. Journal of Mathematical Sociology 1(2): 143-186. doi:10.1080/0022250X.1971.9989794. Fact-check NCM-1 confirmed journal, volume, pages and year from secondary records (issue and DOI moderately high; publisher page not opened). Also Easley & Kleinberg (2010), Networks, Crowds, and Markets, ch. 4, sec. 4.5. The stage rule is a common simplified variant (moves to a random empty cell), not Schelling's exact 1971 procedure. v2 text adds 'a simplified version' at the fact-checker's suggestion (NCM-1); the reveal's caveat says 'A simplified version of Schelling's 1971 model'. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Citation re-confirmed by search (bibliographic record and UZH full-text PDF listing): Schelling, 'Dynamic Models of Segregation', J. Math. Sociol. 1(2): 143-186 (1971), Taylor & Francis; the paper's simulation has two groups sorting into neighbourhoods. 'A simplified version' matches the stage rule (move to a random empty cell) and the reveal caveat. Primary PDF not opened through the proxy.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.mild-preferences-sharp-divides.c7",
@@ -100,8 +102,10 @@
       "id": "economics.mild-preferences-sharp-divides.c9",
       "text": "In the stage model at a 30% threshold, about 1 in 6 households start with under 30% like neighbours by chance, and the share of households whose neighbours are all like them rises from about 1% at the random start to about 30% when nobody wants to move (about 2% at 10%, about 58% at 50%).",
       "support": "simulation",
-      "source": "abm.ts run(seed, pct) with allLikeShare (agents with >= 1 neighbour whose occupied neighbours are all their group). Builder rerun 2026-10-14 (v2), seeds 1-100: unhappy at tick 0 at 30%: 15.7-20.1% (seeds 1-5: 247/251/250/239/263 of 1,440). All-like share at tick 0: 0.5-2.4%. End at 30%: 23.6-38.8%, mean 30.6% (seed 1: 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%). End at 10%: 1.2-3.8%, mean 2.2%. End at 50%: 52.0-67.8%, mean 58.4%. At 70% (tick 60, mostly not settled): 83.0-99.2%, mean 93.1%. Shown on the stage as a tint behind those households and a count ('N% all neighbours like'); the readout shows the count of households that want to move (hollow). The reveal quotes the learner's own 30% run.",
-      "status": "unverified"
+      "source": "abm.ts run(seed, pct) with allLikeShare (agents with >= 1 neighbour whose occupied neighbours are all their group). Builder rerun 2026-10-14 (v2), seeds 1-100: unhappy at tick 0 at 30%: 15.7-20.1% (seeds 1-5: 247/251/250/239/263 of 1,440). All-like share at tick 0: 0.5-2.4%. End at 30%: 23.6-38.8%, mean 30.6% (seed 1: 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%). End at 10%: 1.2-3.8%, mean 2.2%. End at 50%: 52.0-67.8%, mean 58.4%. At 70% (tick 60, mostly not settled): 83.0-99.2%, mean 93.1%. Shown on the stage as a tint behind those households and a count ('N% all neighbours like'); the readout shows the count of households that want to move (hollow). The reveal quotes the learner's own 30% run. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran the lesson's abm.ts run() for seeds 1-100: unhappy at tick 0 at 30% is 15.7-20.1% (mean 17.8%, about 1 in 6); all-like share at tick 0 0.5-2.4% (mean 1.2%); at the end, 10%: mean 2.2%; 30%: mean 30.6% (23.6-38.8); 50%: mean 58.4%. Seed 1: 247 of 1,440 unhappy, 1.4% -> 31.7%; seed 2: 0.6% -> 35.4%. All 100 runs settle at 10/30/50%. Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

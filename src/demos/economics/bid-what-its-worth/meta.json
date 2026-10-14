@@ -73,8 +73,10 @@
       "id": "economics.bid-what-its-worth.c6",
       "text": "A bid only decides whether you win; the price is the rival's bid, so a bid below $70 only gives up wins that pay and a bid above $70 only adds wins that lose money or break even.",
       "support": "derivation",
-      "source": "Address: reveal para 2. From the rule: a bid above 70 changes the outcome only when the rival is between 70 and the bid, where profit is negative or, at a rival bid of exactly $70, zero; a bid below 70 changes it only when the rival is between the bid and 70, where profit is positive. Same node check as c2.",
-      "status": "unverified"
+      "source": "Address: reveal para 2. From the rule: a bid above 70 changes the outcome only when the rival is between 70 and the bid, where profit is negative or, at a rival bid of exactly $70, zero; a bid below 70 changes it only when the rival is between the bid and 70, where profit is positive. Same node check as c2. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Own case analysis with ties to the rival: a bid b > 70 differs from 70 only when 70 <= r < b, where it wins and earns 70 - r <= 0 (0 only at r = 70); a bid b < 70 differs only when b <= r < 70, where 70 wins and earns 70 - r > 0. Matches the reveal paragraph 2 and the profit() rule in Demo.tsx.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.bid-what-its-worth.c7",

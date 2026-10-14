@@ -45,8 +45,10 @@
       "id": "probability.same-songs-different-hits.c3",
       "text": "In the model, 8 songs have appeal 1.0, 1.1, ..., 1.7 (the best 70% more appealing than the worst); each of 1,000 listeners in turn picks a song with chance proportional to its pick weight, appeal x (1 + earlier picks of that song) with copying on, or appeal only with copying off. The stage rule line calls this the \"pick weight\".",
       "support": "convention",
-      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Demo.tsx APPEAL = [1..1.7], w = a*(1+p[i]) or a, pick by cumulative interval of u*sum(w): proportional to the weight as stated. 1.7/1.0 = 70% more. ADVISORY (not blocking): the stage rule line reads \"Pick chance = appeal x (1 + earlier picks)\", which is a weight, not a chance (it exceeds 1 after one pick). Suggest \"Pick chance proportional to appeal x (1 + earlier picks)\" or \"Pick weight = ...\". | REVISION v2 (demo-builder): stage line now reads \"Pick weight = ...\" per the advisory; claim text reworded, so back to unverified.",
-      "status": "unverified"
+      "source": "Modelling choice from the brief (company/domains/briefs/probability.chance.md, NCM batch 1 #3) and spec; stated on the stage rule line and in the predict question; identical in Demo.tsx (APPEAL, simulate). | FACT-CHECK 2026-10-14 (pass NCM-1, session 2): Demo.tsx APPEAL = [1..1.7], w = a*(1+p[i]) or a, pick by cumulative interval of u*sum(w): proportional to the weight as stated. 1.7/1.0 = 70% more. ADVISORY (not blocking): the stage rule line reads \"Pick chance = appeal x (1 + earlier picks)\", which is a weight, not a chance (it exceeds 1 after one pick). Suggest \"Pick chance proportional to appeal x (1 + earlier picks)\" or \"Pick weight = ...\". | REVISION v2 (demo-builder): stage line now reads \"Pick weight = ...\" per the advisory; claim text reworded, so back to unverified. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Demo.tsx APPEAL = 1.0..1.7 (1.7/1.0 = 70% more); w = a x (1 + p[i]) with copying on, a with copying off; pick by cumulative interval of u x sum(w), i.e. chance proportional to the weight. Stage rule line now 'Pick weight = appeal x (1 + earlier picks)' / 'Pick weight = appeal only'. NCM-1 advisory resolved.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c4",
@@ -70,8 +72,10 @@
       "id": "probability.same-songs-different-hits.c9",
       "text": "In the lesson's 8 worlds after 1,000 listeners the best song finishes 1st in 4 of 8 worlds with copying on and in 4 of 8 with copying off; its finishes span 1st to 7th with copying on and 1st to 2nd with copying off.",
       "support": "simulation",
-      "source": "Derived from the c1 finishes (on 3,1,7,1,4,1,1,3; off 2,1,2,1,2,1,2,1): count of 1sts = 4 and 4; ranges 1st-7th and 1st-2nd. The reveal and the stage summary compute these from the stage runs. Added in revision v2 (builder); not yet checked.",
-      "status": "unverified"
+      "source": "Derived from the c1 finishes (on 3,1,7,1,4,1,1,3; off 2,1,2,1,2,1,2,1): count of 1sts = 4 and 4; ranges 1st-7th and 1st-2nd. The reveal and the stage summary compute these from the stage runs. Added in revision v2 (builder); not yet checked. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran Demo.tsx stats() at 1,000: on finishes 3,1,7,1,4,1,1,3 (1st in 4, range 1st-7th, lowest world 3); off 2,1,2,1,2,1,2,1 (1st in 4, range 1st-2nd). Both states milestone-gated (copy-1000, nocopy-1000).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.same-songs-different-hits.c6",

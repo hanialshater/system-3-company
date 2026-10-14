@@ -88,15 +88,19 @@
       "id": "probability.few-shortcuts-shrink-the-world.c8",
       "text": "Every pair a shortcut helps gets a shorter route, and nobody has to rewire the local circles.",
       "support": "derivation",
-      "source": "Adding a link never lengthens any shortest path (the old routes are still there), and a link between far-apart people gives every pair whose route can use it a shorter route. The lesson's model adds shortcuts to an unchanged ring (model.ts); it is a model, not a claim about real people. | FACT-CHECK 2026-10-14 (pass NCM-1): Adding an edge cannot lengthen a shortest path; the model adds shortcuts to an unchanged ring. Read as \"every pair a shortcut can help gets a shorter route\", it holds. Advisory: \"every route that can use it\" could be read as any path through it; \"every pair it helps\" would be tighter. | REVISION v3: text changed to 'every pair a shortcut helps' as the fact-checker advised; back to unverified.",
-      "status": "unverified"
+      "source": "Adding a link never lengthens any shortest path (the old routes are still there), and a link between far-apart people gives every pair whose route can use it a shorter route. The lesson's model adds shortcuts to an unchanged ring (model.ts); it is a model, not a claim about real people. | FACT-CHECK 2026-10-14 (pass NCM-1): Adding an edge cannot lengthen a shortest path; the model adds shortcuts to an unchanged ring. Read as \"every pair a shortcut can help gets a shorter route\", it holds. Advisory: \"every route that can use it\" could be read as any path through it; \"every pair it helps\" would be tighter. | REVISION v3: text changed to 'every pair a shortcut helps' as the fact-checker advised; back to unverified. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Adding an edge cannot lengthen any shortest path, and any pair whose distance falls did so via a shortcut; model.ts adds shortcuts to an unchanged ringEdges(). Wording 'every pair it helps' as advised in NCM-1.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.few-shortcuts-shrink-the-world.c9",
       "text": "In the seed-1 world, the shortest route from person 3 to person 50 (labelled A and B) is 24 steps with no shortcuts, 5 with 5 shortcuts and 4 with 20 shortcuts (9 with 1).",
       "support": "simulation",
-      "source": "model.ts route(): BFS shortest path length from 3 to 50 on the ring plus the first 0, 1, 5, 20 shortcuts of the mulberry32(1) sequence. Re-run in node 2026-10-14 (builder): 24, 9, 5, 4. The pair was chosen as far apart on the ring and with falling length at every chip, not at random.",
-      "status": "unverified"
+      "source": "model.ts route(): BFS shortest path length from 3 to 50 on the ring plus the first 0, 1, 5, 20 shortcuts of the mulberry32(1) sequence. Re-run in node 2026-10-14 (builder): 24, 9, 5, 4. The pair was chosen as far apart on the ring and with falling length at every chip, not at random. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Ran Demo.tsx route(c, 3, 50) on the current code: 24, 9, 5, 4 for 0, 1, 5, 20 shortcuts (ring distance 47 -> ceil(47/2) = 24). The reveal's hopsAt(0/5/20) = 24, 5, 4 are all reached states (milestones c5 and c20; 0 is the opening state).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",

@@ -26,8 +26,10 @@
       "id": "math.news-comes-from-acquaintances.c1",
       "text": "Rule used in the lesson (strong triadic closure): if a person is close to two people, those two have a tie (close or acquaintance). Stage: \"Rule: two people you’re close to must have a tie.\" Question: \"Every tie is close or an acquaintance.\"",
       "support": "convention",
-      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law. | v2 (2026-10-14): stage and question wording changed (\"linked\" -> \"have a tie\"; the two kinds of tie named); earlier fact-check (pass NCM-1) applied to the v1 wording.",
-      "status": "unverified"
+      "source": "Easley & Kleinberg (2010) ch. 3 §3.1 (section number unconfirmed), strong triadic closure property. A rule of this lesson, not an empirical law. | v2 (2026-10-14): stage and question wording changed (\"linked\" -> \"have a tie\"; the two kinds of tie named); earlier fact-check (pass NCM-1) applied to the v1 wording. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Stage line 'Rule: two people you're close to must have a tie.' and question 'Every tie is close or an acquaintance.' match the claim text; it is the strong triadic closure property of Easley and Kleinberg ch. 3 (section unconfirmed), stated as the lesson's rule.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c2",
@@ -42,15 +44,19 @@
       "id": "math.news-comes-from-acquaintances.c3",
       "text": "The same break hits D and E, and on B’s side F, G and H. So while A or B has a close friend in their own group, the one tie between the groups must be an acquaintance.",
       "support": "derivation",
-      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text. | v2 (2026-10-14): learner text reworded; \"the same break\" = the 6 broken triples of c2 (A: C-B, D-B, E-B; B: F-A, G-A, H-A), re-run in node.",
-      "status": "unverified"
+      "source": "Node enumeration of all 2^13 = 8,192 close/acquaintance labellings of the 13 links: 4,160 satisfy the rule; 64 make A–B close, and in all 64 neither A nor B has another close tie (0 exceptions). General form: Easley & Kleinberg (2010) ch. 3 §3.2 (section number unconfirmed): under strong triadic closure, a node with at least two strong ties cannot have a strong local bridge. Counts are evidence only, not learner text. | v2 (2026-10-14): learner text reworded; \"the same break\" = the 6 broken triples of c2 (A: C-B, D-B, E-B; B: F-A, G-A, H-A), re-run in node. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Own enumeration of all 2^13 labellings of the 13 links: 4,160 satisfy the rule; 64 have A-B close, with 0 exceptions (in all 64 neither A nor B has a close tie in its group). With every inside tie close the broken triples are exactly A: C-B, D-B, E-B and B: F-A, G-A, H-A, which is 'the same break hits D and E, and on B's side F, G and H'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c4",
       "text": "News from outside your group comes in over that tie (in this model: on the stage, news from H reaches A’s group only across A–B, shown as an acquaintance).",
       "support": "derivation",
-      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E. | v2 (2026-10-14): reworded; the hook no longer says acquaintances bring the most news, only that news from another group has one way in.",
-      "status": "unverified"
+      "source": "Follows from c2 and c3: A–B is the only link between the groups, and it must be an acquaintance. The stage sends news H → F, G, B → A → C, D, E. | v2 (2026-10-14): reworded; the hook no longer says acquaintances bring the most news, only that news from another group has one way in. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. A-B is the only link between the groups (edge list), so news from H reaches A, C, D, E only across it (HOP map H -> F, G, B -> A -> C, D, E). The reveal's 'you saw it reach A's group across the acquaintance A-B' is gated by the 'news-over-weak' milestone (only fires with A-B an acquaintance).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.news-comes-from-acquaintances.c5",

@@ -79,22 +79,28 @@
       "id": "economics.below-critical-mass.c7",
       "text": "Below this critical mass, a product that most people would buy if others used it still fails.",
       "support": "derivation",
-      "source": "From c1: person x joins when (1 - x) * s > 0.16. At full use (s = 1) that holds for x < 0.84, so 84% of people value it above $0.16, yet a start below 20% still shrinks to 0 (c3, c4). Reworded after fact-check pass NCM-1 ('worth buying' was undefined). Builder-written; needs a checker other than the builder.",
-      "status": "unverified"
+      "source": "From c1: person x joins when (1 - x) * s > 0.16. At full use (s = 1) that holds for x < 0.84, so 84% of people value it above $0.16, yet a start below 20% still shrinks to 0 (c3, c4). Reworded after fact-check pass NCM-1 ('worth buying' was undefined). Builder-written; needs a checker other than the builder. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. At full use (share 1) person x values it (1-x) > 0.16 for x < 0.84: 84% of people (own numeric check 0.840). Demo run(): 19 -> 16 -> 0, 18 -> 11 -> 0; so 'most people would buy if others used it' and 'still fails' both hold.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.below-critical-mass.c8",
       "text": "With network effects, a launch below the tipping point loses users each round: with few users, the product is worth less than its price to most people, so even fewer join.",
       "support": "derivation",
-      "source": "From c1: at share s, the product beats $0.16 only for people with x < 1 - 0.16/s, which is fewer than s itself when s < 0.2 (e.g. s = 0.18 gives 0.111). Matches c4 and c5. Reworded after fact-check pass NCM-1. Builder-written; unverified. Also shown in the reveal in short form.",
-      "status": "unverified"
+      "source": "From c1: at share s, the product beats $0.16 only for people with x < 1 - 0.16/s, which is fewer than s itself when s < 0.2 (e.g. s = 0.18 gives 0.111). Matches c4 and c5. Reworded after fact-check pass NCM-1. Builder-written; unverified. Also shown in the reveal in short form. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. For 0 < s < 0.2, next(s) = 1 - 0.16/s < s (equivalently (s-0.2)(s-0.8) > 0); numeric scan of s in (0, 0.2) with Demo next(): always smaller. Share valuing it above price is 1 - 0.16/s < 0.2, so most (over 80%) value it below price. Matches.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.below-critical-mass.c9",
       "text": "People differ in how much they want the product, the more of the market uses it the more it is worth to each person, and each round everyone who values it above $0.16 starts using it.",
       "support": "derivation",
-      "source": "Plain-words restatement of the c1 model for the predict question (value (1 - x) * share for person x; join if value > price). Added in revision v2; builder-written, unverified.",
-      "status": "unverified"
+      "source": "Plain-words restatement of the c1 model for the predict question (value (1 - x) * share for person x; join if value > price). Added in revision v2; builder-written, unverified. | FACT-CHECK 2026-10-14 (pass NCM-2): VERIFIED. Matches next() in Demo.tsx: value (1-x)*s rises with s for every x < 1, and the round joins exactly those with value > 0.16. Predict question wording matches the claim.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
