@@ -1,0 +1,123 @@
+{
+  "slug": "rome-placed-too-far-east",
+  "title": "Twelve guesses at Rome",
+  "hook": "Astronomers spent centuries measuring one short distance. How close did they get?",
+  "domain": "history",
+  "concept": "longitude-problem-estimates",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "history-builder-1"
+  },
+  "learner": {
+    "knows": [
+      "old maps were rough",
+      "latitude and longitude locate a place"
+    ],
+    "doesNotKnow": [
+      "that the errors ran almost all one way and were huge even for a short, well-travelled distance, because longitude needed time"
+    ]
+  },
+  "misconception": "Old estimates scattered around the truth, so their average was about right.",
+  "objective": "The learner can say that all twelve pre-1644 estimates of the Toledo-Rome longitude difference put Rome too far east (only one within 2 degrees; the middle one about 780 km too far), and that longitude was hard because it needs a difference in local time.",
+  "claims": [
+    {
+      "id": "history.rome-placed-too-far-east.c1",
+      "text": "Twelve astronomers and mapmakers before 1644 estimated the longitude difference from Toledo to Rome; the stage draws their twelve values and years.",
+      "support": "source",
+      "source": "history-data.mjs: langren, Langren1644.csv, columns Name, Year, Longitude (van Langren 1644, digitised by Friendly et al. 2010). The 12 rows are copied into Demo.tsx unrounded; check section 6 of company/domains/briefs/checks/history-cycle1-check.mjs.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c2",
+      "text": "Toledo to Rome is 16.5 degrees of longitude.",
+      "support": "source",
+      "source": "HistData Langren1644 documentation (opened by cm-history): Toledo 39.86 N, 4.03 W; Rome 41.89 N, 12.5 E; 12.5 - (-4.03) = 16.53. history-cycle1-check.mjs section 6, '6 true distance'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c3",
+      "text": "Only 1 of 12 came within 2 degrees (G. Jansonius, 1605: 17.7), and every one put Rome too far east: the estimates ran from 17.7 to 30.1 degrees.",
+      "support": "derivation",
+      "source": "Computed in Demo.tsx from the 12 rows (|lon - 16.53| <= 2; min, max; count lon > 16.53); same as history-cycle1-check.mjs section 6 ('6 within 2 degrees', '6 all too far east').",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c4",
+      "text": "The middle estimate was 25.8 degrees, 9.3 degrees too far, about 780 km.",
+      "support": "derivation",
+      "source": "Median of 12 = mean of the 6th and 7th sorted values (25.617, 26) = 25.81; 25.81 - 16.53 = 9.28 degrees x 111.32 x cos(40.875 deg) = 84.2 km per degree = 781 km, rounded to the nearest 10 = 780. Computed in Demo.tsx; history-cycle1-check.mjs section 6 '6 middle estimate in km'. The stage's 500 km scale bar uses the same km per degree.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c5",
+      "text": "Sorted by year, the estimates show no steady improvement: the earliest (150) is 27.8 and the latest (1610) is 28.2.",
+      "support": "derivation",
+      "source": "Rows sorted by the Year column: C. Ptolomeus 150, 27.787; A. Argelius 1610, 28.17. history-cycle1-check.mjs section 6 '6 no steady improvement by year'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c6",
+      "text": "Latitude can be read from the Sun or a star, but longitude needs the difference in local time between two places (one hour = 15 degrees).",
+      "support": "derivation",
+      "source": "Convention: 360 degrees / 24 hours = 15 degrees per hour (geography:sun-time-from-longitude). Brief 6 claim (4).",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c7",
+      "text": "... which nobody could then measure well.",
+      "support": "source",
+      "source": "HELD (the reveal's one held source sentence). Friendly, Valero-Mora & Ulargui (2010), 'The first (known) statistical graph: Michael Florent van Langren and the secret of longitude', The American Statistician 64(2), 185-191; not opened by the builder. Fallback if not checkable: cut the clause and end the sentence at 'two places'.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c8",
+      "text": "Where it stops: some estimates may copy others, so these are not 12 independent measurements.",
+      "support": "source",
+      "source": "Brief 6 limit sentence (cm-history). The CSV's Source column marks 5 as 'Map' and 7 as 'Astron', which does not by itself establish copying; the sentence says 'may'. For the fact-checker to judge against the Friendly et al. (2010) discussion or cut to 'these are not 12 independent measurements of one method'.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two clocks: one set to noon where you are, one to noon at your home port. They differ by 2 hours. How far east or west are you?",
+    "options": [
+      "2 degrees",
+      "15 degrees",
+      "30 degrees"
+    ],
+    "answer": 2,
+    "why": "The Earth turns 15 degrees an hour, so a 2-hour difference in local time is 30 degrees of longitude. Without a way to compare times, longitude could not be measured well."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:longitude-problem-estimates",
+    "also": [],
+    "prerequisites": [
+      "geography:latitude-longitude",
+      "geography:sun-time-from-longitude"
+    ],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [],
+    "tags": [
+      "longitude",
+      "measurement",
+      "old maps",
+      "van Langren"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}
