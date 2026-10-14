@@ -1,0 +1,30 @@
+.wrap { display: flex; flex-direction: column; gap: 2px; flex: 0 1 auto; min-height: 0; }
+.rule { margin: 0; font-size: 0.78rem; line-height: 1.3; color: var(--muted); text-align: center; }
+.seedRow { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.74rem; color: var(--muted); }
+/* Grid: 288 px square on a 390 px phone (7.2 px cells). */
+.grid { max-width: 100%; max-height: none; margin: 0 auto; flex-shrink: 0; }
+.frame { fill: var(--bg); stroke: var(--line); stroke-width: 0.12; }
+.a { fill: var(--domain); }
+.b { fill: var(--warn); }
+.hollow { fill: none; stroke-width: 0.16; }
+.a.hollow { stroke: var(--domain); }
+.b.hollow { stroke: var(--warn); }
+.head { white-space: nowrap; display: flex; justify-content: space-between; align-items: baseline; gap: 6px; font-size: 0.72rem; color: var(--muted); padding-left: 2px; }
+.readout { color: var(--fg); font-size: 0.8rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.chart { max-height: none; flex-shrink: 0; overflow: visible; }
+.axis { font-size: 9.5px; fill: var(--muted); }
+.tick { font-size: 9px; fill: var(--muted); }
+.axisLine { stroke: var(--line); stroke-width: 1; }
+.ghost { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; }
+.old { fill: none; stroke: var(--muted); stroke-width: 1; }
+.now { fill: none; stroke: var(--fg); stroke-width: 2.2; stroke-linejoin: round; }
+.dot { fill: var(--fg); }
+.end { font-size: 10px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.endNow { font-size: 10px; fill: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; }
+.seedRow > button { white-space: nowrap; flex-shrink: 0; }
+.controls > button { padding-left: 10px; padding-right: 10px; }
+.chips { display: inline-flex; gap: 4px; }
+.chips .chip { min-width: 44px; padding-left: 6px; padding-right: 6px; }
+/* Temporary 44 px tap targets until the kit's .control fix lands (design-lead decisions 2026-10-13 §2b). */
+.tap { min-height: 44px; }
