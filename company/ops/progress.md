@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (hq-engineer, W-460 to W-464: HQ Library review changes)
+
+- **W-463 first.** Progress-entry slugs are now `<date>-<role>-<6 hex of heading>`; a repeat of the same heading is numbered from the bottom of the file (oldest keeps the bare slug), so adding an entry never moves an old link. Old heading-style links still resolve and redirect (307) to the stable path.
+- **W-460** reviews (company, engineering, design) all go to Reviews; new Templates (off by default) and Design types; experiments go to Reports; demo-standard and lesson-metadata go to Requirements; pm-handbook to Handbook. **W-461** deny list now matches dotfiles, .env, key files and secret-named files or folders only, so `reviews/paint-mix-shared-secret/*` is indexed. **W-462** terms of 3 letters or fewer match whole words ("ci" ranks AMD-002 first). **W-464** frontmatter stripped and shown as a meta line (owner feeds `describe()`), table cells use `overflow-wrap: break-word`, `<ol>` emits `start`.
+- Checked on the dev server (:3530): counts, "ci" search, doc API, legacy-slug redirect. Visual table check in a browser was not redone. `npm run test:hq` 13/13, tsc and `npm run check` pass. No build, per the task.
+- Believe: all five fixed (fairly sure). The legacy redirect numbers from the top of today's file, so it is best-effort for old `-N` links. O1 can close. Next: tools-lead to confirm the review.
+
 ## 2026-10-14 (design-lead, W-456: design re-check of three phone-fit fixes)
 
 - **Changed:**

@@ -61,9 +61,10 @@
 .mdPre code { background: none; padding: 0; font-size: inherit; }
 .md blockquote { margin: 0.8em 0; padding: 2px 14px; border-left: 3px solid var(--line); color: var(--muted); }
 .md hr { border: none; border-top: 1px solid var(--line); margin: 1.4em 0; }
+.fm { color: var(--muted); font-size: 12.5px; margin: 6px 0 0; overflow-wrap: anywhere; }
 .mdTable { overflow-x: auto; margin: 0.8em 0; }
 .mdTable table { border-collapse: collapse; font-size: 13.5px; }
-.mdTable th, .mdTable td { border: 1px solid var(--line); padding: 5px 9px; vertical-align: top; text-align: left; }
+.mdTable th, .mdTable td { overflow-wrap: break-word; word-break: normal; border: 1px solid var(--line); padding: 5px 9px; vertical-align: top; text-align: left; }
 .mdTable th { background: var(--bg-3); }
 .mdLink { color: var(--accent); }
 .mdExt { color: var(--accent); }

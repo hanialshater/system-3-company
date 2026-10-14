@@ -282,6 +282,7 @@ export default function Library({ org, typeDefs, defaults, all, initial }: Props
                   )}
                 </div>
               )}
+              {doc.meta && <p className={s.fm}>{doc.meta}</p>}
               {doc.truncated && <p className={s.warn}>This file is long, so only the first 200 KB is shown.</p>}
               <Markdown text={doc.body} links={doc.links} onOpen={(p) => open(p)} />
             </>

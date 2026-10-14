@@ -69,6 +69,7 @@ const blockStart = (l: string) => /^(#{1,6}\s|```|>|\s*([-*+]|\d+[.)])\s|\s*(-{3
 interface Item {
   indent: number;
   ordered: boolean;
+  num: number;
   text: string;
   kids: Item[];
 }
@@ -76,7 +77,7 @@ interface Item {
 function list(items: Item[], p: MdProps, key: string): ReactNode {
   const Tag = items[0].ordered ? "ol" : "ul";
   return (
-    <Tag key={key}>
+    <Tag key={key} {...(items[0].ordered && items[0].num > 1 ? { start: items[0].num } : {})}>
       {items.map((it, i) => (
         <li key={i}>
           {inline(it.text, p, `${key}.${i}`)}
@@ -172,7 +173,7 @@ export default function Markdown(p: MdProps) {
       while (i < lines.length) {
         const m = LIST.exec(lines[i]);
         if (m) {
-          const it: Item = { indent: m[1].replace(/\t/g, "    ").length, ordered: /\d/.test(m[2]), text: m[3], kids: [] };
+          const it: Item = { indent: m[1].replace(/\t/g, "    ").length, ordered: /\d/.test(m[2]), num: parseInt(m[2], 10) || 1, text: m[3], kids: [] };
           while (stack.length && stack[stack.length - 1].indent >= it.indent) stack.pop();
           (stack.length ? stack[stack.length - 1].kids : roots).push(it);
           stack.push(it);

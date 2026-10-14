@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { hqEnabled, loadOrg } from "@/lib/hq";
 import { DEFAULT_TYPES, TYPES, buildIndex, loadDoc, parseTypes, search, typeCounts } from "@/lib/hq-library";
 import Library from "../Library";
@@ -15,6 +15,8 @@ export default async function LibraryPage({ params, searchParams }: { params: Pr
   const rel = (path ?? []).map(decodeURIComponent).join("/");
   const doc = rel ? loadDoc(rel) : null;
   if (rel && !doc) notFound();
+  // An old progress link (slug from the heading) lands on the entry's stable address.
+  if (doc && doc.path !== rel) redirect(`/hq/library/${doc.path.split("/").map(encodeURIComponent).join("/").replace(/%40/g, "@")}`);
   const q = one(sp.q).slice(0, 200);
   const typeParam = one(sp.type);
   const types = parseTypes(typeParam);

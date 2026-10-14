@@ -4,23 +4,26 @@
 // This file imports only node built-ins so tests/hq-library can load it directly. Owner: hq-engineer.
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
-export type DocType = "report" | "decision" | "tech" | "strategy" | "requirements" | "constitution" | "courses" | "review" | "lesson-review" | "progress" | "handbook";
+export type DocType = "report" | "decision" | "tech" | "strategy" | "requirements" | "constitution" | "courses" | "review" | "lesson-review" | "progress" | "design" | "template" | "handbook";
 
 export const TYPES: { id: DocType; label: string; hint: string }[] = [
-  { id: "report", label: "Reports", hint: "WBR, MBR, planning, retros, launch and eng reviews (rituals/records)" },
+  { id: "report", label: "Reports", hint: "WBR, MBR, planning, retros, launch reviews (rituals/records) and experiment results" },
   { id: "decision", label: "Decisions", hint: "company/decisions" },
   { id: "tech", label: "Tech design", hint: "EDDs, ADRs, engineering reviews and notes (engineering/)" },
   { id: "strategy", label: "Strategy", hint: "product/ and domains/: charters, briefs, scope, verticals" },
-  { id: "requirements", label: "Requirements", hint: "PRDs and BRDs" },
+  { id: "requirements", label: "Requirements", hint: "PRDs, BRDs and the lesson standards (demo-standard, lesson-metadata)" },
   { id: "constitution", label: "Constitution", hint: "The constitution and its amendments" },
   { id: "courses", label: "Courses", hint: "company/courses" },
-  { id: "review", label: "Reviews", hint: "Company-level reviews (not per lesson)" },
+  { id: "review", label: "Reviews", hint: "Company, engineering and design reviews (not per lesson)" },
   { id: "lesson-review", label: "Lesson reviews", hint: "Per-lesson reviews: thousands of files, off by default" },
   { id: "progress", label: "Progress log", hint: "ops/progress.md, one entry per handoff" },
-  { id: "handbook", label: "Handbook", hint: "Roles, design, knowledge, R&D and everything else" },
+  { id: "design", label: "Design", hint: "design/: specs, concepts, illustration requests and notes" },
+  { id: "template", label: "Templates", hint: "Blank forms (rituals/templates, TEMPLATE.md): off by default" },
+  { id: "handbook", label: "Handbook", hint: "Roles, knowledge, R&D and everything else" },
 ];
-export const DEFAULT_TYPES: DocType[] = TYPES.map((t) => t.id).filter((t) => t !== "lesson-review");
+export const DEFAULT_TYPES: DocType[] = TYPES.map((t) => t.id).filter((t) => t !== "lesson-review" && t !== "template");
 
 export interface Doc {
   /** Path relative to company/, e.g. "rituals/records/2026-10-13-wbr.md". Progress entries: "ops/progress.md@<slug>". */
@@ -30,7 +33,11 @@ export interface Doc {
   date: string | null;
   owner: string | null;
   headings: string[];
+  /** YAML frontmatter as a one-line summary ("kind: format · status: approved"), shown above the doc. */
+  meta: string;
   body: string;
+  /** Progress entries only: the old-style path, so saved links still resolve (see loadDoc). */
+  legacy?: string;
   /** Lowercased body, for matching. */
   low: string;
 }
@@ -41,7 +48,18 @@ export interface Hit extends DocMeta {
 }
 
 const MAX_BYTES = 200_000; // per file; a longer file is cut (the reader says so)
-const DENY = /(^|\/)\.|\.env|secret|credential|password|token|\.pem$|\.key$|id_rsa|\.p12$|\.pfx$/i;
+// Secret-like files only: dotfiles and dot-directories, .env files, key material, and files or directories that are
+// named as a secret (secrets.md, prod-credentials.md, a "tokens/" folder). A word inside a longer name is fine:
+// the lesson folder reviews/paint-mix-shared-secret/ is not a secret file.
+const SECRETISH = "(?:secrets?|credentials?|passwords?|passwd|tokens?|api[-_]?keys?|private[-_]?keys?)";
+const DENY_BASE = new RegExp(`^${SECRETISH}(?:[-_.].*)?$|[-_.]${SECRETISH}$|\\.env(?:$|\\.)|\\.(?:pem|key|p12|pfx)$|^id_(?:rsa|dsa|ecdsa|ed25519)`, "i");
+const DENY_DIR = new RegExp(`^${SECRETISH}$`, "i");
+export function isDenied(rel: string): boolean {
+  const segs = rel.split("/");
+  if (segs.some((x) => x.startsWith("."))) return true;
+  if (segs.slice(0, -1).some((x) => DENY_DIR.test(x))) return true;
+  return DENY_BASE.test(segs[segs.length - 1].replace(/\.md$/i, "")) || DENY_BASE.test(segs[segs.length - 1]);
+}
 
 /** The company/ directory. */
 export const companyRoot = (cwd = process.cwd()) => path.join(cwd, "company");
@@ -53,7 +71,7 @@ export function safeDocPath(rel: string, root = companyRoot()): string | null {
   if (!file || file.length > 300 || /[\0\\]/.test(file) || file.startsWith("/") || /%2e|%2f|%5c/i.test(file)) return null;
   const segs = file.split("/");
   if (segs.some((s) => s === "" || s === "." || s === "..")) return null;
-  if (DENY.test(file) || !file.endsWith(".md")) return null;
+  if (isDenied(file) || !file.endsWith(".md")) return null;
   const abs = path.resolve(root, file);
   if (!abs.startsWith(path.resolve(root) + path.sep)) return null;
   try {
@@ -69,8 +87,14 @@ export function typeOf(rel: string): DocType {
   const d = rel.split("/");
   const name = d[d.length - 1];
   if (rel === "ops/progress.md") return "progress";
+  if ((d[0] === "rituals" && d[1] === "templates") || /^template\.md$/i.test(name)) return "template";
   if (d[0] === "reviews") return d.length > 2 ? "lesson-review" : "review";
+  if ((d[0] === "engineering" || d[0] === "design") && d[1] === "reviews") return "review";
+  if (d[0] === "experiments") return "report";
+  if (d[0] === "design") return "design";
   if (d[0] === "product" && d[1] === "prds") return "requirements";
+  if (d[0] === "product" && (name === "demo-standard.md" || name === "lesson-metadata.md")) return "requirements";
+  if (d[0] === "product" && name === "pm-handbook.md") return "handbook";
   if (/(^|[-_ ])(prd|brd)([-_. ]|$)/i.test(name) || /^(prd|brd)\b/i.test(name)) return "requirements";
   if (d[0] === "rituals" && d[1] === "records") return "report";
   if (d[0] === "decisions") return "decision";
@@ -83,7 +107,24 @@ export function typeOf(rel: string): DocType {
 
 const DATE = /\b(20\d\d-[01]\d-[0-3]\d)\b/;
 
-function describe(rel: string, text: string) {
+/** Leading YAML frontmatter ("---" ... "---"): its simple "key: value" lines, and the text after it. */
+export function splitFrontmatter(text: string): { fields: Record<string, string>; body: string } {
+  const m = /^---[ \t]*\r?\n/.exec(text);
+  if (!m) return { fields: {}, body: text };
+  const lines = text.slice(m[0].length).split("\n");
+  const end = lines.slice(0, 80).findIndex((l) => /^---[ \t]*\r?$/.test(l));
+  if (end < 0) return { fields: {}, body: text };
+  const fields: Record<string, string> = {};
+  for (const l of lines.slice(0, end)) {
+    const kv = /^([A-Za-z][\w-]*)\s*:\s*(.*?)\s*\r?$/.exec(l);
+    if (kv && kv[2] && !(kv[1] in fields)) fields[kv[1]] = kv[2].replace(/^["']|["']$/g, "");
+  }
+  return { fields, body: lines.slice(end + 1).join("\n").replace(/^\s*\n/, "") };
+}
+
+function describe(rel: string, full: string) {
+  const fm = splitFrontmatter(full);
+  const text = fm.body;
   const lines = text.split("\n", 40);
   let title = "";
   let inFence = false;
@@ -107,6 +148,8 @@ function describe(rel: string, text: string) {
     const flat = l.replace(/\*\*/g, "");
     if (!date && /(^|[\s·|])\W{0,2}(date|status|updated)\W{0,2}\s*:/i.test(flat)) date = DATE.exec(flat)?.[1] ?? null;
   }
+  if (fm.fields.owner && !owner) owner = fm.fields.owner.split(/\s+[·|(]|;\s+/)[0].replace(/[*_`]/g, "").trim().slice(0, 120) || null;
+  if (!date) date = DATE.exec(fm.fields.date ?? fm.fields.updated ?? "")?.[1] ?? null;
   if (!date) date = DATE.exec(title)?.[1] ?? null;
   const headings: string[] = [];
   inFence = false;
@@ -115,7 +158,8 @@ function describe(rel: string, text: string) {
     const m = !inFence && /^#{2,4}\s+(.+?)\s*#*$/.exec(l);
     if (m) headings.push(m[1].replace(/[*_`]/g, ""));
   }
-  return { title: title.replace(/[*_`]/g, ""), owner, date, headings };
+  const meta = Object.entries(fm.fields).filter(([k]) => k !== "owner" && k !== "id" && k !== "name").map(([k, v]) => `${k}: ${v}`).join(" · ");
+  return { title: title.replace(/[*_`]/g, ""), owner, date, headings, meta, text };
 }
 
 export const slugify = (s: string) =>
@@ -125,9 +169,20 @@ export const slugify = (s: string) =>
     .replace(/^-+|-+$/g, "")
     .slice(0, 70);
 
+export interface ProgressEntry {
+  /** Stable slug: <date>-<role>-<6 hex of the heading>. A repeat of the exact same heading gets -2, -3 ... counting from the bottom of the file (oldest first), so a new entry at the top never moves an old link. */
+  slug: string;
+  /** The pre-W-463 slug (slugified heading, duplicates numbered from the top). Kept only so old links still resolve. */
+  legacy: string;
+  heading: string;
+  date: string | null;
+  owner: string | null;
+  body: string;
+}
+
 /** Split ops/progress.md at "## <date> ..." headings; the intro above the first entry is dropped. */
-export function splitProgress(text: string): { slug: string; heading: string; date: string | null; owner: string | null; body: string }[] {
-  const out: { slug: string; heading: string; date: string | null; owner: string | null; body: string }[] = [];
+export function splitProgress(text: string): ProgressEntry[] {
+  const out: ProgressEntry[] = [];
   const seen = new Map<string, number>();
   let cur: { heading: string; lines: string[] } | null = null;
   const flush = () => {
@@ -135,11 +190,13 @@ export function splitProgress(text: string): { slug: string; heading: string; da
     const date = DATE.exec(cur.heading)?.[1] ?? null;
     const paren = /\(([^,)]+)/.exec(cur.heading);
     const owner = paren ? paren[1].trim() : null;
-    let slug = slugify(cur.heading);
-    const n = (seen.get(slug) ?? 0) + 1;
-    seen.set(slug, n);
-    if (n > 1) slug += `-${n}`;
-    out.push({ slug, heading: cur.heading, date, owner, body: cur.lines.join("\n").trim() });
+    let legacy = slugify(cur.heading);
+    const n = (seen.get(legacy) ?? 0) + 1;
+    seen.set(legacy, n);
+    if (n > 1) legacy += `-${n}`;
+    const hash = createHash("sha1").update(cur.heading).digest("hex").slice(0, 6);
+    const slug = `${date ?? "undated"}-${slugify(owner ?? "entry").slice(0, 30) || "entry"}-${hash}`;
+    out.push({ slug, legacy, heading: cur.heading, date, owner, body: cur.lines.join("\n").trim() });
   };
   let fence = false;
   for (const l of text.split("\n")) {
@@ -151,6 +208,13 @@ export function splitProgress(text: string): { slug: string; heading: string; da
     } else cur?.lines.push(l);
   }
   flush();
+  // Number repeats of one slug from the bottom: the oldest keeps the bare slug.
+  const below = new Map<string, number>();
+  for (let i = out.length - 1; i >= 0; i--) {
+    const k = (below.get(out[i].slug) ?? 0) + 1;
+    below.set(out[i].slug, k);
+    if (k > 1) out[i].slug += `-${k}`;
+  }
   return out;
 }
 
@@ -165,7 +229,7 @@ function walk(dir: string, rel: string, out: { rel: string; abs: string }[]) {
     if (e.name.startsWith(".") || e.isSymbolicLink()) continue;
     const r = rel ? `${rel}/${e.name}` : e.name;
     if (e.isDirectory()) walk(path.join(dir, e.name), r, out);
-    else if (e.isFile() && e.name.endsWith(".md") && !DENY.test(r)) out.push({ rel: r, abs: path.join(dir, e.name) });
+    else if (e.isFile() && e.name.endsWith(".md") && !isDenied(r)) out.push({ rel: r, abs: path.join(dir, e.name) });
   }
 }
 
@@ -180,18 +244,20 @@ let built: { at: number; root: string; docs: Doc[] } | null = null;
 function toDocs(rel: string, text: string): Doc[] {
   if (rel === "ops/progress.md") {
     return splitProgress(text).map((e) => ({
+      legacy: `${rel}@${e.legacy}`,
       path: `${rel}@${e.slug}`,
       type: "progress" as const,
       title: e.heading,
       date: e.date,
       owner: e.owner,
       headings: [],
+      meta: "",
       body: e.body,
       low: (e.heading + "\n" + e.body).toLowerCase(),
     }));
   }
   const d = describe(rel, text);
-  return [{ path: rel, type: typeOf(rel), title: d.title, date: d.date, owner: d.owner, headings: d.headings, body: text, low: text.toLowerCase() }];
+  return [{ path: rel, type: typeOf(rel), title: d.title, date: d.date, owner: d.owner, headings: d.headings, meta: d.meta, body: d.text, low: d.text.toLowerCase() }];
 }
 
 /** The whole index. Cheap to call: files are re-read only when their mtime or size changed, and the walk is cached for 5 s. */
@@ -231,8 +297,23 @@ export function buildIndex(root = companyRoot(), ttlMs = 5000): Doc[] {
 export const tokenize = (q: string) =>
   [...new Set(q.toLowerCase().split(/[^a-z0-9_]+/).filter((t) => t.length > 1 || /^\d$/.test(t)))].slice(0, 8);
 
+/** Terms of 3 letters or fewer ("ci", "qa", "edd") match whole words only; longer terms match anywhere. */
+const SHORT = 3;
+const wordRe = new Map<string, RegExp>();
+const wordOf = (t: string) => {
+  let r = wordRe.get(t);
+  if (!r) wordRe.set(t, (r = new RegExp(`(?<![a-z0-9])${t.replace(/[^a-z0-9_]/g, "")}(?![a-z0-9])`, "g")));
+  r.lastIndex = 0;
+  return r;
+};
+const indexOfTerm = (hay: string, t: string) => (t.length > SHORT ? hay.indexOf(t) : hay.search(wordOf(t)));
 const count = (hay: string, needle: string) => {
   let n = 0;
+  if (needle.length <= SHORT) {
+    const r = wordOf(needle);
+    while (n < 50 && r.exec(hay)) n++;
+    return n;
+  }
   for (let i = hay.indexOf(needle); i !== -1 && n < 50; i = hay.indexOf(needle, i + needle.length)) n++;
   return n;
 };
@@ -246,7 +327,7 @@ function snippetOf(d: Doc, terms: string[], phrase: string): string {
   let at = phrase.length > 2 ? d.low.indexOf(phrase) : -1;
   if (at < 0) {
     for (const t of terms) {
-      const i = d.low.indexOf(t);
+      const i = indexOfTerm(d.low, t);
       if (i >= 0 && (at < 0 || i < at)) at = i;
     }
   }
@@ -276,9 +357,9 @@ export function search(docs: Doc[], { q = "", types = DEFAULT_TYPES, sort }: Que
       const p = d.path.toLowerCase();
       let ok = true;
       for (const t of terms) {
-        const inTitle = title.includes(t);
-        const inHead = heads.includes(t);
-        const inPath = p.includes(t);
+        const inTitle = indexOfTerm(title, t) >= 0;
+        const inHead = indexOfTerm(heads, t) >= 0;
+        const inPath = indexOfTerm(p, t) >= 0;
         const tf = count(d.low, t);
         if (!inTitle && !inHead && !inPath && !tf) {
           ok = false;
@@ -310,6 +391,7 @@ export function search(docs: Doc[], { q = "", types = DEFAULT_TYPES, sort }: Que
 
 export interface LoadedDoc extends DocMeta {
   body: string;
+  meta: string;
   truncated: boolean;
   /** Raw link target (as written in the body) to a library path, for links that point at another indexed doc. */
   links: Record<string, string>;
@@ -319,7 +401,8 @@ export interface LoadedDoc extends DocMeta {
 export function loadDoc(rel: string, root = companyRoot()): LoadedDoc | null {
   if (!safeDocPath(rel, root)) return null;
   const docs = buildIndex(root);
-  const d = docs.find((x) => x.path === rel);
+  // A progress link saved before W-463 (slug from the heading) resolves to the entry's stable path; the caller redirects.
+  const d = docs.find((x) => x.path === rel) ?? (rel.startsWith("ops/progress.md@") ? docs.find((x) => x.legacy === rel) : undefined);
   if (!d) return null;
   const known = new Set(docs.map((x) => x.path));
   const file = rel.split("@")[0];
@@ -333,7 +416,7 @@ export function loadDoc(rel: string, root = companyRoot()): LoadedDoc | null {
   };
   for (const m of d.body.matchAll(/\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)) resolve(m[1]);
   for (const m of d.body.matchAll(/`([A-Za-z0-9_./-]+\.md)`/g)) resolve(m[1]);
-  return { path: d.path, type: d.type, title: d.title, date: d.date, owner: d.owner, body: d.body, truncated: d.body.length >= MAX_BYTES, links };
+  return { path: d.path, type: d.type, title: d.title, date: d.date, owner: d.owner, body: d.body, meta: d.meta, truncated: d.body.length >= MAX_BYTES, links };
 }
 
 /** Counts per type, for the filter chips, ignoring the query. */
