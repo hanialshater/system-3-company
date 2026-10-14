@@ -12,3 +12,8 @@
 - "Cheat 14.0" with zero cheats -> the absent strategy's average shows a dash.
 - Generation slider removed (58 and 60 were identical); "+10 generations" added. A pairing is defined in the table header. Question now says "Both help" etc. with 4 options (6, 25, 50, 95%). From 6% the share grows but only reaches 18 of 100 by generation 60 (see c3), so the outcome test is "grew vs shrank", not "took over".
 - Claims c2 and c3 rewritten, unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). Payoff table orientation, 6% told. Table headers read "Row scores... against ..."; derivation line (30 = 10 x 3 ...); chart of both average scores by starting share with a cursor, crossing visible; the 25% button replaced by "Start at 4%, run" and "Start at 8%, run" (a bracket that does not name 6%); the gate needs a loss from at least 4% and a win from at most 8%. c2, c3 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

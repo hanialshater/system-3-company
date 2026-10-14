@@ -1,7 +1,7 @@
 {
   "slug": "herd-immunity",
   "title": "Who protects the unprotected?",
-  "hook": "Some people can't be vaccinated. Can everyone else's immunity shield them?",
+  "hook": "Some people cannot be vaccinated. What happens to them when most others are immune?",
   "domain": "life",
   "concept": "herd-immunity",
   "status": "review",
@@ -126,12 +126,10 @@
     },
     {
       "id": "life.herd-immunity.c12",
-      "text": "On the stage, each case meets R0 = 4 random people, and the number each case infects is 4 x the unprotected share (0.8 at 80% immune, 2.0 at 50%).",
+      "text": "On the stage, R0 = 4 means that with nobody immune each case meets and infects 4 random people; with an immune share the number each case infects is 4 x the unprotected share (0.8 at 80% immune, 1.0 at 75%, 1.2 at 70%, 2.0 at 50%). Under 1 outbreaks shrink, over 1 they can grow, exactly 1 each case just replaces itself.",
       "support": "derivation",
       "source": "Demo.tsx: R0 = 4 contacts per case chosen uniformly from the other 399; readout '4 x unprotected% = R0 x (1 - p)'. Instance of c2. Stage label added in v2 (label-the-model-on-the-stage).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -159,12 +157,20 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "life:herd-immunity",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "preset-buttons",
+    "milestone-gate",
+    "tally-counters"
+  ]
 }

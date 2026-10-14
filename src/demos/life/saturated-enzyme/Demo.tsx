@@ -63,7 +63,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
 
       <p className={s.msg} aria-live="polite">
         {locked
-          ? "Make a prediction to start. 100 enzymes; each handles one molecule at a time."
+          ? "Make a prediction to start. 100 enzymes; each handles one molecule at a time. Top speed is all 100 busy."
           : `Doubling ${half(S)} → ${S} (× half-way): busy ${nBefore} → ${nBusy} of 100 (new ones brighter). Speed +${pct(gain(S))}.`}
       </p>
 
@@ -75,9 +75,9 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
           Double 1 → 2
         </Control>
       </Row>
-      <Slider label="Substrate (× half-way)" value={S} min={1} max={MAX_S} disabled={locked} onChange={go} />
+      <Slider label="Substrate (1 = half the enzymes busy)" value={S} min={1} max={MAX_S} disabled={locked} onChange={go} />
       <Row>
-        <Readout label="Speed (% of max)" value={locked ? "?" : pct(busy(S))} />
+        <Readout label="Speed (% of top speed)" value={locked ? "?" : pct(busy(S))} />
         <Readout label="Gain from doubling" value={locked ? "?" : `+${pct(gain(S))}`} />
       </Row>
     </div>
@@ -91,7 +91,7 @@ export default function SaturatedEnzyme({ slug }: { slug: string }) {
       predict={{
         question:
           "Enzymes are molecules that each work on one substrate molecule at a time. At the half-way concentration of substrate, half the enzymes are busy. At 10 times that, doubling the substrate speeds the reaction up by about…",
-        options: ["2 times", "50%", HI],
+        options: ["100% faster (2 times)", "50% faster", `${HI} faster`],
         answer: 2,
       }}
       exploreHint="Double the substrate from 10 to 20, then from 1 to 2, and watch the new busy stations."

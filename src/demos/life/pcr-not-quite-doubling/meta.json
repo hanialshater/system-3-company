@@ -41,12 +41,10 @@
     },
     {
       "id": "life.pcr-not-quite-doubling.c3",
-      "text": "Model (stated on the stage): one starting molecule, a fixed efficiency every cycle, no plateau. A x1.9 cycle is 0.95 of a perfect cycle, and 0.95 multiplied 30 times is 0.21.",
+      "text": "Model (stated on the stage): one starting molecule, a fixed efficiency every cycle, no plateau. A x1.9 cycle is 0.95 of a perfect cycle, and 0.95 multiplied 30 times is 0.21. The stage shows the result as a bar on a straight scale beside the perfect result, and as a log chart where each gridline is 1,000 times more copies.",
       "support": "convention",
       "source": "Model choice in Demo.tsx; brief life #44. Real PCR plateaus as reagents run out (Kubista et al. 2006). 0.95^30 = 0.2146.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -68,7 +66,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:pcr-amplification",
     "prerequisites": [
@@ -77,5 +75,12 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-live-chart",
+    "milestone-gate"
+  ]
 }

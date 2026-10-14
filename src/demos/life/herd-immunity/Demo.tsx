@@ -23,11 +23,11 @@ const CELL = 15;
 const R0 = 4;
 const RUNS = 200;
 const THRESHOLD = Math.round((1 - 1 / R0) * 100); // 75
-const SHARES = [50, 60, 70, 80, 90];
+const SHARES = [50, 60, 70, 75, 80, 90];
 const START = 80;
 /** A finished outbreak "took off" if it reached more than a fifth of the unprotected. */
 const TOOK_OFF = 0.2;
-const MILESTONES = ["over-above", "took-off-below"] as const;
+const MILESTONES = ["over-above", "took-off-below", "at-threshold"] as const;
 
 function rng(seed: number) {
   let a = seed >>> 0;
@@ -109,6 +109,7 @@ function Gate({ interact, tried }: { interact: () => void; tried: Record<number,
   useEffect(() => {
     for (const [p, r] of Object.entries(tried)) {
       if (Number(p) > THRESHOLD) reach("over-above");
+      if (Number(p) === THRESHOLD) reach("at-threshold");
       if (Number(p) < THRESHOLD && r.caught > TOOK_OFF * r.of) reach("took-off-below");
     }
   });
@@ -145,10 +146,11 @@ export default function HerdImmunity({ slug }: { slug: string }) {
   const unprotectedShare = 100 - immunePct;
   const reff = R0 * (unprotectedShare / 100);
   const below = immunePct < THRESHOLD;
+  const reffNote = reff < 0.995 ? "shrinks" : reff > 1.005 ? "can grow" : "just replaces itself";
 
   const message = done
     ? below && totalCaught <= TOOK_OFF * ob.unprotected
-      ? `Over: ${totalCaught} of ${ob.unprotected}. It fizzled by luck. Try a new outbreak.`
+      ? `Over: ${totalCaught} of ${ob.unprotected}. Fizzled by luck, even above 1 per case. Try a new one.`
       : `Over. ${totalCaught} of ${ob.unprotected} unprotected caught it.`
     : t === 0
       ? "One unprotected person falls sick."
@@ -159,31 +161,31 @@ export default function HerdImmunity({ slug }: { slug: string }) {
   const all = Object.entries(tried).map(([p, r]) => ({ p: Number(p), ...r }));
   const above = all.filter((x) => x.p > THRESHOLD).sort((a, b) => Math.abs(a.p - START) - Math.abs(b.p - START))[0];
   const belowRun = all.filter((x) => x.p < THRESHOLD && x.caught > TOOK_OFF * x.of).sort((a, b) => a.p - b.p)[0];
-  const seen = [above, belowRun].filter((x): x is (typeof all)[number] => Boolean(x));
+  const atRun = all.find((x) => x.p === THRESHOLD);
+  const seen = [above, atRun, belowRun].filter((x): x is (typeof all)[number] => Boolean(x));
 
   return (
     <Lesson
       slug={slug}
       predict={{
         question:
-          "Toy town of 400. With no immunity, each case infects about 4 others. Here 80% are immune, leaving 80 unprotected. One falls sick. Usually, how many of the 80 catch it?",
+          "Toy town of 400. With no immunity, each sick person would infect about 4 others (that number is called R0). Here 80% are immune, leaving 80 unprotected. One falls sick. Usually, how many of the 80 catch it?",
         options: ["Nearly all 80", "About 20", "Just a handful"],
         answer: 2,
       }}
-      exploreHint="Run the outbreak at 80% to the end. Then pick 50% and compare."
+      exploreHint="Run the outbreak at 80% to the end. Then try 50%, 70% and 75%, and watch the number under Each case infects."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             You saw {seen.map((x) => `${x.caught} of ${x.of} catch it at ${x.p}% immune`).join("; ")}. Each case meets
-            R0 = 4 people; at 80% immune only 20% of them can catch it: 4 &times; 0.2 = 0.8 new cases per case. Outbreaks
-            usually fizzle out: on average about 4 of the 80.
+            R0 = 4 people; at 80% immune only 20% of them can catch it: 4 &times; 0.2 = 0.8 new cases per case, under 1,
+            so outbreaks shrink. One run is noisy; the average over many runs is about 4 of the 80.
           </p>
           <p>
-            Below the <strong>{THRESHOLD}% threshold</strong> (1 &minus; 1/R0) a case more than replaces itself.
-            Outbreaks can still fizzle, but one that takes off reaches a share that grows with distance from the
-            threshold: small just under it, most of the unprotected at 50%. Above it, the immune mostly shield people
-            with no immunity.
+            At <strong>{THRESHOLD}% immune</strong> each case infects 4 &times; 0.25 = exactly 1: it only replaces itself.
+            That is the threshold (1 &minus; 1/R0). Below it a case more than replaces itself and an outbreak can take
+            off, though it may still fizzle by luck. Above it, the immune mostly shield people with no immunity.
           </p>
           <p className="muted">
             Toy model: made-up disease, random mixing, perfect immunity (real vaccines are not). Unprotected people who
@@ -195,7 +197,7 @@ export default function HerdImmunity({ slug }: { slug: string }) {
       {({ locked, interact }) => (
         <div className={s.wrap}>
           <Gate interact={interact} tried={tried} />
-          <p className={s.model}>Toy disease, R0 = 4: each case meets 4 random people.</p>
+          <p className={s.model}>Toy disease. R0 = 4: with no immunity, each case meets and infects 4 random people.</p>
           <svg
             viewBox={`0 0 ${COLS * CELL} ${(N / COLS) * CELL}`}
             className={`stage-svg ${s.svg}`}
@@ -263,7 +265,7 @@ export default function HerdImmunity({ slug }: { slug: string }) {
             </Control>
           </div>
           <Row>
-            <Readout label="Each case infects" value={`4 × ${unprotectedShare}% = ${reff.toFixed(1)}`} />
+            <Readout label="Each case infects" value={`4 × ${unprotectedShare}% = ${reff.toFixed(1)} (${reffNote})`} />
             <Readout label={`Average, ${RUNS} runs`} value={locked ? "?" : `${Math.round(avg.mean)} of ${avg.unprotected}`} />
           </Row>
         </div>

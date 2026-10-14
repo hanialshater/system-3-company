@@ -34,12 +34,10 @@
     },
     {
       "id": "life.purging-slows-down.c2",
-      "text": "Starting at 10% of copies, it takes 90 generations to fall to 1%; the first 10 generations take it from 10% to 5%.",
+      "text": "Starting at 10% of copies, it takes 90 generations to fall to 1%; the first 10 generations take it from 10% to 5% and the next 80 take it from 5% to 1%, so each step down is slower. The stage draws this curve.",
       "support": "derivation",
       "source": "1/q from 10 to 100 = 90 steps; q(10) = 1/20. Demo.tsx TO_TARGET = 90 and Q[10] = 0.05, iterated; artifacts/scratch/w4life/nums.mjs. Matches the brief's check. | FACT-CHECK 2026-10-13 (pass 6): Node: q after 10 generations = 0.0500; after 90 generations = 0.0100.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "life.purging-slows-down.c3",
@@ -81,7 +79,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "life:purging-recessives",
     "prerequisites": [
@@ -90,5 +88,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate",
+    "slider-live-chart"
+  ]
 }

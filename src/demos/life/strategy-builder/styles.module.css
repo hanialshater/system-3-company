@@ -1,5 +1,5 @@
 .wrap { display: flex; flex-direction: column; gap: 6px; flex: none; }
-.svg { max-height: 27dvh; flex-shrink: 0; }
+.svg { max-height: 19dvh; flex-shrink: 0; }
 .tft { fill: color-mix(in srgb, var(--good) 75%, var(--bg-2)); }
 .cheat { fill: color-mix(in srgb, var(--bad) 70%, var(--bg-2)); }
 .big { fill: var(--fg); font-size: 15px; font-weight: 800; }
@@ -13,3 +13,10 @@
 .pay thead th { color: var(--muted); font-weight: 600; }
 .pay tbody th { text-align: left; font-weight: 700; }
 .pay td { font-variant-numeric: tabular-nums; font-weight: 700; }
+.how { margin: 0; text-align: center; font-size: 0.72rem; color: var(--muted); }
+.chart { max-height: 12dvh; flex-shrink: 0; }
+.axisL { stroke: var(--line); stroke-width: 1; }
+.lineT { fill: none; stroke: color-mix(in srgb, var(--good) 75%, var(--bg-2)); stroke-width: 2.5; }
+.lineC { fill: none; stroke: color-mix(in srgb, var(--bad) 70%, var(--bg-2)); stroke-width: 2.5; }
+.cursor { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 2; }
+.chart .tftT, .chart .cheatT { font-size: 10px; font-weight: 700; }

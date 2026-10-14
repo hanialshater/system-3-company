@@ -19,7 +19,8 @@ import s from "./styles.module.css";
 const GENS = 60;
 const STEP = 10;
 const START_LOW = 3; // opening start (percent): cheats win from here
-const START_HIGH = 25; // the "big start" button
+const START_A = 4; // bracketing start buttons: below / above the tipping point, neither names it
+const START_B = 8;
 const MILESTONES = ["cheats-won", "tft-grew"] as const;
 const wT = (f: number) => 30 * f + 9 * (1 - f);
 const wD = (f: number) => 14 * f + 10 * (1 - f);
@@ -34,6 +35,11 @@ function trajectory(f0: number) {
   }
   return out;
 }
+
+// Score chart: starting share 0..30% on x, average score 8..16 on y.
+const CX0 = 14, CX1 = 290, CY0 = 8, CY1 = 62;
+const cx = (v: number) => CX0 + ((CX1 - CX0) * v) / 30;
+const cy = (w: number) => CY1 - ((CY1 - CY0) * (w - 8)) / 8;
 
 const RANK = (() => {
   const rng = mulberry32(8);
@@ -70,7 +76,9 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
     setStart(st);
     if (g === GENS) {
       const won = tftWins(st);
-      reach(won ? "tft-grew" : "cheats-won");
+      // The gate asks for runs that bracket the tipping point, not just any win and any loss.
+      if (won && st <= START_B) reach("tft-grew");
+      if (!won && st >= START_A) reach("cheats-won");
       setRuns({
         lose: !won ? Math.max(runs.lose ?? 0, st) : runs.lose,
         win: won ? Math.min(runs.win ?? 100, st) : runs.win,
@@ -97,9 +105,9 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
       <table className={s.pay}>
         <thead>
           <tr>
-            <th>Points per 10-round pairing</th>
-            <th>vs tit-for-tat</th>
-            <th>vs cheat</th>
+            <th>Row scores…</th>
+            <th>against tit-for-tat</th>
+            <th>against cheat</th>
             <th>average now</th>
           </tr>
         </thead>
@@ -119,6 +127,23 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
         </tbody>
       </table>
 
+      <p className={s.how}>Points in 10 rounds. 30 = 10 × 3. 9 = 0, then 9 × 1. 14 = 5, then 9 × 1. 10 = 10 × 1.</p>
+
+      {!locked && (
+        <svg viewBox="0 0 300 76" className={`stage-svg ${s.chart}`} role="img" aria-label={`Average scores by starting share: tit-for-tat ${wT(start / 100).toFixed(1)}, cheat ${wD(start / 100).toFixed(1)} at a ${start}% start`}>
+          <line x1={CX0} y1={CY1} x2={CX1} y2={CY1} className={s.axisL} />
+          <polyline className={s.lineT} points={Array.from({ length: 31 }, (_, i) => `${cx(i)},${cy(wT(i / 100))}`).join(" ")} />
+          <polyline className={s.lineC} points={Array.from({ length: 31 }, (_, i) => `${cx(i)},${cy(wD(i / 100))}`).join(" ")} />
+          <line x1={cx(start)} x2={cx(start)} y1={CY0} y2={CY1} className={s.cursor} />
+          {[0, 10, 20, 30].map((v) => (
+            <text key={v} x={cx(v)} y={CY1 + 10} textAnchor="middle" className={s.small}>{v}%</text>
+          ))}
+          <text x={CX0} y={CY0 + 7} className={s.small}>average score by start</text>
+          <text x={cx(30) - 2} y={cy(wT(0.3)) - 3} textAnchor="end" className={s.tftT}>tit-for-tat</text>
+          <text x={cx(30) - 2} y={cy(wD(0.3)) + 10} textAnchor="end" className={s.cheatT}>cheat</text>
+        </svg>
+      )}
+
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Make a prediction to start. Players meet at random; each generation they copy whoever scored more."
@@ -132,8 +157,11 @@ function Stage({ locked, interact, runs, setRuns }: { locked: boolean; interact:
         <Control className={s.chip} disabled={locked || gen >= GENS} onClick={() => go(GENS, start)}>
           To gen {GENS}
         </Control>
-        <Control className={s.chip} disabled={locked || (start === START_HIGH && gen === GENS)} onClick={() => go(GENS, START_HIGH)}>
-          Start at {START_HIGH}%, run
+        <Control className={s.chip} disabled={locked || (start === START_A && gen === GENS)} onClick={() => go(GENS, START_A)}>
+          Start at {START_A}%, run
+        </Control>
+        <Control className={s.chip} disabled={locked || (start === START_B && gen === GENS)} onClick={() => go(GENS, START_B)}>
+          Start at {START_B}%, run
         </Control>
       </Row>
       <Slider label="Starting share of tit-for-tat" value={start} min={1} max={30} disabled={locked} format={(v) => `${v}%`} onChange={(v) => go(0, v)} />
@@ -155,7 +183,7 @@ export default function StrategyBuilder({ slug }: { slug: string }) {
         options: [`About ${THR}`, "About 25%", "About 50%", "About 95%"],
         answer: 0,
       }}
-      exploreHint="Run 60 generations from the start shown, then try a bigger start. Use the slider to find where it flips."
+      exploreHint="Run 60 generations from the start shown, then try the 4% and 8% starts. Slide the start and watch where the two score lines cross."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -163,7 +191,7 @@ export default function StrategyBuilder({ slug }: { slug: string }) {
             {runs.lose !== null && runs.win !== null
               ? `Up to a ${runs.lose}% start, cheats won; from ${runs.win}%, `
               : "Below the tipping point cheats won; above it, "}
-            <strong>tit-for-tat grew</strong>. The tipping point is 1 in 17, about {THR}.
+            <strong>tit-for-tat grew</strong>. The tipping point is where the two average-score lines on the chart cross: 1 in 17, about {THR}.
           </p>
           <p>
             Tit-for-tat loses only round one to a cheat (9 vs 14 points) but earns 30 with its own kind, while two cheats

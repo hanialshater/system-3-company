@@ -12,3 +12,8 @@
 - Reveal said 13 of 100 after the slider had moved the ring to 5% -> the reveal quotes the 85% result (gated by milestone "both-settle": gen 60 at 85%) and, from the learner's actual slider setting, a computed sentence ("You set no-w survival to 95%: the one-copy edge became smaller, and the balance fell to 5%"). Milestone "moved-slider" (slider moved with gen >= 50) makes sure that state was seen; both are reached on the QA path.
 - Option named the answer ("settles near 13%") -> "settles at a steady share in between". "Allele" glossed ("gene version"). Reveal is about 80 words.
 - Claims: c2 and c3 rewritten, c6 new (edge size vs balance), unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). Hook leaked "one copy helps"; balance line visible early; mechanism told; reveal could sit on a reset stage. Hook rewritten; balance line and readout only appear at generation 60; two readout rows show young with 2 w (die) and 1 w (thrive) for both starts; Restart removed; reveal explains 15/(15+100). c1, c3 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

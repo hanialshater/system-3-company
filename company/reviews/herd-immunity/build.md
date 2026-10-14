@@ -27,3 +27,8 @@ QA-path trade-off: the DOM order is Next step, Run to end, the share chips, New 
 ## v3 (claim fix 2026-10-13)
 
 Claim c10 disputed (per-step shrinkage is false). Reveal now says 'Outbreaks usually fizzle out' instead of 'The chain usually shrinks and dies'; claim rewritten to the 0.8 new cases per case average and the 97-in-100 figure the checker supplied; unverified. c5 was already verified in the second check and is untouched.
+
+## Revision v4
+
+Input: latest learner review (and fact-check). 75% threshold never shown, 70% fizzle contradicted the 1.2 readout, R0 undefined, dense reveal. Added a 75% chip and a third milestone (a finished run at 75%); readout says "(shrinks / can grow / just replaces itself)"; fizzle message explains luck; R0 defined in the question and the stage line; reveal quotes the 75% run; hook no longer leans to "yes". c12 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 4, `format` set, edited claims are unverified for the fact-checker.

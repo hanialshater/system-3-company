@@ -7,3 +7,8 @@
 - Gate: milestone "ten-species" (reached by Add 3 or Add up to 10; the QA path goes 2, 3, 6, 10).
 - Only binary rooted trees are counted: stated on the stage ("branching") and in the reveal.
 - Claims all unverified.
+
+## Revision v2
+
+Input: latest learner review (and fact-check). The multiplication was never seen. New control "Move newest species" shows the same species joining another branch gives a different tree; message shows running product (1 x 3 x 5 ...) and place k of n; second milestone; reveal shows 10 species; caveat moved to the locked caption. c2, c3 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 2, `format` set, edited claims are unverified for the fact-checker.

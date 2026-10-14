@@ -36,9 +36,16 @@ function picture(q: number) {
   return { kind, copies, sick, carriers };
 }
 
-function Stage({ locked, gen, onStep, onRun, onReset }: {
-  locked: boolean; gen: number; onStep: () => void; onRun: () => void; onReset: () => void;
+// Chart: share of bad copies (0..10%) against generation (0..TO_TARGET).
+const CX0 = 30, CX1 = 292, CY0 = 8, CY1 = 74;
+const cx = (g: number) => CX0 + ((CX1 - CX0) * g) / TO_TARGET;
+const cy = (q: number) => CY1 - ((CY1 - CY0) * q) / Q0;
+
+function Stage({ locked, gen: genSet, revealing, onStep, onRun, onReset }: {
+  locked: boolean; gen: number; revealing: boolean; onStep: () => void; onRun: () => void; onReset: () => void;
 }) {
+  const gen = revealing ? TO_TARGET : genSet;
+  const path = Array.from({ length: Math.min(gen, TO_TARGET) + 1 }, (_, g) => `${g ? "L" : "M"}${cx(g).toFixed(1)} ${cy(Q[g]).toFixed(1)}`).join(" ");
   const q = Q[gen];
   const { kind, copies } = picture(q);
   const msg = locked
@@ -58,6 +65,22 @@ function Stage({ locked, gen, onStep, onRun, onReset }: {
             </g>
           );
         })}
+      </svg>
+      <svg viewBox="0 0 300 100" className={`stage-svg ${s.chart}`} role="img" aria-label={`Share of bad copies by generation: ${pct(q)} at generation ${gen}`}>
+        <line x1={CX0} y1={CY1} x2={CX1} y2={CY1} className={s.line} />
+        <line x1={CX0} y1={CY0} x2={CX0} y2={CY1} className={s.line} />
+        {[0, 0.05, 0.1].map((v) => (
+          <text key={v} x={CX0 - 3} y={cy(v) + 3} textAnchor="end" className={s.axis}>{Math.round(v * 100)}%</text>
+        ))}
+        {[0, 10, 50, 90].map((g) => (
+          <text key={g} x={cx(g)} y={CY1 + 11} textAnchor="middle" className={s.axis}>{g}</text>
+        ))}
+        <text x={(CX0 + CX1) / 2} y={CY1 + 22} textAnchor="middle" className={s.axis}>generations</text>
+        {!locked && <path d={path} className={s.curve} />}
+        {!locked && gen >= STEP && <circle cx={cx(STEP)} cy={cy(Q[STEP])} r={3} className={s.mk} />}
+        {!locked && gen >= STEP && <text x={cx(STEP) + 6} y={cy(Q[STEP]) - 4} className={s.axis}>{pct(Q[STEP])} after 10</text>}
+        {!locked && gen >= TO_TARGET && <circle cx={cx(TO_TARGET)} cy={cy(Q[TO_TARGET])} r={3} className={s.mk} />}
+        {!locked && gen >= TO_TARGET && <text x={cx(TO_TARGET) - 4} y={cy(Q[TO_TARGET]) - 6} textAnchor="end" className={s.axis}>{pct(Q[TO_TARGET])} after {TO_TARGET}</text>}
       </svg>
       <div className={s.legend} aria-hidden>
         <span><i className={s.lc} />carrier: healthy, one bad copy</span>
@@ -83,7 +106,7 @@ export default function PurgingSlowsDown({ slug }: { slug: string }) {
         options: ["About 10", `About ${TO_TARGET}`, "About 900"],
         answer: 1,
       }}
-      exploreHint="Step 10 generations, then run until 1%. Watch where the red dots sit."
+      exploreHint="Step 10 generations, then run until 1%. Watch the curve flatten and where the red dots sit."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -93,13 +116,13 @@ export default function PurgingSlowsDown({ slug }: { slug: string }) {
           </p>
           <p>
             Selection only sees people with two bad copies: 1 in {oneIn(Q0)} at the start, 1 in {oneIn(Q[TO_TARGET])} at 1%. The rarer the
-            copy, the more of it hides in healthy carriers, so each step down is slower than the last. In this model 1 / share rises by exactly 1
+            copy, the more of it hides in healthy carriers, so each step down is slower than the last: 10% to 5% took 10 generations, 5% to 1% took 80 (the curve on the stage flattens). In this model 1 / share rises by exactly 1
             per generation: 10, 11, 12 ... 100.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ phase, locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const go = (g: number) => {
@@ -111,6 +134,7 @@ export default function PurgingSlowsDown({ slug }: { slug: string }) {
               <Stage
                 locked={locked}
                 gen={gen}
+                revealing={phase === "reveal"}
                 onStep={() => go(Math.min(MAX_GEN, gen + STEP))}
                 onRun={() => go(TO_TARGET)}
                 onReset={() => go(0)}

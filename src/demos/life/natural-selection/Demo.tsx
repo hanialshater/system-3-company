@@ -60,6 +60,14 @@ const SPOTS = (() => {
   }));
 })();
 
+/** Dark-to-pale ratio in words: "1 to 99" while dark is rarer, "139 to 1" once it is commoner. */
+function ratioText(share: number): string {
+  const q = share / (1 - share);
+  if (q >= 1000) return "over 1,000 to 1";
+  if (q >= 1) return `${q >= 100 ? Math.round(q) : q.toFixed(q >= 10 ? 0 : 1)} to 1`;
+  return `1 to ${Math.round(1 / q)}`;
+}
+
 function Beetle({ x, y, turn, dark }: { x: number; y: number; turn: number; dark: boolean }) {
   return (
     <g transform={`translate(${x} ${y}) rotate(${turn})`} className={dark ? s.dark : s.pale}>
@@ -128,7 +136,7 @@ export default function NaturalSelection({ slug }: { slug: string }) {
         <>
           <p>
             You reached generation {TARGET_GEN}: about <strong>{AT_100} in 100</strong> are dark. The start was 1 dark
-            to 99 pale. Every generation that ratio grows 1.1&times;, on top of the last. After {TARGET_GEN} generations
+            to 99 pale, the ratio on the stage. Every generation that ratio grows 1.1&times;, on top of the last. After {TARGET_GEN} generations
             it has grown 1.1<sup>100</sup> &asymp; 14,000&times;: about {RATIO_AT_100} dark to 1 pale. For the first{" "}
             {UNDER_10_UNTIL} generations it stays under 10%: the strip barely rises.
           </p>
@@ -176,7 +184,7 @@ export default function NaturalSelection({ slug }: { slug: string }) {
               ? "Make a prediction to start."
               : gen === 0
                 ? "Generation 0: 1 in 100 beetles is dark."
-                : `Generation ${gen}: ${pct} dark. None changed colour.`}
+                : `Generation ${gen}: ${pct} dark (dark to pale ${ratioText(share)}). Ratio × ${(1 + edge / 100).toFixed(2).replace(/0$/, "")} each generation.`}
           </p>
 
           <Row>

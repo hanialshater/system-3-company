@@ -14,3 +14,8 @@
 ## v3 (revision 2026-10-13)
 
 - Review: ww/PP/Pw used before defined; 42% not producible. Fix: a permanent one-line legend (P purple, w white, only ww white) on the stage; reveal quotes the learner's own exactly-one and none counts, with 42% as the long-run average. Claim c3 reworded and set unverified.
+
+## Revision v4
+
+Input: latest learner review (and fact-check). Notation defined late, 42% vs 49 seen, reveal on a cleared field, calculation told. Definition ("ww is white; PP, Pw, wP are purple") is always on stage; "New field" removed (one fixed field, seed 1); "None white" readout and the 3/4 x 3/4 x 3/4 x 3/4 = 32% line appear beside the 33 families; reveal says its field is one draw. c2, c4 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 4, `format` set, edited claims are unverified for the fact-checker.

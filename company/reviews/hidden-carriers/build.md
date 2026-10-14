@@ -12,3 +12,8 @@
 - 1 in 51 vs 50.5 -> "about 1 in 50" everywhere (matches the claim ledger). Hook no longer says "how many".
 - Start setting is 1 in 400 and the "common" milestone requires 1 in 100 exactly, so the reveal's "18 per person" is always a state the learner visited (milestones rare + common, both reached on the QA path).
 - Claims: c2 reworded, new c5 (the product), both unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). "Copy share" undefined, 198 unexplained, locked chip looked selected, affected person tiny. Stage says "Variant = 1 of every 100 gene copies"; new readout "Variant copies in town: 200 of 20,000"; reveal splits 200 = 2 in the affected person + 198 carriers; no chip active while locked; ring larger; hook no longer says "common". c2, c5 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.
