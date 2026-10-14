@@ -18,3 +18,15 @@ Kept from evaluators until they report.
 - Stage words: as the spec counts, 24 (rule 13, Day, Day 4, 3 chips, legend 4, "Reached of"). The spec does not count the five disc letters A–E; if single letters count, the stage is 29. Flagged for the learning designer, not changed.
 - Seen on phone: in Overlap the four thick infected rows plus 16 rungs are busy at day 4; it reads, but the accessibility reviewer's 16-link ladder check (review routing) should look at it. In the reveal phase the kit's stage shrinks and the lesson body scrolls so the timeline (not the controls) is in view; the final state is visible.
 - Not done: no illustration (brief says none).
+
+## Revision v2 (demo-builder, 2026-10-14)
+
+Light revision after the fact-check (NCM-1) and the static-diagram learner review. Version 1 -> 2.
+
+- **c5 (fact-check dispute):** "overstates" -> "can overstate" in the reveal and the claim text. c5 is now `unverified` (checkedBy/On removed); fact-checker to re-check.
+- **Overlap (learner finding 7):** the reveal no longer lists Overlap as another ordering. It has its own paragraph: "Overlap is a different change, not another order: every pair meets every day, and from E all four were reached." The citation line now says "Partnerships that overlap in time (concurrency) can spread infection further than the same ones in sequence (Morris and Kretzschmar, 1997)"; c6 text unchanged. The reveal still quotes only states the learner reached.
+- **Legend (finding 1):** added swatches for "meeting done" (filled rung), "meeting to come" (hollow rung) and "infected stretch" (thick bar), drawn like the stage marks. Stage words rise by about 6; learning designer to judge the budget.
+- **Title/hook (findings 3, 4):** title "Who can catch it, and when?"; hook "Four meetings link A to E in a line. A is infected. Who can catch it?"
+- **Predict options** reordered to ["1","0","4"], answer 0 (correct first).
+- Not changed: finding 6 (tap-E affordance), recall options, references (section_unconfirmed stays). spread() untouched, so no numbers changed.
+- QA: QA_ONLY=contact-order-matters, port 3751, own dist .next-com2: lesson specs passed on phone and desktop; 2 failures in the feed spec ("subject chips filter the feed", phone and desktop) are not this lesson (not investigated). Walkthrough phone frames all viewed: legend fits, reveal fits.
