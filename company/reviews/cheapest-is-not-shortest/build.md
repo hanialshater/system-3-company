@@ -14,3 +14,7 @@
 - DISAGREE: 'make the prediction about the procedure'. The question tests whether the long way is cheaper; I judged a procedure question (which town is settled second) would be answerable by reading the smallest label. Left as is; the learner review's real complaint (arithmetic is easy) stands for the designer.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v3
+
+r2: the opening caption defines label, infinity and settle; hook no longer gives away that the long way is cheaper. c5 rewritten, unverified. NOT done: the prediction is still plain addition (needs a graph with unequal costs; that is a design change for the learning designer).

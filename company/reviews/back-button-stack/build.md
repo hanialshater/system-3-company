@@ -15,3 +15,7 @@
 - Note: first attempt gated on a Back press after the discard; the QA path (Back, Visit, Start over) cannot reach that, so I showed the answer on the pile instead.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v4
+
+r2: the question is shortened to A, B, C; Back once; visit D; Back once more, answer B, so one press of Back and of Visit reaches the exact sequence and the pile's 'Back goes here' tag shows B (QA presses each control once, so a gate on a second Back was unreachable). Copy bugs fixed ('was/were', 'Back from D'). c1 rewritten, c2 and c4 re-marked, unverified; hook and objective updated.

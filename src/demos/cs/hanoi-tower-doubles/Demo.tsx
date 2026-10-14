@@ -141,7 +141,9 @@ export default function HanoiTowerDoubles({ slug }: { slug: string }) {
           ? "Make a prediction to start."
           : isSolved
             ? `${n} disks moved in ${moves}.${n < MAX_N ? " Add a disk." : ""}`
-            : note || (sel !== null ? "Now tap where it goes." : `Move all ${n} disks to C.`);
+            : moves >= cost(n) && sel === null
+              ? `${moves} moves, but the tower is not on C yet. The best, ${cost(n)}, needs every move to count. Restart to try again.`
+              : note || (sel !== null ? "Now tap where it goes." : `Move all ${n} disks to C.`);
 
         return (
           <div className={s.wrap}>

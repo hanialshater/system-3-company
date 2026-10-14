@@ -83,7 +83,7 @@ export default function OneRecipeForSixty({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Break 60 into primes (numbers that cannot be split further, like 2, 3, 5, 7) by splitting it into factors, then splitting those. How many different prime recipes can you get (order ignored)?",
+        question: "Break 60 into primes (whole numbers above 1 that cannot be split into smaller whole factors, like 2, 3, 5, 7) by splitting it into factors, then splitting those. How many different prime recipes can you get (order ignored)?",
         options: ["1", "2", "3"],
         answer: 0,
       }}
@@ -96,7 +96,7 @@ export default function OneRecipeForSixty({ slug }: { slug: string }) {
             {tried84.length > 0 ? ` 84 did the same: every start you tried ended in 2 · 2 · 3 · 7.` : ""}
           </p>
           <p>
-            That is no accident with 60 or 84. Every whole number above 1 breaks into primes in exactly one way, apart from
+            That is no accident{tried84.length > 0 ? " with 60 or 84" : ""}. Every whole number above 1 breaks into primes in exactly one way, apart from
             order. Primes are the atoms of multiplication, and each number has one recipe.
           </p>
         </>
@@ -173,7 +173,7 @@ function Stage({
         {locked
           ? "Make a prediction to start."
           : start === null
-            ? `Pick a first split for ${num}. Branches stop at primes: numbers that cannot be split (coloured).`
+            ? `Pick a first split for ${num}. Branches stop at primes: whole numbers above 1 with no smaller factors (coloured).`
             : list.length < 3
               ? `Primes, in order: ${bottom.join(" · ")}. Try another start.`
               : `Every start ends in ${bottom.join(" · ")}.`}

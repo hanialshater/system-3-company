@@ -62,6 +62,7 @@ export default function PlusAndMinusChips({ slug }: { slug: string }) {
 function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Chips; setChips: (c: Chips) => void }) {
   const { reach } = useMilestones(interact, MILESTONES);
   const { p, m, z } = chips;
+  const [added, setAdded] = useState<"plus" | "minus" | null>(null); // set by +/- chip, cleared by a cancel or start over
   const canCancel = p > 0 && m > 0;
   const atStart = p === START.p && m === START.m && z === 0;
   const total = p - m;
@@ -69,6 +70,7 @@ function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Ch
   const cancel = (k: number) => {
     const next = { p: p - k, m: m - k, z: z + k };
     setChips(next);
+    setAdded(null);
     reach("one-pair");
     if (next.p === 0 || next.m === 0) reach("all-cancelled");
   };
@@ -110,7 +112,11 @@ function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Ch
       <p className={s.caption} aria-live="polite">
         {locked
           ? "Make a prediction to start."
-          : z === 0
+          : added
+            ? canCancel
+              ? `Added a ${added} chip, so the total changed. Cancel pairs again to read it.`
+              : `Added a ${added} chip. Only ${p > 0 ? "plus" : "minus"} chips left, so the total is ${fmt(total)}.`
+            : z === 0
             ? `${p} plus, ${m} minus. Cancel a plus with a minus.`
             : !canCancel
               ? `Only ${p > 0 ? "plus" : m > 0 ? "minus" : "no"} chips left, so the total is ${fmt(total)}.`
@@ -129,13 +135,22 @@ function Stage({ locked, interact, chips, setChips }: StageContext & { chips: Ch
         </Control>
       </Row>
       <Row>
-        <Control disabled={locked || p >= MAX} aria-label="Add a plus chip" onClick={() => setChips({ ...chips, p: p + 1 })}>
+        <Control disabled={locked || p >= MAX} aria-label="Add a plus chip" onClick={() => {
+            setChips({ ...chips, p: p + 1 });
+            setAdded("plus");
+          }}>
           + chip
         </Control>
-        <Control disabled={locked || m >= MAX} aria-label="Add a minus chip" onClick={() => setChips({ ...chips, m: m + 1 })}>
+        <Control disabled={locked || m >= MAX} aria-label="Add a minus chip" onClick={() => {
+            setChips({ ...chips, m: m + 1 });
+            setAdded("minus");
+          }}>
           − chip
         </Control>
-        <Control disabled={locked || atStart} onClick={() => setChips(START)}>
+        <Control disabled={locked || atStart} onClick={() => {
+            setChips(START);
+            setAdded(null);
+          }}>
           Start over
         </Control>
       </Row>

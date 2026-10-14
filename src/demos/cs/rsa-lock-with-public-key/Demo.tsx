@@ -24,7 +24,7 @@ function powmod(b: number, e: number, m: number) {
 }
 
 export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
-  const [m, setM] = useState(2);
+  const [m, setM] = useState(7);
   const [c, setC] = useState<number | null>(null);
   const [out, setOut] = useState<{ v: number; by: "e" | "d" } | null>(null);
   const [tried, setTried] = useState<number[]>([]); // divisors tried
@@ -35,8 +35,8 @@ export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Public key: n = 55, e = 3. You lock 2 as 2³ mod 55 = 8. Who can unlock 8?",
-        options: ["Anyone with the public key", "Only someone who knows 55 = 5 × 11", "Nobody"],
+        question: "Public key: n = 55, e = 3. You lock 7 as 7³ mod 55 = 13. If n had hundreds of digits, who could unlock 13?",
+        options: ["Anyone with the public key", "Only someone who can find the factors 5 × 11", "Nobody"],
         answer: 1,
       }}
       exploreHint="Lock a number. Try to unlock it with the public key, then with the factors."
@@ -71,7 +71,11 @@ export default function RsaLockWithPublicKey({ slug }: { slug: string }) {
           const v = powmod(m, E, NMOD);
           setC(v);
           setOut(null);
-          setNote(`${m}³ mod 55 = ${v}. Anyone can do this.`);
+          setNote(
+            m ** 3 < NMOD
+              ? `${m}³ = ${v} is below 55, so it never wrapped. A plain cube root undoes it. Pick 4 or more.`
+              : `${m}³ mod 55 = ${v}. Anyone can do this.`,
+          );
         };
         const unlockE = () => {
           if (locked || c === null) return;

@@ -11,3 +11,7 @@ Built by demo-builder (sonnet build, EXP-003). Kept from evaluators until they r
 ## Revision v2 (wave C)
 
 Radius slider starts at 50 m so question and stage match; tightest safe bend shows 50 m at 54 km/h. Three milestones (81 km/h, 108 km/h, cleared) so 50 / 112.5 / 200 m are all seen; radius step 75 so two presses reach 200. m v^2/r replaced by plain words. c1 reworded, c6 added, unverified.
+
+## Revision v3
+
+r2: the stage keeps a 'Tightest safe bend so far' line (speed -> radius for every speed the learner set, 54 km/h on screen from unlock), and the reveal quotes 112.5 m only if 81 km/h was set. c6 reworded, unverified. The three milestones (81, 108, cleared) already gated the reveal; the sheet frames skip the 81 step because QA arrows through it.

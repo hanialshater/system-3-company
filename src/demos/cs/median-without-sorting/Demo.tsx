@@ -87,7 +87,7 @@ export default function MedianWithoutSorting({ slug }: { slug: string }) {
           <p>
             Each split puts its pivot in its final place, and position 5 is on only one side, so the other side can go.
             Sorting must split both sides: {SORT_CMP} comparisons here with the same rule. The gap grows: on 1,000
-            shuffled cards, about 3,465 comparisons against 11,003.
+            shuffled cards, about 3,300 comparisons against about 11,000.
           </p>
           <p className="muted">To find one position you only need the side it is on.</p>
         </>

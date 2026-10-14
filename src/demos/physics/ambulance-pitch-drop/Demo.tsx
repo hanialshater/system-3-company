@@ -3,16 +3,16 @@
 // Ambulance pitch drop. An ambulance drives east at 25 m/s; its siren sounds 700 Hz to
 // the driver. You stand 3 m from its line. Rings show where the sound sent out 0.1,
 // 0.2, ... 0.6 s ago has reached (centred where the ambulance was then): bunched ahead,
-// stretched behind. Only every 70th crest is drawn (700 Hz x 0.1 s).
+// stretched behind. A ring is NOT a crest: a real 700 Hz siren sends 70 crests between rings.
 //
 // Pitch you hear right now: find the emission time tau with |source(t - tau) - you| =
 // c tau, then f' = f c / (c - v cos phi), phi the angle between the ambulance's motion
 // and the line to you at emission. Far ahead this tends to 700 x 343 / 318 = 755 Hz,
 // far behind to 700 x 343 / 368 = 652 Hz. c = 343 m/s (20 C), still air.
 // The reveal unlocks once the learner has heard the ambulance going away.
-// v2: options are qualitative (no numbers to derive); the caption defines ring = crest and
-// Hz = crests per second and compares the gaps with a parked siren's 34.3 m, and the reveal
-// turns that ratio into the pitch (34.3 / 31.8 x 700 = 755).
+// v2: options are qualitative. v6: the caption says what a ring is (sound sent 0.1 ... 0.6 s
+// ago, not a crest) and compares the gaps with a parked siren's 34.3 m; the reveal quotes only
+// values the learner saw (no 755 / 652 / 1.08).
 
 import { Lesson } from "@/kit/Lesson";
 import { Readout, Row, Slider } from "@/kit/controls";
@@ -35,8 +35,6 @@ function heard(x: number) {
   const toward = (V * -xe) / r; // velocity component toward you
   return (F0 * C) / (C - toward);
 }
-const LIMIT_UP = (F0 * C) / (C - V);
-const LIMIT_DOWN = (F0 * C) / (C + V);
 const DT = 0.1; // s between drawn rings
 const GAP0 = C * DT; // parked: 34.3 m
 const GAP_AHEAD = (C - V) * DT; // 31.8 m
@@ -78,11 +76,10 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
             <strong>{Math.round(heard(20))} Hz</strong> at 20 m past you. The siren itself stayed 700 Hz.
           </p>
           <p>
-            Each crest leaves from a spot further along the road. Ahead, the rings were {GAP_AHEAD.toFixed(1)} m apart
-            instead of a parked siren&apos;s {GAP0.toFixed(1)} m, so crests reach you {(GAP0 / GAP_AHEAD).toFixed(2)} times
-            as often: up to {Math.round(LIMIT_UP)} Hz. Behind, {GAP_BEHIND.toFixed(1)} m apart: down to{" "}
-            {Math.round(LIMIT_DOWN)} Hz. Beside you it read {Math.round(log[0] ?? heard(0))} Hz, because that sound left a moment
-            earlier, still approaching.
+            Each ring is sound sent a little earlier, from a spot further back along the road. Ahead, the rings were{" "}
+            {GAP_AHEAD.toFixed(1)} m apart instead of a parked siren&apos;s {GAP0.toFixed(1)} m, so crests reach you
+            more often and the pitch is higher. Behind, {GAP_BEHIND.toFixed(1)} m apart: crests come less often, so it is
+            lower.{log[0] !== undefined ? ` Beside you it read ${Math.round(log[0])} Hz, because that sound left a moment earlier, still approaching.` : ""}
           </p>
           <p className="muted">Still air, sound at 343 m/s.</p>
         </>
@@ -91,15 +88,15 @@ export default function AmbulancePitchDrop({ slug }: { slug: string }) {
       {({ locked, interact }) => {
         interactRef.current = interact;
         const caption = locked
-          ? "Each ring is where sound sent 0.1 s earlier has reached. Hz = crests per second."
-          : `Gaps: ${GAP_AHEAD.toFixed(1)} m ahead, ${GAP_BEHIND.toFixed(1)} m behind. Parked, they'd be ${GAP0.toFixed(1)} m.`;
+          ? "Rings mark sound sent 0.1, 0.2 … 0.6 s ago. A real 700 Hz siren sends 70 crests between rings. Hz = crests per second."
+          : `Gaps between rings: ${GAP_AHEAD.toFixed(1)} m ahead, ${GAP_BEHIND.toFixed(1)} m behind. Parked, they'd be ${GAP0.toFixed(1)} m.`;
         const rings = Array.from({ length: 6 }, (_, i) => {
           const tau = (i + 1) * 0.1;
           return { cx: px(x - V * tau), r: C * tau * K };
         });
         return (
           <div className={s.wrap}>
-            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Ambulance ${Math.abs(x)} m ${x < 0 ? "before" : "past"} you; you hear ${Math.round(f)} Hz`}>
+            <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Ambulance ${Math.abs(x)} m ${x < 0 ? "before" : "past"} you${locked ? "" : `; you hear ${Math.round(f)} Hz`}`}>
               <rect x={0} y={ROAD - 14} width={W} height={28} className={s.road} />
               <line x1={0} y1={ROAD} x2={W} y2={ROAD} className={s.lane} />
               {rings.map((r, i) => (

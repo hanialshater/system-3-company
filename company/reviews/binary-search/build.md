@@ -30,3 +30,7 @@ QA: contract passes phone + desktop (local, 2026-10-13).
 - Not changed: 'Pick the middle' still does the key step on purpose, so the learner sees the halving chain.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v5
+
+Fact-check c5: weak-guess test is now after*2 > before. Message says '501 numbers ruled out'; reveal adds 'never more than 10'.

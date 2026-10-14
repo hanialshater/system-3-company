@@ -69,12 +69,10 @@
     },
     {
       "id": "physics.bend-at-double-speed.c6",
-      "text": "At 54 km/h the tightest safe bend is 50 m, at 81 km/h 112.5 m and at 108 km/h 200 m, under the same model.",
+      "text": "At 54 km/h the tightest safe bend is 50 m, at 81 km/h 112.5 m and at 108 km/h 200 m, under the same model. The stage lists each speed the learner has set with its tightest bend, and the reveal quotes only those.",
       "support": "derivation",
-      "source": "r = v^2/(mu g) with mu = 15^2/(9.81*50): 81 km/h = 22.5 m/s gives 112.5 m (see c5); 108 km/h gives 200 m (c2). | FACT-CHECK 2026-10-14 (pass 11): Own node: mu = 225/(9.81 x 50); r_min = 50.0 m at 54 km/h, 112.5 m at 81, 200.0 m at 108.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Own node (fact-check pass 11): mu = 225/(9.81 x 50); r_min = 50.0 m at 54 km/h, 112.5 m at 81, 200.0 m at 108. Revision v3: the stage keeps a 'Tightest safe bend so far' line and the reveal drops 112.5 m unless 81 km/h was set.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:curve-speed-limit",
     "prerequisites": [

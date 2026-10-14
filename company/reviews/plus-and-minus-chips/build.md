@@ -10,3 +10,7 @@
 
 From the adult-beginner learner review. Start is now 3 plus and 5 minus (answer -2; the slip '2' tests 'negative is a sign painted on'). Total stays '?' until one kind of chip is left. Reveal quotes the stage state and explains why a negative wins. c1, c3 edited.
 All new or edited claims are unverified, for the fact-checker.
+
+## Revision v3
+
+r2: after + chip or - chip the caption says the total changed ('Added a plus chip, so the total changed. Cancel pairs again to read it.') instead of the stale 'The total did not move.'

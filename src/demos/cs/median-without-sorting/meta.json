@@ -1,7 +1,7 @@
 {
   "slug": "median-without-sorting",
   "title": "The middle card, without sorting",
-  "hook": "To find the middle value, sort everything first. Or throw half away each time.",
+  "hook": "To find the middle value you could sort everything first. Do you have to?",
   "domain": "cs",
   "concept": "quickselect",
   "format": "Single card",
@@ -62,12 +62,10 @@
     },
     {
       "id": "cs.median-without-sorting.c5",
-      "text": "On 1,000 shuffled cards, finding the median this way takes about 3,465 comparisons against about 11,003 for sorting.",
+      "text": "On 1,000 shuffled cards, finding the median this way takes about 3,300 comparisons against about 11,000 for sorting.",
       "support": "simulation",
-      "source": "Builder's node script qsel.mjs: averages over mulberry32 seeds 1-50 (Fisher-Yates shuffles of 1..1000), first-card pivots, median = 500th: 3,465 and 11,003. Seeds 1-50 taken in order, not chosen. Expected linear time: Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2. | FACT-CHECK 2026-10-14 (pass 10): Own node reproduces 3,465 and 11,003 on seeds 1-50, but that 50-seed mean is high: the exact expectation for first-card pivots on a random permutation is 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort; my 500 other seeds (101-600) give 3,363 and 11,005. Stating 'about 3,465' to four figures is about 4% high. Fix (builder): 'about 3,300 comparisons against about 11,000' (claim and reveal), citing the expectation. Re-check after the fix.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Revision v2, rounded per fact-check pass 10. Expected values for first-card pivots on a random permutation: 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort. Builder's simulation (mulberry32 seeds 1-50, first 50 in order) gave 3,465 and 11,003, a high sample mean, so the stage no longer quotes it. Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:quickselect",
     "prerequisites": [

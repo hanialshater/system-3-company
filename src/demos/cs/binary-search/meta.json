@@ -64,12 +64,10 @@
     },
     {
       "id": "cs.binary-search.c5",
-      "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes; the stage calls a guess that keeps more than half a weak guess.",
+      "text": "A guess in the middle of what is still possible rules out at least half of it, whichever way the answer goes; the stage calls a guess that keeps more than half (after x 2 > before) a weak guess.",
       "support": "derivation",
-      "source": "With m candidates and the middle one guessed, a wrong answer leaves at most floor(m/2): the lesson's mid = floor((lo+hi)/2) leaves lo..mid-1 or mid+1..hi, sizes mid-lo and hi-mid, both <= floor(m/2) (checked for every m up to 2000 in artifacts/scratch/fc2-binary-search.mjs). Seen in the reveal (\"rules out half of it, whichever way the answer goes\"). The guess itself counts as ruled out. Added by fact-checker 2026-10-12; needs an independent check. | FACT-CHECK 2026-10-14 (pass 12): First half true (middle guess of m leaves at most floor(m/2); node). Second half false at odd counts: the stage flags 'weak' only when after*2 > before + 1, so a guess keeping (m+1)/2 of an odd m (e.g. 250 of 499, 500 of 999) keeps more than half and is NOT called weak (node: mismatch at 2/3, 3/5, ... for every odd m). Fix (builder): change the test to after*2 > before (still never flags a middle guess), or reword the claim. Re-check after the fix.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Revision v5 per fact-check pass 12: the weak-guess test is now after*2 > before (was before + 1, which missed odd counts). A middle guess of m keeps at most floor(m/2), so after*2 <= before and it is never flagged; a guess keeping more than half always is.",
+      "status": "unverified"
     },
     {
       "id": "cs.binary-search.c6",
@@ -114,7 +112,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "cs:binary-search",
     "prerequisites": [],

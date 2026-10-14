@@ -8,3 +8,7 @@
 
 From the adult-beginner learner review. Caption at the start points at 12 inches; boxes are called '6-inch boxes' and defined; the filled-with-small-pizzas caption says each leaves the same corners empty (addresses the white gaps); the 'any shape' sentence in the reveal was dropped and replaced by the 18 and 24 inch invitation. c3, c4 edited.
 All new or edited claims are unverified, for the fact-checker.
+
+## Revision v3
+
+r2: a 'Seen:' line lists the widths shown (6 in = 1 box ...); the closing 'slide to 18 and 24 inches' names only the widths not yet tried. The reveal still needs 12 inches (k = 2) to have been shown.

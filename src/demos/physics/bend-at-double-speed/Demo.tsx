@@ -31,6 +31,7 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
   const [kmh, setKmh] = useState(BASE_KMH);
   const [r, setR] = useState(BASE_R);
   const [clearedR, setClearedR] = useState<number | null>(null);
+  const [seen, setSeen] = useState<number[]>([BASE_KMH]); // speeds the learner has set (54 is on screen at unlock)
 
   return (
     <Lesson
@@ -45,7 +46,8 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The dashed grip limit swelled from <strong>{rMin(BASE_KMH)} m</strong> at {BASE_KMH} km/h to {rMin(MID_KMH)} m at {MID_KMH} km/h and{" "}
+            The dashed grip limit swelled from <strong>{rMin(BASE_KMH)} m</strong> at {BASE_KMH} km/h
+            {seen.includes(MID_KMH) ? ` to ${rMin(MID_KMH)} m at ${MID_KMH} km/h and` : " to"}{" "}
             <strong>{rMin(FAST_KMH)} m</strong> at {FAST_KMH} km/h: double the speed, {rMin(FAST_KMH) / rMin(BASE_KMH)} times the radius
             {clearedR !== null ? `; your ${clearedR} m bend cleared it` : ""}.
           </p>
@@ -93,6 +95,16 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
                   {caption}
                 </p>
 
+                {!locked && (
+                  <p className={s.caption}>
+                    Tightest safe bend so far:{" "}
+                    {[...seen]
+                      .sort((a, b) => a - b)
+                      .map((k) => `${k} km/h → ${rMin(k)} m`)
+                      .join(" · ")}
+                  </p>
+                )}
+
                 <Slider
                   label="Speed (km/h)"
                   value={kmh}
@@ -102,6 +114,7 @@ export default function BendAtDoubleSpeed({ slug }: { slug: string }) {
                   disabled={locked}
                   onChange={(v) => {
                     setKmh(v);
+                    setSeen((a) => (a.includes(v) ? a : [...a, v]));
                     check(v, r);
                   }}
                 />
