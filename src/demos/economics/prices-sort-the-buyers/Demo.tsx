@@ -12,8 +12,8 @@ import s from "./styles.module.css";
 
 const V = [[12, 4, 2], [8, 7, 6], [7, 5, 2]]; // buyers x, y, z; houses a, b, c
 const HN = ["a", "b", "c"], BN = ["x", "y", "z"];
-const HX = [130, 210, 290], BY = [120, 190, 260];
-const CW = 68, CH = 58;
+const HX = [130, 210, 290], BY = [104, 156, 208];
+const CW = 70, CH = 48;
 const PERMS = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 // A buyer wants every house with the largest value minus price (ties all count).
@@ -34,9 +34,12 @@ function tooMany(p: number[]): number[] | null {
   }
   return best;
 }
+// n = how many buyers wanted only houses inside the raised group (before the raise).
 const raise = (p: number[]) => {
   const g = tooMany(p);
-  return g ? { p: p.map((x, j) => (g.includes(j) ? x + 1 : x)), changed: g } : null;
+  if (!g) return null;
+  const n = wants(p).filter((ws) => ws.every((j) => g.includes(j))).length;
+  return { p: p.map((x, j) => (g.includes(j) ? x + 1 : x)), changed: g, n };
 };
 const total = (pm: number[]) => pm.reduce((t, h, i) => t + V[i][h], 0);
 const matchOf = (p: number[]) => {
@@ -44,14 +47,19 @@ const matchOf = (p: number[]) => {
   return PERMS.find((pm) => pm.every((h, i) => w[i].includes(h)))!;
 };
 
-type St = { p: number[]; changed: number[]; round: number };
-const START: St = { p: [0, 0, 0], changed: [], round: 0 };
+type St = { p: number[]; changed: number[]; round: number; n: number };
+const START: St = { p: [0, 0, 0], changed: [], round: 0, n: 0 };
 const rest = (st: St) => {
   const out: St[] = [];
   for (let cur = st, r = raise(cur.p); r; r = raise(cur.p)) out.push((cur = { ...r, round: cur.round + 1 }));
   return out;
 };
-const FINAL: St = { ...rest(START).at(-1)!, changed: [] };
+const LAST = rest(START).at(-1)!;
+const FINAL: St = { ...LAST, changed: [] };
+// What the last raise did, in words the stage can show (about 14 words).
+const said = (st: St) =>
+  st.changed.length === 0 ? "" :
+  `Raised ${st.changed.map((j) => HN[j]).join(" and ")}${st.changed.length > 1 ? " together" : ""}; ${st.n} buyers wanted only ${st.changed.map((j) => HN[j]).join(" or ")}.`;
 
 // Shared drawing: the stage and the legend swatches use the same functions.
 type Cell = "plain" | "wants" | "gets";
@@ -81,21 +89,21 @@ function Grid({ st }: { st: St }) {
     : `Round ${st.round}: prices a ${st.p[0]}, b ${st.p[1]}, c ${st.p[2]}; too many want ${g!.map((j) => HN[j]).join(" and ")}`;
   return (
     <>
-      <svg viewBox="0 0 340 300" className="stage-svg" role="img" aria-label={label}>
-        {g && groupRect(HX[g[0]] - CW / 2 - 4, 87, HX[g.at(-1)!] - HX[g[0]] + CW + 8, 206)}
+      <svg viewBox="0 0 340 240" className="stage-svg" role="img" aria-label={label}>
+        {g && groupRect(HX[g[0]] - CW / 2 - 4, 68, HX[g.at(-1)!] - HX[g[0]] + CW + 8, 168)}
         {HN.map((h, j) => (
           <g key={h}>
-            <circle cx={HX[j]} cy={28} r={14} fill="none" stroke="var(--fg)" strokeWidth={2} />
-            <text x={HX[j]} y={33} textAnchor="middle" fontSize={14} fontWeight={800} fill="var(--fg)">{h}</text>
-            <rect x={HX[j] - 18} y={52} width={36} height={20} rx={10} fill="var(--bg-2)" className={s.cell}
+            <circle cx={HX[j]} cy={20} r={14} fill="none" stroke="var(--fg)" strokeWidth={2} />
+            <text x={HX[j]} y={26} textAnchor="middle" fontSize={16} fontWeight={800} fill="var(--fg)">{h}</text>
+            <rect x={HX[j] - 22} y={38} width={44} height={24} rx={12} fill="var(--bg-2)" className={s.cell}
               stroke={st.changed.includes(j) ? "var(--accent)" : "var(--line)"} strokeWidth={st.changed.includes(j) ? 3 : 1} />
-            <text x={HX[j]} y={66} textAnchor="middle" fontSize={12} fontWeight={700} fill="var(--fg)">${st.p[j]}</text>
+            <text x={HX[j]} y={56} textAnchor="middle" fontSize={16} fontWeight={700} fill="var(--fg)">${st.p[j]}</text>
           </g>
         ))}
         {BN.map((b, i) => (
           <g key={b}>
             <circle cx={44} cy={BY[i]} r={14} fill="none" stroke="var(--fg)" strokeWidth={2} />
-            <text x={44} y={BY[i] + 5} textAnchor="middle" fontSize={14} fontWeight={800} fill="var(--fg)">{b}</text>
+            <text x={44} y={BY[i] + 6} textAnchor="middle" fontSize={16} fontWeight={800} fill="var(--fg)">{b}</text>
             {HN.map((h, j) => {
               const k: Cell = m?.[i] === j ? "gets" : w[i].includes(j) ? "wants" : "plain";
               const x = HX[j] - CW / 2, y = BY[i] - CH / 2;
@@ -103,11 +111,11 @@ function Grid({ st }: { st: St }) {
               return (
                 <g key={h}>
                   {cellRect(k, x, y, CW, CH)}
-                  {k !== "plain" && wantDot(x + CW - 9, y + 9, 4, k)}
-                  <text x={x + CW / 2} y={y + 19} textAnchor="middle" fontSize={12} fill={k === "gets" ? ink : "var(--muted)"}>
+                  {k !== "plain" && wantDot(x + CW - 8, y + CH - 8, 4, k)}
+                  <text x={x + CW / 2} y={y + 17} textAnchor="middle" fontSize={15} fill={k === "gets" ? ink : "var(--muted)"}>
                     {V[i][j]} − {st.p[j]}
                   </text>
-                  <text x={x + CW / 2} y={y + 45} textAnchor="middle" fontSize={20} fontWeight={800} fill={ink}>
+                  <text x={x + CW / 2} y={y + 41} textAnchor="middle" fontSize={22} fontWeight={800} fill={ink}>
                     {V[i][j] - st.p[j]}
                   </text>
                 </g>
@@ -134,7 +142,7 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
   const [st, setSt] = useState<St>(START);
   const [open, setOpen] = useState(false);
   const [running, setRunning] = useState(false);
-  const [byRaise, setByRaise] = useState<number[]>([]);
+  const [seen, setSeen] = useState<number[]>([]);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const stop = () => { timers.current.forEach(clearTimeout); timers.current = []; setRunning(false); };
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
@@ -144,16 +152,16 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Values are in the grid; prices start at $0. A buyer wants the houses with the largest value minus price (ties count). Each round, raise by $1 every house in the smallest group that more buyers want only from than it has houses. Where does a's price stop?",
-        options: ["$0", "$3", "$12"],
-        answer: 1,
+          "Prices start at $0 and rise $1 on houses too many buyers want. When none is over-wanted, buyers take houses they want. Among the six possible matches, that one has",
+        options: ["the highest total value", "a middling total value", "the lowest total value"],
+        answer: 0,
       }}
-      exploreHint="Press Raise and watch the dashed group. Then compare all six matches."
+      exploreHint="Press Raise and watch the dashed group. Then Compare all six matches."
       minInteractions={2}
       reveal={() => {
-        const all = [1, 2, 3].every((r) => byRaise.includes(r));
+        const all = [1, 2, 3].every((r) => seen.includes(r));
         const path = all
-          ? "You raised three times: a went $1, $2, $3, and on the last raise b went to $1 too, because a and b together were wanted by too many."
+          ? "You saw three raises: a went $1, $2, $3, and on the last raise b went to $1 too, because a and b together were wanted by too many."
           : "Prices started at $0 and stopped at a $3, b $1, c $0 after three rounds.";
         return (
           <>
@@ -177,12 +185,12 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
             const showCmp = pinned || open;
             const cleared = !tooMany(view.p);
             const m = cleared ? matchOf(view.p) : null;
+            const show = (x: St) => { setSt(x); setSeen((b) => (b.includes(x.round) ? b : [...b, x.round])); };
             const doRaise = () => {
               const r = raise(st.p);
               if (!r) return;
               const next = { ...r, round: st.round + 1 };
-              setSt(next);
-              setByRaise((b) => [...b, next.round]);
+              show(next);
               if (!raise(next.p)) reach("cleared");
             };
             const doRun = () => {
@@ -191,20 +199,20 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
               reach("cleared");
               const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
               if (reduce) { setSt(seq.at(-1)!); return; }
-              setSt(seq[0]);
+              show(seq[0]);
               if (seq.length > 1) setRunning(true);
               seq.slice(1).forEach((x, i) => {
-                timers.current.push(setTimeout(() => { setSt(x); if (i === seq.length - 2) setRunning(false); }, 100 * (i + 1)));
+                timers.current.push(setTimeout(() => { show(x); if (i === seq.length - 2) setRunning(false); }, 350 * (i + 1)));
               });
             };
             return (
               <div className={s.wrap}>
-                <p className={s.rule}>
+                {phase !== "predict" && <p className={s.rule}>
                   Buyers want the best value minus price. Raise $1 on the smallest group{" "}
                   <Sw>{groupRect(1, 1, 12, 12, 1)}</Sw> too many want.
-                </p>
+                </p>}
                 <Grid st={view} />
-                {showCmp ? (
+                {phase === "predict" ? null : showCmp ? (
                   <div className={s.cmp}>
                     {PERMS.map((pm) => {
                       const mine = m && pm.every((h, i) => m[i] === h);
@@ -221,11 +229,14 @@ export default function PricesSortTheBuyers({ slug }: { slug: string }) {
                     <Sw>{cellRect("gets", 1.5, 1.5, 11, 11)}</Sw> gets
                   </p>
                 )}
-                <p className={s.readout} aria-live="polite">
-                  Round {view.round}{m && <> · Total <b>{total(m)}</b></>}
-                </p>
+                {phase !== "predict" && (
+                  <p className={s.readout} aria-live="polite">
+                    Round {view.round}{m && <> · Total <b>{total(m)}</b></>}
+                  </p>
+                )}
+                {phase !== "predict" && !pinned && <p className={s.said}>{said(view)}</p>}
                 <Row>
-                  <Control disabled={locked || pinned || st.round === 0} onClick={() => { stop(); setSt(START); setOpen(false); }}>
+                  <Control disabled={locked || pinned || st.round === 0} onClick={() => { stop(); setSt(START); setSeen([]); setOpen(false); }}>
                     Restart
                   </Control>
                   <Control disabled={locked || cleared || running} onClick={doRaise}>Raise</Control>

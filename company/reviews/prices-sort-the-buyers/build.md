@@ -16,3 +16,13 @@ Kept from evaluators until they report.
 - Section unconfirmed: curriculum.references carries easley-kleinberg-2010 ch. 10, section "10.3" with a note; the brief's §10.3–10.4 is unconfirmed (no PDF access). Claim c7 (theorem) keeps that flag.
 - Learning-designer item from the review: the rule line's "smallest group too many want" shortening is a content call, not checked by me.
 - Not done: no illustration (brief says none). Code size Demo.tsx + CSS ≈ 12.6 KB.
+
+## Revision v2 (demo-builder, 2026-10-14, session 2)
+
+Inputs: learner review one-market-only, fact-check Pass NCM-1 note 1.
+- Prediction now tests the lesson's idea: "Among the six possible matches, that one has" the highest / a middling / the lowest total value. Correct option is FIRST (answer 0). Hook no longer gives the answer ("What do rising prices do?"). The rule detail stays on the stage rule line and in c2.
+- Run no longer jumps: steps at 350 ms (not 100) and each state carries a caption ("Raised a and b together; 3 buyers wanted only a or b"), kept after the run ends; the dashed group shows at the {a,b} step. Reveal tells the three-raise path whenever the learner saw all three rounds (Raise or Run). 350 ms is the longest that lets the QA contract (450 ms settle) still reach Compare; 700 ms failed it on desktop. Under reduced motion Run still jumps (caption shows the last raise).
+- Legibility: grid redrawn 340 x 240 (was 300 high) with larger type (sum 15, surplus 22, prices 16, labels 16); at predict the rule line, legend, readout and caption are hidden so the grid renders at about full scale on a phone (walkthrough 01-predict viewed). The rule is in the question at predict.
+- c4 text now includes "y values b most (x 4, y 7, z 5)": status back to unverified. New claim c9 (caption text; node check of n: 3, 2, 3), unverified. Version 2.
+- Node check, exact rule: only-wanters at (0,0,0),(1,0,0),(2,0,0) give n 3, 2, 3 for groups {a},{a},{a,b}; price path unchanged.
+- QA (contract, QA_ONLY=prices-sort-the-buyers, NEXT_DIST_DIR=.next-psb2, QA_PORT 3731-3734): phone pass, desktop pass. The feed.spec "subject chips filter the feed" test fails on both viewports in this worktree; it is not about this lesson (not investigated).
