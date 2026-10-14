@@ -1,11 +1,11 @@
 {
   "slug": "ternary-asks-more",
-  "title": "Thirds sound faster than halves",
+  "title": "Halves or thirds: which finds it first?",
   "hook": "Cut a sorted list into thirds each round: do you find things sooner?",
   "domain": "cs",
   "concept": "ternary-search",
   "status": "draft",
-  "version": 1,
+  "version": 2,
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -54,10 +54,8 @@
       "id": "cs.ternary-asks-more.c4",
       "text": "After two questions on 721, halving has 249 numbers left (501 to 749) and thirds has 333 (668 to 1,000).",
       "support": "simulation",
-      "source": "Builder's node script: numbers left after each question. Halving: 500, 249, 124, 62, 31, 15, 7, 3, 1, found at 10. Thirds: 666, 333, 110, 110, 73, 36, 24, 12, 8, 4, 1, 1, found at 13. | FACT-CHECK 2026-10-14 (pass 22): Own re-run: after 2 questions halving range 501-749 (249), thirds 668-1000 (333); reveal prints left(HQ,2) and left(TQ,2).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node script: numbers left after each question. Halving: 500, 249, 124, 62, 31, 15, 7, 3, 1, found at 10. Thirds: 666, 333, 110, 110, 73, 36, 24, 12, 8, 4, 1, 1, found at 13. | FACT-CHECK 2026-10-14 (pass 22): Own re-run: after 2 questions halving range 501-749 (249), thirds 668-1000 (333); reveal prints left(HQ,2) and left(TQ,2). | REWORDED v2 (builder, 2026-10-14): Text unchanged; it is now shown on stage as the table column 'left after 2' (249 / 333), filled once two questions have been asked, and the reveal points at that column. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "cs.ternary-asks-more.c5",
@@ -73,15 +71,6 @@
       "text": "A ternary round costs two questions and keeps a third; two halving questions keep a quarter, so per question halving wins.",
       "support": "derivation",
       "source": "Each halving question keeps at most about 1/2, so two keep about 1/4; a ternary round asks two questions and keeps about 1/3 > 1/4. Worst-case counts: about log2(n) for halving against 2 log3(n) = 1.26 log2(n) for thirds. | FACT-CHECK 2026-10-14 (pass 22): Re-derived: halving keeps <= 1/2 per question, 1/4 per two; a ternary round spends two questions to keep about 1/3; 2 log3 n = (2/log2 3) log2 n = 1.26 log2 n. Consistent with worst cases 10 vs 13.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
-    },
-    {
-      "id": "cs.ternary-asks-more.c7",
-      "text": "Of the 1,000 targets, 489 need 10 halving questions and 272 need 13 ternary questions, the most common counts.",
-      "support": "simulation",
-      "source": "Builder's node script: histograms by number of questions. Halving 1:1 2:2 3:4 4:8 5:16 6:32 7:64 8:128 9:256 10:489. Thirds 1:1 2:1 3:3 4:3 5:9 6:9 7:27 8:27 9:81 10:81 11:243 12:243 13:272. | FACT-CHECK 2026-10-14 (pass 22): Own histograms match exactly (halving 10:489, thirds 13:272, both the modal counts); stage labels the peak bar 'q: count'.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"

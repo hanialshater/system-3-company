@@ -42,21 +42,17 @@
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c3",
-      "text": "Under the rule 'pay the least bid that keeps your slot', B pays 1.0 ÷ 1.0 = $1.00 a click, less than A bid.",
+      "text": "Under the rule 'the top ad pays the least bid that keeps its slot', the top ad pays the next score ÷ its own quality: B pays 1.0 ÷ 1.0 = $1.00 a click, less than A bid, and still $1.00 when B bids $1.20, because A's score sets it, not B's bid. (Stage: 'B pays A's score 1.0 ÷ B's quality 1.0.')",
       "support": "derivation",
-      "source": "B stays on top for any bid above A's score ÷ B's quality = 1.0 ÷ 1.0 = $1.00 (equal at $1.00); price = next score ÷ own quality. Demo.tsx B_PRICE. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo pays = second.bid x second.quality / top.quality = 1.0 / 1.0 = $1.00, the same for B at $1.50 and at $1.20 (own node), and B_PRICE = A_SCORE / B_QUALITY = 1.00. $1.00 < A's $2.00 bid. 'Least bid that keeps your slot' is the usual GSP boundary: equal at $1.00, as the source says, and the chip states the rule.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "B stays on top for any bid above A's score ÷ B's quality = 1.0 ÷ 1.0 = $1.00 (equal at $1.00); price = next score ÷ own quality. Demo.tsx B_PRICE. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Demo pays = second.bid x second.quality / top.quality = 1.0 / 1.0 = $1.00, the same for B at $1.50 and at $1.20 (own node), and B_PRICE = A_SCORE / B_QUALITY = 1.00. $1.00 < A's $2.00 bid. 'Least bid that keeps your slot' is the usual GSP boundary: equal at $1.00, as the source says, and the chip states the rule. | REWORDED v2 (builder, 2026-10-14): Adds the general form (next score ÷ own quality) and the $1.20 case, both shown on stage in the working line and the price log. Same arithmetic as pass 23 (Demo pays = second.bid x second.quality / top.quality). Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c4",
-      "text": "With B's bid at $0.80, B's score 0.8 falls below A's 1.0 and A takes the top slot (and pays 0.8 ÷ 0.5 = $1.60 a click); at $1.00 the two tie.",
+      "text": "With B's bid at $0.80, B's score 0.8 falls below A's 1.0 and A takes the top slot back and pays 0.8 ÷ 0.5 = $1.60 a click: dividing by A's quality 0.5 doubles it. At $1.00 the two tie.",
       "support": "derivation",
-      "source": "0.80 × 1.0 = 0.8 < 1.0; 0.8 ÷ 0.5 = 1.60; 1.00 × 1.0 = 1.0 = 2.00 × 0.5. Demo.tsx readouts. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own node with the Demo's integer keys. B $0.80: 800 < 1000, so A is top and pays 0.8 x 1.0 / 0.5 = $1.60. B $1.00: 1000 = 1000, so the readout says 'Tie' and pays shows a dash. The milestone a-retakes is reachable only at $0.80 in score mode, so the reveal's 'When you dropped B to $0.80' quotes a state the learner reached. (At a tie the stage draws A in the top row while the readout says Tie; that is cosmetic, not a claim.)",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "0.80 × 1.0 = 0.8 < 1.0; 0.8 ÷ 0.5 = 1.60; 1.00 × 1.0 = 1.0 = 2.00 × 0.5. Demo.tsx readouts. | FC pass 23 (fact-checker, 2026-10-14): VERIFIED. Own node with the Demo's integer keys. B $0.80: 800 < 1000, so A is top and pays 0.8 x 1.0 / 0.5 = $1.60. B $1.00: 1000 = 1000, so the readout says 'Tie' and pays shows a dash. The milestone a-retakes is reachable only at $0.80 in score mode, so the reveal's 'When you dropped B to $0.80' quotes a state the learner reached. (At a tie the stage draws A in the top row while the readout says Tie; that is cosmetic, not a claim.) | REWORDED v2 (builder, 2026-10-14): The $1.60 case is now quoted in the reveal (from the learner's price log) and its working is on stage. Unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c5",
@@ -69,12 +65,10 @@
     },
     {
       "id": "economics.lower-bid-takes-the-top-ad.c6",
-      "text": "A high bid cannot make up for low quality.",
+      "text": "Quality multiplies the bid, so A, at half B's quality, would need more than $3.00 to beat B's $1.50.",
       "support": "derivation",
-      "source": "UNRECORDED CLAIM found by fact-checker (pass 23, 2026-10-14); the sentence is the builder's, recorded here word for word. | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. Reveal para 2, last sentence (line 62). Under the lesson's own rule (rank by bid x quality) it is false: A, at quality 0.5, outranks B's 1.5 with any bid above $3.00 (e.g. $3.10 x 0.5 = 1.55). A higher bid compensates for lower quality at a rate of 1/quality; that is the point of the score. The stage only varies B's bid, so the learner never tests this, but the sentence is stated generally. Fix (builder): 'A high bid alone does not win: A would need more than $3.00, double B's $1.50, because its quality is half B's.' Or 'Quality multiplies the bid, so a low-quality ad has to bid much more to win.'",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "UNRECORDED CLAIM found by fact-checker (pass 23, 2026-10-14); the sentence is the builder's, recorded here word for word. | FC pass 23 (fact-checker, 2026-10-14): DISPUTED. Reveal para 2, last sentence (line 62). Under the lesson's own rule (rank by bid x quality) it is false: A, at quality 0.5, outranks B's 1.5 with any bid above $3.00 (e.g. $3.10 x 0.5 = 1.55). A higher bid compensates for lower quality at a rate of 1/quality; that is the point of the score. The stage only varies B's bid, so the learner never tests this, but the sentence is stated generally. Fix (builder): 'A high bid alone does not win: A would need more than $3.00, double B's $1.50, because its quality is half B's.' Or 'Quality multiplies the bid, so a low-quality ad has to bid much more to win.' | REWORDED v2 (builder, 2026-10-14): Was 'A high bid cannot make up for low quality' (disputed pass 23: false under the lesson's own rule). Reworded per the fact-checker's suggested fix: A's score 0.5 x bid > 1.5 needs bid > $3.00. Told, not shown (the stage varies only B's bid). Unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:ad-quality-ranking",
     "also": [],

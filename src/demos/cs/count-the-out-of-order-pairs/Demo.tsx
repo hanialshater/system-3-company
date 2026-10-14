@@ -4,6 +4,8 @@
 // out-of-order pair inside it). Merge: take the smaller front card. When a right-half card is taken, it was smaller
 // than every card still waiting on the left, so each of those forms one out-of-order pair with it: add that many.
 // 1 jumps 2 and 4 (+2), 3 jumps 4 (+1), 5 jumps nothing: 3 pairs, found in 5 takes instead of 10 pair checks.
+// v2: "Check every pair" shows the 10 checks on stage; the jump log keeps every jump visible; the full merge is
+// recorded so the reveal quotes it after Start over.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -42,15 +44,47 @@ const Y_L = 34;
 const Y_R = 104;
 const Y_OUT = 186;
 
-function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
+type MergeRecord = { count: number; takes: number; log: string };
+
+const logOf = (steps: Step[]) =>
+  steps
+    .filter((st) => st.jumped.length > 0)
+    .map((st) => `${st.card} jumped ${st.jumped.join(" ")}: +${st.jumped.length}`)
+    .join(" · ");
+
+function Stage({
+  locked,
+  reach,
+  record,
+  setRecord,
+  checked,
+  setChecked,
+}: {
+  locked: boolean;
+  reach: (n: string) => void;
+  record: MergeRecord | null;
+  setRecord: (r: MergeRecord) => void;
+  checked: boolean;
+  setChecked: (b: boolean) => void;
+}) {
   const [t, setT] = useState(0); // cards taken
 
   const go = (m: number) => {
     if (locked) return;
     const next = Math.min(STEPS.length, m);
     if (STEPS.slice(0, next).some((st) => st.jumped.length > 0)) reach("jump");
-    if (next === STEPS.length) reach("merged");
+    if (next === STEPS.length) {
+      const done = STEPS.slice(0, next);
+      setRecord({ count: done.reduce((a, st) => a + st.jumped.length, 0), takes: next, log: logOf(done) });
+      reach("merged");
+    }
     setT(next);
+  };
+
+  const checkAll = () => {
+    if (locked) return;
+    setChecked(true);
+    reach("brute");
   };
 
   const taken = STEPS.slice(0, t);
@@ -58,7 +92,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const leftWait = LEFT.filter((v) => !taken.some((st) => st.side === "L" && st.card === v));
   const rightWait = RIGHT.filter((v) => !taken.some((st) => st.side === "R" && st.card === v));
   const lastStep = t > 0 ? STEPS[t - 1] : null;
-  const pairs = taken.flatMap((st) => st.jumped.map((l) => `(${l},${st.card})`));
+  const log = t > 0 ? logOf(taken) : record ? `Last merge: ${record.log}` : "";
 
   const msg = locked
     ? "Predict first, then merge the two halves."
@@ -127,6 +161,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           }),
         )}
       </svg>
+      <p className={s.pairs} data-testid="jump-log">{log || "Jumps: none yet"}</p>
       <Row>
         <Control className={`${s.tap} active`} disabled={locked || t >= N} onClick={() => go(t + 1)}>
           Take next
@@ -134,20 +169,26 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <Control className={s.tap} disabled={locked || t >= N} onClick={() => go(N)}>
           Finish the merge
         </Control>
+        <Control className={s.tap} disabled={locked || checked} onClick={checkAll}>
+          Check every pair
+        </Control>
         <Control className={s.tap} disabled={locked || t === 0} onClick={() => go(0)}>
           Start over
         </Control>
       </Row>
       <Row>
-        <Readout label="Out-of-order pairs" value={count} />
-        <Readout label="Cards taken" value={`${t} of ${N}`} />
+        <Readout label="Merge: pairs" value={count} />
+        <Readout label="Merge: takes" value={`${t} of ${N}`} />
+        <Readout label="Every pair: checks" value={checked ? `${ALL_PAIRS}, ${BRUTE.length} found` : "not run"} />
       </Row>
-      <p className={s.pairs}>{pairs.length ? `Pairs: ${pairs.join(" ")}` : "Pairs: none yet"}</p>
     </div>
   );
 }
 
 export default function CountTheOutOfOrderPairs({ slug }: { slug: string }) {
+  const [record, setRecord] = useState<MergeRecord | null>(null);
+  const [checked, setChecked] = useState(false);
+  const rec = record ?? { count: TOTAL, takes: N, log: logOf(STEPS) };
   return (
     <Lesson
       slug={slug}
@@ -156,24 +197,34 @@ export default function CountTheOutOfOrderPairs({ slug }: { slug: string }) {
         options: ["2", "3", "5"],
         answer: 1,
       }}
-      exploreHint="Merge the halves card by card and watch the counter."
-      minInteractions={2}
+      exploreHint="Merge the halves, then check every pair, and compare the counts."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            The counter stopped at <strong>{TOTAL}</strong>: {BRUTE.map(([a, b]) => `(${a},${b})`).join(", ")}. When 1 left
-            the right half before 2 and 4, it jumped both of them, and each jump is one out-of-order pair. 3 jumped only 4.
+            Your merge counted <strong>{rec.count}</strong>: {rec.log}. When 1 left the right half ahead of 2 and 4, it
+            jumped both, and each jump is one out-of-order pair. 3 jumped only 4.
           </p>
           <p>
-            Checking every pair of {N} cards takes {ALL_PAIRS} checks; the merge took {N} steps and counted the jumps for
-            free. Merge sort splits and merges at every level, so counting this way costs O(n log n) in total, not n².
+            Checking every pair took {ALL_PAIRS} checks to find the same {BRUTE.length}:{" "}
+            {BRUTE.map(([a, b]) => `(${a},${b})`).join(", ")}. The merge found them in {rec.takes} takes. Merge sort
+            repeats this merge at every level, so counting this way costs O(n log n) in total, not n².
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["jump", "merged"]}>
-          {(reach) => <Stage locked={locked} reach={reach} />}
+        <Milestones interact={interact} names={["jump", "merged", "brute"]}>
+          {(reach) => (
+            <Stage
+              locked={locked}
+              reach={reach}
+              record={record}
+              setRecord={setRecord}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          )}
         </Milestones>
       )}
     </Lesson>

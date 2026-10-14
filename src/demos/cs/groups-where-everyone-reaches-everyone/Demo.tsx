@@ -5,6 +5,9 @@
 // 6, 5, 4, 3, 2, 1, 7. Pass 2: reverse every road, then flood from the town that finished last, skipping
 // towns already coloured: {7}, then {1, 2, 3}, then {4, 5, 6}. Three groups, though all 7 towns are one
 // connected map if you ignore direction. One representation: the road map, recoloured as groups appear.
+// v2: one colour per group; "Pass 2: all groups" so one press each reaches the end; "Shrink groups" restores the
+// roads as given and draws each group as a blob, so the order between groups is on stage; the run is recorded
+// so the log still shows it after Start over.
 
 import { useId, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,7 +35,8 @@ const POS: Record<number, [number, number]> = {
   6: [295, 130],
   7: [295, 208],
 };
-const COLOURS = ["var(--domain)", "var(--good-fill)", "var(--warn-fill)"];
+// One distinct colour per group (v1 reused the domain green, which matched --good-fill for two groups).
+const COLOURS = ["#f6c453", "#6cb6ff", "#ff8fb1"];
 const R = 18;
 
 const out = (roads: [number, number][], u: number) => roads.filter(([a]) => a === u).map(([, b]) => b).sort((x, y) => x - y);
@@ -76,24 +80,44 @@ const groupOf = (t: number) => GROUPS.findIndex((g) => g.towns.includes(t));
 const rank = (t: number) => FINISH.indexOf(t) + 1;
 const ordinal = (n: number) => `${n}${n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th"}`;
 
+const groupText = (x: { towns: number[] }) => `{${x.towns.join(", ")}}`;
+const BETWEEN = ROADS.filter(([a, b]) => groupOf(a) !== groupOf(b));
+// Each group as one blob: centre and radius covering its towns.
+const BLOBS = GROUPS.map((gr) => {
+  const xs = gr.towns.map((t) => POS[t][0]);
+  const ys = gr.towns.map((t) => POS[t][1]);
+  const cx = xs.reduce((a, b) => a + b, 0) / xs.length;
+  const cy = ys.reduce((a, b) => a + b, 0) / ys.length;
+  const r = Math.max(...gr.towns.map((t) => Math.hypot(POS[t][0] - cx, POS[t][1] - cy))) + R + 4;
+  return { cx, cy, r };
+});
+const SHRUNK = `${groupText(GROUPS[0])} → ${groupText(GROUPS[2])} ← ${groupText(GROUPS[1])}`;
+
 export default function SccTwoPasses({ slug }: { slug: string }) {
   const [pass1, setPass1] = useState(false);
   const [reversed, setReversed] = useState(false);
   const [found, setFound] = useState(0); // groups coloured in pass 2
+  const [shrunk, setShrunk] = useState(false);
+  const [lastRun, setLastRun] = useState<string | null>(null); // recorded when every group is coloured
   const marker = `scc-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
-  const roads = reversed ? REVERSED : ROADS;
+  const roads = reversed && !shrunk ? REVERSED : ROADS;
   const done = found >= GROUPS.length;
   const coloured = (t: number) => groupOf(t) < found;
-  const g = found > 0 ? GROUPS[found - 1] : null;
+  const log = GROUPS.slice(0, found).map((x) => `From ${x.start}: ${groupText(x)}`).join(" · ");
 
   const note = !pass1
     ? "One-way roads. Arrows show the direction."
-    : !reversed
-      ? `Finished in order ${FINISH.join(", ")}. Now reverse every road.`
-      : found === 0
-        ? `Reversed. Start from ${GROUPS[0].start}, the last to finish.`
-        : `From ${g!.start}: {${g!.towns.join(", ")}}${g!.blocked.length ? `; ${g!.blocked.join(", ")} already coloured` : ""}.`;
+    : shrunk
+      ? `Roads as given, groups shrunk: ${SHRUNK}. No loop.`
+      : !reversed
+        ? `Finished in order ${FINISH.join(", ")}. Now reverse every road.`
+        : found === 0
+          ? `Reversed. Start from ${GROUPS[0].start}, the last to finish.`
+          : (() => {
+              const g = GROUPS[found - 1];
+              return `From ${g.start}: ${groupText(g)}${g.blocked.length ? `; ${g.blocked.join(", ")} already coloured` : ""}.`;
+            })();
 
   return (
     <Lesson
@@ -104,25 +128,24 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
         options: ["2", "3", "7"],
         answer: 1,
       }}
-      exploreHint="Run pass 1, reverse the roads, then run pass 2 until every town has a colour."
-      minInteractions={3}
+      exploreHint="Run pass 1, reverse the roads, run pass 2, then shrink the groups."
+      minInteractions={4}
       reveal={() => (
         <>
           <p>
-            Pass 2 coloured {GROUPS.length} groups: {GROUPS.map((x) => `{${x.towns.join(", ")}}`).join(", ")}. Every town is
-            on one map, but town 3 can reach 4 and 4 cannot reach back, so the two loops are different groups. Town 7 reaches
-            the right loop, and nothing reaches 7, so it is a group on its own.
+            Pass 2 coloured {GROUPS.length} groups: {GROUPS.map(groupText).join(", ")}. In the roads as given, 3 reaches 4
+            but nothing leads from 4 back to 3, so the two loops are different groups. Town 7 reaches the right loop, and no
+            road leads into 7, so it is a group on its own.
           </p>
           <p>
             In pass 2, every reversed road leaving a new group led into a town already coloured (4 to 3, 6 to 7), so each
-            flood stayed inside its own group. Shrinking each group to a point leaves 7 → {"{4, 5, 6}"} ← {"{1, 2, 3}"}: no loops left. That is why the
-            groups can be put in order.
+            flood stayed inside its own group. Shrunk to blobs, the groups are joined only by {BETWEEN.map(([a, b]) => `${a} to ${b}`).join(" and ")}: {SHRUNK}, no loops. That is why the groups can be put in order.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["pass-1", "reversed", "all-groups"]}>
+        <Milestones interact={interact} names={["pass-1", "reversed", "all-groups", "shrunk"]}>
           {(reach) => {
             const runPass1 = () => {
               if (locked || pass1) return;
@@ -134,17 +157,26 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
               setReversed(true);
               reach("reversed");
             };
-            const nextGroup = () => {
+            const colourTo = (n: number) => {
               if (locked || !reversed || done) return;
-              const n = found + 1;
               setFound(n);
-              if (n >= GROUPS.length) reach("all-groups");
+              if (n >= GROUPS.length) {
+                setLastRun(GROUPS.map((x) => `From ${x.start}: ${groupText(x)}`).join(" · "));
+                reach("all-groups");
+              }
+            };
+            const shrink = () => {
+              if (locked || !done || shrunk) return;
+              setShrunk(true);
+              setLastRun((r) => `${r} · shrunk: ${SHRUNK}`);
+              reach("shrunk");
             };
             const restart = () => {
               if (locked || !pass1) return;
               setPass1(false);
               setReversed(false);
               setFound(0);
+              setShrunk(false);
             };
 
             return (
@@ -156,6 +188,10 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                       <path d="M0 0 L10 5 L0 10 z" fill="var(--fg)" />
                     </marker>
                   </defs>
+                  {shrunk &&
+                    BLOBS.map((b, i) => (
+                      <circle key={`blob${i}`} cx={b.cx} cy={b.cy} r={b.r} fill={COLOURS[i]} fillOpacity={0.22} stroke={COLOURS[i]} strokeWidth={2} />
+                    ))}
                   {roads.map(([a, b]) => {
                     const [x1, y1] = POS[a];
                     const [x2, y2] = POS[b];
@@ -163,6 +199,7 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                     const ux = (x2 - x1) / d;
                     const uy = (y2 - y1) / d;
                     const inside = coloured(a) && groupOf(a) === groupOf(b);
+                    const between = shrunk && groupOf(a) !== groupOf(b);
                     return (
                       <line
                         key={`${a}-${b}`}
@@ -170,9 +207,9 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                         y1={y1 + uy * R}
                         x2={x2 - ux * (R + 2)}
                         y2={y2 - uy * (R + 2)}
-                        stroke={inside ? COLOURS[groupOf(a)] : "var(--fg)"}
-                        strokeOpacity={inside ? 1 : 0.7}
-                        strokeWidth={inside ? 3 : 1.8}
+                        stroke={between ? "var(--fg)" : inside ? COLOURS[groupOf(a)] : "var(--fg)"}
+                        strokeOpacity={between ? 1 : shrunk ? 0.35 : inside ? 1 : 0.7}
+                        strokeWidth={between ? 3.5 : inside ? 3 : 1.8}
                         markerEnd={`url(#${marker})`}
                       />
                     );
@@ -186,7 +223,7 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                         <text x={x} y={y + 6} textAnchor="middle" className={c ? s.tOn : s.t}>
                           {t}
                         </text>
-                        {pass1 && (
+                        {pass1 && !shrunk && (
                           <text x={x + R + 6} y={y - R + 2} className={s.f}>
                             {ordinal(rank(t))}
                           </text>
@@ -195,6 +232,9 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                     );
                   })}
                 </svg>
+                <p className={s.log} data-testid="group-log">
+                  {log || (lastRun ? `Last run: ${lastRun}` : "Pass 2: no groups yet")}
+                </p>
                 <Row>
                   <Control className={!pass1 ? "active" : ""} disabled={locked || pass1} onClick={runPass1}>
                     Pass 1: finish order
@@ -202,8 +242,14 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                   <Control className={pass1 && !reversed ? "active" : ""} disabled={locked || !pass1 || reversed} onClick={reverse}>
                     Reverse roads
                   </Control>
-                  <Control className={reversed && !done ? "active" : ""} disabled={locked || !reversed || done} onClick={nextGroup}>
+                  <Control className={reversed && !done ? "active" : ""} disabled={locked || !reversed || done} onClick={() => colourTo(found + 1)}>
                     Pass 2: next group
+                  </Control>
+                  <Control disabled={locked || !reversed || done} onClick={() => colourTo(GROUPS.length)}>
+                    Pass 2: all groups
+                  </Control>
+                  <Control className={done && !shrunk ? "active" : ""} disabled={locked || !done || shrunk} onClick={shrink}>
+                    Shrink groups
                   </Control>
                   <Control disabled={locked || !pass1} onClick={restart}>
                     Start over
@@ -211,7 +257,7 @@ export default function SccTwoPasses({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Readout label="Groups" value={found} />
-                  <Readout label="Roads" value={reversed ? "reversed" : "as given"} />
+                  <Readout label="Roads" value={reversed && !shrunk ? "reversed" : "as given"} />
                 </Row>
               </div>
             );

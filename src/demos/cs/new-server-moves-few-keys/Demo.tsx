@@ -6,6 +6,8 @@
 // The ring is a DESIGNED layout, not a hash (disclosed in claim c2): key k sits at k/20 of the circle,
 // A, B, C, D sit just after keys 4, 9, 14, 19, and E just after key 3, so E takes an even fifth (keys 0-3)
 // from its neighbour A. One representation: the circle; the two-row table is a readout of what was pressed.
+// v2: the question counts keys that MOVE (as every readout does); Add and Remove are separate buttons that keep
+// their labels, in the order Add E, key mod n, Ring, Remove E, so one press each records both counts.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -66,8 +68,8 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Keys sit on 4 servers by (key mod 4). A fifth server is added, so it is now (key mod 5). Of 20 consecutive key numbers, how many stay on the server they had?",
-        options: ["16", "10", "4"],
+          "Keys sit on 4 servers by (key mod 4). A fifth server is added, so it is now (key mod 5). Of 20 consecutive key numbers, how many move to a different server?",
+        options: ["4", "10", "16"],
         answer: 2,
       }}
       exploreHint="Add server E, then try the same on the ring."
@@ -106,12 +108,12 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
               const moved = KEYS.filter((k) => a[k] !== b[k]);
               return { moved, was: Object.fromEntries(moved.map((k) => [k, a[k]])) };
             };
-            const toggleE = () => {
-              if (locked) return;
-              const c = diff(mode, withE, !withE);
-              setWithE(!withE);
+            const setE = (to: boolean) => {
+              if (locked || to === withE) return;
+              const c = diff(mode, withE, to);
+              setWithE(to);
               setChange(c);
-              if (!withE) record(mode, c.moved.length);
+              if (to) record(mode, c.moved.length);
             };
             const pick = (m: Mode) => {
               if (locked || m === mode) return;
@@ -137,7 +139,7 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
                 <p className={s.rule}>
                   {mode === "mod"
                     ? `Server = key mod n (A=0, B=1, …). n = ${n}.`
-                    : "Each key goes to the next server clockwise."}
+                    : "Ring: the circle is now spots. Each key goes to the next server clockwise."}
                 </p>
                 <svg viewBox="0 0 370 370" className={`stage-svg ${s.circle}`} role="img" aria-label={label}>
                   {mode === "ring" && (
@@ -230,8 +232,8 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
                   </span>
                 </div>
                 <Row>
-                  <Control className="tap" aria-pressed={withE} disabled={locked} onClick={toggleE}>
-                    {withE ? "Remove server E" : "Add server E"}
+                  <Control className={`tap ${withE ? "active" : ""}`} disabled={locked || withE} onClick={() => setE(true)}>
+                    Add server E
                   </Control>
                   <span className={s.lab}>Scheme</span>
                   <Control
@@ -247,6 +249,9 @@ export default function NewServerMovesFewKeys({ slug }: { slug: string }) {
                     onClick={() => pick("ring")}
                   >
                     Ring
+                  </Control>
+                  <Control className="tap" disabled={locked || !withE} onClick={() => setE(false)}>
+                    Remove server E
                   </Control>
                 </Row>
               </div>
