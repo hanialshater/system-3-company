@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 (hq-engineer, W-455: HQ Library tab)
+
+- **Changed:** new **Library** tab at `/hq/library`, a read-only search and reader over the markdown in `company/`.
+  - Index: `src/lib/hq-library.ts` (node built-ins only). Types: Reports, Decisions, Tech design, Strategy, Requirements (PRDs and BRDs), Constitution, Courses, Reviews, Lesson reviews, Progress log (split into one doc per dated entry, path `ops/progress.md@<slug>`), Handbook (everything else). Lesson reviews (about 4,580 files) are indexed but off by default.
+  - Search: tokenised, every term must appear; title, heading, path and body term-frequency scoring; highlighted snippets; sort by best match, newest or oldest.
+  - UI: `src/app/hq/library/` (Library, Markdown, css). Deep links `/hq/library?q=&type=&sort=` and `/hq/library/<path under company/>`. Doc links between indexed docs open in the reader; owner and room links go to `/hq?room=`. Phone width: list and reader swap, with a back button.
+  - Floor plan: a search box on the Office view (`src/app/hq/HQ.tsx`) and a Library tab. API: `/api/hq/library` and `/api/hq/library/doc`. Both are 404 in production unless `HQ_PUBLIC=1`, like HQ.
+  - Safety: only `.md` under `company/`, no `..`, backslashes, NULs, encoded dots or slashes, no dotfiles or names with secret, token, credential, password, .env or key, and symlinks that leave `company/` are refused (`safeDocPath`).
+  - Markdown: HQ had none (it used `<pre>`), so I wrote a small renderer that builds React elements only. No new dependency.
+  - Tests: `npm run test:hq` (6 tests: types, index, search, links, progress split, path guard), added to `npm run verify`.
+- **Believe:** high confidence the index and path guard work (tested on a temp tree and with traversal requests against the dev server, all 404). High confidence the pages render on desktop and a 390 px phone with no overflow (Playwright screenshots). Medium confidence on the type rules for odd files (BRD: none exist today, so that rule is untested on real data). First index build takes about 3 s; after that it is cached and re-reads only changed files.
+- **Next:** tools-lead reviews W-455. Open question: a real markdown library would render edge cases better, but needs a decision record.
+- **Blocked:** nothing. `npm run check` currently fails on 6 errors in builders' in-progress lessons (concept "TODO ..."), not in HQ. I also created and dropped W-454 by mistake (an empty `board add --help`).
+
 ## 2026-10-14 (design-lead, W-377: design review of four phone-fit stages)
 
 - **Changed:**

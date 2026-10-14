@@ -178,6 +178,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           <Link role="tab" aria-selected={false} className={s.tab} href="/hq/curriculum">
             Curriculum
           </Link>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/library">
+            Library
+          </Link>
         </div>
         <Link className="brand-link" href="/catalog">
           Map
@@ -223,6 +226,12 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
         <div className={s.stage}>
           {view === "office" ? (
             <div className={s.planWrap}>
+              <form className={s.libSearch} action="/hq/library" method="get" role="search">
+                <input name="q" type="search" placeholder="Search reports, decisions, PRDs, designs in the Library…" aria-label="Search the Library" />
+                <button type="submit" className={s.btn}>
+                  Search
+                </button>
+              </form>
               <div className={s.floors} role="tablist" aria-label="Floor">
                 {([1, 2, 3, 4, 5] as const).map((f) => {
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
