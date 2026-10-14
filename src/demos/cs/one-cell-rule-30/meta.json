@@ -1,0 +1,107 @@
+{
+  "slug": "one-cell-rule-30",
+  "title": "One cell, one rule, no pattern",
+  "hook": "One live cell, one tiny rule for every cell. Does a simple rule draw a tidy picture?",
+  "domain": "cs",
+  "concept": "rule-30",
+  "format": "side-by-side",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a Game of Life grid updates by a neighbour rule (glider-walks)"
+    ],
+    "doesNotKnow": [
+      "that a one-row rule with three-cell neighbourhoods can look random from a single cell"
+    ]
+  },
+  "misconception": "A rule that treats every cell the same, started from a single cell, gives a simple tidy pattern.",
+  "objective": "The learner can explain that Rule 30 and Rule 90 both start from one live cell and update every cell by the same three-cell rule, yet after 8 steps Rule 90 has a tidy nested triangle with 2 live cells in the row while Rule 30 has 7 and an irregular pattern, so a simple uniform rule need not give a simple picture.",
+  "claims": [
+    {
+      "id": "cs.one-cell-rule-30.c1",
+      "text": "Rule 90's row 8 had 2 live cells, in a neat nested triangle. Rule 30's had 7, and its counts went 1, 3, 3, 6, 4, 9, 5, 12, 7.",
+      "support": "simulation",
+      "source": "Demo.tsx grow(); builder's node script (2026-10-14): next cell = bit (left*4 + self*2 + right) of the rule number, 17-cell row, dead beyond the edges (the pattern is 2*8 + 1 = 17 wide at step 8, so the edge is never involved). Rule 30 counts 1, 3, 3, 6, 4, 9, 5, 12, 7; Rule 90 counts 1, 2, 2, 4, 2, 4, 4, 8, 2 (Rule 90 from one cell is Pascal's triangle mod 2, the Sierpinski pattern; row 8 has 2 live cells because C(8, k) is odd only for k = 0 and 8). Matches the brief and spec.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-cell-rule-30.c2",
+      "text": "Rule 30: 111→0, 110→0, 101→0, 100→1, 011→1, 010→1, 001→1, 000→0; Rule 90: a cell is alive if exactly one of its two neighbours is.",
+      "support": "convention",
+      "source": "Wolfram's numbering: the outputs for neighbourhoods 111, 110, ..., 000 read as a binary number give the rule number. 30 = 00011110 in binary; 90 = 01011010, which is left XOR right. S. Wolfram, 'Statistical mechanics of cellular automata', Reviews of Modern Physics 55 (1983) 601-644. Builder has not opened the paper in this session.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-cell-rule-30.c3",
+      "text": "Rule 30 treats every cell the same, yet its right side turns irregular within a few rows, and no simple formula for its counts is known.",
+      "support": "source",
+      "source": "Uniform update: by definition (c2). Irregular right side: visible in the builder's run (left edge a regular stripe, right side irregular). No known formula: Wolfram, A New Kind of Science (2002), ch. 2, discusses Rule 30's apparent randomness; in 2019 Wolfram posed open 'Rule 30 Prize Problems' (writings.stephenwolfram.com, 2019-10-01), including whether computing the nth centre cell needs about n steps. Builder has not opened these sources; a fact-checker should confirm the 'no formula for the counts' wording is supported.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-cell-rule-30.c4",
+      "text": "A simple rule does not promise a simple picture.",
+      "support": "derivation",
+      "source": "Generalisation from c1 and c3: Rule 30 is a counterexample to 'a uniform rule from a single cell gives a tidy pattern'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-cell-rule-30.c5",
+      "text": "Its centre column read 110111001 against Rule 90's 100000000.",
+      "support": "simulation",
+      "source": "Demo.tsx centre(); builder's node script (2026-10-14), steps 0..8, same rule code as c1. Matches the brief. Shown only if the learner turned the centre column on.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.one-cell-rule-30.c6",
+      "text": "Rule 30's centre column has been used as a random number source in Mathematica.",
+      "support": "source",
+      "source": "S. Wolfram, A New Kind of Science (Wolfram Media, 2002), ch. 6 or 7 on randomness; the brief cites p. 317 and marks it 'check page before building'. The builder could not check the page; a fact-checker must open the book. Mathematica's documentation for Random / SeedRandom (Method -> \"CellularAutomaton\") is a second place to look. Shown only if the learner turned the centre column on.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two one-row rules both start from a single live cell and update every cell from itself and its two neighbours. What can you say about the pictures they make?",
+    "options": [
+      "Both will be tidy, because every cell follows the same simple rule",
+      "One can be a neat nested triangle while the other looks random",
+      "Both will die out within a few steps"
+    ],
+    "answer": 1,
+    "why": "Rule 90 builds a nested triangle, but Rule 30 from the same single cell gives irregular rows (row 8 has 7 live cells) with no simple pattern. A simple uniform rule does not promise a simple picture."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:rule-30",
+    "also": [],
+    "prerequisites": [
+      "cs:game-of-life"
+    ],
+    "level": "intro",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "cellular-automata",
+      "emergence",
+      "pseudo-randomness"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "two-panel-shared-control",
+    "milestone-gate"
+  ]
+}
