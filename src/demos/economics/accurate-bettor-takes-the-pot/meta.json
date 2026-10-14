@@ -33,48 +33,38 @@
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c2",
-      "text": "Luck can lead for a long time: after race 50, the 50% bettor's best moment was 91.0% of the money at race 203 in run 2 (seed 2212) and 94.2% at race 176 in run 5 (seed 2215); runs 1, 3 and 4 never put the 50% bettor above half after race 50.",
+      "text": "Luck can lead for a long time: after race 50, the 50% bettor's best moment was 91.0% of the money at race 203 in run 2 (seed 2212) and 94.2% at race 176 in run 5 (seed 2215); runs 1, 3 and 4 never put the 50% bettor above half after race 50. The reveal quotes the circled low point of the run on screen: \"luck can lead for long: in run 5 the 50% bettor held 94.2% at race 176 (the circle)\".",
       "support": "simulation",
-      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable. | REWORDED v2 (demo-builder, 2026-10-14): v2 quotes the circled low point of the run the learner is looking at (lowPoint() over races 51..t, computed from state), not race 200. Builder's node replay of run(): run 2 min share 0.090 at race 203 (50% bettor 91.0%), run 5 min 0.058 at race 176 (94.2%); other runs' minima after race 50 are 0.716, 0.655, 0.553 (above half). Seeds 2211-2215 fixed by the brief. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own replay (fc24/bet.mjs, own mulberry32 copy, own pool update): run 2 (2212) min share after race 50 = 0.090 at race 203, 50% bettor 91.0%; run 5 (2215) 0.058 at race 176, 94.2%; runs 1, 3, 4 minima after race 50 are 0.716, 0.655, 0.553 (never below half). lowPoint() scans races 51..t, and the reveal needs milestone full-run, so t = 500 when it quotes the circle. Seeds fixed by the brief (consecutive).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx RUNS[1][200] = 0.113561, so the 50% bettor holds 0.886. Seed 2212 is quoted because it shows a long lucky lead (disclose-chosen-seeds); in run 5 (seed 2215) the 50% bettor also led after race 50 (69.8% at race 200). · Fact-check pass 23 2026-10-14: Own run: seed 2212, race 200, 50% bettor holds 0.8864 (88.6%); seed 2215 0.6981; only runs 2 and 5 dip below half after race 50, so the luck-run milestone is reachable. | REWORDED v2 (demo-builder, 2026-10-14): v2 quotes the circled low point of the run the learner is looking at (lowPoint() over races 51..t, computed from state), not race 200. Builder's node replay of run(): run 2 min share 0.090 at race 203 (50% bettor 91.0%), run 5 min 0.058 at race 176 (94.2%); other runs' minima after race 50 are 0.716, 0.655, 0.553 (above half). Seeds 2211-2215 fixed by the brief. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own replay (fc24/bet.mjs, own mulberry32 copy, own pool update): run 2 (2212) min share after race 50 = 0.090 at race 203, 50% bettor 91.0%; run 5 (2215) 0.058 at race 176, 94.2%; runs 1, 3, 4 minima after race 50 are 0.716, 0.655, 0.553 (never below half). lowPoint() scans races 51..t, and the reveal needs milestone full-run, so t = 500 when it quotes the circle. Seeds fixed by the brief (consecutive). | v4 (demo-builder, 2026-10-14): learner r8: reveal reworded (\"held 94.2% at race 176 (the circle)\"); the chart is now on screen when the reveal opens (viewBox 340x176, plot y 10..150). Values unchanged. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c3",
       "text": "In this model each race multiplies the ratio of the 60% bettor's money to the 50% bettor's by 1.2 on a win and 0.8 on a loss; three wins and two losses multiply it by 1.11. In run 1 (seed 2211) race 1 is a loss, so the single-race step shows ×0.8.",
       "support": "derivation",
-      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X. · Fact-check pass 23 2026-10-14: Re-derived: winners split the pool by stake, so the money ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share (node check at a = 0.3 gives 1.2); 1.2^3 x 0.8^2 = 1.10592, shown as 1.11. | REWORDED v2 (demo-builder, 2026-10-14): v2 adds the single-race step and its caption/readout. Builder's node replay: seed 2211's first rng() is not under 0.6, so race 1 is a loss; ratio a/(1-a) goes 1.00 -> 0.80. The reveal quotes the recorded first single race. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own replay: seed 2211's race 1 is a loss (first rng() >= 0.6). Ratio factor check: for every run and many (from, to) windows, ratio(to)/ratio(from) = 1.2^w × 0.8^l to 1e-6 (0 failures). 1.2^3 × 0.8^2 = 1.1059 -> '1.11'. Reveal quotes the recorded single race (its own run and race number), so other paths stay true.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Winners split the pool by stake, so the ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss, whatever the shares. 1.2^3 × 0.8^2 = 1.1059. Demo.tsx WIN_X, LOSS_X. · Fact-check pass 23 2026-10-14: Re-derived: winners split the pool by stake, so the money ratio changes by 0.6/0.5 = 1.2 on a win and 0.4/0.5 = 0.8 on a loss at any share (node check at a = 0.3 gives 1.2); 1.2^3 x 0.8^2 = 1.10592, shown as 1.11. | REWORDED v2 (demo-builder, 2026-10-14): v2 adds the single-race step and its caption/readout. Builder's node replay: seed 2211's first rng() is not under 0.6, so race 1 is a loss; ratio a/(1-a) goes 1.00 -> 0.80. The reveal quotes the recorded first single race. Unverified. | FC pass 24 (fact-checker, 2026-10-14): Own replay: seed 2211's race 1 is a loss (first rng() >= 0.6). Ratio factor check: for every run and many (from, to) windows, ratio(to)/ratio(from) = 1.2^w × 0.8^l to 1e-6 (0 failures). 1.2^3 × 0.8^2 = 1.1059 -> '1.11'. Reveal quotes the recorded single race (its own run and race number), so other paths stay true. | v4 (demo-builder, 2026-10-14): learner r8: reveal reworded to \"by 1.2 on a win, 0.8 on a loss (your race 1: a loss, ×0.8). Three wins and two losses, the true mix, give ×1.11: an edge that compounds\". Values unchanged. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c4",
       "text": "The pool's win odds are the money-weighted average belief, so as money moves to the 60% bettor the odds move toward the true 60%.",
       "support": "derivation",
-      "source": "With everyone betting all their money, the share of the pool on 'win' is 0.6·a + 0.5·(1 − a), where a is the 60% bettor's share (Demo.tsx readout). As a → 1 this → 0.6. · Fact-check pass 23 2026-10-14: Re-derived: everyone bets everything, so the share of the pool on 'win' is 0.6a + 0.5(1 - a), the readout's formula; it tends to 0.6 as a tends to 1.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "With everyone betting all their money, the share of the pool on 'win' is 0.6·a + 0.5·(1 − a), where a is the 60% bettor's share (Demo.tsx readout). As a → 1 this → 0.6. · Fact-check pass 23 2026-10-14: Re-derived: everyone bets everything, so the share of the pool on 'win' is 0.6a + 0.5(1 - a), the readout's formula; it tends to 0.6 as a tends to 1. | v4 (demo-builder, 2026-10-14): learner r8: reveal now \"As money moves to the better belief, the pool's odds drift to 60%\"; readout label shortened to \"Pool odds\" (it shows 59.9% / 60.0% at race 500). Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c6",
-      "text": "The market is a simplified model: two bettors, no fees, each bets all their money every race, split by belief.",
+      "text": "The market is a simplified model: two bettors, no fees, each bets all their money every race, split by belief. Reveal footnote: \"Model: two bettors, no fees, all-in every race.\"",
       "support": "convention",
-      "source": "Stage chip and reveal footnote; Demo.tsx run(). · Fact-check pass 23 2026-10-14: Stage chip 'Model: each bets everything, split by belief' and reveal footnote 'two bettors, no fees, everyone bets everything each race' match run().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Stage chip and reveal footnote; Demo.tsx run(). · Fact-check pass 23 2026-10-14: Stage chip 'Model: each bets everything, split by belief' and reveal footnote 'two bettors, no fees, everyone bets everything each race' match run(). | v4 (demo-builder, 2026-10-14): learner r8: footnote reworded for the 90-word budget. Needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "economics.accurate-bettor-takes-the-pot.c7",
-      "text": "Stage captions: a single race reads 'Race t: win/loss, money ratio ×1.2/×0.8'; a jump reads 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×(1.2^w × 0.8^l)'; after picking a run the caption counts from race 1, so its ratio equals the money ratio readout (the 60% bettor's money divided by the 50% bettor's). A 'Seen:' row repeats the single race, the five finals, '3 wins + 2 losses ×1.11' and the circled low point.",
+      "text": "Stage captions (explore only; hidden at the reveal): a single race reads 'Race t: win/loss, money ratio ×1.2/×0.8'; a jump reads 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×(1.2^w × 0.8^l)'; after picking a run the caption counts from race 1, so its ratio equals the 'Ratio 60:50' readout (the 60% bettor's money divided by the 50% bettor's). A 'Seen:' row repeats the single race, '3 wins + 2 losses ×1.11' and the circled low point; the five finals are on the chart.",
       "support": "derivation",
-      "source": "Demo.tsx v2 msg and Readout 'Money ratio, 60% : 50%' = share/(1-share). Product follows from c3 (each race multiplies the ratio by 1.2 or 0.8 whatever the shares). Values of 1,000 or more print as '1,000+'. Builder, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Read msg in Demo.tsx: seg.length === 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)' (1,000+ / <0.001 caps). Readout 'Money ratio, 60% : 50%' = share/(1 - share). Own window check: the printed product equals the readout's change over the window (0 failures). Side note (not this claim): at race 500 the Pool's win odds readout shows 59.9% in runs 2 and 5, 60.0% in 1, 3, 4; the reveal's 'move toward the true 60%' holds. · v3 (2026-10-14, learner r7: run 2 caption 'Races 52–500 … ×280' did not match its ratio 81): pick() now sets from = 0, so the caption covers races 1..t of the selected run; the ratio starts at 1, so 1.2^w × 0.8^l is exactly the readout up to rounding. Seen row added. Needs re-check. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (v3). Read msg: seg.length 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)'. pick() sets from = 0. Own node over all 5 runs and t = 2..500 (2,495 cases): caption fmtX(1.2^w 0.8^l over races 1..t) equals the readout fmtX(share/(1-share)) in every case, 0 failures. Seen row: single race, 'runs end 98.8% to over 99.9%', '3 wins + 2 losses ×1.11' (1.728 x 0.64 = 1.106), and the circled run's low point. After a later press the caption covers only the latest jump, as the claim scopes ('after picking a run').",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx v2 msg and Readout 'Money ratio, 60% : 50%' = share/(1-share). Product follows from c3 (each race multiplies the ratio by 1.2 or 0.8 whatever the shares). Values of 1,000 or more print as '1,000+'. Builder, 2026-10-14. | FC pass 24 (fact-checker, 2026-10-14): Read msg in Demo.tsx: seg.length === 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)' (1,000+ / <0.001 caps). Readout 'Money ratio, 60% : 50%' = share/(1 - share). Own window check: the printed product equals the readout's change over the window (0 failures). Side note (not this claim): at race 500 the Pool's win odds readout shows 59.9% in runs 2 and 5, 60.0% in 1, 3, 4; the reveal's 'move toward the true 60%' holds. · v3 (2026-10-14, learner r7: run 2 caption 'Races 52–500 … ×280' did not match its ratio 81): pick() now sets from = 0, so the caption covers races 1..t of the selected run; the ratio starts at 1, so 1.2^w × 0.8^l is exactly the readout up to rounding. Seen row added. Needs re-check. | FC pass 26 (fact-checker, 2026-10-14): VERIFIED (v3). Read msg: seg.length 1 -> 'Race t: win/loss, money ratio ×1.2/×0.8.'; otherwise 'Races a–b: w wins ×1.2, l losses ×0.8: ratio ×fmtX(1.2^w × 0.8^l)'. pick() sets from = 0. Own node over all 5 runs and t = 2..500 (2,495 cases): caption fmtX(1.2^w 0.8^l over races 1..t) equals the readout fmtX(share/(1-share)) in every case, 0 failures. Seen row: single race, 'runs end 98.8% to over 99.9%', '3 wins + 2 losses ×1.11' (1.728 x 0.64 = 1.106), and the circled run's low point. After a later press the caption covers only the latest jump, as the claim scopes ('after picking a run'). | v4 (demo-builder, 2026-10-14): learner r8 phone fit: at the reveal the caption and the race-step row (all disabled at race 500) are hidden; run picker reads 'Run 1 2 3 4 5'; readouts relabelled 60% bettor / Ratio 60:50 / Pool odds; Seen row drops 'runs end …' (the chart prints it). Needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -94,12 +84,13 @@
     ],
     "simulatedLearner": [
       "company/reviews/accurate-bettor-takes-the-pot/2026-10-14-learner-adult-beginner-r6.md",
-      "company/reviews/accurate-bettor-takes-the-pot/2026-10-14-learner-adult-beginner-r7.md"
+      "company/reviews/accurate-bettor-takes-the-pot/2026-10-14-learner-adult-beginner-r7.md",
+      "company/reviews/accurate-bettor-takes-the-pot/2026-10-14-learner-adult-beginner-r8.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:market-selection-wealth",
     "also": [

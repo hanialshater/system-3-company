@@ -52,8 +52,8 @@ const N = LISTS[0].length;
 const CELL = 36;
 const POP_MS = 260;
 const LX = 18;
-const ROW = 18;
-const PANEL_Y = 92;
+const ROW = 15;
+const PANEL_Y = 84;
 const STACK_BOTTOM = PANEL_Y + 14 + N * ROW;
 
 type Done = { scan: number; stack: number };
@@ -66,9 +66,9 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
   const [pk, setPk] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [table, setTable] = useState<(Done | null)[]>([null, null]);
-  // True once the learner has watched the 9 on 8 ... 1 9 empty the stack one box at a time (animated, or
-  // stepped press by press under reduced motion). The reveal says "box by box" only then.
-  const [sawEmpty, setSawEmpty] = useState(false);
+  // True once the 9's pops on 8 ... 1 9 have started on stage (the 9 arrives in a replay, or is stepped to the end).
+  // Recorded so the reveal can report that run whatever list is on stage later.
+  const [popsSeen, setPopsSeen] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);
@@ -107,16 +107,13 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
           <p>
             On {CHIP[0]}, scanning took {d0.scanTotal} comparisons and the stack {d0.stackTotal}: each later number met one
             bigger top (a hollow "stop" tick) and was pushed.
-            {table[1]
-              ? ` On ${CHIP[1]}, the 9's row showed ${d1.pops} solid "pop" ticks marked "${d1.pops} pops", one for each waiting number${
-                  sawEmpty ? ", while the stack emptied box by box down to the 9" : ""
-                }. That run cost ${d1.stackTotal} in all, still against ${d1.scanTotal}.`
+            {popsSeen || table[1]
+              ? ` On ${CHIP[1]}, the 9 popped all ${d1.pops} waiting numbers ("${d1.pops} pops", solid ticks): ${d1.stackTotal} in all, against ${d1.scanTotal}.`
               : ""}
           </p>
           <p>
             A number waits on the stack until a bigger one arrives, and then it is popped and answered, exactly once. Every
-            stack comparison either pops a number or ends that number&apos;s turn, so 9 numbers cost at most 9 pushes and 9
-            pops: the work grows like n, not n².
+            comparison pops a number or ends a turn, so the work grows like n, not n².
           </p>
         </>
       )}
@@ -126,21 +123,27 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
           {(reach) => {
             const finish = (l: number) => {
               setTable((t) => t.map((x, i) => (i === l ? { scan: RUNS[l].scanTotal, stack: RUNS[l].stackTotal } : x)));
+              if (l === 1) setPopsSeen(true);
               reach(l === 0 ? "descending-done" : "pops-seen");
+            };
+            // The 9 has arrived in a replay of 8 ... 1 9 and its pops are now playing out on stage (260 ms each):
+            // the milestone fires here, not at the end of the ~2.6 s replay, so the reveal unlocks within one
+            // press's wait. The readout fills when the replay ends (finish).
+            const popsStart = () => {
+              setPopsSeen(true);
+              reach("pops-seen");
             };
             const reducedMotion = () =>
               typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
             // Play frames [k, pk] for numbers from..to-1 of list l: one per number, and a number that pops gets a
             // frame on arrival and one per pop. Plain frames take 40 ms; pop frames take POP_MS so each pop is a
-            // visible state (8 ... 1 9 from the start: 8 x 40 + 9 x 260 + 40, about 2.7 s). Finishes the list at N.
+            // visible state (8 ... 1 9 from the start: 8 x 30 + 9 x 260 + 30, about 2.6 s). Finishes the list at N.
             const play = (l: number, from: number, to: number) => {
               if (timer.current) clearTimeout(timer.current);
               const frames: [number, number | null][] = [];
-              let pops = false;
               for (let i = from; i < to; i++) {
                 const np = RUNS[l].steps[i].popped.length;
                 if (np > 0) {
-                  pops = true;
                   for (let q = 0; q <= np; q++) frames.push([i + 1, q]);
                 }
                 frames.push([i + 1, null]);
@@ -151,21 +154,21 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                 const [kk, q] = frames[f];
                 setK(kk);
                 setPk(q);
+                if (l === 1 && q === 0 && kk === N) popsStart();
                 f += 1;
                 if (f >= frames.length) {
                   timer.current = null;
                   setBusy(false);
-                  if (pops && l === 1) setSawEmpty(true);
                   if (to >= N) finish(l);
                   return;
                 }
-                timer.current = setTimeout(tick, q !== null ? POP_MS : 40);
+                timer.current = setTimeout(tick, q !== null ? POP_MS : 30);
               };
-              timer.current = setTimeout(tick, 40);
+              timer.current = setTimeout(tick, 30);
             };
             const replay = (l: number, from: number) => {
               if (reducedMotion() || from >= N) {
-                // No animation: jump to the end. The stack was not seen emptying, so sawEmpty stays as it was.
+                // No animation: jump to the end.
                 if (timer.current) clearTimeout(timer.current);
                 setK(N);
                 setPk(null);
@@ -184,7 +187,6 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                   return;
                 }
                 setPk(null);
-                if (list === 1) setSawEmpty(true);
                 if (k >= N) finish(list);
                 return;
               }
@@ -214,7 +216,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
             const caret = k > 0 ? k - 1 : null;
             return (
               <div className={s.wrap}>
-                <p className={s.rule}>Stack rule: a new number pops each smaller number waiting on top, then waits too.</p>
+                <p className={s.rule}>Each new number pops smaller tops, then waits.</p>
                 <svg
                   viewBox={`0 0 360 ${STACK_BOTTOM + 6}`}
                   className={`stage-svg ${s.svg}`}
@@ -274,13 +276,13 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                     const np = x.popped.length;
                     return (
                       <g key={`r${i}`}>
-                        <text x={14} y={y + 10} textAnchor="middle" className={s.lab}>
+                        <text x={14} y={y + 9} textAnchor="middle" className={s.lab}>
                           {a[i]}
                         </text>
                         {Array.from({ length: x.scan }, (_, t) => (
-                          <rect key={t} x={24 + t * 8} y={y + 1} width={6} height={10} fill="var(--muted)" />
+                          <rect key={t} x={24 + t * 8} y={y + 1} width={6} height={9} fill="var(--muted)" />
                         ))}
-                        <text x={236} y={y + 10} textAnchor="middle" className={s.lab}>
+                        <text x={236} y={y + 9} textAnchor="middle" className={s.lab}>
                           {a[i]}
                         </text>
                         {Array.from({ length: x.stack }, (_, t) => (
@@ -289,14 +291,14 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                             x={246 + t * 8}
                             y={y + 1}
                             width={6}
-                            height={11}
+                            height={10}
                             fill={t < np ? "var(--domain)" : "var(--bg)"}
                             stroke="var(--domain)"
                             strokeWidth={t < np ? 1 : 1.8}
                           />
                         ))}
                         {np > 0 && (
-                          <text x={248 + x.stack * 8} y={y + 10} className={s.pop}>
+                          <text x={248 + x.stack * 8} y={y + 9} className={s.pop}>
                             {np === 1 ? "1 pop" : `${np} pops`}
                           </text>
                         )}
@@ -316,7 +318,7 @@ export default function EachElementPopsOnce({ slug }: { slug: string }) {
                         stroke="var(--fg)"
                         strokeWidth={1}
                       />
-                      <text x={203} y={STACK_BOTTOM - (j + 1) * ROW + 12} textAnchor="middle" className={s.sv}>
+                      <text x={203} y={STACK_BOTTOM - (j + 1) * ROW + 11} textAnchor="middle" className={s.sv}>
                         {a[idx]}
                       </text>
                     </g>

@@ -14,6 +14,9 @@
 // v3 (learner r7): the quoted values also sit in a "Seen:" text row under the readouts (single race, the circle's
 // run, share and race, the five finals, and the ×1.11 per five races), so they are on the stage outside the chart.
 // Picking a run reports races 1–t for that run, so the caption's ratio equals the money ratio readout.
+// v4 (learner r8, phone fit): shorter chart (viewBox 340 × 176); at the reveal the caption and the race-step row
+// (all disabled at race 500) are hidden, so the chart with its circle sits above the reveal on a 390×844 phone.
+// Run picker on one row, readouts on one row, reveal cut to 90 words.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -67,11 +70,11 @@ const pct = (v: number) => (v > 0.9995 ? "over 99.9%" : `${(v * 100).toFixed(1)}
 const FINALS = RUNS.map((r) => r[RACES]);
 const LOW_FINAL = Math.min(...FINALS);
 
-// Chart geometry (viewBox 340 × 196).
+// Chart geometry (viewBox 340 × 176; v4 shorter so the chart and the reveal fit a phone together).
 const X0 = 38;
 const X1 = 330;
 const Y0 = 10;
-const Y1 = 170;
+const Y1 = 150;
 const x = (t: number) => X0 + (t / RACES) * (X1 - X0);
 const y = (v: number) => Y1 - v * (Y1 - Y0);
 const pts = (r: number[], t: number) =>
@@ -104,25 +107,21 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            In all five runs the {BELIEF_A * 100}% bettor ended with at least <strong>{pct(LOW_FINAL)}</strong> of the money. But luck
-            can lead for a long time
-            {q
-              ? `: in run ${quoteRun + 1} the ${BELIEF_B * 100}% bettor held as much as ${pct(1 - q.v)} at race ${q.race} (the circle, and the Seen line).`
-              : "."}
+            In all five runs the {BELIEF_A * 100}% bettor ended with at least <strong>{pct(LOW_FINAL)}</strong> of the money, but
+            luck can lead for long
+            {q ? `: in run ${quoteRun + 1} the ${BELIEF_B * 100}% bettor held ${pct(1 - q.v)} at race ${q.race} (the circle).` : "."}
           </p>
           <p>
             Each race multiplied the money ratio by {WIN_X.toFixed(1)} on a win, {LOSS_X.toFixed(1)} on a loss
-            {single
-              ? `: your race ${single.race} was a ${single.win ? "win" : "loss"}, ×${(single.win ? WIN_X : LOSS_X).toFixed(1)}`
-              : ""}
-            . Three wins and two losses, the true mix, multiply it by {(WIN_X ** 3 * LOSS_X ** 2).toFixed(2)}: a small
-            edge that compounds. As money moves to the better belief, the pool&apos;s odds move toward the true {TRUE_P * 100}%.
+            {single ? ` (your race ${single.race}: a ${single.win ? "win" : "loss"}, ×${(single.win ? WIN_X : LOSS_X).toFixed(1)})` : ""}
+            . Three wins and two losses, the true mix, give ×{(WIN_X ** 3 * LOSS_X ** 2).toFixed(2)}: an edge that
+            compounds. As money moves to the better belief, the pool&apos;s odds drift to {TRUE_P * 100}%.
           </p>
-          <p className="muted">A simplified model: two bettors, no fees, everyone bets everything each race.</p>
+          <p className="muted">Model: two bettors, no fees, all-in every race.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const check = (nt: number, ns: number) => {
@@ -153,11 +152,9 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
             const l = seg.length - w;
             const seenParts: string[] = [];
             if (single) seenParts.push(`race ${single.race} ${single.win ? "win" : "loss"} ×${(single.win ? WIN_X : LOSS_X).toFixed(1)}`);
-            if (t >= RACES) {
-              seenParts.push(`runs end ${pct(LOW_FINAL)} to ${pct(Math.max(...FINALS))}`);
-              seenParts.push(`3 wins + 2 losses ×${(WIN_X ** 3 * LOSS_X ** 2).toFixed(2)}`);
-            }
-            if (q) seenParts.push(`run ${quoteRun + 1}: 50% bettor ${pct(1 - q.v)} at race ${q.race}`);
+            if (t >= RACES) seenParts.push(`3 wins + 2 losses ×${(WIN_X ** 3 * LOSS_X ** 2).toFixed(2)}`);
+            if (q) seenParts.push(`run ${quoteRun + 1}: 50% bettor ${pct(1 - q.v)}, race ${q.race}`);
+            const atReveal = phase === "reveal";
             const msg = locked
               ? "Predict first."
               : now === 0
@@ -167,8 +164,8 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
                   : `Races ${from + 1}–${now}: ${w} wins ×${WIN_X.toFixed(1)}, ${l} losses ×${LOSS_X.toFixed(1)}: ratio ×${fmtX(WIN_X ** w * LOSS_X ** l)}.`;
             return (
               <div className={s.wrap}>
-                <p className={s.msg}>{msg}</p>
-                <svg viewBox="0 0 340 196" className="stage-svg" role="img" aria-label={`Share of the money held by the ${BELIEF_A * 100}% bettor over ${now} races`}>
+                {!atReveal && <p className={s.msg}>{msg}</p>}
+                <svg viewBox="0 0 340 176" className="stage-svg" role="img" aria-label={`Share of the money held by the ${BELIEF_A * 100}% bettor over ${now} races`}>
                   {[0, 0.5, 1].map((v) => (
                     <g key={v}>
                       <line x1={X0} y1={y(v)} x2={X1} y2={y(v)} className={v === 0.5 ? s.half : s.grid} />
@@ -177,13 +174,13 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
                       </text>
                     </g>
                   ))}
-                  <text x={X0} y={188} className={s.label}>
+                  <text x={X0} y={168} className={s.label}>
                     race 0
                   </text>
-                  <text x={X1} y={188} textAnchor="end" className={s.label}>
+                  <text x={X1} y={168} textAnchor="end" className={s.label}>
                     race {RACES}
                   </text>
-                  <text x={(X0 + X1) / 2} y={188} textAnchor="middle" className={s.label}>
+                  <text x={(X0 + X1) / 2} y={168} textAnchor="middle" className={s.label}>
                     line: {BELIEF_A * 100}% bettor&apos;s share
                   </text>
                   {now > 0 && RUNS.map((r, i) => (i === sel ? null : <polyline key={i} points={pts(r, now)} className={s.run} />))}
@@ -217,6 +214,7 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
                     </text>
                   )}
                 </svg>
+                {!atReveal && (
                 <Row>
                   <Control disabled={locked || t >= RACES} onClick={() => go(t + 1)}>
                     1 race
@@ -228,7 +226,9 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
                     Run to {RACES}
                   </Control>
                 </Row>
+                )}
                 <Row>
+                  <span className={s.runLabel}>Run</span>
                   {SEEDS.map((seed, i) => (
                     <Control
                       key={seed}
@@ -238,15 +238,15 @@ export default function AccurateBettorTakesThePot({ slug }: { slug: string }) {
                       aria-label={`Run ${i + 1}, seed ${seed}`}
                       onClick={() => pick(i)}
                     >
-                      Run {i + 1}
+                      {i + 1}
                     </Control>
                   ))}
                 </Row>
-                <Row>
-                  <Readout label={`${BELIEF_A * 100}% bettor holds`} value={locked ? "?" : pct(share)} />
-                  <Readout label="Money ratio, 60% : 50%" value={locked ? "?" : fmtX(ratio(share))} />
-                  <Readout label="Pool's win odds (money-weighted)" value={locked ? "?" : `${((BELIEF_A * share + BELIEF_B * (1 - share)) * 100).toFixed(1)}%`} />
-                </Row>
+                <div className={s.readouts}>
+                  <Readout label={`${BELIEF_A * 100}% bettor`} value={locked ? "?" : pct(share)} />
+                  <Readout label="Ratio 60:50" value={locked ? "?" : fmtX(ratio(share))} />
+                  <Readout label="Pool odds" value={locked ? "?" : `${((BELIEF_A * share + BELIEF_B * (1 - share)) * 100).toFixed(1)}%`} />
+                </div>
                 <p className={s.seen} data-testid="seen">
                   {seenParts.length ? `Seen: ${seenParts.join(" · ")}` : "Seen: nothing yet"}
                 </p>
