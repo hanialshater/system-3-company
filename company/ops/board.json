@@ -7878,77 +7878,112 @@
     {
       "id": "W-557",
       "title": "A11y F1: keep focus when stage controls disable themselves (Home, Study, Resource, AlphabetSearch); see company/reviews/lifehacks-200/accessibility-2026-10-14.md",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "src/components/lifehacks/a11y.tsx",
+        "artifacts/reveal-fit/lh-a11y.json",
+        "artifacts/qa-lh-a11y/qa-report.json"
+      ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Life Hacks template a11y fix (one fix covers many of the 200 lessons); part of the Life Hacks publish gate with W-355/W-356."
-      }
+      },
+      "updated": "2026-10-14",
+      "note": "Home, Study and AlphabetSearch stage buttons use aria-disabled (StageControl in src/components/lifehacks/a11y.tsx), so they stay focusable after they finish. They are natively disabled only before the prediction. Resource buttons live in 60 lesson files, so ResourceStage uses useKeepFocus instead: if the focused Test A/B button disables itself, focus moves to the next enabled stage control. The Home wobble slider no longer disables itself at 45°. Visual and a11y-only change in the shared engines, with no wording change (no claim, prediction, reveal or label text changed). It reaches lessons that already have a learner verdict; those verdicts still stand for wording. Built by demo-builder 2026-10-14, not built for release or committed. Reviewer: accessibility-reviewer. Check light mode by eye; the builder probe was dark only."
     },
     {
       "id": "W-558",
       "title": "A11y F2/F3: add one polite status region per stage in Home, Study, AlphabetSearch (square-bow-stays-tied and apply-not-quote have no live element); de-duplicate Resource live/output",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "src/components/lifehacks/a11y.tsx",
+        "artifacts/reveal-fit/lh-a11y.json",
+        "artifacts/qa-lh-a11y/qa-report.json"
+      ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Life Hacks template a11y fix (one fix covers many of the 200 lessons); part of the Life Hacks publish gate with W-355/W-356."
-      }
+      },
+      "updated": "2026-10-14",
+      "note": "There is one atomic polite role=status region per stage (StageStatus) in Home (all four stage types), Study (all families) and AlphabetSearch. It speaks only when the visible result changes after the prediction, with a 350ms debounce, and never speaks a ? placeholder. The Resource cards are no longer aria-live, and their outputs are now spans, with one StageStatus left. The kit Slider <output> is still implicitly live; that belongs to the kit (platform-engineer). Visual and a11y-only change in the shared engines, with no wording change (no claim, prediction, reveal or label text changed). It reaches lessons that already have a learner verdict; those verdicts still stand for wording. Built by demo-builder 2026-10-14, not built for release or committed. Reviewer: accessibility-reviewer. Check light mode by eye; the builder probe was dark only."
     },
     {
       "id": "W-559",
       "title": "A11y F4: raise picture text under 10 px to 11 px: Home .small 9px and Resource energy fontSize 9",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "src/components/lifehacks/a11y.tsx",
+        "artifacts/reveal-fit/lh-a11y.json",
+        "artifacts/qa-lh-a11y/qa-report.json"
+      ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Life Hacks template a11y fix (one fix covers many of the 200 lessons); part of the Life Hacks publish gate with W-355/W-356."
-      }
+      },
+      "updated": "2026-10-14",
+      "note": "Home svg text is now 12px (was 11px; .small 9 to 11px) and .caption 11px. Resource energy axis labels are fontSize 11 (was 9), and .formula/.assumptions are 11px. Study .fileValue is 11px. Measured at 390px: square-bow 10.6px, lh-annual-label-cost 10.6px. Visual and a11y-only change in the shared engines, with no wording change (no claim, prediction, reveal or label text changed). It reaches lessons that already have a learner verdict; those verdicts still stand for wording. Built by demo-builder 2026-10-14, not built for release or committed. Reviewer: accessibility-reviewer. Check light mode by eye; the builder probe was dark only."
     },
     {
       "id": "W-560",
       "title": "A11y F5: replace Home .target #f59e0b and pastel --domain meaning strokes (Resource .ink/.active, Study curves/focus bar) with fg or darkened ink for light mode, 3:1",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "src/components/lifehacks/a11y.tsx",
+        "artifacts/reveal-fit/lh-a11y.json",
+        "artifacts/qa-lh-a11y/qa-report.json"
+      ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Life Hacks template a11y fix (one fix covers many of the 200 lessons); part of the Life Hacks publish gate with W-355/W-356."
-      }
+      },
+      "updated": "2026-10-14",
+      "note": "Home .target is now var(--warn-fill) with a var(--warn) stroke (light #7d5200 5.9-6.8:1; dark 9.6-11.8:1), and the wobble circle #f59e0b became var(--warn). Domain strokes that carry meaning (Home .object, Resource .ink and reuse ring, Study A curve, focus bar, recall, message and file strokes, AlphabetSearch compared tile) use --lh-ink = color-mix(domain 45%, #000) in light mode. Resource .active is now --fg. Visual and a11y-only change in the shared engines, with no wording change (no claim, prediction, reveal or label text changed). It reaches lessons that already have a learner verdict; those verdicts still stand for wording. Built by demo-builder 2026-10-14, not built for release or committed. Reviewer: accessibility-reviewer. Check light mode by eye; the builder probe was dark only."
     },
     {
       "id": "W-561",
       "title": "A11y F6: add non-colour cues in Study (A/B point markers and legend key, per-box check/cross on recall, movable-bar cue)",
-      "owner": "demo-builder",
-      "state": "backlog",
+      "owner": "accessibility-reviewer",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
+      "links": [
+        "company/reviews/lifehacks-200/accessibility-2026-10-14.md",
+        "src/components/lifehacks/a11y.tsx",
+        "artifacts/reveal-fit/lh-a11y.json",
+        "artifacts/qa-lh-a11y/qa-report.json"
+      ],
       "priority": 2,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Life Hacks template a11y fix (one fix covers many of the 200 lessons); part of the Life Hacks publish gate with W-355/W-356."
-      }
+      },
+      "updated": "2026-10-14",
+      "note": "Study spacing: B points are squares (A stays circles), and each legend row has a line-style and marker swatch. Schedule movable bar and order first bar: hatch overlay plus a 2px outline. Recall: a tick or cross per box after Check. Visual and a11y-only change in the shared engines, with no wording change (no claim, prediction, reveal or label text changed). It reaches lessons that already have a learner verdict; those verdicts still stand for wording. Built by demo-builder 2026-10-14, not built for release or committed. Reviewer: accessibility-reviewer. Check light mode by eye; the builder probe was dark only."
     },
     {
       "id": "W-562",
@@ -8744,10 +8779,11 @@
       "id": "W-639",
       "title": "Fact-check chemistry Wave J energy-rates drafts: hydrogen-per-litre, heat-the-ammonia-maker, two-routes-to-co2, which-step-to-speed, limestone-crossover (all claims unverified; new claim heat-the-ammonia-maker c3 ammonia share at 1 bar is not in the brief; c6 factories sentence and limestone c5 890 °C need an openable source or a cut)",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": "chemistry",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-640",
@@ -8900,10 +8936,11 @@
       "id": "W-655",
       "title": "Fact-check wave-J probability drafts: significant-but-false, sixteen-of-twenty-got-better, the-doctor-picks-the-patients, ten-thousand-replies-still-wrong, where-the-axis-starts (all claims unverified; c5 citations in 56/59 need a human source check)",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-14"
     },
     {
       "id": "W-656",
@@ -9070,19 +9107,46 @@
     },
     {
       "id": "W-674",
-      "title": "test",
+      "title": "heat-the-ammonia-maker DISPUTED c2+c3: the stage shows the constant-dH/dS K and NH3 shares as fact. Full NASA TM-4513 data give K 0.39 at 200 °C and 4.9e-5 at 450 °C, shares 15% and 0.23%. Fix: add the assumption caption on the stage and in the c3 text, or switch to the full-data values. Also c6 (factories sentence) has no openable source: cut it per the brief (cm-chemistry call); c5 needs an openable kinetics source. Record: company/reviews/heat-the-ammonia-maker/2026-10-14-fact-check.md",
       "owner": "demo-builder",
       "state": "backlog",
-      "domain": null,
+      "domain": "chemistry",
       "created": "2026-10-14",
       "links": []
     },
     {
       "id": "W-675",
-      "title": "limestone-crossover c5: drop or reword (890 °C)",
+      "title": "limestone-crossover c5 held: drop or reword the 'measured decomposition about 890 °C' sentence (no source could be opened; NASA TM-4513 data give 893 °C), then fact-checker re-checks. Optional: '(25 °C data)' near the dG readouts; 'estimate' in the recall. Record: company/reviews/limestone-crossover/2026-10-14-fact-check.md",
       "owner": "demo-builder",
       "state": "backlog",
-      "domain": null,
+      "domain": "chemistry",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-676",
+      "title": "Withdraw or source the citation-only claims significant-but-false c5 (Ioannidis 2005) and ten-thousand-replies-still-wrong c5 (Literary Digest 1936). Both are held unverified because no source could be opened, and they block publishing. Records: company/reviews/<slug>/2026-10-14-fact-check.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "probability",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-677",
+      "title": "Fact-check wave-J life ecology-body drafts: bad-year-breaks-the-quota, empty-ponds-still-left, opposite-flows-swap-more, same-dose-levels-off, more-traps-more-species (all claims unverified; seeds disclosed in empty-ponds c1/c2 and more-traps c1; opposite-flows c3 heat-exchanger derivation to redo; optional literature context left off every card)",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": "life",
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-678",
+      "title": "Wave-J life drafts (bad-year-breaks-the-quota, empty-ponds-still-left, opposite-flows-swap-more, same-dose-levels-off, more-traps-more-species): cm-life to confirm builder departures in each build.md (empty-ponds grid cells 23 px not 28; more-traps cut 'real forests hold far more rare species'; bad-year reveal at 90 tool words) and whether empty-ponds is classed agent-based",
+      "owner": "cm-life",
+      "state": "backlog",
+      "domain": "life",
       "created": "2026-10-14",
       "links": []
     }
