@@ -58,7 +58,7 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A tiny hash table uses linear probing: a key that finds its slot taken moves to the next one. A, B and C all hash to slot 1 and sit in slots 1, 2, 3. You delete B by emptying slot 2. Now you search for C. What happens?",
+          "A tiny hash table uses linear probing: a key that finds its slot taken moves to the next one. A search starts at the key's slot and walks right until it finds the key or meets an empty slot. A, B and C all hash to slot 1 and sit in slots 1, 2, 3. You delete B by emptying slot 2. Now you search for C. What happens?",
         options: ["C is found in slot 3", "The search says C is not there", "The search finds B"],
         answer: 1,
       }}
@@ -71,8 +71,9 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
             same search kept going and found C in slot 3.
           </p>
           <p>
-            A search treats an empty slot as <strong>the run ends here</strong>. Emptying B&apos;s slot breaks that for
-            every key stored past it. A marker says <strong>keep looking</strong>.
+            A search treats an empty slot as <strong>the run ends here</strong>, because an insert always takes the first
+            free slot: a stored key never sits past a gap, so without that stop a missing key would mean checking every
+            slot. Emptying B&apos;s slot made a gap with C past it. A marker says <strong>keep looking</strong>.
           </p>
           <p className="muted">Markers pile up and slow searches, so tables get rebuilt now and then.</p>
         </>
@@ -111,7 +112,7 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
 
             return (
               <div className={s.wrap}>
-                <p className={s.rule}>A, B, C all hash to slot 1.</p>
+                <p className={s.rule}>A, B, C all hash to slot 1. A search walks right and stops at the first empty slot.</p>
                 <svg
                   viewBox="0 0 360 150"
                   className="stage-svg"
@@ -207,7 +208,7 @@ export default function DeletedKeyBreaksSearch({ slug }: { slug: string }) {
                     disabled={locked}
                     onClick={flip}
                   >
-                    {mode === "empty" ? "Delete by: emptying the slot" : "Delete by: leaving a gone marker"}
+                    {mode === "empty" ? "Switch delete to: gone marker" : "Switch delete to: emptying"}
                   </Control>
                 </Row>
               </div>

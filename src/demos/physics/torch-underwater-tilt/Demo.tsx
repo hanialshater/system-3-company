@@ -7,8 +7,10 @@
 // (unpolarised average). Past theta_c = asin(1 / 1.333) = 48.6 deg there is no b.
 //
 // The tilt slider steps through fixed stops (ANGLES, including theta_c itself) so the
-// question's 60 deg and the critical angle are both exact stops. Earned reveal: milestones
-// "edge" (theta_c) and "sixty". QA path: start 45 deg -> 48.6 deg -> 60 deg.
+// question's 60 deg and the critical angle are both exact stops, with 47 and 48 deg between 45
+// and theta_c so the exit ray visibly swings toward the surface. Earned reveal: milestones
+// "edge" (theta_c) and "sixty" (the question's angle). QA path: slider 45 -> 47 -> 48 deg,
+// "Tilt one step more" -> 48.6 deg, "Jump to 60°" -> 60 deg.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -19,10 +21,10 @@ import s from "./styles.module.css";
 const N = 1.333;
 const D2R = Math.PI / 180;
 const CRIT = Math.asin(1 / N) / D2R; // 48.61 deg
-const ANGLES = [0, 15, 30, 40, 45, CRIT, 60, 70, 80];
+const ANGLES = [0, 15, 30, 40, 45, 47, 48, CRIT, 60, 70, 80];
 const START = 4; // 45 deg
-const EDGE = 5;
-const SIXTY = 6;
+const EDGE = 7;
+const SIXTY = 8;
 
 /** Exit angle in air (deg), or null when no light can leave. At theta_c exactly: 90 (skims). */
 const snell = (a: number) => {
@@ -62,14 +64,14 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
         options: ["Mostly leaves into the air, at a wide angle", "Is all reflected back down", "Stops, absorbed by the surface"],
         answer: 1,
       }}
-      exploreHint="Tilt one step at a time. Watch the ray that leaves the water, and the percentages."
+      exploreHint="Tilt one step at a time past 45°. Watch the ray that leaves the water, then jump to 60°."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            At 45° most of the light got out ({pct(1 - fresnel(45))}), bent out to {deg(snell(45) ?? 0)}. At{" "}
-            <strong>{deg(CRIT)}</strong> the exit ray lay flat along the surface. At <strong>60°</strong> there was no exit ray:
-            all of the light reflected back down.
+            You started at 45°: {pct(1 - fresnel(45))} got out, bent to {deg(snell(45) ?? 0)}, and {pct(fresnel(45))} reflected
+            back down. At <strong>{deg(CRIT)}</strong> the exit direction lay flat along the surface and nothing got out. At{" "}
+            <strong>60°</strong> there was no exit ray: all of the light reflected back down.
           </p>
           <p>
             Leaving water, light bends away from straight up, more than it was tilted. At {deg(CRIT)} it already leaves at 90°,
@@ -81,7 +83,7 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["edge", "past"]}>
+        <Milestones interact={interact} names={["edge", "sixty"]}>
           {(reach) => {
             const torch = { x: HX - RAY * Math.sin(a * D2R), y: SY + RAY * Math.cos(a * D2R) };
             const refl = { x: HX + RAY * Math.sin(a * D2R), y: SY + RAY * Math.cos(a * D2R) };
@@ -91,12 +93,12 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
               : b === null
                 ? "No exit ray: all the light reflects back down."
                 : b > 89.9
-                  ? `At ${deg(a)} the exit ray skims flat along the surface.`
+                  ? `At ${deg(a)} the exit direction lies flat along the surface (dashed): nothing gets out.`
                   : `Tilted ${deg(a)} in water, the light leaves at ${deg(b)}.`;
             const go = (i: number) => {
               setIdx(i);
               if (i === EDGE) reach("edge");
-              if (i >= SIXTY) reach("past");
+              if (i === SIXTY) reach("sixty");
             };
             return (
               <div className={s.wrap}>
@@ -122,9 +124,16 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                   <g transform={`translate(${torch.x} ${torch.y}) rotate(${a})`}>
                     <rect x={-6} y={0} width={12} height={22} rx={2} className={s.torch} />
                   </g>
-                  <line x1={HX} y1={SY} x2={refl.x} y2={refl.y} className={s.beam} style={{ opacity: 0.12 + 0.88 * R }} />
-                  {out && (
-                    <line x1={HX} y1={SY} x2={out.x} y2={out.y} className={s.beam} style={{ opacity: 0.12 + 0.88 * (1 - R) }} strokeDasharray={b !== null && b > 89.9 ? "4 3" : undefined} />
+                  <line x1={HX} y1={SY} x2={refl.x} y2={refl.y} className={s.beam} style={{ opacity: 0.3 + 0.7 * R }} />
+                  {!locked && (
+                    <text x={refl.x + 4} y={Math.min(H - 4, refl.y)} className={s.angle}>
+                      {pct(R)} back
+                    </text>
+                  )}
+                  {out && b !== null && b > 89.9 ? (
+                    <line x1={HX} y1={SY - 1.5} x2={out.x} y2={SY - 1.5} className={s.beam} style={{ opacity: 0.7 }} strokeDasharray="4 3" />
+                  ) : (
+                    out && <line x1={HX} y1={SY} x2={out.x} y2={out.y} className={s.beam} style={{ opacity: 0.3 + 0.7 * (1 - R) }} />
                   )}
                   {!locked && out && b !== null && b <= 89.9 && (
                     <text x={out.x + 4} y={Math.max(12, out.y + 4)} className={s.angle}>
@@ -138,11 +147,6 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                 </p>
 
                 <Row>
-                  <Control disabled={locked || idx >= ANGLES.length - 1} onClick={() => go(idx + 1)}>
-                    Tilt one step more
-                  </Control>
-                </Row>
-                <Row>
                   <Slider
                     label="Beam tilt"
                     value={idx}
@@ -155,6 +159,14 @@ export default function TorchUnderwaterTilt({ slug }: { slug: string }) {
                       go(i);
                     }}
                   />
+                </Row>
+                <Row>
+                  <Control disabled={locked || idx >= ANGLES.length - 1} onClick={() => go(idx + 1)}>
+                    Tilt one step more
+                  </Control>
+                  <Control disabled={locked || idx === SIXTY} onClick={() => go(SIXTY)}>
+                    Jump to 60°
+                  </Control>
                 </Row>
                 <Row>
                   <Readout label="Into the air" value={locked ? "?" : pct(b === null ? 0 : 1 - R)} />

@@ -34,30 +34,24 @@
     },
     {
       "id": "physics.torch-underwater-tilt.c2",
-      "text": "The critical angle for water to air is 48.6° from straight up; beyond it no light leaves and all of it reflects back down (total internal reflection).",
+      "text": "The critical angle for water to air is 48.6° from straight up; there the exit direction lies flat along the surface (90°) and no light gets out; beyond it there is no exit direction and all of it reflects back down (total internal reflection).",
       "support": "derivation",
       "source": "sin(theta_c) = 1.00 / 1.333 = 0.750, theta_c = 48.61 degrees (node). OpenStax College Physics 2e, section 25.4 Total Internal Reflection gives 48.6 degrees for water.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "physics.torch-underwater-tilt.c3",
-      "text": "At 45° in water the beam leaves at 70.5° from straight up; at 30°, at 41.8°.",
+      "text": "At 45° in water the beam leaves at 70.5° from straight up; at 47°, at 77.1°; at 48°, at 82.1°; at 30°, at 41.8°.",
       "support": "derivation",
-      "source": "asin(1.333 sin 45) = asin(0.943) = 70.5 degrees; asin(1.333 sin 30) = 41.8 degrees (node, same snell() as Demo.tsx).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Snell's law with n = 1.333: asin(1.333 sin a). Node: 45 → 70.5, 47 → 77.1, 48 → 82.1, 30 → 41.8 (Demo.tsx v3 snell()).",
+      "status": "unverified"
     },
     {
       "id": "physics.torch-underwater-tilt.c4",
-      "text": "Below the critical angle a little light still reflects: about 2% straight up, 14% at 45°, rising to 100% at 48.6°.",
+      "text": "Below the critical angle some light still reflects: about 2% straight up, 14% at 45°, 26% at 47°, 43% at 48°, rising to 100% at 48.6°; the stage labels the reflected ray with this share.",
       "support": "derivation",
-      "source": "Fresnel equations for unpolarised light, average of s and p reflectance, n = 1.333 to 1.00: 0 deg 2.0%, 30 deg 2.6%, 40 deg 5.6%, 45 deg 13.9%, critical 100% (node, fresnel() in Demo.tsx). Hecht, Optics, 5th ed., section 4.6.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Fresnel equations, unpolarised average of rs and rp (Hecht, Optics, §4.6). Node over Demo.tsx v3 fresnel(): 0° 0.020, 45° 0.139, 47° 0.261, 48° 0.433, 48.6° 1.",
+      "status": "unverified"
     },
     {
       "id": "physics.torch-underwater-tilt.c5",
@@ -91,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:total-internal-reflection",
     "prerequisites": [

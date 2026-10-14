@@ -33,12 +33,10 @@
     },
     {
       "id": "economics.kitchen-crowding.c2",
-      "text": "In this model the kitchen tops out at 30 pizzas an hour at 5 workers; worker 6 and later add nothing.",
+      "text": "In this model, with one oven, the kitchen tops out at 30 pizzas an hour at 5 workers; worker 6 and later add nothing (the reveal names the highest such worker the learner set, 6, 7 or 8).",
       "support": "derivation",
       "source": "adds(k) = max(0, 12 − 2k): 10, 8, 6, 4, 2, 0, 0, 0; running totals 10, 18, 24, 28, 30, 30, 30, 30. | v2 (2026-10-14): question no longer states the decrement; reveal gated on seeing worker 6 add nothing; previous verification void, needs re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "economics.kitchen-crowding.c3",
@@ -51,12 +49,17 @@
     },
     {
       "id": "economics.kitchen-crowding.c4",
-      "text": "The increments (10, 8, 6, 4…) are made-up numbers in a model with one oven and nothing else changing.",
+      "text": "The increments (10, 8, 6, 4…) are made-up numbers in a model where the only fixed input is the oven: each new cook shares the same oven with one more person and adds 2 fewer than the one before; nothing else changes.",
       "support": "convention",
-      "source": "Brief: 'the increments are made-up, labelled as a model'. Shown on the stage chip and in the reveal.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Model choice by the builder (Demo.tsx v3 adds()); brief in company/domains/briefs/economics.md. Not a measured kitchen: disclosed on stage ('Model: made-up numbers') and in the reveal's last line.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.kitchen-crowding.c5",
+      "text": "In the same model, a second oven splits the cooks between two ovens, so the k-th worker adds 10 − 2·(⌈k/2⌉ − 1): for example 7 workers make 52 an hour (10+10+8+8+6+6+4) and 8 make 56, against 30 with one oven; fewer cooks per oven, so each adds more.",
+      "support": "derivation",
+      "source": "Demo.tsx v3 adds(k, 2) and totalOf(n, 2); hand sums: n=4 → 36, n=7 → 52, n=8 → 56. Illustrates that the shrinking increments come from the fixed input (Mankiw, Principles of Economics, ch. 13: diminishing marginal product with a fixed factory).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:diminishing-returns",
     "prerequisites": [],

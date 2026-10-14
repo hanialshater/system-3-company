@@ -18,7 +18,7 @@ const pH = (base: number, acid: number) => PKA + Math.log10(base / acid);
 const ASK_ACID = 100;
 const ASK_BASE = 10;
 const ASK_PH = pH(ASK_BASE, ASK_ACID); // 3.76
-const NAMES = ["ten-to-one"] as const;
+const NAMES = ["ten-to-one", "scaled-equal"] as const;
 
 const W = 320;
 const H = 212;
@@ -51,6 +51,7 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
   const [ai, setAi] = useState(START);
   const [bi, setBi] = useState(START);
   const [sawAsk, setSawAsk] = useState(false);
+  const [sawEqual, setSawEqual] = useState(0); // amount of each when equal, after the ask, other than the start
   const acid = AMOUNTS[ai];
   const base = AMOUNTS[bi];
   const p = pH(base, acid);
@@ -71,12 +72,12 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
           <p>
             {sawAsk ? "You saw" : "Set it and you see"} {ASK_BASE} mmol of base against {ASK_ACID} mmol of acid put the
             marker at pH <strong>{f2(ASK_PH)}</strong>: one whole unit below the pKa, {PKA}.
-            {sawAsk && base === acid && acid !== AMOUNTS[START] ? ` Then ${base} of each sat back at ${PKA}, as 10 of each had.` : ""}
+            {sawEqual ? ` Then ${sawEqual} of each sat back at ${PKA}, as ${AMOUNTS[START]} of each had: ${sawEqual > AMOUNTS[START] ? "more" : "less"} stuff, same pH.` : ""}
           </p>
           <p>
             A buffer&apos;s pH depends on the ratio of base to acid, through its logarithm (the number of tens in the ratio): pH = pKa + log₁₀(base ÷
             acid). Each tenfold change in the ratio moves pH by 1, as on the ruler: one tick, one pH unit. Equal amounts give pH = pKa, however much buffer
-            there is; more buffer only makes that pH harder to push.
+            there is.
           </p>
           <p className="muted">Holds well for moderate concentrations, about 0.01 to 1 mol/L.</p>
         </>
@@ -91,6 +92,11 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
               if (AMOUNTS[na] === ASK_ACID && AMOUNTS[nb] === ASK_BASE) {
                 setSawAsk(true);
                 reach("ten-to-one");
+              }
+              // the ratio point: equal again, but with a different amount than the start
+              if (sawAsk && na === nb && na !== START) {
+                setSawEqual(AMOUNTS[na]);
+                reach("scaled-equal");
               }
             };
             return (
@@ -118,7 +124,7 @@ export default function TenToOneBuffer({ slug }: { slug: string }) {
                         {locked && k !== 0 ? "?" : k === 0 ? `pKa ${f2(PKA)}` : f2(PKA + k)}
                       </text>
                       <text x={XR(k)} y={RULER_Y + 28} textAnchor="middle" className={s.small}>
-                        {k === 0 ? "equal" : k < 0 ? `acid ×${10 ** -k}` : `base ×${10 ** k}`}
+                        {k === 0 ? "equal" : locked ? "" : k < 0 ? `acid ×${10 ** -k}` : `base ×${10 ** k}`}
                       </text>
                     </g>
                   ))}

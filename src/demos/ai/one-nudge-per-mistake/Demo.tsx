@@ -40,10 +40,19 @@ function checkOne(st: St): St {
   }
   return next;
 }
+/** Check the rest of the sweep. The caption lists every nudge made, not only the last point. */
 function restOfSweep(st: St): St {
-  let s2 = checkOne(st);
-  while (s2.idx !== 0) s2 = checkOne(s2);
-  return s2;
+  const wrongs: string[] = [];
+  let rights = 0;
+  let s2 = st;
+  do {
+    const before = s2.nudges;
+    s2 = checkOne(s2);
+    if (s2.nudges > before) wrongs.push(s2.last);
+    else rights++;
+  } while (s2.idx !== 0);
+  const tail = `${rights} ${rights === 1 ? "point" : "points"} right, no change.`;
+  return { ...s2, last: wrongs.length ? `${wrongs.join("; ")}. Then ${tail}` : `All ${tail}` };
 }
 /** Run full sweeps until one has no mistakes (for the question's answer). */
 function untilClean() {
@@ -101,12 +110,12 @@ export default function OneNudgePerMistake({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You watched {st.nudgeAt.length >= 2 ? st.nudgeAt.length : Q.nudges} nudges: at {(st.nudgeAt.length ? st.nudgeAt : ["(1,1)", "(−1,0)"]).join(" and ")}.{" "}
-            After the second the line sat between the groups, and {st.cleanSweep ? "the next sweep found no mistakes." : "no point was wrong any more."}
+            You made {st.nudgeAt.length} {st.nudgeAt.length === 1 ? "nudge" : "nudges"}, marked on the stage: at {st.nudgeAt.join(" and ")}.{" "}
+            After the last one the line sat between the groups, and {st.cleanSweep ? "the next sweep found no mistakes." : "no point was wrong any more."}
           </p>
           <p>
             A perceptron changes only when it is wrong. Each nudge adds the missed point (or subtracts it), which turns the
-            line toward putting that point on the right side. Points already right change nothing.
+            line toward putting that point on its own side: watch a red ring turn green. Points already right changed nothing.
           </p>
           <p>Learning here is not one calculation: it is a few small corrections, one per mistake.</p>
         </>
@@ -122,7 +131,7 @@ export default function OneNudgePerMistake({ slug }: { slug: string }) {
             };
             const poly = hasLine ? positiveSide(st.w) : [];
             const caption = locked
-              ? "Score = w·point + b. Right if it has the point's sign; 0 counts as wrong."
+              ? "Each point should sit on its own side of a line: + in the shade, − outside. With no line, every point counts as wrong."
               : st.cleanSweep
                 ? `Sweep ${st.sweep - 1}: no mistakes. Training is done.`
                 : st.last || "No line yet: every score is 0, so every point counts as wrong.";
@@ -156,8 +165,14 @@ export default function OneNudgePerMistake({ slug }: { slug: string }) {
                   {PTS.map((p, i) => {
                     const ok = p.l * score(st.w, p) > 0;
                     const isNext = !locked && !st.cleanSweep && i === st.idx;
+                    const nudgeNo = locked ? -1 : st.nudgeAt.indexOf(name(p));
                     return (
                       <g key={i}>
+                        {nudgeNo >= 0 && (
+                          <text x={PX(p.x) + 12} y={PY(p.y) - 9} className={s.tiny} fill="var(--fg)">
+                            {`nudge ${nudgeNo + 1}`}
+                          </text>
+                        )}
                         {isNext && <circle cx={PX(p.x)} cy={PY(p.y)} r={13} fill="none" stroke="var(--fg)" strokeWidth={1.5} strokeDasharray="3 2" />}
                         <circle
                           cx={PX(p.x)}
@@ -196,7 +211,7 @@ export default function OneNudgePerMistake({ slug }: { slug: string }) {
                   <Control disabled={locked || st.idx !== 0 || st.cleanSweep} onClick={() => apply(restOfSweep(st))}>
                     Full sweep
                   </Control>
-                  <Control disabled={locked || st.nudges === 0} onClick={() => setSt(START)}>
+                  <Control disabled={locked || st.nudges === 0 || st.cleanSweep} onClick={() => setSt(START)}>
                     Start over
                   </Control>
                 </Row>

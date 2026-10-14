@@ -1,7 +1,7 @@
 {
   "slug": "negative-edge-fools-dijkstra",
-  "title": "A cheaper road arrives too late",
-  "hook": "Lock the cheapest town first. A road that gives money back can undo it.",
+  "title": "Is a settled town settled for good?",
+  "hook": "Cheapest-first settles each town for good. This map has one road that gives money back.",
   "domain": "cs",
   "concept": "negative-edge-weights",
   "format": "side-by-side",
@@ -44,30 +44,24 @@
     },
     {
       "id": "cs.negative-edge-fools-dijkstra.c3",
-      "text": "Even a version that lets the late offer correct A to 1 leaves C at 4, because C was already priced from the old A (CLRS's DIJKSTRA relaxes every edge out of each extracted node with no check, and ends with A = 1, C = 4).",
+      "text": "Checking roads in the order #1 S to A, #2 A to C, #3 S to B, #4 B to A, pass 1 prices C at 4 from the old A (2) before road #4 fixes A to 1, so C is still 4 after pass 1; pass 2 re-checks road #2 and lowers C to 3. Every town priced from a wrong label inherits the error.",
       "support": "simulation",
-      "source": "Builder's node: textbook settle-once ends {A 2, B 3, C 4}; CLRS-style relax-all-out-edges with extraction order S, A, B, C ends {A 1, B 3, C 4}. The failure on C holds for both. CLRS 4th ed. section 22.3 (Dijkstra's algorithm); the spec's earlier brief graph (no A to C road) ends A = 1 under relax-all, which is why this graph adds A to C (cost 2 per the category manager: cost 1 leaves a B and C tie at 3). · Fact-check pass 19 2026-10-14: Own node relax-all-out-edges (CLRS 4e 22.3 DIJKSTRA relaxes every edge out of u with no settled check): order S, A, B, C ends A 1, B 3, C 4. Reveal text matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx v3 runPass() over PASS_ORDER [S>A, A>C, S>B, B>A]. Hand trace: pass 1 from {S 0}: S>A A=2; A>C C=4; S>B B=3; B>A 3−2=1<2 so A=1 → {A 1, B 3, C 4}; pass 2: A>C 1+2=3<4 so C=3 → {A 1, B 3, C 3}; pass 3 unchanged. The general point (an under-relaxed label propagates until its out-edges are relaxed again) is the Bellman-Ford path-relaxation property, CLRS 3rd ed. §24.1 and Lemma 24.15.",
+      "status": "unverified"
     },
     {
       "id": "cs.negative-edge-fools-dijkstra.c4",
-      "text": "Checking every road in the order B to A, A to C, S to A, S to B: after pass 1 the labels are A 2, B 3, C unknown; after pass 2 they are A 1, B 3, C 3.",
+      "text": "Checking every road in the numbered order S to A, A to C, S to B, B to A: after pass 1 the labels are A 1, B 3, C 4; after pass 2 they are A 1, B 3, C 3.",
       "support": "simulation",
-      "source": "Builder's node script: pass 1 {A 2, B 3, C inf}, pass 2 {A 1, B 3, C 3}, pass 3 unchanged. Road order is a design choice shown by the stage (the pass highlights the roads that changed a label). · Fact-check pass 19 2026-10-14: Own node over PASS_ORDER (B>A, A>C, S>A, S>B, as in Demo.tsx runPass): pass 1 {A 2, B 3, C inf (shown as no label)}, pass 2 {A 1, B 3, C 3}, pass 3 unchanged.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx v3 runPass() over PASS_ORDER; hand trace in c3. Road order is a design choice shown on the stage (#1 to #4 tags; the pass highlights the roads that changed a label).",
+      "status": "unverified"
     },
     {
       "id": "cs.negative-edge-fools-dijkstra.c5",
       "text": "Settling a town assumes no later road can make it cheaper; a road with negative cost breaks that assumption, and Dijkstra's algorithm is proven correct only for non-negative edge weights.",
       "support": "source",
       "source": "CLRS 4th ed. section 22.3 (Dijkstra's algorithm assumes non-negative weights; 3rd ed. 24.3). · Fact-check pass 19 2026-10-14: CLRS 4e section 22.3 states Dijkstra for nonnegative edge weights and proves correctness (Theorem 22.6) under that assumption (3e 24.3, Thm 24.6); counterexample c1-c2 shows the failure. Book not re-opened this pass; section numbering confirmed against 4e chapter layout (ch. 22 Single-Source Shortest Paths).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.negative-edge-fools-dijkstra.c6",
@@ -98,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:negative-edge-weights",
     "also": [],

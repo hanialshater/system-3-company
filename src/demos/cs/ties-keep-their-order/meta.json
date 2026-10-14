@@ -1,7 +1,7 @@
 {
   "slug": "ties-keep-their-order",
   "title": "Who leads the Bs?",
-  "hook": "Two correct sorts of one list can disagree about who comes first among equals.",
+  "hook": "Four students, two grades, and two ways to sort them by hand.",
   "domain": "cs",
   "concept": "sort-stability",
   "format": "Side-by-side comparison",
@@ -34,12 +34,10 @@
     },
     {
       "id": "cs.ties-keep-their-order.c2",
-      "text": "On swap 2, swapping Dee with Ana throws Ana past Cal, which has the same grade; Cal stays put on slide step 2 because Ana is not a higher grade.",
+      "text": "On swap 2 (made by the learner), swapping Dee with Ana sends Ana from slot 2 to slot 4, past Cal, who has the same grade; Cal stays put on slide step 2 because Ana is not a higher grade.",
       "support": "derivation",
       "source": "Rows above: before swap 2 the order is Ben Ana Cal Dee; swapping slot 2 (Ana) with slot 4 (Dee) gives Ben Dee Cal Ana, so Ana moves from before Cal to after it. Slide step 2: Cal's left neighbour Ana has grade B, not higher than B, so Cal does not move.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "cs.ties-keep-their-order.c3",
@@ -79,7 +77,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:sort-stability",
     "also": [],

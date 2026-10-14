@@ -120,3 +120,21 @@
 .good {
   color: var(--good);
 }
+
+.oven {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.ovenDoor {
+  fill: color-mix(in srgb, var(--warn, var(--bad)) 45%, transparent);
+}
+
+.cook {
+  fill: var(--muted);
+}
+
+.cookNew {
+  fill: color-mix(in srgb, var(--domain) 75%, var(--fg) 25%);
+}

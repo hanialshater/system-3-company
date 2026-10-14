@@ -44,16 +44,15 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
         options: ["1", String(ROW_MOVES), String(ROW_MOVES + 1)],
         answer: 1,
       }}
-      exploreHint="Insert at the front, switch views, go to item 4. Check both."
-      minInteractions={3}
+      exploreHint="Insert at the front, go to item 4, then switch views and compare."
+      minInteractions={4}
       reveal={() => (
         <>
           <p>
             In the row, putting {NEW} first moved all <strong>{ROW_MOVES}</strong> items one slot right: slot 1 was
             taken, so everything behind it had to shift.
-            {seen.chainGo ? ` In the chain, reaching item ${TARGET} took ${HOPS} hops along the arrows.` : ""}
-            {seen.chainInsert ? ` Inserting at the chain's front moved nothing; ${CHAIN_ARROWS} arrows changed.` : ""}
-            {seen.rowGo ? ` In the row, slot ${TARGET} was a single jump.` : ""}
+            {` In the row, slot ${TARGET} was a single jump.`}
+            {` In the chain, the same insert moved nothing: ${CHAIN_ARROWS} arrows were redrawn (the faded one is the old start arrow). Reaching item ${TARGET} took ${HOPS} hops.`}
           </p>
           <p>
             A row (an array) makes reaching any slot instant but inserting at the front costly. A chain (a linked list)
@@ -63,7 +62,7 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["row-insert", "chain-insert", "chain-walk"]}>
+        <Milestones interact={interact} names={["row-insert", "row-go", "chain-insert", "chain-walk"]}>
           {(reach) => {
             // Record what the learner has now looked at in the view they are on.
             const look = (v: View, inserted: boolean, went: boolean) => {
@@ -78,6 +77,7 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
               }
               setSeen(n);
               if (inserted && v === "row") reach("row-insert");
+              if (went && v === "row") reach("row-go");
               if (inserted && v === "chain") reach("chain-insert");
               if (went && v === "chain") reach("chain-walk");
             };
@@ -102,16 +102,10 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : view === "row"
-                ? r.went
-                  ? `Slot ${TARGET}: one jump, straight there.`
-                  : r.inserted
-                    ? `All ${ROW_MOVES} slid right to free slot 1.`
-                    : "Row: items sit in numbered slots, side by side."
-                : r.went
-                  ? `Item ${TARGET}: ${HOPS} hops along the arrows.`
-                  : r.inserted
-                    ? `Nothing moved. ${CHAIN_ARROWS} arrows changed.`
-                    : "Chain: each box points to the next.";
+                ? [r.inserted ? `All ${ROW_MOVES} slid right to free slot 1.` : "", r.went ? `Slot ${TARGET}: one jump.` : ""].filter(Boolean).join(" ") ||
+                  "Row: items sit in numbered slots, side by side."
+                : [r.inserted ? `Nothing moved: ${CHAIN_ARROWS} arrows redrawn.` : "", r.went ? `Item ${TARGET}: ${HOPS} hops.` : ""].filter(Boolean).join(" ") ||
+                  "Chain: each box points to the next.";
             return (
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">{msg}</p>
@@ -150,6 +144,12 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
                   ) : (
                     <>
                       <text x={4} y={30} className={s.note}>start</text>
+                      {r.inserted && (
+                        <>
+                          <path d={`M 16 34 Q ${nodeX(1)} 22 ${nodeX(1) + CW / 2} 46`} className={s.oldArrow} />
+                          <text x={nodeX(1) + CW / 2 + 6} y={30} className={s.note}>old start arrow</text>
+                        </>
+                      )}
                       <path d={`M 16 34 L ${nodeX(0) + CW / 2} 46`} className={`${s.arrow} ${r.inserted ? s.changed : ""}`} markerEnd="url(#ifc-arrow)" />
                       {items.map((it, i) => (
                         <g key={it}>
@@ -161,7 +161,10 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
                               className={`${s.arrow} ${it === NEW ? s.changed : ""} ${r.went && i < HOPS ? s.hop : ""}`} markerEnd="url(#ifc-arrow)" />
                           )}
                           {r.went && i < HOPS && (
-                            <text x={nodeX(i) + CW + CGAP / 2} y={100} className={s.hopNum}>{i + 1}</text>
+                            <text x={nodeX(i) + CW + CGAP / 2} y={47} className={s.hopNum}>{i + 1}</text>
+                          )}
+                          {r.went && i === TARGET - 1 && (
+                            <text x={nodeX(i) + CW / 2} y={100} className={s.hopNum}>item {TARGET}</text>
                           )}
                         </g>
                       ))}
@@ -174,8 +177,8 @@ export default function InsertAtFrontCost({ slug }: { slug: string }) {
                 </Row>
                 <Row>
                   <Control disabled={locked || r.inserted} onClick={insert}>Insert {NEW} at front</Control>
-                  <Control disabled={locked} onClick={flip}>{view === "row" ? "Switch to chain" : "Switch to row"}</Control>
                   <Control disabled={locked || r.went} onClick={go}>Go to item {TARGET}</Control>
+                  <Control disabled={locked} onClick={flip}>{view === "row" ? "Switch to chain" : "Switch to row"}</Control>
                 </Row>
               </div>
             );

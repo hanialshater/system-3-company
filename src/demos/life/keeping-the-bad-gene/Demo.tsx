@@ -31,6 +31,12 @@ function trajectory(q0: number, sel: number) {
 }
 
 const pct = (q: number) => `${Math.round(100 * q)}%`;
+/** Which way selection pushes w this generation: the arrow the stage shows beside each share. */
+const pull = (q: number, sel: number) => {
+  const p = 1 - q;
+  const d = (p * q) / (p * p * (1 - sel) + 2 * p * q) - q;
+  return Math.abs(d) < 0.0005 ? "=" : d > 0 ? "↑" : "↓";
+};
 const selOf = (nc: number) => 1 - nc / 100;
 const eq = (nc: number) => selOf(nc) / (selOf(nc) + 1);
 
@@ -144,13 +150,15 @@ function Stage({
       </Row>
       <Slider label="Survival with no w" value={noCopy} min={70} max={95} step={5} disabled={locked} format={(v) => `${v}%`} onChange={(v) => run(gen, v)} />
       <Row>
-        <Readout label="w share now (1% / 50% starts)" value={locked ? "?" : `${pct(rare[gen])} / ${pct(common[gen])}`} />
+        <Readout label="w share now, and its pull (1% / 50% starts)" value={locked ? "?" : `${pct(rare[gen])} ${pull(rare[gen], sel)} / ${pct(common[gen])} ${pull(common[gen], sel)}`} />
         <Readout label="Balance" value={locked || gen < GENS ? "?" : pct(star)} />
       </Row>
-      <Row>
-        <Readout label="Young with 2 w (die)" value={locked ? "?" : `${pct(rare[gen] ** 2)} / ${pct(common[gen] ** 2)}`} />
-        <Readout label="Young with 1 w (thrive)" value={locked ? "?" : `${pct(2 * rare[gen] * (1 - rare[gen]))} / ${pct(2 * common[gen] * (1 - common[gen]))}`} />
-      </Row>
+      {!locked && (
+        <Row>
+          <Readout label="Young with 2 w (die)" value={`${pct(rare[gen] ** 2)} / ${pct(common[gen] ** 2)}`} />
+          <Readout label="Young with 1 w (thrive)" value={`${pct(2 * rare[gen] * (1 - rare[gen]))} / ${pct(2 * common[gen] * (1 - common[gen]))}`} />
+        </Row>
+      )}
     </div>
   );
 }
@@ -163,18 +171,19 @@ export default function KeepingTheBadGene({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Made-up species. A gene version (allele) called w is fatal if an animal gets two copies. One copy: all survive. No copies: 85% survive. In the long run, w, as a share of all gene copies…",
+          "Made-up species. A gene version (allele) called w is fatal if an animal gets two copies. One copy: all survive. No copies: 85% survive (say, a disease that one copy of w protects against). In the long run, w, as a share of all gene copies…",
         options: ["disappears", "settles at a steady share in between", "takes over"],
         answer: 1,
       }}
-      exploreHint="Press +10 generations until 60 and watch both curves and the young-animal rows. Then move the survival slider."
+      exploreHint="Read the young-animal rows at generation 0, then press +10 until 60. Then move the survival slider."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             Starting from 1% and from 50%, the curves met at <strong>{SETTLED_RARE} of 100 copies</strong>. Selection did not remove w, even though two copies kill. Look at the two
-            young-animal rows: when w is rare almost no young get two copies (nobody dies of it) while some get one, who
-            survive best, so w rises. When w is common, as at generation 0 of the 50% start, {pct(COMMON ** 2)} of young get two copies and die, so w falls.
+            young-animal rows and the arrows beside each share: when w is rare almost no young get two copies (nobody dies
+            of it) while some get one, who survive best, so w rises (↑). When w is common, as at generation 0 of the 50%
+            start, {pct(COMMON ** 2)} of young get two copies and die, so w falls (↓). At the balance the arrows read =.
             The balance is where the two pulls match: animals with no w lose 15 of 100, animals with two w lose
             100, so 15 &divide; (15 + 100) &asymp; {QSTAR}%.
           </p>
