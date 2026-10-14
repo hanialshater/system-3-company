@@ -24,3 +24,13 @@ Checker: fact-checker (did not write these claims). Scope: the claims left unver
 | c6 | verified | GUESS_AT_S = /0-6/ + /3-3/ = 6; own BFS with the wall gives 10. Stage line 'Guess at S: 6. Route: 10.' Legend 'Numbers: settle order. Dashed: waiting to settle.' matches num() = settleIdx+1 and isFrontier (joined frontier at disc <= k, not yet settled). |
 
 **Result:** every claim in this pass verified.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I read the builder's pre-flight only after writing the verdicts. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | GUESS_AT_S = 6; own BFS with the wall at column 3, rows 2-4 gives 10. The line under the table 'Guess at S: 6. Real route with the wall: 10.' appears once the guided wall run is filled ('?' before). num() = settleIdx + 1. isFrontier = discovered at settled-count <= k and not yet settled, which matches 'Dashed: waiting to settle'. |
+
+**Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

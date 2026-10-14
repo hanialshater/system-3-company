@@ -71,14 +71,16 @@
       "id": "cs.hailstone-27-climbs.c6",
       "text": "97's run reaches 94, which is on 27's run, and from there follows 27's path down to 1 (so it also peaks at 9,232).",
       "support": "derivation",
-      "source": "Rule applied in Demo.tsx hailstone(): 97 reaches 94 at step 13; 27 reaches 94 at step 6 (27, 82, 41, 124, 62, 31, 94). From 94 the runs are identical: 13 + (111 - 6) = 118 steps. JOIN97 = first value of SEQ[97] found in SEQ[27]. | Added 2026-10-14 (v2) by demo-builder.",
-      "status": "unverified"
+      "source": "Rule applied in Demo.tsx hailstone(): 97 reaches 94 at step 13; 27 reaches 94 at step 6 (27, 82, 41, 124, 62, 31, 94). From 94 the runs are identical: 13 + (111 - 6) = 118 steps. JOIN97 = first value of SEQ[97] found in SEQ[27]. | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own run: the first value of 97's run that is on 27's run is 94 (97's step 13; 27's step 6), and the tails from 94 are identical, so 13 + 105 = 118 steps. 97's peak before 94 is 376, so its 9,232 peak comes from 27's path.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.hailstone-27-climbs.c7",
       "text": "No known formula gives a start's step count; to learn it you run the rule. (Stage: 'No known formula fills a ?. Run it.'; reveal: 'no known formula gives the count'.)",
       "support": "source",
-      "source": "Lagarias, 'The 3x+1 problem and its generalizations', Amer. Math. Monthly 92 (1985) 3-23: stopping times are studied statistically and computed by iteration; no closed form is known (not opened by the builder in this session). Same open status as c5. | Added 2026-10-14 (v2) by demo-builder.",
+      "source": "Lagarias, 'The 3x+1 problem and its generalizations', Amer. Math. Monthly 92 (1985) 3-23: stopping times are studied statistically and computed by iteration; no closed form is known (not opened by the builder in this session). Same open status as c5. | Added 2026-10-14 (v2) by demo-builder. | FC pass 24 (fact-checker, 2026-10-14): HELD, not verified. Lagarias (1985) not opened; cecm.sfu.ca, arxiv.org and wikipedia all fail DNS. Search-result text found nothing that states 'no formula' (only that the map looks pseudorandom, Applegate-Lagarias). It is a state-of-knowledge claim, and only an openable source can settle it. To clear: a checker with access opens Lagarias 1985 or Lagarias (ed.) 2010, or the builder rewords it to something the stage shows ('each ? is filled only by running it').",
       "status": "unverified"
     }
   ],

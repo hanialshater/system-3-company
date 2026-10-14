@@ -23,3 +23,15 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c1 | verified | Own mulberry32 copy of surf(): seed 146, 100,000 clicks: A 31,211, C 33,220 (31.2%, 33.2%). The reveal prints FINAL = surf(MAX), as the parenthetical now says. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I read the builder's pre-flight only after writing the verdicts. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Own surf() with the kit's mulberry32(146), two draws per click: 100,000 clicks -> A 31.2%, C 33.2%. After Reset (clicks 0 < MAX, longRun true) the seed line reads 'Your 100,000 run: A 31.2%, C 33.2%. Arrows C->A 28.1%, D->C 2.5%, E->C 2.5%.' The reveal prints FINAL = surf(MAX). |
+| c4 | verified | OUT = [B, C, A, C, C]: C's only out-link is A; IN_LINKS for D and E are 0, so only jumps reach them. Reveal wording matches. |
+| c6 | verified | Own run of the same loop: follows/100,000: A->B 26.5%, B->C 25.1%, C->A 28.1%, D->C 2.5%, E->C 2.5%. Arrow width = 2 + 30 x share; label = pct(follows[a], clicks). |
+
+**Result:** 3 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

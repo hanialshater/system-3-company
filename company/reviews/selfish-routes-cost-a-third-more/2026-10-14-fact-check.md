@@ -23,3 +23,16 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c4 | verified | Reveal wording now 'a fixed time plus a part proportional to traffic' (affine). Bound re-derived: Wardrop equilibrium f satisfies sum l(f)f <= sum l(f)f*; for l = ax + b, l(f)f* <= l(f*)f* + a f^2/4 <= l(f*)f* + l(f)f/4, so C(f) <= (4/3) C(f*). Example: 60/45 = 4/3, so it attains the bound. Roughgarden-Tardos not opened; not relied on. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I read the builder's pre-flight only after writing the verdicts. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own grid 0..100 step 5: avg(50) = 45 is the unique minimum (45.15 at 45 and 55). B at 50% = 30. found-best is required, so the reveal's best = 50 and ', where B takes 30' always prints. Avg >= 45 > 30 everywhere. |
+| c3 | verified | Own joinCost(50): after 33, 27 each, 135 in all; 50 x 3 = 150; 100 x (avg 55 - avg 50) = 15. Non-blocking for the builder: the reveal quotes the LAST split visited, and below 50% the joiners' gain beats the loss (20%: 225 vs 60), so 'The line under the chart is why' does not show the waste there. Every sentence is still true. |
+
+**Result:** 2 verified, 0 disputed, 0 held (unverified), 0 withdrawn.
+
+**Non-blocking note for the builder:** the reveal quotes the last split visited. Below 50% on B the joiners' gain beats the loss (20%: 225 vs 60), so 'The line under the chart is why' does not show the waste at those splits. The numbers are still right.

@@ -103,7 +103,17 @@ export function DemoCard({
  * resizes (rotation, dvh changes). A width change (the phone turned) always re-fits, because the old
  * scroll position means nothing in the new layout. Any other re-fit (the 400 ms re-check, a
  * height-only resize) is skipped once the learner has scrolled the card since the reveal began.
+ *
+ * W-146 (stage cropped at the reveal): scrolling alone put the reveal on screen by pushing the top of
+ * the stage off the card, so reveal text that points at labels near the top pointed at nothing. Now the
+ * fit first scales the stage down (a transform from its top centre, with a negative bottom margin
+ * giving back the layout space) until stage + reveal fit the card body, so both are whole on screen.
+ * The scale never goes below REVEAL_SCALE_FLOOR; a stage that would need less keeps the floor scale and
+ * the card scrolls the remainder as before (the reveal stays fully visible either way). A transform
+ * keeps HTML overlays, pointer hit-testing and getScreenCTM correct, which shrinking the svg alone
+ * would not. The applied scale is on the stage as data-reveal-scale, for tools/reveal-fit.mjs.
  */
+const REVEAL_SCALE_FLOOR = 0.4;
 function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean) {
   useEffect(() => {
     const body = bodyRef.current;
@@ -113,8 +123,32 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
     let expectedTop = -1; // the scrollTop we set last; any other scroll position is the learner's
     let lastWidth = body.clientWidth;
     const timers: number[] = [];
+    const stageOf = () => body.querySelector<HTMLElement>('[data-testid="stage"]');
+    const unscale = (stage: HTMLElement | null) => {
+      if (!stage || stage.dataset.revealScale === undefined) return;
+      stage.style.removeProperty("transform");
+      stage.style.removeProperty("transform-origin");
+      stage.style.removeProperty("margin-bottom");
+      delete stage.dataset.revealScale;
+    };
+    const scaleStage = () => {
+      const stage = stageOf();
+      if (!stage) return;
+      unscale(stage); // measure the natural layout, then fit it
+      const over = body.scrollHeight - body.clientHeight;
+      const h = stage.offsetHeight;
+      if (over <= 1 || h <= 0) return;
+      const k = Math.max(REVEAL_SCALE_FLOOR, Math.min(1, (h - over - 4) / h));
+      if (k >= 0.995) return;
+      stage.style.transformOrigin = "top center";
+      stage.style.transform = `scale(${k.toFixed(4)})`;
+      stage.style.marginBottom = `${(-(1 - k) * h).toFixed(1)}px`;
+      stage.dataset.revealScale = k.toFixed(3);
+    };
     const bringIntoView = () => {
       if (!revealed || userScrolled) return;
+      scaleStage();
+      expectedTop = body.scrollTop; // the fit may have clamped scrollTop; that is not the learner
       const reveal = body.querySelector<HTMLElement>('[data-testid="reveal"]');
       if (!reveal) return;
       const b = body.getBoundingClientRect();
@@ -136,7 +170,10 @@ function useRevealFit(bodyRef: RefObject<HTMLDivElement | null>, active: boolean
       const isReveal = body.querySelector('[data-testid="lesson"]')?.getAttribute("data-phase") === "reveal";
       if (isReveal === revealed) return;
       revealed = isReveal;
-      if (!isReveal) return;
+      if (!isReveal) {
+        unscale(stageOf());
+        return;
+      }
       userScrolled = false;
       expectedTop = body.scrollTop;
       requestAnimationFrame(bringIntoView);

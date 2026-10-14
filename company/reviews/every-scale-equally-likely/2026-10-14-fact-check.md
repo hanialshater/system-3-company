@@ -24,3 +24,13 @@ Checker: fact-checker (did not write these claims; sentences recorded by an earl
 | c6 | verified | Own sums, ring of 1,024 with 1/d: band 2-3 gets 12.2%, band 256-512 gets 10.2%; distances 2 vs 512 - 256 + 1 = 257. 'About equal' against a 128-fold difference in distances is fair. The sentence is the builder's; a pass-21 fact-checker session recorded it, and this is a separate session. |
 
 **Result:** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I read the builder's pre-flight only after writing the verdicts. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c7 | verified | Own sums: sum_{d=2..3} 1/d = 0.833 (/2 = 0.42), sum_{d=256..512} 1/d = 0.696 (/257 = 0.0027), sig2 -> 0.42, 0.83, 0.0027, 0.70. The people-weighted shares (2 per distance, 1 at 512) are 12.2% and 10.2%. The compare line is shown under 1/d (milestone q1 is required). |
+
+**Result:** 1 verified, 0 disputed, 0 held (unverified), 0 withdrawn.

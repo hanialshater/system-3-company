@@ -26,8 +26,10 @@
       "id": "probability.friends-split-more-than-chance.c1",
       "text": "With 20 and 10 students there are 435 possible pairs, and 10 × 20 = 200 of them (46%) cross groups: each of the 10 can pair with each of the 20. On stage 'Count possible pairs' draws those 200 pairs.",
       "support": "derivation",
-      "source": "C(30,2) = 435; 20 x 10 = 200 cross pairs; 200/435 = 0.4598. Builder's node check, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 21): node: C(30,2) = 435, 20 x 10 = 200, 200/435 = 0.4598 -> 46%. | v2: Demo.tsx CROSS_PAIRS.length = 200, PAIRS.length = 435; the pairs view draws CROSS_PAIRS.",
-      "status": "unverified"
+      "source": "C(30,2) = 435; 20 x 10 = 200 cross pairs; 200/435 = 0.4598. Builder's node check, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 21): node: C(30,2) = 435, 20 x 10 = 200, 200/435 = 0.4598 -> 46%. | v2: Demo.tsx CROSS_PAIRS.length = 200, PAIRS.length = 435; the pairs view draws CROSS_PAIRS. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own node: 435 pairs, 200 cross (45.98%). The pairs view draws CROSS_PAIRS; the reveal's '10 x 20 = 200 lines you counted' is backed by the required 'pairs' milestone.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.friends-split-more-than-chance.c2",
@@ -42,8 +44,10 @@
       "id": "probability.friends-split-more-than-chance.c3",
       "text": "In a random class each of the 45 friendships is an independent random pair, so on average about 46% cross groups. The reveal quotes the learner's largest recorded run (on the QA path 1,001 classes, average 46%, none with 9 or fewer, fewest 11), kept after Start over.",
       "support": "derivation",
-      "source": "Lesson rule (Demo.tsx drawClasses: each friendship a uniform pair of the 435, independently); the crossing count is Binomial(45, 200/435), mean 20.69. Builder's seeded run (mulberry32(41), first random class then 1,000 more, the QA path): 1,001 classes averaging 20.88 crossing (46%). | FACT-CHECK 2026-10-14 (pass 21): drawClasses draws each of 45 friendships uniformly from 435 pairs, independently (repeats possible). Mean 45 x 200/435 = 20.69. Own seeded run mulberry32(41): first class 26, 1,001 classes average 20.877 (46.4%). | v2: v2: the record is set when classes are drawn and Start over does not clear it. Builder node re-run of mulberry32(41), 2026-10-14: 1,001 classes average 46%, fewest 11, 0 with 9 or fewer.",
-      "status": "unverified"
+      "source": "Lesson rule (Demo.tsx drawClasses: each friendship a uniform pair of the 435, independently); the crossing count is Binomial(45, 200/435), mean 20.69. Builder's seeded run (mulberry32(41), first random class then 1,000 more, the QA path): 1,001 classes averaging 20.88 crossing (46%). | FACT-CHECK 2026-10-14 (pass 21): drawClasses draws each of 45 friendships uniformly from 435 pairs, independently (repeats possible). Mean 45 x 200/435 = 20.69. Own seeded run mulberry32(41): first class 26, 1,001 classes average 20.877 (46.4%). | v2: v2: the record is set when classes are drawn and Start over does not clear it. Builder node re-run of mulberry32(41), 2026-10-14: 1,001 classes average 46%, fewest 11, 0 with 9 or fewer. | FC pass 24 (fact-checker, 2026-10-14): VERIFIED. Own run with mulberry32(41): the first class has 26 crossing; 1,001 classes average 46.39%, 0 with 9 or fewer, fewest 11. rec is replaced only by a larger run and Start over reseeds 41, so the same 1,001 classes give the same record. Binomial mean 45 x 200/435 = 20.69 (46%).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.friends-split-more-than-chance.c4",

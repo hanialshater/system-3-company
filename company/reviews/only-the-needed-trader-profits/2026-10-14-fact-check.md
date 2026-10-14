@@ -14,3 +14,13 @@ Checker: fact-checker (wrote none of these claims; the two new claims are builde
 | c6 | verified | Demo.tsx SELLER_VALUE = 0 and BUYER_VALUE = 1. The chip reads 'Model: sellers value an item $0, buyers $1', the predict question states the same values, and the reveal footnote reads 'A simplified model with invented values.' |
 
 **Result:** 5 verified, 0 disputed, 1 held this pass; the lesson cannot publish until c5 (unverified) is resolved.
+
+## Pass 24 (2026-10-14)
+
+Checker: fact-checker (Ingrid). I did not write or build any of these claims. Scope: every unverified or disputed claim after the wave E revisions. Method: read Demo.tsx (predict, stage, every reachable branch, the state after Reset or Start over where the lesson has one, and the reveal gates), then re-ran the numbers in my own node copies of the lesson's logic (kit mulberry32 where seeded). I read the builder's pre-flight only after writing the verdicts. Hosts for primary sources were unreachable (DNS failure), so a row says when a verdict rests on derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | held (unverified) | HELD, still unverified. BEKT 2009 and E&K ch. 11 still unreachable (cs.cornell.edu and ideas.repec.org fail DNS). Search-result summary of the abstract: a trader 'can command a positive profit if and only if it has an essential connection'. That supports 'only if', but the 'iff' wording should be checked against the lesson's 'does not guarantee one' once the paper is opened (the converse may be about some equilibrium, not every one). |
+
+**Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
