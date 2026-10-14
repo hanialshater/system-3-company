@@ -1,0 +1,73 @@
+{
+  "slug": "uphill-finds-a-peak",
+  "title": "Halving cards in no order",
+  "hook": "Binary search needs a sorted list. Except when the question is 'find a peak'.",
+  "domain": "cs",
+  "concept": "peak-finding",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "binary search halves a sorted list (binary-search)"
+    ],
+    "doesNotKnow": [
+      "that halving works on unsorted data for some questions",
+      "peak finding"
+    ]
+  },
+  "misconception": "Halving only works on sorted lists.",
+  "objective": "The learner can explain that comparing the middle card with its right neighbour shows which half is uphill, that walking uphill must reach a peak inside that half, so the other half can be discarded unseen; on 7 cards this never needs more than 5 turns.",
+  "claims": [
+    {
+      "id": "cs.uphill-finds-a-peak.c1",
+      "text": "On the stage's cards (2 5 1 4 7 3 6, face down), the rule turns 4 of the 7 cards and ends on 6, which is a peak even though 7 is bigger.",
+      "support": "simulation",
+      "source": "Builder's node run of the rule: compare positions 4 and 5 (4 < 7, go right), then 6 and 7 (3 < 6, go right), stop at position 7: value 6, neighbour 3. The order was written for the lesson to show a peak that is not the maximum.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.uphill-finds-a-peak.c2",
+      "text": "A peak only has to be not smaller than its neighbours.",
+      "support": "convention",
+      "source": "Definition used in the lesson's question and in MIT 6.006 (Demaine and Devadas, 2011), lecture 1, peak finding.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.uphill-finds-a-peak.c3",
+      "text": "If the right card is bigger, walking uphill to the right must reach a peak before the edge, so the left half can go unseen.",
+      "support": "derivation",
+      "source": "Walk right from position m + 1 while the next card is bigger; the walk stops at a card not smaller than its right neighbour (or at the end), and its left neighbour is smaller by construction, so it is a peak in the kept half.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.uphill-finds-a-peak.c4",
+      "text": "Over all 5,040 orders of 7 cards the rule always finds a peak and never needs more than 5 turns, about 2 per halving.",
+      "support": "simulation",
+      "source": "Builder's exhaustive node check over all 7! orders of 1..7: always a peak; 4 turns in 3,780 orders, 5 in 1,260. Logarithmic bound: MIT 6.006 (2011) lecture 1.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a list in no order, the middle number is 40 and its right neighbour is 55. Where must there be a peak (a number not smaller than its neighbours)?",
+    "options": [
+      "In the right half, from 55 onward",
+      "In the left half",
+      "Nowhere can be sure without sorting"
+    ],
+    "answer": 0,
+    "why": "Walking uphill from 55 to the right must stop at a peak before or at the end, so the right half holds one. The left half may too, but you do not need it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "caesar-falls-to-frequency",
+  "title": "A secret shift with a loud letter",
+  "hook": "Move every letter by a secret amount. The message still gives the key away.",
+  "domain": "cs",
+  "concept": "frequency-analysis",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "letters as positions in the alphabet"
+    ],
+    "doesNotKnow": [
+      "that a cipher which keeps letter patterns leaks its key",
+      "frequency analysis"
+    ]
+  },
+  "misconception": "A message shifted by a secret amount is unreadable without the key.",
+  "objective": "The learner can explain that a Caesar shift renames letters but keeps their counts, so lining up the most common cipher letter with E finds the shift (here X, shift 19) without trying all 25 keys.",
+  "claims": [
+    {
+      "id": "cs.caesar-falls-to-frequency.c1",
+      "text": "X is 19 places after E, so a shift that turns E into X is a shift of 19.",
+      "support": "derivation",
+      "source": "Alphabet positions from 0: E = 4, X = 23; 23 - 4 = 19. Checked in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.caesar-falls-to-frequency.c2",
+      "text": "E is the most common letter in English.",
+      "support": "source",
+      "source": "Lewand, Cryptological Mathematics (MAA, 2000), English letter frequency table: E about 12.7%, the highest. Statement is about typical English text, not every sentence.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.caesar-falls-to-frequency.c3",
+      "text": "In the lesson's message, E is the most common letter (23 of 94 letters), so after the shift of 19 the most common cipher letter is X, and lining the tallest bar up with E gives the right shift on the first try.",
+      "support": "simulation",
+      "source": "Builder's node count of the plaintext in Demo.tsx (PLAIN): E 23, T 13, H 9 of 94 letters; cipher top letter X (23). The message was written for the lesson and over-represents E (24% against about 13% in typical English); disclosed as a chosen example.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.caesar-falls-to-frequency.c4",
+      "text": "Shifting renames letters but keeps how often each appears.",
+      "support": "derivation",
+      "source": "A Caesar shift is a one-to-one map from letters to letters applied to every position, so each cipher letter appears exactly as often as the plain letter it stands for.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.caesar-falls-to-frequency.c5",
+      "text": "A Caesar cipher has only 25 shifts to try.",
+      "support": "derivation",
+      "source": "26 letters give shifts 0..25; shift 0 leaves the text unchanged, leaving 25 non-trivial keys.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.caesar-falls-to-frequency.c6",
+      "text": "Al-Kindi described frequency analysis in the 9th century.",
+      "support": "source",
+      "source": "Singh, The Code Book (1999), ch. 1: al-Kindi's 'A Manuscript on Deciphering Cryptographic Messages', 9th century.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A long English message was encrypted with a Caesar shift. Its most common letter is H. What is the shift most likely to be?",
+    "options": [
+      "3",
+      "7",
+      "It cannot be guessed without the key"
+    ],
+    "answer": 0,
+    "why": "The most common cipher letter is probably E in disguise. H is 3 places after E, so the shift is probably 3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

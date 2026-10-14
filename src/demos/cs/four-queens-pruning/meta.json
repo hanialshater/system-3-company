@@ -1,0 +1,81 @@
+{
+  "slug": "four-queens-pruning",
+  "title": "Four queens, sixteen moves",
+  "hook": "256 ways to put one queen in each row. You only need to try a handful.",
+  "domain": "cs",
+  "concept": "n-queens-backtracking",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "backing up from a dead end in a maze (maze-depth-first)",
+      "a chess queen attacks along rows, columns and diagonals (shown on the stage)"
+    ],
+    "doesNotKnow": [
+      "how much backing up early saves",
+      "backtracking search by name"
+    ]
+  },
+  "misconception": "Solving a placement puzzle means checking every arrangement.",
+  "objective": "The learner can explain that placing queens only on safe squares and backing up at a dead row finds both 4-queens solutions in 16 placements instead of checking 256 boards, because a clash cuts off every board that starts that way; and that the saving grows with size.",
+  "claims": [
+    {
+      "id": "cs.four-queens-pruning.c1",
+      "text": "There are 256 boards with one queen in each row of a 4 x 4 board.",
+      "support": "derivation",
+      "source": "4 choices of column in each of 4 rows: 4^4 = 256.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.four-queens-pruning.c2",
+      "text": "A full backtracking search from an empty 4 x 4 board makes 16 safe placements, finds the first solution after 8, and finds both solutions.",
+      "support": "simulation",
+      "source": "Builder's node script (scratchpad checks/all.mjs), counting each placement of a queen on a square not attacked by the queens above: 16 total, 8 at the first solution, 2 solutions (columns 2 4 1 3 and 3 1 4 2). The stage's Run button uses the same rule and shows the counts.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.four-queens-pruning.c3",
+      "text": "Placing only on safe squares notices a clash the moment it happens, so every board that starts that way is skipped at once.",
+      "support": "derivation",
+      "source": "A partial placement with a conflict cannot be extended to a solution; refusing it removes all 4^(rows left) completions in one step.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.four-queens-pruning.c4",
+      "text": "8 queens have 16,777,216 one-per-row boards.",
+      "support": "derivation",
+      "source": "8^8 = 16,777,216 (node).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.four-queens-pruning.c5",
+      "text": "Backtracking makes 2,056 placements to find all 92 solutions of 8 queens.",
+      "support": "simulation",
+      "source": "Builder's node script with the same counting rule as the stage (one queen per row, safe squares only, all solutions): 2,056 placements, 92 solutions. 92 also in Wirth, 'Program development by stepwise refinement', CACM 14 (1971).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A search places items one at a time and stops extending any partial answer the moment it breaks a rule. Why is it so much faster than checking every complete arrangement?",
+    "options": [
+      "It checks the arrangements in a better order",
+      "One early clash rules out every arrangement that starts that way",
+      "It only works when there is one solution"
+    ],
+    "answer": 1,
+    "why": "Backing up at the first clash skips all its completions at once: 16 placements instead of 256 boards for 4 queens, 2,056 instead of 16,777,216 for 8."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

@@ -1,0 +1,89 @@
+{
+  "slug": "rsa-lock-with-public-key",
+  "title": "A lock everyone can close",
+  "hook": "Everyone knows how to lock the message. So why can't everyone unlock it?",
+  "domain": "cs",
+  "concept": "rsa-trapdoor",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 75,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "the public-key idea (paint-mix-shared-secret)",
+      "fast powers (squaring-shortcut)",
+      "remainders (mod)"
+    ],
+    "doesNotKnow": [
+      "how a published key can lock but not unlock",
+      "that the unlocking key comes from the factors of n"
+    ]
+  },
+  "misconception": "If everyone knows how to lock a message, everyone can work out how to unlock it.",
+  "objective": "The learner can explain that with n = 55 and e = 3 anyone can lock m as m^3 mod 55, but unlocking needs d = 27, which comes from 55 = 5 x 11; and that real keys are safe because factoring very large products is not known to be fast.",
+  "claims": [
+    {
+      "id": "cs.rsa-lock-with-public-key.c1",
+      "text": "With n = 55 and e = 3, 2 locks to 2^3 mod 55 = 8.",
+      "support": "derivation",
+      "source": "2^3 = 8 < 55. Checked in node by the builder.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rsa-lock-with-public-key.c2",
+      "text": "55 = 5 x 11, so (5 - 1)(11 - 1) = 40, and d = 27 because 3 x 27 = 81 = 2 x 40 + 1.",
+      "support": "derivation",
+      "source": "Arithmetic; d is the inverse of e modulo (p - 1)(q - 1). CLRS 3rd ed. 31.7.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rsa-lock-with-public-key.c3",
+      "text": "Unlocking with d = 27 (c^27 mod 55) returns the message, for every message from 0 to 54.",
+      "support": "simulation",
+      "source": "Builder's node check: (m^3 mod 55)^27 mod 55 = m for all m in 0..54; e.g. 8^27 mod 55 = 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rsa-lock-with-public-key.c4",
+      "text": "Using e = 3 again does not unlock most messages; for a few toy messages it happens to bring the message back.",
+      "support": "simulation",
+      "source": "Builder's node check: m^9 mod 55 = m for 15 of the 55 values (0, 1, 10, 11, 12, 21, 22, 23, 32, 33, 34, 43, 44, 45, 54) and differs for the other 40; e.g. 8^3 mod 55 = 17, not 2. The stage says so when a learner hits one of the 15.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rsa-lock-with-public-key.c5",
+      "text": "Locking needs only n and e; unlocking needs d, and d comes from the factors of n.",
+      "support": "source",
+      "source": "Rivest, Shamir, Adleman, 'A method for obtaining digital signatures and public-key cryptosystems', CACM 21 (1978); CLRS 3rd ed. 31.7. (d is computed from (p-1)(q-1); knowing d also lets one factor n, so they are equally hard.)",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rsa-lock-with-public-key.c6",
+      "text": "No fast method is known for factoring numbers hundreds of digits long, which is the size real keys use.",
+      "support": "source",
+      "source": "CLRS 3rd ed. 31.7 and 31.9 (no efficient classical factoring algorithm known; RSA moduli of hundreds of digits). Stated as 'known', not as proven impossible; quantum (Shor) algorithms are out of scope.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In RSA everyone knows the public numbers n and e. What does someone need to work out the unlocking number d?",
+    "options": [
+      "Just n and e, with enough patience at a calculator",
+      "The two primes that multiply to make n",
+      "The original message"
+    ],
+    "answer": 1,
+    "why": "d comes from (p - 1)(q - 1), so you need the factors p and q of n. Multiplying them is easy; finding them from n is the hard part."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

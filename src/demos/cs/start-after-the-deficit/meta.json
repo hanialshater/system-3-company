@@ -1,0 +1,73 @@
+{
+  "slug": "start-after-the-deficit",
+  "title": "Where to start a round trip",
+  "hook": "Five fuel stops on a loop, one tank. Do you have to try every start?",
+  "domain": "cs",
+  "concept": "gas-station-circuit",
+  "format": "Single card",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "running totals (adding as you go)"
+    ],
+    "doesNotKnow": [
+      "that one pass finds where a round trip can start",
+      "why starting after the deepest dip works"
+    ]
+  },
+  "misconception": "To find where you can start a circular trip you must try every starting point.",
+  "objective": "The learner can explain that the running total from any stop is lowest just after some stop, and if the whole loop is not negative, starting at the next stop never drops below zero; here from A the total is lowest after B, so C is the start.",
+  "claims": [
+    {
+      "id": "cs.start-after-the-deficit.c1",
+      "text": "With A +1, B -3, C +4, D -2, E +1, the tank from A goes 1, -2, 2, 0, 1: lowest right after B.",
+      "support": "simulation",
+      "source": "Builder's node script (scratchpad checks/all.mjs): prefix sums 1, -2, 2, 0, 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.start-after-the-deficit.c2",
+      "text": "Starting at C, the tank goes 4, 2, 3, 4, 1 and never drops below zero; C is the only start that works.",
+      "support": "simulation",
+      "source": "Builder's node script tries all 5 starts: only C never goes negative (A stalls after B, B at once, D at once, E after B).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.start-after-the-deficit.c3",
+      "text": "The whole loop adds up to +1, so some start must work.",
+      "support": "derivation",
+      "source": "1 - 3 + 4 - 2 + 1 = 1. If the total is not negative, the start just after the minimum prefix sum works (c4), so a start exists.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.start-after-the-deficit.c4",
+      "text": "Begin just after the deepest dip and every later total is measured from the bottom, so it cannot go below zero; one pass finds the start.",
+      "support": "derivation",
+      "source": "Let P_k be the prefix sums from A and m the minimum, at position j. Starting at j + 1, the tank after reaching position k is P_k - m >= 0 for k after j, and P_total - m + P_k >= 0 for k up to j (since P_total >= 0 and P_k >= m). Known exercise (gas station problem); the proof stands as a derivation.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Driving a loop, the running fuel total from the first stop is lowest right after stop 7, and the whole loop is not negative. Where should you start?",
+    "options": [
+      "At stop 7",
+      "At stop 8, just after the lowest point",
+      "At the stop with the most fuel"
+    ],
+    "answer": 1,
+    "why": "Starting just after the deepest dip means every later total is measured from the bottom, so the tank never goes below zero."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}

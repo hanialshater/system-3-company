@@ -1,0 +1,81 @@
+{
+  "slug": "probing-clusters-grow",
+  "title": "Full stretches feed themselves",
+  "hook": "A key that finds its slot taken just moves along. That is how traffic jams grow.",
+  "domain": "cs",
+  "concept": "open-addressing",
+  "format": "Simulation run",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "hash tables put keys in slots by a hash value",
+      "collisions happen early (hash-bucket-pileup)"
+    ],
+    "doesNotKnow": [
+      "that 'try the next slot' makes full stretches grow faster",
+      "primary clustering"
+    ]
+  },
+  "misconception": "In a table where collisions go to the next free slot, every empty slot is equally likely to be filled next.",
+  "objective": "The learner can explain that with linear probing an empty slot just after a run of full slots catches every key hashing into the run (slot 5 catches 4 in 10 here), so long runs grow fastest and probes get longer as the table fills.",
+  "claims": [
+    {
+      "id": "cs.probing-clusters-grow.c1",
+      "text": "With slots 2, 3, 4 and 7 full, slot 5 receives keys hashing to 2, 3, 4 or 5 (4 in 10), slot 8 receives 2 in 10, and every other empty slot 1 in 10.",
+      "support": "simulation",
+      "source": "Exhaustive over the 10 hash values (builder's node script, scratchpad checks/all.mjs and probe.mjs): slot 0: 1, 1: 1, 5: 4, 6: 1, 8: 2, 9: 1. Assumes each hash value equally likely.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.probing-clusters-grow.c2",
+      "text": "A run of full slots catches every key that hashes anywhere inside it, so the longest run grows fastest.",
+      "support": "source",
+      "source": "Primary clustering in linear probing: an empty slot preceded by i full slots is filled next with probability (i + 1)/m. CLRS 3rd ed. 11.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.probing-clusters-grow.c3",
+      "text": "This is called primary clustering.",
+      "support": "source",
+      "source": "CLRS 3rd ed. 11.4 (linear probing 'suffers from a problem known as primary clustering'); Knuth, TAOCP Vol. 3, 6.4.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.probing-clusters-grow.c4",
+      "text": "Keys walk further as the table fills: probes get longer.",
+      "support": "source",
+      "source": "Knuth, TAOCP Vol. 3, 6.4: expected probes for an unsuccessful search about (1 + 1/(1 - a)^2)/2 at load factor a, which grows without bound as a approaches 1. On the stage's seeded run the probes are 2, 3, 5, 5, 3, 6.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.probing-clusters-grow.c5",
+      "text": "On the stage, the 2nd and 3rd keys hash to 3 and 2, inside the 2-4 run, and land past it in slots 5 and 6; after the third key the longest full run is 7 slots.",
+      "support": "simulation",
+      "source": "Hash values from mulberry32 seed 2 (src/kit/random.ts): 7, 3, 2, 5, 8, 6. Seed 2 was CHOSEN from seeds 1-8 because its early keys fall inside the run; it is an illustration, not evidence. Builder's probe.mjs: every seed 1-8 reaches a run of 5 or more within 4 inserts (seed 3 needs 4, seed 7 needs 2, the rest 3).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A hash table uses 'if the slot is full, try the next one'. Slots 10 to 15 are full and slot 16 is empty. Compared with an empty slot that has empty neighbours, slot 16 is:",
+    "options": [
+      "equally likely to get the next key",
+      "about 7 times as likely to get it",
+      "less likely, because the keys spread out"
+    ],
+    "answer": 1,
+    "why": "Slot 16 catches keys hashing to 10, 11, 12, 13, 14, 15 or 16: 7 hash values against 1. Full runs catch more and grow faster."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1
+}
