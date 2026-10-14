@@ -3,6 +3,30 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: fact-check pass 24 fixes (W-231 to W-236, plus 3 held claims)
+
+**What changed**
+- W-231 wheel-needs-four-colours (v3): the ring-of-four record keeps the run that used the fewest colours, and the reveal quotes the ring of four only when that run used 3 or fewer. c4 set to unverified.
+- W-232 iss-gravity-still-there (v4): c6 and the Demo.tsx scale comments now say "each point's direction from Earth's centre true", not "every angle". The on-stage chips never contained the phrase. c6 set to unverified.
+- W-233 continental-jigsaw (v4): the shelf-edge sentence is gone from the reveal and claim c4 is deleted.
+- W-234 each-element-pops-once (v3): Next number now steps the pops one box at a time (one pop per press under reduced motion). "Emptied box by box" shows only if the `sawEmpty` flag is set. "Each later number" in both c6 and the reveal. c6 set to unverified.
+- W-235 rotation-untangles-the-chain (v3): choosing Rotating before its first rotation has been seen resets that tree to keys 1 and 2, so the reveal can no longer be locked out. No claim changed.
+- Held claims reworded to rest on the stage: hailstone-27-climbs c7 (v3), only-the-needed-trader-profits c5 (v2, "on this network"), who-pays-same-filter c3 (v2, "Economists call this idea the Coase theorem"; "Here bargaining is free"). All three set to unverified.
+- W-236 (added mid-task by the coordinator): two-bets-split c6 (v6) now describes the model only; patience-wins-the-split c2 (v3) now reads "That was the line above the chart at 10%" and quotes the recorded run's numbers; pay-for-the-harm-you-do c1 (v3) now reads "At the honest $7, the line under the bars read"; bridge-carries-news-not-habits c5 (v3) is dropped. Changed claims set to unverified.
+- Appended a Pre-flight note to each lesson's build.md. Ran `npm run registry`, `npm run check` (pass) and `npx tsc --noEmit -p .` (clean). Moved W-231 to W-236 to done and added a fact-checker re-check item. No build, QA or walkthrough was run.
+
+**What I believe (and how sure)**
+- High that the text fixes do what the pass 24 rows asked.
+- Medium-high on the logic of the pops and rotation changes. I traced it by hand and it typechecks, but nobody has run it in a browser. The reduced-motion press-by-press path in each-element-pops-once is the riskiest.
+- each-element-pops-once c2 ("each new number is compared once") has the same off-by-one as c6. I did not change it because it is still verified; the fact-checker should decide.
+
+**Next**
+- Fact-checker: re-check the unverified claims listed on the new board item.
+- QA owner: build and QA for these 12 lessons (`npm run verify`). Not run here, as instructed.
+
+**Blocked**
+- Nothing.
+
 ## 2026-10-14, fact-checker: pass 24 batch 2 (17 wave E lessons, 37 open claims)
 
 **What changed**
