@@ -17,3 +17,7 @@ From the latest learner review and fact-check (batch 03).
 
 - Worst case split into "Worst result" and "Chance of it".
 - Reveal quotes the 4-bet 31.3% only if the learner visited 4 bets; otherwise points to try it. The 2-bet milestone already gated the reveal.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v4. Review: slider could pass 2 too fast to see; reveal explained 2 bets. Changes: at the reveal the stage pins the 2-bet chart with a chip saying so; slider disabled there; ticks under every bar; 0% bar labelled "break even". Reopened c1; new c8.

@@ -9,3 +9,7 @@ Builder: algo-pair-06 · 2026-10-14 · from brief #10 and spec `company/design/s
 - Ideas from TheAlgorithms/Python floyds_cycle_detection.py used only for how the algorithm works; no code copied.
 - All 6 claims `unverified`. Reveal sentences map to c2, c3, c4, c5, c6.
 - Known: feed-chips QA failures (W-136) are not this lesson.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: "Gap" undefined and read as contradicting the picture; tick tape clipped; toggle read as a label. Changes: gap drawn as a green arc inside the ring from fast forward to slow, with its count; readout says "boxes fast must run to reach slow", "slow not in the loop yet" or "no loop here"; tape in one row of 8; legend merged into the model line; toggle phrased as an action; duplicated reveal line removed. Reopened c2, c3; new c7.

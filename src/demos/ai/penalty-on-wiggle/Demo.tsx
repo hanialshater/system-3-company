@@ -96,7 +96,24 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
   const [li, setLi] = useState(0);
   const [seed, setSeed] = useState(1);
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["penalty-on"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["penalty-on", "too-much"]);
+  // What the learner saw at the strongest penalty (lambda 10): the reveal quotes only this.
+  const [big, setBig] = useState<{ seed: number; held: number; none: number } | null>(null);
+  // The moderate penalty (0.0001..1) that did best against no penalty among those the learner visited.
+  const [mod, setMod] = useState<{ seed: number; li: number; held: number; none: number } | null>(null);
+  const visit = (nextLi: number, nextSeed: number) => {
+    if (nextLi > 0) reach("penalty-on");
+    if (nextLi > 0 && nextLi < LAMBDAS.length - 1) {
+      const d = makeData(nextSeed);
+      const seen = { seed: nextSeed, li: nextLi, held: rms(fit(d.train, LAMBDAS[nextLi]), d.held), none: rms(fit(d.train, 0), d.held) };
+      setMod((m) => (m && m.held - m.none <= seen.held - seen.none ? m : seen));
+    }
+    if (nextLi === LAMBDAS.length - 1) {
+      const d = makeData(nextSeed);
+      setBig({ seed: nextSeed, held: rms(fit(d.train, LAMBDAS[nextLi]), d.held), none: rms(fit(d.train, 0), d.held) });
+      reach("too-much");
+    }
+  };
 
   const now = useMemo(() => scores(seed, li), [seed, li]);
   const none = useMemo(() => scores(seed, 0), [seed]);
@@ -126,11 +143,11 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
       predict={{
         question:
           "A wiggly curve passes through all 8 training dots (miss 0). Now add a penalty that discourages wild bends (ridge: it charges for big coefficients, the numbers that set how sharply the curve bends). The miss on the training dots gets:",
-        options: ["Larger", "Smaller", "Stays exactly 0"],
+        options: ["Larger", "Stays exactly 0", "Larger on some data, 0 on others"],
         answer: 0,
       }}
-      exploreHint="Turn the penalty up. Watch both misses. Then try new data."
-      minInteractions={1}
+      exploreHint="Turn the penalty up a little, then all the way to 10. Watch both misses."
+      minInteractions={2}
       reveal={() => {
         // Spread over seeds 1-500, from the same model the stage draws.
         let wins = 0;
@@ -148,9 +165,17 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
               by design.
             </p>
             <p>
-              The held-out dots tell the other story: {none.heldMiss.toFixed(2)} with no penalty, {now.heldMiss.toFixed(2)} now. In{" "}
+              The held-out dots tell the other story:{" "}
+              {mod
+                ? `at penalty ${fmtL(mod.li)} on data set ${mod.seed} you saw ${mod.held.toFixed(2)} against ${mod.none.toFixed(2)} with none.`
+                : `${none.heldMiss.toFixed(2)} with no penalty, ${now.heldMiss.toFixed(2)} now.`}{" "}
+              In{" "}
               {wins} of 500 data sets some moderate penalty (the best of five, 0.0001 to 1) beat none on held-out dots. Push
-              to 10 and the curve goes much flatter and usually loses again to no penalty. A worse fit to training can be a better model.
+              to 10 and the curve goes much flatter:{" "}
+              {big
+                ? `on data set ${big.seed} you saw held-out ${big.held.toFixed(2)} at 10 against ${big.none.toFixed(2)} with none, so too much penalty ${big.held > big.none ? "lost again" : "still won here, though it usually loses"}.`
+                : "it usually loses again."}{" "}
+              A worse fit to training can be a better model.
             </p>
           </>
         );
@@ -186,13 +211,28 @@ export default function PenaltyOnWiggle({ slug }: { slug: string }) {
             </svg>
             <Slider label="Penalty λ" value={li} min={0} max={LAMBDAS.length - 1} format={fmtL} disabled={locked} onChange={(v) => {
               setLi(v);
-              if (v > 0) reach("penalty-on");
+              visit(v, seed);
             }} />
             <Row>
               <Readout label="Training miss" value={locked ? "–" : now.trainMiss.toFixed(2)} />
               <Readout label="Held-out miss" value={locked ? "–" : now.heldMiss.toFixed(2)} />
               <Readout label="No-penalty held-out" value={none.heldMiss.toFixed(2)} />
-              <Control disabled={locked} onClick={() => setSeed(seed + 1)}>
+              <Control
+                disabled={locked || li === LAMBDAS.length - 1}
+                onClick={() => {
+                  setLi(LAMBDAS.length - 1);
+                  visit(LAMBDAS.length - 1, seed);
+                }}
+              >
+                Penalty 10
+              </Control>
+              <Control
+                disabled={locked}
+                onClick={() => {
+                  setSeed(seed + 1);
+                  visit(li, seed + 1);
+                }}
+              >
                 New data
               </Control>
             </Row>

@@ -81,15 +81,25 @@ const CH = 38;
 const cx = (j: number) => X0 + j * CW + CW / 2;
 const cy = (i: number) => Y0 + i * CH + CH / 2;
 
-function note(k: number): string {
-  const { i, j } = pos(k);
+// A cell's number is the edits from one beginning of FLAW to one beginning of LAWN; the caption names both and
+// the smaller pair it was built from. "·" is the empty beginning, as on the grid's edge.
+const pre = (w: string, n: number) => (n === 0 ? "·" : w.slice(0, n));
+function caption(i: number, j: number): string {
   const a = A[i - 1];
   const b = B[j - 1];
   const v = D[i][j];
-  if (FROM[i][j] === "match") return `${a} = ${b}: a match, copy the diagonal (${v}).`;
-  const where = FROM[i][j] === "diag" ? "diagonal" : FROM[i][j] === "up" ? "above" : "left";
-  return `${a} vs ${b}: the cheapest neighbour is ${where} (${v - 1} + 1 = ${v}).`;
+  const f = FROM[i][j];
+  const [pi, pj] = f === "up" ? [i - 1, j] : f === "left" ? [i, j - 1] : [i - 1, j - 1];
+  const after = `after ${pre(A, pi)} → ${pre(B, pj)} (${D[pi][pj]})`;
+  if (f === "match") return `${pre(A, i)} → ${pre(B, j)} = ${v}: ${a} = ${b}, keep it free (+0), ${after}.`;
+  const edit = f === "diag" ? `replace ${a} with ${b}` : f === "up" ? `delete ${a}` : `insert ${b}`;
+  return `${pre(A, i)} → ${pre(B, j)} = ${v}: ${edit} (+1), ${after}.`;
 }
+const CORNER = caption(R, C).replace(/\.$/, "");
+const note = (k: number) => {
+  const { i, j } = pos(k);
+  return caption(i, j);
+};
 
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [n, setN] = useState(0); // cells filled
@@ -124,7 +134,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       <p className={`${s.msg} ${traced ? s.good : ""}`} aria-live="polite">
         {msg}
       </p>
-      <svg viewBox="0 0 320 232" className="stage-svg" role="img" aria-label={`Edit distance grid, ${n} of ${CELLS} cells filled`}>
+      <svg viewBox="0 0 320 250" className="stage-svg" role="img" aria-label={`Edit distance grid, ${n} of ${CELLS} cells filled`}>
         {B.split("").map((ch, j) => (
           <text key={j} x={cx(j + 1)} y={21} textAnchor="middle" className={s.head}>
             {ch}
@@ -165,6 +175,9 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           }),
         )}
         {last && !traced && <Arrow from={last} kind={FROM[last.i][last.j]} />}
+        <text x={175} y={243} textAnchor="middle" className={s.edge}>
+          ↓ delete · → insert · ↘ replace (free if letters match)
+        </text>
       </svg>
       <Row>
         <Control className={s.tap} disabled={locked || n >= CELLS} onClick={() => fillTo(n + 1)}>
@@ -175,7 +188,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
             Row {ch}
           </Control>
         ))}
-        <Control className={`${s.tap} active`} disabled={locked || n < CELLS || traced} onClick={trace}>
+        <Control className={`${s.tap} ${locked || n < CELLS || traced ? "" : "active"}`} disabled={locked || n < CELLS || traced} onClick={trace}>
           Trace back from the corner
         </Control>
       </Row>
@@ -222,9 +235,9 @@ export default function FlawToLawn({ slug }: { slug: string }) {
             by spot gives 4, because it never lets letters slide; one delete shifts LAW into line.
           </p>
           <p>
-            Each of the 16 cells you filled took the cheapest of three neighbours you had already filled, so the distance
-            between whole words was built from distances between their beginnings. A small grid replaces trying every
-            sequence of edits.
+            Every cell compared two beginnings. The corner said &ldquo;{CORNER}&rdquo;: the whole-word distance was built from a
+            beginning you had already filled, as every cell was, by the cheapest of three neighbours. A small grid
+            replaces trying every sequence of edits.
           </p>
           <p className="muted">Spell checkers and DNA alignment fill this grid.</p>
         </>

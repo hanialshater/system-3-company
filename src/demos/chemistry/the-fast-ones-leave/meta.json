@@ -84,6 +84,20 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "chemistry.the-fast-ones-leave.c8",
+      "text": "Stage: only the pink molecules, faster than 750 m/s, can escape; grey columns are too slow to escape. The thermometer's number is the average kinetic energy of the molecules left, as a percentage of the start.",
+      "support": "convention",
+      "source": "Toy rule in Demo.tsx (FAST_BIN = first 150 m/s column wholly above the starting rms speed, 630 m/s, so 750 m/s; energy = meanSq / MS0). Real escape needs energy well above average to overcome the surface attraction, so a high threshold is the honest direction; the exact 750 m/s cut is a toy choice. With seed 1 there are 10 such molecules (809-1198 m/s). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Slow columns are no longer buttons (r5 blocking finding: slow escapes raised the average).",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-fast-ones-leave.c9",
+      "text": "When you had let N fast molecules escape, the average speed of the rest had gone from about 583 m/s to X m/s, and the thermometer had fallen to Y% of its start. Each tap lowered both.",
+      "support": "derivation",
+      "source": "Values computed in the reveal from the learner's own lowest state. 'Each tap lowered both': every escapable molecule (>= 750 m/s) is above the current mean and rms speed, which only fall, so removing it lowers both mean speed and mean square speed. Builder's node re-run of seed 1, fastest-first: 573/96%, 563/91%, 553/87% ... 504/70% after all 10; one per column (881, 1036, 1198): 559 m/s, 91%. | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. Replaces the old 'When N molecules had escaped' sentence, which counted slow escapes.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -108,7 +122,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:evaporation-cooling",
     "prerequisites": [

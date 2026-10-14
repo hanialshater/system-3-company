@@ -1,7 +1,7 @@
 {
   "slug": "penalty-on-wiggle",
-  "title": "Fit worse on purpose",
-  "hook": "A curve hits every training dot. Why would you make it miss?",
+  "title": "What a penalty does to the fit",
+  "hook": "A curve hits every training dot. Add a penalty for wild bends: what happens to its miss?",
   "domain": "ai",
   "concept": "regularisation",
   "status": "review",
@@ -61,12 +61,17 @@
     },
     {
       "id": "ai.penalty-on-wiggle.c5",
-      "text": "Push the penalty to 10 and the curve goes much flatter and usually loses again to no penalty on the held-out dots.",
+      "text": "Push to 10 and the curve goes much flatter: on data set N you saw held-out H at 10 against H0 with none, so too much penalty lost again (or, in the minority of data sets where it wins: still won here, though it usually loses). Values are the learner's own visit to penalty 10.",
       "support": "simulation",
-      "source": "Reveal paragraph 2. The 'loses again' part holds: lambda 10 is worse than the best moderate penalty in 500/500 and 10,000/10,000 further data sets, and beats no penalty in only 12%. 'Nearly flat' is loose: over seeds 1-200 the lambda 10 curve's range is a median 37% (16%-58%) of the training data's range, versus about 2.7 units for the unpenalised curve; it is strongly shrunk, not flat. Wording concern for demo-builder (e.g. 'goes much flatter'). Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: Re-ran model: at penalty 10 the curve loses to no penalty in 441/500 seeds (88%), so 'loses again' needs 'usually'; and 'nearly flat' is loose (the curve is strongly shrunk, median about 37% of the training range per earlier check, not flat). Fix: 'goes much flatter and usually loses again'. | CLAIM FIX 2026-10-13: Was 'nearly flat and loses again' (disputed: loses in 441/500 seeds, 88%; curve is strongly shrunk, not flat). | FACT-CHECK 2026-10-13 (pass 4): Re-ran model.ts from Demo.tsx over seeds 1-500: lambda 10 held-out miss worse than no penalty in 441/500 (88%) so 'usually loses'; curve range at lambda 10 is a median 37% of training range (95% range 21%-54%), 'much flatter' fits.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Reveal paragraph 2. The 'loses again' part holds: lambda 10 is worse than the best moderate penalty in 500/500 and 10,000/10,000 further data sets, and beats no penalty in only 12%. 'Nearly flat' is loose: over seeds 1-200 the lambda 10 curve's range is a median 37% (16%-58%) of the training data's range, versus about 2.7 units for the unpenalised curve; it is strongly shrunk, not flat. Wording concern for demo-builder (e.g. 'goes much flatter'). Added by fact-checker 2026-10-13; needs an independent check. DISPUTED 2026-10-13: Re-ran model: at penalty 10 the curve loses to no penalty in 441/500 seeds (88%), so 'loses again' needs 'usually'; and 'nearly flat' is loose (the curve is strongly shrunk, median about 37% of the training range per earlier check, not flat). Fix: 'goes much flatter and usually loses again'. | CLAIM FIX 2026-10-13: Was 'nearly flat and loses again' (disputed: loses in 441/500 seeds, 88%; curve is strongly shrunk, not flat). | FACT-CHECK 2026-10-13 (pass 4): Re-ran model.ts from Demo.tsx over seeds 1-500: lambda 10 held-out miss worse than no penalty in 441/500 (88%) so 'usually loses'; curve range at lambda 10 is a median 37% of training range (95% range 21%-54%), 'much flatter' fits. | REVISED v4 2026-10-14 (demo-builder, wave D r5): The 'push to 10' sentence now quotes the held-out misses the learner saw on their own visit to penalty 10 (the gate requires that visit via the slider or the new 'Penalty 10' button), and branches on whether 10 lost to none on that data set. 'Usually loses' still rests on the 441/500 figure above.",
+      "status": "unverified"
+    },
+    {
+      "id": "ai.penalty-on-wiggle.c6",
+      "text": "The held-out dots tell the other story: at penalty L on data set N you saw H against H0 with none (the visited moderate penalty, 0.0001 to 1, that did best against no penalty).",
+      "support": "simulation",
+      "source": "Reveal paragraph 2, computed by visit() in Demo.tsx from the same makeData/fit/rms that draw the stage; replaces the old 'H0 with no penalty, H now' sentence, which could quote penalty 10 after the jump. Data set 1 at 0.001: 0.41 vs 0.44 (r5 review screenshot). | REVISED v4 2026-10-14 (demo-builder, wave D r5): new sentence. Quotes only states the learner visited.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +96,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "ai:regularisation",
     "prerequisites": [

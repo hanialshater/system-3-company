@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "economics.two-bets-split.c1",
-      "text": "Split equally across two independent bets that each pay +20% or −10% with equal chance, you lose money only if both fall: a 25% chance, for −10%.",
+      "text": "On the stage now, two bets: you lose only if both fall: ½ × ½ = 25% (split equally across two independent bets that each pay +20% or −10% with equal chance, the loss is −10%).",
       "support": "derivation",
-      "source": "Four equally likely cases: both up +20%, one each (2 cases) (20 − 10)/2 = +5%, both down −10%. P(loss) = 1/4.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Four equally likely cases: both up +20%, one each (2 cases) (20 − 10)/2 = +5%, both down −10%. P(loss) = 1/4. | REVISED v4 2026-10-14 (demo-builder, wave D r5): At the reveal the stage now pins the 2-bet chart (chip: 'Showing 2 bets, as the answer explains'), so the 25% and +5% the reveal explains are on screen even if the learner's slider passed 2 quickly (r5: 1 → 3 unlocked the reveal without the 2-bet state in view). Numbers unchanged.",
+      "status": "unverified"
     },
     {
       "id": "economics.two-bets-split.c2",
@@ -85,6 +83,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.two-bets-split.c8",
+      "text": "Chart labels: the 0% bar is labelled 'break even'; every bar has a return tick under it (e.g. −10%, 0%, +10%, +20% at 3 bets).",
+      "support": "derivation",
+      "source": "outcomes(n) in Demo.tsx: returns (k × 20 + (n − k) × (−10)) / n for k = 0..n; at n = 3 these are −10, 0, +10, +20. A 0% result is neither gain nor loss (lossChance counts r < 0 only). | REVISED v4 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text (r5 minor).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -110,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "economics:diversification",
     "prerequisites": [

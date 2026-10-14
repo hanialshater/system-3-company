@@ -61,12 +61,24 @@
     },
     {
       "id": "cs.patience-piles.c5",
-      "text": "Every card on pile k points back to a smaller, earlier card on pile k - 1, so a run as long as the number of piles always exists: the number of piles equals the length of the longest rising run.",
+      "text": "Every card on pile k has an arrow back to a smaller, earlier card on pile k − 1, as your trace drew, so a run as long as the number of piles always exists.",
       "support": "source",
-      "source": "When a card lands on pile k, the top of pile k - 1 is smaller (else the card would have gone there) and was dealt earlier. Aldous and Diaconis, 'Longest increasing subsequences: from patience sorting to the Baik-Deift-Johansson theorem', Bull. AMS 36 (1999). | FACT-CHECK 2026-10-14 (pass 10): Back-pointer argument re-derived; own node check: piles = LIS length on 20,000 random sequences with repeats. Aldous and Diaconis, Bull. AMS 36(4) (1999). Stage trace from pile 4 gives 1 4 5 6.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "When a card lands on pile k, the top of pile k - 1 is smaller (else the card would have gone there) and was dealt earlier. Aldous and Diaconis, 'Longest increasing subsequences: from patience sorting to the Baik-Deift-Johansson theorem', Bull. AMS 36 (1999). | FACT-CHECK 2026-10-14 (pass 10): Back-pointer argument re-derived; own node check: piles = LIS length on 20,000 random sequences with repeats. Aldous and Diaconis, Bull. AMS 36(4) (1999). Stage trace from pile 4 gives 1 4 5 6. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal now points at the back-link arrows the trace draws between piles (r5: nothing on stage drew a pointer, and the old top-card '←' collided with 'points back'). Top cards are now marked by a heavy outline and 'pile k · top' header instead of '←'.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c6",
+      "text": "Deal captions, one per card: '<card> → pile k: top t is not smaller; u on pile k − 1 was', '<card> → pile 1: top t is not smaller', or '<card> → a new pile: every top is smaller'. For 3 1 4 1 5 9 2 6 these give 3 new, 1 on 3, 4 new, 1 on 1, 5 new, 9 new, 2 on 4 (1 on pile 1 was smaller), 6 on 9 (5 on pile 3 was smaller).",
+      "support": "derivation",
+      "source": "why() in Demo.tsx, computed from the same place()/target() that build the piles. 'Deal the rest' now plays the remaining cards one per 0.9 s with these captions (r5 top finding: 7 of 8 rule applications were hidden). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.patience-piles.c7",
+      "text": "Trace caption: 'Pile 4 back: 6 → 5 → 4 → 1. Each arrow: the smaller top on the pile to the left when that card landed.' Pile 1 has no pile to its left.",
+      "support": "derivation",
+      "source": "place() in Demo.tsx stores prev = the top of pile k − 1 at the moment a card lands on pile k; since pile k is the leftmost whose top is not smaller, that top is smaller and earlier. Trace from pile 4 follows 6 → 5 → 4 → 1 (builder hand-check of the deal). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +103,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:longest-increasing-subsequence",
     "prerequisites": [

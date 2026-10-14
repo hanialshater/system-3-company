@@ -31,6 +31,7 @@ const TOPY = 22;
 const CX = 70;
 const CW = 70;
 const py = (v: number) => BOT - (v / LIMIT_Q) * (BOT - TOPY);
+const CAP_Y = 58;
 
 export default function BankLendsItAgain({ slug }: { slug: string }) {
   const [rounds, setRounds] = useState(1);
@@ -51,7 +52,8 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Keeping {Q_RATIO}%, round 2 added {usd(deposit(2, Q_RATIO))}, and every round adds 90% of the one before.
+            Keeping {Q_RATIO}%, round 2 added {usd(deposit(2, Q_RATIO))}, and, as the round caption showed, every round adds 90%
+            of the one before.
             After {maxQ} rounds total deposits were <strong>{usd(total(maxQ, Q_RATIO))}</strong>, levelling off toward{" "}
             <strong>{usd(LIMIT_Q)}</strong>: {usd(FIRST)} ÷ 0.{Q_RATIO}.
             {tried.length > 0 && ` Keeping ${tried.map((k) => `${k}% stopped it at ${usd(limit(k))}`).join(", ")}.`}
@@ -134,9 +136,17 @@ export default function BankLendsItAgain({ slug }: { slug: string }) {
                   <text x={CX + CW + 8} y={py(FIRST / 2) + 4} className={s.axis}>
                     first deposit {usd(FIRST)}
                   </text>
+                  {/* Round caption sits between the 10% and 20% limit lines (y 22 and 104), clear of every limit label. */}
                   {!locked && rounds > 1 && (
-                    <text x={300} y={TOPY - 8} textAnchor="end" className={s.axis}>
-                      round {rounds} adds {deposit(rounds, ratio) >= 1 ? usd(deposit(rounds, ratio)) : "under $1"}
+                    <text x={CX + CW + 8} y={CAP_Y} className={s.axis}>
+                      <tspan x={CX + CW + 8}>
+                        round {rounds} adds {deposit(rounds, ratio) >= 1 ? usd(deposit(rounds, ratio)) : "under $1"}
+                      </tspan>
+                      {deposit(rounds - 1, ratio) >= 10 && (
+                        <tspan x={CX + CW + 8} dy={14}>
+                          = {100 - ratio}% of round {rounds - 1}&apos;s {usd(deposit(rounds - 1, ratio))}
+                        </tspan>
+                      )}
                     </text>
                   )}
                 </svg>

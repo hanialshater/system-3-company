@@ -8,3 +8,7 @@
 ## Revision v2
 
 Review: option formats leaked the answer; 2^k unreadable; $1-per-flip told. Changes: options $2, $10, $20; payouts spelled out $2, $4, $8; reveal shows the $1-per-flip working. c2 unverified. Version 2.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: why $20 was told; "Profit" unowned. Changes: a 20-bar strip under the running-average chart splits the learner's own average by the flip tails came on, with a dashed $1 fair-share line (bars over $2 capped and labelled); reveal reads the strip back (seeded 550 games: flips 1-9 about $1, flip 13 $14.89 from one win, 9 flips empty); "Your profit". Reopened c2, c6; new c7, c8. c5 sentence no longer shown.

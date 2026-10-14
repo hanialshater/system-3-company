@@ -34,12 +34,10 @@
     },
     {
       "id": "probability.capped-doubling-game.c2",
-      "text": "The exact fair price is $20: each k from 1 to 20 adds 2^k x (1/2)^k = $1 to the average payout.",
+      "text": "Why $20? Tails first on flip 1 pays $2 half the time: $1 of the average. On flip 2, $4 a quarter of the time: $1. Every flip's fair share is $1, so 20 flips make $20 (each k from 1 to 20 adds 2^k x (1/2)^k = $1).",
       "support": "derivation",
-      "source": "Sum over k = 1..20 of 2^k (1/2)^k = 20 (fairPrice() in model.ts, recomputed in node). The probability of first tails on flip k is (1/2)^k. | v2 (2026-10-14): options parallel and payouts spelled out; reveal shows the $1-per-flip working; previous verification void, needs re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Sum over k = 1..20 of 2^k (1/2)^k = 20 (fairPrice() in model.ts, recomputed in node). The probability of first tails on flip k is (1/2)^k. | v2 (2026-10-14): options parallel and payouts spelled out; reveal shows the $1-per-flip working; previous verification void, needs re-check. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal now points at the new per-flip strip on stage; the 'flip 3, $8 an eighth' sentence was dropped for length. The old closing 'Another run could show a lower average' (c5) is no longer shown.",
+      "status": "unverified"
     },
     {
       "id": "probability.capped-doubling-game.c3",
@@ -70,12 +68,24 @@
     },
     {
       "id": "probability.capped-doubling-game.c6",
-      "text": "The profit readout is total payouts minus price times games played.",
+      "text": "The 'Your profit' readout is the player's profit: total payouts minus price times games played.",
       "support": "convention",
-      "source": "profit = summary(n).total - price x n in Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "profit = summary(n).total - price x n in Demo.tsx. | REVISED v3 2026-10-14 (demo-builder, wave D r5): Label changed from 'Profit' to 'Your profit' (r5: a beginner may read it as the house's).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c7",
+      "text": "Stage strip: 'your average split by the flip tails came on (fair share $1 each)': bar k is (games whose first tails was on flip k) x $2^k / games, so the 20 bars add up to the running average; a dashed line marks $1, bars above $2 are capped and labelled with their value.",
+      "support": "derivation",
+      "source": "shares() in Demo.tsx. The bars sum to total payout / games = the average readout. The fair share of flip k is 2^k x (1/2)^k = $1 (c2). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage element: shows the $1-per-flip cause (decision 2026-10-14-told-vs-shown).",
+      "status": "unverified"
+    },
+    {
+      "id": "probability.capped-doubling-game.c8",
+      "text": "In your strip, flips 1 to m each gave about $1, flip K gave $X from N rare win(s) and E of the 20 never came up, so gave $0 (computed from the learner's own games; 'about $1' means between $0.50 and $1.60). Seeded run at 550 games: flips 1 to 9 about $1 (0.93 to 1.22), flip 13 $14.89 from 1 win, 9 flips never came up.",
+      "support": "simulation",
+      "source": "readStrip() in Demo.tsx over the seeded games (model.ts, mulberry32(2500 + g)); builder's separate node re-run of seeds 2500-3049 gave the 550-game shares 0.99, 0.93, 1.12, 1.05, 1.22, 0.93, 0.93, 0.93, 0.93, 1.86, 0, 0, 14.89, 0 ... 0 (sum 25.79, matching c4). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New reveal sentence.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -100,7 +110,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:expected-value",
     "prerequisites": [],

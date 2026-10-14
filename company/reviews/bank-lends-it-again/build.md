@@ -12,3 +12,7 @@ builder: demo-builder · 2026-10-13
 Learner review r2 (2026-10-14) findings:
 - Column total and limit labels overlapped on the answer frame. The total now sits to the left of the column at the column top; the limit label stays on the dashed line at the right.
 - The reveal quoted round 3 ($810), which the learner may skip with +10. It now says "round 2 added $900, and every round adds 90% of the one before" (round 2 is reached by the first milestone). No claim text changed.
+
+## Revision 2026-10-14 (wave D r5, demo-builder)
+
+v3. Review: round caption overprinted the 10% limit label. Changes: caption moved beside the column at y 58 (between the 10% and 20% limit lines) and given a second line "= 90% of round r-1's $D"; reveal points at it. Reopened c1; new c7.

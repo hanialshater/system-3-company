@@ -62,6 +62,37 @@ const CENTRE: Record<number, { x: number; y: number }> = {
 };
 const HALF = 17;
 
+// The gap drawn as an arc inside the ring, from fast forward (the way the arrows go) to slow.
+const ARC_R = 26;
+const angOf = (b: number) => 180 + 72 * (b - TAIL_END);
+function GapArc({ from, steps }: { from: number; steps: number }) {
+  const a0 = angOf(from);
+  const a1 = a0 + 72 * steps;
+  const p = (a: number) => ({ x: RING_C.x + ARC_R * Math.cos(rad(a)), y: RING_C.y + ARC_R * Math.sin(rad(a)) });
+  const s0 = p(a0);
+  const s1 = p(a1);
+  const mid = p((a0 + a1) / 2);
+  return (
+    <g data-gap-arc={steps}>
+      <path
+        d={`M${s0.x.toFixed(1)},${s0.y.toFixed(1)} A${ARC_R},${ARC_R} 0 ${steps * 72 > 180 ? 1 : 0} 1 ${s1.x.toFixed(1)},${s1.y.toFixed(1)}`}
+        fill="none"
+        stroke="var(--good)"
+        strokeWidth={4}
+        strokeLinecap="round"
+        markerEnd="url(#th-gap)"
+      />
+      {Array.from({ length: steps - 1 }, (_, k) => {
+        const q = p(a0 + 72 * (k + 1));
+        return <circle key={k} cx={q.x} cy={q.y} r={2.5} fill="var(--good)" />;
+      })}
+      <text x={RING_C.x + (mid.x - RING_C.x) * 0.35} y={RING_C.y + (mid.y - RING_C.y) * 0.35 + 4} textAnchor="middle" className={s.arcNum}>
+        {steps}
+      </text>
+    </g>
+  );
+}
+
 function Arrow({ from, to }: { from: number; to: number }) {
   const a = CENTRE[from];
   const b = CENTRE[to];
@@ -117,7 +148,7 @@ function Stage({
   const { tick, nowhere } = view;
   const pos = at(tick, nowhere);
   const prev = tick > 0 ? at(tick - 1, nowhere) : null;
-  const gap = gapOf(pos);
+  const gap = nowhere ? null : gapOf(pos);
   const stop = halted(tick, nowhere);
   const met = stop && pos.s === pos.f;
   const ended = stop && !met;
@@ -155,6 +186,16 @@ function Stage({
           ? "Press tick 1."
           : `Slow on ${pos.s}, fast on ${pos.f}.`;
   const gapText = locked || tick === 0 ? "?" : gap === null ? "—" : String(gap);
+  const gapWhy =
+    locked || tick === 0
+      ? ""
+      : nowhere
+        ? ": no loop here"
+        : gap === null
+          ? ": slow not in the loop yet"
+          : gap === 0
+            ? ": same box"
+            : ` boxes fast must run to reach slow (green arc)`;
   const markerOffset = (box: number, who: "s" | "f") => {
     const c = CENTRE[box];
     return { x: c.x + (who === "s" ? -8 : 8), y: c.y + 6 };
@@ -162,7 +203,10 @@ function Stage({
 
   return (
     <div className={s.wrap}>
-      <p className={s.model}>Slow moves 1 box per tick, fast moves 2. Nothing else is remembered.</p>
+      <p className={s.model}>
+        <span className={s.dotSlow} aria-hidden="true" /> Slow moves 1 box per tick, <span className={s.triFast} aria-hidden="true" /> fast
+        moves 2. Nothing else is remembered.
+      </p>
       <svg
         viewBox="0 0 330 168"
         className="stage-svg"
@@ -172,6 +216,9 @@ function Stage({
         <defs>
           <marker id="th-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M0,0 L8,4 L0,8 z" fill="var(--muted)" />
+          </marker>
+          <marker id="th-gap" viewBox="0 0 8 8" refX="5" refY="4" markerWidth="4" markerHeight="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="var(--good)" />
           </marker>
         </defs>
         {[1, 2, 3, 4, 5, 6].map((b) => (
@@ -222,23 +269,20 @@ function Stage({
             </g>
           );
         })}
+        {!locked && gap !== null && gap > 0 && <GapArc from={pos.f} steps={gap} />}
         {prev && prev.s !== pos.s && <Slow ghost {...markerOffset(prev.s, "s")} />}
         {prev && prev.f !== pos.f && <Fast ghost {...markerOffset(prev.f, "f")} />}
         <Slow {...markerOffset(pos.s, "s")} />
         <Fast {...markerOffset(pos.f, "f")} />
       </svg>
-      <p className={s.legend}>
-        <span className={s.dotSlow} aria-hidden="true" /> slow &nbsp; <span className={s.triFast} aria-hidden="true" /> fast
-      </p>
       <p className={s.read} aria-live="polite">
         Tick {tick} · Gap{" "}
         <span key={gapText} className={s.gap}>
           {gapText}
-        </span>{" "}
-        · Memory: 2 markers
+        </span>
+        <span className={s.gapWhy}>{gapWhy}</span>
       </p>
       <p className={`${s.status} ${met ? s.good : ""}`}>{reveal ? `Your run: tick ${tick}, box ${pos.s}. ${status}` : status}</p>
-      <div className={s.group}>Tick</div>
       <div className={s.tape}>
         {Array.from({ length: TILES }, (_, i) => i + 1).map((k) => {
           const current = k === tick;
@@ -262,7 +306,7 @@ function Stage({
         disabled={locked || reveal}
         onClick={toggle}
       >
-        {nowhere ? "Last arrow: nowhere" : `Last arrow: to box ${TAIL_END}`}
+        {nowhere ? `Point last arrow back to box ${TAIL_END}` : "Point last arrow at nowhere"}
       </Control>
     </div>
   );
@@ -278,20 +322,20 @@ export default function TortoiseMeetsHare({ slug }: { slug: string }) {
         options: ["Yes, always", "Only if the loop length is even", "No, the fast one can jump over"],
         answer: 0,
       }}
-      exploreHint="Press the ticks in order and watch the gap. Then point the last arrow at nowhere."
+      exploreHint="Press the ticks in order and watch the green gap arc. Then point the last arrow at nowhere."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
-            Your fast marker was 3 boxes behind, then 2, then 1, then on the same box at tick 5. In a loop the fast one
-            gains exactly one box per tick, so the gap counts down and cannot step over 0. With the last arrow pointing
+            Your green arc, the boxes fast still had to run to reach slow, was 3, then 2, then 1, then they shared box 6
+            at tick 5. In a loop the fast one gains exactly one box per tick, so the arc shrinks by one box and cannot step
+            over 0. With the last arrow pointing
             nowhere, fast hit the end at tick 3: no loop.
           </p>
           <p>
             Two markers, no list of visited boxes. This is Floyd&apos;s tortoise and hare, and it also works for tails
             of 0 to 10 boxes and loops of 1 to 10.
           </p>
-          <p className="muted">The gap shrinks by one each tick, so it must hit zero.</p>
         </>
       )}
     >

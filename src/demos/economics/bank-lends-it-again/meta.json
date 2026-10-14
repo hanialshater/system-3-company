@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "economics.bank-lends-it-again.c1",
-      "text": "If banks keep 10% and every loan is redeposited, a $1,000 deposit leads to new deposits of $900, $810, … each 90% of the last.",
+      "text": "Keeping 10%, round 2 added $900, and, as the round caption showed, every round adds 90% of the one before (a $1,000 deposit leads to new deposits of $900, $810, …).",
       "support": "derivation",
-      "source": "deposit(r) = 1,000 × 0.9^(r − 1). Demo.tsx deposit().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "deposit(r) = 1,000 × 0.9^(r − 1). Demo.tsx deposit(). | REVISED v3 2026-10-14 (demo-builder, wave D r5): Reveal sentence now points at the new stage caption; numbers unchanged.",
+      "status": "unverified"
     },
     {
       "id": "economics.bank-lends-it-again.c2",
@@ -75,6 +73,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.bank-lends-it-again.c7",
+      "text": "Stage caption: 'round r adds $D = (100 − k)% of round r − 1's $D′' (second line shown while the previous deposit is at least $10), e.g. 'round 3 adds $810 = 90% of round 2's $900'.",
+      "support": "derivation",
+      "source": "deposit(r, k) = 1000 × (1 − k/100)^(r − 1) in Demo.tsx, so deposit(r) = (1 − k/100) × deposit(r − 1) exactly; the caption prints both from the same function. Caption moved to y = 58 beside the column, between the 10% and 20% limit lines, so it no longer overprints 'limit $10,000 = $1,000 ÷ 10%' (r5 finding 1). | REVISED v3 2026-10-14 (demo-builder, wave D r5): new sentence. New stage text.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -100,7 +105,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:money-multiplier",
     "prerequisites": [],
