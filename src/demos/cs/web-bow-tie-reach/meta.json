@@ -1,0 +1,107 @@
+{
+  "slug": "web-bow-tie-reach",
+  "title": "Joined is not the same as reachable",
+  "hook": "Pages link one way. How many can you actually click your way to?",
+  "domain": "cs",
+  "concept": "web-bow-tie",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "web pages link to other pages",
+      "what reaching a page by following links means"
+    ],
+    "doesNotKnow": [
+      "that links are one-way, so being connected is not the same as being reachable",
+      "the bow-tie shape of the web"
+    ]
+  },
+  "misconception": "If two pages are joined by links somewhere, you can click from one to the other. The web is one big connected thing.",
+  "objective": "The learner can explain that because links are one-way, the pages you can click to from a start page are fewer than the pages joined to it: from a core page you reach the core and OUT pages but never IN, and from an OUT page almost nowhere.",
+  "claims": [
+    {
+      "id": "cs.web-bow-tie-reach.c1",
+      "text": "In the 12-page graph on the stage, following links the way they point reaches 7 pages from each of A, B, C and D (counting the start), 10 from E, 8 from F, 3 from G, 2 from H, 1 from I, 1 from J, 2 from K and 1 from L. The reveal quotes only the pages the learner tapped.",
+      "support": "simulation",
+      "source": "Node BFS over the exact edge list in Demo.tsx: A>B, B>C, C>D, D>A, D>B, C>G, D>H, E>A, E>F, E>J, F>B, G>H, H>I, K>L. Builder ran it 2026-10-14 (reach(start) as in Demo.tsx); output {A:7,B:7,C:7,D:7,E:10,F:8,G:3,H:2,I:1,J:1,K:2,L:1}. Deterministic, no seed.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c2",
+      "text": "Ignoring link direction, 10 of the 12 pages are joined to A (all but K and L).",
+      "support": "simulation",
+      "source": "Node BFS over the same edge list treated as undirected from A: component = A, B, C, D, E, F, G, H, I, J (10 pages); K and L form their own pair. Builder ran it 2026-10-14.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c3",
+      "text": "Links point one way, so being joined is not the same as being reachable: from the middle group (A to D) you can click out to G, H and I, but no link leads back to E or F.",
+      "support": "derivation",
+      "source": "Definition of a directed link plus the edge list in c1: reach(A) = A, B, C, D, G, H, I, which contains neither E nor F; A, B, C, D reach each other (checked in node). Holds for this graph.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c4",
+      "text": "The real web has a bow-tie shape: a tightly linked core, pages that lead into it, pages it leads out to, and a few detached pieces.",
+      "support": "source",
+      "source": "Broder, Kumar, Maghoul, Raghavan, Rajagopalan, Stata, Tomkins and Wiener, 'Graph structure in the Web', Computer Networks 33 (2000); Easley and Kleinberg, Networks, Crowds, and Markets (2010), ch. 13. NEEDS A HUMAN SOURCE CHECK (builder cited from the brief and memory; no access to the paper).",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c5",
+      "text": "Broder and colleagues (2000) mapped about 200 million pages.",
+      "support": "source",
+      "source": "Broder et al. 2000 (crawl of about 203 million pages, from the brief and the review record). NEEDS A HUMAN SOURCE CHECK. The core and IN/OUT percentages (about 28%, 21%, 21%) in the brief are deliberately NOT shown to learners; add them only after the paper is checked.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c6",
+      "text": "This 12-page graph is a toy, not to scale.",
+      "support": "convention",
+      "source": "Disclosure that the stage is a teaching model, not data from the crawl.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.web-bow-tie-reach.c7",
+      "text": "Extra check, not shown to learners: over the 132 ordered pairs of distinct pages in the toy graph, 44 have a click path (one third).",
+      "support": "simulation",
+      "source": "Node: sum of (reach(start) - 1) over the 12 starts = 44 of 12*11 = 132. Builder ran it 2026-10-14.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Page X links to page Y, but Y has no link back to X, and nothing else links to X. Starting on Y, can you click your way to X?",
+    "options": [
+      "Yes: they are joined by a link",
+      "No: links only work in the direction they point",
+      "Only if you go through a third page"
+    ],
+    "answer": 1,
+    "why": "Links are one-way, so being joined is not the same as being reachable. Y has no link out that leads back to X."
+  },
+  "evidence": {
+    "qa": ["company/reviews/web-bow-tie-reach/2026-10-14-qa.md"],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "cs:web-bow-tie",
+    "prerequisites": ["cs:graph-shortest-path"],
+    "level": "core",
+    "strand": "systems",
+    "references": [
+      { "work": "easley-kleinberg-2010", "chapter": 13, "section": "13.3", "note": "bow-tie structure of the web; section unconfirmed (brief says 13.3-13.4)" }
+    ],
+    "also": [],
+    "tags": ["directed-graph", "reachability", "web"]
+  },
+  "format": "single-card",
+  "interactions": ["choice-before-reveal", "milestone-gate"]
+}
