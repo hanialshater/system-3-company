@@ -1,0 +1,104 @@
+{
+  "slug": "no-best-move-one-stable-pair",
+  "title": "No best move, one stable pair",
+  "hook": "Neither player has a move that wins against everything. Can we still predict the game?",
+  "domain": "economics",
+  "concept": "nash-equilibrium",
+  "status": "draft",
+  "version": 1,
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-economics",
+    "builder": "ncm-e01"
+  },
+  "confidence": "",
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "learner": {
+    "knows": [
+      "dominant strategies: a move that is best whatever the other player does",
+      "how to read a payoff table"
+    ],
+    "doesNotKnow": [
+      "that even when no move is best against everything, a pair of moves where each is a best reply to the other can still pin down the outcome"
+    ]
+  },
+  "misconception": "Without a move that is best whatever the other does, game theory cannot predict anything.",
+  "objective": "The learner can check a cell of a payoff table for best replies on both sides, find that (M, L) is the only cell of the stage's game where neither player wants to switch, and name it a (pure) Nash equilibrium.",
+  "claims": [
+    {
+      "id": "economics.no-best-move-one-stable-pair.c1",
+      "text": "In the stage's game neither player has a move that is best against every reply of the other.",
+      "support": "derivation",
+      "source": "Payoffs (row, column), columns L C R: U (3,1)(0,3)(2,0); M (4,2)(1,0)(0,1); D (2,0)(2,1)(1,3). Row's best reply is M against L, D against C, U against R; Column's best reply is C against U, L against M, R against D. Builder's node check: no row or column move weakly dominates the others (scratchpad ncm-e01-checks/check.mjs).",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.no-best-move-one-stable-pair.c2",
+      "text": "(M, L) is the only cell where each player's move is a best reply to the other's: Row's 4 is the best in column L and Column's 2 is the best in row M; in every other cell someone gains by switching.",
+      "support": "derivation",
+      "source": "Builder's node enumeration of all 9 cells: the only pure-strategy cell with both best replies is (M, L). Mixed strategies are not considered and the lesson says 'pure'. Demo.tsx STABLE computes the same.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.no-best-move-one-stable-pair.c3",
+      "text": "Each cell's message (who switches, to what, and the payoffs compared) follows from the table.",
+      "support": "derivation",
+      "source": "Demo.tsx verdict(): compares the cell's payoff with the column's best row payoff and the row's best column payoff from the table in c1.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.no-best-move-one-stable-pair.c4",
+      "text": "A pair of moves that are best replies to each other is a Nash equilibrium.",
+      "support": "source",
+      "source": "Definition. J. F. Nash, 'Equilibrium points in n-person games', Proceedings of the National Academy of Sciences 36(1), 48-49 (1950); E&K ch. 6 (section unconfirmed). Citation from memory; fact-checker confirms.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.no-best-move-one-stable-pair.c5",
+      "text": "The payoffs are invented and the game is played once.",
+      "support": "convention",
+      "source": "Modelling choice stated on the card and in the reveal.",
+      "status": "unverified"
+    }
+  ],
+  "recall": {
+    "question": "In a game where no player has a move that is best whatever the other does, which outcome is stable?",
+    "options": [
+      "None: without a best move nothing can be predicted",
+      "One where each player's move is the best reply to the other's",
+      "The one with the highest total payoff"
+    ],
+    "answer": 1,
+    "why": "If each move is a best reply to the other, neither player gains by switching alone: a Nash equilibrium, which can exist without any dominant move."
+  },
+  "curriculum": {
+    "primary": "economics:nash-equilibrium",
+    "also": [],
+    "prerequisites": [
+      "economics:prisoners-dilemma"
+    ],
+    "level": "core",
+    "strand": "markets",
+    "references": [
+      {
+        "work": "easley-kleinberg-2010",
+        "chapter": 6
+      }
+    ],
+    "tags": [
+      "game theory",
+      "Nash equilibrium"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "tally-counters",
+    "milestone-gate"
+  ]
+}
