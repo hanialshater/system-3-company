@@ -1,0 +1,94 @@
+{
+  "slug": "euclid-three-steps",
+  "title": "Euclid's three steps past any list",
+  "hook": "Name every prime there is. Euclid needs three moves to find one you missed.",
+  "domain": "math",
+  "concept": "infinitude-of-primes",
+  "format": "multi-card-sequence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "design-engineer"
+  },
+  "learner": {
+    "knows": [
+      "what a prime is",
+      "multiplying and dividing with a remainder"
+    ],
+    "doesNotKnow": [
+      "Euclid's argument that no finite list holds every prime"
+    ]
+  },
+  "misconception": "A long enough list of primes could be complete; or product + 1 must itself divide by one of the listed primes.",
+  "objective": "The learner can say Euclid's three steps (multiply the list, add 1, divide) and why they end at a prime the list missed: every listed prime leaves remainder 1.",
+  "claims": [
+    {
+      "id": "math.euclid-three-steps.c1",
+      "text": "2 × 3 × 5 × 7 × 11 × 13 = 30030, and 30030 + 1 = 30031 = 59 × 509.",
+      "support": "derivation",
+      "source": "Recomputed with node by trial division (Demo.tsx factor()); the stage uses the same trial division.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.euclid-three-steps.c2",
+      "text": "For the lists 2, 3; 2, 3, 5; and 2 to 7, product + 1 is 7, 31 and 211, each prime and not on its list.",
+      "support": "derivation",
+      "source": "Trial division up to the square root, recomputed with node (builder run 2026-10-14).",
+      "status": "unverified"
+    },
+    {
+      "id": "math.euclid-three-steps.c3",
+      "text": "Product + 1 leaves remainder 1 when divided by each prime on the list, so none of them divides it.",
+      "support": "derivation",
+      "source": "The product is a multiple of each listed p, so product + 1 = q·p + 1 with 0 < 1 < p. Stage rows show (N − 1)/p × p and r 1; checked with node for the four lists offered.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.euclid-three-steps.c4",
+      "text": "Product + 1 is above 1, so it has a prime factor, and that prime is not on the list.",
+      "support": "derivation",
+      "source": "Its smallest divisor above 1 is prime; by c3 it is not a listed prime. Shown on the stage by 'Find its primes'.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.euclid-three-steps.c5",
+      "text": "Any finite list gets the same three steps, so no list holds every prime.",
+      "support": "derivation",
+      "source": "c3 and c4 hold for any finite list of primes. Hardy and Wright, An Introduction to the Theory of Numbers, Theorem 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.euclid-three-steps.c6",
+      "text": "This is Euclid's proof in the Elements, Book IX, Proposition 20.",
+      "support": "source",
+      "source": "Euclid, Elements IX.20 ('Prime numbers are more than any assigned multitude of prime numbers'), Heath translation; D. E. Joyce's online edition, Clark University, Book IX Proposition 20.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Someone claims 2, 3 and 5 are all the primes. What are Euclid's three steps, and where do they end?",
+    "options": [
+      "Multiply to 30, add 1 to get 31, divide: each leaves remainder 1, so 31 brings a prime not on the list",
+      "Multiply to 30, divide by 2: 30 is even, so the list is wrong",
+      "Add them to 10, add 1 to get 11, which is prime"
+    ],
+    "answer": 0,
+    "why": "Product + 1 leaves remainder 1 for every listed prime, so its own prime factors (here 31 itself) are missing from the list."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:infinitude-of-primes",
+    "prerequisites": [],
+    "level": "intro",
+    "references": [],
+    "also": []
+  }
+}
