@@ -11,7 +11,7 @@ Rule: even → n/2, odd → 3n + 1, stop at 1; a step is one application.
 
 ## Stage at 390×844 (~380 px at predict, ~520 px in explore)
 1. Rule line (muted, 9 words): "Even: halve it. Odd: times 3, plus 1. Stop at 1."
-2. **Chart**, 342 × 240 px. x axis: steps 0–120 (ticks 0, 40, 80, 120). y axis: value 0–10,000, **linear** (ticks 0, 5,000, 10,000). A linear axis is honest and makes the point: 26's whole run is a flat smear along the bottom, and 27's is a mountain. The current run is a 2 px `--fg` line with a dot at each step once fewer than 20 steps are shown. Earlier runs are 1 px `--muted` lines, named in the table, not by end labels (they all end at 1 on the floor, where labels would collide).
+2. **Chart**, 342 × 240 px. x axis: steps 0–120 (ticks 0, 40, 80, 120). y axis: value, **linear**, and it **grows to fit the highest value drawn so far** (rounded up to 100, 1,000 or 10,000, three ticks), never shrinking. At 27's peak it reads 0, 5,000, 10,000. A linear axis is honest and makes the point: 26's whole run is a flat smear along the bottom, and 27's is a mountain. The current run is a 2 px `--fg` line with a dot at each step once fewer than 20 steps are shown. Earlier runs are 1 px `--muted` lines, named in the table, not by end labels (they all end at 1 on the floor, where labels would collide).
 3. **Cursor**: a vertical line at the scrubbed step, with its readout above the chart: "Start 27 · step 77 · value 9,232".
 4. **Runs table** (readouts), one row per start that has reached 1: "27 · 111 steps · peak 9,232". It has four rows at most.
 5. Controls, below.
@@ -31,9 +31,9 @@ All 7 controls render at first paint, disabled while `locked`, class `.tap` (44 
 QA path (each control once, DOM order): Step (27 → 82) · Run to 1 (111 steps, peak 9,232: milestone `27-at-1`) · Scrub (at max, so two left arrows: cursor at step 109, value 4) · 26 (replayed: 10 steps, flat along the floor: milestone `another-start`) · 27 (re-enabled; replayed: the mountain again) · 28 (18 steps) · 97 (118 steps, peak 9,232). The table holds all four runs. The stage ends on 97, with 27's line still drawn.
 
 ## States
-- **Predict:** empty axes, the 27 chip active, the cursor readout "Start 27 · step 0 · value 27", one dot at (0, 27), table empty. **Answer visibility:** the question asks for a step count, so the x axis is the risk. While locked and until the first run reaches 1, the x axis carries only the word "steps" and no tick labels, so options A (under 30) and B (111) cannot be read off it. The y axis to 10,000 stays: it hints that values grow, which is not what the question asks.
+- **Predict:** empty axes, the 27 chip active, the cursor readout "Start 27 · step 0 · value 27", one dot at (0, 27), table empty. **Answer visibility:** the question asks for a step count, so the x axis is the risk. While locked and until the first run reaches 1, the x axis carries only the word "steps" and no tick labels, so options A (under 30) and B (111) cannot be read off it. The y axis starts at 0–100 and only grows as values are drawn, so it gives no hint of the climb or of an end.
 - **On unlock:** nothing moves until a press. Exploration hint: "Step a few times, then run 27 to 1."
-- **27, first few steps:** 82, 41, 124, 62, 31, 94: the line wanders near the floor.
+- **27, first few steps:** 82, 41, 124, 62, 31, 94: the y axis already stretches from 100 to 1,000.
 - **27 at 1:** the mountain, with the highest point at step 77 (9,232). The x ticks appear. Table row "27 · 111 steps · peak 9,232".
 - **Scrubbing:** the cursor walks back along the learner's own run, and the readout changes with every step.
 - **26 / 28:** short runs (10 and 18 steps) that never leave the floor at this scale. They sit next to 27's mountain.
