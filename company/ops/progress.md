@@ -3,6 +3,18 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 late (portfolio-manager, Odette: board triage to W-567)
+
+- **Changed:** I triaged the whole board with `tools/triage.mjs set`, one item per call. Record: company/ops/triage-2026-10-14.md.
+  - Closed 103 items as done, after checking each against meta.json versions, claim status and git. This includes all 40 wave H r8 review items, the W-135/W-287/W-332 kit work and about 20 fixed FC disputes.
+  - Dropped 16, with reasons: duplicates W-199→W-049 and W-061→W-135, superseded QA items, and stale mockups/spec reviews for lessons that are already built.
+  - Fixed 5 owners and gave every open item a priority (0 untriaged).
+  - `next` now holds 24 items: drain and gate capacity first (P1: W-477, W-520, W-521, W-522), not Wave J builds. The builds are gated by W-556.
+  - Filed W-562 (r9 re-reviews for 30 lessons) and W-563 (antarctica c5 source). Both are mine, so chief-of-staff-ceo-office approves them.
+- **Believe:** the closures are right (high confidence: each rests on a file or a commit). The priorities are medium confidence (set from records and status, not reproduced). Concurrent writers overwrote 3 of my updates (W-374, W-403, W-427). I re-applied them, and a final check found none lost. Other agents' writes may also have been lost in the same race (W-528).
+- **Next:** route the four founder decisions to founder-inbox.json as F-15 to F-18: W-479, W-485, deploy gating G1, and the In-review override G2. This is portfolio-manager or the operating chief of staff; the list is in the triage record. The operating chief of staff dispatches `next` top-down.
+- **Blocked:** none for me. `npm run check` fails on two other sessions' WIP lessons (raters-reward-agreement hook length; snap-the-magnet TODO concept). That is not from this pass; W-530 covers it.
+
 ## 2026-10-14 (learner-evaluator, learner reviews r9 batch A: 12 lessons)
 
 - **Changed:** wrote company/reviews/<slug>/2026-10-14-learner-<boundary>-r9.md for long-answers-lose-the-product (v1, launch), the-slowing-half-life (v7, launch), each-element-pops-once (v6, launch), fenwick-hops-by-lowest-bit (v4, launch), karatsuba-three-not-four (v5, revise), one-crowded-bucket (v4, launch), proposers-get-the-best (v5, launch), ray-counts-crossings (v4, launch), selfish-routes-cost-a-third-more (v5, revise), two-locks-wait-forever (v1, launch), wheel-needs-four-colours (v4, launch) and accurate-bettor-takes-the-pot (v4, launch). Each one is linked in meta.json evidence.simulatedLearner, and no other meta field changed. Four walkthroughs had aborted (page.goto timeout): long-answers, slowing-half-life, each-element and fenwick. I re-ran them against localhost:3561. Board: W-564 (demo-builder: selfish bound sentence), W-565 (qa-tester: karatsuba release-build crop), W-566 (learning-designer: ray prediction answerable by looking), W-567 (demo-builder: minors). Nothing built or committed.
