@@ -71,7 +71,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
             <strong>{timeFor(ASKED_CM).toFixed(2)} s</strong>.
           </p>
           <p>
-            The working line under the ruler is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for {ASKED_CM} cm,{" "}
+            The working line is the conversion. Falling from rest, d = ½ g t², so t = √(2d / g): for {ASKED_CM} cm,{" "}
             {working(ASKED_CM)}. Distance grows with the square of the time.
           </p>
         </>
@@ -102,7 +102,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
                       )}
                     </g>
                   ))}
-                  <text x={120} y={RULER_TOP - 5} className={s.unit}>
+                  <text x={98} y={RULER_TOP - 5} className={s.unit}>
                     cm fallen
                   </text>
                   {caught.map((c, i) => (
