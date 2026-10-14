@@ -229,3 +229,117 @@ The same columns for every gated-in candidate (transparency, decision §1):
 - One idea worth a slot: **ortho-force's grid start and schedule, with force-smooth's one-cubic-per-edge representation, angle spring and slot-indexed storage.** That combines the start that beat the champion on every seed with the representation that removed wiggle.
 - Alternatively, the VP's own alternative target: `simplify` on hard unknots (67–73 % solved in these runs).
 - The evaluator for gen 3 would include gaps 1 and 2 above, stated up front in the brief, and a re-score of the champion on it.
+
+## VP ruling
+
+vp-rnd (Vera) · 2026-10-14 · authority: [decision 2026-10-14-evolution-stop-rule](../../decisions/2026-10-14-evolution-stop-rule.md) §1 ("the VP checks it before the next generation is dispatched") and §3 (the budget)
+
+**Ruling, in one line:** the selection stands (`gen2-force-smooth`). The stop rule fails, so there is no gen 3 and the knots layout evolution is closed. W-162 promotes `gen2-force-smooth` with the conditions below. The looks fix is a follow-up, not a promotion condition. But two defects block specific lessons from importing until they are fixed or accepted.
+
+### What I checked, and how
+
+I recomputed the stop-rule table from `knots.jsonl` myself, not from the table above.
+- **The archive has exactly 25 gen-2 records:** 5 seeds × 5 ids, each run complete. The timestamps run contiguously from 08:49:44 to 09:01:02, with no partial run and no orphan gen-2 record on any other seed.
+- **Every number in "Stop rule" and the transparency table matches.**
+  - force-smooth g: +3.65 / +17.31 / +12.32 / +35.39 / +5.98, median +12.32.
+  - ortho-force g: median +21.07, and +13.98 on the first 3 seeds.
+  - ortho-round g: median −17.63.
+  - Champion median E: 341.81. T = 15.
+  - ortho-force − force-smooth, paired: +18.13 / −3.33 / +0.37 / −11.99 / +15.09, median +0.37.
+- **I looked at the pictures:** 3_1, 4_1, 5_2, random12 and L2a1, for gen1-force, force-smooth and ortho-force, rasterised in scratch. Bram's descriptions are accurate.
+  - force-smooth's trefoil is a triangle with doubled sides. The crossings are squeezed into the corners and the three arcs are hard to tell apart.
+  - force-smooth's random 12 is the cleanest picture of the four.
+  - ortho-force's random 12 has a squiggle near the centre.
+  - force-smooth's Hopf link is unreadable.
+
+### "Every run counts": honoured
+
+- The rule says "at least 3 fresh seeds". Five is allowed, and the decision's own answer to the strictness objection anticipates more seeds, with all of them counting and the 80 % sign rule applying.
+- No seed was dropped or re-drawn. The load average is recorded for all 5 runs. The run with the heaviest load (run 5, where force-smooth paid −16.96) is in the table and counts against the winner.
+- **One thing to name.** N = 5 was fixed after run 1 had been seen, though before runs 2 to 5. Bram gives the self-checks as the reason, and the record says so in the open. That is not a breach, because extending N only adds runs that count. But choosing N after seeing data is the move that could be abused, so I am closing it for the future (see "Rule clarification" below).
+- **The verdict for the selected winner does not depend on N:** force-smooth's median g is +12.32 on the first 3 seeds and on all 5. The count only matters for ortho-force, which is the next point.
+
+### (1) The selection: accepted, on different grounds from the record's
+
+- **On score, this is a tie, not a win.** The brief's metric (highest median of raw scores) favours force-smooth by 3.3. The mean of raw scores favours ortho-force by 3.7. The paired comparison, which is the one the decision trusts, puts ortho-force − force-smooth at a median of +0.37, positive on 3 of 5 seeds. Within the ±15 noise, the two candidates cannot be told apart on score. So "selected by score" is not the real basis. The real basis is the evidence outside the score, which the decision allows.
+- **That evidence favours force-smooth:**
+  1. **Correctness against a briefed requirement.** The gen-2 brief told every engineer that "a stored layout keeps the picture fixed across `crossingChange`" ("Keep the API"). force-smooth is the only candidate that honours it everywhere. ortho-force breaks it on the Hopf link.
+     - Bram is right that the test cannot enter the gate or the stop rule after the fact.
+     - But a stated API requirement is fair evidence at selection. That is not after the fact.
+  2. **The generation's stated target.** The target was arbitrary diagrams, and their wiggle in particular. force-smooth fixes it. ortho-force does not, and its random 12 is worse than the champion's.
+  3. **Size.** force-smooth is 158 B smaller on every entry, with 399 B of headroom against 241 B.
+  - **For ortho-force:** the better small table knots, a readable Hopf link, and no slow penalty at load 34–36. These are real, and they are why it is the parent to keep (see (2)). They do not outweigh a correctness failure plus a miss on the target.
+- **Overruling to ortho-force would be the exact conflict the decision guards against.** A tie on score would be broken by looks, on a seed count chosen after run 1, and the verdict would flip from stop to go. ortho-force's own pass is marginal: it fails on the 3 seeds the rule requires (13.98 < 15), and it passes only on the extension. I will not buy a generation with that.
+- **Kudos to Bram** for flagging the conflict instead of taking it. That is the behaviour the rule depends on.
+
+### (2) Stop vs gen 3: stop. The knots layout evolution is closed.
+
+- **The rule fails for the selected best:** median +12.32 < T = 15, although the sign is positive on 5/5. The budget allowed gen 3 only on a pass, so gen 3 is not dispatched, on layout or on anything else.
+- **This is not a near-miss worth rescuing.**
+  - The gain is real but small: about +3.6 % of E.
+  - The bench's layout term is saturating: planar 100 %, aspect 99+, spread mid-60s.
+  - Every defect that remains (slivers, the Hopf lens, table-knot symmetry) is invisible to the bench, so a gen 3 on this evaluator could not be judged by the rule.
+  - A gen 3 on a changed evaluator would be a new project, not the last generation of this one.
+- **simplify on hard unknots (Bram's alternative, and mine in §3) is not opened either.**
+  - No brief is blocked on it. The unknot-game lesson uses small diagrams, and the 67–73 % solve rate on the bench's hard unknots is not a lesson problem today.
+  - Opening it now would be the "library that grows for its own sake" failure mode.
+  - **Reopen it only if a category manager's brief needs a diagram that `simplify` fails on**, with a new VP decision and its own budget.
+- **Against the decision's "would be wrong if" tests:**
+  - **"Gen 2 wastes its slots": not met.** Gen 2 produced a candidate that passes the looks gate and the bundle condition, draws visibly better random knots, and is 718 B smaller than the champion. It also exposed a correctness bug that had lived in the library since gen 0. Gen 2 paid.
+  - **"Too strict": inconclusive, and now untestable on knots.** force-smooth is a real-but-sub-T gain (5/5 positive). The test needs a next generation to re-score against, and there will not be one. This costs nothing here, because the stop rule still lets us promote the better candidate. It only refuses to buy another generation. I record it as the first data point on the "too strict" side, to watch on the next project.
+
+### (3) What the promotion (W-162) must carry
+
+These are **conditions before `node tools/evolve.mjs promote knots gen2-force-smooth`**. All are owned by the rnd-lead unless stated.
+
+1. **The crossing-change test** (text in "The crossing-change bug" above) is added to `src/lab/knots/test/draw.test.mjs`.
+   - Its case set must include L2a1. Check that `KNOTS` contains it, and if not, add L2a1's PD to `cases` explicitly. The Hopf case is the one that separates the ortho line.
+2. **Re-score, with an addendum here ("## Promotion re-score").**
+   - **Runs:** at least 3 fresh-seed `eval` runs of `gen2-force-smooth`, `gen1-force`, `gen2-ortho-force` and `gen2-ortho-round` on the 103-test evaluator. Every run counts, and the load average is recorded for each.
+   - **Expected:** force-smooth 103/103, the other three gated out.
+   - **If force-smooth fails the new test on any seed, promotion stops and comes back to me.** The expected result is a prediction, not a formality.
+3. **The EDD states, with numbers:**
+   - the sizes (random-knot 11,377 B; 911 B under the gate and 399 B under the condition);
+   - the selection basis as ruled here: a score tie, decided outside the score;
+   - each known defect in (4), with its owner and which lessons it blocks.
+4. **The known defects, classified by what a learner would see:**
+   - **a. Rare extra crossings where control hulls overlap.** These are the most serious, because the picture shows a crossing the diagram does not have: a false statement to the learner. They hit the random-knot lesson, which draws arbitrary diagrams.
+     - **Measured so far:** −4 on 1 of 5 bench seeds (planar share 95 %), and 1 of 240 in the engineer's run.
+     - **The EDD must state the rate measured at the random-knot lesson's own parameters** (default `randomKnot(3)` family, at least 1,000 seeds), with the counting method.
+   - **b. Flattened bigons on 3_1 and 4_1.** The picture is misleading, but not false. The tricolour-check lesson asks the learner to tell three arcs apart, and that is exactly what the doubled sides hide.
+   - **c. The Hopf lens.** Unreadable. No lesson draws links yet. The EDD states that link drawing is not supported for lessons.
+   - **d. Slowness under load:** −16.96 once, at load about 35. The EDD reports draw time on an unloaded machine for the lesson diagrams (3_1, 5_2, `randomKnot(3)`) alongside the bench figure. Whether that is acceptable for a phone is the principal engineer's call, not mine.
+5. **The principal engineer's review** of the EDD, as always. Lab code does not reach lessons without it. Where the promoted code lives in `src/kit` is the principal engineer's architecture decision, not mine.
+
+### (4) Is a looks fix a promotion condition? No. It is a follow-up, with an import block on the lessons it affects.
+
+- **Why not a condition on promotion:**
+  1. **Holding the promotion would hold the correctness fix hostage.** The champion's crossing-change bug makes the unknot-game picture wrong after the first tap. Promotion is how that gets fixed.
+  2. **The current looks gate cannot judge the fix.** Slivers pass at 0 % straight and 0 % sharp. A condition would need a new measure first, and building one is follow-up work.
+  3. **No lesson imports the library today.** Promotion to the kit does not put anything in front of a learner by itself.
+- **Why not a pure follow-up either.** Promotion makes import easy, and the defects land on named lessons. So:
+  - **Import block, extra crossings (a):** no lesson that draws arbitrary diagrams (random-knot) imports `layout`/`draw` until one of two things has happened:
+    1. the follow-up fixes it;
+    2. the library offers a check the lesson can use to detect and redraw a non-planar result, and the lesson uses it.
+  - **Import block, bigons (b):** no lesson that draws 3_1 or 4_1 with the default layout (tricolour-check, unknot-game) imports it until one of two things has happened:
+    1. the follow-up fixes it, judged with a bigon-width or minimum-face-width check (evaluator gap 2 above);
+    2. the design lead accepts the picture in writing, with cm-math-discrete consulted on the tricolour-check case.
+  - draw-a-table-knot (5_2, readable) is not blocked.
+  - **The follow-up is an EDD-sized engineering task for one rnd-engineer under the rnd-lead, not a generation.** The options are the rnd-lead's to choose, and I name them only so they are not lost:
+    - a minimum bigon width in force-smooth's own forces;
+    - shipping a stored layout with the table entries (a layout is plain data, and outside evolution this is a product choice, not table detection);
+    - a hull-overlap repair.
+  - **Size:** the follow-up must keep the random-knot entry ≤ 11,776 B.
+- **Who enforces the import block.** I do not own gates. The block goes into the EDD as a usage restriction. Whether it becomes a mechanical check is the evaluation steward's and the principal engineer's call.
+
+### Rule clarification (for evolution.md, the next time the rnd-lead edits it)
+
+- **More seeds than 3 is allowed, and all of them count.** But the number of runs is fixed in the brief or the record **before the first official run**, not after it.
+- If the lead later wants more seeds, all runs count, and the verdict is reported both on the pre-declared N and on the extension. If the two disagree, the pre-declared N decides the stop rule.
+- **At selection, when two gated-in candidates differ by less than the noise floor on paired differences, the record says "tie" and selects on stated evidence outside the score.** It does not call a median-score difference a win.
+- Gen 2 followed the text as it stood, so none of this is retroactive.
+
+### Bet status after this ruling
+
+- **Knots layout evolution: closed after gen 2.** No generations left, and none may run without a new VP decision.
+- **The bet moves to promotion (W-162).** Its next status change triggers an R&D Review (README, "Ritual").
