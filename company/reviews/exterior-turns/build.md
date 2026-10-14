@@ -7,3 +7,8 @@
 - Deviation from brief: no animated walker dot (QA waits 450 ms, and the standard prefers manipulation). The dashed line and the wedge define "turn" on the stage instead. The reveal extends the result to any outward-bulging shape: this is claim c2, flagged as going beyond what the stage shows.
 - After screenshots: the hook said "dodecagon" (undefined term), now "12-sided shape".
 - All claims unverified, for the fact-checker.
+
+## Revision v2
+
+From the adult-beginner learner review. Reveal quotes only sides the learner saw: the first shape counts once unlocked, plus a visible 'Sides tried' readout. Added a 'Lopsided shape' control (unequal turns, still 360) to show the 'any shape' sentence. Float-safe degree labels. c4 added. Disagreement: the review says the gate opened after one shape; the slider visits each step (3, 4, 5), so three shapes were visited. The 3-different-sides gate is unchanged.
+All new or edited claims are unverified, for the fact-checker.

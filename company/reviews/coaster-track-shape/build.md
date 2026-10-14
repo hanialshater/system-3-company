@@ -19,3 +19,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise); the fact-check rout
 - "Height becomes speed" was not on the stage: during each race both carts carry a live speed label, which climbs as the cart drops and reads 9.90 on the floor. The "steep pieces speed it up hard but briefly" sentence was not visible on the stage, so I removed it from the reveal (claim c3 stays in meta.json, its text unchanged).
 - 75S chip: durationSec set to 60.
 - Gate: now <Milestones> "gentle" (any slope gentler than the reference) and "curved" (any non-straight curve), both reached on the QA path.
+
+## Revision v3 (wave C)
+
+Friction defined in the question; odd option reworded; caption says labels are speed so far; added a Race again button; reveal now says the labels climbed during the races instead of a fixed claim.

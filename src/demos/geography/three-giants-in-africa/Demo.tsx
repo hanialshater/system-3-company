@@ -93,8 +93,8 @@ export default function ThreeGiantsInAfrica({ slug }: { slug: string }) {
           </p>
           <p>
             Each country was turned and slid across the globe like a rigid cut-out, so its size did not change, and this Equal Earth map draws equal areas equal, so what you saw
-            is true size. On a Mercator map the US and China sit farther from the equator than most of Africa and get inflated more, which
-            hides this.
+            is true size. The usual wall map, Mercator, stretches land more the farther it is from the equator. The US and China are
+            stretched more than most of Africa, so Africa looks smaller than it is.
           </p>
         </>
       )}
@@ -124,10 +124,10 @@ export default function ThreeGiantsInAfrica({ slug }: { slug: string }) {
                       );
                     })}
                     <text x={6} y={H - 18} className={s.small}>
-                      Equal Earth map: drawn areas are true areas.
+                      Equal Earth: a map where drawn areas are true areas.
                     </text>
                     <text x={6} y={H - 6} className={s.small}>
-                      About {Math.round(placements.outsidePct)}% of the pieces overlap a coast or each other.
+                      Pieces spill over a coast a little (about {Math.round(placements.outsidePct)}%); totals use area.
                     </text>
                   </>
                 )}

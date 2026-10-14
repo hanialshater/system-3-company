@@ -7,7 +7,7 @@
 // QA walk fills the whole grid. Key state: a corner with two neighbours, then the far corner.
 
 import { Lesson, type StageContext } from "@/kit/Lesson";
-import { Control } from "@/kit/controls";
+import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import { useState } from "react";
 import s from "./styles.module.css";
@@ -41,11 +41,11 @@ export default function PathsByAdding({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `On a ${BLOCKS}-by-${BLOCKS} grid of blocks, how many shortest routes go from one corner to the opposite one (only east or north)?`,
+        question: `A city is ${BLOCKS} blocks east by ${BLOCKS} blocks north; the corners are the dots. How many shortest routes go from one corner to the opposite one (only east or north)?`,
         options: [String(2 * BLOCKS), String(BLOCKS * BLOCKS), String(ROUTES)],
         answer: 2,
       }}
-      exploreHint="Fill the corners from Start. Each one adds the two before it."
+      exploreHint="Fill the edges, then the inside corners. Each one adds the corner west of it and the one south."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -93,15 +93,26 @@ function Stage({
     if (c === BLOCKS && r === BLOCKS) reach("far-corner");
   };
 
+  const edgesDone = Array.from({ length: BLOCKS }, (_, i) => has(i + 1, 0) && has(0, i + 1)).every(Boolean);
+  const fillEdges = () => {
+    const next = { ...filled };
+    for (let i = 1; i <= BLOCKS; i++) {
+      next[key(i, 0)] = 1;
+      next[key(0, i)] = 1;
+    }
+    setFilled(next);
+    setLast(null);
+  };
+
   let caption = "Make a prediction to start.";
   if (!locked) {
-    if (!last) caption = "Start has 1 route: stay put. Tap a corner next to it.";
+    if (!last) caption = edgesDone ? "Edges are all 1: along an edge there is only one way, straight. Tap a ? corner." : "Start has 1 route: stay put. Fill the edges, or tap a corner next to Start.";
     else {
       const [c, r] = last;
       const w = c > 0 ? val(c - 1, r) : 0;
       const so = r > 0 ? val(c, r - 1) : 0;
       if (c === BLOCKS && r === BLOCKS) caption = `${w} from the west + ${so} from the south = ${val(c, r)} routes. No listing needed.`;
-      else if (c === 0 || r === 0) caption = "Along the edge there is only 1 way: straight.";
+      else if (c === 0 || r === 0) caption = `${w} from the west + ${so} from the south = ${val(c, r)} route: along an edge there is only one way.`;
       else caption = `${w} from the west + ${so} from the south = ${val(c, r)} routes.`;
     }
   }
@@ -111,6 +122,11 @@ function Stage({
 
   return (
     <div className={s.wrap}>
+      <Row>
+        <Control disabled={locked || edgesDone} onClick={fillEdges}>
+          Fill the edges (all 1s)
+        </Control>
+      </Row>
       <div className={s.board}>
         <svg viewBox="0 0 100 100" className={s.streets} aria-hidden="true">
           {Array.from({ length: K }, (_, i) => {

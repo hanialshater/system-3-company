@@ -8,3 +8,7 @@ Built by demo-builder (sonnet build, EXP-003). Kept from evaluators until they r
 - No equations on stage; the time scale beside the ruler is d = g t^2 / 2 drawn as ticks (0.10 to 0.30 s at 4.9, 11.0, 19.6, 30.7, 44.1 cm).
 - Claim c3 (typical human reaction 0.2 to 0.25 s) has no citation yet ("TO CITE"); it is not quoted to the learner. Fact-checker should source it or drop it.
 - Screenshot looked at: QA phone-2-explore (ends after Clear) plus my own screenshot after Drop once + Drop 5 times (12.6 cm last catch, five dots on the ruler). Layout fine.
+
+## Revision v2 (wave C)
+
+Clear no longer empties the reveal: it uses the most catches seen, so no Infinity or NaN.

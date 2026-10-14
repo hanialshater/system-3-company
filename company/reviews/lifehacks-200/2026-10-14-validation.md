@@ -10,8 +10,9 @@ Exactly 200 distinct lesson folders and globally unique slugs: 70 home, 70 study
 predict → explore → reveal, addressed claims, recall, curriculum links, registered
 format/interaction IDs and the existing kit. No dependencies or protected paths changed.
 
-The latest integration checkpoint is upstream `2c9c9e5`, including its 14 new CS
-lessons and phone reveal sizing. The complete app has 723 lessons. This PR adds
+The latest integration checkpoint is upstream `aef5a704`. It retains the 14 CS
+lessons and phone reveal sizing from `2c9c9e5`, plus subsequent unrelated lesson
+fixes and company records. Shared UI and Life Hacks source match the final tested build. The complete app has 723 lessons. This PR adds
 the 200 Life Hacks and preserves upstream work.
 
 ## Final computer-use evidence
@@ -68,8 +69,8 @@ The category remains incubating. No fact-check, accessibility clearance, human-l
 result, publication, activation or deployment is inferred from technical QA or simulated
 learner recommendations.
 
-`W-150` is the delivered PR work. `W-151` owns independent source/claim checking.
-`W-152` owns remaining artifact/learner reviews and specific findings, including towel
+`W-152` is the delivered PR work. `W-153` owns independent source/claim checking.
+`W-154` owns remaining artifact/learner reviews and specific findings, including towel
 baseline/flux visibility, table continuity/variants, laundry framing, abstract cord
 geometry, selection highlights, queue waiting trade and mechanism-specific recall.
 
@@ -118,3 +119,5 @@ records the mapping. Canonical walkthrough paths now hold the newer captures for
 25 replaced lessons. Historical hashes remain tied to their historical versions;
 175 unchanged earlier captures were archived locally. The 25 superseded captures were
 not archived; their historical records retain that limitation and their source versions.
+
+After resolving PR conflicts against `aef5a704`, company check passed with 723 lessons, 3598 claims and the same three upstream warnings. No shared UI or Life Hacks implementation changed in that merge; the final 410-pass contract run still tests the delivered Life Hacks code.

@@ -38,10 +38,12 @@ const TIME_TICKS = [0.1, 0.15, 0.2, 0.25, 0.3];
 
 export default function RulerCatch({ slug }: { slug: string }) {
   const [n, setN] = useState(0);
+  const [seen, setSeen] = useState(0); // most catches on the ruler at once; Clear does not erase what was seen
   const caught = TRIALS.slice(0, n);
   const last = caught[caught.length - 1];
-  const lo = Math.min(...caught);
-  const hi = Math.max(...caught);
+  const everCaught = TRIALS.slice(0, Math.max(seen, 1));
+  const lo = Math.min(...everCaught);
+  const hi = Math.max(...everCaught);
 
   return (
     <Lesson
@@ -56,7 +58,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your {n} catches closed between <strong>{lo.toFixed(1)}</strong> and <strong>{hi.toFixed(1)} cm</strong>, which is{" "}
+            Your {Math.max(seen, 1)} catches closed between <strong>{lo.toFixed(1)}</strong> and <strong>{hi.toFixed(1)} cm</strong>, which is{" "}
             {timeFor(lo).toFixed(2)} to {timeFor(hi).toFixed(2)} s on the scale. A catch at {ASKED_CM} cm means{" "}
             <strong>{timeFor(ASKED_CM).toFixed(2)} s</strong>.
           </p>
@@ -74,6 +76,7 @@ export default function RulerCatch({ slug }: { slug: string }) {
             const drop = (k: number) => {
               const next = Math.min(N_TRIALS, n + k);
               setN(next);
+              setSeen((x) => Math.max(x, next));
               if (next >= FIVE) reach("five");
             };
             const caption = locked

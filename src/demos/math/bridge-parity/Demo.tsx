@@ -18,7 +18,7 @@ import s from "./styles.module.css";
 type Place = "N" | "I" | "S" | "E";
 const NAME: Record<Place, string> = { N: "North bank", I: "Island", S: "South bank", E: "East side" };
 const SHORT: Record<Place, string> = { N: "North", I: "Island", S: "South", E: "East" };
-// where the walker stands (and the trail turns), where the name sits, where the count badge sits
+// where the walker stands (and the trail turns), where the name (and count tag) sits
 const ANCHOR: Record<Place, { x: number; y: number }> = {
   N: { x: 80, y: 24 },
   I: { x: 112, y: 126 },
@@ -30,12 +30,6 @@ const LABEL: Record<Place, { x: number; y: number }> = {
   I: { x: 135, y: 112 },
   S: { x: 36, y: 220 },
   E: { x: 329, y: 104 },
-};
-const BADGE: Record<Place, { x: number; y: number }> = {
-  N: { x: 210, y: 24 },
-  I: { x: 160, y: 126 },
-  S: { x: 210, y: 216 },
-  E: { x: 329, y: 192 },
 };
 const BRIDGES: { a: Place; b: Place; x: number; y: number; x1: number; y1: number; x2: number; y2: number }[] = [
   { a: "I", b: "N", x: 105, y: 72, x1: 105, y1: 46, x2: 105, y2: 100 },
@@ -87,7 +81,7 @@ export default function BridgeParity({ slug }: { slug: string }) {
           </p>
           <p>
             Each time you pass through a place you use two bridges, one in and one out. So every place in the middle of the
-            walk needs an even count; only the start and the end can be odd. The counts here are {counts7.join(", ")}:{" "}
+            walk needs an even count; only the start and the end can be odd. On the full seven-bridge map the counts are {counts7.join(", ")}:{" "}
             {odd7.length} odd places, two too many.
             {solved ? ` With bridge 7 closed only ${odd6} places were odd, and you crossed all six.` : ""}
           </p>
@@ -189,10 +183,25 @@ function Stage({
     trail.push(`${b.x},${b.y}`, `${ANCHOR[at].x},${ANCHOR[at].y}`);
   }
 
+  // places the learner passed through (not the start, not the final stop): each used 2 bridges
+  const walkVisits: Place[] = [];
+  {
+    let w = start;
+    steps.forEach((i, k) => {
+      const b = BRIDGES[i];
+      w = b.a === w ? b.b : b.a;
+      if (k < steps.length - 1) walkVisits.push(w);
+    });
+  }
+
   const caption = locked
     ? "Make a prediction to start."
-    : counted
-      ? "Passing through uses two bridges, in and out. Odd places can only be a start or end."
+    : counted && walkVisits.length > 0
+      ? "Rings mark places you passed through: 2 bridges each, in and out. Odd places can only be a start or end."
+      : counted && closed
+        ? "Bridge 7 closed: only 2 places are odd, so a walk can start at one and end at the other. Try all 6."
+        : counted
+          ? "Passing through uses two bridges, in and out. Odd places can only be a start or end."
       : left === 0
         ? `All ${total} bridges crossed, each exactly once.`
         : stuck
@@ -221,25 +230,24 @@ function Stage({
           ))}
           <ellipse cx={135} cy={120} rx={60} ry={26} className={s.land} />
           {!locked && steps.length > 0 && <polyline points={trail.join(" ")} className={s.trail} />}
-          {PLACES.map((p) => (
-            <text key={p} x={LABEL[p].x} y={LABEL[p].y} className={s.place}>
-              {SHORT[p]}
-            </text>
-          ))}
-          {!locked && <circle cx={ANCHOR[here].x} cy={ANCHOR[here].y} r={7} className={s.you} />}
           {counted &&
-            PLACES.map((p) => {
-              const d = degree(p, closed);
-              const pos = BADGE[p];
-              return (
-                <g key={`d${p}`}>
-                  <circle cx={pos.x} cy={pos.y} r={11} className={d % 2 ? s.odd : s.even} />
-                  <text x={pos.x} y={pos.y + 4} className={s.deg}>
-                    {d}
-                  </text>
-                </g>
-              );
-            })}
+            walkVisits.map((p, k) => (
+              <circle key={`pass${k}`} cx={ANCHOR[p].x} cy={ANCHOR[p].y} r={12} className={s.pass} />
+            ))}
+          {PLACES.map((p) => {
+            const d = degree(p, closed);
+            return (
+              <g key={p}>
+                {counted && (
+                  <rect x={LABEL[p].x - 33} y={LABEL[p].y - 12} width={66} height={17} rx={4} className={d % 2 ? s.odd : s.even} />
+                )}
+                <text x={LABEL[p].x} y={LABEL[p].y} className={counted ? s.tag : s.place}>
+                  {counted ? `${SHORT[p]} · ${d}` : SHORT[p]}
+                </text>
+              </g>
+            );
+          })}
+          {!locked && <circle cx={ANCHOR[here].x} cy={ANCHOR[here].y} r={7} className={s.you} />}
         </svg>
         {BRIDGES.map((b, i) =>
           isOpen[i] ? (

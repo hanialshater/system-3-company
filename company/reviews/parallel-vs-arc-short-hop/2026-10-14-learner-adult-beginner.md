@@ -1,7 +1,7 @@
 *Simulated learner. This review finds problems; it is not evidence that anyone learned.*
 
 # Learner review: parallel-vs-arc-short-hop
-lesson version: VERSION
+lesson version: 1
 Screenshots seen: yes (sheet.png, 6 frames)
 boundary: an adult who knows latitude lines and has heard planes "fly curved routes"; has not met the term great circle.
 
@@ -13,5 +13,11 @@ boundary: an adult who knows latitude lines and has heard planes "fly curved rou
 - Told-not-shown: why the saving grows faster than distance and with latitude is told in one sentence, not shown.
 - Layout: at 1,000 km the two endpoints overlap into one smudge; the reveal's last line runs under the trust link (clipping, W-135; noted only).
 - Fix suggested: add one line on the stage ("Mercator stretches the north: the curved blue line is really shorter"), or add a small globe view where the blue route is visibly straight; reword "the parallel curves away" to something matching the picture; gloss great circle as "shortest route on a globe".
+
+## 2. After reading the brief
+
+- Objective: the saving is tiny over short hops and grows with distance and latitude. The tiles deliver it.
+- Boundary note: the brief's learner already knows great circles are shorter than constant-heading routes (a prerequisite lesson). I reviewed as a cold adult beginner, for whom the Mercator picture is the main obstacle. For the intended learner the jargon finding falls away, but the 'parallel curves away' sentence still contradicts the picture and the longer-looking blue arc still needs one line. Verdict kept at revise for a feed where learners may arrive without the prerequisite.
+- Claims: 6, all verified; I cannot vouch for them.
 
 Verdict: revise

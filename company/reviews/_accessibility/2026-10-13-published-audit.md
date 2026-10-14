@@ -86,3 +86,63 @@ Known limits: contrast of text over gradients or images is skipped; dimmed state
 3. Each failing lesson's builder: fix the stage colours, then ask me to re-scan the slug.
 4. Accessibility reviewer (next cycle): audit the 49 lessons published after the scan began; a recurring `node tools/a11y-scan.mjs` in the launch review; confirm the open SVG-label items.
 5. Evaluation steward: consider adding a contrast check and a 44 px target check to the QA contract (amendment needed; I did not propose wording).
+
+---
+
+## Second batch (2026-10-14)
+
+Board W-149. Reviewer: accessibility-reviewer. Nothing was unpublished, edited or committed; unpublish or waive stays with the founder (F-14). The 49 lessons published after the first scan began (no `2026-10-13-accessibility.md`) were scanned with `tools/a11y-scan.mjs` against the built server on :3421. Per-lesson records: `company/reviews/<slug>/2026-10-14-accessibility.md`. Raw data: `artifacts/a11y/scan-2026-10-14.json` (not committed). Domains: economics 15, chemistry 13, probability 6, cs 5, ai 4, math 3, life 2, geography 1. Running total with the first batch: 125 lessons.
+
+### Result
+
+**49 lessons: 26 pass, 15 pass with fixes, 8 fail.** As before, the verdict is about each lesson's own stage; every lesson also inherits K1-K8. All 8 failures are contrast (text under 3:1 in one theme); none failed on keyboard, names, reduced motion or tap-target floor. I found no lock-out, so I am not using launch-blocking authority.
+
+### Kit-level (one fix in `src/kit` / `src/app`; owner: platform engineer)
+
+No new kit-level problem. Everything below is the same defect as in K1-K8, now seen in 49 more lessons.
+
+| # | Seen in this batch |
+|---|---|
+| K1 | 49/49: verdict line fails in light (37 wrong-verdict `--warn` 1.62:1, 12 right-verdict `--good` 1.91:1). Domain tag "Probability" at 4.48:1 in 6/6 probability lessons. |
+| K2 | 49/49: "Map" 30x17 and "Why trust this?" 220x23 are under the 24 px floor; `Control` is 35 px high. |
+| K3 | 49/49: focus falls to `<body>` after "Lock it in" and after the reveal. Reconfirmed by hand in 5. |
+| K4 | 49/49: stage before the question in the DOM (hand: 5/5). |
+| K5 | 37/49 have no `aria-live`/`role=status` at all; the other 12 only have their own caption. |
+| K6 | 49/49: locked stage dimmed below AA during predict. |
+| K7 | No CSS or SMIL animation under reduced motion in any of the 49. JS timers not examined. |
+| K8 | 17 lessons flagged "manual": the SVG label did not change between predict and reveal. Hand check: it is a weak prompt where the label updates during explore (`line-stops-at-the-edge`, `up-then-down-trap`, `jackpot-once-a-week`); the open ones are `two-suspects-payoff`, `start-early-race` (state also in a visible readout) and the 12 others listed in their records as "open for a human". |
+
+### Per-lesson (owner: each lesson's builder)
+
+Fail (8):
+
+| Lesson | What fails | Themes |
+|---|---|---|
+| jackpot-once-a-week | "win!" label in pale green, 1.66:1 | light |
+| line-stops-at-the-edge | "fitted line" label in purple, 2.09:1; 6 px labels | light |
+| monopolist-holds-back | white "$1,200" on green, 2.9:1; 40 labels under 9 px | dark |
+| net-hourly-after-costs | white "$15.50" on green, 2.9:1 | dark |
+| raise-into-new-bracket | white "keep 90%" on green, 2.9:1 | dark |
+| say-seventy-mean-it | "✓" in pale green, 1.66:1 | light |
+| start-early-race | "Ana" label in pale teal, 1.62:1; 26 labels under 9 px | light |
+| two-suspects-payoff | grey "them" / "they" axis labels, 1.91:1 to 2.39:1; 6 px | both |
+
+Pass with fixes (15): bloom-maybe-yes, bus-wait-longer-than-half, eight-percent-showing, growth-gap-seventy-years, heat-wave-demand, momentum-sweet-spot, personal-inflation-basket, same-dollars-more-shares, step-too-long, tax-who-pays, tire-after-the-drive, unit-price-aisle, up-then-down-trap, which-particle-names-it, zinc-hands-over-two (contrast between 3:1 and 4.5:1, or text under 9 px at phone width).
+
+A repeated cause in economics: white text on the mid-green `--good` fill is 2.9:1 in dark (three of the eight failures); pale semantic colours as light-theme text again (four more). The pattern-review item in the first audit ("semantic colours are for fills and shapes only") applies; it is for the pattern reviewer.
+
+### Hand check (5 of 49)
+
+Keyboard trace (Tab order, keyboard predict -> explore, focus after commit, DOM order, SVG label per phase) and screenshots on `start-early-race`, `two-suspects-payoff`, `jackpot-once-a-week`, `line-stops-at-the-edge`, `up-then-down-trap`. It confirmed K3 and K4 in all five, confirmed the contrast failures on `two-suspects-payoff` and `jackpot-once-a-week` by eye, and showed the SVG-label prompt is a false alarm on two lessons. My own trace did not reach the reveal by keyboard (a single stage press does not satisfy the reveal gate); the scan did, so reveal-phase findings rest on the scan.
+
+### What I believe and how sure
+
+- The 8 contrast failures and the kit-level counts: high confidence (computed from painted colours; 2 eyeballed).
+- No keyboard lock-out in the 49: medium-high (scan plus 5 partial hand traces, no screen reader).
+- The 26 passes mean "no automated finding", not "accessible"; 12 lessons carry the SVG-label prompt unresolved.
+
+### Next moves
+
+1. Platform engineer: K1-K6 now cover 125 lessons; fix once, then re-run `node tools/a11y-scan.mjs`.
+2. Founder: unpublish or waive the 8 new failures (F-14); the first batch's 18 are still open.
+3. Builders of the 8: fix stage colours, then ask for a re-scan of the slug.

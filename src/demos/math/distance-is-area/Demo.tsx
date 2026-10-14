@@ -32,6 +32,11 @@ const m = (v: number) => `${Math.round(v * 10) / 10} m`;
 export default function DistanceIsArea({ slug }: { slug: string }) {
   const [n, setN] = useState(1);
   const [tri, setTri] = useState(false);
+  const [seen, setSeen] = useState({ lo: 1, hi: 1 }); // fewest and most strips the learner tried
+  const setStrips = (v: number) => {
+    setN(v);
+    setSeen((p) => ({ lo: Math.min(p.lo, v), hi: Math.max(p.hi, v) }));
+  };
 
   return (
     <Lesson
@@ -46,9 +51,11 @@ export default function DistanceIsArea({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            <strong>{EXACT} m.</strong> Each strip is speed × a short time: a small distance. One strip at top speed gave{" "}
-            {m(rightSum(1))}; 10 strips gave {m(rightSum(10))}, 20 gave {m(rightSum(20))}, each bar poking a little above
-            the line.
+            <strong>{EXACT} m.</strong> Each strip is speed × a short time, which is metres: a small distance. Adding
+            strips adds distances.{" "}
+            {seen.hi > seen.lo
+              ? `You saw ${seen.lo} strip${seen.lo === 1 ? "" : "s"} give ${m(rightSum(seen.lo))} and ${seen.hi} give ${m(rightSum(seen.hi))}, each bar poking a little above the line.`
+              : `You saw ${seen.lo} strip${seen.lo === 1 ? "" : "s"} give ${m(rightSum(seen.lo))}.`}
           </p>
           <p>
             The thinner the strips, the closer they get to the triangle under the speed line: ½ × {T} s × {VMAX} m/s ={" "}
@@ -58,7 +65,7 @@ export default function DistanceIsArea({ slug }: { slug: string }) {
         </>
       )}
     >
-      {(ctx) => <Stage {...ctx} n={n} setN={setN} tri={tri} setTri={setTri} />}
+      {(ctx) => <Stage {...ctx} n={n} setN={setStrips} tri={tri} setTri={setTri} />}
     </Lesson>
   );
 }
@@ -132,7 +139,7 @@ function Stage({
             ? `Triangle: ½ × ${T} s × ${VMAX} m/s = ${EXACT} m. Bars: ${m(area)}.`
             : n === 1
               ? `1 strip at top speed: ${VMAX} m/s × ${T} s = ${m(area)}. Too much?`
-              : `${n} strips, each speed × ${Math.round(dt * 100) / 100} s. Bars poke above the line.`}
+              : `${n} strips. The first is ${Math.round(speed(dt) * 100) / 100} m/s × ${Math.round(dt * 100) / 100} s ≈ ${m(speed(dt) * dt)}. Bars poke above the line.`}
       </p>
 
       <Slider label="Strips" value={n} min={1} max={20} disabled={locked} onChange={strips} />
@@ -140,7 +147,7 @@ function Stage({
         <Control disabled={locked} onClick={toggle} className={tri ? "active" : ""} aria-pressed={tri}>
           {tri ? "Hide the triangle" : "Show the triangle"}
         </Control>
-        <Readout label="Bars' area" value={locked ? "?" : m(area)} />
+        <Readout label="Strips add up to" value={locked ? "?" : m(area)} />
       </Row>
     </div>
   );

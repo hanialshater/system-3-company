@@ -27,7 +27,7 @@ export default function OneBossMovesTheMean({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Five salaries, in thousands: 30, 35, 40, 45, 50. The top one jumps to 500. What changes?",
+        question: "Five salaries, in thousands: 30, 35, 40, 45, 50. The mean is the total ÷ 5; the median is the middle one in order. The top salary jumps to 500. What changes?",
         options: ["Both the mean and the median", "Only the mean", "Only the median"],
         answer: 1,
       }}
@@ -95,7 +95,7 @@ function Stage({ locked, interact, boss, setBoss }: StageContext & { boss: numbe
         <text x={X0 + slot * 3.5} y={yOf(mean) - 5} textAnchor="middle" className={s.meanLabel}>
           mean {mean}
         </text>
-        <text x={X0 + 2} y={Math.max(yOf(median) - 22, Y1 + 8)} className={s.medianLabel}>
+        <text x={X0 + 2} y={yOf(median) + 12} className={s.medianLabel}>
           median {median}
         </text>
       </svg>

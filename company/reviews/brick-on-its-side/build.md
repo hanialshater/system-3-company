@@ -7,3 +7,7 @@ builder: demo-builder · 2026-10-13 · for evaluators to read after their findin
 - Earned reveal: milestones 'first-pull' and 'second-face'. A face already pulled is shown active and disabled (pressing it again would change nothing).
 - Pull is instant rather than animated, so every press changes the stage within QA's 450 ms wait.
 - After screenshots: brick looked small at 3 px/cm; raised to 4 px/cm and moved the model chip under the table so the 24 cm end-up brick clears it.
+
+## Revision v2 (wave C)
+
+Reveal quotes each face's pull at the mass used for it, and separates the mass effect (4 kg = 15.7 N). Pressure wording explained; claim c6 added, unverified.
