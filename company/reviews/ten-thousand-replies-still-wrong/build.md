@@ -15,3 +15,9 @@ Brief: `company/domains/briefs/probability.md` Round 4 item 59. Status draft, ve
 5. **QA path.** 1,000 web -> 100,000 web (web100k) -> 1,000 calls (calls) -> 10,000 web (web10k). All four rows drawn at the reveal.
 6. **Reset.** No reset control. Reveal on the QA path: "With 10,000 replies the web poll says 32.3% back the plan, and at 100,000 it still said 33.1%. Opponents reply twice as often, so every batch of replies holds two opponents per backer, however many arrive. More replies only shrink the whisker around the wrong answer. The 1,000 random calls said 48.7%, near the truth, because everyone had the same chance of being asked." (64 words)
 7. **Phone fit.** See "Measurements" below.
+
+## Measurements (2026-10-14, shared dev server :3530)
+
+- reveal-fit: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; 70 words with the verdict (64 reveal). Parts: picture 134, controls 78, text 35 px. Smallest SVG text 10 viewBox px at about 1.0 scale. Screenshot artifacts/reveal-fit/ten-thousand-replies-still-wrong.png.
+- The shared dev server answered pages in 25-730 s under load 30-60, so `tools/reveal-fit.mjs` timed out on page.goto (30 s) on every try. The numbers above come from a scratch copy of the tool whose only changes are a 240 s goto timeout and a 120 s lesson-render wait (scratchpad, not committed); the measuring code is unchanged.
+- QA (tests/qa/contract.spec.ts on :3530, `--timeout=400000` CLI flag because pages took 1-4 min; spec unchanged): phone and desktop passed (artifacts/qa-wavej-probability/qa-report.json).

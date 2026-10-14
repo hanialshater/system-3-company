@@ -15,3 +15,9 @@ Brief: `company/domains/briefs/probability.md` Round 4 item 57. Status draft, ve
 5. **QA path.** Day 3 (3 of 20) -> Day 7 (16 of 20, day7) -> Show (16 of 20, compare). At the reveal both rows are on stage at day 7 with "better: 16 of 20" each.
 6. **Reset.** No reset control. Reveal on the QA path: "By day 7, 16 of 20 felt better with the pill. The group that took nothing: 16 of 20, the same. In this model colds clear up by themselves, so getting better after the pill was going to happen anyway. More pill-takers or faster stories would not change that. Only the comparison row shows what the pill added, and here it added nothing." (63 words)
 7. **Phone fit.** See "Measurements" below.
+
+## Measurements (2026-10-14, shared dev server :3530)
+
+- reveal-fit: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; 74 words with the verdict (63 reveal). Parts: picture 92, controls 78, text 35 px. Picture drawn at about 1.0 viewBox scale, so row labels are about 11 px. Screenshot artifacts/reveal-fit/sixteen-of-twenty-got-better.png.
+- The shared dev server answered pages in 25-730 s under load 30-60, so `tools/reveal-fit.mjs` timed out on page.goto (30 s) on every try. The numbers above come from a scratch copy of the tool whose only changes are a 240 s goto timeout and a 120 s lesson-render wait (scratchpad, not committed); the measuring code is unchanged.
+- QA (tests/qa/contract.spec.ts on :3530, `--timeout=400000` CLI flag because pages took 1-4 min; spec unchanged): phone and desktop passed (artifacts/qa-wavej-probability/qa-report.json).
