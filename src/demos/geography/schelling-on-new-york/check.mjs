@@ -10,10 +10,13 @@
 // 4. v3: the seed list New mix cycles, no slider (fixed 30%), no region over 90% one group at 30%,
 //    the 'would move' rule, the QA-path numbers (spec section 8), one-group box shares (c17) and the
 //    agreement of two settled mixes (c16).
+// 5. v4: most 2 x 2 boxes are uneven at the start (c18), one-group boxes held by one household (the
+//    coastline caveat, c17), seeds whose start shows above 0.50, the chance-only score at census-tract
+//    size (c19), and the reveal pins on the v4 QA path (chips before the run controls).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { run, dissimilarity, likeShare, oneGroupBoxes, MASK, N } from "./engine.ts";
+import { run, dissimilarity, likeShare, oneGroupBoxes, mulberry32, MASK, N } from "./engine.ts";
 import { run as abmRun } from "../../economics/mild-preferences-sharp-divides/abm.ts";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -228,5 +231,67 @@ const [m12, t12] = agree(1, 2), [m24, t24] = agree(2, 4);
 console.log(`  agreement of settled mixes: 1 vs 2 ${m12}/${t12} (${f2(m12 / t12)}), 2 vs 4 ${m24}/${t24} (${f2(m24 / t24)}), consecutive ${f2(Math.min(...ag))}-${f2(Math.max(...ag))} mean ${f2(ag.reduce((x, y) => x + y, 0) / ag.length)}`);
 ok(m12 === 229 && t12 === 463, "c16: mix 1 vs mix 2 agree on 229 of 463 shared cells (0.49)");
 ok(f2(Math.min(...ag)) === "0.41" && f2(Math.max(...ag)) === "0.59" && f2(ag.reduce((x, y) => x + y, 0) / ag.length) === "0.51", "c16: consecutive lesson seeds agree on 0.41-0.59 of shared cells, mean 0.51");
+// v4 (learner review v3, learning design v3, fact-check pass 3 caveat).
+console.log("\nv4");
+// c18: at the random start most 2 x 2 boxes are uneven (not an exact even split of the groups).
+const ev = { held: 0, even: 0, single: 0, one: 0 };
+const unevenBySeed = [];
+const above50 = [];
+for (const s of SEEDS) {
+  const f = run(s, 30).frames[0];
+  let held = 0, even = 0;
+  for (let by = 0; by < N; by += 2)
+    for (let bx = 0; bx < N; bx += 2) {
+      let a = 0, b = 0;
+      for (let y = by; y < by + 2; y++)
+        for (let x = bx; x < bx + 2; x++) {
+          const g = f[y * N + x];
+          if (g === 1) a++;
+          else if (g === 2) b++;
+        }
+      if (!(a + b)) continue;
+      held++;
+      if (a === b) even++;
+      if (a === 0 || b === 0) { ev.one++; if (a + b === 1) ev.single++; }
+    }
+  ev.held += held; ev.even += even;
+  unevenBySeed.push((held - even) / held);
+  if (f2(dissimilarity(f, N, 2)) > "0.50") above50.push(`${s}:${f2(dissimilarity(f, N, 2))}`);
+}
+const uMin = Math.round(100 * Math.min(...unevenBySeed)), uMax = Math.round(100 * Math.max(...unevenBySeed));
+const uAll = Math.round((100 * (ev.held - ev.even)) / ev.held);
+console.log(`  start, 2x2 boxes holding a household: uneven ${uMin}-${uMax}% by seed (${uAll}% of ${ev.held} over all seeds); one-group ${ev.one}, of which a single household ${ev.single}`);
+ok(Math.min(...unevenBySeed) > 0.5, `c18: on every lesson seed most 2x2 boxes are uneven at the start (${uMin}-${uMax}%)`);
+ok(ev.one === 3412 && ev.single === 1645, "c17 caveat: 1,645 of the 3,412 one-group 2x2 start boxes hold a single household (mostly cut by the coastline)");
+console.log(`  lesson seeds whose 2x2 start shows above 0.50: ${above50.length} (${above50.join(", ")})`);
+ok(above50.length === 4, "learning design v3: 4 of 48 lesson seeds show a 2x2 start above 0.50");
+
+// c19: chance alone at census-tract size. Two groups placed at random into tracts of n people
+// (binomial), seeded; D over 2,000 tracts. Tracts hold about 1,200-8,000 people (c15).
+const tractD = (n, p, seed, units = 2000) => {
+  const r = mulberry32(seed);
+  const a = new Float64Array(units), b = new Float64Array(units);
+  let A = 0, B = 0;
+  for (let u = 0; u < units; u++) {
+    let x = 0;
+    for (let i = 0; i < n; i++) if (r() < p) x++;
+    a[u] = x; b[u] = n - x; A += x; B += n - x;
+  }
+  let d = 0;
+  for (let u = 0; u < units; u++) d += Math.abs(a[u] / A - b[u] / B);
+  return d / 2;
+};
+const tr = [];
+for (const n of [1200, 4000]) for (const p of [0.5, 0.2, 0.1]) tr.push([n, p, tractD(n, p, 7)]);
+console.log(`  chance-only D at tract size: ${tr.map(([n, p, d]) => `${n} people, ${p * 100}% one group: ${f2(d)}`).join("; ")}`);
+ok(tr.every(([, , d]) => d < 0.05), "c19: a random mix scores under 0.05 in tracts of 1,200 or more people (one group 10-50%)");
+const boxN = [[2, 4], [4, 16], [8, 64]].map(([k]) => f2(byK.start[ks.indexOf(k)].reduce((x, y) => x + y, 0) / SEEDS.length));
+console.log(`  for scale, this grid's random start: 2x2 (<=4 households) ${boxN[0]}, 4x4 (<=16) ${boxN[1]}, 8x8 (<=64) ${boxN[2]}`);
+
+// v4 QA path (chips are now before Step, Run, New mix, Reset in DOM order): 4x4 and 8x8 on mix 1 at
+// round 0, Step, Run (mix 1 settles), New mix (mix 2 replayed to its end; 8x8 still selected), Reset.
+// Pins: P = mix 2 (settled and looked at 8x8 last), k* = 8, Q = mix 1. The reveal quotes P's
+// one-group 2x2 start share and its 8x8 start value, both on the reveal caption.
+ok(oneAt(r2.frames[0], 2)[2] === 35 && D_(r2.frames[0], 8) === "0.14", "v4 QA path: the reveal quotes mix 2's start, 35% one group and 8x8 0.14");
 console.log(fail ? `\n${fail} check(s) FAILED` : "\nall checks passed");
 process.exit(fail ? 1 : 0);

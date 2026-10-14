@@ -10,6 +10,12 @@
 //
 // v3 in one line: the learner runs the same rule on two random mixes, and the reveal pins both
 // settled grids side by side, so the picture itself shows the clumps landing in different places.
+//
+// v4 (build note "v4"): learning-design v3 question and options; focus kept (aria-disabled, not
+// disabled, once unlocked); box-button names contain their visible text; one atomic live region
+// that speaks only when a run stops; chips above the run controls and labelled start / now; an
+// outline swatch on the one-group readout; the "why isn't random 0" mechanism on the stage (explore
+// only, never at predict) and in the reveal; census tract explained; "Round" -> "round of moves".
 
 import {
   useEffect,
@@ -127,6 +133,20 @@ const S1 = (
   </>
 );
 const S4 = "Not modelled: money, prices, history, who was allowed to live where.";
+/** S2: the box scale. At predict it names only the scale (the mechanism would point to the answer);
+ * once the learner has committed it also says what raises the score (learner review v3, issue 1). */
+const S2_PREDICT = "Spread in boxes (0 even, 1 apart):";
+const S2_EXPLORE = "Spread (0 even, 1 apart); one-group boxes raise it:";
+/** S3, directly above the rule line: the rule is the model's, not a measure of anyone (R6). */
+const S3 = "Model rule, not anyone's measure:";
+
+/** Legend swatch for the one-group outline: the same stroke as the outlines on the grid, on the
+ * readout that counts them (no area words, cultural pass 4 ruling 1.5). */
+const OutlineSwatch = () => (
+  <svg viewBox="0 0 10 10" className={s.glyph} aria-hidden>
+    <rect x={1.5} y={1.5} width={7} height={7} className={s.outline} />
+  </svg>
+);
 
 /** Grid side in px: 300 when the explore stage has room, down to 246 (6 px cells, ABM rule 1). */
 const FLOOR = 6 * (N + 1);
@@ -245,9 +265,12 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
   /** The grid has moved at least once (any mix): S4 shows from then on (cultural pass 4, 5.3). */
   const [moved, setMoved] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  /** True while Run or New mix replays frames: the live region waits for the run to stop. */
+  const [anim, setAnim] = useState(false);
   const stop = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
+    setAnim(false);
   };
   useEffect(() => stop, []);
 
@@ -278,6 +301,7 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
     const jump = Math.max(1, Math.ceil((to - from) / 8));
     let q = from;
     setT(from);
+    setAnim(true);
     timer.current = setInterval(() => {
       q = Math.min(to, q + jump);
       setT(q);
@@ -285,18 +309,25 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
     }, 45);
   };
 
+  // Step, Run and Reset stay focusable when they have nothing to do (aria-disabled, not disabled,
+  // accessibility review item 4): the click is guarded here instead.
   const step = () => {
+    if (tt >= last) return;
     stop();
     const nt = tt + 1;
     setT(nt);
     if (nt === last) record(seed);
   };
   const play = () => {
+    if (tt >= last) return;
     stop();
     record(seed); // milestones fire on press, from the computed result
     animate(cur, tt);
   };
-  /** Keeps the moment: at round 0 a new random start; later, the next mix run to its end. */
+  /** Keeps the moment: at round 0 a new random start; later, the next mix replayed from its random
+   * start to its end (the reveal pins two settled mixes and the QA path presses each control once,
+   * so after a run New mix must settle the next mix; the chips and readout keep its start values,
+   * labelled "start"). */
   const newMix = () => {
     stop();
     const ni = (seedIx + 1) % SEEDS.length;
@@ -307,10 +338,12 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
     animate(getRun(ns), 0);
   };
   const reset = () => {
+    if (tt === 0) return;
     stop();
     setT(0);
   };
   const box = (q: number) => {
+    if (q === k) return;
     setK(q);
     look(seed, q);
   };
@@ -321,19 +354,20 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
+        // Learning design v3, decision 3 (exact): 2 lines at 390 px, options on one row.
         question:
-          "Two made-up groups of households, equal in number, are placed at random on a grid shaped like New York City. Before anything moves, how unevenly are they spread over the 2 × 2 boxes drawn on it (a segregation index: 0 even, 1 fully apart)?",
-        options: ["About 0 to 0.1", "About 0.4 to 0.5", "About 0.9 to 1"],
+          "Two equal groups are mixed at random. Before anyone moves, what do the 2 × 2 boxes score?",
+        options: ["0 to 0.1", "0.4 to 0.5", "0.9 to 1"],
         answer: 1,
       }}
-      exploreHint="Run the rule at 30%, press New mix, then measure the same grid in bigger boxes."
+      exploreHint="First measure this random start in bigger boxes. Then Run the rule and press New mix."
       minInteractions={MILESTONES.length}
       reveal={() => <Reveal pins={pins} />}
     >
       {({ locked, interact, phase }) => {
         if (phase === "reveal")
           return (
-            <div className={s.wrap}>
+            <div className={`${s.wrap} ${s.wrapR}`}>
               <Pair pins={pins} />
             </div>
           );
@@ -343,11 +377,20 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
         const bx = boxes(frame, k);
         const bx0 = boxes(cur.frames[0], k);
         const capped = tt === last && !cur.settled;
+        /** Nothing to do: kept focusable, announced as unavailable, click guarded (a11y item 4). */
+        const inert = (b: boolean) => (!locked && b ? true : undefined);
+        // One live region, atomic (a11y item 5). While Run or New mix replays, it already holds the
+        // frame the replay will stop on, so it changes once per run, not once per jump.
+        const lt = anim ? last : tt;
+        const lf = cur.frames[lt];
+        const said = locked
+          ? ""
+          : `Mix ${seed}, round of moves ${lt}${lt === last ? (cur.settled ? ", settled" : ", stopped") : ""}: ${movePct(cur, lt)}% would move; spread in ${k} by ${k} boxes ${D(lf, k)}; one-group boxes ${boxes(lf, k).pct}%.`;
         return (
           <Fit phase={phase}>
             {(fitRef, px) => {
-              // Outline inset: 1 px clear of the lattice line plus half the 1.25 px stroke (D7).
-              const inset = (1.6 * (N + 1)) / px;
+              // Outline inset: 1 px clear of the lattice line plus half the 1.5 px stroke (a11y item 2).
+              const inset = (1.75 * (N + 1)) / px;
               return (
                 <div className={s.wrap} ref={fitRef}>
                   <Gate
@@ -365,10 +408,10 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                       className={`stage-svg ${s.grid}`}
                       style={{ width: px, height: px }}
                       role="img"
-                      aria-label={`A grid shaped like New York City with made-up households, mix ${seed}. Round ${tt}: ${cur.agents} households in two equal made-up groups, ${mv}% would move${
+                      aria-label={`A grid shaped like New York City with made-up households, mix ${seed}. Round of moves ${tt}: ${cur.agents} households in two equal made-up groups, ${mv}% would move${
                         locked
                           ? ""
-                          : `; spread in ${k} by ${k} boxes ${D(frame, k)}; one-group boxes ${bx.pct}%`
+                          : `; spread in ${k} by ${k} boxes ${D(frame, k)}; one-group boxes, outlined, ${bx.pct}%`
                       }.`}
                     >
                       <clipPath id="nyc-land">
@@ -397,9 +440,9 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                       {moved && <p className={s.s4}>{S4}</p>}
                     </div>
                   </div>
-                  <div className={s.head} aria-live="polite">
+                  <div className={s.head}>
                     <span>
-                      Round <b>{tt}</b>
+                      round of moves <b>{tt}</b>
                       {capped ? ` of ${CAP}` : ""}
                     </span>
                     <span>
@@ -410,22 +453,68 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                     </span>
                     {!locked && (
                       <span>
-                        one-group boxes{" "}
-                        <b>{tt ? `${bx0.pct}%→${bx.pct}%` : `${bx.pct}%`}</b>
+                        <OutlineSwatch /> one-group boxes{" "}
+                        {tt ? (
+                          <>
+                            start <b>{bx0.pct}%</b> now <b>{bx.pct}%</b>
+                          </>
+                        ) : (
+                          <b>{bx.pct}%</b>
+                        )}
                       </span>
                     )}
+                  </div>
+                  <p className={s.sr} aria-live="polite" aria-atomic="true">
+                    {said}
+                  </p>
+                  {/* Box chips before the run controls: measure the random start first (learner
+                      review v3, issue 4). */}
+                  <p className={s.line}>{locked ? S2_PREDICT : S2_EXPLORE}</p>
+                  <div
+                    className={s.blocks}
+                    role="group"
+                    aria-label="Measure in boxes of"
+                  >
+                    {KS.map((q) => {
+                      const show =
+                        !locked &&
+                        (q === 2 ||
+                          [...rec.looked.keys()].some((x) => x.endsWith(`:${q}`)));
+                      const start = locked && q === 2 ? "?" : show ? D(cur.frames[0], q) : "";
+                      const now = show && tt ? D(frame, q) : "";
+                      const name = `${q}×${q} boxes${start ? `, start ${start}` : ""}${now ? `, now ${now}` : ""}`;
+                      return (
+                        <Control
+                          key={q}
+                          className={`${s.tap} ${s.block} ${q === k ? "active" : ""}`}
+                          disabled={locked}
+                          aria-disabled={inert(q === k)}
+                          aria-pressed={q === k}
+                          aria-label={name}
+                          onClick={() => box(q)}
+                        >
+                          <span>
+                            {q}×{q}
+                          </span>
+                          <small>{start ? (start === "?" ? "?" : `start ${start}`) : " "}</small>
+                          <small>{now ? `now ${now}` : " "}</small>
+                        </Control>
+                      );
+                    })}
                   </div>
                   <div className={s.controls}>
                     <Control
                       className={s.tap}
-                      disabled={locked || tt >= last}
+                      disabled={locked}
+                      aria-disabled={inert(tt >= last)}
                       onClick={step}
                     >
                       Step
                     </Control>
                     <Control
                       className={s.tap}
-                      disabled={locked || tt >= last}
+                      disabled={locked}
+                      aria-disabled={inert(tt >= last)}
                       onClick={play}
                     >
                       Run
@@ -439,49 +528,14 @@ export default function SchellingOnNewYork({ slug }: { slug: string }) {
                     </Control>
                     <Control
                       className={s.tap}
-                      disabled={locked || tt === 0}
+                      disabled={locked}
+                      aria-disabled={inert(tt === 0)}
                       onClick={reset}
                     >
                       Reset
                     </Control>
                   </div>
-                  <p className={s.line}>Spread in boxes (0 even, 1 apart):</p>
-                  <div
-                    className={s.blocks}
-                    role="group"
-                    aria-label="Measure in boxes of"
-                  >
-                    {KS.map((q) => {
-                      const show =
-                        !locked &&
-                        (q === 2 ||
-                          [...rec.looked.keys()].some((x) => x.endsWith(`:${q}`)));
-                      const val =
-                        locked && q === 2
-                          ? "?"
-                          : show
-                            ? tt
-                              ? `${D(cur.frames[0], q)}→${D(frame, q)}`
-                              : D(frame, q)
-                            : " ";
-                      return (
-                        <Control
-                          key={q}
-                          className={`${s.tap} ${s.block} ${q === k ? "active" : ""}`}
-                          disabled={locked || q === k}
-                          aria-pressed={q === k}
-                          aria-label={`Boxes of ${q} by ${q} cells`}
-                          onClick={() => box(q)}
-                        >
-                          <span>
-                            {q}×{q}
-                          </span>
-                          <small>{val}</small>
-                        </Control>
-                      );
-                    })}
-                  </div>
-                  <p className={s.line}>A setting, not a measure of anyone.</p>
+                  <p className={s.line}>{S3}</p>
                   <p className={s.rule}>
                     Move if fewer than <b>{PCT}% of neighbours are like them</b>
                   </p>
@@ -557,7 +611,10 @@ function Pair({ pins }: { pins: Pins | null }) {
 }
 
 /** Every number comes from P (the learner's own settled mix with a bigger box looked at) and is on
- * the reveal stage's captions, with the stage's rounding (spec section 7). */
+ * the reveal stage's captions, with the stage's rounding (spec section 7). v4: paragraph 1 gives the
+ * mechanism (tiny boxes are mostly uneven; one-group boxes) and the census tract in plain words;
+ * paragraph 2 opens with the limit, in bold, and "discrimination by race" is bold (learner review
+ * v3, issues 1, 2, 3 and 7). Body 113 words, so 120 with the longest verdict line. */
 function Reveal({ pins }: { pins: Pins | null }) {
   if (!pins) return <p>Run two mixes to the end first.</p>;
   const P = getRun(pins.p);
@@ -566,19 +623,20 @@ function Reveal({ pins }: { pins: Pins | null }) {
   return (
     <>
       <p>
-        Mix {pins.p} began at {D(f0, 2)} in 2×2 boxes (at most 4 households
-        each); chance alone left {boxes(f0, 2).pct}% one group. {ks}:{" "}
-        {D(f0, pins.kStar)}. A segregation number needs its unit; a census
-        tract holds thousands of people.
+        Holding at most 4 households, most 2×2 boxes are uneven, raising the
+        score: before anything moved, {boxes(f0, 2).pct}% held one group. {ks}{" "}
+        boxes even this out: {D(f0, pins.kStar)}. Real figures often use census
+        tracts (neighbourhood-sized areas of thousands of people), where chance
+        adds little.
       </p>
       <p>
-        The rule sorted your mixes into clumps in different places: this model
-        does not show why real cities look as they do. In US cities, households
-        did not all have the same choices: the documented history includes
-        housing and lending discrimination by race, widening wealth gaps, and
-        late-1930s government maps grading neighbourhoods for lending risk. The
-        grades are associated with later home values and ownership; research is
-        mixed on whether the maps caused this or recorded earlier practice.
+        <b>This model does not show why real cities look as they do</b>: your
+        mixes clumped in different places. In US cities, households did not all
+        have the same choices: housing and lending <b>discrimination by race</b>,
+        including late-1930s government maps grading neighbourhoods for lending
+        risk, then widening wealth gaps. The grades are associated with later
+        home values and ownership; research is mixed on whether the maps caused
+        this or recorded earlier practice.
       </p>
     </>
   );
