@@ -1,7 +1,7 @@
 {
   "slug": "background-shortcut",
   "title": "Cows live on grass, right?",
-  "hook": "It aces the test photos. Has it learned what a cow looks like?",
+  "hook": "A model picks one clue to tell cows from camels. What happens in new places?",
   "domain": "ai",
   "concept": "shortcut-learning",
   "status": "review",
@@ -34,12 +34,10 @@
     },
     {
       "id": "ai.background-shortcut.c2",
-      "text": "The toy model uses one clue at a time and keeps the one with the higher training score: background.",
+      "text": "The toy model uses one clue at a time and keeps the one with the higher training score: background. The stage lets the learner run either clue on either set of photos.",
       "support": "convention",
       "source": "LEARNED in Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.background-shortcut.c3",
@@ -61,12 +59,10 @@
     },
     {
       "id": "ai.background-shortcut.c5",
-      "text": "A model takes the cheapest clue that works on its training data, and test photos drawn from the same source share the shortcut, so a high score there does not show the model learned the clue you meant.",
+      "text": "Models tend to take an easy clue that works on their training data, and test photos drawn from the same source share the shortcut, so a high score there does not show the model learned the clue you meant.",
       "support": "source",
       "source": "Reveal paragraph 2. Geirhos et al. 2020, Nature Machine Intelligence 2, 665-673 (shortcuts that work on i.i.d. test sets but fail out of distribution). 'Cheapest' is a loose paraphrase of simplicity/shortcut bias, not a measured quantity; the reviewer should confirm the wording is acceptable. Added by fact-checker 2026-10-13; needs an independent check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -91,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:shortcut-learning",
     "prerequisites": [
@@ -100,5 +96,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "tally-counters"
+  ]
 }

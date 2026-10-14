@@ -43,21 +43,17 @@
     },
     {
       "id": "ai.memorise-coin-flips.c3",
-      "text": "On label set 1 the degree-1 line misses by up to 1.51 and the degree-3 curve by 0.76; the degree-5 fit's biggest coefficient is 833 (625 on set 2).",
+      "text": "On label set 1 the degree-1 line misses by up to 1.51 and the degree-3 curve by 0.76; the degree-5 curve's largest miss is 0.00.",
       "support": "simulation",
-      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000 (coef 833); set 2 d5 coef 625. Degree 3 misses some dot in 967 of 1000 label sets.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "report(set, deg) in Demo.tsx; node re-run: set 1 d1 1.505, d3 0.762, d5 0.000. Degree 3 misses some dot in 967 of 1000 label sets.",
+      "status": "unverified"
     },
     {
       "id": "ai.memorise-coin-flips.c4",
-      "text": "Because the labels are coin flips, the fitted curve's guesses on new points are right only by chance (about half the time).",
+      "text": "Because the labels are coin flips, the fitted curve's call on a new point (the stage's point at x = 0.5, with its own coin-flip label) is right only by chance, about half the time; the stage tallies it over the label sets the learner tries at degree 5.",
       "support": "derivation",
-      "source": "By construction: a new point's label is an independent fair coin flip, so any guess matches it with probability 1/2 whatever the curve.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "By construction: a new point's label is an independent fair coin flip (newLabel(set) in Demo.tsx, mulberry32(set * 7919 + 13)), so any guess matches it with probability 1/2 whatever the curve. The stage tally is computed live; the counts depend on the sets tried.",
+      "status": "unverified"
     },
     {
       "id": "ai.memorise-coin-flips.c5",
@@ -88,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:memorise-random-labels",
     "prerequisites": [
@@ -97,5 +93,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

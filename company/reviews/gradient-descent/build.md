@@ -24,3 +24,8 @@ Trade-off for the QA contract: the default step is 0.25 so that every preset but
 ## v3 (claim fix 2026-10-13)
 
 Claim c11 disputed ('hops are tiny' at eta 0.15-0.19). Message changed to 'Slow: each hop covers under 40% of the distance left.' (true: hop = 2*eta*distance, eta<0.2); claim rewritten; unverified.
+
+## Revision v4 (wave C, 2026-10-14)
+
+- Review (v3): hook and title pushed the wrong answer, no ruler for distance, (1 - 2 x step) and 0.5 told, 'within 0.04 after two hops' on no screen. Fix: neutral title and hook; a ruler on the baseline shows distance from the bottom; stage line shows the per-hop factor; 0.50 is a fifth run button (just another size); gate is four runs (0.05, 0.45, 0.50, 0.95 or more); reveal quotes only runs made; 0 shown as '0'.
+- Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.

@@ -6,3 +6,8 @@
 - Controls in DOM order: Fold 1 ... Fold 5. Readouts: highest − lowest (of scored folds), mean (after all five).
 - Key state (milestones): all five folds scored (fold-1..fold-5, minInteractions 5). QA path presses each once: 100, 75, 100, 50, 75 → spread 50, mean 80.
 - Reveal quotes the five scores, spread, mean and 16/20 (all on stage), plus the 1,000-seed spread (disclosure, claim c3).
+
+## Revision v2 (wave C, 2026-10-14)
+
+- Review (v1): 'points' used for dots and for percentage points. Fix: data are 'dots', scores are 'percentage points'; the four wrong-label dots are ringed on the locked stage; fold buttons are short numbers; the 1,000-shuffle sentence is replaced by the derivation (4 wrong labels cannot split evenly over 5 folds, so one dot = 25 points); neutral hook.
+- Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.

@@ -24,30 +24,17 @@
   "claims": [
     {
       "id": "ai.copy-of-a-copy.c1",
-      "text": "A word that is 2% of the data is missed by all 50 draws with chance 0.98^50 = 36.4%; once its count is 0 it can never be drawn again.",
+      "text": "A word that is 2% of the data is missed by all 50 draws with chance 0.98^50 = 36.4%, about one run in three; in this toy, once its count is 0 it can never be drawn again.",
       "support": "derivation",
       "source": "Independent draws: (1 − 0.02)^50 = 0.3642. Absorption at 0 follows from drawing only from current frequencies (nextGen in Demo.tsx). exactLoss(50) in Demo.tsx.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
-      "id": "ai.copy-of-a-copy.c2",
-      "text": "In 2,000 seeded runs, the 2% word vanished after one generation 37.3% of the time.",
-      "support": "simulation",
-      "source": "lossRate(50, 2000) in Demo.tsx, runs 1-2000 (seed run*1000 + generation into mulberry32), untuned. The stage shows runs 1, 2, 3, ... in order, also untuned: run 1 has lost 5 of 10 words by generation 3, and runs 1-10 each lost 4-6 words by generation 11.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.copy-of-a-copy.c3",
-      "text": "With 500 draws per generation the 2% word is lost in one generation with chance 0.98^500 ≈ 0.004%, but losses still only accumulate.",
+      "text": "With 500 draws per generation the 2% word is lost in one generation with chance 0.98^500 ≈ 0.004%, but in the toy losses still only accumulate: bigger samples slow the losing, they do not undo it.",
       "support": "derivation",
       "source": "exactLoss(500) = 4.1e-5 in Demo.tsx; lossRate(500, 2000) = 0 in 2,000 seeded runs.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.copy-of-a-copy.c4",
@@ -89,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "ai:model-collapse",
     "prerequisites": [
@@ -98,5 +85,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "milestone-gate"
+  ]
 }

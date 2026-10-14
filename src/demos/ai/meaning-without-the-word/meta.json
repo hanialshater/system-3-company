@@ -24,12 +24,10 @@
   "claims": [
     {
       "id": "ai.meaning-without-the-word.c1",
-      "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each, so with ties in knowledge-base order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
+      "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each and tie; with ties kept in list order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
       "support": "derivation",
       "source": "wordScore() and ranking('words') in Demo.tsx (node output: scores 0,1,1,1,1; order 1,2,3,4,0). The tie-break rule is the toy's.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "ai.meaning-without-the-word.c2",
@@ -89,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:retrieval-top-k",
     "prerequisites": [
@@ -98,5 +96,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

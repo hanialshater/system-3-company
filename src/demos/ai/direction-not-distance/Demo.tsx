@@ -48,7 +48,7 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            B kept a cosine of {f2(cosB)} at every length you tried ({seen.map((v) => `(${v}, ${v})`).join(", ")}), even {f1(Math.max(...seen.map((v) => dist(Q, bAt(v)))))} away. C is only {f1(DIST_C)} away, but its cosine is {f2(COS_C)}.
+            B kept a cosine of {f2(cosB)} at every length you tried, {seen.map((v) => `(${v}, ${v})`).join(", ")}, even when it was {f1(Math.max(...seen.map((v) => dist(Q, bAt(v)))))} away. C is only {f1(DIST_C)} away, but its cosine is {f2(COS_C)}.
           </p>
           <p>
             Cosine compares directions only: stretching an arrow never changes its angle. So by distance C wins; by cosine B wins.
@@ -76,7 +76,7 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <span className={`tag ${s.model}`}>Toy 2-D vectors</span>
-                <p className={s.caption}>Cosine: 1 = same direction, lower = wider angle. Length is ignored.</p>
+                <p className={s.caption}>Cosine: 1 = same direction, lower = wider angle.{locked ? "" : " Length is ignored."}</p>
                 <svg viewBox="0 0 320 212" className="stage-svg" role="img" aria-label={`B at ${k}, ${k}`}>
                   <line x1={ox} y1={oy} x2={ox + 11 * u} y2={oy} stroke="var(--line)" />
                   <line x1={ox} y1={oy} x2={ox} y2={oy - 11 * u} stroke="var(--line)" />
@@ -99,12 +99,12 @@ export default function DirectionNotDistance({ slug }: { slug: string }) {
                   {/* C */}
                   <line x1={ox} y1={oy} x2={cx} y2={cy} stroke="var(--fg)" strokeWidth={winC ? 4 : 2} />
                   <circle cx={cx} cy={cy} r={4} fill="var(--fg)" />
-                  <text x={cx + 6} y={cy + 4} className={s.small} fill="var(--fg)">
+                  <text x={cx + 8} y={cy + 13} className={s.small} fill="var(--fg)">
                     C
                   </text>
                   {/* Q */}
                   <circle cx={qx} cy={qy} r={4.5} fill="none" stroke="var(--fg)" strokeWidth={2} />
-                  <text x={qx - 6} y={qy - 6} textAnchor="end" className={s.small} fill="var(--fg)">
+                  <text x={qx - 7} y={qy - 6} textAnchor="end" className={s.small} fill="var(--fg)">
                     Q
                   </text>
                   {!locked && mode && (

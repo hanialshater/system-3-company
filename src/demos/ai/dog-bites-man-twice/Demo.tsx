@@ -63,14 +63,13 @@ export default function DogBitesManTwice({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Toy vectors: dog (1, 0), man (0, 1), bites (1, 1). "bites" gathers a summary of its sentence by dot-product attention. With no position information, is the summary the same in "dog bites man" and "man bites dog"?`,
+        question: `Toy vectors: dog (1, 0), man (0, 1), bites (1, 1). "bites" gathers a summary of its sentence: a blend of the word arrows, weighted by attention. With no position information, is the summary the same in "dog bites man" and "man bites dog"?`,
         options: ["Yes, identical", "No, it differs with word order", "Only if the sentence is longer"],
         answer: 0,
       }}
       exploreHint="Swap the end words, then turn position tags on."
       minInteractions={2}
       reveal={() => {
-        const withPos = [0, 1].filter((o) => seen.includes(key(o, true)));
         return (
           <>
             <p>
@@ -78,8 +77,8 @@ export default function DogBitesManTwice({ slug }: { slug: string }) {
               present, not where.
             </p>
             <p>
-              With tags on, {withPos.map((o) => `“${sentence(o)}” gave ${vec(summary(o, true))}`).join(" and ")}
-              {withPos.length < 2 ? " (you did not try the other order with tags on)." : ": the arrows differ."}
+              With tags on, “{sentence(0)}” gave {vec(summary(0, true))} and “{sentence(1)}” gave {vec(summary(1, true))}: the
+              arrows differ.
             </p>
             <p>Position tags are what let order change the answer. Real transformers add them too; this toy's tags are simpler.</p>
           </>
@@ -87,12 +86,12 @@ export default function DogBitesManTwice({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["swapped-no-position", "position-on"]}>
+        <Milestones interact={interact} names={["swapped", "position-on"]}>
           {(reach) => {
             const visit = (o: number, p: boolean) => {
               const next = seen.includes(key(o, p)) ? seen : [...seen, key(o, p)];
               setSeen(next);
-              if (!p && next.includes(key(0, false)) && next.includes(key(1, false))) reach("swapped-no-position");
+              if (o === 1) reach("swapped");
               if (p) reach("position-on");
             };
             const swap = () => {
@@ -110,7 +109,7 @@ export default function DogBitesManTwice({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <span className={`tag ${s.model}`}>Toy vectors</span>
-                <p className={s.caption}>The arrow is what “bites” gathers from the whole sentence.</p>
+                <p className={s.caption}>Blue arrow: the summary “bites” gathers. Rings: summaries you have seen.</p>
                 <svg viewBox="0 0 320 262" className="stage-svg" role="img" aria-label={`Sentence ${sentence(order)}, position tags ${pos ? "on" : "off"}`}>
                   <defs>
                     <marker id="dbm-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -154,7 +153,11 @@ export default function DogBitesManTwice({ slug }: { slug: string }) {
                   <Control className={pos ? "active" : ""} disabled={locked} onClick={toggle}>
                     Position tags: {pos ? "on" : "off"}
                   </Control>
-                  <Readout label="Summary" value={locked ? "–" : vec(cur)} />
+                </Row>
+                <Row>
+                  {[0, 1].map((o) => (
+                    <Readout key={o} label={sentence(o)} value={locked ? "–" : vec(summary(o, pos))} />
+                  ))}
                 </Row>
               </div>
             );
