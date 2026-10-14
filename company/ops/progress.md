@@ -3,6 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · fact-checker · Pass 20: builder rewordings (10 claims) + 4 source-only audits
+- Changed: status -> verified (checkedBy fact-checker) with pass-20 notes in the source field for ten-test-cases c4, a-birthday-like-mine c5, straight-across-saves c3, below-the-threshold-crash c3, interpolation-guesses-the-page c5, same-count-different-weight c5, proposers-get-the-best c5, one-bit-avalanche c6, truck-hits-car-force c5, random-dots-cluster c5. Source audits all held (still verified): sliding-the-cutoff c5, window-forgets-start c2, copy-overlaps-itself c3 (RFC 1951 opened: overlap example is in 3.2.3), drop-the-losing-start c4. "Pass 20" tables appended to each company/reviews/<slug>/2026-10-14-fact-check.md.
+- Believe (high): every reworded claim now matches its Demo.tsx stage and reveal; numbers re-run in node (crash sim ratios, 44.5% exact count, interpolation traces, rounding captions). All ten Demo.tsx files parse cleanly (TypeScript parser); no build or QA run. Medium: proposers c5 year 1998 rests on search-result text (Roth's Stanford page, Wikipedia, NRMP 1997 press release). Every primary page was blocked.
+- Next: chief of staff integrated build + QA for these lessons. Optional: someone with access confirms 1998 in Roth and Peranson (1999). Not touched: continental-jigsaw c1, half-of-humanity c1 (still need a human source check).
+
 ## 2026-10-14 · demo-builder (algo-pair-06) · tortoise-meets-hare, any-start-same-tree
 - Changed: built both lessons from brief + spec (status draft, all claims unverified); build notes in company/reviews/<slug>/build.md. any-start-same-tree uses the fixed brief (DE 3, total 11, next-best 12).
 - Believe (medium): answers re-run in node and match; Demo.tsx read carefully but NOT run in a browser. Skipped by order (machine out of memory): next build, qa, walkthrough, typecheck. Only `npm run check` passed.

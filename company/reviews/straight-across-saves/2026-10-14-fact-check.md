@@ -10,3 +10,11 @@ Checker: fact-checker (wrote none of these claims). Method: read Demo.tsx learne
 | c4 | verified | Convention, true of the model: Demo.tsx uses Euclidean distance on a plane (Math.hypot) with no obstacles; the reveal says 'Flat ground assumed.' Source wording note: 'Flat ground' appears only in the reveal, not on the stage, and 'nothing in the way' is implied, not stated. |
 
 **Result:** disputed: c3 (blocks publishing until the builder fixes and a fact-checker re-checks).
+
+## Pass 20
+
+Checker: fact-checker (did not write these claims). Re-check of the builder rewording: claim read against Demo.tsx (stage text and reveal), numbers re-run in own node scripts, Demo.tsx parsed with the TypeScript parser (no syntax errors). No build run.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c3 | verified | Caption at Demo.tsx line 75 adds 'about ' unless S*S equals e^2+n^2. Own node: (100,200) 50,000 -> 'about 224' (223.61); (300,400) 250,000 -> '500' exact; (100,100) 'about 141'. Theorem half re-derived: (a+b)^2 = c^2 + 2ab > c^2 for a,b > 0. |

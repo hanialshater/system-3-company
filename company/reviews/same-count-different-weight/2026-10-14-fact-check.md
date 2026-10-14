@@ -10,3 +10,11 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (predi
 | c5 | disputed | DISPUTED. Demo.tsx draws COLS = 20 dots per row, so the outlined box is two rows of 20 dots (40 dots); the claim's 'two rows of 40 dots' reads as 80 dots. Other parts check: PER_MOL = 40, 6.02214076e23 / 40 = 1.506e22, stage label 'full box', reveal names the crowd one mole. Fix (builder): 'the outlined box of two rows of 20 dots (40 in all) is one mole'. |
 
 **Result:** 1 verified, 1 disputed, 0 withdrawn.
+
+## Pass 20
+
+Checker: fact-checker (did not write these claims). Re-check of the builder rewording: claim read against Demo.tsx (stage text and reveal), numbers re-run in own node scripts, Demo.tsx parsed with the TypeScript parser (no syntax errors). No build run.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | verified | COLS = 20, PER_MOL = 40, outline rect spans 2 rows of COLS dots = 40; 6.02214076e23/40 = 1.506e22; label 'full box'; reveal says 'That crowd is called one mole'. |

@@ -13,3 +13,11 @@ Checker: fact-checker (wrote none of these claims). Read Demo.tsx (and model.ts 
 Disputes: c5. Fix (demo-builder): pin the reveal figures to the 10,000 kg crash, or word the sentence by mass ratio (drop "much more" and "the car comes off worse" when the truck is not heavier), or raise the mass slider minimum above 1,000 kg. Then add a claim covering the mass-dependent reveal.
 
 Result: 2 verified, 1 disputed, 0 withdrawn.
+
+## Pass 20
+
+Checker: fact-checker (did not write these claims). Re-check of the builder rewording: claim read against Demo.tsx (stage text and reveal), numbers re-run in own node scripts, Demo.tsx parsed with the TypeScript parser (no syntax errors). No build run.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | verified | Own node re-run of crash() copied from Demo.tsx, end sample t = 120 ms (force 0 at end for all): car/truck speed change 13.25/13.25 (1.000) at 1,000 kg, 17.66/8.83 (2.000) at 2,000, 22.08/4.42 at 5,000, 24.09/2.41 (10.000) at 10,000, 25.24/1.26 at 20,000. Reveal branches on truckKg > M_CAR: ratio text truckKg/1000, equal-mass text otherwise; slider min 1,000. Matches claim. |

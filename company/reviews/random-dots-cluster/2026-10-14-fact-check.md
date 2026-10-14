@@ -12,3 +12,11 @@ Checker: fact-checker (wrote none of these claims). Read Demo.tsx (and model.ts 
 Disputes: c5. Fix (demo-builder, claim + reveal): "A scatter with no lump is about as common as one with a lump, so a lump on its own is weak evidence..." or quote that no square holding two dots happens about 1 time in 9,000.
 
 Result: 1 verified, 1 disputed, 0 withdrawn.
+
+## Pass 20
+
+Checker: fact-checker (did not write these claims). Re-check of the builder rewording: claim read against Demo.tsx (stage text and reveal), numbers re-run in own node scripts, Demo.tsx parsed with the TypeScript parser (no syntax errors). No build run.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | verified | Own BigInt count of 40 dots in 100 cells with no cell >= 3: P = 0.44497, so 44.5% (crowded 55.5%). Reveal lines 92-94 compute (1 - EXACT) and say 'about as common', 'ordinary part of random scatter', 'weak evidence', matching the claim. |

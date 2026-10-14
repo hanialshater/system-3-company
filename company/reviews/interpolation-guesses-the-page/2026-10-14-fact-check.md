@@ -13,3 +13,11 @@ Checker: fact-checker (did not write these claims). Method: read Demo.tsx (every
 | c5 | DISPUTED | Cubes are convex, so the chord from range ends lies ABOVE the dots (own check: above at all 98 interior points), not "well below". The aim falls short because the line reaches the target value to the left of the target. "Each look moves one position" is true for 1,000 and 9,261, false for 729,000 (73, 88, 89, 90). Reveal "The line bends away from the dots" is also loose: the line is straight, the dots bend. Fix (builder, claim + reveal): "On the cubes the dots bend upward, so the straight aim line runs above them and reaches the target value too early: each aim falls short, and for small values like 9,261 each look moves just one position." |
 
 **Result:** one claim disputed (blocks publishing until the builder fixes the claim and stage text and a fact-checker re-checks); the rest verified.
+
+## Pass 20
+
+Checker: fact-checker (did not write these claims). Re-check of the builder rewording: claim read against Demo.tsx (stage text and reveal), numbers re-run in own node scripts, Demo.tsx parsed with the TypeScript parser (no syntax errors). No build run.
+
+| Claim | Result | Basis |
+|---|---|---|
+| c5 | verified | Own node re-run of probe(): 729,000 looks at 73, 88, 89, 90 (4 looks); 1,000 at 1..10; 9,261 at 1..21 (one position per look). Chord above the cube dots at every interior point of every range visited (0 exceptions), so each aim falls short. Reveal wording ('dots bend upward ... line runs above them ... each aim fell short') matches; it is shown only when looks > halving (true for 1,000: 10 > 6; 9,261: 21 > 5), and 729,000 (4 < 7) gets the other branch, which makes no contrary claim. |
