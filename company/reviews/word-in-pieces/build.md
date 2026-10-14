@@ -10,3 +10,8 @@
 
 Batch 06, 2026-10-14, from the latest learner review and fact-check. Question defines a token. Each box now shows a piece number (#412, #7031, #1297; letters 1 to 26, made up and labelled) instead of its position, so 'a row of numbers' is visible. The first unlocked state is the 3-token split. New claim c6 (token, made-up ids) and c4 reopened, both unverified.
 Claims edited are unverified and need a fact-check pass. QA and walkthrough not run (machine out of memory); the chief of staff runs them after merge.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+A record line under the boxes keeps every count seen (11 letters: 3 with all pieces, 11 with none; zyxxy 5 letters: 5), so the common-vs-rare contrast is on stage; in the reveal the stage returns to un | happi | ness and its controls lock. Reveal points at the record. Reopened c4; added c7.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

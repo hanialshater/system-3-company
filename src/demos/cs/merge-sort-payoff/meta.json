@@ -98,12 +98,10 @@
     },
     {
       "id": "cs.merge-sort-payoff.c9",
-      "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons.",
+      "text": "Each round of merges places every card once, so it costs fewer comparisons than there are cards; halving 1,000 cards down to single cards takes 10 rounds, so Merge Sort needs fewer than 10,000 comparisons, while checking every pair would take 499,500.",
       "support": "derivation",
       "source": "Top-down Merge Sort: recursion depth ceil(log2 1000) = 10. At each depth the merges together place at most n cards, each merge of k cards costs at most k-1 (c1), so a level costs fewer than n = 1000. 10 levels give fewer than 10,000; exact worst case 8,977 (c2). Reveal paragraph 2 (v2).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.merge-sort-payoff.c10",
@@ -122,6 +120,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.merge-sort-payoff.c12",
+      "text": "On the stage the deck the piles came from is shown in three stacked rounds: split into 8 single cards (0 comparisons), merge singles into pairs (4), merge pairs into piles A and B (6). With the final merge's count added (7 for the first piles), the whole sort costs 0 + 4 + 6 + 7 = 17, against 28 for every pair.",
+      "support": "simulation",
+      "source": "deal() in Demo.tsx computes the rounds with the same two-pointer merge the learner does. The deck order [l2, l0, l3, l1, r3, r1, r0, r2] is fixed, so every pair needs its 1 comparison (4) and each 2+2 merge interleaves to the end (3 + 3 = 6) for every seed; checked in node for seeds 7, 20, 33, 46. Seed 7 piles A 10 20 21 23 and B 4 5 18 36 interleave to the end, so the final merge is 7. 8 x 7 / 2 = 28 pairs (claim c10).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -147,7 +152,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:divide-and-conquer",
     "prerequisites": [

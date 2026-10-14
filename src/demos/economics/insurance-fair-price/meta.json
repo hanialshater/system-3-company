@@ -1,7 +1,7 @@
 {
   "slug": "insurance-fair-price",
-  "title": "Paying $120 to cover a $100 risk",
-  "hook": "Insurance costs more than the average loss. So why does anyone buy it?",
+  "title": "What does the insurer pay out?",
+  "hook": "Each house pays $120 a year against a 1-in-100 risk. What does that risk cost?",
   "domain": "economics",
   "concept": "insurance-expected-cost",
   "status": "review",
@@ -52,21 +52,17 @@
     },
     {
       "id": "economics.insurance-fair-price.c4",
-      "text": "On the stage, one seeded run: the first year has exactly one loss, and over the first 101 years the average payout is $99 per customer a year (36 years with no loss, 28 with two or more).",
+      "text": "On the stage, one seeded run: the first year has exactly one loss, and over the first 101 years the average payout is $99 per customer a year; the stage's tally shows 36 years with no loss, 37 with one and 28 with two or more.",
       "support": "simulation",
       "source": "Demo.tsx HISTORY with mulberry32(seed 1), one draw per house per year, loss if < 0.01. Seed 1 was CHOSEN because its first year has exactly one loss, as in the brief. Across 2,000 seeds the 101-year average is $100 on average, 95% between $80 and $120; for seed 1, every average from 50 to 1,001 years lies between $88 and $107.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "economics.insurance-fair-price.c5",
-      "text": "Insurance swaps a small certain cost for protection from a rare large loss, and an insurer can carry the risk because it pools many customers.",
+      "text": "Insurance swaps a small certain cost (the premium every year) for protection from a rare large loss, and an insurer can carry such losses because it pools many customers (here 100 houses).",
       "support": "source",
       "source": "Risk pooling and risk aversion as the basis of insurance markets (N. G. Mankiw, Principles of Economics, ch. 27, 'The Market for Insurance'). Law of large numbers: the per-customer average over many independent risks approaches the expected loss.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "economics.insurance-fair-price.c6",
@@ -76,6 +72,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.insurance-fair-price.c7",
+      "text": "\"Your house\" (outlined) pays $120 every year; it is hit in year 1, so cover pays it $10,000. Over the first 101 years it pays $12,120 in premiums and cover pays it $20,000 (2 losses).",
+      "support": "simulation",
+      "source": "HISTORY in Demo.tsx (mulberry32 seed 1, 100 houses, chance 0.01): year 1 losses = [house 1]; house 1 loses in 2 of the first 101 years. Chosen, not random: house 1 is picked because it is the house hit in year 1 (seed 1 itself was chosen for a one-loss first year, claim c4). Node check of the same generator: 101-year tally 36 / 37 / 28, average $99.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:insurance-expected-cost",
     "prerequisites": [

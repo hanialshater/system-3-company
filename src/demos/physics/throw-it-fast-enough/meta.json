@@ -44,15 +44,6 @@
       "checkedOn": "2026-10-13"
     },
     {
-      "id": "physics.throw-it-fast-enough.c3",
-      "text": "Earth's surface curves away about 5 m for every 8 km you travel, and a dropped ball falls about 5 m in its first second.",
-      "support": "derivation",
-      "source": "Sagitta 8000^2 / (2 x 6.371e6) = 5.02 m; free fall 1/2 x 9.81 x 1^2 = 4.9 m.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
-    },
-    {
       "id": "physics.throw-it-fast-enough.c4",
       "text": "The lesson ignores air and Earth's spin, treats Earth as a sphere, and exaggerates heights 40 times on the stage.",
       "support": "convention",
@@ -69,6 +60,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "physics.throw-it-fast-enough.c6",
+      "text": "In its first minute every throw that is still flying falls 17.6 km below the straight sideways line from the peak, while the ground curves away below that line by 13.9 km (7.0 km/s), 16.3 km (7.6), 17.2 km (7.8), 17.4 km (7.85) and 17.6 km (7.9): at 7.9 km/s the ground curves away as fast as the ball falls. The 0.79 and 4.0 km/s throws land within the first minute.",
+      "support": "simulation",
+      "source": "fly() in model.ts records the ball at t = 60 s; fell = lineHeight(angle) - height, groundAway = lineHeight(angle) - 10 km, where lineHeight is the height of the straight sideways line from the peak ((R+P)/cos(angle) - R). Run with node: fell 17.6 km for 7.0 to 7.9 km/s (cf. g t^2 / 2 = 17.66 km); groundAway 13.9, 16.3, 17.2, 17.4, 17.6 km. 0.79 and 4.0 km/s land at about 36 and 212 km, before 60 s. The reveal quotes the fastest landing throw the learner moved to, and the 85-minute lap is shown on the Lands readout.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -92,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:orbits",
     "prerequisites": [

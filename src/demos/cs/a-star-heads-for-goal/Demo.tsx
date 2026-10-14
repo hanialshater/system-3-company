@@ -2,7 +2,9 @@
 
 // A* as one change to the ranking. A 7x7 grid, start in the middle of the left edge, goal in the middle of the
 // right edge. The learner settles cells one at a time (or watches the rest replayed in order), then removes the
-// guess ("No guess") and sees the same grid flood. The old run stays as hollow dots under the new one.
+// guess ("No guess") and sees the same grid flood. The reveal also waits for both runs with the wall on, so the
+// learner sees the guided route match the flood's length where the guess (6 at S) is lower than the real route (10).
+// Controls in DOM order: Settle next, Settle to goal, Wall, No guess, With guess (QA reaches all three milestones).
 // Tie-break (disclosed in claim c1, used exactly here): lowest score first; equal scores, more steps taken
 // first; still equal, the cell added to the frontier first. The goal counts when it is settled.
 // One representation: the grid. The 2x2 table is a readout of what the learner has run.
@@ -85,12 +87,15 @@ const START_VIEW: View = { mode: "guess", wall: false, k: 0, ghost: [] };
 const key = (mode: Mode, wall: boolean) => `${mode}-${wall ? "wall" : "open"}`;
 const cx = (i: number) => (i % N) * CELL + CELL / 2;
 const cy = (i: number) => Math.floor(i / N) * CELL + CELL / 2;
+/** The guess at S: columns plus rows to the goal. */
+const GUESS_AT_S = Math.abs((START % N) - (GOAL % N)) + Math.abs(Math.floor(START / N) - Math.floor(GOAL / N));
 
 export default function AStarHeadsForGoal({ slug }: { slug: string }) {
   const [v, setV] = useState<View>(START_VIEW);
   const [table, setTable] = useState<Record<string, Done>>({});
   const [busy, setBusy] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const finished = useRef(new Set<string>());
 
   useEffect(
     () => () => {
@@ -113,8 +118,8 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
         options: ["7", "25", "49"],
         answer: 0,
       }}
-      exploreHint="Settle to the goal, then try it with no guess."
-      minInteractions={2}
+      exploreHint="Settle to the goal. Then turn the wall on and run it with and without the guess."
+      minInteractions={3}
       reveal={() => {
         const lines: string[] = [];
         for (const wall of [false, true]) {
@@ -136,7 +141,10 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
             <p>{lines.join(" ")}</p>
             <p>
               The guess ranks cells nearer the goal first, so the search runs at it instead of flooding every
-              direction. It never claims more steps left than there are, so it cannot hide a shorter route.
+              direction. Look at the line above the grid: at S the guess said {GUESS_AT_S} steps left, and with the
+              wall the route took {filled("guess", true)?.route ?? "more"}. The guess can be too low, never too high, so it
+              never makes a shorter route look worse. That is why the guided route matched the flood&rsquo;s length in
+              your table.
             </p>
             <p className="muted">When scores tie, the cell with more steps taken goes first.</p>
           </>
@@ -144,12 +152,14 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
       }}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["plain-at-goal", "guided-at-goal"]}>
+        <Milestones interact={interact} names={["plain-at-goal", "guided-at-goal", "wall-both"]}>
           {(reach) => {
             const finish = (mode: Mode, wall: boolean) => {
               const r = search(mode, wall);
               setTable((t) => ({ ...t, [key(mode, wall)]: { settled: r.order.length, route: r.route.length - 1 } }));
               reach(mode === "none" ? "plain-at-goal" : "guided-at-goal");
+              finished.current.add(key(mode, wall));
+              if (finished.current.has(key("none", true)) && finished.current.has(key("guess", true))) reach("wall-both");
             };
 
             // Replay every settle in order from cell number `from`, <= 13 ms each and <= 400 ms in all.
@@ -216,7 +226,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.rule}>
                   {v.mode === "guess"
-                    ? "Score = steps so far + steps left (no diagonals). Lowest score settles next."
+                    ? `Score = steps so far + guess of steps left. Guess at S: ${GUESS_AT_S}.${done ? ` Route: ${done.route}.` : ""}`
                     : "Score = steps so far. Lowest score settles next."}
                 </p>
                 <svg
@@ -238,7 +248,6 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     const wallOn = v.wall && WALL.has(i);
                     const set = settledNow.has(i);
                     const fr = isFrontier(i);
-                    const ghost = !set && !wallOn && v.ghost.includes(i);
                     const special = i === START || i === GOAL;
                     return (
                       <g key={i}>
@@ -259,7 +268,6 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                           strokeDasharray={fr ? "4 3" : undefined}
                           strokeWidth={fr ? 1.5 : 1}
                         />
-                        {ghost && <circle cx={x + CELL / 2} cy={y + CELL / 2} r={4} fill="none" stroke="var(--muted)" strokeWidth={1.5} />}
                         {i === START && <circle cx={x + CELL / 2} cy={y + CELL / 2} r={11} fill="var(--fg)" />}
                         {i === GOAL && <circle cx={x + CELL / 2} cy={y + CELL / 2} r={11} fill="none" stroke="var(--fg)" strokeWidth={2.5} />}
                         {special && (
@@ -298,6 +306,7 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     />
                   )}
                 </svg>
+                <p className={s.lab}>Numbers: settle order. Dashed: waiting to settle.</p>
                 <div className={s.table} role="group" aria-label="Cells settled in each run">
                   <span />
                   <span className={s.th}>Open</span>
@@ -325,6 +334,14 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                   </Control>
                 </Row>
                 <Row>
+                  <Control
+                    className="tap"
+                    aria-pressed={v.wall}
+                    disabled={locked || busy}
+                    onClick={() => restart(v.mode, !v.wall)}
+                  >
+                    {v.wall ? "Wall: on" : "Wall: off"}
+                  </Control>
                   <span className={s.lab}>Rank by</span>
                   <Control
                     className={`tap ${v.mode === "none" ? "active" : ""}`}
@@ -339,14 +356,6 @@ export default function AStarHeadsForGoal({ slug }: { slug: string }) {
                     onClick={() => restart("guess", v.wall)}
                   >
                     With guess
-                  </Control>
-                  <Control
-                    className="tap"
-                    aria-pressed={v.wall}
-                    disabled={locked || busy}
-                    onClick={() => restart(v.mode, !v.wall)}
-                  >
-                    {v.wall ? "Wall: on" : "Wall: off"}
                   </Control>
                 </Row>
               </div>

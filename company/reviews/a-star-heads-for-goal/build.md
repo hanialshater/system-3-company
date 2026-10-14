@@ -23,3 +23,8 @@ None blocking. The brief's drag-a-wall is replaced by the toggle (spec already s
 
 ## Checks skipped
 next build, QA, walkthrough and full tsc were not run (machine out of memory, coordinator order). Narrow tsc on both Demo.tsx passed; npm run check passed.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+Hook no longer states the result. Third milestone: both runs with the wall on, so the guided route matching the flood's length is seen there too; the rule line shows the guess at S (6) and the route found (10 with the wall). Legend for numbers and dashed cells; ghost dots dropped. Wall control moved before No guess / With guess for the QA order. Reopened c3; added c6.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.

@@ -27,12 +27,10 @@
   "claims": [
     {
       "id": "cs.huffman-by-merging.c1",
-      "text": "Joining C + D, then that with B, then with A gives code lengths A 1, B 2, C 3, D 3, for 4x1 + 2x2 + 1x3 + 1x3 = 14 bits.",
+      "text": "Joining C + D, then that with B, then with A gives code lengths A 1, B 2, C 3, D 3, for 4x1 + 2x2 + 1x3 + 1x3 = 14 bits; the Bits readout shows the same total as the join costs 2 + 4 + 8 = 14.",
       "support": "derivation",
       "source": "Each symbol's code length is its depth in the tree. Equivalently each join adds its weight: 2 + 4 + 8 = 14. Builder computed both in Node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.huffman-by-merging.c2",
@@ -72,12 +70,10 @@
     },
     {
       "id": "cs.huffman-by-merging.c6",
-      "text": "With two groups left, only one join is possible, so the stage makes it automatically.",
+      "text": "With two groups left, only one join is possible, so the stage makes it automatically (the caption says so when three groups remain: \"Join two of these. The last two then join on their own.\").",
       "support": "convention",
       "source": "Demo.tsx join(): when the forest has two trees they are joined; any order gives the same total because the last join always costs the full weight (8).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "status": "unverified"
     },
     {
       "id": "cs.huffman-by-merging.c7",
@@ -87,6 +83,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.huffman-by-merging.c8",
+      "text": "The codes A 0, B 1, C 00, D 01 cost 4x1 + 2x1 + 1x2 + 1x2 = 10 bits, but A's 0 starts C's 00, so \"00\" could be C or A A and the message cannot be decoded without gaps.",
+      "support": "derivation",
+      "source": "SHORT and SHORT_BITS in Demo.tsx: 4 + 2 + 2 + 2 = 10. The string 00 parses as C (00) or as A A (0, 0); likewise 01 parses as D or A B. So the code set is not uniquely decodable.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -112,7 +115,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:huffman-coding",
     "prerequisites": [

@@ -9,3 +9,8 @@
 
 From the adult-beginner learner review. Stage states the squaring step (p/q = root 2 gives p^2 = 2q^2) and the question. Off-by-1 caption notes the square is odd and 2q^2 even (prepares the parity proof). Reveal lists the q values tried (or the count), and says near misses can look like closing in but close is not equal. End labels no longer clip. Readouts renamed. c5, c6 added.
 All new or edited claims are unverified, for the fact-checker.
+
+## Revision v3 (wave D r5, 2026-10-14)
+
+The cause is on stage: each square is labelled with its count of factor 2s (always even) and 2 x q^2 with its count (always odd). The odd/even caption (a false lead) is gone (c5 removed). Reveal quotes the learner's own closest call and points at the 2s counts instead of the lowest-terms proof. Third option is now a concrete wrong fraction. Reopened c3, c4; added c7.
+Edited claims are unverified for the fact-checker. Not run here: build, QA, walkthrough, tsc (shared machine); syntax checked only.
