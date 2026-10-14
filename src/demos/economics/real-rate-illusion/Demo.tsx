@@ -8,9 +8,11 @@
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const INTEREST = 3;
+const MILESTONES = ["flip-at-3", "five"] as const; // find where the colour flips, and reach the question's 5%
 const VMIN = 96;
 const VMAX = 110;
 
@@ -21,7 +23,7 @@ const AXIS = 92;
 const px = (v: number) => L + ((v - VMIN) / (VMAX - VMIN)) * (R - L);
 
 export default function RealRateIllusion({ slug }: { slug: string }) {
-  const [infl, setInfl] = useState(0);
+  const [infl, setInfl] = useState(1);
 
   const money = 100 * (1 + INTEREST / 100);
   const basket = 100 * (1 + infl / 100);
@@ -38,7 +40,8 @@ export default function RealRateIllusion({ slug }: { slug: string }) {
         options: ["More", "The same", "Less"],
         answer: 2,
       }}
-      exploreHint="Raise prices to 5%. Watch your money's colour."
+      exploreHint="Slide the price rise until the colour flips, then try 5%."
+      minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
@@ -54,11 +57,14 @@ export default function RealRateIllusion({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={MILESTONES}>
+          {(reach) => {
         const set = (v: number) => {
-          const i = Math.max(0, Math.min(8, Math.round(v * 2) / 2));
+          const i = Math.max(0, Math.min(8, Math.round(v)));
           setInfl(i);
-          if (i >= 5) interact(); // the reveal is earned at the brief's 5%
+          if (i === INTEREST) reach("flip-at-3");
+          if (i === 5) reach("five");
         };
         return (
           <div className={s.wrap}>
@@ -107,14 +113,18 @@ export default function RealRateIllusion({ slug }: { slug: string }) {
               <Readout label="Buys, vs today" value={locked ? "?" : `${real >= 0 ? "+" : "−"}${Math.abs(real).toFixed(1)}%`} />
             </Row>
             <Row>
-              <Slider label="Prices rise" value={infl} min={0} max={8} step={0.5} disabled={locked} format={(v) => `${v.toFixed(1)}%`} onChange={set} />
+              <Slider label="Prices rise" value={infl} min={0} max={8} step={1} disabled={locked} format={(v) => `${v}%`} onChange={set} />
+            </Row>
+            <Row>
               <Control disabled={locked || infl === 5} onClick={() => set(5)}>
-                5%
+                Prices rise 5%
               </Control>
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

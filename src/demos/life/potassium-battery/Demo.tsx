@@ -27,15 +27,20 @@ function dots(n: number, x0: number, dir: 1 | -1) {
   }));
 }
 
-function Stage({ locked, interact }: { locked: boolean; interact: () => void }) {
+function Stage({ locked, interact, revealing }: { locked: boolean; interact: () => void; revealing: boolean }) {
   const { reach } = useMilestones(interact, MILESTONES);
-  const [out, setOut] = useState(OUT0);
-  const [v, setV] = useState(0);
+  const [outSet, setOut] = useState(OUT0);
+  const [vSet, setV] = useState(0);
+  // In the reveal the stage shows the balance the text describes (5 mM outside, -89 mV).
+  const out = revealing ? OUT0 : outSet;
+  const v = revealing ? E0 : vSet;
   const [shown, setShown] = useState(false); // learner has seen a balance
   const e = nernst(out);
   const balanced = Math.abs(v - e) < 0.5;
   const setOutside = (o: number) => {
+    // New outside level = a fresh cell: no charge has built up yet.
     setOut(o);
+    setV(0);
     if (o === IN && shown) reach("equal");
   };
   const leak = (full: boolean) => {
@@ -51,9 +56,11 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const msg = locked
     ? "Toy: only K+ leaks, at 37 C. 1 dot = 5 mM."
     : balanced
-      ? `Balanced: leaking out and pulled back equally, nothing moves net.`
+      ? e === 0
+        ? "Equal inside and outside: no push, so no pull needed. Nothing moves."
+        : "Balanced: the push out and the pull back are equal, so nothing moves net. Very few ions had to cross."
       : v === 0
-        ? "Nothing has leaked yet. Let potassium leak and watch the voltage."
+        ? `Nothing has leaked yet (outside ${out} mM). Let potassium leak and watch the voltage.`
         : `Potassium leaks out. The inside charge is ${MV(v)} and still changing.`;
   const inside = dots(IN / DOT, 150, -1);
   const outside = dots(Math.round(out / DOT), 190, 1);
@@ -112,13 +119,14 @@ export default function PotassiumBattery({ slug }: { slug: string }) {
             negative inside pulls it back just as hard, so nothing moves net.
           </p>
           <p>
-            With outside at {IN} mM the balance voltage read {MV(nernst(IN))}. Ions do not stop when concentrations are equal; they stop when the
-            electrical pull cancels the concentration push.
+            Why so large? The balance voltage follows the concentration ratio ({IN / OUT0} to 1 here), about 61 mV for each
+            factor of ten. With outside at {IN} mM there was no ratio and the balance voltage read {MV(nernst(IN))}: no push, so
+            no voltage to cancel it. Ions stop when the electrical pull cancels the concentration push.
           </p>
         </>
       )}
     >
-      {({ locked, interact }) => <Stage locked={locked} interact={interact} />}
+      {({ phase, locked, interact }) => <Stage locked={locked} interact={interact} revealing={phase === "reveal"} />}
     </Lesson>
   );
 }

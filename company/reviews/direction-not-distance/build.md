@@ -7,3 +7,13 @@
 - Node check: cos(Q, B) = 1.00 for k = 1..10; dist = 1.414(k − 1): 12.7 at 10, 9.9 at 8; cos(Q, C) = 0.832, dist 0.8.
 - Reveal lists the lengths the learner visited and the largest distance among them; no number they did not see.
 - Deterministic, no seeds.
+
+## Revision v2 (wave C, 2026-10-14)
+
+- Review (v1): 'Length is ignored' leaked the answer, doubled brackets, label collision. Fix: that caption half appears only after the prediction; brackets fixed; Q and C labels separated. The 12.7 figure is on the stage from the first unlocked frame (k = 10).
+- Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): locked caption and stem gave B away; reveal quoted a length never visited. Fix: stem defines cosine as the angle between arrows without saying B points the same way; the 'cosine: 1 = same direction' caption and Q's direction line appear only after unlock; the reveal quotes only lengths the learner set with the slider.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

@@ -8,7 +8,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -20,7 +20,7 @@ const SURF = 70;
 const BOTTOM = 218;
 const PX_PER_CM = 7.5;
 const START = 800; // the question's volume
-const NAMES = ["saw-float-at-800", "moved-slider"] as const;
+const NAMES = ["saw-float-at-800", "saw-hover-at-500", "saw-sink"] as const;
 
 const radiusCm = (v: number) => Math.cbrt((3 * v) / (4 * Math.PI));
 
@@ -55,6 +55,12 @@ function Stage({
     if (!locked) reachRef.current("saw-float-at-800");
   }, [locked]);
 
+  const set = (v: number) => {
+    setVol(v);
+    onVol(v);
+    if (v === 500) reach("saw-hover-at-500");
+    if (v < 500) reach("saw-sink");
+  };
   const rho = MASS / vol;
   const r = radiusCm(vol) * PX_PER_CM;
   const state = rho > RHO_W + 1e-9 ? "sinks" : rho < RHO_W - 1e-9 ? "floats" : "hovers";
@@ -69,7 +75,7 @@ function Stage({
 
   return (
     <div className={s.wrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`500 gram ball of ${vol} cubic centimetres ${locked ? "held above the water" : state}`}>
+      <svg viewBox={`0 -30 ${W} ${H + 30}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`500 gram ball of ${vol} cubic centimetres ${locked ? "held above the water" : state}`}>
         <rect x={10} y={SURF} width={W - 20} height={BOTTOM - SURF} className={s.water} />
         <line x1={10} x2={W - 10} y1={SURF} y2={SURF} className={s.surface} />
         <text x={16} y={SURF + 14} className={s.waterLabel}>
@@ -83,6 +89,14 @@ function Stage({
         </g>
         <path d={`M 10 20 L 10 ${BOTTOM} L ${W - 10} ${BOTTOM} L ${W - 10} 20`} className={s.tank} />
       </svg>
+      <Row>
+        <Control disabled={locked || vol === 500} onClick={() => set(500)}>
+          Squeeze to 500 cm³
+        </Control>
+        <Control disabled={locked || vol === 400} onClick={() => set(400)}>
+          Squeeze to 400 cm³
+        </Control>
+      </Row>
       <Slider
         label="Ball volume"
         value={vol}
@@ -91,16 +105,15 @@ function Stage({
         step={50}
         disabled={locked}
         format={(v) => `${v} cm³`}
-        onChange={(v) => {
-          setVol(v);
-          onVol(v);
-          reach("moved-slider");
-        }}
+        onChange={set}
       />
       <Row>
         <Readout label="Mass" value="500 g" />
         <Readout label="Density (mass ÷ volume)" value={locked ? "?" : `${rho.toFixed(rho >= 1 ? 2 : 3).replace(/0$/, "")} g/cm³`} />
         <Readout label="Ball" value={locked ? "held" : state} />
+      </Row>
+      <Row>
+        <Readout label="Under water" value={locked ? "?" : state === "floats" ? `${+((rho / RHO_W) * 100).toFixed(1)}%` : "all of it"} />
       </Row>
     </div>
   );
@@ -117,18 +130,18 @@ export default function HeavyButFloats({ slug }: { slug: string }) {
         options: ["Sinks", "Floats", "Hovers in the middle"],
         answer: 1,
       }}
-      exploreHint="The ball drops in at 800 cm³. Now shrink and stretch it, keeping 500 g."
+      exploreHint="The ball drops in at 800 cm³. Now squeeze it to 500 cm³ and to 400 cm³ (still 500 g), or drag the slider."
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
             You watched the 500 g, 800 cm³ ball drop in and float. It is 500 ÷ 800 = <strong>0.625 g/cm³</strong>, less
             than water&rsquo;s 1.0, so it floats with five eighths (62.5%) of itself under the surface.
-            {minVol < 500 ? ` You also shrank it to ${minVol} cm³ and saw it sink.` : ""}
+            {minVol < 500 ? ` You also squeezed it to ${minVol} cm³ and saw it sink.` : ""}
           </p>
           <p>
             Its mass never changed. What flips it is mass per volume: below 500 cm³ the ball is denser than water and
-            sinks; at exactly 500 cm³ it matches water and hovers; above that it floats.
+            sinks (you saw that); at exactly 500 cm³ it matches water and hovers (you saw that too); above that it floats.
           </p>
           <p className="muted">Heavy ships float for the same reason: lots of volume for their mass.</p>
         </>

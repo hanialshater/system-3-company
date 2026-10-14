@@ -26,6 +26,12 @@ const PAIRS: [number, number][] = [
 const rightOn = (sumG: Gate, carryG: Gate) =>
   PAIRS.filter(([a, b]) => apply(sumG, a, b) === (a + b) % 2 && apply(carryG, a, b) === Math.floor((a + b) / 2)).length;
 
+const RULE: Record<Gate, string> = {
+  AND: "AND: 1 only if both are 1.",
+  OR: "OR: 1 if either is 1.",
+  XOR: "XOR: 1 if exactly one is 1.",
+};
+
 const START = { a: 0, b: 0, sum: "OR" as Gate, carry: "XOR" as Gate };
 
 export default function HalfAdderWiring({ slug }: { slug: string }) {
@@ -44,7 +50,7 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Adding two one-bit numbers, 1 + 1, with a circuit. What are the outputs (carry, sum)?",
+        question: "A circuit adds two one-bit numbers (each is 0 or 1). Its answer has two digits: carry on the left, sum on the right. In binary, counting goes 0, 1, 10, 11. For 1 + 1, what are the digits (carry, sum)?",
         options: ["carry 1, sum 1", "carry 1, sum 0", "carry 0, sum 1"],
         answer: 1,
       }}
@@ -53,14 +59,13 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            {seen11 ? `Your working circuit gave carry ${seen11.carry}, sum ${seen11.sum} for 1 + 1. ` : ""}1 + 1 = 2, and 2
+            {seen11 ? `When you had the circuit adding right, 1 + 1 gave carry ${seen11.carry}, sum ${seen11.sum}. ` : ""}1 + 1 = 2, and 2
             in binary is 10: <strong>carry 1, sum 0</strong>. The sum digit is 1 when exactly one input is 1: that is XOR.
             The carry is 1 only when both are 1: that is AND.
           </p>
           <p>
-            So adding two bits is nothing more than two gates side by side, called a half adder. Give each column a third
-            input for the carry coming in, chain the columns, and the same switches add numbers of any width. The machine
-            does not know arithmetic; the wiring does it.
+            So adding two bits is nothing more than two gates side by side, called a half adder. The machine does not know
+            arithmetic; the wiring does it.
           </p>
         </>
       )}
@@ -168,6 +173,11 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
                     Carry gate: {carryG}
                   </Control>
                 </Row>
+                <p className={s.rules}>
+                  {locked
+                    ? "Goal: carry,sum = 00, 01, 01, 10 for 0+0, 0+1, 1+0, 1+1."
+                    : `Goal: 00, 01, 01, 10 for 0+0, 0+1, 1+0, 1+1. ${RULE[sumG]} ${RULE[carryG]}`}
+                </p>
                 <Row>
                   <Readout label="Adds right on" value={locked ? "–" : `${score} of 4 inputs`} />
                   <Control disabled={locked || atStart} onClick={reset}>

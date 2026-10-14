@@ -5,3 +5,20 @@
 - The shortcut's cost is hidden while locked so it does not hint the doubling before the prediction.
 - After screenshots: the shortcut row wrapped with '→ C' alone on a second line; the label now has its own line above the three target buttons.
 - Open risk: a learner may reveal after 3 or 4 disks without reaching 6; the reveal then states 31 and 63 rather than showing them.
+
+## Revision v2 (wave C, learner review)
+
+- Doubling control optional: 'Add a disk' is always enabled and is the third required step (minInteractions 3); on adding, the stage shows 'the 3-disk puzzle (7), the big disk (1), again (7) = 15 at best' (c4).
+- '+3' was declared: the shortcut now says '2 disks take 3 moves at best'.
+- Told-only 2^n, 1,023 and 18 quintillion removed with claim c3; the reveal lists only up to the disks the learner reached.
+- Hook no longer says 'worse'.
+
+All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v3
+
+r2: when the move count reaches the best number without the tower on C, the stage says so ('7 moves, but the tower is not on C yet...'). I did not gate 'Add a disk' on solving: the QA presses each control once and cannot solve the puzzle that way.
+
+## Revision v4
+
+r3 N1: retitled "Six disks: how many moves?" (no rule in the title). N2/length: the reveal now needs two steps only (the block shortcut, then Add a disk), solving the tower is optional, and durationSec is 60. The doubling is visible without a solve: a ladder of bars beside the pegs grows one rung per disk added (7, 15, 31, 63 at best). No claim text changed; c4 (the shortcut and add-a-disk sum) is unchanged in meaning but its behaviour was touched, so re-check.

@@ -1,7 +1,7 @@
 {
   "slug": "gradient-descent",
-  "title": "Bigger steps, faster descent?",
-  "hook": "Bigger steps should reach the bottom of the valley sooner. Try it.",
+  "title": "Which step size wins?",
+  "hook": "A ball hops down a valley. Which step size ends nearest the bottom?",
   "domain": "ai",
   "concept": "gradient-descent",
   "status": "review",
@@ -45,12 +45,12 @@
     },
     {
       "id": "ai.gradient-descent.c3",
-      "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball is within 0.04 of the bottom after two steps.",
+      "text": "Starting at x = 4, ten steps with step size 0.05 or 0.95 both end about 1.39 from the bottom (one crawling, one zigzagging); with 0.45 the ball ends less than 0.001 from the bottom.",
       "support": "derivation",
-      "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.3947 for η = 0.05 and η = 0.95 (the stage shows 1.39); 0.1^2 · 4 = 0.04 for η = 0.45. v2: source number now printed to 4 places so it matches the stage's 1.39.",
+      "source": "Distance after n steps is |1 − 2η|^n · 4: 0.9^10 · 4 = 1.3947 for η = 0.05 and η = 0.95 (the stage shows 1.39); 0.1^10 · 4 = 4e-10 for η = 0.45. | FACT-CHECK 2026-10-14 (pass 16): node (own loop x <- x - 2 eta x from 4): eta 0.05 -> 1.39471, eta 0.95 -> 1.39471 (fmtDist '1.39' both), eta 0.45 -> 4.0e-10 (fmtDist '< 0.001'). Stage run list and reveal match.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-descent.c4",
@@ -90,12 +90,12 @@
     },
     {
       "id": "ai.gradient-descent.c8",
-      "text": "On this valley the ball gets to the bottom fastest where 1 − 2 × step size is zero: a step size of 0.5, which lands on the bottom in one hop.",
+      "text": "On this valley the ball gets to the bottom fastest where 1 − 2 × step size is zero: a step size of 0.5, which lands on the bottom in one hop (the stage has a 0.50 run).",
       "support": "derivation",
-      "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. v2 reveal: 'Fastest is where it is zero: a step size of 0.5.' Needs independent check.",
+      "source": "Distance after n hops is |1 − 2η|^n · 4, smallest when 1 − 2η = 0, i.e. η = 0.5. v2 reveal: 'Fastest is where it is zero: a step size of 0.5.' Needs independent check. | FACT-CHECK 2026-10-14 (pass 16): Derivation: distance after n hops = |1 - 2 eta|^n x 4, zero for n >= 1 iff eta = 0.5. node: eta 0.5 gives exactly 0 after one hop; over the slider grid 0.05..1.05 the best 10-hop distance is at 0.50. Stage message 'Landed on the bottom in one hop.' and a 0.50 preset exist.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-descent.c9",
@@ -108,12 +108,12 @@
     },
     {
       "id": "ai.gradient-descent.c10",
-      "text": "On this valley the slope under the ball is 2 × its position, so the next hop is step size × slope (from the start at 4 with step size 0.05: 0.05 × 8 = 0.40); the distance is multiplied by 0.9 at step size 0.05, −0.9 at 0.95 and 0.1 at 0.45.",
+      "text": "On this valley the slope under the ball is 2 × its position, so the next hop is step size × slope (from the start at 4 with step size 0.05: 0.05 × 8 = 0.40); each hop multiplies the distance by 1 − 2 × step size, shown on the stage and giving 0.9 at step size 0.05, 0.1 at 0.45, 0 at 0.50 and −0.9 at 0.95.",
       "support": "derivation",
-      "source": "f(x) = x², f′(x) = 2x; hop length η·|2x|; 1 − 2(0.05) = 0.9, 1 − 2(0.95) = −0.9, 1 − 2(0.45) = 0.1. Added v2 for the stage line 'Next hop = step × slope = …' and the reveal's three factors.",
+      "source": "f(x) = x², f′(x) = 2x; hop length η·|2x|; 1 − 2(0.05) = 0.9, 1 − 2(0.95) = −0.9, 1 − 2(0.45) = 0.1. Added v2 for the stage line 'Next hop = step × slope = …' and the reveal's three factors. | FACT-CHECK 2026-10-14 (pass 16): f(x) = x^2, f'(x) = 2x. node: first hop at 0.05 = 0.05 x 8 = 0.40; factors 0.9, 0.1 (0.09999999999999998, shown 0.10), 0, -0.9 (shown '−0.90'). Stage line 'Next hop = 0.05 × slope 8.00 = 0.40. Distance × 0.90 per hop.' matches.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.gradient-descent.c11",
@@ -143,17 +143,25 @@
     ],
     "simulatedLearner": [
       "company/reviews/gradient-descent/2026-10-12-learner-adult-beginner.md",
-      "company/reviews/gradient-descent/2026-10-13-learner-adult-beginner-v3.md"
+      "company/reviews/gradient-descent/2026-10-13-learner-adult-beginner-v3.md",
+      "company/reviews/gradient-descent/2026-10-14-learner-adult-beginner-r4.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "ai:gradient-descent",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "step-run-button",
+    "milestone-gate"
+  ]
 }

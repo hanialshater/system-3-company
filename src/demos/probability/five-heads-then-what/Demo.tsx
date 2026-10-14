@@ -80,7 +80,7 @@ export default function FiveHeads({ slug }: { slug: string }) {
                 <g key={i}>
                   <circle cx={6 + i * 11.9} cy={30} r={5.3} className={!has ? s.slot : f ? (inRun ? s.headRun : s.head) : s.tail} />
                   {has && (
-                    <text x={6 + i * 11.9} y={33} textAnchor="middle" className={s.stripLetter}>
+                    <text x={6 + i * 11.9} y={33} textAnchor="middle" className={`${s.stripLetter} ${f ? s.onHead : ""}`}>
                       {f ? "H" : "T"}
                     </text>
                   )}
@@ -102,7 +102,7 @@ export default function FiveHeads({ slug }: { slug: string }) {
                     <circle key={j} cx={x} cy={rowY + 4 + j * 8} r={3.2} className={s.head} />
                   ))}
                   <circle cx={x} cy={rowY + 54} r={6.5} className={nextH ? s.nextHead : s.nextTail} />
-                  <text x={x} y={rowY + 57.5} textAnchor="middle" className={s.coinLetter}>
+                  <text x={x} y={rowY + 57.5} textAnchor="middle" className={`${s.coinLetter} ${nextH ? s.onHead : ""}`}>
                     {nextH ? "H" : "T"}
                   </text>
                 </g>

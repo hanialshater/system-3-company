@@ -9,6 +9,10 @@
   --good: #4fd1a5;
   --bad: #ff7a7a;
   --warn: #f6c453;
+  /* Fill variants: bright, for shapes, borders and tints (never as text on light). */
+  --good-fill: #4fd1a5;
+  --bad-fill: #ff7a7a;
+  --warn-fill: #f6c453;
   --domain: var(--accent);
   --radius: 16px;
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -23,6 +27,10 @@
     --fg: #141824;
     --muted: #5d6578;
     --line: #d9dde8;
+    /* Text-safe semantic colours: >= 4.5:1 on --bg, --bg-2 and --bg-3 (company/design/system.md). */
+    --good: #09704d;
+    --bad: #b8222a;
+    --warn: #7d5200;
     color-scheme: light;
   }
 }
@@ -71,7 +79,7 @@ a { color: inherit; }
 .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 999px; background: var(--bg-3); color: var(--muted); margin: 0; }
 .tag.domain { background: color-mix(in srgb, var(--domain) 22%, transparent); color: var(--domain); font-weight: 700; }
-.tag.status { background: color-mix(in srgb, var(--warn) 20%, transparent); color: var(--warn); }
+.tag.status { background: color-mix(in srgb, var(--warn-fill) 20%, transparent); color: var(--warn); }
 .card-title { margin: 2px 0 0; font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.01em; }
 .card-title.big { font-size: 1.7rem; }
 .card-hook { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.4; }
@@ -86,7 +94,8 @@ a { color: inherit; }
   flex: 1; min-height: 0; overflow: auto; border-radius: 12px; background: var(--bg-3);
   padding: 10px; display: flex; flex-direction: column; justify-content: safe center; transition: opacity 0.2s;
 }
-.lesson[data-phase="predict"] .stage { opacity: 0.55; }
+/* K6: the locked stage is not dimmed as a whole; its text must stay readable to predict from.
+   Disabled controls are dimmed by .control:disabled (inactive controls are exempt from contrast). */
 .stage-svg { width: 100%; height: auto; max-height: 46dvh; display: block; }
 .panel { border-top: 1px solid var(--line); padding-top: 10px; }
 .panel-q { margin: 0 0 8px; font-size: 0.95rem; line-height: 1.35; }
@@ -96,8 +105,8 @@ a { color: inherit; }
   border: 1px solid var(--line); background: var(--bg-3); font-weight: 600; text-align: center;
 }
 .option.selected { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 25%, var(--bg-3)); }
-.option.right { border-color: var(--good); background: color-mix(in srgb, var(--good) 25%, var(--bg-3)); }
-.option.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 20%, var(--bg-3)); }
+.option.right { border-color: var(--good-fill); background: color-mix(in srgb, var(--good-fill) 25%, var(--bg-3)); }
+.option.wrong { border-color: var(--bad-fill); background: color-mix(in srgb, var(--bad-fill) 20%, var(--bg-3)); }
 .primary {
   width: 100%; padding: 12px; border: 0; border-radius: 12px; cursor: pointer;
   background: var(--domain); color: #0d0f14; font-weight: 700; font-size: 1rem;
@@ -152,7 +161,7 @@ a { color: inherit; }
 
 /* ---------- shared demo bits (used by several lessons) ---------- */
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-.shake { animation: shake 0.25s 2; border-color: var(--bad) !important; }
+.shake { animation: shake 0.25s 2; border-color: var(--bad-fill) !important; }
 
 /* merge-sort-payoff */
 .ms { display: flex; flex-direction: column; gap: 12px; }
@@ -165,7 +174,7 @@ a { color: inherit; }
 .card.empty { opacity: 0.4; font-size: 0.75rem; border-style: dashed; }
 .ms-row { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
 .slot { height: 34px; border-radius: 6px; border: 1px dashed var(--line); display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; }
-.slot.filled { border-style: solid; border-color: var(--good); background: color-mix(in srgb, var(--good) 15%, transparent); }
+.slot.filled { border-style: solid; border-color: var(--good-fill); background: color-mix(in srgb, var(--good-fill) 15%, transparent); }
 .ms-msg { margin: 0; min-height: 1.3em; text-align: center; font-size: 0.9rem; color: var(--muted); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,7 +183,7 @@ a { color: inherit; }
 
 /* Light theme: pastel domain colours are too pale as text on white; darken them for ink. */
 @media (prefers-color-scheme: light) {
-  .tag.domain, .concept-lesson { color: color-mix(in srgb, var(--domain) 55%, #000); }
+  .tag.domain, .concept-lesson { color: color-mix(in srgb, var(--domain) 45%, #000); }
 }
 
 /* An active choice that is disabled because it is already selected (builder request, wave 1). */

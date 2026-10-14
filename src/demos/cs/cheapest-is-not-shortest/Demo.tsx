@@ -93,7 +93,11 @@ export default function CheapestIsNotShortest({ slug }: { slug: string }) {
               const r = settle(st, n);
               setSt(r.st);
               if (r.st.label.G !== st.label.G) setGHistory((h) => [...h, r.st.label.G]);
-              setNote(`${n} settled at ${fmt(st.label[n])}. ${r.changes.length ? r.changes.join("; ") + "." : "Nothing cheaper."}`);
+              const back = ROADS.map(([a, b, c]) => (a === n ? [b, c] : b === n ? [a, c] : null)).find((x) => x && st.settled.includes(x[0] as N));
+              setNote(
+                `${n} settled at ${fmt(st.label[n])}. ${r.changes.length ? r.changes.join("; ") + "." : "Nothing cheaper."}` +
+                  (back && !r.changes.length ? ` Going on to ${back[0]} would cost ${st.label[n] + (back[1] as number)}, more than its ${st.label[back[0] as N]}.` : ""),
+              );
               reach("first-settle");
               if (n === "G") reach("g-settled");
             };
@@ -105,7 +109,7 @@ export default function CheapestIsNotShortest({ slug }: { slug: string }) {
             };
             const msg = locked
               ? "Make a prediction to start."
-              : note ?? "Label: cheapest cost from S found so far. Settle the smallest unsettled label.";
+              : note ?? "Label: cheapest cost from S found so far (∞ = not reached yet). Settle the town with the smallest label: that label is then final.";
             return (
               <div className={s.wrap}>
                 <Control className={s.reset} disabled={locked || st.settled.length === 0} onClick={reset}>Start again</Control>

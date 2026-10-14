@@ -120,7 +120,7 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.info}>{info}</p>
-                <svg viewBox="0 0 320 228" className="stage-svg" role="img" aria-label="Knockout bracket">
+                <svg viewBox="0 0 320 228" className="stage-svg" role="img" aria-label={`Knockout bracket, ${played} of ${ROUNDS} rounds played. ${done ? `Champion ${NAMES[CHAMP]}. ` : ""}${info}`}>
                   {MATCHES.filter((m) => m.round < played).map((m, k) => {
                     const i = FIELDS[m.round].indexOf(m.a) / 2;
                     const ya = rowY(m.round, i * 2);
@@ -156,11 +156,11 @@ export default function TournamentSecondBest({ slug }: { slug: string }) {
                             stroke={picked === p ? "var(--fg)" : "var(--line)"}
                             strokeWidth={picked === p ? 2 : 1}
                           />
-                          <text x={COLX[r] + (r === 0 && shown ? 12 : BOX_W / 2)} y={y + 4} textAnchor="middle" className={s.name}>
+                          <text x={COLX[r] + (r === 0 && shown ? 12 : BOX_W / 2)} y={y + 4} textAnchor="middle" className={`${s.name} ${champ ? s.onChamp : ""}`}>
                             {NAMES[p]}
                           </text>
                           {r === 0 && shown && (
-                            <text x={COLX[r] + 34} y={y + 4} textAnchor="middle" className={`${s.str} ${p === SECOND ? s.second : ""}`}>
+                            <text x={COLX[r] + 34} y={y + 4} textAnchor="middle" className={`${s.str} ${p === SECOND ? s.second : ""} ${champ ? s.onChamp : ""}`}>
                               {STRENGTH[p]}
                             </text>
                           )}

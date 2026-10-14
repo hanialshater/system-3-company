@@ -1,7 +1,7 @@
 {
   "slug": "average-that-never-settles",
   "title": "The average that never settles",
-  "hook": "More data, steadier average. Does that always hold?",
+  "hook": "Take the average of 10,000 numbers instead of 1. How spread out is it?",
   "domain": "probability",
   "concept": "heavy-tails",
   "status": "review",
@@ -52,12 +52,12 @@
     },
     {
       "id": "probability.average-that-never-settles.c4",
-      "text": "The stage draws 30 seeded runs of each kind. After 1 draw, 17 of 30 Cauchy dots are beyond +/-1 and the die dots span 5.00; after 10,000 draws, 18 of 30 Cauchy dots are beyond +/-1 and the die dots span 0.07. The farthest Cauchy dot at 10,000 draws (24.7) contains one draw of about 250,115, which alone moves that average by about 25.0.",
+      "text": "The stage draws 30 seeded runs of each kind and reads them after 1, 10, 100, 1,000 and 10,000 draws. After 1 draw, 17 of 30 Cauchy dots are beyond +/-1 and the die dots span 5.00; after 10,000 draws, 18 of 30 Cauchy dots are beyond +/-1 and the die dots span 0.07. At 10,000 draws the stage says the farthest Cauchy dot (24.7) holds one draw of 250,115, which alone moves that average by about 25.0.",
       "support": "simulation",
-      "source": "dots() in src/demos/probability/average-that-never-settles/model.ts, seed 1853 (untuned: the first seed tried; run r uses seed + r x 92821); draws by inverse CDF tan(pi(u - 1/2)); die roll then Cauchy draw per step. Numbers re-run by the builder in node (strip-types) on 2026-10-13; every number in the reveal is computed from dots(), the function that draws the stage. The claim about all runs is c2-c3 (17 and 18 of 30 against 15 expected, 50%); needs an independent re-run and a spread check over other seeds. | CLAIM FIX 2026-10-13 (revision v2): Was 'The stage draws five seeded runs at a time. In the first five, after 11,000 draws the die averages are between 3.455 and 3.534 and the Cauchy averages between -0.09 and 2.57; in the next five, die 3.487 to 3.503 and Cauchy -1.94 to 1.68.' (reveal rebuilt on a dot strip of 30 runs at 1/10/100/1,000/10,000 draws) | FACT-CHECK 2026-10-13 (pass 4): Re-ran dots() from model.ts in node (seed 1853): 17/30 beyond +/-1 and die span 5.00 at 1 draw; 18/30 and span 0.07 at 10,000; farthest Cauchy dot 24.7 with one draw 250,115 (/10,000 = 25.0). Over 200 other seeds the mean count beyond +/-1 is 15.1 (1 draw) and 14.6 (10,000), expected 15, so the seed is not unusual; die span at 10,000 ranges 0.04-0.12 over those seeds.",
+      "source": "dots() in model.ts, seed 1853 (untuned): re-run in node by the fact-checker (pass 4); Demo.tsx farthest() prints the 24.7 and 250,115.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "probability.average-that-never-settles.c5",
@@ -86,12 +86,13 @@
     ],
     "simulatedLearner": [
       "company/reviews/average-that-never-settles/2026-10-13-learner-adult-beginner.md",
-      "company/reviews/average-that-never-settles/2026-10-13-learner-adult-beginner-v2.md"
+      "company/reviews/average-that-never-settles/2026-10-13-learner-adult-beginner-v2.md",
+      "company/reviews/average-that-never-settles/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:heavy-tails",
     "prerequisites": [
@@ -100,5 +101,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "locked-readouts",
+    "milestone-gate"
+  ]
 }

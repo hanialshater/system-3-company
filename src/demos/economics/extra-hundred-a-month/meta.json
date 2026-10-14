@@ -34,12 +34,12 @@
     },
     {
       "id": "economics.extra-hundred-a-month.c2",
-      "text": "Adding $100 to every payment pays the loan off at month 295: 24 years 7 months (about 24.6 years).",
+      "text": "Adding $100 to every payment pays the loan off at month 295: 24 years 7 months (about 25 years).",
       "support": "simulation",
-      "source": "Step balance × 1.005 − 1,299.10 monthly from 200,000 until it reaches 0 (last payment only what is owed): 295 months. Deterministic, no randomness. Demo.tsx run(100).",
+      "source": "Stepped balance: +100 pays off in 295 months = 24 y 7 m (node; Demo.tsx run()).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.extra-hundred-a-month.c3",
@@ -76,6 +76,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.extra-hundred-a-month.c7",
+      "text": "In month 2 the interest part of the payment is $999.00 with no extra and $998.50 with +$100, and the repaid part is $200.10 versus $300.60.",
+      "support": "derivation",
+      "source": "Balance after month 1: 199,800.90 (no extra), 199,700.90 (+100); times 0.5%; payment 1,199.10 (+100) (node; Demo.tsx run(), path[1]).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -93,11 +102,14 @@
     "qa": [
       "company/reviews/extra-hundred-a-month/2026-10-13-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/extra-hundred-a-month/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/extra-hundred-a-month/2026-10-14-learner-adult-beginner-r2.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:extra-loan-payment",
     "prerequisites": [
@@ -106,5 +118,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

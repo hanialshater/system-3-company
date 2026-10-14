@@ -74,6 +74,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "chemistry.dilute-until-none-left.c7",
+      "text": "From step 19 the stage also draws 20 seeded sample tubes (seeds 3000 + step + 1301 x draw number, draws 1 to 20) and says how many hold none (12 of 20 at step 22); the reveal quotes that count and says another 20 would differ a little. The multiplier 1301 was chosen from fourteen tried so the run sits near the 55% average; this is one fixed illustration, not a measurement.",
+      "support": "derivation",
+      "source": "Poisson sampler in Demo.tsx emptyOf(k): count of zero results among 20 seeded draws (builder node run: multiplier 1301 gives 0 empty at step 21 and 12 at step 22; the earlier multiplier 977 gave 15, a tail draw). Expected 20 x 0.547 = 10.9. Chosen-seed disclosure as in c5.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -90,17 +99,21 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/dilute-until-none-left/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/dilute-until-none-left/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/dilute-until-none-left/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/dilute-until-none-left/2026-10-14-learner-adult-beginner-r3.md",
+      "company/reviews/dilute-until-none-left/2026-10-14-learner-adult-beginner-r4.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 4,
   "curriculum": {
     "primary": "chemistry:dilution",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

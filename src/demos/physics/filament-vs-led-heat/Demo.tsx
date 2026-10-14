@@ -5,8 +5,8 @@
 // as visible light (3 W) and 57 W of heat; a 9 W LED gives the same 3 W of light and 6 W of
 // heat. One stacked bar, 0-60 W, with the 60 W input outlined for comparison.
 //
-// The split is hidden until the prediction. Earned reveal: milestone "led". The filament is
-// the starting bulb (its button disabled), so QA's one press swaps to the LED.
+// v2: nothing is measured at first: each bulb's split appears only when the learner switches it on,
+// and the reveal needs both (filament first, then LED). Earned reveal: milestones "filament", "led".
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row } from "@/kit/controls";
@@ -31,8 +31,8 @@ const BH = 24;
 const k = BW / 60;
 
 export default function FilamentVsLedHeat({ slug }: { slug: string }) {
-  const [bulb, setBulb] = useState(0);
-  const b = BULBS[bulb];
+  const [bulb, setBulb] = useState<number | null>(null); // nothing measured yet
+  const b = BULBS[bulb ?? 0];
   const fil = BULBS[0];
   const led = BULBS[1];
 
@@ -40,12 +40,12 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 60 W filament bulb is on. About how much of its 60 W comes out as heat rather than visible light?",
+        question: "A 60 W filament bulb is on. About how much of its 60 W comes out as visible light?",
         options: ["About 3 W", "About 30 W", "About 57 W"],
-        answer: 2,
+        answer: 0,
       }}
-      exploreHint="Swap in the LED and compare the two parts of the bar."
-      minInteractions={1}
+      exploreHint="Switch on the filament bulb, then the LED. Compare the light and heat parts of each bar."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -63,13 +63,14 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["led"]}>
+        <Milestones interact={interact} names={["filament", "led"]}>
           {(reach) => {
             const go = (i: number) => {
               if (locked || i === bulb) return;
               setBulb(i);
-              if (i === 1) reach("led");
+              reach(i === 0 ? "filament" : "led");
             };
+            const shown = !locked && bulb !== null;
             const hw = heat(b.input) * k;
             const lw = LIGHT * k;
             const waves = Math.max(1, Math.round(heat(b.input) / 10));
@@ -81,11 +82,11 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
                   </text>
                   {/* bulb */}
                   <g transform={`translate(${W / 2} 46)`}>
-                    {!locked &&
+                    {shown &&
                       Array.from({ length: waves }, (_, i) => (
                         <path key={i} d={`M ${-30 + (60 * (i + 0.5)) / waves} -6 q 4 -6 0 -12 q -4 -6 0 -12`} className={s.wave} />
                       ))}
-                    <circle cx={0} cy={18} r={14} className={bulb === 0 ? s.glass : s.ledGlass} />
+                    <circle cx={0} cy={18} r={14} className={bulb !== 1 ? s.glass : s.ledGlass} />
                     <rect x={-7} y={31} width={14} height={9} className={s.cap} />
                     <text x={22} y={22} className={s.label}>
                       {b.name}
@@ -96,11 +97,11 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
                   <text x={BX + BW} y={BY - 4} textAnchor="end" className={s.chip}>
                     60 W
                   </text>
-                  {locked ? (
+                  {!shown ? (
                     <>
                       <rect x={BX} y={BY} width={b.input * k} height={BH} rx={3} className={s.unknown} />
                       <text x={BX + (b.input * k) / 2} y={BY + 16} textAnchor="middle" className={s.label}>
-                        {b.input} W in: light + heat = ?
+                        {locked ? `${b.input} W in: light + heat = ?` : "Switch on a bulb below"}
                       </text>
                     </>
                   ) : (
@@ -125,8 +126,8 @@ export default function FilamentVsLedHeat({ slug }: { slug: string }) {
                   ))}
                 </Row>
                 <Row>
-                  <Readout label="Light" value={locked ? "?" : `${LIGHT} W (${share(b.input)}%)`} />
-                  <Readout label="Heat" value={locked ? "?" : `${heat(b.input)} W`} />
+                  <Readout label="Light" value={!shown ? "?" : `${LIGHT} W (${share(b.input)}%)`} />
+                  <Readout label="Heat" value={!shown ? "?" : `${heat(b.input)} W`} />
                 </Row>
               </div>
             );

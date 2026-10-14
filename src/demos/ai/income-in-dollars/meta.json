@@ -1,7 +1,7 @@
 {
   "slug": "income-in-dollars",
   "title": "Nearest, measured in dollars",
-  "hook": "Who is most like you: a 31-year-old or a 60-year-old? Depends on your units.",
+  "hook": "Which person is nearest to you: a 31-year-old or a 60-year-old?",
   "domain": "ai",
   "concept": "feature-scaling",
   "status": "review",
@@ -25,12 +25,12 @@
   "claims": [
     {
       "id": "ai.income-in-dollars.c1",
-      "text": "The toy has 12 invented people plus 'you' (30 years, $50,000); A is 31 and earns $58,000, B is 60 and earns $51,000. Distance is √(age gap² + income gap²), with income in the chosen unit.",
+      "text": "The toy has 12 invented people plus 'you' (30 years, $50,000); A is 31 and earns $58,000, B is 60 and earns $51,000. Distance is √(age gap² + income gap²), with income in the chosen unit, so on the stage 1 year of age counts like one unit of income ($1, $100 or $1,000).",
       "support": "convention",
-      "source": "The lesson's own data and distance in Demo.tsx (QUERY, PEOPLE, dist). The ten unlabelled people were placed by hand so that only A or B is ever nearest.",
+      "source": "The lesson's own data and distance in Demo.tsx (QUERY, PEOPLE, dist). The ten unlabelled people were placed by hand so that only A or B is ever nearest. | FACT-CHECK 2026-10-14 (pass 16): Demo.tsx: QUERY 30/$50,000; PEOPLE has 12 entries (A 31/$58,000, B 60/$51,000, ten unlabelled); dist = hypot(age gap, income gap / unit); header '1 year of age counts like $1 / $100 / $1,000 of income'. node: nearest is B at $1 and $100, A at $1,000; for the stage's three units only A or B is nearest. Advisory: the source's 'only A or B is ever nearest' is too broad: on a 1% grid of units from 1 to 100,000, an unlabelled person is nearest on 83 steps (units the stage does not offer).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.income-in-dollars.c2",
@@ -76,12 +76,13 @@
       "company/reviews/income-in-dollars/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/income-in-dollars/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/income-in-dollars/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/income-in-dollars/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:feature-scaling",
     "prerequisites": [
@@ -90,5 +91,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "locked-readouts",
+    "milestone-gate"
+  ]
 }

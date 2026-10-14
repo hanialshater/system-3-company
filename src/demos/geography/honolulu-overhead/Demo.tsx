@@ -48,14 +48,7 @@ const CITIES = [
   { name: "Honolulu", lat: 21.31, lon: -157.86 },
 ];
 const HNL = CITIES[2];
-// Days the noon Sun passes over Honolulu: the day nearest its latitude on each side of the June peak.
 const PEAK = DEC.reduce((best, v, d) => (d > 0 && v > DEC[best] ? d : best), 1);
-const nearest = (from: number, to: number) => {
-  let best = from;
-  for (let d = from; d <= to; d++) if (Math.abs(DEC[d] - HNL.lat) < Math.abs(DEC[best] - HNL.lat)) best = d;
-  return best;
-};
-const HNL_DAYS = [nearest(PEAK - 90, PEAK), nearest(PEAK, PEAK + 90)];
 const TROPIC = DEC[PEAK];
 const START = dayOf(2, 20);
 const CHIPS = [dayOf(5, 21), dayOf(11, 21), START];
@@ -78,17 +71,17 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
         options: ["Miami (25.8°N)", "Cairo (30.0°N)", "Honolulu (21.3°N)"],
         answer: 2,
       }}
-      exploreHint="Drag the date through June. Which cities does the line pass over?"
+      exploreHint="Drag the date along the year, or tap a date, and watch the dashed line. Which cities does it pass over?"
       minInteractions={1}
       reveal={() => (
         <>
           <p>
             Only <strong>Honolulu</strong>. The line where the noon Sun is overhead never goes farther north than{" "}
-            {fmtLat(TROPIC)}, on about {dateLabel(PEAK)}. It crossed Honolulu, at {fmtLat(HNL.lat)}, on about{" "}
-            {dateLabel(HNL_DAYS[0])} and again on about {dateLabel(HNL_DAYS[1])}. It never reached Miami or Cairo.
+            {fmtLat(TROPIC)}, around {dateLabel(PEAK)}. That is farther north than Honolulu, at {fmtLat(HNL.lat)}, so the line
+            crossed it. It never reached Miami or Cairo.
           </p>
           <p>
-            That limit is the Earth&rsquo;s tilt, about {OBL.toFixed(1)}°. Through the year the overhead Sun swings
+            The limit matches the Earth&rsquo;s tilt, about {OBL.toFixed(1)}°, which the stage showed beside it. Through the year the overhead Sun swings
             between the Tropic of Cancer, {fmtLat(TROPIC)}, and the Tropic of Capricorn, {fmtLat(-TROPIC)}. Outside
             that band, even on the longest summer day, the noon Sun stays a little short of straight up.
           </p>
@@ -121,9 +114,22 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
                 >
                   {() => (
                     <>
+                      {[0, 20, 40].map((l) => (
+                        <g key={l}>
+                          <line x1={x0} x2={x1} y1={y(l)} y2={y(l)} className={s.grid} />
+                          <text x={x0 + 2} y={y(l) - 2} className={s.gridLabel}>
+                            {l === 0 ? "equator 0°" : `${l}°N`}
+                          </text>
+                        </g>
+                      ))}
                       {!locked &&
                         [TROPIC, -TROPIC].map((t) => (
-                          <line key={t} x1={x0} x2={x1} y1={y(t)} y2={y(t)} className={s.tropic} />
+                          <g key={t}>
+                            <line x1={x0} x2={x1} y1={y(t)} y2={y(t)} className={s.tropic} />
+                            <text x={x1 - 2} y={y(t) + (t > 0 ? -2 : 8)} className={s.gridLabel} textAnchor="end">
+                              {t > 0 ? "Tropic of Cancer" : "Tropic of Capricorn"}
+                            </text>
+                          </g>
                         ))}
                       <line x1={x0} x2={x1} y1={y(dec)} y2={y(dec)} className={s.sunLine} />
                       {CITIES.map((c) => {
@@ -142,7 +148,8 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">
-                  Equirectangular. Dashed: where the noon Sun is overhead today. Filled city: the Sun has been overhead there.
+                  Latitude is how far north or south of the equator a place is. Dashed: the latitude where the noon Sun is overhead on this date.
+                  Filled city: the Sun has been overhead there.
                 </p>
                 <div className={s.chips} role="group" aria-label="Jump to a date">
                   {CHIPS.map((d) => (
@@ -154,10 +161,13 @@ export default function HonoluluOverhead({ slug }: { slug: string }) {
                 <Row>
                   <Slider label="Date" value={day} min={1} max={365} disabled={locked} format={dateLabel} onChange={go} />
                 </Row>
-                <Row>
+                {!locked && <Row>
                   <Readout label="Noon Sun overhead at" value={fmtLat(dec)} />
                   <Readout label="Farthest north so far" value={locked ? "?" : fmtLat(swept.hi)} />
-                </Row>
+                </Row>}
+                {!locked && <Row>
+                  <Readout label="Earth's axis tilt (fixed)" value={`${OBL.toFixed(1)}°`} />
+                </Row>}
               </div>
             );
           }}

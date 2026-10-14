@@ -1,7 +1,7 @@
 {
   "slug": "pay-first-then-profit",
   "title": "Methane burning: the bond ledger",
-  "hook": "Burning methane gives out heat, but breaking bonds costs energy. Where is the gain?",
+  "hook": "Burning methane gives out heat. Where, exactly, does it come from?",
   "domain": "chemistry",
   "concept": "bond-energy-enthalpy",
   "status": "review",
@@ -70,12 +70,21 @@
     },
     {
       "id": "chemistry.pay-first-then-profit.c6",
-      "text": "Heat is released when the bonds formed are stronger in total than the bonds broken.",
+      "text": "Heat is released when the bonds formed are stronger in total than the bonds broken: here 2 × 799 + 4 × 463 = 3,450 kJ formed against 4 × 413 + 2 × 498 = 2,648 kJ broken.",
       "support": "source",
-      "source": "Atkins, Chemical Principles: ΔH ≈ Σ(bonds broken) − Σ(bonds formed); negative means exothermic.",
+      "source": "Atkins, Chemical Principles: ΔH ≈ Σ(bonds broken) − Σ(bonds formed); negative means exothermic. | FACT-CHECK 2026-10-14 (pass 13): node: formed 2x799 + 4x463 = 3,450; broken 4x413 + 2x498 = 2,648; dH = -802 kJ/mol, matching the measured combustion enthalpy of CH4 to gaseous water (-802 kJ/mol). Bond counts for CH4 + 2O2 -> CO2 + 2H2O correct.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "chemistry.pay-first-then-profit.c7",
+      "text": "A mole is 6.0 × 10²³ of something, and bond energies are quoted in kilojoules (kJ) per mole of bonds.",
+      "support": "convention",
+      "source": "Avogadro constant 6.02214076 × 10²³ per mole (SI, 2019); bond-enthalpy tables give kJ/mol. | FACT-CHECK 2026-10-14 (pass 13): SI 2019 fixes N_A = 6.02214076e23 /mol; bond-enthalpy tables are in kJ/mol.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -94,12 +103,14 @@
       "company/reviews/pay-first-then-profit/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/pay-first-then-profit/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/pay-first-then-profit/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/pay-first-then-profit/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/pay-first-then-profit/2026-10-14-learner-adult-beginner-r3.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:bond-energy-enthalpy",
     "prerequisites": [
@@ -109,5 +120,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

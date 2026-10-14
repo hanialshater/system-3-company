@@ -29,18 +29,24 @@ const CHIP_W = 26;
 export default function BadHashOneBucket({ slug }: { slug: string }) {
   const [placed, setPlaced] = useState<number[]>([]);
   const [mod, setMod] = useState<Mod>(10);
-  const [seen, setSeen] = useState<{ mod: Mod; keys: number; used: number }[]>([]); // states the learner reached
+  const [seen, setSeen] = useState<{ mod: Mod; keys: number; used: number; steps: number; last: number }[]>([]); // states the learner reached
 
   const table = place(placed, mod);
   const used = usedSlots(placed, mod);
-  const longest = Math.max(0, ...table.map((c) => c.length));
   const all10 = usedSlots(KEYS, 10);
+  const lastKey = placed.length ? placed[placed.length - 1] : null;
+  const stepsFor = (keys: number[], m: Mod) => {
+    if (!keys.length) return 0;
+    const k = keys[keys.length - 1];
+    return keys.filter((x) => x % m === k % m).indexOf(k) + 1;
+  };
+  const steps = stepsFor(placed, mod);
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${SLOTS}-slot table puts each key in slot = key mod 10 (the remainder after dividing by 10). You insert ${KEYS[0]}, ${KEYS[1]}, ${KEYS[2]}, … ${KEYS[KEYS.length - 1]}. How many different slots get used?`,
+        question: `A table has ${SLOTS} numbered slots. Each key (a number you store) goes in slot = key mod 10, the remainder after dividing by 10, so 23 goes in slot 3. You store ${KEYS[0]}, ${KEYS[1]}, ${KEYS[2]}, … ${KEYS[KEYS.length - 1]}. How many different slots get used?`,
         options: [String(all10), "5", String(SLOTS)],
         answer: 0,
       }}
@@ -49,17 +55,18 @@ export default function BadHashOneBucket({ slug }: { slug: string }) {
       reveal={() => {
         const best10 = seen.filter((x) => x.mod === 10).sort((a, b) => b.keys - a.keys)[0];
         const best7 = seen.filter((x) => x.mod === 7).sort((a, b) => b.keys - a.keys)[0];
+        const slow = best10 && best10.steps > 1 ? ` Finding the last key, ${best10.last}, meant walking ${best10.steps} steps down its list.` : "";
         return (
           <>
             <p>
-              {best10 ? `You dropped ${best10.keys} keys and they all went to slot 0, while ${SLOTS - best10.used} slots stayed empty. ` : ""}
+              {best10 ? `You dropped ${best10.keys} keys and they all went to slot 0, while ${SLOTS - best10.used} slots stayed empty.${slow} ` : ""}
               Every multiple of 10 leaves remainder 0, so with this rule all {KEYS.length} keys share {all10} slot.
-              {best7 ? ` Under mod 7 the same ${best7.keys} keys used ${best7.used} slots.` : ""}
+              {best7 ? ` Under mod 7 the same ${best7.keys} keys used ${best7.used} slots, and finding the last one took ${best7.steps} step${best7.steps === 1 ? "" : "s"}.` : ""}
             </p>
             <p>
               The table was big enough; the rule was the problem. Keys that land together are kept as a list in their slot,
-              and finding one means walking that list, so a bad rule turns a table into one long list. A good hash breaks
-              up the patterns real keys have, such as all ending in 0.
+              and finding one means walking that list, so a bad rule turns a table into one long list. A rule that turns a
+              key into a slot is called a hash. A good hash breaks up the patterns real keys have, such as all ending in 0.
             </p>
           </>
         );
@@ -69,7 +76,7 @@ export default function BadHashOneBucket({ slug }: { slug: string }) {
         <Milestones interact={interact} names={["four-stacked", "spread"]}>
           {(reach) => {
             const record = (keys: number[], m: Mod) => {
-              setSeen((x) => [...x, { mod: m, keys: keys.length, used: usedSlots(keys, m) }]);
+              setSeen((x) => [...x, { mod: m, keys: keys.length, used: usedSlots(keys, m), steps: stepsFor(keys, m), last: keys[keys.length - 1] }]);
               if (m === 10 && keys.length >= 4) reach("four-stacked");
               if (m === 7 && keys.length >= 4) reach("spread");
             };
@@ -98,6 +105,9 @@ export default function BadHashOneBucket({ slug }: { slug: string }) {
                 <p className={s.rule}>
                   slot = key mod {mod} <span>(remainder after ÷ {mod})</span>
                 </p>
+                <p className={s.legend}>
+                  {mod === 7 ? "Remainders are only 0 to 6, so slots 7 to 9 stay empty. " : ""}Red keys share a slot.
+                </p>
                 <svg viewBox={`0 0 320 ${SLOTS * ROW_H + 4}`} className="stage-svg" role="img" aria-label={`${used} of ${SLOTS} slots used`}>
                   {table.map((chain, i) => {
                     const y = 2 + i * ROW_H;
@@ -123,7 +133,7 @@ export default function BadHashOneBucket({ slug }: { slug: string }) {
                 </svg>
                 <Row>
                   <Readout label="Slots used" value={`${used} of ${SLOTS}`} />
-                  <Readout label="Longest list" value={longest} />
+                  <Readout label={lastKey ? `Steps to find ${lastKey}` : "Steps to find a key"} value={lastKey ? steps : "–"} />
                   <Control disabled={locked} onClick={switchRule}>
                     Switch rule to mod {mod === 10 ? 7 : 10}
                   </Control>

@@ -1,12 +1,12 @@
 {
   "slug": "median-without-sorting",
   "title": "The middle card, without sorting",
-  "hook": "To find the middle value, sort everything first. Or throw half away each time.",
+  "hook": "To find the middle of 101 cards you could sort them all first. Do you have to?",
   "domain": "cs",
   "concept": "quickselect",
   "format": "Single card",
   "status": "review",
-  "durationSec": 70,
+  "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
     "builder": "demo-builder"
@@ -22,22 +22,22 @@
     ]
   },
   "misconception": "To find the middle value you must sort everything first.",
-  "objective": "The learner can explain that after a split the pivot is in its final place and the median lies on one side only, so discarding the other side finds the median of 7 2 9 4 1 8 5 3 6 in 4 splits and 17 comparisons, and that the saving over sorting grows with n.",
+  "objective": "The learner can explain that after a split the pivot is in its final place and the median lies on one side only, so discarding the other side finds the median of 101 shuffled cards in about half the comparisons that sorting takes, and that the saving over sorting grows with n.",
   "claims": [
     {
       "id": "cs.median-without-sorting.c1",
-      "text": "Splitting 7 2 9 4 1 8 5 3 6 around first-card pivots and keeping only the side with position 5 uses pivots 7, 2, 4 and 5: 4 splits and 17 comparisons, and finds the median 5.",
+      "text": "On these 101 shuffled cards (mulberry32 seed 38), splitting around first-card pivots and keeping only the side with position 51 finds the median in 8 splits and 297 comparisons.",
       "support": "simulation",
-      "source": "Builder's node script (scratchpad checks/all.mjs, qsel.mjs), counting group size - 1 comparisons per split: 8 + 5 + 3 + 1 = 17. | FACT-CHECK 2026-10-14 (pass 10): Own node: pivots 7, 2, 4, 5; comparisons 8 + 5 + 3 + 1 = 17; median 5.",
+      "source": "Builder node run of Demo.tsx split()/keep() logic over the seed-38 shuffle (selection sketch in scratchpad med.mjs), counting group size - 1 comparisons per split. Seed 38 is a disclosed choice: over seeds 1-40 the mean is about 292 for the median search and 640 for sorting, and seed 38 gives 297 and 619.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.median-without-sorting.c2",
-      "text": "The 8 and 9 are dropped after the first split and never looked at again.",
+      "text": "The cards on the side that does not hold position 51 are dropped after each split and never looked at again.",
       "support": "simulation",
-      "source": "First split around 7 puts 8 and 9 to its right; 7 lands in position 7, so position 5 is on the left and the right side is discarded. | FACT-CHECK 2026-10-14 (pass 10): First split: 7 lands in position 7, 8 and 9 to its right, discarded.",
+      "source": "Demo.tsx keep(): lo/hi shrink to the kept side; split() only touches st.lo..st.hi.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -53,19 +53,19 @@
     },
     {
       "id": "cs.median-without-sorting.c4",
-      "text": "Sorting with the same first-card rule takes 18 comparisons on these 9 cards.",
+      "text": "Sorting the same 101 cards with the same first-card rule takes 619 comparisons, about twice the 297 of the median search.",
       "support": "simulation",
-      "source": "Builder's node quicksort, first-card pivot, group size - 1 comparisons per split: 18. | FACT-CHECK 2026-10-14 (pass 10): Own first-pivot quicksort, size - 1 comparisons per split: 18.",
+      "source": "Builder node quicksort (first-card pivot, group size - 1 comparisons per split) on the seed-38 shuffle: 619. Same Demo.tsx function sortCost(). Seed 38 chosen as typical (see c1).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.median-without-sorting.c5",
-      "text": "On 1,000 shuffled cards, finding the median this way takes about 3,465 comparisons against about 11,003 for sorting.",
+      "text": "On 1,000 shuffled cards, finding the median this way takes about 3,300 comparisons against about 11,000 for sorting.",
       "support": "simulation",
-      "source": "Builder's node script qsel.mjs: averages over mulberry32 seeds 1-50 (Fisher-Yates shuffles of 1..1000), first-card pivots, median = 500th: 3,465 and 11,003. Seeds 1-50 taken in order, not chosen. Expected linear time: Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2. | FACT-CHECK 2026-10-14 (pass 10): Own node reproduces 3,465 and 11,003 on seeds 1-50, but that 50-seed mean is high: the exact expectation for first-card pivots on a random permutation is 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort; my 500 other seeds (101-600) give 3,363 and 11,005. Stating 'about 3,465' to four figures is about 4% high. Fix (builder): 'about 3,300 comparisons against about 11,000' (claim and reveal), citing the expectation. Re-check after the fix.",
-      "status": "disputed",
+      "source": "Revision v2, rounded per fact-check pass 10. Expected values for first-card pivots on a random permutation: 3,336 for the 500th of 1,000 (Knuth's C(n,k) = 2[(n+1)H_n - (n+3-k)H_(n+1-k) - (k+2)H_k + n + 3]) and 2(n+1)H_n - 4n = 10,986 for quicksort. Builder's simulation (mulberry32 seeds 1-50, first 50 in order) gave 3,465 and 11,003, a high sample mean, so the stage no longer quotes it. Hoare, 'Algorithm 65: Find', CACM 4 (1961); CLRS 3rd ed. 9.2. | FACT-CHECK 2026-10-14 (pass 14): Own node: Knuth formula for k = 500, n = 1000 gives 3,336.3; quicksort 2(n+1)H_n - 4n = 10,985.9. Own simulation (xorshift32, 20,000 shuffles, n - 1 comparisons per split as in Demo.tsx split()): quickselect 3,341.8, quicksort 10,987.3. 'About 3,300' and 'about 11,000' are right. Stage 9-card values 17 and 18 re-confirmed.",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -83,11 +83,15 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/median-without-sorting/2026-10-14-learner-adult-beginner.md",
+      "company/reviews/median-without-sorting/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/median-without-sorting/2026-10-14-learner-adult-beginner-r3.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "cs:quickselect",
     "prerequisites": [

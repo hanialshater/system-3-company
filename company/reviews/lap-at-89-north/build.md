@@ -6,3 +6,14 @@
 - Stage: an azimuthal equidistant map centred on the pole, zoomed so the chosen parallel is always 95 px in radius. A computed scale bar shows how far the zoom went. Presets (Equator, 60°N, 85°N, 89°N) come first, then a 0 to 89.9° slider.
 - Key state: `big-lap` (a latitude of 60° or less) and `at-89`. The 85°N figure appears in the reveal only if it was visited (the QA path visits it).
 - c6 (drifting sea ice) is from memory.
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- One fixed map scale (80 km per pixel) with the equator ring dashed, so the lap visibly shrinks to a speck. "Across the circle" readout and a London-Edinburgh comparison under 1,000 km (claim c8, unverified source).
+- Reveal drops cos and the drifting-ice sentence (claim c6 withdrawn); c4 reworded.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2) and fact-check c9: 'across' was a surface distance so around was not pi x across, and the reveal's 1.7% did not match it; the London-Edinburgh note was false at 89.1-89.9N. Fix: 'Straight across the circle' is the straight-line diameter 2R cos(lat); the note computes the multiple of 650 km; the equator caption no longer repeats itself.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

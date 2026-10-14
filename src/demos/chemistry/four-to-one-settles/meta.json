@@ -1,10 +1,10 @@
 {
   "slug": "four-to-one-settles",
   "title": "Four to one, from anywhere",
-  "hook": "Start with all A or all B. Does the reaction remember where it began?",
+  "hook": "Start with all A, or all B. Where does the mix end up?",
   "domain": "chemistry",
   "concept": "equilibrium-constant",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-chemistry",
@@ -24,12 +24,12 @@
   "claims": [
     {
       "id": "chemistry.four-to-one-settles.c1",
-      "text": "For A ⇌ B with K = [B]/[A] = 4 and 100 molecules, the settled mix is about 80 B and 20 A (80 ÷ 20 = 4).",
+      "text": "When the mix has settled with 4 times as many B as A (K = 4) and there are 100 molecules, it holds about 80 B and 20 A (80 ÷ 20 = 4).",
       "support": "derivation",
-      "source": "B/A = 4 with A + B = 100 gives A = 20, B = 80. Equilibrium constant definition (IUPAC Gold Book, 'equilibrium constant'). Demo.tsx B_EQ.",
+      "source": "B/A = 4 with A + B = 100 gives A = 20, B = 80. Equilibrium constant definition (IUPAC Gold Book, 'equilibrium constant'). Demo.tsx B_EQ. | FACT-CHECK 2026-10-14 (pass 13): Derivation B/A = 4, A+B = 100 gives 20/80; own node simulation of the toy (P_FWD 0.2, P_BACK 0.05, 100 molecules, 20,000 steps) gives mean B = 79.98. Demo.tsx B_EQ = 80.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.four-to-one-settles.c2",
@@ -42,12 +42,12 @@
     },
     {
       "id": "chemistry.four-to-one-settles.c3",
-      "text": "At equilibrium both reactions keep going at equal rates: 20% of 20 A and 5% of 80 B, 4 each way per step.",
+      "text": "When the mix has settled both reactions keep going at equal rates: 20% of 20 A and 5% of 80 B, 4 each way per step.",
       "support": "derivation",
-      "source": "0.20 x 20 = 4 = 0.05 x 80 (dynamic equilibrium; Atkins & Jones, Chemical Principles, ch. on equilibrium). The per-step chances are the toy's, chosen so their ratio is K.",
+      "source": "0.20 x 20 = 4 = 0.05 x 80 (dynamic equilibrium; Atkins & Jones, Chemical Principles, ch. on equilibrium). The per-step chances are the toy's, chosen so their ratio is K. | FACT-CHECK 2026-10-14 (pass 13): node: 0.20 x 20 = 4 = 0.05 x 80. Matches Demo.tsx P_FWD/P_BACK.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.four-to-one-settles.c4",
@@ -72,15 +72,17 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/four-to-one-settles/2026-10-13-qa.md"
+      "company/reviews/four-to-one-settles/2026-10-13-qa.md",
+      "company/reviews/four-to-one-settles/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/four-to-one-settles/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/four-to-one-settles/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/four-to-one-settles/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:equilibrium-constant",
     "prerequisites": [
@@ -89,5 +91,6 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

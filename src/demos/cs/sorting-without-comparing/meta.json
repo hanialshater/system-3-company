@@ -4,7 +4,7 @@
   "hook": "Sort ten scores by dropping them in buckets. Does anything need to be bigger?",
   "domain": "cs",
   "concept": "counting-sort",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -80,8 +80,12 @@
     "why": "Each age goes to the bucket with its own number, and the buckets are read in order, so no age is compared with another. It works because the range 0 to 9 is small."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/sorting-without-comparing/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/sorting-without-comparing/2026-10-14-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

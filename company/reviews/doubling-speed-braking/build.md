@@ -16,3 +16,10 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise); the fact-check rout
 - Striped bar at 16 blocks: blocks are numbered.
 - "Movement energy ... (speed squared)" jargon: reworded to "grows with speed times speed".
 - "Reaction time adds more road" was a new idea with no number: removed; the muted line now restates the scope ("Braking only, same brakes on the same road"). Claim c6 stays (the stage still says braking only); claim texts unchanged.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- block numbers: dark ink on --domain blocks; the alternate block is now domain mixed with white (was mixed with the card colour) so ink reads on both.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

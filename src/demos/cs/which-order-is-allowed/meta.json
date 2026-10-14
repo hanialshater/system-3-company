@@ -4,7 +4,7 @@
   "hook": "Some tasks must wait for others. Is there one right order, several, or maybe none?",
   "domain": "cs",
   "concept": "topological-sort",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -79,9 +79,12 @@
     "why": "The rules form a loop: every task waits for another, so no task can go first and no order exists."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/which-order-is-allowed/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/which-order-is-allowed/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/which-order-is-allowed/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/which-order-is-allowed/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

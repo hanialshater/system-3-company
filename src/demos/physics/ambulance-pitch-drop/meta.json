@@ -4,7 +4,7 @@
   "hook": "The siren never changes. Does what you hear stay the same as it drives past?",
   "domain": "physics",
   "concept": "doppler-effect",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -79,19 +79,21 @@
     },
     {
       "id": "physics.ambulance-pitch-drop.c7",
-      "text": "Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m apart; from the ambulance at 25 m/s they are 31.8 m apart ahead and 36.8 m behind, so ahead crests arrive 34.3 / 31.8 = 1.08 times as often, up to 755 Hz.",
+      "text": "Pitch in Hz is crests per second. Rings sent 0.1 s apart from a parked siren are 34.3 m apart; from the ambulance at 25 m/s they are 31.8 m apart ahead and 36.8 m behind, so ahead crests arrive more often (higher pitch) and behind less often (lower pitch).",
       "support": "derivation",
-      "source": "Hz = cycles per second (SI). Parked spacing c x 0.1 = 34.3 m; ahead (c - v) x 0.1 = 31.8 m; behind (c + v) x 0.1 = 36.8 m. 34.3 / 31.8 = 1.079; 700 x 1.079 = 755 Hz (same as c2, 700 x 343 / 318). Computed from the same constants in Demo.tsx. | FACT-CHECK 2026-10-13 (pass 4): Node: 34.3, 31.8, 36.8 m; 34.3/31.8 = 1.0786 -> '1.08'; 700 x 343/318 = 755.03. Stage caption is a separate claim (added c8).",
+      "source": "Arithmetic: 343 x 0.1 = 34.3; (343 - 25) x 0.1 = 31.8; (343 + 25) x 0.1 = 36.8. Revision v6: the 1.08 ratio and 'up to 755 Hz' were dropped from the stage because the learner never saw them. | FACT-CHECK 2026-10-14 (pass 14): Own node: 343 x 0.1 = 34.3; 318 x 0.1 = 31.8; 368 x 0.1 = 36.8. Demo.tsx rings: centre x - V tau, radius C tau, so the front edges are (C - V) x 0.1 apart and the rear edges (C + V) x 0.1; gap labels compute the same. Frequency = crests per second (SI hertz).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.ambulance-pitch-drop.c8",
-      "text": "Each ring is where the sound sent out 0.1 s earlier has reached. Hz = crests per second.",
+      "text": "The rings mark where sound sent out 0.1, 0.2 ... 0.6 s ago has reached. They are not crests: a real 700 Hz siren sends 70 crests between rings. Hz = crests per second.",
       "support": "derivation",
-      "source": "Stage caption before the reveal. CONCERN: a 700 Hz siren sends crests 1/700 s (1.4 ms) apart, so rings 0.1 s apart are every 70th crest (Demo.tsx header comment and c5 say so); the caption says each ring is a crest. Suggest 'Each ring marks sound sent 0.1 s ago; a real 700 Hz siren sends 70 crests in that time.' Added by fact-checker 2026-10-13; needs an independent check. | Builder fix 2026-10-13 (pass 4): caption reworded: a 700 Hz siren sends crests 1.4 ms apart, rings are every 70th (consistent with c5).",
-      "status": "unverified"
+      "source": "Revision v6. Ring radius = 343 m/s x time since sending, centred where the ambulance was then (Demo.tsx rings, tau = 0.1 ... 0.6 s). 700 Hz x 0.1 s = 70 crests between rings 0.1 s apart. Hz as cycles per second is the definition. | FACT-CHECK 2026-10-14 (pass 14): Demo.tsx rings tau = 0.1 ... 0.6 s, radius 343 tau, centred at the emission point. 700 Hz x 0.1 s = 70 cycles between rings. Hz = s^-1, cycles per second (SI Brochure, 9th ed., Table 4).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -107,17 +109,20 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/ambulance-pitch-drop/2026-10-13-qa.md"
+      "company/reviews/ambulance-pitch-drop/2026-10-13-qa.md",
+      "company/reviews/ambulance-pitch-drop/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
       "company/reviews/ambulance-pitch-drop/2026-10-13-learner-adult-beginner.md",
       "company/reviews/ambulance-pitch-drop/2026-10-13-learner-adult-beginner-v3.md",
-      "company/reviews/ambulance-pitch-drop/2026-10-13-learner-adult-beginner-v3-seen.md"
+      "company/reviews/ambulance-pitch-drop/2026-10-13-learner-adult-beginner-v3-seen.md",
+      "company/reviews/ambulance-pitch-drop/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/ambulance-pitch-drop/2026-10-14-learner-adult-beginner-r3.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 5,
+  "version": 6,
   "curriculum": {
     "primary": "physics:doppler-effect",
     "prerequisites": [

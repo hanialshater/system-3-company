@@ -6,3 +6,10 @@
 - Reveal quotes the question's case (60% = 4 copies + 8/16 fresh), the fresh-only 50% if reached, and the last other share the learner visited with its full-test score (visible on the stage).
 - Node check: scores(v) all = 0.5 + v/200 (50, 55, 60, 65, 70, 75%), fresh = 0.5 for v = 0..50.
 - Seed: mulberry32(1) shuffle decides which cells are copies; untuned, layout only.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- "copy" tag: lighter/darker domain mix per theme (class copyTag); the dimming of copy items under "fresh only" now applies to the box only, so the tick/cross and tag stay at full contrast.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

@@ -54,10 +54,10 @@
       "id": "chemistry.cut-the-cube-surface.c4",
       "text": "Each 1 mm cube has outside area 6 × (0.1 cm)² = 0.06 cm², and 1,000 of them add up to 60 cm².",
       "support": "derivation",
-      "source": "6 × 0.01 = 0.06; × 1,000 = 60 cm² (node).",
+      "source": "6 × 0.01 = 0.06; × 1,000 = 60 cm² (node). | FACT-CHECK 2026-10-14 (pass 13): node: 6 x 0.1^2 = 0.06 cm^2; x 1,000 = 60 cm^2 (vs 6 cm^2 for the 1 cm cube).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.cut-the-cube-surface.c5",
@@ -70,12 +70,12 @@
     },
     {
       "id": "chemistry.cut-the-cube-surface.c6",
-      "text": "A reaction between a solid and something around it can only happen at the solid's outside, so finer pieces react faster.",
+      "text": "A reaction between a solid and something around it can only happen at the solid's outside, so with 10 times the outside area (60 cm² against 6 cm²) a reaction has 10 times as much surface to work on and finer pieces react faster, other things equal.",
       "support": "source",
-      "source": "Surface-area effect on rate (Atkins, Physical Chemistry, heterogeneous reactions; Chemistry LibreTexts, Factors affecting reaction rates). Other things equal.",
+      "source": "Surface-area effect on rate (Atkins, Physical Chemistry, heterogeneous reactions; Chemistry LibreTexts, Factors affecting reaction rates). Other things equal. | FACT-CHECK 2026-10-14 (pass 13): Heterogeneous reactions occur at the interface; rate scales with exposed area other things equal (LibreTexts, Factors affecting reaction rates). 60/6 = 10. Qualified correctly with \"other things equal\".",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -94,12 +94,14 @@
       "company/reviews/cut-the-cube-surface/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/cut-the-cube-surface/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/cut-the-cube-surface/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/cut-the-cube-surface/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/cut-the-cube-surface/2026-10-14-learner-adult-beginner-r3.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:surface-area-rate",
     "prerequisites": [
@@ -108,5 +110,6 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

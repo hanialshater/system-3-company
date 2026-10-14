@@ -1,9 +1,10 @@
 .wrap { display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto; min-height: 0; overflow-y: auto; }
 .wrap p { margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.sun { fill: var(--muted); fill-opacity: 0.25; background: color-mix(in srgb, var(--muted) 40%, transparent); }
-.mon { fill: var(--domain); fill-opacity: 0.5; background: color-mix(in srgb, var(--domain) 70%, transparent); }
-.tue { fill: var(--good); fill-opacity: 0.35; background: color-mix(in srgb, var(--good) 55%, transparent); }
+.sun { fill: var(--muted); fill-opacity: 0.35; background: color-mix(in srgb, var(--muted) 50%, transparent); }
+.mon { fill: var(--domain); fill-opacity: 0.85; background: var(--domain); }
+.tue { fill: var(--good); fill-opacity: 0.55; background: color-mix(in srgb, var(--good) 70%, transparent); }
+.bandLabel { font-size: 8px; font-weight: 800; fill: var(--fg); }
 .other { fill: var(--bg-2); fill-opacity: 0.4; background: var(--bg-2); outline: 1px solid var(--line); }
 .dot { stroke: var(--fg); stroke-width: 1; fill-opacity: 1; }
 .dotLabel { font-size: 8px; font-weight: 700; fill: var(--fg); }

@@ -59,12 +59,12 @@
     },
     {
       "id": "economics.fee-on-two-week-loan.c5",
-      "text": "The lesson is a model: simple annualising with no compounding, the fee only, no rollover, a 364-day year, and no view on any lender.",
+      "text": "The lesson is a model: you borrow $100 again each time and pay only the fee, simple annualising with no compounding, a 364-day year, and no view on any lender.",
       "support": "convention",
-      "source": "Assumptions of Demo.tsx; stage chip 'Model: simple yearly rate, fee only'.",
+      "source": "Stage chip 'Model: borrow again each time, fee only'; reveal model line.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -83,12 +83,13 @@
       "company/reviews/fee-on-two-week-loan/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/fee-on-two-week-loan/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/fee-on-two-week-loan/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/fee-on-two-week-loan/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:short-loan-annualized",
     "prerequisites": [
@@ -97,5 +98,12 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

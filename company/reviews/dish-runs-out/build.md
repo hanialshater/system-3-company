@@ -12,3 +12,8 @@
 - No "full" reference -> at 10 h the message says "The dish is full (100%)". Batch size now stated in the batch message ("feeds about 100 million").
 - "stopped" -> "levelled off near 100 million" (fact-check note). Hook says "after 10 hours" not "by evening". The unseen "most of the dish filled in the last hour" is dropped.
 - Claims c1, c2, c3, c6 rewritten, unverified.
+
+## Revision v3
+
+Input: latest learner review (and fact-check). Reveal derivation was told, batch size came after the click, "0.0%" read oddly. Stage message now counts doublings (e.g. "29 doublings"); the food switch is labelled "One batch (feeds 100 million)"; tiny shares read "under 0.1%"; reveal states 10 h = 30 x 20 min. c2 and c6 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 3, `format` set, edited claims are unverified for the fact-checker.

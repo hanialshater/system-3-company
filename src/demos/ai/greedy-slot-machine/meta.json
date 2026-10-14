@@ -1,7 +1,7 @@
 {
   "slug": "greedy-slot-machine",
   "title": "Always pick the best-looking machine?",
-  "hook": "Always choosing what looks best sounds smart. Can it lock you into the worse machine?",
+  "hook": "Always pick the machine that looks best so far. How often does that go wrong?",
   "domain": "ai",
   "concept": "exploration-exploitation",
   "status": "review",
@@ -43,21 +43,19 @@
     },
     {
       "id": "ai.greedy-slot-machine.c3",
-      "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls.",
+      "text": "In run 1, greedy's single early pull on B lost, so B looked like 0% and greedy never pulled it again, winning about 30 per 100 for all 500 pulls; the stage shows the first pulls (A lost, B lost; with both at 0% the tie goes to A).",
       "support": "simulation",
-      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Run 1 is mulberry32 seed 5, CHOSEN because greedy gets stuck in it (it does not in seeds 1-4). Greedy wins per 100: 40, 29, 23, 30, 41; pulls on B: 1 of 500. The reveal does not generalise from this run; it reports the 2000-run spread (c4). | FACT-CHECK 2026-10-14 (pass 16): Own reimplementation and the extracted MODEL block of Demo.tsx agree: seed 5 first pulls are A LOST and B LOST (first = [0,0]); seeds 1-4 and 6 are A lost, B won. The stage prints 'first pulls: A lost, B lost', so the claim's '(A won, B lost)' contradicts the stage. The rest holds: B pulled 1 of 500, wins per 100 = 40, 29, 23, 30, 41 (163/500 = 32.6, 'about 30'), stuck. Since both looked 0%, greedy stayed on A only because ties go to A. Fix (builder): change the parenthetical to '(A lost, B lost; with both at 0% the tie goes to A)'. The reveal text itself is not wrong. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     },
     {
       "id": "ai.greedy-slot-machine.c4",
-      "text": "Across 2,000 toy runs greedy was stuck on A in about 30% of them, and its last 100 pulls averaged about 58 wins against the explorer's 68. Exploring costs about 2 wins per 100 when greedy is lucky and saves about 40 when it is not.",
+      "text": "In the toy, greedy ends up stuck on A in about 3 runs in 10, winning about 30 per 100 in those runs; the stage tallies how often it was stuck, and the average wins of greedy and the explorer over its last 100 pulls, across the runs the learner watches.",
       "support": "simulation",
-      "source": "Seeds 1-2000 of play() (node script and live in the reveal): greedy stuck 30.2% (601 of 604 stuck runs began with B's first pull losing), greedy last-100 mean 57.7, explorer 67.95. 'About 2' = 70 - 68 when greedy has found B; 'about 40' = 68 - 30 when stuck (rounded).",
+      "source": "Seeds 1-2000 of play() (node script): greedy stuck 30.2% (601 of 604 stuck runs began with B's first pull losing), greedy last-100 mean 57.7, explorer 67.95. The stage's own tallies are computed live from seeds 5 onward. | FACT-CHECK 2026-10-14 (pass 16): node, own play() with kit mulberry32, seeds 1-2000: greedy stuck (under 50 B pulls in its last 100) in 30.2%; stuck runs average 29.8 wins in the last 100 and 30.0 per 100 over all 500; 601 of 604 stuck runs began with B's first pull losing; greedy last-100 mean 57.7, explorer 67.95. The learner's default path (Play run 1, Next run, Watch 100 more = seeds 5-106, 102 runs): stuck 33 (32%), greedy 57, explorer 67, so the reveal's hard-coded 'about 3 in 10' sits next to a matching tally.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.greedy-slot-machine.c5",
@@ -85,12 +83,13 @@
       "company/reviews/greedy-slot-machine/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/greedy-slot-machine/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/greedy-slot-machine/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/greedy-slot-machine/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:exploration-exploitation",
     "prerequisites": [
@@ -99,5 +98,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "tally-counters",
+    "milestone-gate"
+  ]
 }

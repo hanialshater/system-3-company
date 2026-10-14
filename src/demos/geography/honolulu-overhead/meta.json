@@ -1,7 +1,7 @@
 {
   "slug": "honolulu-overhead",
   "title": "Where is the Sun ever straight up?",
-  "hook": "Summer noon in Miami feels like the Sun is right on top of you. Is it?",
+  "hook": "The Sun climbs highest at noon. Where does it ever stand straight overhead?",
   "domain": "geography",
   "concept": "tropics-polar-circles",
   "status": "review",
@@ -45,19 +45,17 @@
       "id": "geography.honolulu-overhead.c3",
       "text": "The noon Sun passes over Honolulu on about 27 May and again on about 16 July.",
       "support": "simulation",
-      "source": "Days nearest 21.31 N in Demo.tsx's declination model (Kepler orbit, e = 0.0167, perihelion 3 Jan, Sun longitude at perihelion 282.94 degrees, obliquity 23.44): day 147 (21.31) and day 197 (21.35) in a non-leap year. The brief's sine formula gives the same days. Real dates shift by a day with the year; the lesson says 'about'. NOAA Solar Calculator not consulted.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Days nearest 21.31 N in Demo.tsx's declination model (Kepler orbit, e = 0.0167, perihelion 3 Jan, Sun longitude at perihelion 282.94 degrees, obliquity 23.44): day 147 (21.31) and day 197 (21.35) in a non-leap year. The brief's sine formula gives the same days. Real dates shift by a day with the year; the lesson says 'about'. NOAA Solar Calculator not consulted. | v2: sentence no longer shown to learners; withdrawn.",
+      "status": "withdrawn"
     },
     {
       "id": "geography.honolulu-overhead.c4",
-      "text": "The overhead noon Sun reaches its farthest north, 23.4 N, on about 21 June.",
+      "text": "The overhead noon Sun reaches its farthest north, 23.4 N, around 21 June, which is farther north than Honolulu (21.3 N) and short of Miami and Cairo.",
       "support": "simulation",
-      "source": "Maximum of the model's declination: 23.44 on day 172 (21 June). The June solstice falls on 20 or 21 June in current years (any almanac).",
+      "source": "Maximum of the model's declination: 23.44 on day 172 (21 June). The June solstice falls on 20 or 21 June in current years (any almanac). | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Node with the Demo.tsx Kepler model: maximum declination 23.440 on day 172 = 21 June (non-leap), dateLabel '21 Jun', fmtLat '23.4N'. 23.4 > 21.31 (Honolulu) and < 25.76 (Miami), 30.04 (Cairo). Matches the reveal.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "geography.honolulu-overhead.c5",
@@ -67,6 +65,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.honolulu-overhead.c6",
+      "text": "Latitude is how far north or south of the equator a place is.",
+      "support": "convention",
+      "source": "Standard definition of geographic latitude. | FACT-CHECK 2026-10-14 (pass 17): The claim text is right, but the stage says something else: the caption under the map reads 'Latitude is how far north of the equator a place is.', which omits south while the same stage draws and labels the Tropic of Capricorn at 23.4S. Fix (builder, Demo.tsx caption): 'Latitude is how far north or south of the equator a place is.' Re-check after the edit. | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,12 +90,13 @@
       "company/reviews/honolulu-overhead/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/honolulu-overhead/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/honolulu-overhead/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/honolulu-overhead/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "geography:tropics-polar-circles",
     "prerequisites": [
@@ -99,5 +105,13 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart",
+    "preset-buttons",
+    "locked-readouts"
+  ]
 }

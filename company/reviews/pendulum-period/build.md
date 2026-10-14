@@ -21,3 +21,18 @@ Key state: a changed weight on the 1 m string has swung one full back-and-forth 
 | Fact-check 5 (recall rider not a point mass) | Recall "why" now starts "Treat swing and rider as a pendulum". c9 text unchanged. |
 
 QA: contract passes phone + desktop (local, 2026-10-13).
+
+## Revision v3
+
+Findings from 2026-10-13-learner-adult-beginner.md (revise).
+
+Per-swing times now show 'swinging...' until one back-and-forth has run. The 'harder to speed up' slogan is replaced by 'gravity pulls Nx harder, but it is also Nx harder to get moving'; the reveal uses the learner's own weight (claim c7 reworded, unverified). Ghost labelled. Model tag glosses 'ideal'. Hint says to press Release. The weight slider already reaches 2 kg.
+
+Kept `curriculum`; `format` set to single-card if it was missing. Version bumped to 3.
+
+
+## Revision v4
+
+Gate still needs only the weight trial (QA presses each control once, and weight and string reset each other, so a two-trial gate has no one-tap path). The reveal no longer quotes 1.01 s at 0.25 m unless the learner swung 0.25 m; otherwise it invites the string trial. Hint names 0.25 m. Not fixed: ghost ring look, 75 s chip (not mine to change).
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

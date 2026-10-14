@@ -111,7 +111,7 @@ export default function LineStopsAtTheEdge({ slug }: { slug: string }) {
                     <circle cx={X(qx)} cy={Y(tru)} r={5} fill="var(--good)" stroke="var(--fg)" />
                   </g>
                 )}
-                <text x={X(2.1)} y={Y(line(2.1)) + 16} textAnchor="middle" className={s.tiny} fill="var(--domain)">
+                <text x={X(2.1)} y={Y(line(2.1)) + 16} textAnchor="middle" className={`${s.tiny} ${s.domText}`}>
                   fitted line
                 </text>
                 {!locked && outside && (

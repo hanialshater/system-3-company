@@ -61,16 +61,20 @@
     {
       "text": "When a square is off from 2 x q^2 by exactly 1, the square is odd and 2 x q^2 is even, so they cannot be equal.",
       "support": "derivation",
-      "source": "2 x q^2 is always even; an integer within 1 of an even number that is not equal to it is odd. Shown in the stage caption for the off-by-1 close calls (q = 1, 2, 5, 12, 29, 70).",
+      "source": "2 x q^2 is always even; an integer within 1 of an even number that is not equal to it is odd. Shown in the stage caption for the off-by-1 close calls (q = 1, 2, 5, 12, 29, 70). | FACT-CHECK 2026-10-14 (pass 11): 2q^2 is even; |p^2 - 2q^2| = 1 makes p^2 odd. Own node: off-by-1 cases for q <= 100 are exactly q = 1, 2, 5, 12, 29, 70 (Pell). Caption line 121 matches.",
       "id": "math.no-fraction-fits.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "If p/q = sqrt(2), squaring both sides gives p^2 = 2 x q^2.",
       "support": "derivation",
-      "source": "(p/q)^2 = 2 multiplied by q^2; same fact as c2, now with the squaring step stated on the stage.",
+      "source": "(p/q)^2 = 2 multiplied by q^2; same fact as c2, now with the squaring step stated on the stage. | FACT-CHECK 2026-10-14 (pass 11): (p/q)^2 = 2, times q^2: p^2 = 2q^2. The multiply step is implicit in \"gives\"; acceptable.",
       "id": "math.no-fraction-fits.c6",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -89,7 +93,8 @@
       "company/reviews/no-fraction-fits/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/no-fraction-fits/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/no-fraction-fits/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/no-fraction-fits/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

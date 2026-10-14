@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "rsa-trapdoor",
   "format": "Single card",
-  "status": "review",
+  "status": "published",
   "durationSec": 75,
   "owner": {
     "categoryManager": "cm-cs",
@@ -27,9 +27,9 @@
   "claims": [
     {
       "id": "cs.rsa-lock-with-public-key.c1",
-      "text": "With n = 55 and e = 3, 2 locks to 2^3 mod 55 = 8.",
+      "text": "With n = 55 and e = 3, 7 locks to 7^3 mod 55 = 343 mod 55 = 13. Messages 0 to 3 never wrap (m^3 < 55), and the stage says a plain cube root undoes them.",
       "support": "derivation",
-      "source": "2^3 = 8 < 55. Checked in node by the builder. | FACT-CHECK 2026-10-14 (pass 10): 2^3 = 8 < 55 (node, BigInt).",
+      "source": "Arithmetic: 343 = 6 x 55 + 13; 3^3 = 27 < 55 and 4^3 = 64 > 55. Revision v2 (the old message 2 did not wrap). | FACT-CHECK 2026-10-14 (pass 14): Own node BigInt: 7^3 = 343 = 6 x 55 + 13; m^3 < 55 exactly for m = 0..3 (4^3 = 64). Demo.tsx lock() note says 'below 55, so it never wrapped. A plain cube root undoes it' when m^3 < 55; default message 7.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -54,9 +54,9 @@
     },
     {
       "id": "cs.rsa-lock-with-public-key.c4",
-      "text": "Using e = 3 again does not unlock most messages; for a few toy messages it happens to bring the message back.",
+      "text": "Using e = 3 again does not unlock most messages; for some toy messages it happens to bring the message back.",
       "support": "simulation",
-      "source": "Builder's node check: m^9 mod 55 = m for 15 of the 55 values (0, 1, 10, 11, 12, 21, 22, 23, 32, 33, 34, 43, 44, 45, 54) and differs for the other 40; e.g. 8^3 mod 55 = 17, not 2. The stage says so when a learner hits one of the 15. | FACT-CHECK 2026-10-14 (pass 10): Own node: m^9 mod 55 = m for exactly the 15 listed values; 8^3 mod 55 = 17. Stage says 'most do not' (40 of 55). Note: 15 of 55 (27%) is more than 'a few'; builder may prefer 'for some toy messages'. Not blocking.",
+      "source": "Builder's node check: m^9 mod 55 = m for 15 of the 55 values and differs for the other 40; for 7: 13^3 mod 55 = 52, not 7. The stage says so when a learner hits one of the 15. Wording 'a few' changed to 'some' per fact-check pass 10. | FACT-CHECK 2026-10-14 (pass 14): Own node: (m^3)^3 mod 55 = m for exactly 15 of 55 messages (0,1,10,11,12,21,22,23,32,33,34,43,44,45,54), not for the other 40; 13^3 mod 55 = 52, not 7. Stage note 'happens to come back; most do not' on those 15. 'Some' is right.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -81,10 +81,10 @@
     },
     {
       "id": "cs.rsa-lock-with-public-key.c7",
-      "text": "Predict answer: only someone who knows 55 = 5 x 11 can unlock 8 (locked from 2 with n = 55, e = 3).",
+      "text": "Predict answer: if n had hundreds of digits, only someone who can find the factors of n (such as 5 x 11 for 55) can unlock a locked number such as 13 (locked from 7 with n = 55, e = 3).",
       "support": "derivation",
-      "source": "Unrecorded stage claim (predict question 'Who can unlock 8?', answer 'Only someone who knows 55 = 5 x 11'), recorded by the fact-checker 2026-10-14 (pass 10). CONCERN: false for these numbers. 2^3 = 8 < 55, so the lock never wrapped and anyone takes the ordinary cube root of 8 to get 2 (also true for m = 0..3, own node); and with 55 possible messages anyone with the public key can lock all 55 and look 8 up. The option 'Anyone with the public key' is in fact correct here. Fix (builder): pick a message whose cube exceeds 55 (e.g. m = 7: 343 mod 55 = 13) and reword the question/answer to the realistic case, e.g. 'At real key sizes, who can unlock it?' with 'Only someone who can find d, which needs the factors of n'. Disputed by the fact-checker; needs re-check after the fix.",
-      "status": "disputed",
+      "source": "Revision v2. The toy n = 55 could be broken by trying all 55 messages, so the question asks about hundreds of digits. 7 wraps: 7^3 = 343 > 55. Rests on c5 and c6. | FACT-CHECK 2026-10-14 (pass 14): m^e > n holds: 7^3 = 343 > 55, and 13 has no integer cube root, so the plain-cube-root shortcut fails. 13^27 mod 55 = 7 (own node). At hundreds of digits, recovering m from c needs d, which needs p and q (RSA 1978; CLRS 3rd ed. 31.7, 31.9; rests on verified c5, c6). Non-blocking note: with a huge n and e = 3, the message 7 itself would not wrap (343 < n), which is why real RSA pads messages; the question asks about the locked number 13, so the claim stands.",
+      "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     }
@@ -101,12 +101,17 @@
     "why": "d comes from (p - 1)(q - 1), so you need the factors p and q of n. Multiplying them is easy; finding them from n is the hard part."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/rsa-lock-with-public-key/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/rsa-lock-with-public-key/2026-10-14-learner-adult-beginner.md",
+      "company/reviews/rsa-lock-with-public-key/2026-10-14-learner-adult-beginner-r2.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:rsa-trapdoor",
     "prerequisites": [

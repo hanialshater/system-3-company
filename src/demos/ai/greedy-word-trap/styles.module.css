@@ -49,3 +49,17 @@
   font-size: 20px;
   font-weight: 800;
 }
+
+.fgText {
+  fill: var(--fg);
+}
+
+.domText {
+  fill: var(--domain);
+}
+
+@media (prefers-color-scheme: light) {
+  .domText {
+    fill: color-mix(in srgb, var(--domain) 45%, #000);
+  }
+}

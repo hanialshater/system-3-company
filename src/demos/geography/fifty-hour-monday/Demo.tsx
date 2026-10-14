@@ -35,6 +35,7 @@ const fmtT = (t: number) => {
   const m = Math.round((t - d * 24 - h) * 60);
   return `${DAYS[d + 1] ?? "Wed"} ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")} UTC`;
 };
+const monBands = (t: number) => NOMINAL.filter((o) => dayAt(t, o) === 1).length;
 const fmtOff = (o: number) => `UTC${o >= 0 ? "+" : "−"}${Math.abs(o)}`;
 
 export default function FiftyHourMonday({ slug }: { slug: string }) {
@@ -55,8 +56,8 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
         options: ["24", "50", "38"],
         answer: 1,
       }}
-      exploreHint="Find when Monday first starts, then when the last Monday ends."
-      minInteractions={2}
+      exploreHint="Step the time forward and watch Monday sweep across, then see when Monday first starts and last ends."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -65,20 +66,26 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
             {fmtT(MON_END)}.
           </p>
           <p>
-            Each place has its own 24-hour Monday, but the places start at different moments. Clocks on Earth are spread
+            Clocks on Earth are spread
             over {MAX_OFF - MIN_OFF} hours, from {fmtOff(MIN_OFF)} to {fmtOff(MAX_OFF)}, so one date lasts 24 +{" "}
             {MAX_OFF - MIN_OFF} = {MON_HOURS} hours from the first midnight to the last. A date is not one wall of
             midnight; it is a wave that takes two days to cross the world.
+          </p>
+          <p>
+            Kiritimati sits at the map&rsquo;s west edge yet keeps UTC+14: the date line bends east round Kiribati so the
+            country shares one date.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["begins", "ends"]}>
+        <Milestones interact={interact} names={["wave", "begins", "ends"]}>
           {(reach) => {
             const go = (v: number) => {
               setT(v);
-              if (v >= MON_START && v < MON_END) reach("begins");
+              const nb = monBands(v);
+              if (nb >= 3 && nb < NOMINAL.length) reach("wave");
+              if (v === MON_START) reach("begins");
               if (v >= MON_END) reach("ends");
             };
             return (
@@ -97,13 +104,23 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                         const x1 = x(Math.min(180, o * 15 + 7.5));
                         return <rect key={o} x={x0} y={top} width={x1 - x0} height={bottom - top} className={cls(dayAt(t, o))} />;
                       })}
+                      {NOMINAL.map((o) => {
+                        const d = dayAt(t, o);
+                        const x0 = x(Math.max(-180, o * 15 - 7.5));
+                        const x1 = x(Math.min(180, o * 15 + 7.5));
+                        return d >= 0 && d <= 2 ? (
+                          <text key={`l${o}`} x={(x0 + x1) / 2} y={top + 10} className={s.bandLabel} textAnchor="middle">
+                            {["S", "M", "T"][d]}
+                          </text>
+                        ) : null;
+                      })}
                       {DOTS.map((d) => {
                         const [px, py] = projection([d.lon, d.lat])!;
                         return (
                           <g key={d.name}>
                             <circle cx={px} cy={py} r={4.5} className={`${s.dot} ${cls(dayAt(t, d.off))}`} />
-                            <text x={px + (d.off > 0 ? 6 : 1)} y={py + (d.off > 0 ? -6 : 14)} className={s.dotLabel} textAnchor="start">
-                              {fmtOff(d.off)}
+                            <text x={px + 7} y={py + (d.off > 0 ? -5 : 13)} className={s.dotLabel} textAnchor="start">
+                              {d.name} {fmtOff(d.off)}
                             </text>
                           </g>
                         );
@@ -112,12 +129,16 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                   )}
                 </WorldMap>
                 <p className="muted tiny">
-                  Equirectangular. Bands: nominal 15° zones. Dots: real island clocks.{" "}
+                  UTC is the world reference clock, the same as Greenwich winter time (GMT); UTC+14 runs 14 hours ahead of it. Bands: 15° strips of the world. Dots: islands with the
+                  extreme clocks.{" "}
                   <span className={s.key}>
-                    <i className={s.sun} /> Sun <i className={s.mon} /> Mon <i className={s.tue} /> Tue <i className={s.other} /> other
+                    <i className={s.sun} /> S Sun <i className={s.mon} /> M Mon <i className={s.tue} /> T Tue <i className={s.other} /> earlier day
                   </span>
                 </p>
-                <div className={s.chips} role="group" aria-label="Jump to a moment">
+                <div className={s.chips} role="group" aria-label="Move through time">
+                  <Control disabled={locked || t >= 72} onClick={() => go(Math.min(72, t + 18))}>
+                    Forward 18 hours
+                  </Control>
                   <Control disabled={locked || t === MON_START} className={t === MON_START ? "active" : ""} onClick={() => go(MON_START)}>
                     First Monday starts
                   </Control>
@@ -128,10 +149,13 @@ export default function FiftyHourMonday({ slug }: { slug: string }) {
                 <Row>
                   <Slider label="Time" value={t} min={0} max={72} step={0.5} disabled={locked} format={fmtT} onChange={go} />
                 </Row>
-                <Row>
+                {!locked && <Row>
                   <Readout label="Monday somewhere?" value={locked ? "?" : mondayNow ? "Yes" : "No"} />
                   <Readout label="Monday has lasted" value={locked ? "?" : `${mondaySoFar} h`} />
-                </Row>
+                </Row>}
+                {!locked && <Row>
+                  <Readout label="Clocks spread over" value={`${MAX_OFF - MIN_OFF} h (${fmtOff(MIN_OFF)} to ${fmtOff(MAX_OFF)})`} />
+                </Row>}
               </div>
             );
           }}

@@ -4,7 +4,7 @@
   "hook": "Running is fast, swimming is slow. Where should a lifeguard hit the water?",
   "domain": "physics",
   "concept": "refraction",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -53,12 +53,12 @@
     },
     {
       "id": "physics.lifeguard-fastest-path.c4",
-      "text": "Light takes the path of least time between two points (Fermat's principle), which bends toward the slower medium at a boundary: refraction, Snell's law.",
+      "text": "Light takes the quickest path between two points (Fermat's principle) and travels slower in water than in air, so its path bends where it enters the water: refraction.",
       "support": "source",
-      "source": "Fermat's principle and its derivation of Snell's law; Feynman Lectures on Physics, vol. I, ch. 26; Hecht, Optics, ch. 4.",
+      "source": "Fermat's principle and its derivation of Snell's law; Feynman Lectures on Physics, vol. I, ch. 26; Hecht, Optics, ch. 4. | FACT-CHECK 2026-10-14 (pass 13): Fermat principle gives Snell law (Feynman Lectures I-26); n_water 1.33 so v is slower in water. Strictly \"stationary\" time, but for one flat interface it is the minimum, so \"quickest\" is correct here. Reveal text matches claim.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.lifeguard-fastest-path.c5",
@@ -83,20 +83,23 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/lifeguard-fastest-path/2026-10-13-qa.md"
+      "company/reviews/lifeguard-fastest-path/2026-10-13-qa.md",
+      "company/reviews/lifeguard-fastest-path/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/lifeguard-fastest-path/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/lifeguard-fastest-path/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/lifeguard-fastest-path/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:refraction",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

@@ -17,3 +17,8 @@ Key state (milestone, `minInteractions` = 1): `forty-years` (the learner has rea
 | L6 chart rescales on reveal | Kit reveal panel, not lesson code. Routed to platform-engineer (same as gradient-descent). |
 
 Trade-off for the QA contract: the contract presses the years slider (10 → 12), then the jump buttons 10, 20, 30, 40, so it reaches 40 and the gate opens. The selected jump button is active and disabled.
+
+## Revision v3
+
+Wave C, builder 11, 2026-10-14, from the latest learner review and fact-check. Title no longer leaks ("Ten years in, $1,967. And at forty?"); legend says "interest on past interest"; "Plain 7% only" readout puts $3,800 on stage; reveal shortened. c3 edited, unverified.
+QA contract: pass (phone and desktop). Claims edited are unverified and need a fact-check pass.

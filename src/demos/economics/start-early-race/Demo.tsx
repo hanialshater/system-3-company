@@ -107,7 +107,7 @@ export default function StartEarlyRace({ slug }: { slug: string }) {
                   {wait > 0 && <line x1={px(wait)} y1={BOT} x2={px(wait)} y2={BOT + 6} stroke="var(--warn)" strokeWidth={3} />}
                   <polyline points={line(ana)} className={s.ana} />
                   <polyline points={line((t) => ben(t, wait))} className={s.ben} />
-                  <text x={R + 2} y={aLab} className={s.value} fill="var(--domain)">
+                  <text x={R + 2} y={aLab} className={`${s.value} ${s.domText}`}>
                     Ana
                   </text>
                   <text x={R + 2} y={bLab} className={s.value} fill="var(--warn)">

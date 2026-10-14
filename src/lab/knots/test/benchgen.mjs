@@ -79,18 +79,6 @@ export function randomPolygon(r, steps, radius) {
   return pts
 }
 
-// An unknot by construction: a random planar walk lifted so that height increases along it, closed by a
-// segment above everything (an ascending diagram). Its shadow is as messy as a random cord's.
-export function ascendingUnknot(r, steps, radius) {
-  const P = []
-  for (let k = 0, x = 0, y = 0; P.length < steps; k++) {
-    const a = 2 * Math.PI * r(), q = [x + Math.cos(a), y + Math.sin(a)]
-    if (Math.hypot(...q) <= radius) [x, y] = q, P.push([x, y, P.length])
-  }
-  const top = 10 * steps, [x0, y0] = P[0], [x1, y1] = P[P.length - 1]
-  return projectPD([...P, [x1 + 1e-9, y1, top], [x0 - 1e-9, y0, top]])
-}
-
 // Disguises that keep the knot type (or mirror it): relabelling, crossing order, mirror, reversal.
 const n2 = (pd) => 2 * pd.length, succ = (pd, l) => (l % n2(pd)) + 1
 export const knotSign = (pd, x) => (x[1] == succ(pd, x[3]) ? 1 : -1) // +1: the over-strand enters at slot d

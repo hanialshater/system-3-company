@@ -7,3 +7,10 @@
 - The reveal quotes the Paris and Rome distances only if the learner's widest ring reached past both. Otherwise it says "beyond your widest ring, N km". The QA path never sees those distances, so the reveal does not name them there.
 - Locked: the ring, the city distances and the readout are hidden.
 - I cut two unsupported reveal sentences while building: "the Atlantic's narrowest part" and "flat maps with Europe on top make West Africa look close to Europe".
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- The three cities are not drawn while locked (the map used to show Natal nearest before predicting); only Dakar is.
+- After the prediction every city shows its distance whatever the ring size, so the reveal quotes real Paris/Rome distances instead of "beyond your widest ring". New claim c6; c5 (hook sentence) withdrawn after the hook was rewritten to be neutral.
+- Natal label moved off the ring line. Caption in plain words.

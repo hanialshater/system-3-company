@@ -51,6 +51,7 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
   const [open, setOpen] = useState<Set<string>>(new Set());
   const [memo, setMemo] = useState(false);
   const [sawFull, setSawFull] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
 
   const visible = useMemo(() => {
     if (memo) return [...tree.values()].filter((t) => MEMO_COMPUTED.has(t.id) || MEMO_LOOKUP.has(t.id));
@@ -74,7 +75,7 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "fib(n) = fib(n-1) + fib(n-2), and fib(1), fib(0) just return 1. Every use of fib counts as one call. How many calls does fib(5) make in total?",
+          "fib(n) is a recipe: to make fib(n), first make fib(n-1) and fib(n-2), then add them. fib(1) and fib(0) are simply 1. Each time the recipe is used is one call. How many calls does fib(5) make in total?",
         options: ["5", "9", "15"],
         answer: 2,
       }}
@@ -88,8 +89,7 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
           </p>
           <p>
             Remembering each answer the first time removes the repeats. fib(5) then computes just 6 values, fib(0) to
-            fib(5), and the other 3 calls are instant lookups. The gap explodes as n grows: fib(30) makes 2,692,537
-            calls the naive way, but only 31 values need computing.
+            fib(5), and the other 3 calls are instant lookups.
           </p>
           <p className="muted">Recursion repeats itself. Memoization means never solving the same piece twice.</p>
         </>
@@ -105,9 +105,14 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
         const tap = (id: string) => {
           if (locked || memo) return;
           const next = new Set(open);
+          const nn = tree.get(id)!.n;
           if (next.has(id)) {
             for (const k of [...next]) if (k.startsWith(id)) next.delete(k);
-          } else next.add(id);
+            setNote(`fib(${nn}) closed.`);
+          } else {
+            next.add(id);
+            setNote(`fib(${nn}) opens into fib(${nn - 1}) and fib(${nn - 2}): two more calls.`);
+          }
           setOpen(next);
           markFull(next);
         };
@@ -115,21 +120,25 @@ export default function FibCallExplosion({ slug }: { slug: string }) {
           if (locked) return;
           const next = full ? new Set<string>() : new Set(internal);
           setMemo(false);
+          setNote(null);
           setOpen(next);
           markFull(next);
         };
         const toggleMemo = () => {
           if (locked || !sawFull) return;
           if (!memo) interact();
+          setNote(null);
           setMemo((m) => !m);
         };
 
         const msg = locked
           ? "Make a prediction to start."
           : memo
-            ? "Remembering: 6 computed, 3 looked up."
-            : visible.length === 1
-              ? "Each circle is one call. Tap fib(5)."
+            ? "Remembering: 6 computed, 3 looked up (dashed circles)."
+            : note
+              ? note + (repeats.length ? ` Repeats: ${repeats.map((n) => `fib(${n}) ×${countBy.get(n)}`).join(", ")}` : "")
+              : visible.length === 1
+              ? "Each circle is one call. fib(5) needs fib(4) and fib(3). Tap it."
               : repeats.length
                 ? `Repeats: ${repeats.map((n) => `fib(${n}) ×${countBy.get(n)}`).join(", ")}`
                 : "Keep opening calls.";

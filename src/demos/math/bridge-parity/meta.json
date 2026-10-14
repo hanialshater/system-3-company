@@ -53,22 +53,28 @@
       "id": "math.bridge-parity.c4",
       "text": "Bridge 7 closed: only 2 places are odd, so a walk can start at one and end at the other. Try all 6.",
       "support": "derivation",
-      "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage. Caption text shown when counts are on and bridge 7 is closed.",
-      "status": "unverified"
+      "source": "Counts become 5, 3, 2, 2 (island and north odd). Example walk: north-island-north-east-island-south-island (bridges 1, 2, 3, 4, 5, 6), checked by hand and by the stage. Caption text shown when counts are on and bridge 7 is closed. | FACT-CHECK 2026-10-14 (pass 11): From Demo.tsx BRIDGES with index 6 (S-E) closed: N 3, I 5, S 2, E 2, so 2 odd. Walk N-I-N-E-I-S-I uses bridges 1-6 once each, starts and ends at the odd places. Caption text matches line 202.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "On the full seven-bridge map the counts are 5, 3, 3, 3: 4 odd places, two too many.",
       "support": "derivation",
-      "source": "Same degrees as c2; the reveal now says it means the full map, because the stage may show bridge 7 closed (3, 5, 2, 2).",
+      "source": "Same degrees as c2; the reveal now says it means the full map, because the stage may show bridge 7 closed (3, 5, 2, 2). | FACT-CHECK 2026-10-14 (pass 11): Full map degrees from BRIDGES: I 5, N 3, S 3, E 3; reveal prints counts7 sorted descending = 5, 3, 3, 3 and odd7.length = 4.",
       "id": "math.bridge-parity.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "Rings mark places you passed through: 2 bridges each, in and out. Odd places can only be a start or end.",
       "support": "derivation",
-      "source": "Rings are drawn at each intermediate stop of the learner's own walk (walkVisits in Demo.tsx); each used one bridge in and one out. Same parity argument as c3.",
+      "source": "Rings are drawn at each intermediate stop of the learner's own walk (walkVisits in Demo.tsx); each used one bridge in and one out. Same parity argument as c3. | FACT-CHECK 2026-10-14 (pass 11): walkVisits pushes each arrival except the last stop (and not the start), so every ringed place used one bridge in and one out on that pass. Parity argument as c3.",
       "id": "math.bridge-parity.c6",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -86,7 +92,10 @@
     "qa": [
       "company/reviews/bridge-parity/2026-10-13-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/bridge-parity/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/bridge-parity/2026-10-14-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

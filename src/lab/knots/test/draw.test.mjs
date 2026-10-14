@@ -46,3 +46,28 @@ test('a stored layout keeps the picture fixed across a crossing change', () => {
   assert.notDeepEqual(a.edges.map((e) => e.d), b.edges.map((e) => e.d))
   assert.equal(JSON.parse(JSON.stringify(L)).crossings.length, 5, 'plain data')
 })
+
+// Textbook look (added 2026-10-14 for gen 2; company/rnd/evolution/knots-gen1.md, "Looks"). A table knot is the
+// picture a learner compares with the book: round strands, no long straight runs, no sharp corners. Measured on
+// the drawn curves away from crossings (6 % of size), as the share of curve length whose radius of curvature is
+// above 2 x size (straight) or below 4 % of size (a corner). Gen 0's packing: at most 18 % / 0.3 %.
+// Rectilinear (gen1-ortho, 65-80 %) and flattened bigons (gen1-tutte, up to 47 % / 6.8 %) fail it.
+test('table knots look like the textbook: round strands, no long straight runs, no sharp corners', () => {
+  const fine = (d) => { const p = bez(d), out = []; for (let s = 0; s + 3 < p.length; s += 3) for (let i = 0; i <= 16; i++) { const t = i / 16, u = 1 - t; out.push([0, 1].map((k) => u * u * u * p[s][k] + 3 * u * u * t * p[s + 1][k] + 3 * u * t * t * p[s + 2][k] + t * t * t * p[s + 3][k])) } return out }
+  for (const [name, k] of Object.entries(K.KNOTS)) {
+    if (!/^\d+_\d+$/.test(name) || name == '0_1') continue
+    const D = K.draw(k.pd), S = D.size, near = (p) => D.crossings.some((c) => Math.hypot(p[0] - c.x, p[1] - c.y) < 0.06 * S)
+    let L = 0, straight = 0, sharp = 0
+    for (const e of D.edges) {
+      const s = fine(e.d)
+      for (let i = 1; i + 1 < s.length; i++) {
+        const [a, b, c] = [s[i - 1], s[i], s[i + 1]], ab = Math.hypot(b[0] - a[0], b[1] - a[1]), bc = Math.hypot(c[0] - b[0], c[1] - b[1]), ac = Math.hypot(c[0] - a[0], c[1] - a[1])
+        if (ab < 1e-6 || bc < 1e-6 || near(b)) continue
+        const cr = Math.abs((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])), R = cr < 1e-9 ? Infinity : (ab * bc * ac) / (2 * cr), l = (ab + bc) / 2
+        L += l; if (R > 2 * S) straight += l; if (R < 0.04 * S) sharp += l
+      }
+    }
+    assert.ok(straight / L <= 0.3, `${name}: ${Math.round((100 * straight) / L)} % of the strands are straight runs (at most 30 %)`)
+    assert.ok(sharp / L <= 0.03, `${name}: ${Math.round((100 * sharp) / L)} % of the strands are sharp corners (at most 3 %)`)
+  }
+})

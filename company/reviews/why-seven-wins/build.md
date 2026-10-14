@@ -3,3 +3,10 @@
 - Brief change: six row-drops in place of 36 single taps. QA presses each control once, and 36 taps would make the gate unreachable.
 - Gate: 2 milestones, all 36 pairs placed, then the 1,000 rolls (in either order).
 - After screenshots: the dashed roll boxes covered the tile labels, so they became a red line at each column top, drawn behind the tiles.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- digits on the darker gold tiles: dark ink instead of white.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

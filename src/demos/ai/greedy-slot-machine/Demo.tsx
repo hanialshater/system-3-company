@@ -23,7 +23,7 @@ const BLOCK = 100;
 const EPS = 0.1;
 const FIRST_SEED = 5; // chosen: greedy gets stuck on A in this run
 
-type Result = { wins: number[]; onB: number[] }; // per block of 100 pulls
+type Result = { wins: number[]; onB: number[]; first: number[] }; // per block of 100 pulls; first = outcomes of the A pull and the B pull
 
 function play(eps: number, seed: number): Result {
   const rng = mulberry32(seed);
@@ -31,19 +31,21 @@ function play(eps: number, seed: number): Result {
   const w = [0, 0];
   const wins = Array<number>(PULLS / BLOCK).fill(0);
   const onB = Array<number>(PULLS / BLOCK).fill(0);
+  const first: number[] = [];
   for (let t = 0; t < PULLS; t++) {
     let m: number;
     if (t < 2) m = t;
     else if (rng() < eps) m = rng() < 0.5 ? 0 : 1;
     else m = w[1] / n[1] > w[0] / n[0] ? 1 : 0;
     const win = rng() < PAY[m] ? 1 : 0;
+    if (t < 2) first.push(win);
     n[m]++;
     w[m] += win;
     const b = Math.floor(t / BLOCK);
     wins[b] += win;
     if (m === 1) onB[b]++;
   }
-  return { wins, onB };
+  return { wins, onB, first };
 }
 const stuck = (r: Result) => r.onB[r.onB.length - 1] < BLOCK / 2;
 // MODEL END
@@ -58,18 +60,27 @@ const Y = (v: number) => 170 - v * 1.2;
 
 export default function GreedySlotMachine({ slug }: { slug: string }) {
   const [seed, setSeed] = useState<number | null>(null);
-  const [seen, setSeen] = useState<{ runs: number; stuck: number }>({ runs: 0, stuck: 0 });
+  const [seen, setSeen] = useState({ runs: 0, stuck: 0, g: 0, e: 0 }); // tallies over every run watched
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["played", "another-run"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["played", "another-run", "many-runs"]);
 
   const results = seed === null ? null : AGENTS.map((a) => play(a.eps, seed));
   const runNo = seed === null ? 0 : seed - FIRST_SEED + 1;
 
-  const show = (sd: number) => {
+  /** Watch `count` runs in a row, seeds sd - count + 1 .. sd, and show the last. */
+  const show = (sd: number, count: number, name: string) => {
     setSeed(sd);
-    const g = play(0, sd);
-    setSeen((v) => ({ runs: v.runs + 1, stuck: v.stuck + (stuck(g) ? 1 : 0) }));
-    reach(sd === FIRST_SEED ? "played" : "another-run");
+    let st = 0;
+    let g = 0;
+    let e = 0;
+    for (let k = sd - count + 1; k <= sd; k++) {
+      const gr = play(0, k);
+      if (stuck(gr)) st++;
+      g += gr.wins[4];
+      e += play(EPS, k).wins[4];
+    }
+    setSeen((v) => ({ runs: v.runs + count, stuck: v.stuck + st, g: v.g + g, e: v.e + e }));
+    reach(name);
   };
 
   return (
@@ -77,40 +88,29 @@ export default function GreedySlotMachine({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Machine A pays on 30% of pulls, B on 70%, but you don't know which is which, and you are stuck on A. A player who pulls a random machine 10% of the time, and otherwise the better-looking one, has found B. Per 100 pulls it wins about:",
-        options: ["30", "68", "90"],
+          "Machine A pays on 30% of pulls, B on 70%; the players don't know which is which. Each pulls A once and B once. Greedy then always picks the machine with the better record so far. Over 500 pulls, greedy ends up stuck on the worse machine A in about:",
+        options: ["No runs", "3 runs in 10", "9 runs in 10"],
         answer: 1,
       }}
-      exploreHint="Play run 1, then a few more runs. Compare the two players."
-      minInteractions={2}
-      reveal={() => {
-        const K = 2000;
-        let g = 0;
-        let e = 0;
-        let st = 0;
-        for (let sd = 1; sd <= K; sd++) {
-          const gr = play(0, sd);
-          const ex = play(EPS, sd);
-          g += gr.wins[4];
-          e += ex.wins[4];
-          if (stuck(gr)) st++;
-        }
-        return (
-          <>
-            <p>
-              Once B is found, the explorer spends 90 pulls on B (70% pays: 63 wins) and 10 at random (half on each: 5 wins):{" "}
-              <strong>about 68</strong>. In run 1 greedy&apos;s single early pull on B lost, so B looked like 0% and it never tried B
-              again: about 30 per 100, for all 500 pulls.
-            </p>
-            <p>
-              Greedy is not always stuck. In {seen.runs} run{seen.runs === 1 ? "" : "s"} you watched it was stuck {seen.stuck}{" "}
-              time{seen.stuck === 1 ? "" : "s"}; across {K.toLocaleString("en-US")} runs, {Math.round((100 * st) / K)}%. Its last 100
-              pulls averaged {(g / K).toFixed(0)} wins, the explorer&apos;s {(e / K).toFixed(0)}. Wandering costs about 2 wins
-              per 100 when greedy is lucky and saves about 40 when it is not.
-            </p>
-          </>
-        );
-      }}
+      exploreHint="Play run 1, then another, then 100 more. Compare the two players."
+      minInteractions={3}
+      reveal={() => (
+        <>
+          <p>
+            In run 1 greedy&apos;s single early pull on B lost, so B looked like 0% and it never tried B again: about 30
+            wins per 100, for all 500 pulls.
+          </p>
+          <p>
+            Greedy is not always stuck. In the {seen.runs} runs you watched it was stuck {seen.stuck} times (
+            {Math.round((100 * seen.stuck) / Math.max(1, seen.runs))}%, about 3 in 10). Its last 100 pulls averaged{" "}
+            {(seen.g / Math.max(1, seen.runs)).toFixed(0)} wins, the explorer&apos;s {(seen.e / Math.max(1, seen.runs)).toFixed(0)}.
+          </p>
+          <p>
+            Once the explorer has found B it earns 0.9 × 70 + 0.1 × 50 = <strong>68</strong> per 100 pulls: 90 pulls on B and 10
+            at random.
+          </p>
+        </>
+      )}
     >
       {({ locked, interact }) => {
         interactRef.current = interact;
@@ -156,18 +156,27 @@ export default function GreedySlotMachine({ slug }: { slug: string }) {
                 );
               })}
               <text x={160} y={202} textAnchor="middle" className={s.tiny} fill="var(--muted)">
-                pulls 1–500 →
+                {results ? `pulls 1–500 · first pulls: A ${results[0].first[0] ? "won" : "lost"}, B ${results[0].first[1] ? "won" : "lost"}` : "pulls 1–500 →"}
               </text>
             </svg>
             <Row>
-              <Control disabled={locked || seed !== null} onClick={() => show(FIRST_SEED)}>
+              <Control disabled={locked || seed !== null} onClick={() => show(FIRST_SEED, 1, "played")}>
                 Play run 1
               </Control>
-              <Control disabled={locked || seed === null} onClick={() => show((seed ?? FIRST_SEED) + 1)}>
+              <Control disabled={locked || seed === null} onClick={() => show((seed ?? FIRST_SEED) + 1, 1, "another-run")}>
                 Next run
               </Control>
-              <Readout label="Run" value={runNo || "–"} />
+              <Control disabled={locked || seed === null} onClick={() => show((seed ?? FIRST_SEED) + 100, 100, "many-runs")}>
+                Watch 100 more
+              </Control>
+            </Row>
+            <Row>
+              <Readout label="Runs watched" value={seen.runs || "–"} />
               <Readout label="Greedy stuck" value={seen.runs ? `${seen.stuck} of ${seen.runs}` : "–"} />
+              <Readout
+                label="Last 100 pulls, avg wins"
+                value={seen.runs ? `${(seen.g / seen.runs).toFixed(0)} greedy · ${(seen.e / seen.runs).toFixed(0)} explorer` : "–"}
+              />
             </Row>
           </div>
         );

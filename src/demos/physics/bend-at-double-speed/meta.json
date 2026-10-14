@@ -4,7 +4,7 @@
   "hook": "A car just holds a tight bend. Double its speed. How much wider must the bend be?",
   "domain": "physics",
   "concept": "curve-speed-limit",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-physics",
@@ -16,7 +16,7 @@
       "friction between tyres and road grips"
     ],
     "doesNotKnow": [
-      "that the safe radius depends on v\u00b2 / (\u03bc g)"
+      "that the safe radius depends on v² / (μ g)"
     ]
   },
   "misconception": "Twice the speed needs twice the radius.",
@@ -26,14 +26,16 @@
       "id": "physics.bend-at-double-speed.c1",
       "text": "Going round a bend takes a sideways push that grows with the speed squared and shrinks as the bend gets wider; tyre grip supplies at most a fixed push, so the tightest safe radius grows with the speed squared.",
       "support": "derivation",
-      "source": "Circular motion: centripetal force m v\u00b2 / r supplied by static friction up to \u03bc m g (any introductory mechanics text); mass cancels.",
-      "status": "unverified"
+      "source": "Circular motion: centripetal force m v² / r supplied by static friction up to μ m g (any introductory mechanics text); mass cancels. | FACT-CHECK 2026-10-14 (pass 11): m v^2 / r <= mu m g gives r_min = v^2/(mu g); mass cancels, r_min grows with v^2.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "physics.bend-at-double-speed.c2",
-      "text": "A bend of 50 m at 54 km/h (15 m/s) just within grip means \u03bc = 15\u00b2 / (9.81 \u00d7 50) = 0.46; at 108 km/h (30 m/s) the radius must be at least 200 m, four times as wide.",
+      "text": "A bend of 50 m at 54 km/h (15 m/s) just within grip means μ = 15² / (9.81 × 50) = 0.46; at 108 km/h (30 m/s) the radius must be at least 200 m, four times as wide.",
       "support": "derivation",
-      "source": "Node: mu = 225 / 490.5 = 0.4587; r(30 m/s) = 900 / (0.4587 \u00d7 9.81) = 200.0 m (Demo.tsx MU, rMin).",
+      "source": "Node: mu = 225 / 490.5 = 0.4587; r(30 m/s) = 900 / (0.4587 × 9.81) = 200.0 m (Demo.tsx MU, rMin).",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -42,16 +44,16 @@
       "id": "physics.bend-at-double-speed.c3",
       "text": "Doubling the speed multiplies the tightest safe radius by 4, because it depends on the speed squared.",
       "support": "derivation",
-      "source": "r = v\u00b2 / (\u03bc g): (2v)\u00b2 = 4 v\u00b2.",
+      "source": "r = v² / (μ g): (2v)² = 4 v².",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.bend-at-double-speed.c4",
-      "text": "The model is a flat, dry bend with a fixed grip \u03bc = 0.46 that is illustrative, not a measured road value.",
+      "text": "The model is a flat, dry bend with a fixed grip μ = 0.46 that is illustrative, not a measured road value.",
       "support": "convention",
-      "source": "Stated on stage as a chip ('Flat dry bend, grip \u03bc = 0.46'); \u03bc is derived from the question's premise.",
+      "source": "Stated on stage as a chip ('Flat dry bend, grip μ = 0.46'); μ is derived from the question's premise.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
@@ -60,17 +62,19 @@
       "id": "physics.bend-at-double-speed.c5",
       "text": "Other speeds on the slider give tightest safe bends of 112.5 m at 81 km/h and 312.5 m at 135 km/h under the same model.",
       "support": "derivation",
-      "source": "Node: 22.5\u00b2 / (0.4587 \u00d7 9.81) = 112.5 m; 37.5\u00b2 / (0.4587 \u00d7 9.81) = 312.5 m. Shown on stage as the readout, not in the reveal.",
+      "source": "Node: 22.5² / (0.4587 × 9.81) = 112.5 m; 37.5² / (0.4587 × 9.81) = 312.5 m. Shown on stage as the readout, not in the reveal.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
     },
     {
       "id": "physics.bend-at-double-speed.c6",
-      "text": "At 54 km/h the tightest safe bend is 50 m, at 81 km/h 112.5 m and at 108 km/h 200 m, under the same model.",
+      "text": "At 54 km/h the tightest safe bend is 50 m, at 81 km/h 112.5 m and at 108 km/h 200 m, under the same model. The stage lists each speed the learner has set with its tightest bend, and the reveal quotes only those.",
       "support": "derivation",
-      "source": "r = v^2/(mu g) with mu = 15^2/(9.81*50): 81 km/h = 22.5 m/s gives 112.5 m (see c5); 108 km/h gives 200 m (c2).",
-      "status": "unverified"
+      "source": "Own node (fact-check pass 11): mu = 225/(9.81 x 50); r_min = 50.0 m at 54 km/h, 112.5 m at 81, 200.0 m at 108. Revision v3: the stage keeps a 'Tightest safe bend so far' line and the reveal drops 112.5 m unless 81 km/h was set. | FACT-CHECK 2026-10-14 (pass 14): Own node: mu = 15^2 / (9.81 x 50) = 0.4587; r_min = v^2/(mu g) = 50.0 m (54 km/h), 112.5 m (81), 200.0 m (108), 312.5 m (135). Demo.tsx 'Tightest safe bend so far' lists seen speeds; reveal mentions 81 only if seen. Non-blocking: header comment describes the radius slider as 50..400 step 50 but code is 50..350 step 75 (code comment only).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -82,15 +86,21 @@
       "6 times as wide"
     ],
     "answer": 1,
-    "why": "The safe radius goes with speed squared: 3 \u00d7 the speed means 3\u00b2 = 9 \u00d7 the radius."
+    "why": "The safe radius goes with speed squared: 3 × the speed means 3² = 9 × the radius."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/bend-at-double-speed/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/bend-at-double-speed/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/bend-at-double-speed/2026-10-14-learner-adult-beginner.md",
+      "company/reviews/bend-at-double-speed/2026-10-14-learner-adult-beginner-r3.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:curve-speed-limit",
     "prerequisites": [

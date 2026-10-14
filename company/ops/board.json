@@ -2074,6 +2074,222 @@
     },
     {
       "id": "W-152",
+      "title": "QA contract presses each control once in DOM order, so optional steps (binary-numbers carry, blocked-cell remove-block, back-button discard) can't gate a reveal: lessons route around it. Consider a QA contract that can follow a scripted path per lesson (amendment)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-153",
+      "title": "Fix pass 11 disputes: ambulance-pitch-drop c8 (rings mark sound sent 0.1–0.6 s ago; the pass-4 fix never reached Demo.tsx; reveal still says crests), one-recipe-for-sixty c5 (prime definition must say 'a whole number above 1')",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-154",
+      "title": "Pattern: the locked (pre-predict) stage or title shows the answer (probing-clusters 4/10, union-find 3 hop rows, which-answer-wins curve, web-map 85.05° button, binary-fingers values, four-queens title 'sixteen'). Add a demo-standard rule + a pre-predict leak check in review",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-155",
+      "title": "Accessibility per-lesson fixes: 18 published lessons still fail contrast after K1/K6 kit fix (hard-coded pastels, white-on-fill SVG text, --domain as text); K2 'Map' link and 'Why trust this?' under 24 px; a --domain-ink token per card",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-156",
+      "title": "Fix pass 12 disputes: big-number-swallows-one c2 + predict text ('53 twos multiplied together'), binary-search c5 (weak-guess test should be after*2 > before)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-157",
+      "title": "point-one-is-26-percent c3: says '100 at pH 7.9' but the stage's 100 is at pH 8.2 — fix wording (fact-check pass 13 nit)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-158",
+      "title": "Bugs found during contrast pass: collect-all-six-faces label stuck at '0 rolls'; tournament-second-best label never changes; 6 px text in three lessons (see build.md notes)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-159",
+      "title": "cheapest-is-not-shortest: prediction is still plain addition; needs a graph with unequal costs (design change)",
+      "owner": "learning-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-160",
+      "title": "Wording nits from fact-check pass 14 (non-blocking): RSA padding caveat (e=3 with huge n leaves small m unwrapped), one-recipe-for-sixty caption 'no smaller factors', stale comment in bend-at-double-speed",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-161",
+      "title": "Evolution stop rule: the 2% threshold can never trigger on the knots score scale (tests term ≈10,100 dominates; gen 1 gained 15% on the bench term). Rescale the rule to the bench term or relative-to-headroom, then decide gen 2 (plan ready: ortho→force crossover + 2 mutations)",
+      "owner": "vp-rnd",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-162",
+      "title": "Promote knots gen1-force to src/kit/knots: EDD + engineering review (also the SnapPy GPL data provenance question, W-145)",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-163",
+      "title": "Re-review r3 revises: one-recipe-for-sixty + hanoi-tower-doubles (titles state the answer; hanoi 90 s, unsolved add-disk), median-without-sorting (payoff 17 vs 18; quotes a sort count never produced), back-button-stack (closing contrast gives B both ways), cheapest-is-not-shortest (W-159 design change); ambulance ring-gap labels visible while locked",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-164",
+      "title": "ambulance-pitch-drop: hide ring-gap labels (36.8 m/31.8 m) while stage locked (r3 N1, minor leak); beside-you 704 Hz clause",
+      "owner": "lesson-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-165",
+      "title": "Nits on PUBLISHED lessons (ambulance ring-gap labels W-164, RSA padding caveat + bend stale comment W-160): batch them with a coordinated re-verify/re-review so a live lesson never runs ahead of its review",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-166",
+      "title": "Fix pass 16 disputes: greedy-slot-machine c3 (stage shows run 1 'A lost, B lost'; claim says A won), memorise-coin-flips c3 (1.50476 shown as 1.50; claim says 1.51)",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-167",
+      "title": "Fix pass 17 geography disputes (7): fifty-hour-monday c5 (BST in summer), honolulu-overhead c6 ('south'), london-december-noon-sun c5/c6/c7 (3.9 not 3.8; slider <24°N gives 113° Sun; equinox only nearly equal), lap-at-89-north c9 (Edinburgh note false at 89.1–89.9°N) — fixes in Pass 17 notes",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-168",
+      "title": "square-root-wealth: 'Slide to the coin's line' button lands on the answer (violates no-answer-jump rule); cheese-for-bread: locked stage clips its last slider on phone",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-169",
+      "title": "Pass 18 notes: median-without-sorting c3 text says 'position 5' (should be 51); one-in-four-sprouts c4 source cites a removed control; fee-on-two-week-loan never shows its 364-day year",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-170",
+      "title": "land-hemisphere: 'Give up? Show the landiest half' button sits on stage from the start (QA one-press path); learning designer to rule whether that's acceptable",
+      "owner": "learning-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-171",
+      "title": "Measure reveal fit in the feed too (reveal-fit.mjs --feed or a feed.spec case); only /d/<slug> is measured today",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-172",
+      "title": "Landscape (844x390): card body ~164px, so 495/515 reveals need a scroll after rotating and 325 stages read as thumbnails. Decide whether landscape is supported (compact card head/foot); data in company/rituals/records/2026-10-14-eng-review-W-135.md",
+      "owner": "design-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-173",
+      "title": "reveal-fit: four-queens-pruning flagged thumbnail (probable false positive; check by eye); moon-hammer-feather unmeasurable on the QA path",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-174",
+      "title": "r2 revises: herd-immunity (readouts below the fold on phone; 70% caption overlaps buttons), keeping-the-bad-gene (reveal quotes ≥25% never reached), purging-slows-down (x-axis ends at the answer 90), strategy-builder (4%/8% buttons bracket the 6% answer), compound-interest (y-axis tops at the 5k answer), average-that-never-settles (title answers it). square-root-wealth already fixed by builder 13 after that build.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-175",
+      "title": "Algorithm brief fixes found by specs: rubber-band-hull ((0,0) and (6,0) tie for lowest → move (6,0) to (6,1)); any-start-same-tree (BC = DE = 2, so the distinct-costs uniqueness claim doesn't apply → reword claim 3 or set DE=3). Builders apply the spec's fix; CM updates the brief",
+      "owner": "cm-cs-algorithms",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-176",
       "title": "Build and validate 200 distinct Life Hacks lessons for founder-requested PR",
       "owner": "cm-lifehacks",
       "state": "review",
@@ -2088,7 +2304,7 @@
       "updated": "2026-10-14"
     },
     {
-      "id": "W-153",
+      "id": "W-177",
       "title": "Independently fact-check the 883 claims in the 200 Life Hacks collection in batches of at most 15 lessons",
       "owner": "fact-checker",
       "state": "backlog",
@@ -2103,11 +2319,11 @@
       "triage": {
         "at": "2026-10-14",
         "by": "chief-of-staff",
-        "note": "Follow-up to founder-requested W-152 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates."
+        "note": "Follow-up to founder-requested W-176 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates."
       }
     },
     {
-      "id": "W-154",
+      "id": "W-178",
       "title": "Complete independent learner and rendered safety reviews for the 200 Life Hacks collection; close findings before publication",
       "owner": "learner-evaluator",
       "state": "backlog",
@@ -2125,7 +2341,7 @@
       "triage": {
         "at": "2026-10-14",
         "by": "chief-of-staff",
-        "note": "Follow-up to founder-requested W-152 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates. Close the specific remaining sampled pedagogy findings and review the other 179 lessons before publication. Abstract cord scenes, table continuity/variants, towel baseline and flux visibility, selection highlights, queue waiting trade, and mechanism-specific transfer recalls need further review. Source checking remains W-153."
+        "note": "Follow-up to founder-requested W-176 review collection. All 200 lessons remain review; this task does not waive incubation, human-learning or publication gates. Close the specific remaining sampled pedagogy findings and review the other 179 lessons before publication. Abstract cord scenes, table continuity/variants, towel baseline and flux visibility, selection highlights, queue waiting trade, and mechanism-specific transfer recalls need further review. Source checking remains W-177."
       }
     }
   ]

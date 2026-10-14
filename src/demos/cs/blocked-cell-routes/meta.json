@@ -42,12 +42,12 @@
     },
     {
       "id": "cs.blocked-cell-routes.c3",
-      "text": "Every route into a cell arrives from the left or from above, so its count is those two added; a blocked cell holds 0.",
+      "text": "Every route into a cell arrives from the left or from above, so its count is those two added; a blocked cell holds 0; each edge cell has only one way in, so it holds 1 route.",
       "support": "derivation",
-      "source": "The last move into (r, c) is either right from (r, c−1) or down from (r−1, c); these route sets are disjoint, so N(r,c) = N(r,c−1) + N(r−1,c). A blocked cell has no routes into it.",
+      "source": "The last move into (r, c) is either right from (r, c−1) or down from (r−1, c); these route sets are disjoint, so N(r,c) = N(r,c−1) + N(r−1,c). A blocked cell has no routes into it. | FACT-CHECK 2026-10-14 (pass 12): node DP grid [[1,1,1,1],[1,0,1,2],[1,1,2,4],[1,2,4,8]] = brute force over all 20 paths (8 avoid the block; 20 open). Disjoint last move gives N(r,c) = N(r,c-1) + N(r-1,c). Note: 'edge cell' means the top row and left column (the stage fills those as one edge, message 'Edge cells have only one way in'); bottom and right border cells have two ways in. Wording suggestion (non-blocking): 'each top-row or left-column cell'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.blocked-cell-routes.c4",
@@ -82,12 +82,13 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/blocked-cell-routes/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/blocked-cell-routes/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/blocked-cell-routes/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:dp-grid-paths",
     "prerequisites": [
@@ -96,5 +97,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

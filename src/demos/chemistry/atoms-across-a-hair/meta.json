@@ -4,7 +4,7 @@
   "hook": "Atoms are small. But how many would it take to cross one hair?",
   "domain": "chemistry",
   "concept": "atom-scale-size",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-chemistry",
@@ -44,12 +44,12 @@
     },
     {
       "id": "chemistry.atoms-across-a-hair.c3",
-      "text": "About 350,000 atoms side by side span a 70 µm hair: 70,000 nm ÷ 0.2 nm.",
+      "text": "About 350,000 atoms side by side span a 70 µm hair: 70,000 nm ÷ 0.2 nm, so atoms are hundreds of thousands of times smaller than a hair's width.",
       "support": "derivation",
-      "source": "70 x 10^-6 m / 0.2 x 10^-9 m = 3.5 x 10^5; log10(3.5 x 10^5) = 5.54, 'about five and a half powers of ten' (node script).",
+      "source": "70 x 10^-6 m / 0.2 x 10^-9 m = 3.5 x 10^5; log10(3.5 x 10^5) = 5.54, 'about five and a half powers of ten' (node script). | FACT-CHECK 2026-10-14 (pass 13): node: 70e-6/0.2e-9 = 350,000; log10 = 5.54. Matches Demo.tsx HAIR_UM 70, ATOM_NM 0.2 and reveal text.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.atoms-across-a-hair.c4",
@@ -64,10 +64,10 @@
       "id": "chemistry.atoms-across-a-hair.c5",
       "text": "The hair fills 70% of the first 100 µm window, so it spans about 0.7 × 500,000 = 350,000 atoms.",
       "support": "derivation",
-      "source": "70 µm / 100 µm = 0.7; 0.7 x 500,000 = 350,000.",
+      "source": "70 µm / 100 µm = 0.7; 0.7 x 500,000 = 350,000. | FACT-CHECK 2026-10-14 (pass 13): node: 100 µm window / 0.2 nm = 500,000 atoms; 0.7 x 500,000 = 350,000. Matches reveal.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,20 +84,23 @@
   "evidence": {
     "qa": [
       "company/reviews/atoms-across-a-hair/2026-10-12-qa.md",
-      "company/reviews/atoms-across-a-hair/2026-10-13-qa.md"
+      "company/reviews/atoms-across-a-hair/2026-10-13-qa.md",
+      "company/reviews/atoms-across-a-hair/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/atoms-across-a-hair/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/atoms-across-a-hair/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/atoms-across-a-hair/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:atom-scale-size",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

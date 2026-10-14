@@ -56,7 +56,7 @@ export default function BlockedCellRoutes({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            You filled {nFilled} cells, each with one addition: the cell to its left plus the cell above. The blocked cell
+            Your grid has {nFilled} cells filled, each with one addition: the cell to its left plus the cell above. The blocked cell
             held 0, so no route passed through it, and the corner read <strong>{ANSWER}</strong>.
             {sawOpen ? ` With the block removed the corner read ${OPEN_TOTAL}: the block cut ${THROUGH} routes.` : ""}
           </p>
@@ -80,17 +80,24 @@ export default function BlockedCellRoutes({ slug }: { slug: string }) {
               }
               const next = [...filled];
               next[r * N + c] = true;
+              // an edge cell has only one way in, so its whole edge fills at once: 1 route each
+              const edge = (r === 0) !== (c === 0);
+              if (edge) for (let k = 1; k < N; k++) next[r === 0 ? k : k * N] = true;
               setFilled(next);
               if (isBlock(r, c, blocked)) {
                 reach("blocked");
                 setNote("Blocked: 0 routes reach it, so it passes on 0.");
               } else if (r === 0 && c === 0) setNote("Start: count it as 1 route.");
+              else if (edge) setNote("Edge cells have only one way in, so each holds 1 route.");
               else {
                 const left = c ? v[r][c - 1] : 0;
                 const up = r ? v[r - 1][c] : 0;
                 setNote(`${left} from the left + ${up} from above = ${v[r][c]}.`);
               }
-              if (r === N - 1 && c === N - 1 && blocked) reach("corner");
+              if (r === N - 1 && c === N - 1 && blocked) {
+                reach("corner");
+                setNote(`${v[r][c]} routes reach the end. Remove the block to see how many it cut.`);
+              }
             };
             const toggle = () => {
               if (locked) return;

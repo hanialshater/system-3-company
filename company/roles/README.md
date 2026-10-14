@@ -67,6 +67,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Platform Engineer](platform-engineer.md) | head-of-product | Keep the work close to the lesson: builders should never have to think about plumbing.. |
 | [Release Manager](release-manager.md) | head-of-product | Ship only what passed its gates, and be able to undo it in one command.. |
+| [Community Engineer (external pull requests)](community-engineer.md) | principal-engineer | Outside work lands safely and fast: nothing merges without the reviews our own work needs, and no contributor waits without an answer.. |
 
 ## Backend
 

@@ -4,7 +4,9 @@
 // straight line) and on Mercator (where it bows north). A slider flies a marker along the route;
 // the readout names what is underneath, from geoContains on the kit's 1:110m country shapes.
 // Mercator also shows the straight-on-Mercator (constant bearing) line, dashed, with its length.
-// Key states: the marker over Greenland, and the route seen on Mercator.
+// v2: opens on Mercator (the map a beginner knows) with Iceland and Greenland labelled, the route and the
+// dashed straight-on-Mercator line both shown with their lengths; the gnomonic map is the second view.
+// Key states: the marker over Greenland, and the gnomonic view seen.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -73,12 +75,18 @@ function below(p: P) {
   }
   return "Sea";
 }
+const PLACES: { t: string; p: P }[] = [
+  { t: "Iceland", p: [-19, 65] },
+  { t: "Greenland", p: [-42, 72] },
+  { t: "Canada", p: [-100, 56] },
+  { t: "Ireland", p: [-8, 53.3] },
+];
 const nice = (n: string) => (n === "United States of America" ? "United States" : n === "United Kingdom" ? "UK" : n);
 const fmtKm = (km: number) => (Math.round(km / 10) * 10).toLocaleString("en-US");
 
 export default function LondonLaOverGreenland({ slug }: { slug: string }) {
   const [km, setKm] = useState(START_KM);
-  const [kind, setKind] = useState<Kind>("gnomonic");
+  const [kind, setKind] = useState<Kind>("mercator");
   const projection = useMemo(() => makeProjection(kind), [kind]);
   const at = along(Math.min(1, km / ROUTE_KM)) as P;
   const under = below(at);
@@ -87,29 +95,30 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Draw the shortest route from London to Los Angeles. Between Ireland and Canada, what land is under it?",
+        question: "Fly the shortest route from London to Los Angeles. Between Ireland and Canada, what land is under the plane?",
         options: ["Iceland", "Only open ocean", "Greenland"],
         answer: 2,
       }}
-      exploreHint="Fly along the route, then compare with the Mercator map."
+      exploreHint="Fly along the route, then look at the gnomonic map."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            <strong>Greenland.</strong> On the gnomonic map the shortest route is a straight line, and you flew it over Greenland&rsquo;s
-            southern tip, not Iceland and not open ocean. The whole route is {fmtKm(ROUTE_KM)} km on a round Earth, ignoring winds.
+            <strong>Greenland.</strong> The shortest route, {fmtKm(ROUTE_KM)} km on a round Earth ignoring winds, climbs over Greenland&rsquo;s
+            southern tip, not Iceland and not open ocean. The line that looks straight on the Mercator map is {fmtKm(RHUMB_KM)} km,
+            longer, and crosses open Atlantic far to the south.
           </p>
           <p>
-            A gnomonic map is built so that every <strong>great circle</strong>, the shortest path between two points on a ball, comes out
-            straight. On Mercator the same route bows north. The line that looks straight on Mercator is a constant compass bearing:
-            it crosses open Atlantic far to the south and is {fmtKm(RHUMB_KM)} km, longer.
+            The shortest path between two points on a ball is called a <strong>great circle</strong>. A gnomonic map is built so that every
+            great circle comes out straight, which you saw; on Mercator it bows north. A line that is straight on Mercator keeps one
+            compass direction all the way, and that is why it is longer.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["greenland", "mercator"]}>
-          {(reach, reached) => {
+        <Milestones interact={interact} names={["greenland", "gnomonic"]}>
+          {(reach) => {
             const fly = (v: number) => {
               setKm(v);
               if (below(along(Math.min(1, v / ROUTE_KM)) as P) === "Greenland") reach("greenland");
@@ -117,7 +126,7 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
             const swap = () => {
               const next = kind === "gnomonic" ? "mercator" : "gnomonic";
               setKind(next);
-              if (next === "mercator") reach("mercator");
+              if (next === "gnomonic") reach("gnomonic");
             };
             const pa = projection(at);
             const l = projection(LONDON)!;
@@ -135,6 +144,14 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
                     <>
                       {!locked && kind === "mercator" && <line x1={l[0]} y1={l[1]} x2={a[0]} y2={a[1]} className={s.rhumb} />}
                       {!locked && <path d={path(ROUTE)} className={s.route} />}
+                      {PLACES.map(({ t, p }) => {
+                        const q = projection(p);
+                        return q ? (
+                          <text key={t} x={q[0]} y={q[1]} className={s.place} textAnchor="middle">
+                            {t}
+                          </text>
+                        ) : null;
+                      })}
                       {!locked && pa && <circle cx={pa[0]} cy={pa[1]} r={4.5} className={s.plane} />}
                       <circle cx={l[0]} cy={l[1]} r={3.5} className={s.city} />
                       <circle cx={a[0]} cy={a[1]} r={3.5} className={s.city} />
@@ -146,8 +163,8 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
                       </text>
                       <text x={6} y={H - 6} className={s.small}>
                         {kind === "gnomonic"
-                          ? "Gnomonic map: straight lines are shortest routes. Shows under half the globe."
-                          : "Mercator map. Dashed: straight on this map. No winds."}
+                          ? "Gnomonic map: shortest routes are straight lines. Shows under half the globe."
+                          : locked ? "Mercator world map." : "Mercator map. Red: shortest route. Dashed: straight on this map."}
                       </text>
                     </>
                   )}
@@ -165,12 +182,17 @@ export default function LondonLaOverGreenland({ slug }: { slug: string }) {
                   />
                 </Row>
                 <Row>
-                  <Control disabled={locked} className={kind === "mercator" ? "active" : ""} onClick={swap}>
-                    {kind === "gnomonic" ? "Show on Mercator" : "Show on gnomonic"}
+                  <Control disabled={locked} className={kind === "gnomonic" ? "active" : ""} onClick={swap}>
+                    {kind === "gnomonic" ? "Back to Mercator" : "Show the gnomonic map"}
                   </Control>
                   <Readout label="Below the route" value={locked ? "?" : nice(under)} />
-                  {!locked && kind === "mercator" && reached("mercator") && <Readout label="Dashed line" value={`${fmtKm(RHUMB_KM)} km`} />}
                 </Row>
+                {!locked && (
+                  <Row>
+                    <Readout label="Shortest route" value={`${fmtKm(ROUTE_KM)} km`} />
+                    <Readout label="Straight on Mercator" value={`${fmtKm(RHUMB_KM)} km`} />
+                  </Row>
+                )}
               </div>
             );
           }}

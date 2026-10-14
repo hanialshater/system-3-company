@@ -5,6 +5,7 @@
 //
 //   node /home/user/system-3-company/tools/claim.mjs next <domain> --agent="<label>"   → prints a slug, or NONE
 //        add --from-end to take briefs from the end of the list
+//   node …/claim.mjs take <slug> --agent=<label>   claim one assigned slug
 //   node …/claim.mjs release <slug> [--done]   done = built and merged; otherwise the brief goes back
 //   node …/claim.mjs list
 //   node …/claim.mjs seed-worktrees   lessons in progress in agent worktrees count as claimed
@@ -84,6 +85,11 @@ if (cmd === "next") {
   const slug = list.find((s) => !built(s) && !skip.has(s) && ok(s) && tryLock(s, String(opt.agent ?? "unknown")));
   if (slug && fmt.get(slug)) console.error(`format: ${fmt.get(slug)}`);
   console.log(slug ?? "NONE");
+} else if (cmd === "take") {
+  // Claim one named slug (assigned work), instead of the next free brief.
+  if (!arg) throw new Error("usage: claim.mjs take <slug> --agent=<label>");
+  if (built(arg)) console.log(`${arg} already built`);
+  else console.log(tryLock(arg, String(opt.agent ?? "unknown")) ? `${arg} claimed` : `${arg} is held by another agent`);
 } else if (cmd === "release") {
   const prev = read(arg);
   if (!prev) console.log(`no claim for ${arg}`);

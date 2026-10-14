@@ -1,7 +1,7 @@
 {
   "slug": "one-recipe-for-sixty",
-  "title": "One recipe for sixty",
-  "hook": "Split 60 into factors any way you like, down to primes. Does where you start matter?",
+  "title": "Sixty, split any way you like",
+  "hook": "Split 60 into factors any way you like, down to primes. What are you left with?",
   "domain": "math",
   "concept": "prime-factorization",
   "status": "review",
@@ -54,22 +54,28 @@
       "id": "math.one-recipe-for-sixty.c4",
       "text": "84 = 2 x 2 x 3 x 7, whichever first split you choose (2 x 42, 3 x 28, 4 x 21, 6 x 14 or 7 x 12).",
       "support": "derivation",
-      "source": "Prime factorisation 84 = 2^2 x 3 x 7, unique by the fundamental theorem of arithmetic; the stage grows each of the five trees and every one ends 2, 2, 3, 7.",
-      "status": "unverified"
+      "source": "Prime factorisation 84 = 2^2 x 3 x 7, unique by the fundamental theorem of arithmetic; the stage grows each of the five trees and every one ends 2, 2, 3, 7. | FACT-CHECK 2026-10-14 (pass 11): Own node run of Demo.tsx grow() for all five 84 starts (2x42, 3x28, 4x21, 6x14, 7x12): sorted leaves 2,2,3,7 each time.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
-      "text": "A prime is a number that cannot be split into smaller whole factors, like 2, 3, 5 and 7.",
+      "text": "A prime is a whole number above 1 that cannot be split into smaller whole factors, like 2, 3, 5 and 7.",
       "support": "convention",
-      "source": "Standard definition (a whole number above 1 whose only factors are 1 and itself). Added to the prediction text and the opening caption.",
+      "source": "Standard definition (a prime is an integer greater than 1 whose only positive divisors are 1 and itself). Revision v3 per fact-check pass 11: 'above 1' added in the claim, the predict text and the opening caption. | FACT-CHECK 2026-10-14 (pass 14): Standard definition (integer > 1 whose only positive divisors are 1 and itself; Hardy and Wright, An Introduction to the Theory of Numbers, 1.2). 'Cannot be split into smaller whole factors' is equivalent. Predict text matches. Non-blocking: the opening caption (Demo.tsx ~line 176) says 'no smaller factors', which read literally excludes 1; builder may reuse the claim's wording.",
       "id": "math.one-recipe-for-sixty.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "text": "You started 60 as the splits you chose; different starts grow different trees, but every entry on the shelf reads 2, 2, 3, 5.",
       "support": "derivation",
-      "source": "The reveal now quotes the learner's own first splits (tried) instead of fixed 6 x 10 and 4 x 15 examples; all five starts end 2, 2, 3, 5 (c1).",
+      "source": "The reveal now quotes the learner's own first splits (tried) instead of fixed 6 x 10 and 4 x 15 examples; all five starts end 2, 2, 3, 5 (c1). | FACT-CHECK 2026-10-14 (pass 11): Own node run of grow() for all five 60 starts: sorted leaves 2,2,3,5 each time; shelf sorts leaves (line 188); reveal quotes tried.",
       "id": "math.one-recipe-for-sixty.c6",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -89,12 +95,15 @@
       "company/reviews/one-recipe-for-sixty/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/one-recipe-for-sixty/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/one-recipe-for-sixty/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/one-recipe-for-sixty/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/one-recipe-for-sixty/2026-10-14-learner-adult-beginner-r3.md",
+      "company/reviews/one-recipe-for-sixty/2026-10-14-learner-adult-beginner-r4.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 4,
   "curriculum": {
     "primary": "math:prime-factorization",
     "prerequisites": [],

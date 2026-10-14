@@ -10,6 +10,7 @@
 // The moving dots show the direction of conventional current; their speed is
 // proportional to I but is not the real drift speed of electrons.
 // The reveal unlocks once the ammeter has been placed between the bulbs and at one other spot.
+// v3: larger, higher-contrast dots (outlined) so the fading is visible; caption ties a bulb's V to energy taken.
 // v2: spot buttons (ending between the bulbs on the QA path) replace the spot slider; dots fade
 // after each bulb (energy handed over) while their number and speed stay the same (current);
 // the battery steps by 2 V so the two bulb drops add up exactly; the reveal quotes the
@@ -140,7 +141,7 @@ export default function CurrentLoop({ slug }: { slug: string }) {
                 ? `Same reading at all 4 spots at ${volts} V.`
                 : spot === 1
                   ? "Between the bulbs, after bulb 1 took its share. Compare the reading."
-                  : "Dots: charge. Bright = full of energy; each bulb drains some.";
+                  : "Dots: charge. Bright = full of energy; each bulb drains some. Its V is the energy it takes.";
 
             const move = (v: number) => {
               setSpot(v);
@@ -174,8 +175,8 @@ export default function CurrentLoop({ slug }: { slug: string }) {
                       const d = (((phase + (k * LOOP) / N_DOTS) % LOOP) + LOOP) % LOOP;
                       const [x, y] = along(d);
                       if (y > 120 && y < 146 && Math.abs(x - L) < 1) return null;
-                      const energy = d < D_BULB[0] ? 1 : d < D_BULB[1] ? 0.5 : 0.12;
-                      return <circle key={k} cx={x} cy={y} r={2.4} className={s.charge} style={{ opacity: 0.15 + 0.85 * energy }} />;
+                      const energy = d < D_BULB[0] ? 1 : d < D_BULB[1] ? 0.5 : 0.1;
+                      return <circle key={k} cx={x} cy={y} r={3.4} className={s.charge} style={{ opacity: 0.12 + 0.88 * energy }} />;
                     })}
 
                   {/* bulbs */}

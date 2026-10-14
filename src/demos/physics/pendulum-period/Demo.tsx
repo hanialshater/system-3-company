@@ -9,6 +9,8 @@
 // Mass does not appear in the equation; the mass slider only changes the bob size.
 // The period readout is the exact period, T = 2 pi sqrt(L/g) / AGM(1, cos(theta0/2)).
 //
+// v3: per-swing readouts wait for one swing to complete; the mass-cancels caption and reveal use the learner's own
+// weight; the ghost is labelled; the model tag glosses 'ideal'.
 // v2: the reveal is earned. Milestone "heavy-kept-up": a changed weight on the 1 m string has
 // swung one full back-and-forth beside the ghost. Sliders change one variable at a time.
 
@@ -133,7 +135,6 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
   const { me, ghost, t } = sim.current;
   const T = period(length);
   const T0 = period(GHOST_L);
-  const Tquarter = period(GHOST_L / 4);
   const gapDeg = (Math.abs(me.theta - ghost.theta) * 180) / Math.PI;
   const sameLength = isGhostLength(length);
   const heavy = !isGhostMass(mass);
@@ -156,6 +157,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
   const gb = pos(GHOST_L, ghost.theta);
   const r = bobRadius(mass);
   const ratio = Math.round(mass / GHOST_M);
+  const kRatio = Math.round((heavySeen ?? 2) / GHOST_M);
 
   return (
     <Lesson
@@ -166,7 +168,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
         options: ["longer", "the same time", "less time"],
         answer: 1,
       }}
-      exploreHint="Change only the weight and let it swing. Then try only the string."
+      exploreHint="Change only the weight, press Release and let it swing. Then change only the string (try 0.25 m) and release again."
       minInteractions={1}
       reveal={() => (
         <>
@@ -174,15 +176,17 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
             {heavySeen !== null
               ? `Your ${fmtMass(heavySeen)} weight on the 1 m string stayed locked to the 100 g ghost: `
               : "On the 1 m string, a heavier weight stays locked to the 100 g ghost: "}
-            <strong>{T0.toFixed(2)} s</strong> per back-and-forth. Gravity pulls 20 times harder on 2 kg than on 100 g,
-            but 2 kg is also 20 times harder to speed up. The two cancel exactly, so mass drops out.
+            <strong>{T0.toFixed(2)} s</strong> per back-and-forth. Gravity pulls {kRatio} times harder on{" "}
+            {fmtMass(heavySeen ?? 2)} than on 100 g, but it is also {kRatio} times harder to speed up. The two cancel
+            exactly, so mass drops out.
           </p>
           <p>
             Length is what sets the beat.{" "}
             {lengthSeen !== null
-              ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s). `
-              : "A different string drifts out of step. "}
-            Four times the length doubles the time, from {Tquarter.toFixed(2)} s at 0.25 m to {T0.toFixed(2)} s at 1 m.
+              ? `Your ${lengthSeen.toFixed(2)} m string drifted out of step (${period(lengthSeen).toFixed(2)} s against ${T0.toFixed(2)} s). ${
+                  lengthSeen === 0.25 ? "Four times shorter, half the time." : ""
+                }`
+              : "You did not try the string, so try it now on the stage: a different length drifts out of step with the ghost."}{" "}
             Galileo reported the same with lead and cork pendulums.
           </p>
           <p className="muted">
@@ -206,7 +210,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
                     : sameLength
                       ? heavy
                         ? gapDeg < 1
-                          ? `${fmtMass(mass)}: pulled ${ratio}× harder, ${ratio}× harder to speed up. Still in step.`
+                          ? `${fmtMass(mass)}: gravity pulls ${ratio}× harder, but it is also ${ratio}× harder to get moving. Still in step.`
                           : "In step with the ghost."
                         : "Same pendulum as the ghost. Change one thing."
                       : `Different string: ${gapDeg < 2 ? "slipping" : "out of step"} with the ghost.`;
@@ -214,7 +218,7 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <ReachWatcher hit={sawHeavyKeepUp} onReach={() => reach("heavy-kept-up")} />
-                <span className={`tag ${s.model}`}>Ideal pendulum · no air · released at 20°</span>
+                <span className={`tag ${s.model}`}>Ideal pendulum: no air, weightless string, released at 20°</span>
                 <svg
                   viewBox={`0 0 ${W} ${H}`}
                   className={`stage-svg ${s.fit}`}
@@ -231,6 +235,9 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
                   {/* ghost on top, so it shows through a big bob */}
                   <line x1={PIVOT.x} y1={PIVOT.y} x2={gb.x} y2={gb.y} className={s.ghostString} />
                   <circle cx={gb.x} cy={gb.y} r={bobRadius(GHOST_M) + 2} className={s.ghostBob} />
+                  <text x={gb.x + (gb.x >= PIVOT.x ? 14 : -14)} y={gb.y + 3} textAnchor={gb.x >= PIVOT.x ? "start" : "end"} className={s.bobLabel}>
+                    ghost
+                  </text>
                   <circle cx={PIVOT.x} cy={PIVOT.y} r={3} className={s.pivot} />
                   <text x={8} y={H - 8} className={s.clock}>
                     t = {t.toFixed(1)} s
@@ -289,8 +296,8 @@ export default function PendulumPeriod({ slug }: { slug: string }) {
                   <Control disabled={locked || running} aria-label="Step 0.1 seconds" onClick={() => advance(0.1)}>
                     Step 0.1 s
                   </Control>
-                  <Readout label="Yours" value={`${T.toFixed(2)} s`} />
-                  <Readout label="Ghost" value={`${T0.toFixed(2)} s`} />
+                  <Readout label="Yours, per swing" value={t >= T0 ? `${T.toFixed(2)} s` : t > 0 ? "swinging…" : "not yet"} />
+                  <Readout label="Ghost, per swing" value={t >= T0 ? `${T0.toFixed(2)} s` : t > 0 ? "swinging…" : "not yet"} />
                 </Row>
               </div>
             );

@@ -7,3 +7,13 @@
 - Key states (milestones): "degree-5-fit" and "reflip-at-5" (new labels while at degree 5). QA path: degree 3 (miss 0.76), degree 5 (0.00, coefficient 833), re-flip (set 2: 0.00, 625).
 - Node check: set 1 d1 1.505, d3 0.762, d5 0.000 / 833; set 2 d5 625; degree 3 misses some dot in 967 of 1000 sets.
 - Curve is clipped to |y| ≤ 2.2 for drawing; sets 1-4 never exceed 1.56 between dots.
+
+## Revision v2 (wave C, 2026-10-14)
+
+- Review (v1): caption read as 'd = d + 1', coefficient undefined, 'coin flips on new points' told. Fix: caption 'A degree-d curve has d + 1 numbers to tune'; biggest-coefficient readout dropped; a held-out 'new point' at x = 0.5 with its own coin-flip label, a live tally of how often the degree-5 curve called it right, and 'Try 20 more label sets' (gates the reveal).
+- Edited claims were reset to unverified and match the stage text; version bumped, format added where missing. Local QA (contract spec, phone and desktop) passes; walkthrough sheet looked at.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Fact-check c3: degree-1 miss is 1.50 not 1.51. Fix: claim text and the header comment. No visible change.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

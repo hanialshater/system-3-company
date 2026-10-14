@@ -76,8 +76,8 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
             const [x, y] = pos(spot);
             return (
               <g key={`a${spot}`}>
-                <circle cx={x} cy={y} r={7} className={s.ring} />
-                <circle cx={x} cy={y} r={2.6} className={s.affected} />
+                <circle cx={x} cy={y} r={9} className={s.ring} />
+                <circle cx={x} cy={y} r={3.4} className={s.affected} />
               </g>
             );
           })}
@@ -91,12 +91,12 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
       <p className={s.msg} aria-live="polite">
         {locked
           ? "Make a prediction to start. Toy town of 10,000: random mating, no selection."
-          : `1 in ${oneIn.toLocaleString("en-US")} show it: ${c.affected} ${c.affected === 1 ? "person" : "people"}. ${c.carriers.toLocaleString("en-US")} carry one hidden copy. Copy share 1 in ${copyIn(c.q)}: ${copyIn(c.q)} × ${copyIn(c.q)} = ${oneIn.toLocaleString("en-US")}.`}
+          : `1 in ${oneIn.toLocaleString("en-US")} show it: ${c.affected} ${c.affected === 1 ? "person" : "people"}. ${c.carriers.toLocaleString("en-US")} carry one hidden copy. Variant = 1 of every ${copyIn(c.q)} gene copies; ${copyIn(c.q)} × ${copyIn(c.q)} = ${oneIn.toLocaleString("en-US")}.`}
       </p>
 
       <Row>
         {RATES.map((v) => (
-          <Control key={v} className={`${s.chip} ${oneIn === v ? "active" : ""}`} aria-pressed={oneIn === v} disabled={locked || oneIn === v} onClick={() => go(v)}>
+          <Control key={v} className={`${s.chip} ${!locked && oneIn === v ? "active" : ""}`} aria-pressed={!locked && oneIn === v} disabled={locked || oneIn === v} onClick={() => go(v)}>
             1 in {v.toLocaleString("en-US")}
           </Control>
         ))}
@@ -105,7 +105,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
         <Readout label="Show trait" value={locked ? "?" : c.affected} />
         <Readout label="Carriers" value={locked ? "?" : c.carriers.toLocaleString("en-US")} />
         <Readout label="Carriers per person showing it" value={locked ? "?" : Math.round(c.carriers / c.affected)} />
-        <Readout label="Copy share" value={locked ? "?" : `1 in ${copyIn(c.q)}`} />
+        <Readout label="Variant copies in town" value={locked ? "?" : `${(2 * TOWN * c.q).toFixed(0)} of ${(2 * TOWN).toLocaleString("en-US")}`} />
       </Row>
     </div>
   );
@@ -121,14 +121,16 @@ export default function HiddenCarriers({ slug }: { slug: string }) {
         options: ["About 1 in 100", `About 1 in ${RARE_ONE_IN}`, "About 1 in 10,000"],
         answer: 1,
       }}
-      exploreHint="Set the trait to 1 in 10,000 and find the one person who shows it. Then set 1 in 100."
+      exploreHint="Set the trait to 1 in 10,000 and find the one ringed person who shows it. Count the variant copies. Then set 1 in 100."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             At 1 in 10,000, one person showed the trait but <strong>{RARE.carriers} carried a hidden copy</strong>: about 1
-            in {RARE_ONE_IN}. The copy share was 1 in {copyIn(RARE.q)}, and {copyIn(RARE.q)} &times; {copyIn(RARE.q)} =
-            10,000: two copies are rare, one copy is not, so most copies hide in carriers.
+            in {RARE_ONE_IN}. Everyone has two copies, so the town holds 20,000 gene copies; 1 in {copyIn(RARE.q)} are the variant, 200
+            copies. The one person who shows it holds 2 of them; the other {RARE.carriers} sit one each in
+            carriers. Both copies together: {copyIn(RARE.q)} &times; {copyIn(RARE.q)} = 10,000 to 1, so two copies are
+            rare, one copy is not.
           </p>
           <p>
             The commoner the trait, the fewer hidden: at 1 in 100 there were {COMMON_EACH} carriers per person showing it.

@@ -41,11 +41,20 @@ const X = (t: number) => 34 + (t / SHOW) * 258;
 const Y = (v: number) => 176 - (v / 3) * 160;
 
 const BASE = run(0, 600);
-const MILESTONES = ["sprayed"] as const;
+const MILESTONES = ["spray-20", "spray-40"] as const;
 const kk = (v: number) => (Math.round(v * 100) * 10).toLocaleString("en-US");
 
-function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) => void; onTry: (v: number) => void }) {
-  const [spray, setSpray] = useState(0);
+function Stage({ locked, reach, onTry, revealing, shown }: { locked: boolean; reach: (n: string) => void; onTry: (v: number) => void; revealing: boolean; shown: number }) {
+  const [sprayNow, setSpray] = useState(0);
+  const spray = revealing ? shown : sprayNow;
+  const setLevel = (v: number) => {
+    setSpray(v);
+    if (v >= 20) {
+      onTry(v);
+      reach("spray-20");
+    }
+    if (v >= 40) reach("spray-40");
+  };
   const sim = useMemo(() => run(spray / 100, 600), [spray]);
   const base = BASE;
   const path = (k: 1 | 2) => sim.pts.map(([t, ...v], i) => `${i ? "L" : "M"}${X(t).toFixed(1)} ${Y(v[k - 1]).toFixed(1)}`).join(" ");
@@ -64,7 +73,6 @@ function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) =
         {!locked && spray > 0 && (
           <g>
             <line x1={34} x2={292} y1={Y(base.avgX)} y2={Y(base.avgX)} className={s.ghost} />
-            <text x={38} y={Y(base.avgX) - 4} className={`${s.tick} ${s.halo}`}>pests, no spray</text>
           </g>
         )}
         <path d={path(2)} className={s.pred} />
@@ -73,7 +81,8 @@ function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) =
         {!locked && <line x1={34} x2={292} y1={Y(sim.avgX)} y2={Y(sim.avgX)} className={s.pestAvg} />}
         <text x={38} y={14} className={s.keyPest}>— pests</text>
         <text x={98} y={14} className={s.keyPred}>— predators</text>
-        {!locked && <text x={170} y={14} className={s.keyAvg}>- - averages</text>}
+        {!locked && <text x={165} y={14} className={s.keyAvg}>- - averages</text>}
+        {!locked && spray > 0 && <text x={292} y={14} textAnchor="end" className={s.keyGhost}>··· no spray</text>}
       </svg>
 
       <p className={s.msg} aria-live="polite">
@@ -81,9 +90,20 @@ function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) =
           ? "Make a prediction to start."
           : spray === 0
             ? "No spray. Pests and predators rise and fall in cycles."
-            : "Same extra death rate for both. Dashed lines are averages; the pest average is where predators break even."}
+            : "Spray kills both equally. Predators only hold steady at the pest level where their food covers their losses: the pest average."}
       </p>
 
+      <Row>
+        <Control disabled={locked || spray === 20} onClick={() => setLevel(20)}>
+          Spray 20%
+        </Control>
+        <Control disabled={locked || spray === 40} onClick={() => setLevel(40)}>
+          Spray 40%
+        </Control>
+        <Control disabled={locked || spray === 0} onClick={() => setSpray(0)}>
+          Spray off
+        </Control>
+      </Row>
       <Slider
         label="Spray strength"
         value={spray}
@@ -92,18 +112,9 @@ function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) =
         step={10}
         format={(v) => `${v}%`}
         disabled={locked}
-        onChange={(v) => {
-          setSpray(v);
-          if (v >= 20) {
-            onTry(v);
-            reach("sprayed");
-          }
-        }}
+        onChange={setLevel}
       />
       <Row>
-        <Control disabled={locked || spray === 0} onClick={() => setSpray(0)}>
-          Spray off
-        </Control>
         <Readout label="Avg pests" value={locked ? "?" : k(sim.avgX)} />
         <Readout label="Avg predators" value={locked ? "?" : k(sim.avgY)} />
       </Row>
@@ -112,8 +123,12 @@ function Stage({ locked, reach, onTry }: { locked: boolean; reach: (n: string) =
 }
 
 export default function PesticideParadox({ slug }: { slug: string }) {
-  const [tried, setTried] = useState(0); // strongest-recent spray the learner set (>= 20)
-  const mine = useMemo(() => run((tried || 20) / 100, 600), [tried]);
+  const [levels, setLevels] = useState<number[]>([]); // spray strengths (>= 20) the learner set
+  const lo = levels.length ? Math.min(...levels) : 20;
+  const hi = levels.length ? Math.max(...levels) : 40;
+  const mineLo = useMemo(() => run(lo / 100, 600), [lo]);
+  const mineHi = useMemo(() => run(hi / 100, 600), [hi]);
+  const onTry = (v: number) => setLevels((l) => (l.includes(v) ? l : [...l, v]));
   return (
     <Lesson
       slug={slug}
@@ -123,26 +138,28 @@ export default function PesticideParadox({ slug }: { slug: string }) {
         options: ["falls", "stays the same", "rises"],
         answer: 2,
       }}
-      exploreHint="Turn the spray up to 20% or more and watch the two dashed averages."
+      exploreHint="Try 20%, then 40% spray, and watch the two dashed averages."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            At spray strength {tried || 20}%, the average pest number rose from {kk(BASE.avgX)} to{" "}
-            <strong>{kk(mine.avgX)}</strong> while predators fell to {kk(mine.avgY)}. Pests breed on their own; predators
-            grow only by eating pests, so the same spray costs them more.
+            With no spray the average was {kk(BASE.avgX)} pests. At spray strength {lo}% it rose to{" "}
+            <strong>{kk(mineLo.avgX)}</strong> while predators fell to {kk(mineLo.avgY)}
+            {hi !== lo && <>; at {hi}% pests rose to <strong>{kk(mineHi.avgX)}</strong> and predators fell to {kk(mineHi.avgY)}</>}.
+            Pests breed on their own; predators grow only by eating pests, so the same spray costs them more.
           </p>
           <p>
-            The dashed pest line is where predators exactly break even. Spray makes predators die faster, so they need
-            more pests to break even, and the pests settle higher.
+            The dashed pest line is the pest level at which predators exactly keep their numbers steady: what they eat
+            just covers what they lose. Spray makes predators die faster, so they need more pests to keep steady, and the
+            pests settle higher.
           </p>
           <p className="muted">Toy model: real farms are messier.</p>
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ phase, locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
-          {(reach) => <Stage locked={locked} reach={reach} onTry={setTried} />}
+          {(reach) => <Stage locked={locked} reach={reach} onTry={onTry} revealing={phase === "reveal"} shown={hi} />}
         </Milestones>
       )}
     </Lesson>

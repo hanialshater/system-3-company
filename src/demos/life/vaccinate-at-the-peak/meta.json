@@ -72,8 +72,10 @@
       "id": "life.vaccinate-at-the-peak.c6",
       "text": "R0 = 3 means that, early on, each sick person infects 3 others on average; in the toy model infection 0.6 per day over recovery 0.2 per day gives exactly 3.",
       "support": "derivation",
-      "source": "R0 = beta/gamma = 0.6/0.2 = 3 in the SIR model (Kermack and McKendrick 1927). Demo shows it rounded because floating point gives 2.9999999999999996.",
-      "status": "unverified"
+      "source": "R0 = beta/gamma = 0.6/0.2 = 3 in the SIR model (Kermack and McKendrick 1927). Demo shows it rounded because floating point gives 2.9999999999999996. | FACT-CHECK 2026-10-14 (pass 11): R0 = beta/gamma for SIR; 0.6/0.2 in node = 2.9999999999999996, Demo.tsx rounds to 3 (line 18).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -91,7 +93,10 @@
     "qa": [
       "company/reviews/vaccinate-at-the-peak/2026-10-13-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/vaccinate-at-the-peak/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/vaccinate-at-the-peak/2026-10-14-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

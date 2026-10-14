@@ -5,12 +5,12 @@
 
 .tape { display: flex; justify-content: center; gap: 6px; }
 .req {
-  width: 40px; height: 44px; border-radius: 8px; border: 2px solid var(--line); background: var(--bg-2);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.55;
+  width: 40px; height: 44px; border-radius: 8px; border: 2px solid var(--line); background: var(--bg-2); border-style: dashed; color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
 .req b { font-size: 1.05rem; line-height: 1; }
 .step { font-size: 0.66rem; color: var(--muted); }
-.done { opacity: 1; }
+.done { border-style: solid; color: var(--fg); }
 .now { border-color: var(--domain); background: color-mix(in srgb, var(--domain) 25%, var(--bg-2)); }
 
 .cache { display: flex; justify-content: center; gap: 8px; }

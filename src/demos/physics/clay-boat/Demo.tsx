@@ -72,6 +72,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
   const [firstFloat, setFirstFloat] = useState<Shape | null>(null);
   const interactRef = useRef<() => void>(() => {});
   const { reach } = useMilestones(() => interactRef.current(), ["flooded", "floated"]);
+  const [tried, setTried] = useState<number[]>([0]); // shapes the learner has shown (the ball is on screen at the start)
   const sh = SHAPES[k];
   const fl = floats(sh);
 
@@ -93,8 +94,10 @@ export default function ClayBoat({ slug }: { slug: string }) {
             <p>
               The ball pushed aside only <strong>{L(CLAY_CM3)} L</strong>, so the water&apos;s push was {L(CLAY_CM3)} kg
               against its 1 kg weight: it sank. The {f.name} floated pushing aside <strong>{L(NEED_CM3)} L</strong>, which
-              weighs 1 kg: push and weight matched. The small cup could hold back only {L(SHAPES[1].hull)} L before water
-              poured in; flooded, only its {L(CLAY_CM3)} L of clay pushed water aside.
+              weighs 1 kg: push and weight matched.
+              {tried.includes(1)
+                ? ` The small cup could hold back only ${L(SHAPES[1].hull)} L before water poured in; flooded, only its ${L(CLAY_CM3)} L of clay pushed water aside.`
+                : ""}
             </p>
             <p>
               Water pushes up with the weight of the water a thing shoves aside. Clay is heavier than water litre for
@@ -185,6 +188,13 @@ export default function ClayBoat({ slug }: { slug: string }) {
               {caption}
             </p>
 
+            {!locked && (
+              <p className={s.caption}>
+                Tried:{" "}
+                {tried.map((i) => `${SHAPES[i].name} ${L(pushed(SHAPES[i]))} L`).join(" · ")}
+              </p>
+            )}
+
             <Slider
               label="Shape"
               value={k}
@@ -195,6 +205,7 @@ export default function ClayBoat({ slug }: { slug: string }) {
               format={(v) => SHAPES[v].name}
               onChange={(v) => {
                 setK(v);
+                setTried((t) => (t.includes(v) ? t : [...t, v]));
                 if (v === 1) reach("flooded");
                 if (floats(SHAPES[v])) {
                   if (!firstFloat) setFirstFloat(SHAPES[v]);

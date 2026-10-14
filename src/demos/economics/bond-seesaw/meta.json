@@ -65,6 +65,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.bond-seesaw.c6",
+      "text": "When new $1,000 bonds pay 6% ($60 a year) and this bond pays $50 a year, buyers will not pay $1,000 for it; at 4% (new bonds pay $40) it is worth more than $1,000. The stage shows each payment's worth today as a slice of the price bar, for example a $50 payment in year 10 is worth $27.92 today at 6%.",
+      "support": "derivation",
+      "source": "50 / 1.06^10 = 27.92; price 926.40 < 1,000 at 6% and 1,081.11 > 1,000 at 4% (node; Demo.tsx slices() and price()).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -81,12 +90,13 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/bond-seesaw/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/bond-seesaw/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/bond-seesaw/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:bond-price-yield",
     "prerequisites": [
@@ -95,5 +105,12 @@
     "level": "stretch",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

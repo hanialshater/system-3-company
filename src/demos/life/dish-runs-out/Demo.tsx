@@ -29,9 +29,10 @@ function fmt(n: number) {
   return Math.round(n).toLocaleString("en-US");
 }
 
-const pct = (n: number) => {
+const pctText = (n: number) => {
   const p = (100 * n) / FULL;
-  return p < 1 ? p.toFixed(1) : String(Math.round(p));
+  if (p < 0.1) return "under 0.1%";
+  return `${p < 1 ? p.toFixed(1) : Math.round(p)}%`;
 };
 
 function clock(k: number) {
@@ -65,7 +66,7 @@ export default function DishRunsOut({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            One cell doubling 30 times is 2<sup>30</sup>, about <strong>{fmt(FULL)}</strong>. At 7 h you saw{" "}
+            10 hours is 30 lots of 20 minutes, so one cell doubles 30 times: 2<sup>30</sup>, about <strong>{fmt(FULL)}</strong>. At 7 h you saw{" "}
             {fmt(cells(21, "topped"))}, under 1% of that. At 9 h 40 you saw {fmt(cells(29, "topped"))}: half of all the
             cells arrived in the last 20 minutes.
           </p>
@@ -101,10 +102,10 @@ export default function DishRunsOut({ slug }: { slug: string }) {
           : k === 0
             ? "Time 0: one cell. Each cell splits every 20 minutes."
             : food === "batch"
-              ? `${clock(k)}: ${fmt(n)} cells. One batch feeds about 100 million${foodLeft < 0.15 ? ", so growth stalls" : ""}.`
+              ? `${clock(k)}: ${k} doublings, ${fmt(n)} cells. The food batch feeds about 100 million${foodLeft < 0.15 ? ", so growth stalls" : ""}.`
               : k === STEPS
-                ? `${clock(k)}: ${fmt(n)} cells. The dish is full (100%).`
-                : `${clock(k)}: ${fmt(n)} cells, ${pct(n)}% of the 10 h count.`;
+                ? `${clock(k)}: ${k} doublings, ${fmt(n)} cells. The dish is full (100%).`
+                : `${clock(k)}: ${k} doublings, ${fmt(n)} cells (${pctText(n)} of the 10 h count).`;
         return (
           <div className={s.wrap}>
             <svg viewBox="0 0 300 300" className={`stage-svg ${s.svg}`} role="img" aria-label={`Dish at ${clock(k)}: ${fmt(n)} cells`}>
@@ -155,7 +156,7 @@ export default function DishRunsOut({ slug }: { slug: string }) {
                 disabled={locked || food === "batch"}
                 onClick={() => go(k, "batch")}
               >
-                One batch of food
+                One batch (feeds 100 million)
               </Control>
             </Row>
           </div>

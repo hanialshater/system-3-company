@@ -27,7 +27,7 @@ const curve = (f: number) =>
 const dots = Array.from({ length: FS + 1 }, (_, n) => n / FS);
 
 export default function AliasWaveWagonWheel({ slug }: { slug: string }) {
-  const [f, setF] = useState(1);
+  const [f, setF] = useState(1.5);
   const fa = alias(f);
   const slower = fa !== f;
 
@@ -35,7 +35,7 @@ export default function AliasWaveWagonWheel({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A ${QUESTION_F} Hz wave is sampled ${FS} times a second. Which slower wave passes through exactly the same sample points?`,
+        question: `A ${QUESTION_F} Hz wave (${QUESTION_F} full ups and downs a second) is sampled ${FS} times a second, once per dot. Which slower wave passes through exactly the same dots?`,
         options: ["2 Hz", `${ALIAS_OF_Q} Hz`, "0.5 Hz"],
         answer: 1,
       }}
@@ -65,8 +65,8 @@ export default function AliasWaveWagonWheel({ slug }: { slug: string }) {
             const msg = locked
               ? "Make a prediction to start."
               : slower
-                ? `A ${f} Hz wave and a ${fa} Hz wave hit the same dots.`
-                : `${f} Hz: the dots trace the wave. Dots are ${FS} samples per second.`;
+                ? `${f} Hz is above ${NYQ} Hz, half the sample rate. A ${fa} Hz wave hits the same dots.`
+                : `${f} Hz is at or below ${NYQ} Hz, half the sample rate. No slower wave fits these dots.`;
             return (
               <div className={s.wrap}>
                 <p className={s.msg} aria-live="polite">{msg}</p>
@@ -83,7 +83,7 @@ export default function AliasWaveWagonWheel({ slug }: { slug: string }) {
                 </svg>
                 <Row>
                   <Readout label="Wave" value={`${f} Hz`} />
-                  <Readout label="Same dots as" value={locked ? "–" : `${fa} Hz`} />
+                  <Readout label="Same dots as" value={locked ? "–" : slower ? `${fa} Hz` : "none slower"} />
                 </Row>
                 <div className={s.btns}>
                   <Control aria-label={`Set the wave to ${QUESTION_F} Hz`} disabled={locked || f === QUESTION_F} onClick={() => set(QUESTION_F)}>

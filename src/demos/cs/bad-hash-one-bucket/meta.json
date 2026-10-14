@@ -1,7 +1,7 @@
 {
   "slug": "bad-hash-one-bucket",
-  "title": "Ten slots, ten keys, one pile",
-  "hook": "The table has room for every key. So why does it turn into one long queue?",
+  "title": "Ten slots, ten keys: room for all?",
+  "hook": "The table has a slot for every key. Does each key get its own?",
   "domain": "cs",
   "concept": "hashing-collisions",
   "status": "review",
@@ -24,30 +24,30 @@
   "claims": [
     {
       "id": "cs.bad-hash-one-bucket.c1",
-      "text": "Every multiple of 10 leaves remainder 0 when divided by 10, so with slot = key mod 10 the keys 10, 20, ..., 100 all land in slot 0 and 9 slots stay empty.",
+      "text": "Every multiple of 10 leaves remainder 0 when divided by 10, so with slot = key mod 10 the keys 10, 20, ..., 100 all land in slot 0 and 9 slots stay empty. Finding the last key means walking the whole list: 10 steps for key 100.",
       "support": "derivation",
-      "source": "Arithmetic; Demo.tsx usedSlots(KEYS, 10) = 1, builder checked in Node (remainders all 0).",
+      "source": "Arithmetic; Demo.tsx usedSlots(KEYS, 10) = 1, builder checked in Node (remainders all 0). | FACT-CHECK 2026-10-14 (pass 12): node: (10..100) mod 10 all 0, 1 slot used, 9 empty; key 100 is 10th in the slot-0 list when dropped in order 10..100 (readout uses last key dropped; another order gives a different count, but the claim's order is the button order).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.bad-hash-one-bucket.c2",
-      "text": "Under slot = key mod 7 the same 10 keys use 7 slots.",
+      "text": "Under slot = key mod 7 the same 10 keys use 7 slots; remainders are only 0 to 6, so slots 7 to 9 stay empty. Finding the last key takes 2 steps (key 100 sits second in its list).",
       "support": "derivation",
-      "source": "Remainders 3, 6, 2, 5, 1, 4, 0, 3, 6, 2 (builder ran in Node): 7 distinct. Slots 7-9 can never be used under mod 7 (drawn faded).",
+      "source": "Remainders 3, 6, 2, 5, 1, 4, 0, 3, 6, 2 (builder ran in Node): 7 distinct. Slots 7-9 can never be used under mod 7 (drawn faded). | FACT-CHECK 2026-10-14 (pass 12): node: mod 7 remainders 3,6,2,5,1,4,0,3,6,2: 7 distinct; slots 7-9 unreachable (legend says so); key 100 -> slot 2 after 30, so 2 steps (in drop order).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.bad-hash-one-bucket.c3",
-      "text": "Keys that land in the same slot are kept as a list in that slot, and finding one means walking that list.",
+      "text": "Keys that land in the same slot are kept as a list in that slot, and finding one means walking that list, one step per key. A rule that turns a key into a slot is called a hash.",
       "support": "source",
-      "source": "Collision resolution by chaining: Cormen et al., Introduction to Algorithms (3rd ed.), 11.2; search time is proportional to the chain length.",
+      "source": "Collision resolution by chaining: Cormen et al., Introduction to Algorithms (3rd ed.), 11.2; search time is proportional to the chain length. | FACT-CHECK 2026-10-14 (pass 12): Chaining: CLRS 3rd ed. 11.2 (search time proportional to chain length; not opened, network blocked). Stage readout counts position in the chain. 'Hash' as the rule key -> slot is the standard term (hash function).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.bad-hash-one-bucket.c4",
@@ -57,6 +57,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.bad-hash-one-bucket.c5",
+      "support": "derivation",
+      "text": "23 mod 10 is 3, so key 23 goes in slot 3.",
+      "source": "23 = 2 x 10 + 3. | FACT-CHECK 2026-10-14 (pass 12): 23 = 2 x 10 + 3; node 23 % 10 = 3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -75,17 +84,19 @@
       "company/reviews/bad-hash-one-bucket/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/bad-hash-one-bucket/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/bad-hash-one-bucket/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/bad-hash-one-bucket/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:hashing-collisions",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

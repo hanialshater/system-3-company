@@ -52,9 +52,11 @@
     {
       "text": "In a lopsided shape that only bulges outward the turns are unequal, but they still add to 360°.",
       "support": "derivation",
-      "source": "Stage lopsided mode: n vertices on a circle at unequal steps; the turn at each corner is half the sum of the two steps beside it, so the n turns total half of 2 x 360 = 360. Same walk-round argument as c2.",
+      "source": "Stage lopsided mode: n vertices on a circle at unequal steps; the turn at each corner is half the sum of the two steps beside it, so the n turns total half of 2 x 360 = 360. Same walk-round argument as c2. | FACT-CHECK 2026-10-14 (pass 11): Own node run of vertices(n, lop=true) and the Demo turn computation for n = 3..12: every turn positive, turns unequal, sum 360.000000 each time. Turn = half of the two adjacent arcs (inscribed angle).",
       "id": "math.exterior-turns.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -72,7 +74,10 @@
     "qa": [
       "company/reviews/exterior-turns/2026-10-13-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/exterior-turns/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/exterior-turns/2026-10-14-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

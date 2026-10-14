@@ -64,10 +64,10 @@ export default function BisectTheBadCommit({ slug }: { slug: string }) {
               rules out half of what is left, whichever answer comes back.
             </p>
             <p>
-              Halving {fmt(N - 1)} suspects down to 1 takes at most {WORST} tests, because 2^{WORST - 1} = {fmt(2 ** (WORST - 1))}{" "}
-              is too few and 2^{WORST} = {fmt(2 ** WORST)} is enough.{" "}
-              {halvingOnly ? "" : "Tests off the middle can waste a step. "}Testing one by one from v2 would have taken{" "}
-              {fmt(BAD - 1)} tests here. This works only because the break, once in, stays in. That is how git bisect finds
+              Wherever the first broken version is, halving {fmt(N - 1)} suspects down to 1 takes at most {WORST} tests:{" "}
+              {WORST - 1} halvings only handle {fmt(2 ** (WORST - 1))} suspects, and {WORST} halvings handle {fmt(2 ** WORST)}.{" "}
+              {halvingOnly ? "" : "Tests off the middle can waste a step. "}Testing one by one from v2 could take up to{" "}
+              {fmt(N - 2)} tests. This works only because the break, once in, stays in. That is how git bisect finds
               the commit that broke a program.
             </p>
           </>
@@ -133,6 +133,9 @@ export default function BisectTheBadCommit({ slug }: { slug: string }) {
                     {found ? `First broken: v${st.hi}` : `Suspects: v${st.lo + 1} to v${st.hi}`}
                   </text>
                 </svg>
+                <p className={s.lead}>
+                  {st.sizes.length > 1 ? `Suspects: ${st.sizes.slice(0, 12).map(fmt).join(" → ")}` : ""}
+                </p>
                 <Row>
                   <Readout label="Suspects" value={fmt(suspects)} />
                   <Readout label="Tests" value={st.tests.length} />

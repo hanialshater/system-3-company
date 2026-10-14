@@ -41,12 +41,12 @@
     },
     {
       "id": "economics.bathtub-deficit-debt.c3",
-      "text": "A month in which you save $200 lowers the debt by $200; debt only falls when the monthly gap is negative.",
+      "text": "A month in which you save $200 (the tap reads -$200) lowers the debt by $200; debt only falls in months when the gap is negative.",
       "support": "derivation",
-      "source": "level(next) = level + gap (Demo.tsx levelAfter()); a negative gap lowers the level.",
+      "source": "level(next) = level + gap (Demo.tsx levelAfter()); the stage tap shows -$200 / month while saving and the tub drains $200 a month.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.bathtub-deficit-debt.c4",
@@ -81,17 +81,25 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/bathtub-deficit-debt/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/bathtub-deficit-debt/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/bathtub-deficit-debt/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:stock-vs-flow",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "step-run-button",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

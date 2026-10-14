@@ -91,3 +91,6 @@ Work is pulled, not assigned. Any number of builders can work in one domain, bec
 
 ## Intake and triage (2026-10-13)
 All new work, including GitHub issues, enters through `company/ops/triage.md`. The portfolio manager (CEO office) sets priorities and approves items into "next". Dispatch from the top of "next" by priority (`node tools/triage.mjs list`), not by board order. When 10 or more open items are untriaged, or a P1 arrives, dispatch the portfolio manager.
+
+## Concurrency (2026-10-14, plan upgraded to 20×)
+Up to 30 agents at once, 10 on the inherited model (company/decisions/2026-10-14-usage-upgrade.md). Builders default to Sonnet.

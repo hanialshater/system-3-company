@@ -5,7 +5,7 @@
 // Tiles can only be drawn once there are few enough (step 6 and 7); earlier steps show a texture and the count.
 // Key states (milestones): step 4 (10^12 per tile: still about 1.7e9 tiles) and step 7 (10^21 per tile: about 1.7 tiles).
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
@@ -38,6 +38,16 @@ const perTileLabel = (step: number) => (step === 0 ? "1" : step === 1 ? "1,000" 
 
 export default function Drop({ slug }: { slug: string }) {
   const [step, setStep] = useState(0);
+  const [auto, setAuto] = useState(false);
+  const autoStep = useRef<() => boolean>(() => true);
+  // "Group automatically" regroups by 1,000 one step at a time, so every step is seen.
+  useEffect(() => {
+    if (!auto) return;
+    const id = setInterval(() => {
+      if (autoStep.current()) setAuto(false);
+    }, 300);
+    return () => clearInterval(id);
+  }, [auto]);
 
   return (
     <Lesson
@@ -47,7 +57,7 @@ export default function Drop({ slug }: { slug: string }) {
         options: ["About 10⁹ (a billion)", "About 10¹⁵", "About 10²¹"],
         answer: 2,
       }}
-      exploreHint="Group the molecules in thousands until the tiles can be counted."
+      exploreHint="Group the molecules in thousands, one step at a time, until the tiles can be counted."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -69,6 +79,11 @@ export default function Drop({ slug }: { slug: string }) {
               if (v === MID) reach("mid");
               if (v === TOP) reach("top");
             };
+            autoStep.current = () => {
+              if (step >= TOP) return true;
+              set(step + 1);
+              return step + 1 >= TOP;
+            };
             const t = tiles(step);
             const drawable = step >= 6;
             const count = Math.ceil(t);
@@ -83,7 +98,11 @@ export default function Drop({ slug }: { slug: string }) {
             }
             return (
               <div className={s.wrap}>
-                <p className={s.chip}>One drop ≈ 0.05 mL. Each tile = a group of molecules.</p>
+                <p className={s.chip}>
+                  {locked
+                    ? "One drop ≈ 0.05 mL. Each tile = a group of molecules."
+                    : `One drop: 0.05 g ÷ 18 g per mole ≈ 0.0028 mol; × 6.0 × 10²³ per mole ≈ ${sci(MOLECULES)} molecules. Each tile = a group of them.`}
+                </p>
                 <svg viewBox="0 0 320 150" className="stage-svg" role="img" aria-label={locked ? "Drop of water" : `Step ${step}: ${sci(t)} tiles`}>
                   <defs>
                     <pattern id="drop-texture" width="6" height="6" patternUnits="userSpaceOnUse">
@@ -106,19 +125,20 @@ export default function Drop({ slug }: { slug: string }) {
                   <Readout label="Tiles to count" value={locked ? "?" : sci(t)} />
                 </Row>
                 <Row>
-                  <Control disabled={locked || step >= TOP} onClick={() => set(step + 1)}>
+                  <Readout label="Drop ÷ Earth's 8 billion people" value={locked ? "?" : `${sci(MOLECULES / POPULATION)} times`} />
+                </Row>
+                <Row>
+                  <Control disabled={locked || auto || step >= TOP} onClick={() => setAuto(true)}>
+                    Group automatically
+                  </Control>
+                  <Control disabled={locked || auto || step >= TOP} onClick={() => set(step + 1)}>
                     Group by 1,000
                   </Control>
-                  {[MID, TOP].map((v) => (
-                    <Control key={v} className={step === v ? "active" : ""} disabled={locked || step === v} onClick={() => set(v)}>
-                      Jump to {perTileLabel(v)} per tile
-                    </Control>
-                  ))}
-                  <Control disabled={locked || step === 0} onClick={() => set(0)}>
+                  <Control disabled={locked || auto || step === 0} onClick={() => set(0)}>
                     Ungroup
                   </Control>
                 </Row>
-                <Slider label="Steps of ×1,000" value={step} min={0} max={TOP} step={1} disabled={locked} onChange={set} />
+                <Slider label="Steps of ×1,000" value={step} min={0} max={TOP} step={1} disabled={locked || auto} onChange={set} />
               </div>
             );
           }}

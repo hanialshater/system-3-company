@@ -25,10 +25,11 @@ function SearchStage({count,setCount,state,setState,locked,interact}:{count:numb
     <svg viewBox="0 0 320 96" className={`stage-svg ${s.diagram}`} role="img" aria-label={description}>
       {labels.map((label,index)=>{
         const remaining=!sorted||(index>=lo&&index<=hi),compared=sorted&&index===last!.mid;
+        const foundTarget=(done||(!sorted&&state.scan>0))&&label===fixture.target;
         const x=7+(index%5)*63,y=5+Math.floor(index/5)*45;
         return <g key={label} opacity={remaining?1:.25}>
-          <rect x={x} y={y} width="55" height="34" rx="6" fill={(done||(!sorted&&state.scan>0))&&label===fixture.target?"var(--good)":!sorted&&state.scan>index?"var(--line)":"var(--bg-2)"} stroke={compared?"var(--domain)":remaining?"var(--fg)":"var(--line)"} strokeWidth={compared?3:1}/>
-          <text x={x+27.5} y={y+23} textAnchor="middle" fill="var(--fg)">{label}</text>
+          <rect x={x} y={y} width="55" height="34" rx="6" fill={foundTarget?"var(--good-fill)":!sorted&&state.scan>index?"var(--line)":"var(--bg-2)"} stroke={compared?"var(--domain)":remaining?"var(--fg)":"var(--line)"} strokeWidth={compared?3:1}/>
+          <text x={x+27.5} y={y+23} textAnchor="middle" fill={foundTarget?"#0d0f14":"var(--fg)"}>{label}</text>
           {!remaining&&<path d={`M${x+9} ${y+7} l37 20`} stroke="var(--muted)" strokeWidth="1.5"/>}
         </g>;
       })}

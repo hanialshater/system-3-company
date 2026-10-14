@@ -51,6 +51,7 @@ const ROOM_BY_ROLE = {
   "rnd-engineer": "rnd-lab",
   "research-scientist": "research-lab",
   "platform-engineer": "app-team",
+  "community-engineer": "app-team",
   "evaluation-steward": "constitution",
   "backend-engineer": "app-team",
   "privacy-reviewer": "backend",

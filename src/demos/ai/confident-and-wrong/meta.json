@@ -1,7 +1,7 @@
 {
   "slug": "confident-and-wrong",
   "title": "How much does a sure mistake cost?",
-  "hook": "Two models miss the same answer. One hedged, one was nearly certain. Same penalty?",
+  "hook": "How much does a model pay for being sure and wrong?",
   "domain": "ai",
   "concept": "cross-entropy-loss",
   "status": "review",
@@ -33,21 +33,21 @@
     },
     {
       "id": "ai.confident-and-wrong.c2",
-      "text": "Every halving of the chance on the truth adds the same 0.69 to the penalty; 1% is about 6.6 halvings from certainty, and as the chance goes to 0% the penalty has no ceiling.",
+      "text": "Every halving of the chance on the truth adds the same 0.69 to the penalty; from 100%, 1% is about 6.6 halvings away, so it costs 6.6 times the first halving, and as the chance goes to 0% the penalty keeps rising without a ceiling.",
       "support": "derivation",
-      "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0.",
+      "source": "−ln(p/2) = −ln p + ln 2, ln 2 = 0.693; −ln p = ln 2 · log2(1/p), log2(100) = 6.64; −ln p → ∞ as p → 0. | FACT-CHECK 2026-10-14 (pass 16): node: ln 2 = 0.6931; ln(100)/ln 2 = log2(100) = 6.644, shown as 6.6 (Q_ONE/Q_HALF); -ln p is unbounded as p -> 0. Stage halving chain from 50% adds 0.693 per step for nine steps. Advisory, non-blocking: the tenth tap clamps 0.098% to P_MIN 0.05% (not a true halving), adding 0.669, while the chain line still says 'each halving adds 0.69'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.confident-and-wrong.c3",
-      "text": "For one example, the cross-entropy penalty is −ln(the probability the model gave the true class), and models trained to minimise it are penalised far more for confident mistakes than for hedged ones.",
+      "text": "For one example, the cross-entropy penalty is ln(1 ÷ the probability the model gave the true class), which equals −ln of that probability. Classifiers are commonly trained to make it small, so confident mistakes cost far more than hedged ones; other penalties exist.",
       "support": "source",
-      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2.",
+      "source": "Goodfellow, Bengio & Courville 2016, Deep Learning, §6.2.1 (maximum likelihood / cross-entropy as the cost for classifiers) and §3.13. The 'far more' follows from c1-c2. | FACT-CHECK 2026-10-14 (pass 16): Derivation: cross-entropy H(q,p) = -sum q_i ln p_i with a one-hot q is -ln p_true = ln(1/p_true). 'Commonly trained to make it small': Goodfellow, Bengio & Courville 2016 s6.2.1.1 (deeplearningbook.org unreachable from here); corroborated by Srihari CSE676 slides 6.2 (cedar.buffalo.edu, search snippet: cost is the negative log-likelihood, equivalently the cross-entropy between training data and model distribution). Hedge 'other penalties exist' is right. Reveal paragraph 3 matches.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.confident-and-wrong.c4",
@@ -75,17 +75,25 @@
       "company/reviews/confident-and-wrong/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/confident-and-wrong/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/confident-and-wrong/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/confident-and-wrong/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:cross-entropy-loss",
     "prerequisites": [],
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-live-chart",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

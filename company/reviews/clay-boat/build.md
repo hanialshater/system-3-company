@@ -22,3 +22,7 @@ Findings from 2026-10-13-learner-adult-beginner.md (revise); the fact-check rout
 ## Revision v3 (wave C)
 
 Push and weight arrows and the 1 L = 1 kg caption are hidden until the prediction is locked. Small cup is now a required milestone so the flooding is seen. 'cm deep' and 'scale: 2.5 cm' labels. c4 reworded, unverified.
+
+## Revision v4
+
+r2: a 'Tried:' line lists each shape shown with the water it pushes aside; the reveal narrates the small cup only if it was shown (the 'flooded' milestone already gates the reveal on it). c4 reworded, unverified.

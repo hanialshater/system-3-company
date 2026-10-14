@@ -1,6 +1,6 @@
 {
   "slug": "compound-interest",
-  "title": "Why the last decade earns the most",
+  "title": "Ten years in, $1,967. And at forty?",
   "hook": "$1,000 at 7% a year. The first ten years earn $967. Guess the next thirty.",
   "domain": "economics",
   "concept": "compound-interest",
@@ -44,12 +44,12 @@
     },
     {
       "id": "economics.compound-interest.c3",
-      "text": "Simple interest (7% of the original $1,000 each year, never on past interest) pays $2,800 of interest over 40 years, a balance of $3,800.",
+      "text": "Simple interest (7% of the original $1,000 each year, never on past interest) pays $2,800 of interest over 40 years, a balance of $3,800; the stage shows this as the 'Plain 7% only' readout.",
       "support": "derivation",
-      "source": "40 × 70 = 2,800; 1000 + 2,800 = 3,800. v2 says 'a balance of $3,800' so it cannot be read as total interest (fact-check fix 1).",
+      "source": "1,000 x (1 + 0.07 x 40) = 3,800 (node; Demo.tsx simple()).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.compound-interest.c8",
@@ -133,17 +133,25 @@
     ],
     "simulatedLearner": [
       "company/reviews/compound-interest/2026-10-12-learner-adult-beginner.md",
-      "company/reviews/compound-interest/2026-10-13-learner-adult-beginner-v2.md"
+      "company/reviews/compound-interest/2026-10-13-learner-adult-beginner-v2.md",
+      "company/reviews/compound-interest/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "economics:compound-interest",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

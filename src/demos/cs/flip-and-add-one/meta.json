@@ -1,7 +1,7 @@
 {
   "slug": "flip-and-add-one",
   "title": "Make −5 out of 5",
-  "hook": "Is a negative number just the positive one with a minus-sign bit stuck on the front?",
+  "hook": "How can a computer write −5 using only 0s and 1s?",
   "domain": "cs",
   "concept": "twos-complement",
   "status": "review",
@@ -25,12 +25,12 @@
   "claims": [
     {
       "id": "cs.flip-and-add-one.c1",
-      "text": "Flipping every bit of 00000101 gives 11111010 (−6); adding 1 gives 11111011, which reads −128 + 123 = −5.",
+      "text": "Flipping every bit of 00000101 gives 11111010 (−6); adding 1 gives 11111011, which reads −128 + 123 = −5 (the left bit is worth −128, the others 64, 32, ... 1).",
       "support": "derivation",
-      "source": "−128 + 64 + 32 + 16 + 8 + 2 + 1 = −5; 11111010 = −128 + 122 = −6. Builder checked in Node: (~5 + 1) & 0xff = 251, 251 − 256 = −5. Demo.tsx flip(), NEG, signed().",
+      "source": "−128 + 64 + 32 + 16 + 8 + 2 + 1 = −5; 11111010 = −128 + 122 = −6. Builder checked in Node: (~5 + 1) & 0xff = 251, 251 − 256 = −5. Demo.tsx flip(), NEG, signed(). | FACT-CHECK 2026-10-14 (pass 12): node: ~5 & 255 = 11111010 = -6 signed; +1 = 251 = 11111011 = -128 + 123 = -5.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.flip-and-add-one.c2",
@@ -43,12 +43,12 @@
     },
     {
       "id": "cs.flip-and-add-one.c3",
-      "text": "So a machine can subtract by adding: a − b is a + (flip b, add 1), using the same adder.",
+      "text": "So a machine can subtract by adding: a − b is a + (flip b, add 1), using the same adder; on the stage 9 + 11111011 gives 00000100, which is 4 = 9 − 5.",
       "support": "source",
-      "source": "Patterson and Hennessy, Computer Organization and Design, 2.4 (negation shortcut: invert and add 1) and 3.2 (subtraction via addition of the two's complement).",
+      "source": "Patterson and Hennessy, Computer Organization and Design, 2.4 (negation shortcut: invert and add 1) and 3.2 (subtraction via addition of the two's complement). | FACT-CHECK 2026-10-14 (pass 12): node: (9 + 251) & 255 = 00000100 = 4 = 9 - 5. Negate by invert-and-add-1 and subtract via adding the two's complement: Patterson and Hennessy, COD, 2.4 and 3.2 (not opened; network blocked).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.flip-and-add-one.c4",
@@ -58,6 +58,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "cs.flip-and-add-one.c5",
+      "support": "source",
+      "text": "A bit is one binary digit, 0 or 1; flipping turns each 0 into 1 and each 1 into 0.",
+      "source": "Definition of bit. | FACT-CHECK 2026-10-14 (pass 12): Bit = binary digit, 0 or 1 (definition); predict text 'Flip every bit (0 becomes 1, 1 becomes 0)' matches flip() = ~raw & 255.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -76,12 +85,13 @@
       "company/reviews/flip-and-add-one/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/flip-and-add-one/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/flip-and-add-one/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/flip-and-add-one/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:twos-complement",
     "prerequisites": [
@@ -90,5 +100,6 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

@@ -40,6 +40,7 @@ const BASE = RUNS.get(0)!;
 const Q = RUNS.get(Q_EXTRA)!;
 
 const usd = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
+const usd2 = (v: number) => `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const ym = (m: number) => `${Math.floor(m / 12)} yr ${m % 12} mo`;
 
 // Geometry (viewBox 320 × 180): months 0..360 across, owed $0..$200k up.
@@ -61,7 +62,7 @@ export default function ExtraHundredAMonth({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `A ${usd(LOAN)} loan at 6% takes 30 years at $${PAYMENT.toFixed(2)} a month. You add $${Q_EXTRA} to every payment. About how long does it take now?`,
-        options: ["about 28 years", `about ${(Q.months / 12).toFixed(1)} years`, "about 20 years"],
+        options: ["about 28 years", `about ${Math.round(Q.months / 12)} years`, "about 20 years"],
         answer: 1,
       }}
       exploreHint={`Add $${Q_EXTRA} a month and see where the line hits zero.`}
@@ -76,8 +77,8 @@ export default function ExtraHundredAMonth({ slug }: { slug: string }) {
               {others.length > 0 && ` You also tried ${others.map((e) => `+$${e} (${ym(RUNS.get(e)!.months)})`).join(", ")}.`}
             </p>
             <p>
-              The extra goes straight to what is still owed. Next month&apos;s interest, 0.5% of that, is smaller, so more of the
-              regular payment repays the loan too. The saving feeds itself every month.
+              The extra goes straight to what is still owed. In month 2 the interest was already {usd2(Q.path[1] * RATE)} instead of {usd2(BASE.path[1] * RATE)} (0.5% of a smaller balance), so
+              more of the payment repaid the loan. The saving feeds itself every month.
             </p>
             <p className="muted">A model: a fixed, illustrative 6%, no prepayment fee. Arithmetic, not advice on whether to prepay.</p>
           </>
@@ -144,6 +145,11 @@ export default function ExtraHundredAMonth({ slug }: { slug: string }) {
                   format={(v) => `+$${v}`}
                   onChange={set}
                 />
+                <p className={s.msg} aria-live="polite">
+                  {locked
+                    ? ""
+                    : `Month 2 payment ${usd2(PAYMENT + extra)}: ${usd2(cur.path[1] * RATE)} interest, ${usd2(PAYMENT + extra - cur.path[1] * RATE)} repaid.`}
+                </p>
                 <Row>
                   <Readout label="Paid off in" value={locked ? "?" : ym(cur.months)} />
                   <Readout label="Interest" value={locked ? "?" : usd(cur.interest)} />

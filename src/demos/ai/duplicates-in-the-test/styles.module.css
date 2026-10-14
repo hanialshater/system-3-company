@@ -49,3 +49,13 @@
   font-size: 20px;
   font-weight: 800;
 }
+
+.copyTag {
+  fill: color-mix(in srgb, var(--domain) 60%, #fff);
+}
+
+@media (prefers-color-scheme: light) {
+  .copyTag {
+    fill: color-mix(in srgb, var(--domain) 45%, #000);
+  }
+}

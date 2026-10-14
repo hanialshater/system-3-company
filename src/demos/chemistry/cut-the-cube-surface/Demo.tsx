@@ -15,6 +15,8 @@ const SIDE_CM = 1;
 const area1 = (n: number) => Math.round(n ** 3 * 6 * (SIDE_CM / n) ** 2 * 1e6) / 1e6;
 const STEPS = [1, 2, 5, 10];
 const BIG = 10;
+const BAR_MAX = 100; // scale of the bar; deliberately not the answer
+
 const NAMES = ["thousand"] as const;
 const fmt = (v: number) => v.toLocaleString("en-US");
 
@@ -45,8 +47,8 @@ export default function CutTheCube({ slug }: { slug: string }) {
             At {fmt(BIG ** 3)} pieces the total outside area was <strong>{area1(BIG)} cm²</strong>, {area1(BIG) / area1(1)} times the original {area1(1)} cm².
           </p>
           <p>
-            Each tiny cube has outside area 6 × (0.1 cm)² = {(6 * 0.01).toFixed(2)} cm², and {fmt(BIG ** 3)} of them add up to {area1(BIG)} cm². Cutting keeps the
-            volume but exposes new faces. A reaction only touches the outside, so finer pieces react faster.
+            Each tiny cube has outside area 6 × (0.1 cm)² = {(6 * 0.01).toFixed(2)} cm², the "one piece" readout you saw, and {fmt(BIG ** 3)} of them add up to {area1(BIG)} cm². Cutting keeps the
+            volume but exposes new faces, so the bar grew while the cube did not. A reaction only touches the outside, so at {area1(BIG) / area1(1)} times the surface a reaction has {area1(BIG) / area1(1)} times as much to work on: finer pieces react faster.
           </p>
         </>
       )}
@@ -60,7 +62,7 @@ export default function CutTheCube({ slug }: { slug: string }) {
             };
             return (
               <div className={s.wrap}>
-                <svg viewBox="0 0 320 210" className="stage-svg" role="img" aria-label={`${pieces} pieces, outside area ${area} cm²`}>
+                <svg viewBox="0 0 320 262" className="stage-svg" role="img" aria-label={`${pieces} pieces, outside area ${area} cm²`}>
                   {Array.from({ length: n * n }, (_, i) => {
                     const r = Math.floor(i / n);
                     const c = i % n;
@@ -69,8 +71,17 @@ export default function CutTheCube({ slug }: { slug: string }) {
                       <rect key={i} x={OX + c * cell + gap / 2} y={OY + r * cell + gap / 2} width={w} height={w} className={s.piece} />
                     );
                   })}
-                  <text x={160} y={206} textAnchor="middle" className={s.small}>
-                    front face of the cube, pieces pulled apart
+                  <text x={160} y={204} textAnchor="middle" className={s.small}>
+                    front face only; cuts also make hidden faces
+                  </text>
+                  <text x={30} y={226} className={s.small}>
+                    total outside area
+                  </text>
+                  <rect x={30} y={232} width={260} height={16} className={s.track} />
+                  <rect x={30} y={232} width={(260 * area) / BAR_MAX} height={16} className={s.fill} />
+                  <line x1={30 + (260 * area1(1)) / BAR_MAX} x2={30 + (260 * area1(1)) / BAR_MAX} y1={228} y2={252} className={s.tick} />
+                  <text x={30 + (260 * area1(1)) / BAR_MAX + 3} y={260} className={s.small}>
+                    whole cube, {area1(1)} cm²
                   </text>
                 </svg>
                 <Row>
@@ -84,6 +95,10 @@ export default function CutTheCube({ slug }: { slug: string }) {
                   <Readout label="Pieces" value={fmt(pieces)} />
                   <Readout label="Edge of each" value={`${10 / n} mm`} />
                   <Readout label="Total outside area" value={`${area} cm²`} />
+                </Row>
+                <Row>
+                  <Readout label="Outside of one piece" value={`${+(6 * (SIDE_CM / n) ** 2).toFixed(2)} cm²`} />
+                  <Readout label="Surface a reaction can touch" value={`×${area / area1(1)}`} />
                 </Row>
               </div>
             );

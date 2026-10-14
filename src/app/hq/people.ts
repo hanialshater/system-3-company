@@ -28,6 +28,7 @@ export const HOME: Record<string, string> = {
   "rnd-engineer": "rnd-lab",
   "research-scientist": "research-lab",
   "platform-engineer": "app-team",
+  "community-engineer": "app-team",
   "release-manager": "launch-room",
   "accessibility-reviewer": "qa-lab",
   "backend-engineer": "app-team",

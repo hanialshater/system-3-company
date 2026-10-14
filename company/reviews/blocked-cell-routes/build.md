@@ -5,3 +5,11 @@
 - Numbers: 8, 12 and 20 come from counts() in Demo.tsx. Node: blocked grid [[1,1,1,1],[1,0,1,2],[1,1,2,4],[1,2,4,8]], open grid corner 20.
 - Retitled: "One blocked square: how many routes?".
 - After screenshots: reads on phone. Once filled, the blocked cell shows a red 0 and loses its hatching; still distinguishable.
+
+## Revision v2 (wave C, learner review)
+
+- 16 taps of chores: tapping the first cell on an edge fills that whole edge (1 route each; the stage says why). c3 extended.
+- Contrast 20 vs 8 never seen: when the corner reaches 8 the stage prompts 'Remove the block to see how many it cut.' The reveal quotes 20 vs 8 only if the learner removed it. Not gated (the toggle is the 17th control, past QA's reach).
+- Reveal said 'You filled N cells': now 'Your grid has N cells filled'.
+
+All changed claims are unverified, awaiting a fact-checker.

@@ -2,15 +2,17 @@
 
 // The back button as a stack. History is a pile: Back steps down it, and visiting a
 // new page after going back throws away everything above you. The payoff is that
-// discard: after Back, Back, visit E, the old C and D are gone, so Back lands on B.
+// discard: after Back, visit D, the old C is gone, so Back lands on B. One Back is enough, so
+// the question's own sequence is reachable by one tap per control (QA contract).
 // One representation: the history pile.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
+import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
-const START = ["A", "B", "C", "D"];
+const START = ["A", "B", "C"];
 const LETTERS = "ABCDEFGHIJKL";
 const MAX = 8;
 
@@ -20,6 +22,8 @@ export default function BackButtonStack({ slug }: { slug: string }) {
   const [made, setMade] = useState(START.length); // letters used so far
   const [gone, setGone] = useState<string[]>([]); // pages thrown away by the last visit
   const [note, setNote] = useState("");
+  // the last visit that threw pages away; Back from the new page goes to `from`
+  const [rec, setRec] = useState<{ from: string; page: string; dropped: string[] } | null>(null);
 
   const fresh = at === START.length - 1 && pages.length === START.length && made === START.length;
 
@@ -27,28 +31,35 @@ export default function BackButtonStack({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "You visit pages A, B, C, D in that order. You press Back twice, then visit a new page E. You press Back once. Where are you?",
-        options: ["C", "B", "D"],
+        question: "You visit pages A, B, C in that order. You press Back once, then visit a new page D. You press Back once more. Where are you?",
+        options: ["C", "B", "A"],
         answer: 1,
       }}
-      exploreHint="Try the puzzle: Back, Back, visit a new page, Back."
+      exploreHint="Try the puzzle: Back once, visit a new page, then look at where Back goes."
       minInteractions={1}
       reveal={() => (
         <>
           <p>
-            History is a pile of pages. Back steps down the pile; C and D wait above you in case you press Forward. But
-            visiting E from B throws everything above B away and puts E on top: the pile is now A, B, E. So Back goes
-            to <strong>B</strong>.
+            History is a pile of pages. Back steps down the pile; pages above you stay, marked ahead, until you visit
+            something new. {rec ? (
+              <>
+                You visited {rec.page} from {rec.from}, so {rec.dropped.join(" and ")} {rec.dropped.length === 1 ? "was" : "were"}{" "}
+                thrown away, and Back from {rec.page} goes to <strong>{rec.from}</strong>.
+              </>
+            ) : null}
           </p>
           <p>
-            A pile where the last thing added is the first you get back is a stack (last in, first out). A queue is
-            the opposite, like a line at a till: first in, first out.
+            The question works the same way. Back once leaves you on B, visiting D throws away C, and the pile
+            is A, B, D. So Back goes to <strong>B</strong>. A pile where the last page added is the first one you get
+            back is called a stack.
           </p>
-          <p className="muted">Back means &quot;one step down the pile&quot;, not &quot;the page you saw before this one&quot;.</p>
+          <p className="muted">Back is not &quot;the page before D in a list of everything you opened&quot;. That list, A, B, C, D, would send you to C. Back is one step down the pile, which sends you to B.</p>
         </>
       )}
     >
-      {({ locked, interact }) => {
+      {({ locked, interact }) => (
+        <Milestones interact={interact} names={["discard"]}>
+          {(reach) => {
         const back = () => {
           if (locked || at === 0) return;
           setAt(at - 1);
@@ -64,7 +75,8 @@ export default function BackButtonStack({ slug }: { slug: string }) {
           setMade(made + 1);
           setGone(dropped);
           setNote(dropped.length ? `Visited ${p}. ${dropped.join(" and ")} thrown away.` : `Visited ${p}.`);
-          if (dropped.length) interact();
+          setRec(dropped.length ? { from: pages[at], page: p, dropped } : null);
+          if (dropped.length) reach("discard");
         };
         const reset = () => {
           if (locked) return;
@@ -95,7 +107,7 @@ export default function BackButtonStack({ slug }: { slug: string }) {
                   return (
                     <span key={p} className={`${s.page} ${state ?? ""}`}>
                       <b>{p}</b>
-                      <span className={s.tag}>{i === at ? "you are here" : i > at ? "forward" : ""}</span>
+                      <span className={s.tag}>{i === at ? "you are here" : i > at ? "ahead" : i === at - 1 && !locked ? "Back goes here" : ""}</span>
                     </span>
                   );
                 })}
@@ -129,7 +141,9 @@ export default function BackButtonStack({ slug }: { slug: string }) {
             </Row>
           </div>
         );
-      }}
+          }}
+        </Milestones>
+      )}
     </Lesson>
   );
 }

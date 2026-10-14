@@ -4,7 +4,7 @@
   "hook": "One drop of water. How many H₂O molecules are in it?",
   "domain": "chemistry",
   "concept": "atom-scale-size",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-chemistry",
@@ -41,12 +41,12 @@
     },
     {
       "id": "chemistry.molecules-in-one-drop.c3",
-      "text": "A 0.05 mL drop of water contains about 1.7 × 10²¹ H₂O molecules.",
+      "text": "A 0.05 mL drop of water is about 0.0028 mol (0.05 g ÷ 18 g per mole) and contains about 1.7 × 10²¹ H₂O molecules.",
       "support": "derivation",
-      "source": "0.05 mL x 0.998 g/mL / 18.015 g/mol = 2.77e-3 mol; x 6.02214e23 = 1.668e21 (node; Demo.tsx MOLECULES).",
+      "source": "0.05 mL x 0.998 g/mL / 18.015 g/mol = 2.77e-3 mol; x 6.02214e23 = 1.668e21 (node; Demo.tsx MOLECULES). | FACT-CHECK 2026-10-14 (pass 13): node: 0.05 x 0.998 / 18.015 = 2.77e-3 mol; x 6.02214076e23 = 1.668e21. Matches Demo.tsx MOLECULES.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c4",
@@ -61,10 +61,10 @@
       "id": "chemistry.molecules-in-one-drop.c5",
       "text": "1.7 × 10²¹ molecules is about 2 × 10¹¹ (200 billion) times the number of people on Earth, taken as about 8 billion.",
       "support": "derivation",
-      "source": "1.668e21 / 8e9 = 2.09e11 (node). World population about 8 × 10⁹ (UN World Population Prospects 2022: 8.0 billion in November 2022).",
+      "source": "1.668e21 / 8e9 = 2.09e11 (node). World population about 8 × 10⁹ (UN World Population Prospects 2022: 8.0 billion in November 2022). | FACT-CHECK 2026-10-14 (pass 13): node: 1.668e21 / 8e9 = 2.09e11, \"about 2 x 10^11\". UN WPP 2022 marked 8.0 billion on 15 Nov 2022.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "chemistry.molecules-in-one-drop.c6",
@@ -88,19 +88,23 @@
     "why": "1.7 × 10²¹ / 8 × 10⁹ is about 2 × 10¹¹, or 200 billion times."
   },
   "evidence": {
-    "qa": [],
+    "qa": [
+      "company/reviews/molecules-in-one-drop/2026-10-14-qa.md"
+    ],
     "simulatedLearner": [
-      "company/reviews/molecules-in-one-drop/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/molecules-in-one-drop/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/molecules-in-one-drop/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "chemistry:atom-scale-size",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card"
 }

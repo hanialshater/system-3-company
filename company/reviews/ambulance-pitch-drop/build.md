@@ -31,3 +31,7 @@ Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the f
 ## Revision v5 (wave C)
 
 Hook no longer states the effect. Reveal now needs three milestones (approaching at -20 m, beside you, 20 m past), so 754 / 704 / 653 Hz were all shown in the readout. Caption explains rings. c8 reworded, unverified.
+
+## Revision v6
+
+Fact-check c8: locked caption says rings mark sound sent 0.1 ... 0.6 s ago and are not crests (70 crests between rings). Reveal now says 'each ring is sound sent a little earlier', drops the unseen 755 / 652 / 1.08 and shows the beside-you value only if the learner visited it. Locked svg aria-label no longer leaks the Hz. c7, c8 rewritten, unverified.

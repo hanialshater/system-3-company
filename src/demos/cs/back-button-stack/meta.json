@@ -1,7 +1,7 @@
 {
   "slug": "back-button-stack",
   "title": "Where does Back take you?",
-  "hook": "Back, back, then a new page. Then Back again. You might not land where you expect.",
+  "hook": "Back, then a new page. Where does Back take you now?",
   "domain": "cs",
   "concept": "stack-and-queue",
   "status": "review",
@@ -22,43 +22,52 @@
     ]
   },
   "misconception": "Back always returns to the page you looked at just before, retracing the order you visited them.",
-  "objective": "The learner can explain that browser history behaves like a stack: Back steps down the pile, and visiting a new page after going back throws away the pages above, so after A, B, C, D, Back twice and E, Back lands on B.",
+  "objective": "The learner can explain that browser history behaves like a stack: Back steps down the pile, and visiting a new page after going back throws away the pages above, so after A, B, C, Back once and D, Back lands on B.",
   "claims": [
     {
       "id": "cs.back-button-stack.c1",
-      "text": "After visiting A, B, C, D, pressing Back twice, visiting E and pressing Back once, you are on B.",
+      "text": "After visiting A, B, C, pressing Back once, visiting D and pressing Back once more, you are on B.",
       "support": "simulation",
-      "source": "Pile A, B, C, D (on D) -> Back -> C -> Back -> B -> visit E discards C and D, pile A, B, E -> Back -> B. Builder ran the stack trace in Node.",
+      "source": "Stack model: Back moves down one entry (A, B, C -> on B); visiting D from B discards everything above B (C), giving A, B, D; Back from D goes to B. Revision v4: the question was shortened from two Backs to one so the stage can reach it with one press per control. | FACT-CHECK 2026-10-14 (pass 14): Own trace: A,B,C at C; Back -> B; visit D drops C -> A,B,D; Back -> B. Demo.tsx back()/visit() do exactly this; reveal says the same. Real browsers agree: WHATWG HTML session history, navigating removes the forward entries.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c2",
-      "text": "After going back, the later pages are kept for Forward until you visit a new page, which throws them away.",
+      "text": "After going back, the later pages stay in the pile, marked ahead, until you visit a new page, which throws them away.",
       "support": "source",
-      "source": "WHATWG HTML Living Standard, 'Session history' / 'navigables': navigating a traversable removes the session history entries after the current one ('forward' entries) before appending the new entry.",
+      "source": "Unchanged text; stage behaviour in Demo.tsx visit(): pages after the current one are dropped. Revision v4 (START is now A, B, C). | FACT-CHECK 2026-10-14 (pass 14): WHATWG HTML Living Standard, session history: on navigation, entries after the current one are removed; until then they remain (forward). Demo.tsx visit() drops pages.slice(at + 1); pages with i > at are tagged 'ahead'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c3",
-      "text": "A stack gives back the last thing added first (last in, first out); a queue gives back the first thing added first (first in, first out), like a line at a till.",
+      "text": "A pile where the last page added is the first one you get back is called a stack (last in, first out).",
       "support": "source",
-      "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out.",
+      "source": "CLRS 3rd ed., 10.1 'Stacks and queues': a stack implements a last-in, first-out policy; a queue implements first-in, first-out. | FACT-CHECK 2026-10-14 (pass 12): Definition: a stack is last-in, first-out (CLRS 3rd ed. 10.1, first paragraph; not opened, network blocked). Reveal wording matches.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.back-button-stack.c4",
-      "text": "The stage models history as one pile and has no Forward button; it shows forward pages as dashed entries above the current page.",
+      "text": "The stage models history as one pile and has no Forward button; it marks pages above the current page as ahead and the page just below it as where Back goes.",
       "support": "convention",
-      "source": "Demo.tsx: pages array plus a current index; visit() truncates above the index before pushing. A simplification of browser session history (claim c2).",
+      "source": "Unchanged text; Demo.tsx draws 'ahead' for i > at and 'Back goes here' for i = at - 1. Revision v4. | FACT-CHECK 2026-10-14 (pass 14): Demo.tsx: one pages array, only Back / Visit / Start over controls (no Forward); tag 'ahead' for i > at, 'Back goes here' for i = at - 1 when unlocked.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.back-button-stack.c5",
+      "text": "A list of every page you opened (A, B, C, D) would put C just before D, but pressing Back from D goes to B.",
+      "support": "derivation",
+      "source": "Opening order A, B, C, then D after Back; the list's entry before D is C. The history pile after visiting D from B is A, B, D (c1), so Back goes to B. Replaces the earlier closing line, which contrasted two rules that agree on this example (learner r3 N1).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -77,17 +86,21 @@
       "company/reviews/back-button-stack/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/back-button-stack/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/back-button-stack/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/back-button-stack/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/back-button-stack/2026-10-14-learner-adult-beginner-r3.md",
+      "company/reviews/back-button-stack/2026-10-14-learner-adult-beginner-r4.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 5,
   "curriculum": {
     "primary": "cs:stack-and-queue",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

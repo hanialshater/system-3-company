@@ -36,12 +36,12 @@
     },
     {
       "id": "cs.binary-numbers.c2",
-      "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255.",
+      "text": "Eight switches have 256 different on/off patterns, and each names exactly one whole number from 0 to 255. With all eight on the stage says: with 0, that is 256 numbers.",
       "support": "derivation",
-      "source": "2^8 = 256 patterns; uniqueness of base-2 positional representation. Knuth, TAOCP Vol. 2, 4.1 (Positional number systems).",
+      "source": "2^8 = 256 patterns; uniqueness of base-2 positional representation. Knuth, TAOCP Vol. 2, 4.1 (Positional number systems). | FACT-CHECK 2026-10-14 (pass 12): 2^8 = 256 patterns, 0..255 (sum of 128..1 = 255); unique base-2 representation. Stage message at n = 255 reads 'All 8 on = 255: one less than the next switch, 256. With 0, that is 256 numbers.' (isAllOnesBelowTop branch, also reached via +1 from 254).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.binary-numbers.c3",
@@ -54,21 +54,21 @@
     },
     {
       "id": "cs.binary-numbers.c4",
-      "text": "Adding one more switch doubles how many numbers you can name.",
+      "text": "A ninth switch would be worth 256, one more than all eight together can make.",
       "support": "derivation",
-      "source": "2^(k+1) = 2 * 2^k: each old pattern appears once with the new switch off and once with it on.",
+      "source": "2^(k+1) = 2 * 2^k: each old pattern appears once with the new switch off and once with it on. | FACT-CHECK 2026-10-14 (pass 12): Ninth switch = 2 x 128 = 256 = 255 + 1. Stage: '255 + 1 = 256 needs a ninth switch'; reveal 'a ninth switch, worth 256'. Housekeeping: source line argues pattern doubling, which is not the claim; the claim follows from doubling place values.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.binary-numbers.c5",
-      "text": "A byte is 8 bits, so it holds 256 values (0 to 255); 32 bits give 4,294,967,296 values, over four billion.",
+      "text": "A byte is 8 bits; counting with only on and off switches is called binary, and each switch is a bit.",
       "support": "convention",
-      "source": "Byte = 8 bits (octet) per IEC 80000-13:2008; 2^32 = 4,294,967,296 (arithmetic).",
+      "source": "Byte = 8 bits (octet) per IEC 80000-13:2008; 2^32 = 4,294,967,296 (arithmetic). | FACT-CHECK 2026-10-14 (pass 12): Byte = 8 bits in current use (IEC 80000-13:2008, byte as synonym of octet; not opened, network blocked); bit = binary digit. Housekeeping (non-blocking): the source line still carries an unused '2^32 = 4,294,967,296' fragment.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-12"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "cs.binary-numbers.c6",
@@ -117,17 +117,19 @@
     ],
     "simulatedLearner": [
       "company/reviews/binary-numbers/2026-10-12-learner-adult-beginner.md",
-      "company/reviews/binary-numbers/2026-10-13-learner-adult-beginner-v2.md"
+      "company/reviews/binary-numbers/2026-10-13-learner-adult-beginner-v2.md",
+      "company/reviews/binary-numbers/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:binary-numbers",
     "prerequisites": [],
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "Single card"
 }

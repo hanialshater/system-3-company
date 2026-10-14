@@ -5,7 +5,7 @@
   "domain": "cs",
   "concept": "compression-limits",
   "format": "Single card",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -91,8 +91,12 @@
     "why": "There are 2^n files of n bits and only 2^n - 1 shorter strings, so two files would have to share a shorter version and could not both come back."
   },
   "evidence": {
-    "qa": [],
-    "simulatedLearner": [],
+    "qa": [
+      "company/reviews/no-zip-shrinks-everything/2026-10-14-qa.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/no-zip-shrinks-everything/2026-10-14-learner-adult-beginner.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

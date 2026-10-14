@@ -13,7 +13,10 @@ import s from "./styles.module.css";
 
 const BENDS = 3, MAX = 100, START = 1;
 const RATE = 1e13, YEAR = 3.15576e7, UNIVERSE_YEARS = 13.8e9;
-const MILESTONES = ["chain-100", "race-100"] as const;
+const MILESTONES = ["chain-100", "race-100", "one-at-a-time"] as const;
+const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+const sup = (n: number) => String(n).split("").map((d) => SUP[Number(d)]).join("");
+const pow10 = (n: number) => `10${sup(n)}`;
 
 const shapes = (n: number) => Math.pow(BENDS, n);
 const digits = (n: number) => (BigInt(BENDS) ** BigInt(n)).toString();
@@ -26,7 +29,7 @@ function sci(x: number): string {
   let e = Math.floor(log10(x));
   let m = Math.round((x / Math.pow(10, e)) * 100) / 100;
   if (m >= 10) { m = 1; e += 1; }
-  return `${m.toFixed(2)} × 10^${e}`;
+  return `${m.toFixed(2)} × ${pow10(e)}`;
 }
 function timeFor(n: number): string {
   const sec = shapes(n) / RATE;
@@ -50,11 +53,13 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const { reach } = useMilestones(interact, MILESTONES);
   const [n, setN] = useState(START);
   const [race, setRace] = useState(false);
+  const [guided, setGuided] = useState(false);
   const set = (v: number, r = race) => {
     setN(v);
     if (v === MAX) {
       reach("chain-100");
       if (r) reach("race-100");
+      if (guided) reach("one-at-a-time");
     }
   };
   const e = log10(shapes(n));
@@ -62,8 +67,10 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
   const msg = locked
     ? "Toy chain: each link bends one of 3 ways."
     : race
-      ? `Trying 10^13 shapes a second needs ${timeFor(n)}.`
-      : `${n} link${n === 1 ? "" : "s"}, 3 bends each. Every link multiplies the shapes by 3.`;
+      ? `Trying 10 trillion shapes a second (a generous guess) needs ${timeFor(n)}.`
+      : guided
+        ? `Judge each link's bend on its own: 3 tries × ${n} links = ${BENDS * n} tries, not ${sci(shapes(n))}.`
+        : `${n} link${n === 1 ? "" : "s"}, 3 bends each. Every link multiplies the shapes by 3. ${pow10(47)} means 1 followed by 47 zeros.`;
   // a little zig-zag chain, one bead per link up to 20 beads
   const beads = Math.min(n, 20);
   const pts = Array.from({ length: beads }, (_, i) => [14 + i * 16, 14 + (i % 2 === 0 ? 0 : 8)]);
@@ -80,7 +87,7 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
         {[0, 10, 20, 30, 40, 50].map((t) => (
           <g key={t}>
             <line className={s.axis} x1={px(t)} x2={px(t)} y1={72} y2={77} />
-            <text className={s.tick} x={px(t)} y={89}>{`10^${t}`}</text>
+            <text className={s.tick} x={px(t)} y={89}>{pow10(t)}</text>
           </g>
         ))}
         {race && (
@@ -89,7 +96,13 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
             <text className={s.markText} x={px(EXP_TRIES)} y={36}>all tries since the Big Bang</text>
           </g>
         )}
-        <text className={s.tick} x={170} y={106}>number of shapes (log ruler)</text>
+        {guided && (
+          <g>
+            <line className={s.mark} x1={px(log10(BENDS * n))} x2={px(log10(BENDS * n))} y1={46} y2={72} />
+            <text className={s.markText} x={px(log10(BENDS * n)) + 4} y={44} style={{ textAnchor: "start" }}>one link at a time: {BENDS * n} tries</text>
+          </g>
+        )}
+        <text className={s.tick} x={170} y={106}>number of shapes (each tick is 10 times the last)</text>
       </svg>
       <Row>
         <Control disabled={locked || n >= MAX} onClick={() => set(n + 1)}>Add 1 link</Control>
@@ -105,6 +118,17 @@ function Stage({ locked, interact }: { locked: boolean; interact: () => void }) 
           }}
         >
           {race ? "Hide the race" : "Race the universe"}
+        </Control>
+        <Control
+          className={guided ? "active" : ""}
+          disabled={locked}
+          onClick={() => {
+            const g = !guided;
+            setGuided(g);
+            if (g && n === MAX) reach("one-at-a-time");
+          }}
+        >
+          {guided ? "Hide one-at-a-time" : "Judge links one at a time"}
         </Control>
         <Control disabled={locked || n === START} onClick={() => set(START)}>Reset</Control>
       </Row>
@@ -130,7 +154,7 @@ export default function ProteinSearchSpace({ slug }: { slug: string }) {
         ],
         answer: 2,
       }}
-      exploreHint={`Build the chain to ${MAX} links, then race the universe.`}
+      exploreHint={`Build the chain to ${MAX} links, race the universe, then judge the links one at a time.`}
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
@@ -139,8 +163,9 @@ export default function ProteinSearchSpace({ slug }: { slug: string }) {
             far faster than {BENDS} × {MAX}.
           </p>
           <p>
-            At 10^13 tries a second, trying them all takes {sci(yearsFor(MAX))} years, about {sci(RATIO)} times the age of the universe
-            (13.8 billion years). Real proteins fold in milliseconds to seconds, so folding is guided, not a blind search.
+            At 10 trillion ({pow10(13)}) tries a second, a generous guess, trying them all takes {sci(yearsFor(MAX))} years, about {sci(RATIO)} times the age of the universe
+            (13.8 billion years). Judging the links one at a time took just {BENDS * MAX} tries. Real proteins fold in milliseconds to seconds, so folding is guided
+            toward the shape, not a blind search; the real guidance is more complicated than this toy.
           </p>
         </>
       )}

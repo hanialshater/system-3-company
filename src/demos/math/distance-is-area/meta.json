@@ -4,7 +4,7 @@
   "hook": "You know the speed at every moment but not the position. Can you still find the distance?",
   "domain": "math",
   "concept": "area-under-curve",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-math",
@@ -33,10 +33,12 @@
     },
     {
       "id": "math.distance-is-area.c2",
-      "text": "Strips using the speed at the end of each slice give 200 m with 1 strip, 110 m with 10 and 105 m with 20: always above 100 m and closing in on it. The reveal quotes only the strip counts the learner tried.",
+      "text": "Strips using the speed at the end of each slice give 200 m with 1 strip, 133.3 m with 3, 110 m with 10 and 105 m with 20: always above 100 m and closing in on it. The reveal quotes only the strip counts the learner tried.",
       "support": "derivation",
-      "source": "Right Riemann sum for v = 2t on [0, 10] with n strips = 100 (n + 1) / n; n = 1: 200, 10: 110, 20: 105; the stage computes the bars with the same function; recomputed with node.",
-      "status": "unverified"
+      "source": "Right sum 100 (n + 1) / n: n = 1 -> 200, 3 -> 133.33, 10 -> 110, 20 -> 105. Revision v3: the slider now steps through 1, 3, 10, 20 strips, the stage keeps a 'Tried' line, and the reveal needs 3 and 10 strips to have been shown. | FACT-CHECK 2026-10-14 (pass 14): Own node right sums for v = 2t, T = 10: 200, 133.33, 110, 105 (= 100(n+1)/n), all above 100 and decreasing. Slider COUNTS = [1, 3, 10, 20]; reveal and 'Tried' line list only seen counts; m() rounds 133.33 to 133.3.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.distance-is-area.c3",
@@ -50,9 +52,11 @@
     {
       "text": "Each strip is speed times a short time, which is metres: a small distance. Adding strips adds distances.",
       "support": "derivation",
-      "source": "Units: m/s x s = m. The stage's first-strip caption (speed x time = metres) and the 'Strips add up to' readout show it.",
+      "source": "Units: m/s x s = m. The stage's first-strip caption (speed x time = metres) and the 'Strips add up to' readout show it. | FACT-CHECK 2026-10-14 (pass 11): Units m/s x s = m; reveal text lines 54-55 match.",
       "id": "math.distance-is-area.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -68,15 +72,18 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/distance-is-area/2026-10-13-qa.md"
+      "company/reviews/distance-is-area/2026-10-13-qa.md",
+      "company/reviews/distance-is-area/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/distance-is-area/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/distance-is-area/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/distance-is-area/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/distance-is-area/2026-10-14-learner-adult-beginner-r3.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:area-under-curve",
     "prerequisites": [

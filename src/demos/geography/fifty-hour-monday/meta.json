@@ -1,7 +1,7 @@
 {
   "slug": "fifty-hour-monday",
   "title": "How long is a Monday?",
-  "hook": "A day has 24 hours. So why is it Monday somewhere for much longer than that?",
+  "hook": "A day has 24 hours. How long can it be Monday somewhere on Earth?",
   "domain": "geography",
   "concept": "date-line",
   "status": "review",
@@ -51,12 +51,26 @@
     },
     {
       "id": "geography.fifty-hour-monday.c4",
-      "text": "The shaded bands are nominal 15-degree zones, not legal time zones; the two dots mark Kiritimati (about 1.9 N, 157.4 W) and Baker Island (about 0.2 N, 176.5 W).",
+      "text": "The shaded bands are nominal 15-degree strips of the world, not legal time zones; the two dots mark Kiritimati (about 1.9 N, 157.4 W) and Baker Island (about 0.2 N, 176.5 W).",
       "support": "convention",
-      "source": "Nominal zones: offset n covers longitudes 15n +/- 7.5 degrees. Island coordinates from memory of a gazetteer (Kiritimati 1.87 N 157.36 W; Baker Island 0.19 N 176.48 W), not checked online. Neither island exists in the 1:110m shapes; drawn as markers. No border or date-line claims are drawn.",
+      "source": "Nominal zones: offset n covers longitudes 15n +/- 7.5 degrees. Island coordinates from memory of a gazetteer (Kiritimati 1.87 N 157.36 W; Baker Island 0.19 N 176.48 W), not checked online. Neither island exists in the 1:110m shapes; drawn as markers. No border or date-line claims are drawn. | v2 (2026-10-14): claim text rewritten to match the revised stage; previous verification void, needs re-check. | FACT-CHECK 2026-10-14 (pass 17): Demo.tsx draws bands o*15 +/- 7.5 deg for o = -12..12 (nominal strips; stage caption 'Bands: 15 deg strips of the world'). Coordinates corroborated by web search: Kiritimati 1 52 N 157 24 W (Nations Online; NGA GeoNames 1.8667N 157.4167W; en.wikipedia 1.85N 157.40W); Baker Island 0 11 45 N 176 28 45 W (en.wikipedia, 0.1958N 176.4792W). Claim's 'about 1.9 N, 157.4 W' and '0.2 N, 176.5 W' and the stage's 1.87/-157.36, 0.19/-176.48 agree within 0.06 deg.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "geography.fifty-hour-monday.c5",
+      "text": "UTC is the world reference clock, the same as Greenwich winter time (GMT); UTC+14 runs 14 hours ahead of it.",
+      "support": "convention",
+      "source": "Definition of UTC offsets (BIPM / IANA time zone database): an offset UTC+n is n hours ahead of Coordinated Universal Time. | FACT-CHECK 2026-10-14 (pass 17): Second half holds (UTC+n = n hours ahead of UTC). First half is wrong for about seven months a year: Greenwich clocks keep UK civil time, GMT (= UTC) in winter but BST (UTC+1) from late March to late October (timeanddate 'GMT vs UTC'; time.is Royal Observatory). The stage caption repeats 'UTC is the clock at Greenwich'. Fix (builder, claim and Demo.tsx caption): 'UTC is the world reference clock, the same as Greenwich winter time (GMT); UTC+14 runs 14 hours ahead of it.' | v3 (2026-10-14): text/stage revised after fact-check pass; previous verification void, needs re-check.",
+      "status": "unverified"
+    },
+    {
+      "id": "geography.fifty-hour-monday.c6",
+      "text": "Kiritimati sits at the map's west edge yet keeps UTC+14, because the date line bends east round Kiribati so the country shares one date.",
+      "support": "source",
+      "source": "From memory, not checked online: Kiribati moved the International Date Line east in 1994-95 so all its islands share one date (Wikipedia 'International Date Line'; 'Line Islands'). Kiritimati is at about 157 W, where longitude alone would give UTC-10.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -75,12 +89,13 @@
       "company/reviews/fifty-hour-monday/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/fifty-hour-monday/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/fifty-hour-monday/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/fifty-hour-monday/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "geography:date-line",
     "prerequisites": [
@@ -89,5 +104,12 @@
     "level": "intro",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "scrubber-timeline",
+    "step-run-button"
+  ]
 }

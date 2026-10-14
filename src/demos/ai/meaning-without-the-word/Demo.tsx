@@ -66,17 +66,17 @@ export default function MeaningWithoutTheWord({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Five chunks are searched for '${QUERY}' by shared keywords (little words ignored), and the top ${Q_K} go to the model. Is '${CHUNKS[ANSWER].text.replace(/\.$/, "")}' among them?`,
-        options: ["Yes, it is the best match", "No, it shares no keyword", "Only if k = 1"],
+        question: `Five chunks are searched for '${QUERY}' by shared keywords (little words ignored; ties keep list order), and the top ${Q_K} go to the model. Is '${CHUNKS[ANSWER].text.replace(/\.$/, "")}' among them?`,
+        options: ["Yes, it is the best match", "No, it shares no keyword", "Only if just 1 chunk is sent"],
         answer: 1,
       }}
       exploreHint="Run the word search, then the meaning search. Watch the cut line."
-      minInteractions={1}
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
             By words, the Paris chunk scored <strong>{wordScore(CHUNKS[ANSWER])}</strong>: it says &quot;French&quot;, not
-            &quot;France&quot;, and never says &quot;capital&quot;. The four others each matched one keyword, so the top{" "}
+            &quot;France&quot;, and never says &quot;capital&quot;. The four others each matched one keyword and tied; ties keep list order, so the top{" "}
             {Q_K} were &quot;{CHUNKS[wordTop[0]].text}&quot; and &quot;{CHUNKS[wordTop[1]].text}&quot;. The model never saw the
             answer.
           </p>
@@ -88,13 +88,13 @@ export default function MeaningWithoutTheWord({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["word-search-run"]}>
+        <Milestones interact={interact} names={["word-search-run", "meaning-search-run"]}>
           {(reach) => (
             <div className={s.wrap}>
               <span className={`tag ${s.model}`}>Toy knowledge base · 5 chunks</span>
               <svg viewBox="0 0 320 196" className="stage-svg" role="img" aria-label={mode ? `Ranked by ${mode}, top ${k}` : "Five chunks, not yet searched"}>
                 <text x={160} y={14} textAnchor="middle" className={s.small} fill="var(--muted)">
-                  {locked || !mode ? `Query: ${QUERY}` : `Ranked by ${mode} · top ${k} go to the model`}
+                  {locked || !mode ? `Query: ${QUERY}` : `Ranked by ${mode}${mode === "words" ? " (ties keep list order)" : ""} · top ${k} go to the model`}
                 </text>
                 {CHUNKS.map((c, i) => {
                   const r = rankOf(i);
@@ -139,7 +139,11 @@ export default function MeaningWithoutTheWord({ slug }: { slug: string }) {
                 >
                   Search by words
                 </Control>
-                <Control className={mode === "meaning" ? "active" : ""} disabled={locked || mode === "meaning"} onClick={() => setMode("meaning")}>
+                <Control className={mode === "meaning" ? "active" : ""} disabled={locked || mode === "meaning"} onClick={() => {
+                    setMode("meaning");
+                    reach("meaning-search-run");
+                  }}
+                >
                   Search by meaning
                 </Control>
               </Row>

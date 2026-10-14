@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
-import { WorldMap, geoOrthographic, world } from "@/kit/geo";
+import { WorldMap, geoOrthographic } from "@/kit/geo";
 import { LAND_MASK_2DEG } from "./mask";
 import s from "./styles.module.css";
 
@@ -65,8 +65,7 @@ function planetShare() {
 // Best and worst centres from a build-time search of every 2-degree centre over this same mask.
 const BEST = { name: "Western Europe", lat: 42, lon: 2 };
 const WORST = { lat: -42, lon: -178 };
-const CHIPS = [BEST, { name: "North Pole", lat: 90, lon: 0 }, { name: "Mid-Pacific", lat: -10, lon: -150 }];
-const ALL_LAND = world().countries.map((c) => c.properties.name);
+const CHIPS = [{ name: "North Pole", lat: 90, lon: 0 }, { name: "Mid-Pacific", lat: -10, lon: -150 }, { name: "Africa", lat: 0, lon: 20 }];
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 const fmtLat = (v: number) => `${Math.abs(v)}°${v > 0 ? "N" : v < 0 ? "S" : ""}`;
 const fmtLon = (v: number) => `${Math.abs(v)}°${v > 0 ? "E" : v < 0 ? "W" : ""}`;
@@ -75,6 +74,8 @@ export default function LandHemisphere({ slug }: { slug: string }) {
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(-30);
   const [best, setBest] = useState(0);
+  const [low, setLow] = useState(1);
+  const [helped, setHelped] = useState(false);
   const projection = useMemo(() => geoOrthographic().rotate([-lon, -lat]).fitSize([W, H], { type: "Sphere" }), [lat, lon]);
   const share = useMemo(() => landShare(lat, lon), [lat, lon]);
   const facts = useMemo(
@@ -90,32 +91,34 @@ export default function LandHemisphere({ slug }: { slug: string }) {
         options: ["About 90%", "Just under half", "About 29%, same as the whole planet"],
         answer: 1,
       }}
-      exploreHint="Turn the globe to find the most land you can fit in one half."
-      minInteractions={2}
+      exploreHint="Turn the globe to find the most land you can fit in one half. Or ask for the computer's best."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            <strong>Just under half.</strong> The landiest half on this map is centred near {fmtLat(BEST.lat)},{" "}
-            {fmtLon(BEST.lon)}, in Western Europe, and it is still only {pct(facts.best)} land. The whole planet is{" "}
-            {pct(facts.planet)} land, and the Northern Hemisphere is {pct(facts.north)}.
+            <strong>Just under half.</strong> A search of every possible centre on this map found the landiest half near{" "}
+            {fmtLat(BEST.lat)}, {fmtLon(BEST.lon)}, in Western Europe, and it is still only {pct(facts.best)} land. The best half you found
+            was {pct(best)}; the thinnest, {pct(low)}.
           </p>
           <p>
-            Turn the globe the other way and the emptiest half, centred in the South Pacific near New Zealand, is only{" "}
-            {pct(facts.worst)} land. However you cut it, every half of the Earth is mostly water.
+            The whole planet is {pct(facts.planet)} land, as the stage showed. However you cut it, every half of the Earth is mostly
+            water.
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["landy", "turned"]}>
+        <Milestones interact={interact} names={["landy", "watery", "found"]}>
           {(reach) => {
             const go = (la: number, lo: number) => {
               setLat(la);
               setLon(lo);
               const v = landShare(la, lo);
               setBest((b) => Math.max(b, v));
-              if (v >= 0.45) reach("landy");
-              else reach("turned");
+              setLow((b) => Math.min(b, v));
+              if (v >= 0.38) reach("landy");
+              if (v <= 0.25) reach("watery");
+              if (v >= 0.45) reach("found");
             };
             return (
               <div className={s.wrap}>
@@ -123,10 +126,9 @@ export default function LandHemisphere({ slug }: { slug: string }) {
                   projection={projection}
                   width={W}
                   height={H}
-                  highlight={ALL_LAND}
                   label={`Globe, orthographic projection, centred on ${fmtLat(lat)}, ${fmtLon(lon)}.${locked ? "" : ` This half is ${pct(share)} land.`}`}
                 />
-                <p className="muted tiny">Orthographic: the disc is exactly half the Earth. 1:110m land.</p>
+                <p className="muted tiny">The disc you see is exactly half the Earth. Grey: land. Pale: sea. The globe turns; you look from the middle of the disc.</p>
                 <div className={s.chips} role="group" aria-label="Centre the globe on">
                   {CHIPS.map((c) => (
                     <Control
@@ -140,13 +142,28 @@ export default function LandHemisphere({ slug }: { slug: string }) {
                   ))}
                 </div>
                 <Row>
-                  <Slider label="Centre latitude" value={lat} min={-90} max={90} step={2} disabled={locked} format={fmtLat} onChange={(v) => go(v, lon)} />
-                  <Slider label="Centre longitude" value={lon} min={-180} max={180} step={2} disabled={locked} format={fmtLon} onChange={(v) => go(lat, v)} />
+                  <Slider label="Turn up/down (latitude)" value={lat} min={-90} max={90} step={2} disabled={locked} format={fmtLat} onChange={(v) => go(v, lon)} />
+                  <Slider label="Turn left/right (longitude)" value={lon} min={-180} max={180} step={2} disabled={locked} format={fmtLon} onChange={(v) => go(lat, v)} />
                 </Row>
-                <Row>
-                  <Readout label="Land in this half" value={locked ? "?" : pct(share)} />
+                {!locked && <Row>
+                  <Readout label="Land in this half" value={pct(share)} />
                   <Readout label="Most you found" value={locked || best === 0 ? "?" : pct(best)} />
-                </Row>
+                  <Readout label="Whole planet" value={pct(facts.planet)} />
+                </Row>}
+                {(
+                  <Row>
+                    <Control
+                      disabled={locked}
+                      className={helped ? "active" : ""}
+                      onClick={() => {
+                        setHelped(true);
+                        go(BEST.lat, BEST.lon);
+                      }}
+                    >
+                      Give up? Show the landiest half a computer found
+                    </Control>
+                  </Row>
+                )}
               </div>
             );
           }}

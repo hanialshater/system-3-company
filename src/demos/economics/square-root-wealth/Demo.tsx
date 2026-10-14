@@ -3,7 +3,7 @@
 // Risk aversion. One curve: felt value = square root of wealth. A horizontal line marks the felt value
 // of a 50-50 coin ($0 or $100); the learner moves a sure amount along the curve until its height
 // meets the line.
-// Key state: a sure $25 reaches the line at height 5 (the coin's felt value).
+// Key state: the learner has tried a sure amount below and one above the coin's line; $25 meets it at height 5.
 // Model: square-root felt value is one textbook choice, not a measure of any person.
 
 import { useState } from "react";
@@ -16,7 +16,8 @@ const HIGH = 100;
 const felt = (w: number) => Math.sqrt(w);
 const COIN = 0.5 * felt(0) + 0.5 * felt(HIGH); // 5
 const SURE = COIN * COIN; // 25: the sure amount whose felt value equals the coin's
-const MILESTONES = ["matched"] as const;
+const MILESTONES = ["below", "above"] as const;
+const CHIPS = [10, HIGH / 2, HIGH * 0.75];
 
 const usd = (v: number) => `$${v}`;
 const two = (v: number) => v.toFixed(2);
@@ -41,14 +42,14 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
         options: [usd(HIGH / 2), usd(SURE), usd(HIGH * 0.75)],
         answer: 1,
       }}
-      exploreHint="Move the sure amount until its height meets the coin's line."
+      exploreHint="Try sure amounts below and above the coin's line, then slide to where the height meets it."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
             The coin&apos;s felt value is half of {felt(0)} plus half of {felt(HIGH)}, which is <strong>{COIN}</strong>. The curve
             reaches {COIN} at <strong>{usd(SURE)}</strong>, so a sure {usd(SURE)} feels as good as the coin, though the coin pays{" "}
-            {usd(HIGH / 2)} on average. A sure {usd(HIGH / 2)} sat above the line, at {two(felt(HIGH / 2))}.
+            {usd(HIGH / 2)} on average.
           </p>
           <p>When each extra dollar matters less and less, a sure amount well below the average can equal a gamble.</p>
           <p className="muted">A model: square-root felt value is one textbook choice, not a measure of anyone. No advice.</p>
@@ -60,7 +61,8 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
           {(reach) => {
             const set = (v: number) => {
               setSure(v);
-              if (v === SURE) reach("matched");
+              if (v < SURE) reach("below");
+              if (v > SURE) reach("above");
             };
             const f = felt(sure);
             const diff = f - COIN;
@@ -72,7 +74,7 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                   <line x1={X0} y1={Y0} x2={X1} y2={Y0} stroke="var(--line)" strokeWidth={1.5} />
                   <line x1={X0} y1={Y0} x2={X0} y2={Y1} stroke="var(--line)" strokeWidth={1.5} />
                   <path d={CURVE} className={s.line} />
-                  <text x={X1} y={Y0 + 14} textAnchor="end" className={s.axis}>
+                  <text x={X1} y={Y0 + 30} textAnchor="end" className={s.axis}>
                     wealth ($)
                   </text>
                   <text x={X0 + 4} y={Y1 + 4} className={s.axis}>
@@ -97,9 +99,10 @@ export default function SquareRootWealth({ slug }: { slug: string }) {
                   <Readout label="Its felt value" value={locked ? "?" : two(f)} />
                   <Readout label="Coin's felt value" value={locked ? "?" : two(COIN)} />
                 </Row>
-                <p className={s.msg}>{status}</p>
+                <p className={s.msg}>{locked ? "" : `Coin: half of \u221A0 plus half of \u221A${HIGH} = 0 + ${felt(HIGH) / 2} = ${COIN}`}</p>
+                <p className={s.msg}>{status}{!locked && Math.abs(diff) < 1e-9 ? `: the coin pays ${usd(HIGH / 2)} on average` : ""}</p>
                 <Row>
-                  {[HIGH / 2, SURE, HIGH * 0.75].map((v) => (
+                  {CHIPS.map((v) => (
                     <Control key={v} className={sure === v ? "active" : ""} disabled={locked || sure === v} onClick={() => set(v)}>
                       Sure {usd(v)}
                     </Control>

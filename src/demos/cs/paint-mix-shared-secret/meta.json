@@ -42,7 +42,7 @@
     },
     {
       "id": "cs.paint-mix-shared-secret.c3",
-      "text": "Multiplying by 5 ninety times (6 \u00d7 15) from 1 on the 23-clock also stops on 2, because each side multiplied 5 by itself 90 times.",
+      "text": "Multiplying by 5 ninety times (6 × 15) from 1 on the 23-clock also stops on 2, because each side multiplied 5 by itself 90 times.",
       "support": "derivation",
       "source": "(5^6)^15 = (5^15)^6 = 5^90; 5^90 mod 23 = 2 (Demo.tsx DIRECT; Node check). Wrapping after each multiply gives the same result as wrapping at the end (arithmetic modulo n). | FACT-CHECK 2026-10-13 (pass 6): Node: 5^90 mod 23 = 2.",
       "status": "verified",
@@ -89,27 +89,30 @@
       "id": "cs.paint-mix-shared-secret.c8",
       "text": "Everyone knows the clock (23) and the start number 5; Alice's secret 6 gives her public number 8, and Bob's secret 15 gives 19.",
       "support": "derivation",
-      "source": "Same as c1: 5^6 = 8 and 5^15 = 19 (mod 23). Stage shows this before the prediction.",
-      "status": "unverified"
+      "source": "Same as c1: 5^6 = 8 and 5^15 = 19 (mod 23). Stage shows this before the prediction. | FACT-CHECK 2026-10-14 (pass 11): Own node modpow: 5^6 mod 23 = 8, 5^15 mod 23 = 19.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
   "recall": {
     "question": "Alice and Bob each keep a secret number and send only a public result. Why do they end up with the same shared number?",
     "options": [
-      "Both have multiplied the base by itself (secret A \u00d7 secret B) times",
+      "Both have multiplied the base by itself (secret A × secret B) times",
       "They both send their secrets, but scrambled",
       "Eve's numbers are averaged in"
     ],
     "answer": 0,
-    "why": "Each multiplies the other's public number by their own secret count, so both reach the base multiplied (A \u00d7 B) times; the secrets never travel."
+    "why": "Each multiplies the other's public number by their own secret count, so both reach the base multiplied (A × B) times; the secrets never travel."
   },
   "evidence": {
     "qa": [
       "company/reviews/paint-mix-shared-secret/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/paint-mix-shared-secret/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/paint-mix-shared-secret/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/paint-mix-shared-secret/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

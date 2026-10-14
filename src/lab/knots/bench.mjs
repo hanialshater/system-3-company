@@ -1,42 +1,98 @@
-// Quality bench for the knot library (evaluator, owned by the R&D lead; see company/rnd/evolution.md).
-// Prints ONE JSON line of numbers, higher = better. The data below is fixed (generated once by gen 0 and
-// embedded), so a candidate cannot change what it is scored on. Correctness is the tests' job, not this.
-//   layoutExtraCrossings  -(strand crossings away from the diagram's crossings), 20 random diagrams (0 is best)
-//   layoutSpacing         100 x mean over diagrams of (closest approach of a strand to a crossing it is not part of) / size
-//   layoutPlanarShare     100 x share of the 20 diagrams drawn with no extra crossings
-//   hardUnknotShare       100 x share of the hard-unknot set that simplify() reduces to 0 crossings
-//   gordianReduction      100 x share of the 141 crossings of Haken's Gordian unknot removed by simplify()
-//   jonesSpeed            10 x log2(Jones polynomials per second) on five 10-crossing diagrams and 10_8
-// Data: random = 20 seeded braid closures (8-14 crossings); hard = 12 unknot diagrams scrambled with mostly
-// up-moves and then reduced, on which no R1/R2 removal applies; plus the monster unknot (table U10);
-// gordian = Haken's Gordian unknot (PD code from Regina's ExampleLink.gordian(), Regina 7.4.1).
+// Quality bench for the knot library (evaluator, owned by the R&D lead; see company/rnd/evolution.md and
+// company/rnd/evolution/knots-gen0.md). Prints ONE JSON line of numbers, higher = better. Correctness is the
+// tests' job, not this. Every input is generated or disguised HERE, at bench time, from EVOLVE_SEED (set by
+// tools/evolve.mjs once per scoring run; default 1), by evaluator code in test/benchgen.mjs that never calls
+// the library under test. So a candidate can neither choose nor special-case what it is scored on.
+//
+// Layout: 20 messy random knot diagrams: 12 projections of random 3-D polygons (8-20 crossings, kinks and
+// bigons left in) and 8 random braid closures (3-5 strands, 8-14 crossings). Drawn with draw(pd).
+//   layoutExtraCrossings  -(strand intersections that are not at a crossing both strands belong to), summed
+//   layoutPlanarShare     100 x share of diagrams drawn with no extra intersection
+//   layoutSpacing         100 x mean of (closest approach of a strand to a crossing it does not touch) / size
+//   layoutCrossingSpread  100 x mean of (closest pair of crossings) / (size / sqrt(crossings)): bunching shows here
+//   layoutAspect          100 x mean of (short side / long side) of the drawing's bounding box
+//   layoutSlowPenalty     -(mean ms per draw above 100 ms)
+// Unknots: test/benchdata.mjs HARD (10 unknot diagrams with no R1/R2/R3 move: crossings must be added first)
+// and the monster unknot, each in 2 seeded disguises, plus 8 seeded connected sums of two disguised HARD ones.
+//   hardUnknotShare       100 x share of those 30 that simplify() takes to 0 crossings (3 s each at most)
+//   hardUnknotReduction   100 x mean share of their crossings removed
+//   falseUnknotPenalty    -100 per decoy (a knotted no-move diagram; HARD # 3_1; HARD # 4_1) simplified below
+//                         its true minimum (a claim the library cannot have proved)
+//   gordianReduction      100 x share of the 141 crossings of a disguised Haken Gordian unknot removed (20 s)
+// Jones: 30 seeded 4-strand braid closures (<= 11 crossings), checked against a reference state sum here.
+//   jonesWrongPenalty     -100 per wrong Jones polynomial
+//   jonesSpeed            10 x log2(Jones polynomials per second), each call on a freshly disguised diagram
 import * as K from './index.mjs'
+import * as G from './test/benchgen.mjs'
+import { HARD, DECOY, MONSTER, GORDIAN, KNOTS } from './test/benchdata.mjs'
 
-const DATA = {"random":[[[1,14,2,15],[15,2,16,3],[9,17,10,16],[17,11,18,10],[11,6,12,7],[3,18,4,1],[7,5,8,4],[12,6,13,5],[8,13,9,14]],[[11,7,12,6],[18,8,19,7],[12,19,13,20],[1,20,2,1],[2,13,3,14],[8,9,9,10],[3,15,4,14],[15,5,16,4],[5,17,6,16],[10,18,11,17]],[[1,18,2,19],[11,3,12,2],[3,13,4,12],[4,20,5,19],[20,13,21,14],[14,6,15,5],[15,6,16,7],[21,17,22,16],[7,22,8,23],[23,8,24,9],[24,10,1,9],[17,11,18,10]],[[20,14,21,13],[1,8,2,9],[21,14,22,15],[2,15,3,16],[16,10,17,9],[10,3,11,4],[22,12,23,11],[4,23,5,24],[24,18,25,17],[5,19,6,18],[12,20,13,19],[25,6,26,7],[7,26,8,1]],[[22,7,23,8],[23,12,24,13],[13,24,14,25],[15,15,16,14],[16,26,17,25],[8,17,9,18],[1,18,2,19],[2,20,3,19],[3,20,4,21],[9,5,10,4],[26,6,27,5],[27,11,28,10],[21,28,22,1],[6,12,7,11]],[[1,20,2,21],[11,3,12,2],[3,13,4,12],[21,4,22,5],[5,22,6,23],[6,24,7,23],[24,8,25,7],[13,9,14,8],[14,26,15,25],[26,16,27,15],[9,17,10,16],[17,11,18,10],[18,28,19,27],[19,28,20,1]],[[11,8,12,9],[1,14,2,15],[15,2,16,3],[16,4,17,3],[4,18,5,17],[5,18,6,1],[12,10,13,9],[13,7,14,6],[10,8,11,7]],[[10,2,11,1],[19,3,20,2],[6,4,7,3],[11,20,12,1],[12,7,13,8],[4,15,5,16],[13,16,14,17],[17,9,18,8],[9,19,10,18],[5,15,6,14]],[[15,9,16,8],[1,16,2,17],[2,9,3,10],[10,3,11,4],[17,4,18,5],[18,11,19,12],[12,19,13,20],[20,6,1,5],[6,13,7,14],[7,15,8,14]],[[5,15,6,14],[15,16,16,17],[1,6,2,7],[2,8,3,7],[17,9,18,8],[18,9,19,10],[10,4,11,3],[19,5,20,4],[11,20,12,21],[21,12,22,13],[22,14,1,13]],[[19,11,20,10],[7,20,8,21],[14,2,15,1],[15,2,16,3],[8,11,9,12],[16,21,17,22],[3,22,4,23],[23,4,24,5],[17,12,18,13],[24,6,1,5],[13,7,14,6],[18,9,19,10]],[[20,2,21,1],[2,22,3,21],[22,11,23,12],[3,12,4,13],[4,23,5,24],[5,25,6,24],[13,6,14,7],[14,8,15,7],[8,16,9,15],[16,10,17,9],[10,25,11,26],[26,18,27,17],[27,18,28,19],[19,28,20,1]],[[15,8,16,9],[9,16,10,17],[24,17,25,18],[18,25,19,26],[26,2,27,1],[27,2,28,3],[3,28,4,29],[4,19,5,20],[5,10,6,11],[11,21,12,20],[12,21,13,22],[13,6,14,7],[22,30,23,29],[14,8,15,7],[23,30,24,1]],[[5,10,6,11],[14,2,15,1],[6,7,7,8],[2,16,3,15],[3,16,4,1],[8,12,9,11],[12,10,13,9],[13,5,14,4]],[[8,2,9,1],[15,3,16,2],[16,10,17,9],[10,3,11,4],[17,4,18,5],[5,18,6,19],[6,11,7,12],[19,12,20,13],[20,14,1,13],[7,15,8,14]],[[12,6,13,5],[1,16,2,17],[2,18,3,17],[6,14,7,13],[18,7,19,8],[8,19,9,20],[20,9,21,10],[21,11,22,10],[22,4,1,3],[11,14,12,15],[15,5,16,4]],[[6,9,7,10],[14,2,15,1],[21,3,22,2],[22,16,23,15],[3,17,4,16],[17,5,18,4],[23,18,24,19],[7,11,8,10],[19,24,20,1],[8,11,9,12],[5,12,6,13],[20,13,21,14]],[[7,15,8,14],[8,2,9,1],[15,3,16,2],[16,10,17,9],[10,18,11,17],[18,12,19,11],[12,20,13,19],[3,21,4,20],[21,5,22,4],[5,23,6,22],[23,7,24,6],[24,14,1,13]],[[11,16,12,17],[8,2,9,1],[17,12,18,13],[13,18,14,19],[14,20,15,19],[15,20,16,21],[2,21,3,22],[22,3,23,4],[4,23,5,24],[24,5,25,6],[6,10,7,9],[10,25,11,26],[7,26,8,1]],[[20,23,21,24],[8,2,9,1],[2,13,3,14],[14,10,15,9],[3,11,4,10],[4,16,5,15],[21,25,22,24],[25,23,26,22],[5,16,6,17],[26,12,27,11],[6,18,7,17],[27,19,28,18],[28,8,1,7],[19,12,20,13]]],"hard":[[[2,12,3,11],[8,23,9,24],[22,7,23,8],[18,4,19,3],[16,1,17,2],[14,6,15,5],[4,20,5,19],[6,21,7,22],[17,13,18,12],[15,10,16,11],[13,21,14,20],[24,9,1,10]],[[32,21,1,22],[2,14,3,13],[22,1,23,2],[15,21,16,20],[23,15,24,14],[10,6,11,5],[12,3,13,4],[7,5,8,4],[6,10,7,9],[8,11,9,12],[31,25,32,24],[26,18,27,17],[30,19,31,20],[16,28,17,27],[25,29,26,28],[18,29,19,30]],[[30,11,1,12],[2,6,3,5],[22,28,23,27],[12,29,13,30],[17,29,18,28],[16,21,17,22],[14,20,15,19],[3,9,4,8],[1,10,2,11],[18,24,19,23],[13,25,14,24],[15,26,16,27],[9,6,10,7],[7,5,8,4],[20,25,21,26]],[[28,12,1,11],[9,22,10,23],[2,13,3,14],[24,21,25,22],[25,13,26,12],[23,8,24,9],[26,2,27,1],[7,15,8,14],[5,16,6,17],[17,6,18,7],[19,5,20,4],[18,16,19,15],[10,28,11,27],[3,21,4,20]],[[1,23,2,22],[24,4,25,3],[21,1,22,30],[23,27,24,26],[20,8,21,7],[2,26,3,25],[13,8,14,9],[11,19,12,18],[28,5,29,6],[17,13,18,12],[16,20,17,19],[6,29,7,30],[9,14,10,15],[15,10,16,11],[4,27,5,28]],[[11,15,12,14],[10,23,11,24],[15,23,16,22],[25,12,26,13],[17,4,18,5],[1,21,2,20],[3,18,4,19],[8,22,9,21],[6,19,7,20],[26,8,1,7],[2,5,3,6],[13,24,14,25],[16,10,17,9]],[[22,19,23,20],[21,13,22,12],[28,12,1,11],[6,9,7,10],[7,4,8,5],[1,11,2,10],[3,8,4,9],[27,21,28,20],[16,24,17,23],[26,13,27,14],[24,18,25,17],[15,18,16,19],[14,25,15,26],[5,3,6,2]],[[24,11,1,12],[15,11,16,10],[1,22,2,23],[4,7,5,8],[9,17,10,16],[3,19,4,18],[14,22,15,21],[12,23,13,24],[19,6,20,7],[17,9,18,8],[5,20,6,21],[13,2,14,3]],[[30,16,1,15],[8,17,9,18],[14,30,15,29],[6,2,7,1],[19,10,20,11],[5,17,6,16],[2,8,3,7],[4,9,5,10],[20,26,21,25],[27,13,28,12],[28,23,29,24],[26,22,27,21],[13,22,14,23],[11,25,12,24],[3,18,4,19]],[[7,22,8,23],[15,11,16,10],[18,6,19,5],[2,19,3,20],[12,10,13,9],[6,18,7,17],[24,22,1,21],[23,8,24,9],[11,15,12,14],[13,16,14,17],[1,5,2,4],[20,3,21,4]],[[23,12,24,13],[22,26,23,25],[13,24,14,25],[26,22,1,21],[18,2,19,1],[19,10,20,11],[4,16,5,15],[8,17,9,18],[9,3,10,2],[3,6,4,7],[16,6,17,5],[14,7,15,8],[11,20,12,21]],[[5,1,6,24],[1,7,2,6],[4,16,5,15],[2,17,3,18],[23,19,24,18],[16,8,17,7],[14,20,15,19],[22,11,23,12],[20,14,21,13],[9,13,10,12],[3,8,4,9],[10,21,11,22]]],"ten":[[[17,2,18,3],[3,11,4,10],[11,5,12,4],[5,18,6,19],[19,13,20,12],[6,14,7,13],[14,8,15,7],[15,1,16,20],[1,8,2,9],[9,17,10,16]],[[5,18,6,19],[12,19,13,20],[13,6,14,7],[7,14,8,15],[20,15,1,16],[8,2,9,1],[2,10,3,9],[16,3,17,4],[17,10,18,11],[4,11,5,12]],[[13,7,14,6],[7,15,8,14],[8,2,9,1],[2,15,3,16],[9,16,10,17],[17,10,18,11],[3,19,4,18],[4,12,5,11],[12,19,13,20],[20,6,1,5]],[[9,16,10,17],[17,10,18,11],[2,11,3,12],[3,18,4,19],[12,19,13,20],[4,14,5,13],[14,6,15,5],[6,16,7,15],[7,1,8,20],[1,9,2,8]],[[14,7,15,8],[8,15,9,16],[16,2,17,1],[2,9,3,10],[10,3,11,4],[17,4,18,5],[5,18,6,19],[11,7,12,6],[19,12,20,13],[13,20,14,1]]],"gordian":[[1,156,2,157],[3,225,4,224],[8,149,9,150],[9,179,10,178],[13,207,14,206],[15,184,16,185],[18,211,19,212],[20,137,21,138],[21,7,22,6],[25,248,26,249],[26,277,27,278],[27,130,28,131],[29,78,30,79],[32,167,33,168],[33,124,34,125],[34,272,35,271],[37,106,38,107],[38,52,39,51],[39,119,40,118],[40,195,41,196],[41,245,42,244],[44,113,45,114],[48,200,49,199],[49,108,50,109],[50,241,51,242],[52,120,53,119],[54,248,55,247],[55,192,56,193],[56,101,57,102],[57,43,58,42],[58,115,59,116],[61,46,62,47],[62,178,63,177],[63,94,64,95],[64,263,65,264],[65,203,66,202],[67,90,68,91],[68,268,69,267],[69,172,70,173],[70,239,71,240],[72,35,73,36],[73,84,74,85],[75,276,76,277],[76,164,77,163],[79,127,80,126],[80,31,81,32],[81,166,82,167],[82,274,83,273],[85,37,86,36],[86,71,87,72],[87,171,88,170],[88,238,89,237],[89,268,90,269],[91,66,92,67],[92,203,93,204],[93,263,94,262],[95,176,96,177],[96,48,97,47],[98,59,99,60],[99,115,100,114],[100,43,101,44],[102,194,103,193],[103,246,104,247],[104,53,105,54],[105,120,106,121],[107,241,108,240],[109,198,110,199],[110,98,111,97],[111,60,112,61],[112,45,113,46],[116,243,117,244],[117,197,118,196],[121,74,122,75],[122,84,123,83],[123,272,124,273],[125,169,126,168],[127,30,128,31],[128,78,129,77],[131,279,132,278],[132,250,133,249],[134,23,135,24],[136,7,137,8],[139,213,140,212],[140,17,141,18],[142,184,143,183],[143,15,144,14],[144,205,145,206],[146,11,147,12],[148,179,149,180],[150,135,151,136],[151,23,152,22],[153,4,154,5],[154,225,155,226],[157,252,158,253],[158,281,159,282],[160,219,161,220],[161,28,162,29],[162,130,163,129],[165,274,166,275],[171,239,172,238],[173,266,174,267],[180,259,181,260],[181,230,182,231],[186,155,187,156],[187,3,188,2],[190,134,191,133],[191,24,192,25],[194,245,195,246],[200,176,201,175],[201,264,202,265],[204,235,205,236],[208,231,209,232],[209,182,210,183],[210,258,211,257],[214,6,215,5],[215,152,216,153],[216,190,217,189],[220,159,221,160],[221,281,222,280],[223,188,224,189],[226,213,227,214],[227,139,228,138],[228,19,229,20],[232,207,233,208],[233,13,234,12],[234,145,235,146],[242,197,243,198],[250,218,251,217],[251,222,252,223],[254,185,255,186],[255,16,256,17],[256,142,257,141],[258,230,259,229],[260,147,261,148],[261,11,262,10],[265,174,266,175],[269,236,270,237],[270,169,271,170],[275,164,276,165],[279,219,280,218],[282,254,1,253]]}
-const pts = (d) => { const v = d.match(/-?[\d.]+/g).map(Number), p = []; for (let i = 0; i < v.length; i += 2) p.push([v[i], v[i + 1]]); return p }
-const sample = (d) => { const p = pts(d), out = []; for (let s = 0; s + 3 < p.length; s += 3) for (let i = 0; i <= 8; i++) { const t = i / 8, u = 1 - t; out.push([0, 1].map((k) => u * u * u * p[s][k] + 3 * u * u * t * p[s + 1][k] + 3 * u * t * t * p[s + 2][k] + t * t * t * p[s + 3][k])) } return out }
+const SEED = Number(process.env.EVOLVE_SEED ?? 1) >>> 0
+const rng = (k) => G.rng((SEED * 2654435761 + k * 40503) >>> 0)
+const r2 = (v) => Math.round(v * 100) / 100
+const out = {}
+
+// ---- layout of messy diagrams ----
+const messy = []
+{
+  const r = rng(1)
+  while (messy.length < 12) { const pd = G.projectPD(G.randomPolygon(r, 14 + ((r() * 18) | 0), 2 + r())); if (pd.length >= 8 && pd.length <= 20) messy.push(pd) }
+  while (messy.length < 20) { const pd = G.randomBraid(r, 3 + ((r() * 3) | 0), 8 + ((r() * 6) | 0)); if (pd) messy.push(G.disguise(pd, r)) }
+}
+const nums = (d) => d.match(/-?[\d.]+(?:e-?\d+)?/g).map(Number)
+const sample = (d) => { const v = nums(d), p = []; for (let i = 0; i < v.length; i += 2) p.push([v[i], v[i + 1]]); const o = []; for (let s = 0; s + 3 < p.length; s += 3) for (let i = 0; i <= 8; i++) { const t = i / 8, u = 1 - t; o.push([0, 1].map((k) => u * u * u * p[s][k] + 3 * u * u * t * p[s + 1][k] + 3 * u * t * t * p[s + 2][k] + t * t * t * p[s + 3][k])) } return o }
 const hit = (a, b, c, d) => { const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])); return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0 }
-
-let extra = 0, spacing = 0, planar = 0
-for (const pd of DATA.random) {
-  let D, x = 0
-  try { D = K.draw(pd) } catch { extra += 100; continue }
-  const P = D.edges.map((e) => sample(e.d)), far = (p) => D.crossings.every((c) => Math.hypot(p[0] - c.x, p[1] - c.y) > 3)
-  for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) for (let a = 0; a + 1 < P[i].length; a++) for (let b = 0; b + 1 < P[j].length; b++) if (far(P[i][a]) && far(P[j][b]) && hit(P[i][a], P[i][a + 1], P[j][b], P[j][b + 1])) x++
+let extra = 0, planar = 0, spacing = 0, spread = 0, aspect = 0, ms = 0
+for (const pd of messy) {
+  let D
+  const t0 = performance.now()
+  try { D = K.draw(pd) } catch { D = null }
+  ms += performance.now() - t0
+  const P = D?.edges?.map((e) => sample(e.d))
+  if (!D || P.length != 2 * pd.length || P.some((s) => !s.length || s.some((p) => !isFinite(p[0] + p[1])))) { extra += 50; continue }
+  const C = D.crossings, ends = D.edges.map((e) => [e.from, e.to]), R = 0.04 * D.size
+  const atShared = (p, i, j) => ends[i].some((c) => ends[j].includes(c) && Math.hypot(p[0] - C[c].x, p[1] - C[c].y) < R)
+  let x = 0
+  for (let i = 0; i < P.length; i++) for (let j = i; j < P.length; j++) for (let a = 0; a + 1 < P[i].length; a++) for (let b = i == j ? a + 2 : 0; b + 1 < P[j].length; b++) {
+    if (!hit(P[i][a], P[i][a + 1], P[j][b], P[j][b + 1])) continue
+    if (!atShared(P[i][a], i, j)) x++
+  }
   let m = Infinity
-  for (const c of D.crossings) D.edges.forEach((e, i) => { if (e.from != c.i && e.to != c.i) for (const p of P[i]) m = Math.min(m, Math.hypot(p[0] - c.x, p[1] - c.y)) })
-  extra += x; planar += !x; spacing += (isFinite(m) ? m : 0) / D.size / DATA.random.length
+  for (const c of C) P.forEach((s, i) => { if (!ends[i].includes(c.i)) for (const p of s) m = Math.min(m, Math.hypot(p[0] - c.x, p[1] - c.y)) })
+  const xs = P.flat().map((p) => p[0]), ys = P.flat().map((p) => p[1]), w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys)
+  let cc = Infinity
+  for (const a of C) for (const b of C) if (a.i < b.i) cc = Math.min(cc, Math.hypot(a.x - b.x, a.y - b.y))
+  spread += isFinite(cc) ? Math.min(1.5, cc / (D.size / Math.sqrt(C.length))) : 0
+  extra += x; planar += !x; spacing += isFinite(m) ? m / D.size : 0; aspect += Math.min(w, h) / (Math.max(w, h) || 1)
+}
+Object.assign(out, { layoutExtraCrossings: -extra, layoutPlanarShare: r2((100 * planar) / messy.length), layoutSpacing: r2((100 * spacing) / messy.length), layoutCrossingSpread: r2((100 * spread) / messy.length), layoutAspect: r2((100 * aspect) / messy.length), layoutSlowPenalty: -r2(Math.max(0, ms / messy.length - 100)) })
+
+// ---- hard unknots ----
+const timed = (pd, cap) => { const t0 = performance.now(); let s; try { s = K.simplify(pd) } catch { return Infinity } return performance.now() - t0 > cap ? Infinity : s.crossings }
+{
+  const r = rng(2), inst = []
+  for (const h of [...HARD, MONSTER]) for (let k = 0; k < 2; k++) inst.push(G.disguise(h, r))
+  const sum = (a, b) => G.disguise(G.connectedSum(G.disguise(a, r), G.disguise(b, r), 1 + ((r() * 2 * a.length) | 0), 1 + ((r() * 2 * b.length) | 0)), r)
+  for (let k = 0; k < 8; k++) inst.push(sum(HARD[(r() * HARD.length) | 0], HARD[(r() * HARD.length) | 0]))
+  let solved = 0, red = 0
+  for (const pd of inst) { const c = timed(pd, 3000); solved += c == 0; red += isFinite(c) ? (pd.length - c) / pd.length : 0 }
+  const decoys = [[G.disguise(DECOY, r), 1], [sum(HARD[(r() * HARD.length) | 0], KNOTS['3_1']), 3], [sum(HARD[(r() * HARD.length) | 0], KNOTS['4_1']), 4]]
+  const lies = decoys.filter(([pd, min]) => { const c = timed(pd, 3000); return isFinite(c) && c < min }).length
+  const g = timed(G.disguise(GORDIAN, r), 20000)
+  Object.assign(out, { hardUnknotShare: r2((100 * solved) / inst.length), hardUnknotReduction: r2((100 * red) / inst.length), falseUnknotPenalty: -100 * lies, gordianReduction: r2(isFinite(g) ? (100 * (141 - g)) / 141 : 0) })
 }
 
-const hard = [...DATA.hard, K.knot('monster-unknot').pd]
-const solved = hard.filter((pd) => K.simplify(pd).crossings == 0).length
-const g = K.simplify(DATA.gordian).crossings
+// ---- Jones ----
+{
+  const r = rng(3), pool = []
+  while (pool.length < 30) { const pd = G.randomBraid(r, 4, 9 + ((r() * 3) | 0)); if (pd) pool.push(pd) }
+  const key = (p) => Object.keys(p).filter((e) => p[e]).sort((a, b) => a - b).map((e) => `${+e}:${p[e]}`).join()
+  let wrong = 0
+  for (const pd of pool) { let j; try { j = K.jones(pd) } catch { j = {} } if (key(j) != key(G.jonesRef(pd))) wrong++ }
+  const inputs = Array.from({ length: 400 }, (_, k) => G.disguise(pool[k % pool.length], r))
+  let runs = 0
+  const t0 = performance.now()
+  while (runs < inputs.length && performance.now() - t0 < 1500) K.jones(inputs[runs++])
+  Object.assign(out, { jonesWrongPenalty: -100 * wrong, jonesSpeed: r2(10 * Math.log2(runs / ((performance.now() - t0) / 1000))) })
+}
 
-const ten = [...DATA.ten, K.knot('10_8').pd]
-let runs = 0
-const t0 = performance.now()
-while (performance.now() - t0 < 1500) for (const pd of ten) K.jones(pd), runs++
-const perSec = runs / ((performance.now() - t0) / 1000)
-
-const r = (v) => Math.round(v * 100) / 100
-console.log(JSON.stringify({ layoutExtraCrossings: -extra, layoutSpacing: r(100 * spacing), layoutPlanarShare: r((100 * planar) / DATA.random.length), hardUnknotShare: r((100 * solved) / hard.length), gordianReduction: r((100 * (141 - g)) / 141), jonesSpeed: r(10 * Math.log2(perSec)) }))
+console.log(JSON.stringify(out))

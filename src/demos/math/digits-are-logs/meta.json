@@ -62,9 +62,11 @@
     {
       "text": "Ten doublings give 1024. Times 1000 adds three zeros, so about 3 more digits; on the strip each 10 doublings add +3.",
       "support": "derivation",
-      "source": "2^10 = 1024 (c1); multiplying a number by 1000 appends three zeros, adding 3 digits; the stage's +3 labels are digitsAt(d) - digitsAt(d - 10) for d = 10..100 (see c3).",
+      "source": "2^10 = 1024 (c1); multiplying a number by 1000 appends three zeros, adding 3 digits; the stage's +3 labels are digitsAt(d) - digitsAt(d - 10) for d = 10..100 (see c3). | FACT-CHECK 2026-10-14 (pass 11): 2^10 = 1024; own node: digits(2^d) - digits(2^(d-10)) = 3 for every d = 10..100 (1 digit at 2^0, 31 at 2^100). Note: x1024 not x1000, the text says about.",
       "id": "math.digits-are-logs.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,8 @@
       "company/reviews/digits-are-logs/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/digits-are-logs/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/digits-are-logs/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/digits-are-logs/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

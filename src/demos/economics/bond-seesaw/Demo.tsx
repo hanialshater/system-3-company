@@ -26,7 +26,19 @@ const price = (r: number) => {
 const usd = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 const usd2 = (v: number) => `$${v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-const PMIN = 600;
+const slices = (r: number) => {
+  const out: { from: number; to: number; face: boolean }[] = [];
+  let acc = 0;
+  for (let t = 1; t <= YEARS; t++) {
+    const v = COUPON / (1 + r / 100) ** t;
+    out.push({ from: acc, to: acc + v, face: false });
+    acc += v;
+  }
+  out.push({ from: acc, to: acc + FACE / (1 + r / 100) ** YEARS, face: true });
+  return out;
+};
+
+const PMIN = 0;
 const PMAX = 1300;
 const L = 12;
 const W = 296;
@@ -40,7 +52,7 @@ export default function BondSeesaw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `A bond pays $${COUPON} a year for ${YEARS} years, then $${FACE.toLocaleString("en-US")}. New bonds now pay ${Q_RATE}% a year. What is this bond worth today?`,
+        question: `Your $${FACE.toLocaleString("en-US")} bond pays $${COUPON} a year (5%) for ${YEARS} years, then $${FACE.toLocaleString("en-US")} back. New $${FACE.toLocaleString("en-US")} bonds now pay ${Q_RATE}%, $${Q_RATE * 10} a year. What is yours worth today?`,
         options: [`$${FACE.toLocaleString("en-US")}`, `about ${usd(price(Q_RATE))}`, "about $1,060"],
         answer: 1,
       }}
@@ -49,12 +61,11 @@ export default function BondSeesaw({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            At {Q_RATE}% the bond was worth about <strong>{usd(price(Q_RATE))}</strong>: each fixed payment is discounted back at the new rate, and the sum falls short of $
-            {FACE.toLocaleString("en-US")}. At {LOW_RATE}% it rose to about <strong>{usd(price(LOW_RATE))}</strong>.
+            At {Q_RATE}% new bonds pay ${Q_RATE * 10} a year and yours pays ${COUPON}, so no one pays $
+            {FACE.toLocaleString("en-US")} for it. Each slice of the bar is one payment, worth less for the wait; together about <strong>{usd(price(Q_RATE))}</strong>. At {LOW_RATE}% new bonds pay only ${LOW_RATE * 10}, and yours was worth about <strong>{usd(price(LOW_RATE))}</strong>.
           </p>
           <p>
-            A fixed payment is worth what it would cost today to buy the same stream at the going rate, so prices and rates move opposite ways. Only at 5%, the bond's own rate, is it
-            worth $1,000. A model, not advice.
+            A fixed payment is worth what it would cost today to buy the same stream at the going rate, so prices and rates move opposite ways. Only at 5%, the bond's own rate, is it worth $1,000. A model, not advice.
           </p>
         </>
       )}
@@ -73,16 +84,18 @@ export default function BondSeesaw({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.chip}>Model: yearly payments, no default, one steady rate</p>
-                <p className={s.msg}>Bond: $50 a year for 10 years, then $1,000.</p>
                 <svg viewBox="0 0 320 110" className="stage-svg" role="img" aria-label={show ? `Rate ${rate}%, price ${usd(p)}` : "Price bar"}>
                   <rect x={L} y={34} width={W} height={30} rx={3} className={s.ghostFill} />
-                  {show && <rect x={L} y={34} width={Math.max(0, x(p) - L)} height={30} className={p >= FACE ? s.goodFill : s.badFill} />}
+                  {show &&
+                    slices(rate).map((sl, i) => (
+                      <rect key={i} x={x(sl.from)} y={34} width={Math.max(0, x(sl.to) - x(sl.from))} height={30} className={sl.face ? (p >= FACE ? s.goodFill : s.badFill) : i % 2 ? s.goodFill : s.badFill} opacity={sl.face ? 1 : 0.55} stroke="var(--bg-2)" strokeWidth={1} />
+                    ))}
                   <line x1={x(FACE)} x2={x(FACE)} y1={26} y2={72} stroke="var(--fg)" strokeWidth={2} />
                   <text x={x(FACE)} y={20} textAnchor="middle" className={s.axis}>
                     $1,000
                   </text>
                   <text x={L} y={90} className={s.small}>
-                    $600
+                    $0
                   </text>
                   <text x={L + W} y={90} textAnchor="end" className={s.small}>
                     $1,300
@@ -93,6 +106,9 @@ export default function BondSeesaw({ slug }: { slug: string }) {
                     </text>
                   )}
                 </svg>
+                <p className={s.msg}>
+                  {show ? `New bonds pay $${rate * 10} a year; yours pays $${COUPON}. A $${COUPON} payment in year ${YEARS} is worth ${usd2(COUPON / (1 + rate / 100) ** YEARS)} today.` : "Slices of the bar: each payment, worth less for the wait."}
+                </p>
                 <Row>
                   <Readout label="Market rate" value={`${rate}%`} />
                   <Readout label="Price today" value={show ? usd(p) : "?"} />

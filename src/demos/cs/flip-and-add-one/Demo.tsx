@@ -19,20 +19,23 @@ const signed = (raw: number) => (raw >= SIZE / 2 ? raw - SIZE : raw);
 const flip = (raw: number) => ~raw & (SIZE - 1);
 const NEG = (flip(N) + 1) & (SIZE - 1); // 251 = 11111011
 const SIGN_MAG = (SIZE / 2) | N; // 10000101, the "minus-sign bit" guess
+const SUB = 9;
 const fmt = (v: number) => (v < 0 ? `−${-v}` : String(v));
 
 export default function FlipAndAddOne({ slug }: { slug: string }) {
   const [raw, setRaw] = useState(N);
-  const [sum, setSum] = useState<number | null>(null); // N + raw before dropping the carry
+  const [sum, setSum] = useState<number | null>(null); // addend + raw before dropping the carry
+  const [addend, setAddend] = useState(N); // the number added to the bits row: 5 or 9
+  const [didSub, setDidSub] = useState(false); // added 9 to the pattern for -5
   const [log, setLog] = useState<string[]>([]);
 
-  const shownSum = sum === null ? null : N + raw; // stays live while bits change
+  const shownSum = sum === null ? null : addend + raw; // stays live while bits change
 
   return (
     <Lesson
       slug={slug}
       predict={{
-        question: `In 8 bits, ${N} is ${bitsOf(N)}. Flip every bit, then add 1. What do you get?`,
+        question: `A bit is one binary digit, 0 or 1. In 8 bits, ${N} is ${bitsOf(N)}. Flip every bit (0 becomes 1, 1 becomes 0), then add 1 in binary. What do you get?`,
         options: [bitsOf(flip(N)), bitsOf(NEG), bitsOf(SIGN_MAG)],
         answer: 1,
       }}
@@ -47,7 +50,7 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
             end of 8 bits and leaves 0.
           </p>
           <p>
-            So flip-and-add-1 makes exactly the pattern that cancels the number. That is why a machine can subtract by
+            So flip-and-add-1 makes exactly the pattern that cancels the number.{didSub ? ` You added ${SUB} to it and got ${SUB - N}: that is ${SUB} − ${N}, done by adding.` : ""} That is why a machine can subtract by
             adding: a − b is a + (flip b, add 1), with the same adder. A minus-sign bit would not work: {bitsOf(SIGN_MAG)} reads{" "}
             {fmt(signed(SIGN_MAG))} here, and adding it to {N} does not give 0.
           </p>
@@ -72,11 +75,13 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
               const next = (raw + 1) & (SIZE - 1);
               set(next, `+1 → ${bitsOf(next)}`);
             };
-            const addN = () => {
+            const addN = (a: number) => {
               if (locked) return;
-              setSum(N + raw);
-              setLog((l) => [...l, `${N} + ${bitsOf(raw)} → ${bitsOf((N + raw) & (SIZE - 1))}`]);
-              if (raw === NEG) reach("cancelled");
+              setAddend(a);
+              setSum(a + raw);
+              setLog((l) => [...l, `${a} + ${bitsOf(raw)} → ${bitsOf((a + raw) & (SIZE - 1))}`]);
+              if (raw === NEG && a === N) reach("cancelled");
+              if (raw === NEG && a === SUB) setDidSub(true);
             };
             const toggle = (i: number) => {
               if (locked) return;
@@ -86,6 +91,7 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
               if (locked) return;
               setRaw(N);
               setSum(null);
+              setAddend(N);
             };
 
             const pattern = bitsOf(raw);
@@ -104,8 +110,11 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
                   <Control disabled={locked} onClick={addOne}>
                     + 1
                   </Control>
-                  <Control disabled={locked} onClick={addN}>
+                  <Control disabled={locked} onClick={() => addN(N)}>
                     Add {N} to it
+                  </Control>
+                  <Control disabled={locked} onClick={() => addN(SUB)}>
+                    Add {SUB} to it
                   </Control>
                 </Row>
                 <div className={s.grid}>
@@ -117,13 +126,13 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
                   ))}
                   <span className={s.val} />
 
-                  <span className={s.lab}>{N}</span>
-                  {[...bitsOf(N)].map((b, i) => (
+                  <span className={s.lab}>{addend}</span>
+                  {[...bitsOf(addend)].map((b, i) => (
                     <span key={i} className={s.fixed}>
                       {b}
                     </span>
                   ))}
-                  <span className={s.val}>= {N}</span>
+                  <span className={s.val}>= {addend}</span>
 
                   <span className={s.lab}>bits</span>
                   {[...pattern].map((b, i) => (
@@ -153,6 +162,9 @@ export default function FlipAndAddOne({ slug }: { slug: string }) {
                     </>
                   )}
                 </div>
+                <p className={s.carry}>
+                  {raw >= SIZE / 2 ? `${pattern} = −128 + ${raw - SIZE / 2} = ${fmt(signed(raw))}` : "Left bit is worth −128; add the bits that are 1. Tap a bit to try your own."}
+                </p>
                 {shownSum !== null && (
                   <p className={s.carry}>{carry ? "Carry 1 falls off the 8th bit" : "No carry out"}</p>
                 )}

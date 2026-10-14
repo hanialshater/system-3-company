@@ -62,9 +62,11 @@
     {
       "text": "You added some nines, and the gap went from 0.1 down to 0.00...01 (one tenth smaller per nine). Is any positive number below 0.1, 0.01, 0.001... every one? No. Only 0 is.",
       "support": "derivation",
-      "source": "Same argument as c3 (a positive number r is beaten by 10^-n once n is large enough); the reveal and caption quote the learner's own number of nines, via gap(n) in Demo.tsx (10^-n).",
+      "source": "Same argument as c3 (a positive number r is beaten by 10^-n once n is large enough); the reveal and caption quote the learner's own number of nines, via gap(n) in Demo.tsx (10^-n). | FACT-CHECK 2026-10-14 (pass 11): gap(n) = 10^-n (string 0.0..01); for any r > 0 some 10^-n < r (Archimedean), so only 0 is below all of them among non-negatives. Note: the stage says \"cut it to a tenth\"; the claim paraphrase \"one tenth smaller\" could read as -10%; the stage wording is the right one.",
       "id": "math.nines-without-end.c5",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -84,7 +86,8 @@
       "company/reviews/nines-without-end/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/nines-without-end/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/nines-without-end/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/nines-without-end/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []

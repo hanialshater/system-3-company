@@ -5,3 +5,8 @@
 - Model label on the locked stage: one molecule, fixed efficiency, no plateau (also reveal, c3).
 - Gate: milestone "ninety" when the efficiency is 90% (first button). Counts and the coloured curve are hidden while locked.
 - Claims all unverified.
+
+## Revision v2
+
+Input: latest learner review (and fact-check). Log chart argued for the wrong answer. Added a straight-scale bar (perfect vs chosen, "21% of perfect"); gridline label explains each is 1,000 times more; question says PCR copies DNA; stage snaps to 90% in the reveal. c3 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 2, `format` set, edited claims are unverified for the fact-checker.

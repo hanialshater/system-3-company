@@ -46,7 +46,7 @@ function southAmerica(): FeatureCollection<Geometry> {
 
 const REGIONS: { t: string; p: Pt; a?: "end" }[] = [
   { t: "Gulf of Guinea", p: [2, 1.5] },
-  { t: "Horn of Africa", p: [50, 12], a: "end" },
+  { t: "Horn of Africa", p: [51, 11.5], a: "end" },
   { t: "Southern Africa", p: [24, -27] },
 ];
 
@@ -79,7 +79,7 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "Slide South America across to Africa. Where does Brazil's eastern bulge tuck in?",
+        question: "Turn South America across the Atlantic towards Africa. Where does Brazil's eastern bulge tuck in?",
         options: ["Southern Africa", "The Horn of Africa", "The Gulf of Guinea, West Africa"],
         answer: 2,
       }}
@@ -89,13 +89,14 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
         <>
           <p>
             It tucks into the <strong>Gulf of Guinea</strong>, under West Africa&rsquo;s coast near Nigeria and Cameroon.
-            You turned South America as one rigid piece, {ANGLE}° about a single point near 44°N, 30.6°W: the fit
-            Bullard, Everett and Smith published in 1965. The two coasts close up with only small gaps and overlaps.
+            You turned South America as one solid piece, {ANGLE}° about a single point in the North Atlantic, which is the
+            fit Bullard, Everett and Smith published in 1965. The two coasts close up with only small gaps and overlaps,
+            as you saw in the outline.
           </p>
           <p>
             The fit here is rough: their fit used the edge of the continental shelf, not today&rsquo;s beaches, and these
             outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents
-            were once joined; the South Atlantic began opening roughly 130 million years ago.
+            were once joined.
           </p>
         </>
       )}
@@ -115,16 +116,19 @@ export default function ContinentalJigsaw({ slug }: { slug: string }) {
                 {REGIONS.map(({ t, p, a }) => {
                   const q = projection(p)!;
                   return (
-                    <text key={t} x={q[0]} y={q[1]} className={s.region} textAnchor={a ?? "middle"}>
-                      {t}
-                    </text>
+                    <g key={t}>
+                      <circle cx={q[0]} cy={q[1]} r={1.8} className={s.mark} />
+                      <text x={a ? q[0] - 4 : q[0]} y={a ? q[1] + 3 : q[1] - 5} className={s.region} textAnchor={a ?? "middle"}>
+                        {t}
+                      </text>
+                    </g>
                   );
                 })}
                 {tip && <circle cx={tip[0]} cy={tip[1]} r={3.2} className={s.tip} />}
               </>
             )}
           </WorldMap>
-          <p className="muted tiny">Orthographic projection, 1:110m outlines. Grey: today. Blue: South America moved. Red dot: the bulge.</p>
+          <p className="muted tiny">Globe view. Grey: today&rsquo;s coasts. Blue outline: South America as you move it; gaps and overlaps show. Red dot: the bulge.</p>
           <Row>
             <Slider label="Close the Atlantic" value={pct} min={0} max={100} disabled={locked} format={(v) => `${v}%`} onChange={(v) => set(v, interact)} />
           </Row>

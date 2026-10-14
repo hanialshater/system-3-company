@@ -1,7 +1,7 @@
 {
   "slug": "equinox-twelve-everywhere",
-  "title": "The day every place gets 12 hours",
-  "hook": "Summer days are long in the north and winter days short. Is there a day when that stops?",
+  "title": "Day length at 60°N in March",
+  "hook": "Days are short in a northern winter and long in summer. Where does March fall?",
   "domain": "geography",
   "concept": "daylight-by-latitude",
   "status": "review",
@@ -76,6 +76,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "geography.equinox-twelve-everywhere.c7",
+      "text": "On 21 December the daylight at 60°N is about 5.5 hours on the stage.",
+      "support": "derivation",
+      "source": "Same model as c4: hours = 2 acos(-tan(lat) tan(dec))/15 with lat 60, dec -23.44 = 5.51 h (node check); the stage opens on this state (Demo.tsx dayHours). | FACT-CHECK 2026-10-14 (pass 17): Node with Demo.tsx model: declination(0) = -23.44 cos 0 = -23.44; hours = 2 acos(-tan 60 tan(-23.44))/15 = 5.510 h, fmtH '5.5 h'; the stage opens on 21 Dec at 60N. The claim says 'on the stage' (geometric day, no refraction); real Helsinki/Oslo day is near 5 h 50 m with refraction, which the claim does not assert.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -94,12 +103,13 @@
       "company/reviews/equinox-twelve-everywhere/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/equinox-twelve-everywhere/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/equinox-twelve-everywhere/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/equinox-twelve-everywhere/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "geography:daylight-by-latitude",
     "prerequisites": [
@@ -108,5 +118,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "slider-live-chart",
+    "locked-readouts"
+  ]
 }

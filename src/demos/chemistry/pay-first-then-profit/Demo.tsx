@@ -43,9 +43,9 @@ export default function BondLedger({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: `Burning 1 mol of methane: CH₄ + 2 O₂ → CO₂ + 2 H₂O. Breaking the old bonds costs about ${fmt(Math.round(PAID / 50) * 50)} kJ; forming the new ones returns about ${fmt(BACK)} kJ. The net is…`,
-        options: [`releases about ${Math.round(NET / 100) * 100} kJ`, `absorbs about ${Math.round(NET / 100) * 100} kJ`, `releases about ${fmt(Math.round((PAID + BACK) / 100) * 100)} kJ`],
-        answer: 0,
+        question: "Burning methane (CH₄ + 2 O₂ → CO₂ + 2 H₂O) gives out heat. Atoms are held together by bonds. Where does the heat come from?",
+        options: ["Breaking the old bonds releases it", "The new bonds return more energy than breaking the old ones cost", "Forming new bonds releases it, and breaking the old ones costs nothing"],
+        answer: 1,
       }}
       exploreHint="Break the old bonds, then form the new ones. Do all four steps."
       minInteractions={NAMES.length}
@@ -55,7 +55,7 @@ export default function BondLedger({ slug }: { slug: string }) {
             You paid <strong>{fmt(PAID)} kJ</strong> to break the old bonds and got back <strong>{fmt(BACK)} kJ</strong> from the new ones.
           </p>
           <p>
-            The new bonds (C=O and O–H) are stronger in total than the old ones, so {fmt(NET)} kJ is left over as heat: about{" "}
+            The new bonds (2 × 799 + 4 × 463) are stronger in total than the old ones (4 × 413 + 2 × 498), so {fmt(NET)} kJ is left over as heat: about{" "}
             {fmt(NET)} kJ released per mole of methane. Heat comes from the difference, not from breaking bonds.
           </p>
         </>
@@ -73,7 +73,7 @@ export default function BondLedger({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <svg viewBox={`0 0 ${W} 150`} className="stage-svg" role="img" aria-label={`paid ${paid} kJ, returned ${back} kJ`}>
                   <text x={X0} y={16} className={s.small}>
-                    Bond energy: paid to break, returned on forming (average values)
+                    kJ per mole of bonds (1 mole = 6.0 × 10²³ bonds), averages
                   </text>
                   <text x={X0} y={40} className={s.lab}>
                     paid to break: {fmt(paid)} kJ
@@ -90,7 +90,7 @@ export default function BondLedger({ slug }: { slug: string }) {
                 <Row>
                   {GROUPS.map((g) => (
                     <Control key={g.id} onClick={() => press(g.id)} disabled={locked || done.includes(g.id)}>
-                      {g.kind === "break" ? "Break" : "Form"} {g.count} {g.label}
+                      {g.kind === "break" ? "Break" : "Form"} {g.count} {g.label} ({g.count} × {g.each})
                     </Control>
                   ))}
                 </Row>

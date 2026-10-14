@@ -64,8 +64,9 @@ function layout(unit: number) {
 
 export default function IncomeInDollars({ slug }: { slug: string }) {
   const [unit, setUnit] = useState<number>(1);
+  const [chosen, setChosen] = useState(false); // no unit is picked until the learner taps one
   const interactRef = useRef<() => void>(() => {});
-  const { reach } = useMilestones(() => interactRef.current(), ["thousands"]);
+  const { reach } = useMilestones(() => interactRef.current(), ["dollars", "thousands"]);
   const { k, X, Y } = layout(unit);
   const near = nearest(unit);
   const [A, B] = PEOPLE;
@@ -79,8 +80,8 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
         options: ["A", "B", "A tie"],
         answer: 1,
       }}
-      exploreHint="Change the unit income is measured in. Watch who counts as nearest."
-      minInteractions={1}
+      exploreHint="Tap each unit income is measured in. Watch who counts as nearest."
+      minInteractions={2}
       reveal={() => (
         <>
           <p>
@@ -108,31 +109,33 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
                 </clipPath>
               </defs>
               <text x={160} y={12} textAnchor="middle" className={s.small} fill="var(--muted)">
-                Same scale both ways: 1 year = {unitName(unit)}
+                {chosen ? `1 year of age counts like ${unitName(unit)} of income` : "Pick a unit to place everyone"}
               </text>
-              {!locked && (
+              {!locked && chosen && (
                 <g clipPath="url(#iid-clip)">
                   <circle cx={X(QUERY)} cy={Y(QUERY)} r={r} fill="var(--domain)" opacity={0.1} stroke="var(--domain)" strokeDasharray="4 3" />
                   <line x1={X(QUERY)} y1={Y(QUERY)} x2={X(near)} y2={Y(near)} stroke="var(--domain)" strokeWidth={2.5} />
                 </g>
               )}
-              {PEOPLE.map((p, i) => (
+              {chosen && PEOPLE.map((p, i) => (
                 <circle key={i} cx={X(p)} cy={Y(p)} r={p.id ? 6 : 4} fill={p.id ? "var(--fg)" : "var(--muted)"} opacity={p.id ? 1 : 0.7} />
               ))}
-              {[A, B].map((p) => (
+              {chosen && [A, B].map((p) => (
                 <text key={p.id} x={X(p) + 9} y={Y(p) + 4} className={s.label} fill="var(--fg)">
                   {p.id}
                 </text>
               ))}
-              <rect x={X(QUERY) - 6} y={Y(QUERY) - 6} width={12} height={12} fill="var(--domain)" transform={`rotate(45 ${X(QUERY)} ${Y(QUERY)})`} />
-              <text x={X(QUERY) - 10} y={Y(QUERY) + 4} textAnchor="end" className={s.label} fill="var(--domain)">
-                you
-              </text>
+              {chosen && <rect x={X(QUERY) - 6} y={Y(QUERY) - 6} width={12} height={12} fill="var(--domain)" transform={`rotate(45 ${X(QUERY)} ${Y(QUERY)})`} />}
+              {chosen && (
+                <text x={X(QUERY) - 10} y={Y(QUERY) + 4} textAnchor="end" className={s.label} fill="var(--domain)">
+                  you
+                </text>
+              )}
               <text x={BX1} y={230} textAnchor="end" className={s.tiny} fill="var(--muted)">
                 age →
               </text>
               <text x={6} y={230} className={s.tiny} fill="var(--muted)">
-                ↑ income ({unitsLabel(unit)})
+                ↑ income{chosen ? ` (${unitsLabel(unit)})` : ""}
               </text>
             </svg>
             <Row>
@@ -140,11 +143,13 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
               {UNITS.map((u) => (
                 <Control
                   key={u}
-                  className={unit === u ? "active" : ""}
-                  aria-pressed={unit === u}
-                  disabled={locked || unit === u}
+                  className={chosen && unit === u ? "active" : ""}
+                  aria-pressed={chosen && unit === u}
+                  disabled={locked || (chosen && unit === u)}
                   onClick={() => {
                     setUnit(u);
+                    setChosen(true);
+                    if (u === 1) reach("dollars");
                     if (u === 1000) reach("thousands");
                   }}
                 >
@@ -152,10 +157,19 @@ export default function IncomeInDollars({ slug }: { slug: string }) {
                 </Control>
               ))}
             </Row>
+            {!locked && chosen && (
+              <p className={s.small}>
+                {[A, B].map((p) => (
+                  <span key={p.id}>
+                    {p.id}: age gap {Math.abs(p.age - QUERY.age)}, income gap {fmt(Math.abs(p.income - QUERY.income) / unit)} → {fmt(dist(p, unit))}.{" "}
+                  </span>
+                ))}
+              </p>
+            )}
             <Row>
-              <Readout label="Nearest" value={locked ? "–" : near.id} />
-              <Readout label="A away" value={locked ? "–" : fmt(dist(A, unit))} />
-              <Readout label="B away" value={locked ? "–" : fmt(dist(B, unit))} />
+              <Readout label="Nearest" value={locked || !chosen ? "–" : near.id} />
+              <Readout label="A away" value={locked || !chosen ? "–" : fmt(dist(A, unit))} />
+              <Readout label="B away" value={locked || !chosen ? "–" : fmt(dist(B, unit))} />
             </Row>
           </div>
         );

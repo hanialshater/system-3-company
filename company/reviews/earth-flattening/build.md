@@ -7,3 +7,15 @@
 - Key state: back at true scale (x1) after seeing x100. At true scale the two outlines are indistinguishable, about 0.3 px apart. Milestones: "squashed" (k >= 10) and "true-scale" (k = 1 after squashed). Chips run x100, x10, x1 in DOM order, so QA reaches both milestones.
 - Locked: both mm readouts show "?". The stage starts at x1, which shows a circle and gives nothing away.
 - Iteration: the caption overlapped the bottom of the outline, so I enlarged the viewBox. I cut stage text to under 25 words (dropped a px note).
+
+## Revision v2
+
+Why: learner review (2026-10-13, v1, revise).
+- Chimborazo against Everest is now shown: a button reveals both distances from the Earth's centre (third milestone). 43 km, 0.34 percent and the 21 km bulge are readouts.
+- WGS84 and "flattening" removed from the stage text; caption says "real shape, its squash multiplied by k".
+- Claims unchanged in text (all still match the stage); version bumped for the stage change.
+
+## Revision v3 (wave C builder 13, 2026-10-14)
+
+- Review (r2): the locked stage drew the real-shape ellipse at true scale, ruling out the large options. Fix: the solid ellipse, axis and pole label are hidden until unlock; only the dashed ball shows while predicting.
+- Edited claims were reset to unverified and match the stage text; version bumped. Local QA run; walkthrough sheet looked at.

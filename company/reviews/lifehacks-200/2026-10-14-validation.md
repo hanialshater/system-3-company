@@ -10,12 +10,45 @@ Exactly 200 distinct lesson folders and globally unique slugs: 70 home, 70 study
 predict → explore → reveal, addressed claims, recall, curriculum links, registered
 format/interaction IDs and the existing kit. No dependencies or protected paths changed.
 
-The latest integration checkpoint is upstream `aef5a704`. It retains the 14 CS
+The initial PR integration checkpoint was upstream `aef5a704`. It retained the 14 CS
 lessons and phone reveal sizing from `2c9c9e5`, plus subsequent unrelated lesson
-fixes and company records. Shared UI and Life Hacks source match the final tested build. The complete app has 723 lessons. This PR adds
+fixes and company records. At that checkpoint, shared UI and Life Hacks source matched the initial tested build. The complete app has 723 lessons. This PR adds
 the 200 Life Hacks and preserves upstream work.
 
-## Final computer-use evidence
+## Follow-up integration: `840ba7ad`
+
+The branch now includes upstream `840ba7ad`, including the shared color tokens and
+reveal resize/scroll fixes from `77c95b1f`, and the later company-role addition.
+The 200-lesson inventory, teaching content, claims and pure models are unchanged.
+The label-search target alone uses a bright shape fill plus dark ink to retain
+contrast under the new semantic color tokens.
+
+- Full app regression on the merged `77c95b1f` layout, before that small fill repair:
+  **1456/1456 browser tests passed in 21.2 minutes**, zero failures, skips or retries.
+  This includes all 200 Life Hacks on phone/desktop and both feed suites.
+- The final label-search repair passed **two additional phone/desktop contracts**
+  against a rebuilt production app. Four real searches measured **10.04:1** target
+  contrast across phone/desktop and light/dark. See the dedicated integration record.
+- The 17 deployment fixtures and 48 Life Hacks fixtures passed. Check reported
+  723 lessons, 3622 claims and zero warnings at `77c95b1f`; the earlier upstream
+  disputed claims were resolved there. Check/typecheck/build passed after the fill repair.
+  After including `840ba7ad`, check again passed with 723 lessons, 3622 claims,
+  82 roles and zero warnings; TypeScript and the final production build passed.
+- A concurrent second build exited 137 while the full browser sweep ran. Its
+  serial retry after the sweep passed; the final contrast evidence uses that successful build.
+- Earlier GitHub CI on `19e0932b` also passed constitution and all 1456 browser checks.
+- Vercel's PR bot reports `api-deployments-free-per-day` (more than 100 deployments),
+  asking to retry in 24 hours. This is a preview quota blocker; no preview URL or
+  production deployment is claimed.
+
+Upstream board items and the exact latest event-log prefix are preserved. Life Hacks
+work IDs are now **W-176** (PR), **W-177** (fact-checking) and **W-178** (remaining
+learner/safety review); an append-only correction retains the older event history.
+All 200 lessons remain review with all 883 claims unverified. Specialist reviews
+remain scoped to their recorded artifacts; the fresh technical run is not a new
+human-learning, whole-collection accessibility or publication approval.
+
+## Initial 200-lesson computer-use evidence
 
 Browser build `a60d245`, after the final upstream merge:
 
@@ -40,7 +73,7 @@ on phone and desktop: **18 passed**. These captures are explicitly scripted UI
 evidence, not human learning or retention evidence. They use build `64b7b1e`;
 the later upstream change affects lesson reveal layout, not the revisit component.
 
-Three company-check warnings originate in upstream CS lessons:
+Three company-check warnings were present at the initial checkpoint in upstream CS lessons:
 `median-without-sorting`, `rsa-lock-with-public-key`, `two-pointers-meet` have disputed
 claims. None is a new Life Hacks warning. No unrelated lesson code or protected path
 differs from the final upstream checkpoint.
@@ -69,8 +102,8 @@ The category remains incubating. No fact-check, accessibility clearance, human-l
 result, publication, activation or deployment is inferred from technical QA or simulated
 learner recommendations.
 
-`W-152` is the delivered PR work. `W-153` owns independent source/claim checking.
-`W-154` owns remaining artifact/learner reviews and specific findings, including towel
+`W-176` is the delivered PR work. `W-177` owns independent source/claim checking.
+`W-178` owns remaining artifact/learner reviews and specific findings, including towel
 baseline/flux visibility, table continuity/variants, laundry framing, abstract cord
 geometry, selection highlights, queue waiting trade and mechanism-specific recall.
 

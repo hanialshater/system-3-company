@@ -3,18 +3,151 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14 · chief-of-staff · PR 2 sync and completed browser regression
+
+- Changed: synchronized PR 2's source with upstream `840ba7ad`, retaining newer lesson fixes, shared color/reveal improvements and the company-role addition. Preserved all 175 upstream board items and the full event prefix. Life Hacks IDs are W-176 (review), W-177/W-178 (backlog). Repaired one target tile's fill/text contrast in `AlphabetSearchLesson.tsx`; no lesson behavior or claims changed.
+- Verified: full merged-layout browser regression 1456/1456, zero retries; final target repair two phone/desktop contracts plus four actual computed-color checks at 10.04:1. 17 deployment and 48 Life Hacks fixtures passed; check/typecheck/build passed on the repaired source. The initial concurrent rebuild exited 137; a serial retry passed. Records: `company/reviews/lifehacks-200/2026-10-14-validation.md`, `company/reviews/alphabet-sort-search/2026-10-14-integration-contrast.md`.
+- Believe: high confidence in tested contracts and the one target contrast pair. All 200 remain review with 883 unverified claims. No broad accessibility, factual, human-learning or publication clearance follows from this run.
+- Next: independent fact-checking and remaining reviews via W-177/W-178. PR 2 remains open for review; branch update reruns GitHub CI. Original head's constitution/verify checks succeeded.
+- Blocked: Vercel's bot reports the daily 100-deployment quota (`api-deployments-free-per-day`), retry in 24 hours. No working preview or production deployment is claimed.
+
+## 2026-10-14 · interaction-designer · specs for a-star-heads-for-goal and rubber-band-hull (CS algorithms, group 6)
+- Changed: wrote `company/design/specs/a-star-heads-for-goal.{md,svg}` (before/after: guess chips + wall toggle, replayed runs, result table) and `company/design/specs/rubber-band-hull.{md,svg}` (step-through: the 9 pins are the controls in walk order, no finish button). Board untouched (caller's instruction).
+- Believe (high): both briefs' answers re-run in node: A* 7 vs Dijkstra 31 on the open grid, any tie-break; hull 6 pins, 4 right-turn pops in Graham order. Medium: whether the design lead accepts replay buttons ("Settle to goal") as not being a jump to the answer.
+- Brief problem (rubber-band-hull, owner cm-cs-algorithms): (0,0) and (6,0) tie for lowest, so the "extremes" are 5 pins, not 4; option A (4) does not match a careful misconception. Suggested fix (6,0)->(6,1): still 6 hull pins. Wall result in A* (16) depends on the tie-break (FIFO gives 32).
+- Next: design review of both specs (design-lead); brief-owner decision on the hull tie. Blocked: nothing.
+
+## 2026-10-14 · platform-engineer · W-139 follow-ups: verify on the merged tree, rotation re-fit, no pull-back
+- Changed: `src/components/DemoCard.tsx` (`useRevealFit` re-fits on card-body resize and orientationchange while the reveal shows; no auto-scroll once the learner has scrolled after the reveal, and rotation re-arms it), `tools/reveal-fit.mjs` (`--rotate WxH`), changelog, follow-up status appended to company/rituals/records/2026-10-14-eng-review-W-135.md. Board: W-135 → done; added W-143 (feed measurement, me), W-144 (landscape layout, design-lead), W-145 (four-queens-pruning thumb, moon-hammer-feather unmeasurable, demo-builder). Committed in the worktree, not pushed.
+- Verify: on the merged tree (before my change) 1056/1056 QA (one run was split by a 2 h tool limit: 1038 + the 18 it had not reached), deploy tests, check, typecheck and build all passed. No revert. After my change, full verify passed again with 1056/1056.
+- Reveal fit (all 523): portrait 515 fit / 0 clip / 7 thumb / 8 unmeasurable. Rotated to 844×390: 0 clip, top always visible, but 495 need a scroll and 325 are thumbs, because the landscape body is ~164px. That limit is in the layout, not the hook (W-144).
+- Believe (high): the pull-back is fixed (reproduced in the old build on base-rates and tax-who-pays, gone in the new one), and rotation re-fits. Medium: touch-drag detection on real phones. Only wheel input was tested; a touchmove listener covers drags in principle.
+- Gotcha for the next worker: a full QA run takes 1.2-2 h on this box. Run it detached (setsid nohup) or it hits the 2 h background-tool limit.
+- Next: W-143 feed measurement (me); W-141 contract assertion (evaluation-steward); W-142 focus amendment (accessibility-reviewer). Blocked: nothing.
+
+
+## 2026-10-14 · fact-checker · Pass 18: wave C life, economics, probability and builder-12 claims (56 claims, 32 lessons)
+
+- Changed: 56 unverified claims set to verified (checkedBy fact-checker) in 32 meta.json files. A "## Pass 18" table was added to company/reviews/<slug>/2026-10-14-fact-check.md for each lesson. Skipped half-of-humanity c1 and continental-jigsaw c1 because they need a human source check. Disputed claims were not touched. one-recipe-for-sixty and hanoi-tower-doubles had no open claims.
+- Belief (sure for the derivations and simulations): every number was re-run in my own scratch scripts. Each Demo.tsx was read, and its stage and reveal match the claims. Less sure on protein c6 (folding times) and spreaders c4 (Lloyd-Smith 2005): I checked them through secondary sources, not the full papers.
+- Non-blocking builder fixes: median-without-sorting c3 text says "position 5" but should say 51. one-in-four-sprouts c4 source mentions a removed "New field" control. fee-on-two-week-loan never shows the learner its 364-day year. dilute step 23 shows 15 of 20 empty, a tail draw. protein c6 wording could say "microseconds to seconds".
+- Next: chief of staff routes the non-blocking fixes to builders, and gets a human for the two source checks.
+
+## 2026-10-14 · demo-builder (wc-builder-10) · wave C revisions of 15 life lessons
+
+- Changed: dish-runs-out, herd-immunity, hidden-carriers, keeping-the-bad-gene, natural-selection, one-in-four-sprouts, pcr-not-quite-doubling, pesticide-paradox, potassium-battery, protein-search-space, purging-slows-down, saturated-enzyme, spreaders-are-rare, strategy-builder, tree-count-explodes. Each got its latest learner review's findings fixed, a version bump, `format`/`interactions`, reworded claims reset to unverified, and a "Revision v<N>" in company/reviews/<slug>/build.md. None was published; none already said launch.
+- Belief (fairly sure): contract QA passes on phone and desktop for all 15 (feed-chips failure is the known W-136); I looked at every walkthrough sheet. Not sure: learners may still find strategy-builder's stage dense on a phone.
+- Next: fact-checker re-verifies the unverified claims; learner re-review of v-new; potassium-battery and protein-search-space gained new claims (c7).
+
+
+## 2026-10-14 · demo-builder (wc-builder-11) · wave C revisions of 15 economics and probability lessons
+- Changed: bathtub-deficit-debt, bond-seesaw, cheese-for-bread, compound-interest, deduction-or-credit, exchange-round-trip, extra-hundred-a-month, fee-on-two-week-loan, free-rider-pot, loaf-with-smoke, real-rate-illusion, square-root-wealth, twenty-dollar-basket, average-that-never-settles, bet-too-much-and-go-broke. None was published; all had a "revise" review. Versions bumped, format and interactions added, edited claims unverified, "Revision v<N>" in each build.md.
+- Believe: the review findings are fixed (leaks, unvisited-state quotes, told payoffs, undefined terms); fairly sure, needs fresh learner reviews. Contract QA passes on all 15 (phone and desktop); I looked at every walkthrough sheet.
+- Judgement calls: square-root-wealth has a "Slide to the coin's line" button (generic label, but it does land on the key state); exchange-round-trip has a "Try $1.11" button; real-rate-illusion slider now steps whole percents; bet-too-much gained a 30% stake (its 982/1000 seed sweep was for five stakes).
+- Next: fact-checker on the unverified claims; learner reviews. Open: cheese-for-bread locked stage clips the last slider on a phone (kit layout, W-135 family).
+
+
+## 2026-10-14 · fact-checker · Pass 16: wave C AI revisions (20 claims, 11 lessons)
+- Changed: claim statuses in 11 src/demos/ai/*/meta.json; "## Pass 16" in company/reviews/<slug>/2026-10-14-fact-check.md for each. Board not touched (as instructed).
+- Believe (high): 18 verified by own node re-derivation/simulation; 2 disputed: greedy-slot-machine c3 (stage shows seed 5 first pulls "A lost, B lost", claim says A won) and memorise-coin-flips c3 (degree-1 miss is 158/105 = 1.50 on stage, claim says 1.51). Builder 7's dilute c7 and point-one c3 were already verified in pass 15. Non-blocking advisories in the records (attention "lowers the others", confident-and-wrong clamped last halving, income source "ever").
+- Next: demo-builder fixes the two claim texts; fact-checker re-checks. Skipped by instruction: half-of-humanity c1, continental-jigsaw c1 (need human source access).
+- Blocked: nothing new.
+
+## 2026-10-14 · demo-builder (wc-builder-8) · wave C revisions of 13 AI lessons
+- Changed: attention-shares-one, background-shortcut, confident-and-wrong, copy-of-a-copy, direction-not-distance, dog-bites-man-twice, five-folds-five-scores, gradient-descent, greedy-slot-machine, income-in-dollars, king-queen-arrow, meaning-without-the-word, memorise-coin-flips (version bumped, edited claims unverified, "Revision v<N>" in each build.md). bad-start-kmeans (v2) and draw-the-xor-lines (v3) were already revised after their latest review; untouched.
+- Believe: leaks, unvisited-state quotes, told payoffs, undefined terms fixed per the reviews (fairly sure; simulated-learner review needed). Contract QA passes on all 15 (phone and desktop); only the known feed-chips failure (W-136).
+- Next: fact-checker on the unverified claims (esp. king-queen-arrow c5, greedy c3/c4, memorise c4); a fresh learner review of each. Open: locked-stage charts in dog-bites-man-twice and meaning-without-the-word are small (kit layout).
+
+
+## 2026-10-14 wave C, builder 7: revisions of 11 lessons
+
+Changed (see "Revision v<N>" in each company/reviews/<slug>/build.md): cut-the-cube-surface, dilute-until-none-left, heavy-but-floats, pay-first-then-profit, filament-vs-led-heat, pendulum-period, projectile-angle, puck-on-ice-no-push (phone clip: reveal-phase `.stage-svg {flex: none}` rule widened the lanes), point-one-is-26-percent (c3), collect-all-six-faces, tournament-second-best. QA passes except the known feed-chips failure (W-136). I believe the fixes work (walkthrough sheets and a phone probe seen); fairly sure. Edited claims are unverified (dilute c7 new, point-one c3): fact-checker next. Open: pendulum gate still needs only the weight trial (no one-tap path for a second trial); re-review wanted for all 11. collect-all-six-faces had no stuck label in the current code.
+
 ## 2026-10-14 · chief-of-staff · 200 Life Hacks review collection and PR
 
-- Changed: exactly 200 new Life Hacks (70 home, 70 study, 60 resource), shared pure models and responsive SVG stages, 200 QA records, curriculum coverage and metadata v2. Latest upstream checkpoint `aef5a704` retained, including its 14 CS lessons and shared reveal sizing; app total 723. Work is W-152 in review.
+- Changed: exactly 200 new Life Hacks (70 home, 70 study, 60 resource), shared pure models and responsive SVG stages, 200 QA records, curriculum coverage and metadata v2. Latest upstream checkpoint `aef5a704` retained, including its 14 CS lessons and shared reveal sizing; app total 723. Work is W-176 in review.
 - Verified: 17 deployment fixtures, 48 Life Hacks fixtures, check/typecheck/build; final 410 browser tests (400 contracts plus 10 feed tests), zero retries. Nine revised recalls also passed 18 real phone/desktop revisit checks with seeded history. Protected paths and unrelated lesson code match the final upstream checkpoint. Company check passes with three upstream CS disputed-claim warnings.
 - Independent findings: 200 safety transcript reads and 20 focused main sheets, 21 artifact-first learner samples, and specific design rechecks. Latest sampled learner recommendations are 13 launch / eight revise / zero fatal against their recorded versions. Detailed scopes, hashes and limitations are in `company/reviews/lifehacks-200/` and the design handoff; these are not human-learning results.
 - Believe now: high confidence in the tested browser contract and stipulated calculations; no empirical, accessibility or general factual clearance is inferred. All 200 remain review, confidence empty, all 883 claims unverified; Life Hacks stays incubating. Source snapshots preserve the earlier audited builds in the PR history.
-- Next: W-153 (fact-checker) independently checks addressed claims in batches of at most 15; W-154 (learner-evaluator with designer/safety support) closes specific remaining findings and reviews the other 179 lessons. First-five incubation, human-learning and publication gates remain in force. No merge, publication or deployment performed for this task.
+- Next: W-177 (fact-checker) independently checks addressed claims in batches of at most 15; W-178 (learner-evaluator with designer/safety support) closes specific remaining findings and reviews the other 179 lessons. First-five incubation, human-learning and publication gates remain in force. No merge, publication or deployment performed for this task.
 - Handoff: `content/collections/lifehacks-200.json`, `company/reviews/lifehacks-200/2026-10-14-validation.md`, dated safety/learner indices, and `company/design/specs/lifehacks-design-handoff.md`.
 
 Template:
 
 ```markdown
+
+## 2026-10-14 · rnd-lead (Bram) · Knots gen 1 scored, judged, selected: winner `gen1-force`; stop rule says promote
+- Changed: `company/rnd/evolution/knots-gen1.md` (the record). New looks gate in `src/lab/knots/test/draw.test.mjs`: table knots must draw round, with at most 30 % straight runs and 3 % sharp corners; now 102 tests. 24 eval records in `knots.jsonl`. Board not touched (as instructed); nothing committed.
+- Believe:
+  - **Official scores.** 3 one-seed runs, no slowness penalty in any. Medians: gen0 10,394.54; tutte 10,438.80; force 10,439.68; ortho 10,443.07. That is a tie within seed noise.
+  - **Rulings.** The ortho stretch is fair, and the aspect metric is unchanged. Only force still draws table knots like the textbook (rendered and looked at).
+  - **Re-score with the looks gate.** force 10,533.49; gen0 10,491.86; tutte and ortho gated out. High confidence in the ranking; medium on whether looks should be a gate rather than a weight.
+  - **Audit.** Every candidate changed only mutable files, and none games the bench. Tutte's internal score copies the bench formula: allowed, and flagged.
+- Next: gen 1 gains 0.26–0.47 % of total score, under the 2 % stop rule, so I recommend promoting `gen1-force` (EDD, then a principal-engineer review). The VP should rule on my objection that the 2 % rule cannot be met on this score scale (+15 % on the bench term). A gen-2 plan (ortho→force crossover plus 2 mutations) is in the record if she rescales it.
+- Blocked: VP ruling on the stop-rule scale.
+
+## 2026-10-14 · rnd-engineer · Knots gen 1 slot A: `gen1-tutte` (reweighted Tutte of a triangulation + guarded stress)
+- Changed: new `src/lab/knots/candidates/gen1-tutte/`, a full copy of gen0-baseline. Only `draw.mjs`, the new `layout.mjs` and `index.d.ts` differ. The candidate's NOTES.md has the idea, the prior art and the numbers. Committed in my worktree, not pushed. I added nothing to the archive: my eval lines were reverted.
+- Believe:
+  - It passes every gate: 101/101 tests, random-knot lesson 11,794 B of 12,288.
+  - It beats gen 0 by +38 to +55 on seeds 1–3: 10,451 / 10,439 / 10,430 against 10,409 / 10,401 / 10,375. Spacing goes from 7–9 to 11.7–13.2, spread from 29–38 to 49–53, and there are no extra crossings. High confidence in the direction.
+  - Medium confidence on the lead's run: on a heavily loaded machine, `layoutSlowPenalty` could take back 10–50 points. It costs about 2× gen 0's CPU.
+  - Table knots look less textbook than circle packing.
+- Next: the lead scores all three slots in one run. A crossover could add packing for diagrams where it is planar, or slot B's repulsion in place of my revert guard.
+- Blocked: nothing.
+
+
+## 2026-10-14 · demo-builder · Colour fixes in 18 published lessons (W-155)
+- Changed: stage and text colours only, in the 18 lessons that still failed contrast after the kit token fix. Per-lesson notes in `company/reviews/<slug>/build.md`. No claims or pedagogy touched; no version bump.
+- Believe (high): a11y scan on a build of this branch shows no lesson-origin contrast failure in any of the 18; lesson QA passes except the known feed-chips failures (W-136); `npm run check` passes.
+- Not fixed (not colour): collect-all-six-faces SVG label stuck at "0 rolls"; tournament-second-best label "Knockout bracket" never changes; 6 px text in line-stops, two-suspects, start-early-race.
+- Next: accessibility-reviewer re-scans the 18 slugs and updates their records.
+
+
+## 2026-10-14 · rnd-engineer (slot C) · Knots gen 1: `gen1-ortho` candidate written (orthogonal grid layout)
+- Changed: `src/lab/knots/candidates/gen1-ortho/` (a copy of gen0-baseline; only `draw.mjs`, `index.d.ts` and `NOTES.md` differ).
+  - Tamassia min-cost-flow bends, rectangular refinement, balanced longest-path compaction;
+  - bends drawn as rounded corners;
+  - circle packing and Tutte removed.
+- Believe:
+  - 101/101 tests; lessons about 170 B smaller than gen 0.
+  - Layout term 262.8 / 259.3 / 261.8 on seeds 1–3 (gen 0: 220 / 212 / 196). There are 0 extra crossings on 8 seeds and 227 stress diagrams.
+  - Hand-computed score: about 10,438–10,448.
+  - High confidence in planarity (every face is a rectangle). Medium confidence in the official score, because `evolve.mjs eval` was blocked by this session's command guard and the lead's run will be the first.
+- Next (rnd-lead): score all three slots in one run. Judge whether the square stretch (aspect 100) is a layout choice or metric-fitting (NOTES.md, "Surprise 2"). The table knots now look rectilinear; that is a product call.
+- Blocked: nothing.
+
+
+## 2026-10-14 · fact-checker · Fact-check pass 12 (wave C CS revisions)
+- Changed: 38 unverified claims across 15 CS lessons set (36 verified, 2 disputed), each with a `FACT-CHECK 2026-10-14 (pass 12)` note in its source; Pass 12 tables in `company/reviews/<slug>/2026-10-14-fact-check.md` (also salt-ions-count-double and cards-do-remember, re-confirmed unchanged).
+- Disputed: big-number-swallows-one c2 ("2 multiplied by itself 53 times" reads as 2^54; use "53 twos multiplied together" in claim and predict); binary-search c5 (stage flags weak only if after*2 > before+1, so 500 of 999 is not called weak; use after*2 > before).
+- Believe (high): all numbers re-derived in node (scratchpad fc12/check.mjs). Book/spec citations not opened (egress blocked).
+- Next: builder fixes the two disputes, fact-checker re-checks. Blocked: half-of-humanity c1 and continental-jigsaw c1 still need a human source check.
+
+## 2026-10-14 · rnd-lead (Bram) · Knots evaluator fixed (W-143, W-144); gen 1 brief ready
+- Changed:
+  - `tools/evolve.mjs`, backward compatible:
+    - per-lesson size gate (`sizeEntries`, stripped closures found by Node's loader);
+    - `benchWeights`;
+    - `mutable` frozen-file check, plus mandatory `parents` registration;
+    - one bench seed per eval run (`EVOLVE_SEED`, archived);
+    - the board ranks each candidate's latest record and warns when seeds differ;
+    - refuses `import()`/`require()`;
+    - new `size` and `selftest` commands (selftest passes).
+  - `src/lab/knots` evaluator:
+    - `evolve.json`: lesson budget 12,288 B stripped, library 16,384, gen-1 weights and mutable files;
+    - `test/lessons/` (4 entries) and `lessons.test.mjs`;
+    - `test/benchgen.mjs`, evaluator-only generators, and `benchgen.test.mjs`;
+    - `test/benchdata.mjs`: 10 no-move hard unknots, a knotted decoy, the monster, Gordian;
+    - `bench.mjs` rewritten so every input is generated at bench time.
+  - README baseline paragraph; `company/rnd/evolution.md` (mechanics section). New: `company/rnd/evolution/knots-gen0.md` and `knots-gen1-brief.md`.
+- Believe:
+  - gen0-baseline now scores **10,415.83** (101/101 tests, mean lesson 8,036 B, bench 331.91; was 0, gated out). High confidence in the gates and the generators: the tests pin them to the library, and Regina certified the hard set offline.
+  - Medium confidence in the 12,288 calibration: stripped runs 1.18–1.9× over the real cost.
+  - The bench term varies about ±15 by seed, so always score a selection in one run.
+- Next: dispatch 3 rnd-engineers for gen1-tutte, gen1-force and gen1-ortho (brief: `company/rnd/evolution/knots-gen1-brief.md`), then score all three in one `eval` run. Board items W-143 and W-144 can close, but I did not touch `board.json` (caller's instruction); the chief of staff moves them.
+- Blocked: the arXiv hard-unknot datasets (egress).
+
 
 ## 2026-10-14 · fact-checker · Pass 10: 14 new CS algorithm lessons + 5 reworded claims
 - Changed: claim statuses (checkedBy fact-checker, checkedOn 2026-10-14) in src/demos/cs/{caesar-falls-to-frequency,no-zip-shrinks-everything,two-pointers-meet,fair-shuffle-trap,probing-clusters-grow,shortest-job-first-wait,four-queens-pruning,rsa-lock-with-public-key,patience-piles,median-without-sorting,union-find-shortcut,start-after-the-deficit,uphill-finds-a-peak,undo-a-bad-push}/meta.json and the five re-checked claims; recorded one unrecorded stage claim (rsa c7). Records: company/reviews/<slug>/2026-10-14-fact-check.md for all 19 lessons.

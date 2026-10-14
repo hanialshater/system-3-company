@@ -76,6 +76,15 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.free-rider-pot.c7",
+      "text": "If the other nine each give $10 and you give $0 instead of $10, you end with $37 (up from $30) and the group with $280 (down from $300).",
+      "support": "derivation",
+      "source": "pot 90 x 3 / 10 = 27 each; you 10 + 27 = 37; others 0 + 27 = 27 x 9 = 243; group 280 (node; Demo.tsx payoffs()).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -94,12 +103,13 @@
       "company/reviews/free-rider-pot/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/free-rider-pot/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/free-rider-pot/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/free-rider-pot/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:public-goods-free-rider",
     "prerequisites": [
@@ -108,5 +118,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-drives-live-chart",
+    "preset-buttons",
+    "milestone-gate"
+  ]
 }

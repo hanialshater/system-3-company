@@ -16,3 +16,8 @@
 ## v3 (revision 2026-10-13)
 
 - Review: displayed +5% did not match 91 to 95 busy (+4.4%). Fix: gain computed from the same rounded busy counts as the stage (95/91 = +4%, 67/50 = +34%); claims c2 and c3 reworded and set unverified; 'share of top' relabelled '% of max'.
+
+## Revision v4
+
+Input: latest learner review (and fact-check). "Top" speed undefined, jargon slider label, close distractors. Locked caption says top speed is all 100 busy; readout "% of top speed"; slider label "1 = half the enzymes busy"; options read "100% faster (2 times)", "50% faster", "4% faster". c4 reworded, unverified.
+QA: contract passes on phone and desktop; walkthrough sheet looked at. Version bumped to 4, `format` set, edited claims are unverified for the fact-checker.

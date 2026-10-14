@@ -1,7 +1,7 @@
 {
   "slug": "attention-shares-one",
   "title": "Attention is a fixed pie",
-  "hook": "Point the query straight at one word. Does that word get all the attention?",
+  "hook": "A query sits between two words. How does attention split among three?",
   "domain": "ai",
   "concept": "attention-weights",
   "status": "review",
@@ -52,12 +52,12 @@
     },
     {
       "id": "ai.attention-shares-one.c4",
-      "text": "The weights always add to 100%, so raising one word's weight lowers the others; the blend arrow is the weighted average of the word arrows.",
+      "text": "The weights always add to 100%, so raising one word's weight lowers the others; the red blend arrow is the average of the word arrows, each counted in proportion to its share.",
       "support": "derivation",
-      "source": "Softmax divides each term by the sum of all terms, so the weights sum to 1 by construction; blend = Σ weightᵢ · arrowᵢ in attend().",
+      "source": "Softmax divides each term by the sum of all terms, so the weights sum to 1 by construction; blend = Σ weightᵢ · arrowᵢ in attend(). | FACT-CHECK 2026-10-14 (pass 16): node (fc16/check.mjs, own softmax): weights sum to 1 within 2e-16 at every slider angle 0..355; 45 deg gives 44.6/44.6/10.8%, 0 deg gives A 66.5% (stage and reveal agree). Demo.tsx attend(): blend = sum of weight_i x unit arrow_i, drawn in var(--bad) (#ff7a7a / #b8222a: red). Advisory, non-blocking: 'lowers the others' holds for the others combined; in 36 of 71 five-degree slider steps two weights rise together while the third falls (e.g. 180 to 135 deg). Suggest 'lowers the rest'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.attention-shares-one.c5",
@@ -86,12 +86,13 @@
       "company/reviews/attention-shares-one/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/attention-shares-one/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/attention-shares-one/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/attention-shares-one/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:attention-weights",
     "prerequisites": [
@@ -100,5 +101,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-live-chart",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

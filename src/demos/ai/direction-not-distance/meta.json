@@ -82,12 +82,13 @@
   "evidence": {
     "qa": [],
     "simulatedLearner": [
-      "company/reviews/direction-not-distance/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/direction-not-distance/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/direction-not-distance/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 3,
   "curriculum": {
     "primary": "ai:cosine-similarity",
     "prerequisites": [
@@ -96,5 +97,11 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "slider-live-chart",
+    "milestone-gate"
+  ]
 }

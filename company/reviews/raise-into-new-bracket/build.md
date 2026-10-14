@@ -7,3 +7,10 @@ builder: demo-builder · 2026-10-13
 - Readouts: take-home, change vs $19,000 pay (+$1,600 at the key state) and average tax (11.0%). All are hidden while locked.
 - After the screenshots: the $1,000 above the line is a thin sliver at this scale, so I added a "← 30% only here" pointer (inside the band once pay is above $32,000).
 - c5 notes that real benefit phase-outs can create effective rates above 100% in places. Not modelled; flagged for the fact-checker in case the reveal's "more pay always means more take-home" needs a scope phrase beyond "in this system".
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- same fill change as monopolist-holds-back ("keep 90%").
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+

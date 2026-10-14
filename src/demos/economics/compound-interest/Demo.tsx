@@ -75,10 +75,8 @@ export default function CompoundInterest({ slug }: { slug: string }) {
             decade&apos;s {money(FIRST_DECADE)}: each decade added about twice the one before.
           </p>
           <p>
-            Keeping the first decade&apos;s pace (the dashed line) ends near {hundreds(straight(40))}. Plain 7% of $1,000
-            a year is $2,800 of interest: a balance of {money(simple(40))}. The other{" "}
-            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. At 7%
-            the balance roughly doubles every ten years, and doubling is not a straight line.
+            Plain 7% of $1,000 a year gives {money(simple(40))} (the plain-7% readout); keeping the first decade&apos;s pace (dashed line) ends near {hundreds(straight(40))}. The other{" "}
+            <strong>{money(balance(40) - simple(40))}</strong> is interest earned on earlier interest, the top layer. The balance roughly doubles every ten years, and doubling is not a straight line.
           </p>
           <p className="muted">A model: a steady 7% with no fees, taxes or inflation. Real returns wobble.</p>
         </>
@@ -150,7 +148,7 @@ export default function CompoundInterest({ slug }: { slug: string }) {
                 <i className={s.swSimple} /> 7% of $1,000
               </span>
               <span>
-                <i className={s.swCompound} /> interest on interest
+                <i className={s.swCompound} /> interest on past interest
               </span>
               <span>
                 <i className={s.swStraight} /> first decade&apos;s pace
@@ -170,7 +168,8 @@ export default function CompoundInterest({ slug }: { slug: string }) {
 
             <Row>
               <Readout label={`Balance, ${years} yrs`} value={money(b)} />
-              <Readout label="Interest on interest" value={money(ioi)} />
+              <Readout label="Plain 7% only" value={money(simple(years))} />
+              <Readout label="Interest on past interest" value={money(ioi)} />
             </Row>
             <Slider label="Years" value={years} min={0} max={YEARS} disabled={locked} onChange={setT} />
             <Row>

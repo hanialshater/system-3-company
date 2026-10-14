@@ -9,7 +9,7 @@
 
 import { useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
-import { Readout, Row, Slider } from "@/kit/controls";
+import { Control, Readout, Row, Slider } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
@@ -49,6 +49,8 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
     if (t.cheeses >= EVEN.cheeses && t.loaves > EVEN.loaves) reach("more-of-both");
   };
   const t = totals(anaBread, benCheese);
+  // Ana's most bread hours (in 2-hour blocks) that still leave the even split's cheese count.
+  const spare = [8, 6, 4, 2, 0].find((a) => totals(a, benCheese).cheeses >= EVEN.cheeses) ?? 0;
   const better = t.cheeses >= EVEN.cheeses && t.loaves > EVEN.loaves;
 
   // For each person, which hours are bread (true) or cheese (false). Bread fills from the left.
@@ -57,7 +59,7 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
 
   return (
     <div className={s.wrap}>
-      <p className={s.chip}>Model: fixed output per hour</p>
+      {!locked && <p className={s.chip}>Model: fixed output per hour</p>}
       <svg viewBox="0 0 320 200" className="stage-svg" role="img" aria-label={`${t.loaves} loaves and ${t.cheeses} cheeses`}>
         {ROWS.map((row, r) => {
           const cells = r === 0 ? anaCells : benCells;
@@ -94,13 +96,21 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
           cheeses
         </text>
       </svg>
+      {!locked && (
+        <>
       <p className={s.msg} aria-live="polite">
-        {locked ? "Lock in a guess to start." : better ? "Same cheese, more bread." : `Even split: ${EVEN.loaves} loaves, ${EVEN.cheeses} cheeses.`}
+        {better ? `Cheese kept at ${t.cheeses}, bread up to ${t.loaves}.` : `Now: ${t.loaves} loaves, ${t.cheeses} cheeses (even split: ${EVEN.loaves} and ${EVEN.cheeses}).`}
       </p>
+      <p className={s.msg}>
+        1 cheese costs Ana {ANA.bread / ANA.cheese} loaves, Ben {BEN.bread / BEN.cheese} loaf.
+      </p>
+
+        </>
+      )}
 
       <Row>
         <Readout label="Loaves" value={<span className={!locked && t.loaves > EVEN.loaves ? s.good : ""}>{t.loaves}</span>} />
-        <Readout label="Cheeses" value={<span className={!locked && t.cheeses < EVEN.cheeses ? s.bad : ""}>{t.cheeses}</span>} />
+        <Readout label="Cheeses" value={<span className={!locked && t.cheeses < EVEN.cheeses ? s.bad : !locked && better ? s.good : ""}>{t.cheeses}</span>} />
       </Row>
       <Row>
         <Slider
@@ -115,6 +125,17 @@ function Stage({ ctx, anaBread, setAnaBread, benCheese, setBenCheese }: {
             check(anaBread, v);
           }}
         />
+      </Row>
+      <Row>
+        <Control
+          disabled={locked || spare === anaBread}
+          onClick={() => {
+            setAnaBread(spare);
+            check(spare, benCheese);
+          }}
+        >
+          Ana bakes in her spare hours
+        </Control>
       </Row>
       <Row>
         <Slider
@@ -142,22 +163,19 @@ export default function CheeseForBread({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Ana makes ${ANA.bread} loaves or ${ANA.cheese} cheeses an hour; Ben makes ${BEN.bread} loaf or ${BEN.cheese} cheese. Each works ${HOURS} hours, splitting evenly: ${EVEN.loaves} loaves, ${EVEN.cheeses} cheeses. Can they make ${EVEN.cheeses} cheeses and more loaves?`,
-        options: ["No, Ana is better at both", `Yes, ${BEST.loaves} loaves, if Ben makes cheese`, "Yes, but only Ben gains"],
+        options: ["No: Ana is better at both, so 20 loaves is the most", `Yes: ${BEST.loaves} loaves, if Ben makes the cheese`, `Yes: ${BEST.loaves} loaves, but only Ben gains`],
         answer: 1,
       }}
-      exploreHint="Move Ben toward cheese and Ana toward bread. Keep 12 cheeses."
+      exploreHint="Move Ben toward cheese, then let Ana bake. Can you keep 12 cheeses?"
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            With Ben on cheese all {HOURS} hours ({HOURS} cheeses) and Ana on cheese for 2 ({2 * ANA.cheese}), they still make{" "}
-            {BEST.cheeses} cheeses, and Ana's other 6 hours bake <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more
-            than before. Same hours, more food.
+            Ben on cheese all {HOURS} hours ({HOURS} cheeses) plus Ana's 2 cheese hours ({2 * ANA.cheese}) still make {BEST.cheeses} cheeses, and Ana's other 6 hours bake{" "}
+            <strong>{BEST.loaves} loaves</strong>, {BEST.loaves - EVEN.loaves} more than before. Same hours, more food.
           </p>
           <p>
-            Ana is better at both, but each cheese costs her {ANA.bread / ANA.cheese} loaves given up, and costs Ben only{" "}
-            {BEN.bread / BEN.cheese}. So cheese should come from Ben. When each does the job where they give up least, the
-            total grows, and the extra loaves can be shared so both gain.
+            Each cheese costs Ana {ANA.bread / ANA.cheese} loaves but Ben only {BEN.bread / BEN.cheese}, so Ben should make it. When each does the job where they give up least, the total grows, and the extra loaves can be shared so both gain.
           </p>
           <p className="muted">A model: fixed output per hour, no transport or trading costs.</p>
         </>

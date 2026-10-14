@@ -3,7 +3,7 @@
 // Memorising-noise toy. Six points at x = 0, 0.2, ..., 1 with coin-flip labels +1 / -1
 // (label set n uses mulberry32(n), untuned; set 1 = -1, 1, -1, -1, -1, 1). A least-squares polynomial of
 // degree 1, 3 or 5 is fitted. Degree 5 has six coefficients, so it passes through all six dots for ANY labels
-// (largest miss < 1e-10 over 1,000 label sets). Set 1: degree 1 misses by up to 1.51, degree 3 by 0.76,
+// (largest miss < 1e-10 over 1,000 label sets). Set 1: degree 1 misses by up to 1.50, degree 3 by 0.76,
 // degree 5 by 0.00 with a biggest coefficient of 833; set 2: degree 5 biggest coefficient 625.
 
 import { useState } from "react";
@@ -50,6 +50,10 @@ const report = (set: number, deg: number) => {
   const big = Math.max(...c.map(Math.abs));
   return { ys, c, miss, big };
 };
+/** A held-out point at x = 0.5 gets its own coin-flip label; the fitted curve calls it by its sign. */
+const NEW_X = 0.5;
+const newLabel = (set: number) => (mulberry32(set * 7919 + 13)() < 0.5 ? 1 : -1);
+const callsRight = (set: number, deg: number) => (evalPoly(fit(labelsFor(set), deg), NEW_X) > 0 ? 1 : -1) === newLabel(set);
 // MODEL END
 
 const f2 = (v: number) => (Math.abs(v) < 0.005 ? "0.00" : v.toFixed(2));
@@ -59,6 +63,7 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
   const [set, setSet] = useState(1);
   const [fits5, setFits5] = useState<number[]>([]);
   const r = report(set, deg);
+  const rightCount = fits5.filter((n) => callsRight(n, 5)).length;
 
   return (
     <Lesson
@@ -68,17 +73,18 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
         options: ["Zero", "About half the dots are missed", "It cannot fit random labels"],
         answer: 0,
       }}
-      exploreHint="Raise the degree to 5, then re-flip the labels."
-      minInteractions={2}
+      exploreHint="Raise the degree to 5, re-flip the labels, then try 20 more sets."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
-            At degree 5 the largest miss was 0.00 on {fits5.length > 1 ? `${fits5.length} different label sets` : "the labels you saw"}, with
-            a biggest coefficient of {fits5.map((n) => Math.round(report(n, 5).big)).join(" and ")}. Six tunable numbers can pass through any
-            six dots.
+            At degree 5 the largest miss was 0.00 on {fits5.length} different label set{fits5.length === 1 ? "" : "s"}. Six tunable
+            numbers can pass through any six dots.
           </p>
           <p>
-            The labels were coin flips: there was no pattern to find, so on new points its guesses are coin flips too.
+            But the new point at {NEW_X} had its own coin-flip label. The curve called it right on {rightCount} of {fits5.length}{" "}
+            sets ({Math.round((100 * rightCount) / Math.max(1, fits5.length))}%): about half. With no pattern to find, its guesses on
+            new points are coin flips too.
           </p>
           <p>
             A perfect fit on training data is not evidence of a pattern. Large neural networks have been shown to fit randomly shuffled
@@ -88,7 +94,7 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["degree-5-fit", "reflip-at-5"]}>
+        <Milestones interact={interact} names={["degree-5-fit", "reflip-at-5", "many-sets"]}>
           {(reach) => {
             const X = (x: number) => 44 + x * 262;
             const Y = (y: number) => 95 - y * 40; // y in [-2, 2]
@@ -100,7 +106,7 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <span className={`tag ${s.model}`}>Coin-flip labels · toy fit</span>
-                <p className={s.caption}>Degree d = d + 1 numbers to tune.</p>
+                <p className={s.caption}>A degree-d curve has d + 1 numbers to tune.</p>
                 <svg viewBox="0 0 320 190" className="stage-svg" role="img" aria-label={`degree ${deg}, label set ${set}`}>
                   <line x1={X(0)} y1={Y(0)} x2={X(1)} y2={Y(0)} stroke="var(--line)" />
                   <line x1={X(0)} y1={Y(1)} x2={X(1)} y2={Y(1)} stroke="var(--line)" strokeDasharray="2 4" />
@@ -121,6 +127,15 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
                       </text>
                     </g>
                   ))}
+                  {show && (
+                    <g>
+                      <line x1={X(NEW_X)} y1={Y(newLabel(set))} x2={X(NEW_X)} y2={Y(evalPoly(r.c, NEW_X))} stroke="var(--muted)" strokeWidth={2} strokeDasharray="3 3" />
+                      <rect x={X(NEW_X) - 6} y={Y(newLabel(set)) - 6} width={12} height={12} transform={`rotate(45 ${X(NEW_X)} ${Y(newLabel(set))})`} fill={newLabel(set) > 0 ? "var(--fg)" : "var(--bg-2)"} stroke="var(--warn)" strokeWidth={2.5} />
+                      <text x={X(NEW_X)} y={newLabel(set) > 0 ? Y(1) - 12 : Y(-1) + 22} textAnchor="middle" className={s.tiny} fill="var(--warn)">
+                        new point
+                      </text>
+                    </g>
+                  )}
                   {show && (
                     <text x={312} y={14} textAnchor="end" className={s.tiny} fill="var(--muted)">
                       label set {set} · degree {deg}
@@ -157,10 +172,21 @@ export default function MemoriseCoinFlips({ slug }: { slug: string }) {
                   >
                     Re-flip labels
                   </Control>
+                  <Control
+                    disabled={locked || deg !== 5}
+                    onClick={() => {
+                      const from = set + 1;
+                      setSet(set + 20);
+                      setFits5((xs) => [...xs, ...Array.from({ length: 20 }, (_, k) => from + k).filter((n) => !xs.includes(n))]);
+                      reach("many-sets");
+                    }}
+                  >
+                    Try 20 more label sets
+                  </Control>
                 </Row>
                 <Row>
                   <Readout label="Largest miss" value={show ? f2(r.miss) : "–"} />
-                  <Readout label="Biggest coefficient" value={show ? Math.round(r.big) : "–"} />
+                  <Readout label="New point called right (degree 5)" value={show && fits5.length ? `${rightCount} of ${fits5.length}` : "–"} />
                 </Row>
               </div>
             );

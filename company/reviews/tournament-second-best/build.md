@@ -6,3 +6,17 @@
 - Disclosure: strengths are chosen, not random, so that the runner-up F loses to E in round 1 and option C ("the final's loser", D) is visibly wrong (claim c3).
 - Deviation from brief: no dragging strengths into the bracket (fiddly on a phone); the learner instead tries every player and fails to make a non-victim second.
 - After screenshots: reads on phone; no changes.
+
+## 2026-10-14 colour-only contrast fix (W-155, demo-builder)
+
+- winner box: dark ink for the name and strength (class onChamp). Second-best strength uses the text-safe --bad. The "Knockout bracket" label issue is not a colour issue and is untouched.
+- Colour-only change: no pedagogy, wording or claims touched, so no version bump. Meaning is unchanged and never colour alone (letters, labels and borders still carry it).
+- Re-scanned with the a11y scan on a build of this branch: no lesson-origin contrast failure remains.
+
+
+
+## Revision v2
+
+svg aria-label was a constant 'Knockout bracket'. It now carries rounds played, the champion and the current info line. Runner-up strength number colour darkened for light-theme contrast.
+
+QA (QA_ONLY, phone and desktop) passes; I looked at the walkthrough sheet. Edited claims are unverified.

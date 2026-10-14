@@ -26,8 +26,8 @@ const declination = (i: number) => {
   const d = -TILT * Math.cos(((i * 45) * Math.PI) / 180);
   return Math.abs(d) < 1e-9 ? 0 : d;
 };
-const LAT_START = 40;
 const KEY_LAT = 60;
+const LAT_START = KEY_LAT; // the latitude the question asks about; the stage opens on 21 Dec so there is a "before"
 
 /** Half the daylight arc in degrees of longitude (0 = polar night, 180 = midnight Sun). */
 function halfArc(lat: number, dec: number) {
@@ -80,7 +80,7 @@ export default function EquinoxTwelveEverywhere({ slug }: { slug: string }) {
         options: ["About 8 h", "About 10 h", `About ${Math.round(dayHours(KEY_LAT, 0))} h`],
         answer: 2,
       }}
-      exploreHint="Move the date to the equinox, then try different latitudes."
+      exploreHint="Move the date to the March equinox, then try other latitudes. Watch the day length."
       minInteractions={2}
       reveal={() => (
         <>
@@ -118,19 +118,15 @@ export default function EquinoxTwelveEverywhere({ slug }: { slug: string }) {
                   projection={projection}
                   width={W}
                   height={H}
-                  label={`World map at noon in Greenwich on ${DATES[date]}. The Sun is overhead at ${Math.abs(dec).toFixed(1)}°${dec < 0 ? "S" : "N"}.${locked ? "" : ` At ${lat}°N the day is ${fmtH(hours)}.`}`}
+                  label={`World map at noon in Greenwich on ${DATES[date]}. The Sun is overhead at ${Math.abs(dec).toFixed(1)}°${dec < 0 ? "S" : "N"}. At ${lat}°N the day is ${fmtH(hours)}.`}
                 >
                   {() => (
                     <>
                       {night.map((p, i) => (
                         <polygon key={i} points={p} className={s.night} />
                       ))}
-                      {!locked && (
-                        <>
-                          <line x1={0} y1={y} x2={W} y2={y} className={s.dark} />
-                          {half > 0 && <line x1={xy(SUN_LON - half, lat)[0]} y1={y} x2={xy(SUN_LON + half, lat)[0]} y2={y} className={s.lit} />}
-                        </>
-                      )}
+                      <line x1={0} y1={y} x2={W} y2={y} className={s.dark} />
+                      {half > 0 && <line x1={xy(SUN_LON - half, lat)[0]} y1={y} x2={xy(SUN_LON + half, lat)[0]} y2={y} className={s.lit} />}
                       <circle cx={sun[0]} cy={sun[1]} r={5} className={s.sun} />
                       <text x={sun[0] + 7} y={sun[1] + 3} className={s.small}>
                         Sun overhead
@@ -139,7 +135,7 @@ export default function EquinoxTwelveEverywhere({ slug }: { slug: string }) {
                         Shaded: night. Yellow: daylit part of your latitude.
                       </text>
                       <text x={4} y={H - 2} className={s.small}>
-                        Noon at Greenwich. Geometric day: Sun&rsquo;s centre, no refraction.
+                        Noon at Greenwich. Day length here ignores the bending of light by air.
                       </text>
                     </>
                   )}
@@ -151,8 +147,8 @@ export default function EquinoxTwelveEverywhere({ slug }: { slug: string }) {
                   <Slider label="Latitude" value={lat} min={0} max={80} step={10} disabled={locked} format={(v) => `${v}°N`} onChange={(v) => update(date, v)} />
                 </Row>
                 <Row>
-                  <Readout label={`Daylight at ${lat}°N`} value={locked ? "?" : fmtH(hours)} />
-                  <Readout label="Line lit" value={locked ? "?" : `${Math.round((hours / 24) * 100)}%`} />
+                  <Readout label={`Daylight at ${lat}°N`} value={fmtH(hours)} />
+                  <Readout label="Share of the day in sunlight" value={`${Math.round((hours / 24) * 100)}%`} />
                 </Row>
               </div>
             );

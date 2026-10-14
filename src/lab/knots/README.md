@@ -5,7 +5,7 @@ docs in `index.d.ts`. **Lessons may not import `src/lab/`** (company/rnd/README.
 only after the R&D lead's EDD and the principal engineer's review move it to `src/kit/`.
 
 - Prior art, data sources and licences: [PRIOR-ART.md](PRIOR-ART.md)
-- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 93 tests, about 6 s. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
+- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 101 tests, about 15 s. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
 - Bench (quality metrics, one JSON line): `node src/lab/knots/bench.mjs`
 - Sizes: `node src/lab/knots/size.mjs`
 
@@ -98,17 +98,14 @@ The "real cost" column is estimated by joining the modules, exporting only the n
 
 ## Evolution (company/rnd/evolution.md)
 This is **generation 0**. The source is the parent of `candidates/gen0-baseline/`. The evaluator is `test/`
-(imports only `../index.mjs`; reference values in `test/published.mjs`), `bench.mjs` (with fixed embedded
-data) and `evolve.json`. The R&D lead owns all three from now on.
+(imports only `../index.mjs`; reference values in `test/published.mjs`), `bench.mjs` (inputs generated
+at bench time) and `evolve.json`. The R&D lead owns all three from now on.
 
-**Baseline score: gated out (0).** All 93 tests pass, but the harness measures the **raw** module closure of
-`index.mjs`, which is 12.8 KB gzip (12,815 B) against `budgetGzBytes: 10240`. The same source **minified** is 9.8 KB, so
-no honest variant with this scope can pass that gate. The variants that could pass would be ones that drop
-features or comments. Proposal for the lead (not applied; the evaluator is the lead's):
-(a) gate on the per-lesson cost (the "real cost" column above, or a typical-lesson entry), or (b) set the
-whole-library raw budget to 16384 and keep 10240 for the lesson sets. Without the gate, the baseline would
-score about 9,300 + bench 308 − 25.
-Bench at gen 0: `{"layoutExtraCrossings":0, "layoutSpacing":6.41, "layoutPlanarShare":100, "hardUnknotShare":100, "gordianReduction":17.02, "jonesSpeed":87.21}` (jonesSpeed is timing, so it varies by about ±3).
+**Baseline score: 10,415.83** on the evaluator fixed by the R&D lead on 2026-10-14 (it was 0, gated out, under the
+first evaluator's whole-library raw size gate). The evaluator, its size gate (per lesson, `test/lessons/`), the
+bench (inputs generated at bench time from `EVOLVE_SEED` by `test/benchgen.mjs`) and the reasons are in
+[company/rnd/evolution/knots-gen0.md](../../../company/rnd/evolution/knots-gen0.md). Generation 1 targets layout:
+[knots-gen1-brief.md](../../../company/rnd/evolution/knots-gen1-brief.md).
 
 **The three weakest areas**, where a generation of competing variants would help most:
 1. **Layout of arbitrary diagrams.** Circle packing gives textbook pictures for the reduced table knots. But 40 of 70 random and scrambled diagrams fall back to the Tutte embedding: planar but cramped, with strands bunched near the outer circle (`layoutSpacing` 6.4). The Hopf link is drawn as a thin lens. Ideas: handle kinks and bigons in the packing (subdivide), hyperbolic maximal packing, planarity-preserving force relaxation (PrEd / ImPrEd), orthogonal layouts (Tamassia), and choosing the outer face by score.

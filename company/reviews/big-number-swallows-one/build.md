@@ -10,3 +10,15 @@
 ## v2 (claim fix 2026-10-13)
 
 Pass 4 disputed-claim fix: learner-visible wording and claim rewritten per the fact-check; claim set to unverified, awaiting re-check. See claim source for old/new detail.
+
+## Revision v3 (wave C, learner review)
+
+- JavaScript and 2^53 undefined before use: the question says JavaScript is a programming language that stores each number in a fixed amount of space, and that 2^53 is 2 multiplied by itself 53 times; the legend reads 'the program can store it'.
+- Jargon-heavy reveal: double, MAX_SAFE_INTEGER, 'even' rounding and '2^54' removed; it now points at the hollow rings the learner saw. Claims c2 to c5 rewritten, unverified.
+- Not changed: round-to-even is no longer told, but the stage still does not walk a +1 from 994; the 'either nothing or jumps by 2' line is shown only if the learner tries it.
+
+All changed claims are unverified, awaiting a fact-checker.
+
+## Revision v4
+
+Fact-check c2: '53 twos multiplied together' in the claim and the predict text. Reveal: storable numbers are the filled dots, the red dashed marks cannot be stored (the old 'hollow rings' matched nothing); the unshown 'or jumps by 2' is dropped (c4 rewritten, unverified).

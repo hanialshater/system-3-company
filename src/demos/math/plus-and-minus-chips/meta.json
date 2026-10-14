@@ -4,7 +4,7 @@
   "hook": "Is a negative number just a positive one wearing a minus sign?",
   "domain": "math",
   "concept": "negative-numbers",
-  "status": "review",
+  "status": "published",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-math",
@@ -26,8 +26,10 @@
       "id": "math.plus-and-minus-chips.c1",
       "text": "3 plus-chips and 5 minus-chips total -2: three pairs cancel and two minus-chips are left.",
       "support": "derivation",
-      "source": "3 - 5 = -2; stage cancels 3 pairs leaving 2 minus-chips. The total readout stays '?' until only one kind of chip is left.",
-      "status": "unverified"
+      "source": "3 - 5 = -2; stage cancels 3 pairs leaving 2 minus-chips. The total readout stays '?' until only one kind of chip is left. | FACT-CHECK 2026-10-14 (pass 11): 3 - 5 = -2; Demo.tsx readout shows \"?\" while canCancel (both kinds > 0), line 121.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "math.plus-and-minus-chips.c2",
@@ -42,8 +44,10 @@
       "id": "math.plus-and-minus-chips.c3",
       "text": "A negative number is the opposite that cancels a positive one, like a debt against cash: 5 minus-chips are not worth +5, and 3 + (-5) = 3 - 5 = -2.",
       "support": "convention",
-      "source": "Integers as additive inverses (a + (-a) = 0, a + (-b) = a - b). The chip picture is the two-colour counter model used in teaching integers, e.g. Van de Walle, Karp and Bay-Williams, Elementary and Middle School Mathematics, chapter on integers.",
-      "status": "unverified"
+      "source": "Integers as additive inverses (a + (-a) = 0, a + (-b) = a - b). The chip picture is the two-colour counter model used in teaching integers, e.g. Van de Walle, Karp and Bay-Williams, Elementary and Middle School Mathematics, chapter on integers. | FACT-CHECK 2026-10-14 (pass 11): Additive inverse a + (-a) = 0 and a + (-b) = a - b; two-colour counter model is a standard teaching model (Van de Walle et al.). Conventional, correct.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -59,15 +63,18 @@
   },
   "evidence": {
     "qa": [
-      "company/reviews/plus-and-minus-chips/2026-10-13-qa.md"
+      "company/reviews/plus-and-minus-chips/2026-10-13-qa.md",
+      "company/reviews/plus-and-minus-chips/2026-10-14-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/plus-and-minus-chips/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/plus-and-minus-chips/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/plus-and-minus-chips/2026-10-14-learner-adult-beginner-r2.md",
+      "company/reviews/plus-and-minus-chips/2026-10-14-learner-adult-beginner-r3.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:negative-numbers",
     "prerequisites": [],

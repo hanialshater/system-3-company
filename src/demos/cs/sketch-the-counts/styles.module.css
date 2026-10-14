@@ -4,13 +4,13 @@
 .stream { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
 .tok {
   width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 0.85rem; border: 2px solid currentColor; transition: opacity 0.2s, transform 0.2s;
+  font-weight: 800; font-size: 0.85rem; color: var(--fg); border: 2px solid var(--cc); transition: opacity 0.2s, transform 0.2s;
 }
-.cat { color: var(--domain); }
-.dog { color: var(--warn); }
-.eel { color: var(--good); }
-.gone { opacity: 0.25; }
-.next { transform: translateY(-3px); background: color-mix(in srgb, currentColor 18%, transparent); }
+.cat { --cc: var(--domain); }
+.dog { --cc: var(--warn-fill); }
+.eel { --cc: var(--good-fill); }
+.gone { border-style: dashed; color: var(--muted); border-color: color-mix(in srgb, var(--cc) 45%, transparent); }
+.next { transform: translateY(-3px); background: color-mix(in srgb, var(--cc) 25%, transparent); }
 
 .grid { display: grid; gap: 5px; align-items: center; max-width: 340px; width: 100%; margin: 0 auto; }
 .rowWrap { display: contents; }
@@ -22,8 +22,8 @@
   background: var(--bg-2); border: 2px solid var(--line); transition: background 0.2s;
 }
 .q_cat { border-color: var(--domain); }
-.q_dog { border-color: var(--warn); }
-.q_eel { border-color: var(--good); }
+.q_dog { border-color: var(--warn-fill); }
+.q_eel { border-color: var(--good-fill); }
 .min { background: color-mix(in srgb, var(--fg) 12%, var(--bg-2)); box-shadow: 0 0 0 2px var(--fg) inset; }
 .hit { animation: bump 0.35s ease; }
 @keyframes bump { 0% { transform: scale(1.12); } 100% { transform: scale(1); } }

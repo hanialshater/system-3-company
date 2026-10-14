@@ -17,7 +17,8 @@ const MIN_PH = 7.8;
 const ratio = (p: number) => Math.pow(10, REF_PH - p); // [H+] relative to pH 8.2
 const pct = (p: number) => Math.round((ratio(p) - 1) * 100);
 const RISE = pct(NOW_PH); // 26
-const NAMES = ["down-0.1"] as const;
+const NAMES = ["down-0.1", "down-0.3"] as const;
+const DOUBLE_PH = 7.9;
 
 const W = 320;
 const COLS = 20;
@@ -32,6 +33,7 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
   const [p, setP] = useState(REF_PH);
   const [lowest, setLowest] = useState(REF_PH);
   const [sawNow, setSawNow] = useState(false);
+  const [sawDouble, setSawDouble] = useState(false);
   const n = Math.round(REF_DOTS * ratio(p));
   const move = (r: number, reach: (name: string) => void) => {
     setP(r);
@@ -39,6 +41,10 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
     if (Math.abs(r - NOW_PH) < 1e-9) {
       setSawNow(true);
       reach("down-0.1"); // key state: the stage has shown pH 8.1 (126 dots, +26%)
+    }
+    if (Math.abs(r - DOUBLE_PH) < 1e-9) {
+      setSawDouble(true);
+      reach("down-0.3"); // key state: the stage has shown pH 7.9 (about double)
     }
   };
 
@@ -50,20 +56,19 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
         options: ["1%", `${RISE}%`, "100%"],
         answer: 1,
       }}
-      exploreHint={`Press "Today: pH ${ph1(NOW_PH)}" and count the dots, then slide lower.`}
+      exploreHint={`Press "Today: pH ${ph1(NOW_PH)}" and count the dots, then try pH ${ph1(DOUBLE_PH)}.`}
       minInteractions={NAMES.length}
       reveal={() => (
         <>
           <p>
-            {sawNow ? "You saw" : "Slide it and you see"} the {REF_DOTS} hydrogen ions at pH{" "}
-            {ph1(REF_PH)} become <strong>{Math.round(REF_DOTS * ratio(NOW_PH))}</strong> at pH {ph1(NOW_PH)}: a rise of
-            about {RISE}%.
-            {lowest <= REF_PH - 0.3 + 1e-9 ? ` At ${ph1(REF_PH - 0.3)} you saw about ${Math.round(REF_DOTS * ratio(REF_PH - 0.3))}: double.` : ""}
+            You saw the {REF_DOTS} hydrogen ions at pH {ph1(REF_PH)} become <strong>{Math.round(REF_DOTS * ratio(NOW_PH))}</strong> at pH{" "}
+            {ph1(NOW_PH)}: a rise of about {RISE}%. At pH {ph1(DOUBLE_PH)} you saw about {Math.round(REF_DOTS * ratio(DOUBLE_PH))}: double.
           </p>
           <p>
-            pH counts powers of ten of hydrogen ion concentration, so each 0.1 step down multiplies it by 10
-            <sup>0.1</sup>, about 1.26. A fall of 0.3 is about a doubling. What looks like a change in the second
-            digit is about a quarter more hydrogen ions in the ocean&apos;s surface water.
+            pH counts powers of ten: one whole pH unit down is ten times the hydrogen ions. It takes ten steps of 0.1 to make a whole unit, so each
+            step is about 1.26 times the last (1.26 multiplied by itself ten times is about 10). That is why a fall of 0.3 is about a
+            doubling, and why what looks like a change in the second digit is about a quarter more hydrogen ions in the ocean&apos;s surface
+            water.
           </p>
         </>
       )}
@@ -103,6 +108,9 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
                 <Control disabled={locked || p === NOW_PH} onClick={() => move(NOW_PH, reach)}>
                   {`Today: pH ${ph1(NOW_PH)}`}
                 </Control>
+                <Control disabled={locked || p === DOUBLE_PH} onClick={() => move(DOUBLE_PH, reach)}>
+                  {`Try pH ${ph1(DOUBLE_PH)}`}
+                </Control>
                 <Control disabled={locked || p === REF_PH} onClick={() => move(REF_PH, reach)}>
                   {`Back to ${ph1(REF_PH)}`}
                 </Control>
@@ -121,6 +129,7 @@ export default function PointOneIs26Percent({ slug }: { slug: string }) {
                 <Readout label="H⁺ dots" value={n} />
                 <Readout label={`vs pH ${ph1(REF_PH)}`} value={`+${pct(p)}%`} />
                 {sawNow && <Readout label={`At pH ${ph1(NOW_PH)}`} value={`${Math.round(REF_DOTS * ratio(NOW_PH))} dots, +${RISE}%`} />}
+                {sawDouble && <Readout label={`At pH ${ph1(DOUBLE_PH)}`} value={`${Math.round(REF_DOTS * ratio(DOUBLE_PH))} dots, +${pct(DOUBLE_PH)}%`} />}
               </Row>
             </div>
           )}

@@ -24,12 +24,12 @@
   "claims": [
     {
       "id": "ai.meaning-without-the-word.c1",
-      "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each, so with ties in knowledge-base order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
+      "text": "Searching 'What is the capital of France?' by keywords (capital, France), 'Paris is the French seat of government.' scores 0 and the other four chunks score 1 each and tie; with ties kept in list order the top 2 are 'Rome is the capital of Italy.' and 'France exports a lot of wine.'",
       "support": "derivation",
-      "source": "wordScore() and ranking('words') in Demo.tsx (node output: scores 0,1,1,1,1; order 1,2,3,4,0). The tie-break rule is the toy's.",
+      "source": "wordScore() and ranking('words') in Demo.tsx (node output: scores 0,1,1,1,1; order 1,2,3,4,0). The tie-break rule is the toy's. | FACT-CHECK 2026-10-14 (pass 16): Own node reimplementation of words()/STOP: keywords [capital, france]; scores [0,1,1,1,1] (Paris says 'French'; 'A capital letter' matches 'capital'; both France chunks match 'france'); stable sort, order 1,2,3,4,0, so the top 2 are the Rome and wine chunks. The stage header says '(ties keep list order)'.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "ai.meaning-without-the-word.c2",
@@ -84,12 +84,13 @@
       "company/reviews/meaning-without-the-word/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/meaning-without-the-word/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/meaning-without-the-word/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/meaning-without-the-word/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "ai:retrieval-top-k",
     "prerequisites": [
@@ -98,5 +99,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "toggle-before-after",
+    "milestone-gate",
+    "preset-buttons"
+  ]
 }

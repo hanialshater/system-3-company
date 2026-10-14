@@ -41,21 +41,21 @@
     },
     {
       "id": "economics.loaf-with-smoke.c3",
-      "text": "Loaves 36 to 40 are worth less to buyers than they truly cost (bakers' cost plus $1 of smoke).",
+      "text": "Loaves 36 to 40 are worth less to buyers than they truly cost (bakers' cost plus $1 of smoke); the stage shades that wedge between the buyers' line and the true-cost line.",
       "support": "derivation",
-      "source": "For q above 35, (100 - q) / 10 < (q + 20) / 10 + 1, since the lines cross at q = 35. E.g. q = 40: buyers 6.00 against 7.00.",
+      "source": "At q=36 buyers 6.4 vs true cost 6.6; at q=40 buyers 6.00 vs 7.00 (node; Demo.tsx buyers(), bakers()).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.loaf-with-smoke.c4",
-      "text": "In the model, a $1 per-loaf cost put on the bakers moves the market quantity to 35 loaves.",
+      "text": "In the model, a $1 per-loaf cost put on the bakers moves the market quantity to 35 loaves; the stage labels it 'bakers + $1 cost'.",
       "support": "derivation",
-      "source": "Bakers' cost + 1: (100 - q) / 10 = (q + 20) / 10 + 1 gives q = 35. Illustrates the model only; not a claim about any policy.",
+      "source": "(100-q)/10 = (q+20)/10 + 1 gives q = 35 (node; Demo.tsx crossing()).",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "economics.loaf-with-smoke.c5",
@@ -92,12 +92,13 @@
       "company/reviews/loaf-with-smoke/2026-10-13-qa.md"
     ],
     "simulatedLearner": [
-      "company/reviews/loaf-with-smoke/2026-10-13-learner-adult-beginner.md"
+      "company/reviews/loaf-with-smoke/2026-10-13-learner-adult-beginner.md",
+      "company/reviews/loaf-with-smoke/2026-10-14-learner-adult-beginner-r2.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:externality",
     "prerequisites": [
@@ -106,5 +107,12 @@
     "level": "core",
     "references": [],
     "also": []
-  }
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "slider-drives-live-chart",
+    "milestone-gate"
+  ]
 }

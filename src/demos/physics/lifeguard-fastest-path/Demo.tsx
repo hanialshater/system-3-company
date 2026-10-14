@@ -6,6 +6,8 @@
 // t(x) = sqrt(40^2 + x^2) / 7 + sqrt(20^2 + (60 - x)^2) / 1.5.
 // Straight line crosses the shore at 40 m (26.9 s); the best entry is 56.45 m
 // (23.43 s), where sin(a1) / 7 = sin(a2) / 1.5 (Snell's law form).
+// v2: no marker for the true best (it was a giveaway): a triangle marks the best spot the learner has tried so far;
+// speeds are printed on the map; the reveal quotes the 56 m entry, which the gate requires.
 // Flat beach, constant speeds, drawn to scale. The reveal unlocks at the 56 m entry.
 
 import { Lesson } from "@/kit/Lesson";
@@ -49,7 +51,7 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
   const [tried, setTried] = useState<number[]>([40]);
   const interactRef = useRef<() => void>(() => {});
   const { reach } = useMilestones(() => interactRef.current(), ["found-best"]);
-  const found = tried.includes(56);
+  const bestTried = tried.reduce((a, b) => (total(b) < total(a) ? b : a), tried[0]);
 
   return (
     <Lesson
@@ -66,12 +68,12 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
         <>
           <p>
             The straight line took <strong>{total(STRAIGHT).toFixed(1)} s</strong>. Entering at 56 m took{" "}
-            <strong>{total(56).toFixed(1)} s</strong>, the fastest you could pick (the true best is {BEST.toFixed(1)} m).
-            She runs further on sand, where she is fast, to swim less in water, where she is slow.
+            <strong>{total(56).toFixed(1)} s</strong>, the fastest of the spots you could pick (the true best is{" "}
+            {BEST.toFixed(1)} m). She runs further on sand, where she is fast, to swim less in water, where she is slow.
           </p>
           <p>
-            The quickest path bends at the shoreline. Light does exactly this going from air into water: it takes the
-            path of least time, which bends toward the slow side. That bend is refraction.
+            The quickest path bends at the shoreline. Light does this too. It takes the quickest path, and light travels
+            slower in water than in air, so its path bends where it enters the water. That bend is called refraction.
           </p>
           <p className="muted">Flat beach, steady speeds. At the best point, sin(angle)/speed matches on both sides.</p>
         </>
@@ -81,9 +83,9 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
         interactRef.current = interact;
         const caption = locked
           ? "Make a prediction to start."
-          : found
-            ? "Fastest spot marked. Run far on sand, swim short."
-            : "Drawn to scale. Sand: 7 m/s. Water: 1.5 m/s.";
+          : tried.length >= 2
+            ? `Best so far: enter at ${bestTried} m, ${total(bestTried).toFixed(1)} s. Try other spots.`
+            : "Move her entry point along the shore and watch the total time.";
         return (
           <div className={s.wrap}>
             <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Entering at ${x} m takes ${total(x).toFixed(1)} s`}>
@@ -95,7 +97,7 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
               {/* her path */}
               <line x1={px(0)} y1={py(-UP)} x2={px(x)} y2={py(0)} className={s.run} />
               <line x1={px(x)} y1={py(0)} x2={px(ALONG)} y2={py(OUT)} className={s.swim} />
-              {found && <path d={`M ${px(BEST)} ${py(0) + 6} l -5 8 l 10 0 z`} className={s.best} />}
+              {!locked && tried.length >= 2 && <path d={`M ${px(bestTried)} ${py(0) + 6} l -5 8 l 10 0 z`} className={s.best} />}
               <circle cx={px(x)} cy={py(0)} r={3.5} className={s.entry} />
               <circle cx={px(0)} cy={py(-UP)} r={5} className={s.guard} />
               <circle cx={px(ALONG)} cy={py(OUT)} r={5} className={s.swimmer} />
@@ -104,6 +106,9 @@ export default function LifeguardFastestPath({ slug }: { slug: string }) {
               </text>
               <text x={px(ALONG) + 8} y={py(OUT) + 3} className={s.small}>
                 swimmer
+              </text>
+              <text x={4} y={12} className={s.small}>
+                Runs 7 m/s on sand, swims 1.5 m/s. To scale.
               </text>
               {[0, 20, 40, 60].map((m) => (
                 <g key={m}>
