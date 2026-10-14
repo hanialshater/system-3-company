@@ -32,3 +32,10 @@ Revision for r6 (knows-repeated-rules): "111" was the only exact option; "nobody
 4. **Reveal values.** 111 and 9,232: computed from SEQ[27], gated by milestone "27-at-1" and shown in the table's 27 column. 26/28/97 sentences: printed only if that start is in `done` (the learner ran it), and shown in its table column. 94 (the join): computed, printed only with 97's sentence; 97's trace overlaps 27's on the chart. "Each ? stayed a ? until you ran it": the table.
 5. **QA path.** Step (27 → 82), Run to 1 (~350 ms; "27-at-1"; x ticks appear), Step to show slider (cursor moves), chip 26 (runs out: "another-start"), 27, 28, 97 (each runs out in < 400 ms). Both milestones; the table is full when the reveal opens.
 6. **Reset.** There is no Reset; picking a start redraws that start only, and `done` never shrinks. Reveal from that run: "27 took 111 steps and climbed to 9,232 before falling to 1. Its neighbours were tiny: 26 took 10 steps, 28 took 18. 97 took 118: at 94 it lands on 27's path and follows it down. The start number tells you almost nothing about the run. Each ? in your table stayed a ? until you ran that start: no known formula gives the count. Every start that computers have checked reaches 1. But nobody has proved that every start does: the Collatz conjecture is still open."
+
+## Pre-flight v3 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+c7 was held: "no known formula" rests on Lagarias 1985, which nobody here can open, and is a state-of-knowledge claim.
+- The stage note now reads "Only running a start fills its ?." (it was "No known formula fills a ?. Run it."). The reveal now reads "Each ? in your table stayed a ? until you ran that start: only running the rule filled it in."
+- c7 is reworded to describe only what the stage does and is set to unverified. c5 (the Collatz conjecture is open) is unchanged.
+- No mechanics changed, so the every-control path is the same as Pre-flight v2. Not run: build, QA, walkthrough.

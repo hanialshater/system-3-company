@@ -7,3 +7,10 @@
 - Profit itself is not simulated: the competition (c3) and the one-directional theorem (c5) are told in claimed sentences; the stage shows the cause (a rival on the same route vs none). The reveal footnote says being needed allows a profit, not guarantees it.
 - Misconception (most connections) is answered by noting every trader has two links (c2).
 - Not run (per dispatch): next build, QA, walkthrough, tsc. Needs local QA before status review.
+
+## Pre-flight v2 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+c5 was held: the general theorem rests on BEKT 2009, which nobody here can open.
+- The reveal now says "On this network, the only trader that can earn a profit is the one whose removal lost value: T3." The general "Being needed allows a profit; it does not guarantee one." is gone, so the muted line reads "A simplified model with invented values."
+- c5 is reworded to match and set to unverified. It now rests on c1, c3 and c4 together with the stage's trade counts.
+- No mechanics changed, so every control pressed once in DOM order behaves as before. Not run: build, QA, walkthrough.

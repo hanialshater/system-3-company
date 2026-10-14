@@ -9,3 +9,9 @@ builder: demo-builder (ncm-m2) · 2026-10-14 · v1 draft · brief: company/domai
 - Re-run (own code, node 2026-10-14, then the Demo's own functions via a transpile-only harness): habit rounds [2,3], [4], [] -> group A, 5 people, in 2 rounds, round 3 stuck; Ben 1 of 5 (20%). News rounds [2,3,4], [5], [6,7,8,9] -> all 10 in 3 rounds. Matches the brief.
 - Not run: next build, typecheck, QA, walkthrough (out of this batch's scope). Status stays draft until local QA.
 - Brief notes: the brief says build after news-comes-from-acquaintances, cluster-stops-the-cascade and one-shy-rioter-stops-the-riot; none are on this branch, so the learner.knows ("weak ties bring news", "the half rule") is not yet backed by a lesson in the feed. The brief's `also: probability:independence` looks unrelated to the mechanism; copied as written, for the category manager to confirm.
+
+## Pre-flight v3 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+W-236, c5 (disputed). The Centola & Macy sentence rested on sources nobody here could open.
+- The sentence is dropped from the reveal, which now ends "... too little for a habit that needs several friends." The c5 claim is deleted from meta.json.
+- No mechanics changed. Not run: build, QA, walkthrough.

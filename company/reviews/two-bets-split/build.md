@@ -36,3 +36,9 @@ Changes: independence is on stage. Two buttons, "Bets move together" and "Bets m
 6. **Reset.** There is no Reset; the seen row only grows. Expected reveal after the QA path: "With two independent bets you lose only if both fall: ½ × ½ = 25%, as in the row under the chart. Half the time one rises and one falls, for +5%. The average stayed +5%, as with one bet. / Independent bets partly cancel: as you split further the bars bunched around +5%, and the worst case, every bet falling, got rarer. / When you made the bets move together, 3 bets lost 50% of the time, the same as one bet. Splitting only cancels risk when the bets do not fall together. / A model with made-up numbers. Real investments often fall together. Not advice." (Read from the code; this batch does not run QA.)
 
 Status note: meta.json still says "review" from v4. v5 has not been through QA; the next QA run should confirm it before anyone treats v5 as reviewed.
+
+## Pre-flight v6 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+W-236, c6 (disputed). "Real investments often fall together" was a claim about the world with no source anyone could open.
+- The muted line now reads "A model with made-up numbers: in it, bets either move independently or all together. Not advice." It describes only the model's two modes, which are shown on the stage chip.
+- c6 is reworded and set to unverified. No mechanics changed. Not run: build, QA, walkthrough.

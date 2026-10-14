@@ -11,3 +11,10 @@ builder: demo-builder (ncm-coase) · 2026-10-14 · brief: Course NCM #5 · spec:
 - Not built: the optional reveal clause "your $50 / $350 fell outside it" (the reveal is the spec's fixed text).
 - Claims c1–c5 all unverified; c5 labels the model as a simplification, and the stage line shows it through the reveal.
 - Not run here (per dispatch): build, tsc, QA, walkthrough.
+
+## Pre-flight v2 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+c3 was held: the naming "This is the Coase theorem, which holds when bargaining is costless" rests on Coase 1960, which nobody here can open.
+- The reveal now says "Economists call this idea the Coase theorem." and "Here bargaining is free; with costly bargaining or many people, it can fail." It no longer states as a general law that the theorem "holds when bargaining is free".
+- c3 is reworded and set to unverified. c4 and c5 are unchanged.
+- No mechanics changed. Not run: build, QA, walkthrough.

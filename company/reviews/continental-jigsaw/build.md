@@ -29,3 +29,9 @@ Changes:
 4. **Reveal values.** Gulf of Guinea near Nigeria and Cameroon: (b) the fitted milestone (slider at 98% or more, or "Close it all the way"). The red dot is drawn there in the reveal frame. 57° and one point: model parameters, and the fit the learner made. Small gaps and overlaps: (b) the same milestone, with the closed outline drawn in the reveal frame.
 5. **QA path.** Slider (two arrow presses, 2%) -> Close it all the way (fitted, the one milestone) -> Back to today. The milestone is reached, and the reveal frame redraws the closed fit.
 6. **Reset.** After "Back to today", the reveal phase still draws South America at 100% with the dot in the Gulf of Guinea. Reveal: "It tucks into the Gulf of Guinea, under West Africa's coast near Nigeria and Cameroon. You turned South America as one solid piece, 57° about a single point in the North Atlantic, and its coast closed against Africa's with only small gaps and overlaps, as you saw in the outline. / The fit here is rough: published fits use the edge of the continental shelf, not today's beaches, and these outlines are coarse. Still, two coasts this far apart rarely match by chance. It is evidence the continents were once joined."
+
+## Pre-flight v4 (demo-builder, 2026-10-14, fact-check pass 24 fixes)
+
+W-233, c4 (disputed). "Published fits use the edge of the continental shelf" rested only on Bullard et al. 1965, which nobody here could open, and it is probably wrong: the 500-fathom contour lies on the slope, not at the shelf edge.
+- The clause is gone from the reveal, which now reads "The fit here is rough: these outlines are coarse. Still, ...". The c4 claim is deleted from meta.json, and the other claim ids are unchanged.
+- No mechanics changed, so the every-control path is the same as Pre-flight v3. Not run: build, QA, walkthrough.
