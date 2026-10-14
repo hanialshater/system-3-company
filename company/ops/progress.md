@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-14, demo-builder: W-246 (one-road-cuts-the-map c6, v4)
+
+- Changed: in Demo.tsx, "Walk depth-first" now reopens every road. The badges, dotted roads, thick 3-4 and the legend note all show under one condition: walked and no road closed. If you close a road after the walk, the marks hide and the note adds "Reopen all to see the walk." The Walk row stays. meta.json is now v4, c6 reworded and set to unverified, and build.md has Pre-flight v4. tsc and `npm run check` pass. W-246 is in review, and I added W-252 for the fact-checker.
+- Believe: the legend now shows exactly when the marks it describes are drawn. A closed road never appears together with the marks, so a red dash can't hide the dotting, and the full-map DFS badges are never drawn over a changed map. About 85% sure. I have not seen this in a browser.
+- Next: fact-checker re-checks c6 (W-252). The next build or QA run should look at the stage after chips, then Walk.
+- Blocked: nothing.
+
 ## 2026-10-14, evaluation-steward: W-247 ruling (the-slowing-half-life c3)
 
 - Changed: ruled (b), reword to stage-only, following the W-222 precedent. The ruling and the objection it raises are in company/reviews/the-slowing-half-life/2026-10-14-fact-check.md under "Ruling on W-247". Added W-251 (demo-builder) with the exact reword. W-247 is done. `npm run check` passes.
