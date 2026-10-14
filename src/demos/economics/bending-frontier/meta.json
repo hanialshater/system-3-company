@@ -25,12 +25,10 @@
   "claims": [
     {
       "id": "economics.bending-frontier.c1",
-      "text": "On the frontier corn = 100 − wheat², going from 0 to 1 ton of wheat costs 1 ton of corn, and going from 9 to 10 tons costs 19.",
+      "text": "On this made-up farm (frontier corn = 100 − wheat², not shown to the learner), switching the first field to wheat (0 to 1 ton) costs 1 ton of corn, and switching the last (9 to 10 tons) costs 19.",
       "support": "derivation",
-      "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "corn(0) − corn(1) = 100 − 99 = 1; corn(9) − corn(10) = 19 − 0 = 19. Demo.tsx stepCost(). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c2",
@@ -43,12 +41,10 @@
     },
     {
       "id": "economics.bending-frontier.c3",
-      "text": "A frontier bends this way because resources are not all alike: the first wheat uses land worst for corn, the last takes the best corn land, so each extra ton costs more corn (increasing opportunity cost).",
+      "text": "The frontier bends because the fields are not all alike: the first wheat goes on the field worst for corn (it grew 1 ton of corn), the last takes the best corn field (19), and each drop on the staircase is the corn its field used to grow (increasing opportunity cost).",
       "support": "source",
-      "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Bowed-out production possibilities frontier and increasing opportunity cost (N. G. Mankiw, Principles of Economics, ch. 2 'Thinking Like an Economist', the production possibilities frontier). | REOPENED 2026-10-14 (v2, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "economics.bending-frontier.c4",
@@ -58,6 +54,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-13"
+    },
+    {
+      "id": "economics.bending-frontier.c5",
+      "text": "The made-up farm has 10 fields, each able to grow 1 ton of wheat or, from worst to best for corn, 1, 3, 5, … 19 tons of corn; wheat is put on the fields worst for corn first, which gives the frontier corn = 100 − wheat².",
+      "support": "convention",
+      "source": "The lesson's own model in Demo.tsx (field strip: field k grows stepCost(k) = 2k − 1 corn; sum of the first n is n², so corn = 100 − n²). The ordering 'worst for corn first' is what a farm maximising output would do (standard textbook account of a bowed-out PPF, e.g. Mankiw, Principles of Economics, ch. 2; chapter not re-checked). | Added 2026-10-14 (v2) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -82,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:production-possibilities",
     "prerequisites": [

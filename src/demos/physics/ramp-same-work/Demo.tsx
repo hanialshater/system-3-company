@@ -7,6 +7,8 @@
 //
 // Earned reveal: milestones "long-ramp" (ramp at 4 m or more, push readout at 123 N or
 // less) and "pushed-up" (a full push on such a ramp, the work counter reaching 490 J).
+// v3: the prediction asks about work (the title's question), not the push; the locked picture
+// description no longer gives the push; the log shows the push to 0.1 N so the product checks.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Readout, Row, Slider } from "@/kit/controls";
@@ -68,8 +70,8 @@ export default function RampSameWork({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A 50 kg crate weighs about 490 N. To raise it 1.0 m, you push it up a frictionless 4 m ramp at steady speed. The push along the ramp is about…",
-        options: ["490 N", "123 N", "31 N"],
+        question: "A 50 kg crate weighs about 490 N. You raise it 1.0 m by pushing it up a frictionless 4 m ramp at steady speed. Compared with lifting it straight up, the work you do is…",
+        options: ["Less", "The same", "More"],
         answer: 1,
       }}
       exploreHint="Push the crate up a 4 m ramp, then lift it straight up, and compare the work."
@@ -79,7 +81,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
         return (
           <>
             <p>
-              On your {Ls} m ramp the push was <strong>{force(Ls).toFixed(1)} N</strong>, and the work counter still finished
+              <strong>The same work.</strong> On your {Ls} m ramp the push was <strong>{force(Ls).toFixed(1)} N</strong>, and the work counter still finished
               at {WORK.toFixed(1)} J: {force(Ls).toFixed(1)} N × {Ls} m. A straight lift:{" "}
               {force(1).toFixed(1)} N × 1 m, the same {WORK.toFixed(1)} J.
             </p>
@@ -108,7 +110,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
             const work = F * d;
             return (
               <div className={s.wrap}>
-                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={`Ramp ${L} m long, push ${F.toFixed(0)} N`}>
+                <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.fit}`} role="img" aria-label={locked ? "A crate at the foot of a ramp up to a 1 m ledge" : `Ramp ${L} m long, push ${F.toFixed(1)} N`}>
                   <line x1={4} y1={GY} x2={W - 4} y2={GY} className={s.ground} />
                   <polygon points={`${X0},${GY} ${topX},${GY} ${topX},${topY}`} className={s.ramp} />
                   <rect x={topX} y={topY} width={W - 4 - topX} height={GY - topY} className={s.ledge} />
@@ -148,7 +150,7 @@ export default function RampSameWork({ slug }: { slug: string }) {
                 <p className={s.log} aria-live="polite">
                   {locked || fulls.length === 0
                     ? "Finished pushes appear here."
-                    : fulls.map((x) => `${x} m: ${force(x).toFixed(0)} N × ${x} m = ${(force(x) * x).toFixed(1)} J`).join("  ·  ")}
+                    : fulls.map((x) => `${x} m: ${force(x).toFixed(1)} N × ${x} m = ${(force(x) * x).toFixed(1)} J`).join("  ·  ")}
                 </p>
                 <Row>
                   <Control disabled={locked || pushing} onClick={() => setPushing(true)}>
@@ -165,6 +167,8 @@ export default function RampSameWork({ slug }: { slug: string }) {
                   >
                     Lift straight up
                   </Control>
+                </Row>
+                <Row>
                   <Readout label="Push" value={locked ? "?" : `${F.toFixed(1)} N`} />
                   <Readout label="Work done" value={locked ? "?" : `${work.toFixed(1)} J`} />
                 </Row>

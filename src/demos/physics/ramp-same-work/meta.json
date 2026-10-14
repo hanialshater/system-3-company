@@ -35,12 +35,10 @@
     },
     {
       "id": "physics.ramp-same-work.c2",
-      "text": "Raising 50 kg by 1.0 m along a 4 m ramp needs a push of 122.6 N; the work is 122.6 N x 4 m = 490.5 J, the same as lifting it straight up (490.5 N x 1 m).",
+      "text": "Raising 50 kg by 1.0 m along a 4 m frictionless ramp takes the same work as lifting it straight up: a push of 122.6 N × 4 m = 490.5 J against 490.5 N × 1 m = 490.5 J (the stage log shows each finished push as push × length = work, to 0.1 N).",
       "support": "derivation",
-      "source": "50 x 9.81 x 1 / 4 = 122.6 N; x 4 m = 490.5 J = m g h. The stage computes 490.5 / L for L = 1-8 m (490.5, 245.3, 163.5, 122.6, 98.1, 81.8, 70.1, 61.3 N); checked in node.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "50 x 9.81 x 1 / 4 = 122.6 N; x 4 m = 490.5 J = m g h. The stage computes 490.5 / L for L = 1-8 m (490.5, 245.3, 163.5, 122.6, 98.1, 81.8, 70.1, 61.3 N); checked in node. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "physics.ramp-same-work.c3",
@@ -92,7 +90,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "physics:inclined-plane-work",
     "prerequisites": [

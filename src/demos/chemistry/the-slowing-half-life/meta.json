@@ -42,21 +42,24 @@
     },
     {
       "id": "chemistry.the-slowing-half-life.c3",
-      "text": "A first-order reaction has one fixed half-life (here 10 min each time), like radioactive decay.",
+      "text": "A first-order reaction keeps one fixed half-life (here 10 min each time); radioactive decay is first order.",
       "support": "source",
-      "source": "t1/2 = ln 2 / k, independent of concentration (Atkins & de Paula, ch. on kinetics). Radioactive decay is first order (IUPAC Gold Book, 'half life').",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "t1/2 = ln 2 / k, independent of concentration (Atkins & de Paula, ch. on kinetics). Radioactive decay is first order (IUPAC Gold Book, 'half life'). | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
     },
     {
       "id": "chemistry.the-slowing-half-life.c4",
-      "text": "In a second-order reaction of this kind, two reactant molecules must meet, so the rate goes with the concentration squared; halving the concentration makes meetings four times rarer (rate 1/4 after one halving, 1/16 after two). In first order the rate halves each time.",
+      "text": "In a second-order reaction of this kind, two reactant molecules must meet, so the rate goes with the concentration squared; halving the concentration makes meetings four times rarer (rate 1/4 of the start after one halving, 1/16 after two). In first order the rate halves each time.",
       "support": "source",
-      "source": "Rate = k[A]^2 for an elementary bimolecular step 2A -> products (Atkins & de Paula, ch. on kinetics). Order is measured, not always from the equation; the lesson's reaction is stated to be second order. | REVISION v2 2026-10-14: text edited to match stage; needs re-check.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Rate = k[A]^2 for an elementary bimolecular step 2A -> products (Atkins & de Paula, ch. on kinetics). Order is measured, not always from the equation; the lesson's reaction is stated to be second order. | REVISION v2 2026-10-14: text edited to match stage; needs re-check. | REOPENED 2026-10-14 (v3, wave D r5 revision by demo-builder): learner-visible sentence changed; needs a fresh check.",
+      "status": "unverified"
+    },
+    {
+      "id": "chemistry.the-slowing-half-life.c5",
+      "text": "Each halving leaves half as much to lose; in 2nd order it goes at a quarter of the rate, so the wait doubles; in 1st order at half the rate, so the wait stays the same. (Stage line: 'Each halving: ½ as much left to lose, at ¼ the rate → 2× the wait' / '... at ½ the rate → same wait'.)",
+      "support": "derivation",
+      "source": "Scaling: for rate = k[A]^m, the time to go from c to c/2 scales as c^(1−m) (integrated rate law). m = 2: halving c doubles the wait; m = 1: the wait is unchanged. The rate at the start of each halving is (1/2)^m of the one before, which is the 1/4 or 1/2 on the line. The amount lost per halving is c/2, half the previous. Stage text in Demo.tsx (.why line). | Added 2026-10-14 (v3) by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -81,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "chemistry:reaction-order",
     "prerequisites": [
