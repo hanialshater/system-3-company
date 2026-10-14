@@ -7,3 +7,22 @@ builder: demo-builder (ncm-m2) · 2026-10-14 · v1 draft · brief: company/domai
 - Show the why: the cause (an odd loop) is on the stage as the highlighted loop with its count, and the best attempt's single broken link is the cross link A-D. The reveal says what walking round an odd loop does and points back at the counts. The reveal reads the lifted `moved` state, so it quotes the moved result only if the learner moved the link.
 - Re-run (own code, node 2026-10-14, then the Demo's tryAll()): as given, ring 2, right loop 1, left loop 1; 0 of 64 labellings valid; minimum 1 broken link (the chord). Moved to C-D: loops 2, 2, 0; 2 of 64 valid ({A,D,E,F} vs {B,C} and its swap). Matches the edited brief.
 - Not run: build, typecheck, QA, walkthrough. Draft.
+
+## Revision v2 (wave E, r6 learner review)
+
+- r6 blocking (switch-camp-per-enemy-link told, not shown): picking a loop now walks it from A on the stage. Each person on the loop is tinted by the camp the walk gives them (filled or dotted), switching at every red link, and A gets an outer ring in the camp the walk comes back with (dashed red ring = clash). Caption: "Right loop: 1 enemy link. Walk from A, switching at each: back at A in the other camp: clash." The big ring walk comes back in the same camp.
+- r6 legend: a fixed line "Green solid: friends · red dashes: enemies" (also while locked), and the question states the camp rule. The best-try caption names the two camps (filled vs dotted) and the broken link (thick).
+- "Move enemy D-E to C-D" relabelled itself: now two buttons, "Enemy on D-E" (active at start) and "Enemy on C-D".
+- Loop counts and split results are recorded per layout in a row under the readouts; the reveal quotes that row.
+- Title "Two camps on a ring of six?", hook "Two enemy links on a ring of six, plus one cross link. Can two camps form?" (the old title "The big loop looks fine. Is it?" leaned to No).
+- Not changed: the graph cropped at the top over the reveal (kit reveal layout); flag for the walkthrough.
+- c2 and c4 reworded and unverified.
+
+## Pre-flight v2
+
+1. Title and hook: "Two camps on a ring of six?" / "Two enemy links on a ring of six, plus one cross link. Can two camps form?" Both are open; neither says "looks fine" or hints at a catch.
+2. Options: "Yes" / "No" / "Can't tell from the loops". None numbered.
+3. Locked stage: hexagon A–F with cross link A–D, red dashed A–B and D–E, the legend line, readouts "?". No loop highlight, no camp tint, no clash ring.
+4. Reveal values: "big ring had 2 enemy links", "right loop: 1, left loop: 1": recorded in the layout row when the learner picks each loop (a, from their own picks; milestone odd-loop guarantees at least one odd loop). "came back to A in the other camp": the walk drawn at milestone odd-loop (b). "0 of the 64 splits": recorded at milestone tried-all (b), in the row. "With the enemy on C-D … 2 of 64": only if the learner tried that layout (a, from the row); otherwise the sentence is an invitation in the present tense, not a "you saw".
+5. QA path: Big ring (2, same camp) → Right loop (1, clash: odd-loop) → Left loop (1, clash) → Try all 64 splits (0/64: tried-all) → Enemy on D-E (disabled) → Enemy on C-D (2/64). At the reveal the row reads "enemy on D-E: big ring 2, right loop 1, left loop 1; 0/64 work · enemy on C-D: left loop 0; 2/64 work".
+6. Reset: there is no reset; moving the enemy back does not clear the row. Reveal on the QA path: "Your big ring had 2 enemy links, an even number, but the cross link A-D makes two smaller loops (right loop: 1, left loop: 1) with an odd count. On those walks every red link switched camp, so the walk came back to A in the other camp. That is why 0 of the 64 splits worked. / With the enemy on C-D every loop was even and 2 of 64 worked: one split, with the camp names swapped. A network splits into two camps exactly when every loop has an even number of enemy links."

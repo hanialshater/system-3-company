@@ -1,7 +1,7 @@
 {
   "slug": "one-odd-loop-blocks-two-camps",
-  "title": "The big loop looks fine. Is it?",
-  "hook": "Two enemy links on a ring of six: an even count. Does that mean two camps can form?",
+  "title": "Two camps on a ring of six?",
+  "hook": "Two enemy links on a ring of six, plus one cross link. Can two camps form?",
   "domain": "math",
   "concept": "signed-cycle-balance",
   "status": "draft",
@@ -32,12 +32,10 @@
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c2",
-      "text": "None of the 64 ways to put the six people into two camps keeps every friend pair together and every enemy pair apart; the best breaks 1 link.",
+      "text": "None of the 64 ways to put the six people into two camps keeps every friend pair together and every enemy pair apart; the best breaks 1 link (drawn thick, with the two camps as filled and dotted circles).",
       "support": "derivation",
-      "source": "tryAll(ENEMIES_AS_GIVEN) in Demo.tsx, brute force over 2^6 = 64 labellings; builder re-run in node 2026-10-14: 0 valid, minimum 1 broken link. | FACT-CHECK 2026-10-14 (pass 22): Own brute force over 64 labellings, 7 links: 0 valid, minimum 1 broken.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "tryAll(ENEMIES_AS_GIVEN) in Demo.tsx, brute force over 2^6 = 64 labellings; builder re-run in node 2026-10-14: 0 valid, minimum 1 broken link. | FACT-CHECK 2026-10-14 (pass 22): Own brute force over 64 labellings, 7 links: 0 valid, minimum 1 broken. | v2: caption now names the camps and the thick broken link.",
+      "status": "unverified"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c3",
@@ -50,12 +48,10 @@
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c4",
-      "text": "Walking round a loop, every enemy link switches camp and every friendly link keeps it, so a loop with an odd number of enemy links brings you back to the start in the other camp.",
+      "text": "Walking round a loop, every enemy link switches camp and every friendly link keeps it, so a loop with an odd number of enemy links brings you back to the start in the other camp. On stage: walking the right loop or the left loop from A comes back to A in the other camp (clash); walking the big ring comes back in the same camp.",
       "support": "derivation",
-      "source": "Parity argument: the camp after k switches is the start camp iff k is even. | FACT-CHECK 2026-10-14 (pass 22): Parity argument re-derived: k switches return to the start camp iff k is even.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Parity argument: the camp after k switches is the start camp iff k is even. | FACT-CHECK 2026-10-14 (pass 22): Parity argument re-derived: k switches return to the start camp iff k is even. | v2: Demo.tsx walk(): right loop A B C D with enemy A-B returns camp 1; left loop A D E F with enemy D-E returns 1; ring returns 0. With the enemy on C-D the right loop returns 0. Builder's trace by hand 2026-10-14.",
+      "status": "unverified"
     },
     {
       "id": "math.one-odd-loop-blocks-two-camps.c5",
@@ -80,11 +76,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/one-odd-loop-blocks-two-camps/2026-10-14-learner-knows-two-camps-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "math:signed-cycle-balance",
     "also": [

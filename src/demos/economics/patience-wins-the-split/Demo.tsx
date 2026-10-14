@@ -5,7 +5,10 @@
 // each bar the first proposer's share, solved by backward induction (share(1) = 1,
 // share(n) = 1 − δ · share(n − 1), δ = 1 − shrink). The learner adds rounds at the front, one or ten at
 // a time or straight to 400; the bars zigzag toward the dashed no-deadline share 1 / (1 + δ).
-// Key state: a long game (50 or more rounds) has been solved, and the 50% shrink has been seen.
+// Key state (v2, r6): a long game at the question's 10% shrink, and a long game at another shrink. Each long game
+// is recorded (shrink, rounds, share, first-round offer) in a row that "1 round" does not clear; the reveal quotes
+// the records. The dashed line is drawn only at a shrink with a recorded long game, at that recorded share (no
+// pre-drawn limit). Round buttons come first in the DOM so the QA path runs 400 rounds at 10% before switching.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -18,7 +21,8 @@ const START_SHRINK = 0.1;
 const LONG = 400;
 const LONG_ENOUGH = 50;
 const SHOW = 20; // bars drawn
-const MILESTONES = ["long-game", "half-shrink"] as const;
+const MILESTONES = ["long-10", "long-other"] as const;
+type Rec = { shrink: number; n: number; keep: number };
 
 /** First proposer's share with a deadline after n rounds, by backward induction. */
 function share(shrink: number, n: number): number {
@@ -42,6 +46,9 @@ const y = (v: number) => Y1 - v * (Y1 - Y0);
 export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
   const [shrink, setShrink] = useState(START_SHRINK);
   const [n, setN] = useState(1);
+  const [recs, setRecs] = useState<Rec[]>([]);
+  const q = recs.find((r) => r.shrink === START_SHRINK);
+  const other = recs.filter((r) => r.shrink !== START_SHRINK).slice(-1)[0];
 
   return (
     <Lesson
@@ -57,13 +64,17 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
         <>
           <p>
             With one round the proposer took 100%: the other can only accept or get nothing. Each round you added in front changed
-            that. The responder can say no and propose next round, which is worth {whole(1 - START_SHRINK)} of a proposer&apos;s share, so
-            the proposer must offer that much and keeps the rest.
+            that. The responder can say no and propose next round, which at a {whole(START_SHRINK)} shrink is worth{" "}
+            {(1 - START_SHRINK).toFixed(1)} of a proposer&apos;s share, so the proposer must offer that much and keeps the rest.
+            That is the line above the chart: &quot;offer {(1 - START_SHRINK).toFixed(1)} × next share&quot;.
           </p>
           <p>
-            Long games settle at 1 ÷ (1 + {(1 - START_SHRINK).toFixed(1)}) = <strong>{pct(limit(START_SHRINK))}</strong>; {LONG} rounds
-            gave {pct(share(START_SHRINK, LONG))}. Going first is a small edge when waiting is cheap. At {whole(0.5)} shrink it was{" "}
-            {pct(limit(0.5))}: the costlier the delay, the more going first is worth.
+            Your {q?.n ?? LONG}-round game at {whole(START_SHRINK)} left the first proposer <strong>{pct(q?.keep ?? limit(START_SHRINK))}</strong>,
+            close to 1 ÷ (1 + {(1 - START_SHRINK).toFixed(1)}) = {pct(limit(START_SHRINK))}. Going first is a small edge when waiting
+            is cheap.
+            {other
+              ? ` At ${whole(other.shrink)} shrink your ${other.n} rounds gave ${pct(other.keep)}: the costlier the delay, the more going first is worth.`
+              : ""}
           </p>
           <p className="muted">A simplified model: both players are rational and know the shrink rate.</p>
         </>
@@ -75,13 +86,20 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
             const set = (sh: number, nn: number) => {
               setShrink(sh);
               setN(nn);
-              if (nn >= LONG_ENOUGH) reach("long-game");
-              if (sh === 0.5) reach("half-shrink");
+              if (nn >= LONG_ENOUGH) {
+                const r: Rec = { shrink: sh, n: nn, keep: share(sh, nn) };
+                setRecs((rs) => {
+                  const old = rs.find((x) => x.shrink === sh);
+                  if (old && old.n >= nn) return rs;
+                  return [...rs.filter((x) => x.shrink !== sh), r].sort((a, b) => a.shrink - b.shrink);
+                });
+                reach(sh === START_SHRINK ? "long-10" : "long-other");
+              }
             };
+            const mine = recs.find((r) => r.shrink === shrink);
             const d = 1 - shrink;
             const cur = share(shrink, n);
             const prev = n > 1 ? share(shrink, n - 1) : null;
-            const lim = limit(shrink);
             const bars = Math.min(n, SHOW);
             return (
               <div className={s.wrap}>
@@ -107,11 +125,11 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                       const on = i + 1 === n;
                       return <rect key={i} x={X0 + i * SLOT + 1.5} y={y(v)} width={SLOT - 3} height={Y1 - y(v)} className={on ? s.barOn : s.bar} />;
                     })}
-                  {!locked && (
+                  {!locked && mine && (
                     <>
-                      <line x1={X0} y1={y(lim)} x2={X1} y2={y(lim)} className={s.limit} />
-                      <text x={X1} y={y(lim) - 5} textAnchor="end" className={s.value}>
-                        no end date: {pct(lim)}
+                      <line x1={X0} y1={y(mine.keep)} x2={X1} y2={y(mine.keep)} className={s.limit} />
+                      <text x={X1} y={y(mine.keep) - 5} textAnchor="end" className={s.value}>
+                        your {mine.n} rounds: {pct(mine.keep)}
                       </text>
                     </>
                   )}
@@ -119,9 +137,20 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                     1 round
                   </text>
                   <text x={X1} y={186} textAnchor="end" className={s.label}>
-                    {n > SHOW ? `bars 1–${SHOW} of ${n}` : `${SHOW} rounds`}
+                    {n > SHOW ? `bars 1–${SHOW} of ${n} · dark = this game` : `${SHOW} rounds · dark = this game`}
                   </text>
                 </svg>
+                <Row>
+                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, n + 1)}>
+                    +1 round
+                  </Control>
+                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, Math.min(LONG, n + 10))}>
+                    +10 rounds
+                  </Control>
+                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, LONG)}>
+                    {LONG} rounds
+                  </Control>
+                </Row>
                 <Row>
                   {SHRINKS.map((sh) => (
                     <Control
@@ -134,17 +163,6 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                       Shrink {whole(sh)}
                     </Control>
                   ))}
-                </Row>
-                <Row>
-                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, n + 1)}>
-                    +1 round
-                  </Control>
-                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, Math.min(LONG, n + 10))}>
-                    +10 rounds
-                  </Control>
-                  <Control disabled={locked || n >= LONG} onClick={() => set(shrink, LONG)}>
-                    {LONG} rounds
-                  </Control>
                   <Control disabled={locked || n === 1} onClick={() => set(shrink, 1)}>
                     1 round
                   </Control>
@@ -153,6 +171,9 @@ export default function PatienceWinsTheSplit({ slug }: { slug: string }) {
                   <Readout label="Rounds to deadline" value={locked ? "?" : n} />
                   <Readout label="First proposer keeps" value={locked ? "?" : pct(cur)} />
                 </Row>
+                <p className={s.msg}>
+                  {locked || recs.length === 0 ? "" : `Long games: ${recs.map((r) => `${whole(r.shrink)} shrink → ${pct(r.keep)}`).join(" · ")}`}
+                </p>
               </div>
             );
           }}

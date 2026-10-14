@@ -9,6 +9,10 @@
 // best for corn. Field k grew 2k − 1 tons of corn (tinted darker for better corn land); pushing wheat turns
 // fields to wheat in that order, so each drop on the staircase is the corn that field used to grow.
 // The formula is gone from the question and the chip, and the locked strip is plain (no tint, no numbers).
+// v3 (r6): the dashed frontier is no longer drawn while locked (a curve-reader could read 19 off it). After the
+// commit the curve and staircase are drawn only as far as the learner has pushed (the furthest point stays as a
+// faint trace when they step back). Wheat starts at 0; "All 10 fields" is a step button that reaches the key state.
+// Wheat fields are crossed out instead of relying on a colour word.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -17,7 +21,7 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const W_MAX = 10;
-const START = 8;
+const START = 0;
 const CORN_MAX = 100;
 const MILESTONES = ["last-ton"] as const;
 
@@ -33,12 +37,15 @@ const TOP = 26;
 const BOT = 180;
 const px = (w: number) => L + (w / W_MAX) * (R - L);
 const py = (c: number) => BOT - (c / CORN_MAX) * (BOT - TOP);
-const curve = Array.from({ length: 101 }, (_, i) => i / 10)
-  .map((w, i) => `${i ? "L" : "M"}${px(w).toFixed(1)},${py(corn(w)).toFixed(1)}`)
-  .join(" ");
+// The frontier from 0 to wheat `to`.
+const curve = (to: number) =>
+  Array.from({ length: Math.round(to * 10) + 1 }, (_, i) => i / 10)
+    .map((w, i) => `${i ? "L" : "M"}${px(w).toFixed(1)},${py(corn(w)).toFixed(1)}`)
+    .join(" ");
 
 export default function BendingFrontier({ slug }: { slug: string }) {
   const [w, setW] = useState(START);
+  const [far, setFar] = useState(START); // furthest wheat reached
 
   return (
     <Lesson
@@ -71,6 +78,7 @@ export default function BendingFrontier({ slug }: { slug: string }) {
             const set = (v: number) => {
               const k = Math.max(0, Math.min(W_MAX, v));
               setW(k);
+              setFar((f) => Math.max(f, k));
               if (k === W_MAX) reach("last-ton");
             };
             return (
@@ -100,10 +108,10 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                   </text>
                   <line x1={L} y1={TOP} x2={L} y2={BOT} stroke="var(--line)" />
                   <line x1={L} y1={BOT} x2={R} y2={BOT} stroke="var(--line)" />
-                  <path d={curve} className={s.ghost} />
+                  {!locked && far > 0 && <path d={curve(far)} className={s.ghost} />}
                   {!locked &&
-                    Array.from({ length: w }, (_, i) => i + 1).map((k) => (
-                      <g key={k}>
+                    Array.from({ length: far }, (_, i) => i + 1).map((k) => (
+                      <g key={k} opacity={k <= w ? 1 : 0.3}>
                         <line x1={px(k - 1)} y1={py(corn(k - 1))} x2={px(k)} y2={py(corn(k - 1))} stroke="var(--muted)" strokeWidth={1.5} />
                         <line x1={px(k)} y1={py(corn(k - 1))} x2={px(k)} y2={py(corn(k))} stroke="var(--bad)" strokeWidth={k === w ? 4 : 2.5} />
                       </g>
@@ -125,20 +133,24 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                           width={px(k) - px(k - 1) - 2}
                           height={22}
                           rx={3}
-                          fill={locked ? "var(--bg-2)" : wheat ? "var(--warn)" : `color-mix(in srgb, var(--good) ${pct}%, var(--bg-2))`}
-                          stroke={locked ? "var(--line)" : k === w ? "var(--fg)" : "none"}
+                          fill={locked || wheat ? "var(--bg-2)" : `color-mix(in srgb, var(--good) ${pct}%, var(--bg-2))`}
+                          stroke={locked ? "var(--line)" : k === w ? "var(--fg)" : wheat ? "var(--muted)" : "none"}
                           strokeWidth={2}
+                          strokeDasharray={wheat && k !== w ? "3 2" : undefined}
                         />
                         {!locked && (
-                          <text x={(px(k - 1) + px(k)) / 2} y={BOT + 49} textAnchor="middle" className={s.small}>
+                          <text x={(px(k - 1) + px(k)) / 2} y={BOT + 49} textAnchor="middle" className={s.small} opacity={wheat ? 0.6 : 1}>
                             {stepCost(k)}
                           </text>
+                        )}
+                        {wheat && (
+                          <line x1={px(k - 1) + 5} y1={BOT + 52} x2={px(k) - 5} y2={BOT + 38} stroke="var(--fg)" strokeWidth={1.5} />
                         )}
                       </g>
                     );
                   })}
                   <text x={10} y={BOT + 70} className={s.axis}>
-                    {locked ? "the 10 fields" : "number = corn the field grew · yellow = wheat"}
+                    {locked ? "the 10 fields" : "number = corn the field grew · crossed out = now wheat"}
                   </text>
                 </svg>
 
@@ -153,6 +165,9 @@ export default function BendingFrontier({ slug }: { slug: string }) {
                   </Control>
                   <Control disabled={locked || w <= 0} onClick={() => set(w - 1)} aria-label="One less ton of wheat">
                     −1
+                  </Control>
+                  <Control disabled={locked || w >= W_MAX} onClick={() => set(W_MAX)}>
+                    All {W_MAX} fields
                   </Control>
                 </Row>
               </div>

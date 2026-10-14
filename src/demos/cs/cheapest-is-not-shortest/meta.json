@@ -19,34 +19,28 @@
     ]
   },
   "misconception": "The route with the fewest stops is the cheapest.",
-  "objective": "The learner can settle S, A, B, G in order of smallest label, watch G's label drop from 10 to 6, and explain why settling the smallest label first gives true cheapest costs when no cost is negative.",
+  "objective": "The learner can settle S, A, B, G in order of smallest label, watch G's first label (10, the straight road) drop to 9, and explain why settling the smallest label first gives true cheapest costs when no cost is negative.",
   "claims": [
     {
       "id": "cs.cheapest-is-not-shortest.c1",
-      "text": "With roads S–G 10, S–A 2, A–B 2 and B–G 2, the cheapest cost from S to G is 2 + 2 + 2 = 6, and the one-road route costs 10.",
+      "text": "With roads S–G 10, S–A 3, S–B 8, A–B 4 and B–G 2, the cheapest cost from S to G is 3 + 4 + 2 = 9 (three roads), and the one-road route costs 10.",
       "support": "simulation",
-      "source": "Demo.tsx runAll(): final labels S 0, A 2, B 4, G 6. Builder re-ran the relaxation in Node: same.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Demo.tsx runAll(): final labels S 0, A 3, B 7, G 9 (v4 graph).",
+      "status": "unverified"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c2",
-      "text": "Settling S gives A 2 and G 10; settling A gives B 4; settling B drops G from 10 to 6.",
+      "text": "Settling S gives A 3, B 8 and G 10; settling A drops B from 8 to 7; settling B drops G from 10 to 9; settling G changes nothing. G's first label is not its final one.",
       "support": "simulation",
-      "source": "Demo.tsx settle() trace on the QA path (S, A, B, G); messages show each update.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Demo.tsx settle() trace on the QA path (S, A, B, G); the message line shows each update and the trace row records G 10 → 9.",
+      "status": "unverified"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c3",
-      "text": "Settling the smallest label first is safe: with no negative costs, a route found later can only cost more, so each settled label is a true cheapest cost. When a settled town is reached again the stage shows the later route costing more.",
+      "text": "Settling the smallest label first is safe: with no negative costs, any other way to that town passes a label at least as big, and costs only add, so each settled label is a true cheapest cost. On stage: when A is settled the other open labels are B 8 and G 10; when B is settled, G 10; going from B to A would cost 11, more than A's 3, and from G to B 11, more than B's 7.",
       "support": "source",
-      "source": "CLRS (3rd ed.) 24.3, Theorem 24.6 (correctness of Dijkstra's algorithm for non-negative weights). It can fail with negative weights (CLRS 24.3 discussion); not shown on stage. | FACT-CHECK 2026-10-14 (pass 12): Dijkstra correctness for non-negative weights (CLRS 3rd ed. 24.3, Thm 24.6; Dijkstra 1959, Numer. Math. 1: 269-271; not opened). node run: settle S 0, A 2, B 4, G 6. The 'later route costs more' note appears when a settled town yields no changes (at G: 'Going on to S would cost 16, more than its 0').",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "CLRS (3rd ed.) 24.3, Theorem 24.6 (correctness of Dijkstra's algorithm for non-negative weights). Stage numbers from Demo.tsx tap(): the 'why' line lists the other open labels before the settle; backRoute() gives the later route's cost to a settled town.",
+      "status": "unverified"
     },
     {
       "id": "cs.cheapest-is-not-shortest.c4",
@@ -59,12 +53,10 @@
     },
     {
       "id": "cs.cheapest-is-not-shortest.c5",
-      "text": "A label is the cheapest cost from S found so far; the sign for infinity means not reached yet. Settling a town means its label is then final (the smallest unsettled label is already a true cheapest cost).",
+      "text": "A label is the cheapest cost from S found so far; the sign for infinity means not reached yet. Settling a town means its label is then final.",
       "support": "convention",
-      "source": "Definition of the tentative distance d[v] (CLRS 24.1, 'shortest-path estimate'). | FACT-CHECK 2026-10-14 (pass 12): Stage default message: 'A label is the cheapest cost from S found so far; infinity means not reached yet'; START labels A, B, G = Infinity rendered as the infinity sign. | Revision v3: the stage now says what settle means. | FACT-CHECK 2026-10-14 (pass 14): Tentative distance d[v] (CLRS 3rd ed. 24.1, 24.3 Theorem 24.6: with non-negative weights the extracted minimum's d equals the true distance). Stage default message and fmt(Infinity) = '∞' match; all road costs positive; ties allowed (tap rejects only label > smallest).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Definition of the tentative distance d[v] (CLRS 24.1, 'shortest-path estimate'). v4: the definition is a fixed line under the map, so it stays after the first tap.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -85,12 +77,13 @@
     "simulatedLearner": [
       "company/reviews/cheapest-is-not-shortest/2026-10-13-learner-adult-beginner.md",
       "company/reviews/cheapest-is-not-shortest/2026-10-14-learner-adult-beginner-r2.md",
-      "company/reviews/cheapest-is-not-shortest/2026-10-14-learner-adult-beginner-r3.md"
+      "company/reviews/cheapest-is-not-shortest/2026-10-14-learner-adult-beginner-r3.md",
+      "company/reviews/cheapest-is-not-shortest/2026-10-14-learner-adult-beginner-r6.md"
     ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "cs:weighted-shortest-path",
     "prerequisites": [

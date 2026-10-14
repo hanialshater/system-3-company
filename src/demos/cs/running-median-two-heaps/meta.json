@@ -1,7 +1,7 @@
 {
   "slug": "running-median-two-heaps",
-  "title": "A median that never re-sorts",
-  "hook": "Numbers keep arriving. Must you re-sort them all to know the middle one each time?",
+  "title": "Keeping the middle of a stream",
+  "hook": "Numbers keep arriving. How much work does each one cost to keep the middle?",
   "domain": "cs",
   "concept": "two-heap-median",
   "status": "draft",
@@ -20,7 +20,7 @@
     ]
   },
   "misconception": "The median of a growing stream needs a re-sort every time a number arrives.",
-  "objective": "The learner can explain that keeping the lower half in a max-heap and the upper half in a min-heap, balanced in size, puts the median at the tops, so the stream 5, 15, 1, 3 gives medians 5, 10, 5, 4 with one heap insert and at most one move per number.",
+  "objective": "The learner can predict that when 3 arrives after 5, 15, 1 (halves 1 5 | 15) exactly one stored number, 5, crosses to the upper half, see that the other arrivals move nothing across, and explain that a max-heap of the lower half and a min-heap of the upper half, balanced in size, keep the median at their tops with one heap insert and at most one move per number.",
   "claims": [
     {
       "id": "cs.running-median-two-heaps.c1",
@@ -33,12 +33,10 @@
     },
     {
       "id": "cs.running-median-two-heaps.c2",
-      "text": "Trace: 5 starts the lower half; 15 > 5 goes to the upper half; 1 ≤ 5 goes to the lower half; 3 ≤ 5 goes to the lower half, which is then too big, so 5 moves up. At the end the lower half is 1, 3 and the upper half is 5, 15, and the median is (3 + 5) / 2 = 4.",
+      "text": "Trace: 5 starts the lower half; 15 > 5 goes to the upper half; 1 ≤ 5 goes to the lower half; 3 ≤ 5 goes to the lower half, which is then too big, so 5 moves up. At the end the lower half is 1, 3 and the upper half is 5, 15, and the median is (3 + 5) / 2 = 4. Only the arrival of 3 makes a number cross (log row: '3 → lower, 5 crosses'); the other three arrivals move nothing across.",
       "support": "simulation",
-      "source": "Demo.tsx feed() with array heaps push()/pop(); rule: insert into the lower half if it is empty or x ≤ its top, else the upper half; then move a top across if the lower half has 2 more or the upper half has more. Builder's independent trace in node (scratchpad algo2b0/check.mjs) gives the same halves. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own trace of the stated rule: lower [5]; 15 up; 1 down; 3 down makes lower 3 vs upper 1, so 5 moves up; final lower {1, 3}, upper {5, 15}, (3 + 5) / 2 = 4. Same as Demo feed().",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx feed() with array heaps push()/pop(); rule: insert into the lower half if it is empty or x ≤ its top, else the upper half; then move a top across if the lower half has 2 more or the upper half has more. Builder's independent trace in node (scratchpad algo2b0/check.mjs) gives the same halves. | FACT-CHECK 2026-10-14 (pass 21): VERIFIED. Own trace of the stated rule: lower [5]; 15 up; 1 down; 3 down makes lower 3 vs upper 1, so 5 moves up; final lower {1, 3}, upper {5, 15}, (3 + 5) / 2 = 4. Same as Demo feed(). | v2: Demo.tsx feed() log entries: moved null for 5, 15, 1; moved 5 for 3. Builder's node trace 2026-10-14.",
+      "status": "unverified"
     },
     {
       "id": "cs.running-median-two-heaps.c3",
@@ -66,6 +64,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "cs.running-median-two-heaps.c6",
+      "text": "After 5, 15, 1 the halves are 1 5 | 15 (lower | upper); when 3 arrives exactly one stored number, 5, must cross to the other half.",
+      "support": "simulation",
+      "source": "Demo.tsx AFTER3 = feed over 5, 15, 1: lo [5, 1], hi [15]; FINAL.log[3].moved = 5; the answer index is computed from it (crossings = 1).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -81,11 +86,13 @@
   },
   "evidence": {
     "qa": [],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/running-median-two-heaps/2026-10-14-learner-knows-heaps-r6.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:two-heap-median",
     "also": [

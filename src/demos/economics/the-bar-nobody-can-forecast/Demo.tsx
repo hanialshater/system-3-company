@@ -6,6 +6,9 @@
 // One picture: attendance night by night (last 40 nights), the 60 line, crowded nights in the bad colour.
 // Seeded: mulberry32(1) for the random nights, 100 draws per night; seed 1 was the first tried, not chosen.
 // Key state: both forecasts tried, and 100+ random nights run.
+// v2 (r6): the forecast results and the longest random run are recorded when they happen and shown in a
+// "Your runs" row that Reset does not clear; the reveal quotes those records (never "your 0 nights").
+// A zero-attendance night gets a "0" mark. Options are all bare numbers.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -48,6 +51,8 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
   const [nights, setNights] = useState<Night[]>([]);
   const [mixedUsed, setMixedUsed] = useState(0);
   const [total, setTotal] = useState(0);
+  const [fc, setFc] = useState<Record<number, number>>({});
+  const [best, setBest] = useState<{ n: number; avg: number; pct: number } | null>(null);
   const mixed = MIXED.slice(0, mixedUsed);
   const crowded = mixed.filter((k) => k > OK).length;
   const avg = mixedUsed ? mixed.reduce((a, b) => a + b, 0) / mixedUsed : 0;
@@ -58,7 +63,7 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: "100 people go to a bar only if they expect 60 or fewer. All trust one forecast: 50 will come. How many come?",
-        options: ["About 50", "About 60", "All 100"],
+        options: ["50", "60", "100"],
         answer: [50, 60, 100].indexOf(attendanceFor(50)),
       }}
       exploreHint="Try both forecasts, then let everyone flip a 60% coin for 100+ nights."
@@ -66,14 +71,16 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The forecast of 50 sent all <strong>{attendanceFor(50)}</strong>: everyone expected room, so everyone went. The forecast of 70 sent{" "}
-            <strong>{attendanceFor(70)}</strong>. Any forecast everyone believes makes itself wrong.
+            The forecast of 50 sent all <strong>{fc[50] ?? attendanceFor(50)}</strong>: everyone expected room, so everyone went. The forecast of 70 sent{" "}
+            <strong>{fc[70] ?? attendanceFor(70)}</strong>. Any forecast everyone believes makes itself wrong.
           </p>
-          <p>
-            When each person went 60% of the time, your {mixedUsed} random nights averaged <strong>{avg.toFixed(1)}</strong>, yet{" "}
-            <strong>{mixedUsed ? Math.round((100 * crowded) / mixedUsed) : 0}%</strong> were crowded. In the long run that share is 46.2%: the
-            average sits right at the limit, so nearly half the nights land above it.
-          </p>
+          {best && (
+            <p>
+              When each person went 60% of the time (so on average 60 come), your {best.n} random nights averaged{" "}
+              <strong>{best.avg.toFixed(1)}</strong>, yet <strong>{best.pct}%</strong> were crowded. In the long run that share is 46.2%:
+              the average sits right at the limit, so nearly half the nights land above it.
+            </p>
+          )}
           <p className="muted">A model of Arthur&apos;s El Farol bar problem (1994): identical people, one shared forecast, no learning.</p>
         </>
       )}
@@ -85,6 +92,7 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
               const count = attendanceFor(f);
               setNights((ns) => [...ns, { kind: "forecast" as const, count, label: `forecast ${f}` }].slice(-SHOWN));
               setTotal((t) => t + 1);
+              setFc((m) => ({ ...m, [f]: count }));
               reach(f <= OK ? "forecast-low" : "forecast-high");
             };
             const runMixed = (k: number) => {
@@ -93,6 +101,13 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
               setNights((ns) => [...ns, ...added].slice(-SHOWN));
               setMixedUsed(to);
               setTotal((t) => t + (to - mixedUsed));
+              const run = MIXED.slice(0, to);
+              if (!best || to > best.n)
+                setBest({
+                  n: to,
+                  avg: run.reduce((a, b) => a + b, 0) / to,
+                  pct: Math.round((100 * run.filter((x) => x > OK).length) / to),
+                });
               if (to >= 100) reach("mixed-100");
             };
             const reset = () => {
@@ -127,6 +142,13 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                       strokeWidth={nt.kind === "forecast" ? 1.5 : 0}
                     />
                   ))}
+                  {shown.map((nt, i) =>
+                    nt.count === 0 ? (
+                      <text key={`z${i}`} x={LEFT + i * slotW + slotW / 2} y={BOT - 4} textAnchor="middle" className={s.small}>
+                        0
+                      </text>
+                    ) : null,
+                  )}
                   <line x1={LEFT} y1={yy(OK)} x2={RIGHT} y2={yy(OK)} className={s.ghost} />
                   <text x={RIGHT} y={yy(OK) - 4} textAnchor="end" className={s.value}>
                     60: crowded above
@@ -166,6 +188,14 @@ export default function TheBarNobodyCanForecast({ slug }: { slug: string }) {
                   <Readout label="Average" value={locked || !mixedUsed ? "?" : avg.toFixed(1)} />
                   <Readout label="Crowded" value={locked || !mixedUsed ? "?" : `${Math.round((100 * crowded) / mixedUsed)}%`} />
                 </Row>
+                <p className={s.rowLabel}>
+                  {locked
+                    ? ""
+                    : [
+                        ...Object.entries(fc).map(([f, c]) => `forecast ${f} → ${c} came`),
+                        ...(best ? [`longest run: ${best.n} nights, avg ${best.avg.toFixed(1)}, ${best.pct}% crowded`] : []),
+                      ].join(" · ")}
+                </p>
               </div>
             );
           }}
