@@ -29,3 +29,7 @@
 - Reveal gives one phrase on Y: "H, which five pages link to (Y links back to it too)".
 - Claims: c1 text now names Y linking back to H -> unverified. c2, c3, c4 text unchanged (still verified); the stage/reveal wording changed only.
 - QA v3: own NEXT_DIST_DIR .next-og3, QA_PORT 3913, QA_ONLY slug: 10 passed, 2 failed (feed.spec "subject chips filter the feed", phone and desktop; same non-lesson failure as v1). Walkthrough run on 3913; all four phone frames looked at: rule line wraps to two lines, reveal text fits, no new overlap. check and typecheck pass; tsconfig.json change from build reverted.
+
+## Revision (v4, 2026-10-14, fact-check NCM-3)
+
+Reveal round-51 sentence now "Y 0.374, X 0.053. X has not moved since round 2, and Y has stayed ahead." (no "same as at round 2"). c4 reset to unverified. meta version 4.

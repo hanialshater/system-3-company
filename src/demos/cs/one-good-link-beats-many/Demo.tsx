@@ -123,7 +123,7 @@ export default function OneGoodLinkBeatsMany({ slug }: { slug: string }) {
         <>
           <p>
             After round 1, X led, <strong>{f3(score(1, "X"))}</strong> to {f3(score(1, "Y"))}. By round 2, Y had <strong>{f3(score(2, "Y"))}</strong> and X {f3(score(2, "X"))}.{" "}
-            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}, the same as at round 2.</> : null}
+            {r51 ? <>At round {SETTLED_ROUND} the scores had stopped changing: Y {f3(score(SETTLED_ROUND, "Y"))}, X {f3(score(SETTLED_ROUND, "X"))}. X has not moved since round 2, and Y has stayed ahead.</> : null}
           </p>
           <p>
             X&rsquo;s three links come from pages nobody links to, so in round 2 each passed on only about {f3(passed(2, "P"))}. Y&rsquo;s one link comes from H, which five pages link to (Y links back to it too), so H passed on {f3(passed(2, "H"))}.
