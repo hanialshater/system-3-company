@@ -10,6 +10,9 @@
 // is printed in a trace row that Reset does not clear, and the reveal quotes that row; the chip shows
 // where B's fallback comes from (1 − C's share last round), so the swing is visible; options carry
 // the same precision.
+// v5 (wave H r8): picture compacted (viewBox 230 -> 158; the A-D labels under the bars dropped, the legend moved beside
+// the strip title, ticks on the left), readouts row dropped (the chip now names the round, so after Reset it reads
+// 'Round 0' instead of a large B GETS $0.500), reveal trimmed to <= 90 words so the stage top fits on a phone.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -95,7 +98,7 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
             // Split bars: A–B bar has A on the left, B on the right (B's fallback hatched next to B).
             const ab = { x: NODE_X[0] - 20, a: outer, b: inner, fb: fallback };
             const cd = { x: NODE_X[2] - 20 };
-            const stripX = (r: number) => 40 + (r / MAX_ROUND) * 270; // 40..310; tick labels sit left of x 36
+            const stripX = (r: number) => 40 + (r / MAX_ROUND) * 270; // 40..310; tick labels end at x 33
             const stripY = (v: number) => STRIP_Y + STRIP_H - ((v - 0.5) / 0.5) * STRIP_H;
             return (
               <div className={s.wrap}>
@@ -147,7 +150,7 @@ export default function FourInARowTwoThirds({ slug }: { slug: string }) {
 
                   {/* B's share by round */}
                   {[0.5, 0.75, 1].map((v) => (
-                    <text key={v} x={36} y={stripY(v) + 4} textAnchor="end" className={s.small}>
+                    <text key={v} x={33} y={stripY(v) + 4} textAnchor="end" className={s.small}>
                       {v.toFixed(2)}
                     </text>
                   ))}

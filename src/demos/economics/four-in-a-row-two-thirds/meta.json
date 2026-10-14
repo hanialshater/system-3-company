@@ -35,55 +35,57 @@
       "id": "economics.four-in-a-row-two-thirds.c2",
       "text": "Each round, every pair covers both people's fallbacks and halves the rest; B's fallback is what C would leave B in a B–C deal, $1 minus C's share.",
       "support": "source",
-      "source": "Definition of a balanced outcome (each matched pair splits its surplus over the two outside options equally): Easley and Kleinberg (2010) ch. 12; Cook and Yamagishi (1992). Round-by-round updating is the lesson's way of showing the fixed point, a simplification; stage chip 'Model: each pair covers both fallbacks, then halves the rest'. Fact-checker confirms the definition and attribution. | FACT-CHECK 2026-10-14 (pass 22): Definition matches the balanced outcome (Nash bargaining split with network outside options) in Easley & Kleinberg ch. 12 'Bargaining and Power in Networks' (chapter title confirmed by search snippet of the ToC; book host blocked; section placement from my own knowledge, confident) which credits Cook & Yamagishi (1992) for the concept (from memory, not opened). Round-by-round update is disclosed on the stage chip as the lesson's model.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Definition of a balanced outcome (each matched pair splits its surplus over the two outside options equally): Easley and Kleinberg (2010) ch. 12; Cook and Yamagishi (1992). Round-by-round updating is the lesson's way of showing the fixed point, a simplification; stage chip 'Model: each pair covers both fallbacks, then halves the rest'. Fact-checker confirms the definition and attribution. | FACT-CHECK 2026-10-14 (pass 22): Definition matches the balanced outcome (Nash bargaining split with network outside options) in Easley & Kleinberg ch. 12 'Bargaining and Power in Networks' (chapter title confirmed by search snippet of the ToC; book host blocked; section placement from my own knowledge, confident) which credits Cook & Yamagishi (1992) for the concept (from memory, not opened). Round-by-round update is disclosed on the stage chip as the lesson's model. | Builder (demo-builder, 2026-10-14, wave H, v5): stage chip changed: after the commit it now reads 'Round 0: no fallbacks yet, each pair halves $1' at round 0 and 'Round N: B's fallback = $1 − C's last share x = y' after; the locked chip is unchanged. Reopened: unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c3",
       "text": "B's share swings ($0.750, then $0.625, then $0.688) before settling, because each inner person's fallback depends on the other inner person's share; the stage prints every round's share in a trace row ('B gets: .500 .750 .625 .688 ...').",
       "support": "derivation",
-      "source": "Demo.tsx shares(): rounds 1-3 give vB = 0.75, 0.625, 0.6875 (usd() renders $0.688). Builder's Node run, 2026-10-14. v3 prints the trace row for every round up to the furthest reached; Reset does not clear it. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node of shares(): B 0.5, 0.75, 0.625, 0.6875, 0.65625 ... ; trace row prints toFixed(3).slice(1): '.500 .750 .625 .688 ...'. Fallback oB = 1 - vC links the two inner people.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx shares(): rounds 1-3 give vB = 0.75, 0.625, 0.6875 (usd() renders $0.688). Builder's Node run, 2026-10-14. v3 prints the trace row for every round up to the furthest reached; Reset does not clear it. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own node of shares(): B 0.5, 0.75, 0.625, 0.6875, 0.65625 ... ; trace row prints toFixed(3).slice(1): '.500 .750 .625 .688 ...'. Fallback oB = 1 - vC links the two inner people. | Builder (demo-builder, 2026-10-14, wave H, v5): reveal sentence now reads 'The trace rows show B's share swing: $0.750, $0.625, $0.688, then settle at $0.667 (two thirds) by round 9.' Trace rows unchanged. Reopened: unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c4",
       "text": "In a line of three, the centre's two partners have no other deal, so the centre can take nearly all.",
       "support": "source",
-      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all). 'Nearly all' allows for a minimum unit. Fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): 3-node path: ends have only the centre, so any stable outcome gives the centre the full $1; E&K ch. 12 (placement from own knowledge, confident: the 3-path is that chapter's opening example). 'Nearly all' is fair for experiments with minimum units.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all). 'Nearly all' allows for a minimum unit. Fact-checker confirms. | FACT-CHECK 2026-10-14 (pass 22): 3-node path: ends have only the centre, so any stable outcome gives the centre the full $1; E&K ch. 12 (placement from own knowledge, confident: the 3-path is that chapter's opening example). 'Nearly all' is fair for experiments with minimum units. | Builder (demo-builder, 2026-10-14, wave H, v5): withdrawn. The reveal sentence 'In a line of three, the centre's partners have no other deal, so the centre can take nearly all.' was cut (r8 text budget). The hook's 'The centre of three takes nearly all.' is now claim c8.",
+      "status": "withdrawn"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c5",
-      "text": "This is a model, the balanced-outcome rule, not a forecast of any real negotiation.",
+      "text": "This is a model, not a forecast of real bargains.",
       "support": "convention",
-      "source": "Lesson framing. Laboratory results on 4-paths (brief claim 3) need a human source check and are kept out of learner text. | FACT-CHECK 2026-10-14 (pass 22): Reveal muted line reads exactly this; stage chip discloses the model.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Lesson framing. Laboratory results on 4-paths (brief claim 3) need a human source check and are kept out of learner text. | FACT-CHECK 2026-10-14 (pass 22): Reveal muted line reads exactly this; stage chip discloses the model. | Builder (demo-builder, 2026-10-14, wave H, v5): reveal muted line shortened to 'A model, not a forecast of real bargains.' Reopened: unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c6",
-      "text": "Reveal: B's share 'settled at $0.667 (two thirds) by round 9. A kept $0.333.'",
+      "text": "Reveal: B's share '... then settle at $0.667 (two thirds) by round 9. A kept $0.333.'",
       "support": "derivation",
-      "source": "SETTLED_AT = the first round within $0.0005 of 2/3 = 9 (round 8 is 0.66602, which renders $0.666). The reveal renders usd(ROUNDS[9].inner) = $0.667 and usd(1 - ROUNDS[9].inner) = $0.333, the same values and rounding as the stage readout at round 9 and the trace row's .667. Builder's Node run, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: first round within 0.0005 of 2/3 is round 9 (0.66699; round 8 0.66602); usd -> '$0.667', A 1 - 0.66699 -> '$0.333'; all later rounds stay within tolerance. Fixed point v = 1 - v/2 gives 2/3.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "SETTLED_AT = the first round within $0.0005 of 2/3 = 9 (round 8 is 0.66602, which renders $0.666). The reveal renders usd(ROUNDS[9].inner) = $0.667 and usd(1 - ROUNDS[9].inner) = $0.333, the same values and rounding as the stage readout at round 9 and the trace row's .667. Builder's Node run, 2026-10-14. | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: first round within 0.0005 of 2/3 is round 9 (0.66699; round 8 0.66602); usd -> '$0.667', A 1 - 0.66699 -> '$0.333'; all later rounds stay within tolerance. Fixed point v = 1 - v/2 gives 2/3. | Builder (demo-builder, 2026-10-14, wave H, v5): reveal wording changed; values and rounding unchanged. Reopened: unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.four-in-a-row-two-thirds.c7",
-      "text": "B's fallback is $1 minus C's share the round before, and C's share is always B's: when C got $0.750 in round 1, B's fallback fell to $0.250 in round 2.",
+      "text": "B's fallback is $1 minus C's last share, and C's mirrors B's: C got $0.750 in round 1, so B's fallback was $0.250 in round 2.",
       "support": "simulation",
-      "source": "Demo.tsx shares(): oB = 1 - vC (previous round); the line is symmetric (A-B and C-D both worth $1, A and D have no fallback), so vB = vC every round. Round 1 vC = 0.75, round 2 oB = 0.25. The stage chip prints 'B's fallback = $1 − C's last share ...' each round and the trace row 'B's fallback: .000 .500 .250 ...'. Builder's Node run, 2026-10-14. Model rule, not a forecast (c5). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: round 1 share 0.75 (C = B by symmetry), round 2 fallback 1 - 0.75 = 0.25 -> '$0.250'. Chip 'B's fallback = $1 − C's last share' matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Demo.tsx shares(): oB = 1 - vC (previous round); the line is symmetric (A-B and C-D both worth $1, A and D have no fallback), so vB = vC every round. Round 1 vC = 0.75, round 2 oB = 0.25. The stage chip prints 'B's fallback = $1 − C's last share ...' each round and the trace row 'B's fallback: .000 .500 .250 ...'. Builder's Node run, 2026-10-14. Model rule, not a forecast (c5). | FACT-CHECK 2026-10-14 (pass 24): VERIFIED. Own run: round 1 share 0.75 (C = B by symmetry), round 2 fallback 1 - 0.75 = 0.25 -> '$0.250'. Chip 'B's fallback = $1 − C's last share' matches. | Builder (demo-builder, 2026-10-14, wave H, v5): reveal sentence shortened; the stage chip now reads 'Round N: B's fallback = $1 − C's last share ...' and the readouts row is gone (trace rows unchanged). Reopened: unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c8",
+      "text": "Hook: 'The centre of three takes nearly all.'",
+      "support": "source",
+      "source": "3-path network exchange: the end nodes' only option is the centre, so stable outcomes give the centre the whole $1 (Easley and Kleinberg 2010 ch. 12; lesson middle-of-three-takes-all); carried from withdrawn c4, which the fact-checker confirmed in pass 22. Added by demo-builder 2026-10-14 (wave H, v5): the hook sentence had no claim of its own.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.four-in-a-row-two-thirds.c9",
+      "text": "Each inner person's option feeds the other's, so neither takes all: power depends on the network.",
+      "support": "derivation",
+      "source": "Demo.tsx shares(): oB = 1 − vC and oC = 1 − vB, so each inner person's fallback is set by the other's share; the fixed point is 2/3 each, not 1 (c1). 'Power depends on the network' contrasts with the 3-path (c8), where the centre gets nearly all with the same count of two partners. Reveal paragraph 3, v5 (demo-builder, 2026-10-14).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -109,7 +111,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 5,
   "curriculum": {
     "primary": "economics:balanced-outcomes",
     "also": [],

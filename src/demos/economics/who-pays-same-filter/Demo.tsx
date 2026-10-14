@@ -87,9 +87,10 @@ function Panel({
       </text>
 
       {/* Factory, chimney and filter slot */}
-      <rect x={20} y={50} width={62} height={24} rx={3} className={s.block} />
-      <text x={51} y={66} className={s.name} textAnchor="middle">
-        Factory
+      <rect x={16} y={50} width={100} height={24} rx={3} className={s.block} />
+      <text x={66} y={67} textAnchor="middle">
+        <tspan className={s.name}>Factory </tspan>
+        <tspan className={s.value}>{factoryNet === null ? "?" : money(factoryNet)}</tspan>
       </text>
       <rect x={56} y={38} width={14} height={12} className={s.block} />
       <rect
@@ -109,19 +110,20 @@ function Panel({
       {filtered ? (
         <path d="M63 30 q-3 -4 0 -7" className={s.smokeStub} />
       ) : (
-        <path d="M63 31 Q 90 48 125 46 T 185 50 T 246 56" className={s.smoke} />
+        <path d="M63 31 Q 90 46 125 44 T 180 48 T 212 54" className={s.smoke} />
       )}
 
       {/* Laundry with a washing line */}
-      <rect x={250} y={55} width={70} height={19} rx={3} className={s.block} />
-      <text x={285} y={69} className={s.name} textAnchor="middle">
-        Laundry
+      <rect x={214} y={52} width={108} height={22} rx={3} className={s.block} />
+      <text x={268} y={67} textAnchor="middle">
+        <tspan className={s.name}>Laundry </tspan>
+        <tspan className={s.value}>{laundryNet === null ? "?" : money(laundryNet)}</tspan>
       </text>
-      <line x1={256} y1={55} x2={256} y2={43} className={s.pole} />
-      <line x1={314} y1={55} x2={314} y2={43} className={s.pole} />
-      <line x1={256} y1={44} x2={314} y2={44} className={s.pole} />
-      {[266, 282, 298].map((x) => (
-        <path key={x} d={`M${x - 5} 44 h10 v7 h-10 z`} className={s.shirt} />
+      <line x1={238} y1={52} x2={238} y2={43} className={s.pole} />
+      <line x1={298} y1={52} x2={298} y2={43} className={s.pole} />
+      <line x1={238} y1={44} x2={298} y2={44} className={s.pole} />
+      {[252, 268, 284].map((x) => (
+        <path key={x} d={`M${x - 5} 44 h10 v6 h-10 z`} className={s.shirt} />
       ))}
       <text x={320} y={38} className={s.tag} textAnchor="end">
         smoke $300 a year
@@ -130,16 +132,16 @@ function Panel({
       {/* Money arrow */}
       {arrow?.kind === "to-factory" && (
         <g>
-          <line x1={246} y1={70} x2={86} y2={70} className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={166} y={66} className={s.arrowText} textAnchor="middle">
+          <line x1={210} y1={64} x2={120} y2={64} className={s.arrow} markerEnd={`url(#${id}-head)`} />
+          <text x={165} y={59} className={s.arrowText} textAnchor="middle">
             ${arrow.amount}
           </text>
         </g>
       )}
       {arrow?.kind === "to-laundry" && (
         <g>
-          <line x1={86} y1={70} x2={246} y2={70} className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={166} y={66} className={s.arrowText} textAnchor="middle">
+          <line x1={120} y1={64} x2={210} y2={64} className={s.arrow} markerEnd={`url(#${id}-head)`} />
+          <text x={165} y={59} className={s.arrowText} textAnchor="middle">
             ${arrow.amount}
           </text>
         </g>
@@ -147,25 +149,19 @@ function Panel({
       {arrow?.kind === "to-filter" && (
         <g>
           <path d="M30 49 Q 32 34 50 34" className={s.arrow} markerEnd={`url(#${id}-head)`} />
-          <text x={22} y={42} className={s.arrowText} textAnchor="end">
+          <text x={26} y={42} className={s.arrowText} textAnchor="end">
             ${arrow.amount}
           </text>
         </g>
       )}
 
-      {/* Nets under the blocks */}
-      <text x={51} y={87} className={s.value} textAnchor="middle">
-        {factoryNet === null ? "?" : money(factoryNet)}
-      </text>
-      <text x={285} y={87} className={s.value} textAnchor="middle">
-        {laundryNet === null ? "?" : money(laundryNet)}
-      </text>
+      {/* Refusals flash under the blocks (decoration: the mark stays on the ruler) */}
       {flash && (
         <g aria-hidden="true">
           <text
             key={flash.n}
-            x={flash.who === "factory" ? 92 : 240}
-            y={87}
+            x={flash.who === "factory" ? 120 : 212}
+            y={86}
             className={s.flash}
             textAnchor={flash.who === "factory" ? "start" : "end"}
           >
@@ -178,7 +174,7 @@ function Panel({
       {band && (
         <g>
           <rect x={rx(F)} y={89} width={rx(D) - rx(F)} height={20} className={s.band} />
-          <text x={rx(F) + 4} y={105} className={s.bandText}>
+          <text x={rx(D) - 4} y={105} className={s.bandText} textAnchor="end">
             both gain
           </text>
         </g>
@@ -195,15 +191,15 @@ function Panel({
 
       {marks.map((m) => (
         <g key={m.at}>
-          <text x={rx(m.at)} y={98} className={m.ok ? s.markTextGood : s.markTextBad} textAnchor="middle">
+          <text x={rx(m.at)} y={86} className={m.ok ? s.markTextGood : s.markTextBad} textAnchor="middle">
             ${m.at}
           </text>
           {m.ok ? (
-            <circle cx={rx(m.at)} cy={103} r={4.5} className={s.markGood} />
+            <circle cx={rx(m.at)} cy={99} r={4.5} className={s.markGood} />
           ) : (
             <g className={s.markBad}>
-              <circle cx={rx(m.at)} cy={103} r={4.5} />
-              <path d={`M${rx(m.at) - 3} 100 l6 6 M${rx(m.at) + 3} 100 l-6 6`} />
+              <circle cx={rx(m.at)} cy={99} r={4.5} />
+              <path d={`M${rx(m.at) - 3} 96 l6 6 M${rx(m.at) + 3} 96 l-6 6`} />
             </g>
           )}
         </g>
