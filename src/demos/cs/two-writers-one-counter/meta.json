@@ -1,6 +1,6 @@
 {
   "slug": "two-writers-one-counter",
-  "title": "Two tasks each add 1. What's the total?",
+  "title": "Two threads each add 1. What's the total?",
   "hook": "Both threads add 1 to a counter that starts at 0. What does it end at?",
   "domain": "cs",
   "concept": "race-condition",
@@ -23,12 +23,10 @@
   "claims": [
     {
       "id": "cs.two-writers-one-counter.c1",
-      "text": "If A reads, B reads, then A adds and writes, then B adds and writes, both read 0 and both write 1, so the counter ends at 1.",
+      "text": "If A reads, B reads, then A adds and writes, then B adds and writes, both copies read 0; after A writes 1, B's copy still holds 0 (stale), B adds 1 to it and writes 1 over A's 1, so the counter ends at 1.",
       "support": "simulation",
-      "source": "Node script running the six steps in that order with a private register per thread: counter = 1. Demo.tsx runs the same function it draws. | FACT-CHECK 2026-10-13 (pass 9): node, own interpreter with a private register per thread: order A,B,A,A,B,B ends at 1 (both read 0, both write 1).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Node script running the six steps in that order with a private register per thread: counter = 1. Demo.tsx runs the same function it draws. | FACT-CHECK 2026-10-13 (pass 9): node, own interpreter with a private register per thread: order A,B,A,A,B,B ends at 1 (both read 0, both write 1). | v3 2026-10-14 (demo-builder): reveal now points at the stage trace (trace() in Demo.tsx), which marks B's copy 'stale' in the columns after A writes and the counter cell of B's write as a lost update. Milestone 'one' needs a finished run with a lost write. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "cs.two-writers-one-counter.c2",
@@ -59,12 +57,17 @@
     },
     {
       "id": "cs.two-writers-one-counter.c5",
-      "text": "Each thread keeps its own copy of the value it read (shown as 'copy'); the stage also lists the steps in the order they ran.",
+      "text": "Each thread keeps its own copy of the value it read (shown as 'copy'); the stage traces each step with both copies and the counter, and marks a copy stale (red) when the counter has changed since that thread read it.",
       "support": "derivation",
-      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx run(): reg[t] is per thread; stage shows 'holds' from st.reg[t]. · Fact-check pass 19 2026-10-14: Demo.tsx run(): reg[t] is per thread, shown as 'copy' in each lane; 'Order run:' line from orderText(seq) lists steps in run order. Own node: run(A,B,A,A,B,B) = 1, run(A,A,A,B,B,B) = 2.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "In the model each thread reads the counter into a private register or local variable before adding; stated in the build note as an idealised model. | FACT-CHECK 2026-10-13 (pass 9): Demo.tsx run(): reg[t] is per thread; stage shows 'holds' from st.reg[t]. · Fact-check pass 19 2026-10-14: Demo.tsx run(): reg[t] is per thread, shown as 'copy' in each lane; 'Order run:' line from orderText(seq) lists steps in run order. Own node: run(A,B,A,A,B,B) = 1, run(A,A,A,B,B,B) = 2. | v3 2026-10-14 (demo-builder): the 'Order run' line was replaced by the step trace; stale = read and not yet written back, and the value read differs from the current counter. Reopened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.two-writers-one-counter.c6",
+      "text": "Threads are jobs running at once in one program.",
+      "support": "convention",
+      "source": "Gloss in the predict stem. Silberschatz, Galvin, Gagne, Operating System Concepts, chapter 'Threads': a thread is a basic unit of CPU use; threads of one process share its code and data and can run concurrently. Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -86,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:race-condition",
     "prerequisites": [

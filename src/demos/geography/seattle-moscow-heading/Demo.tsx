@@ -5,6 +5,9 @@
 // route) and distance from Seattle is true. The learner turns a heading; the stage draws the great
 // circle that heading starts and how far it passes from Moscow. Key state: the heading is within
 // 2° of the true initial bearing (11.5°), after east has been tried.
+// v3: while locked the stage shows the ordinary flat map (Moscow plainly east of Seattle), so the
+// Seattle-centred map no longer gives the answer away before the prediction. The gate also needs the
+// on-target route viewed on the flat map, so "straight here, bent there" is seen, not told.
 
 import { useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -92,8 +95,8 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
         options: ["East", "North-east", "Almost due north"],
         answer: 2,
       }}
-      exploreHint="Point east first, turn until the route reaches Moscow, then try the flat map."
-      minInteractions={2}
+      exploreHint="Point east first, turn until the route reaches Moscow, then show that route on the flat map."
+      minInteractions={3}
       reveal={() => (
         <>
           <p>
@@ -103,13 +106,15 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
           <p>
             Moscow lies far east of Seattle, but both are far north, and on a ball the shortest way between them climbs
             over the top: across Canada, the far north of Greenland and the Arctic Ocean, then down over Norway and Finland.
-            {sawFlat ? " On the flat map you saw that same route bend north." : " Show it on a flat map and the same route bends north."}
+            {sawFlat
+              ? " You saw it both ways: a straight line on the Seattle-centred map, a curve bending north on the flat map."
+              : " Show it on a flat map and the same route bends north."}
           </p>
         </>
       )}
     >
       {({ locked, interact }) => (
-        <Milestones interact={interact} names={["east", "on-target"]}>
+        <Milestones interact={interact} names={["east", "on-target", "flat-hit"]}>
           {(reach) => {
             const turn = (deg: number) => {
               const h = ((Math.round(deg) % 360) + 360) % 360;
@@ -121,9 +126,14 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
               if (Math.abs(h - TRUE_BEARING) <= ON_TARGET_DEG) {
                 reach("on-target");
                 setBestHit(h);
+                if (flat) {
+                  setSawFlat(true);
+                  reach("flat-hit");
+                }
               }
             };
-            const proj = flat ? flatProjection : projection;
+            const showFlat = flat || locked; // locked: the ordinary map, where Moscow plainly lies east
+            const proj = showFlat ? flatProjection : projection;
             const at = (p: Pt) => proj(p)!;
             const sea = at(SEATTLE);
             const mos = at(MOSCOW);
@@ -134,13 +144,13 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                   projection={proj}
                   width={W}
                   height={H}
-                  label={`Map centred on Seattle. ${heading === null ? "No heading yet." : `Heading ${fmtDeg(heading)} from north; the route passes ${fmtKm(miss!)} from Moscow.`}`}
+                  label={`${showFlat ? "Ordinary flat map." : "Map centred on Seattle."} ${heading === null ? "No heading yet." : `Heading ${fmtDeg(heading)} from north; the route passes ${fmtKm(miss!)} from Moscow.`}`}
                 >
                   {({ path }) => (
                     <>
                       {route && !locked && <path d={path(route)} className={onTarget ? s.hit : s.route} />}
-                      {!flat && <line x1={sea[0]} y1={sea[1]} x2={north[0]} y2={north[1]} className={s.north} />}
-                      {!flat && (
+                      {!showFlat && <line x1={sea[0]} y1={sea[1]} x2={north[0]} y2={north[1]} className={s.north} />}
+                      {!showFlat && (
                         <text x={north[0] + 3} y={north[1] + 3} className={s.lab}>
                           N
                         </text>
@@ -154,7 +164,11 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                         Moscow
                       </text>
                       <text x={6} y={12} className={s.lab}>
-                        {flat ? "Ordinary flat map: the same route." : "Centred on Seattle: straight lines from it are shortest routes."}
+                        {locked
+                          ? "Ordinary flat map."
+                          : flat
+                            ? "Ordinary flat map: the same route."
+                            : "Centred on Seattle: straight lines from it are shortest routes."}
                       </text>
                     </>
                   )}
@@ -194,7 +208,10 @@ export default function SeattleMoscowHeading({ slug }: { slug: string }) {
                     className={flat ? "active" : ""}
                     onClick={() => {
                       setFlat(!flat);
-                      if (!flat) setSawFlat(true);
+                      if (!flat && onTarget) {
+                        setSawFlat(true);
+                        reach("flat-hit");
+                      }
                     }}
                   >
                     {flat ? "Back to Seattle-centred map" : "Show on a flat map"}

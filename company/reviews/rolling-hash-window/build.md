@@ -18,3 +18,11 @@ Window sums 15 16 20 18 16 18 16 15; flags at windows 1 (EBCDA, false) and 8 (AB
 
 ## Not done / for others
 All claims `unverified`. Evidence blocks empty. The spec file and SVG still show the old CBADAB layout (interaction designer).
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Text is now FEBCDAFFABCDE so the first action is a slide; the false flag EBCDA is window 2. Options bare (All 5 / Just 2 / About 3). Counter hidden while locked. 'kept: already in the sum' bracket under the shared letters. 'Slide to end' reports 'N slides × 2 letters'. Retitled. Window-width control not added (reviewer's minor 4).
+- Claims reopened (status unverified): c1, c2, c3, c5; new c6.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

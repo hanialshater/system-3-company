@@ -1,6 +1,6 @@
 {
   "slug": "rolling-hash-window",
-  "title": "Slide the window, don't re-add it",
+  "title": "One letter along: how much work?",
   "hook": "A window moves one letter. Do you have to add up all its letters again?",
   "domain": "cs",
   "concept": "rolling-hash",
@@ -25,30 +25,24 @@
   "claims": [
     {
       "id": "cs.rolling-hash-window.c1",
-      "text": "With A = 1 ... F = 6, the 8 windows of 5 letters in EBCDAFFABCDE have sums 15, 16, 20, 18, 16, 18, 16, 15; the pattern ABCDE has sum 15, so windows 1 (EBCDA, a false flag) and 8 (ABCDE, a match) are flagged.",
+      "text": "With A = 1 ... F = 6, the 9 windows of 5 letters in FEBCDAFFABCDE have sums 20, 15, 16, 20, 18, 16, 18, 16, 15; the pattern ABCDE has sum 15, so windows 2 (EBCDA, a false flag) and 9 (ABCDE, a match) are flagged.",
       "support": "simulation",
-      "source": "Builder's node run of sum(window) over EBCDAFFABCDE, window 5, A = 1: sums 15 16 20 18 16 18 16 15; pattern 15; flags at 0-based starts 0 and 7 (the stage counts windows from 1).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Builder's node run of sum(window) over EBCDAFFABCDE, window 5, A = 1: sums 15 16 20 18 16 18 16 15; pattern 15; flags at 0-based starts 0 and 7 (the stage counts windows from 1). | v3 2026-10-14 (demo-builder): text changed from EBCDAFFABCDE to FEBCDAFFABCDE so the learner slides before meeting the false flag. Builder's node run: sums 20 15 16 20 18 16 18 16 15. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "cs.rolling-hash-window.c2",
-      "text": "Each slide is one subtraction and one addition: 15 - 5 + 6 = 16, then 16 - 2 + 6 = 20, and so on.",
+      "text": "Each slide is one subtraction and one addition: 20 - 6 + 1 = 15, then 15 - 5 + 6 = 16, and so on.",
       "support": "simulation",
-      "source": "Node: sums[i+1] = sums[i] - value(text[i]) + value(text[i+5]) for all 7 slides reproduces the 8 window sums.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Node: sums[i+1] = sums[i] - value(text[i]) + value(text[i+5]) for all 7 slides reproduces the 8 window sums. | v3 2026-10-14 (demo-builder): first slide is now FEBCD -> EBCDA (20 - 6 + 1 = 15). Reopened.",
+      "status": "unverified"
     },
     {
       "id": "cs.rolling-hash-window.c3",
-      "text": "Sliding across all 8 windows reads 19 letters (5 for the first window, then 2 per slide for 7 slides); adding each window up again reads 40 (8 windows x 5 letters).",
+      "text": "Sliding across all 9 windows reads 21 letters (5 for the first window, then 2 per slide for 8 slides); adding each window up again reads 45 (9 windows x 5 letters).",
       "support": "derivation",
-      "source": "5 + 7 x 2 = 19 and 8 x 5 = 40 (node). The counter on the stage uses the same formulas after each slide. 'Letters read' here counts letters added to or removed from a sum; letters compared in a check are not counted.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "5 + 7 x 2 = 19 and 8 x 5 = 40 (node). The counter on the stage uses the same formulas after each slide. 'Letters read' here counts letters added to or removed from a sum; letters compared in a check are not counted. | v3 2026-10-14 (demo-builder): 5 + 8 x 2 = 21 and 9 x 5 = 45 for the new 13-letter text; the reveal computes both from the learner's slide count. Counter hidden until lock-in. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "cs.rolling-hash-window.c4",
@@ -61,12 +55,17 @@
     },
     {
       "id": "cs.rolling-hash-window.c5",
-      "text": "An updatable hash makes each slide cost the same, however long the pattern is.",
+      "text": "Only the two end letters change, so a wider window would still cost 2 per slide: an updatable hash makes each slide cost the same, however long the pattern is.",
       "support": "derivation",
-      "source": "Each slide touches two letters whatever the window width k, against k letters to re-add. Rabin-Karp: Karp and Rabin 1987, 'Efficient randomized pattern-matching algorithms', IBM J. Res. Dev.; CLRS 32.2 (to be checked by the fact-checker; the stage uses a plain sum, not their polynomial hash).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Each slide touches two letters whatever the window width k, against k letters to re-add. Rabin-Karp: Karp and Rabin 1987, 'Efficient randomized pattern-matching algorithms', IBM J. Res. Dev.; CLRS 32.2 (to be checked by the fact-checker; the stage uses a plain sum, not their polynomial hash). | v3 2026-10-14 (demo-builder): reworded to point at the stage's '−' and '+' chips and the 'kept' bracket. Reopened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.rolling-hash-window.c6",
+      "text": "Each slide used two letters, the one leaving (marked −) and the one arriving (marked +); the 4 letters marked 'kept' were already in the sum.",
+      "support": "derivation",
+      "source": "Window i (letters i..i+4) and window i-1 (letters i-1..i+3) share the 4 letters at positions i..i+3; the stage draws a 'kept: already in the sum' bracket under them on every slide (Demo.tsx). Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -86,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "cs:rolling-hash",
     "also": [],

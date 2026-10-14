@@ -13,3 +13,8 @@
 .counter { align-self: center; display: flex; align-items: baseline; gap: 10px; padding: 8px 20px; border-radius: 10px; border: 2px solid var(--fg); background: var(--bg-2); }
 .cl { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); }
 .cv { font-size: 2rem; font-weight: 800; }
+.trace { display: flex; flex-direction: column; gap: 2px; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
+.trow { display: grid; grid-template-columns: 52px repeat(6, 1fr); gap: 2px; align-items: center; }
+.th { color: var(--muted); font-weight: 700; }
+.td { text-align: center; padding: 2px 1px; border-radius: 4px; background: var(--bg-2); line-height: 1.15; }
+.stale { background: color-mix(in srgb, var(--bad) 25%, var(--bg-2)); color: var(--fg); font-weight: 800; }

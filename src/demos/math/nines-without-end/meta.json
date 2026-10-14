@@ -52,21 +52,24 @@
     },
     {
       "id": "math.nines-without-end.c4",
-      "text": "Three times 0.333... is 0.999..., and three times 1/3 is 1.",
+      "text": "Three times 0.333... is 0.999..., and three times 1/3 is 1 (shown as a check line on the stage in the 'forever' view).",
       "support": "derivation",
-      "source": "1/3 = 0.333... (long division); multiplying each digit by 3 has no carries, giving 0.999...; 3 x 1/3 = 1.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "1/3 = 0.333... (long division); multiplying each digit by 3 has no carries, giving 0.999...; 3 x 1/3 = 1. | v3 2026-10-14 (demo-builder): the check now also appears on the stage ('check: 3 × 0.333… = 0.999…, and 3 × 1/3 = 1') and the reveal points at it. Reopened.",
+      "status": "unverified"
     },
     {
-      "text": "You added some nines, and the gap went from 0.1 down to 0.00...01 (one tenth smaller per nine). Is any positive number below 0.1, 0.01, 0.001... every one? No. Only 0 is.",
+      "text": "The gap went from 0.1 down to 0.00...01, a tenth of the last one per nine. Every gap you named was beaten by enough nines; with all of them, only 0 is left. (Without named gaps the caption reads: Is any positive number below 0.1, 0.01, 0.001... every one? No. Only 0 is.)",
       "support": "derivation",
-      "source": "Same argument as c3 (a positive number r is beaten by 10^-n once n is large enough); the reveal and caption quote the learner's own number of nines, via gap(n) in Demo.tsx (10^-n). | FACT-CHECK 2026-10-14 (pass 11): gap(n) = 10^-n (string 0.0..01); for any r > 0 some 10^-n < r (Archimedean), so only 0 is below all of them among non-negatives. Note: the stage says \"cut it to a tenth\"; the claim paraphrase \"one tenth smaller\" could read as -10%; the stage wording is the right one.",
+      "source": "Same argument as c3 (a positive number r is beaten by 10^-n once n is large enough); the reveal and caption quote the learner's own number of nines, via gap(n) in Demo.tsx (10^-n). | FACT-CHECK 2026-10-14 (pass 11): gap(n) = 10^-n (string 0.0..01); for any r > 0 some 10^-n < r (Archimedean), so only 0 is below all of them among non-negatives. Note: the stage says \"cut it to a tenth\"; the claim paraphrase \"one tenth smaller\" could read as -10%; the stage wording is the right one. | v3 2026-10-14 (demo-builder): forever-view caption and the reveal now quote the learner's own named gaps (tries in Demo.tsx); the gate needs two named gaps. Reopened.",
       "id": "math.nines-without-end.c5",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "id": "math.nines-without-end.c6",
+      "text": "For a named gap 0.0...01 with z zeros after the point (10^-(z+1)), z + 2 nines get closer than that: their gap is 10^-(z+2), e.g. 0.000001 is beaten by 7 nines (gap 0.0000001).",
+      "support": "derivation",
+      "source": "With n nines the gap is 10^-n (c1). 10^-n < 10^-(z+1) iff n > z + 1, so the fewest is n = z + 2 (beatenBy in Demo.tsx); with n = z + 1 the gaps are equal, not smaller. Slider range z = 1..30. Added v3 2026-10-14 by demo-builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -92,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "math:repeating-nine",
     "prerequisites": [

@@ -16,3 +16,11 @@
 - Chaining was told: sentence and claim c4 removed. Hook no longer gives away that wiring is the answer.
 
 All changed claims are unverified, awaiting a fact-checker.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v3.
+- What changed: Prediction now asks which gate makes the sum digit (OR / AND / XOR), so the goal row no longer answers it; goal row hidden while locked. Four-column check table (goal vs circuit, tick/cross per input pair). 'Tap a gate button to change it' cue.
+- Claims reopened (status unverified): c1, c2; new c4.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

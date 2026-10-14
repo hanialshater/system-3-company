@@ -7,6 +7,10 @@
 // then rides down the curve while the excess condenses as dew.
 // Key state: cooled to the dew point or below (18.4 °C): fullness 100%, dew forming.
 // Milestone `dew-point`; the "15 °C" step button (or the slider) reaches it. No button names the answer.
+// v3: the options are brackets (between 20 and 15 °C is right), matching what the presets show
+// (20 °C: no dew; 15 °C: dew). Once the learner has cooled past it, the crossing is marked on the
+// curve with its temperature, and readouts show the air's water and the maximum at this
+// temperature, so "relative humidity = water / maximum" is on stage, not only in the reveal.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -56,7 +60,7 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `Air at ${T0} °C is ${Math.round(RH0 * 100)}% full of water vapour (relative humidity ${Math.round(RH0 * 100)}%). You cool it, keeping its water. Dew first forms at about…`,
-        options: PRESETS.map((p) => `${p} °C`),
+        options: ["Between 25 and 20 °C", "Between 20 and 15 °C", "Only below 15 °C"],
         answer: 1,
       }}
       exploreHint="Cool the air until dew forms, and watch where the line meets the curve."
@@ -64,13 +68,14 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Until the dew point, cooling never changed your air&apos;s water. It lowered the ceiling. At about{" "}
-            <strong>{TD.toFixed(0)} °C</strong> the curve came down to meet your line: 100% full, and the first dew.
+            Until the dew point, cooling never changed your air&apos;s water ({E.toFixed(2)} kPa). It lowered the ceiling: the Max
+            readout fell, so Fullness rose. At the point marked on the curve, about <strong>{TD.toFixed(0)} °C</strong>, the curve met
+            your line: 100% full, and the first dew.
           </p>
           <p>
-            Relative humidity compares the water in the air with the most that can stay vapour at that temperature,
-            and warm air allows far more. Half of the {T0} °C maximum, {E.toFixed(2)} kPa, is the whole maximum at about{" "}
-            {TD.toFixed(0)} °C: the dew point. Below it, the extra water condenses.
+            Relative humidity is Water divided by Max, and warm air allows far more. Half of the {T0} °C maximum,{" "}
+            {es(T0).toFixed(2)} kPa, is {E.toFixed(2)} kPa, the whole maximum at about {TD.toFixed(0)} °C: the dew point. Below it, the
+            extra water condenses.
           </p>
         </>
       )}
@@ -108,13 +113,22 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
                   {!locked && (
                     <>
                       <line x1={xOf(TLO)} x2={xOf(THI)} y1={yOf(E)} y2={yOf(E)} className={s.line} />
-                      <text x={xOf(THI) - 2} y={yOf(E) + 13} textAnchor="end" className={s.lineLabel}>
+                      <text x={xOf(THI) - 2} y={yOf(E) - 5} textAnchor="end" className={s.lineLabel}>
                         your air
                       </text>
                     </>
                   )}
+                  {!locked && lowest <= TD && (
+                    <>
+                      <line x1={xOf(TD)} x2={xOf(TD)} y1={yOf(E)} y2={Y0} className={s.axis} strokeDasharray="2 2" />
+                      <circle cx={xOf(TD)} cy={yOf(E)} r={3.5} className={s.markFull} />
+                      <text x={xOf(TD) - 6} y={yOf(E) - 6} textAnchor="end" className={s.lineLabel}>
+                        {`dew point ≈ ${TD.toFixed(0)} °C`}
+                      </text>
+                    </>
+                  )}
                   {drops > 0 && (
-                    <text x={xOf(t) + 10} y={yOf(vapour) - 8} className={s.lineLabel}>
+                    <text x={Math.max(4, xOf(t) - 30)} y={Y0 - 40} className={s.lineLabel}>
                       extra water leaves as dew
                     </text>
                   )}
@@ -127,6 +141,10 @@ export default function WhereTheDewForms({ slug }: { slug: string }) {
                   ))}
                   <circle cx={xOf(t)} cy={yOf(vapour)} r={6} className={fullness >= 1 ? s.markFull : s.mark} />
                 </svg>
+                <Row>
+                  <Readout label="Water" value={`${vapour.toFixed(2)} kPa`} />
+                  <Readout label="Max here" value={`${full.toFixed(2)} kPa`} />
+                </Row>
                 <Row>
                   <Readout label="Fullness" value={`${Math.round(fullness * 100)}%`} />
                   <Readout label="Dew" value={drops ? "forming" : "none"} />

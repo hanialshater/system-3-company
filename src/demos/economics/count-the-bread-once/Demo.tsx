@@ -4,6 +4,9 @@
 // Value added = sale price minus what the stage bought: 1, 2, 3, which add to the final $6.
 // Key states (milestones): all three stages tapped (slices fill the $6 bread bar) and "count all sales" ($10).
 // Model: a three-step chain, no imports, no stocks.
+// v2: each segment of the all-sales bar is drawn as the value-added slices it contains, in the same colours
+// (the $3 flour = $1 wheat + $2 milling; the $6 bread = $1 + $2 + $3), so the wheat visibly appears three
+// times. The locked stage no longer labels the $6 bar or the value-added rule.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -45,8 +48,9 @@ export default function CountBreadOnce({ slug }: { slug: string }) {
             Each stage added its sale minus what it bought: ${added(0)}, ${added(1)} and ${added(2)}. Together they fill the <strong>${FINAL}</strong> bread bar.
           </p>
           <p>
-            Counting every sale gave <strong>${SALES_TOTAL}</strong>, because the wheat sat inside the flour price and the flour inside the bread price. Count only what each stage
-            adds, or you count the wheat three times.
+            Counting every sale gave <strong>${SALES_TOTAL}</strong>. Look inside the lower bar: the wheat&apos;s ${added(0)} slice appears three
+            times and the milling&apos;s ${added(1)} slice twice, because the wheat sat inside the flour price and the flour inside the bread
+            price. Count only what each stage adds, or you count the wheat three times.
           </p>
         </>
       )}
@@ -69,12 +73,16 @@ export default function CountBreadOnce({ slug }: { slug: string }) {
             return (
               <div className={s.wrap}>
                 <p className={s.chip}>Model: a three-step chain, nothing imported</p>
-                <p className={s.msg}>Value added = sale price minus what the stage bought.</p>
-                <svg viewBox="0 0 320 130" className="stage-svg" role="img" aria-label={locked ? "Bread price bar" : `Counted $${allSales ? SALES_TOTAL : counted}`}>
-                  <text x={L} y={14} className={s.axis}>
-                    bread price ($6) filled by value added
-                  </text>
-                  <rect x={L} y={20} width={FINAL * UNIT} height={30} rx={3} className={s.ghostFill} />
+                <p className={s.msg}>{locked ? "Wheat → flour → bread" : "Value added = sale price minus what the stage bought."}</p>
+                <svg viewBox="0 0 320 130" className="stage-svg" role="img" aria-label={locked ? "Empty chart" : `Counted $${allSales ? SALES_TOTAL : counted}`}>
+                  {!locked && (
+                    <>
+                      <text x={L} y={14} className={s.axis}>
+                        bread price (${FINAL}) filled by value added
+                      </text>
+                      <rect x={L} y={20} width={FINAL * UNIT} height={30} rx={3} className={s.ghostFill} />
+                    </>
+                  )}
                   {STAGES.map((st, i) => {
                     const w = added(i) * UNIT;
                     const r = done[i] ? (
@@ -91,20 +99,36 @@ export default function CountBreadOnce({ slug }: { slug: string }) {
                   {allSales && (
                     <g>
                       <text x={L} y={74} className={s.axis}>
-                        every sale added together ($10)
+                        all sales (${SALES_TOTAL}): wheat counted 3 times
                       </text>
-                      {STAGES.map((st) => {
+                      {STAGES.map((st, i) => {
                         const w = st.sale * UNIT;
-                        const r = (
+                        const x0 = x2;
+                        // A sale price is made of the value-added slices of every stage up to this one.
+                        let xs = x0;
+                        const parts = STAGES.slice(0, i + 1).map((inner, j) => {
+                          const pw = added(j) * UNIT;
+                          const el = (
+                            <g key={inner.name}>
+                              <rect x={xs} y={80} width={pw} height={30} className={s[inner.cls]} />
+                              <text x={xs + pw / 2} y={99} textAnchor="middle" className={s.small}>
+                                ${added(j)}
+                              </text>
+                            </g>
+                          );
+                          xs += pw;
+                          return el;
+                        });
+                        x2 += w;
+                        return (
                           <g key={st.name}>
-                            <rect x={x2} y={80} width={w} height={30} className={s.badFill} stroke="var(--bg-2)" />
-                            <text x={x2 + 4} y={100} className={s.small}>
-                              ${st.sale}
+                            {parts}
+                            <rect x={x0} y={80} width={w} height={30} fill="none" stroke="var(--bad)" strokeWidth={2.5} />
+                            <text x={x0 + w / 2} y={124} textAnchor="middle" className={s.small}>
+                              {`${["wheat", "flour", "bread"][i]} $${st.sale}`}
                             </text>
                           </g>
                         );
-                        x2 += w;
-                        return r;
                       })}
                     </g>
                   )}

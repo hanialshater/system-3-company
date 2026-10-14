@@ -89,12 +89,10 @@
     },
     {
       "id": "geography.seattle-moscow-heading.c8",
-      "text": "On an ordinary flat map the shortest route from Seattle to Moscow is drawn as a curve that bends north, not a straight line.",
+      "text": "The same shortest route from Seattle to Moscow is a straight line on the Seattle-centred map and, on an ordinary flat map, a curve that bends north.",
       "support": "derivation",
-      "source": "Great circles are not straight on equirectangular maps; Demo.tsx draws the same great-circle points with d3-geo geoEquirectangular. Needs a check. · Fact-check pass 19 2026-10-14: VERIFIED: own slerp of the great circle peaks at 82.3 N (lon 43.9 W) between endpoints at 47.6 N and 55.8 N, with no antimeridian crossing on the 42 W-centred equirectangular map, so it is drawn as an arch bending north.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Great circles are not straight on equirectangular maps; Demo.tsx draws the same great-circle points with d3-geo geoEquirectangular. Needs a check. · Fact-check pass 19 2026-10-14: VERIFIED: own slerp of the great circle peaks at 82.3 N (lon 43.9 W) between endpoints at 47.6 N and 55.8 N, with no antimeridian crossing on the 42 W-centred equirectangular map, so it is drawn as an arch bending north. | v3 2026-10-14 (demo-builder): reveal reworded to 'You saw it both ways: a straight line on the Seattle-centred map, a curve bending north on the flat map'; the gate now requires viewing the on-target route on the flat map (milestone 'flat-hit'). The locked stage now shows the flat map, not the centred one. Reopened.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -118,7 +116,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "geography:initial-bearing",
     "prerequisites": [

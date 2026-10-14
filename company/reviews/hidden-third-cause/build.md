@@ -16,3 +16,11 @@ Source: 2026-10-13 learner-adult-beginner review and fact-check. Finding -> chan
 ## Revision v3
 
 Learner review v2. Hook no longer repeats the answer (it asks what happens at the same temperature). The correlation key is shorter so it is not cut off. The reveal no longer quotes the 28-band statistics, only the bands the learner held still in; the labels are now strong / weak / very weak / none, so 0.18 is not "almost none". c3, c5 back to unverified. The question still states that warm weather drives both; that premise is needed to predict.
+
+
+## 2026-10-14 wave D revision (demo-builder), from the r5 learner review
+
+- Version: v4.
+- What changed: Stem no longer says warm weather drives both. 'Link, all days' readout shows 0.83 from the start. 'Cool days (10–13°C)' and 'Hot days (26–29°C)' buttons; gate needs a cool band and a hot band (button or 300 ms slider rest). Reveal points at the red/grey dot colours.
+- Claims reopened (status unverified): c2, c3, c5; new c6.
+- Not run here (shared machine, OOM risk): build, typecheck, QA, walkthrough. Syntax parse and `npm run check` pass. Needs a local QA pass before evaluators see it.

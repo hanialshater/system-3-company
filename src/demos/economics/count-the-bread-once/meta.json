@@ -50,12 +50,10 @@
     },
     {
       "id": "economics.count-the-bread-once.c4",
-      "text": "Adding every sale counts the wheat's value inside the flour price and the flour inside the bread price, so it overstates output.",
+      "text": "Adding every sale counts the wheat's value inside the flour price and the flour inside the bread price: in the all-sales bar the wheat's $1 slice appears three times and the milling's $2 slice twice, so it overstates output (the stage caption: 'wheat counted 3 times').",
       "support": "derivation",
-      "source": "Double counting of intermediate goods; wheat's $1 appears in the $1, $3 and $6 sales (Demo.tsx).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-13"
+      "source": "Double counting of intermediate goods; wheat's $1 appears in the $1, $3 and $6 sales (Demo.tsx). | v2 2026-10-14 (demo-builder): the all-sales bar now draws each sale as the value-added slices it contains ($1 = 1; $3 = 1 + 2; $6 = 1 + 2 + 3), so the repeats are on stage; the reveal points at them. Reopened.",
+      "status": "unverified"
     },
     {
       "id": "economics.count-the-bread-once.c5",
@@ -86,7 +84,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:gdp-value-added",
     "prerequisites": [],

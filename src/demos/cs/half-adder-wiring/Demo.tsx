@@ -4,6 +4,9 @@
 // the gate in each slot (AND, OR, XOR) and flips the inputs, watching the carry and sum lamps.
 // A counter says on how many of the four input pairs the circuit adds correctly. XOR for the
 // sum and AND for the carry gets all four. One representation: the circuit.
+// v3: the prediction asks which gate gives the sum digit (OR is the natural wrong answer), so the
+// goal row no longer answers it. A four-row check table under the circuit shows, per input
+// pair, the goal digits and what the circuit gives, so "4 of 4" is visible row by row.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -50,18 +53,18 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
-        question: "A circuit adds two one-bit numbers (each is 0 or 1). Its answer has two digits: carry on the left, sum on the right. In binary, counting goes 0, 1, 10, 11. For 1 + 1, what are the digits (carry, sum)?",
-        options: ["carry 1, sum 1", "carry 1, sum 0", "carry 0, sum 1"],
-        answer: 1,
+        question: "A circuit adds two one-bit numbers (each 0 or 1) into two digits: carry, then sum. 1 + 1 = 10 in binary (carry 1, sum 0). One gate makes the sum digit. Which one?",
+        options: ["OR: 1 if either input is 1", "AND: 1 only if both are 1", "XOR: 1 if exactly one is 1"],
+        answer: 2,
       }}
-      exploreHint="Pick a gate for each output until all 4 inputs add up. Then try 1 + 1."
+      exploreHint="Tap a gate button to change it. Get all 4 rows of the table to tick, then set 1 + 1."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            {seen11 ? `When you had the circuit adding right, 1 + 1 gave carry ${seen11.carry}, sum ${seen11.sum}. ` : ""}1 + 1 = 2, and 2
-            in binary is 10: <strong>carry 1, sum 0</strong>. The sum digit is 1 when exactly one input is 1: that is XOR.
-            The carry is 1 only when both are 1: that is AND.
+            {seen11 ? `With all four rows ticked, your 1 + 1 gave carry ${seen11.carry}, sum ${seen11.sum}. ` : ""}Look at the sum
+            digits in the goal row: 0, 1, 1, 0. The sum is 1 when exactly one input is 1: that is <strong>XOR</strong>. OR fails on the
+            1 + 1 column, where it gives 1. The carry digits, 0, 0, 0, 1, are 1 only when both inputs are 1: that is AND.
           </p>
           <p>
             So adding two bits is nothing more than two gates side by side, called a half adder. The machine does not know
@@ -173,11 +176,35 @@ export default function HalfAdderWiring({ slug }: { slug: string }) {
                     Carry gate: {carryG}
                   </Control>
                 </Row>
-                <p className={s.rules}>
-                  {locked
-                    ? "Goal: carry,sum = 00, 01, 01, 10 for 0+0, 0+1, 1+0, 1+1."
-                    : `Goal: 00, 01, 01, 10 for 0+0, 0+1, 1+0, 1+1. ${RULE[sumG]} ${RULE[carryG]}`}
-                </p>
+                <table className={s.table} aria-label="Check table: goal and circuit for each input pair">
+                  <tbody>
+                    <tr>
+                      <th>A+B</th>
+                      {PAIRS.map(([pa, pb]) => (
+                        <td key={`h${pa}${pb}`}>{`${pa}+${pb}`}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>goal</th>
+                      {PAIRS.map(([pa, pb]) => (
+                        <td key={`g${pa}${pb}`}>{locked ? "?" : `${Math.floor((pa + pb) / 2)}${(pa + pb) % 2}`}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>circuit</th>
+                      {PAIRS.map(([pa, pb]) => {
+                        const got = `${apply(carryG, pa, pb)}${apply(sumG, pa, pb)}`;
+                        const ok = got === `${Math.floor((pa + pb) / 2)}${(pa + pb) % 2}`;
+                        return (
+                          <td key={`c${pa}${pb}`} className={locked ? "" : ok ? s.ok : s.no}>
+                            {locked ? "?" : `${got} ${ok ? "✓" : "✗"}`}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  </tbody>
+                </table>
+                <p className={s.rules}>{locked ? "Tap a gate button to change it." : `${RULE[sumG]} ${RULE[carryG]}`}</p>
                 <Row>
                   <Readout label="Adds right on" value={locked ? "–" : `${score} of 4 inputs`} />
                   <Control disabled={locked || atStart} onClick={reset}>
