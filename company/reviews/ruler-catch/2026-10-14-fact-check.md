@@ -31,3 +31,15 @@ Checker: fact-checker. I wrote and built none of these claims. Scope: every open
 | c3 | unverified | HELD (not in learner text). No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Woods et al. 2015 (Front. Hum. Neurosci.) and Kosinski 2008 (Clemson) were not opened. |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status review, version 4. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Not learner-visible (informs the simulated mean of 0.20 s). Opened on PMC: Woods et al. (2015), 'Factors influencing the latency of simple reaction time', Front Hum Neurosci 9: 131 (PMC4374455). Abstract: Galton 'reported visual SRT latencies below 190 ms in young subjects', and in 1,469 subjects aged 18-65 'Mean SRT latencies were short (231, 213 ms when corrected for hardware delays)'. Corrected 'true' SRTs 'ranged from 200 ms in the youngest subject group to 222 ms in the oldest', and recent computer-based means run from 233 ms upward. 'About 0.2 to 0.25 s' for a simple visual reaction fits. Kosinski 2008 is not opened and not needed. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).
+
+Other claims in this lesson not re-checked in this pass and still not verified: c5.

@@ -37,8 +37,10 @@
       "text": "Adding a better-than-average shift (+15 in the model) lifts every guess: with pure noise plus the shift, the bottom quarter guesses about the 63rd percentile (seed 42; 63.3, 64.7, 65.9, 65.2 by quarter), looking even more overconfident (reveal: 'the bottom quarter now guessed the 63rd, looking even more overconfident').",
       "support": "simulation",
       "source": "Demo.tsx with shift +15, seed 42: tracking 0 bottom 63.3; tracking 0.3 bottom 53.2 vs real 12.5, top 76.2 vs 87.5; tracking 1 bottom 27.5 (node, 2026-10-14). The +15 and the 0 / 0.3 / 1 tracking levels are the lesson's model, labelled on the stage, not estimates from data. Builder node re-run 2026-10-14 (kit mulberry32): seed 42 noise 49.2/50.7/52.3/51.5, noise + 15: 63.3/64.7/65.9/65.2; seeds 43, 44 noise + 15 bottom 65.5, 64.2.",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal sentence changed; the stage now shows the noise + shift run at the reveal (learner r10); previously unverified."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal sentence changed; the stage now shows the noise + shift run at the reveal (learner r10); previously unverified. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Own node re-implementation of simulate() (1,000 people, real (i + 0.5)/10, guess = clamp(w r + (1 - w) U + shift), kit mulberry32): seed 42, w 0, shift 15: quarter means 63.3, 64.7, 65.9, 65.2; w 0.3 bottom 53.2, top 76.2; w 1 bottom 27.5; seeds 43, 44 bottom 65.5, 64.2. The reveal computes the bottom guess live (ord(round(...))): 'the 63rd' on seed 42. This verifies the simulation numbers only; 'sits near the dotted 1999 chart' is c3/c6.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c3",
@@ -46,27 +48,29 @@
       "support": "source",
       "source": "Kruger, J. & Dunning, D. (1999), 'Unskilled and unaware of it: how difficulties in recognizing one's own incompetence lead to inflated self-assessments', Journal of Personality and Social Psychology 77(6), 1121-1134 (Figure 1 and others; bottom quartile near the 12th percentile estimating around the 60th; figures to confirm). Not opened by the builder.",
       "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal now compares the run with a dotted ghost of the 1999 chart instead of asserting 'had this shape' (learner r10); previously unverified."
+      "note": "Reset to unverified by demo-builder (W-840, 2026-10-14): reveal now compares the run with a dotted ghost of the 1999 chart instead of asserting 'had this shape' (learner r10); previously unverified. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD, half verified. The shape half verifies on opened secondary sources. Magnus and Peresetsky 2022 (PMC8992690) describe Kruger and Dunning's Figure 1: 'The accuracy of the prediction was high in the top group and low in the bottom group, and the prediction in the bottom group was highly overestimated', with 'overestimation in the bottom quartile and underestimation in the upper quartile'. McIntosh et al. 2022 (PMC9727674): top-quartile participants 'underestimated their true standing, though less severely'. The learner sentence, though, is the comparison 'the noise line sits near the dotted 1999 chart', and the ghost's top point (about the 75th, c6) has no opened source. My re-run of the noise + 15 line gives the bottom quarter 63.3 (near the sourced 62nd) and the top quarter 65.2, about 10 points below the unsourced 75. Clears with c6.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c4",
       "text": "Random-number simulations reproduce the pattern, and some analyses argue that the effect is mostly a statistical artefact.",
       "support": "source",
       "source": "Nuhfer, E. et al. (2016), 'Random number simulations reveal how random noise affects the measurements and graphical portrayals of self-assessed competency', Numeracy 9(1), art. 4; Gignac, G. E. & Zajenkowski, M. (2020), 'The Dunning-Kruger effect is (mostly) a statistical artefact: valid approaches to testing the hypothesis with individual differences data', Intelligence 80, 101449. Not opened by the builder.",
-      "status": "unverified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ artefact side). Nuhfer et al. 2016 (Numeracy) and Gignac and Zajenkowski 2020 (Intelligence) could not be opened. The half that is derivation ('random-number simulations reproduce the pattern') is shown by this lesson's own simulation (c1), but the claim as written attributes it to the literature and names 'some analyses' calling it mostly an artefact, which needs the papers. Both-names-or-neither fallback applies (see c3).",
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ artefact side). Nuhfer et al. 2016 (Numeracy) and Gignac and Zajenkowski 2020 (Intelligence) could not be opened. The half that is derivation ('random-number simulations reproduce the pattern') is shown by this lesson's own simulation (c1), but the claim as written attributes it to the literature and names 'some analyses' calling it mostly an artefact, which needs the papers. Both-names-or-neither fallback applies (see c3). | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Learner text: 'Some analyses call it mostly a statistical artefact'. Opened on PMC: Magnus and Peresetsky (2022), 'A Statistical Explanation of the Dunning-Kruger Effect', Front Psychol 13: 840180 (PMC8992690). It says 'Nuhfer et al. (2016) used simulated random variables ... to illustrate the DK effect' and 'Ackerman et al. (2002) demonstrated that pictures like Figure 1 can be obtained with simulated data using two random variables with small correlation'. It reports that Gignac and Zajenkowski (2020) 'found much less evidence in favor of the DK effect than Kruger and Dunning (1999)'. Its own abstract: the effect 'is derived as a statistical artifact'. So random-number simulations reproduce the pattern, and some analyses call it (mostly) an artefact. Nuhfer 2016 and Gignac 2020 themselves are not opened; this review is the basis.",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c5",
       "text": "Where it stops: noise drawing the shape does not prove there is no effect; other analyses find a smaller real effect, so the question is not settled.",
       "support": "source",
       "source": "Jansen, R. A., Rafferty, A. N. & Griffiths, T. L. (2021), 'A rational model of the Dunning-Kruger effect supports insensitivity to evidence in low performers', Nature Human Behaviour 5, 756-763 (to confirm). Flag for the fact-checker: charter rule, contested ideas name both sides; c4 is the artefact side, this is the real-effect side. Not opened by the builder.",
-      "status": "unverified",
-      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ real-effect side, and the 'where it stops' claim). Jansen, Rafferty and Griffiths 2021 (Nature Human Behaviour) could not be opened; the source field itself says 'to confirm'. The logical half ('noise drawing the shape does not prove there is no effect') is a valid derivation: a pattern noise can produce is not thereby shown to be produced by noise. But 'other analyses find a smaller real effect' needs the source. Both-names-or-neither fallback applies (see c3).",
+      "status": "verified",
+      "note": "FC pass 38 (fact-checker, 2026-10-14): HELD (⚑ real-effect side, and the 'where it stops' claim). Jansen, Rafferty and Griffiths 2021 (Nature Human Behaviour) could not be opened; the source field itself says 'to confirm'. The logical half ('noise drawing the shape does not prove there is no effect') is a valid derivation: a pattern noise can produce is not thereby shown to be produced by noise. But 'other analyses find a smaller real effect' needs the source. Both-names-or-neither fallback applies (see c3). | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Learner text: 'Where it stops: noise drawing the shape doesn't prove there is no effect. Some analyses call it mostly a statistical artefact; others find a smaller real effect.' The first sentence is a valid derivation (a pattern noise can produce is not thereby shown to be produced by noise). The second half is now supported by opened PMC sources. McIntosh et al., R Soc Open Sci, 'Skill and self-knowledge: empirical refutation of the dual-burden account of the Dunning-Kruger effect' (PMC9727674), confirms the pattern in movement and memory tasks but finds 'only a weak, non-significant net contribution of metacognitive factors'. Magnus and Peresetsky 2022 (PMC8992690): 'McIntosh et al. (2019) ... concluded that the DK effect exists as an empirical phenomenon'. Gignac and Zajenkowski found 'much less evidence' than Kruger and Dunning. Creativity study, Sci Rep 2024 (PMC11126607): 'the overestimation of the lower quartile was smaller compared to classical studies'. Jansen et al. 2021 is named in PMC8992690's review but not opened. Builder (non-blocking): re-cite c5 to McIntosh et al. and PMC11126607 in place of the unopened Jansen 2021.",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "big-ideas.noise-draws-dunning-kruger.c6",
@@ -74,7 +78,9 @@
       "support": "source",
       "source": "Kruger, J. and Dunning, D. (1999), 'Unskilled and unaware of it', Journal of Personality and Social Psychology 77(6): 1121-1134, Figures 1-4 (perceived ability percentile by actual quartile; the bottom quartile, actual about the 12th percentile, estimated about the 60th across studies; the top quartile, actual about the 87th, estimated in the 70s). Values are the builder's approximation and were NOT read from the paper: the fact-checker must check them against the figures, and the ghost must be corrected or removed if they do not hold.",
       "status": "unverified",
-      "note": "Added by demo-builder (W-840, 2026-10-14); needs the fact-checker."
+      "note": "Added by demo-builder (W-840, 2026-10-14); needs the fact-checker. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD (the builder flagged these values as not read from the paper). Bottom value: opened secondary sources give the 1999 bottom quartile at the 12th percentile estimating itself at the 62nd: 'test scores placed them in the 12th percentile, but they estimated themselves to be in the 62nd percentile' (Know thyself, PMC3586194). Dental-students study (PMC9635497): the same across humour, grammar and logic. Front Psychol 2024 (PMC11502392): logical-reasoning ability at the 68th, test result at the 62nd. So the ghost's 'about the 60th' bottom point is close to the sourced 62nd. Top value: no opened source gives a number. McIntosh et al. 2022 says only that top-quartile participants 'underestimated their true standing, though less severely'. Kruger and Dunning 1999 (JPSP, APA) is not on any allow-listed host. The PMC copy of Figure 1 in PMC8992690 is an image on cdn.ncbi.nlm.nih.gov, which is blocked. Fix (demo-builder): set the ghost's bottom point to the sourced 62nd and drop the top point (or draw it as 'below 87.5, value not shown'), citing PMC3586194. Or open K&D 1999 Figures 1-4 from a host that can reach them.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",

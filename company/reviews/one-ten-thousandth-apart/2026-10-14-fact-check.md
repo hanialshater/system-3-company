@@ -21,3 +21,13 @@ Unrecorded claims: None.
 **Result (Pass 38):** 4 verified, 1 unverified.
 
 Held: c3 (Lorenz 1963) is the one held citation. Its fallback ("Mathematicians call this sensitive dependence on initial conditions.") is verifiable now against OpenStax College Physics 2e "The Onset of Turbulence".
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 1. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Learner text (Demo.tsx line 99): 'Edward Lorenz found this in a weather model in 1963.' Opened on PMC: Slingo and Palmer (2011), 'Uncertainty in weather and climate prediction', Phil Trans R Soc A 369: 4751-4767 (PMC3270390): 'In 1963, Lorenz published his seminal paper on Deterministic non-periodic flow, which was to change the course of weather and climate prediction profoundly ... Lorenz was able to show that even for a simple set of nonlinear equations, the evolution of the solution could be changed by minute perturbations to the initial conditions'; its reference 2 is Lorenz 1963, J Atmos Sci 20: 130-141. The year, the finding (sensitive dependence) and the atmospheric (weather) setting hold. Non-blocking (cm-big-ideas-science): the 1963 model is a 'simple set of nonlinear equations' for atmospheric flow, so 'a simplified weather model' would be more exact. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).
