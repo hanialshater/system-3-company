@@ -92,20 +92,25 @@ const gm = (id) => Object.fromEntries(csv(id).map((x) => { const k = Object.keys
 }
 
 // ---------------------------------------------------------------- 14. World life expectancy by century (Gapminder)
+// Amended 2026-10-15 (cm-history, r1 rulings): gains are differences of the one-decimal values the stage shows
+// (33.5 - 30.6 = 2.9, not the unrounded 2.84 shown as 2.8), so the subtraction a learner does on screen comes out.
+// The unrounded gains stay in the detail line. Presets and reveal match the shipped lesson v3.
 {
   const L = gm("gmlex");
-  const g19 = L[1900] - L[1800], g20 = L[2000] - L[1900];
+  const sh = (y) => r(L[y]);
+  const g19 = r(sh(1900) - sh(1800)), g20 = r(sh(2000) - sh(1900)), g21 = r(sh(2023) - sh(2000));
+  const u19 = L[1900] - L[1800], u20 = L[2000] - L[1900];
   const steps = [1800, 1825, 1850, 1875, 1900, 1925, 1950, 1975, 2000, 2023];
-  const v = { l1800: r(L[1800]), l1900: r(L[1900]), l2000: r(L[2000]), l2023: L[2023].toFixed(1), g19: r(g19), g20: r(g20), times: Math.round(g20 / g19) };
+  const v = { l1800: sh(1800), l1900: sh(1900), l2000: sh(2000), l2023: L[2023].toFixed(1), g19, g20, times: Math.round(g20 / g19) };
   brief(14, {
     slug: "life-expectancy-gained-late", data: ["gmlex"],
     question: "Gapminder's world life expectancy rose from 30.6 to 33.5 years between 1800 and 1900. How much did it rise from 1900 to 2000?",
     options: ["About 35 years", "About 15 years", "About 5 years"], answer: 0, pick: () => nearest(g20, [35, 15, 5]),
-    presets: ["1800 to 1900", "1900 to 2000", "2000 to 2023", "Years gained per century"],
-    reveal: "Over the 1800s world life expectancy rose {g19} years, from {l1800} to {l1900}. Over the 1900s it rose {g20} years, to {l2000}: about {times} times as much in one century as in the one before. By 2023 it was {l2023}. Where it stops: these are one source's world figures; the chart shows one year in every 25, and single years, such as epidemic years, fell sharply.",
+    presets: ["1800 to 1900", "1900 to 2000", "2000 to 2023", "Years gained in each span"],
+    reveal: "Over the 1800s world life expectancy rose {g19} years, from {l1800} to {l1900}. Over the 1900s it rose {g20} years, to {l2000}: about {times} times as much in one century as in the one before. By 2023 it was {l2023}. Where it stops: these are one source's world figures, shown one year in every 25, so the chart hides single years when life expectancy fell sharply, such as epidemic years.",
     checks: (v) => {
-      ok("14 two centuries", r(g19) === 2.8 && r(g20) === 34.7, `1800 ${r(L[1800], 2)}, 1900 ${r(L[1900], 2)}, 2000 ${r(L[2000], 2)}: +${r(g19)} then +${r(g20)} (x${r(g20 / g19, 1)})`);
-      ok("14 2000 to 2023", r(L[2023] - L[2000]) === 5.8, `+${r(L[2023] - L[2000])} years (the third preset)`);
+      ok("14 two centuries (as shown)", g19 === 2.9 && g20 === 34.7 && v.times === 12, `shown 1800 ${sh(1800)}, 1900 ${sh(1900)}, 2000 ${sh(2000)}: +${g19} then +${g20} (x${r(g20 / g19, 2)}, about ${v.times}); unrounded +${r(u19, 2)} then +${r(u20, 2)} (x${r(u20 / u19, 1)})`);
+      ok("14 2000 to 2023 (as shown)", g21 === 5.8, `${sh(2000)} -> ${sh(2023)}: +${g21} years (the third preset; unrounded +${r(L[2023] - L[2000], 2)})`);
       ok("14 stage points", steps.every((y) => L[y] > 0), `points every 25 years: ${steps.map((y) => `${y} ${r(L[y])}`).join(", ")}`);
       const dips = Object.keys(L).map(Number).filter((y) => y <= 2023 && L[y - 1] && L[y] - L[y - 1] < -1);
       ok("14 single-year falls exist (why the limit sentence names them)", dips.length > 0, `years falling > 1 year from the year before: ${dips.join(", ")}. None is a 25-year point except via the trend; the stage does not label them`);

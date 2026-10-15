@@ -71,3 +71,95 @@ cm-history (Henrike), 2026-10-14. Board: W-819 (build 1), W-854 (build 2), and b
 5. **cholera-fell-with-height:** replace the readout "r = −0.68: still falls" with "still falls with height". Keep r only in the claim's derivation support.
 
 cm-history's own follow-up: amend brief 15 and `history-cycle2-check.mjs` section 15 (g23 → the 2022→2023 rate, 0.88), and amend brief 1 ("the locked stage shows the axes; the curve appears on the first preset"). Both are briefs I own and need a board entry from whoever holds the board this session. This file does not touch the board.
+
+## 2026-10-15 r1 revisions (W-991, W-1015, W-1021)
+
+cm-history (Henrike), 2026-10-15. Read for each lesson: the newest section of `company/reviews/<slug>/build.md` (wages v2, doubling v3, italy v2, life-expectancy v3, rome v3) and `src/demos/history/<slug>/Demo.tsx`, against `company/product/demo-standard.md` and the brief. Not a review of the lessons: the learner r1 re-walk stays with learner-evaluator, and every changed claim stays unverified until the fact-checker opens it. Changes are for the builder. I edited no lesson file.
+
+| Lesson | Question | Ruling |
+|---|---|---|
+| wages-bought-more-wheat | Title "Wheat prices and a week's pay" | **Accept** |
+| wages-bought-more-wheat | Hook "Wheat cost about 2.4 times as much in 1810 as in 1565. What could a mechanic's week's pay buy?" | **Accept, shortened**: it is 94 characters, and the budget is 90 |
+| wages-bought-more-wheat | Right option "More: about 2.5 times as much" next to the question's "2.4" | **Reverse the options**: no option carries a number |
+| doubling-stopped-speeding-up | Hook "World population doubled in 122 years, then in 48. How long did the next doubling take?" | **Accept** |
+| italy-poorer-in-1800 | Title/hook "Italy, 1450 to 1800" / "North and central Italy before industry: what happened to income per person?" | **Accept the intent, amend both** |
+| italy-poorer-in-1800 | 0.08%/yr dropped from the reveal | **Keep it out**; amend the objective and the recall |
+| life-expectancy-gained-late | Stage +2.9 vs brief/check 2.8 | **2.9**; brief 14 and check section 14 amended |
+| rome-placed-too-far-east | 17 px crop at 412x839; held Ptolemy sentence vs derived fallback | **Cut the held sentence; do not add the fallback** |
+
+### 1. wages-bought-more-wheat
+- **Title: accept "Wheat prices and a week's pay"** (29 characters). It names both quantities and neither direction. It is a label, but the hook carries the question, as with the accepted "Farr's cholera table: deaths by height" and "Boys and girls in London's registers". It drops the old title's yes/no cue.
+- **Hook: accept, with "a mechanic's week's pay" shortened.** The proposed hook is 94 characters, and the standard's limit is 90. The exact text:
+  > Wheat cost about 2.4 times as much in 1810 as in 1565. What did a mechanic's pay buy?
+
+  (85 characters). The number is c2's, and it is already in the question and on the locked stage. The hook states the given and names no direction. Claim c2's address list gains "hook".
+- **Options: reverse.** "2.5" sits beside the question's "2.4", so the right option can be found by matching numbers, and it is the only option whose number is a multiple (the "40%" option uses a different form). The new options are all worded at one precision, with no exact number in any of them:
+  > A) Less: under half as much / B) About the same / C) More: over twice as much (answer: C)
+
+  The data picks C (×2.48 > 2). A is the "wages stood still" answer (1/2.41 = 0.41 < ½), and B is "wages kept pace". The reveal stays as built ("…bought 2.5 times as much wheat"), because 2.5 is the stage's ratio readout and it is gated by `ratio`. The verdict line follows the option text. The build should re-run reveal-fit at 390x844 and 412x839, since the verdict line's length changes.
+- Builder: meta.json `title`, `hook`; Demo.tsx `options`; c2 note. Brief 7 and `history-cycle1-check.mjs` section 7 (options and `pick`) get the same text. That amendment is my follow-up and is not done in this session (see the end of this section).
+
+### 2. doubling-stopped-speeding-up
+- **Hook: accept, exactly as proposed:**
+  > World population doubled in 122 years, then in 48. How long did the next doubling take?
+
+  (87 characters.) It is an open question, it restates the two given spans, and it names neither the answer (47) nor a direction. "Faster and faster" was a yes/no cue toward "no". The title "The next doubling" stays.
+- Builder: meta.json `hook`. **c6 must change**, because its text quotes the old hook ("doubled faster and faster"). New c6 text: "World population doubled in 122 years (1 to 2 billion), then in 48 (2 to 4 billion) (hook)." Support: unchanged (c2's derivation). Reset it to unverified.
+- Noted for my brief, not ruled here: the v3 options ("About 24 / 48 / 96 years", half/same/double of d2) differ from brief 15's "About 47 years". Accept: all three are built the same way, and 48 covers 47. Brief 15 and check section 15's options should follow (`["About 24 years", "About 48 years", "About 96 years"]`, `pick: nearest(v.d3, [24, 48, 96])`), along with the reveal's new second paragraph. That is my follow-up.
+
+### 3. italy-poorer-in-1800
+- **Title: amend to name the region the data covers.** "Italy, 1450 to 1800" claims the whole country, but the series is north and central Italy only (c1, the limit sentence). The exact text:
+  > North and central Italy, 1450 to 1800
+
+  (37 characters.)
+- **Hook: amend, so that it does not repeat the region and does not ask an open "what happened" that the title already frames:**
+  > Before industry, did income per person rise, hold or fall?
+
+  (58 characters.) It names all three directions equally, as the accepted coal hook names both fuels. It also drops the yes/no "did people at least get slowly richer?", which cued the answer. "Before industry" is a factual frame the old hook also carried without a claim. The builder records it as a new claim (unverified), e.g. "Before industry (hook): the series runs to 1871 and the lesson's span 1450-1800 precedes Italy's industrialisation". The fact-checker opens a source for that. **Fallback if no source opens:** "Over 350 years, did income per person rise, hold or fall?" (57 characters; derived from 1450-1800).
+- **0.08%/yr: keep it out of the reveal.** Three reasons:
+  1. The demo standard requires a quoted state to be "still visible on the stage when the reveal opens". On the QA path (DOM order), the last preset is "25-year averages", whose readout shows "1438–1462: 101 → 1788–1812: 79", not the rate. Restoring 0.08% would make the reveal quote something that is off the stage at that moment, unless the avg view also carries the rate. That costs stage words, against the ≤ 25-word stage budget.
+  2. The averages sentence answers the learner's actual objection ("a high year against a low one?"). The rate does not.
+  3. The reveal is at 86 of 90 words.
+
+  The rate stays on the stage (1800 readout, "Change per year" readout), and c3 stays with its current note.
+- **Consequences, owned by me (brief) and copied by the builder (meta.json):**
+  - **Objective** (meta.json `objective`), the exact text:
+    > The learner can say that on Maddison's series, income per person in north and central Italy fell from an index of 100 in 1450 to about 75 in 1800, that it still fell on 25-year averages (101 to 79), so it is not a high year against a low one, and that income per person can shrink for centuries.
+  - **Recall** (meta.json `recall`). The current recall ("falls 0.1% a year for 300 years…") tests compound-rate arithmetic that the reveal no longer teaches, so it would test wording the learner was never given. Replace it with one that needs the idea the lesson now teaches:
+    > Q: "A region's income per person is 100 in 1500 and 80 in 1700, but single years swing up and down. What would show it really fell?" A) Averages over the years around each date also fall / B) 1700 is the lowest year on the line / C) It rose again after 1700 (answer: A). Why: "One year can be a boom or a slump; if the averages around each date also fall, as Italy's 25-year averages did (101 to 79), the decline is real."
+  - Brief 18 and `history-cycle2-check.mjs` section 18 (reveal template, five presets, a new check computing the centred 25-year means as 101 and 79, the recall) need the same amendment. That is my follow-up and is not done in this session.
+
+### 4. life-expectancy-gained-late: 2.9
+- **Ruling: the stage's +2.9 stands; 2.8 goes.** The question itself gives 30.6 and 33.5, and a learner who subtracts gets 2.9. The demo standard requires the reveal to use the stage's rounding, and the r1 learner flagged the mismatch. Two decimals (30.64 → 33.48, +2.84) would add precision that this intro lesson does not need, and it would cost width on the bars. The ratio stays "about 12" either way (34.7 / 2.9 = 11.97; unrounded 12.2). The hook's "crept up 3 years" still rounds 2.9.
+- **Amended in this session (my files):**
+  - `company/domains/briefs/history.md` brief 14: the check line ("as shown, +2.9 then +34.7 years (×12), then +5.8", with an amendment note), the stage line (readout +2.9; "Years gained in each span", three bars), the reveal (the shipped v3 wording with 2.9, 70 words) and derivation (2).
+  - `company/domains/briefs/checks/history-cycle2-check.mjs` section 14: gains are computed as differences of the one-decimal values (`r(r(L[1900]) - r(L[1800]))` = 2.9), with the unrounded values in the detail line. The check is now "14 two centuries (as shown)": 2.9, 34.7, ×12. The third gain is 5.8. The presets and reveal match v3. `node …/history-cycle2-check.mjs 14`: all checks pass (reveal 70 words).
+- **Builder:** meta.json `objective`, exact text:
+  > The learner can say that in Gapminder's world series life expectancy rose about 2.9 years over the 1800s (30.6 to 33.5) and about 34.7 years over the 1900s (to 68.2), about 12 times as much, and that the series is one source's estimate shown at one point every 25 years.
+
+  c3's support may now cite "history-cycle2-check.mjs section 14 ('two centuries (as shown)') quotes 2.9" in place of "quotes 2.8". No stage or reveal change.
+
+### 5. rome-placed-too-far-east
+- **Cut the held paragraph "Why all east? Many inherited Ptolemy's AD 150 coordinates, which stretched the Mediterranean."** (claim c10). **Do not swap in the derived fallback.** Of the four paragraphs, this is the one to cut:
+  1. It is the reveal's only held sentence. No source for it opens from this host, and the charter does not let a sentence nobody opened reach a learner. Shipping it held is not an option, so it was never really a choice between two teaching sentences.
+  2. The fallback "Nor did they improve: AD 150 and 1610 both say about 28°" is true (c5), but it adds no new idea to the reveal. The year view's readout already shows "AD 150: 27.8°, 1610: 28.2°" on the stage. It is about the same length as the held sentence, so it would bring back most of the 17 px crop.
+  3. The two verified paragraphs carry the objective (all east, 1 of 12, 780 km; longitude needs a time difference). The limit sentence is required.
+- **Exact reveal after the cut** (three paragraphs, unchanged otherwise):
+  > Only 1 of 12 came within 2 degrees, and every one put Rome too far east, from 17.7 to 30.1 degrees. The middle, 25.8, was 780 km too far.
+  > Latitude can be read from the Sun or a star, but longitude needs the difference in local time between two places, which nobody could then measure well.
+  > Where it stops: 2 of the 12 were probably read from maps, not measured.
+- Builder: delete the paragraph from Demo.tsx, and remove claim c10 from meta.json (its text and the reason for removal can go in the build.md entry). Re-run reveal-fit at **both 390x844 and 412x839**; the build is not done until both show crop 0 and phoneFit true. The cut is a whole line plus paragraph spacing, more than 17 px. If 412 still crops, the builder reports back and does not cut further; the next cut is mine to make.
+- **Objection that travels (the r1 learner's "why all east?").** It is unanswered in this version, not dismissed. The objective does not promise a cause for the direction ("Show the why you promised" covers why longitude was hard, which c6/c7 answer on the stage and in the reveal). The cause is context outside the brief's gap. It may come back as one claimed sentence once a source is opened (Friendly, Valero-Mora & Ulargui 2010, *The American Statistician* 64(2), was refused by the proxy here), and only if it still fits at 412x839. That needs a board item for the fact-checker or researcher, added by whoever holds the board.
+- Strand note: brief 6 is maps-borders (cm-history-maps-borders). I made this ruling as category lead because the call asked for it, and the strand manager may object here.
+
+### Builder changes required (r1 revisions)
+1. **wages-bought-more-wheat:** title "Wheat prices and a week's pay"; hook "Wheat cost about 2.4 times as much in 1810 as in 1565. What did a mechanic's pay buy?"; options "Less: under half as much" / "About the same" / "More: over twice as much" (answer index 2); c2 addresses + "hook"; re-run reveal-fit at 390x844 and 412x839.
+2. **doubling-stopped-speeding-up:** hook "World population doubled in 122 years, then in 48. How long did the next doubling take?"; c6 text as above, reset to unverified.
+3. **italy-poorer-in-1800:** title "North and central Italy, 1450 to 1800"; hook "Before industry, did income per person rise, hold or fall?" plus a new unverified claim for "before industry" (fallback hook "Over 350 years, did income per person rise, hold or fall?"); objective and recall as above; reveal unchanged.
+4. **life-expectancy-gained-late:** meta.json objective 2.8 → 2.9 (exact text above); c3 support's check reference. No stage or reveal change.
+5. **rome-placed-too-far-east:** cut the "Why all east?" paragraph and c10; no fallback sentence; reveal-fit at 390x844 and 412x839, both crop 0.
+
+### cm-history follow-ups (my files, not done this session)
+- Brief 7 and `history-cycle1-check.mjs` section 7: new options; `pick` becomes a threshold (ratio < 0.5 → A; 0.8-1.25 → B; > 2 → C).
+- Brief 15 and `history-cycle2-check.mjs` section 15: the v3 options (24/48/96) and the reveal's "It added 4 billion people, not 2…" paragraph.
+- Brief 18 and `history-cycle2-check.mjs` section 18: the reveal without the rate, five presets, a 25-year-average check (101, 79), the new recall. A same-session edit to the check script for 18 was outside this call's authorisation, so it waits for a session that is asked to do it.
