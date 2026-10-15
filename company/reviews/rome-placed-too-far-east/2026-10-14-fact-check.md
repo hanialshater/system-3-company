@@ -38,3 +38,17 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c8 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 43
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, build or record any of these claims. Scope: the claims the History round-1 v2 commit (c255d8e) reset to unverified. Method: I read the v2 Demo.tsx diff and the full stage, question, hook and reveal strings before any builder note; re-derived every number with my own node scripts on artifacts/history-data (SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs; all match); opened sources from this host (CRAN, raw.githubusercontent.com, ourworldindata.org). Blocked this pass: warwick.ac.uk, cambridge.org, repec, Gutenberg, Wikipedia, eutils, math.uni.edu and the plague-bill pages. Scripts: session scratchpad fc43/scripts (check.mjs, cholera.mjs, apply.mjs). The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 43').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | correction to the pass-39 note above, status unchanged: the Source column is Map 2 / Astron 10 (pinned CSV and CRAN HistData 1.1.1 Langren1644.RData), not Astron 7 / Map 5 (that is the Gap column). 'Astronomers and mapmakers' still holds. |
+| c8 | verified | VERIFIED. Reveal: 'Where it stops: 2 of the 12 were probably read from maps, not measured.' COUNT RESOLVED: the pinned Langren1644.csv (sha256 644b1008... matches the pin; re-fetched from Rdatasets today, byte-identical) has Source = Map for 2 rows (G. Jansonius 1605, G. Mercator 1567) and Astron for 10. The CRAN original, HistData_1.1.1.tar.gz data/Langren1644.RData (downloaded from cran.r-project.org, read with python rdata), has the same 2 Map / 10 Astron. The HistData doc (opened) gives only the factor levels 'Astron Map', no counts. Passes 39 and 41 said 'Map 5, Astron 7': that matches the Gap column (0 for 5 rows, 1 for 7), not Source, so it was a column mix-up. 'Probably' renders the doc's 'Likely source for this determination'. Demo.tsx copies the column and computes MAPS = 2. |
+| c9 | verified | VERIFIED. Hook: 'Astronomers and mapmakers spent centuries on one short distance. How close did they get?' Years in the file run 150 (C. Ptolomeus) to 1610 (A. Argelius); Source has both levels (Astron 10, Map 2); the HistData doc calls it 'even this modest distance'. Advisory on the claim text only: say 'likely' ('each marked with its likely source, astronomical or a map'), as the doc does. |
+
+**Result (Pass 43):** 2 verified, 0 disputed, 0 held, of 2 re-checked (c1 is a note correction only, status unchanged). Lesson now: 9 verified of 9.
+
+No open claim items. Non-blocking advisories are in the basis column.

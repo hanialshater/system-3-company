@@ -38,3 +38,19 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c1 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 43
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, build or record any of these claims. Scope: the claims the History round-1 v2 commit (c255d8e) reset to unverified. Method: I read the v2 Demo.tsx diff and the full stage, question, hook and reveal strings before any builder note; re-derived every number with my own node scripts on artifacts/history-data (SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs; all match); opened sources from this host (CRAN, raw.githubusercontent.com, ourworldindata.org). Blocked this pass: warwick.ac.uk, cambridge.org, repec, Gutenberg, Wikipedia, eutils, math.uni.edu and the plague-bill pages. Scripts: session scratchpad fc43/scripts (check.mjs, cholera.mjs, apply.mjs). The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 43').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | VERIFIED, with an advisory. Question: 'London's yearly records of deaths (compiled by Creighton, 1965) show 15,453 in 1664'; hook 'Yearly records of London's deaths run from 1629 to 1710'. Own node script on Arbuthnot.csv (sha matches) and the CRAN original data/Arbuthnot.RData: 82 years 1629-1710; Mortality 15,453 (1664), 97,306 (1665), 12,738 (1666); Plague 68,596 (1665); christenings 5,114 + 4,858 = 9,972 (1665); 1636 10,400 of 23,359. CRAN man/Arbuthnot.Rd (opened): 'deaths from the plague and total mortality obtained by Campbell and from Creighton (1965)'. Advisory (non-blocking): the Rd's reference is 'Creighton, C. (1965). A History of Epidemics in Britain, 2nd edition', so 1965 is the edition date; read as prose, 'compiled by Creighton, 1965' can suggest he compiled them in 1965. Safer: '(from Creighton's History of Epidemics in Britain, 1965 edition)' or '(Creighton; 1965 ed.)'. |
+| c2 | verified | VERIFIED. Own script: 97,306 / 15,453 = 6.297 -> 6.3; 68,596 / 97,306 = 70.495% -> Math.round 70; 97,306 / 9,972 = 9.758 -> 9.8 (stage) and 10 (reveal); 1636 44.52% -> 45. Units now 'deaths', which the Rd supports ('total mortality'). |
+| c4 | disputed | DISPUTED. Learner text (reveal, unchanged in v2): 'Where it stops: these are recorded burials and recorded causes, not a count of every death or a doctor's diagnosis.' v2 relabelled every number as deaths ('Deaths, 1665', 'London recorded 97,306 deaths', 'deaths for every child christened') and dropped the Bills of Mortality because no opened source ties these columns to the Bills (FC39/FC41 c1). The limit sentence still calls them burials, which (1) is that same unsourced link and (2) contradicts the stage's unit. FC41's sources for c4 (PMC7154511, PMC13244054, PMC3764771) describe what the Bills recorded, so they apply only if the file is the Bills. Search results index pages printing the 1665 general bill as 97,306 buried, 68,596 of plague (worc.ox.ac.uk/?p=4718, britannica.com/print/article/243560, pcwww.liv.ac.uk/epidemics/Hist_image_bill.htm), but none opened from this host. Fix (builder), either: (a) a web-capable session (W-583) opens one of those pages, then the lesson may name the Bills again and keep FC41's c4 sources; or (b) cut to what the Rd supports: 'Where it stops: these are recorded deaths and recorded causes, from one later compilation (Creighton).' |
+
+**Result (Pass 43):** 2 verified, 1 disputed, 0 held, of 3 re-checked. Lesson now: 3 verified, 1 disputed of 4.
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c4 (disputed): stage says deaths, limit sentence says burials; fix (a) or (b) in the basis above. Owner: history builder (demo-builder); source route W-583.

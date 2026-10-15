@@ -19,3 +19,15 @@ Unrecorded claims: None.
 **Result (Pass 39):** 5 verified, 0 disputed, 0 unverified.
 
 All claims verified. Nothing blocks publishing on facts. The lesson still needs its walkthrough, QA and learner evidence.
+
+## Pass 43
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, build or record any of these claims. Scope: the claims the History round-1 v2 commit (c255d8e) reset to unverified. Method: I read the v2 Demo.tsx diff and the full stage, question, hook and reveal strings before any builder note; re-derived every number with my own node scripts on artifacts/history-data (SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs; all match); opened sources from this host (CRAN, raw.githubusercontent.com, ourworldindata.org). Blocked this pass: warwick.ac.uk, cambridge.org, repec, Gutenberg, Wikipedia, eutils, math.uni.edu and the plague-bill pages. Scripts: session scratchpad fc43/scripts (check.mjs, cholera.mjs, apply.mjs). The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 43').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED. Stage readout 'Central Thames' / 'still falls with height'. Own node script (quoted-field CSV parser) on the pinned Cholera.csv (sha matches): 16 districts under 20 ft, 11 of them Battersea; the 4 at 80 ft and up are New River or Kew, none Battersea, so height and water go together. Within Battersea (12 districts, -2 to 22 ft) Pearson r(elevation, rate) = -0.680 (same on the file's cholera_drate and on deaths/popn rounded), Spearman -0.71, leave-one-out -0.55 to -0.80: always negative, so 'still falls' is robust. New River -0.55 (20), Kew -0.47 (6). r is not on the stage. |
+
+**Result (Pass 43):** 1 verified, 0 disputed, 0 held, of 1 re-checked. Lesson now: 5 verified of 5.
+
+No open claim items. Non-blocking advisories are in the basis column.

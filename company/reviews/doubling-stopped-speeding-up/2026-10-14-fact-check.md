@@ -38,3 +38,16 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c3 (disputed): see the basis above for the fix or the source it needs.
+
+## Pass 43
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, build or record any of these claims. Scope: the claims the History round-1 v2 commit (c255d8e) reset to unverified. Method: I read the v2 Demo.tsx diff and the full stage, question, hook and reveal strings before any builder note; re-derived every number with my own node scripts on artifacts/history-data (SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs; all match); opened sources from this host (CRAN, raw.githubusercontent.com, ourworldindata.org). Blocked this pass: warwick.ac.uk, cambridge.org, repec, Gutenberg, Wikipedia, eutils, math.uni.edu and the plague-bill pages. Scripts: session scratchpad fc43/scripts (check.mjs, cholera.mjs, apply.mjs). The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 43').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | VERIFIED. Stage: 'peak 2.25% in 1963; 0.88%, 2022 to 2023', chart labels 'peak 1963: 2.25%' and '2022 to 2023: 0.88%'; reveal 'peaked at 2.25% in 1963 and was 0.88% from 2022 to 2023'. Own node script on the pinned gapminder-pop-global.csv (sha256 84e8705b... matches the pin): 100 x (3,264,487,339 / 3,192,807,828 - 1) = 2.24503 -> 2.25, the maximum over start years 1900-2022; 100 x (8,091,734,930 / 8,021,407,192 - 1) = 0.8768 -> 0.88. Demo.tsx POP = the file's 224 values 1800-2023, 0 mismatches; no 2024 value. Gapminder concept 'pop' is v8, 29 July 2024 (ddf--concepts.csv, opened), i.e. after UN WPP 2024, so 2023 is the last estimate year. Advisory, not blocking: the rate is not monotonic after 1963 (2021 to 2022 was 0.84%, so the last rate is slightly up), and history-cycle2-check.mjs still computes gr(2023) (W-869). |
+| c4 | verified | VERIFIED. Reveal: 'the last was about as fast as the one before. ... A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.' Spans 48 and 47 years at first-year resolution; by linear interpolation of the crossings they are 47.5 and 47.6, so 'about as fast' is right and 'faster' would not be. Average rate over each doubling 1.48% (1927-1975) and 1.45% (1975-2022); yearly rate 1.81% in 1975, 0.88% in 2022 to 2023. Growth slowing, not accelerating, holds. |
+
+**Result (Pass 43):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 6 verified of 6.
+
+No open claim items. Non-blocking advisories are in the basis column.

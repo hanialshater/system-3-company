@@ -37,3 +37,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c6 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 43
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, build or record any of these claims. Scope: the claims the History round-1 v2 commit (c255d8e) reset to unverified. Method: I read the v2 Demo.tsx diff and the full stage, question, hook and reveal strings before any builder note; re-derived every number with my own node scripts on artifacts/history-data (SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs; all match); opened sources from this host (CRAN, raw.githubusercontent.com, ourworldindata.org). Blocked this pass: warwick.ac.uk, cambridge.org, repec, Gutenberg, Wikipedia, eutils, math.uni.edu and the plague-bill pages. Scripts: session scratchpad fc43/scripts (check.mjs, cholera.mjs, apply.mjs). The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 43').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | VERIFIED. Reveal: 'Where it stops: this is one source's world figure, and some of its early values are guesses or modelled, not counted.' Opened: OWID grapher child-mortality.metadata.json, descriptionProcessing: 'In the Gapminder dataset we remove rows where the source is labeled as "Guesstimate" or "Model based on Life Expectancy"'; so Gapminder's own series carries guessed and modelled values. The pinned file is a single Gapminder world aggregate (concept u5mr v12, ddf--concepts.csv, opened). Inference noted: OWID describes Gapminder's country data (v7), and the world figure is built from it; the pinned 1800-1851 world values sit at 423-430 with multi-year flat runs, which is what modelled values look like. I found no Gapminder page reachable that labels the world aggregate's years directly. |
+
+**Result (Pass 43):** 1 verified, 0 disputed, 0 held, of 1 re-checked. Lesson now: 7 verified of 7.
+
+No open claim items. Non-blocking advisories are in the basis column.

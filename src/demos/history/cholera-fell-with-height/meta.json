@@ -57,8 +57,10 @@
       "text": "Height and water went together, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height (stage readout 'still falls with height').",
       "support": "derivation",
       "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates, -0.68) and shows only its direction: the readout reads 'still falls with height' because r < 0. r is derivation support only and is not on the stage or in the reveal (cm-history ruling). Brief: the lesson never says water alone.",
-      "status": "unverified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475. | v2 (demo-builder, 2026-10-15): cm-history ruling (W-868): stage readout 'r = −0.68: still falls' became 'still falls with height'; r moved from the claim text to the source. Reset to unverified for a fact-checker who is not the builder."
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475. | v2 (demo-builder, 2026-10-15): cm-history ruling (W-868): stage readout 'r = −0.68: still falls' became 'still falls with height'; r moved from the claim text to the source. Reset to unverified for a fact-checker who is not the builder. | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Stage readout 'Central Thames' / 'still falls with height'. Own node script (quoted-field CSV parser) on the pinned Cholera.csv (sha matches): 16 districts under 20 ft, 11 of them Battersea; the 4 at 80 ft and up are New River or Kew, none Battersea, so height and water go together. Within Battersea (12 districts, -2 to 22 ft) Pearson r(elevation, rate) = -0.680 (same on the file's cholera_drate and on deaths/popn rounded), Spearman -0.71, leave-one-out -0.55 to -0.80: always negative, so 'still falls' is robust. New River -0.55 (20), Kew -0.47 (6). r is not on the stage.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "history.cholera-fell-with-height.c5",
