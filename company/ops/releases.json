@@ -1,6 +1,6 @@
 {
   "owner": "release-manager",
-  "scheme": "YYYY.MM.DD.n (UTC date; n counts releases that day, from 1). Append-only, oldest first.",
+  "scheme": "rN (sequential: r1, r2, ... in release order). Append-only, oldest first.",
   "releases": [
     {
       "version": "r1",
@@ -422,7 +422,7 @@
           "Vercel skipped the f4537d7 [deploy] commit; the filter fix lets [deploy] commits build (5e8608d)."
         ],
         "known_issues": [
-          "Feed after this release, from lesson metadata at this commit: 587 published, 292 in review. The 54 lessons from f4537d7 first reached the live feed here (inferred from the commit message), so their slugs are listed under 2026.10.14.4."
+          "Feed after this release, from lesson metadata at this commit: 587 published, 292 in review. The 54 lessons from f4537d7 first reached the live feed here (inferred from the commit message), so their slugs are listed under r4."
         ]
       },
       "backfill": "confirmed by release-manager 2026-10-14: commit, UTC date and lesson counts re-derived from git with tools/release-draft.mjs; founder approval is in the commit message (was: drafted by hq-engineer, to be confirmed by release-manager)"
