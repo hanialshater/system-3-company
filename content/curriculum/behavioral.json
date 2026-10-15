@@ -1,0 +1,593 @@
+{
+  "domain": "behavioral",
+  "owner": "cm-behavioral",
+  "note": "Owned by the category manager (cm-behavioral, Rasmus); charter company/domains/behavioral.md; sign-off requests company/domains/behavioral-signoffs.md. Domain id 'behavioral' is a PROPOSAL: platform-engineer decides the DomainId at playbook step 8 (W-981); until content/domains.json lists it, npm run check does not validate this file. Drafted 2026-10-15 by cm-behavioral from the DLR (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and head-of-product's rulings (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md). No subarea: no strands at this size. demand: 1 low, 3 high; EVERY value is an estimate (demandEstimate: true), not learner data: the 12 counted concepts carry domain-scout's DLR estimates, the reserves cm-behavioral's. level: intro | core | stretch. reserve: true = not counted and not briefed until a counted concept is struck and the reserve's own boundary line is signed. pilot: the DLR five in head-of-product's order (1-3 after the fact-checker's step-9 statement; 4 after cm-books signs, fallback reflection-effect; 5 after cm-economics signs); no sixth brief before the DLR reconvenes. claimTypes: a derivation, b the learner's own screen, c disclosed seeded simulation, d source plus replication verdict (charter, checking section). nearest: the closest existing concept in any category (a brief says how it differs). boundary: which neighbour rows it depends on, the close-call line if any, who signs, and status (pending until signed in behavioral-signoffs.md). contested: true = taught only as contested, never as a predict answer. held: why the concept cannot be briefed even after its row is signed. Prerequisites link neighbour concepts by domain:id; nothing is moved or re-tagged out of a neighbour. reviewRoute: 'sensitive' where a reveal would compare groups or countries (the sensitive-topics route, company/international/sensitive-topics-checklist.md), 'standard' otherwise.",
+  "concepts": [
+    {
+      "id": "allais-certainty-effect",
+      "name": "A sure thing and a 1% risk of nothing: no utility function fits both of your choices",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "probability:expected-value",
+        "economics:risk-aversion"
+      ],
+      "claimTypes": [
+        "a",
+        "b"
+      ],
+      "nearest": [
+        "economics:risk-aversion",
+        "probability:expected-value",
+        "probability:variance-risk",
+        "math:transitive-preferences"
+      ],
+      "boundary": {
+        "rows": [
+          "economics",
+          "probability"
+        ],
+        "close": null,
+        "signer": [
+          "cm-economics",
+          "cm-probability"
+        ],
+        "status": "pending"
+      },
+      "pilot": 1,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "reflection-effect",
+      "name": "Cautious about gains, a gambler about losses, on the same numbers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "allais-certainty-effect",
+        "economics:risk-aversion"
+      ],
+      "claimTypes": [
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "economics:risk-aversion"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": null,
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "pilotFallback": "replaces pilot 4 if cm-books refuses #4",
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "probability-weighting",
+      "name": "Why a 1% chance feels bigger than 1% (lottery and insurance)",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "allais-certainty-effect",
+        "probability:lottery-odds",
+        "economics:insurance-expected-cost"
+      ],
+      "claimTypes": [
+        "a",
+        "d"
+      ],
+      "nearest": [
+        "economics:insurance-expected-cost",
+        "probability:lottery-odds"
+      ],
+      "boundary": {
+        "rows": [
+          "economics",
+          "probability"
+        ],
+        "close": "#3: never re-computes a fair price as its reveal",
+        "signer": [
+          "cm-economics",
+          "cm-probability"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "gain-loss-framing",
+      "name": "The same outcome stated as lives saved or lives lost",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "reflection-effect",
+        "books:tfs-loss-aversion"
+      ],
+      "claimTypes": [
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "books:tfs-loss-aversion"
+      ],
+      "boundary": {
+        "rows": [
+          "books"
+        ],
+        "close": "#4: the same outcome in two frames, not the size of loss aversion",
+        "signer": [
+          "cm-books"
+        ],
+        "status": "pending"
+      },
+      "pilot": 4,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "endowment-effect",
+      "name": "Your price to sell versus your price to buy, for the same mug",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [
+        "gain-loss-framing",
+        "books:tfs-loss-aversion"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "books:tfs-loss-aversion",
+        "books-strategy deck 30 Misbehaving (keep-the-mug, proposed misbehaving-endowment, rank 35)"
+      ],
+      "boundary": {
+        "rows": [
+          "books"
+        ],
+        "close": "#5: exception, Books keeps it until cm-books signs; if refused, removed and ceiling 17",
+        "signer": [
+          "cm-books"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "held": "Books keeps it until cm-books signs the exception (W-903); not in any tranche's committed part",
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "present-bias-reversal",
+      "name": "Patient about next year, impatient about today, with the delay unchanged",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "economics:present-value"
+      ],
+      "claimTypes": [
+        "a",
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "economics:present-value",
+        "books:tfs-planning-fallacy",
+        "math:transitive-preferences"
+      ],
+      "boundary": {
+        "rows": [
+          "economics",
+          "books"
+        ],
+        "close": null,
+        "signer": [
+          "cm-economics",
+          "cm-books"
+        ],
+        "status": "pending"
+      },
+      "pilot": 2,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "commitment-devices",
+      "name": "Why people tie their own hands, and when it works",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "present-bias-reversal"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "books:influence-commitment",
+        "economics:first-mover-commitment"
+      ],
+      "boundary": {
+        "rows": [
+          "economics",
+          "books"
+        ],
+        "close": "#7: self-binding only; strategic commitment stays in Economics, consistency pressure in Books",
+        "signer": [
+          "cm-economics",
+          "cm-books"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "mental-accounting",
+      "name": "Money in different mental envelopes is still the same money",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:opportunity-cost",
+        "economics:sunk-cost"
+      ],
+      "claimTypes": [
+        "a",
+        "b"
+      ],
+      "nearest": [
+        "economics:sunk-cost",
+        "economics:opportunity-cost",
+        "economics:forgone-cash-discount"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "#8: fungibility across envelopes; high duplicate risk; signed on a comparison draft",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "pilot": 5,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "dictator-giving",
+      "name": "What people give when nobody can retaliate, and what shifts it",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:ultimatum-game"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "economics:ultimatum-game",
+        "economics:nash-bargaining",
+        "economics:public-goods-free-rider"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "#9: no responder and no retaliation on the stage; anything with a responder is ultimatum-game",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "reviewRoute": "sensitive",
+      "sensitive": "comparisons of groups or countries, if the reveal names cross-cultural variation",
+      "demandEstimate": true,
+      "reserve": false
+    },
+    {
+      "id": "beauty-contest-level-k",
+      "name": "Guess two thirds of the average: how many steps ahead do you think?",
+      "level": "core",
+      "demand": 3,
+      "prerequisites": [
+        "economics:iterated-dominance"
+      ],
+      "claimTypes": [
+        "a",
+        "c",
+        "d"
+      ],
+      "nearest": [
+        "economics:iterated-dominance",
+        "economics:nash-equilibrium"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "#10: the ladder is markets' and appears only as a linked prerequisite step; the stage is the guess against a crowd",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "pilot": 3,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "interval-overconfidence",
+      "name": "Your \"90% sure\" ranges, scored against the answers",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "probability:confidence-intervals"
+      ],
+      "claimTypes": [
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "probability:confidence-intervals",
+        "ai:calibration",
+        "books:signal-calibrated-weather",
+        "big-ideas:dunning-kruger-artifact"
+      ],
+      "boundary": {
+        "rows": [
+          "probability",
+          "books",
+          "big-ideas"
+        ],
+        "close": "#11: enters only with cm-probability's written agreement; dropped if refused",
+        "signer": [
+          "cm-probability"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "money-illusion",
+      "name": "Same real change, different feeling when the number is nominal",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:inflation",
+        "economics:real-interest-rate"
+      ],
+      "claimTypes": [
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "economics:inflation",
+        "economics:real-interest-rate",
+        "economics:percent-stacking",
+        "economics:price-index"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "#12: dropped first if cm-economics objects",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "pilot": null,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "automatic-escalation",
+      "name": "Saving more tomorrow: pre-committing your future raises",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "commitment-devices",
+        "present-bias-reversal"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "books:nudge-defaults"
+      ],
+      "boundary": {
+        "rows": [
+          "books",
+          "economics"
+        ],
+        "close": "reserve: few sites; Books keeps defaults",
+        "signer": [
+          "cm-books",
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "demandEstimate": true,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "costly-punishment",
+      "name": "Paying to punish free riders in a public-goods game",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "economics:public-goods-free-rider"
+      ],
+      "claimTypes": [
+        "c",
+        "d"
+      ],
+      "nearest": [
+        "economics:public-goods-free-rider",
+        "economics:ultimatum-game"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "reserve: the free-rider game is Economics'; we would take only the punishment stage",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "reviewRoute": "sensitive",
+      "sensitive": "comparisons of groups or countries, if the reveal names cross-cultural variation",
+      "demandEstimate": true
+    },
+    {
+      "id": "disposition-effect",
+      "name": "Selling winners too early and holding losers too long",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "reflection-effect"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "economics:sunk-cost",
+        "books:tfs-loss-aversion"
+      ],
+      "boundary": {
+        "rows": [
+          "economics",
+          "books"
+        ],
+        "close": "reserve: needs a data source; never investment advice",
+        "signer": [
+          "cm-economics",
+          "cm-books"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "demandEstimate": true,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "nudges-at-scale",
+      "name": "Nudges shrink at scale: the effect in papers versus in nudge units",
+      "level": "stretch",
+      "demand": 2,
+      "prerequisites": [
+        "big-ideas:most-findings-false",
+        "books:nudge-defaults"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "big-ideas:most-findings-false",
+        "books:nudge-defaults",
+        "books:nudge-order-effects"
+      ],
+      "boundary": {
+        "rows": [
+          "big-ideas",
+          "books"
+        ],
+        "close": "reserve: contested; enters only with cm-big-ideas' written sign-off",
+        "signer": [
+          "cm-big-ideas"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "contested": true,
+      "demandEstimate": true,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "choice-overload",
+      "name": "Does more choice stop people choosing? A contested result",
+      "level": "core",
+      "demand": 2,
+      "prerequisites": [
+        "big-ideas:most-findings-false"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "big-ideas:most-findings-false",
+        "books:irrational-decoy"
+      ],
+      "boundary": {
+        "rows": [
+          "big-ideas",
+          "books"
+        ],
+        "close": "reserve: contested only, never a predict answer",
+        "signer": [
+          "cm-big-ideas"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "contested": true,
+      "demandEstimate": true,
+      "reviewRoute": "standard"
+    },
+    {
+      "id": "scarcity-mindset",
+      "name": "Does scarcity narrow attention? A contested claim",
+      "level": "stretch",
+      "demand": 1,
+      "prerequisites": [
+        "big-ideas:most-findings-false"
+      ],
+      "claimTypes": [
+        "d"
+      ],
+      "nearest": [
+        "big-ideas:most-findings-false"
+      ],
+      "boundary": {
+        "rows": [
+          "big-ideas"
+        ],
+        "close": "reserve: contested, or dropped",
+        "signer": [
+          "cm-big-ideas"
+        ],
+        "status": "pending"
+      },
+      "reserve": true,
+      "contested": true,
+      "reviewRoute": "sensitive",
+      "sensitive": "comparisons of groups (income groups)",
+      "demandEstimate": true
+    }
+  ]
+}
