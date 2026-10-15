@@ -1,7 +1,7 @@
 {
   "slug": "lh-pay-for-used-quantity",
   "title": "Price per item you actually use",
-  "hook": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+  "hook": "Singles at €0.50 or a ten-pack for €4: which costs less per piece you use?",
   "domain": "lifehacks",
   "concept": "count-usable-units",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Used=5, A=0.5€/used and B=0.8€/used. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Used=5, A=€0.50/used and B=€0.80/used. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=0.5; B=[\"/\",4,[\"min\",\"x\",10]]; x denotes Used. At x=5, A=0.5, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=0.5, B=[\"/\", 4, [\"min\", \"x\", 10]], variable {\"label\": \"Used\", \"start\": 5, \"min\": 1, \"max\": 10, \"unit\": \"\", \"step\": 1}. Hook rewrite only (plan W7: 'Hook as a question that does not state the answer. Keep the trap.'); the hook wording is demo-builder's and needs cm-lifehacks confirmation. At 5 used: singles €0.50, ten-pack €4/5 = €0.80 per used piece.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c3",
@@ -60,12 +58,10 @@
     },
     {
       "id": "lifehacks.lh-pay-for-used-quantity.c5",
-      "text": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+      "text": "Singles at €0.50 or a ten-pack for €4: which costs less per piece you use?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-pay-for-used-quantity\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Singles)=0.5; B (Ten-pack)=[\"/\", 4, [\"min\", \"x\", 10]]; x denotes Used, 1 to 10, start 5. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): sticker €4/10 = €0.40 per piece < €0.50; cost per used piece 4/min(x,10) = €0.80 at 5 used, above €0.50 for 1..7 used. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-pay-for-used-quantity\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Singles)=0.5; B (Ten-pack)=[\"/\", 4, [\"min\", \"x\", 10]]; x denotes Used, 1 to 10, start 5. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): sticker €4/10 = €0.40 per piece < €0.50; cost per used piece 4/min(x,10) = €0.80 at 5 used, above €0.50 for 1..7 used. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:count-usable-units",

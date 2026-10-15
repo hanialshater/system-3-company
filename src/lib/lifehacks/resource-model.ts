@@ -23,6 +23,17 @@ export interface ResourceSpec {
   objective: string;
   misconception: string;
   recall: { question: string; options: string[]; answer: number; why: string };
+  /**
+   * TP-7 (fix plan 2026-10-15): "plain" turns on the plain-words stage for this lesson only: readouts in words
+   * (no ceil, floor, min, max or sqrt), money to 2 decimals, no "Full scale" label. Lessons without it render
+   * exactly as before, so the r11 launch lessons keep their reviewed text.
+   */
+  display?: "plain";
+  /** Plain-words readout for case A or B; {x} is the slider value, {A} and {B} the two results. */
+  wordsA?: string;
+  wordsB?: string;
+  /** Noun after a rounded value in plain words, e.g. "whole pairs": "rounded up to 2 whole pairs". */
+  roundTo?: string;
 }
 
 /**
@@ -74,6 +85,74 @@ export function resourceFormula(expression: ResourceExpression, x: number): stri
     return `${operator}(${rendered.join(",")})`;
   }
   return `(${rendered.join(operator === "*" ? "×" : operator === "/" ? "÷" : operator)})`;
+}
+
+const symbols: Record<string, string> = { "+": "+", "-": "−", "*": "×", "/": "÷" };
+
+/** Removes one pair of brackets that wraps the whole text. */
+function unwrap(text: string): string {
+  if (!text.startsWith("(") || !text.endsWith(")")) return text;
+  let depth = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === "(") depth++;
+    if (text[i] === ")") depth--;
+    if (depth === 0 && i < text.length - 1) return text;
+  }
+  return text.slice(1, -1);
+}
+
+function plainWords(expression: ResourceExpression, x: number, roundTo: string): string {
+  if (expression === "x") return resourceNumber(x);
+  if (typeof expression === "number") return resourceNumber(expression);
+  const [operator, ...terms] = expression;
+  const rendered = terms.map((term) => plainWords(term, x, roundTo));
+  const value = resourceNumber(evaluateResource(expression, x));
+  const noun = roundTo ? ` ${roundTo}` : "";
+  switch (operator) {
+    case "ceil": return `(${unwrap(rendered[0])} = ${resourceNumber(evaluateResource(terms[0], x))}, rounded up to ${value}${noun})`;
+    case "floor": return `(${unwrap(rendered[0])} = ${resourceNumber(evaluateResource(terms[0], x))}, rounded down to ${value}${noun})`;
+    case "min": return `(the smaller of ${rendered.map(unwrap).join(" and ")})`;
+    case "max": return `(the larger of ${rendered.map(unwrap).join(" and ")})`;
+    case "sqrt": return `(the length whose square is ${unwrap(rendered[0])})`;
+    case "round": return `(${unwrap(rendered[0])}, to the cent)`;
+    default: return `(${rendered.join(` ${symbols[operator] ?? operator} `)})`;
+  }
+}
+
+/** TP-7(a): the readout under a result, in plain words for "plain" lessons; the old expression otherwise. */
+export function resourceReadout(spec: ResourceSpec, index: 0 | 1, x: number): string {
+  const expression = index === 0 ? spec.formulaA : spec.formulaB;
+  if (spec.display !== "plain") return resourceFormula(expression, x);
+  const template = index === 0 ? spec.wordsA : spec.wordsB;
+  if (template) {
+    const [a, b] = resourcePair(spec, x);
+    return template.replaceAll("{x}", resourceNumber(x)).replaceAll("{A}", resourceNumber(a)).replaceAll("{B}", resourceNumber(b));
+  }
+  return unwrap(plainWords(expression, x, spec.roundTo ?? ""));
+}
+
+/** TP-7(c): money to 2 decimals and a space before word units, for "plain" lessons only. */
+export function resourceAmountFor(spec: ResourceSpec, value: number, unit: string = spec.unit): string {
+  if (spec.display !== "plain") return resourceAmount(value, unit);
+  if (unit.startsWith("€")) return `€${value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${unit.slice(1)}`;
+  return /^[a-z]{3,}$/.test(unit) ? `${resourceNumber(value)} ${unit}` : `${resourceNumber(value)}${unit}`;
+}
+
+/** The slider's value text: unchanged for older lessons, money and word units spelled out for "plain" ones. */
+export function resourceVariableText(spec: ResourceSpec, value: number): string {
+  if (spec.display !== "plain") return `${value}${spec.variable.unit}`;
+  return spec.variable.unit ? resourceAmountFor(spec, value, spec.variable.unit) : resourceNumber(value);
+}
+
+/** Stage labels: "Whole-litres" reads "Whole litres" in plain lessons. */
+export function resourceLabel(spec: ResourceSpec, label: string): string {
+  return spec.display === "plain" ? label.replace(/(?<=[A-Za-z])-(?=[A-Za-z])/g, " ") : label;
+}
+
+/** TP-7(b): plain lessons drop the "Scaled model;" lead-in and never print a "Full scale" value. */
+export function resourceAssumptions(spec: ResourceSpec): string {
+  if (spec.display === "plain") return spec.assumptions.replace(/^Scaled model;\s*/, "");
+  return spec.family === "geometry" ? spec.assumptions : spec.assumptions.replace("Scaled model;", `Full scale:${resourceAmount(resourceGraphicScale(spec), spec.unit)};`);
 }
 
 export function resourcePair(spec: ResourceSpec, x: number): [number, number] {

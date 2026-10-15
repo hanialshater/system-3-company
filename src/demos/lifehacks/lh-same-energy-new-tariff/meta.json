@@ -1,7 +1,7 @@
 {
   "slug": "lh-same-energy-new-tariff",
   "title": "Same energy, different tariff",
-  "hook": "Moving a hypothetical load changes its price while leaving its energy unchanged.",
+  "hook": "Moving to a cheaper tariff: do you use less energy?",
   "domain": "lifehacks",
   "concept": "bill-equals-energy-times-rate",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "lifehacks.lh-same-energy-new-tariff.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Energy=3kWh, A=€1.2 and B=€0.6. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Energy=3kWh, A=€1.20 and B=€0.60. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.4]; B=[\"*\",\"x\",0.2]; x denotes Energy. At x=3, A=1.2, B=0.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",\"x\",0.4]; B=[\"*\",\"x\",0.2]; x denotes Energy. At x=3, A=1.2, B=0.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"*\", \"x\", 0.4], B=[\"*\", \"x\", 0.2], variable {\"label\": \"Energy\", \"start\": 3, \"min\": 1, \"max\": 12, \"unit\": \"kWh\", \"step\": 1}. The same 3kWh priced at €0.40 = €1.20 or €0.20 = €0.60: the kWh (slider) is the same in both cases; only the price per kWh changes.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-same-energy-new-tariff.c3",
@@ -76,6 +74,13 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15",
       "note": "FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD. Same safety line and gap as lh-duty-cycle-energy c6: no energy-regulator host is allow-listed, and OWID has no household tariff page. Needs a source or an evaluation-steward ruling."
+    },
+    {
+      "id": "lifehacks.lh-same-energy-new-tariff.c7",
+      "text": "Moving to a cheaper tariff: do you use less energy? Options: Yes / No: same kWh, lower price. Correct: No: same kWh, lower price.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: The same 3kWh priced at €0.40 = €1.20 or €0.20 = €0.60: the kWh (slider) is the same in both cases; only the price per kWh changes.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +104,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:bill-equals-energy-times-rate",

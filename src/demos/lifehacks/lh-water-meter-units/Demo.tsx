@@ -5,6 +5,7 @@ import { Control, Slider } from "@/kit/controls";
 import { Milestones } from "@/kit/milestones";
 import { ResourceReveal, ResourceStage, resourceControlClass, resourceExploreHint, useResourceState } from "@/components/lifehacks/ResourceLesson";
 import { getResourceSpec } from "@/lib/lifehacks/resource-specs";
+import { resourceVariableText } from "@/lib/lifehacks/resource-model";
 const spec = getResourceSpec("lh-water-meter-units");
 
 export default function Demo({ slug }: { slug: string }) {
@@ -21,7 +22,7 @@ export default function Demo({ slug }: { slug: string }) {
               <Control disabled={locked || state.seen[1]} aria-pressed={state.seen[1]} className={state.seen[1] ? "active" : ""} onClick={() => state.choose(1, reach)}>Test B</Control>
             </div>
             <Slider label={spec.variable.label} value={state.x} min={spec.variable.min} max={spec.variable.max} step={spec.variable.step}
-              disabled={locked} format={(value) => `${value}${spec.variable.unit}`} onChange={(value) => {
+              disabled={locked} format={(value) => resourceVariableText(spec, value)} onChange={(value) => {
                 state.setX(value);
                 if (state.seen[0] && state.seen[1]) interact();
               }} />

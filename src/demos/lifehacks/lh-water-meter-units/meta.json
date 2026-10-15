@@ -1,7 +1,7 @@
 {
   "slug": "lh-water-meter-units",
   "title": "Litres and cubic metres",
-  "hook": "A thousand litres is not a thousand cubic metres.",
+  "hook": "The meter moved 1.5 m³. How many litres is that?",
   "domain": "lifehacks",
   "concept": "decimal-unit-conversion",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "lifehacks.lh-water-meter-units.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Litres=1500L, A=1.5m³ and B=1,500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Litres=1500L, A=1.5m³ and B=1500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", \"x\", 1000], B=\"x\", variable {\"label\": \"Litres\", \"start\": 1500, \"min\": 1000, \"max\": 3000, \"unit\": \"L\", \"step\": 100}. 1 m³ = 1,000 L, so 1.5 m³ = 1,500 L; the stage starts at 1,500L, converted A = 1.5m³.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-water-meter-units.c3",
@@ -57,6 +55,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-water-meter-units.c5",
+      "text": "The meter moved 1.5 m³. How many litres is that? Options: 15 / 150 / 1500. Correct: 1500.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: 1 m³ = 1,000 L, so 1.5 m³ = 1,500 L; the stage starts at 1,500L, converted A = 1.5m³.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:decimal-unit-conversion",
