@@ -10,7 +10,8 @@
 //   "1270 to 1700"    linear, zoomed to the early span (0-200); milestone `early` records x2.0 and 0.16%/yr
 //   "1700 to 2018"    linear, the full series appears (0-1,600); milestone `late` records x15.8 and 0.87%/yr
 //   "Growth per year" linear, adds dashed steady-rate lines through each span's ends (our model, labelled)
-//   "Log scale"       the same series and dashed lines on a log axis: both spans become steady slopes
+//   "Log scale"       the same series and dashed lines on a log axis (caption: each gridline is ×2); the record sags
+//                     below the dashed 0.87% average (slower before 1850, faster after; W-989), the reveal names both views
 // The locked frame shows the record only to 1700 (the question's given part) on the early zoom, so nothing
 // after 1700 is drawn before the commit. The recorded ratios stay in two readouts for the reveal.
 
@@ -78,10 +79,11 @@ export default function IncomeFlatThenSixteenfold({ slug }: { slug: string }) {
         <>
           <p>
             In the 430 years to 1700, income per person grew <strong>{early ? early.x.toFixed(1) : "?"}-fold</strong>; in
-            the 318 years after, <strong>{late ? late.x.toFixed(1) : "?"}-fold</strong>. Growth of{" "}
-            {early ? pct(early.r) : "?"}% a year is invisible in a lifetime, while {late ? pct(late.r) : "?"}% a year
-            doubles income about every {late ? dbl(late.r) : "?"} years. That is why most of history looks flat on this
-            chart.
+            the 318 after, <strong>{late ? late.x.toFixed(1) : "?"}-fold</strong>. {early ? pct(early.r) : "?"}% a year is
+            invisible in a lifetime; {late ? pct(late.r) : "?"}% a year doubles income about every{" "}
+            {late ? dbl(late.r) : "?"} years. On the linear scale most of history looks flat; on the log
+            scale the record sags below the dashed {late ? pct(late.r) : "?"}% average, as growth was slower
+            before 1850 and faster after.
           </p>
           <p>
             Where it stops: these are modern reconstructions, and the series covers England only before
@@ -172,7 +174,7 @@ function Stage({
           </clipPath>
         </defs>
         <text x={4} y={11} className={s.title}>
-          Income per person, index (1700 = 100){view === "log" ? ", log scale" : ""}
+          Income per person, index (1700 = 100)
         </text>
         {band && <rect x={X(band[0])} y={T} width={X(band[1]) - X(band[0])} height={B - T} className={s.band} />}
         {ticks.map((t) => (
@@ -216,8 +218,13 @@ function Stage({
               {pct(r2 * 100)}% a year
             </text>
             <text x={L + 6} y={T + 10} className={s.legend}>
-              dashed: steady growth rate (our line)
+              dashed: steady average rate (our line)
             </text>
+            {view === "log" && (
+              <text x={L + 6} y={T + 23} className={s.legend}>
+                log scale: each gridline is ×2
+              </text>
+            )}
           </>
         )}
       </svg>

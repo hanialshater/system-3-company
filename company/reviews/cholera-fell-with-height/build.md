@@ -26,3 +26,11 @@ QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c5 unverified.
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 83 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/cholera-fell-with-height.png).
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
 - Every changed claim is unverified; I verified none. meta.json version 2.
+
+## v3 (2026-10-15, demo-builder, branch hrA: W-989, learner r1)
+- Finding 1 (step 4's "still falls with height" read as proof): checked against the pinned Cholera.csv (sha256 holds; quote-aware parse, 38 rows): the 12 central-Thames (Battersea) districts run from -2 ft to 22 ft (Wandsworth); none at 50 ft+, none at 80 ft+. Readout now "Central Thames only: still falls, but none is high (max 22 ft)", computed in Demo.tsx (max and the 80 ft+ count from DISTRICTS). The reveal adds "and none on that water was high". The reviewer guessed "below about 50 feet"; the data say 22.
+- Fit: the added clause cropped the stage 38 px. The four presets now sit in a `Row foldAtReveal` (the reveal quotes no control; every preset's state stays in the picture; the readout is outside the row). With the fold, the button text "Under 20 feet" is hidden, so the reveal now says "under 20 ft" / "80 ft or more", matching the stage labels it quotes.
+- Not done: finding 4 (caption for the squeezed x axis).
+- Claims: c2 (wording), c4 (readout, reveal clause, heights) reset to unverified. I verified none. meta.json version 3.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 90 reveal words with the verdict line. 412x839: crop 0, phoneFit true.
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.

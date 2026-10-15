@@ -65,7 +65,9 @@ const W = 340;
 const H = 210;
 
 function ErrorChart() {
-  const X0 = 98, X1 = 300, TOPY = 34, ROW = 15.5;
+  // X1 leaves room right of the longest bar (Coronelli's east-west) for its "59 / 363" label, which v2 clipped at
+  // 340 (learner r1, W-989). The scale is shorter; the text size is unchanged.
+  const X0 = 98, X1 = 278, TOPY = 34, ROW = 15.5;
   const max = Math.max(...ERR.map((m) => Math.max(m.ns, m.ew)));
   const len = (v: number) => ((X1 - X0) * v) / max;
   return (

@@ -49,12 +49,14 @@ const BY_YEAR = [...DATA].sort((a, b) => a.year - b.year);
 const EAST = DATA.filter((d) => d.lon > TRUE).length;
 const SCALE_KM = 500;
 const f1 = (x: number) => x.toFixed(1);
+// Years as the learner reads them: "AD 150", so a bare 150 is not read as a count (learner r1, W-989).
+const yr = (y: number) => (y < 1000 ? `AD ${y}` : `${y}`);
 
 const MILESTONES = ["truth", "median"] as const;
 type View = "none" | "truth" | "closest" | "median" | "year";
 
 const W = 340;
-const X0 = 30;
+const X0 = 42; // room for the "AD 150" row label (W-989)
 const X1 = 330;
 const MAXDEG = 32;
 const x = (deg: number) => X0 + (deg / MAXDEG) * (X1 - X0);
@@ -83,10 +85,10 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
       : view === "truth"
         ? `${WITHIN.length} of ${DATA.length} within 2°`
         : view === "closest"
-          ? `${CLOSEST.name}, ${CLOSEST.year}: ${f1(CLOSEST.lon)}°`
+          ? `${CLOSEST.name}, ${yr(CLOSEST.year)}: ${f1(CLOSEST.lon)}°`
           : view === "median"
             ? `${f1(MEDIAN - TRUE)}° too far ≈ ${MEDIAN_KM} km`
-            : `${MEDIAN_KM} km too far; earliest (${BY_YEAR[0].year}) ${f1(BY_YEAR[0].lon)}°, latest (${BY_YEAR[BY_YEAR.length - 1].year}) ${f1(BY_YEAR[BY_YEAR.length - 1].lon)}°`;
+            : `${yr(BY_YEAR[0].year)}: ${f1(BY_YEAR[0].lon)}°, ${BY_YEAR[BY_YEAR.length - 1].year}: ${f1(BY_YEAR[BY_YEAR.length - 1].lon)}°`; // km in the label (v3, one line)
 
   const label = locked
     ? "An axis of degrees of longitude east of Toledo, from 0 to 30. The estimates are hidden until you predict."
@@ -153,7 +155,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
                   return (
                     <g key={d.name}>
                       <text x={X0 - 4} y={y + 4} className={s.year} textAnchor="end">
-                        {d.year}
+                        {yr(d.year)}
                       </text>
                       <line x1={X0} y1={y} x2={x(d.lon)} y2={y} className={s.guide} />
                       <circle cx={x(d.lon)} cy={y} r={4} className={Math.abs(d.lon - TRUE) <= 2 ? s.hit : s.dot} />
@@ -190,7 +192,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
             )}
             {view === "closest" && (
               <text x={x(CLOSEST.lon) + 4} y={axisY - 26} className={s.lab} textAnchor="start">
-                {CLOSEST.name}, {CLOSEST.year}
+                {CLOSEST.name}, {yr(CLOSEST.year)}
               </text>
             )}
           </>
@@ -210,7 +212,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           Sort by year
         </Control>
       </Row>
-      <Readout label={locked ? "Estimates" : "Reading"} value={readout} />
+      <Readout label={locked ? "Estimates" : year ? `Reading · ${MEDIAN_KM} km too far` : "Reading"} value={readout} />
     </div>
   );
 }
@@ -230,12 +232,15 @@ export default function RomePlacedTooFarEast({ slug }: { slug: string }) {
         <>
           <p>
             Only {WITHIN.length} of {DATA.length} came within 2 degrees, and {EAST === DATA.length ? "every one" : `${EAST}`} put
-            Rome too far east: the estimates ran from {f1(LO)} to {f1(HI)} degrees. The middle one was {f1(MEDIAN)}, about{" "}
+            Rome too far east, from {f1(LO)} to {f1(HI)} degrees. The middle, {f1(MEDIAN)}, was{" "}
             {MEDIAN_KM} km too far.
           </p>
           <p>
             Latitude can be read from the Sun or a star, but longitude needs the difference in local time between two places,
             which nobody could then measure well.
+          </p>
+          <p>
+            Why all east? Many inherited Ptolemy&apos;s {yr(BY_YEAR[0].year)} coordinates, which stretched the Mediterranean.
           </p>
           <p>
             Where it stops: {MAPS} of the {DATA.length} were probably read from maps, not measured.
