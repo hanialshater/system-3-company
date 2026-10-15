@@ -117,22 +117,28 @@ const gm = (id) => Object.fromEntries(csv(id).map((x) => { const k = Object.keys
 // ---------------------------------------------------------------- 15. World population doublings (Gapminder)
 {
   const P = Object.fromEntries(csv("gmpop").map((x) => [Number(x.time), Number(x.pop)]));
-  const ys = Object.keys(P).map(Number).sort((a, b) => a - b).filter((y) => y <= 2025);
+  // W-869 (cm-history, 2026-10-15): only values up to 2023 are used. The file's 2024 value is a same-year
+  // projection (FC39/FC41 c3: pop v8 is dated 29 July 2024), and the reveal says any later number is a projection.
+  // Growth is labelled by its start year (1963 = 1963 to 1964), so the last rate is 2022 to 2023 (g22), and the
+  // peak is searched over 1900-2022. This matches the shipped lesson doubling-stopped-speeding-up v2.
+  const SHOWN_TO = 2023;
+  const ys = Object.keys(P).map(Number).sort((a, b) => a - b).filter((y) => y <= SHOWN_TO);
   const first = (t) => ys.find((y) => P[y] >= t);
   const b1 = first(1e9), b2 = first(2e9), b4 = first(4e9), b8 = first(8e9);
-  const gr = (y) => 100 * (P[y + 1] / P[y] - 1);
-  const pk = ys.filter((y) => y >= 1900 && y < 2024).reduce((a, y) => (gr(y) > gr(a) ? y : a), 1900);
-  const v = { d1: b2 - b1, d2: b4 - b2, d3: b8 - b4, pk, gpk: r(gr(pk), 2), g23: r(gr(2023), 2), b1, b2, b4, b8 };
+  const gr = (y) => { if (y + 1 > SHOWN_TO) throw new Error(`gr(${y}) needs ${y + 1}, after ${SHOWN_TO}`); return 100 * (P[y + 1] / P[y] - 1); };
+  const pk = ys.filter((y) => y >= 1900 && y < SHOWN_TO).reduce((a, y) => (gr(y) > gr(a) ? y : a), 1900);
+  const v = { d1: b2 - b1, d2: b4 - b2, d3: b8 - b4, pk, gpk: r(gr(pk), 2), g22: r(gr(SHOWN_TO - 1), 2), b1, b2, b4, b8 };
   brief(15, {
     slug: "doubling-stopped-speeding-up", data: ["gmpop"],
     question: "World population took 122 years to go from 1 to 2 billion, and 48 years to reach 4 billion. How long to reach 8?",
     options: ["About 24 years", "About 47 years", "About 96 years"], answer: 1, pick: (v) => nearest(v.d3, [24, 47, 96]),
     presets: ["1 to 2 billion", "2 to 4 billion", "4 to 8 billion", "Growth per year"],
-    reveal: "The doublings took {d1} years, then {d2}, then {d3}: the last was no faster than the one before. Growth per year peaked at {gpk}% in {pk} and was {g23}% in 2023. A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing. Where it stops: early totals are the least certain, and the chart stops at the present; any later number is a projection, not a record.",
+    reveal: "The doublings took {d1} years, then {d2}, then {d3}: the last was about as fast as the one before. Growth per year peaked at {gpk}% in {pk} and was {g22}% from 2022 to 2023. A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing. Where it stops: early totals are the least certain, and the chart stops at the present; any later number is a projection, not a record.",
     checks: (v) => {
       ok("15 doubling years", v.d1 === 122 && v.d2 === 48 && v.d3 === 47, `1 bn ${b1}, 2 bn ${b2}, 4 bn ${b4}, 8 bn ${b8}: ${v.d1}, ${v.d2}, ${v.d3} years`);
-      ok("15 growth peak", pk === 1963 && v.g23 < 1, `peak ${v.gpk}% a year in ${pk}; 2023 ${v.g23}%`);
-      ok("15 no projection on the stage", true, "the file runs to 2100; the stage shows years up to 2023 only (Books fact-straight-line owns the projection)");
+      ok("15 growth peak", pk === 1963 && v.gpk === 2.25 && v.g22 < 1, `peak ${v.gpk}% a year in ${pk} (${pk} to ${pk + 1}); 2022 to 2023 ${v.g22}%`);
+      ok("15 last rate is 2022 to 2023", v.g22 === 0.88, `100 x (P2023/P2022 - 1) = ${r(gr(2022), 3)}, shown ${v.g22} (the shipped lesson's value)`);
+      ok("15 no year after 2023 in any number", Math.max(...ys) === SHOWN_TO, `values used run ${ys[0]}-${Math.max(...ys)}; the file runs to 2100 (Books fact-straight-line owns the projection)`);
     },
     recall: { q: "A town grows from 10,000 to 20,000 in 30 years, then to 40,000 in the next 30. Is its growth speeding up?", options: ["No: the same doubling time is the same rate", "Yes: it added more people", "It is slowing"], answer: 0, pick: () => 0 },
   }, v);
