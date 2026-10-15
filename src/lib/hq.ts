@@ -7,6 +7,7 @@ import type { Floor } from "./hq-floors";
 export { FLOORS, FLOOR_NAMES, stairsTo, type Floor } from "./hq-floors";
 import { computeDue, type Due } from "../../tools/lib/rituals.mjs";
 import { roles } from "../../tools/org/roles.mjs";
+import { pressRooms, type PressSnapshot } from "./hq-press";
 
 export interface HqEvent {
   id: string;
@@ -59,9 +60,11 @@ const NEW_CATEGORIES: [string, string, string][] = [
 // The floor plan, in SVG units (1000 × 660). Offices around the edge, the work floor in the middle.
 export const ROOMS: Room[] = [
   // Floor 1 top row: Product, and the stairs to the Categories floor.
-  { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 470, h: 84, kind: "office" },
-  { id: "to-floor-3", name: "↑ Floors 3 & 6 · Categories", x: 500, y: 16, w: 230, h: 84, kind: "lobby" },
-  { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 740, y: 16, w: 240, h: 84, kind: "lobby" },
+  { id: "product", name: "Product · Head of Product", x: 20, y: 16, w: 250, h: 84, kind: "office" },
+  { id: "to-floor-3", name: "↑ Floors 3 & 6 · Categories", x: 280, y: 16, w: 220, h: 84, kind: "lobby" },
+  { id: "to-floor-2", name: "↑ Floor 2 · Design, Personalization, International", x: 510, y: 16, w: 240, h: 84, kind: "lobby" },
+  // Stairs to floor 8: System 3 Press, the founder's sibling company (company/sibling/press/).
+  { id: "to-floor-8", name: "↑ Floor 8 · System 3 Press", x: 760, y: 16, w: 220, h: 84, kind: "lobby", color: "#c8553d" },
   // Floor 3 (re-cut 2026-10-14): the nine subject categories, each a full office for its lead and 3 strand managers;
   // stairs up to floor 6; strategy, Courses and portfolio review along the bottom.
   ...DOMAINS.map(([id, name, color], i) => ({
@@ -125,6 +128,20 @@ export const ROOMS: Room[] = [
   { id: "marketing-floor", name: "Open floor (no team yet)", x: 20, y: 272, w: 960, h: 200, kind: "floor", color: "#ff7eb6", floor: 7 },
   { id: "to-floor-1-from-7", name: "↓ Floor 1 · Lobby", x: 20, y: 492, w: 380, h: 120, kind: "lobby", floor: 7 },
 ];
+
+// Floor 8 (W-940): System 3 Press, a sibling company. Rooms come from the snapshot (company/sibling/press/hq-snapshot.json), not from tools/org.
+export function loadPress(): PressSnapshot | null {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(process.cwd(), "company/sibling/press/hq-snapshot.json"), "utf8"));
+  } catch {
+    return null;
+  }
+}
+const PRESS = loadPress();
+if (PRESS) {
+  ROOMS.push(...pressRooms(PRESS));
+  ROOMS.push({ id: "to-floor-1-from-8", name: "↓ Floor 1 · Lobby · back to System 3 Company", x: 20, y: 580, w: 380, h: 64, kind: "lobby", floor: 8 });
+}
 
 const LOG = () => path.join(process.cwd(), "company/ops/events.jsonl");
 

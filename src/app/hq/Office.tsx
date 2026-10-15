@@ -6,6 +6,7 @@ import { teamColor } from "@/lib/hq-colors";
 import { Face } from "./Avatar";
 import type { Person } from "./people";
 import { WhiteboardLinks } from "./WhiteboardLinks";
+import { BOOK_SEATS, BOOK_VISITOR_SEATS, PRESS_ACCENT, pressSeed, seatAt as pressSeatAt, type PressRole } from "@/lib/hq-press";
 import s from "./hq.module.css";
 
 // A full category office (floor 3 and floor 6): the lead and their strand managers sit at desks, three to a row.
@@ -25,6 +26,7 @@ function Furniture({ r }: { r: Room }) {
       <rect x={dx + dw / 2 - 6} y={dy + 2} width={12} height={4} rx={1} className={s.monitor} />
     </g>
   );
+  if (r.id.startsWith("press-")) return <PressFurniture r={r} />;
   if (r.id === "build-floor") {
     const out = [];
     for (let row = 0; row < 3; row++) for (let c = 0; c < 6; c++) out.push(desk(x + 22 + c * 62, y + 64 + row * 58, 40, 14, row * 6 + c));
@@ -80,6 +82,39 @@ function Furniture({ r }: { r: Room }) {
   );
 }
 
+// Press rooms. The Book room holds 9 residents at desks (5 x 2 grid) and a visitors corner with sofa and chairs on the right.
+function PressFurniture({ r }: { r: Room }) {
+  const { x, y, w, h } = r;
+  if (r.kind === "floor") {
+    const out = [];
+    for (let i = 0; i < BOOK_SEATS.cols * BOOK_SEATS.rows; i++) {
+      const { cx, cy } = pressSeatAt(r, i, 9);
+      out.push(
+        <g key={i}>
+          <rect x={cx - 24} y={cy + 42} width={48} height={12} rx={3} className={s.desk} />
+          <rect x={cx - 6} y={cy + 44} width={12} height={4} rx={1} className={s.monitor} />
+        </g>,
+      );
+    }
+    const vx = x + BOOK_SEATS.x0 + BOOK_SEATS.cols * BOOK_SEATS.gx + 10;
+    return (
+      <g>
+        {out}
+        <rect x={vx} y={y + 40} width={x + w - vx - 14} height={h - 54} rx={8} className={s.pressVisitors} />
+        <text x={vx + 10} y={y + 56} className={s.pressTag}>
+          VISITORS ({BOOK_VISITOR_SEATS} seats)
+        </text>
+        <rect x={vx + 14} y={y + 66} width={x + w - vx - 42} height={16} rx={8} className={s.sofa} />
+        {Array.from({ length: BOOK_VISITOR_SEATS }).map((_, i) => (
+          <circle key={i} cx={vx + 34 + (i % 2) * 44} cy={y + 112 + Math.floor(i / 2) * 36} r={9} className={s.chair} />
+        ))}
+      </g>
+    );
+  }
+  if (r.kind === "meeting") return <rect x={x + 60} y={y + 76} width={w - 120} height={20} rx={10} className={s.table} />;
+  return <rect x={x + w / 2 - 38} y={y + h - 34} width={76} height={14} rx={3} className={s.desk} />;
+}
+
 function Plant({ x, y }: { x: number; y: number }) {
   return (
     <g>
@@ -90,7 +125,7 @@ function Plant({ x, y }: { x: number; y: number }) {
   );
 }
 
-export default function Office({ rooms, people, activity, selected, onRoom, onPerson, kudos }: { rooms: Room[]; people: Person[]; activity: Record<string, number>; selected: string; onRoom: (id: string) => void; onPerson: (p: Person) => void; kudos?: Record<string, { week: number; recent: boolean }> }) {
+export default function Office({ rooms, people, activity, selected, onRoom, onPerson, kudos, press }: { rooms: Room[]; people: Person[]; activity: Record<string, number>; selected: string; onRoom: (id: string) => void; onPerson: (p: Person) => void; kudos?: Record<string, { week: number; recent: boolean }>; press?: PressRole[] }) {
   return (
     <svg className={s.plan} viewBox="0 0 1000 660" role="img" aria-label="Company floor plan">
       <defs>
@@ -141,6 +176,41 @@ export default function Office({ rooms, people, activity, selected, onRoom, onPe
         );
       })}
       <WhiteboardLinks rooms={rooms} />
+      {/* System 3 Press: roster only. There is no press event log, so no presence dots and no activity. */}
+      {press && rooms.some((r) => r.id.startsWith("press-")) && (
+        <g>
+          {rooms.filter((r) => r.id.startsWith("press-")).map((r) => {
+            const here = press.filter((p) => p.room === r.id);
+            return (
+              <g key={`pr-${r.id}`}>
+                {here.map((p, i) => {
+                  const { cx, cy } = pressSeatAt(r, i, here.length);
+                  return (
+                    <g key={p.id} className={s.person} onClick={(e) => (e.stopPropagation(), onRoom(r.id))}>
+                      <title>{`${p.name}, ${p.title}${p.human ? " (human, the author)" : p.consultant ? " (consultant, review panel)" : ""}\nRoster only: no live presence.`}</title>
+                      <Face cx={cx} cy={cy} r={13.5} seed={pressSeed(p.id)} color={PRESS_ACCENT} ring={p.human ? "#ffd54f" : undefined} />
+                      <rect x={cx - 31} y={cy + 15} width={62} height={13} rx={6.5} className={s.pill} />
+                      <text x={cx} y={cy + 24.5} textAnchor="middle" className={s.pillText}>
+                        {p.name}
+                      </text>
+                      {!p.consultant && (
+                        <text x={cx} y={cy + 37} textAnchor="middle" className={s.pressTitle}>
+                          {p.title.split(/[,(:]| and /)[0].trim()}
+                        </text>
+                      )}
+                      {(p.human || p.consultant) && (
+                        <text x={cx} y={p.human ? cy + 47 : cy + 38} textAnchor="middle" className={s.pressTag}>
+                          {p.human ? "AUTHOR · HUMAN" : "CONSULTANT"}
+                        </text>
+                      )}
+                    </g>
+                  );
+                })}
+              </g>
+            );
+          })}
+        </g>
+      )}
       {rooms.map((r) => {
         const here = people.filter((p) => p.room === r.id);
         // On the build floor and in category offices people sit at the desks; elsewhere they stand in a grid.

@@ -14,6 +14,8 @@ import type { Due } from "../../../tools/lib/rituals.mjs";
 import { Avatar } from "./Avatar";
 import Office from "./Office";
 import People from "./People";
+import { PressBanner, PressOrg, PressResidents } from "./Press";
+import type { PressSnapshot } from "@/lib/hq-press";
 import { peopleAt, personName, personSeed, type Person } from "./people";
 import s from "./hq.module.css";
 
@@ -38,7 +40,7 @@ const HOUR = 3_600_000;
 const fmt = (ms: number) => new Date(ms).toISOString().slice(5, 16).replace("T", " ") + " UTC";
 const roleOf = (e: HqEvent) => (e.actor === "chief-of-staff" && e.agent ? "chief-of-staff" : e.actor);
 
-export default function HQ({ events, rooms, founderQueue, due, org, now }: { events: HqEvent[]; rooms: Room[]; founderQueue: FounderItem[]; due: Due[]; org: OrgRole[]; now: number }) {
+export default function HQ({ events, rooms, founderQueue, due, org, now, press }: { events: HqEvent[]; rooms: Room[]; founderQueue: FounderItem[]; due: Due[]; org: OrgRole[]; now: number; press?: PressSnapshot | null }) {
   const router = useRouter();
   const times = useMemo(() => events.map((e) => Date.parse(e.ts)), [events]);
   const t0 = times[0] ?? Date.now();
@@ -242,15 +244,18 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
               <div className={s.floors} role="tablist" aria-label="Floor">
                 {FLOORS.map((f) => {
                   const here = people.filter((p) => floorOf(p.room) === f && p.state !== "idle").length;
+                  const isPress = f === 8;
                   return (
-                    <button key={f} role="tab" aria-selected={floor === f} className={floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
+                    <button key={f} role="tab" aria-selected={floor === f} className={isPress ? `${floor === f ? s.tabOn : s.tab} ${floor === f ? s.floorPressOn : s.floorPress}` : floor === f ? s.tabOn : s.tab} onClick={() => setFloor(f)}>
                       {FLOOR_NAMES[f]}
-                      {here ? ` · ${here}` : ""}
+                      {here && !isPress ? ` · ${here}` : ""}
                     </button>
                   );
                 })}
               </div>
-              <Office rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (stairsTo(id) ? setFloor(stairsTo(id)!) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
+              {floor === 8 && press && <PressBanner press={press} />}
+              <Office press={press?.roles} rooms={rooms.filter((r) => (r.floor ?? 1) === floor)} people={people} activity={activity} selected={room} onRoom={(id) => (stairsTo(id) ? setFloor(stairsTo(id)!) : setRoom(id))} onPerson={pickPerson} kudos={kudosBy} />
+              {floor === 8 && press && <PressOrg press={press} />}
             </div>
           ) : (
             <People org={org} people={people} rooms={rooms} onRoom={pickRoom} />
@@ -265,6 +270,12 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
                 Open the First Light war room: status, workstreams, risks
               </Link>
             </p>
+          )}
+          {room.startsWith("press-") && press && (
+            <>
+              <p className={s.muted}>System 3 Press, sibling company. Roster only: no press event log, so no live presence.</p>
+              <PressResidents roles={press.roles.filter((r) => r.room === room)} />
+            </>
           )}
           {inRoom.length > 0 && (
             <div className={s.roster}>
