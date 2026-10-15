@@ -97,7 +97,40 @@ Consequence: a type (d) line can be verified only if its paper or data are on a 
 Pointers are for research-lead and the fact-checker only. None was opened here.
 
 ### Fact-checker's step-9 statement
-**Not yet written.** Requested in `company/domains/behavioral-signoffs.md` (section "Fact-checker") and on the board (W-975). This section is reserved for the fact-checker: a dated statement, type by type, "can verify / cannot verify, and why", listing for type (d) each source it can and cannot reach. Until it exists, **no brief is written.** If it agrees to (a), (b) and (c) but not (d), pilot lessons 1-3 may be briefed with every type (d) line held and absent from the published lesson (decision §4.4). If it cannot verify (c), pilot 3 changes to a type (a)-only stage or is replaced by `reflection-effect` (decision, "What would make this record wrong").
+*Reserved for the fact-checker (W-975). Gate as the charter set it: until a statement exists, no brief is written. If (a), (b) and (c) are agreed but not (d), pilots 1-3 may be briefed with every type (d) line held and left out of the published lesson (decision §4.4). If (c) is refused, pilot 3 becomes an (a)-only stage or is replaced by `reflection-effect`.*
+
+**Statement, 2026-10-15, fact-checker (W-975). PARTIAL: types (a)-(c) only.** No W-902 sourcing note exists yet. I checked `company/research/notes/` (it holds only `2026-10-13-teachable-knot-theory.md`) and `company/knowledge/`, and found no 2026-10-15 behavioral note. The charter allows a partial statement in this case. I have written no claim in this category, and none exists yet.
+
+Hosts tested from this host on 2026-10-15 with `curl` (no proxy workaround):
+
+| Host | Result |
+|---|---|
+| `pmc.ncbi.nlm.nih.gov` (home page and `/search/?term=`) | 200; search returns PMC ids. I have **not** confirmed that any named pilot paper is in PMC |
+| `eutils.ncbi.nlm.nih.gov` (E-utilities) | blocked (proxy CONNECT 403) |
+| `ourworldindata.org` | 200 |
+| `cran.r-project.org` | 200 |
+| `raw.githubusercontent.com` | 200 (fetched a known file) |
+| `pypi.org` | 200 |
+| `doi.org` | 302 to `www.nature.com`, which is blocked (403). Every DOI that redirects to a `www` publisher is a dead end |
+| `www.nature.com`, `www.aeaweb.org`, `journals.plos.org`, `www.jstor.org`, `api.crossref.org` | blocked (403) |
+| `osf.io` | blocked (403) |
+| `github.com` (web) | 400; use `raw.githubusercontent.com` |
+| local `node` (v22.22.0) | runs; a seeded PRNG (mulberry32, seed 7) gave the same 1,000 draws twice |
+
+| Type | Verdict | Why |
+|---|---|---|
+| **(a) Derivation** | **Can verify** | Needs no outside source. I re-run `company/domains/briefs/checks/behavioral-<id>.mjs` with local node and compare every printed number with the stage text. Conditions: the script must be committed by someone other than me, must print each number the learner sees, and must not fetch from the network. Hand arithmetic in the DLR or a brief is not support. |
+| **(b) The learner's own screen** | **Can verify** | Same as (a), plus the walkthrough transcript (`npm run walkthrough -- <slug>`), which I read before any builder notes. Conditions: the script enumerates every answer combination the controls allow, and the transcript shows the sentence is conditional on the learner's choice. If a combination is missing from the script or the walkthrough, the claim is disputed. |
+| **(c) Labelled seeded simulation** | **Can verify** | Seeded PRNGs reproduce exactly under local node (tested above). Conditions: the seed and rule appear on the stage and in the claim. The script uses a PRNG it defines itself, not `Math.random`, so results do not drift with the engine. It reproduces the stage numbers from that seed. The walkthrough shows the label "simulated", and no sentence says "people". CRAN is needed for reference docs only, not for verification. |
+| **(d) Source plus replication verdict** | **No statement yet; held by default** | No W-902 note exists, so I have no lines to open. Each type (d) line stays `unverified` and does not publish, as the replication rule requires. |
+
+Provisional reachability for the named type (d) pointers. These are pointers, not opened sources, so they are not verdicts:
+- Reachable routes: PMC (open-access copies only, opened by PMC id or by a URL on `pmc.ncbi.nlm.nih.gov`), `raw.githubusercontent.com` (replication code and data), `ourworldindata.org` (real series for money illusion), CRAN, and PyPI (package docs and data).
+- Blocked routes: every `doi.org` link that redirects to a `www` publisher (Nature Human Behaviour, AER, QJE, PLOS and JSTOR were all tested or seen to redirect), E-utilities, Crossref, and `osf.io` (Many Labs data).
+- Ruggeri et al. 2020 (Nat Hum Behav) can be reached only if W-902 finds a PMC copy or a GitHub data mirror. Andreoni & Sprenger 2012 (AER), Augenblick et al. 2015 (QJE) and Nagel 1995 (AER) have no reachable route I know of, unless a PMC or GitHub copy turns up. Many Labs 1 is on OSF (blocked) and can be reached only through a GitHub mirror.
+- **Expected held fraction for type (d) from this host: at least 75% of type (d) lines.** My estimate is 4 or 5 of the 5 pilot pointers until W-902 names a reachable copy. That is above the charter's 30-40% estimate and above the 40% pause line, so pilots 1-4 should plan to teach without their type (d) lines.
+
+**What would change this:** a dated W-902 note giving, for each line, a URL on a reachable host. I will then add a dated (d) statement below this one, line by line.
 
 ## Incubation status
 - **Status:** incubating (decision §1). The template's "incubate ≤ 2 lessons" does not apply: for this founder-decided category, incubation allows up to 5 lessons, and they are **the DLR five**.
