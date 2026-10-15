@@ -2,6 +2,9 @@
 
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-15
+class: product
+route: head-of-strategic-initiatives → principal-engineer → evaluation-steward → portfolio-manager → chief-of-staff-ceo-office
+recorded by: chief-of-staff
 status: decided ("I agree with you but with slight disagreement", chief of staff's conversation). Budget pending Project Review 1.
 
 ## Decided

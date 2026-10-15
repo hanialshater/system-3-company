@@ -2,6 +2,9 @@
 
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-15
+class: org
+route: chief-of-staff-ceo-office → vp-books
+recorded by: chief-of-staff
 status: decided (founder, in the chief of staff's conversation). The design defaults below are the chief of staff's and are open to the founder's correction.
 
 ## Context

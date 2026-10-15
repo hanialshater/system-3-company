@@ -2,6 +2,9 @@
 
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-15
+class: category-or-vertical
+route: principal-pm-verticals → domain-scout → head-of-product → portfolio-manager → chief-of-staff-ceo-office
+recorded by: chief-of-staff
 status: decided ("I want a new category because it is interdisciplinary and exciting as a stand-alone group")
 
 ## Decision

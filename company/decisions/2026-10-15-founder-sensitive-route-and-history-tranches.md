@@ -2,6 +2,9 @@
 
 owner: founder (recorded by chief-of-staff)
 date: 2026-10-15
+class: gates
+route: chief-of-staff-ceo-office → localization-lead → evaluation-steward → principal-pm-verticals → cm-history
+recorded by: chief-of-staff
 status: decided ("W-764 yes, F-16 a", in the chief of staff's conversation)
 
 ## W-764: yes
