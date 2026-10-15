@@ -26,6 +26,9 @@ const m32 = (a) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a
   const humans = before(300e3), dinos = before(66e6), writing = before(5200), life = before(3.7e9);
   ok("2 deep time: modern humans", humans > 5 && humans < 6.5 && clock(humans) === "23:59:54", `${r(humans, 1)} s before midnight = ${clock(humans)} (answer: about 11:59:54 pm)`);
   ok("2 deep time: other marks", clock(dinos).startsWith("23:39") && writing < 0.2, `dinosaurs end ${clock(dinos)}; writing ${r(writing, 2)} s before midnight; early life ${clock(life)}`);
+  // W-979/W-985 slow-process example (replaces the Grand Canyon): 1 cm a year since the dinosaurs' end; fallback: the clock's last hour.
+  const sinceDinosKm = (66e6 * 1) / 1e5, lastHourYears = age / 24, lastHourKm = (lastHourYears * 1) / 1e5;
+  ok("2 deep time: slow-process example", sinceDinosKm === 660 && Math.round(lastHourKm / 100) === 19, `66 Myr x 1 cm/yr = ${sinceDinosKm} km (answer: about 660 km); fallback last hour ${r(lastHourYears / 1e6, 2)} Myr x 1 cm/yr = ${r(lastHourKm, 1)} km (about 1,900 km)`);
 }
 
 // 3. square-cube-giants: scale every length by k.
