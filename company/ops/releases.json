@@ -511,6 +511,93 @@
           "Smoke test 2026-10-15 on https://system-3-company.vercel.app: feed 200; published lessons (mercator-greenland, the-giant-appears) 200 with no In review tag; in-review lesson (patience-wins-the-split) tagged In review; /spike 404. Found: a draft (rome-placed-too-far-east) returns 200 by direct URL (W-480)."
         ]
       }
+    },
+    {
+      "version": "r7",
+      "date": "2026-10-15T12:45:58Z",
+      "commit": "aefb10abc41d97fe254472ca490f2c37194f09e6",
+      "target": "production",
+      "approved_by": {
+        "who": "founder",
+        "record": "chief of staff conversation 2026-10-15, \"yes, deploy r7\". NOTE: Vercel built and promoted aefb10a at about 12:46Z, before that approval, because the commit body contained the literal text [deploy] (ignoreCommand matches it anywhere in the message). The founder approved the same content afterwards; no second deploy was made. COE: company/engineering/operations/coes/2026-10-15-r7-deployed-before-approval.md"
+      },
+      "summary": "Drafts 404 on production whatever the runtime env, learner-facing trust sheet, publicMeta allow-list for /api/meta and RSC, withdrawn claims out of the trust line, and 40 lessons move from In review to published.",
+      "added": {
+        "features": [
+          "Drafts return 404 on production: dynamicParams=false on /d and drafts left out of the prerender manifest (fd63b1c, W-945; first change 380ebcf, W-884/W-480).",
+          "Learner-facing trust sheet; withdrawn claims are out of the trust line (380ebcf, W-878, W-879).",
+          "/api/meta and the lesson page's RSC payload carry an allow-listed publicMeta only (fd63b1c, W-947).",
+          "40 lessons published in e6805f4 through publish-ready; the claims gate refused patience-wins-the-split (c5 unverified).",
+          "History round-1 revisions and fact-check fixes (e2747d6 and earlier); many revised or new lessons ship tagged In review, as before.",
+          "Commit to deploy is the content SHA e6805f4; the deploy commit the founder approves may be a descendant that changes only company/ records."
+        ],
+        "lessons": {
+          "published": {
+            "count": 40,
+            "slugs": [
+              "acid-diluted-a-thousandfold",
+              "adding-squashes-the-photo",
+              "bad-year-breaks-the-quota",
+              "checking-is-not-finding",
+              "children-dying-before-five",
+              "coal-came-back",
+              "coat-on-the-ice",
+              "darkest-evening-of-the-year",
+              "deleted-column-still-there",
+              "divide-six-by-zero",
+              "drop-on-the-train",
+              "duck-rides-the-wave",
+              "early-fatality-count",
+              "earthquakes-did-not-fall",
+              "empty-ponds-still-left",
+              "enemy-of-my-enemy",
+              "ethanol-and-its-twin",
+              "euclid-three-steps",
+              "everyone-saves-nobody-does",
+              "find-the-co2-in-air",
+              "flat-rate-costs-nearly-double",
+              "giving-up-lowers-unemployment",
+              "gradient-fades-with-depth",
+              "heat-the-ammonia-maker",
+              "hydrogen-per-litre",
+              "inflation-falls-prices-still-rise",
+              "june-sunshine-pole-or-equator",
+              "last-survivor-is-not-the-most-common",
+              "limestone-crossover",
+              "minus-one-flips-the-order",
+              "more-traps-more-species",
+              "nearest-town-first-detours",
+              "one-gram-two-fires",
+              "one-ten-thousandth-apart",
+              "quarters-add-to-a-third",
+              "same-grey-in-shadow",
+              "survive-childhood-live-to-sixty",
+              "the-doctor-picks-the-patients",
+              "two-pages-swallow-the-rank",
+              "why-the-poles-get-less-sun"
+            ]
+          },
+          "in_review": {
+            "count": 0,
+            "slugs": []
+          }
+        },
+        "fixes": [
+          "Drafts were reachable by direct URL in production (W-480): closed at build time, measured 404 on a production-mode build of e6805f4.",
+          "Internal fact-check notes no longer reach the trust sheet, RSC or /api/meta (M6 closed at re-review)."
+        ],
+        "known_issues": [
+          "Client-bundle metadata leak REMAINS (W-946, M7): every lesson's meta.json, drafts included, with internal fact-check notes (checkedBy, claim note, 'Fact-checker to confirm'), is still in the ~5.3 MB client JS chunk loaded on every page. Fix awaits the AMD-001 c2 founder signature. W-878 and W-884 stay open; do not close them on this release.",
+          "Post-deploy condition C2 (readiness r7, within 15 minutes of promotion, before any announcement, on the production domain not a preview URL): curl current drafts on /d and /api/meta: rome-placed-too-far-east, raters-reward-agreement, two-four-six-rule (the readiness record's deleted-column-still-there and gradient-fades-with-depth are now PUBLISHED and return 200, so do not use them); each must return 404 TWICE; a made-up slug 404; also check the /api/meta and trust output (exact keys claims, domain, evidence, recall, slug, status, title; claims keys id, links, status, support, text; no 'Fact-checker to confirm' on /d/earliest-finish-wins). Write the codes into this record.",
+          "Post-deploy condition C3: any draft returning 200 is a SEV2 (drafts reachable in production). Do NOT roll back (rollback also leaks); roll forward with the founder's approval; principal-engineer-ops is incident commander; a COE is required.",
+          "Condition C1: record the deploy path (Git [deploy] or deploy.mjs) and the production SHOW_REVIEW value at build, when deployed.",
+          "Pre-deploy evidence (release-manager, 2026-10-15, production-mode build VERCEL_ENV=production of e6805f4, next start :3611): drafts raters-reward-agreement, two-four-six-rule, savings-outlast-the-division, winning-bid-overpays /d 404; published apr-apy-gap, bank-lends-it-again, flat-rate-costs-nearly-double, coal-came-back 200; 0 of 43 drafts in the prerender manifest; the /api/meta and lesson HTML carry only allow-listed fields; test:platform 13/13 on BUILT_PORT=3612, and with the default port test 3 fails only because Next reserves 3659 (apple-sasl). Not measured: Vercel's own runtime and build env (that is what C2 measures).",
+          "Review lessons (242 at this commit, incl. patience-wins-the-split) are served 200 with an In review tag by design (founder decision W-479). Held from publishing: the 7 History lessons whose claims were reset (doubling-stopped-speeding-up, income-flat-then-sixteenfold, italy-poorer-in-1800, life-expectancy-gained-late, more-boys-christened, rome-placed-too-far-east, wages-bought-more-wheat) and earth-history-in-a-day are draft and stay 404; patience-wins-the-split is in review, not published (c5 unverified).",
+          "Deployed before founder approval via an accidental [deploy] marker in aefb10a's body (COE 2026-10-15).",
+          "Client bundle still carries every lesson's meta, drafts included (W-946); fix awaits the AMD-001 (c2) signature.",
+          "C2 run 2026-10-15 ~13:00Z on https://system-3-company.vercel.app: 5 drafts 404 twice (one timeout retried, 404); /api/meta keys = claims, domain, evidence, recall, slug, status, title; claim keys = id, links, status, support, text; 'Fact-checker to confirm' absent on /d/earliest-finish-wins; coal-came-back and heat-the-ammonia-maker report published, patience-wins-the-split review."
+        ]
+      }
     }
   ]
 }

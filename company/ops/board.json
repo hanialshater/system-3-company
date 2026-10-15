@@ -12729,6 +12729,42 @@
       "domain": null,
       "created": "2026-10-15",
       "links": []
+    },
+    {
+      "id": "W-1051",
+      "title": "COE r7: make the deploy marker unambiguous. vercel.json ignoreCommand matches '[deploy]' anywhere in the message; require it as the subject's last token (and keep VERCEL_GIT_COMMIT_MESSAGE path), with a test of messages that mention it in body text (founder-approved change to deploy config)",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1052",
+      "title": "COE r7: add a commit-msg / CI guard that fails any commit whose message contains [deploy] outside the subject's last token, and teach agent prompts to write 'deploy marker' instead of the literal",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1053",
+      "title": "COE r7: pattern 'a literal trigger token in prose fires the trigger' (deploy marker in a commit body built production before approval)",
+      "owner": "pattern-librarian",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1054",
+      "title": "COE r7: watch Vercel production deployments (commit status 'Deployment has completed' on a commit with no founder approval record) and alert the chief of staff",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
     }
   ]
 }
