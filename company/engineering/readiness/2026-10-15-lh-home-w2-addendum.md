@@ -4,11 +4,14 @@ change: Home wave W2 (laundry drying): 10 lessons moved to engine 2 (b5ee4ca, me
 change-tier: 2
 paths: src/lib/lifehacks/home-lessons.ts, src/demos/lifehacks/{towel-spread-dries-first,towel-over-two-bars,garment-overlap-hides-face,half-size-two-towels,humidity-evaporation-gap,breeze-is-not-extra-surface,folded-shirt-stack-height,wet-knit-hang-stretch,drying-room-water-load,square-bow-stays-tied}/meta.json, tests/lifehacks/home-v2.test.mjs
 author: demo-builder
+approved-by: principal-engineer-ops
+approved: 2026-10-15
+approved-scope: wave W2 as merged in 9302c25 (b5ee4ca together with the a69c7e7 ratchet fix), plus tests/lifehacks/home-v2.test.mjs (fe38c6c, merged in 2e7852d). b5ee4ca on its own is NOT approved. W-1114 is not covered
 board: W-1112, W-1070, W-1066
 risks: none proposed (see 7)
 links: addendum to company/engineering/readiness/2026-10-15-lh-home-template-tp1-tp2.md (its approval excludes b5ee4ca and sets condition 2); commits b5ee4ca (W2), a69c7e7 (ratchet fix), 9302c25 (merge); tests added on branch lh-tests
 
-Tier 2 because the Home engine renders 69 lessons (paths.json: src/lib/lifehacks/** is shared-engine) and W2 is the first content that switches on three TP-2 code paths no lesson used at bd11754. **Not approved.** principal-engineer-ops approves or refuses below. The author does not approve it.
+Tier 2 because the Home engine renders 69 lessons (paths.json: src/lib/lifehacks/** is shared-engine) and W2 is the first content that switches on three TP-2 code paths no lesson used at bd11754. **Approved with conditions (principal-engineer-ops, 2026-10-15); see the end.** The author does not approve it.
 
 ## What the parent approval asked for, and where it stands
 
@@ -47,8 +50,24 @@ Tier 2 because the Home engine renders 69 lessons (paths.json: src/lib/lifehacks
 
 ## Approval (written by principal-engineer-ops)
 
-- Decision:
-- What I checked, before reading the record:
-- Conditions, each with a board id:
+- Decision: **approved, with conditions, for W2 as merged in 9302c25, with home-v2.test.mjs.** This closes condition 2 of the parent approval (company/engineering/readiness/2026-10-15-lh-home-template-tp1-tp2.md) for homeDifference, plainNumbers and homeSliderMatters. The parent's "W2 needs its own approval once the suite is green at its commit" is answered at the merge, not at b5ee4ca. That is acceptable because b5ee4ca never ships without a69c7e7. Approval does not cover publishing: the W2 claims are unverified, and a deploy still needs the founder.
+- What I checked. I ran these on a clean detached worktree of main at 120b8f9, whose src, tools and package.json are identical to 9302c25 and whose tests are identical to 2e7852d. I ran them before relying on the record's numbers:
+  - `npm run test:lifehacks`: **78/78**.
+  - Two mutations of my own, different from the builder's six, each applied to engine-v2.ts alone and then reverted. An inverted ratio (`lo / hi`) gave **4 failures**. A `homeSliderMatters` loop that skips the first and last steps gave **1 failure**. Both were caught, so the tests bite on bugs the builder did not choose.
+  - Production build (`NEXT_DIST_DIR=.next-ops`, port 3761, server started and stopped by QA): QA contract for the 10 W2 lessons, **20/20**. This matches the builder's 20/20 independently.
+  - The worktree and its build directory were removed afterwards. Nothing in /home/user/system-3-company was built or touched except this file.
+- Conditions. None of them gates this ship. Each must close before the work named in it. Board ids are listed; the coordinator places any that are missing.
+  1. **W-1070 (demo-builder): before the first lesson whose `{ratio}` results can cross zero or reach zero.** Decide and test the signed-ratio wording. Today the behaviour is pinned: ratio of sizes, and empty at zero. A lesson that needs something else changes the engine and needs its own readiness. It must not get there by a new spec.
+  2. **W-1066 (demo-builder): before the first plain-number lesson with a negative cell.** Fix "−0" in `plainNumbers`, which is pinned today and unreached. That is an engine change, with a tier-2 record.
+  3. **Fact-checker, then release-manager: before any W2 lesson publishes.** Re-verify the claims reset in b5ee4ca. This approval says nothing about their truth.
+  4. **W-1114 (evaluation-steward, contract amendment): before the pressed-mode-button change is built.** It is out of this scope, and W2 does not depend on it, because R2 starts neutral.
 - What would make me revoke it:
+  - `test:lifehacks` failing on main.
+  - Any of the 10 W2 lessons failing the QA contract on a production build.
+  - A W2 reveal showing a raw `{token}`, `NaN`, an empty ratio or "−0".
+  - b5ee4ca shipping without a69c7e7.
+  - home-v2.test.mjs being weakened (a test removed or loosened) without a readiness note.
 - Objections raised, and what happened to each:
+  - (a) *My own objection: "b5ee4ca alone is 62/64."* Answered by scope. The approval names the merge, and the header excludes b5ee4ca on its own.
+  - (b) *My own objection: "edges (b) and (c) are pinned, not entered as risks."* Accepted, and turned into conditions 1 and 2 so they travel with the next lesson that reaches them. They do not go in the register while no shipped lesson reaches them.
+  - No other objections are on record for this addendum.
