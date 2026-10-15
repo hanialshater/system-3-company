@@ -8,7 +8,7 @@ export const FLOOR_NAMES: Record<Floor, string> = {
   3: "Floor 3 · Categories · subjects",
   4: "Floor 4 · R&D, Research",
   5: "Floor 5 · Engineering",
-  6: "Floor 6 · Books, Big Ideas, History, Life Hacks",
+  6: "Floor 6 · Books, Big Ideas, History, Life Hacks, Behavioral",
   7: "Floor 7 · Marketing",
   8: "Floor 8 · System 3 Press (sibling company)",
 };

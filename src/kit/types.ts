@@ -14,7 +14,8 @@ export type DomainId =
   | "lifehacks"
   | "books"
   | "big-ideas"
-  | "history";
+  | "history"
+  | "behavioral";
 
 export type DemoStatus = "draft" | "review" | "published" | "retired";
 

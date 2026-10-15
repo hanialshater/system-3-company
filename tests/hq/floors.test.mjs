@@ -35,8 +35,8 @@ test("every category in content/domains.json has a full office, the same size an
     assert.equal(o.kind, "office", o.id);
     assert.deepEqual([o.w, o.h], [186, 236], `${o.id} is ${o.w}x${o.h}`);
   }
-  for (const d of ["books", "big-ideas", "history", "lifehacks"]) assert.equal(floorOf(byId.get(`cm-${d}`)), 6, `cm-${d} is not on floor 6`);
-  for (const d of domains.filter((d) => !["books", "big-ideas", "history", "lifehacks"].includes(d))) assert.equal(floorOf(byId.get(`cm-${d}`)), 3, `cm-${d} is not on floor 3`);
+  for (const d of ["books", "big-ideas", "history", "lifehacks", "behavioral"]) assert.equal(floorOf(byId.get(`cm-${d}`)), 6, `cm-${d} is not on floor 6`);
+  for (const d of domains.filter((d) => !["books", "big-ideas", "history", "lifehacks", "behavioral"].includes(d))) assert.equal(floorOf(byId.get(`cm-${d}`)), 3, `cm-${d} is not on floor 3`);
 });
 
 test("stairs lead to a floor that exists, and floors 3 and 6 link both ways", () => {
