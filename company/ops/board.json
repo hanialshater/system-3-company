@@ -7517,7 +7517,7 @@
       "id": "W-534",
       "title": "Hold app deploys until W-477 is fixed: /spike ?cdn= is classified S1 (exploitable now with a URL), and S1 blocks deploys in its area. Add the check to the release checklist. See company/engineering/operations/2026-10-14-ops-review.md",
       "owner": "release-manager",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7526,7 +7526,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Approved: release hold until W-477 is fixed; one checklist line."
-      }
+      },
+      "updated": "2026-10-15"
     },
     {
       "id": "W-535",
@@ -11127,6 +11128,24 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-14",
+      "links": []
+    },
+    {
+      "id": "W-882",
+      "title": "Smoke-test production for release 2026.10.15.1 (feed, /catalog, a newly published lesson e.g. /d/mercator-greenland, /spike returns 404, a draft URL hidden if SHOW_REVIEW=off); the agent host cannot reach *.vercel.app",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-883",
+      "title": "Hold W-878 trust-sheet internal-notes fix as first item of the next release",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
       "links": []
     }
   ]
