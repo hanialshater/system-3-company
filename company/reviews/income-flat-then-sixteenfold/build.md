@@ -23,3 +23,10 @@ Held source sentence (one): "reconstructions from wages, prices and output recor
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 75 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/income-flat-then-sixteenfold.png).
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
 - Every changed claim is unverified; I verified none. meta.json version 2.
+
+## v3 (2026-10-15, demo-builder, branch london-c4: W-957, FC43)
+- FC43 c8 (verified, stale address): claim text re-addressed. Was "(reveal: 'the series covers England only before 1700'; question: 'Income per person in England')"; now "(reveal: 'the series covers England only before 1700'; hook: 'Income per person in England'; question: 'England's income per person')". The phrase moved to the hook in v2; the question now says "England's income per person about doubled from 1270 to 1700".
+- c8 source field corrected per FC43: it said the README gives "Britain for 1700-1870"; it now says the README marks only 1252-1700 "(England)" and gives no territory label for 1700-1870. (The same wording in history-data.mjs is cm-history's, flagged non-blocking by FC43 under c10; not touched here.)
+- No learner text changed (Demo.tsx untouched). Claim reset to unverified: c8. I verified none. meta.json version 3.
+- Phone fit: tools/reveal-fit.mjs against the dev server on :3662 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 75 reveal words with the verdict line.
+- QA contract (QA_BASE_URL=http://localhost:3662): phone and desktop pass (4/4 with london-buried-six-times-more).
