@@ -3,7 +3,9 @@
 // Brief history.md #8. London's yearly deaths and plague deaths, one bar per year 1629-1710.
 // v2 (FC39/FC41 c1): the learner text no longer says these totals are the Bills of Mortality's burial counts; it names
 // what the HistData doc supports: yearly records of deaths and plague deaths (Campbell; Creighton, 1965). The stage
-// unit is "deaths"; c3 (Great Plague) and c4 (the limit sentence) are verified and unchanged.
+// unit is "deaths"; c3 (Great Plague) is verified and unchanged.
+// v3 (FC43, W-957): the limit sentence (c4) now says "recorded deaths and recorded causes, from one later compilation
+// (Creighton)", and the question cites "(Creighton; 1965 edition)": 1965 is the edition date, not the compiling date.
 // BILLS is copied from the pinned file (history-data.mjs: arbuthnot, Arbuthnot.csv): [Year, Males + Females
 // (christenings), Plague, Mortality (burials)]. Every number on the stage and in the reveal is computed here from
 // BILLS, as in company/domains/briefs/checks/history-cycle1-check.mjs section 8: 15,453 -> 97,306 (x6.3),
@@ -193,7 +195,7 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          `London's yearly records of deaths (compiled by Creighton, 1965) show ${fmt(B1664.burials)} in 1664. In 1665, the year of the Great Plague, about how many?`,
+          `London's yearly records of deaths (Creighton; 1965 edition) show ${fmt(B1664.burials)} in 1664. In 1665, the year of the Great Plague, about how many?`,
         options: ["About 30,000", "About 100,000", "About 300,000"],
         answer: 1,
       }}
@@ -207,8 +209,7 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
             child christened. A year later, deaths were back to {fmt(B1666.burials)}.
           </p>
           <p>
-            Where it stops: these are recorded burials and recorded causes, not a count of every death or a doctor&apos;s
-            diagnosis.
+            Where it stops: these are recorded deaths and recorded causes, from one later compilation (Creighton).
           </p>
         </>
       )}
