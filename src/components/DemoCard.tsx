@@ -128,8 +128,8 @@ export function DemoCard({
               ))}
             </ul>
             <p className="muted small">
-              Teaching evidence: {full.evidence.humanLearners.length} human-learner studies,{" "}
-              {full.evidence.simulatedLearner.length} simulated-learner reviews, {full.evidence.qa.length} browser QA
+              Teaching evidence: {full.evidence.humanLearners} human-learner studies,{" "}
+              {full.evidence.simulatedLearner} simulated-learner reviews, {full.evidence.qa} browser QA
               runs. Simulated learners find problems; only people can show that a lesson teaches.
             </p>
             </>

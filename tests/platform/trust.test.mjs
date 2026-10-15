@@ -1,4 +1,5 @@
 // W-878: the trust sheet shows only learner-facing support. W-879: withdrawn claims are out of the trust line.
+// W-947: publicMeta is an allow-list (internal strings in ./internal-strings.mjs).
 // Tests src/lib/trust.ts against fixtures and against every lesson's meta.json.
 // Run: npm run test:platform
 import test from "node:test";
@@ -6,6 +7,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { learnerClaims, publicMeta, sourceLinks, trustCounts } from "../../src/lib/trust.ts";
+import { INTERNAL_STRINGS } from "./internal-strings.mjs";
 
 const root = new URL("../../src/demos/", import.meta.url);
 function allMetas() {
@@ -84,4 +86,28 @@ test("W-878: openable sources are http(s) links found in the record, trimmed and
   assert.deepEqual(sourceLinks("https://www.mit.edu/~kardar/x.pdf; then"), [{ href: "https://www.mit.edu/~kardar/x.pdf", label: "mit.edu" }]);
   assert.deepEqual(sourceLinks("javascript:alert(1) ftp://x.org/a http://localhost:3644/d/x node re-run"), []);
   assert.equal(sourceLinks("a https://a.org/1 b https://b.org/2 c https://c.org/3 d https://d.org/4").length, 3);
+});
+
+test("W-947: publicMeta passes exactly the allow-listed fields, evidence as counts", () => {
+  const m = bySlug("earliest-finish-wins");
+  const pub = publicMeta(m);
+  assert.deepEqual(Object.keys(pub).sort(), ["claims", "domain", "evidence", "recall", "slug", "status", "title"]);
+  assert.deepEqual(Object.keys(pub.recall).sort(), ["answer", "options", "question", "why"]);
+  assert.deepEqual(pub.evidence, {
+    qa: m.evidence.qa.length, simulatedLearner: m.evidence.simulatedLearner.length, humanLearners: m.evidence.humanLearners.length,
+  });
+});
+
+test("W-947: a field added to meta.json later does not reach publicMeta", () => {
+  const m = { ...bySlug("earliest-finish-wins"), secretNote: "BUILDER NOTE: do not ship", recall: { ...bySlug("earliest-finish-wins").recall, note: "x" } };
+  const shown = JSON.stringify(publicMeta(m));
+  assert.ok(!shown.includes("secretNote") && !shown.includes("BUILDER NOTE"));
+  assert.ok(!shown.includes('"note"'));
+});
+
+test("W-947: no lesson's publicMeta carries an internal string (reference notes, owner, evidence paths, keyState)", () => {
+  for (const m of metas) {
+    const shown = JSON.stringify(publicMeta(m));
+    for (const s of INTERNAL_STRINGS) assert.ok(!shown.includes(s), `${m.slug}: ${s}`);
+  }
 });
