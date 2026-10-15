@@ -57,3 +57,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, bu
 **Result (Pass 43):** 3 verified, 0 disputed, 0 held, of 3 re-checked. Lesson now: 10 verified of 10.
 
 No open claim items. Non-blocking advisories are in the basis column.
+
+## Pass 45
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-980). I did not write, build or record any of these claims. Scope: c8, which the v3 commit (a3e472a, W-957) reset to unverified. The learner text did not change. Method: I read the Demo.tsx question and reveal and the meta.json hook before the builder notes. I re-opened the OWID Maddison 2020 README on raw.githubusercontent.com. The full basis is in the claim's `note` in meta.json (prefix 'FC pass 45').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c8 | verified | All three addresses are present: reveal 'the series covers England only before 1700'; hook 'Income per person in England doubled in 430 years.'; question 'England's income per person about doubled from 1270 to 1700'. README: 'United Kingdom ... 1252-1700 (England) Broadberry ... (2015)'; '1700-1870 Broadberry ...' with no territory label. The corrected source field now matches the README. |
+
+**Result (Pass 45):** 1 verified of 1 re-checked. Lesson now: 10 verified of 10.
+
+No open claim items.

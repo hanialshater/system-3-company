@@ -54,3 +54,18 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, bu
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c4 (disputed): stage says deaths, limit sentence says burials; fix (a) or (b) in the basis above. Owner: history builder (demo-builder); source route W-583.
+
+## Pass 45
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-980). I did not write, build or record any of these claims. Scope: c1 and c4, which the v3 commit (a3e472a, W-957) reset to unverified. Note on independence: c4's new sentence is the wording FC43 suggested as fix (b). I am a different instance and did not write it, but because the fact-checker role proposed it, I checked it strictly. Method: I read the full Demo.tsx question, stage and reveal strings first, then the v3 diff, then the builder notes. I re-derived the numbers with my own node script (session scratchpad fc45/scripts/london.mjs) on artifacts/history-data/Arbuthnot.csv (SHA-256 matches the history-data.mjs pin). I opened CRAN HistData_1.1.1.tar.gz (sha256 b602f00c...) and read man/Arbuthnot.Rd, and the roxygen source R/data-concepts.R on raw.githubusercontent.com (same wording). Blocked this pass: math.uni.edu (Campbell's arbuth.html), web.archive.org, archive.org, Gutenberg, JSTOR, Crossref. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 45').
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | Question 'London's yearly records of deaths (Creighton; 1965 edition) show 15,453 in 1664' matches the claim text. Numbers re-derived: 1664 15,453; 1665 97,306 (plague 68,596); 1666 12,738; 1665 christenings 9,972; 1636 10,400 of 23,359; BILLS equals the file in all 82 rows. The Rd's reference is 'Creighton, C. (1965). A History of Epidemics in Britain, 2nd edition', so '1965 edition' is right, and the parenthetical cites a source the Rd names. Advisory (non-blocking): it omits Campbell (2001). If c4 adopts the two-name wording, cite both here too. |
+| c4 | unverified | Reveal: 'Where it stops: these are recorded deaths and recorded causes, from one later compilation (Creighton).' 'Recorded deaths and recorded causes' and 'later' are supported: the Rd says 'total mortality' and 'deaths from plague', and both works postdate 1710. 'One ... compilation (Creighton)' is not supported. The Rd says the columns were 'obtained by Campbell and from Creighton (1965)'. If that means Campbell took them from Creighton, Creighton is the one compilation. If it means two sources, 'one' is wrong. The Rd does not say which, and Campbell's page (the source that would settle it) is blocked. Answer to the builder's question: not yet fair. Fix (builder), either: (a) 'Where it stops: these are recorded deaths and recorded causes, from later compilations (Creighton; Campbell).' This holds under both readings. Or (b) a session that can open math.uni.edu/~campbell/arbuth.html or Campbell 2001 confirms that both columns came from Creighton; the current sentence then verifies as written. |
+
+**Result (Pass 45):** 1 verified, 0 disputed, 1 unverified, of 2 re-checked. Lesson now: 3 verified, 1 unverified of 4.
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c4 (unverified): 'one later compilation (Creighton)' goes beyond the Rd's 'obtained by Campbell and from Creighton (1965)'. Fix (a) or (b) above. Owner: history builder (demo-builder); source route for (b) is W-583.
