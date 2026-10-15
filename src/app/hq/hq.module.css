@@ -514,6 +514,13 @@
     padding: 5px 9px;
     font-size: 13px;
   }
+  /* Seven tabs wrap onto a second row instead of widening the page. */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    border-radius: 18px;
+  }
 }
 
 .libSearch {

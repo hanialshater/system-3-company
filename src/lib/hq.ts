@@ -94,7 +94,9 @@ export const ROOMS: Room[] = [
   { id: "chief-of-staff", name: "Chief of Staff", x: 186, y: 476, w: 190, h: 76, kind: "office" },
   { id: "studio", name: "Studio", x: 386, y: 476, w: 200, h: 76, kind: "office" },
   { id: "incident", name: "Incident & ops review", x: 598, y: 476, w: 216, h: 76, kind: "meeting" },
-  { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 400, h: 76, kind: "lobby" },
+  { id: "lobby", name: "Lobby · Founder", x: 300, y: 568, w: 220, h: 76, kind: "lobby" },
+  // First Light war room (W-907, company/decisions/2026-10-15-founder-first-light.md): temporary, beside the CEO office. Page: /hq/first-light.
+  { id: "first-light", name: "War room: First Light", x: 530, y: 568, w: 170, h: 76, kind: "meeting" },
   { id: "ceo-office", name: "CEO office · company health", x: 710, y: 568, w: 270, h: 76, kind: "office", color: "#ffd54f" },
   // Stairs to floor 7 (Marketing) sit beside the Lobby: the VP of Marketing reports to the founder.
   { id: "to-floor-7", name: "↑ Floor 7 · Marketing", x: 20, y: 568, w: 270, h: 76, kind: "lobby" },

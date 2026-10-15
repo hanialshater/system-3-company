@@ -185,6 +185,9 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
           <Link role="tab" aria-selected={false} className={s.tab} href="/hq/releases">
             Releases
           </Link>
+          <Link role="tab" aria-selected={false} className={s.tab} href="/hq/first-light">
+            First Light
+          </Link>
         </div>
         <Link className="brand-link" href="/catalog">
           Map
@@ -256,6 +259,13 @@ export default function HQ({ events, rooms, founderQueue, due, org, now }: { eve
 
         <aside className={s.panel}>
           <h2>{sel?.name ?? room}</h2>
+          {room === "first-light" && (
+            <p>
+              <Link className={s.roomLink} href="/hq/first-light">
+                Open the First Light war room: status, workstreams, risks
+              </Link>
+            </p>
+          )}
           {inRoom.length > 0 && (
             <div className={s.roster}>
               {inRoom.map((p) => (
