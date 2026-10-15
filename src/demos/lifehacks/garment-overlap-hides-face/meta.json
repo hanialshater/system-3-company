@@ -1,7 +1,7 @@
 {
   "slug": "garment-overlap-hides-face",
   "title": "Overlap can hide a drying face",
-  "hook": "Which layout exposes more cloth area?",
+  "hook": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
   "domain": "lifehacks",
   "concept": "surface-area-drying",
   "status": "review",
@@ -25,55 +25,50 @@
       "id": "lifehacks.garment-overlap-hides-face.c1",
       "text": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same.",
       "support": "source",
-      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.garment-overlap-hides-face.c2",
       "text": "Real draping and edge exposure differ; no universal time saving is claimed.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.garment-overlap-hides-face.c3",
       "text": "Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.garment-overlap-hides-face.c4",
-      "text": "Which layout exposes more cloth area?",
+      "text": "Title: Overlap can hide a drying face Hook: Two shirts overlap by 1,800 cm². How much cloth is hidden from the air? Options: None: both are out / 1,800 cm² / 3,600 cm². Correct option: 3,600 cm².",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'overlap' at the starting input 30; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.garment-overlap-hides-face.c5",
       "text": "Why does hanging two sheets in the same outline not expose both fully?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; not rendered anywhere. Its presupposition (an overlap hides both touching faces) matches the 'overlap' model, exposed = 4ab − 2·overlap·b. Convention. Owner may withdraw it as unrendered.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Transfer prompt in home-lessons.ts spec.recall; not rendered anywhere. Its presupposition (an overlap hides both touching faces) matches the 'overlap' model, exposed = 4ab − 2·overlap·b. Convention. Owner may withdraw it as unrendered. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.garment-overlap-hides-face.recall",
       "text": "Both touching faces are hidden from the air: 2 × 20 × 60 = 2400 cm². The amount of cloth is unchanged; its exposed area is not.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 2 × 20 × 60 = 2400 cm² (node); 1200 counts one face. Matches c3 'contact hides 2×overlap×60'. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 2 × 20 × 60 = 2400 cm² (node); 1200 counts one face. Matches c3 'contact hides 2×overlap×60'. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.garment-overlap-hides-face.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Overlapping: 1,800 cm² of overlap hides 3,600 cm², one patch on each shirt; 20,400 cm² stays open. Hung apart: nothing hidden, 24,000 cm² open.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:surface-area-drying",
     "prerequisites": [],
