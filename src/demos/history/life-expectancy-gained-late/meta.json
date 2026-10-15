@@ -67,10 +67,10 @@
       "text": "The single years that fell were 'such as epidemic years' (reveal). HELD: the one held source sentence, it names a cause not in the file. Fallback if not checkable: cut 'such as epidemic years', leaving 'and single years fell sharply' (data, c4).",
       "support": "source",
       "source": "Not in the file. Would need a source on what caused the falls (for example 1918 influenza); not opened. Brief claim 3, held.",
-      "status": "unverified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Held. No opened source names a cause for any of these falls (the file has none; Gapminder's lex documentation is unreachable). Fix (builder): use the fallback and cut 'such as epidemic years', leaving '...and single years fell sharply.'",
+      "status": "verified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held. No opened source names a cause for any of these falls (the file has none; Gapminder's lex documentation is unreachable). Fix (builder): use the fallback and cut 'such as epidemic years', leaving '...and single years fell sharply.' | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Learner text (Demo.tsx line 84): '...years, such as epidemic years, fell sharply.' Own scan of artifacts/history-data/gapminder-lex-global.csv: the largest single-year fall is 1918 (-11.48 years). Others: 2021 (-1.0), 1876, 1927, 1941-43, 1959-60. Opened OWID sources name epidemics as causes of such falls. OWID 'Life Expectancy' (ourworldindata.org/life-expectancy): 'Major events – the World Wars, the 1918 Spanish flu pandemic, the HIV/AIDS epidemic, and the COVID-19 pandemic – have had a major impact on mortality rates and left a visible mark on life expectancy.' OWID 'The Spanish flu' article: 'Most striking is the large, sudden decline of life expectancy in 1918, caused by an unusually deadly influenza pandemic'. So 'such as epidemic years' is supported for the largest fall on the file. Builder (non-blocking): cite these two OWID pages in the source field.",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",

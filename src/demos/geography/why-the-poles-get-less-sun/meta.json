@@ -76,8 +76,10 @@
       "text": "The pole still gets about 41%, not nothing: Earth's tilt gives it months of low, all-day summer sun (stage line at the pole: 'Summer tilt: months of all-day sun, never above 23°').",
       "support": "derivation",
       "source": "Same model as c1 (Berger 1978 daily-mean insolation, circular orbit, 3,600 steps, obliquity 23.44°). Builder node re-run 2026-10-14: with obliquity 23.44° the pole has the Sun above the horizon for half the year (declination > 0), at an elevation equal to the declination, at most 23.44°; its yearly mean is 172.3 W/m^2 against the equator's 415.5 (0.415). With obliquity 0 the pole's yearly mean is 0.0 W/m^2 (share 0%), so the 41% comes from the tilt's polar summer. Solstice daily mean at the pole 541 W/m^2 vs 397 at the equator.",
-      "status": "unverified",
-      "note": "Added by demo-builder (W-825, 2026-10-14); needs the fact-checker."
+      "status": "verified",
+      "note": "Added by demo-builder (W-825, 2026-10-14); needs the fact-checker. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Independent numpy integration (200,000 steps, circular orbit, obliquity 23.44°, S0 1361): pole yearly mean 172.33 W/m^2 = S0 sin(eps)/pi exactly; equator 415.54; share 0.415 (41%). Sun above the horizon at the pole for half the year at elevation = declination, max 23.44° ('never above 23°'). With obliquity 0 the pole gets 0. Demo.tsx annual()/dailyQ() is the same daily-mean formula; stage line 'Summer tilt: months of all-day sun, never above 23°' holds.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",

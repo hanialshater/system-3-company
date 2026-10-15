@@ -15,3 +15,14 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c5 | verified | Arithmetic: 3 x 2 = 6 (the hook). |
 
 **Result:** no disputes. All claims verified.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Derivation: q x 0 = 0 for every q; CHECKS = [6, 1000, 1000000] each shown as '... × 0 = 0'; ZERO_TRIES = 1000 pours of a 0 scoop fill 0. No q satisfies q x 0 = 6, so 6 ÷ 0 is undefined in ordinary arithmetic. The new reveal ties 'undefined' to the check ('No number passes the check, so 6 ÷ 0 has no answer: it is left undefined'). |
+| c4 | verified | Derivation: 6/s > N whenever 0 < s < 6/N, so 6/s is unbounded as s -> 0+; no finite count is reached. 'Infinity scoops of nothing would still hold nothing' restates q x 0 = 0 for the 'infinity' chooser; it does not assert an extended-real arithmetic. Reveal text (Demo.tsx lines 58-60) matches. |
+
+**Result (Pass 41):** 2 verified, 0 disputed, 0 unverified (held).

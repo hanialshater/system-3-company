@@ -27,3 +27,19 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 
 - c9 (unverified): fix in the note above. Owner: history-builder-3.
 - c10 (disputed): fix in the note above. Owner: history-builder-3.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 1. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c9 | unverified | HELD. The stage text now reads (Demo.tsx lines 87-88): 'Where it stops: these are reconstructions from wages, prices and output records, and the series covers England only before 1700, so early values are estimates.' Opened: OWID grapher metadata for the Maddison Project series (ourworldindata.org/grapher/gdp-per-capita-maddison-project-database.metadata.json): 'This work builds on the efforts of many researchers who have carefully reconstructed historical data on economic growth', and the Maddison 2020 README (England 1252-1700). These support 'reconstructions', 'England only before 1700' and 'estimates'. The method clause 'from wages, prices and output records' still rests on Broadberry et al. (2015), which is not opened (the rug.nl allow-list entry redirects to www.rug.nl, blocked; CUP blocked). Fix (history-builder): drop the method clause: 'Where it stops: these are modern reconstructions, and the series covers England only before 1700, so early values are estimates.' I can verify that wording from the opened OWID metadata and README. |
+| c10 | disputed | STILL DISPUTED. The title ('How fast did England get richer?'), hook ('England's income per person doubled in 430 years. What did the next 318 years do?') and question ('Income per person in England ... From 1700 to 2018, how many times over did it grow?') are unchanged and still credit England with the 1700-2018 rise. The Maddison README (opened) labels only 1252-1700 as England; after that the series is Britain, then the UK. Fix unchanged from pass 39 (history-builder): name the measured entity for the second span, e.g. '...From 1700 to 2018 (Britain, then the UK), how many times over did it grow?', and a matching hook and title. |
+
+**Result (Pass 41):** 0 verified, 1 disputed, 1 unverified (held).
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c9 (unverified): see the basis above for the fix or the source it needs.
+- c10 (disputed): see the basis above for the fix or the source it needs.

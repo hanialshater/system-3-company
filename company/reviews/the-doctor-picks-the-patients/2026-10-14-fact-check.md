@@ -14,3 +14,13 @@ Unrecorded claims: I compared every learner-visible sentence (hook, question, op
 | c4 | verified | Convention, consistent: the caption 'In this model the drug does nothing.' is on the stage, and result() adds chances only, with no drug term. |
 
 **Result:** every claim verified; no disputes. Non-blocking notes, if any, are in the Basis column (the builder owns any wording fix).
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own node re-implementation (Fisher-Yates with mulberry32(58 + k), first 20 get the drug, gap = difference of 1-decimal box values): k = 0 gives 11.8 vs 12.2 (gap -0.4); k = 0..20 gaps -0.4, -0.4, 0, -0.6, -0.2, +1.6, -0.6, -0.8, -1.2, +1.0, -2.0, -0.6, -0.4, -0.8, 0, -1.0, 0, -0.6, 0, -0.2, -1.0: range -2.0 to +1.6. Doctor split 15.1 vs 8.9 (+6.2). SD of the gap: 2 sigma_pop / sqrt(39) = 5.69 points (my 200,000-split simulation: 5.69), = 1.14 recoveries. The new tally line and reveal range text are computed from these gaps. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).

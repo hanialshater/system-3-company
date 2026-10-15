@@ -40,3 +40,19 @@ Checker: fact-checker. I wrote and built none of these claims. Scope: every open
 **Result:** 0 verified, 2 disputed, 0 held (unverified), 0 withdrawn.
 
 **Fix needed (blocks publishing):** c4, seen. See each row for the fix; wording belongs to cm-lifehacks, applying it to demo-builder (interaction-designer for W-610), and then a fact-checker re-checks.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status review, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | disputed | STILL DISPUTED. home-lessons.ts line 1411 still asks 'At this 28 cm tray, how many 10 cm discs fit once each is turned 45°?' with key '4'. Five 10 cm discs fit a 28 cm square: four in the corners (centres 5 cm in) and one in the centre, corner-to-centre spacing 9 x sqrt(2) = 12.73 cm >= 10, for any side >= 10(1 + sqrt 2) = 24.14 cm. Fix unchanged: 'how many 10 cm discs fit in this square grid once each is turned 45°?' |
+| seen | disputed | STILL DISPUTED. home-lessons.ts line 1454 still has resultLabel 'Discs that fit'. The grid counts floor(W/10)^2 are right, but labelled as a fit count they are false at 25-29 cm (5 fit). Fix unchanged: resultLabel 'Discs in the grid' (or 'Grid count'). |
+
+**Result (Pass 41):** 0 verified, 2 disputed, 0 unverified (held).
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c4 (disputed): see the basis above for the fix or the source it needs.
+- seen (disputed): see the basis above for the fix or the source it needs.

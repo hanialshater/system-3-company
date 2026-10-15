@@ -15,3 +15,13 @@ Unrecorded claims: I compared every learner-visible sentence (title, hook, quest
 | c5 | verified | Convention: the stage caption. |
 
 **Result:** no disputes. All claims verified.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Independent numpy integration (200,000 steps, circular orbit, obliquity 23.44°, S0 1361): pole yearly mean 172.33 W/m^2 = S0 sin(eps)/pi exactly; equator 415.54; share 0.415 (41%). Sun above the horizon at the pole for half the year at elevation = declination, max 23.44° ('never above 23°'). With obliquity 0 the pole gets 0. Demo.tsx annual()/dailyQ() is the same daily-mean formula; stage line 'Summer tilt: months of all-day sun, never above 23°' holds. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).

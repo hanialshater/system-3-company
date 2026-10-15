@@ -21,3 +21,13 @@ Unrecorded claims: None.
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c5 (unverified): fix in the note above. Owner: history-builder-3.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 1. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Learner text (Demo.tsx line 84): '...years, such as epidemic years, fell sharply.' Own scan of artifacts/history-data/gapminder-lex-global.csv: the largest single-year fall is 1918 (-11.48 years). Others: 2021 (-1.0), 1876, 1927, 1941-43, 1959-60. Opened OWID sources name epidemics as causes of such falls. OWID 'Life Expectancy' (ourworldindata.org/life-expectancy): 'Major events – the World Wars, the 1918 Spanish flu pandemic, the HIV/AIDS epidemic, and the COVID-19 pandemic – have had a major impact on mortality rates and left a visible mark on life expectancy.' OWID 'The Spanish flu' article: 'Most striking is the large, sudden decline of life expectancy in 1918, caused by an unusually deadly influenza pandemic'. So 'such as epidemic years' is supported for the largest fall on the file. Builder (non-blocking): cite these two OWID pages in the source field. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).

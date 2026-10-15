@@ -37,3 +37,17 @@ Checker: fact-checker. I wrote and built none of these claims. Scope: every open
 | c5 | unverified | HELD. Food-safety advice; the owed food-safety body source (USDA FSIS, UK FSA or similar) is unreachable. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. |
 
 **Result:** 0 verified, 0 disputed, 1 held (unverified), 0 withdrawn.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status review, version 3. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | unverified | HELD. Food-safety advice ('Cooking times do not scale in proportion to quantity: follow the recipe's own times and check food is cooked through') needs a food-safety body (USDA FSIS, UK FSA). Neither is allow-listed. A PMC search found no source on how cooking time scales with portion size. Not verified on an unopened source. |
+
+**Result (Pass 41):** 0 verified, 0 disputed, 1 unverified (held).
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c5 (unverified): see the basis above for the fix or the source it needs.

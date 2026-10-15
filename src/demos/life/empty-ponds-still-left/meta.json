@@ -46,24 +46,30 @@
       "text": "Ponds lose their frogs now and then, and only other ponds' frogs refill them: with few frog ponds, refills come too slowly. Stage: \"Start: 19 frog ponds, refill chance 9% a year\" against \"empties with chance 20%\".",
       "support": "derivation",
       "source": "Model rule: refill chance 1 - 0.995^n with n occupied ponds: n = 60 -> 26%, 42 -> 19%, 19 -> 9%. With 19 occupied of 30 good ponds, expected losses 0.2 x 19 = 3.8 a year vs gains 0.09 x 11 = 1.0 a year, so the count falls.",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal sentence reworded (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Model rule read in runPonds (refill 1 - 0.995^n with n counted at the start of the year). refill(): 60 -> 26%, 42 -> 19%, 19 -> 9% (0.0908). 0.2 x 19 = 3.8 losses against 0.0908 x 11 = 1.0 gains."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal sentence reworded (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Model rule read in runPonds (refill 1 - 0.995^n with n counted at the start of the year). refill(): 60 -> 26%, 42 -> 19%, 19 -> 9% (0.0908). 0.2 x 19 = 3.8 losses against 0.0908 x 11 = 1.0 gains. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Own node re-implementation of runPonds (drainedAt (i x 37) % 100 < drain; mulberry32 copied from src/kit/random.ts). Drain 70: 30 good ponds, 19 start occupied; refill 1 - 0.995^19 = 9.08% (9%); expected losses 0.2 x 19 = 3.8 a year vs gains 0.0908 x 11 = 1.0. refill(60) 26%, refill(42) 19%. Stage 'Start: 19 frog ponds, refill chance 9% a year' and the reveal wording match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "life.empty-ponds-still-left.c4",
       "text": "Averaged out (the deterministic, Levins version of this model), frogs vanish once 60% (of ponds) are drained, the share that had them. Short of that, bad luck can still end them: drained 50, half the runs die out within 100 years (496 of 1,000 seeds; the average model settles near 9 frog ponds there).",
       "support": "derivation",
       "source": "Levins with habitat loss: dp/dt = c p (1 - D - p) - e p; equilibrium p* = 1 - D - e/c. Before loss (D = 0) p* = 1 - e/c = 0.6 (e/c = 0.4 as set by the brief; check E3 prints p* = 0.6, 0.3, 0.1, 0, 0 for D = 0, 0.3, 0.5, 0.6, 0.7). p* = 0 when D = 1 - e/c = 0.6. Optional literature context (Levins 1969; Nee and May 1992, J. Anim. Ecol. 61) is not on the card: unverified, needs a human source check. Note for the fact-checker: e/c = 0.4 is the brief's Levins analogue (die-out 0.2 vs colonisation 0.005 x 100 ponds = 0.5), not fitted to the stochastic grid. Builder node re-run 2026-10-14 (kit mulberry32, this model): mean-field n' = 0.8 n + (H - n)(1 - 0.995^n) settles at 27.3, 9.2, 0.1 and 0.0 frog ponds for drain 30, 50, 60, 70 (threshold H = 40, drain 60%); stochastic seeds 1-1,000 die out by year 100 in 0, 496, 921 and 996 runs; seeds 1-12 at drain 50: 7 die out (years 67, 83, 32, 45, 66, 45, 43), 5 survive with 5-9 ponds.",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): learner r10: the 60% line contradicted drain-50 extinctions; now stated as the average-model line, with drain 50's chance extinctions; previously verified by fact-checker on 2026-10-14. Earlier note: Derivation re-done: dp/dt = c p (1 - D - p) - e p gives p* = 1 - D - e/c. With e = 0.2 and c = 0.005 x 100 = 0.5, e/c = 0.4: p*(0) = 0.6, which matches the 60 ponds that start occupied, and p* = 0 at D = 0.6. 'The simplest version' is the deterministic Levins analogue, as the source says. Levins (1969) and Nee and May (1992) are not on the card and were not opened."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): learner r10: the 60% line contradicted drain-50 extinctions; now stated as the average-model line, with drain 50's chance extinctions; previously verified by fact-checker on 2026-10-14. Earlier note: Derivation re-done: dp/dt = c p (1 - D - p) - e p gives p* = 1 - D - e/c. With e = 0.2 and c = 0.005 x 100 = 0.5, e/c = 0.4: p*(0) = 0.6, which matches the 60 ponds that start occupied, and p* = 0 at D = 0.6. 'The simplest version' is the deterministic Levins analogue, as the source says. Levins (1969) and Nee and May (1992) are not on the card and were not opened. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Levins with habitat loss: p* = 1 - D - e/c with e/c = 0.4 gives p* = 0 at D = 0.6, which equals the 60% that start occupied. Own mean-field iteration of this model, n' = 0.8n + (H - n)(1 - 0.995^n): 27.3, 9.2, 0.1, 0.0 at drain 30, 50, 60, 70 (linear threshold H = 0.2/0.005013 = 39.9, i.e. drain 60). Own stochastic runs, seeds 1-1,000: die out by year 100 in 0, 496, 921, 996 runs at drain 30, 50, 60, 70. So 'Averaged out, frogs vanish once 60% are drained' and 'drained 50, half the runs die out' (496/1,000) hold; seeds 1-12 at drain 50: 7 die out (years 67, 83, 32, 45, 66, 45, 43).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "life.empty-ponds-still-left.c5",
       "text": "Rates, pond count and the drain pattern are invented: toy model. Stage: \"Each year a frog pond empties with chance 20%; an empty pond refills more often when more ponds have frogs.\" (the model: refill chance 1 − 0.995ⁿ a year, n = ponds with frogs). Reveal: \"Habitat can outlast its species. Toy model.\"",
       "support": "convention",
       "source": "The lesson's model (brief empty-ponds-still-left, company/domains/briefs/life.ecology-body.md #3). 'Habitat can outlast its species' summarises claims 1 and 4 inside the model.",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): stage line no longer shows the refill formula (learner r10); the formula is kept here; previously verified by fact-checker on 2026-10-14. Earlier note: Convention: the stage rule text matches the code (DIE 0.2, COL 0.005). 'Habitat can outlast its species' is a summary of c1 and c4 inside the model, flagged 'Toy model'."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): stage line no longer shows the refill formula (learner r10); the formula is kept here; previously verified by fact-checker on 2026-10-14. Earlier note: Convention: the stage rule text matches the code (DIE 0.2, COL 0.005). 'Habitat can outlast its species' is a summary of c1 and c4 inside the model, flagged 'Toy model'. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Convention: the stage rule line 'Each year a frog pond empties with chance 20%; an empty pond refills more often when more ponds have frogs.' matches DIE 0.2 and refill 1 - (1 - COL)^n with COL 0.005; the reveal ends 'Toy model.' The formula now lives in the claim source only, as the reset note says.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "life.empty-ponds-still-left.c6",

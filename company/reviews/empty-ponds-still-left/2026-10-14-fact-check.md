@@ -18,3 +18,15 @@ Reachable paths covered: drains 30/50/70 in any order and New seed (1 -> 12 -> 1
 | c6 | verified | drainedAt(): 37 is coprime with 100, so drains 30/50/70 remove exactly 30/50/70 ponds, of which 18/30/41 were occupied. That leaves 42/30/19 occupied, and 19 of 30 good ponds at drain 70 (node). |
 
 **Result:** verified 6.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | Own node re-implementation of runPonds (drainedAt (i x 37) % 100 < drain; mulberry32 copied from src/kit/random.ts). Drain 70: 30 good ponds, 19 start occupied; refill 1 - 0.995^19 = 9.08% (9%); expected losses 0.2 x 19 = 3.8 a year vs gains 0.0908 x 11 = 1.0. refill(60) 26%, refill(42) 19%. Stage 'Start: 19 frog ponds, refill chance 9% a year' and the reveal wording match. |
+| c4 | verified | Levins with habitat loss: p* = 1 - D - e/c with e/c = 0.4 gives p* = 0 at D = 0.6, which equals the 60% that start occupied. Own mean-field iteration of this model, n' = 0.8n + (H - n)(1 - 0.995^n): 27.3, 9.2, 0.1, 0.0 at drain 30, 50, 60, 70 (linear threshold H = 0.2/0.005013 = 39.9, i.e. drain 60). Own stochastic runs, seeds 1-1,000: die out by year 100 in 0, 496, 921, 996 runs at drain 30, 50, 60, 70. So 'Averaged out, frogs vanish once 60% are drained' and 'drained 50, half the runs die out' (496/1,000) hold; seeds 1-12 at drain 50: 7 die out (years 67, 83, 32, 45, 66, 45, 43). |
+| c5 | verified | Convention: the stage rule line 'Each year a frog pond empties with chance 20%; an empty pond refills more often when more ponds have frogs.' matches DIE 0.2 and refill 1 - (1 - COL)^n with COL 0.005; the reveal ends 'Toy model.' The formula now lives in the claim source only, as the reset note says. |
+
+**Result (Pass 41):** 3 verified, 0 disputed, 0 unverified (held).

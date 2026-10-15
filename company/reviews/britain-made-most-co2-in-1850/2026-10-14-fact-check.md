@@ -23,3 +23,13 @@ Unrecorded claims: None.
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c6 (unverified): fix in the note above. Owner: history-builder-3.
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 1. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Learner text (Demo.tsx line 79): 'Where it stops: these figures are rebuilt from records of coal and other fuels, and early years are the roughest.' Both halves now rest on opened OWID pages (ourworldindata.org, allow-listed for pass 41). First half: OWID's GCB metadata line 165 (opened in pass 39), 'Fossil CO2 emissions are estimated using national statistics on energy use - such as coal, oil, and gas consumption'. Second half: OWID 'CO2 dataset sources' (ourworldindata.org/co2-dataset-sources, opened 2026-10-15): 'Researchers have invested large efforts into reconstructions of historical energy statistics, dating back to 1750 ... The further back in time we go, the less detailed our records are; and for some countries, these figures have greater uncertainty.' Also OWID 'CO2 emissions' (ourworldindata.org/co2-emissions): 'our understanding of emissions in the late 20th and 21st centuries is more reliable than our long-term reconstructions.' Builder (non-blocking): add the co2-dataset-sources URL to the source field. |
+
+**Result (Pass 41):** 1 verified, 0 disputed, 0 unverified (held).

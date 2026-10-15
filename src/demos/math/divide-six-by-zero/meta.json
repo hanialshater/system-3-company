@@ -47,16 +47,20 @@
       "text": "Any number times 0 is 0 (6 × 0, 1,000 × 0 and 1,000,000 × 0 are all 0), never 6, so no number q passes the check q × 0 = 6, and 6 ÷ 0 has no answer: it is left undefined. A scoop of 0 poured 1,000 times fills 0 of 6.",
       "support": "derivation",
       "source": "q × 0 = 0 for every q (check A3, zero [0, 0, 0, 0]); 1,000 × 0 = 0.",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal now ties 'undefined' to the check (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation: q x 0 = 0 for every q, so no q solves q x 0 = 6, and 6/0 is undefined in the real numbers. Recall (5/0) checks out. Scope note: the claim is about ordinary (real-number) arithmetic. Some extended systems (the projective real line) write 6/0 = infinity, but there infinity is not a number that times 0 gives 6, so 'No number works' stands."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal now ties 'undefined' to the check (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation: q x 0 = 0 for every q, so no q solves q x 0 = 6, and 6/0 is undefined in the real numbers. Recall (5/0) checks out. Scope note: the claim is about ordinary (real-number) arithmetic. Some extended systems (the projective real line) write 6/0 = infinity, but there infinity is not a number that times 0 gives 6, so 'No number works' stands. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Derivation: q x 0 = 0 for every q; CHECKS = [6, 1000, 1000000] each shown as '... × 0 = 0'; ZERO_TRIES = 1000 pours of a 0 scoop fill 0. No q satisfies q x 0 = 6, so 6 ÷ 0 is undefined in ordinary arithmetic. The new reveal ties 'undefined' to the check ('No number passes the check, so 6 ÷ 0 has no answer: it is left undefined').",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "math.divide-six-by-zero.c4",
       "text": "As the scoop size shrinks toward 0, 6 ÷ size grows with no ceiling: the climb never lands on a count, so no huge number is the answer, and infinity is not one either (infinity scoops of nothing would still hold nothing: a scoop of 0 adds 0 however many times it is poured).",
       "support": "derivation",
       "source": "6 ÷ s > N whenever 0 < s < 6/N, so 6 ÷ s is unbounded as s → 0 and has no limit; and q × 0 = 0 ≠ 6 for every huge q. Standard: infinity is not a real number, and the one-sided limits of 6/x as x -> 0 are +infinity and -infinity, so even the limit does not exist (builder's note; no source opened).",
-      "status": "unverified",
-      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal now answers the 'infinity' chooser (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation: 6/s > N whenever 0 < s < 6/N, so 6/s is unbounded as s -> 0+, and no real q satisfies q x 0 = 6."
+      "status": "verified",
+      "note": "Reset to unverified by demo-builder (W-839, 2026-10-14): reveal now answers the 'infinity' chooser (learner r10); previously verified by fact-checker on 2026-10-14. Earlier note: Derivation: 6/s > N whenever 0 < s < 6/N, so 6/s is unbounded as s -> 0+, and no real q satisfies q x 0 = 6. | FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Derivation: 6/s > N whenever 0 < s < 6/N, so 6/s is unbounded as s -> 0+; no finite count is reached. 'Infinity scoops of nothing would still hold nothing' restates q x 0 = 0 for the 'infinity' chooser; it does not assert an extended-real arithmetic. Reveal text (Demo.tsx lines 58-60) matches.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "math.divide-six-by-zero.c5",

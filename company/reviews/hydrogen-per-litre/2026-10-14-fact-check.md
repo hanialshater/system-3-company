@@ -16,3 +16,14 @@ Unrecorded claims: I compared every learner-visible sentence (hook, question, op
 | c6 | verified | Derivation from c1-c5: the per-kg and per-litre rankings are opposite. Framing only; no claim about vehicles is made. |
 
 **Result:** every claim verified; no disputes. Non-blocking notes, if any, are in the Basis column (the builder owns any wording fix).
+
+## Pass 41
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of these claims. Lesson status draft, version 2. Method: I read Demo.tsx (and model.ts or the src/lib/lifehacks specs where the lesson uses them) for every learner-visible string before reading the builder's notes. I re-derived every derivation and simulation claim with my own scripts (node or python, kept in the session scratchpad under fc41/chk; the kit's mulberry32 copied verbatim, everything else re-implemented). Sources: the founder's pass-41 allow-list works only for bare hosts. ourworldindata.org, cran.r-project.org and pmc.ncbi.nlm.nih.gov open. gapminder.org, census.gov, naturalearthdata.com, rug.nl, doi.org, sciencedirect.com and econometricsociety.org all redirect to their www. hosts, which the proxy still blocks (403), so in practice they did not open. doi.org resolves only to publisher hosts, which are blocked. raw.githubusercontent.com, git clone and PyPI also work. WebFetch fails DNS for every host. A source counts only if I opened its text. I used no search snippets and nothing from memory. For secondary sources (for example a PMC article describing an older paper), the basis says so. No fetched page contained instructions addressed to an AI or to me; all pages were treated as data only.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Re-check after the stage footnote was removed. PyPI chemicals 1.5.2 formation enthalpies: n-octane(l) CRC -250.1 (ATcT -249.73, WebBook -250.29), CO2(g) -393.52 (JANAF), H2O(l) -285.83 kJ/mol: 8(-393.52) + 9(-285.83) + 250.1 = -5,470.5 kJ/mol; / 114.229 g/mol = 47.89 MJ/kg ('48 MJ/kg'). Both are higher heating values (liquid water). The label 'petrol (octane)' still discloses the stand-in; the HHV convention is in the claim, not on the stage, which the claim says. |
+| c3 | verified | Ideal gas: rho = 101,325 x 2.01588e-3 / (8.314462618 x 298.15) = 0.0824 g/L; x 141.79 MJ/kg (HHV from the same chemicals tables: 285.83 kJ/mol / 2.01588 g/mol) = 11.68 kJ/L = 0.012 MJ/L. 'Close to ideal' as in the previous pass (Z = 1.0006). The new linear-axis label 'hydrogen gas: 0.012 MJ/L (12 kJ), a hairline' and the reveal ('0.08 g', 'about 12 kJ (0.012 MJ, the hairline)') match. |
+
+**Result (Pass 41):** 2 verified, 0 disputed, 0 unverified (held).
