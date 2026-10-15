@@ -1,10 +1,21 @@
 # First Light: status.json and the war room
 
-Owner: head-of-strategic-initiatives (chief-of-staff until the role exists). Page: `/hq/first-light` (HQ, CEO-office floor, "War room: First Light").
+Owner: head-of-strategic-initiatives (Beatriz), from 2026-10-15 (took over from chief-of-staff, W-915). Page: `/hq/first-light` (HQ, CEO-office floor, "War room: First Light").
 
 - `status.json` is the data. Edit it with the board ids and the one-line next step; do not copy board states into it.
 - A workstream's status is derived from its board items (`src/lib/hq-firstlight.ts`): no live items, or all `backlog`/`next` = not started; any `doing`/`review`, or some `done` = in progress; all `done` = done. Dropped items are ignored.
 - `override: { status, note }` on a workstream wins over the derived status. The note is required and the page shows the derived status beside it. Use it for `blocked` (the board has no blocked state) and when work is real but not on the board. Remove it when the board catches up.
 - Founder decisions and risks are read live by id from `company/ops/founder-inbox.json` and `company/ops/risks.json`. Risks with `status: "proposed"` are the initiative's own proposals; principal-engineer-ops decides whether they enter risks.json.
-- Stand-up and founder-review records go in `standups/<yyyy-mm-dd>-standup.md` and `-founder-review.md`; the page shows the latest of each.
+- Stand-up and founder-review records go in `standups/<yyyy-mm-dd>-standup.md` and `-founder-review.md`; the page shows the latest of each. Templates: `standups/_template-standup.md` and `standups/_template-founder-review.md` (the leading `_` keeps them off the page). The role record says `jour-fixe/`; this folder is `standups/` because the page reads it.
+- The dependency map is `dependencies.md` (critical path in section 2). The weekly risk re-score is `risk-rescore.md`: proposals only, because principal-engineer-ops writes risks.json.
 - Overall RAG (`overallRag`): red if any workstream is blocked and go/no-go is 14 days away or less, or go/no-go has passed with a workstream not done. Amber if any workstream is blocked, a founder decision is open, or half or more of the workstreams are not started. Green otherwise.
+
+## How the owner works with the quality key (the evaluation steward's consultation changes, taken 2026-10-15)
+
+The evaluation steward asked for these in her consultation answer (company/decisions/2026-10-15-head-of-strategic-initiatives.md, "evaluation-steward (Hilde)", changes 1 to 4). I take them as my own way of working from today. Writing them into the role data is the CEO office's job (W-936). Until that lands, this section is where they are written down, and I hold myself to it.
+
+1. **My go/no-go recommendation carries the quality verdict verbatim.** The verdict is quoted in full, with its file (`quality/verdict-<date>.md`) and its SHA. I do not summarise it, score it, or fold it into my own verdict. My recommendation covers scope, schedule and readiness only. I may not recommend "go" over a quality no-go. The only route past one is to ask the founder for a written waiver per row, with the objections verbatim (quality-bar.md §2.5). My recommendation is never a waiver.
+2. **I never mark a quality row met**, waived or out of scope, anywhere: not in status.json, not in a stand-up, an FYI, the dependency map, a board ask or the recommendation. The row's owner in the quality team produces the evidence, and the evaluation steward gives the verdict. When a stand-up or an FYI mentions quality, it quotes the steward's latest status line with its date (section 6 of the stand-up template; section 2 of the founder-review template).
+3. **Quality dates move with go/no-go, and only with it.** I do not set the bar or its dates. If I propose moving go/no-go (to the founder, on the tech lead's W-908 estimate), the verdict moves to the new date, the dry run stays at T-7, and the freeze stays before the build is released. I never ask for a verdict on a date that shortens the review below what the bar plans for.
+4. **Independence.** Stand-ups, FYIs, the dependency map and the risk re-score are builders' accounts. They do not go into an evaluator's brief, and evaluators read them only after their findings are written (company/reviews/README.md). Each of these files says so at the top.
+5. **Review capacity is a dependency I track.** The quality team's runs (bar §3) are on the dependency map (D-02, D-24) and in the first risk re-score (FL-06), alongside the tech lead's objection.

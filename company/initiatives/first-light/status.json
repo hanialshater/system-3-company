@@ -1,8 +1,8 @@
 {
-  "note": "First Light status. Owner: head-of-strategic-initiatives (chief-of-staff until the role exists; W-904). Read by /hq/first-light (src/lib/hq-firstlight.ts). A workstream's status is DERIVED from its board items unless it carries an `override` with a `note`; an override wins and the page shows the derived status beside it. Founder decisions are read live from company/ops/founder-inbox.json (by id); risks from company/ops/risks.json (by id). Rules: company/initiatives/first-light/README.md.",
+  "note": "First Light status. Owner: head-of-strategic-initiatives (Beatriz), who took it over from chief-of-staff on 2026-10-15 (W-915). Read by /hq/first-light (src/lib/hq-firstlight.ts). A workstream's status is DERIVED from its board items unless it carries an `override` with a `note`; an override wins and the page shows the derived status beside it. Founder decisions are read live from company/ops/founder-inbox.json (by id); risks from company/ops/risks.json (by id). Rules: company/initiatives/first-light/README.md.",
   "code_name": "First Light",
   "owner": "head-of-strategic-initiatives",
-  "owner_interim": "chief-of-staff",
+  "owner_interim": "head-of-strategic-initiatives",
   "tech_lead": "principal-engineer",
   "updated": "2026-10-15",
   "decision": "company/decisions/2026-10-15-founder-first-light.md",
@@ -19,13 +19,14 @@
       "name": "Domain and brand",
       "owner": "vp-marketing",
       "board": [
-        "W-905"
+        "W-905",
+        "W-916"
       ],
       "override": {
         "status": "blocked",
-        "note": "The domain name is a founder decision and the purchase waits for a priced quote (decision item 8). No board item tracks the name yet."
+        "note": "The domain name is a founder decision (F-23) and the purchase waits for a priced quote, the name and the budget (decision item 8). W-916 (shortlist with quotes) is not started."
       },
-      "next": "Propose 3 domain names with prices; founder picks one."
+      "next": "vp-marketing: 3-5 names with availability and quotes (W-916); founder picks one (F-23); buy only after Project Review 1."
     },
     {
       "id": "auth-progress",
@@ -35,7 +36,7 @@
         "W-706",
         "W-908"
       ],
-      "next": "Week-1 re-estimate (W-908); founder answers F-01 (auth provider, database host, age floor)."
+      "next": "Founder answers F-01 (auth provider, database host, age floor) by 10-23, the tranche-2 condition; then the auth EDD, PE review, privacy data-model review and EDD-007 record before any code (W-908 re-estimates)."
     },
     {
       "id": "personalization",
@@ -83,9 +84,10 @@
       "name": "Legal (privacy policy, terms, age gate)",
       "owner": "privacy-reviewer",
       "board": [
-        "W-892"
+        "W-892",
+        "W-932"
       ],
-      "next": "List what must exist at launch (privacy policy, terms, age gate) and who reads it; R-007 shows no legal read exists."
+      "next": "privacy-reviewer: publish the privacy gate's criteria by 10-22 (W-932); rulings by 11-09 or social and the ad slot are cut (stop rule). R-007 shows no legal read exists."
     },
     {
       "id": "infra",
@@ -96,9 +98,10 @@
         "W-727",
         "W-480",
         "W-884",
-        "W-878"
+        "W-878",
+        "W-930"
       ],
-      "next": "W-908 re-estimate; confirm Vercel Pro need (F-18); W-884 and W-878 ship first."
+      "next": "Tech lead: W-908 re-estimate by 10-23 and the Q5 answer by 10-22 (W-930: if yes, the all-metas fix A1 joins the critical path); confirm Vercel Pro (F-18)."
     },
     {
       "id": "surface-value",
@@ -108,14 +111,16 @@
         "W-906",
         "W-895"
       ],
-      "next": "Draft one amendment covering personalization, mastery and the ad slot (W-906) for the founder to ratify (F-19)."
+      "next": "W-906 drafted by 10-21 for the founder (F-19), ratified by 10-30 at the latest, or personalization and the ad slot ship switched off (quality-bar.md section 4)."
     },
     {
       "id": "launch-catalog",
       "name": "Launch catalog (published lessons)",
       "owner": "head-of-product",
-      "board": [],
-      "next": "Each category manager names its launch set of published lessons; revisit W-479 for launch day."
+      "board": [
+        "W-931"
+      ],
+      "next": "head-of-product: name the launch catalog via principal-pm-verticals' portfolio view and freeze it on 11-13 (W-931); rule on the ad-slot rules (W-891) before 10-30."
     },
     {
       "id": "budget",
@@ -123,9 +128,14 @@
       "owner": "portfolio-manager",
       "board": [
         "W-905",
-        "W-730"
+        "W-730",
+        "W-929"
       ],
-      "next": "Budget First Light for Project Review 1 on 2026-10-16 (W-905); founder chairs it (W-730)."
+      "next": "Project Review 1 on 10-16 (W-905, W-730): tranche 1 3.59M, plus the quality line (W-929) that the pack does not yet carry.",
+      "override": {
+        "status": "in progress",
+        "note": "The budget pack is written (company/ceo-office/2026-10-14-project-review-1-agenda.md, Addendum 2026-10-15) but W-905 is still backlog on the board. The founder rules at Project Review 1 on 10-16. Remove this override when W-905 moves."
+      }
     },
     {
       "id": "team-role",
@@ -133,21 +143,36 @@
       "owner": "chief-of-staff-ceo-office",
       "board": [
         "W-904",
-        "W-907"
+        "W-907",
+        "W-910",
+        "W-911",
+        "W-912",
+        "W-913",
+        "W-914",
+        "W-915",
+        "W-936",
+        "W-937"
       ],
-      "next": "Create the Head of Strategic Initiatives role through the org-change process (W-904)."
+      "next": "Role exists (Beatriz holds First Light from 10-15). Open: the directs confirm their synthesised answers (W-910 to W-913); the CEO office takes the steward's changes into the role data (W-936)."
     },
     {
       "id": "quality",
       "name": "Quality bar and quality go/no-go",
       "owner": "evaluation-steward",
       "board": [
-        "W-919"
+        "W-919",
+        "W-929",
+        "W-933",
+        "W-934"
       ],
-      "next": "Write the launch quality bar before build starts; T-7 dry run 2026-11-16; quality go/no-go on 2026-11-23 (only the founder can overrule)."
+      "next": "Bar proposed; objections close 10-22; freeze at the 10-23 founder review (W-937, on that agenda); T-7 dry run 11-16; quality verdict 11-23 (only the founder can overrule)."
     }
   ],
   "founder_decisions": [
+    {
+      "id": "F-15",
+      "why": "Project Review 1 on 10-16: First Light tranche 1 and the quality line; nothing tagged runs before it"
+    },
     {
       "id": "F-17",
       "why": "Whether to pursue ads, on these terms"
@@ -176,7 +201,11 @@
       "id": "domain-name",
       "title": "Which domain name to buy",
       "status": "open",
-      "why": "The purchase waits for a priced quote and the name. No founder-inbox item exists yet; the chief of staff should add one."
+      "why": "Now in the founder inbox as F-23; the purchase waits for W-916's priced quotes and the name."
+    },
+    {
+      "id": "F-23",
+      "why": "The public domain and brand name (W-916 brings the shortlist)"
     }
   ],
   "risks": [
@@ -252,6 +281,24 @@
       "impact": 3,
       "owner": "principal-engineer",
       "why": "W-893 and W-908 must confirm the Pro requirement before launch."
+    },
+    {
+      "id": "FL-06",
+      "status": "proposed",
+      "title": "Review capacity for tier-2 readiness and privacy is the critical path",
+      "likelihood": 4,
+      "impact": 5,
+      "owner": "principal-engineer-ops",
+      "why": "The tech lead's objection (consultation, objection 5) and the steward's (bar section 3). Privacy-reviewer has never run and owes ~13 runs plus the gate; principal-engineer-ops has 3 measured runs and owes every tier-2 record; ~64 quality runs are unbudgeted. Re-score: risk-rescore.md."
+    },
+    {
+      "id": "FL-07",
+      "status": "proposed",
+      "title": "The performance budget pulls the all-metas fix onto the critical path",
+      "likelihood": 4,
+      "impact": 4,
+      "owner": "principal-engineer",
+      "why": "Q5.3 is 2.32 MB gz against 500 KB and Q5.4 is 16.7 s against 3.0 s (quality-bar.md). The fix (A1) needs AMD-001 (c2) and sits in scale-stage-1, which the founder kept off the path. The answer is due 10-22 (W-930)."
     }
   ],
   "jour_fixe": [
