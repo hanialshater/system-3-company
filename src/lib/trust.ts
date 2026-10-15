@@ -20,8 +20,23 @@ export interface LearnerClaim {
   links: SourceLink[];
 }
 
-/** Lesson meta as served to the browser (/api/meta/<slug>, the lesson page): claims are learner-facing only. */
-export type PublicMeta = Omit<DemoMeta, "claims"> & { claims: LearnerClaim[] };
+/**
+ * Lesson meta as served to the browser (/api/meta/<slug>, the lesson page's RSC payload).
+ * W-947: an allow-list. Only fields the learner UI reads are here: DemoCard's trust sheet (claims, evidence
+ * counts) and Feed's revisit cards (slug, title, domain, status, recall). Everything else in meta.json (owner,
+ * learner brief, misconception, objective, curriculum and its reference notes, keyState, evidence file paths,
+ * any field added later) stays on the server. Adding a field here is a decision: the learner can read it.
+ */
+export interface PublicMeta {
+  slug: string;
+  title: string;
+  domain: DemoMeta["domain"];
+  status: DemoMeta["status"];
+  recall: DemoMeta["recall"];
+  claims: LearnerClaim[];
+  /** Counts only: the arrays in meta.json are internal review-file paths. */
+  evidence: { qa: number; simulatedLearner: number; humanLearners: number };
+}
 
 export const SUPPORT_LABEL: Record<Claim["support"], string> = {
   derivation: "a derivation (worked out step by step)",
@@ -80,6 +95,22 @@ export function learnerClaims(claims: Claim[]): LearnerClaim[] {
   }));
 }
 
+const count = (xs: unknown): number => (Array.isArray(xs) ? xs.length : 0);
+
+/** W-947: built field by field (never `...meta`), so a new meta.json field cannot reach the browser by default. */
 export function publicMeta(meta: DemoMeta): PublicMeta {
-  return { ...meta, claims: learnerClaims(meta.claims) };
+  const { question, options, answer, why } = meta.recall;
+  return {
+    slug: meta.slug,
+    title: meta.title,
+    domain: meta.domain,
+    status: meta.status,
+    recall: { question, options: [...options], answer, why },
+    claims: learnerClaims(meta.claims),
+    evidence: {
+      qa: count(meta.evidence?.qa),
+      simulatedLearner: count(meta.evidence?.simulatedLearner),
+      humanLearners: count(meta.evidence?.humanLearners),
+    },
+  };
 }

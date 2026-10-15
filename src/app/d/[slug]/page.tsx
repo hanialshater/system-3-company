@@ -5,6 +5,13 @@ import { domains, findDemo, visibleDemos } from "@/lib/catalog";
 import { toFeedItem } from "@/lib/feed-index";
 import { publicMeta } from "@/lib/trust";
 
+// W-945: only slugs generateStaticParams returned may render. Any other slug (a draft on a production build,
+// a typo) is a 404 from the router, never an on-demand render, so the build alone decides what is reachable,
+// whatever VERCEL/VERCEL_ENV say at runtime, and no 200 for a hidden lesson can be rendered and cached.
+// Dev-safe: `next dev` calls generateStaticParams per request with the dev server's env (no VERCEL vars), so
+// drafts stay openable for builders. Same rule as src/app/api/meta/[slug]/route.ts.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return visibleDemos({ includeDrafts: true }).map((d) => ({ slug: d.slug }));
 }
