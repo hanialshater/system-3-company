@@ -11,11 +11,11 @@ const file = JSON.parse(fs.readFileSync("company/ops/releases.json", "utf8"));
 const grp = { count: 0, slugs: [] };
 const mk = (version, date) => ({ version, date, commit: "a".repeat(40), target: "production", approved_by: { who: "founder", record: "x" }, summary: "s", added: { features: [], lessons: { published: grp, in_review: grp }, fixes: [], known_issues: [] } });
 
-test("company/ops/releases.json is valid and has the five backfilled releases", () => {
+test("company/ops/releases.json is valid and starts with the five backfilled releases", () => {
   assert.equal(validateReleases(file), null);
   assert.equal(file.owner, "release-manager");
-  assert.deepEqual(file.releases.map((r) => r.version), ["2026.10.14.1", "2026.10.14.2", "2026.10.14.3", "2026.10.14.4", "2026.10.14.5"]);
-  assert.deepEqual(file.releases.map((r) => r.commit.slice(0, 7)), ["f868127", "6b45ea0", "91274b8", "f4537d7", "5e8608d"]);
+  assert.deepEqual(file.releases.slice(0, 5).map((r) => r.version), ["2026.10.14.1", "2026.10.14.2", "2026.10.14.3", "2026.10.14.4", "2026.10.14.5"]);
+  assert.deepEqual(file.releases.slice(0, 5).map((r) => r.commit.slice(0, 7)), ["f868127", "6b45ea0", "91274b8", "f4537d7", "5e8608d"]);
 });
 
 test("every backfilled commit is a [deploy] commit in git history", { skip: !fs.existsSync(".git") }, () => {
