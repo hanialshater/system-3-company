@@ -15,10 +15,10 @@
       "reading short labels and comparing simple counts"
     ],
     "doesNotKnow": [
-      "Pad numeric version fields before lexicographic sorting."
+      "that text sorting compares characters one at a time, so 'v10' can sort before 'v9', and padding to 'v09' fixes it"
     ]
   },
-  "misconception": "v9 and v10",
+  "misconception": "Files named v9 and v10 always sort in number order.",
   "objective": "Pad numeric version fields before lexicographic sorting.",
   "claims": [
     {
@@ -73,7 +73,9 @@
     "qa": [
       "company/reviews/version-nine-and-ten/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/version-nine-and-ten/2026-10-15-learner-adult-beginner-r11.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

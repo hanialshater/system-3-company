@@ -15,10 +15,10 @@
       "reading short labels and comparing simple counts"
     ],
     "doesNotKnow": [
-      "Compare lexicographic ordering of two explicit date formats."
+      "that file names sort as text, so only year-month-day names such as 2026-03-01 come out in date order, while day-first names mix the months"
     ]
   },
-  "misconception": "DD-MM-YYYY",
+  "misconception": "Dates written in file names will sort in date order whatever the format.",
   "objective": "Compare lexicographic ordering of two explicit date formats.",
   "claims": [
     {
@@ -73,7 +73,9 @@
     "qa": [
       "company/reviews/iso-date-filename-sort/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/iso-date-filename-sort/2026-10-15-learner-adult-beginner-r11.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },

@@ -15,10 +15,10 @@
       "reading short labels and comparing simple counts"
     ],
     "doesNotKnow": [
-      "Move blocked work behind its explicitly required input."
+      "that a task waiting on an input cannot run yet, so ready work goes first and the blocked task runs once its input arrives"
     ]
   },
-  "misconception": "Blocked output",
+  "misconception": "Work down the list in order, even if the next item is waiting on something.",
   "objective": "Move blocked work behind its explicitly required input.",
   "claims": [
     {
@@ -73,7 +73,9 @@
     "qa": [
       "company/reviews/separate-ready-from-blocked/2026-10-14-qa.md"
     ],
-    "simulatedLearner": [],
+    "simulatedLearner": [
+      "company/reviews/separate-ready-from-blocked/2026-10-15-learner-adult-beginner-r11.md"
+    ],
     "pairwise": [],
     "humanLearners": []
   },
