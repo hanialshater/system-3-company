@@ -29,3 +29,8 @@ Held source sentence (one): "such as epidemic years" (c5), fallback: cut the phr
 - **Limit sentence** (finding 4): "Where it stops: these are one source's world figures, shown one year in every 25, so the chart hides single years when life expectancy fell sharply, such as epidemic years." This names what fell. c4 and c5 are reset (c5's phrase is unchanged, but its sentence changed).
 - Claims reset to unverified: c3, c4, c5. meta.json version 3. Title and hook unchanged ("crept up 3 years" still rounds 2.9).
 - Phone fit (reveal-fit, committed, :3672): fit, crop 0, hidden 0, namedHidden 0, phoneFit true, 73 words. QA contract phone and desktop pass.
+
+## v4 (2026-10-15, demo-builder, branch patience: W-1024, cm-history r1-revision ruling 4)
+
+- meta.json objective: 2.8 -> 2.9 (exact ruling text). c3 source: the check reference now reads "section 14 ('two centuries (as shown)', ...) quotes 2.9"; c3 text unchanged; reset to unverified. No stage or reveal change.
+- reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 73 words. QA contract: phone and desktop pass.

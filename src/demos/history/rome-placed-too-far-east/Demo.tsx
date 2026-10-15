@@ -240,9 +240,6 @@ export default function RomePlacedTooFarEast({ slug }: { slug: string }) {
             which nobody could then measure well.
           </p>
           <p>
-            Why all east? Many inherited Ptolemy&apos;s {yr(BY_YEAR[0].year)} coordinates, which stretched the Mediterranean.
-          </p>
-          <p>
             Where it stops: {MAPS} of the {DATA.length} were probably read from maps, not measured.
           </p>
         </>

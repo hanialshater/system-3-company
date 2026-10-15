@@ -20,6 +20,8 @@
 // v5 (W-979, cm ruling 2026-10-15, W-984): the canyon event leaves the stage (c9 withdrawn). Reveal paragraph 2's
 // example is now a derivation on the dinosaurs' end at 23:39 (c10: 66e6 years x 1 cm a year = 660 km). EVENTS[1]
 // is still the dinosaurs, which check() uses for the milestone.
+// v6 (W-1013, FC41): with the hand on "Earliest life (debated)" the readout says "about 3.7 billion years ago",
+// not the two-decimal "3.70" (a debated date); other hand positions keep yearsText().
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -31,9 +33,10 @@ const DAY = 86400;
 const AGE = 4.54e9; // years
 const at = (yearsAgo: number) => DAY - (yearsAgo / AGE) * DAY; // clock second of the day
 
-type Ev = { id: string; name: string; t: number };
+/** ago: the readout when the hand sits on the event, for a date the sources give only roughly (W-1013, c5). */
+type Ev = { id: string; name: string; t: number; ago?: string };
 const EVENTS: Ev[] = [
-  { id: "life", name: "Earliest life (debated)", t: at(3.7e9) },
+  { id: "life", name: "Earliest life (debated)", t: at(3.7e9), ago: "about 3.7 billion years ago" },
   { id: "dinos", name: "Non-bird dinosaurs end", t: at(66e6) },
   { id: "humans", name: "Homo sapiens", t: at(300e3) },
 ];
@@ -203,7 +206,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                   </svg>
                   <div className={s.side}>
                     <p className={s.now}>{locked ? "--:--:--" : clock(t, zoom === "minute")}</p>
-                    <p className={s.ago}>{locked ? " " : yearsText(yearsAgo(t))}</p>
+                    <p className={s.ago}>{locked ? " " : (EVENTS.find((e) => e.ago && Math.abs(e.t - t) < 1e-6)?.ago ?? yearsText(yearsAgo(t)))}</p>
                     <ul className={s.found} aria-label="Found so far">
                       <li>
                         <span className={s.time}>00:00:00</span> Earth forms

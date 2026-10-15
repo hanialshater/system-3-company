@@ -1,7 +1,7 @@
 {
   "slug": "italy-poorer-in-1800",
-  "title": "Richer by 1800?",
-  "hook": "Before industry, did people at least get slowly richer? Test north and central Italy.",
+  "title": "North and central Italy, 1450 to 1800",
+  "hook": "Before industry, did income per person rise, hold or fall?",
   "domain": "history",
   "concept": "italy-long-decline",
   "status": "draft",
@@ -19,7 +19,7 @@
     ]
   },
   "misconception": "Income per person only ever rose, even if slowly, before industry.",
-  "objective": "The learner can say that on Maddison's series, income per person in north and central Italy fell to an index of about 75 in 1800 (1450 = 100), about 0.08% a year for 350 years, so income per person can shrink for centuries.",
+  "objective": "The learner can say that on Maddison's series, income per person in north and central Italy fell from an index of 100 in 1450 to about 75 in 1800, that it still fell on 25-year averages (101 to 79), so it is not a high year against a low one, and that income per person can shrink for centuries.",
   "claims": [
     {
       "id": "history.italy-poorer-in-1800.c1",
@@ -73,13 +73,11 @@
     },
     {
       "id": "history.italy-poorer-in-1800.c6",
-      "text": "Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit, so it is shown as an index.",
+      "text": "Where it stops: this is one reconstruction, of the north and centre only, shown as an index (1450 = 100).",
       "support": "source",
-      "source": "Maddison README (opened by cm-history): one source named for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871; the OWID copy's columns state no currency unit (history-data.mjs: maddison 'what'). history-cycle2-check.mjs section 18 '18 north and centre only before 1871'. v2 (W-990): reworded for learners (was '...it covers only the north and centre before 1871, and the copy we opened states no unit, so it is read as an index'); same facts: one source for 1310-1871 (Malanima 2010, North Italy), and the OWID file's columns name no currency unit.",
-      "status": "disputed",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): README opened: one source for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871. The CSV header is 'GDP per capita' with no unit, and the README states none. | v2 (demo-builder, 2026-10-15, W-990, learner r1 finding 4): 'the copy we opened' rewritten in learner words; 'before 1871' dropped (the stage ends at 1871). Reset to unverified for a fact-checker who is not the builder. | FC pass 47 (fact-checker, 2026-10-15): DISPUTED. Rendered: 'Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit, so it is shown as an index.' 'One reconstruction, of the north and centre only' holds: OWID Maddison README (opened 2026-10-15 from raw.githubusercontent.com): 'Italy 1310-1871 (North Italy) Malanima, P. (2010), \"The long decline of a leading economy: GDP in central and northern Italy, 1300-1913\"'. The unit clause does not hold as a learner reads it. The CSV header is 'GDP per capita' with no unit (literally true), but the dataset's own datapackage.json, published in the same OWID folder as the pinned CSV (opened 2026-10-15: .../datasets/Maddison Project Database 2020 (Bolt and van Zanden (2020))/datapackage.json), gives the field 'GDP per capita' owidDisplaySettings unit '2011 int-$', and the GDP field is described as 'measured in international-$ using 2011 prices'. So the unit is stated by the source; 'names no unit, so it is shown as an index' tells the learner the unit is unknown, which it is not. The index is still a sound way to show it (ratios do not depend on the unit). Fix (history-builder-2): either (a) drop the unit reason: 'Where it stops: this is one reconstruction, of the north and centre only, shown as an index (1450 = 100).', or (b) state the unit: '... the figures are in 2011 international dollars, shown here as an index.' Also cm-history: the maddison pin's 'what' in history-data.mjs ('Units are not stated in the copy we opened') should cite datapackage.json's '2011 int-$'.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "source": "Maddison README (OWID copy, opened by cm-history and FC47): one source named for Italy 1310-1871 (Malanima 2010, 'GDP in central and northern Italy, 1300-1913'), Baffigi (2011) from 1871. The index is Demo.tsx idx(y) = 100 x g(y) / g(1450) on history-data.mjs: maddison, maddison2020.csv, 'Italy', 'GDP per capita'. The figures' unit (2011 int-$, per the OWID datapackage.json, FC47) is not used: the lesson reads ratios only. history-cycle2-check.mjs section 18 '18 north and centre only before 1871'.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): README opened: one source for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871. The CSV header is 'GDP per capita' with no unit, and the README states none. | v2 (demo-builder, 2026-10-15, W-990, learner r1 finding 4): 'the copy we opened' rewritten in learner words; 'before 1871' dropped (the stage ends at 1871). Reset to unverified for a fact-checker who is not the builder. | FC pass 47 (fact-checker, 2026-10-15): DISPUTED. Rendered: 'Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit, so it is shown as an index.' 'One reconstruction, of the north and centre only' holds: OWID Maddison README (opened 2026-10-15 from raw.githubusercontent.com): 'Italy 1310-1871 (North Italy) Malanima, P. (2010), \"The long decline of a leading economy: GDP in central and northern Italy, 1300-1913\"'. The unit clause does not hold as a learner reads it. The CSV header is 'GDP per capita' with no unit (literally true), but the dataset's own datapackage.json, published in the same OWID folder as the pinned CSV (opened 2026-10-15: .../datasets/Maddison Project Database 2020 (Bolt and van Zanden (2020))/datapackage.json), gives the field 'GDP per capita' owidDisplaySettings unit '2011 int-$', and the GDP field is described as 'measured in international-$ using 2011 prices'. So the unit is stated by the source; 'names no unit, so it is shown as an index' tells the learner the unit is unknown, which it is not. The index is still a sound way to show it (ratios do not depend on the unit). Fix (history-builder-2): either (a) drop the unit reason: 'Where it stops: this is one reconstruction, of the north and centre only, shown as an index (1450 = 100).', or (b) state the unit: '... the figures are in 2011 international dollars, shown here as an index.' Also cm-history: the maddison pin's 'what' in history-data.mjs ('Units are not stated in the copy we opened') should cite datapackage.json's '2011 int-$'. | v3 (demo-builder, 2026-10-15, FC47 dispute fix (a)): the unit reason ('the data file names no unit') is dropped, since the source does state one; the sentence now says only what is shown: one reconstruction, north and centre, an index with 1450 = 100. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.italy-poorer-in-1800.c7",
@@ -90,18 +88,26 @@
       "note": "v2 (demo-builder, 2026-10-15, W-990): new, answers learner r1 finding 2 ('is this just a high year against a low year?'). Not verified by the builder. | FC pass 47 (fact-checker, 2026-10-15): VERIFIED. Rendered: '25-year averages' view labels 'avg 101' and 'avg 79', readout '1438–1462: 101 → 1788–1812: 79'; reveal 'averaged over the 25 years around each date, it still fell, from 101 to 79'. Own node script on the pinned maddison2020.csv (sha256 23a67c11... matches); Demo.tsx GDP = the file's 562 Italy values 1310-1871, 0 mismatches, none missing. Index 100 x g / g(1450), g(1450) = 3,218.06. Centred 25-year means: 1438-1462 GDP 3,251.9 -> index 101.05 -> 101; 1788-1812 GDP 2,531.1 -> index 78.65 -> 79; ratio 77.84%, a fall of 22.2%. Robust: 21-year windows 100.43 -> 78.68 (fall 21.7%); 51-year windows 99.84 -> 79.46 (fall 20.4%); 10-year 1445-1454 vs 1795-1804 ratio 75.1%; shifting either 25-year centre by up to 10 years gives ratios 76.8% to 80.6%. So 'not just a high year against a low one' holds. Demo.tsx avgIdx is the same centred mean (HALF = 12).",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c8",
+      "text": "Before industry (hook): the lesson's span 1450-1800 precedes Italy's industrialisation.",
+      "support": "source",
+      "source": "To be opened by the fact-checker (cm-history ruling 3, 2026-10-15). The data file cannot show it: history-data.mjs: maddison, maddison2020.csv, 'Italy', runs 1310-2018 and says nothing of industry. Candidate: Malanima (2010), 'The long decline of a leading economy: GDP in central and northern Italy, 1300-1913' (named in the Maddison README; not opened by the builder). Fallback if no source opens (cm-history): hook 'Over 350 years, did income per person rise, hold or fall?' (derived from 1450-1800).",
+      "status": "unverified",
+      "note": "v3 (demo-builder, 2026-10-15, W-1024, cm-history r1-revision ruling 3): new claim for the hook's 'Before industry' frame. Not verified by the builder."
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A town's income per person falls 0.1% a year for 300 years. About how much poorer is it at the end?",
+    "question": "A region's income per person is 100 in 1500 and 80 in 1700, but single years swing up and down. What would show it really fell?",
     "options": [
-      "About 3%",
-      "About 26%",
-      "About 70%"
+      "Averages over the years around each date also fall",
+      "1700 is the lowest year on the line",
+      "It rose again after 1700"
     ],
-    "answer": 1,
-    "why": "0.999 to the power 300 is about 0.74: a fall too slow to notice in a lifetime adds up to about a quarter over centuries."
+    "answer": 0,
+    "why": "One year can be a boom or a slump; if the averages around each date also fall, as Italy's 25-year averages did (101 to 79), the decline is real."
   },
   "evidence": {
     "qa": [],

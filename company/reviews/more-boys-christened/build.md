@@ -29,3 +29,8 @@ QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c4 unverified.
 - Claims: c3 rewritten (totals) and reset. New c5 (simulation, support simulation, seed disclosed), unverified. c2 text unchanged. Interactions add `simulation-run`. meta.json version 2.
 - The brief's doesNotKnow / objective ("because the counts were large") now has a stage element: the totals in the title, and the simulation.
 - Phone fit (reveal-fit, committed, :3672): fit, crop 0, hidden 0, namedHidden 0, phoneFit true, **90 words** (the worst-case verdict "Not quite: it was "82 of 82"."; at the limit). QA contract phone and desktop pass.
+
+## v3 (2026-10-15, demo-builder, branch patience: FC47 advisory on c5)
+
+- c5 source and the Demo.tsx header: "median 28" -> "median 27.5" over seeds 1-1000. Re-run in node (mulberry32 as in src/kit/random.ts, p = 484,382 / 938,223): seed 1 = 23, median 27.5 (500th/501st sorted 27 and 28), 5th-95th 20 to 35, range 14 to 41. c5 text unchanged; reset to unverified.
+- reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 90 words. QA contract: phone and desktop pass.

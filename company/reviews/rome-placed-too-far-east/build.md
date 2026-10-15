@@ -37,3 +37,9 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - Claims: c3, c4, c5 reset to unverified; c10 new, held. I verified none. meta.json version 3.
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0 (17.7, 30.1 visible), phoneFit true, 86 reveal words with the verdict line. **At 412x839 (Pixel 7, the walkthrough's phone) crop 17 px, phoneFit false** (artifacts/reveal-fit/hrA-w989-412.json); the top labels "Rome, true" / "middle" are the part at risk. Not fixed: the standard viewport passes; the next cut would be a teaching sentence (cm-history's call).
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.
+
+## v4 (2026-10-15, demo-builder, branch patience: W-1024, cm-history r1-revision ruling 5)
+
+- Cut the reveal paragraph "Why all east? Many inherited Ptolemy's AD 150 coordinates, which stretched the Mediterranean." and removed claim c10 (it was the reveal's only held sentence; FC48 could not open a source for it). The derived fallback ("Nor did they improve: AD 150 and 1610 both say about 28°", FC48-checkable) was NOT added, per the ruling. The reveal is now the ruling's three paragraphs, 73 words.
+- The r1 learner's "why all east?" stays unanswered in this version (the ruling's travelling objection); it can return as one claimed sentence once Friendly, Valero-Mora & Ulargui (2010) or a Ptolemy edition is opened, and only if it fits at 412x839.
+- reveal-fit: 390x844 fit, crop 0, phoneFit true; 412x839 fit, crop 0, phoneFit true (the 17 px crop is gone). QA contract: phone and desktop pass.

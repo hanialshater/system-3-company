@@ -28,3 +28,11 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - Claims: c4 (label unit, reveal wording), c5 (wording) reset to unverified. I verified none. meta.json version 2.
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671: 390x844 fit, crop 0 px, hidden 0, namedHidden 0, phoneFit true, 82 reveal words with the verdict line; 412x839 fit, crop 0 px, phoneFit true.
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.
+
+## v3 (2026-10-15, demo-builder, branch patience: W-1024, cm-history r1-revision ruling 1; FC48 c5 source fix)
+
+- meta.json title "Wheat prices and a week's pay"; hook "Wheat cost about 2.4 times as much in 1810 as in 1565. What did a mechanic's pay buy?" (85 characters), exact ruling text.
+- Demo.tsx options now carry no number: "Less: under half as much" / "About the same" / "More: over twice as much" (answer index 2, unchanged). Re-derived from the pinned Wheat.csv (sha256 holds): wheat x2.415, wage x6, buys x2.48 (> 2, so C); 1/2.41 = 0.41 (< 1/2, so A is the "wages stood still" answer). Reveal unchanged.
+- c2 text gains its hook address; c5 source no longer says HELD and names the HistData Wheat doc FC48 opened. Both reset to unverified.
+- Not done here (cm-history's follow-up): brief 7 and history-cycle1-check.mjs section 7 options/pick.
+- reveal-fit (dev server, tool clean): 390x844 fit, crop 0, phoneFit true, 81 words; 412x839 fit, crop 0, phoneFit true. QA contract: phone and desktop pass.

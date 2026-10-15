@@ -194,7 +194,7 @@ export default function WagesBoughtMoreWheat({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `From ${A.y} to ${B.y} the price of wheat rose about ${f1(PRICE_X)} times. Did a mechanic's weekly wage buy more or less wheat in ${B.y}?`,
-        options: ["Less: about 40% as much", "About the same", "More: about 2.5 times as much"],
+        options: ["Less: under half as much", "About the same", "More: over twice as much"],
         answer: 2,
       }}
       exploreHint="Open Playfair's chart, then divide wages by price."
