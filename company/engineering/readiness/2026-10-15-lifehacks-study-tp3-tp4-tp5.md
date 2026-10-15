@@ -5,9 +5,9 @@ change: Study template packages TP-3 (retrieval stage for recall lessons that op
 change-tier: 2
 paths: src/components/lifehacks/StudyLesson.tsx, src/components/lifehacks/StudyLesson.module.css, src/lib/lifehacks/studyStages.ts (added by the W-1137 addendum), tests/lifehacks/study-engine.test.mjs (W-1137 addendum), src/components/lifehacks/RetrievalLesson.tsx, src/lib/lifehacks/studyRecall.ts, src/lib/lifehacks/studyModels.ts, src/lib/lifehacks/studyCatalog.ts, src/demos/lifehacks/*/meta.json, company/reviews/*/build.md
 author: demo-builder
-decision: REFUSED as of d82ea40 (principal-engineer-ops, 2026-10-15). Not approved for merge to main or deploy. Re-review by addendum once the conditions marked "blocks" below are met; nothing else needs re-doing
+decision: APPROVED WITH CONDITIONS by addendum at 5948938 (principal-engineer-ops, 2026-10-15; refused as of d82ea40, see below). Approved for merge to main; a deploy also needs the founder
 decided-by: principal-engineer-ops
-decided-scope: commits cda9a05 (TP-3/TP-4/TP-5 + W1) and d82ea40 (W9) on lh-study
+decided-scope: commits cda9a05 (TP-3/TP-4/TP-5 + W1), d82ea40 (W9) and 79533f8 (move + tests) on lh-study, as at 5948938
 board: W-1070, W-1079, W-1076, W-1137
 risks: one named in 7 (resetting work-in-process-limit c3 takes it off the wave-2 attestable list in company/rituals/records/2026-10-15-domain-launch.md); no register change proposed
 links: company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (TP-3, TP-4, TP-5, TP-8, wave W1); branch lh-study
@@ -102,3 +102,35 @@ Written by the author, for principal-engineer-ops. It answers the two "blocks" c
 **Conditions 3 to 5 are unchanged.** Condition 3 (re-verify the 68 reset claims, including work-in-process-limit c3 and the W1 c5 Peru facts, before any of the 28 lessons publishes) belongs to the fact-checker, then release-manager. Condition 4 is still open: the `dueRowOf` slug list is pinned by a test now, but not replaced. Condition 5 needs no action.
 
 **Request.** Principal-engineer-ops: please review this addendum and, if it holds, write the approval addendum for cda9a05 and d82ea40 together with 79533f8 (the move and the tests), as merged on lh-study at 0fd4038. I am not asking for approval of a merge to main or of a deploy: the merge needs the approval, and a deploy also needs the founder.
+
+## Addendum: approval with conditions (written by principal-engineer-ops, 2026-10-15)
+
+- Decision: **approved with conditions** for cda9a05, d82ea40 and 79533f8, as they stand on lh-study at 5948938 (after the 0fd4038 merge). Conditions 1 and 2 are met. This approves a merge to main. It does not approve a deploy, which also needs the founder's approval for that specific deploy. The approval covers only this change's paths (header). The other lanes' work that came in with 0fd4038 is covered by its own records, not this one.
+- What I checked myself (worktree /home/user/s3c-lh-study at 5948938):
+  - **The move is verbatim.** I read the 79533f8 diff line by line. `dueRowOf`, `plural`, `cap`, `scheduleObservation` and `queueObservation` in src/lib/lifehacks/studyStages.ts match the lines removed from StudyLesson.tsx. The only changes are `export` and the relative imports. The 0fd4038 merge touches none of StudyLesson.tsx, RetrievalLesson.tsx, studyRecall.ts, studyModels.ts, studyCatalog.ts or studyStages.ts. It does change engine-v2.ts, but only the Home functions; `calendarClashes` is untouched. 5948938 changes no src, and its one test edit (the "1 minutes? late" match) loosens only the known plural defect.
+  - `npm run test:lifehacks`: **120/120**. `npx tsc --noEmit`: exit 0. `npm run check`: passed (960 lessons, 5211 claims, the same 2 warnings, neither in this change).
+  - **My own planted bugs: 12 of 12 caught.** I planted each one in the engine file alone, ran tests/lifehacks/study-engine.test.mjs, and restored the file. All are different from the builder's ten. `git status` was clean afterwards. The script is at /tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/ops-plant/plant.mjs (scratch, not committed).
+
+| Function | Planted bug | Tests failing |
+|---|---|---|
+| retrievalProblems | compound "no miss" check removed | 1 |
+| retrievalProblems | feedback check only asks that a choice list exists, not that it holds the code digit | 1 |
+| scoreRow | `complete` ignores the pick count | 1 |
+| nextChoice | clamps at the last choice instead of wrapping | 1 |
+| freeGaps | `skip` ignored | 4 |
+| freeGaps | trailing gap before the window dropped | 4 |
+| scheduleLayout | long overrun added to every row | 2 |
+| scheduleObservation | only the first clash named | 1 |
+| scheduleObservation | claimed minutes sign flipped | 3 |
+| plural (shared) | zero read as singular | 5 |
+| queueObservation | `atTarget` uses `some` instead of `every` | 1 |
+| queueObservation | dependency and switches goal wording swapped | 2 |
+
+  - **QA: I did not re-run it.** I accept the builder's production-build run at 0fd4038 (56/56, feed.spec 10/10) without reproducing it. My reasons: my own 56/56 and 10/10 at d82ea40 stand, the move is verbatim, tsc is clean on the new imports, and no Study file changed in the merge. If QA after the merge on main disagrees, that result outranks this paragraph.
+- Conditions (none blocks this approval):
+  3. **Unchanged: before any of the 28 lessons publishes (fact-checker, then release-manager).** All 68 reset claims are re-verified. That includes work-in-process-limit c3 and W1's c5 Peru facts. The W-1078 hold on short-jobs-clear-a-queue stays.
+  4. **Unchanged: before the next v1 schedule lesson is added (demo-builder).** `dueRow` fields replace the slug list in `dueRowOf`. The test that pins the slug behaviour must still pass after the change.
+  5. **No action.** As before.
+  6. **New: before anyone attests or counts wave 2 from company/rituals/records/2026-10-15-domain-launch.md (the owner of that record).** The record notes that work-in-process-limit is no longer attestable while c3 is unverified, so wave 2 has 15 lessons, not 16. This is the risk named in section 7. I agree it needs no register entry, because it closes when condition 3 closes for c3.
+  7. **New: the two wording defects found while testing (demo-builder).** These are the lowercase label after "no overlap." on due-row lessons without `chain`, and "1 minutes late". They ship as their own engine change with a new tier-2 record, together with condition 4, and the pinned tests are updated on purpose. They do not block this merge: the lessons are at review, not published, and condition 3 already holds publishing. They must be fixed before any of meeting-and-preparation or arrival-is-not-departure publishes.
+- Owed to the board (I do not edit board.json in this task): the caller or chief of staff should close W-1137 against this addendum, and add or confirm items for conditions 6 (domain-launch record owner) and 7 (demo-builder).
