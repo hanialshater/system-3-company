@@ -39,11 +39,15 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [ADR-005](adr/ADR-005-independent-lesson-bundles.md) | Lessons build independently against a versioned kit | proposed |
 | [ADR-006](adr/ADR-006-sandboxed-lesson-frame.md) | Sandboxed cross-origin lesson frame with a postMessage bridge | proposed |
 | [ADR-007](adr/ADR-007-manifest-is-the-registry.md) | The manifest is the registry; rollback is a pointer change | proposed |
+| [ADR-008](adr/ADR-008-better-auth-magic-link.md) | Accounts are Better Auth magic links in our own Postgres, optional, invisible to the beacon | proposed (spike W-1135) |
+| [ADR-009](adr/ADR-009-postgres-on-neon-eu.md) | One Postgres on Neon via Vercel, Frankfurt, plain SQL migrations, no preview copies of learner rows | proposed (spike W-1135) |
 | [EDD-001](edd/EDD-001-feed-at-500-lessons.md) | The feed at 500+ lessons | proposed |
 | [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
 | [EDD-003](edd/EDD-003-lesson-storage-at-scale.md) | Lesson storage and loading at 10k–1M (client-side bundles, hybrid) | approved with changes ([review](../rituals/records/2026-10-13-eng-review-lesson-storage.md), 2026-10-14) |
 | [EDD-004](edd/EDD-004-knots-kit.md) | Promote the knots library (gen2-force-smooth) to `src/kit/knots` | approved with conditions ([review](../rituals/records/2026-10-14-eng-review-EDD-004.md)); moved. Addendum A: kit drawing → fix1-bigon (tier 2, approved, shipped) |
 | [EDD-007](edd/EDD-007-ops-readiness-gate.md) | Operational readiness, checked by a tool (`tools/readiness.mjs` from `deploy.mjs`, dispatch-check O1) | approved with changes ([review](reviews/2026-10-14-edd-007-review.md), 2026-10-14); advisory until W-480 |
+| [EDD-008](edd/EDD-008-accounts-and-server-progress.md) | Optional accounts and server-side progress (anonymous first, merge on "Keep my history") | proposed, draft 1 (data model for W-965) |
 | [SPIKE-001](spikes/SPIKE-001-frontend-sandbox.md) | 3 lessons as content-hashed bundles in a sandboxed cross-origin iframe (EDD-003 stage-1 spike) | done: go with changes (accepted in the EDD-003 review, 2026-10-14) |
+| [SPIKE-002](spikes/SPIKE-002-accounts-plan.md) | Better Auth + pg on Next 16.4 against the EDD-008 schema | planned (phase 2) |
 
 See also [best-practices.md](best-practices.md).
