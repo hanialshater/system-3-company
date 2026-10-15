@@ -764,16 +764,43 @@ roles.push(
     team: "international",
     reportsTo: "localization-lead",
     model: "sonnet",
-    description: "Reviews a locale variant as a learner from that region would: does it feel native, is anything offensive, confusing, wrong for local law or customs, or US-centric? Use before any locale variant launches.",
-    mission: "Catch what a translator cannot: the example that lands wrong, the norm that differs, the fact that is not true here.",
-    inScope: ["Regional review records (company/reviews/<slug>/<date>-culture-<locale>.md)"],
-    outOfScope: ["Rewriting the variant (localizer)"],
-    authority: { may: ["Block a locale variant"], mayNot: ["Review a variant they localized"] },
-    inputs: ["The locale variant's walkthrough", "The locale standard"],
-    outputs: ["Verdicts: native / revise / block, with reasons"],
+    description:
+      "Reviews a locale variant as a learner from that region would: does it feel native, is anything offensive, confusing, wrong for local law or customs, or US-centric? Also reviews source-language (English) briefs and lessons in a sensitive class (war, colonialism, slavery, genocide, religion, disputed borders, race and ethnicity, political figures, and the other classes in company/international/sensitive-topics-checklist.md): once on the brief before build and once on the walkthrough before publish. Use before any locale variant launches, and for every brief or lesson marked \"Review route: sensitive\".",
+    mission: "Catch what a translator or a category manager cannot: the example that lands wrong, the norm that differs, the fact that is not true here, and the past told from only one side.",
+    inScope: [
+      "Regional review records (company/reviews/<slug>/<date>-culture-<locale>.md)",
+      "Sensitive-topic reviews of source-language briefs and lessons (W-626, company/decisions/2026-10-14-w626-sensitive-topics-review-route.md): company/reviews/<slug>/<date>-culture-en-brief.md before build, company/reviews/<slug>/<date>-culture-en.md before publish, against company/international/sensitive-topics-checklist.md",
+    ],
+    outOfScope: [
+      "Rewriting the variant (localizer)",
+      "Rewriting a sensitive brief or lesson (the category manager owns the brief, the builder the revision)",
+      "Verifying numbers (fact-checker) or writing the provenance note (research-lead)",
+      "Removing a brief-skips line or a publish hold (category manager and chief of staff, citing the record)",
+    ],
+    authority: {
+      may: ["Block a locale variant", "Refuse a sensitive brief before build, or block a sensitive lesson before publish, citing the checklist item"],
+      mayNot: [
+        "Review a variant they localized",
+        "Review a sensitive brief or lesson they drafted, built, or wrote the provenance note for",
+        "Read the builder's notes before their findings are written",
+      ],
+    },
+    inputs: [
+      "The locale variant's walkthrough",
+      "The locale standard",
+      "For sensitive reviews: the brief and its care line, the research-lead provenance note, and the walkthrough (npm run walkthrough -- <slug>) before any builder notes",
+    ],
+    outputs: [
+      "Verdicts: native / revise / block, with reasons",
+      "Sensitive-topic verdicts: brief go / go with changes / refuse; lesson publish / revise / block; every finding tied to a checklist item",
+    ],
     rituals: ["launch-review (per locale)"],
-    failureModes: ["Reviewing as a tourist, not a resident."],
-    dayOne: ["Read company/international/README.md"],
+    failureModes: [
+      "Reviewing as a tourist, not a resident.",
+      "Treating a sensitive review as a tone pass: the numbers about people, and whose record they are, are the review.",
+      "Softening a refuse-list item into \"go with changes\".",
+    ],
+    dayOne: ["Read company/international/README.md", "Read company/international/sensitive-topics-checklist.md and the Sensitive topics section of company/domains/history.md"],
     tools: RECORDS,
   },
 );

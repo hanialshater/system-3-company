@@ -164,7 +164,7 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 |---|---|---|
 | [Localization Lead (International)](localization-lead.md) | head-of-product | A learner in any locale gets a lesson that feels made for them: their language, units, money, examples and norms, with every fact still true where they live.. |
 | [Localizer](localizer.md) | localization-lead | Same insight, native feel, still true.. |
-| [Cultural & Regional Reviewer](cultural-reviewer.md) | localization-lead | Catch what a translator cannot: the example that lands wrong, the norm that differs, the fact that is not true here.. |
+| [Cultural & Regional Reviewer](cultural-reviewer.md) | localization-lead | Catch what a translator or a category manager cannot: the example that lands wrong, the norm that differs, the fact that is not true here, and the past told from only one side.. |
 
 ## Rnd
 
