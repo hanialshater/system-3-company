@@ -20,3 +20,18 @@ Unrecorded claims: None.
 **Result (Pass 39):** 6 verified, 0 disputed, 0 unverified.
 
 All claims verified. Nothing blocks publishing on facts. The lesson still needs its walkthrough, QA and learner evidence.
+
+## Pass 48
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1020). I did not write, build or record any of these claims. Scope: the claims the History r1 revisions commit (e52d366, W-989) reset to unverified or added. Method: I read Demo.tsx in full (question, options, stage labels, readouts, aria labels, reveal) before any builder note. The walkthrough transcripts in artifacts/walkthroughs/ predate e52d366 (10:04 against 10:33), so Demo.tsx was the rendered-text source. I re-derived every number with my own node script and a quote-aware CSV parser, written fresh in the session scratchpad (fc48/check.mjs, apply.mjs), from artifacts/history-data/. SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs, and all match. Each data array copied into Demo.tsx was compared with the file value by value, and all are identical. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 48').
+
+Unrecorded claims: none. The readout "wheat ×2.4, wage ×6: buys ×2.5" is c2 and c3 (×2.4146, ×6.0000, ×2.4848), unchanged in meaning.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Of the 50 rows with a wage, the best is 1785, 23/42 = 0.5476 (0.55). Next come 1790 at 0.537 and 1760 at 0.532. The worst is 1595, 5.54/64 = 0.0866 (0.09). The last wage year, 1810, is 0.303, so "not the last" holds. |
+| c5 | verified | I opened the HistData Wheat doc myself (Rdatasets, sha256 443ae182...). It says Playfair "commits the sin of showing two non-commensurable Y variables on different axes" and that "plots of ratios (e.g., wages/price) are in some ways better". Playfair 1821 itself was not opened. **Source-field fix (non-blocking):** the source string still says HELD and should name the doc. |
+
+**Result (Pass 48):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 6 verified of 6.
+
+Open item for demo-builder: update the c5 source string (above).

@@ -31,3 +31,16 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, bu
 **Result (Pass 43):** 1 verified, 0 disputed, 0 held, of 1 re-checked. Lesson now: 5 verified of 5.
 
 No open claim items. Non-blocking advisories are in the basis column.
+
+## Pass 48
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1020). I did not write, build or record any of these claims. Scope: the claims the History r1 revisions commit (e52d366, W-989) reset to unverified or added. Method: I read Demo.tsx in full (question, options, stage labels, readouts, aria labels, reveal) before any builder note. The walkthrough transcripts in artifacts/walkthroughs/ predate e52d366 (10:04 against 10:33), so Demo.tsx was the rendered-text source. I re-derived every number with my own node script and a quote-aware CSV parser, written fresh in the session scratchpad (fc48/check.mjs, apply.mjs), from artifacts/history-data/. SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs, and all match. Each data array copied into Demo.tsx was compared with the file value by value, and all are identical. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 48').
+
+Unrecorded claims: none. The readout "Central Thames only: still falls, but none is high (max 22 ft)" and the reveal clause "none on that water was high" are both in c4.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Under 20 ft: 16 districts, 8,584/935,869 × 10,000 = 91.72 (92). 80 ft and up: 4 districts, 19.81 (20). Ratio 4.63, "about 5". The reveal now uses "ft". |
+| c4 | verified | The 12 central-Thames (Battersea) districts run from -2 ft (Newington) to 22 ft (Wandsworth). None is at 50 ft or above, and none at 80 ft or above. The 4 districts at 80 ft or more are on New River or Kew water. Within Battersea, r = -0.680 (still falls). Demo.tsx computes BAT_MAX 22 and BAT_HIGH 0 from DISTRICTS. |
+
+**Result (Pass 48):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 5 verified of 5.

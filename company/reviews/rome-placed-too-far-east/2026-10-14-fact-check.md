@@ -52,3 +52,22 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, bu
 **Result (Pass 43):** 2 verified, 0 disputed, 0 held, of 2 re-checked (c1 is a note correction only, status unchanged). Lesson now: 9 verified of 9.
 
 No open claim items. Non-blocking advisories are in the basis column.
+
+## Pass 48
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1020). I did not write, build or record any of these claims. Scope: the claims the History r1 revisions commit (e52d366, W-989) reset to unverified or added. Method: I read Demo.tsx in full (question, options, stage labels, readouts, aria labels, reveal) before any builder note. The walkthrough transcripts in artifacts/walkthroughs/ predate e52d366 (10:04 against 10:33), so Demo.tsx was the rendered-text source. I re-derived every number with my own node script and a quote-aware CSV parser, written fresh in the session scratchpad (fc48/check.mjs, apply.mjs), from artifacts/history-data/. SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs, and all match. Each data array copied into Demo.tsx was compared with the file value by value, and all are identical. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 48').
+
+Unrecorded claims: none. "AD 150" and the year-view label "Reading · 780 km too far" are covered by c5 and c4.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | True 16.53. Only G. Jansonius (1605, 17.736) is within 2 degrees. All 12 are east of the true value. Range 17.736 to 30.128 (17.7 to 30.1). |
+| c4 | verified | Median (25.617 + 26)/2 = 25.8085. Error 9.2785 degrees × 84.173 km per degree = 781.0 km, which rounds to 780. |
+| c5 | verified | AD 150 (C. Ptolomeus) 27.787 and 1610 (A. Argelius) 28.17. Across 1463 to 1610, r(year, lon) = +0.12: no trend toward the truth. |
+| c10 | **held (unverified)** | I could not source it from any reachable host. I opened and searched four sources, and none of them says why the error ran east or that later tables reused Ptolemy. The four: the HistData Langren doc; the whole friendly/HistData repo (git clone, no "Ptolem" anywhere); Friendly's 2026 blog post "Van Langren's Secret, Finally Told" (raw.githubusercontent.com/friendly/friendly.github.io, blog/posts/2026-07-van-langren/index.qmd, sha256 5eb33e84...); and friendly/milestones. Blocked: datavis.ca, Wikipedia, arXiv, archive.org, Gutenberg, PubMed and MPIWG, and WebFetch fails on DNS. A WebSearch summary (not counted as an opened source) names the Isis essay "The Accuracy of Ancient Cartography Reassessed: The Longitude Error in Ptolemy's Map" for the stretch, but found nothing for "many inherited". From the file itself: Ptolemy's own value is 11.3 degrees (68%) too long, which is consistent with "stretched" on this one span only. |
+
+**Derived fallback, checked:** "Nor did they improve: AD 150 and 1610 both say about 28°." Both 27.787 and 28.17 round to 28, and the trend is flat (r = +0.12). The fallback is checkable and true as worded.
+
+**Result (Pass 48):** 3 verified, 0 disputed, 1 held, of 4 re-checked. Lesson now: 9 verified of 10, with c10 held. The lesson cannot publish with the c10 sentence as written.
+
+Next (demo-builder): replace the Ptolemy paragraph with the checked fallback (it becomes a derivation claim and needs a re-check by a fact-checker), or cut it. The alternative is that someone opens Friendly, Valero-Mora & Ulargui (2010) or a Ptolemy edition from a reachable host.

@@ -69,3 +69,20 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-980). I did not write, bu
 **Result (Pass 45):** 1 verified of 1 re-checked. Lesson now: 10 verified of 10.
 
 No open claim items.
+
+## Pass 48
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1020). I did not write, build or record any of these claims. Scope: the claims the History r1 revisions commit (e52d366, W-989) reset to unverified or added. Method: I read Demo.tsx in full (question, options, stage labels, readouts, aria labels, reveal) before any builder note. The walkthrough transcripts in artifacts/walkthroughs/ predate e52d366 (10:04 against 10:33), so Demo.tsx was the rendered-text source. I re-derived every number with my own node script and a quote-aware CSV parser, written fresh in the session scratchpad (fc48/check.mjs, apply.mjs), from artifacts/history-data/. SHA-256 of each file re-checked against company/domains/briefs/checks/history-data.mjs, and all match. Each data array copied into Demo.tsx was compared with the file value by value, and all are identical. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 48').
+
+Unrecorded claims: none. The new log caption and legend text are covered by c6, and the reveal's "sags below ... slower before 1850 and faster after" by c11.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | 2412/1192 = 2.0235 (×2.0), 0.1640%/yr; 38058/2412 = 15.7786 (×15.8), 0.8713%/yr; "430 years ... the 318 after" correct. |
+| c6 | verified | Both dashed lines start at the series value at their span's start, at that span's average rate. Log ticks 50 to 1,600, each ×2. The series (41.3 to 1,577.9) fits the 40 to 1,700 log axis. Constant rate gives a straight line on a log axis. |
+| c7 | verified | 1.00164^70 = 1.122; 1.00871^70 = 1.835; the pre-1700 values use the bottom 6.8% of the 0 to 1,600 linear plot. Advisory: the "1270 to 1700" preset is also linear (0 to 200) and not flat; the reveal means the full view. |
+| c11 | verified | 1700 to 1850: ×1.796, 0.391%/yr. 1850 to 2018: ×8.785, 1.302%/yr. The record is below the 0.87% model in 304 of the 317 years 1701 to 2017, and its lowest point is 0.41 of the model, in 1921. Other splits give the same speed-up: 0.327%, 0.824%, 1.375%. **Source-field fix (non-blocking, not learner-facing):** "first reaches it in 2002" is wrong. The record is above the line in 1701, 1702, 1704, 1705 and 1708 (by 2 to 11%), then in 2002 to 2008 and in 2017. |
+
+**Result (Pass 48):** 4 verified, 0 disputed, 0 held, of 4 re-checked. Lesson now: 11 verified of 11.
+
+Open item for demo-builder: correct the c11 source string (above).
