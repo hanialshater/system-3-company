@@ -42,3 +42,37 @@ Kit change approved, 2026-10-15: [reviews/2026-10-15-W-981-behavioral-domainid-r
 - What would make me revoke an approval once given: the sha in the verify summary is not an ancestor of the merged commit, or the branch gains a kit or `domains.json` change after verify ran.
 - Conditions, each with a board id: none yet (no approval to put conditions on). The steps above sit on W-981 (platform-engineer). This session was told not to edit board.json, so the caller should add a note to W-981 that the readiness approval is withheld until the verify summary arrives.
 - Objections raised, and what happened to each: none raised by the author or the principal engineer. Mine is the one above (approve now or wait for verify), and this record answers it: wait. Not adopted: the principal engineer's non-blocking finding 2 (domain colour kept by hand in three places with no test). That belongs to tools-lead or hq-engineer as HQ debt, not to this change, and it does not affect readiness.
+
+## Verify (integrated tree; platform-engineer, 2026-10-15, W-1050)
+
+Result: **`npm run verify` exited 1. It did not pass.** One QA test timed out, and every other step passed. The run is complete: it was not OOM-killed and did not time out.
+
+- Commit: `c58c6da28e3f61ae29afc70f1778573b14cdc02c`, which is `domainid` rebased onto `ccr-4c6c7654-ew9ko1` at `8b998d2` (r7 release log, the branch head when fetched at about 17:08Z). The rebase was clean, with no conflicts. Verify then ran on that rebased tree.
+- Command: `NEXT_DIST_DIR=.next-dom QA_PORT=3683 npm run verify`, run detached on an otherwise idle host (4 cores, 15 GB, no other build). Playwright used its default 2 workers, because verify passes no `--workers` flag.
+- Wall time: 5751 s (1 h 36 min) for the whole verify run. QA alone took 5591 s.
+
+| step | result |
+|---|---|
+| test:deploy | 17/17 pass |
+| test:publish | 8/8 pass |
+| test:lifehacks | 64/64 pass |
+| test:kit | 97/97 pass |
+| test:hq | 62/62 pass |
+| check | passed: 960 lessons, 5166 claims, 99 roles, 1 warning (`lifehacks/cue-needs-a-boundary` is in review with a disputed claim; this warning predates the change) |
+| typecheck | pass (`tsc --noEmit`, no errors) |
+| build | pass: compiled in 38.6 s, 1995/1995 static pages |
+| qa | **1929 passed, 1 failed, 0 skipped, 0 flaky, 1930 total** |
+
+The QA failure was `[phone] tests/qa/contract.spec.ts:38 › sudden-skill-or-strict-score › follows the lesson contract`, with "Test timeout of 45000ms exceeded" (50.5 s) inside the dead-control loop (`page.waitForTimeout(450)` at contract.spec.ts:90). This lesson is `src/demos/ai/sudden-skill-or-strict-score`. This branch does not touch it, and it is not a page this change can reach (the change affects `/`, `/catalog` and `/hq`). It passed in the r7 run (5eb4c2e, 1930/1930). Diagnostic rerun, on the same build and commit: `playwright test -g sudden-skill-or-strict-score --repeat-each=3` gave 6/6 passed (phone and desktop, 6.3 to 8.3 s each). I read it as a timing flake under a 2-worker load, not a defect. That reading is mine, and the rerun does not turn this verify run into a pass.
+
+`/catalog` with the Behavioral section: the QA spec `tests/qa/feed.spec.ts:49` ("the map shows taught and untaught concepts", passed on phone and desktop) loads `/catalog`, but it asserts only that some `.domain-block` is visible, not that this section is. So I checked the section directly. I ran `next start -p 3684` on the same `.next-dom` build and fetched `/catalog`, which returned HTTP 200 with this heading:
+
+```
+<section class="domain-block" style="--domain:#e48fd6"><h2><span class="tag domain">Behavioral</span> <!-- -->Behavioral Economics and Irrational Behavior<span class="tag status">incubating</span></h2>
+```
+
+The section's concepts follow, each marked "not yet taught". I then stopped the server.
+
+Drift since the run: `ccr-4c6c7654-ew9ko1` gained `45e8fce` (fact-check pass 49) and `cd38642` (board) at 17:17Z, after the fetch. They touch only lesson `meta.json` claim statuses, fact-check reviews and `board.json`. None of them touches the kit, `content/domains.json`, code or tests, and `git merge-tree` shows they merge cleanly with this branch. If the branch is merged rather than rebased again, `c58c6da` stays an ancestor of the merge commit.
+
+For principal-engineer-ops: verify did not exit 0, so condition 2 is not met as written. The one failing test is on a lesson outside this change and passed on rerun. Two ways forward: re-run verify (or only `npm run qa`) on the integrated tree, or accept this run with the flake recorded. Choosing between them is your call, not mine.
