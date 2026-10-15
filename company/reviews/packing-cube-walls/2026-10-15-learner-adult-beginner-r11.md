@@ -4,26 +4,26 @@
 lesson version: v1
 boundary: adult-beginner (from meta.json learner: knows Everyday objects have sizes, positions and amounts; does not know: Container walls consume some of its external volume. Multiplying the outer dimensions counts material as storage; subtracting both walls in each direction gives the ideal inner capacity.)
 Screenshots seen: yes (artifacts/walkthroughs/packing-cube-walls/sheet.png, recorded 2026-10-15T21:32)
-Verdict: revise
+Verdict: launch
 
 ## Findings (written from the walkthrough before reading build.md or meta.json)
 
-Path walked: chose "Outer volume"; tapped Usable volume; slid outer width to 32; opened reveal.
+Path walked: chose "Outer volume"; after lock-in the stage showed Outer volume 6,000 cm³; tapped Usable volume (4,032 cm³); slid outer width to 32 (4,320 cm³); opened reveal. (The recorded sheet starts after the first tap. I checked the lock-in state in a separate browser probe of the same build: it reads "Outer volume 6,000cm³".)
 
-1. **Where understanding first broke: I never see the number I predicted.** I chose "Outer volume", whose readout was "?" while locked. Explore told me to "try the second layout", so I did, and I only ever saw usable volume (4,032, then 4,320 cm³). The reveal says "Not quite ... the current usable volume setting gives 4,320cm³". The comparison that would make walls matter (30×20×10 = 6,000 against 4,032, about a third lost) is never on screen.
-2. **The highlighted button contradicts the readout.** After I tapped "Usable volume", the "Outer volume" button is the one drawn white/raised, in step 1, step 2 and the reveal, while the readout says "Usable volume". I read that as "outer is selected" and could not tell which number I was looking at.
-3. **The prediction is a definition question.** "Which figure describes space available to contents?" has three options, and "Same outcome" makes no sense for a question asking which figure. A beginner's real question is "how much do the walls cost me?", and only the missing comparison would answer it.
-4. The 1 cm wall is not drawn to any scale I can read. The inner rectangle shrinks, which is a fine cue.
-5. Reveal wording is good: "Multiplying the outer dimensions counts material as storage" and the seams/zips caveat.
+1. **The contrast lands, one number at a time.** 6,000 cm³ outside against 4,032 cm³ inside is a clear "a third of my cube is wall and air" moment, and the inner rectangle shrinking in the drawing helps. The reveal sentence "Multiplying the outer dimensions counts material as storage" answers the question I had ("why is my cube smaller than its label?").
+2. **Where I wobbled: which button is selected.** The current mode is drawn grey and the other mode is drawn white/raised. After I tapped "Usable volume", "Outer volume" looked selected. The readout label ("Usable volume") rescued me, but I had to look twice. This pattern recurs across this lesson family.
+3. **The reveal only restates the current number** ("The current usable volume setting gives 4,320cm³"). Putting 6,000 next to 4,032 (or 6,400 next to 4,320) in the reveal sentence would close the loop.
+4. "Same outcome" is an odd third option for "which figure describes space available".
+5. The seams/zips caveat is good and honest.
 
-Fixes (for the builder):
-- Show outer and usable side by side (6,000 vs 4,032) and in the reveal sentence.
-- Fix the toggle highlight so the selected option is the highlighted one.
-- Drop "Same outcome", or reword the question so it fits.
+Notes (not blocking):
+- Show both figures in the reveal sentence.
+- Selected-state styling: the current choice should look chosen (kit or shared control, not this lesson alone).
 
-Verdict reason: the reveal never shows the outer volume the learner predicted, so the size of the wall loss is never seen, and the toggle highlights the wrong option.
+Verdict reason: the learner sees outer vs usable volume on stage and the reveal explains the gap; the remaining issues are clarity notes.
 
 ## After reading the brief (meta.json)
 
-- The objective and the reveal text match (walls consume volume; subtract both walls). The trust sheet's worked example (28 × 18 × 8 = 4032 against 6000) is exactly the comparison the stage should show but does not (finding 1). It lives only behind "Why trust this?".
-- Fix route: demo-builder (show the outer figure; toggle highlight).
+- The objective (walls consume external volume; subtract both walls in each direction) is delivered by the 6,000 → 4,032 cm³ step. The trust sheet's worked example (28 × 18 × 8 = 4032 vs 6000) matches the stage at 30 cm.
+- Correction to my first draft: the outer figure (6,000 cm³) does show right after lock-in. The recorded sheet skips that state, and I confirmed it with a browser probe.
+- Selected-state styling (current mode grey, other white) appears in every toggle lesson in this family. Route: demo-builder / kit owner.

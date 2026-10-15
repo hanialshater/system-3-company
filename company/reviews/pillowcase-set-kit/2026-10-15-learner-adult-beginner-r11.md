@@ -4,26 +4,25 @@
 lesson version: v1
 boundary: adult-beginner (from meta.json learner: knows Everyday objects have sizes, positions and amounts; does not know: The example counts separate locations, not seconds. Keeping the chosen set’s pieces together replaces multiple location visits with one, while separating unlike sets can preserve identification.)
 Screenshots seen: yes (artifacts/walkthroughs/pillowcase-set-kit/sheet.png, recorded 2026-10-15T21:32)
-Verdict: revise
+Verdict: launch
 
 ## Findings (written from the walkthrough before reading build.md or meta.json)
 
-Path walked: chose "Scattered pieces"; tapped One set kit; slid Locations to 6; opened reveal.
+Path walked: chose "Scattered pieces"; after lock-in the stage showed Location visits 3; tapped One set kit (1); slid Locations to 6 (still 1); opened reveal. (The recorded sheet starts after the first tap. I checked the lock-in state in a separate browser probe of the same build: "Location visits 3".)
 
-1. **Where understanding first broke: "Set=3 pieces · 4 places".** Three pieces in four places is a puzzle at once. Is one place empty? Is a piece split? Sliding Locations to 6 adds boxes, but with "One set kit" shown the count stays 1. The slider changes nothing I can read, which tells me nothing.
-2. **The scattered count never appears.** I predicted "Scattered pieces", and that readout is cut off / "?" in the predict frame. After I switch to the kit, I only ever see "1". The reveal says "Not quite ... one set kit setting gives 1" but never gives the number to compare it with (3).
-3. **The toggle highlight is inverted.** After I tapped "One set kit", "Scattered pieces" is the button drawn white/selected, through to the reveal.
-4. **The question is nearly self-answering**, and the only surprise the reveal offers is the trade-off sentence ("separating unlike sets can preserve identification"), which the stage never shows.
-5. Reveal text is honest that this counts places, not seconds.
+1. **The core contrast is visible:** 3 visits scattered, 1 visit as a kit. The reveal says it plainly ("replaces multiple location visits with one") and is honest that it counts places, not seconds, and that grouping is a trade-off.
+2. **Where understanding wobbled: "Set=3 pieces · 4 places".** Three pieces in four places made me ask whether one place is empty, or why the count is 3 and not 4. The stage never says. Sliding Locations to 6 in kit mode changes nothing I can read (1 stays 1), so the slider feels broken.
+3. **Selected-state styling is inverted:** the current mode is grey and the other is white, so after tapping "One set kit", "Scattered pieces" looked selected.
+4. **The prediction is close to self-answering** ("fewer container visits for a complete set" → the kit). There is little surprise, but the hack is shown honestly.
+5. The "separating unlike sets can preserve identification" half of the reveal is not shown on stage.
 
-Fixes (for the builder):
-- Show both counts (3 vs 1) at once and in the reveal.
-- Make the slider mean something in both layouts (number of pieces in the set?), or remove it.
-- Fix the selected-button highlight.
+Notes (not blocking):
+- Say what the extra places hold (other items), or tie the slider to pieces per set so it moves the scattered count.
+- Show both counts in the reveal sentence.
 
-Verdict reason: the reveal reports only the kit's count (1), never the scattered count the learner chose, and the Locations slider has no visible effect.
+Verdict reason: the reveal answers the learner's question (3 visits vs 1) with numbers seen on stage; the slider and styling issues are notes.
 
 ## After reading the brief (meta.json)
 
-- The trust sheet's model is "scattered visits = min(locations, 3)". That explains why 4 places for 3 pieces still gives 3, but the stage never says so (finding 1). The "separating unlike sets can preserve identification" half of the objective is not shown on stage at all.
-- Fix route: demo-builder.
+- The model in the trust sheet is "scattered visits = min(locations, 3)", which explains 3 visits with 4 places. The stage should say this (finding 2). The "separating unlike sets" half of the objective is reveal text only.
+- Fix route: demo-builder (notes only).
