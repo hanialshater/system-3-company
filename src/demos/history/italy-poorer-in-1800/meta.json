@@ -47,7 +47,7 @@
       "support": "derivation",
       "source": "100 x ((2,404 / 3,218)^(1/350) - 1) = -0.083%. history-cycle2-check.mjs section 18 '18 per year'.",
       "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): (2403.94/3218.06)^(1/350) - 1 = -0.0833% a year, shown 0.08%.",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): (2403.94/3218.06)^(1/350) - 1 = -0.0833% a year, shown 0.08%. | v2 (demo-builder, 2026-10-15, W-990): text unchanged; the reveal no longer quotes it. It stays on the stage in the 1800 readout ('1800: 75 (−0.08% a year since 1450)') and the 'Change per year' readout. Status kept.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
@@ -73,13 +73,19 @@
     },
     {
       "id": "history.italy-poorer-in-1800.c6",
-      "text": "Where it stops: this is one reconstruction, it covers only the north and centre before 1871, and the copy we opened states no unit, so it is read as an index.",
+      "text": "Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit, so it is shown as an index.",
       "support": "source",
-      "source": "Maddison README (opened by cm-history): one source named for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871; the OWID copy's columns state no currency unit (history-data.mjs: maddison 'what'). history-cycle2-check.mjs section 18 '18 north and centre only before 1871'.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): README opened: one source for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871. The CSV header is 'GDP per capita' with no unit, and the README states none.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Maddison README (opened by cm-history): one source named for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871; the OWID copy's columns state no currency unit (history-data.mjs: maddison 'what'). history-cycle2-check.mjs section 18 '18 north and centre only before 1871'. v2 (W-990): reworded for learners (was '...it covers only the north and centre before 1871, and the copy we opened states no unit, so it is read as an index'); same facts: one source for 1310-1871 (Malanima 2010, North Italy), and the OWID file's columns name no currency unit.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): README opened: one source for 1310-1871 (Malanima 2010, North Italy), Baffigi (2011) from 1871. The CSV header is 'GDP per capita' with no unit, and the README states none. | v2 (demo-builder, 2026-10-15, W-990, learner r1 finding 4): 'the copy we opened' rewritten in learner words; 'before 1871' dropped (the stage ends at 1871). Reset to unverified for a fact-checker who is not the builder."
+    },
+    {
+      "id": "history.italy-poorer-in-1800.c7",
+      "text": "Averaged over the 25 years around each date, the index still fell, from 101 (1438-1462) to 79 (1788-1812): not just a high year against a low one (reveal; '25-year averages' view: thick line, shaded windows, labels 'avg 101' and 'avg 79', readout '1438–1462: 101 → 1788–1812: 79').",
+      "support": "derivation",
+      "source": "history-data.mjs: maddison, maddison2020.csv, Entity 'Italy', 'GDP per capita' (the same 562 values as c1). Centred 25-year mean of the index (100 x g / g(1450)), y-12..y+12: 1438-1462 mean GDP per capita 3,251.9 -> index 101.1 -> 101; 1788-1812 mean 2,531.1 -> index 78.7 -> 79; ratio 77.8%. Re-derived in node from the pinned file (sha256 23a67c11... matches) 2026-10-15. Robustness, not chosen windows: 21-year windows give 100.4 and 78.7; 51-year windows 99.8 and 79.5; 10-year windows 1445-1454 vs 1795-1804 give a ratio of 75.1%. The 25-year width is the learner review's own example. The thick line is the same centred mean for every year 1322-1859 (computed in Demo.tsx avgIdx).",
+      "status": "unverified",
+      "note": "v2 (demo-builder, 2026-10-15, W-990): new, answers learner r1 finding 2 ('is this just a high year against a low year?'). Not verified by the builder."
     }
   ],
   "confidence": "",
@@ -101,7 +107,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:italy-long-decline",
     "also": [],

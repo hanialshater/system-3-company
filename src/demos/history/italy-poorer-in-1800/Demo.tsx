@@ -8,7 +8,12 @@
 // The copy states no unit, so the stage shows only an index, 1450 = 100, rounded as the script does.
 // Locked stage: the axes and the line from 1310 to 1450 only (the question gives 1450 = 100).
 // The line is drawn up to the latest preset pressed; marks stay. The 1800 readout already carries the yearly
-// change, so the reveal's 0.08% is on the required path. Milestones: y1800 (the brief's gate). No Reset.
+// change. Milestones: y1800 (the brief's gate) and avg. No Reset.
+// v2 (W-990, learner r1): "25-year averages" (milestone avg) answers "is this a high year against a low one?".
+// It draws the centred 25-year average of the same series (each year = mean of y-12..y+12, so 1322..1859) over
+// the faint yearly line, shades the two windows 1438-1462 and 1788-1812, and labels their averages on the same
+// index (1450 = 100): 101 and 79. Those two values are what the reveal quotes; it no longer quotes 0.08%,
+// which stays in the 1800 and rate readouts.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -96,10 +101,17 @@ const idx = (y: number) => (100 * g(y)) / g(1450);
 const I = (y: number) => Math.round(idx(y));
 const SPAN = 1800 - 1450;
 const RATE = 100 * (Math.pow(g(1800) / g(1450), 1 / SPAN) - 1);
+const HALF = 12; // 25-year window: y - 12 .. y + 12
+const avgIdx = (y: number) => {
+  let t = 0;
+  for (let k = y - HALF; k <= y + HALF; k++) t += idx(k);
+  return t / (2 * HALF + 1);
+};
+const A = (y: number) => Math.round(avgIdx(y));
 const rateTxt = `${RATE < 0 ? "−" : "+"}${Math.abs(RATE).toFixed(2)}% a year`;
 
-const MILESTONES = ["y1800"] as const;
-type View = "none" | "y1450" | "y1800" | "whole" | "rate";
+const MILESTONES = ["y1800", "avg"] as const;
+type View = "none" | "y1450" | "y1800" | "whole" | "rate" | "avg";
 
 const W = 340;
 const H = 178;
@@ -114,6 +126,11 @@ const path = (to: number) =>
   GDP.slice(0, to - FIRST + 1)
     .map((_, i) => `${i ? "L" : "M"}${xs(FIRST + i).toFixed(1)} ${ys(idx(FIRST + i)).toFixed(1)}`)
     .join(" ");
+const smoothPath = GDP.map((_, i) => FIRST + i)
+  .filter((y) => y - HALF >= FIRST && y + HALF <= LAST)
+  .map((y, i) => `${i ? "L" : "M"}${xs(y).toFixed(1)} ${ys(avgIdx(y)).toFixed(1)}`)
+  .join(" ");
+const WINDOWS = [1450, 1800];
 
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [view, setView] = useState<View>("none");
@@ -121,18 +138,22 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const [marks, setMarks] = useState<number[]>([]);
   const go = (v: View) => {
     setView(v);
-    const to = v === "y1800" || v === "rate" ? 1800 : v === "whole" ? LAST : 1450;
+    const to = v === "y1800" || v === "rate" ? 1800 : v === "whole" || v === "avg" ? LAST : 1450;
     setDrawnTo((d) => Math.max(d, to));
-    if (v === "y1450" || v === "y1800" || v === "rate") {
+    if (v === "y1450" || v === "y1800" || v === "rate" || v === "avg") {
       const add = v === "y1450" ? [1450] : [1450, 1800];
       setMarks((m) => [...new Set([...m, ...add])]);
     }
     if (v === "y1800" || v === "rate") reach("y1800");
+    if (v === "avg") reach("avg");
   };
-  const readLabel = view === "rate" ? `1450 to 1800, ${SPAN} years` : view === "whole" ? `${FIRST} to ${LAST}` : "Index, 1450 = 100";
+  const avg = view === "avg";
+  const readLabel = avg ? "25-year averages" : view === "rate" ? `1450 to 1800, ${SPAN} years` : view === "whole" ? `${FIRST} to ${LAST}` : "Index, 1450 = 100";
   const readValue =
     locked || view === "none"
       ? "?"
+      : avg
+        ? `${1450 - HALF}–${1450 + HALF}: ${A(1450)} → ${1800 - HALF}–${1800 + HALF}: ${A(1800)}`
       : view === "y1450"
         ? "1450: 100"
         : view === "y1800"
@@ -143,7 +164,10 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const label = locked
     ? "Index of income per person in north and central Italy, 1450 = 100, drawn from 1310 to 1450."
     : `Index of income per person in north and central Italy, 1450 = 100, drawn from 1310 to ${drawnTo}.` +
-      marks.map((y) => ` ${y}: ${I(y)}.`).join("");
+      marks.map((y) => ` ${y}: ${I(y)}.`).join("") +
+      (avg
+        ? ` A thicker line shows the 25-year average; ${1450 - HALF} to ${1450 + HALF} averages ${A(1450)}, ${1800 - HALF} to ${1800 + HALF} averages ${A(1800)}.`
+        : "");
 
   return (
     <div>
@@ -167,7 +191,22 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
             </text>
           </g>
         ))}
-        <path d={path(locked ? 1450 : drawnTo)} className={s.line} />
+        {!locked &&
+          avg &&
+          WINDOWS.map((y) => (
+            <rect key={y} x={xs(y - HALF)} y={T} width={xs(y + HALF) - xs(y - HALF)} height={B - T} className={s.band} />
+          ))}
+        <path d={path(locked ? 1450 : drawnTo)} className={avg && !locked ? s.faint : s.line} />
+        {!locked && avg && (
+          <>
+            <path d={smoothPath} className={s.smooth} />
+            {WINDOWS.map((y) => (
+              <text key={y} x={xs(y)} y={T - 3} className={s.lab} textAnchor="middle">
+                avg {A(y)}
+              </text>
+            ))}
+          </>
+        )}
         {!locked && view === "rate" && (
           <line x1={xs(1450)} y1={ys(100)} x2={xs(1800)} y2={ys(idx(1800))} className={s.trend} />
         )}
@@ -194,6 +233,9 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         <Control disabled={locked} className={view === "rate" ? "active" : ""} onClick={() => go("rate")}>
           Change per year
         </Control>
+        <Control disabled={locked} className={view === "avg" ? "active" : ""} onClick={() => go("avg")}>
+          25-year averages
+        </Control>
       </Row>
       <Readout label={readLabel} value={readValue} />
     </div>
@@ -209,18 +251,18 @@ export default function ItalyPoorerIn1800({ slug }: { slug: string }) {
         options: ["About 75", "About 100", "About 150"],
         answer: 0,
       }}
-      exploreHint="Press 1450, then 1800, and read the index."
+      exploreHint="Press 1450, then 1800, then compare 25-year averages."
       minInteractions={MILESTONES.length}
       reveal={() => (
         <>
           <p>
-            On this series, a person in north and central Italy in 1800 had about {I(1800)}% of the income of one in 1450: a
-            fall of about {Math.abs(RATE).toFixed(2)}% a year for {SPAN} years. Income per person can shrink for centuries,
-            not only grow.
+            On this series, a person in north and central Italy in 1800 had about {I(1800)}% of the income of one in 1450.
+            Not just a high year against a low one: averaged over the {2 * HALF + 1} years around each date, it still fell,
+            from {A(1450)} to {A(1800)}. Income per person can shrink for centuries, not only grow.
           </p>
           <p>
-            Where it stops: this is one reconstruction, it covers only the north and centre before 1871, and the copy we
-            opened states no unit, so it is read as an index.
+            Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit,
+            so it is shown as an index.
           </p>
         </>
       )}
