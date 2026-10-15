@@ -75,7 +75,7 @@ export default function EveryoneSaves({ slug }: { slug: string }) {
             invest: $100.
           </p>
           <p>
-            Everyone tried to save more; together they earned {usd(Y0 - (rec.income ?? 900))} less and saved the same. This is the paradox of thrift, in
+            Everyone tried to save more; together they earned {usd(Y0 - (rec.income ?? 900))} less and saved the same. That is a paradox, shown in
             a toy model. If extra saving funded extra investment, the answer would change.
           </p>
         </>

@@ -65,3 +65,10 @@ Review: company/reviews/earth-history-in-a-day/2026-10-14-learner-adult-beginner
 7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 84 tool words, thumb true (pre-existing, see above).
 
 QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
+
+## Fact-check rewording (W-938 (FC41), 2026-10-15, demo-builder)
+
+- Reveal paragraph 2 uses the brief's unnamed fallback: 'Given this much time, even a process too slow to see can do large things: a river cutting about 0.3 mm a year carved the Grand Canyon's 1.8 km in the last two minutes.' (Hutton and the 1780s removed; support derivation). c9 (the Grand Canyon depth and rate, still held) is unchanged. The 'thumb' flag is the pre-existing dial at 0.53 scale (see above), not new.
+- Claims reset to unverified: c6. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb true, 82 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

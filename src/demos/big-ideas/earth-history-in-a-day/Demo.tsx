@@ -96,8 +96,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
             Our species appeared at {humansAt}, about six seconds before midnight; one second here is about 52,500 years.
           </p>
           <p>
-            From Hutton in the 1780s, geologists argued that slow processes, given this much time, do big things: a river
-            cutting about 0.3 mm a year carved the Grand Canyon&rsquo;s 1.8 km in the last two minutes.
+            Given this much time, even a process too slow to see can do large things: a river cutting about 0.3 mm a year carved the Grand Canyon&rsquo;s 1.8 km in the last two minutes.
           </p>
           <p>
             Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide

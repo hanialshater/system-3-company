@@ -290,7 +290,7 @@ export default function EnemyOfMyEnemy({ slug }: { slug: string }) {
           </p>
           <p>
             So three camps never balance, and balanced means one camp or two.
-            This is the balance theorem (Harary, 1953), and it holds for any number of people.
+            This is the balance theorem, and it holds for any number of people.
           </p>
         </>
       )}

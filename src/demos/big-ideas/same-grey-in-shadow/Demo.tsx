@@ -59,8 +59,8 @@ export default function SameGreyInShadow({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Your sampler read {v} on both squares: the same grey. Your visual system knows shadows darken surfaces, so it
-            judged B lighter than the light it sends.
+            Your sampler read {v} on both squares: the same grey. Your eyes judged B lighter than the light it sends: the
+            difference came from you, not the screen.
           </p>
           <p>
             That is a guess about the world. Hermann von Helmholtz called perception “unconscious inference”.

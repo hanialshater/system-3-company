@@ -137,7 +137,7 @@ export default function TwoPagesSwallowTheRank({ slug }: { slug: string }) {
             No arrow leaves the E + F outline, so score that reaches E or F never comes back out. Round by round it drains in: your 50 rounds left E and F with <strong>{pct(sinkShare(50, false))}</strong> and A to D with {pct(aToD)}. That is a rank sink.
           </p>
           <p>
-            With 15% random jumps, part of every score lands on a random page each round, so E and F kept <strong>{pct(sinkShare(50, true))}</strong> and every page kept some. Scaled PageRank adds these jumps to fix sinks.
+            With 15% random jumps, part of every score lands on a random page each round, so E and F kept <strong>{pct(sinkShare(50, true))}</strong> and every page kept some. PageRank adds these jumps to fix sinks.
           </p>
         </>
       )}

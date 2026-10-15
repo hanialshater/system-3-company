@@ -8,3 +8,10 @@ Kept from evaluators until they report.
 - Claims now unverified: c1, recall, c4, seen. New: lifehacks.check-confidence-with-output.seen (the engine's first reveal sentence). Nothing marked verified.
 - Reveal fit 390x844: crop 0 px, hiddenBelow 0 px, namedHidden 0, 40 measured words, phoneFit true (artifacts/reveal-fit/w608-v2*.json).
 - QA contract (dev :3530, --timeout=900000 --workers=1): phone and desktop passed (artifacts/qa-w608).
+
+## Fact-check rewording (W-844 (FC38-41), 2026-10-15, demo-builder)
+
+- Recall why: second sentence is now 'This one check is not a forecast of later recall, but it does show which step to fix.'
+- Claims reset to unverified: recall. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 40 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

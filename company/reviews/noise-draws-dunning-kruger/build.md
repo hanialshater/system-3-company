@@ -40,3 +40,10 @@ Review: company/reviews/noise-draws-dunning-kruger/2026-10-14-learner-adult-begi
 7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 90 tool words.
 
 QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
+
+## Fact-check rewording (W-938 (FC41), 2026-10-15, demo-builder)
+
+- The two-point dotted ghost (60th to 75th, unsourced top) is gone. The stage now draws one dotted ring on the bottom quarter at the sourced 62nd (PMC3586194, as opened by the fact-checker), label '1999 study: 62nd'. Reveal paragraph 2 compares only the bottom quarter: '...now guessed the 63rd, near the dotted 62nd that Kruger and Dunning's 1999 bottom quarter gave itself'. Seed 42 with the shift: 63 (63.3). Screenshot checked: the ring shows around the guess dot and the label does not collide with 'guess 63'.
+- Claims reset to unverified: c3, c6. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 90 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

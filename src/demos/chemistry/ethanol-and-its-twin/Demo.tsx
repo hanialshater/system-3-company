@@ -3,7 +3,7 @@
 // Ethanol and its twin. Ethanol (CH3-CH2-O-H) and dimethyl ether (CH3-O-CH3) are both C2H6O, 46.07 u.
 // Ethanol has an H on its O, so each molecule can lend that H to a neighbour's O: a hydrogen bond
 // (dashed). Dimethyl ether has no H on O, so its molecules cannot hydrogen-bond to each other.
-// Boiling points at 1 atm: ethanol about 78 °C, dimethyl ether about -24 °C (CRC).
+// Boiling points at 1 atm: ethanol about 78 °C, dimethyl ether about -25 °C (CRC -24.8 °C).
 // Brief: company/domains/briefs/chemistry.matter-reactions.md #1 (format: before / after toggle).
 //
 // The stage is a schematic ring of six molecules at one instant (the dash count is illustrative, not
@@ -32,7 +32,7 @@ const CY = 116;
 const R = 50; // ring radius = O···O distance between neighbours
 const N = 6;
 const PULL = 36; // px the pulled molecule moves out
-const BP = { ethanol: "78 °C", ether: "−24 °C" } as const;
+const BP = { ethanol: "78 °C", ether: "−25 °C" } as const;
 const NAME = { ethanol: "Ethanol", ether: "Dimethyl ether" } as const;
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
@@ -108,7 +108,7 @@ export default function EthanolAndItsTwin({ slug }: { slug: string }) {
       predict={{
         question:
           "Ethanol and dimethyl ether are built from the same nine atoms (C₂H₆O, 46 u). Ethanol boils at about 78 °C. Dimethyl ether boils at about…",
-        options: ["about 78 °C", "about 35 °C", "about −24 °C"],
+        options: ["about 78 °C", "about 35 °C", "about −25 °C"],
         answer: 2,
       }}
       exploreHint="Pull one ethanol molecule out, then move the O to the middle and look again."
@@ -116,7 +116,7 @@ export default function EthanolAndItsTwin({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Same nine atoms, same 46 u, yet ethanol boils at about 78 °C and dimethyl ether at about −24 °C.
+            Same nine atoms, same 46 u, yet ethanol boils at about 78 °C and dimethyl ether at about −25 °C.
           </p>
           <p>
             In your ethanol ring, {rec.ethanol.dashes} dashes each linked an O–H to a neighbour&apos;s O (the O pulls

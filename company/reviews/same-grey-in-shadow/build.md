@@ -19,3 +19,10 @@ Builder: demo-builder (demo-builder-bigideas-pilot) · 2026-10-14 · from brief 
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530` (next dev): fit, crop 0 px, namedHidden 0, phoneFit true, 83 words (tool count, includes the verdict line). Smallest stage text 11.2 px at predict and 10.5 px at the reveal (the card fits the board smaller at the reveal; builder's own font-size probe).
 
 Stage text at any moment: caption 9 words, readout 11; preset labels 10.
+
+## Fact-check rewording (W-864 (FC38-41), 2026-10-15, demo-builder)
+
+- Reveal paragraph 1: 'Your visual system knows shadows darken surfaces, so it judged B lighter...' became 'Your eyes judged B lighter than the light it sends: the difference came from you, not the screen.' Support stays derivation; no cause (shadow vs local contrast) is claimed. c4 (Helmholtz) untouched.
+- Claims reset to unverified: c3. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 84 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

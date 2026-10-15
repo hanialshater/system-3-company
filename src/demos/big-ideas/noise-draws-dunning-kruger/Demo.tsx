@@ -9,8 +9,7 @@
 // Controls (DOM order = QA order): Run (then "New 1,000 people", seed + 1), track 0 / 0.3 / 1, shift toggle.
 // QA path: Run (seed 42, w 0: noise), 0 is active (disabled), 0.3, 1 (meet), shift on (shift).
 // Milestones: noise (a run with w = 0, shift off: bottom guess recorded), meet (w = 1, shift off), shift (shift on).
-// Learner r10 (W-840): a dotted ghost of the 1999 chart's shape (approximate, claim c6) is on the stage, and when the
-// reveal opens the stage shows the noise run with the shift (track 0, +15), which is what the reveal describes.
+// Learner r10 (W-840): a dotted mark for the 1999 study is on the stage, and when the reveal opens the stage shows the noise run with the shift (track 0, +15), which is what the reveal describes.
 
 import { useEffect, useMemo, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -38,9 +37,10 @@ function simulate(seed: number, w: number, shift: number) {
   return { real, guess };
 }
 
-/** Approximate shape of Kruger and Dunning's 1999 chart (bottom quarter's self-estimate about the 60th percentile,
- *  top quarter's about the 75th), drawn as a dotted ghost between the end quarters. Claim c6, for the fact-checker. */
-const PUBLISHED = { bottom: 60, top: 75 };
+/** Kruger and Dunning's 1999 bottom quarter (real scores near the 12th percentile) estimated itself at the 62nd
+ *  percentile (as reported in PMC3586194). Only this sourced bottom value is drawn, as a dotted mark on the bottom
+ *  quarter (a dotted ring); the top quarter's value has no opened source and is not drawn (W-938, FC41). Claim c6. */
+const PUBLISHED_BOTTOM = 62;
 
 /** Runs once when the reveal opens. */
 function OnReveal({ reveal, run }: { reveal: boolean; run: () => void }) {
@@ -92,9 +92,9 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
             randomness alone. When guesses matched skill, the lines met.
           </p>
           <p>
-            Add a better-than-average shift and the noise line sits near the dotted 1999 chart of Kruger and Dunning: the
-            bottom quarter now guessed the {ord(Math.round(simulate(seed ?? 42, 0, SHIFT).guess[0]))}, looking even more
-            overconfident.
+            Add a better-than-average shift and the bottom quarter now guessed the{" "}
+            {ord(Math.round(simulate(seed ?? 42, 0, SHIFT).guess[0]))}, near the dotted {ord(PUBLISHED_BOTTOM)} that Kruger and
+            Dunning&rsquo;s 1999 bottom quarter gave itself: looking even more overconfident.
           </p>
           <p>
             Where it stops: noise drawing the shape doesn’t prove there is no effect. Some analyses call it mostly a statistical
@@ -158,9 +158,9 @@ export default function NoiseDrawsDunningKruger({ slug }: { slug: string }) {
                   ))}
                   {data && !locked ? (
                     <>
-                      <line x1={xOf(0)} y1={yOf(PUBLISHED.bottom)} x2={xOf(3)} y2={yOf(PUBLISHED.top)} stroke="var(--muted)" strokeWidth={2} strokeDasharray="2 4" strokeLinecap="round" />
-                      <text x={xOf(0) + 2} y={yOf(76)} textAnchor="start" className={s.lab}>
-                        1999 chart (approx.)
+                      <circle cx={xOf(0)} cy={yOf(PUBLISHED_BOTTOM)} r={10} fill="none" stroke="var(--muted)" strokeWidth={2} strokeDasharray="2 3" strokeLinecap="round" />
+                      <text x={xOf(0) - 8} y={yOf(76)} textAnchor="start" className={s.lab}>
+                        1999 study: {ord(PUBLISHED_BOTTOM)}
                       </text>
                       <path d={line(data.real)} fill="none" stroke="var(--fg)" strokeWidth={2.5} strokeDasharray="6 4" />
                       <path d={line(data.guess)} fill="none" stroke="var(--domain)" strokeWidth={3.5} />
