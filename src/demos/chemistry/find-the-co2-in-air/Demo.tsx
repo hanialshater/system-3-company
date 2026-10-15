@@ -1,10 +1,10 @@
 "use client";
 
 // Find the CO2 in air. 10,000 molecules of dry air drawn as a 100 x 100 grid of dots (untapped
-// texture). Dry air by volume (molecule count): N2 78.084%, O2 20.946%, Ar 0.934%, CO2 about 420 ppm
-// (WMO Greenhouse Gas Bulletin No. 20, 2023 mean). Per 10,000: 7,808 + 2,095 + 93 + 4 = 10,000; the
+// texture). Dry air by volume (molecule count): N2 78.084%, O2 20.946%, Ar 0.934%, CO2 about 425 ppm
+// (NOAA GML global marine-surface annual mean 2025: 425.62 ppm). Per 10,000: 7,808 + 2,095 + 93 + 4 = 10,000; the
 // other gases (Ne, He, CH4, Kr, H2 ...) total about 27 ppm, 0.27 per 10,000, and round to no dot.
-// One breath of 0.5 L at 25 °C and 1 atm: n = PV/RT = 0.0204 mol, x NA x 420e-6 = 5.2e18 CO2 molecules.
+// One breath of 0.5 L at 25 °C and 1 atm: n = PV/RT = 0.0204 mol, x NA x 425e-6 = 5.2e18 CO2 molecules.
 // Brief: company/domains/briefs/chemistry.solutions-acids.md #3.
 //
 // Layout: a seeded shuffle (mulberry32, seed 42) of the 10,000 cells. Seed 42 was picked because its
@@ -35,8 +35,8 @@ const CELL = 2.2;
 const DOT = 1.7;
 const SEED = 42;
 
-// Breath: ideal gas at 25 °C, 1 atm, 0.5 L; 420 ppm of the molecules are CO2.
-const BREATH_CO2 = ((101325 * 0.0005) / (8.314 * 298.15)) * 6.02214076e23 * 420e-6; // 5.2e18
+// Breath: ideal gas at 25 °C, 1 atm, 0.5 L; 425 ppm of the molecules are CO2 (NOAA GML global mean 2025, 425.62).
+const BREATH_CO2 = ((101325 * 0.0005) / (8.314 * 298.15)) * 6.02214076e23 * 425e-6; // 5.2e18
 
 const W = 320;
 const H = 252;
@@ -95,7 +95,7 @@ export default function FindTheCo2InAir({ slug }: { slug: string }) {
         <>
           <p>
             Of your 10,000 dots, {c("n2")} were nitrogen, {c("o2")} oxygen, {c("ar")} argon and only{" "}
-            <strong>{c("co2")} carbon dioxide</strong>: about 420 parts per million, or 0.042%.
+            <strong>{c("co2")} carbon dioxide</strong>: about 425 parts per million in 2025, or 0.043%.
           </p>
           <p>
             A part per million is a share, not an amount. One breath of about half a litre still holds about 5 × 10¹⁸

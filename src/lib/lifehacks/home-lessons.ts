@@ -80,10 +80,10 @@ export const homeLessons: HomeSpec[] = [
       "Opposing wraps"
     ],
     "question": "Which wrap pattern tends to hold better?",
-    "idea": "Opposing knot stages make the balanced slipped reef bow sit across the shoe. The granny bow tends to turn along it; impact and moving lace ends can work a bow loose.",
+    "idea": "Opposing knot stages make the balanced reef bow lie flat; the granny bow twists out of line. Impact and moving lace ends can work a bow loose.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Changing the second wrap changes its geometry and model loss rate without advancing steps. Walk 20 steps advances from 0 to 20: remaining loop = max(0, 20 − steps × rate) mm, with matching rate 0.8 and opposing rate 0.3. The displayed results are 4 mm and 14 mm. No empirical lifetime is claimed.",
-    "recall": "A bow points along your shoe. Which knot step could you reverse?",
+    "recall": "A bow twists out of line. Which knot step could you reverse?",
     "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
     "answer": 1,
     "concept": "shoelace-square-bow",
@@ -1408,7 +1408,7 @@ export const homeLessons: HomeSpec[] = [
       "First orientation",
       "Rotate circles"
     ],
-    "question": "At this 28 cm tray, how many 10 cm discs fit once each is turned 45°?",
+    "question": "At this 28 cm tray, how many 10 cm discs fit in this square grid once each is turned 45°?",
     "idea": "A circle is unchanged by rotation. In the selected square-grid arrangement, rotating each disc cannot alter the row count; changing the arrangement would be a separate experiment.",
     "limit": "This model keeps a square grid; it is not a best-packing solver.",
     "formula": "Count=floor(W/10)² in both selected square grids, disc diameter10cm.",
@@ -1451,7 +1451,7 @@ export const homeLessons: HomeSpec[] = [
         ]
       }
     ],
-    "resultLabel": "Discs that fit",
+    "resultLabel": "Discs in the grid",
     "pictureMark": "radius-stripe"
   },
   {

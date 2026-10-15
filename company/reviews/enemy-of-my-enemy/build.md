@@ -66,3 +66,10 @@ Inputs: company/design/reviews/2026-10-14-design-review-network-pair.md, finding
 - **Fit.** At the reveal the board is drawn at 3/4 size (svg data-reveal-fit; 15 px labels render about 11 px, above the 10 px floor), its pair handles are disabled so the 44 px targets cannot overlap, and the preset row steps aside. Stage text with the seen line is about 30 words at the 3-camps state (over the 25 budget by the seen line); flagged for design review.
 - **Pre-flight 7.** Before: crop 125 px. After: crop 0, hiddenBelow 0, namedHidden 0, phoneFit true. A, B, E and all edges are on screen. Measured with tools/reveal-fit.mjs logic against the shared dev server localhost:3530 (390x844 touch). The stock script timed out on page.goto (the dev server took 30-50 s to DOMContentLoaded and up to 3 min to hydrate under load average ~30), so I ran a scratch copy with only the goto/wait/tap timeouts raised (scratchpad reveal-fit-slow.mjs; measurement code unchanged). Results in artifacts/reveal-fit/r9-revise*.json.
 - Not addressed: finding 1 (packed predict stem) and minor 7 (3 camps preset shortcut).
+
+## Fact-check rewording (W-938 (FC41), 2026-10-15, demo-builder)
+
+- Reveal paragraph 3: 'This is the balance theorem (Harary, 1953), and it holds...' became 'This is the balance theorem, and it holds for any number of people.' Support now derivation (proof sketch + n = 5 enumeration).
+- Claims reset to unverified: c6. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 61 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

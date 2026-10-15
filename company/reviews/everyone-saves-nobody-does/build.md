@@ -22,3 +22,10 @@ builder: wave-i-economics (demo-builder) · 2026-10-14 · brief: company/domains
 Known soft spot: after the QA path the stage shows the $40 cut at round 0 while the reveal talks about the $20 run (the record row carries it). Reviewers may prefer the chips to stay $20 at the reveal.
 
 Not run (per dispatch): next build, QA, walkthrough. tsc and check pass.
+
+## Fact-check rewording (W-938 (FC41), 2026-10-15, demo-builder)
+
+- Reveal: 'This is the paradox of thrift, in a toy model' became 'That is a paradox, shown in a toy model' (support derivation from c1-c3). NOT fixed, outside my scope: the public /catalog map still shows the concept name 'Paradox of thrift (toy Keynesian model)' (content/curriculum/economics.json, owned by cm-economics), and meta concept/curriculum ids are 'paradox-of-thrift'. A checker may count the map label as learner-visible (the same question as patience-wins-the-split / Rubinstein).
+- Claims reset to unverified: c4. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 74 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

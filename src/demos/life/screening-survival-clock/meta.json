@@ -67,18 +67,26 @@
       "note": "FC pass 38 (fact-checker, 2026-10-14): Convention, stated on the locked stage ('14 people with a made-up illness ... dies 1 to 8 years later'), in the question ('Treatment changes nothing') and the reveal ('This toy makes no claim about any real test'). T runs 1.25 to 7.75, inside '1 to 8 years'.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "life.screening-survival-clock.recall",
+      "text": "Recall keyed option 'Compare death rates in randomly assigned scanned and unscanned groups'; why: 'Survival counted from diagnosis rises whenever diagnosis moves earlier, even if no death moves; deaths in randomly assigned groups do not depend on when diagnosis happened.'",
+      "support": "derivation",
+      "source": "Lead time (c2) and c3: a group's death count over a fixed period never refers to the diagnosis date. Random assignment makes the scanned and unscanned groups alike apart from the scan, so a difference in deaths is the scan's effect (fact-checker pass 38, c3 note).",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (2026-10-15): W-867 optional wording: recall keyed option and why now say 'randomly assigned groups' (was 'whole groups'), so the comparison is fair only when the groups are alike. New claim: the recall was not recorded before."
     }
   ],
   "confidence": "",
   "recall": {
     "question": "A clinic starts a scan that finds a disease 2 years sooner. Its 5-year survival jumps. What is the fair way to tell whether the scan helps?",
     "options": [
-      "Compare death rates in whole scanned and unscanned groups",
+      "Compare death rates in randomly assigned scanned and unscanned groups",
       "Trust the higher 5-year survival",
       "Count how many more cases the scan finds"
     ],
     "answer": 0,
-    "why": "Survival counted from diagnosis rises whenever diagnosis moves earlier, even if no death moves; deaths in whole groups do not depend on when diagnosis happened."
+    "why": "Survival counted from diagnosis rises whenever diagnosis moves earlier, even if no death moves; deaths in randomly assigned groups do not depend on when diagnosis happened."
   },
   "evidence": {
     "qa": [

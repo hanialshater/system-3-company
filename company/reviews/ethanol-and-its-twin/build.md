@@ -34,3 +34,10 @@ Review: company/reviews/ethanol-and-its-twin/2026-10-14-learner-adult-beginner-r
 7. **Phone fit.** reveal-fit verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true, 92 tool words.
 
 QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = the 18 r10 lessons), phone and desktop both passed (36/36, artifacts/qa-f2/final/qa-report.json, harness stamp clean). Fit: committed tools/reveal-fit.mjs --url http://localhost:3632 --strict, tool stamp clean (artifacts/reveal-fit/f2-final.json; screenshot artifacts/reveal-fit/<slug>.png). The tool's word count includes the verdict line and the trust link (about 6 words).
+
+## Fact-check rewording (W-867 (optional wording, FC38), 2026-10-15, demo-builder)
+
+- Dimethyl ether 'about −24 °C' became 'about −25 °C' (CRC −24.8 °C) in the question option, the stage record line and the reveal; c3's 'liquid below −24 °C' became 'below about −25 °C'.
+- Claims reset to unverified: c2, c3. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 92 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

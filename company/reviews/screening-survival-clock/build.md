@@ -18,3 +18,10 @@ Brief: `company/domains/briefs/life.health-epidemiology.md`, spare-capacity batc
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3537 screening-survival-clock`: verdict fit, stage-top crop 0 px, hiddenBelow 0, namedHidden 0 ("alive 5 years after diagnosis" visible). The tool counts 71 words with the verdict line; the reveal body is 66. Stage 337 px (picture 175, controls 50, text 76), reveal 232 px, window 594 px. Screenshot `artifacts/reveal-fit/screening-survival-clock.png`. Measured on a `next dev` server started from this worktree (/home/user/s3c-rel, port 3537, stopped afterwards): the shared dev server on 3530 serves /home/user/system-3-company, which does not contain this lesson.
 
 Not run: next build, QA, walkthrough (per task). tsc and check pass. A local Playwright pass of the QA contract's steps (scratch script) found no dead controls, no errors, no small controls and no overflow.
+
+## Fact-check rewording (W-867 (optional wording, FC38), 2026-10-15, demo-builder)
+
+- Recall keyed option is now 'Compare death rates in randomly assigned scanned and unscanned groups', and the why says 'deaths in randomly assigned groups'. The recall was not recorded as a claim before; it is now claim 'recall' (unverified).
+- Claims reset to unverified: recall (new). Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 71 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.

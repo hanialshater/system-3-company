@@ -15,3 +15,10 @@ Departures from the brief: instead of a "zoom ×10" that replaces the grid, a ma
 7. **Phone fit.** `node tools/reveal-fit.mjs` at 390×844, 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0, 71 reveal words (tool count, including "Your prediction held."), phoneFit true, picScale 1. Screenshot `artifacts/reveal-fit/find-the-co2-in-air.png`. The reveal points at the four counts and the breath line; all are visible, as are the CO₂ rings. Smallest picture label 10.5 px at scale 1; controls 35 px.
 
 Measured on my own `next dev` of this worktree (port 3547), not on :3530 (main checkout). Stage text about 22 words. No console errors. Not run: next build, computer-use QA, walkthrough.
+
+## Fact-check rewording (W-867 (optional wording, FC38), 2026-10-15, demo-builder)
+
+- Reveal: 'about 420 parts per million, or 0.042%' became 'about 425 parts per million in 2025, or 0.043%' (NOAA GML global annual mean 2025, 425.62 ppm). Breath constant now uses 425e-6 (5.23e18, still shown as 5 × 10¹⁸). The '4 of 10,000' answer is unchanged.
+- Claims reset to unverified: c2, c4. Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 73 tool words (the tool counts the kit's verdict line and trust link as well).
+- QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.
