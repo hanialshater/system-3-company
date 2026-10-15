@@ -1,7 +1,7 @@
 {
   "slug": "doubling-stopped-speeding-up",
   "title": "The next doubling",
-  "hook": "World population doubled faster and faster. Did the latest doubling keep up the pace?",
+  "hook": "World population doubled in 122 years, then in 48. How long did the next doubling take?",
   "domain": "history",
   "concept": "world-population-doubling",
   "status": "draft",
@@ -74,13 +74,11 @@
     },
     {
       "id": "history.doubling-stopped-speeding-up.c6",
-      "text": "World population doubled faster and faster (hook): 1 to 2 billion took 122 years, 2 to 4 billion took 48.",
+      "text": "World population doubled in 122 years (1 to 2 billion), then in 48 (2 to 4 billion) (hook).",
       "support": "derivation",
       "source": "c2: 1927 - 1805 = 122; 1975 - 1927 = 48 (history-cycle2-check.mjs section 15). The hook states only the first two doublings; the third is the question.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Hook: 1927-1805 = 122, 1975-1927 = 48 (c2). 'Doubled faster and faster' is true of those two spans.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Hook: 1927-1805 = 122, 1975-1927 = 48 (c2). 'Doubled faster and faster' is true of those two spans. | v4 (demo-builder, 2026-10-15, W-1024, cm-history r1-revision ruling 2): the hook no longer says 'doubled faster and faster'; text reworded to the new hook. Support unchanged (c2's derivation). Re-derived from the pinned gapminder-pop-global.csv (sha256 holds): first year at or above 1, 2, 4 billion = 1805, 1927, 1975; 122 and 48. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.doubling-stopped-speeding-up.c7",

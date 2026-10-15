@@ -5,7 +5,8 @@
 // Brief: company/domains/briefs/history.md #18; numbers: section 18 of history-cycle2-check.mjs.
 //
 // GDP below is the column for 1310..1871 in order (562 values, one a year, none missing), copied unchanged.
-// The copy states no unit, so the stage shows only an index, 1450 = 100, rounded as the script does.
+// Shown as an index, 1450 = 100, rounded as the script does (ratios do not depend on the unit; the OWID datapackage.json
+// gives 2011 int-$, FC47).
 // Locked stage: the axes and the line from 1310 to 1450 only (the question gives 1450 = 100).
 // The line is drawn up to the latest preset pressed; marks stay. The 1800 readout already carries the yearly
 // change. Milestones: y1800 (the brief's gate) and avg. No Reset.
@@ -261,8 +262,7 @@ export default function ItalyPoorerIn1800({ slug }: { slug: string }) {
             from {A(1450)} to {A(1800)}. Income per person can shrink for centuries, not only grow.
           </p>
           <p>
-            Where it stops: this is one reconstruction, of the north and centre only, and the data file names no unit,
-            so it is shown as an index.
+            Where it stops: this is one reconstruction, of the north and centre only, shown as an index (1450 = 100).
           </p>
         </>
       )}

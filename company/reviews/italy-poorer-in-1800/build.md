@@ -25,3 +25,11 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - The whole-line view is still optional. The avg view draws the whole line, so the required path now shows the context the review asked for.
 - Claims: new c7 (averages), unverified. c6 reset. c3 note only. meta.json version 2.
 - Phone fit (reveal-fit, committed, :3672, 390x844): fit, crop 0, hidden 0, namedHidden 0, phoneFit true, 86 words. QA contract phone and desktop pass.
+
+## v3 (2026-10-15, demo-builder, branch patience: W-1024, cm-history r1-revision ruling 3; FC47 c6 dispute)
+
+- meta.json title "North and central Italy, 1450 to 1800"; hook "Before industry, did income per person rise, hold or fall?"; objective and recall replaced with the ruling's exact text (recall answer index 0). Reveal paragraph 1 unchanged.
+- New claim c8 for the hook's "Before industry" (unverified; a source must be opened by the fact-checker; fallback hook "Over 350 years, did income per person rise, hold or fall?" per the ruling).
+- c6 (FC47 dispute): reveal limit sentence now "Where it stops: this is one reconstruction, of the north and centre only, shown as an index (1450 = 100)." (fix a; the unit reason is dropped because the OWID datapackage.json gives 2011 int-$). Source updated; reset to unverified. Demo.tsx header comment no longer says the copy states no unit.
+- Re-derived from the pinned maddison2020.csv (sha256 holds): index 1800 = 74.70 (75); centred 25-year means 1438-1462 = 101.05 (101), 1788-1812 = 78.65 (79).
+- reveal-fit: 390x844 fit, crop 0, 78 words, phoneFit false (namedHidden "1800"); 412x839 the same. On HEAD's files 412 already had this flag and 390 did not. Cause: the longer title wraps to two lines, the card collapses the controls tray ("Show controls"), and the hidden match is the "1800" preset button inside it. The year the reveal quotes is on the picture ("1800: 75" dot label, visible in the screenshot); the heuristic matches only an exact "1800" label. I did not change the ruled title or game the label. QA contract: phone and desktop pass.

@@ -13,7 +13,7 @@
 // (milestone sim, second in DOM order) redraws the chart as a simulation: 82 years of 100 christenings each,
 // each a boy with the file's overall share p = 484,382 / 938,223 = 0.516, drawn from mulberry32(SEED = 1), on a
 // scale one tenth of the real one. Seed 1 is the first seed tried, not chosen for its result (over seeds 1-1000,
-// girls lead in 14 to 41 years, median 28; seed 1 gives 23). Its count stays as a line in the empty band below zero
+// girls lead in 14 to 41 years, median 27.5; seed 1 gives 23). Its count stays as a line in the empty band below zero
 // on the real chart, so the reveal can quote it after the learner returns there. Tick labels sit left of the bars.
 
 import { useState } from "react";

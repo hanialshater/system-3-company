@@ -89,3 +89,9 @@ QA: tests/qa/contract.spec.ts against next dev on :3632 (QA_BASE_URL, QA_ONLY = 
 - Reveal fit (tools/reveal-fit.mjs --url http://localhost:3663 --strict, next dev, 390x844, tool stamp clean): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false (dial fitted 177/199 px), 88 tool words (includes the verdict line and trust link). JSON artifacts/reveal-fit/w984.json, screenshot artifacts/reveal-fit/earth-history-in-a-day.png.
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3663, QA_ONLY=earth-history-in-a-day): phone and desktop passed (2/2). A full `playwright test` run with QA_ONLY set first failed 4 feed.spec tests (chips, spaced revisit); tests/qa/feed.spec.ts re-run without QA_ONLY passed 5/5 on phone, so I read that as the filter or a cold dev compile, not this change. npm run check passed; tsc --noEmit clean.
 - Not done here (ruling): r10 finding 4 is only partly met (told sentence, not shown on the stage); a distance readout is the interaction designer's call. The walkthrough is still from before v4.
+
+## v6 (2026-10-15, demo-builder, branch patience: W-1013, FC41 non-blocking fixes)
+
+- c2 source now names Neubauer, Hublin & Gunz (2018), Science Advances 4(1): eaao5961 (PMC5783678), the paper FC41 opened. Text unchanged; reset to unverified.
+- c5: with the hand on "Earliest life (debated)" (Next event from the start) the readout said "3.70 billion years ago" (toFixed(2)). Events may now carry an `ago` text; the life event's is "about 3.7 billion years ago", and the readout uses it when the hand sits on the event. Other hand positions keep yearsText() (the start still reads 4.54 billion, as the question does). Checked in a browser at 390x844: readout "about 3.7 billion years ago". c5 text gains this address; reset to unverified.
+- reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 88 words. QA contract: phone and desktop pass.

@@ -39,3 +39,8 @@ Held source sentence (one): "reconstructions from wages, prices and output recor
 - Claims: c3 (re-quoted), c6 (legend, caption), c7 ("on the linear scale") reset to unverified; c11 new (the sag sentence, derivation), unverified. I verified none. meta.json version 4.
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 90 reveal words with the verdict line (artifacts/reveal-fit/hrA-w989.json). At 412x839 (the walkthrough's Pixel 7): crop 0, phoneFit true (artifacts/reveal-fit/hrA-w989-412.json).
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.
+
+## v5 (2026-10-15, demo-builder, branch patience: FC48 c11 source-field fix)
+
+- c11 source: "first reaches it in 2002" was wrong. Re-run on the rounded UK series from the pinned maddison2020.csv against 2,412 x 1.008713^(y - 1700): below in 304 of 317 years 1701-2017; above in 1701 (+7.4%), 1702 (+2.9%), 1704 (+11.2%), 1705 (+4.4%), 1708 (+2.0%) and 2002-2008, 2017. Source now says so. Not learner-facing; c11 text unchanged; reset to unverified.
+- reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 90 words. QA contract: phone and desktop pass.

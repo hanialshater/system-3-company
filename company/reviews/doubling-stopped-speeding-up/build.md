@@ -36,3 +36,9 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - Not done, brief owner's: the objective still says 0.87% in 2023 (see v2, W-869).
 - Phone fit: tools/reveal-fit.mjs (committed, clean stamp) at 390x844 against dev :3672: fit, crop 0, hidden 0, namedHidden 0, phoneFit true, **90 words** with the wrong-answer verdict "Not quite: it was "About 48 years"." This is the worst case, at the budget limit (artifacts/reveal-fit/w990-hrB-final.json).
 - QA contract (QA_BASE_URL=http://localhost:3672): phone and desktop pass (artifacts/qa-w990-hrB). Dev server, not a production build.
+
+## v4 (2026-10-15, demo-builder, branch patience: W-1024, cm-history r1-revision ruling 2)
+
+- meta.json hook "World population doubled in 122 years, then in 48. How long did the next doubling take?" (exact ruling text).
+- c6 reworded to "World population doubled in 122 years (1 to 2 billion), then in 48 (2 to 4 billion) (hook)."; support unchanged; reset to unverified. Re-derived from the pinned gapminder-pop-global.csv: first year at or above 1/2/4/8 billion = 1805/1927/1975/2022 (122, 48, 47).
+- reveal-fit: 390x844 fit, crop 0, phoneFit true, 90 words; 412x839 fit, crop 4 px, phoneFit false. The 4 px crop at 412 is pre-existing: the same run on the unchanged HEAD files gives crop 4 too (the hook is not part of the stage). Not fixed here; it needs its own item. QA contract: phone and desktop pass.
