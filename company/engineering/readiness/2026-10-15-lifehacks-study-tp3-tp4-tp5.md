@@ -1,7 +1,7 @@
 # Operational readiness: lifehacks-study-tp3-tp4-tp5
 
 ```
-change: Study template packages TP-3 (retrieval stage for recall lessons that opt in), TP-4 (schedule readouts and reveal), TP-5 (queue readouts and reveal), plus the W1 lesson fixtures
+change: Study template packages TP-3 (retrieval stage for recall lessons that opt in), TP-4 (schedule readouts and reveal), TP-5 (queue readouts and reveal), plus the W1 and W9 lesson fixtures and optional v1 spec fields (schedule: window, chain, dueRow, longer, claimed; queue: priority, watch, metric "release")
 change-tier: 2
 paths: src/components/lifehacks/StudyLesson.tsx, src/components/lifehacks/StudyLesson.module.css, src/components/lifehacks/RetrievalLesson.tsx, src/lib/lifehacks/studyRecall.ts, src/lib/lifehacks/studyModels.ts, src/lib/lifehacks/studyCatalog.ts, src/demos/lifehacks/*/meta.json, company/reviews/*/build.md
 author: demo-builder
@@ -17,6 +17,7 @@ Tier 2 because `src/components/lifehacks/**` and `src/lib/lifehacks/**` are "eng
 1. **What can fail.**
    - A retrieval fixture with a typo (an answer missing from its choices) would make that box impossible to get right. `retrievalProblems()` in `studyRecall.ts` detects it, but no test calls it yet (tests are platform-engineer's; see 7).
    - The v1 schedule and queue stages are shared by 20 lessons (10 each). A wrong sentence in `scheduleObservation` or `queueObservation` reaches all of them. The worst case is a reveal that reads wrongly across 20 lessons. Learners see it, but only after deploy, and every lesson here is at `review`, not published.
+   - The optional v1 fields default to off. A spec without them renders as before, apart from the TP-4/TP-5 wording. A due-row lesson also gets a "Late" readout.
    - `rebuild-the-procedure` (a domain-launch slate lesson) uses the v1 recall stage. Its code path is unchanged: it has no `retrieval` field, so it never reaches `RetrievalLesson.tsx`.
 2. **How we would know.** The QA contract (`tests/qa/contract.spec.ts`) fails a lesson that throws, has a dead control or a short reveal. It passed phone and desktop for all 28 changed lessons on 2026-10-15 (dev server, `QA_BASE_URL`). `npm run test:lifehacks` (64/64) pins the queue and calendar numbers and claims-match. There is no meter for "the reveal's sentence is wrong". The fact-checker reads the reset c3/c4 claims, and the r12 learner walk reads the reveals.
 3. **How to roll back.** Use `git revert <sha>` of the branch commits. Each W1 lesson's meta and fixture are in the same commit as the template, so a revert restores a consistent tree. It takes about a minute, loses no data, and does not need the founder (a deploy afterwards does).

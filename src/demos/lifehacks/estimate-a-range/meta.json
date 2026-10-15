@@ -1,7 +1,7 @@
 {
   "slug": "estimate-a-range",
   "title": "Try the longer estimate",
-  "hook": "A task estimated at fifteen to twenty-five minutes needs more than one calendar test.",
+  "hook": "A 15-25 minute task, then a call at 20.",
   "domain": "lifehacks",
   "concept": "plan-with-the-long-estimate",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Stress-test a schedule at the longer end of an explicit range.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A task estimated at fifteen to twenty-five minutes needs more than one calendar test. Which checks the stated worst duration? Correct option: Use 25 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A 15-25 minute task, then a call at 20. A 15-25 minute task, then a call at 20. Plan with 15: is the call safe? Correct option: Not if it runs long. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.estimate-a-range.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
@@ -44,6 +42,13 @@
       "support": "derivation",
       "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, estimate-a-range fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.estimate-a-range.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: the task is planned at its short end, 15 minutes (0–15), before a call at 20–30, with no overlap. “Use the long end, 25” draws it at 25 minutes (0–25), which overlaps the call by 5 minutes, so that plan has no valid finish. Reveal sentence: Task is drawn at its long end, 25 minutes.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.estimate-a-range.c4",
       "status": "unverified"
     },
     {

@@ -1,7 +1,7 @@
 {
   "slug": "earliest-deadline-first",
   "title": "Read the due dates",
-  "hook": "A shorter task can wait while an earlier deadline cannot.",
+  "hook": "Short job (5 min, due 30) or urgent job (10 min, due 10).",
   "domain": "lifehacks",
   "concept": "homework-deadline-first",
   "status": "review",
@@ -22,28 +22,31 @@
   "objective": "Compare deadline misses instead of only completion count.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A shorter task can wait while an earlier deadline cannot. Which order respects the minute-15 deadline here? Correct option: Urgent job first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Short job (5 min, due 30) or urgent job (10 min, due 10). Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late? Correct option: Yes, the urgent one. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.earliest-deadline-first.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
-      "text": "The red deadline markers compare completion with due time. This fixture rewards meeting due dates, rather than minimising average waiting.",
+      "text": "The red deadline markers compare completion with due time. This exercise rewards meeting due dates, rather than minimising average waiting.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): reveal principle edited (W9 stage fix). Not checked by the builder.",
       "id": "lifehacks.earliest-deadline-first.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
       "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, earliest-deadline-first fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.earliest-deadline-first.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: short job 5 min, due at 30; urgent job 10 min, due at 10. Quickest first (short, then urgent) ends the urgent job at minute 15, 5 minutes late. Urgent first ends it at 10, on time, and total waiting rises from 5 to 10 minutes.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.earliest-deadline-first.c4",
       "status": "unverified"
     },
     {

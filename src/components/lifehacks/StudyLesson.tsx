@@ -5,7 +5,7 @@ import { Lesson } from "@/kit/Lesson";
 import { Slider } from "@/kit/controls";
 import { StageControl, StageStatus, resultText } from "./a11y";
 import { useMilestones } from "@/kit/milestones";
-import { calendarResult, freeGaps, queueResult, fileResult, editResult, illustrativeMemory, reconstructionMatches, swapPositions, type StudySpec, type FilesSpec, type OrderSpec, type ScheduleSpec } from "@/lib/lifehacks/studyModels";
+import { calendarResult, freeGaps, queueResult, scheduleLayout, fileResult, editResult, illustrativeMemory, reconstructionMatches, swapPositions, type StudySpec, type FilesSpec, type OrderSpec, type ScheduleSpec } from "@/lib/lifehacks/studyModels";
 import { calendarClashes } from "@/lib/lifehacks/engine-v2";
 import { RetrievalLesson } from "./RetrievalLesson";
 import { StudyLessonV2 } from "./StudyLessonV2";
@@ -32,14 +32,16 @@ function Frame({label,children}:{label:string;children:React.ReactNode}) {
   return <svg viewBox="0 0 320 142" className={`stage-svg ${s.diagram}`} role="img" aria-label={label}>{children}</svg>;
 }
 
-const dueRowOf=(spec:ScheduleSpec)=>["work-back-from-a-deadline","arrival-is-not-departure"].includes(spec.slug)?0:-1;
+const dueRowOf=(spec:ScheduleSpec)=>spec.dueRow??(["work-back-from-a-deadline","arrival-is-not-departure"].includes(spec.slug)?0:-1);
 const plural=(n:number,one:string,many:string)=>`${n} ${n===1?one:many}`;
+const cap=(t:string)=>t.charAt(0).toUpperCase()+t.slice(1);
 /** TP-4: the reveal reads the final layout. An overlap is named with its minutes and never reported as a normal finish. */
-export function scheduleObservation(spec:ScheduleSpec,starts:readonly number[]):string {
-  const rows=spec.rows.map((r,i)=>({...r,start:starts[i]}));
+export function scheduleObservation(spec:ScheduleSpec,starts:readonly number[],long=false):string {
+  const rows=scheduleLayout(spec,starts,long);
   const dueRow=dueRowOf(spec);
   const v=calendarResult(rows,spec.deadline,dueRow);
   const out:string[]=[];
+  if(long&&spec.longer) out.push(`${cap(rows[spec.longer.row].label)} is drawn at its long end, ${rows[spec.longer.row].duration} minutes.`);
   if(spec.window!==undefined) {
     const g=freeGaps(rows,spec.window,spec.movable);
     out.push(`Before minute ${spec.window} there are ${g.total} free minutes in ${plural(g.gaps.length,"gap","gaps")}, and the longest gap is ${g.longest} minutes.`);
@@ -49,8 +51,10 @@ export function scheduleObservation(spec:ScheduleSpec,starts:readonly number[]):
     out.push(`Your final layout overlaps for ${v.conflict} minutes (${clashes}). One person cannot do both at once, so this plan has no valid finish.`);
   } else if(dueRow>=0) {
     const f=rows[dueRow].start+rows[dueRow].duration;
-    out.push(`Your final layout has no overlap. ${rows[dueRow].label} finishes at minute ${f} and is due at minute ${spec.deadline}${v.spill?`, so it is ${v.spill} minutes late`:", so it is on time"}.`);
+    if(spec.chain) out.push(`Starting ${rows[0].label} at minute ${rows[0].start}, ${rows[dueRow].label} finishes at minute ${f}; it is due at minute ${spec.deadline}${v.spill?`, so it is ${v.spill} minutes late`:", so it is on time"}.`);
+    else out.push(`Your final layout has no overlap. ${rows[dueRow].label} finishes at minute ${f} and is due at minute ${spec.deadline}${v.spill?`, so it is ${v.spill} minutes late`:", so it is on time"}.`);
   } else out.push(`Your final layout has no overlap, and everything is done by minute ${v.finish}.`);
+  if(spec.claimed&&!v.conflict) out.push(`The ${spec.claimed.label.toLowerCase()} said minute ${spec.claimed.minute}: ${v.finish-spec.claimed.minute} minutes too early.`);
   return out.join(" ");
 }
 /** TP-5: total waiting is defined in words; when the right order waits longer, the reveal says what the goal is instead. */
@@ -60,10 +64,12 @@ export function queueObservation(spec:OrderSpec,order:readonly number[]):string 
   let text=`Your order ${names(order)}: total waiting ${v.waiting} minutes, ${plural(v.late,"late job","late jobs")}`;
   if(spec.switchCost) text+=`, ${plural(v.switches,"switch","switches")} (${spec.switchCost} minutes each)`;
   if(deps) text+=`, ${plural(v.breaches,"job","jobs")} run before the job ${v.breaches===1?"it needs":"they need"}`;
+  const watched=(o:readonly number[])=>spec.watch===undefined?0:queueResult(spec,o).ends[o.indexOf(spec.watch)];
+  if(spec.watch!==undefined) text+=`; ${spec.labels[spec.watch]} done at minute ${watched(order)}`;
   text+=".";
   const base=queueResult(spec,spec.initial);
   const atTarget=order.every((id,i)=>id===spec.target[i]);
-  if(atTarget&&spec.metric!=="waiting"&&v.waiting>base.waiting) text+=` That is ${v.waiting-base.waiting} more minutes of waiting than ${names(spec.initial)}, but the goal here is ${spec.metric==="dependency"?"running each job after the job it needs":spec.metric==="switches"?"fewer switches":"no late jobs"}, not the least waiting.`;
+  if(atTarget&&spec.metric!=="waiting"&&v.waiting>base.waiting) text+=` That is ${v.waiting-base.waiting} more minutes of waiting than ${names(spec.initial)}, but the goal here is ${spec.metric==="dependency"?"running each job after the job it needs":spec.metric==="switches"?"fewer switches":spec.metric==="release"&&spec.watch!==undefined?`${spec.labels[spec.watch]} done sooner (minute ${watched(order)}, not ${watched(spec.initial)})`:"no late jobs"}, not the least waiting.`;
   return text;
 }
 
@@ -73,7 +79,7 @@ function observation(spec: StudySpec,state: State): string {
     const v=illustrativeMemory(state.day);
     return `At day ${state.day}, the illustration shows A at ${Math.round(v.cram*100)}% and B at ${Math.round(v.spaced*100)}%. These values follow chosen decay constants, not observations of you.`;
   }
-  if(spec.family==="schedule") return scheduleObservation(spec,state.starts);
+  if(spec.family==="schedule") return scheduleObservation(spec,state.starts,state.refined);
   if(spec.family==="order") {
     const roundRobin=spec.slug==="work-in-process-limit"&&state.step<2;
     const v=queueResult(spec,state.order,roundRobin);
@@ -168,7 +174,7 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     </div>;
   }
   if(spec.family==="schedule") {
-    const rows=spec.rows.map((r,i)=>({...r,start:state.starts[i]}));
+    const rows=scheduleLayout(spec,state.starts,state.refined);
     const dueRow=dueRowOf(spec);
     const values=calendarResult(rows,spec.deadline,dueRow);
     const limit=100, x=(v:number)=>82+v/limit*220;
@@ -177,7 +183,8 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     // TP-4: readouts in words; an overlapping plan has no valid finish.
     const finishText=values.conflict?"no valid finish":dueRow>=0?`finishes at ${dueFinish}`:`minute ${values.finish}`;
     const gaps=spec.window!==undefined?freeGaps(rows,spec.window,spec.movable):null;
-    const moved=state.starts.every((v,i)=>v===spec.target[i]);
+    const moved=spec.longer?state.refined:state.starts.every((v,i)=>v===spec.target[i]);
+    const maxStart=Math.min(70,100-(spec.chain?rows.reduce((t,r)=>t+r.duration,0):rows[spec.movable].duration));
     return <div className={s.wrap}>
       <div className={s.caption}>{gaps?"One person · dashed = free gap · the job runs in one piece":"One person · minutes"}</div>
       <Frame label={`One-person calendar. ${rows.map(r=>`${r.label} from minute ${r.start} to ${r.start+r.duration}`).join("; ")}.${gaps?` Free gaps before minute ${spec.window}: ${gaps.gaps.map(g=>`${g.start} to ${g.end}`).join(", ")}.`:""} ${tested?`${values.conflict} minutes of overlap; ${dueRow>=0?`due at minute ${spec.deadline}, `:"finish: "}${finishText}.`:"Results not yet tested."}`}>
@@ -190,14 +197,14 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
           <text x={x(r.start)} y={46+i*36} fill={textColor}>{r.start}–{r.start+r.duration}</text>
         </g>)}
         <text x="82" y="140" fill={textColor}>0</text><text x="302" y="140" textAnchor="end" fill={textColor}>100</text>
-        {dueRow>=0&&<line x1={x(spec.deadline)} x2={x(spec.deadline)} y1="8" y2="34" stroke="var(--bad)" strokeWidth="2"/>}
+        {dueRow>=0&&<line x1={x(spec.deadline)} x2={x(spec.deadline)} y1={8+dueRow*36} y2={34+dueRow*36} stroke="var(--bad)" strokeWidth="2"/>}
       </Frame>
-      <Results locked={locked} items={[...(gaps?[["Free before "+spec.window,tested?`${gaps.total} min · longest gap ${gaps.longest}`:"?"]] as Array<[string,string]>:[]),["Overlap",tested?`${values.conflict} min`:"?"],[dueRow>=0?`Due at ${spec.deadline}`:"Finish",tested?finishText:"?"]]}/>
+      <Results locked={locked} items={[...(gaps?[["Free before "+spec.window,tested?`${gaps.total} min · longest gap ${gaps.longest}`:"?"]] as Array<[string,string]>:[]),...(spec.chain?[]:[["Overlap",tested?`${values.conflict} min`:"?"]] as Array<[string,string]>),[dueRow>=0?`Due at ${spec.deadline}`:"Finish",tested?finishText:"?"],...(dueRow>=0&&!values.conflict?[["Late",tested?(values.spill?`${values.spill} min`:"on time"):"?"]] as Array<[string,string]>:[]),...(spec.claimed?[[spec.claimed.label,tested?`minute ${spec.claimed.minute}`:"?"]] as Array<[string,string]>:[])]}/>
       <div className={s.controls}>
         <StageControl locked={locked} inactive={state.step>0} onClick={()=>step(1)}>Test plan</StageControl>
-        <StageControl locked={locked} inactive={!state.step||moved} onClick={()=>{setState(p=>({...p,step:2,starts:[...spec.target]}));reach("key-comparison");}}>{spec.button}</StageControl>
+        <StageControl locked={locked} inactive={!state.step||moved} onClick={()=>{setState(p=>({...p,step:2,starts:[...spec.target],refined:Boolean(spec.longer)}));reach("key-comparison");}}>{spec.button}</StageControl>
       </div>
-      <Slider label="Start" value={state.starts[spec.movable]} min={0} max={70} disabled={locked||!state.step} format={v=>`minute ${v}`} onChange={v=>setState(p=>({...p,starts:p.starts.map((n,i)=>i===spec.movable?v:n)}))}/>
+      <Slider label={spec.chain?`Start (${rows[spec.movable].label})`:"Start"} value={state.starts[spec.movable]} min={0} max={maxStart} disabled={locked||!state.step} format={v=>`minute ${v}`} onChange={v=>setState(p=>({...p,starts:p.starts.map((n,i)=>i===spec.movable?v:n)}))}/>
     </div>;
   }
   if(spec.family==="order") {
@@ -215,12 +222,12 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
         {state.order.map((id,i)=><g key={id}>
           <text x="2" y={29+i*35} fill={textColor} className={s.rowLabel}>{spec.labels[id]}</text>
           {v.segments.filter(seg=>seg.id===id).map((seg,index)=><g key={index}><rect x={x(seg.start)} y={13+i*35} width={(seg.end-seg.start)/80*225} height="20" rx="4" fill={i===0?"var(--domain)":"var(--line)"} stroke={textColor}/>{i===0&&<rect x={x(seg.start)} y={13+i*35} width={(seg.end-seg.start)/80*225} height="20" rx="4" fill={`url(#${hatch})`} stroke={textColor} strokeWidth="2"/>}</g>)}
-          <text x="4" y={43+i*35} fill="var(--muted)">{spec.durations[id]} min · due {spec.due[id]}{spec.dependencies[String(id)]!==undefined?` · needs ${spec.labels[spec.dependencies[String(id)]]}`:""}</text>
+          <text x="4" y={43+i*35} fill="var(--muted)">{spec.durations[id]} min · due {spec.due[id]}{spec.dependencies[String(id)]!==undefined?` · needs ${spec.labels[spec.dependencies[String(id)]]}`:""}{spec.priority===id?" · high priority":""}</text>
           <line x1={x(spec.due[id])} x2={x(spec.due[id])} y1={10+i*35} y2={34+i*35} stroke="var(--bad)" strokeWidth="2"/>
         </g>)}
         <text x="74" y="136" fill={textColor}>0</text><text x="299" y="136" textAnchor="end" fill={textColor}>80m</text>
       </Frame>
-      <Results locked={locked} items={[[spec.metric==="completion"?"First job done":"Total waiting",state.step?(spec.metric==="completion"?`minute ${v.firstFinish}`:`${v.waiting} min`):"?"],["Late jobs",state.step?v.late:"?"],...(spec.metric==="switches"?[["Switches",state.step?v.switches:"?"]]:hasDeps?[["Run before input",state.step?v.breaches:"?"]]:[]) as Array<[string,string|number]>]}/>
+      <Results locked={locked} items={[[spec.metric==="completion"?"First job done":"Total waiting",state.step?(spec.metric==="completion"?`minute ${v.firstFinish}`:`${v.waiting} min`):"?"],["Late jobs",state.step?v.late:"?"],...(spec.metric==="switches"?[["Switches",state.step?v.switches:"?"]]:hasDeps?[["Run before input",state.step?v.breaches:"?"]]:[]) as Array<[string,string|number]>,...(spec.watch!==undefined?[[`${cap(spec.labels[spec.watch])} done`,state.step?`minute ${v.ends[v.segments.findIndex(g=>g.id===spec.watch)]}`:"?"]]:[]) as Array<[string,string|number]>]}/>
       <div className={s.controls}>
         <StageControl locked={locked} inactive={state.step>0} onClick={()=>step(1)}>Run queue</StageControl>
         {wip?<>

@@ -944,43 +944,46 @@ export const study_work_back_from_a_deadline = {
   "family": "schedule",
   "slug": "work-back-from-a-deadline",
   "title": "Plan backwards",
-  "hook": "A thirty-minute task due at minute forty cannot start whenever you like.",
+  "hook": "Three tasks (10, 15 and 20 min) in a row, due at minute 60.",
   "objective": "Compute a latest start from duration and deadline.",
-  "question": "Latest start for 30 minutes due at minute 40?",
+  "question": "Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first?",
   "options": [
-    "Minute 10",
-    "Minute 30"
+    "Minute 50: its own length",
+    "Minute 40: the longest",
+    "Minute 15: all three"
   ],
-  "answer": 0,
-  "principle": "Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline.",
+  "answer": 2,
+  "principle": "Work back from the deadline through the whole chain: 60 minus 20, minus 15, minus 10 is minute 15. Starting the first task any later makes the last one late.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Minute 30",
   "rows": [
     {
-      "label": "draft",
-      "start": 20,
-      "duration": 30
-    },
-    {
-      "label": "review",
+      "label": "outline",
       "start": 50,
       "duration": 10
     },
     {
-      "label": "send",
+      "label": "draft",
       "start": 60,
-      "duration": 5
+      "duration": 15
+    },
+    {
+      "label": "edit",
+      "start": 75,
+      "duration": 20
     }
   ],
   "target": [
-    10,
-    40,
-    50
+    15,
+    25,
+    40
   ],
   "movable": 0,
-  "button": "Start backwards",
-  "deadline": 40
+  "button": "Work back from 60",
+  "deadline": 60,
+  "chain": true,
+  "dueRow": 2
 } satisfies StudySpec;
 
 export const study_meeting_and_preparation = {
@@ -989,10 +992,10 @@ export const study_meeting_and_preparation = {
   "title": "Preparation needs its own slot",
   "hook": "You booked the presentation, but where did preparation go?",
   "objective": "Schedule preparation before a dependent live task.",
-  "question": "Which layout makes preparation finish first?",
+  "question": "The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready?",
   "options": [
-    "Prepare then present",
-    "Prepare during presentation"
+    "Only if prep is booked before 30",
+    "Yes: prep fits somewhere"
   ],
   "answer": 0,
   "principle": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",
@@ -1001,114 +1004,101 @@ export const study_meeting_and_preparation = {
   "misconception": "Prepare during presentation",
   "rows": [
     {
-      "label": "prepare",
-      "start": 10,
+      "label": "prep",
+      "start": 45,
       "duration": 20
     },
     {
       "label": "present",
-      "start": 20,
+      "start": 30,
       "duration": 15
-    },
-    {
-      "label": "notes",
-      "start": 35,
-      "duration": 10
     }
   ],
   "target": [
-    0,
-    20,
-    35
+    10,
+    30
   ],
   "movable": 0,
-  "button": "Move preparation",
-  "deadline": 90
+  "button": "Book prep before 30",
+  "deadline": 30,
+  "dueRow": 0
 } satisfies StudySpec;
 
 export const study_estimate_a_range = {
   "family": "schedule",
   "slug": "estimate-a-range",
   "title": "Try the longer estimate",
-  "hook": "A task estimated at fifteen to twenty-five minutes needs more than one calendar test.",
+  "hook": "A 15-25 minute task, then a call at 20.",
   "objective": "Stress-test a schedule at the longer end of an explicit range.",
-  "question": "Which checks the stated worst duration?",
+  "question": "A 15-25 minute task, then a call at 20. Plan with 15: is the call safe?",
   "options": [
-    "Use 25 minutes",
-    "Use 15 minutes"
+    "Yes",
+    "Not if it runs long"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Use 15 minutes",
   "rows": [
     {
-      "label": "write",
+      "label": "task",
       "start": 0,
-      "duration": 25
-    },
-    {
-      "label": "call",
-      "start": 15,
       "duration": 15
     },
     {
-      "label": "file",
-      "start": 30,
+      "label": "call",
+      "start": 20,
       "duration": 10
     }
   ],
   "target": [
     0,
-    25,
-    40
+    20
   ],
-  "movable": 1,
-  "button": "Use upper estimate",
-  "deadline": 90
+  "movable": 0,
+  "button": "Use the long end, 25",
+  "deadline": 90,
+  "longer": {
+    "row": 0,
+    "minutes": 10
+  }
 } satisfies StudySpec;
 
 export const study_one_person_two_jobs = {
   "family": "schedule",
   "slug": "one-person-two-jobs",
   "title": "One person, two blocks",
-  "hook": "Separate rows do not give you two pairs of hands.",
+  "hook": "Two 30-minute jobs on separate rows from minute 0, one person.",
   "objective": "Detect simultaneous bookings for one constrained resource.",
-  "question": "How many blocks can one person do simultaneously in this model?",
+  "question": "Two 30-minute jobs on separate rows from minute 0, one person. When is everything done?",
   "options": [
-    "One",
-    "Two"
+    "Minute 30",
+    "Minute 60"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Two",
   "rows": [
     {
-      "label": "scan",
+      "label": "job A",
       "start": 0,
-      "duration": 20
+      "duration": 30
     },
     {
-      "label": "write",
-      "start": 10,
-      "duration": 20
-    },
-    {
-      "label": "call",
-      "start": 25,
-      "duration": 10
+      "label": "job B",
+      "start": 0,
+      "duration": 30
     }
   ],
   "target": [
     0,
-    20,
-    40
+    30
   ],
   "movable": 1,
-  "button": "Separate jobs",
+  "button": "One after the other",
   "deadline": 90
 } satisfies StudySpec;
 
@@ -1116,58 +1106,54 @@ export const study_fit_before_fixed_slot = {
   "family": "schedule",
   "slug": "fit-before-fixed-slot",
   "title": "Fit around the fixed slot",
-  "hook": "A movable task fits only if it respects the fixed appointment.",
+  "hook": "A 25-minute task and a call at 20 to 30. Free until 60.",
   "objective": "Place flexible work around a fixed calendar interval.",
-  "question": "Which placement avoids the fixed call?",
+  "question": "A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?",
   "options": [
-    "Finish before the call",
-    "Overlap the call"
+    "From 0, across the call",
+    "From 30",
+    "Anywhere"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Overlap the call",
   "rows": [
     {
-      "label": "write",
-      "start": 10,
-      "duration": 20
+      "label": "task",
+      "start": 0,
+      "duration": 25
     },
     {
       "label": "call",
       "start": 20,
-      "duration": 15
-    },
-    {
-      "label": "file",
-      "start": 35,
       "duration": 10
     }
   ],
   "target": [
-    0,
-    20,
-    35
+    30,
+    20
   ],
   "movable": 0,
-  "button": "Place before call",
-  "deadline": 90
+  "button": "Place after call",
+  "deadline": 90,
+  "window": 60
 } satisfies StudySpec;
 
 export const study_include_the_wrap_up = {
   "family": "schedule",
   "slug": "include-the-wrap-up",
   "title": "The finish is not the end",
-  "hook": "The call ends, but notes still need ten minutes.",
+  "hook": "A call from 0 to 30, then 10 minutes of notes.",
   "objective": "Include a required follow-up block in total calendar capacity.",
-  "question": "Which plan counts the follow-up?",
+  "question": "A call from 0 to 30, then 10 minutes of notes. When is the job done?",
   "options": [
-    "Call plus notes",
-    "Call alone"
+    "30",
+    "40"
   ],
-  "answer": 0,
-  "principle": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload.",
+  "answer": 1,
+  "principle": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this exercise's workload.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Call alone",
@@ -1175,27 +1161,25 @@ export const study_include_the_wrap_up = {
     {
       "label": "call",
       "start": 0,
-      "duration": 20
+      "duration": 30
     },
     {
       "label": "notes",
-      "start": 15,
-      "duration": 10
-    },
-    {
-      "label": "review",
-      "start": 25,
+      "start": 20,
       "duration": 10
     }
   ],
   "target": [
     0,
-    20,
     30
   ],
   "movable": 1,
-  "button": "Place follow-up",
-  "deadline": 90
+  "button": "Place notes after",
+  "deadline": 90,
+  "claimed": {
+    "label": "Call-only plan",
+    "minute": 30
+  }
 } satisfies StudySpec;
 
 export const study_fragmented_time_does_not_fit = {
@@ -1497,49 +1481,43 @@ export const study_earliest_deadline_first = {
   "family": "order",
   "slug": "earliest-deadline-first",
   "title": "Read the due dates",
-  "hook": "A shorter task can wait while an earlier deadline cannot.",
+  "hook": "Short job (5 min, due 30) or urgent job (10 min, due 10).",
   "objective": "Compare deadline misses instead of only completion count.",
-  "question": "Which order respects the minute-15 deadline here?",
+  "question": "Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late?",
   "options": [
-    "Urgent job first",
-    "Short job first"
+    "Yes, the urgent one",
+    "No"
   ],
   "answer": 0,
-  "principle": "The red deadline markers compare completion with due time. This fixture rewards meeting due dates, rather than minimising average waiting.",
+  "principle": "The red deadline markers compare completion with due time. This exercise rewards meeting due dates, rather than minimising average waiting.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Short job first",
   "labels": [
-    "urgent",
-    "quick",
-    "later"
+    "short",
+    "urgent"
   ],
   "durations": [
-    15,
     5,
     10
   ],
   "due": [
-    15,
-    40,
-    50
+    30,
+    10
   ],
   "target": [
-    0,
-    1,
-    2
-  ],
-  "initial": [
-    2,
     1,
     0
+  ],
+  "initial": [
+    0,
+    1
   ],
   "metric": "late",
   "dependencies": {},
   "tags": [
     "A",
-    "B",
-    "A"
+    "B"
   ],
   "switchCost": 0
 } satisfies StudySpec;
@@ -1548,12 +1526,12 @@ export const study_dependency_before_priority = {
   "family": "order",
   "slug": "dependency-before-priority",
   "title": "Priority cannot bypass input",
-  "hook": "The important output cannot run before its input exists.",
+  "hook": "Which runs first?",
   "objective": "Distinguish task priority from prerequisite readiness.",
-  "question": "Which order respects the stated dependency?",
+  "question": "Which runs first?",
   "options": [
-    "Draft before review",
-    "Review before draft"
+    "The draft it needs",
+    "The high-priority review"
   ],
   "answer": 0,
   "principle": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",
@@ -1595,7 +1573,8 @@ export const study_dependency_before_priority = {
     "B",
     "A"
   ],
-  "switchCost": 0
+  "switchCost": 0,
+  "priority": 0
 } satisfies StudySpec;
 
 export const study_batch_by_setup = {
@@ -1653,14 +1632,14 @@ export const study_unlock_the_following_work = {
   "family": "order",
   "slug": "unlock-the-following-work",
   "title": "Start the blocking input",
-  "hook": "A tiny input task can unlock a much larger dependent task.",
+  "hook": "A 2-minute input unlocks a 30-minute build.",
   "objective": "Identify the work that releases a blocked successor.",
-  "question": "Which goes before the dependent build?",
+  "question": "A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish?",
   "options": [
-    "Input task",
-    "Unrelated polish"
+    "Same either way",
+    "10 minutes later with polish first"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
@@ -1671,9 +1650,9 @@ export const study_unlock_the_following_work = {
     "build"
   ],
   "durations": [
-    15,
-    5,
-    20
+    10,
+    2,
+    30
   ],
   "due": [
     60,
@@ -1690,7 +1669,7 @@ export const study_unlock_the_following_work = {
     1,
     2
   ],
-  "metric": "dependency",
+  "metric": "release",
   "dependencies": {
     "2": 1
   },
@@ -1699,7 +1678,8 @@ export const study_unlock_the_following_work = {
     "B",
     "A"
   ],
-  "switchCost": 0
+  "switchCost": 0,
+  "watch": 2
 } satisfies StudySpec;
 
 export const study_do_not_starve_the_long_job = {
@@ -1918,11 +1898,11 @@ export const study_choose_the_metric_first = {
   "objective": "Compare waiting and deadline misses for one fixed order.",
   "question": "What is required before calling an order better?",
   "options": [
-    "Choose the objective",
-    "Count visible movement"
+    "Count visible movement",
+    "Choose the objective"
   ],
-  "answer": 0,
-  "principle": "The displayed waiting and late counts measure different things. A preference requires an explicit objective; more animation is not an outcome.",
+  "answer": 1,
+  "principle": "The displayed waiting and late counts measure different things. A preference requires an explicit objective.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Count visible movement",

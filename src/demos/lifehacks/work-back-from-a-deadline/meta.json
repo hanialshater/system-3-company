@@ -1,7 +1,7 @@
 {
   "slug": "work-back-from-a-deadline",
   "title": "Plan backwards",
-  "hook": "A thirty-minute task due at minute forty cannot start whenever you like.",
+  "hook": "Three tasks (10, 15 and 20 min) in a row, due at minute 60.",
   "domain": "lifehacks",
   "concept": "work-back-from-deadline",
   "status": "review",
@@ -22,28 +22,31 @@
   "objective": "Compute a latest start from duration and deadline.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A thirty-minute task due at minute forty cannot start whenever you like. Latest start for 30 minutes due at minute 40? Correct option: Minute 10. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three tasks (10, 15 and 20 min) in a row, due at minute 60. Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first? Correct option: Minute 15: all three. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.work-back-from-a-deadline.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
-      "text": "Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline.",
+      "text": "Work back from the deadline through the whole chain: 60 minus 20, minus 15, minus 10 is minute 15. Starting the first task any later makes the last one late.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): reveal principle edited (W9 stage fix). Not checked by the builder.",
       "id": "lifehacks.work-back-from-a-deadline.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
       "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-back-from-a-deadline fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.work-back-from-a-deadline.c3",
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: three tasks run back to back, outline 10, draft 15 and edit 20 minutes, and edit is due at minute 60. The chain starts with outline at minute 50 (50–60, 60–75, 75–95), so edit is 35 minutes late; “Work back from 60” starts outline at 15, so edit ends at 60, on time. The slider moves the whole chain. Reveal sentence: Starting outline at minute S, edit finishes at minute F; it is due at minute 60, so it is on time or N minutes late.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.work-back-from-a-deadline.c4",
       "status": "unverified"
     },
     {
