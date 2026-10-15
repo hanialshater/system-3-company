@@ -17,3 +17,5 @@ Built as briefed: one carriage band; "View from the platform" redraws the same d
 ## QA
 
 Computer-use QA, unmodified `tests/qa/contract.spec.ts`, `QA_BASE_URL=http://localhost:3530 QA_ONLY=<the 5 Wave J physics slugs> QA_OUT=artifacts/qa-wavej-physics`, 2026-10-14. With the default 45 s test timeout every test failed at `page.goto` (server load), before any check. With only the test timeout raised on the command line (`--timeout=900000`), phone and desktop both passed. Status stays draft as the dispatch asked; the qa-tester's own run on a quiet server or build is still owed.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

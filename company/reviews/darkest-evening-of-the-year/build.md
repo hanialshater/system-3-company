@@ -29,3 +29,5 @@ reveal-fit note: run through a preload that only raises Playwright's default nav
 Fact-check 2026-10-14 disputed c3 (W-708): the reveal gave orbital speed as the cause and tilt as an add-on, but by solar.ts's own equation-of-time terms the tilt gives 5.9 of the 8.3 min drift (13 to 30 Dec). The reveal now reads '...mostly because of Earth's tilt, and partly because Earth moves fastest in early January.' c3 rewritten and reset to unverified.
 
 Local checks, 2026-10-14, own dev server :3600 (worktree, NEXT_DIST_DIR=.next-fix): computer-use QA (unmodified tests/qa/contract.spec.ts, QA_OUT=artifacts/qa-wj-disputes) phone and desktop pass for all 8 wave-J dispute lessons; npm run check passed; tsc --noEmit clean. reveal-fit at 390x844 (REVEAL_FIT_TIMEOUT_MS=300000, --shots, artifacts/reveal-fit/wj-disputes.json): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)
