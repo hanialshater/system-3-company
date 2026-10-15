@@ -11709,6 +11709,51 @@
       "domain": null,
       "created": "2026-10-15",
       "links": []
+    },
+    {
+      "id": "W-945",
+      "title": "P1 before r7 ships: export const dynamicParams = false on src/app/d/[slug] so unknown/draft slugs 404 regardless of runtime env (a 200 is cached for the deployment); add a test over the built output (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-946",
+      "title": "P1: the 5.3 MB client chunk carries all 960 meta.json (drafts, claim sources, checkedBy, fact-check notes, withdrawn claims) because DemoHost imports loaders from registry.generated.ts, which imports every meta. Emit loaders in a module with no meta imports (generator is in protected tools/company.mjs: amendment, with principal-engineer; related W-607, A1) (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-947",
+      "title": "P2: make publicMeta an allow-list (curriculum.references[].note, owner and evidence paths leak via ...meta); test built RSC and /api/meta output (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-948",
+      "title": "P2: add src/lib/visibility.ts and src/lib/trust.ts to readiness paths.json as tier 2; fix the record's paths globs ([slug] is a character class): use src/app/d/** and src/app/api/meta/** (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-949",
+      "title": "P2: production draft-404 meter in tools/ops-health.mjs (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
     }
   ]
 }
