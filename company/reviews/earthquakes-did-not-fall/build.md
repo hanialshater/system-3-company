@@ -15,3 +15,5 @@ Departures from the brief: (1) the locked frame shows the two empty halves (no b
 7. **Phone fit.** `tools/reveal-fit.mjs` at 390×844 on my dev server (port 3623), 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0 (named "all disasters", "53%": visible), 84 reveal words (tool count, with the "Not quite" line), phoneFit true. Smallest svg label 11 px locked, 10.2 px at the reveal (picture fitted 158/170). Computer-use QA contract: phone and desktop pass. First run cropped 27 px; fixed by a one-line hook and a shorter viewBox (no text shrunk).
 
 No held source sentence (brief: none). "All natural disasters" in this file includes droughts and epidemics; the stage never names a cause, and the brief kept the route standard. The reveal is 84 words by the tool, near the 90 cap.
+
+status draft → review (W-996): launch r1, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

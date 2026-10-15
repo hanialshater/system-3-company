@@ -18,3 +18,5 @@ Builder: demo-builder (demo-builder-bigideas-pilot) · 2026-10-14 · from brief 
 7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3530` (next dev): fit, crop 0 px, namedHidden 0, phoneFit true, 76 words (tool count, includes the verdict line), not a thumbnail. Smallest stage label 11.3 px at 390 wide, at predict and at the reveal (builder's own font-size probe).
 
 Stage text at any moment: readout 4 words plus chart labels (split markers, avg labels) at most 8; preset labels 13.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

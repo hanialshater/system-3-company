@@ -15,3 +15,5 @@ Departures from the brief: (1) the year presets draw the record from 1750 up to 
 7. **Phone fit.** `tools/reveal-fit.mjs` at 390×844 on my dev server (port 3623), 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0 (named 1900, coal, 1968, 2005, 2024, 96%: all visible), 74 reveal words, phoneFit true. Smallest svg label 11 px locked and at the reveal. Computer-use QA contract: phone and desktop pass. The first run cropped 13 px because the readout labels wrapped; fixed by shortening the labels and letting the readouts size to their content. The y-axis labels were clipped at the left edge; fixed by widening the margin.
 
 Held source sentence (one): "estimates rebuilt from records of fuel use" (c6), fallback written. "The file is revised every year" (c7) rests on the master-branch pin; it is cut with c6 if the fact-checker cannot support it.
+
+status draft → review (W-996): launch r1, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

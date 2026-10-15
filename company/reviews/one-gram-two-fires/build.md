@@ -15,3 +15,5 @@ Departures from the brief: the axis runs 1 kJ to 1 TJ (9 decades) instead of 1 k
 7. **Phone fit.** `node tools/reveal-fit.mjs` at 390×844, 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0, 76 reveal words (tool count, including the "Not quite" line), phoneFit true, picScale 1. Screenshot `artifacts/reveal-fit/one-gram-two-fires.png`. The reveal points at the two bars, the step count and the per-event values; the axis, both bars and the readout row are visible. Smallest picture label 10.5 px at scale 1; controls 35 px.
 
 Measured on my own `next dev` of this worktree (port 3547), not on :3530, which serves the main checkout without these files. In the locked (predict) frame the card shrinks the picture below scale 1, as for other lessons; the 10 px floor holds from the commit on. No console errors. Not run: next build, computer-use QA, walkthrough.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

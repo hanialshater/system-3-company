@@ -21,3 +21,5 @@ builder: demo-builder (demo-builder-wavej-life) · 2026-10-14 · v1 draft · bri
 7. **Phone fit.** `tools/reveal-fit.mjs` logic on the :3530 dev server (a copy with longer page-load timeouts, artifacts/wavej-life-tools/reveal-fit-slow.mjs, because the shared dev server took over 30 s a page): crop 0 px, hiddenBelow 0, namedHidden 0, phoneFit true; revealWords 90 (tool count, includes the 6-word "Not quite" verdict; 87 with "Your prediction held."). Stage parts: picture 203, controls 35. Screenshot artifacts/reveal-fit/bad-year-breaks-the-quota.png. Smallest rendered SVG label over the QA path and at the reveal: 10.8 px (axis ticks, 12 px in a 356-wide viewBox).
 
 QA: `tests/qa/contract.spec.ts` on :3530 (QA_ONLY, QA_OUT=artifacts/qa-wavej-life, `--timeout=300000` because page loads took 20 to 60 s): phone and desktop pass. An earlier run with the default 45 s timeout failed on page.goto only.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

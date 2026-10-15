@@ -26,3 +26,5 @@ Stage text at any moment: caption 9 words, readout 11; preset labels 10.
 - Claims reset to unverified: c3. Nothing marked verified; a fact-checker who is not the builder re-checks.
 - Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 84 tool words (the tool counts the kit's verdict line and trust link as well).
 - QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.
+
+status draft → review (W-996): launch r11, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)

@@ -20,3 +20,5 @@ Brief: `company/domains/briefs/ai.md` item 60 (Wave J). Status draft, version 1.
 
 ## QA (builder's local run, 2026-10-14)
 `QA_BASE_URL=http://localhost:3530 QA_ONLY=<five wave-J ai slugs> QA_OUT=artifacts/qa-wavej-ai npx playwright test tests/qa/contract.spec.ts --workers=1 --timeout=240000`: passed on phone and desktop (final run, after the last code change). `--timeout` only raises Playwright's per-test limit; the stock 45 s limit timed out on `page.goto` for all ten tests twice on the overloaded shared dev server (load average about 30-40 on 4 CPUs). Not a release build: the official record still needs a run on a quiet server or build.
+
+status draft → review (W-996): launch r10, claims verified, QA on release build c0cfd14 (Demo.tsx/CSS unchanged c0cfd14..511872a; contract also re-run phone+desktop on 511872a, next dev :3673, artifacts/qa-w996-all, 76/76; 2026-10-15)
