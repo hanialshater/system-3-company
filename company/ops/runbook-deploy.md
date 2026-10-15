@@ -59,7 +59,7 @@ The release manager reports the URL, commits the release record and adds it to t
 
 ### Release log (release manager, every deploy)
 
-The release manager owns `company/ops/releases.json` (versions `YYYY.MM.DD.n`, UTC, append-only).
+The release manager owns `company/ops/releases.json` (versions `r1`, `r2`, ... sequential, the date shown beside; append-only).
 Before each production deploy: run `node tools/release-draft.mjs --commit=HEAD`, fill in the summary,
 features, fixes and known issues by hand, and set `approved_by` to the founder with a pointer to the
 approval (conversation date and words, or a commit message). Never invent an approval: write

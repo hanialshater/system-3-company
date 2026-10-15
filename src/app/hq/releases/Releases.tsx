@@ -1,7 +1,7 @@
 // The release log: one card per production deploy, newest first, with "what was added" folded open on demand,
 // and a "Next release (unreleased)" section computed from the commits since the last release.
 import Link from "next/link";
-import { commitUrl, newestFirst, type LessonGroup, type Release, type Unreleased } from "@/lib/hq-releases";
+import { commitUrl, newestFirst, shortDate, type LessonGroup, type Release, type Unreleased } from "@/lib/hq-releases";
 import s from "./releases.module.css";
 
 const when = (iso: string) => iso.slice(0, 16).replace("T", " ") + " UTC";
@@ -38,7 +38,7 @@ function Card({ r, open }: { r: Release; open: boolean }) {
   return (
     <li className={s.card} id={`v${r.version}`}>
       <div className={s.head}>
-        <h2 className={s.version}>{r.version}</h2>
+        <h2 className={s.version}>{r.version} · {shortDate(r.date)}</h2>
         <span className={s.badge}>{r.target}</span>
         <span className={s.muted}>{when(r.date)}</span>
         <a className={s.commit} href={commitUrl(r.commit)} target="_blank" rel="noreferrer">
@@ -78,7 +78,7 @@ export default function Releases({ releases, error, unreleased }: { releases: Re
         <div className={s.title}>
           <strong>Releases</strong>
           <span className={s.muted}>
-            {last ? `${releases.length} production releases · latest ${last.version}` : "no releases recorded"}
+            {last ? `${releases.length} production releases · latest ${last.version} · ${shortDate(last.date)}` : "no releases recorded"}
           </span>
         </div>
         <span className={s.spacer} />
