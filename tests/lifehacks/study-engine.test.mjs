@@ -249,7 +249,8 @@ test('scheduleObservation: a due-row lesson, late and on time', () => {
   const s = at('meeting-and-preparation'); // prep 20 is due at 30
   assert.equal(scheduleObservation(s, [45, 30]), 'Your final layout has no overlap. prep finishes at minute 65 and is due at minute 30, so it is 35 minutes late.');
   assert.equal(scheduleObservation(s, [10, 30]), 'Your final layout has no overlap. prep finishes at minute 30 and is due at minute 30, so it is on time.');
-  assert.match(scheduleObservation(s, [11, 31]), /finishes at minute 31 and is due at minute 30, so it is 1 minutes late\.$/);
+  // One minute over is late, not on time. The "1 minutes" plural is a known wording defect (readiness record, addendum), deliberately not pinned.
+  assert.match(scheduleObservation(s, [11, 31]), /finishes at minute 31 and is due at minute 30, so it is 1 minutes? late\.$/);
 });
 
 test('scheduleObservation: the due row is the travel row for arrival-is-not-departure, not the whole trip', () => {

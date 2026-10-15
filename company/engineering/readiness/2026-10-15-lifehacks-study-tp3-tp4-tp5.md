@@ -3,13 +3,13 @@
 ```
 change: Study template packages TP-3 (retrieval stage for recall lessons that opt in), TP-4 (schedule readouts and reveal), TP-5 (queue readouts and reveal), plus the W1 and W9 lesson fixtures and optional v1 spec fields (schedule: window, chain, dueRow, longer, claimed; queue: priority, watch, metric "release")
 change-tier: 2
-paths: src/components/lifehacks/StudyLesson.tsx, src/components/lifehacks/StudyLesson.module.css, src/components/lifehacks/RetrievalLesson.tsx, src/lib/lifehacks/studyRecall.ts, src/lib/lifehacks/studyModels.ts, src/lib/lifehacks/studyCatalog.ts, src/demos/lifehacks/*/meta.json, company/reviews/*/build.md
+paths: src/components/lifehacks/StudyLesson.tsx, src/components/lifehacks/StudyLesson.module.css, src/lib/lifehacks/studyStages.ts (added by the W-1137 addendum), tests/lifehacks/study-engine.test.mjs (W-1137 addendum), src/components/lifehacks/RetrievalLesson.tsx, src/lib/lifehacks/studyRecall.ts, src/lib/lifehacks/studyModels.ts, src/lib/lifehacks/studyCatalog.ts, src/demos/lifehacks/*/meta.json, company/reviews/*/build.md
 author: demo-builder
 decision: REFUSED as of d82ea40 (principal-engineer-ops, 2026-10-15). Not approved for merge to main or deploy. Re-review by addendum once the conditions marked "blocks" below are met; nothing else needs re-doing
 decided-by: principal-engineer-ops
 decided-scope: commits cda9a05 (TP-3/TP-4/TP-5 + W1) and d82ea40 (W9) on lh-study
-board: W-1070, W-1079, W-1076
-risks: none
+board: W-1070, W-1079, W-1076, W-1137
+risks: one named in 7 (resetting work-in-process-limit c3 takes it off the wave-2 attestable list in company/rituals/records/2026-10-15-domain-launch.md); no register change proposed
 links: company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (TP-3, TP-4, TP-5, TP-8, wave W1); branch lh-study
 ```
 
@@ -19,15 +19,15 @@ Tier 2 because `src/components/lifehacks/**` and `src/lib/lifehacks/**` are "eng
 
 1. **What can fail.**
    - A retrieval fixture with a typo (an answer missing from its choices) would make that box impossible to get right. `retrievalProblems()` in `studyRecall.ts` detects it, but no test calls it yet (tests are platform-engineer's; see 7).
-   - The v1 schedule and queue stages are shared by 20 lessons (10 each). A wrong sentence in `scheduleObservation` or `queueObservation` reaches all of them. The worst case is a reveal that reads wrongly across 20 lessons. Learners see it, but only after deploy, and every lesson here is at `review`, not published.
+   - The v1 schedule and queue stages are shared by 20 lessons (10 each). A wrong sentence in `scheduleObservation` or `queueObservation` reaches all of them. The worst case is a reveal that reads wrongly across 20 lessons. Learners see it, but only after deploy, and every lesson here is at `review`, not published. That is not the whole cost: cda9a05 resets `lifehacks.work-in-process-limit.c3` from verified to unverified, and company/rituals/records/2026-10-15-domain-launch.md (line 59) lists work-in-process-limit among the 16 wave-2 lessons that are attestable because their "claims all verified". After this change that is no longer true; see 7.
    - The optional v1 fields default to off. A spec without them renders as before, apart from the TP-4/TP-5 wording. A due-row lesson also gets a "Late" readout.
    - `rebuild-the-procedure` (a domain-launch slate lesson) uses the v1 recall stage. Its code path is unchanged: it has no `retrieval` field, so it never reaches `RetrievalLesson.tsx`.
-2. **How we would know.** The QA contract (`tests/qa/contract.spec.ts`) fails a lesson that throws, has a dead control or a short reveal. It passed phone and desktop for all 28 changed lessons on 2026-10-15 (dev server, `QA_BASE_URL`). `npm run test:lifehacks` (64/64) pins the queue and calendar numbers and claims-match. There is no meter for "the reveal's sentence is wrong". The fact-checker reads the reset c3/c4 claims, and the r12 learner walk reads the reveals.
+2. **How we would know.** The QA contract (`tests/qa/contract.spec.ts`) fails a lesson that throws, has a dead control or a short reveal. Evidence (corrected by the W-1137 addendum; the earlier dev-server run is withdrawn as evidence): principal-engineer-ops's run at d82ea40 on a production build (`NEXT_DIST_DIR=.next-ops npm run build`, port 3761): the QA contract for all 28 changed lessons (`QA_ONLY`) **56/56**, and `tests/qa/feed.spec.ts` **10/10** (phone and desktop). After the W-1137 move and merge, the builder re-ran both on a production build at 0fd4038 (see the addendum): 56/56 and 10/10. `npm run test:lifehacks` pinned the queue and calendar numbers and claims-match (64/64 at d82ea40); `tests/lifehacks/study-engine.test.mjs` (42 tests, W-1137) now unit-tests the new engine functions, and the suite is 120/120 after the merge. There is no meter for "the reveal's sentence is wrong". The fact-checker reads the reset c3/c4 claims, and the r12 learner walk reads the reveals.
 3. **How to roll back.** Use `git revert <sha>` of the branch commits. Each W1 lesson's meta and fixture are in the same commit as the template, so a revert restores a consistent tree. It takes about a minute, loses no data, and does not need the founder (a deploy afterwards does).
-4. **Capacity.** One new client component (`RetrievalLesson.tsx`, about 16 KB of source). `StudyLesson.tsx` imports it statically, so it ships in every Study lesson's bundle, though only 7 lessons render it. No new dependency, process or build directory. QA for 28 lessons × 2 viewports took 2.8 minutes on the dev server.
+4. **Capacity.** One new client component (`RetrievalLesson.tsx`, about 16 KB of source). `StudyLesson.tsx` imports it statically, so it ships in every Study lesson's bundle, though only 7 lessons render it. No new dependency, process or build directory. QA for 28 lessons × 2 viewports took 3.0 minutes on a production build (W-1137 re-run).
 5. **Security.** No routes, parameters, scripts, storage or network.
 6. **Data.** None written. No learner data.
-7. **Risks.** None added or closed. Proposal for platform-engineer (tests are theirs): add `retrievalProblems(spec.retrieval)` = `[]` for every recall spec that has `retrieval`, and pin `scheduleObservation` and `queueObservation` for one overlapping and one clean layout.
+7. **Risks.** One, named here rather than as "none" (corrected by the W-1137 addendum). Resetting `lifehacks.work-in-process-limit.c3` to unverified drops work-in-process-limit off the wave-2 attestable list in company/rituals/records/2026-10-15-domain-launch.md, whose criterion is "claims all verified". Until the fact-checker re-verifies c3, wave 2 has 15 attestable lessons, not 16, and anyone reading that record will overcount. Likelihood: certain (it is already true on this branch). Impact: a publish or wave-2 decision made on the record's list would include a lesson with an unverified claim; the launch gate (`launchGates` in tools/company.mjs, "claims not verified") refuses a published lesson with an unverified claim, so the harm is a wrong count and a wasted attestation, not a wrong publish. Owner of the fix: fact-checker (re-verify c3), and the domain-launch record's owner should note the change. I propose no register entry: it closes when c3 is re-verified, which condition 3 already requires before any of the 28 lessons publishes. The earlier test proposal for platform-engineer is superseded: demo-builder wrote the tests (W-1137 addendum).
 
 ## Decision (written by principal-engineer-ops, 2026-10-15)
 
@@ -52,3 +52,53 @@ Tier 2 because `src/components/lifehacks/**` and `src/lib/lifehacks/**` are "eng
   4. **Before the next v1 schedule lesson is added (demo-builder):** the slug list in `dueRowOf` is replaced by `dueRow` fields on work-back-from-a-deadline and arrival-is-not-departure. It is minor, but a slug list in shared engine code is how the next lesson gets the wrong readout without anyone noticing.
   5. **No action (accepted):** `RetrievalLesson` is statically imported into every Study bundle, but it is about 16 KB of source and adds no dependency. W9's three skipped lessons (batch-by-setup, do-not-starve-the-long-job, reserve-an-unassigned-slot) are a plan question for the r11 fix-plan owner, not a readiness one.
 - Merge or deploy of cda9a05 or d82ea40 before the approval addendum is a breach of this record.
+
+## Addendum: unit tests and record corrections (demo-builder, W-1137, 2026-10-15)
+
+Written by the author, for principal-engineer-ops. It answers the two "blocks" conditions above and asks for the approval addendum. The author does not approve it.
+
+**Who wrote the tests.** Condition 1 routed the tests to platform-engineer, or to demo-builder if platform-engineer agreed. As principal-engineer-ops did for the Home lane (company/engineering/readiness/2026-10-15-lh-home-w2-addendum.md, where demo-builder wrote tests/lifehacks/home-v2.test.mjs), the tests here were taken from demo-builder. They are in a new file, so no existing test file was edited.
+
+**Commits on lh-study.** 79533f8 (the move plus the tests), 0fd4038 (merge of origin/ccr-4c6c7654-ew9ko1 at 5e50833, no conflicts), and the commit that carries this addendum (it changes only this record and a one-line loosening in the new test file, described under "Found while testing").
+
+**The move (condition 1 allows it; it is part of this change).** `scheduleObservation` and `queueObservation`, with their helpers `dueRowOf`, `plural` and `cap`, moved unchanged from src/components/lifehacks/StudyLesson.tsx into the new pure module src/lib/lifehacks/studyStages.ts. The only edits are `export` on the three helpers and relative imports (`./engine-v2`, `./studyModels`). StudyLesson.tsx imports them back from `@/lib/lifehacks/studyStages`, and it no longer imports `calendarClashes`, `OrderSpec` or `ScheduleSpec`. The reveal text is the same function body as at d82ea40, so no learner-visible sentence changed.
+
+**Condition 1: the tests** (`tests/lifehacks/study-engine.test.mjs`, 42 tests, all passing). Expected strings and numbers were worked out by hand from the fixtures, not recomputed with the engine's formulas.
+- (a) `retrievalProblems`: the opted-in set is exactly the 7 named fixtures, and rebuild-the-procedure has none. All 7 return `[]`. One planted fixture per problem kind returns exactly that problem: answer missing from choices, no distractor, repeated choice, study/covered length mismatch, a feedback attempt with no error, a feedback code digit missing from its choices, and a compound attempt with no miss. A fixture with several problems lists them all, including one in its last row.
+- (b) `nextChoice`: an empty box goes to 0, then steps and wraps, and a single choice stays. For every box in every rows fixture, tapping from empty reaches every choice, including the answer. `scoreRow`: an untouched row, one empty box among right ones (a miss, with "nothing" chosen, and the row incomplete), a full right row, a full wrong row naming each wrong choice, a partial row, and fewer picks than boxes. `markAttempt`: the stipulated bike-lock attempt is [right, wrong, right], the code itself is all right, and all wrong is all wrong.
+- (c) `scheduleObservation`: an overlap reads "no valid finish" with the minutes and the clash names (one-person-two-jobs; fragmented-time-does-not-fit, two clashes, with the gap sentence); clean layouts; a due-row lesson both late and on time (meeting-and-preparation), plus one minute late; arrival-is-not-departure reads the travel row (`dueRowOf` = 0) and not the whole trip; `chain` (work-back-from-a-deadline, late and on time); `longer` (estimate-a-range: long end, then the clash it causes); `claimed` (include-the-wrap-up: "10 minutes too early", and silent when the layout overlaps). Invariants: on include-the-wrap-up the claimed minutes are positive at every slider value; and for all 10 v1 schedule lessons, at every slider value (both long states where `longer` is set), "no valid finish" appears exactly when `calendarResult` reports overlap, a finish sentence appears exactly when it does not, and there is no NaN, undefined, Infinity or negative number.
+- (d) `queueObservation`: the "more waiting, but the goal is ..." sentence for each metric. That is late (earliest-deadline-first), dependency (dependency-before-priority), release with `watch` (unlock-the-following-work, "build done sooner (minute 32, not 42)") and switches (no shipped switches lesson waits more at its target, so this uses a planted variant of batch-by-setup: 51 against 34). It does not appear when the target waits less (short-jobs-clear-a-queue, batch-by-setup, separate-ready-from-blocked), when the order is not the target, for metric "waiting", or when waiting is equal. Release without `watch` falls back to the late wording with no watch readout. Invariant: for all 9 non-WIP v1 queue lessons, in every permutation of their jobs, the sentence starts with the order, has no NaN or negative number, and "N more minutes" appears only at the target with N > 0.
+- (e) `freeGaps`: fragmented-time-does-not-fit gives 30 free minutes before 40, in 3 gaps, with the longest 10 (shorter than the 30-minute job, although the total would cover it); fit-before-fixed-slot gives 50 with the longest 30. Edges: no rows, touching rows, nested overlapping rows, unsorted rows, a row past the window, a row crossing the window, nothing free, and `skip`. Invariant over both window lessons at every slider value: gaps are ordered, non-empty, inside the window, miss every busy row, and sum to `total`. `scheduleLayout`: plain starts and no mutation of the spec; a back-to-back chain whatever the other starts say; long overrun on its row only, and only when `long` is set; and in a chain, an overrun pushes the following rows later.
+
+**The tests can fail.** Ten bugs were planted one at a time, each in the engine file alone, with the new file run and the file restored after each (script in scratch, not committed). All 10 were caught, both before and after the merge, with identical results:
+
+| Function | Planted bug | Tests failing |
+|---|---|---|
+| retrievalProblems | repeated-choice check removed | 1 |
+| nextChoice | an empty box starts at the second choice | 1 |
+| scoreRow | an empty box no longer makes the row incomplete | 2 |
+| markAttempt | ignores the attempt and reads the first choice | 2 |
+| scheduleLayout | chain adds the next row's duration, not the previous one's | 3 |
+| freeGaps | `at = end` instead of `Math.max(at, end)` (a nested row moves the cursor back) | 1 |
+| scheduleObservation | claimed sentence shown on an overlapping layout | 2 |
+| scheduleObservation (dueRowOf) | slug list dropped: arrival-is-not-departure reads the whole trip | 1 |
+| queueObservation | goal sentence on equal waiting (`>=` for `>`) | 1 |
+| queueObservation | watched job indexed by id instead of order position | 1 |
+
+`git status` was clean of engine changes after the run.
+
+**Condition 2: the record is corrected.** In section 2, the QA evidence is now principal-engineer-ops's production-build run (56/56, feed.spec 10/10), and the dev-server run is withdrawn as evidence. In section 1 and section 7, "risks: none" is replaced by the real risk: resetting work-in-process-limit c3 takes it off the wave-2 attestable list in company/rituals/records/2026-10-15-domain-launch.md. Section 4's capacity line now uses the production-build time.
+
+**Evidence after the move and the merge (at 0fd4038; the addendum commit changes no src).**
+- `npm run test:lifehacks`: **120/120**. That is 64 at d82ea40, plus the merge's home-v2 and engines-v2 tests, plus these 42.
+- `npm run check`: passed (960 lessons, 5211 claims, 2 warnings on cue-needs-a-boundary and lh-fixed-energy-charge, which are not in this change). `npx tsc --noEmit`: exit 0.
+- Production build (`NEXT_DIST_DIR=.next-lhs2 npm run build`): passes. QA contract, `QA_ONLY` = the 28 changed lessons, `QA_PORT=3771`, server started and stopped by Playwright: **56/56** in 3.0 minutes. Harness stamp `clean: true`, contract commit 3b97991. `tests/qa/feed.spec.ts` on the same build: **10/10**. Afterwards .next-lhs2 was deleted and Next's tsconfig.json edit was reverted.
+
+**Found while testing (not fixed here: fixing them changes learner-visible text in 20 shared lessons, so it is its own engine change).**
+- On a due-row lesson without `chain`, the sentence after "Your final layout has no overlap." starts with a lowercase label: "prep finishes at minute 30 ...", "travel finishes at minute 40 ...". That reaches meeting-and-preparation and arrival-is-not-departure today. The tests pin the current text, so a fix must update them on purpose.
+- At exactly one minute late the reveal reads "so it is 1 minutes late". No fixture's buttons land there, but the slider can (meeting-and-preparation with prep at 11). The test checks late-not-on-time there and deliberately accepts either plural, so the fix will not be blocked.
+- Neither is in the risk register. I propose both as the next demo-builder engine change, alongside condition 4 (`dueRow` fields in place of the slug list), with its own tier-2 record.
+
+**Conditions 3 to 5 are unchanged.** Condition 3 (re-verify the 68 reset claims, including work-in-process-limit c3 and the W1 c5 Peru facts, before any of the 28 lessons publishes) belongs to the fact-checker, then release-manager. Condition 4 is still open: the `dueRowOf` slug list is pinned by a test now, but not replaced. Condition 5 needs no action.
+
+**Request.** Principal-engineer-ops: please review this addendum and, if it holds, write the approval addendum for cda9a05 and d82ea40 together with 79533f8 (the move and the tests), as merged on lh-study at 0fd4038. I am not asking for approval of a merge to main or of a deploy: the merge needs the approval, and a deploy also needs the founder.
