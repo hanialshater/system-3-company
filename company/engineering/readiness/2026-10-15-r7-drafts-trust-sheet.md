@@ -10,7 +10,7 @@ board: W-884, W-480, W-878, W-879
 risks: R-003 rescored (proposed: drafts-reachable half in-place once deployed and checked; deploy-bypass half unchanged); R-005 rescored (proposed: trust sheet no longer leaks internal notes for review lessons)
 links: branch r7-fixes (commit on that branch); founder decision company/decisions/2026-10-15-founder-show-review.md
 
-Tier 2 because it touches `src/lib/catalog.ts` (data, visibility), `src/app/d/**` (every lesson page) and `src/app/api/**` (the /api/meta response shape). **Not approved. It must not ship until principal-engineer-ops adds approved-by below.** Not a kit-contract change: `src/kit/**`, `tests/qa/**`, `tools/company.mjs` and `src/kit/Lesson.tsx` are untouched, and no test id was renamed (one was added: `trust-claim`, `trust-source`).
+Tier 2 because it touches `src/lib/catalog.ts` (data, visibility), `src/app/d/**` (every lesson page) and `src/app/api/**` (the /api/meta response shape). **Status: approved with conditions** by principal-engineer-ops, 2026-10-15: commit 1b7ac14 (Approval section) and the after-approval commit fd63b1c (Re-review section at the end). Conditions C1 to C4 below are the current ones, as amended at re-review. Not a kit-contract change: `src/kit/**`, `tests/qa/**`, `tools/company.mjs` and `src/kit/Lesson.tsx` are untouched, and no test id was renamed (one was added: `trust-claim`, `trust-source`).
 
 ## 1. What can fail
 - Drafts leak anyway if a production build or runtime sees neither `VERCEL=1` nor `VERCEL_ENV=production` (rule in src/lib/visibility.ts). Vercel documents both as system env vars at build and runtime; `vercel build --prod` (deploy.mjs prebuilt path) is assumed to set them, not measured here. Who sees it: learners.
@@ -72,20 +72,21 @@ What I reviewed: commit 1b7ac14 (on ccr-4c6c7654-ew9ko1 as 380ebcf, same tree fo
 
 ### Conditions for the release manager at deploy (each with a board id)
 
-- **C1 (W-926):** the founder approves this specific deploy (runbook-deploy.md). Record which path shipped it, Git `[deploy]` or deploy.mjs, and the production `SHOW_REVIEW` value. The founder decision wants it on, and deploy.mjs forces it off. Put the path and the value in the release entry.
-- **C2 (W-926), within 15 minutes of promotion, before any announcement:** on the production domain (not a preview URL), and as the **first** requests to these slugs (a 200 render is cached for the life of the deployment):
-  - `/d/rome-placed-too-far-east`, `/d/deleted-column-still-there` and `/d/gradient-fades-with-depth` (drafts) each return **404**, and so does `/api/meta/` for each.
-  - `/d/asthma-looks-safe` (review) returns 200 and shows "In review" if SHOW_REVIEW is on, or 404 if it is off. Either way it must match C1.
-  - `/api/meta/news-comes-from-acquaintances`: `claims` has 4 entries, none of them has a `source` or `checkedBy` key, and the feed trust line reads 4/4. For `two-said-blue` it reads 8/8.
+- **C1 (W-926):** the founder approves this specific deploy (runbook-deploy.md). Record which path shipped it, Git `[deploy]` or deploy.mjs, and the production `SHOW_REVIEW` value **at build** (amended at re-review: since fd63b1c the build alone decides what /d serves). The founder decision wants it on, and deploy.mjs forces it off. Put the path and the value in the release entry.
+- **C2 (W-926), within 15 minutes of promotion, before any announcement (amended at re-review):** on the production domain (not a preview URL). With fd63b1c, `/d` can no longer render and cache a draft on demand, so the "first requests" ordering is no longer load-bearing; request the drafts first anyway.
+  - `/d/rome-placed-too-far-east`, `/d/deleted-column-still-there` and `/d/gradient-fades-with-depth` (drafts) each return **404 twice**, and so does `/api/meta/` for each. A made-up slug (`/d/no-such-lesson-r7`) returns 404.
+  - `/d/asthma-looks-safe` (review) returns 200 and shows "In review" if SHOW_REVIEW was on **at build**, or 404 if it was off. Since fd63b1c the build alone decides, so it must match the build-time value recorded in C1.
+  - `/api/meta/news-comes-from-acquaintances`: top-level keys are exactly `claims, domain, evidence, recall, slug, status, title`; `claims` has 4 entries, each with exactly `id, links, status, support, text`; `evidence` is numbers (`qa:1, simulatedLearner:3, humanLearners:0` at fd63b1c's content). The feed trust line reads 4/4. For `two-said-blue` it reads 8/8.
+  - `/d/earliest-finish-wins` returns 200 and its HTML does not contain "Fact-checker to confirm" (M6 closed).
   - Write the status codes into the release record.
 - **C3:** if any draft returns 200 in C2, it is a SEV2 (drafts reachable in production). Do not roll back, because rollback also leaks (see Rollback above). Open the incident, and the remedy is the roll-forward above, with the founder's approval. principal-engineer-ops is incident commander, and a COE is required.
-- **C4 (W-925):** in releases.json `known_issues`, state that internal fact-check notes are still in the client JS bundle (M7) and in `curriculum.references` notes (M6). W-878 and W-884 stay open after this release. Do not mark them done.
+- **C4 (W-925, amended at re-review):** in releases.json `known_issues`, state that every lesson's meta.json, drafts included, with internal fact-check notes (`checkedBy`, claim `note`, "Fact-checker to confirm"), is still in the 5.3 MB client JS chunk loaded on every page (M7, W-946). Drop the `curriculum.references` notes item (M6): fd63b1c closes it, measured at re-review. W-878 stays open (M7). W-884: the drafts-page half is fixed by fd63b1c, but drafts' meta and code still ship in the client chunk, so do not mark it done on this release either.
 
 ### Follow-ups (not deploy blockers; new board items for the chief of staff to add, since I was told not to edit board.json)
 
-- **F1, platform-engineer, P1, before the next release:** `export const dynamicParams = false` in `src/app/d/[slug]/page.tsx`, plus a test that a built production output has no `/d/<draft>` entry and returns 404 with no VERCEL vars at runtime (M3). This closes the drafts half of W-884.
+- **F1, platform-engineer, P1, before the next release: Done in fd63b1c, approved at re-review.** `export const dynamicParams = false` in `src/app/d/[slug]/page.tsx`, plus a test that a built production output has no `/d/<draft>` entry and returns 404 with no VERCEL vars at runtime (M3). This closes the drafts half of W-884.
 - **F2, platform-engineer with principal-engineer, P1:** stop shipping meta.json to the client (M7): emit `loaders` in a module that imports no meta.json. The registry is generated by `tools/company.mjs`, which is protected, so this needs an amendment or a generator outside protected paths. It also cuts about 5 MB from the feed's first load. This is related to W-607, and it closes W-878.
-- **F3, platform-engineer, P2:** make `publicMeta` an allow-list (pick the fields the card and revisits read) instead of `...meta`, and add a test over the **built** RSC and `/api/meta` output (M6).
+- **F3, platform-engineer, P2: Done in fd63b1c, approved at re-review.** make `publicMeta` an allow-list (pick the fields the card and revisits read) instead of `...meta`, and add a test over the **built** RSC and `/api/meta` output (M6).
 - **F4, principal-engineer (owns paths.json), P2:** add `src/lib/visibility.ts` and `src/lib/trust.ts` to paths.json as tier 2, class `data`. The visibility rule moved out of `src/lib/catalog.ts` (tier 2) into a file that defaults to tier 1, so the next edit to it would need only a self-check. Also, this record's `paths:` uses `src/app/d/[slug]/page.tsx` and `src/app/api/meta/[slug]/route.ts`. In a glob, `[slug]` is a character class, so when `tools/readiness.mjs` lands these will not match the real files. Use `src/app/d/**` and `src/app/api/meta/**`.
 - **F5, principal-engineer-ops, P2:** a production draft-404 meter in `tools/ops-health.mjs` (three draft slugs, read at each ops review), because the real deploy path (Git integration) runs no smoke check.
 
@@ -135,3 +136,37 @@ Not measured: Vercel's runtime itself. With F1 that no longer matters for /d, be
 Unknown observed: while :3654 was up, an outside client (not this session) POSTed /api/events with lesson events. Harmless here, but another session may expect a server on 3654.
 
 Effect on the conditions: F1 and F3 are done when re-reviewed. C2 and C3 are unchanged. C4: drop "curriculum.references notes (M6)" from known_issues, and keep the client bundle (M7). R-003 drafts half: F1 is in, so after C2 passes it can move to in-place for page reachability, but drafts' meta and code are still in the client chunk (M7).
+
+## Re-review of the changes after approval (principal-engineer-ops, 2026-10-15)
+
+Reviewer: principal-engineer-ops (Rhea). Not my area: the change is the platform engineer's. Scope: commit fd63b1c (merged as 27966bb), against the approval of 1b7ac14 above.
+
+What I reviewed: the diff of fd63b1c for `src/app/d/[slug]/page.tsx`, `src/lib/trust.ts`, `src/components/DemoCard.tsx`, `tests/platform/{trust,built-output}.test.mjs`, `tests/platform/internal-strings.mjs`; every in-repo consumer of `PublicMeta` (DemoCard, Feed revisits, `/api/meta` route, `/d` page; nothing in tools/); that all 960 meta.json files have `recall.options` as an array, since `publicMeta` now destructures `recall` and a missing one would fail the build.
+
+What I ran, on my own build (`VERCEL=1 VERCEL_ENV=production NEXT_DIST_DIR=.next-ops-rr npx next build`, Next 16.4.0, 2m08s, 1,827 static pages; served and deleted afterwards, no server left running):
+
+| # | Check | Result |
+|---|---|---|
+| R1 | `BUILT_DIST_DIR=.next-ops-rr npm run test:platform` | 19/19 pass, 0 skipped (the 3 built-output tests ran). |
+| R2 | `next start` with VERCEL, VERCEL_ENV, SHOW_DRAFTS and SHOW_REVIEW removed from the env; the three C2 drafts on `/d` and `/api/meta`, two rounds each, plus a made-up slug | All 404, both rounds. M3 is closed. |
+| R3 | Same server: asthma-looks-safe (review), earliest-finish-wins, two-said-blue, news-comes-from-acquaintances | All 200 on `/d` and `/api/meta`; the review page shows "In review" (SHOW_REVIEW unset at build, so default on). |
+| R4 | `/api/meta/news-comes-from-acquaintances` | Keys exactly `claims, domain, evidence, recall, slug, status, title`; 4 claims, keys only `id, text, support, status, links`; evidence `{qa:1, simulatedLearner:3, humanLearners:0}`. Matches the author's measurement. |
+| R5 | `/d/earliest-finish-wins` HTML | 0 hits for "Fact-checker to confirm", `checkedBy`, `"owner"`, `keyState`. M6 is closed. It does carry `categoryManager` role ids through the `domain` prop, as the author reported (org data, P3 item on the board). |
+| R6 | Largest client chunk | 5,359,364 bytes, referenced from `/`: 5,059 `checkedBy`, 10 "Fact-checker to confirm", 81 draft records. M7 unchanged, as the author said. |
+
+Findings on the diff:
+- `dynamicParams = false` on `/d` is the F1 fix as asked. The page's own `notFound()` for unknown and retired slugs stays as a second guard. Consequence worth knowing: on production, review visibility is now fixed at **build** time too (SHOW_REVIEW at build), so changing SHOW_REVIEW in Vercel needs a rebuild. C1 and C2 are amended for that.
+- `publicMeta` is a real allow-list: fields named one by one, `recall` copied field by field, evidence reduced to counts. The "field added later" test is the right test. The type change made `tsc` the guard for consumers; the author reports it clean and the only consumers are the two components above.
+- Old-tab skew: DemoCard JS from before the deploy renders empty counts against the new JSON and does not throw. Acceptable for a transient; it belongs in `added.fixes` with the API shape change (W-925).
+- built-output tests are sound and not vacuous (the author's negative control, and R6). They still run only with `BUILT_DIST_DIR`, and `test:platform` is still in neither `npm run verify` nor CI (W-925, unchanged).
+- Rollback note, updated: a rollback or `git revert` of fd63b1c alone brings back M3 (runtime-dependent drafts on `/d`) and M6. Roll back only for regressions, as before.
+
+### Decision on the changes after approval
+
+**Approved with conditions** (the conditions above, as amended). fd63b1c is a further strict reduction of the public surface and I measured both claims it makes. F1 (W-945) and F3 (W-947) are done.
+
+Conditions, as amended: C1 also records SHOW_REVIEW at **build**. C2 as amended above (drafts 404 twice, a made-up slug 404, exact `/api/meta` keys, evidence as numbers, no "Fact-checker to confirm" on `/d/earliest-finish-wins`). C3 unchanged. C4: yes, drop the curriculum-notes leak (M6) and keep the client-bundle leak (M7, W-946); W-878 and W-884 stay open.
+
+Risks, updated: R-003 drafts half: after C2 passes it may move to in-place for **page reachability**; the bundle exposure (drafts' meta and code in the client chunk) remains under W-946. R-005: still not rescored; it waits on F2/W-946. The new low risk from section 7 is reworded again: "draft and review visibility on production depend on VERCEL=1 and SHOW_REVIEW at build"; the runtime dependency is gone. F4 (paths.json, and the `[slug]` globs in this record's `paths:` line) and F5 (production draft-404 meter) are still open.
+
+What would make me revoke it: unchanged, plus any production `/api/meta/<slug>` key outside the seven allow-listed ones.
