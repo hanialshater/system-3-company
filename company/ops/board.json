@@ -11398,10 +11398,11 @@
       "id": "W-908",
       "title": "First Light week-1 re-estimate with the owner: auth/DB/progress, personalization, mastery, social, ads, legal, infra; confirm Vercel Hobby non-commercial / Pro price (company/decisions/2026-10-15-founder-first-light.md)",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-909",
@@ -11602,10 +11603,11 @@
       "id": "W-930",
       "title": "Answer by 10-22 whether quality-bar Q5 is reachable (/ HTML <=250 KB, first-load JS <=500 KB gz from 2.32 MB, feed usable <=3.0 s at 4x throttle from 16.7 s); if so the all-metas fix (A1) moves onto First Light's critical path (company/initiatives/first-light/quality-bar.md)",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-931",
@@ -11753,10 +11755,11 @@
       "id": "W-946",
       "title": "P1: the 5.3 MB client chunk carries all 960 meta.json (drafts, claim sources, checkedBy, fact-check notes, withdrawn claims) because DemoHost imports loaders from registry.generated.ts, which imports every meta. Emit loaders in a module with no meta imports (generator is in protected tools/company.mjs: amendment, with principal-engineer; related W-607, A1) (readiness review, company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-947",
@@ -12295,6 +12298,51 @@
     {
       "id": "W-1005",
       "title": "Add 2 contingency privacy-reviewer runs to First Light and reserve its slots (10-22, 10-26..28, 11-04..06, 11-12..13, 11-16, 11-20, 11-23) (company/initiatives/first-light/privacy-gate.md)",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1006",
+      "title": "Bring AMD-001 (c2) to ratification with the W-946 rider (invariant 4 each loader points at its own Demo; invariant 5 no generated file holds both metas and import()) (W-667) (company/engineering/notes/2026-10-15-first-light-reestimate.md; 2026-10-15-w946-loaders-design.md)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1007",
+      "title": "After (c2) ratified: A1/W-946 split registry into index.generated.ts (server-only) + loaders.generated.ts; delete registry.generated.ts; import-scan + built-output tests on static/chunks. Measured: first-load JS 2.71 MB -> 230 KB gz, / HTML 310 KB -> 48 KB, 751 -> 1 stylesheets, phone usable 4.6 s -> 0.89 s (company/engineering/notes/2026-10-15-first-light-reestimate.md; 2026-10-15-w946-loaders-design.md)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1008",
+      "title": "First Light: auth spike and EDD-008 (tier 2, ADR-008 auth library: Better Auth 1.7.9 leaning; ADR-009 pg, plain SQL) by 10-22 with principal-engineer (company/engineering/notes/2026-10-15-first-light-reestimate.md; 2026-10-15-w946-loaders-design.md)",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1009",
+      "title": "First Light: cut the ad slot from release 1 now and scope social to share links (PE re-estimate: dates hold ~60% on the cut scope, ~25% on full) (company/engineering/notes/2026-10-15-first-light-reestimate.md; 2026-10-15-w946-loaders-design.md)",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1010",
+      "title": "First Light: re-base the tranche-2 stop rule to include the quality line; move A1's budget from scale-stage-1 to first-light (company/engineering/notes/2026-10-15-first-light-reestimate.md; 2026-10-15-w946-loaders-design.md)",
       "owner": "portfolio-manager",
       "state": "backlog",
       "domain": null,
