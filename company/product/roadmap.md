@@ -1,6 +1,6 @@
 # Roadmap
 
-owner: head-of-product · updated: 2026-10-12
+owner: head-of-product · updated: 2026-10-15
 
 Each item links to a PRD, brief or board id. Items move only in Cycle Planning, and the reason is recorded.
 
@@ -21,12 +21,15 @@ Circuit breaker: a wave with a fatal rate above 25% halves the next wave's new b
 ## Next
 | Item | Link | Owner |
 |---|---|---|
+| First Light release 1 (go/no-go 2026-11-23): auth, progress, legal, infra, mastery, rule-based personalization, challenges (cut to release 2 if not feature-complete by 11-06), social = share-a-lesson only. **The ad slot and any stored social data are release 2** | [decision 2026-10-15-first-light-release-1-scope](../decisions/2026-10-15-first-light-release-1-scope.md) | head-of-strategic-initiatives (delivery); owners per surface in the decision |
 | First real-learner sessions (5 people × 5 lessons); target before cycle 4 | [EXP-002](../experiments/EXP-002-real-learner-recall.md) | founder |
 | Vercel production with `SHOW_REVIEW=off` | [runbook](../ops/runbook-deploy.md) | release-manager |
 | Planted-belief experiment on our own review process | [EXP-001](../experiments/EXP-001-planted-false-claim.md) | evaluation-steward |
 | Revisit analytics (aggregate, anonymous) | PRD-002 (to write) | analytics-steward |
 
 ## Later
+- First Light release 2: the ad slot (house cards, then paid) on the W-891 rules if the founder proceeds on F-17; social beyond share links only with privacy gate 5.3, a founder-named moderator and its own EDD ([decision](../decisions/2026-10-15-first-light-release-1-scope.md))
+- School and B2B licences: discovery only, no build (vp-marketing). A paid ad-free tier is not on the roadmap (same decision, Ruling 3)
 - Paths through the curriculum map using prerequisites
 - Composable lesson "experiences" (one comparison widget configured many ways)
 - New domains from the domain scout: astronomy, music theory, linguistics (proposals pending)
