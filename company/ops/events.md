@@ -49,7 +49,14 @@ ended early), `merge`, `publish`, `unpublish`, `dispute`, `verify`, `review`, `r
 | `incident` | COEs and incidents |
 | `boardroom` | Project review: major-project proposals and approvals (company/rituals/templates/project-review.md) |
 | `constitution` | Amendments and constitutional reviews |
+| `ceo-office` | Chief of staff (CEO office), portfolio manager, principal engineers, VP R&D, head of strategic initiatives |
+| `first-light` | War room for First Light, the first public release (temporary, beside the CEO office; page `/hq/first-light`; company/decisions/2026-10-15-founder-first-light.md). Events about the program go here; a role's own work stays in its own room. |
 | `cm-<domain>` | Category managers' offices |
+
+**Floor 8, System 3 Press**, is a sibling company, not part of this one. Its rooms (`press-*`) are drawn
+from a roster snapshot (`company/sibling/press/hq-snapshot.json`); it has no event log, so no event in
+`events.jsonl` should use a `press-*` room. Work this company does for the press goes in the room of
+the role doing it.
 
 ## Writing events
 

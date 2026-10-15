@@ -98,9 +98,13 @@ const ritualCount = recs.reduce((m, f) => {
 // From the event log: who was dispatched, finished, stopped, and what it cost. The point is to catch
 // roles nobody uses (the design roles sat at 0 dispatches for ~500 lessons) and roles that keep failing.
 const { roles } = await import("./org/roles.mjs");
-const evs = fs.existsSync(rel("company/ops/events.jsonl"))
+const { dedupeUsage } = await import("./lib/usage.mjs");
+const rawEvs = fs.existsSync(rel("company/ops/events.jsonl"))
   ? fs.readFileSync(rel("company/ops/events.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l))
   : [];
+// A resumed run logs `usage` again with cumulative tokens: count only the max record per run (W-941, tools/lib/usage.mjs).
+const keptUsage = new Set(dedupeUsage(rawEvs.filter((e) => e.type === "usage")));
+const evs = rawEvs.filter((e) => e.type !== "usage" || keptUsage.has(e));
 const roleOfLabel = {};
 for (const e of evs) if (e.type === "dispatch" && e.agent && e.subjects?.[0] && !roleOfLabel[e.agent]) roleOfLabel[e.agent] = e.subjects[0];
 const per = {};

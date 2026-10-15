@@ -3,7 +3,7 @@
 //
 //   node tools/a11y-scan.mjs                       all published lessons
 //   node tools/a11y-scan.mjs add-a-zero other-slug specific lessons
-//   options: --base=http://localhost:3420  --out=artifacts/a11y/scan.json  --workers=4
+//   options: --base=http://localhost:<your port> (required)  --out=artifacts/a11y/scan.json  --workers=4
 //            --shots=<dir>  save phone screenshots (also colour-blind simulations) per lesson
 //
 // Per lesson (/d/<slug>, 390x844):
@@ -32,7 +32,12 @@ import { chromium } from "@playwright/test";
 
 const args = process.argv.slice(2);
 const opt = (k, d) => (args.find((a) => a.startsWith(`--${k}=`)) || "").split("=").slice(1).join("=") || d;
-const BASE = opt("base", "http://localhost:3420");
+// No default (W-851): a fixed default port reached whichever builder's server held it. Pass your own.
+const BASE = opt("base", process.env.A11Y_BASE_URL);
+if (!BASE) {
+  console.error("a11y-scan: --base=http://localhost:<your port> is required (or A11Y_BASE_URL); there is no default port (W-851)");
+  process.exit(2);
+}
 const OUT = opt("out", "artifacts/a11y/scan.json");
 const WORKERS = Number(opt("workers", "4"));
 const SHOTS = opt("shots", "");

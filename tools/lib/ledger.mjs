@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { dedupeUsage } from "./usage.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rel = (...p) => path.join(ROOT, ...p);
@@ -17,6 +18,7 @@ export const PATHS = {
   projects: rel("company/ops/projects.json"),
   events: rel("company/ops/events.jsonl"),
   board: rel("company/ops/board.json"),
+  inbox: rel("company/ops/founder-inbox.json"),
   waves: rel("company/ops/waves.json"),
 };
 
@@ -131,9 +133,11 @@ function wavesData() {
 
 // ------------------------------------------------------------------ spend and the gate
 
+// A resumed run is imported once per cumulative usage report; every sum below counts only its max line
+// (W-941, tools/lib/usage.mjs). The ledger file itself stays append-only.
 export function spendBy(ledger) {
   const m = {};
-  for (const l of ledger) {
+  for (const l of dedupeUsage(ledger)) {
     const s = (m[l.project] ??= { tokens: 0, runs: 0, measuredRuns: 0, unmeasuredRuns: 0, ms: 0, byAttribution: {} });
     s.runs++;
     if (typeof l.tokens === "number") { s.tokens += l.tokens; s.measuredRuns++; s.ms += l.durationMs ?? 0; }
@@ -149,7 +153,7 @@ export const budgetOf = (p) => (p.budget?.tokens == null ? null : p.budget.token
 /** Spend that counts against the budget: only lines on or after the budget was set (earlier spend is history). */
 export function spendAgainstBudget(p, ledger) {
   const from = p.budget?.countFrom ?? "0000";
-  return ledger.filter((l) => l.project === p.id && l.ts >= from && typeof l.tokens === "number").reduce((n, l) => n + l.tokens, 0);
+  return dedupeUsage(ledger).filter((l) => l.project === p.id && l.ts >= from && typeof l.tokens === "number").reduce((n, l) => n + l.tokens, 0);
 }
 
 const OPEN_OK = new Set(["approved", "active"]);
@@ -209,8 +213,39 @@ export function premortemProblem(p) {
   return null;
 }
 
+export const readInbox = () => (fs.existsSync(PATHS.inbox) ? JSON.parse(fs.readFileSync(PATHS.inbox, "utf8")).items ?? [] : []);
+
+// token-budget.md section 9 (W-920): an initiative or decision item that reaches the founder proposing
+// spend or a project carries a `budget` field, the projects.json id of its portfolio-manager budget line,
+// or "not an initiative: <why>" when the portfolio manager has said in writing that it is not one.
+const SPEND = /\$\s?\d|\bUSD\b|\bper month\b|\/mo\b|\bspend\b|\bpurchase\b|\bpaid\b|\bsubscription\b|\btranche\b|\bbudget\b|\d(\.\d+)?\s?[MkK]\s+tokens\b|\btokens?\s+per\b/i;
+const PROJECT = /\bnew (category|project|org|organi[sz]ation|vertical|team|course|format|program(me)?)\b|\bmajor project\b|\b(proceed to|start|begin|launch) (a |the )?(stage|phase|pilot|tranche)\b|\[project:[a-z0-9-]+\]/i;
+const CLOSED = new Set(["decided", "closed", "done", "withdrawn", "dropped", "resolved"]);
+
+/** Warnings for open founder-inbox items that propose spend or a project with no budget line (section 9). */
+export function inboxBudgetWarnings(reg, items = readInbox()) {
+  const ids = new Set(reg.projects.map((p) => p.id));
+  const out = [];
+  for (const i of items) {
+    if (!["initiative", "decision"].includes(i.category) || CLOSED.has(String(i.status ?? "open").toLowerCase())) continue;
+    const text = [i.title, i.options, i.recommendation, i.blocks, i.ask, i.body].filter((x) => typeof x === "string").join("\n");
+    const links = [...(i.links ?? []), ...(i.refs ?? [])].map(String);
+    const why = [];
+    if (links.some((l) => l.startsWith("company/initiatives/"))) why.push("links an initiative");
+    if (i.project || PROJECT.test(text)) why.push("proposes a project");
+    if (SPEND.test(text)) why.push("proposes spend");
+    if (i.budget) {
+      const b = String(i.budget);
+      if (!ids.has(b) && !/^not an initiative:/i.test(b)) out.push(`founder-inbox ${i.id}: budget "${b}" is not a projects.json id (or "not an initiative: <why>") (token-budget.md section 9)`);
+      continue;
+    }
+    if (why.length) out.push(`founder-inbox ${i.id} (${i.category}): ${why.join(", ")} with no \`budget\` field; it goes back to its proposer for a portfolio-manager budget line (token-budget.md section 9)`);
+  }
+  return out;
+}
+
 /** Register and ledger problems. Errors fail `ledger.mjs check`. */
-export function problems(reg, ledger = readLedger()) {
+export function problems(reg, ledger = readLedger(), inbox = readInbox()) {
   const errors = [];
   const warnings = [];
   const ids = new Set();
@@ -236,6 +271,7 @@ export function problems(reg, ledger = readLedger()) {
     // Pre-mortem (founder decision 2026-10-14-founder-risk-in-ops-review): required for a major project awaiting the forum.
     if (awaitingForum(p)) { const why = premortemProblem(p); if (why) errors.push(`${p.id}: ${why}`); }
   }
+  warnings.push(...inboxBudgetWarnings(reg, inbox));
   for (const l of ledger) if (!ids.has(l.project) && l.project !== "unattributed") errors.push(`ledger ${l.id}: unknown project ${l.project}`);
   // The bite: work explicitly tagged to a major project after enforcement began must have passed the gate at that time.
   const from = reg.enforceFrom ?? "9999";
@@ -267,12 +303,13 @@ export function summary(reg = readRegister(), ledger = readLedger(), events = re
   });
   const un = spend.unattributed;
   if (un) rows.push({ id: "unattributed", title: "No rule or tag matched", kind: "none", major: false, status: "—", owner: "portfolio-manager", budget: null, against: un.tokens, pct: null, spent: un.tokens, runs: un.runs, unmeasuredRuns: un.unmeasuredRuns, hours: Math.round(un.ms / 3.6e6 * 10) / 10, byAttribution: un.byAttribution, returns: { why: "unattributed" }, perPublished: null });
-  const total = ledger.reduce((n, l) => n + (l.tokens ?? 0), 0);
-  const byAttr = ledger.reduce((m, l) => ((m[l.attribution] = (m[l.attribution] ?? 0) + (l.tokens ?? 0)), m), {});
+  const runs = dedupeUsage(ledger);
+  const total = runs.reduce((n, l) => n + (l.tokens ?? 0), 0);
+  const byAttr = runs.reduce((m, l) => ((m[l.attribution] = (m[l.attribution] ?? 0) + (l.tokens ?? 0)), m), {});
   const dispatched = new Set(events.filter((e) => e.type === "dispatch" && e.agent && !e.summary?.startsWith("Message to")).map((e) => e.agent));
   const accounted = new Set(ledger.map((l) => l.agent));
   const noRecord = [...dispatched].filter((a) => !accounted.has(a)).length;
   const lastUsage = events.filter((e) => e.type === "usage").at(-1)?.ts ?? null;
   const published = all.filter((l) => l.status === "published").length;
-  return { rows, total, byAttr, runs: ledger.length, unmeasured: ledger.filter((l) => l.tokens == null).length, noRecord, lastUsage, published, perPublishedAll: published ? Math.round(total / published) : null };
+  return { rows, total, byAttr, runs: runs.length, duplicateLines: ledger.length - runs.length, unmeasured: ledger.filter((l) => l.tokens == null).length, noRecord, lastUsage, published, perPublishedAll: published ? Math.round(total / published) : null };
 }

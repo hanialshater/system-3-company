@@ -6,6 +6,7 @@
 //   node tools/ops-health.mjs [--md] [--hours=24]
 
 import fs from "node:fs";
+import { dedupeUsage } from "./lib/usage.mjs";
 
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 const H = Number(opt.hours ?? 24);
@@ -17,7 +18,8 @@ const board = JSON.parse(fs.readFileSync("company/ops/board.json", "utf8")).item
 const open = board.filter((i) => !["done", "dropped"].includes(i.state));
 
 // Agents: runs, stops, tokens and burn rate.
-const usage = events.filter((e) => e.type === "usage");
+// One record per run: a resumed run re-logs cumulative usage (W-941, tools/lib/usage.mjs).
+const usage = dedupeUsage(events.filter((e) => e.type === "usage"));
 const recent = usage.filter((e) => within(e, H));
 const sum = (xs, f) => xs.reduce((s, x) => s + (f(x) || 0), 0);
 const dispatches = events.filter((e) => e.type === "dispatch");
