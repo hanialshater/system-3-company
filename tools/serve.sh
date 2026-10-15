@@ -11,10 +11,20 @@ case "$cmd" in
   start)
     dist=${3:-.next}; shift 3 2>/dev/null
     if [ -f "$RUN/$port.pid" ] && kill -0 "$(cat "$RUN/$port.pid")" 2>/dev/null; then echo "port $port already served (pid $(cat "$RUN/$port.pid"))"; exit 0; fi
+    # W-851: a port someone else holds is not ours. next start would fail and the probe below would get the
+    # neighbour's 200, so refuse loudly instead.
+    hex=$(printf '%04X' "$port")
+    tabs=$(ls /proc/net/tcp /proc/net/tcp6 2>/dev/null)
+    if [ -n "$tabs" ] && awk -v h=":$hex" 'FNR>1 && substr($2, length($2)-4)==h && $4=="0A"{f=1} END{exit !f}' $tabs; then
+      echo "error: port $port is already in use by another process (not started by serve.sh here). Pick a free port." >&2; exit 1
+    fi
     want=$(find src/demos -name meta.json | wc -l); have=$(ls "$dist"/server/app/d/*.html 2>/dev/null | wc -l)
     [ "$have" -ne "$want" ] && echo "warning: $dist has $have lesson pages, the tree has $want (stale build?)"
     env "$@" NEXT_DIST_DIR="$dist" setsid npx next start -p "$port" >"$RUN/$port.log" 2>&1 &
     echo $! >"$RUN/$port.pid"; sleep 5
+    if ! kill -0 "$(cat "$RUN/$port.pid")" 2>/dev/null; then
+      echo "error: next start on port $port exited; see $RUN/$port.log" >&2; tail -5 "$RUN/$port.log" >&2; rm -f "$RUN/$port.pid"; exit 1
+    fi
     curl -s -o /dev/null -w "port $port: HTTP %{http_code}\n" "localhost:$port/" ;;
   stop)
     if [ ! -f "$RUN/$port.pid" ]; then

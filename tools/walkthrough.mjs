@@ -6,20 +6,22 @@
 //   npm run walkthrough -- --domain <domain>      every non-retired lesson in a domain, one server
 //
 // Writes artifacts/walkthroughs/<slug>/transcript.md, step screenshots and sheet.png (all frames in one image).
-// Uses a running server at WALKTHROUGH_URL if set; otherwise starts `next start` on port 3300
-// (run `npm run build` first).
+// Server (W-851, port crosstalk): --url <base> (or WALKTHROUGH_URL) uses a server you started yourself;
+// --port N starts `next start` on N and fails if N is taken; with neither, it starts `next start` on a
+// port the OS assigns. It never falls back to a fixed or guessed port, and it refuses a port another
+// server already holds (run `npm run build` first; NEXT_DIST_DIR is honoured).
 
 import { chromium, devices } from "@playwright/test";
-import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { startNext, explicitBase } from "./lib/server.mjs";
 
 const args = process.argv.slice(2);
 const opt = (k, d) => {
   const i = args.indexOf(`--${k}`);
   return i >= 0 ? args[i + 1] : d;
 };
-const optVals = new Set(["choose", "steps", "viewport", "domain"].map((k) => opt(k, null)).filter(Boolean));
+const optVals = new Set(["choose", "steps", "viewport", "domain", "url", "port"].map((k) => opt(k, null)).filter(Boolean));
 let slugs = args.filter((a) => !a.startsWith("--") && !optVals.has(a));
 const domainOpt = opt("domain", null);
 if (domainOpt) {
@@ -29,7 +31,7 @@ if (domainOpt) {
   });
 }
 if (!slugs.length) {
-  console.log("usage: npm run walkthrough -- <slug> [--choose N] [--steps K] [--viewport phone|desktop]");
+  console.log("usage: npm run walkthrough -- <slug> [--choose N] [--steps K] [--viewport phone|desktop] [--url http://localhost:<your port> | --port N]");
   process.exit(1);
 }
 const choose = Number(opt("choose", "0"));
@@ -49,12 +51,21 @@ async function waitFor(url, ms = 30_000) {
 }
 
 let server;
-let base = process.env.WALKTHROUGH_URL;
-if (!base) {
-  const port = 3300 + Math.floor(Math.random() * 500);
-  base = `http://localhost:${port}`;
-  server = spawn("npx", ["next", "start", "-p", String(port)], { stdio: "ignore", detached: true });
-  await waitFor(base);
+let base;
+const urlOpt = opt("url", null) ?? process.env.WALKTHROUGH_URL;
+try {
+  if (urlOpt) {
+    base = explicitBase(urlOpt, "walkthrough");
+    await waitFor(base, 10_000);
+    console.log(`walkthrough: using ${base} (${opt("url", null) ? "--url" : "WALKTHROUGH_URL"})`);
+  } else {
+    server = await startNext({ port: opt("port", null), label: "walkthrough" });
+    base = server.base;
+    console.log(`walkthrough: started next start on ${base} (pid ${server.child.pid})`);
+  }
+} catch (e) {
+  console.error(String(e.message ?? e));
+  process.exit(2);
 }
 
 // One image per lesson (sheet.png): every frame in order, labelled, so a reviewer can see the whole
@@ -165,4 +176,4 @@ try {
 console.log(`wrote ${path.join(outDir, "transcript.md")} and ${n} screenshots`);
 }
 await browser.close();
-if (server) try { process.kill(-server.pid); } catch {}
+if (server) server.stop();

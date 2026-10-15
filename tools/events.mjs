@@ -5,6 +5,7 @@
 //   node tools/events.mjs add --type=T --room=R --actor=A --summary="…" [--agent=L] [--subjects=a,b]
 //                             [--refs=p1,p2] [--state=S] [--body="…" | --body-file=path]
 //   node tools/events.mjs backfill [--transcripts=<dir>]   git history + session transcripts (idempotent)
+//            [--types=stopped,usage] [--since=<ISO>] [--dry]  only those types / from that time; --dry counts, writes nothing
 //   node tools/events.mjs tail [n]
 
 import fs from "node:fs";
@@ -12,7 +13,7 @@ import path from "node:path";
 import os from "node:os";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOG = path.join(ROOT, "company/ops/events.jsonl");
@@ -35,7 +36,7 @@ function append(events) {
   return fresh.length;
 }
 
-const ROOM_BY_ROLE = {
+export const ROOM_BY_ROLE = {
   "demo-builder": "build-floor",
   "fact-checker": "fact-check",
   "learner-evaluator": "learner-review",
@@ -93,8 +94,10 @@ const ROOM_BY_ROLE = {
   "chief-of-staff": "chief-of-staff",
   "chief-of-staff-ceo-office": "ceo-office",
   "portfolio-manager": "ceo-office",
+  // W-914 (company/decisions/2026-10-15-head-of-strategic-initiatives.md): runs First Light from the CEO office.
+  "head-of-strategic-initiatives": "ceo-office",
 };
-const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
+export const roomFor = (role) => ROOM_BY_ROLE[role] ?? (role?.startsWith("cm-") ? role.split("-").slice(0, 2).join("-") : "chief-of-staff");
 
 // ------------------------------------------------------------------ git history
 
@@ -156,7 +159,7 @@ const firstLine = (s, n = 140) => {
   return l.length > n ? l.slice(0, n - 1) + "…" : l;
 };
 
-function transcriptEvents(dir) {
+export function transcriptEvents(dir) {
   const files = [];
   const walk = (d) => {
     if (!fs.existsSync(d)) return;
@@ -241,9 +244,18 @@ function transcriptEvents(dir) {
   return events;
 }
 
+/**
+ * Backfill selection (W-941 A5): events of the given types at or after `since`, not already in the log.
+ * Only what the sources hold is returned; nothing is synthesised.
+ */
+export function selectBackfill(all, { types = null, since = null, have = new Set() } = {}) {
+  return all.filter((e) => (!types || types.includes(e.type)) && (!since || e.ts >= since) && !have.has(e.id));
+}
+
 // ------------------------------------------------------------------ CLI
 
-const [cmd, ...args] = process.argv.slice(2);
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+const [cmd, ...args] = isMain ? process.argv.slice(2) : [];
 const opt = Object.fromEntries(args.filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 
 if (cmd === "add") {
@@ -261,11 +273,19 @@ if (cmd === "add") {
   console.log(`added ${e.id}`);
 } else if (cmd === "backfill") {
   const dir = opt.transcripts ?? path.join(os.homedir(), ".claude/projects");
-  const all = [...gitEvents(), ...transcriptEvents(dir)].sort((a, b) => a.ts.localeCompare(b.ts));
-  console.log(`backfill: ${append(all)} new event(s) (${all.length} seen)`);
+  const types = opt.types ? String(opt.types).split(",") : null;
+  const since = opt.since ? new Date(String(opt.since)).toISOString() : null;
+  const fromGit = !types || types.some((t) => !["dispatch", "report", "stopped", "usage", "note", "founder"].includes(t));
+  const all = [...(fromGit ? gitEvents() : []), ...transcriptEvents(dir)].sort((a, b) => a.ts.localeCompare(b.ts));
+  const picked = selectBackfill(all, { types, since, have: new Set(readLog().map((e) => e.id)) });
+  const scope = `${types ? types.join(",") : "all types"}${since ? ` since ${since}` : ""}`;
+  if (opt.dry) {
+    console.log(`backfill --dry: ${picked.length} new event(s) would be added (${scope}; ${all.length} seen in git + ${dir})`);
+    for (const e of picked.slice(0, 50)) console.log(`  ${e.ts.slice(0, 16)} ${e.type.padEnd(8)} ${e.summary}`);
+  } else console.log(`backfill: ${append(picked)} new event(s) (${scope}; ${all.length} seen)`);
 } else if (cmd === "tail") {
   const n = Number(args[0] ?? 20);
   for (const e of readLog().sort((a, b) => a.ts.localeCompare(b.ts)).slice(-n)) console.log(`${e.ts.slice(0, 16).replace("T", " ")}  ${e.type.padEnd(9)} ${e.room.padEnd(15)} ${e.summary}`);
-} else {
+} else if (isMain) {
   console.log("usage: node tools/events.mjs add|backfill|tail  (see company/ops/events.md)");
 }
