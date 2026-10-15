@@ -25,3 +25,13 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 **Result (Pass 41):** 2 verified, 0 disputed, 0 unverified (held).
 
 Other claims in this lesson not re-checked in this pass and still not verified: c4.
+
+### Pass 41, later the same day: c4
+
+Same checker and method as the Pass 41 section above. c4 opened on PMC after the first write-up.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Learner text (Demo.tsx lines 104-105): 'Deleting the column deletes the label, not the pattern. Fairness has to be checked on outcomes by group, not on inputs.' Opened on PMC: Adams-Prassl, Binns and Kelly-Lyth (2022), 'Directly Discriminatory Algorithms', Mod Law Rev 86(1): 144-175 (PMC10087838). It names 'proxy discrimination' as 'a common cause of algorithmic bias'. In its example, Amazon's hiring system, trained on historic data, 'quickly learned to penalise applications from graduates of two all-women's colleges' because 'some of the correlations between applicant traits and the likelihood of success were linked to sex'. It also notes 'less favourable treatment ... caused by correlations between an ADMS' features and protected characteristics'. So removing a protected attribute does not stop discrimination through correlated features. 'Where people live' is the toy's illustration of such a feature (c1-c3, verified). Checking outcomes by group is the check the claim draws from that. Barocas, Hardt and Narayanan and Pedreshi et al. 2008 are not opened. |
+
+**Result (Pass 41, all three claims):** 3 verified, 0 disputed, 0 unverified. All claims in this lesson are now verified.

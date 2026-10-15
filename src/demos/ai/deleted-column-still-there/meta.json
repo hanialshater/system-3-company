@@ -61,9 +61,10 @@
       "text": "Removing a protected attribute does not prevent discrimination when other features, such as where people live, are correlated with it ('Deleting the column deletes the label, not the pattern. Fairness has to be checked on outcomes by group, not on inputs').",
       "support": "source",
       "source": "Barocas, Hardt and Narayanan, Fairness and Machine Learning: Limitations and Opportunities (MIT Press, 2023; fairmlbook.org), chapter 3 ('Classification'), on why removing the sensitive attribute fails (redundant encodings); Pedreshi, Ruggieri and Turini (2008), 'Discrimination-aware data mining', KDD 2008 (redlining). About real systems. | FC pass 38 (fact-checker, 2026-10-14): HELD. No source that supports it could be opened from this host: the cited hosts return proxy 403 or fail DNS, and only GitHub raw, PyPI and npm are reachable. I did not verify it from memory or from search snippets. Barocas, Hardt and Narayanan (fairmlbook.org) and Pedreshi et al. 2008 could not be opened, and no GitHub source copy of the book was found. The toy shows the mechanism, but the claim is about real systems.",
-      "status": "unverified",
+      "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15",
+      "note": "FC pass 41 (fact-checker, 2026-10-15): VERIFIED. Learner text (Demo.tsx lines 104-105): 'Deleting the column deletes the label, not the pattern. Fairness has to be checked on outcomes by group, not on inputs.' Opened on PMC: Adams-Prassl, Binns and Kelly-Lyth (2022), 'Directly Discriminatory Algorithms', Mod Law Rev 86(1): 144-175 (PMC10087838). It names 'proxy discrimination' as 'a common cause of algorithmic bias'. In its example, Amazon's hiring system, trained on historic data, 'quickly learned to penalise applications from graduates of two all-women's colleges' because 'some of the correlations between applicant traits and the likelihood of success were linked to sex'. It also notes 'less favourable treatment ... caused by correlations between an ADMS' features and protected characteristics'. So removing a protected attribute does not stop discrimination through correlated features. 'Where people live' is the toy's illustration of such a feature (c1-c3, verified). Checking outcomes by group is the check the claim draws from that. Barocas, Hardt and Narayanan and Pedreshi et al. 2008 are not opened."
     }
   ],
   "confidence": "",
