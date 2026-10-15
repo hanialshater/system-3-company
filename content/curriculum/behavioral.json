@@ -1,7 +1,7 @@
 {
   "domain": "behavioral",
   "owner": "cm-behavioral",
-  "note": "Owned by the category manager (cm-behavioral, Rasmus); charter company/domains/behavioral.md; sign-off requests company/domains/behavioral-signoffs.md. Domain id 'behavioral' is a PROPOSAL: platform-engineer decides the DomainId at playbook step 8 (W-981); until content/domains.json lists it, npm run check does not validate this file. Drafted 2026-10-15 by cm-behavioral from the DLR (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and head-of-product's rulings (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md). No subarea: no strands at this size. demand: 1 low, 3 high; EVERY value is an estimate (demandEstimate: true), not learner data: the 12 counted concepts carry domain-scout's DLR estimates, the reserves cm-behavioral's. level: intro | core | stretch. reserve: true = not counted and not briefed until a counted concept is struck and the reserve's own boundary line is signed. pilot: the DLR five in head-of-product's order (1-3 after the fact-checker's step-9 statement; 4 after cm-books signs, fallback reflection-effect; 5 after cm-economics signs); no sixth brief before the DLR reconvenes. claimTypes: a derivation, b the learner's own screen, c disclosed seeded simulation, d source plus replication verdict (charter, checking section). nearest: the closest existing concept in any category (a brief says how it differs). boundary: which neighbour rows it depends on, the close-call line if any, who signs, and status (pending until signed in behavioral-signoffs.md). contested: true = taught only as contested, never as a predict answer. held: why the concept cannot be briefed even after its row is signed. Prerequisites link neighbour concepts by domain:id; nothing is moved or re-tagged out of a neighbour. reviewRoute: 'sensitive' where a reveal would compare groups or countries (the sensitive-topics route, company/international/sensitive-topics-checklist.md), 'standard' otherwise.",
+  "note": "Owned by the category manager (cm-behavioral, Rasmus); charter company/domains/behavioral.md; sign-off requests company/domains/behavioral-signoffs.md. Domain id 'behavioral' is a PROPOSAL: platform-engineer decides the DomainId at playbook step 8 (W-981); until content/domains.json lists it, npm run check does not validate this file. Drafted 2026-10-15 by cm-behavioral from the DLR (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and head-of-product's rulings (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md). No subarea: no strands at this size. demand: 1 low, 3 high; EVERY value is an estimate (demandEstimate: true), not learner data: the counted concepts carry domain-scout's DLR estimates, the reserves cm-behavioral's. level: intro | core | stretch. reserve: true = not counted and not briefed until a counted concept is struck and the reserve's own boundary line is signed. pilot: the DLR five in head-of-product's order (1-3 after the fact-checker's step-9 statement; 4 after cm-books signs, fallback reflection-effect; 5 after cm-economics signs); no sixth brief before the DLR reconvenes. claimTypes: a derivation, b the learner's own screen, c disclosed seeded simulation, d source plus replication verdict (charter, checking section). nearest: the closest existing concept in any category (a brief says how it differs). boundary: which neighbour rows it depends on, the close-call line if any, who signs, and status, copied from behavioral-signoffs.md on 2026-10-15 (signoffs: one entry per sign-off line with verdict and conditions; rowSignoffs: the row-wide lines). A condition is binding on the brief; if a brief breaks one, that signature lapses. 11 counted concepts after #12 money-illusion was dropped on the E9 objection (see `dropped`). contested: true = taught only as contested, never as a predict answer. held: why the concept cannot be briefed even after its row is signed. Prerequisites link neighbour concepts by domain:id; nothing is moved or re-tagged out of a neighbour. reviewRoute: 'sensitive' where a reveal would compare groups or countries (the sensitive-topics route, company/international/sensitive-topics-checklist.md), 'standard' otherwise.",
   "concepts": [
     {
       "id": "allais-certainty-effect",
@@ -32,12 +32,47 @@
           "cm-economics",
           "cm-probability"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E0",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no reveal re-states a verified Economics claim; link the lesson instead"
+          },
+          {
+            "line": "E1",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed",
+            "conditions": "the reveal computes no certainty equivalent; link square-root-wealth"
+          },
+          {
+            "line": "P0",
+            "by": "cm-probability",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the stated model is expected utility (any increasing u), not expected value; a probability or EV may be stated and used, never asked for in a predict question"
+          },
+          {
+            "line": "P1",
+            "by": "cm-probability",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the reveal is the inconsistency across the pair, never 'A is wrong because B has the higher EV'; EV only as a linked prerequisite and a number on the cards; no compute-the-EV step; no spread-of-outcomes or run-of-plays stage"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes",
+          "probability: P0 signed with changes"
+        ]
       },
       "pilot": 1,
       "demandEstimate": true,
       "reserve": false,
-      "reviewRoute": "standard"
+      "reviewRoute": "standard",
+      "statedModel": "expected utility (any increasing u); expected value is a linked prerequisite and a number on the cards only (P0, P1)"
     },
     {
       "id": "reflection-effect",
@@ -63,7 +98,32 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E0",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes"
+          },
+          {
+            "line": "E2",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed",
+            "conditions": "no utility-curve arithmetic as the reveal"
+          },
+          {
+            "line": "P0",
+            "by": "cm-probability",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "EV may be stated on the cards, never asked for"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ]
       },
       "pilot": null,
       "pilotFallback": "replaces pilot 4 if cm-books refuses #4",
@@ -99,7 +159,27 @@
           "cm-economics",
           "cm-probability"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E3",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the stage is a lottery or small-probability gamble, not the insurance price; wherever insurance appears the reveal also states the risk-aversion account and links insurance-fair-price"
+          },
+          {
+            "line": "P2",
+            "by": "cm-probability",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no fair price as the reveal; predict asks for a choice or price at a stated probability, never a waiting time or ticket count; no 'one in a million never happens' frame (truly-large-numbers); no relative-risk wording (relative-vs-absolute-risk); any 'people overweight small chances' sentence is type (d) and held"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes",
+          "probability: P0 signed with changes"
+        ]
       },
       "pilot": null,
       "demandEstimate": true,
@@ -130,7 +210,26 @@
         "signer": [
           "cm-books"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "B0",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed",
+            "conditions": "no 'about 2x' ratio; no mixed 50/50 bet"
+          },
+          {
+            "line": "B1",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no loss-aversion ratio, no mixed 50/50 bet, books:tfs-loss-aversion as prerequisite only; source the framing result to the research (Tversky & Kahneman 1981; Many Labs 1), never as a 'Thinking, Fast and Slow argues' claim; Books will not brief the disease-problem idea"
+          }
+        ],
+        "rowSignoffs": [
+          "books: B0 signed"
+        ]
       },
       "pilot": 4,
       "demandEstimate": true,
@@ -150,24 +249,35 @@
         "d"
       ],
       "nearest": [
-        "books:tfs-loss-aversion",
-        "books-strategy deck 30 Misbehaving (keep-the-mug, proposed misbehaving-endowment, rank 35)"
+        "books:tfs-loss-aversion"
       ],
       "boundary": {
         "rows": [
           "books"
         ],
-        "close": "#5: exception, Books keeps it until cm-books signs; if refused, removed and ceiling 17",
+        "close": "#5: exception granted by cm-books (B2, W-903); Books dropped its rank-35 keep-the-mug deck idea; Books takes it back if this lesson is struck or never briefed",
         "signer": [
           "cm-books"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "B2",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes (W-903 exception granted)",
+            "conditions": "a research lesson, no 'Misbehaving argues' claim (a works reference to Thaler 2015 is optional); the reveal carries the scope debate as its verdict (pointer Plott & Zeiler 2005); tranche 2 only; Books dropped keep-the-mug / misbehaving-endowment from rank 35; if this lesson is struck or never briefed, tell cm-books in writing and Books takes the idea back"
+          }
+        ],
+        "rowSignoffs": [
+          "books: B0 signed"
+        ]
       },
       "pilot": null,
-      "held": "Books keeps it until cm-books signs the exception (W-903); not in any tranche's committed part",
       "demandEstimate": true,
       "reserve": false,
-      "reviewRoute": "standard"
+      "reviewRoute": "standard",
+      "tranche": "2 only (B2); not in the pilot"
     },
     {
       "id": "present-bias-reversal",
@@ -197,7 +307,39 @@
           "cm-economics",
           "cm-books"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E0",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes"
+          },
+          {
+            "line": "E4",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed",
+            "conditions": "exponential discounting is named as the stated model (a simplification); no present-value calculation at a market rate; link wait-or-take-now"
+          },
+          {
+            "line": "B0",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed"
+          },
+          {
+            "line": "B3",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the reveal does not teach task-duration underestimates and does not teach delay of gratification as a predictor of life outcomes (Books' planned wait-for-two-marshmallows)"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes",
+          "books: B0 signed"
+        ]
       },
       "pilot": 2,
       "demandEstimate": true,
@@ -229,7 +371,27 @@
           "cm-economics",
           "cm-books"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E5",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed",
+            "conditions": "no second player on the stage"
+          },
+          {
+            "line": "B4",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "binds by cost or a removed option (lockbox, deposit, deadline), never by a public pledge, consistency with an earlier yes, or someone else's request; title and predict question do not use 'commitment' alone"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes",
+          "books: B0 signed"
+        ]
       },
       "pilot": null,
       "demandEstimate": true,
@@ -262,7 +424,19 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "pending: agreed in principle; signature waits for the E6 comparison draft (behavioral-signoffs.md, cm-behavioral's comparison drafts)",
+        "signoffs": [
+          {
+            "line": "E6",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "agreed in principle; signature pending the comparison draft",
+            "conditions": "(1) a stage with no past payment; (2) the predict's wrong answer and reason are not 'money already spent should count'; (3) the reveal is the inconsistency between the learner's two answers (type b), not 'ignore sunk costs' or a forward-looking cost comparison; (4) no hidden-rate or cash-discount arithmetic and no 'true cost includes what you give up' reveal; (5) nearest sunk-cost-exit, with one line on how it differs. Objects if the stage needs a past, unrecoverable payment"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ]
       },
       "pilot": 5,
       "demandEstimate": true,
@@ -278,6 +452,7 @@
         "economics:ultimatum-game"
       ],
       "claimTypes": [
+        "b",
         "d"
       ],
       "nearest": [
@@ -293,17 +468,30 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E7",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the learner gives as the dictator and nobody can reject or reply; the predict asks neither what a rational responder does nor what a proposer offers under threat of rejection; the reveal does not compare dictator and ultimatum offers as a claim and links lowball-offer-should-pass"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ]
       },
       "pilot": null,
       "reviewRoute": "sensitive",
       "sensitive": "comparisons of groups or countries, if the reveal names cross-cultural variation",
       "demandEstimate": true,
-      "reserve": false
+      "reserve": false,
+      "claimNote": "Answer to cm-economics' E7 note: the stage compares the learner's own gift with the stated self-interest model (which predicts giving 0): type (b). What shifts giving in other people is type (d) and held."
     },
     {
       "id": "beauty-contest-level-k",
-      "name": "Guess two thirds of the average: how many steps ahead do you think?",
+      "name": "Against a crowd that stops early, the equilibrium guess loses",
       "level": "core",
       "demand": 3,
       "prerequisites": [
@@ -326,12 +514,25 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "signed with changes; the brief waits for cm-economics' reply to the E8 comparison draft",
+        "signoffs": [
+          {
+            "line": "E8",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes (cm-economics-markets consulted through the records)",
+            "conditions": "(1) rename the concept (done 2026-10-15); (2) the predict names the disclosed simulated crowd and its options are not the 33/22/0 ladder under common knowledge of rationality; (3) the ceilings 66.7, 44.4, ... are not derived on the stage: one linked prerequisite step to two-thirds-of-the-average; (4) the Nagel 1995 first-round line stays held until sourced; before the brief, a three-line comparison draft (stage, predict with options, reveal claim)"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ]
       },
       "pilot": 3,
       "demandEstimate": true,
       "reserve": false,
-      "reviewRoute": "standard"
+      "reviewRoute": "standard",
+      "renamed": "2026-10-15 on E8 condition 1: the old name 'Guess two thirds of the average: how many steps ahead do you think?' duplicated the title of economics/two-thirds-of-the-average"
     },
     {
       "id": "interval-overconfidence",
@@ -361,41 +562,34 @@
         "signer": [
           "cm-probability"
         ],
-        "status": "pending"
-      },
-      "pilot": null,
-      "demandEstimate": true,
-      "reserve": false,
-      "reviewRoute": "standard"
-    },
-    {
-      "id": "money-illusion",
-      "name": "Same real change, different feeling when the number is nominal",
-      "level": "intro",
-      "demand": 2,
-      "prerequisites": [
-        "economics:inflation",
-        "economics:real-interest-rate"
-      ],
-      "claimTypes": [
-        "b",
-        "d"
-      ],
-      "nearest": [
-        "economics:inflation",
-        "economics:real-interest-rate",
-        "economics:percent-stacking",
-        "economics:price-index"
-      ],
-      "boundary": {
-        "rows": [
-          "economics"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "P3",
+            "by": "cm-probability",
+            "date": "2026-10-15",
+            "verdict": "signed with changes: #11 enters and stays",
+            "conditions": "'your 90% ranges', never 'confidence intervals', no polling or sampling stage; the reveal says a statistical procedure's interval does hit at its stated rate and links probability:confidence-intervals; the reveal is conditional on the score with a computed binomial claim (e.g. P(7 or fewer of 10 at p=0.9) about 7%), and a learner scoring 9 or 10 is not called overconfident; each true answer is its own sourced claim; any 'most people hit about half' sentence is type (d) and held"
+          },
+          {
+            "line": "B5",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "informed"
+          },
+          {
+            "line": "G4",
+            "by": "cm-big-ideas",
+            "date": "2026-10-15",
+            "verdict": "informed (not gating)",
+            "conditions": "asked: no actual-against-perceived chart by quartile; no 'the less you know, the more overconfident' sentence and no Dunning-Kruger name as support; keep P3 condition 3"
+          }
         ],
-        "close": "#12: dropped first if cm-economics objects",
-        "signer": [
-          "cm-economics"
-        ],
-        "status": "pending"
+        "rowSignoffs": [
+          "probability: P0 signed with changes",
+          "books: B0 signed",
+          "big-ideas: G0 signed with changes, G1 signed with changes (every brief)"
+        ]
       },
       "pilot": null,
       "demandEstimate": true,
@@ -427,7 +621,27 @@
           "cm-books",
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E10",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no compounding or start-early arithmetic in the reveal (link start-early-race, fee-drag-gap)"
+          },
+          {
+            "line": "B6",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no opt-in versus opt-out contrast and no default-effect size; defaults stay Books'"
+          }
+        ],
+        "rowSignoffs": [
+          "books: B0 signed",
+          "economics: E0 signed with changes"
+        ]
       },
       "reserve": true,
       "demandEstimate": true,
@@ -457,7 +671,19 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E10",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "the learner chooses only at the punishment stage; free riding is not re-taught (link free-rider-pot)"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ]
       },
       "reserve": true,
       "reviewRoute": "sensitive",
@@ -489,7 +715,27 @@
           "cm-economics",
           "cm-books"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "E10",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no advice to sell or hold, no real securities, the sunk-cost-exit reveal is not re-run, needs a data source"
+          },
+          {
+            "line": "B6",
+            "by": "cm-books",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "no loss-aversion ratio from brief 12; never investment advice"
+          }
+        ],
+        "rowSignoffs": [
+          "economics: E0 signed with changes",
+          "books: B0 signed"
+        ]
       },
       "reserve": true,
       "demandEstimate": true,
@@ -521,7 +767,20 @@
         "signer": [
           "cm-big-ideas"
         ],
-        "status": "pending"
+        "status": "signed by cm-big-ideas (G2); one neighbour line open: cm-probability on probability:winners-curse (asked as P4)",
+        "signoffs": [
+          {
+            "line": "G2",
+            "by": "cm-big-ideas",
+            "date": "2026-10-15",
+            "verdict": "signed with changes",
+            "conditions": "predict asks the at-scale size of one named class of nudge against its published size (type d, held until W-902); never what share of findings is true, no base-rate x power tree; the explanation is not derived on the stage (no selection simulation, no best-of-many-noisy-estimates); link big-ideas:most-findings-false and probability:winners-curse; explanations named as contested, each side sourced, or both cut; if W-902 cannot source the gap the concept stays unbriefed; no default-effect size, chooser's side only"
+          }
+        ],
+        "rowSignoffs": [
+          "big-ideas: G0 signed with changes, G1 signed with changes (every brief)",
+          "books: B0 signed"
+        ]
       },
       "reserve": true,
       "contested": true,
@@ -552,7 +811,20 @@
         "signer": [
           "cm-big-ideas"
         ],
-        "status": "pending"
+        "status": "signed by cm-big-ideas (G3); one neighbour line open: cm-books on books:irrational-decoy (asked as B7)",
+        "signoffs": [
+          {
+            "line": "G3",
+            "by": "cm-big-ideas",
+            "date": "2026-10-15",
+            "verdict": "signed with changes; Big Ideas does not claim it",
+            "conditions": "the predict is never 'did this finding hold up?'; the predict answer is uncontested (derivation, own screen or sourced measurement); 'contested' is a verdict with its own sourced line, each side sourced or both names cut; if W-902 sources 'did not replicate' it leaves this category for Big Ideas' first refusal"
+          }
+        ],
+        "rowSignoffs": [
+          "big-ideas: G0 signed with changes, G1 signed with changes (every brief)",
+          "books: B0 signed"
+        ]
       },
       "reserve": true,
       "contested": true,
@@ -581,13 +853,74 @@
         "signer": [
           "cm-big-ideas"
         ],
-        "status": "pending"
+        "status": "signed",
+        "signoffs": [
+          {
+            "line": "G3",
+            "by": "cm-big-ideas",
+            "date": "2026-10-15",
+            "verdict": "signed with changes; Big Ideas does not claim it",
+            "conditions": "as choice-overload, plus no comparison of income groups as a claim, the sensitive route, and no wellbeing or money advice"
+          }
+        ],
+        "rowSignoffs": [
+          "big-ideas: G0 signed with changes, G1 signed with changes (every brief)"
+        ]
       },
       "reserve": true,
       "contested": true,
       "reviewRoute": "sensitive",
       "sensitive": "comparisons of groups (income groups)",
       "demandEstimate": true
+    }
+  ],
+  "dropped": [
+    {
+      "id": "money-illusion",
+      "name": "Same real change, different feeling when the number is nominal",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [
+        "economics:inflation",
+        "economics:real-interest-rate"
+      ],
+      "claimTypes": [
+        "b",
+        "d"
+      ],
+      "nearest": [
+        "economics:inflation",
+        "economics:real-interest-rate",
+        "economics:percent-stacking",
+        "economics:price-index"
+      ],
+      "boundary": {
+        "rows": [
+          "economics"
+        ],
+        "close": "#12: dropped first if cm-economics objects",
+        "signer": [
+          "cm-economics"
+        ],
+        "status": "objected",
+        "rowSignoffs": [
+          "economics: E0 signed with changes"
+        ],
+        "signoffs": [
+          {
+            "line": "E9",
+            "by": "cm-economics",
+            "date": "2026-10-15",
+            "verdict": "objected",
+            "conditions": "collides with published economics/real-rate-illusion: the classic stage gets the same wrong answer ('the nominal raise is better') for the same reason, and its reveal is nominal-to-real arithmetic; the 'felt' version is type (d) only. Would change on a comparison draft whose wrong answer is not 'the nominal number is the real gain' and whose reveal needs no nominal-to-real arithmetic"
+          }
+        ]
+      },
+      "pilot": null,
+      "demandEstimate": true,
+      "reserve": false,
+      "reviewRoute": "standard",
+      "dropped": "2026-10-15 by cm-behavioral on cm-economics' E9 objection; head-of-product's ruling (decision §3): 'dropped first if cm-economics objects'. Not counted. Kept here for the record only; tools read `concepts`, not `dropped`."
     }
   ]
 }

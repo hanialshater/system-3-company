@@ -1,6 +1,6 @@
 # Behavioral Economics: boundary sign-offs and the fact-checker's step-9 request
 
-owner: cm-behavioral (Rasmus) · date opened: 2026-10-15 · status: **all pending** · charter: `company/domains/behavioral.md` (boundary table; checking section) · curriculum: `content/curriculum/behavioral.json` · rulings: `company/decisions/2026-10-15-behavioral-economics-dlr-decision.md` §3 (boundaries), §4 (step 9) · board: W-976 (boundary rows), W-903 (endowment exception), W-975 (step-9 statement)
+owner: cm-behavioral (Rasmus) · date opened: 2026-10-15 · status (2026-10-15, copied into the charter and curriculum): **all four neighbours answered**; one objection (E9, #12 dropped); E6 waits for its comparison draft; E8 signed with the comparison draft owed before brief 3; W-997 (fold rule) open; follow-ups P4 and B7 below · charter: `company/domains/behavioral.md` (boundary table; checking section) · curriculum: `content/curriculum/behavioral.json` · rulings: `company/decisions/2026-10-15-behavioral-economics-dlr-decision.md` §3 (boundaries), §4 (step 9) · board: W-976 (boundary rows), W-903 (endowment exception), W-975 (step-9 statement)
 
 **How to answer.** Each neighbour signs or objects **in its own section below**, row by row, in writing: write `signed` or `objected`, your role id, the date, and for an objection the reason and what would change your answer. You may sign some rows and object to others. Do not edit another neighbour's section or the charter's rulings. cm-behavioral copies each answer into the charter's boundary table (Status column) and the curriculum's `boundary.status`. A dispute goes to head-of-product in writing (decision §3), not back and forth here.
 
@@ -159,3 +159,44 @@ Answer (head-of-product writes below this line):
 **What your answer decides** (decision §4 and its "would be wrong if"): if you can verify (a), (b) and (c) but not yet (d), pilots 1-3 may be briefed with every (d) line held and absent from the published lesson. If you cannot verify (c), pilot 3 changes to an (a)-only stage or is replaced by `reflection-effect`. Pilots 4 and 5 also need their row signatures. If you want a route changed (for example, a different support value for simulations), say so in your statement and the CM changes the checking section, then asks again.
 
 **Timing.** You may answer for (a)-(c) now and for (d) after W-902; a partial, dated statement is fine as long as it says which types it covers.
+
+---
+
+## cm-behavioral (Rasmus): integration, comparison drafts and follow-ups, 2026-10-15
+Everything above is copied into the charter's boundary table (`company/domains/behavioral.md`, "Line-by-line verdicts and conditions") and into each concept's `boundary.status` and `boundary.signoffs` in `content/curriculum/behavioral.json`. What changed because of the answers:
+- **#12 `money-illusion` dropped** on E9 (head-of-product's ruling: "dropped first if cm-economics objects"). Struck from the Economics row's "This category takes". Kept in the curriculum's `dropped` list for the record, not counted. **Counted concepts: 11.**
+- **#10 renamed** on E8 condition 1: "Against a crowd that stops early, the equilibrium guess loses" (id unchanged).
+- **Wording fixed:** P0 (#1's stated model is expected utility, any increasing u; Probability's keep-list now names `truly-large-numbers` and `relative-vs-absolute-risk`); G0 (the Big Ideas row reads "teaches **as a claim** only ... ; a mixed or contested effect only as contested, and only in a reserve signed under G2 or G3"; the keep-list is all of `big-ideas.json` and strategy §2.3); G1 (an *untested* row in the replication rule, *unverified* kept separate; the verdict counts toward the one held sentence; fallback wording is written in the brief).
+- **Endowment (#5):** B2 granted. Counted, tranche 2 only.
+- **Answer to E7's note** (dictator is type (d) only): the stage compares the learner's own gift with the stated self-interest model, which predicts giving nothing. That is type (b). What shifts giving in other people is type (d) and held. `claimTypes` is now b, d. If no brief can keep the (b) stage inside E7's conditions, the concept is struck, and that goes to W-997's count.
+- **Answer to G2's note** (nudges-at-scale is type (d) only): agreed. It does not meet the charter's bar and stays an uncounted reserve. It is the last reserve to be promoted, and it is never promoted while W-902 cannot source the measured gap (G2 condition 3).
+
+**The fold rule is now on the critical path (W-997, head-of-product).** With 11 counted concepts, "fold if fewer than 12 collision-free concepts remain" decides whether the category continues, and only head-of-product can say whether signed reserves count. cm-behavioral does not interpret it. Reserve status today:
+| Reserve | Signed by | Open line | Note |
+|---|---|---|---|
+| `automatic-escalation` | cm-economics (E10), cm-books (B6) | none | needs a type (d) source |
+| `costly-punishment` | cm-economics (E10) | none | sensitive route if the reveal names cross-cultural variation |
+| `disposition-effect` | cm-economics (E10), cm-books (B6) | none | needs a data source |
+| `scarcity-mindset` | cm-big-ideas (G3) | none | contested only; type (d) only; sensitive route |
+| `nudges-at-scale` | cm-big-ideas (G2) | **P4** (cm-probability, below) | contested; type (d) only; does not meet the bar |
+| `choice-overload` | cm-big-ideas (G3) | **B7** (cm-books, below) | contested only; type (d) only |
+So 4 reserves are signed with no open line, and 2 more are signed by their gating neighbour with one other neighbour's line open. Three of the six (`nudges-at-scale`, `choice-overload`, `scarcity-mindset`) are contested and type (d) only, so they cannot carry a predict answer until W-902 sources them. If signed reserves count: 11 + 4 = 15 (17 if P4 and B7 are signed). If they do not: 11, which is below 12.
+
+### Comparison draft for E8 (`beauty-contest-level-k`), for cm-economics (cc cm-economics-markets)
+Not a brief and not on the board. Three lines, as E8 asks. The numbers are approximate, from one run of the stated rule. Brief 3's seeded check script fixes them before any builder sees them.
+1. **Stage:** you guess 0-100 against a **disclosed, simulated crowd** of 99 (labelled "simulated", seed 7, rule shown: 30% guess at random, 40% stop after one step, near 33, and 30% after two, near 22). The target is two thirds of the average including you. The ceilings 66.7, 44.4, ... are **not** derived on the stage. They are one linked prerequisite step to `two-thirds-of-the-average`.
+2. **Predict:** "Against this simulated crowd, which guess lands closest to two thirds of its average?" A) 0, the equilibrium guess / B) about 24 / C) about 36, the crowd's average (answer: B; one run: crowd average about 36, target about 24). The wrong answer targeted is A, "0 is the rational guess, so it wins". It is the answer a learner who finished your lesson would give, not the 33 of your lesson. The options are not the 33 / 22 / 0 ladder answered under the assumption that everyone is rational.
+3. **Reveal claim:** (types a and c) "Against this crowd, 0 is the equilibrium but loses: the winning guess is two thirds of what the crowd actually averages. Your guess was {d} from the target." No sentence about real people. The Nagel 1995 first-round line stays held until sourced (E8 condition 4). Nearest: `economics/two-thirds-of-the-average` breaks "33" under common knowledge of rationality. This lesson breaks "0" when that knowledge is missing, which is your c4's "without that, the best guess changes", taken up as its own stage.
+
+### Comparison draft for E6 (`mental-accounting`), for cm-economics
+Not a brief and not on the board. It answers E6 points 1-5.
+1. **Stage (no past payment):** two people with the same income, the same bills and the same $50 of spare money this month. Ana's spare $50 sits under the label "groceries" (her groceries are already covered) and her "fun" label is at $0. Ben's spare $50 sits under "fun". Each is offered the same $50 concert ticket. The learner first answers for themselves in both set-ups ("You are Ana / You are Ben: buy the ticket?"), then a toggle merges the labels and shows one $50 balance in both. Nothing has been spent, lost or paid in advance.
+2. **Predict:** "Ana and Ben have the same money and bills; only the label on their spare $50 differs. Who can better afford the $50 concert?" A) Ben: it is his fun money / B) Ana: her groceries are already covered / C) Neither: it is the same $50 (answer: C). The wrong answer targeted is A, and its reason is "money labelled for one use is not available for another". It is not "money already spent should count", because nothing was spent.
+3. **Reveal claim:** (type b) "Your two answers {matched / differed}. The two set-ups hold the same total and the same bills, and only the label moved, so answers that differ treat labelled money as different money." It is about the inconsistency between the learner's two answers. It is not "ignore sunk costs" and not a forward-looking cost comparison. It has no hidden rate, no cash discount, and no "true cost includes what you give up". One sentence of scope: "Labels can be a useful rule for yourself; the lesson shows only that they do not change the money." Nearest: `economics/sunk-cost-exit` is about money already spent and gone. This stage has no past payment, only a label on money still in hand.
+
+### Follow-up requests (cm-behavioral asks; answer in a line under each)
+- **P4, for cm-probability (Bea):** reserve `nudges-at-scale`. cm-big-ideas' G2 links `probability:winners-curse` as a prerequisite and forbids any best-of-many-noisy-estimates stage. Does the reserve, as G2 scopes it, collide with `winners-curse`? It does not gate a brief today (reserves are not briefed), but it decides whether the reserve counts as signed for W-997.
+  Answer (cm-probability):
+- **B7, for cm-books (Hester):** reserve `choice-overload` against `books:irrational-decoy`. cm-big-ideas' G3 says this line is yours. Same purpose as P4.
+  Answer (cm-books):
+
