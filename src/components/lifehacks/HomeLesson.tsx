@@ -8,7 +8,7 @@ import { SeenTable } from './SeenTable';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
 import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
-import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, type Mode } from '@/lib/lifehacks/engine-v2';
+import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, homeSliderMatters, type Mode } from '@/lib/lifehacks/engine-v2';
 import s from './HomeLesson.module.css';
 import a11y from './a11y.module.css';
 
@@ -173,7 +173,10 @@ function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:H
   const [A,B]=homeModeLabels(spec);
   const press=(m:Mode)=>{setMode(m);setSeen(prev=>({...prev,[m]:true}));reach(m==='a'?'tested-a':'tested-b');};
   const cols={a:homeColumn(spec,p,'a'),b:homeColumn(spec,p,'b')};
-  const shown=(m:Mode)=>!locked&&seen[m];
+  // TP-2(a) (W-1066): once the prediction is in, both columns show their numbers side by side, live with the slider;
+  // "?" stays only while locked. The A and B presses still switch the picture and earn the reveal (tested-a, tested-b).
+  void seen;
+  const shown=(_m:Mode)=>!locked;
   const resultLabel=homeResultLabel(spec,p);
   const rows=[...(spec.amounts??[]).map((r,i)=>({label:r.label,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].amounts[i]:'?')})),
     {label:resultLabel,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].result:'?')}];
@@ -190,7 +193,8 @@ function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:H
       <ModeControl locked={locked} pressed={!locked&&mode==='a'} letter="A" label={A} onPress={()=>press('a')}/>
       <ModeControl locked={locked} pressed={!locked&&mode==='b'} letter="B" label={B} onPress={()=>press('b')}/>
     </div>
-    <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)} ${spec.unit}`.trim()} disabled={locked} onChange={setP}/>
+    {/* TP-2(c): a slider that changes no cell in either column is not drawn. */}
+    {homeSliderMatters(spec)&&<Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)} ${spec.unit}`.trim()} disabled={locked} onChange={setP}/>}
     <StageStatus locked={locked} text={status}/>
     {!textInPicture&&<p className={s.caption}>{caption(spec)}</p>}
   </div>;
@@ -278,7 +282,7 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
   const stage={spec,p,setP,after,setAfter,runs,setRuns,mode,setMode,seen,setSeen};
   if(isV2(spec)) return {stage,lessonProps:{
     slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
-    exploreHint:'Press A, then B. Then move the slider.',minInteractions:2,
+    exploreHint:homeSliderMatters(spec)?'Press A, then B. Then move the slider.':'Press A, then B.',minInteractions:2,
     // R6: the first sentence quotes both Seen columns; the kit already prints the verdict line, so it is not repeated.
     reveal:()=><div className={s.reveal}><p>{homeRevealLine(spec,p)}</p><p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}</div>
   }};

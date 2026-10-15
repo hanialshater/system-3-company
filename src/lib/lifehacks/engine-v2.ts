@@ -81,6 +81,8 @@ export interface HomeV2Fields {
   resultText?: { a?: string; b?: string };
   revealLine?: string;
   pictureMark?: "radius-stripe" | "dimension" | null;
+  /** TP-2: numbers as written in the options (0.3 kg, not 0.300 kg): up to two decimals, trailing zeros dropped. */
+  plainNumbers?: boolean;
 }
 
 export const homeEnv = (spec: HomeSpec, p: number): Env => {
@@ -91,17 +93,28 @@ export const homeModeLabels = (spec: HomeSpec): [string, string] => spec.modeLab
 
 export interface Column { amounts: string[]; result: string; spoken: string }
 
+/** Number format for a Home v2 spec: R5's three significant figures, or plain (TP-2, `plainNumbers`). */
+export function homeNumber(spec: HomeSpec, x: number): string {
+  if (!spec.plainNumbers) return sig3(x);
+  const n = snap(x), body = Number(Math.abs(n).toFixed(2)).toLocaleString("en-US");
+  return n < 0 ? `−${body}` : body;
+}
+const homeAmountCell = (spec: HomeSpec, e: Expr | null, unit: string, env: Env): string => {
+  if (!spec.plainNumbers || e === null || (typeof e === "string" && !isVariable(e, env))) return amountCell(e, unit, env);
+  return withUnit(homeNumber(spec, evaluateExpr(e, env)), unit);
+};
+
 /** One Seen-table column for a Home lesson at input p: amount cells, the result cell and the reveal's wording. */
 export function homeColumn(spec: HomeSpec, p: number, mode: Mode): Column {
   const env = homeEnv(spec, p);
-  const amounts = (spec.amounts ?? []).map((row) => amountCell(row[mode], row.unit, env));
+  const amounts = (spec.amounts ?? []).map((row) => homeAmountCell(spec, row[mode], row.unit, env));
   const literal = spec.resultText?.[mode];
   if (literal) return { amounts, result: literal, spoken: literal };
   const r = evaluateHome(spec, p, mode === "b");
   const v = spec.verdict, at = v?.at ?? 0;
   const word = spec.verdictByMode?.[mode] ?? (v ? (Math.abs(r.value - at) < 1e-9 ? v.zero : r.value < at ? v.below : v.above) : undefined);
   const signed = v?.below !== undefined && r.value > at + 1e-9 ? "+" : "";
-  const number = withUnit(`${signed}${sig3(r.value)}`, spec.resultUnit ?? r.unit);
+  const number = withUnit(`${signed}${homeNumber(spec, r.value)}`, spec.resultUnit ?? r.unit);
   return { amounts, result: word ? `${number} · ${word}` : number, spoken: word ? `${number} (${word})` : number };
 }
 
@@ -116,7 +129,9 @@ export function homeRevealLine(spec: HomeSpec, p: number): string {
   const [A, B] = homeModeLabels(spec);
   const a = homeColumn(spec, p, "a"), b = homeColumn(spec, p, "b");
   if (spec.revealLine) {
-    const tokens: Record<string, string> = { A, B, amountA0: a.amounts[0] ?? "", amountB0: b.amounts[0] ?? "", resultA: a.spoken, resultB: b.spoken };
+    const tokens: Record<string, string> = { A, B, resultA: a.spoken, resultB: b.spoken, ...homeDifference(spec, p) };
+    a.amounts.forEach((cell, i) => { tokens[`amountA${i}`] = cell; });
+    b.amounts.forEach((cell, i) => { tokens[`amountB${i}`] = cell; });
     return spec.revealLine.replace(/\{(\w+)\}/g, (m, k: string) => tokens[k] ?? m);
   }
   // R6 as written: the first amount row and the result row of each column (the second amount row stays in the table).
@@ -125,12 +140,32 @@ export function homeRevealLine(spec: HomeSpec, p: number): string {
   return `${part(A, a)} ${part(B, b)}`;
 }
 
+/**
+ * TP-2(b): the difference between the two results in words, for `revealLine` tokens. {diff} is the gap with its
+ * unit ("0.98 m²"), {ratio} the larger result over the smaller ("4", "3"), empty when the smaller is zero.
+ */
+export function homeDifference(spec: HomeSpec, p: number): { diff: string; ratio: string } {
+  const ra = evaluateHome(spec, p, false), rb = evaluateHome(spec, p, true);
+  const unit = spec.resultUnit ?? ra.unit;
+  const lo = Math.min(Math.abs(ra.value), Math.abs(rb.value)), hi = Math.max(Math.abs(ra.value), Math.abs(rb.value));
+  return { diff: withUnit(homeNumber(spec, Math.abs(rb.value - ra.value)), unit), ratio: lo > 1e-9 ? homeNumber({ ...spec, plainNumbers: true }, hi / lo) : "" };
+}
+
+/** TP-2(c): true when the slider changes a Seen-table cell in either column somewhere in its range. */
+export function homeSliderMatters(spec: HomeSpec): boolean {
+  const key = (p: number) => JSON.stringify([homeColumn(spec, p, "a"), homeColumn(spec, p, "b")]);
+  const start = key(spec.initial), steps = Math.round((spec.max - spec.min) / spec.step);
+  for (let i = 0; i <= steps; i++) if (key(spec.min + i * spec.step) !== start) return true;
+  return false;
+}
+
 /** What a v2 Home spec still lacks (section 8). Empty when complete. */
 export function homeV2Problems(spec: HomeSpec): string[] {
   if (spec.engine !== 2) return [];
   const out: string[] = [];
   if (!spec.options || spec.options.length !== 3) out.push("options");
-  if (!spec.amounts || spec.amounts.length < 1 || spec.amounts.length > 2) out.push("amounts");
+  // The bow stage is lesson-specific (both bows drawn at once, no Seen table), so it carries no amount rows.
+  if (spec.model !== "bow" && (!spec.amounts || spec.amounts.length < 1 || spec.amounts.length > 2)) out.push("amounts");
   const labels = homeModeLabels(spec);
   if (labels.some((l) => l.length > 16)) out.push("modeLabels > 16 chars");
   if (spec.options?.some((o) => labels.includes(o) || spec.choices.includes(o))) out.push("options repeat a button label (R7)");
