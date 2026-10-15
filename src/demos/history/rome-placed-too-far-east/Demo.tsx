@@ -5,7 +5,8 @@
 // of degrees east of Toledo. Brief: company/domains/briefs/history.md #6. Numbers: section 6 of
 // company/domains/briefs/checks/history-cycle1-check.mjs.
 //
-// The twelve rows below are copied from the pinned CSV (no rounding). Every other number on the stage and
+// The twelve rows below are copied from the pinned CSV (no rounding), with its Source column ("Likely source for this
+// determination": Map or Astron; v2, for the limit sentence: MAPS = 2 in the pinned file). Every other number on the stage and
 // in the reveal is computed from them here, with the check script's formulas: true distance from the doc's
 // coordinates (Rome 12.5 E, Toledo 4.03 W), median of the twelve, km per degree = 111.32 x cos(mean latitude).
 // Locked stage: the axis only (the ticks would let a learner count the answer before committing).
@@ -19,18 +20,18 @@ import { Milestones } from "@/kit/milestones";
 import s from "./styles.module.css";
 
 const DATA = [
-  { name: "G. Jansonius", year: 1605, lon: 17.736 },
-  { name: "G. Mercator", year: 1567, lon: 19.872 },
-  { name: "I. Schonerus", year: 1536, lon: 20.638 },
-  { name: "P. Lantsbergius", year: 1530, lon: 21.106 },
-  { name: "T. Brahe", year: 1578, lon: 21.447 },
-  { name: "I. Regiomontanus", year: 1463, lon: 25.617 },
-  { name: "Orontius", year: 1542, lon: 26 },
-  { name: "C. Clavius", year: 1567, lon: 26.34 },
-  { name: "C. Ptolomeus", year: 150, lon: 27.787 },
-  { name: "A. Argelius", year: 1610, lon: 28.17 },
-  { name: "A. Maginus", year: 1582, lon: 29.787 },
-  { name: "D. Origanus", year: 1601, lon: 30.128 },
+  { name: "G. Jansonius", year: 1605, lon: 17.736, source: "Map" },
+  { name: "G. Mercator", year: 1567, lon: 19.872, source: "Map" },
+  { name: "I. Schonerus", year: 1536, lon: 20.638, source: "Astron" },
+  { name: "P. Lantsbergius", year: 1530, lon: 21.106, source: "Astron" },
+  { name: "T. Brahe", year: 1578, lon: 21.447, source: "Astron" },
+  { name: "I. Regiomontanus", year: 1463, lon: 25.617, source: "Astron" },
+  { name: "Orontius", year: 1542, lon: 26, source: "Astron" },
+  { name: "C. Clavius", year: 1567, lon: 26.34, source: "Astron" },
+  { name: "C. Ptolomeus", year: 150, lon: 27.787, source: "Astron" },
+  { name: "A. Argelius", year: 1610, lon: 28.17, source: "Astron" },
+  { name: "A. Maginus", year: 1582, lon: 29.787, source: "Astron" },
+  { name: "D. Origanus", year: 1601, lon: 30.128, source: "Astron" },
 ];
 const ROME = { lat: 41.89, lon: 12.5 };
 const TOLEDO = { lat: 39.86, lon: -4.03 };
@@ -42,6 +43,7 @@ const HI = SORTED[SORTED.length - 1];
 const KM_PER_DEG = 111.32 * Math.cos(((TOLEDO.lat + ROME.lat) / 2) * (Math.PI / 180));
 const MEDIAN_KM = Math.round(((MEDIAN - TRUE) * KM_PER_DEG) / 10) * 10;
 const WITHIN = DATA.filter((d) => Math.abs(d.lon - TRUE) <= 2);
+const MAPS = DATA.filter((d) => d.source === "Map").length;
 const CLOSEST = DATA.reduce((b, d) => (Math.abs(d.lon - TRUE) < Math.abs(b.lon - TRUE) ? d : b));
 const BY_YEAR = [...DATA].sort((a, b) => a.year - b.year);
 const EAST = DATA.filter((d) => d.lon > TRUE).length;
@@ -235,7 +237,9 @@ export default function RomePlacedTooFarEast({ slug }: { slug: string }) {
             Latitude can be read from the Sun or a star, but longitude needs the difference in local time between two places,
             which nobody could then measure well.
           </p>
-          <p>Where it stops: some estimates may copy others, so these are not 12 independent measurements.</p>
+          <p>
+            Where it stops: {MAPS} of the {DATA.length} were probably read from maps, not measured.
+          </p>
         </>
       )}
     >

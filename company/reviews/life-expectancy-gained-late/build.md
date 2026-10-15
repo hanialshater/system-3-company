@@ -15,3 +15,10 @@ Departures from the brief: (1) the locked frame draws only 1800-1900 on a 0-40 a
 7. **Phone fit.** `tools/reveal-fit.mjs` at 390×844 on my dev server (port 3623), 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0, 69 reveal words, phoneFit true. Smallest svg label 11 px locked and at the reveal. Computer-use QA contract: phone and desktop pass.
 
 Held source sentence (one): "such as epidemic years" (c5), fallback: cut the phrase.
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- **Departure from the task: c5 not cut.** The task asked to cut "such as epidemic years" (the FC39 fix), but FC41 verified the sentence as it stands from opened OWID pages (1918 influenza). Learner text and status kept; the source field now cites the two OWID pages, as FC41 asked (non-blocking).
+- No claim reset.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 69 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/life-expectancy-gained-late.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

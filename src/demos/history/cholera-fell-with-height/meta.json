@@ -54,13 +54,11 @@
     },
     {
       "id": "history.cholera-fell-with-height.c4",
-      "text": "Height and water went together, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height (r = −0.68).",
+      "text": "Height and water went together, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height (stage readout 'still falls with height').",
       "support": "derivation",
-      "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates). Brief: the lesson never says water alone.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates, -0.68) and shows only its direction: the readout reads 'still falls with height' because r < 0. r is derivation support only and is not on the stage or in the reveal (cm-history ruling). Brief: the lesson never says water alone.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475. | v2 (demo-builder, 2026-10-15): cm-history ruling (W-868): stage readout 'r = −0.68: still falls' became 'still falls with height'; r moved from the claim text to the source. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.cholera-fell-with-height.c5",
@@ -90,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:cholera-1849-elevation",
     "also": [],

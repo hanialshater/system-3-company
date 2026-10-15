@@ -15,3 +15,11 @@ Departures from the brief: (1) the locked frame and the "1270 to 1700" view draw
 7. **Phone fit.** `tools/reveal-fit.mjs` at 390×844 on my dev server (port 3623), 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0 (named: "1700", "0.16% a year", "0.87% a year", all visible), 80 reveal words (tool count), phoneFit true. Smallest svg label 11 px locked, 10.5 px at the reveal (card fits the picture to 178/186). Computer-use QA contract: phone and desktop pass.
 
 Held source sentence (one): "reconstructions from wages, prices and output records" (c9), fallback written in the claim.
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- FC39/FC41 c10: title "How fast did Britain get richer?"; hook "Income per person in England doubled in 430 years. What did Britain's next 318 years do?"; question "England's income per person about doubled from 1270 to 1700. From 1700 to 2018 (Britain, then the UK), how many times over did it grow?" (24 words; "over 430 years" moved out, the hook carries it).
+- FC41 c9: reveal limit now "Where it stops: these are modern reconstructions, and the series covers England only before 1700, so early values are estimates." (method clause dropped).
+- Claims reset to unverified: c9, c10. c8 is untouched; its parenthetical still quotes "Income per person in England", which is now the hook's wording rather than the question's.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 75 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/income-flat-then-sixteenfold.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

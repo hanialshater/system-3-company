@@ -4,10 +4,10 @@
 // (Gapminder Fast Track, column pop; estimates before 1950). Brief: company/domains/briefs/history.md #15;
 // numbers: section 15 of history-cycle2-check.mjs.
 //
-// POP below is the file's column for 1800..2024 in order, copied unchanged. The stage draws years up to 2023 only
-// (no projection on the stage). The 2024 value is kept only because the check script's growth rate for 2023 is
-// pop(2024) / pop(2023) - 1; that is disclosed in the claim. Every number is computed here with the script's formulas:
-// first year at or above 1, 2, 4, 8 billion; yearly growth 100 x (P[y+1] / P[y] - 1); its peak over 1900-2023.
+// POP below is the file's column for 1800..2023 in order, copied unchanged; no year after 2023 is in the array
+// (v2, FC39/FC41 c3 and the cm-history ruling: the file's 2024 value is a same-year projection, not a record).
+// Every number is computed here: first year at or above 1, 2, 4, 8 billion; yearly growth 100 x (P[y+1] / P[y] - 1),
+// labelled by its start year (1963 = 1963 to 1964), so the last rate is 2022 to 2023 (0.88%); peak over 1900-2022.
 // Locked stage: axes only (the line would let a learner read off when 8 billion came).
 // Doubling spans, once pressed, stay marked in a strip under the year axis in both views.
 // Milestones: d3 (4 to 8 billion) and rate, as in the brief. No Reset.
@@ -48,8 +48,7 @@ const POP = [
   5505989816,5591544797,5675551255,5758878982,5842055734,5924787816,6007066690,6089006339,
   6171702993,6254936459,6337730342,6420361634,6503377772,6586970132,6671452015,6757308781,
   6844457662,6932766416,7021732148,7110923765,7201202485,7291793585,7381616244,7470491872,
-  7558554526,7645617954,7729902781,7811293698,7887001292,7954448391,8021407192,8091734930,
-  8161972572
+  7558554526,7645617954,7729902781,7811293698,7887001292,7954448391,8021407192,8091734930
 ];
 const P = (y: number) => POP[y - FIRST];
 const YEARS = Array.from({ length: SHOWN_TO - FIRST + 1 }, (_, i) => FIRST + i);
@@ -59,8 +58,10 @@ const B2 = firstAt(2e9);
 const B4 = firstAt(4e9);
 const B8 = firstAt(8e9);
 const gr = (y: number) => 100 * (P(y + 1) / P(y) - 1);
-const PEAK = YEARS.filter((y) => y >= 1900).reduce((a, y) => (gr(y) > gr(a) ? y : a), 1900);
-const G23 = gr(SHOWN_TO);
+const RATE_YEARS = YEARS.filter((y) => y < SHOWN_TO);
+const PEAK = RATE_YEARS.filter((y) => y >= 1900).reduce((a, y) => (gr(y) > gr(a) ? y : a), 1900);
+const LAST = SHOWN_TO - 1;
+const G_LAST = gr(LAST);
 const SPANS = [
   { id: "d1", a: 1, b: 2, from: B1, to: B2 },
   { id: "d2", a: 2, b: 4, from: B2, to: B4 },
@@ -81,7 +82,7 @@ const xs = (y: number) => L + ((y - FIRST) / (SHOWN_TO - FIRST)) * (R - L);
 const yPop = (p: number) => B - (p / 8.5e9) * (B - T);
 const yRate = (g: number) => B - (g / 2.5) * (B - T);
 const popPath = YEARS.map((y, i) => `${i ? "L" : "M"}${xs(y).toFixed(1)} ${yPop(P(y)).toFixed(1)}`).join(" ");
-const ratePath = YEARS.map((y, i) => `${i ? "L" : "M"}${xs(y).toFixed(1)} ${yRate(gr(y)).toFixed(1)}`).join(" ");
+const ratePath = RATE_YEARS.map((y, i) => `${i ? "L" : "M"}${xs(y).toFixed(1)} ${yRate(gr(y)).toFixed(1)}`).join(" ");
 
 function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void }) {
   const [view, setView] = useState<View>("none");
@@ -99,7 +100,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
     locked || view === "none"
       ? "?"
       : rate
-        ? `peak ${f2(gr(PEAK))}% in ${PEAK}; ${f2(G23)}% in ${SHOWN_TO}`
+        ? `peak ${f2(gr(PEAK))}% in ${PEAK}; ${f2(G_LAST)}%, ${LAST} to ${SHOWN_TO}`
         : `${cur!.a} to ${cur!.b} billion: ${cur!.to - cur!.from} years`;
   const label = locked
     ? "Axes for world population, billions, 1800 to 2023. The line appears after you predict."
@@ -146,9 +147,9 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
                 <text x={xs(PEAK) - 8} y={yRate(gr(PEAK)) + 2} className={s.lab} textAnchor="end">
                   peak {PEAK}: {f2(gr(PEAK))}%
                 </text>
-                <circle cx={xs(SHOWN_TO)} cy={yRate(G23)} r={3.5} className={s.dot} />
-                <text x={xs(SHOWN_TO) - 4} y={yRate(G23) + 16} className={s.lab} textAnchor="end">
-                  {SHOWN_TO}: {f2(G23)}%
+                <circle cx={xs(LAST)} cy={yRate(G_LAST)} r={3.5} className={s.dot} />
+                <text x={xs(LAST) - 4} y={yRate(G_LAST) + 16} className={s.lab} textAnchor="end">
+                  {LAST} to {SHOWN_TO}: {f2(G_LAST)}%
                 </text>
               </>
             )}
@@ -203,8 +204,8 @@ export default function DoublingStoppedSpeedingUp({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The doublings took {d1} years, then {d2}, then {d3}: the last was no faster than the one before. Growth per year
-            peaked at {f2(gr(PEAK))}% in {PEAK} and was {f2(G23)}% in {SHOWN_TO}.
+            The doublings took {d1} years, then {d2}, then {d3}: the last was about as fast as the one before. Growth per
+            year peaked at {f2(gr(PEAK))}% in {PEAK} and was {f2(G_LAST)}% from {LAST} to {SHOWN_TO}.
           </p>
           <p>
             A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.

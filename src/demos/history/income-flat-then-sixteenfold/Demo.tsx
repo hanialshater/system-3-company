@@ -1,6 +1,6 @@
 "use client";
 
-// How fast did England get richer? Brief: company/domains/briefs/history.md #2 (check section 2,
+// How fast did Britain get richer? (v2 title, FC39/FC41 c10.) Brief: company/domains/briefs/history.md #2 (check section 2,
 // company/domains/briefs/checks/history-cycle1-check.mjs). Data: Maddison Project Database 2020, OWID's copy
 // (history-data.mjs: maddison), entity "United Kingdom", column "GDP per capita", every year 1270-2018,
 // rounded to whole numbers. The series is England before 1700 (Maddison README). The copy states no currency
@@ -68,7 +68,7 @@ export default function IncomeFlatThenSixteenfold({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Income per person in England about doubled from 1270 to 1700, over 430 years. From 1700 to 2018, how many times over did it grow?",
+          "England's income per person about doubled from 1270 to 1700. From 1700 to 2018 (Britain, then the UK), how many times over did it grow?",
         options: ["About 2 times", "About 4 times", "About 16 times"],
         answer: 2,
       }}
@@ -84,8 +84,8 @@ export default function IncomeFlatThenSixteenfold({ slug }: { slug: string }) {
             chart.
           </p>
           <p>
-            Where it stops: these are reconstructions from wages, prices and output records, and the series covers
-            England only before 1700, so early values are estimates.
+            Where it stops: these are modern reconstructions, and the series covers England only before
+            1700, so early values are estimates.
           </p>
         </>
       )}

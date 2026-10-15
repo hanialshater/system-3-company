@@ -74,7 +74,10 @@ const corr = (a: number[], b: number[]) => {
   return sab / Math.sqrt(saa * sbb);
 };
 const BAT = D.filter((x) => x.w === "Battersea");
-const R_BAT = corr(BAT.map((x) => x.e), BAT.map((x) => x.rate)).toFixed(2).replace("-", "−");
+// v2 (cm-history ruling, W-868): r is not shown (jargon this lesson never teaches); its sign sets the readout's words,
+// and the value (-0.68) stays only in claim c4's derivation support.
+const R_BAT = corr(BAT.map((x) => x.e), BAT.map((x) => x.rate));
+const ONE_SAYS = R_BAT < 0 ? "still falls with height" : "does not fall with height";
 
 type Mode = "low" | "high" | "water" | "one";
 const MILESTONES = ["low", "high", "water"] as const;
@@ -128,7 +131,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
       case "low": return { label: `${LOW.length} districts under 20 ft`, value: `${R_LOW} per 10,000` };
       case "high": return { label: `${HIGH.length} districts at 80 ft and up`, value: `${R_HIGH} per 10,000` };
       case "water": return { label: "Low districts on central Thames water", value: `${LOW_B} of ${LOW.length}` };
-      case "one": return { label: "Central Thames only", value: `r = ${R_BAT}: still falls` };
+      case "one": return { label: "Central Thames", value: ONE_SAYS };
       default: return { label: "Cholera deaths", value: "-" };
     }
   })();

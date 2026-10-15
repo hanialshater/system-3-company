@@ -21,3 +21,11 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 QA: `tests/qa/contract.spec.ts` phone + desktop passed (artifacts/qa/survive-childhood-live-to-sixty/). Claims c1-c6 unverified.
 
 Risk for cm-history: as the brief specifies, the locked stage shows the survivor curve. A learner who reads curves could estimate the answer from it before committing. Hiding the curve until the commit is the alternative, if the evaluators judge this "points to the answer".
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- cm-history ruling (W-868), reversing brief 1: the locked frame shows the axes, the "alive, of 1,238 born" label and "Make a prediction to start." only; the survivor curve is drawn from the first preset on. The aria-label describes axes only until then. Checked in a browser: 0 curve paths before the commit (screenshot in the session scratchpad).
+- Pre-flight 3 (locked stage) now: axes, label, message, disabled presets, readout "-"; no curve.
+- No claim text changed.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 80 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/survive-childhood-live-to-sixty.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

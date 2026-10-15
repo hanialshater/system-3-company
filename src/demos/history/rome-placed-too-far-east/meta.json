@@ -1,7 +1,7 @@
 {
   "slug": "rome-placed-too-far-east",
   "title": "Twelve guesses at Rome",
-  "hook": "Astronomers spent centuries measuring one short distance. How close did they get?",
+  "hook": "Astronomers and mapmakers spent centuries on one short distance. How close did they get?",
   "domain": "history",
   "concept": "longitude-problem-estimates",
   "status": "draft",
@@ -94,13 +94,19 @@
     },
     {
       "id": "history.rome-placed-too-far-east.c8",
-      "text": "Where it stops: some estimates may copy others, so these are not 12 independent measurements.",
+      "text": "Where it stops: 2 of the 12 were probably read from maps, not measured.",
       "support": "source",
-      "source": "Brief 6 limit sentence (cm-history). The CSV's Source column marks 5 as 'Map' and 7 as 'Astron', which does not by itself establish copying; the sentence says 'may'. For the fact-checker to judge against the Friendly et al. (2010) discussion or cut to 'these are not 12 independent measurements of one method'.",
+      "source": "history-data.mjs: langren, Langren1644.csv, column Source ('Likely source for this determination of Longitude', levels Astron / Map; HistData Langren1644 documentation and CRAN reference manual, opened by FC39/FC41). The pinned file has Map for 2 rows (G. Jansonius 1605, G. Mercator 1567) and Astron for 10, re-counted in node 2026-10-15; Demo.tsx copies the column and computes MAPS from it.",
       "status": "unverified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Not supported by an opened source. The HistData doc says nothing about estimates copying one another; its Source column is 'Likely source for this determination of Longitude' (Astron 7, Map 5). Friendly et al. (2010) could not be opened (datavis.ca and journal hosts blocked). Fix (history-builder-1): use what the doc supports, e.g. 'Where it stops: five of the twelve were probably read from maps, not measured, so these are not 12 independent measurements.' (Source: HistData Langren1644, Source column.) Or keep 'may copy others' and route Friendly et al. to the W-583 web-capable session. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD (unchanged). Learner text: 'Where it stops: some estimates may copy others, so these are not 12 independent measurements.' The CRAN HistData reference manual, opened directly from cran.r-project.org this pass, again says only 'Source: Likely source for this determination of Longitude; a factor with levels Astron Map' and points to Friendly, Valero-Mora and Ulargui (2010), The American Statistician 64(2), for discussion. Friendly et al. are still unreachable: datavis.ca and the journal hosts are not on the allow-list, doi.org redirects to blocked hosts, and the paper is not in PMC. Fix unchanged (history-builder-1): 'Where it stops: five of the twelve were probably read from maps, not measured, so these are not 12 independent measurements.' (HistData Langren1644 Source column: Map 5, Astron 7.)",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Not supported by an opened source. The HistData doc says nothing about estimates copying one another; its Source column is 'Likely source for this determination of Longitude' (Astron 7, Map 5). Friendly et al. (2010) could not be opened (datavis.ca and journal hosts blocked). Fix (history-builder-1): use what the doc supports, e.g. 'Where it stops: five of the twelve were probably read from maps, not measured, so these are not 12 independent measurements.' (Source: HistData Langren1644, Source column.) Or keep 'may copy others' and route Friendly et al. to the W-583 web-capable session. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD (unchanged). Learner text: 'Where it stops: some estimates may copy others, so these are not 12 independent measurements.' The CRAN HistData reference manual, opened directly from cran.r-project.org this pass, again says only 'Source: Likely source for this determination of Longitude; a factor with levels Astron Map' and points to Friendly, Valero-Mora and Ulargui (2010), The American Statistician 64(2), for discussion. Friendly et al. are still unreachable: datavis.ca and the journal hosts are not on the allow-list, doi.org redirects to blocked hosts, and the paper is not in PMC. Fix unchanged (history-builder-1): 'Where it stops: five of the twelve were probably read from maps, not measured, so these are not 12 independent measurements.' (HistData Langren1644 Source column: Map 5, Astron 7.) | v2 (demo-builder, 2026-10-15): FC39/FC41 c8 fix, with one number changed: the fact-checker's wording said 'five of the twelve' (Astron 7 / Map 5), but the pinned file's Source column has Map 2, Astron 10 (my node count; every number on stage comes from the pinned file). Was 'some estimates may copy others'. The FC wording's tail ', so these are not 12 independent measurements' is cut: with it reveal-fit measured a 33 px stage crop on :3651, without it 13 px, the same as v1. Fact-checker: please re-count the Source column; if the published HistData doc says 5, the pin and the doc disagree. Reset to unverified for a fact-checker who is not the builder."
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c9",
+      "text": "Astronomers and mapmakers spent centuries on one short distance (hook): the twelve estimates run from 150 (Ptolemy) to 1610, each marked in the Source column as astronomical or read from a map.",
+      "support": "source",
+      "source": "history-data.mjs: langren, Langren1644.csv, columns Year (150-1610) and Source (Astron 10, Map 2; HistData Langren1644 documentation, 'Likely source for this determination of Longitude'). Same source as c1 and c8.",
+      "status": "unverified",
+      "note": "v2 (demo-builder, 2026-10-15): new claim for the hook, which was unrecorded. Was 'Astronomers spent centuries measuring one short distance' (FC39 wording note: not all 12 were astronomers, and the map-read ones were not measured)."
     }
   ],
   "confidence": "",
@@ -120,7 +126,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:longitude-problem-estimates",
     "also": [],

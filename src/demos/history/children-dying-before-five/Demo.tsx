@@ -8,6 +8,8 @@
 // number on the stage and in the reveal is read from it or computed from it with the check script's formulas.
 // Locked stage: the axes and the line from 1800 to 1900 only (the question gives 1900); the line after 1900
 // is drawn up to the latest year the learner has pressed. Each year preset marks its year, and the marks stay.
+// v2 (cm-history ruling, W-868): the 1800 mark is drawn from the commit onward, so the reveal's "from 430" is always
+// on the stage, whichever presets were pressed.
 // Milestones: y1900, y2020 (the brief's gate). No Reset.
 
 import { useState } from "react";
@@ -56,6 +58,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const [view, setView] = useState<View>("none");
   const [marked, setMarked] = useState<number[]>([]);
   const furthest = Math.max(1900, ...marked);
+  const shown = locked ? [] : [1800, ...marked.filter((y) => y !== 1800)];
   const go = (v: View) => {
     setView(v);
     if (v !== "per100" && v !== "none") {
@@ -67,7 +70,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
   const label = locked
     ? "Line chart of children dying before age 5 per 1,000 born, worldwide, drawn from 1800 to 1900."
     : `Line chart of children dying before age 5 per 1,000 born, worldwide, drawn from 1800 to ${furthest}.` +
-      marked.map((y) => ` ${y}: ${at(y)}.`).join("");
+      shown.map((y) => ` ${y}: ${at(y)}.`).join("");
   const readLabel = view === "per100" ? "Out of 100 children" : typeof view === "number" ? `In ${view}` : "Pick a year";
   const readValue =
     locked || view === "none"
@@ -100,7 +103,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
         ))}
         <path d={path(locked ? 1900 : furthest)} className={s.line} />
         {!locked &&
-          marked.map((y) => {
+          shown.map((y) => {
             const right = y === 2020;
             return (
               <g key={y}>
@@ -157,8 +160,8 @@ export default function ChildrenDyingBeforeFive({ slug }: { slug: string }) {
             1900, {AFTER50}%, came after 1950.
           </p>
           <p>
-            Where it stops: this is one source&rsquo;s world figure, and the further back it goes, the fewer places kept
-            records to build it from.
+            Where it stops: this is one source&rsquo;s world figure, and some of its early values are guesses or
+            modelled, not counted.
           </p>
         </>
       )}
