@@ -30,18 +30,19 @@ export const study_cover_before_recall = {
   "family": "recall",
   "slug": "cover-before-recall",
   "title": "Cover before you test",
-  "hook": "Seeing the answer and retrieving it are different activities.",
+  "hook": "Cover the answers: how many can you give?",
   "objective": "Perform a closed-answer check before using feedback.",
-  "question": "Which check asks you to retrieve an answer?",
+  "question": "You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give?",
   "options": [
-    "Answer covered",
-    "Answer beside the cue"
+    "3: I just saw them",
+    "Can't tell until you try",
+    "0"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
-  "misconception": "Answer beside the cue",
+  "misconception": "Rereading a card with the answer showing tests what you know.",
   "labels": [
     "bell",
     "kite",
@@ -52,36 +53,136 @@ export const study_cover_before_recall = {
     "plum",
     "door"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each card from memory: tap a box to change its answer, then check.",
+    "studyCaption": "Three cards, answers showing",
+    "caption": "Answers covered · tap a box to answer",
+    "study": [
+      {
+        "top": "bell",
+        "main": "lake"
+      },
+      {
+        "top": "kite",
+        "main": "plum"
+      },
+      {
+        "top": "leaf",
+        "main": "door"
+      }
+    ],
+    "covered": [
+      {
+        "top": "bell",
+        "main": "?"
+      },
+      {
+        "top": "kite",
+        "main": "?"
+      },
+      {
+        "top": "leaf",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Covered",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "leaf",
+            "answer": "door",
+            "choices": [
+              "door",
+              "dock",
+              "plum"
+            ]
+          },
+          {
+            "cue": "bell",
+            "answer": "lake",
+            "choices": [
+              "lane",
+              "lake",
+              "door"
+            ]
+          },
+          {
+            "cue": "kite",
+            "answer": "plum",
+            "choices": [
+              "plum",
+              "pear",
+              "lake"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Answers showing",
+      "3/3"
+    ],
+    "lead": "With the answers showing, all three cards read right.",
+    "allRight": "Nothing missed this time, and only the covered try could tell you that."
+  }
 } satisfies StudySpec;
 
 export const study_one_question_one_card = {
   "family": "recall",
   "slug": "one-question-one-card",
   "title": "One question per card",
-  "hook": "A card asking three things can hide which one you missed.",
+  "hook": "You answer two of three and mark it right. What did the card record?",
   "objective": "Split a compound prompt into separately checkable cues.",
-  "question": "Which card makes a missed item identifiable?",
+  "question": "Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record?",
   "options": [
-    "One target per cue",
-    "Three targets per cue"
+    "That you know all three",
+    "A pass that hides a miss"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Separate cues expose separate gaps. A correct answer to one cue does not establish knowledge of the other two.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Three targets per cue",
   "labels": [
-    "who",
-    "where",
-    "when"
+    "capital",
+    "currency",
+    "language"
   ],
   "words": [
-    "Mina",
-    "library",
-    "Tuesday"
+    "Lima",
+    "sol",
+    "Spanish"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "compound",
+    "hint": "Mark the card as one, then split it into three cards.",
+    "caption": "One card, three questions",
+    "card": "Capital, currency and language of Peru?",
+    "parts": [
+      {
+        "label": "capital",
+        "given": "Lima",
+        "answer": "Lima"
+      },
+      {
+        "label": "currency",
+        "given": "peso",
+        "answer": "sol"
+      },
+      {
+        "label": "language",
+        "given": "Spanish",
+        "answer": "Spanish"
+      }
+    ],
+    "one": "Mark as one card",
+    "split": "Split into 3 cards"
+  }
 } satisfies StudySpec;
 
 export const study_cue_needs_a_boundary = {
@@ -132,12 +233,12 @@ export const study_reverse_the_flashcard = {
   "family": "recall",
   "slug": "reverse-the-flashcard",
   "title": "Test the other direction",
-  "hook": "Knowing a word from its meaning does not check the reverse direction.",
+  "hook": "Shown 'dog', can you give 'perro'?",
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
-  "question": "Which checks meaning-to-word retrieval?",
+  "question": "You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'?",
   "options": [
-    "Hide the word",
-    "Hide the meaning"
+    "Not tested yet",
+    "Yes: same card"
   ],
   "answer": 0,
   "principle": "Reverse the cue and answer to check the opposite mapping. A result in one direction is not a test of the other.",
@@ -154,7 +255,110 @@ export const study_reverse_the_flashcard = {
     "wug",
     "zib"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer the cards both ways: tap a box to change it, then check each row.",
+    "studyCaption": "Three cards: word, then meaning",
+    "caption": "Cards covered · answer both ways",
+    "study": [
+      {
+        "top": "dax",
+        "main": "red"
+      },
+      {
+        "top": "wug",
+        "main": "blue"
+      },
+      {
+        "top": "zib",
+        "main": "green"
+      }
+    ],
+    "covered": [
+      {
+        "top": "?",
+        "main": "?"
+      },
+      {
+        "top": "?",
+        "main": "?"
+      },
+      {
+        "top": "?",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Word → meaning",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "zib",
+            "answer": "green",
+            "choices": [
+              "green",
+              "red",
+              "blue"
+            ]
+          },
+          {
+            "cue": "dax",
+            "answer": "red",
+            "choices": [
+              "red",
+              "blue",
+              "green"
+            ]
+          },
+          {
+            "cue": "wug",
+            "answer": "blue",
+            "choices": [
+              "blue",
+              "green",
+              "red"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Meaning → word",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "red",
+            "answer": "dax",
+            "choices": [
+              "dux",
+              "dax",
+              "zib"
+            ]
+          },
+          {
+            "cue": "blue",
+            "answer": "wug",
+            "choices": [
+              "wug",
+              "wog",
+              "dax"
+            ]
+          },
+          {
+            "cue": "green",
+            "answer": "zib",
+            "choices": [
+              "zeb",
+              "zib",
+              "wug"
+            ]
+          }
+        ]
+      }
+    ],
+    "allRight": "Both directions passed this time, but only testing each one could show it."
+  }
 } satisfies StudySpec;
 
 export const study_rebuild_the_procedure = {
@@ -190,12 +394,12 @@ export const study_note_gap_check = {
   "family": "recall",
   "slug": "note-gap-check",
   "title": "Find the missing note",
-  "hook": "A complete-looking page can still lack the detail you need.",
+  "hook": "Cover it and rebuild its three fields: how many do you expect to get?",
   "objective": "Reconstruct a missing field from a short source note.",
-  "question": "Which check tests whether the missing details are known?",
+  "question": "Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?",
   "options": [
-    "Cover then reconstruct",
-    "Read the completed note"
+    "Can't tell until you try",
+    "All 3: it's all there"
   ],
   "answer": 0,
   "principle": "The note has three named fields. Reconstructing their values makes missing details visible; this is a local completeness check.",
@@ -212,36 +416,172 @@ export const study_note_gap_check = {
     "Friday",
     "627"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Rebuild each field from memory: tap a box to change it, then check.",
+    "studyCaption": "Your note",
+    "caption": "Note covered · rebuild each field",
+    "study": [
+      {
+        "top": "room",
+        "main": "B4"
+      },
+      {
+        "top": "day",
+        "main": "Friday"
+      },
+      {
+        "top": "code",
+        "main": "627"
+      }
+    ],
+    "covered": [
+      {
+        "top": "room",
+        "main": "?"
+      },
+      {
+        "top": "day",
+        "main": "?"
+      },
+      {
+        "top": "code",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Rebuilt",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "room",
+            "answer": "B4",
+            "choices": [
+              "B4",
+              "D4",
+              "B6"
+            ]
+          },
+          {
+            "cue": "day",
+            "answer": "Friday",
+            "choices": [
+              "Friday",
+              "Tuesday",
+              "Thursday"
+            ]
+          },
+          {
+            "cue": "code",
+            "answer": "627",
+            "choices": [
+              "672",
+              "627",
+              "267"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Note looks",
+      "3/3 filled"
+    ],
+    "lead": "The note showed all three fields filled.",
+    "allRight": "Nothing was missing this time, and only rebuilding it could tell you that."
+  }
 } satisfies StudySpec;
 
 export const study_explain_the_link = {
   "family": "recall",
   "slug": "explain-the-link",
   "title": "Remember the links",
-  "hook": "A list of words is not yet an explanation.",
+  "hook": "Asked 'why is there a puddle?', can you answer?",
   "objective": "Reconstruct an explicit cause-and-consequence chain without its source.",
-  "question": "Which test preserves the explanatory links?",
+  "question": "You can list 'cloud, rain, puddle'. Asked 'why is there a puddle?', can you answer?",
   "options": [
-    "Ordered cause chain",
-    "Alphabetical words"
+    "Only if you learned the links",
+    "Yes: I know the words"
   ],
   "answer": 0,
-  "principle": "The example says cloud then rain then puddle. This checks the stated chain, not whether every cloud produces rain.",
+  "principle": "Listing tav, bix and rell does not say which turns which, so it cannot answer 'why does rell turn?'. Only the remembered links can. A list like cloud, rain, puddle is the same: words, not yet the explanation.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Alphabetical words",
   "labels": [
-    "cause",
-    "event",
-    "result"
+    "first",
+    "middle",
+    "last"
   ],
   "words": [
-    "cloud",
-    "rain",
-    "puddle"
+    "tav",
+    "bix",
+    "rell"
   ],
-  "kind": "sequence"
+  "kind": "sequence",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each 'what turns it?' from memory, then check.",
+    "studyCaption": "Three gears: each arrow means 'turns'",
+    "caption": "Links covered · the words, A to Z",
+    "study": [
+      {
+        "main": "tav"
+      },
+      {
+        "main": "bix"
+      },
+      {
+        "main": "rell"
+      }
+    ],
+    "arrow": "turns",
+    "covered": [
+      {
+        "main": "bix"
+      },
+      {
+        "main": "rell"
+      },
+      {
+        "main": "tav"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Links",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "What turns rell?",
+            "answer": "bix",
+            "choices": [
+              "tav",
+              "bix",
+              "rell"
+            ]
+          },
+          {
+            "cue": "What turns bix?",
+            "answer": "tav",
+            "choices": [
+              "tav",
+              "rell",
+              "bix"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Words listed",
+      "3/3"
+    ],
+    "lead": "You could list all three words.",
+    "allRight": "Both links came back: the words alone could not have given them."
+  }
 } satisfies StudySpec;
 
 export const study_apply_not_quote = {
@@ -293,29 +633,88 @@ export const study_separate_confusable_pairs = {
   "family": "recall",
   "slug": "separate-confusable-pairs",
   "title": "Separate similar pairs",
-  "hook": "Two almost identical labels need a distinguishing cue.",
+  "hook": "Asked for the grey cable's code, how often do you pick the right one?",
   "objective": "Check the specific difference between two arbitrary codes.",
-  "question": "Which notes distinguish these codes?",
+  "question": "Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one?",
   "options": [
-    "Code plus distinguishing field",
-    "Shared description only"
+    "Always: I learned it",
+    "About half the time"
   ],
-  "answer": 0,
-  "principle": "The last digit distinguishes the two codes in the fixture. The same shared description would not identify which code was intended.",
+  "answer": 1,
+  "principle": "K-417 and K-471 share the note 'grey cable', so that cue fits both and a pick is a guess. Adding what differs, here the length, makes the cue fit one code.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Shared description only",
   "labels": [
-    "AX1",
-    "AX2",
-    "AX3"
+    "grey 2 m",
+    "grey 5 m"
   ],
   "words": [
-    "left",
-    "right",
-    "centre"
+    "K-417",
+    "K-471"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each cue from memory, then check it.",
+    "studyCaption": "Two cables · your notes say only 'grey cable'",
+    "caption": "Codes covered · answer each cue",
+    "study": [
+      {
+        "top": "grey · 2 m",
+        "main": "K-417"
+      },
+      {
+        "top": "grey · 5 m",
+        "main": "K-471"
+      }
+    ],
+    "covered": [
+      {
+        "top": "grey · 2 m",
+        "main": "K-???"
+      },
+      {
+        "top": "grey · 5 m",
+        "main": "K-???"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Cue 'grey cable'",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "grey cable",
+            "answer": "K-471",
+            "choices": [
+              "K-417",
+              "K-471",
+              "K-714"
+            ]
+          }
+        ],
+        "fits": "this cue fits 2 codes"
+      },
+      {
+        "label": "Cue 'grey, 5 m'",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "grey, 5 m",
+            "answer": "K-471",
+            "choices": [
+              "K-471",
+              "K-417",
+              "K-714"
+            ]
+          }
+        ],
+        "fits": "this cue fits 1 code"
+      }
+    ],
+    "allRight": "The first pick was a lucky guess: that cue fits two codes."
+  }
 } satisfies StudySpec;
 
 export const study_check_confidence_with_output = {
@@ -359,21 +758,22 @@ export const study_check_confidence_with_output = {
   "rowLabels": [
     "studied order",
     "your attempt"
-  ]
+  ],
+  "hideTarget": true
 } satisfies StudySpec;
 
 export const study_keep_the_error_feedback = {
   "family": "recall",
   "slug": "keep-the-error-feedback",
   "title": "Keep the correction",
-  "hook": "Comparing your attempt with the target shows which item you got wrong.",
+  "hook": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong.",
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
-  "question": "Which feedback locates the mistake?",
+  "question": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong. Which lets you fix it next time?",
   "options": [
-    "Target beside attempt",
-    "Attempt count alone"
+    "Either",
+    "Only the marked item"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
@@ -384,11 +784,48 @@ export const study_keep_the_error_feedback = {
     "3"
   ],
   "words": [
-    "draft",
-    "check",
-    "send"
+    "4",
+    "9",
+    "2"
   ],
-  "kind": "sequence"
+  "kind": "sequence",
+  "retrieval": {
+    "kind": "feedback",
+    "hint": "See each kind of feedback, then change a digit and try again.",
+    "name": "Bike lock",
+    "label": "digit",
+    "code": [
+      "4",
+      "9",
+      "2"
+    ],
+    "choices": [
+      [
+        "4",
+        "1",
+        "6"
+      ],
+      [
+        "7",
+        "9",
+        "1"
+      ],
+      [
+        "2",
+        "5",
+        "8"
+      ]
+    ],
+    "attempt": [
+      0,
+      0,
+      0
+    ],
+    "tries": 3,
+    "countButton": "Count only",
+    "markButton": "Mark each digit",
+    "retryButton": "Try again"
+  }
 } satisfies StudySpec;
 
 export const study_calendar_needs_travel = {
@@ -765,43 +1202,44 @@ export const study_fragmented_time_does_not_fit = {
   "family": "schedule",
   "slug": "fragmented-time-does-not-fit",
   "title": "Thirty scattered minutes",
-  "hook": "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap.",
+  "hook": "Thirty free minutes in scattered gaps: will a 30-minute job fit?",
   "objective": "Distinguish total free time from one continuous interval.",
-  "question": "What does an unsplittable 30-minute block require?",
+  "question": "Gaps of 10, 10 and 10 minutes before minute 40. Does the 30-minute job fit?",
   "options": [
-    "A continuous 30-minute gap",
-    "Any three 10-minute gaps"
+    "Yes: 30 minutes free",
+    "No: it needs one 30-minute gap"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Any three 10-minute gaps",
   "rows": [
     {
-      "label": "write",
+      "label": "job",
       "start": 0,
       "duration": 30
     },
     {
       "label": "call",
       "start": 10,
-      "duration": 10
+      "duration": 5
     },
     {
-      "label": "meeting",
-      "start": 30,
-      "duration": 10
+      "label": "chat",
+      "start": 25,
+      "duration": 5
     }
   ],
   "target": [
     40,
     10,
-    30
+    25
   ],
   "movable": 0,
-  "button": "Use continuous gap",
-  "deadline": 90
+  "button": "Use one 30-min gap",
+  "deadline": 90,
+  "window": 40
 } satisfies StudySpec;
 
 export const study_handoff_after_finish = {

@@ -42,11 +42,9 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: order and view (whole jobs or 5-minute turns). Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-in-process-limit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. For the initial schedule, every unfinished task receives one five-minute slice per round; displayed rectangles are actual execution slices. First completion is min of completion times. The alternate schedule runs whole jobs serially in the same order; \"Whole jobs\" and \"5-min turns\" toggle only the view, never the order. No switching overhead or empirical efficiency is assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. W-403 (2026-10-14, demo-builder): text now names the view as state; controls changed (Swap first / Try target replaced by Whole jobs / 5-min turns for this lesson). Awaiting fact-checker re-check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. StudyLesson: roundRobin = (wip && step < 2); 'Whole jobs' sets step 2, '5-min turns' sets step 1; order is never changed for this slug (Swap/Try target not rendered). observation() is recomputed from the current state at the reveal ('In order A → B → C, your … schedule first completes a task at minute 15|10. All jobs together still require 30 minutes…'). switchCost 0, all due 50 (Late 0). No productivity claim in the reveal.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, work-in-process-limit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. For the initial schedule, every unfinished task receives one five-minute slice per round; displayed rectangles are actual execution slices. First completion is min of completion times. The alternate schedule runs whole jobs serially in the same order; \"Whole jobs\" and \"5-min turns\" toggle only the view, never the order. No switching overhead or empirical efficiency is assumed. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. W-403 (2026-10-14, demo-builder): text now names the view as state; controls changed (Swap first / Try target replaced by Whole jobs / 5-min turns for this lesson). Awaiting fact-checker re-check. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. StudyLesson: roundRobin = (wip && step < 2); 'Whole jobs' sets step 2, '5-min turns' sets step 1; order is never changed for this slug (Swap/Try target not rendered). observation() is recomputed from the current state at the reveal ('In order A → B → C, your … schedule first completes a task at minute 15|10. All jobs together still require 30 minutes…'). switchCost 0, all due 50 (Late 0). No productivity claim in the reveal. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.work-in-process-limit.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "id": "lifehacks.work-in-process-limit.recall",
@@ -80,7 +78,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "lifehacks:limit-work-in-progress",
     "prerequisites": [],

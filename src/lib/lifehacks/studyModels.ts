@@ -1,5 +1,6 @@
 /** Pure, deterministic exercise rules. Fixtures are assumptions, never personal forecasts. */
 import type { StudyV2Fields } from "./engine-v2";
+import type { Retrieval } from "./studyRecall";
 export type StudyFamily = "spacing" | "recall" | "schedule" | "order" | "files" | "message" | "edit";
 /** v2 fields (engine-v2.ts) are optional; a spec without `engine: 2` renders as v1. */
 interface Base extends StudyV2Fields {
@@ -10,8 +11,8 @@ interface Base extends StudyV2Fields {
 export interface CalendarRow { label: string; start: number; duration: number; parts?: Array<{ label: string; minutes: number }> }
 export interface FileItem { name: string; value: string; [key: string]: string | number | boolean }
 export interface SpacingSpec extends Base { family: "spacing"; days: number[] }
-export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string; candidates?: { a: number; b: number }; rowLabels?: [string, string]; hideTarget?: boolean }
-export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button?: string; deadline: number; event?: { row: number; minutes: number; label: string } }
+export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string; candidates?: { a: number; b: number }; rowLabels?: [string, string]; hideTarget?: boolean; retrieval?: Retrieval }
+export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button?: string; deadline: number; event?: { row: number; minutes: number; label: string }; window?: number }
 export interface OrderSpec extends Base { family: "order"; labels: string[]; durations: number[]; due: number[]; target: number[]; initial: number[]; metric: string; dependencies: Record<string, number>; tags: string[]; switchCost: number }
 export interface FilesSpec extends Base { family: "files"; items: FileItem[]; operation: string; button: string; button2: string; field?: string; field2?: string; value?: string | number; value2?: string }
 export interface MessageSpec extends Base { family: "message"; labels: string[]; words: string[]; fields: string[]; aFields?: number }
@@ -29,6 +30,19 @@ export function calendarResult(rows: readonly CalendarRow[], deadline: number, d
   const finish = Math.max(0,...rows.map(r => r.start+r.duration));
   const dueFinish = dueRow >= 0 ? rows[dueRow].start+rows[dueRow].duration : finish;
   return { conflict, finish, spill: Math.max(0,dueFinish-deadline) };
+}
+/** Free intervals before `window` left by the rows other than `skip` (TP-4: total free time versus the longest gap). */
+export function freeGaps(rows: readonly CalendarRow[], window: number, skip = -1) {
+  const busy = rows.filter((_, i) => i !== skip).map(r => [r.start, r.start + r.duration] as const).sort((a, b) => a[0] - b[0]);
+  const gaps: Array<{ start: number; end: number }> = [];
+  let at = 0;
+  for (const [start, end] of busy) {
+    if (start > at && at < window) gaps.push({ start: at, end: Math.min(start, window) });
+    at = Math.max(at, end);
+  }
+  if (at < window) gaps.push({ start: at, end: window });
+  const lengths = gaps.map(g => g.end - g.start);
+  return { gaps, total: lengths.reduce((a, b) => a + b, 0), longest: Math.max(0, ...lengths) };
 }
 export function queueResult(spec: OrderSpec, order: readonly number[], roundRobin = false) {
   if(roundRobin) return roundRobinQueue(spec,order,5);

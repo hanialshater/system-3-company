@@ -5,6 +5,15 @@
 .diagram .rowLabel { font-size: 11px; }
 .diagram .fileName { font-size: 11px; }
 .diagram .fileValue { font-size: 11px; }
+.diagram .cardMain { font-size: 14px; }
+.attemptRow { display: grid; gap: 4px; }
+.rowHead { color: var(--muted); font-size: 12px; text-align: center; }
+.controls button.slot { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; flex: 1 1 0; min-width: 72px; line-height: 1.15; }
+.slot .slotCue { font-size: 11px; color: var(--muted); }
+.slot strong { font-size: 15px; font-variant-numeric: tabular-nums; }
+.good { color: var(--good); }
+.bad { color: var(--bad); }
+.feedbackLine { text-align: center; font-size: 14px; font-weight: 600; min-height: 1.3em; }
 .results { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
 .result { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px; font-size: 12px; color: var(--muted); }
 .result strong { font-size: 17px; color: var(--fg); font-variant-numeric: tabular-nums; }

@@ -1,7 +1,7 @@
 {
   "slug": "keep-the-error-feedback",
   "title": "Keep the correction",
-  "hook": "Comparing your attempt with the target shows which item you got wrong.",
+  "hook": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong.",
   "domain": "lifehacks",
   "concept": "retrieval-practice",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Comparing your attempt with the target shows which item you got wrong. Which feedback locates the mistake? Correct option: Target beside attempt. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong. Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong. Which lets you fix it next time? Correct option: Only the marked item. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): The old \"useful evidence only if you compare it\" overstated the case against Roediger & Karpicke 2006 (retrieval itself helps). New hook states only what the stage shows; hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: after Check the stage reveals the target row and marks each attempt position good/bad (reconstructionMatches), so the comparison shows which item is wrong; an attempt count would not. Statement is limited to what the stage shows. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): The old \"useful evidence only if you compare it\" overstated the case against Roediger & Karpicke 2006 (retrieval itself helps). New hook states only what the stage shows; hook in studyCatalog.ts and meta.json changed. Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: after Check the stage reveals the target row and marks each attempt position good/bad (reconstructionMatches), so the comparison shows which item is wrong; an attempt count would not. Statement is limited to what the stage shows. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
       "id": "lifehacks.keep-the-error-feedback.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
@@ -42,11 +40,16 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, keep-the-error-feedback fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), keep-the-error-feedback fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the stipulated last try is compared with the stipulated code; Count only shows the try count, Mark each digit marks each digit right or wrong; changing a digit and Try again adds one try. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage now starts from a stipulated wrong attempt. Not checked by the builder.",
       "id": "lifehacks.keep-the-error-feedback.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: a bike lock with the stipulated code 4 · 9 · 2 and a stipulated last try of 4 · 7 · 2 after 3 tries. “Count only” shows “3 tries · still locked”. “Mark each digit” marks digit 2 wrong and digits 1 and 3 right. Each digit box cycles through fixed choices (4, 1, 6; 7, 9, 1; 2, 5, 8); “Try again” adds a try and the lock opens only at 4 · 9 · 2. Reveal sentences: “3 tries, still locked” did not say which digit was wrong. The marks did: digit 2 (7) wrong, the rest right.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field) and src/components/lifehacks/RetrievalLesson.tsx (feedback stage). Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.keep-the-error-feedback.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.keep-the-error-feedback.recall",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:retrieval-practice",
     "prerequisites": [],
