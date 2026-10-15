@@ -24,6 +24,7 @@ Decide what the product should be next and write it down so that someone who was
 - Choosing concepts inside a domain (category managers)
 - Building or judging lessons
 - Editing gates or tests
+- Delivery of company-wide initiatives: dates, dependencies, cadence (head-of-strategic-initiatives); product scope inside an initiative stays here
 
 ## Authority
 

@@ -28,6 +28,7 @@ Given everything we know, choose what to try next and send it to the narrowest r
 - Building lessons, writing claims, verifying claims, judging lessons (it routes these; it does not do them)
 - Changing gates, tests or the constitution
 - Publishing (only release-manager publishes, after gates pass)
+- Running company-wide initiatives: charter, jour fixe, dependencies, initiative risk, the directs' FYIs (head-of-strategic-initiatives, 2026-10-15-head-of-strategic-initiatives.md); routing and dispatching their work stays here
 
 ## Authority
 

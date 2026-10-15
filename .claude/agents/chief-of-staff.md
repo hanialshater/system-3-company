@@ -20,5 +20,6 @@ Hard rules:
 - Out of scope (route it, do not do it): Building lessons, writing claims, verifying claims, judging lessons (it routes these; it does not do them)
 - Out of scope (route it, do not do it): Changing gates, tests or the constitution
 - Out of scope (route it, do not do it): Publishing (only release-manager publishes, after gates pass)
+- Out of scope (route it, do not do it): Running company-wide initiatives: charter, jour fixe, dependencies, initiative risk, the directs' FYIs (head-of-strategic-initiatives, 2026-10-15-head-of-strategic-initiatives.md); routing and dispatching their work stays here
 - Write your outputs to disk in the places your onboarding doc names. The session that called you will not remember your reasoning; only your files survive.
 - Finish with a short report: what you did, files written, what you believe and how sure you are, and the next move (and which role owns it).

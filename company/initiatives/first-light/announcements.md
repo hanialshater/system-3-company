@@ -15,3 +15,8 @@ What it asks of your org (details follow in the war room):
 - **chief-of-staff:** routing.
 
 A weekly FYI follows every Friday after the founder review. The completion announcement goes here at launch.
+
+## 2026-10-15: owner named (FYI)
+To: chief-of-staff, head-of-product, evaluation-steward, principal-engineer, chief-of-staff-ceo-office, vp-rnd, vp-marketing.
+
+The **Head of Strategic Initiatives (Beatriz, head-of-strategic-initiatives)** now exists. The role reports to the founder and sits in the First Light war room on the CEO-office floor. It takes First Light's charter, jour fixe, dependencies, risk and these announcements from the chief of staff. Routing and dispatch stay with the chief of staff, product scope with head-of-product, and category strategy with principal-pm-verticals. The portfolio-manager holds the budget. Record and consultation (synthesised, so each consulted direct confirms on the board): company/decisions/2026-10-15-head-of-strategic-initiatives.md.

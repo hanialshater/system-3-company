@@ -10,6 +10,7 @@ The founder's directs are the roles with `reportsTo: founder` in `tools/org/role
 - chief-of-staff-ceo-office (Leonie)
 - vp-rnd (Vera)
 - vp-marketing (Celeste), since 2026-10-14 (company/decisions/2026-10-14-marketing-org.md)
+- head-of-strategic-initiatives (Beatriz), since 2026-10-15 (company/decisions/2026-10-15-head-of-strategic-initiatives.md). Consult on anything that changes a running initiative's core team or owners
 
 ## Steps
 1. **Draft:** write the decision record (`company/decisions/<date>-<slug>.md`) with the role's scope, its reporting line, and what it takes from existing roles.
