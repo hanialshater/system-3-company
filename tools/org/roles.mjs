@@ -666,8 +666,8 @@ roles.push(
 
 // 2026-10-15, founder decision F-21 (company/decisions/2026-10-15-founder-behavioral-economics-category.md), head-of-product's
 // incubation ruling (2026-10-15-behavioral-economics-dlr-decision.md) and the org record (2026-10-15-behavioral-economics-org.md).
-// One category manager, no strand managers at a ceiling of 18 (no SUBAREAS entry). The domain id "behavioral" is the proposed
-// DomainId; platform-engineer adopts or changes it at playbook step 8, and these paths follow it.
+// One category manager, no strand managers at a ceiling of 18 (no SUBAREAS entry). The domain id "behavioral" was adopted as
+// the DomainId by platform-engineer at playbook step 8 (W-981, 2026-10-15); these paths stay as they are.
 {
   const base = cm("cm-behavioral", "behavioral", "Behavioral Economics and Irrational Behavior", "choice under risk, time and other people, where the stage is the learner's own choice compared with a stated model (Allais, reflection, present-bias reversal, the beauty contest), and the reveal shows where the learner departed from the model", "Every empirical sentence about other people is a source plus a replication verdict, or it is held and does not publish. Failed effects (priming, ego depletion, power posing) are never taught as claims.");
   roles.push({
@@ -1321,7 +1321,7 @@ export const SUBAREAS = {
   // 2026-10-14, founder decision (company/decisions/2026-10-14-history-category.md).
   history: [["population-economy", "Population & Economy over Time"], ["maps-borders", "Maps & Borders"], ["events-data", "Events through Data"]],
 };
-const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps", books: "Book Summaries", "big-ideas": "Big Ideas", history: "History through data and maps" };
+const DOMAIN_NAMES = { math: "Mathematics", cs: "Computer Science", probability: "Probability & Data", physics: "Physics", ai: "AI & Machine Learning", economics: "Economics & Money", life: "Life Sciences", chemistry: "Chemistry", geography: "Geography & Maps", books: "Book Summaries", "big-ideas": "Big Ideas", history: "History through data and maps", behavioral: "Behavioral Economics and Irrational Behavior" };
 // Extra scope for strands whose category has its own rules (charter section named here).
 const STRAND_RULES = {
   books: "Book rules (company/domains/books.md): one book idea per concept (2 to 4 per book); every brief separates \"the book argues X\" (chapter cited, marked unconfirmed until the fact-checker checks it against the book) from \"does X hold up\" (sourced to research, or said to be untested); no text reproduced, at most one short attributed quote; multi-card sequence only once the kit stepper lands, single card until then",

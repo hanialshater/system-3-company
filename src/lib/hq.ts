@@ -33,7 +33,7 @@ export interface Room {
   h: number;
   kind: "office" | "floor" | "meeting" | "lobby";
   color?: string;
-  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks), 7 = Marketing. */
+  /** Building floor: 1 = lessons and company core, 2 = Design, Personalization and International, 3 = Categories (subjects), 4 = R&D and Research, 5 = Engineering (app team), 6 = Categories (Books, Big Ideas, History, Life Hacks, Behavioral Economics), 7 = Marketing. */
   floor?: Floor;
 }
 
@@ -81,6 +81,9 @@ export const ROOMS: Room[] = [
   })),
   { id: "lifehacks-safety", name: "Hacks safety desk", x: 796, y: 16, w: 184, h: 236, kind: "floor", floor: 6 },
   { id: "to-floor-3-from-6", name: "↓ Floor 3 · Categories · subjects", x: 20, y: 262, w: 380, h: 120, kind: "lobby", floor: 6 },
+  // Row 2 (W-981 with W-900, company/decisions/2026-10-15-behavioral-economics-org.md): Behavioral Economics, one CM and no strands,
+  // in the free space right of the stairs down. Same size and kind as the row-1 offices. Colour matches hq-colors.ts and content/domains.json.
+  { id: "cm-behavioral", name: "Behavioral Econ", x: 410, y: 262, w: 186, h: 236, kind: "office", color: "#e48fd6", floor: 6 },
   { id: "meeting-wbr", name: "WBR room", x: 20, y: 116, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-retro", name: "Retro room", x: 20, y: 236, w: 150, h: 110, kind: "meeting" },
   { id: "meeting-crit", name: "Demo Crit", x: 20, y: 356, w: 150, h: 110, kind: "meeting" },
