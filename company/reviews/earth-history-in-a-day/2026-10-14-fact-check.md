@@ -75,3 +75,18 @@ Question asked (W-963): could "at 23:58" and "about 1.8 km deep" be read as sayi
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c9 (disputed): reword the reveal as above (demo-builder; cm-big-ideas owns the wording). Whether the example still shows "large things" is a pedagogy call for cm-big-ideas, not mine. c6 (verified in Pass 42) depends on this example only through the colon. If the reveal sentence is restructured, c6's quoted text should be re-read at the same re-check.
+
+## Pass 46
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-998). I did not write, build or record any of these claims, the cm-big-ideas ruling (W-979) or the W-984 rewrite. c10 was drafted by cm-big-ideas and entered by demo-builder. Method: I read Demo.tsx v5 (EVENTS, the found list, the reveal) before reading the claims or the ruling. The 2026-10-14 walkthrough was from before v5, so I ran `npm run build` and recorded a fresh one (`npm run walkthrough -- earth-history-in-a-day`, 2026-10-15). Its reveal paragraph 2 matches Demo.tsx exactly: 'Given this much time, even a process too slow to see can do large things: since the non-bird dinosaurs ended at 23:39, about 66 million years ago, something creeping just 1 cm a year would have moved about 660 km.' On the QA path the stage found list ends with '00:00:00 Earth forms', '04:26:25 Earliest life (debated)', '23:39:03 Non-bird dinosaurs end' and '23:59:54 Homo sapiens'; nothing else. No canyon, Hutton or date remains on the learner path. I re-ran the numbers in node from my own copy of at(). No web sources were needed: both claims are derivations, and c10's date rests on c3 (verified, Pass 38).
+
+Unrecorded claims: none. Every sentence in the v5 reveal maps to c2/c7 (paragraph 1), c6 + c10 (paragraph 2) or c8 (paragraph 3). The recall card is unchanged and c7 covers it.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Derivation. The text before the colon matches the claim word for word. It follows from c7's scale: a change too small to see in a year, multiplied by tens of millions of years, is a large total. The example after the colon is now c10 (below), and it does show that. Pass 44 asked for c6 to be re-read if the reveal was restructured; this is that re-read. |
+| c10 | verified | Derivation. Node: 86,400 − 66e6/4.54e9 × 86,400 = 85,143.96 s = 23:39:03.97 (1,256.04 s before midnight). So the reveal's '23:39' is right and matches the found-list line '23:39:03 Non-bird dinosaurs end' that the learner reaches as a milestone. Distance: 66e6 yr × 1 cm/yr = 6.6e7 cm = 660 km. Sensitivity: 65.5 Ma gives 655 km and 66.04 Ma (Renne 2013, cited in c3) gives 660.4 km, so 'about 660 km' holds. The date is c3 (ICS chart 2024/12, Cretaceous ends 66 Ma). The 1 cm a year rate is explicitly hypothetical ('something creeping', 'would have') and names no real process, so it needs no source. |
+
+**Result (Pass 46):** 2 verified, 0 disputed, 0 unverified.
+
+Lesson state after this pass: c1, c2, c3, c5, c6, c7, c8 and c10 are verified; c4 and c9 are withdrawn. No claim is unverified or disputed. The non-blocking notes from earlier passes still stand: c2's source field should add the Sci Adv 2018 citation (demo-builder), and c5's readout prints '3.70 billion' (cm-big-ideas-science). Neither blocks publishing.
