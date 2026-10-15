@@ -20,3 +20,12 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 7. **Phone fit.** `REVEAL_FIT_TIMEOUT_MS=300000 node tools/reveal-fit.mjs --url http://localhost:3622 london-buried-six-times-more` (2026-10-14): verdict fit, crop 0 px, namedHidden 0, phoneFit true, 68 words (62 reveal + verdict). No picture fitting needed after the presets went into a 3 + 2 grid, so 12 px labels render at about 11 px. Screenshot `artifacts/reveal-fit/london-buried-six-times-more.png`.
 
 QA: `tests/qa/contract.spec.ts` phone + desktop passed (artifacts/qa/london-buried-six-times-more/). Claims c1-c4 unverified.
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- FC39/FC41 c1, the pass-39 wording: the learner text no longer says these yearly totals are the Bills of Mortality's burial counts. Question: "London's yearly records of deaths (compiled by Creighton, 1965) show 15,453 in 1664. In 1665, the year of the Great Plague, about how many?" (23 words). Hook: "Yearly records of London's deaths run from 1629 to 1710. What did 1665 look like?" Title: "1665 in London's death records". Stage: "Deaths, 1664/1665", "Deaths per christening, 1665", legend "other deaths". Reveal: "...97,306 deaths in 1665 ... about 10 deaths for every child christened. A year later, deaths were back to 12,738."
+- c3 (Great Plague) and c4 (limit sentence) are verified by FC41 and their text is kept, as asked. **Open for the fact-checker:** c4 says "these are recorded burials", while the stage now calls the same totals deaths and no longer ties them to the Bills. FC41 verified c4 against what the Bills recorded; whether it still holds for totals attributed to Creighton is theirs to judge.
+- Numbers re-derived in node from Arbuthnot.csv: all 82 rows match BILLS; 15,453 -> 97,306 (x6.30), plague 70.5%, 9.76 per christening.
+- Claims reset to unverified: c1, c2 (wording follows c1; numbers unchanged).
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 67 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/london-buried-six-times-more.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

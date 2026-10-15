@@ -15,3 +15,11 @@ Departures from the brief: (1) the year presets draw the record from 1750 up to 
 7. **Phone fit.** `tools/reveal-fit.mjs` at 390×844 on my dev server (port 3623), 2026-10-14: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0 (named 1850, 1900, britain, germany, others, 62%, 21%: all visible), 69 reveal words, phoneFit true. Smallest svg label 11 px locked, 10.5 px at the reveal (picture fitted 179/188). Computer-use QA contract: phone and desktop pass. First run cropped 3 px; fixed by shortening the hook to two lines and the third readout label to one line.
 
 Held source sentence (one): "rebuilt from records of coal and other fuels" (c6), fallback written in the claim. The data has a one-year dip in Britain's share just before 1800 (the record, not a drawing error).
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- cm-history ruling (W-868): title "Where the CO2 came from in 1850" (was "Whose smoke was it in 1850?"). No claim covers the title; the hook is unchanged.
+- c6: FC41 verified the learner text as it stands, so I changed nothing a learner sees. The source field now cites the OWID pages FC41 opened, including ourworldindata.org/co2-dataset-sources, as FC41 asked. Status kept (verified by FC41); noted in the claim.
+- No claim reset.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 69 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/britain-made-most-co2-in-1850.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

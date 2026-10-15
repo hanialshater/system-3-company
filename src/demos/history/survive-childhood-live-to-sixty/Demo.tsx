@@ -8,6 +8,8 @@
 // 60 + e60 = 72.1 -> 72, died before 5 = 40.9% -> 41%.
 // Presets in DOM order (no Reset): birth, under5, at30, at60. Each preset sets the whole state; every preset
 // pressed leaves its mark on the chart as a trace, so each value the reveal quotes is still on the stage.
+// v2 (cm-history ruling, W-868): the locked frame shows the axes, the "alive, of 1,238 born" label and the message
+// only; the survivor curve is drawn from the first preset on (its tail at 70 would hint the answer before the commit).
 // Milestones: all four presets (the brief names birth and at30; the reveal also quotes 41% and 72, so those
 // two are gated too and recorded in the build note).
 
@@ -85,6 +87,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
     reach(m);
   };
   const cur = MARKS.find((m) => m.id === mode);
+  const drawn = !locked && seen.size > 0;
   const readout =
     mode === null
       ? { label: "Average age at death", value: "-" }
@@ -96,7 +99,9 @@ function Stage({ locked, reach, mode, seen, pick }: {
     <div className={s.wrap}>
       {locked && <p className={s.msg}>Make a prediction to start.</p>}
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img"
-        aria-label={`Survivor curve: of ${fmt(BORN)} born, how many were alive at each age from 0 to ${MAXAGE}`}>
+        aria-label={drawn
+          ? `Survivor curve: of ${fmt(BORN)} born, how many were alive at each age from 0 to ${MAXAGE}`
+          : `Axes for a survivor curve: of ${fmt(BORN)} born, how many were alive at each age. The curve appears on the first preset.`}>
         {cur && <path d={areaFrom(cur.from)} className={s.counted} />}
         {!locked && seen.has("under5") && <path d={under5} className={mode === "under5" ? s.lostNow : s.lost} />}
         {[0, 500, 1000].map((v) => (
@@ -114,7 +119,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
         ))}
         <text x={W - 1} y={BOT + 15} textAnchor="end" className={s.axisTitle}>age</text>
         <text x={RX} y={yOf(1150)} textAnchor="end" className={`${s.axisTitle} ${s.halo}`}>alive, of {fmt(BORN)} born</text>
-        <path d={curve} className={s.curve} />
+        {drawn && <path d={curve} className={s.curve} />}
         {!locked && seen.has("under5") && (
           <text x={xOf(6) + 3} y={yOf(850)} className={`${s.note} ${s.halo}`}>{PCT5}% died before 5</text>
         )}

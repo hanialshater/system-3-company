@@ -19,3 +19,10 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 7. **Phone fit.** `REVEAL_FIT_TIMEOUT_MS=300000 node tools/reveal-fit.mjs --url http://localhost:3622 cholera-fell-with-height` (2026-10-14): crop 0 px, namedHidden 0 ("20", "under 20 feet" visible), phoneFit true, 83 words (74 reveal + verdict). Picture fitted 179/201 at the reveal; the smallest label renders at 10.06 px (getScreenCTM, 390×844), just over the floor, and 11.3 px at predict. Screenshot `artifacts/reveal-fit/cholera-fell-with-height.png`.
 
 QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c5 unverified.
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- cm-history ruling (W-868): the fourth preset's readout is "Central Thames: still falls with height" (was "Central Thames only: r = −0.68: still falls"). The words are set by the sign of r computed in Demo.tsx; r = −0.68 is in c4's source only. The label was shortened from "Central Thames only" because the longer readout wrapped and cropped the stage 17 px at the reveal.
+- c4's text drops "(r = −0.68)" and names the readout phrase; reset to unverified.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 83 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/cholera-fell-with-height.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.

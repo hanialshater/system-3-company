@@ -1,6 +1,9 @@
 "use client";
 
-// Brief history.md #8. London's Bills of Mortality, one bar per year 1629-1710.
+// Brief history.md #8. London's yearly deaths and plague deaths, one bar per year 1629-1710.
+// v2 (FC39/FC41 c1): the learner text no longer says these totals are the Bills of Mortality's burial counts; it names
+// what the HistData doc supports: yearly records of deaths and plague deaths (Campbell; Creighton, 1965). The stage
+// unit is "deaths"; c3 (Great Plague) and c4 (the limit sentence) are verified and unchanged.
 // BILLS is copied from the pinned file (history-data.mjs: arbuthnot, Arbuthnot.csv): [Year, Males + Females
 // (christenings), Plague, Mortality (burials)]. Every number on the stage and in the reveal is computed here from
 // BILLS, as in company/domains/briefs/checks/history-cycle1-check.mjs section 8: 15,453 -> 97,306 (x6.3),
@@ -97,12 +100,12 @@ function Stage({ locked, reach, mode, seen, pick }: {
 
   const readout = (() => {
     switch (mode) {
-      case "y1664": return { label: "Burials, 1664", value: fmt(B1664.burials) };
-      case "y1665": return { label: "Burials, 1665", value: `${fmt(B1665.burials)} (${TIMES}× 1664)` };
+      case "y1664": return { label: "Deaths, 1664", value: fmt(B1664.burials) };
+      case "y1665": return { label: "Deaths, 1665", value: `${fmt(B1665.burials)} (${TIMES}× 1664)` };
       case "share": return { label: "Put down to plague, 1665", value: `${fmt(B1665.plague)} (${PCT(B1665)}%)` };
       case "y1636": return { label: "Put down to plague, 1636", value: `${fmt(B1636.plague)} of ${fmt(B1636.burials)} (${PCT(B1636)}%)` };
-      case "christen": return { label: "Burials per christening, 1665", value: PER_CHR_1 };
-      default: return { label: "Burials", value: "-" };
+      case "christen": return { label: "Deaths per christening, 1665", value: PER_CHR_1 };
+      default: return { label: "Deaths", value: "-" };
     }
   })();
 
@@ -110,12 +113,12 @@ function Stage({ locked, reach, mode, seen, pick }: {
     <div className={s.wrap}>
       {locked && <p className={s.msg}>Make a prediction to start.</p>}
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img"
-        aria-label={`Burials recorded in London each year, ${Y0} to ${all ? Y1 : 1664}, with the part put down to plague`}>
+        aria-label={`Deaths recorded in London each year, ${Y0} to ${all ? Y1 : 1664}, with the part put down to plague`}>
         <g aria-hidden="true">
           <rect x={W - 148} y={5} width={9} height={9} className={s.other} />
           <rect x={W - 58} y={5} width={9} height={9} className={s.plague} />
         </g>
-        <text x={W - 136} y={13} className={s.legend}>other burials</text>
+        <text x={W - 136} y={13} className={s.legend}>other deaths</text>
         <text x={W - 46} y={13} className={s.legend}>plague</text>
         {ticks.map((v) => (
           <line key={v} x1={PL} x2={PR} y1={yOf(v)} y2={yOf(v)} className={v === 0 ? s.axis : s.grid} />
@@ -190,7 +193,7 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "London's Bills of Mortality recorded 15,453 burials in 1664. In 1665, the year of the Great Plague, about how many?",
+          `London's yearly records of deaths (compiled by Creighton, 1965) show ${fmt(B1664.burials)} in 1664. In 1665, the year of the Great Plague, about how many?`,
         options: ["About 30,000", "About 100,000", "About 300,000"],
         answer: 1,
       }}
@@ -199,9 +202,9 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            London recorded {fmt(B1665.burials)} burials in 1665, {TIMES} times the year before, and {PCT(B1665)}% were put
-            down to plague. Christenings that year were {fmt(B1665.chr)}, so the city buried about {PER_CHR} people for every
-            child christened. A year later, burials were back to {fmt(B1666.burials)}.
+            London recorded {fmt(B1665.burials)} deaths in 1665, {TIMES} times the year before, and {PCT(B1665)}% were put
+            down to plague. Christenings that year were {fmt(B1665.chr)}, so there were about {PER_CHR} deaths for every
+            child christened. A year later, deaths were back to {fmt(B1666.burials)}.
           </p>
           <p>
             Where it stops: these are recorded burials and recorded causes, not a count of every death or a doctor&apos;s

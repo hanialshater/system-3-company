@@ -75,13 +75,11 @@
     },
     {
       "id": "history.children-dying-before-five.c6",
-      "text": "Where it stops: this is one source's world figure, and the further back it goes, the fewer places kept records to build it from.",
+      "text": "Where it stops: this is one source's world figure, and some of its early values are guesses or modelled, not counted.",
       "support": "source",
-      "source": "HELD (the reveal's one held source sentence). Gapminder documentation for u5mr (gapm.io/du5mr; not reachable from this host). The pin's description says the series is estimates before 1950. Fallback: 'Where it stops: this is one source's world figure, an average over very different places.'",
+      "source": "OWID grapher metadata for child-mortality (ourworldindata.org/grapher/child-mortality.metadata.json, descriptionProcessing, opened by FC41): OWID drops Gapminder rows labelled 'Guesstimate' or 'Model based on Life Expectancy'. 'One source's world figure' follows from the file being a single Gapminder world aggregate (history-data.mjs: gmu5).",
       "status": "unverified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Held. Gapminder's u5mr documentation (gapm.io/du5mr) is unreachable (DNS fails; gapminder.org blocked); ddf--concepts.csv and the open-numbers READMEs say nothing about record coverage by period. Not verified on trust. Fix (builder): use the named fallback, 'Where it stops: this is one source's world figure, an average over very different places.' That follows from the file being a single world aggregate. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD. Gapminder's u5mr documentation is still unreachable: gapminder.org is on the allow-list but redirects to www.gapminder.org, which the proxy blocks (403), and gapm.io fails. Opened instead: OWID grapher metadata for child-mortality (ourworldindata.org/grapher/child-mortality.metadata.json), OWID 'Mortality in the past' and 'Child and infant mortality' articles. None says that record coverage thins as the series goes back. They say Gapminder 'provides estimates of child mortality rates from 1800 to 2015', that OWID drops Gapminder rows labelled 'Guesstimate' or 'Model based on Life Expectancy', and that Sweden's Tabellverket (1749) was the first office for population statistics. That is suggestive, not the claim. Fix (history-builder), checkable now: 'Where it stops: this is one source's world figure, and some of its early values are guesses or modelled, not counted.' (source: OWID child-mortality metadata, descriptionProcessing). Or the pass-39 fallback ('an average over very different places').",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held. Gapminder's u5mr documentation (gapm.io/du5mr) is unreachable (DNS fails; gapminder.org blocked); ddf--concepts.csv and the open-numbers READMEs say nothing about record coverage by period. Not verified on trust. Fix (builder): use the named fallback, 'Where it stops: this is one source's world figure, an average over very different places.' That follows from the file being a single world aggregate. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD. Gapminder's u5mr documentation is still unreachable: gapminder.org is on the allow-list but redirects to www.gapminder.org, which the proxy blocks (403), and gapm.io fails. Opened instead: OWID grapher metadata for child-mortality (ourworldindata.org/grapher/child-mortality.metadata.json), OWID 'Mortality in the past' and 'Child and infant mortality' articles. None says that record coverage thins as the series goes back. They say Gapminder 'provides estimates of child mortality rates from 1800 to 2015', that OWID drops Gapminder rows labelled 'Guesstimate' or 'Model based on Life Expectancy', and that Sweden's Tabellverket (1749) was the first office for population statistics. That is suggestive, not the claim. Fix (history-builder), checkable now: 'Where it stops: this is one source's world figure, and some of its early values are guesses or modelled, not counted.' (source: OWID child-mortality metadata, descriptionProcessing). Or the pass-39 fallback ('an average over very different places'). | v2 (demo-builder, 2026-10-15): FC41 c6 fix: wording now the one FC41 named as checkable from the OWID metadata; was 'the further back it goes, the fewer places kept records to build it from'. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.children-dying-before-five.c7",
@@ -111,7 +109,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:child-mortality-decline",
     "also": [],

@@ -1,7 +1,7 @@
 {
   "slug": "london-buried-six-times-more",
-  "title": "1665 in London's burial records",
-  "hook": "London's Bills of Mortality counted burials year by year. What did 1665 look like?",
+  "title": "1665 in London's death records",
+  "hook": "Yearly records of London's deaths run from 1629 to 1710. What did 1665 look like?",
   "domain": "history",
   "concept": "plague-1665-bills",
   "status": "draft",
@@ -24,23 +24,19 @@
   "claims": [
     {
       "id": "history.london-buried-six-times-more.c1",
-      "text": "London's Bills of Mortality recorded burials, plague burials and christenings by year, 1629-1710: 15,453 burials in 1664, 97,306 in 1665 (68,596 put down to plague), 12,738 in 1666; 9,972 christenings in 1665; 1636: 10,400 plague of 23,359.",
+      "text": "London's yearly records of deaths and plague deaths (compiled by Creighton, 1965), with christenings (Arbuthnot, 1710), 1629-1710: 15,453 deaths in 1664, 97,306 in 1665 (68,596 put down to plague), 12,738 in 1666; 9,972 christenings in 1665; 1636: 10,400 plague of 23,359 (question, hook 'Yearly records of London's deaths run from 1629 to 1710', stage, reveal).",
       "support": "source",
-      "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, columns Mortality (burials), Plague, Males + Females (christenings). HistData Arbuthnot, columns Mortality and Plague (source not named in the documentation); christenings from Arbuthnot (1710). Copied into Demo.tsx as BILLS. The fact-checker should confirm against a printed Bill for 1665 if one can be opened.",
+      "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, columns Mortality, Plague, Males + Females (christenings), re-read in node 2026-10-15. HistData Arbuthnot documentation / CRAN reference manual (opened by FC39, FC41): Plague and Mortality are 'deaths from the plague and total mortality obtained by Campbell and from Creighton (1965)'; christenings are 'annual counts of public baptisms' from Arbuthnot (1710). Copied into Demo.tsx as BILLS.",
       "status": "unverified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): The numbers verify against the pinned file. Arbuthnot.csv 1664 Mortality 15,453; 1665 97,306, Plague 68,596; 1666 12,738; 1665 christenings 5,114 + 4,858 = 9,972; 1636 Plague 10,400 of 23,359. Demo.tsx BILLS identical for all 82 years. The attribution does not verify. The HistData Arbuthnot doc (opened) says the Plague and Mortality columns are 'deaths from the plague and total mortality obtained by Campbell and from Creighton (1965)'. It does not say they are the Bills of Mortality's burial counts. (So the pin's note 'the doc does not name the source' is out of date: it names Campbell 2001 and Creighton 1965.) Web search snippets, not opened, match: 97,306 burials and 68,596 plague in the 1665 general bill. But no printed Bill, Creighton or Campbell page could be opened (all blocked). Fix: either a web-capable session (W-583) opens a 1665 general Bill or Creighton and verifies 'Bills of Mortality ... burials'; or the builder words it to the doc: 'London's yearly records of deaths and plague deaths (compiled by Creighton, 1965)'. That wording would change the question, hook and reveal from 'burials' to 'deaths'. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD, narrowed. Now supported from opened PMC sources: what the Bills recorded. Lancet 2020, 'Bills of Mortality: tracking disease in early modern London' (PMC7154511): parish clerks were to make 'Weekly Reports of Christenings and Burials' (1695 orders), and the weekly Bill listed each parish's figures and the causes of death. Cureus 2026, 'Bills of Mortality and the Birth of Epidemic Surveillance' (PMC13244054): the broadsheets 'listed burials in each London parish ... and the total deaths attributed to specific causes, including the Plague', and the 1665 'general or whole years bill' was published. The CRAN HistData reference manual (cran.r-project.org, opened directly) says Arbuthnot's christenings are 'annual counts of public baptisms' from Arbuthnot 1710, and that the Plague and Mortality columns were 'obtained by Campbell and from Creighton (1965)'. Still unsupported: that the file's annual totals (1665: 97,306 burials, 68,596 plague) are the Bills' own yearly figures. No opened source prints them: Creighton, Campbell and the general Bill are not on a reachable host, and three PMC searches for the 1665 totals returned none. The numbers still match the pinned file exactly (pass 39). Fix: a session that can open Creighton (1965) or a printed 1665 general Bill; or the pass-39 wording ('London's yearly records of deaths and plague deaths (compiled by Creighton, 1965)').",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "note": "FC pass 39 (fact-checker, 2026-10-14): The numbers verify against the pinned file. Arbuthnot.csv 1664 Mortality 15,453; 1665 97,306, Plague 68,596; 1666 12,738; 1665 christenings 5,114 + 4,858 = 9,972; 1636 Plague 10,400 of 23,359. Demo.tsx BILLS identical for all 82 years. The attribution does not verify. The HistData Arbuthnot doc (opened) says the Plague and Mortality columns are 'deaths from the plague and total mortality obtained by Campbell and from Creighton (1965)'. It does not say they are the Bills of Mortality's burial counts. (So the pin's note 'the doc does not name the source' is out of date: it names Campbell 2001 and Creighton 1965.) Web search snippets, not opened, match: 97,306 burials and 68,596 plague in the 1665 general bill. But no printed Bill, Creighton or Campbell page could be opened (all blocked). Fix: either a web-capable session (W-583) opens a 1665 general Bill or Creighton and verifies 'Bills of Mortality ... burials'; or the builder words it to the doc: 'London's yearly records of deaths and plague deaths (compiled by Creighton, 1965)'. That wording would change the question, hook and reveal from 'burials' to 'deaths'. | FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD, narrowed. Now supported from opened PMC sources: what the Bills recorded. Lancet 2020, 'Bills of Mortality: tracking disease in early modern London' (PMC7154511): parish clerks were to make 'Weekly Reports of Christenings and Burials' (1695 orders), and the weekly Bill listed each parish's figures and the causes of death. Cureus 2026, 'Bills of Mortality and the Birth of Epidemic Surveillance' (PMC13244054): the broadsheets 'listed burials in each London parish ... and the total deaths attributed to specific causes, including the Plague', and the 1665 'general or whole years bill' was published. The CRAN HistData reference manual (cran.r-project.org, opened directly) says Arbuthnot's christenings are 'annual counts of public baptisms' from Arbuthnot 1710, and that the Plague and Mortality columns were 'obtained by Campbell and from Creighton (1965)'. Still unsupported: that the file's annual totals (1665: 97,306 burials, 68,596 plague) are the Bills' own yearly figures. No opened source prints them: Creighton, Campbell and the general Bill are not on a reachable host, and three PMC searches for the 1665 totals returned none. The numbers still match the pinned file exactly (pass 39). Fix: a session that can open Creighton (1965) or a printed 1665 general Bill; or the pass-39 wording ('London's yearly records of deaths and plague deaths (compiled by Creighton, 1965)'). | v2 (demo-builder, 2026-10-15): FC39/FC41 c1 fix (the pass-39 wording): the question, hook, title, stage labels and reveal no longer say these totals are the Bills of Mortality's burial counts; 'burials' became 'deaths' and the totals are attributed to Creighton (1965). Was 'London's Bills of Mortality recorded 15,453 burials in 1664' (question) and 'London's Bills of Mortality counted burials year by year' (hook). Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.london-buried-six-times-more.c2",
-      "text": "1665's burials were 6.3 times the year before; 70% were put down to plague; the city buried about 10 people for every child christened (9.8).",
+      "text": "1665's deaths were 6.3 times the year before; 70% were put down to plague; there were about 10 deaths for every child christened (9.8).",
       "support": "derivation",
       "source": "history-cycle1-check.mjs section 8: 97,306 / 15,453 = 6.30; 68,596 / 97,306 = 70.5% shown as Math.round = 70%; 97,306 / 9,972 = 9.8, rounded to 10 in the reveal. Demo.tsx computes the same values from BILLS. Stage readout for 1636 shows Math.round(44.52) = 45%.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Arithmetic on c1's numbers: 97,306/15,453 = 6.30; 68,596/97,306 = 70.5% (70); 97,306/9,972 = 9.76 (about 10); 1636 44.5% (45). Demo.tsx computes the same. The labels 'burials' and 'put down to plague' depend on c1.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Arithmetic on c1's numbers: 97,306/15,453 = 6.30; 68,596/97,306 = 70.5% (70); 97,306/9,972 = 9.76 (about 10); 1636 44.5% (45). Demo.tsx computes the same. The labels 'burials' and 'put down to plague' depend on c1. | v2 (demo-builder, 2026-10-15): wording follows c1: 'burials' became 'deaths' and 'the city buried about 10 people for every child christened' became 'there were about 10 deaths for every child christened'. Numbers unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.london-buried-six-times-more.c3",
@@ -80,7 +76,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:plague-1665-bills",
     "also": [],

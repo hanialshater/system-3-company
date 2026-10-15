@@ -17,3 +17,11 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 5. **QA path.** Pressing the 5 presets in DOM order reaches y1900 (press 2) and y2020 (press 4). It ends in the per-100 view, with all four marks ("1800: 430", "1900: 411", "1950: 246", "2020: 37"), the readout and the caption visible.
 6. **Reset.** There is no Reset button. Reveal from the run: "In 1900 about 411 of every 1,000 children died before age 5; in 2020, 37: about 11 times fewer. In the century before 1900 the figure barely moved, from 430. More than half of the fall since 1900, 56%, came after 1950. Where it stops: this is one source's world figure, and the further back it goes, the fewer places kept records to build it from."
 7. **Phone fit.** tools/reveal-fit.mjs at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, reveal 72 words with the verdict. The svg labels are 11 px in a 340-wide viewBox at about 330 px.
+
+## v2 (2026-10-15, demo-builder, branch hist-fix: W-868, W-871, FC41)
+- cm-history ruling (W-868), option 1: the "1800: 430" mark is drawn from the commit onward, whatever presets are pressed, so the reveal's "from 430" is always on the stage. Checked in a browser: after the commit, 1800: 430 is drawn before any preset and after 1900 + 2020 only. Milestones unchanged (y1900, y2020).
+- FC41 c6: limit sentence now "Where it stops: this is one source's world figure, and some of its early values are guesses or modelled, not counted." (the OWID-metadata wording FC41 named).
+- Claims reset to unverified: c6.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3651 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, thumb false, phoneFit true, 69 reveal words with the verdict line (artifacts/reveal-fit/hist-fix-v2.json, screenshot artifacts/reveal-fit/children-dying-before-five.png).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3651): phone and desktop both pass (18/18 for the nine v2 lessons, artifacts/qa-hist-fix/qa-report.json). Dev server, not a production build.
+- Every changed claim is unverified; I verified none. meta.json version 2.
