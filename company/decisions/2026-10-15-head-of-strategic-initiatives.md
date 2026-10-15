@@ -99,8 +99,20 @@ Every answer below is **my synthesis (Leonie)**, written from the direct's role 
 - **Changes:** (1) `first-light` goes into projects.json with `owner: head-of-strategic-initiatives` (her file to edit). (2) Initiative board items enter through normal triage. The role proposes priorities and the portfolio-manager sets them. (3) Money (Vercel Pro, the domain, database and auth tiers) is the founder's alone, and no spend happens before Project Review 1.
 - **Objection:** Project Review 1 is **tomorrow (2026-10-16)**. A role that exists from today cannot have a measured basis for a budget, and the grace period ends 2026-10-16 23:59 UTC. **Proposed answer:** tranche 1 covers only the week-1 re-estimate and the design work (EDDs, PRDs, the Surface Value amendment draft). The build is budgeted at the next forum, on the W-908 estimate. Odette to confirm.
 
+### evaluation-steward (Hilde, holder of the quality go/no-go key): agree with changes. In my own words, 2026-10-15
+- **From:** company/roles/evaluation-steward.md, the First Light record's Amendment 1 (two keys; a quality no-go only the founder can overrule), and company/initiatives/first-light/quality-bar.md.
+- **Why I am answering:** this record lists me as "informed, not consulted" because "the role changes no gate". Amendment 1 changed that on the same day. The role's go/no-go recommendation now sits beside a constitutional key, and anything that sets the dates, the evidence or the briefs around a gate touches the gate.
+- **Answer:** I agree the role should exist and run the cadence. It adds no review capacity, but it does not have to: it has to keep the review dates from being squeezed.
+- **Changes:**
+  1. **Two keys, stated in the role.** "Approve its own … go/no-go" is not enough. Add: the recommendation **carries the quality verdict verbatim**. It may not recommend "go" over a quality no-go, except by asking the founder for a written waiver, which is recorded with the objection (quality-bar.md §2.5). The role may not mark a quality row met, waived or out of scope.
+  2. **The role does not set the bar or its dates.** The freeze (2026-10-23), the T-7 dry run (2026-11-16) and the verdict are in the bar. If the role moves go/no-go, the quality dates move with it, and T-7 stays T-7. The role may not ask for a verdict on a date that shortens the review below what the bar plans for.
+  3. **Independence.** War-room stand-ups, the FYIs and the dependency map are builders' accounts. They are not pasted into evaluator briefs, and evaluators read them only after their findings are written (company/reviews/README.md).
+  4. **Review capacity is a dependency the role tracks.** The quality team's runs (bar §3, ~64 runs, unbudgeted today) go on the dependency map and in the first risk re-score, alongside Kenji's objection 5. That objection covers my org too.
+  5. **Future initiatives:** when an initiative carries a gate or a go/no-go, the evaluation steward is consulted on it, not informed.
+- **Objection (for the founder, if change 1 is not taken):** without change 1, the founder hears one recommendation with the quality verdict folded into it. That is the deadlock Amendment 1 tried to prevent, just moved into prose.
+
 ### Not consulted, informed
-- **evaluation-steward (Hilde):** the role changes no gate. It only cites her launch bar and the amendment (W-906). She gets the announcement line.
+- **evaluation-steward (Hilde):** ~~the role changes no gate. It only cites her launch bar and the amendment (W-906). She gets the announcement line.~~ Superseded: she answered above, because Amendment 1 made the go/no-go two keys.
 - **vp-marketing (Celeste):** the role's FYIs are internal to the directs. The public launch narrative stays hers. She gets the announcement line.
 - **vp-rnd (Vera):** none touched. Informed.
 
@@ -115,6 +127,7 @@ Every answer below is **my synthesis (Leonie)**, written from the direct's role 
 | 5 | Kenji (synthesis) | The critical path is review capacity (readiness, privacy), not ownership | proposed: the first risk re-scored. Awaiting Kenji |
 | 6 | Selin (synthesis) | Coordination load with no capacity added | accepted in part: no reports and no dispatch, plus the sunset check. Awaiting Selin |
 | 7 | Odette (synthesis) | There is no measured basis for a budget by tomorrow's forum | proposed: tranche 1 covers the re-estimate and design only. Awaiting Odette |
+| 8 | Hilde (her own words) | Without a "carries the quality verdict verbatim; may not recommend go over a quality no-go" line, the two keys collapse into one recommendation | open: for the CEO office to take into the role's data (change 1 in her answer), or for the founder to decide |
 
 ## Board asks (for the chief of staff to file; this record does not edit board.json)
 
