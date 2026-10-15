@@ -9,7 +9,10 @@
 // Every number is computed here: first year at or above 1, 2, 4, 8 billion; yearly growth 100 x (P[y+1] / P[y] - 1),
 // labelled by its start year (1963 = 1963 to 1964), so the last rate is 2022 to 2023 (0.88%); peak over 1900-2022.
 // Locked stage: axes only (the line would let a learner read off when 8 billion came).
-// Doubling spans, once pressed, stay marked in a strip under the year axis in both views.
+// Doubling spans, once pressed, stay marked in a strip under the year axis in both views, each with its years and
+// the people it added (+1, +2, +4 bn), which the reveal's "4 billion people, not 2" quotes.
+// v3 (W-990, learner r1): options are half / same / double the 2-to-4 span (24, 48, 96), all built the same way;
+// the right one, "About 48", covers 47.
 // Milestones: d3 (4 to 8 billion) and rate, as in the brief. No Reset.
 
 import { useState } from "react";
@@ -73,7 +76,7 @@ const MILESTONES = ["d3", "rate"] as const;
 type View = "none" | "d1" | "d2" | "d3" | "rate";
 
 const W = 340;
-const H = 192;
+const H = 193;
 const L = 34;
 const R = 326;
 const T = 26;
@@ -107,7 +110,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
     : (rate
         ? `Line of world population growth per year, percent, 1800 to 2023, peaking at ${f2(gr(PEAK))} in ${PEAK}.`
         : "Line of world population, billions, 1800 to 2023.") +
-      SPANS.filter((d) => spans.includes(d.id)).map((d) => ` ${d.a} to ${d.b} billion took ${d.to - d.from} years.`).join("");
+      SPANS.filter((d) => spans.includes(d.id)).map((d) => ` ${d.a} to ${d.b} billion took ${d.to - d.from} years and added ${d.b - d.a} billion people.`).join("");
 
   return (
     <div>
@@ -156,9 +159,12 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
             {/* doubling spans, kept in both views */}
             {SPANS.filter((d) => spans.includes(d.id)).map((d) => (
               <g key={d.id}>
-                <rect x={xs(d.from)} y={B + 23} width={xs(d.to) - xs(d.from)} height={6} rx={2} className={view === d.id ? s.spanOn : s.span} />
-                <text x={(xs(d.from) + xs(d.to)) / 2} y={B + 42} className={s.lab} textAnchor="middle">
+                <rect x={xs(d.from)} y={B + 21} width={xs(d.to) - xs(d.from)} height={6} rx={2} className={view === d.id ? s.spanOn : s.span} />
+                <text x={(xs(d.from) + xs(d.to)) / 2} y={B + 37} className={s.lab} textAnchor="middle">
                   {d.id === "d1" ? `${d.a} to ${d.b} bn: ` : ""}{d.to - d.from} yrs
+                </text>
+                <text x={(xs(d.from) + xs(d.to)) / 2} y={B + 49} className={s.lab} textAnchor="middle">
+                  +{d.b - d.a} bn
                 </text>
               </g>
             ))}
@@ -196,7 +202,7 @@ export default function DoublingStoppedSpeedingUp({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question: `World population took ${d1} years to go from 1 to 2 billion, and ${d2} years to reach 4 billion. How long to reach 8?`,
-        options: ["About 24 years", "About 47 years", "About 96 years"],
+        options: [`About ${d2 / 2} years`, `About ${d2} years`, `About ${d2 * 2} years`],
         answer: 1,
       }}
       exploreHint="Press each doubling, then look at growth per year."
@@ -208,7 +214,8 @@ export default function DoublingStoppedSpeedingUp({ slug }: { slug: string }) {
             year peaked at {f2(gr(PEAK))}% in {PEAK} and was {f2(G_LAST)}% from {LAST} to {SHOWN_TO}.
           </p>
           <p>
-            A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.
+            It added {SPANS[2].b - SPANS[2].a} billion people, not {SPANS[1].b - SPANS[1].a}, only because it started from
+            twice as many; as a share of those alive, growth is slowing.
           </p>
           <p>
             Where it stops: early totals are the least certain, and the chart stops at the present; any later number is a

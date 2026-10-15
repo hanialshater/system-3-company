@@ -54,13 +54,11 @@
     },
     {
       "id": "history.doubling-stopped-speeding-up.c4",
-      "text": "The last doubling was about as fast as the one before; a doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.",
+      "text": "The last doubling was about as fast as the one before (reveal: 'the last was about as fast as the one before').",
       "support": "derivation",
-      "source": "Doubling time is set by the yearly rate (math:exponential-growth); 47 vs 48 years (c2), within the one-year resolution of 'first year at or above', and the rate falls after the 1963 peak (c3).",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Follows from c2, c3: 47 vs 48 years, and the rate falls after the 1960s peak. Wording note, not blocking: the reveal says 'the last was no faster than the one before'. Read literally, 47 < 48 is one year faster, though that is within the one-year resolution of 'first year above'. Suggest 'about as fast as the one before'. | v2 (demo-builder, 2026-10-15): FC39 c4 wording note: reveal 'no faster than the one before' became 'about as fast as the one before', and that clause is now in this claim's text. Reset to unverified for a fact-checker who is not the builder. | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Reveal: 'the last was about as fast as the one before. ... A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.' Spans 48 and 47 years at first-year resolution; by linear interpolation of the crossings they are 47.5 and 47.6, so 'about as fast' is right and 'faster' would not be. Average rate over each doubling 1.48% (1927-1975) and 1.45% (1975-2022); yearly rate 1.81% in 1975, 0.88% in 2022 to 2023. Growth slowing, not accelerating, holds.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "source": "47 vs 48 years (c2), within the one-year resolution of 'first year at or above'. v3 (W-990): the reveal's old second paragraph ('A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing') is replaced by c7.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Follows from c2, c3: 47 vs 48 years, and the rate falls after the 1960s peak. Wording note, not blocking: the reveal says 'the last was no faster than the one before'. Read literally, 47 < 48 is one year faster, though that is within the one-year resolution of 'first year above'. Suggest 'about as fast as the one before'. | v2 (demo-builder, 2026-10-15): FC39 c4 wording note: reveal 'no faster than the one before' became 'about as fast as the one before', and that clause is now in this claim's text. Reset to unverified for a fact-checker who is not the builder. | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Reveal: 'the last was about as fast as the one before. ... A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.' Spans 48 and 47 years at first-year resolution; by linear interpolation of the crossings they are 47.5 and 47.6, so 'about as fast' is right and 'faster' would not be. Average rate over each doubling 1.48% (1927-1975) and 1.45% (1975-2022); yearly rate 1.81% in 1975, 0.88% in 2022 to 2023. Growth slowing, not accelerating, holds. | v3 (demo-builder, 2026-10-15, W-990, learner r1): text cut to the first clause; the 'slowing, not racing' sentence was rewritten to answer 'but it added twice as many people' and is now c7. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.doubling-stopped-speeding-up.c5",
@@ -81,6 +79,14 @@
       "note": "FC pass 39 (fact-checker, 2026-10-14): Hook: 1927-1805 = 122, 1975-1927 = 48 (c2). 'Doubled faster and faster' is true of those two spans.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "history.doubling-stopped-speeding-up.c7",
+      "text": "The last doubling added 4 billion people, not 2, only because it started from twice as many; as a share of those alive, growth is slowing (reveal; stage span strip '+1 bn', '+2 bn', '+4 bn').",
+      "support": "derivation",
+      "source": "A doubling from 4 to 8 billion adds 4 billion by definition, the one from 2 to 4 adds 2. In the pinned column (gapminder-pop-global.csv, re-derived in node 2026-10-15): P(1975) - P(1927) = 2.063 bn, P(2022) - P(1975) = 3.951 bn, so 'about 2' and 'about 4' hold; the strip labels are the threshold differences (b - a). 'As a share of the people alive, growth is slowing': the yearly rate 100 x (P[y+1]/P[y] - 1) peaked at 2.25% in 1963 and was 0.88% from 2022 to 2023 (c3); average rate over each doubling 1.48% (1927-1975) and 1.45% (1975-2022) (FC43, c4 note). Same doubling time with twice the base adds twice the people (math:exponential-growth).",
+      "status": "unverified",
+      "note": "v3 (demo-builder, 2026-10-15, W-990): new, answers the learner r1 objection 'but it added twice as many people'. Replaces the reveal's old sentence 'A doubling that takes as long as the last one, at a falling yearly rate, means growth is slowing, not racing.' Not verified by the builder."
     }
   ],
   "confidence": "",
@@ -102,7 +108,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "history:world-population-doubling",
     "also": [],
