@@ -29,6 +29,19 @@ npm run walkthrough -- merge-sort-payoff
 If Playwright cannot find Chromium, set `PW_CHROMIUM_PATH` to the browser binary.
 For parallel agents, use `NEXT_DIST_DIR`, `QA_PORT` and `QA_OUT` so builds and reports do not collide.
 
+**A taken port fails the run** (since 3b97991, W-851). If another server already holds `QA_PORT` (default 3100), Playwright stops with `http://localhost:<port> is already used` and tests nothing. That is caught cross-talk, not flakiness. Fix it with your own free `QA_PORT`, or set `QA_BASE_URL` to a server you started yourself. `QA_REUSE_SERVER=1` is only for a server that the same agent started from the same worktree. Never use it to get past someone else's server. (W-986 C1)
+
+### QA records from a server QA did not start (W-986 C2, evaluation-steward ruling 2026-10-15)
+
+A run with `QA_BASE_URL` set or `QA_REUSE_SERVER=1` tested a server that the run did not build. A record made from that run must say which server it tested. Add this line under the header of every `company/reviews/<slug>/<date>-qa.md` that comes from such a run:
+
+`target: <url> · mode: external | reused · built from: <commit>[ (dirty)] | unknown`
+
+- `built from` is the commit the server's build was made from: your `git rev-parse HEAD` and `git status --porcelain` at `npm run build` time for a local server, or the deployment's commit for a Vercel URL. If you cannot name it, write `unknown`.
+- A record with `built from: unknown`, or with no `target:` line after such a run, **is not evidence for a launch gate**. It counts as exploratory only, and the release manager does not cite it.
+- Runs where QA started its own `next start` (no `QA_BASE_URL`, no reuse) need no line yet. They still assume the local build matches the tree, which is a known gap: see the harness-stamp proposal.
+- Until `company qa-record` writes and checks this line itself (proposed in `company/constitution/amendments/proposed-qa-harness-stamp.md`, part 2), whoever files the record adds it by hand. The evaluation steward samples QA records in each independence audit to check it.
+
 ## Exploratory checklist (write results to `company/reviews/<slug>/<date>-qa.md`)
 
 - [ ] Tap every control twice quickly. Does state stay consistent?

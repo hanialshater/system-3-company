@@ -28,6 +28,20 @@ In `cmdQaRecord` (`tools/company.mjs`):
 Optional, in `tests/qa/contract.spec.ts`: a first test that fails when `S3_QA_STAMP` is absent, so a run that bypassed
 the config fails loudly instead of producing an unstamped green report.
 
+### Part 2 (added by the evaluation steward, 2026-10-15, W-986 C2): name the server that was tested
+The harness stamp says *which judge* ran. It does not say *what it judged*. Since 3b97991 (W-851), QA starts its own
+server unless `QA_BASE_URL` is set or `QA_REUSE_SERVER=1`, and those two opt-ins bring back the failure W-851 removed:
+a record about another build. The interim manual rule is in `company/qa/computer-use-testing.md` ("QA records from a server QA did not start").
+- Ordinary half (tools-lead): `playwright.config.ts` writes `config.metadata.qaTarget = { mode: "started" | "reused" | "external", baseURL, builtFrom }`.
+  `mode` is `external` when `QA_BASE_URL` is set and `reused` when `QA_REUSE_SERVER=1` (the run cannot tell whether the port was actually taken, so the opt-in is enough).
+  `builtFrom` comes from a build stamp: `npm run build` writes `{ commit, clean }` next to the build output, and the app or the config reads it. That stamp
+  also closes the gap for `started` runs, which assume the local build matches the tree.
+- Protected half, step 4 of `cmdQaRecord`: write `target: <baseURL> · mode: <mode> · built from: <commit>[ (dirty)] | unknown` on the
+  record's header. When `mode` is not `started` and `builtFrom` is missing, mark the record `evidence: exploratory only` and
+  leave it out of `meta.evidence.qa`, so that `launchGates` cannot count it.
+- prediction: no QA record after ratification names a build other than the one it claims. would_be_wrong_if: a record with
+  `mode: started` is later shown to have tested a stale build, which means the build stamp is wrong or is not read.
+
 ## Claimed benefit
 Every QA record names the exact harness that produced it, and a copy of the harness cannot produce a record.
 

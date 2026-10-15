@@ -600,8 +600,122 @@ If option 4 has landed by then, revert that first.
 
 ---
 
+## (c2) ratification packet, with rider R1 (W-946) (evaluation steward, 2026-10-15, W-1006 / W-667)
+
+This section supersedes the (c2) section above where they differ. The (c2) text above was tested
+on 18 lessons. Everything below was re-run on the tree at `e02a6c7` (960 lessons, 5161 claims).
+
+### What is being ratified (the law, in words)
+`tools/company.mjs` stops holding the registry generator. `tools/registry.mjs` (ordinary surface)
+exports `registryFiles(demos)`, which returns `{ "<repo path>": "<contents>" }`. `check` keeps
+judging the output with six invariants. They are computed over all generated files together
+(`gen`) and over each file on its own:
+
+1. **Freshness.** Every file the generator returns matches the file on disk. No `src/demos/*.generated.ts` exists that the generator does not return (orphan rule).
+2. **Meta faithfulness.** Every lesson on disk (a `meta.json` plus a `Demo.tsx`) is imported from its own `meta.json`, and nothing else is imported.
+3. **No status literal** in generated code. Status comes only from `meta.json`, so a generator cannot promote around `launchGates`.
+4. **Loader faithfulness (rider R1).** Every lesson on disk has exactly one loader, `"<meta.slug>": () => import("./<domainDir>/<slugDir>/Demo")`. Its key is the slug in that lesson's own `meta.json`. No other `import()` appears in generated code.
+5. **Side separation (rider R1).** No generated file both imports a `meta.json` and contains an `import()`.
+6. **No chaining (rider R1, added by the steward).** No generated file imports another generated file. Without this, invariant 5 holds per file, but a re-export file can still join metas and loaders again (planted test T8 below passed `check` until this rule was added).
+
+Invariants 1 to 3 are (c2) as proposed on 2026-10-12. Invariants 4 and 5 are the principal
+engineer's rider (`company/engineering/notes/2026-10-15-w946-loaders-design.md` section 4). I
+changed three things in it: a count map instead of an O(n²) filter, a check that a loader's
+target is a lesson on disk, and invariant 6.
+
+### Why the rider: what (c2) alone misses
+- With (c2) alone, a generator that points `"asthma-looks-safe"` at `./ai/attention-shares-one/Demo` passes `check` (960 lessons, run in scratch). That is the gap (c2) admitted ("not caught by the invariants"). R1 fails it with 3 errors.
+- (c2) alone does not stop the generator from merging metas and loaders back into one module. That merge is the W-946 leak: every `meta.json`, internal fact-check notes included, in a 5.39 MB client chunk on every page. The principal engineer measured the split in scratch (build E in `company/engineering/notes/2026-10-15-first-light-reestimate.md`): `/` first-load JS 2,711,774 to 229,969 B gz, `/` HTML 309,937 to 47,614 B, stylesheets 751 to 1, phone usable 4.61 s to 0.89 s. **I did not re-measure these numbers.** They are the PE's testimony. What I tested is the gate, not the bundle.
+
+### Sequencing finding: R1 cannot land on the one-file generator
+Today's `registry.generated.ts` holds both metas and loaders, so invariant 5 fails it (tested:
+`check failed: 1 error`, "must not hold both metas and loaders"). The PE's order of work applies
+(c2) first and does the split "in a separate commit". With R1 in the amendment, that order leaves
+a red `check` between the two commits, or else it needs two commits licensed by AMD-001. Article
+3.5 says one commit. **So the applying commit carries (c2) + R1 and the A1 split together:**
+
+| In the applying commit | Surface | Owner |
+|---|---|---|
+| `tools/company.mjs`: exactly the diff in `AMD-001-c2/tools-company-mjs.c2-r1.diff` (4 hunks; `git apply --check` is clean on `e02a6c7`) | protected | applied under `S3_AMENDMENT=AMD-001` |
+| `tools/registry.mjs` (new), emitting `src/demos/index.generated.ts` and `src/demos/loaders.generated.ts` (reference shape: `AMD-001-c2/registry.split.reference.mjs`) | ordinary | platform-engineer |
+| `src/demos/registry.generated.ts` deleted; the two new generated files added | generated | `npm run registry` |
+| `src/lib/catalog.ts` imports `@/demos/index.generated` and adds `import "server-only"`; `src/components/DemoHost.tsx` imports `@/demos/loaders.generated` | ordinary (tier 2) | platform-engineer |
+| `tools/qa-changed.mjs` excludes `*.generated.ts` instead of the one name | ordinary | platform-engineer |
+| `tests/platform/registry-split.test.mjs` and the `static/chunks` extension of `tests/platform/built-output.test.mjs` (design note section 2) | ordinary | platform-engineer |
+
+If the founder wants (c2) applied before A1 is ready, the alternative is to sign (c2) alone now
+(invariants 1 to 3) and R1 later, as a second application commit together with A1. Article 3.5
+does not foresee two application commits for one AMD, so that path needs the founder to say so
+explicitly. I recommend the single commit: A1 is designed and measured, and (c2) has no use
+before A1.
+
+### Tests that enforce it
+- **In the gate (protected once applied):** invariants 1 to 6 run in every `npm run check`, and so in `verify` and CI.
+- **Side by side and planted violations:** `bash company/constitution/amendments/AMD-001-c2/side-by-side.sh <repo> pre` before applying, and `... post` on the applied tree. The script works on a copy, never on the given tree, and exits non-zero if any expectation fails. Run on `e02a6c7` (pre), all 14 pass:
+
+| # | Case | Expected | Result |
+|---|---|---|---|
+| S1 | (c2) alone, one-file generator: `registry.generated.ts` regenerated | byte-identical | pass |
+| S2 | (c2) alone: `check` | 960 lessons, 5161 claims, as before | pass |
+| S3 | R1 on the one-file generator | fails invariant 5 (the sequencing finding) | pass |
+| S4 | (c2)+R1 with the split generator, old file deleted | 960 / 5161, as before | pass |
+| T1 | a loader pointed at another lesson's Demo | caught (inv. 4) | pass |
+| T2 | metas merged back into the loaders file | caught (inv. 5) | pass |
+| T3 | an extra computed `import()` | caught (inv. 4) | pass |
+| T4 | a second loader key for one Demo | caught (inv. 4) | pass |
+| T5 | one loader dropped | caught (inv. 4) | pass |
+| T6 | `status: "published"` injected | caught (inv. 3) | pass |
+| T7 | one meta import dropped | caught (inv. 2) | pass |
+| T8 | `registry.generated.ts` kept as `export *` of both | caught (inv. 6) | pass |
+| T9 | a meta imported but left out of `demos[]` | **missed** (known gap, objection O4) | pass (expected miss) |
+| R | real generator restored | 960 / 5161 | pass |
+
+  `check` runtime: 0.27 s before and after.
+- **Outside the gate (ordinary; they catch what `check` cannot see):** the import-scan test (no client module reaches `index.generated`, only `DemoHost.tsx` imports `loaders.generated`, no server module imports `loaders.generated`), the built-output test (0 `INTERNAL_STRINGS` in `static/chunks`, no chunk over 300 KB raw), and `test:platform` in `verify` (W-925).
+
+### What it removes
+- The amendment requirement on generator changes: reordering, splitting, or changing what the bundle carries.
+- From R1: the ability of a generator change to point a slug at another lesson's code, add a stray `import()`, or put metas and loaders back into one module (directly or through a re-export) without `check` failing.
+- It removes nothing from `launchGates`. What may publish is unchanged.
+
+### Prediction and test
+- prediction: (1) The applying commit's `check` passes with 960 lessons and 5161 claims (or that day's counts, identical before and after), and `side-by-side.sh post` passes. (2) After the founder-approved deploy, `view-source` of `/` and every file in `static/chunks` show 0 hits for `checkedBy` and for the other `INTERNAL_STRINGS`. (3) No later generator change needs an amendment to pass invariants 1 to 6 this quarter, except the EDD-003 stage 1 manifest (see O1).
+- would_be_wrong_if: (1) a lesson reaches a learner with a status, a meta, or a Demo that is not its own because of a generator change while `check` is green (the invariants are too weak: roll back and amend); (2) a legitimate generator shape has to be bent, or amended, to pass invariant 5 or 6 (too tight: amend to name the allowed file); (3) an internal string ships in a client chunk on production after the split (the guard sits in the wrong place: see O2).
+- side_by_side: the table above, re-run as `post` on the applying commit, with the before and after counts written in the commit message.
+
+### Does it change how the proposer is judged?
+No. platform-engineer and principal-engineer are interested parties: it loosens the protection on
+their generator work and adds rules to it. The principal engineer drafted R1, which is written
+input from the affected side. platform-engineer has given no written seat input. Neither is the
+deciding vote. If the founder ratifies alone, record it as a sole-approver ratification, as with
+AMD-002 (allowed, because it changes nothing about how the founder is judged).
+
+### Rollback
+- Whole: `git revert <applying sha>`, then `npm run registry` and `npm run check`. Because the split is in the same commit, one revert restores `registrySource`, `registry.generated.ts` and both importers together. The revert touches `tools/company.mjs`, so it needs `S3_AMENDMENT=AMD-001` and the trailer `Amendment: AMD-001`. Production keeps the split build until a founder-approved deploy, and rolling back brings the W-946 leak back.
+- Partial (R1 only, for example if O1 fires): remove invariants 5 and 6. That is a protected edit, so it needs a short amendment that names the file allowed to hold both. Invariants 1 to 4 stay.
+
+### Objections, each with what happened to it
+| # | From | Objection | What happened |
+|---|---|---|---|
+| O1 | principal-engineer (design note, "would be wrong if") | Invariant 5 may block a legitimate shape, such as EDD-003 stage 1's manifest. | Accepted as falsifier (2). Not changed now, because that manifest is not designed. When it is, its design names the file and a short amendment allows it. Open, with that trigger. |
+| O2 | evaluation steward | R1 judges only generated files. The W-946 leak was an **importer** choice (`DemoHost.tsx` importing the combined file). A new `"use client"` file that imports `index.generated` passes `check`. Only the ordinary-surface import-scan and built-output tests catch it, and a builder can weaken those without an amendment. | Not moved into the gate now. A transitive import scan in `cmdCheck` freezes more of the app, and protecting `tests/platform/**` would freeze the platform-engineer's tests. Re-open condition: if any internal string reaches a production client chunk after the split, or either guard is weakened without an engineering review, I propose a direct-import rule in `cmdCheck` (about 15 lines). Open, with that trigger. |
+| O3 | evaluation steward | **Ratifying any part makes `AMD-001` a licence for every protected path.** The hook and CI match `^status:\s*ratified` in the AMD file, and CI accepts any ratified AMD for any path (2026-10-14 review G5(c); AMD-003 is not drafted). Once the status line says ratified, a session with `S3_AMENDMENT=AMD-001` may edit `src/kit/Lesson.tsx` and `tests/qa/**` for the unratified part (a). The amendments directory is not protected, so that line can be written by any agent. | Mitigated, not fixed. (1) The founder writes the status line, or the ratification quotes the founder's own message. (2) The steward audits the applying commit (`git show --stat`: the only protected path it touches is `tools/company.mjs`) and writes the audit under Decision. (3) After CI is green on the applying push, a follow-up push sets `status: applied in part ((c2)+R1, <sha>); (a), (b), (c1), (d) proposed`. The regex then stops matching and the licence closes. It must be a separate push, because CI reads the AMD file at HEAD. The real fix is AMD-003 (each AMD licenses only its `surface:` and its own commit range). Open, routed to AMD-003. |
+| O4 | evaluation steward | Invariant 2 checks imports, not exports: a generator can import a meta and leave it out of `demos[]` (T9 passes `check`). That hides a lesson from the feed. It cannot promote one. | Not tightened. A rule over the array syntax would couple the gate to the generator's formatting, which is what (c2) frees. Re-open condition: any lesson on disk missing from `/catalog` while `check` is green. Open, with that trigger. |
+| O5 | principal-engineer (residual) | Draft lesson code is still fetchable: `loaders` lists every slug, drafts included. | Out of scope, and it should stay so: filtering by status in the generator is what invariant 3 forbids. The fix is EDD-003 stage 1's published-only manifest. W-884 stays open on that half, and it goes in the release's `known_issues`. |
+| O6 | evaluation steward | The invariants parse generated code with regexes. A harmless reformat (single quotes, a different arrow layout) fails `check`. | Accepted: it fails closed and loudly, and the fix is ordinary (match the format, or amend the regex). That is would_be_wrong_if (2) of (c2) if it ever blocks a needed change. |
+| O7 | evaluation steward | The PE's order of work puts the split in a separate commit after (c2). | Answered by the sequencing finding: with R1, that leaves a red `check` or needs two licensed commits. One commit, with the split in it. The engineering review of the split (principal-engineer) and the EDD-007 readiness record (principal-engineer-ops) happen **before** that commit, on a branch. |
+
 ## Decision (constitutional review board)
 (Left for the board. Record a decision for each part: (a), (b), (c1), (c2).)
+
+### (c2) with rider R1: what the founder signs (prepared 2026-10-15; not signed)
+> I ratify AMD-001 part **(c2) with rider R1**, as written in "(c2) ratification packet" above: the generator moves to `tools/registry.mjs`, and `check` judges its output with invariants 1 to 6. It is applied in **one commit** with the A1 split, from `AMD-001-c2/tools-company-mjs.c2-r1.diff`, under `S3_AMENDMENT=AMD-001` with the trailer `Amendment: AMD-001`, after the principal-engineer's review of the split and the EDD-007 readiness record. This ratifies nothing in parts (a), (b), (c1) or (d). I accept objections O1, O2, O4 and O5 as open with their triggers, and O3 mitigated until AMD-003. Board: sole-approver ratification / board sat (strike one).
+>
+> Signed: ________ (founder), date ________
+
+Deploying the result is a separate founder approval.
+
+Audit of the applying commit (steward, after it lands): ________
 
 ## Additional evidence (chief-of-staff, 2026-10-12, wave 1)
 The wave 1 chemistry builder reported independently that the current contract presses each control
