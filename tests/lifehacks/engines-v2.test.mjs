@@ -13,8 +13,28 @@ const home = JSON.parse(homeSource.slice(homeSource.indexOf('= [') + 2, homeSour
 const getHome = slug => home.find(s => s.slug === slug);
 const study = Object.values(studyCatalog);
 const BATCH_D_HOME = ['bag-weight-before-volume', 'box-handle-clearance', 'circle-tray-square-corners', 'coiled-cord-bend-radius', 'desk-supply-near-use'];
+// Home lessons moved to engine 2 by the r11 fix plan, one list per wave (company/decisions/2026-10-15-lifehacks-r11-fix-plan.md,
+// section 5). The inventory stays exact on purpose: adding a wave here is the deliberate acknowledgement that it moved.
+// Every slug must also sit in that wave's table in the plan, so a lesson the plan does not name cannot be listed.
+const FIX_PLAN = read('company/decisions/2026-10-15-lifehacks-r11-fix-plan.md');
+const R11_WAVES_HOME = {
+  W2: ['breeze-is-not-extra-surface', 'drying-room-water-load', 'folded-shirt-stack-height', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap', 'square-bow-stays-tied', 'towel-over-two-bars', 'towel-spread-dries-first', 'wet-knit-hang-stretch'],
+};
+const V2_HOME = [...BATCH_D_HOME, ...Object.values(R11_WAVES_HOME).flat()].sort();
+const planWaveSlugs = wave => {
+  const start = FIX_PLAN.indexOf(`### ${wave}: Home lane`);
+  assert.ok(start >= 0, `fix plan has a Home-lane section for ${wave}`);
+  const end = FIX_PLAN.indexOf('\n### ', start + 1);
+  return [...FIX_PLAN.slice(start, end < 0 ? undefined : end).matchAll(/^\| ([a-z0-9-]+) \|/gm)].map(m => m[1]);
+};
 const BATCH_D_STUDY = ['agenda-needs-an-outcome', 'apply-not-quote', 'buffer-for-a-late-finish', 'calendar-needs-travel', 'check-confidence-with-output', 'count-setup-in-the-block', 'cue-needs-a-boundary', 'deadline-needs-a-reference', 'deleted-is-a-search-state'];
-const V2_KEYS_HOME = ['engine', 'modeLabels', 'options', 'amounts', 'resultLabel', 'resultUnit', 'verdict', 'verdictByMode', 'resultText', 'revealLine', 'pictureMark'];
+// v2-only Home fields: the hand list, plus every field declared in HomeV2Fields, so a field added to the engine is
+// covered without a test edit. The hand list must stay inside the interface (catches a rename or a broken parse).
+const V2_KEYS_HOME_LISTED = ['engine', 'modeLabels', 'options', 'amounts', 'resultLabel', 'resultUnit', 'verdict', 'verdictByMode', 'resultText', 'revealLine', 'pictureMark', 'plainNumbers'];
+const engineSource = read('src/lib/lifehacks/engine-v2.ts');
+const homeV2Body = engineSource.slice(engineSource.indexOf('export interface HomeV2Fields {'), engineSource.indexOf('\n}', engineSource.indexOf('export interface HomeV2Fields {')));
+const V2_KEYS_HOME_DECLARED = [...homeV2Body.matchAll(/^  (\w+)\?:/gm)].map(m => m[1]);
+const V2_KEYS_HOME = [...new Set([...V2_KEYS_HOME_LISTED, ...V2_KEYS_HOME_DECLARED])];
 const V2_KEYS_STUDY = ['engine', 'modeLabels', 'optionToMode', 'amounts', 'consequence', 'exploreHint', 'event', 'candidates', 'rowLabels', 'hideTarget', 'aFields'];
 
 test('expressions take named variables; literal text is not a number', () => {
@@ -30,8 +50,19 @@ test('R5 number format: three significant figures, 1/20 and 1/22 differ, a real 
   assert.equal(sig3(48), '48'); assert.equal(sig3(-4), '−4');
 });
 
-test('exactly the 14 batch D lessons are on engine 2; every other lesson carries no v2 field (renders as v1)', () => {
-  assert.deepEqual(home.filter(s => s.engine === 2).map(s => s.slug).sort(), BATCH_D_HOME);
+test('v2 field lists: HomeV2Fields declares every listed Home key', () => {
+  assert.deepEqual(V2_KEYS_HOME_LISTED.filter(k => !V2_KEYS_HOME_DECLARED.includes(k)), []);
+});
+
+test('each r11 wave lists only lessons that the fix plan puts in that wave', () => {
+  for (const [wave, slugs] of Object.entries(R11_WAVES_HOME)) {
+    const planned = planWaveSlugs(wave);
+    assert.deepEqual(slugs.filter(slug => !planned.includes(slug)), [], `${wave}: not in the fix plan's ${wave} table`);
+  }
+});
+
+test('exactly batch D and the listed r11 waves are on engine 2; every other lesson carries no v2 field (renders as v1)', () => {
+  assert.deepEqual(home.filter(s => s.engine === 2).map(s => s.slug).sort(), V2_HOME);
   assert.deepEqual(study.filter(s => s.engine === 2).map(s => s.slug).sort(), BATCH_D_STUDY);
   for (const s of home) if (s.engine !== 2) assert.deepEqual(V2_KEYS_HOME.filter(k => k in s), [], s.slug);
   for (const s of study) if (s.engine !== 2) {
@@ -146,5 +177,5 @@ test('the new learner-visible sentences are recorded as claims, versions bumped'
 test('v1 lessons still on default predict options (cm-lifehacks writes them in batches of 20, W-613)', t => {
   const leaking = home.filter(s => s.engine !== 2 && !s.options).map(s => s.slug);
   t.diagnostic(`${leaking.length} Home lessons still build options from button labels: ${leaking.join(', ')}`);
-  assert.equal(leaking.length, home.length - BATCH_D_HOME.length);
+  assert.equal(leaking.length, home.length - V2_HOME.length);
 });
