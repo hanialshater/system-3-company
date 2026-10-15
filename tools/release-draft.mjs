@@ -28,8 +28,8 @@ const lessons = (prev, cur, to) => {
 };
 
 const iso = new Date(git("show", "-s", "--format=%cI", commit)).toISOString();
-const day = iso.slice(0, 10).replace(/-/g, ".");
-const n = 1 + Math.max(0, ...log.releases.map((r) => r.version).filter((v) => v.startsWith(day + ".")).map((v) => Number(v.split(".")[3])));
+// Sequential versions: r(max+1), whatever the date.
+const n = 1 + Math.max(0, ...log.releases.map((r) => /^r([1-9]\d*)$/.exec(r.version)).filter(Boolean).map((m) => Number(m[1])));
 const subjects = git("log", "--no-merges", "--format=%h %s", since ? `${since}..${commit}` : commit).split("\n").filter(Boolean);
 const prev = since ? statuses(since) : {};
 const cur = statuses(commit);
@@ -37,7 +37,7 @@ const cur = statuses(commit);
 console.log(
   JSON.stringify(
     {
-      version: `${day}.${n}`,
+      version: `r${n}`,
       date: iso,
       commit,
       target: "production",

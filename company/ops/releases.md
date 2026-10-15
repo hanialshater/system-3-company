@@ -6,15 +6,18 @@ Only the release manager adds or edits entries in `company/ops/releases.json`: o
 deploy, and when a deploy is rolled back. Everyone else reads it, at `/hq/releases` (HQ, dev and
 `HQ_PUBLIC=1` only) or in the file.
 
-backfill: the first five entries (2026.10.14.1 to .5) were drafted by hq-engineer from `git log --grep='\[deploy\]'`,
+backfill: the first five entries (r1 to r5, first numbered 2026.10.14.1 to .5) were drafted by hq-engineer from `git log --grep='\[deploy\]'`,
 the commit ranges between releases, `company/ops/progress.md` and the launch-review records. They are
 to be confirmed by release-manager. There are no files in `company/ops/deployments/` yet, so nothing
 there backed them. Text marked "(inferred)" is a guess from commit messages, not a record.
 
 ## Version scheme
 
-Calendar versioning: `YYYY.MM.DD.n`. The date is the UTC date of the release commit; `n` counts
-production releases made that UTC day, starting at 1 (`2026.10.14.1`, `2026.10.14.2`, ...).
+Sequential versions: `r1`, `r2`, `r3`, ... (founder decision 2026-10-15, W-885). The next version is
+`r(max+1)`, whatever the date. The page shows the date beside it (`r6 · 15 Oct 2026`). The validator
+rejects anything that is not `r<positive integer>`, and gaps, duplicates and out-of-order entries.
+Before 2026-10-15 the log used calendar versions `YYYY.MM.DD.n`; r1 to r6 were `2026.10.14.1` to `.5` and
+`2026.10.15.1`, renumbered oldest first (only the `version` values changed).
 A version names a deploy, not a code change: a redeploy of the same content (for example after Vercel
 skipped a build) is a new release and says so in its summary.
 
@@ -25,7 +28,7 @@ shows newest first. Each entry:
 
 | Field | Meaning |
 |---|---|
-| `version` | `YYYY.MM.DD.n`; its date part must equal `date`'s UTC day |
+| `version` | `r<n>`, one more than the previous entry (r1 first) |
 | `date` | UTC ISO timestamp of the release commit, ending in `Z` |
 | `commit` | the full 40-character hash of the `[deploy]` commit |
 | `target` | `production` |

@@ -1,5 +1,5 @@
 // Release log, read side for HQ (client-safe: no fs). Data: company/ops/releases.json, owned by the
-// release manager (append-only, oldest first). Version scheme: YYYY.MM.DD.n (UTC date, n = release that day).
+// release manager (append-only, oldest first). Version scheme: r1, r2, r3, ... (sequential; the date is shown beside it).
 export interface LessonGroup {
   count: number;
   slugs: string[];
@@ -20,7 +20,7 @@ export interface Unreleased {
   error?: string;
 }
 
-export const VERSION_RE = /^(\d{4})\.(\d{2})\.(\d{2})\.([1-9]\d*)$/;
+export const VERSION_RE = /^r([1-9]\d*)$/;
 export const REPO = "https://github.com/hanialshater/system-3-company";
 
 /** Why a releases file is invalid, or null if it is fine. Checks shape, version/date agreement, order and uniqueness. */
@@ -29,14 +29,17 @@ export function validateReleases(data: unknown): string | null {
   if (!Array.isArray(list)) return "releases must be an array";
   const seen = new Set<string>();
   let prev = "";
+  let prevN = 0;
   for (const [i, r] of (list as Release[]).entries()) {
     const at = `releases[${i}]`;
     const m = VERSION_RE.exec(r?.version ?? "");
-    if (!m) return `${at}: version "${r?.version}" is not YYYY.MM.DD.n`;
+    if (!m) return `${at}: version "${r?.version}" is not r<positive integer>`;
     if (seen.has(r.version)) return `${at}: duplicate version ${r.version}`;
     seen.add(r.version);
+    const n = Number(m[1]);
+    if (n !== prevN + 1) return `${at}: ${r.version} leaves a gap or is out of order (expected r${prevN + 1}; oldest first, no gaps)`;
+    prevN = n;
     if (!/^\d{4}-\d{2}-\d{2}T.*Z$/.test(r.date ?? "") || Number.isNaN(Date.parse(r.date))) return `${at}: date must be a UTC ISO timestamp ending in Z`;
-    if (r.date.slice(0, 10) !== `${m[1]}-${m[2]}-${m[3]}`) return `${at}: version date does not match date`;
     if (r.date < prev) return `${at}: not in date order (the log is append-only, oldest first)`;
     prev = r.date;
     if (!/^[0-9a-f]{40}$/.test(r.commit ?? "")) return `${at}: commit must be a full 40-character hash`;
@@ -55,11 +58,16 @@ export function validateReleases(data: unknown): string | null {
 
 export const newestFirst = (rs: Release[]) => [...rs].reverse();
 
-/** The next version for a release made at `now`: today's UTC date, n one past the highest n already used that day. */
-export function nextVersion(rs: Pick<Release, "version">[], now: Date): string {
-  const day = now.toISOString().slice(0, 10).replace(/-/g, ".");
-  const n = rs.map((r) => VERSION_RE.exec(r.version)).filter((m) => m && `${m[1]}.${m[2]}.${m[3]}` === day).map((m) => Number(m![4]));
-  return `${day}.${Math.max(0, ...n) + 1}`;
+/** The next version: r(max+1) over the existing versions, whatever the date. */
+export function nextVersion(rs: Pick<Release, "version">[]): string {
+  const n = rs.map((r) => VERSION_RE.exec(r.version)).filter((m) => m).map((m) => Number(m![1]));
+  return `r${Math.max(0, ...n) + 1}`;
+}
+
+/** "15 Oct 2026" from a UTC ISO timestamp. */
+export function shortDate(iso: string): string {
+  const d = new Date(iso);
+  return `${d.getUTCDate()} ${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
 export const commitUrl = (hash: string) => `${REPO}/commit/${hash}`;
