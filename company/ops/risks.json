@@ -1,11 +1,11 @@
 {
   "note": "Risk register (founder decision company/decisions/2026-10-14-founder-risk-in-ops-review.md). Owner: principal-engineer-ops. Format: company/ops/risks.md. Re-scored at every Operational Health Review (company/rituals/templates/ops-review.md, section 7). Check: node tools/risks.mjs report.",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "risks": [
     {
       "id": "R-001",
       "title": "Single 4-CPU shared host",
-      "description": "Every agent, build, dev server, QA run and git worktree shares one 4-CPU box. On 10-14 it ran at load 25-60 with disk full several times (ENOSPC, git could not write refs); QA could not run until load fell to ~5 at 18:00. One `next dev` on :3530 serves every agent, so one fault takes all of them down. No role owns the host (principal-engineer holds it interim).",
+      "description": "Every agent, build, dev server, QA run and git worktree shares one 4-CPU box. On 10-14 it ran at load 25-60 with disk full several times (ENOSPC, git could not write refs); QA could not run until load fell to ~5 at 18:00. One `next dev` on :3530 serves every agent, so one fault takes all of them down. No role owns the host (principal-engineer holds it interim). 2026-10-15 (W-923): First Light pre-mortem row 5 (two migrations on one 4-CPU host, L3 I3) and the host half of proposed FL-01 are carried here. The early-warning signal is load over 8 or free disk under 15 GB on a First Light build day (`node tools/ops-health.mjs`).",
       "category": "operational",
       "likelihood": 5,
       "impact": 4,
@@ -30,10 +30,16 @@
         "company/engineering/operations/2026-10-14-ops-review.md",
         "company/reviews/org/2026-10-14-operating-audit.md",
         "company/rituals/records/2026-10-14-wbr.md",
-        "company/product/verticals/plan-to-2000.md"
+        "company/product/verticals/plan-to-2000.md",
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
       ],
       "opened": "2026-10-14",
-      "lastReviewed": "2026-10-14"
+      "lastReviewed": "2026-10-14",
+      "projects": [
+        "first-light"
+      ]
     },
     {
       "id": "R-002",
@@ -68,7 +74,7 @@
     {
       "id": "R-003",
       "title": "Production deploys bypass CI (W-480)",
-      "description": "Vercel's git integration builds `[deploy]` commits on its own trigger and never waits for `ci`. All four 10-14 deploys shipped before CI judged them (G1), so `constitution` and `verify` are advisory for anything that reaches learners, including an unratified protected-path change. The guard (`[deploy]` string filter in `vercel.json`) is unprotected and was edited by a `[deploy]` commit (J3). Anyone who can type `[deploy]` can ship.",
+      "description": "Vercel's git integration builds `[deploy]` commits on its own trigger and never waits for `ci`. All four 10-14 deploys shipped before CI judged them (G1), so `constitution` and `verify` are advisory for anything that reaches learners, including an unratified protected-path change. The guard (`[deploy]` string filter in `vercel.json`) is unprotected and was edited by a `[deploy]` commit (J3). Anyone who can type `[deploy]` can ship. 2026-10-15 (W-923): First Light pre-mortem row 4 (launched through a path with no gate, L3 I4) is carried here, and W-480 is a First Light go/no-go item. Drafts half: it does not move until r7's C2 checks pass on the production domain (readiness record 2026-10-15-r7-drafts-trust-sheet.md, C2). r7 has not shipped (the last entry in releases.json is r6), so the entry stays open at L4 I5 and the drafts half is unchanged. When C2 passes, the drafts half may go to in-place for page reachability only. Drafts' meta and code stay in the client chunk (W-946), and the deploy-bypass half is unchanged.",
       "category": "security",
       "likelihood": 4,
       "impact": 5,
@@ -87,10 +93,17 @@
       "links": [
         "company/rituals/records/2026-10-14-coe-deploy-bypass-and-quota.md",
         "company/rituals/records/2026-10-14-constitutional-review.md",
-        "company/engineering/operations/2026-10-14-ops-review.md"
+        "company/engineering/operations/2026-10-14-ops-review.md",
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+        "company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md"
       ],
       "opened": "2026-10-14",
-      "lastReviewed": "2026-10-14"
+      "lastReviewed": "2026-10-14",
+      "projects": [
+        "first-light"
+      ]
     },
     {
       "id": "R-004",
@@ -151,7 +164,7 @@
     {
       "id": "R-006",
       "title": "Held claims on sources this host cannot open",
-      "description": "Fact-checkers hold claims they cannot verify because the host's proxy blocks gov, health, pubmed and arxiv sources (6-10 held per FC batch). On disk now: 193 unverified claims across 100 lessons, and 107 lessons whose claim records mention an unopened or unopenable source. (The brief's \"about 295 lessons\" was not reproducible from meta.json; my count is above, method: claims with status != verified, and claim text matching held/unopen.) The stage-only reword precedent (J5) keeps learners from false facts but moves lessons towards describing only themselves, and nobody tracks the total.",
+      "description": "Fact-checkers hold claims they cannot verify because the host's proxy blocks gov, health, pubmed and arxiv sources (6-10 held per FC batch). On disk now: 193 unverified claims across 100 lessons, and 107 lessons whose claim records mention an unopened or unopenable source. (The brief's \"about 295 lessons\" was not reproducible from meta.json; my count is above, method: claims with status != verified, and claim text matching held/unopen.) The stage-only reword precedent (J5) keeps learners from false facts but moves lessons towards describing only themselves, and nobody tracks the total. 2026-10-15 (W-923): behavioral-econ pre-mortem row 2 is carried here (L4 I3). Every replication verdict in its case is the author's prior from memory, the expected held-claim rate is 30-40%, and the signal is a pilot held-claim rate over 25% at the first fact-check, or the sourcing note (W-902) missing when the pilot is briefed.",
       "category": "ux",
       "likelihood": 5,
       "impact": 3,
@@ -171,10 +184,16 @@
       "links": [
         "company/rituals/records/2026-10-14-constitutional-review.md",
         "company/product/verticals/plan-to-2000.md",
-        "company/rituals/records/2026-10-14-wbr.md"
+        "company/rituals/records/2026-10-14-wbr.md",
+        "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "company/decisions/2026-10-15-behavioral-economics-dlr-decision.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
       ],
       "opened": "2026-10-14",
-      "lastReviewed": "2026-10-14"
+      "lastReviewed": "2026-10-14",
+      "projects": [
+        "behavioral-econ"
+      ]
     },
     {
       "id": "R-007",
@@ -311,7 +330,7 @@
     {
       "id": "R-012",
       "title": "Usage budget: unmeasured unit, no approved budgets",
-      "description": "The 10-13 usage limit stopped 8 of 9 builders mid-wave. The 20x upgrade removed the stops (2 of 346 on 10-14), but no project has an approved budget, 82% of spend is attributed by role default, the coordinator's spend and 32 stopped runs are unmeasured, and nobody knows whether `subagent_tokens` is the billed unit. A budget that is not in the billed unit cannot warn before the limit.",
+      "description": "The 10-13 usage limit stopped 8 of 9 builders mid-wave. The 20x upgrade removed the stops (2 of 346 on 10-14), but no project has an approved budget, 82% of spend is attributed by role default, the coordinator's spend and 32 stopped runs are unmeasured, and nobody knows whether `subagent_tokens` is the billed unit. A budget that is not in the billed unit cannot warn before the limit. 2026-10-15 (W-923): First Light pre-mortem row 2 is carried here (L4 I3). No backend-engineer, learner-model-engineer, personalization-lead, growth-designer or privacy-reviewer run exists in the ledger, so every unit is a proxy. Signal: `ledger.mjs report --project=first-light` past 2.9M before W-908. Behavioral-econ pre-mortem row 4 is also carried here (L4 I2): measured category set-up of about 1.2M against the 0.1M assumed. Signal: `--project=behavioral-econ` past 1.46M before the DLR five are reviewed.",
       "category": "operational",
       "likelihood": 3,
       "impact": 3,
@@ -330,15 +349,24 @@
       "links": [
         "company/ops/token-budget.md",
         "company/rituals/records/2026-10-13-coe.md",
-        "company/decisions/2026-10-14-usage-upgrade.md"
+        "company/decisions/2026-10-14-usage-upgrade.md",
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "company/decisions/2026-10-15-behavioral-economics-dlr-decision.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
       ],
       "opened": "2026-10-14",
-      "lastReviewed": "2026-10-14"
+      "lastReviewed": "2026-10-14",
+      "projects": [
+        "behavioral-econ",
+        "first-light"
+      ]
     },
     {
       "id": "R-013",
       "title": "Founder bandwidth",
-      "description": "The founder is on the critical path of most red items: 20 open board items and 13 open founder-inbox items, including the deploy path (W-480), in-review lessons (W-479), the first deploy (W-584), web fact-checks (W-583), Books legal (W-541), auth/DB (F-01), operating caps (W-712), the sensitive route (W-764), capacity spend (W-531) and Project Review 1 (F-15). Founder asks also turned into dispatch with no capacity answer (audit F2).",
+      "description": "The founder is on the critical path of most red items: 20 open board items and 13 open founder-inbox items, including the deploy path (W-480), in-review lessons (W-479), the first deploy (W-584), web fact-checks (W-583), Books legal (W-541), auth/DB (F-01), operating caps (W-712), the sensitive route (W-764), capacity spend (W-531) and Project Review 1 (F-15). Founder asks also turned into dispatch with no capacity answer (audit F2). 2026-10-15 (W-923): First Light pre-mortem row 1 is carried here (founder decisions on the path, L4 I4, confirmed in the 10-15 re-score). The path holds four founder decisions in 15 days: F-15 (10-16), F-01 (10-23, open since 10-13), F-19 (10-30) and the freeze acceptance. If F-01 is still open on 10-23, head-of-strategic-initiatives proposes impact 5 for that row. The entry's own score (L5 I4) is unchanged until the ops review.",
       "category": "strategic",
       "likelihood": 5,
       "impact": 4,
@@ -355,10 +383,16 @@
       "links": [
         "company/reviews/org/2026-10-14-operating-audit.md",
         "company/ops/founder-inbox.json",
-        "company/decisions/2026-10-14-founder-risk-in-ops-review.md"
+        "company/decisions/2026-10-14-founder-risk-in-ops-review.md",
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
       ],
       "opened": "2026-10-14",
-      "lastReviewed": "2026-10-14"
+      "lastReviewed": "2026-10-14",
+      "projects": [
+        "first-light"
+      ]
     },
     {
       "id": "R-014",
@@ -440,17 +474,18 @@
     {
       "id": "R-017",
       "title": "Agent isolation: wrong worktree, process kills, scratch collisions",
-      "description": "Agents wrote into the coordinator's worktree, `pkill -f` patterns killed the coordinator's shell twice (a repeat of closed W-072), background loops died with their parent, and scratch dirs collided. Each is a SEV3 today; the promotion rule makes the next lost commit a SEV2.",
+      "description": "Agents wrote into the coordinator's worktree, `pkill -f` patterns killed the coordinator's shell twice (a repeat of closed W-072), background loops died with their parent, and scratch dirs collided. Each is a SEV3 today; the promotion rule makes the next lost commit a SEV2. 2026-10-15: builders' dev and QA ports cross-talked (hist-1's :3621 served hist-3's slugs), so QA and walkthroughs judged a neighbour's build (W-851). This is a failure mode of this entry, not a separate risk.",
       "category": "operational",
       "likelihood": 4,
       "impact": 2,
       "owner": "tools-lead",
       "mitigation": {
-        "summary": "Worktree-per-agent lifecycle (W-526), pid-file process wrapper and no pattern kills (W-529), per-agent scratch dirs (W-023).",
+        "summary": "Worktree-per-agent lifecycle (W-526), pid-file process wrapper and no pattern kills (W-529), per-agent scratch dirs (W-023). Port cross-talk (W-851): tools refuse a taken port (tools-batch a368240, merged), and QA no longer reuses a server it did not start unless QA_REUSE_SERVER=1 (3b97991, approved with conditions 2026-10-15).",
         "board": [
           "W-526",
           "W-529",
-          "W-023"
+          "W-023",
+          "W-851"
         ],
         "reality": "partial",
         "paperOnly": "dispatch-check C3 exists; the lifecycle script, wrapper and scratch dirs do not."
@@ -459,7 +494,8 @@
       "tier": "agent-isolation (T2)",
       "links": [
         "company/engineering/operations/2026-10-14-ops-review.md",
-        "company/rituals/records/2026-10-14-coe-host-exhaustion.md"
+        "company/rituals/records/2026-10-14-coe-host-exhaustion.md",
+        "company/engineering/readiness/2026-10-15-tools-batch-usage-ports-rooms.md"
       ],
       "opened": "2026-10-14",
       "lastReviewed": "2026-10-14"
@@ -511,6 +547,184 @@
       ],
       "opened": "2026-10-14",
       "lastReviewed": "2026-10-14"
+    },
+    {
+      "id": "R-020",
+      "title": "Review capacity for tier-2 readiness and privacy is First Light's critical path",
+      "description": "Proposed as FL-06 (risk-rescore.md, 2026-10-15). This is the tech lead's objection 5 to the head-of-strategic-initiatives role, extended by the evaluation steward (quality-bar.md section 3). Auth, server-side progress, the database, the event API and the deploy are tier 2 (EDD-007), and each needs EDD, then PE review, then privacy data-model review (D-17), then readiness approval, in series, before its first code run. A rework round restarts the chain (dependencies.md section 2). Measured: privacy-reviewer has never run and First Light asks it for about 13 runs, plus the gate criteria by 10-22 (W-932) and the rulings by 11-09. principal-engineer-ops has 3 measured runs before 10-15 (81k mean). The one prior tier-2 approval (r7) took two rounds in one day. W-978 was committed at 10:07 UTC and approved at about 10:12 on 10-15. The quality team's ~64 runs are unbudgeted (W-929). Impact is 5, not 4. A launch slip on auth alone would be a 4. But the way this risk fails under pressure is a thin or skipped privacy or readiness review, which ships learner data unreviewed (the scale's 'data exposed'). Conflict noted: the owner is also the register's writer and one of the two constrained reviewers. The score may not be lowered without principal-engineer at an ops review.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 5,
+      "owner": "principal-engineer-ops",
+      "mitigation": {
+        "summary": "Budget the review lines in the tranche-1 approval (privacy-reviewer, principal-engineer-ops, PE reviews, the W-929 quality line) and give First Light reviews priority in the weeks of 10-19, 11-09 and 11-16 (portfolio-manager). Queue the auth EDD, privacy data-model review (D-17) and readiness records as board items before code (chief of staff). principal-engineer-ops reports each First Light readiness record's approval time at the Friday review. If the median passes 4 h for a week, use EDD-007's fallback and delegate one team's tier-2 approvals to principal-engineer. Privacy gate criteria by 10-22 (W-932). The cut order is in the stop rule (head-of-product decides).",
+        "board": [
+          "W-929",
+          "W-932"
+        ],
+        "reality": "paper",
+        "paperOnly": "Mitigations 1 and 2 have no board item: the review lines are not named in any approval, and D-17, the auth EDD and the readiness records are not on the board. Approval time is not measured by a tool (readiness.mjs, EDD-007, does not exist). privacy-reviewer has never run. W-929 and W-932 are backlog."
+      },
+      "status": "open",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/initiatives/first-light/dependencies.md",
+        "company/initiatives/first-light/quality-bar.md",
+        "company/decisions/2026-10-15-head-of-strategic-initiatives.md",
+        "company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-021",
+      "title": "Scale-stage-1 work (the all-metas fix, A1) is pulled onto First Light's critical path",
+      "description": "Proposed as FL-07, merged with FL-01 (two big migrations at once). Measured (quality-bar.md Q5): first-load JS is 2.32 MB gz against a 500 KB bar (Q5.3), and the feed is usable at 16.7 s against 3.0 s at 4x throttle (Q5.4). W-946 found the 5.3 MB client chunk that carries all 960 metas. The fix (EDD-001 option 4 / EDD-003 A1) needs AMD-001 (c2) (F-03, open since 10-12) and sits in scale-stage-1, which the founder kept off the critical path. If Q5 holds, First Light and stage 1 change the kit and deploy path at the same time, which is FL-01's concern. The host half of FL-01 is in R-001.",
+      "category": "operational",
+      "likelihood": 4,
+      "impact": 4,
+      "owner": "principal-engineer",
+      "mitigation": {
+        "summary": "principal-engineer answers by 10-22 whether Q5 is reachable and, if so, moves A1 onto the path with its own readiness record (W-930). Emit lesson loaders from a module with no meta imports (W-946, needs an amendment). Stage 1 otherwise runs only as the 50-lesson pilot off the path, and the scale stop rule stops any stage-1 work that blocks a go/no-go item.",
+        "board": [
+          "W-930",
+          "W-946"
+        ],
+        "reality": "paper",
+        "paperOnly": "W-930 and W-946 are backlog. AMD-001 (c2) is not ratified. The stop rule is a decision-record rule, and no tool checks it."
+      },
+      "status": "open",
+      "projects": [
+        "first-light",
+        "scale-stage-1"
+      ],
+      "links": [
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/initiatives/first-light/quality-bar.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-022",
+      "title": "Accounts launch without a privacy, terms and age-gate read",
+      "description": "Proposed as FL-03 (status.json). It is the same risk as First Light pre-mortem row 3, and the two are merged here. Anonymous-first auth keeps history at sign-up, so learner data exists from day one. Server-side progress, light social and an ad slot go live while the age policy is undecided (F-01, open since 10-13). Under-13 learners bring COPPA and GDPR-K duties. privacy-reviewer has never run, and its data-model review (D-17) has no board item.",
+      "category": "data",
+      "likelihood": 3,
+      "impact": 5,
+      "owner": "privacy-reviewer",
+      "mitigation": {
+        "summary": "Privacy-reviewer rulings before tranche-2 social and ad-slot work (the stop rule cuts them by 11-09 otherwise). Privacy gate criteria by 10-22 (W-932). 13+ at launch is the standing recommendation in F-01. Legal workstream. Signal: any table or event holding a learner id merged before a privacy ruling, or an age-gate path missing from the go/no-go readiness list.",
+        "board": [
+          "W-932"
+        ],
+        "reality": "paper",
+        "paperOnly": "No privacy-reviewer run exists. D-17 has no board item. F-01 is open. Nothing blocks a merge of a learner-id table without a ruling."
+      },
+      "status": "open",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/initiatives/first-light/dependencies.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-023",
+      "title": "Vercel Hobby is non-commercial: accounts or ads on it break the host's terms",
+      "description": "Proposed as FL-05 (status.json, L4 I3). Production runs on Vercel's free Hobby plan (CLAUDE.md, runbook-deploy.md), which is for non-commercial use. An ad slot, or accounts as part of a commercial product, on Hobby breaks the terms. That puts the production account, and with it every deploy and the feed, at the host's discretion. Impact is raised to 4 from the proposed 3, because losing the production account means the company cannot ship (the scale's 4). The founder's Pro decision (F-18) and W-893/W-908 have not confirmed the requirement yet.",
+      "category": "strategic",
+      "likelihood": 4,
+      "impact": 4,
+      "owner": "principal-engineer",
+      "mitigation": {
+        "summary": "Confirm the Pro requirement and price before launch (W-893, W-908). The founder decides the spend (F-18). No ad slot or commercial account flow ships to a Hobby project (go/no-go item).",
+        "board": [
+          "W-893",
+          "W-908"
+        ],
+        "reality": "paper",
+        "paperOnly": "Both items are backlog. Nothing in the deploy path checks the plan."
+      },
+      "status": "open",
+      "projects": [
+        "first-light"
+      ],
+      "links": [
+        "company/initiatives/first-light/charter.md",
+        "company/initiatives/first-light/risk-rescore.md",
+        "company/ops/runbook-deploy.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-024",
+      "title": "Behavioral economics has too little ground of its own",
+      "description": "Behavioral-econ pre-mortem row 1. About 30 of the subject's concepts already sit in Economics, Probability, Books and Big Ideas. Only about 15-18 are collision-free, and 5 of the scout's 12 are close calls (2026-10-15-behavioral-economics.md section 3). The famous effects (anchoring, loss aversion, defaults, decoy) stay with Books. head-of-product cut the slot line from 40 to 18 for this reason (W-897, F-22 to the founder).",
+      "category": "strategic",
+      "likelihood": 4,
+      "impact": 3,
+      "owner": "head-of-product",
+      "mitigation": {
+        "summary": "Boundary rulings and the 18-lesson slot line (W-897, done). Neighbour sign-offs before lessons 4 and 5 (playbook step 7). Stop rules: pause if 3 of the DLR five are rejected as duplicates, fold if fewer than 12 collision-free concepts remain after sign-off.",
+        "board": [
+          "W-897"
+        ],
+        "reality": "partial",
+        "paperOnly": "The neighbours' written sign-offs (cm-books, cm-economics) are not on disk and have no board id here. F-22 (the slot line) is with the founder."
+      },
+      "status": "mitigating",
+      "projects": [
+        "behavioral-econ"
+      ],
+      "links": [
+        "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "company/decisions/2026-10-15-behavioral-economics-dlr-decision.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+        "company/product/verticals/2026-10-15-behavioral-economics.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
+    },
+    {
+      "id": "R-025",
+      "title": "An idle org: a behavioral-econ manager before the pilot passes",
+      "description": "Behavioral-econ pre-mortem row 3. The category variant adds a category manager before the DLR five have passed. The CEO office named that failure for History. Signal: cm-behavioral created (W-899) before the head-of-product boundary rulings are on disk. Those rulings landed on 10-15 (W-897), so the remaining exposure is strand managers created early.",
+      "category": "strategic",
+      "likelihood": 3,
+      "impact": 2,
+      "owner": "chief-of-staff-ceo-office",
+      "mitigation": {
+        "summary": "Playbook order: one category manager after step 3, and strand managers only after the DLR five pass (founder decision F-21, step 5). The org-change record is W-899.",
+        "board": [
+          "W-899"
+        ],
+        "reality": "partial",
+        "paperOnly": "The order is a decision-record rule, and no tool checks it."
+      },
+      "status": "mitigating",
+      "projects": [
+        "behavioral-econ"
+      ],
+      "links": [
+        "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "company/decisions/2026-10-15-behavioral-economics-dlr-decision.md",
+        "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      ],
+      "opened": "2026-10-15",
+      "lastReviewed": "2026-10-15"
     }
   ]
 }

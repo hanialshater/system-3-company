@@ -25,6 +25,7 @@ There is no separate ritual. The register is re-scored in section 7 of every [Op
 | `status` | yes | `open` (no working mitigation), `mitigating` (some works, more is owed), `accepted` (owner and the founder or a PE chose to carry it: add `acceptedBy` and `acceptedWhy`), `closed` (the risk is gone, not just quiet) |
 | `opened`, `lastReviewed` | yes | `YYYY-MM-DD`. `lastReviewed` changes only when an ops review re-scores the entry. |
 | `tier` | no | The tiers.json entry it belongs to, e.g. `ci-and-deploy (T1)` |
+| `projects` | no | Project ids from company/ops/projects.json or an initiative (`first-light`, `behavioral-econ`) whose pre-mortem rows this entry carries. `links` must name files on disk, so it cannot hold a project id. This field does. Added 2026-10-15 (W-923). |
 | `links` | yes | Records on disk (COEs, reviews, decisions). The tool fails on a link that is not on disk. |
 
 **Score = likelihood x impact** (1-25). The report sorts by score, then by impact.
@@ -49,6 +50,28 @@ Score honestly. A risk is not lower because a board item exists. Only a working 
 - Nobody lowers the score of a risk in their own area without the ops review seeing the evidence.
 
 On 2026-10-14 hq-engineer, design-engineer and rnd-engineer own no entry. That is a statement about today's evidence, not a clean bill. Their first tier-1 or tier-2 readiness record says whether they carry one.
+
+## Ruling on First Light's proposed risks and the 10-15 pre-mortems (2026-10-15; W-918, W-923)
+
+ruled by: principal-engineer-ops · inputs: company/initiatives/first-light/status.json (`risks`, FL-01 to FL-07), company/initiatives/first-light/risk-rescore.md (2026-10-15), company/ceo-office/2026-10-14-project-review-1-premortems.md (first-light, behavioral-econ)
+
+The register's ids are `R-NNN` (tools/risks.mjs refuses anything else), so accepted FL rows enter under new R ids. In status.json, head-of-strategic-initiatives replaces each accepted FL id with the R id below, or the war room keeps showing them as proposed. That file is hers, so I have not edited it.
+
+| Proposed | Ruling | Register | Score | Why |
+|---|---|---|---|---|
+| FL-01, two migrations at once | **Merged** | R-021 (kit and deploy-path collision), R-001 (host) | R-021 L4 I4 | FL-01 is the general case, and FL-07 is the concrete way it happens: A1 coming onto the path. Two entries would double-count it. The host half is R-001. |
+| FL-02, dates are a guess until W-908 | **Not entered** | none | none | It is uncertainty in an estimate, not an event that costs learners, a gate or data, and W-908 resolves it on 10-23. It stays in status.json. The budget half (proxy units) is R-012. It comes back here if W-908 is not on disk by 10-23. |
+| FL-03, accounts without a privacy, terms and age read | **Accepted**, merged with first-light pre-mortem row 3 | R-022 | L3 I5 = 15 | It is the same failure mode with the same owner. |
+| FL-04, the new role duplicates chief-of-staff and head-of-product | **Not entered** | none | none | It is an objection to an org decision, so it travels on the decision record (2026-10-15-head-of-strategic-initiatives.md) and is answered in W-904 by the chief of staff (CEO office), who owns org changes. It is not an operational risk. |
+| FL-05, Vercel Hobby is non-commercial | **Accepted, re-scored** | R-023 | L4 **I4** = 16 (proposed I3) | Losing the production account means the company cannot ship (the impact-4 line). This raises the proposal and does not lower it. principal-engineer may contest at the ops review. |
+| FL-06, review capacity for tier-2 readiness and privacy | **Accepted as proposed** | R-020 | L4 I5 = 20 | The evidence holds. I score impact 5 on a stronger ground than the launch slip: under capacity pressure, this risk fails as a thin or skipped privacy or readiness review, and that ships learner data unreviewed. **Conflict:** I own this entry, write the register and am one of the two constrained reviewers. I did not lower it, and it is not lowered without principal-engineer at an ops review. First data point: W-978 (tier 2) was approved about 5 minutes after its record was committed. That is one record, not a median. |
+| FL-07, Q5 pulls A1 onto the critical path | **Accepted as proposed** (with FL-01) | R-021 | L4 I4 = 16 | Q5.3 and Q5.4 are measured, and W-946 is the found cause. W-930 (due 10-22) re-scores it. |
+
+**Pre-mortem rows (W-923).** For first-light: row 1 goes to R-013, row 2 to R-012, row 3 to R-022 (new), row 4 to R-003 and row 5 to R-001 (with R-021). For behavioral-econ: row 1 goes to R-024 (new), row 2 to R-006, row 3 to R-025 (new) and row 4 to R-012. Each entry carries the project in `projects` and the project's records in `links`, and each existing entry gets a dated line in its description with the row's score and signal. Scores of existing entries are unchanged, because a re-score is the ops review's job. I did not link behavioral-econ to R-001, R-003 or R-013. No row of its pre-mortem points there, and a link without evidence would make the project look riskier than its record shows. W-923's list of five is the union of both projects' rows.
+
+**R-003 (drafts half): unchanged.** It moves only after r7's C2 checks pass on the production domain (2026-10-15-r7-drafts-trust-sheet.md). r7 has not shipped (the last entry in releases.json is r6). The note is in R-003's description.
+
+**Kept off the register:** W-851's "closes when merged" (2026-10-15-qa-no-server-reuse.md). The port cross-talk is a failure mode of R-017. It is noted there, and W-851 is added to R-017's mitigation.
 
 ## Objection on the decision record, answered
 
