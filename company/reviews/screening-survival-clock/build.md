@@ -25,3 +25,10 @@ Not run: next build, QA, walkthrough (per task). tsc and check pass. A local Pla
 - Claims reset to unverified: recall (new). Nothing marked verified; a fact-checker who is not the builder re-checks.
 - Reveal fit (tools/reveal-fit.mjs --url http://localhost:3652, next dev, 390x844): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 71 tool words (the tool counts the kit's verdict line and trust link as well).
 - QA contract (tests/qa/contract.spec.ts against :3652, QA_ONLY = the 15 lessons changed in this pass): phone and desktop passed (30/30 overall, harness stamp clean). npm run check passed.
+
+## Fact-check rewording (W-956 (FC42), 2026-10-15, demo-builder)
+
+- Recall why is now the Pass 42 fix verbatim: 'Survival counted from diagnosis rises when diagnosis moves earlier, even if no death moves. Death rates in randomly assigned groups are not counted from diagnosis, so only a real change in deaths moves them.' The keyed option ('Compare death rates in randomly assigned scanned and unscanned groups') and the distractors are unchanged.
+- Claims reset to unverified: recall (was disputed). Nothing marked verified; a fact-checker who is not the builder re-checks.
+- Reveal fit (tools/reveal-fit.mjs --url http://localhost:3661 --strict, tool stamp clean): fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, thumb false, 71 tool words (reveal unchanged; the recall card is not on the reveal).
+- QA contract (tests/qa/contract.spec.ts against :3661, QA_ONLY = this lesson and earth-history-in-a-day): phone and desktop passed (4/4). npm run check passed.

@@ -14,6 +14,9 @@
 // limit that rests on the clock itself (c8), not on the asteroid. The recall is now a transfer case (a river).
 // v3 (learner r10, W-839): one slow-process event on the clock (Grand Canyon, about 6 million years ago, 23:58:05,
 // c9) so the Hutton sentence quotes something on the stage; the question says 4.54 billion, as the readout does.
+// v4 (W-956, FC42): the canyon event is 'Colorado River through Grand Canyon' (6-5 Ma; no rate, no whole-depth
+// claim; the reveal says the age of the deepest parts is debated). The dial's viewBox is cropped to the circle
+// (x 30-210) so the same column draws it larger (it was a reveal-fit 'thumb' at 0.53 scale).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -29,7 +32,7 @@ type Ev = { id: string; name: string; t: number };
 const EVENTS: Ev[] = [
   { id: "life", name: "Earliest life (debated)", t: at(3.7e9) },
   { id: "dinos", name: "Non-bird dinosaurs end", t: at(66e6) },
-  { id: "canyon", name: "Grand Canyon carved, 1.8 km", t: at(6e6) },
+  { id: "canyon", name: "Colorado River through Grand Canyon", t: at(6e6) },
   { id: "humans", name: "Homo sapiens", t: at(300e3) },
 ];
 
@@ -96,7 +99,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
             Our species appeared at {humansAt}, about six seconds before midnight; one second here is about 52,500 years.
           </p>
           <p>
-            Given this much time, even a process too slow to see can do large things: a river cutting about 0.3 mm a year carved the Grand Canyon&rsquo;s 1.8 km in the last two minutes.
+            Given this much time, even a process too slow to see can do large things: at 23:58, 6&ndash;5 million years ago, the Colorado River cut through the Grand Canyon, about 1.8 km deep. The age of its deepest parts is debated.
           </p>
           <p>
             Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide
@@ -151,7 +154,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                   {VIEW[zoom].label}: {VIEW[zoom].scale}
                 </p>
                 <div className={s.top}>
-                  <svg viewBox="0 0 240 212" className={`stage-svg ${s.dial}`} role="img" aria-label={`Clock at ${clock(t)}`}>
+                  <svg viewBox="30 0 180 212" className={`stage-svg ${s.dial}`} role="img" aria-label={`Clock at ${clock(t)}`}>
                     <circle cx={CX} cy={CY} r={R} fill="var(--bg-2)" stroke="var(--line)" strokeWidth={2} />
                     {!locked && handFrac > 0 ? (
                       <path
@@ -171,7 +174,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
                       {zoom === "day" ? "midnight" : zoom === "hour" ? "23:00 | midnight" : "23:59:00 | midnight"}
                     </text>
                     {tickLabels.map(([f, l]) => {
-                      const [x, y] = pt(f, R - 20);
+                      const [x, y] = pt(f, R - 27);
                       return (
                         <text key={l} x={x} y={y + 4} textAnchor="middle" className={s.tick}>
                           {l}
