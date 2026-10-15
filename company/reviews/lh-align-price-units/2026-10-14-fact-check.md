@@ -35,3 +35,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c5 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | VERIFIED (definition). Claim is now definition only: unit price = cost ÷ stated quantity, and quotients compare only over the same unit. Checked against the stage (resource-specs.json): A €0.80/100 g × 10 = €8/kg against B €7/kg, so B is lower (key B). Recall €0.65/100 g = €6.50/kg > €6/kg. The labelling-practice half (NIST SP 1181) is dropped. Not a learner sentence. |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

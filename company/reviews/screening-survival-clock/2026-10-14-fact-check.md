@@ -20,3 +20,17 @@ Unrecorded claims: None beyond the recall's "fair way", noted under c3.
 **Result (Pass 38):** 4 verified.
 
 Non-blocking for cm-life: the recall marks "Compare death rates in whole scanned and unscanned groups" as the fair test. That is immune to lead time, but a comparison of people who chose to be scanned against people who did not is not fair for other reasons (selection). "Randomly assigned groups" would make it exact.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| recall | disputed | DISPUTED. The keyed option ('Compare death rates in randomly assigned scanned and unscanned groups') is right and follows from c2/c3, and both distractors are wrong. The why's second clause, 'deaths in randomly assigned groups do not depend on when diagnosis happened', is false as written. If finding the disease 2 years sooner lets treatment work, deaths in the scanned group do depend on the earlier diagnosis, and that dependence is exactly what the trial is meant to detect. Read literally, the clause says the trial could never show a benefit. What is true (and what the claim's own source says) is that a group's death count over a fixed period is not counted from the diagnosis date, so lead time alone cannot inflate it. Minor: 'rises whenever diagnosis moves earlier' overstates it. Survival from diagnosis can only stay level or rise when diagnosis moves earlier, and it rises when someone crosses the 5-year line; in this card it 'jumps'. Fix (demo-builder; lesson owner's wording): 'Survival counted from diagnosis rises when diagnosis moves earlier, even if no death moves. Death rates in randomly assigned groups are not counted from diagnosis, so only a real change in deaths moves them.' Then this verifies. |
+
+**Result (Pass 42):** 0 verified, 1 disputed, 0 unverified (held).
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- recall (disputed): see the basis above for the fix or the source it needs.

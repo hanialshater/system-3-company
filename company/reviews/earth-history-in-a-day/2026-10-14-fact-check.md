@@ -44,3 +44,18 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 - c9 (unverified): see the basis above for the fix or the source it needs.
 
 Other claims in this lesson not re-checked in this pass and still not verified: c4.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | VERIFIED (derivation). Demo.tsx reveal: 'Given this much time, even a process too slow to see can do large things: ...'. The Hutton name and the 1780s date are gone, so the source dispute about the decade no longer applies. The general sentence follows from c7's scale (a tiny yearly change times millions of years is a large total). The example after the colon is c9, held separately. |
+| c9 | unverified | UNVERIFIED. HELD, narrowed again. Clock arithmetic re-run: 86,400 − 6e6/4.54e9 × 86,400 = 86,285.8 s = 23:58:05 (114 s before midnight); 1.8 km / 6 Myr = 0.30 mm a year. The depth is now sourced: PNAS 2025 (PMC12130896, opened) gives Hells Canyon '~2,400 m deep' and '600 m deeper than the Grand Canyon', so the Grand Canyon is about 1,800 m. Timing, opened: Nat Commun 2026 (PMC13498593) 'river integration through the Grand Canyon 6–5 Ma'. But the same paper says thermochronologic studies suggest 'paleocanyons had already been cut across the Kaibab uplift before 15 Ma', and the Marble Canyon segment 'was incised after 5 Ma'. Nat Commun 2022 (PMC9343645): the modern Colorado River 'would connect several old pre-existing segments of the Grand Canyon', citing Karlstrom et al. 2014, 'Formation of the Grand Canyon 5 to 6 million years ago through integration of older palaeocanyons'. PNAS 2025 calls the age 'controversial'. So the learner text 'carved the Grand Canyon's 1.8 km in the last two minutes', with its 0.3 mm/yr rate, assumes the whole depth is younger than 6 Myr, and the opened sources say parts are older. 'Most' (claim text) is not quantified in anything I opened. Fix (demo-builder; cm-big-ideas wording): drop the rate and the whole-depth claim, e.g. stage 'Colorado River through Grand Canyon' and reveal 'the Colorado River joined older canyons into the 1.8 km-deep Grand Canyon in the last two minutes (about 6 million years)', citing PMC13498593 and PMC12130896. Or open Karlstrom 2014 and quote how much of the depth is younger than 6 Ma. |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 1 unverified (held).
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c9 (unverified): see the basis above for the fix or the source it needs.

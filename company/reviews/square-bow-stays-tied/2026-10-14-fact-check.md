@@ -39,3 +39,16 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 
 - c1 (unverified): see the basis above for the fix or the source it needs.
 - recall (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | VERIFIED. home-lessons.ts idea: 'Opposing knot stages make the balanced reef bow lie flat; the granny bow twists out of line. Impact and moving lace ends can work a bow loose.' I opened Daily-Diamond, Gregg and O'Reilly 2017 (PMC5415684) this pass. 'The strong version of this knot is based on the square knot: two trefoil knots of opposite handedness'. Weak (granny): 'the two trefoils have the same handedness, causing the knot to twist instead of laying flat when tightened'. Abstract: 'the repeated impact of the shoe on the floor during walking serves to loosen the knot. Then, the whipping motions of the free ends of the laces ... produce slipping'. The shoe-relative orientation (Fieggen) is gone. |
+| recall | verified | VERIFIED. Recall: both stages left-over-right, the bow twists out of line; key 'Make the second stage right-over-left'. PMC5415684 (opened): 'The difference between the knots lies in the handedness ... of the "second trefoil": that is, "left over right" or "right over left." In the strong knot, the handedness of the second trefoil is different from the first'. Same handedness gives the granny, which twists 'instead of laying flat'. 'It can still fail' agrees with the paper, which compares weak and strong knot failure rates (both fail). Distractors (tighter, a third matching stage) do not change the second stage's handedness. |
+
+**Result (Pass 42):** 2 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

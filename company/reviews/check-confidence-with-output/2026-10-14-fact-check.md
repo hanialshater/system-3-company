@@ -42,3 +42,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - recall (disputed): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| recall | verified | VERIFIED. The recall card (meta.json recall) uses its own stipulated 4-step fixture: steps 1, 2 and 4 match, so step 3 is the one mismatch, the keyed 'Step 3 is the one to fix'. 'The one step the feeling missed' is true of that fixture. The second sentence is now scoped to 'this one check' ('not a forecast of later recall'). It is a statement about what one scored attempt measures, and it agrees with the verified c2 boundary ('this single attempt cannot estimate future retention'). It is no longer the general empirical negative disputed in passes 38-41. Support convention fits a stipulated exercise. |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

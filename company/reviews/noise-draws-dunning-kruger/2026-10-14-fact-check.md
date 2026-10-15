@@ -40,3 +40,16 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 
 - c3 (unverified): see the basis above for the fix or the source it needs.
 - c6 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | VERIFIED. Re-ran the model with my own mulberry32 and simulate re-implementation (identical to src/kit/random.ts). Seed 42, w 0, shift +15: bottom-quarter mean guess 63.3, shown as '63rd'. The reveal uses the current seed (seed ?? 42), so a learner who pressed New run sees another seed. Over seeds 42-141 the value is 60 to 68 (expected 63.9), so 'near the dotted 62nd' holds for any run. The 62nd was opened this pass in 'Know thyself' (PMC3586194): 'test scores placed them in the 12th percentile, but they estimated themselves to be in the 62nd percentile', describing Kruger and Dunning (1999). That is a secondary source; the 1999 paper itself was not opened. The top-quarter comparison is gone from the reveal. |
+| c6 | verified | VERIFIED on an opened secondary source. Demo.tsx draws one dotted ring at yOf(62) on the bottom quarter, labelled '1999 study: 62nd' (PUBLISHED_BOTTOM = 62). No top-quarter value is drawn. PMC3586194 (opened this pass): bottom-quartile participants' 'test scores placed them in the 12th percentile, but they estimated themselves to be in the 62nd percentile' (Kruger and Dunning 1999). Primary JPSP paper not opened. |
+
+**Result (Pass 42):** 2 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

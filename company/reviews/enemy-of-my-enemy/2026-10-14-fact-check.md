@@ -85,3 +85,15 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 - c6 (unverified): see the basis above for the fix or the source it needs.
 
 Other claims in this lesson not re-checked in this pass and still not verified: c2, c4.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | VERIFIED. Demo.tsx line 293: 'This is the balance theorem, and it holds for any number of people.' The 'Harary, 1953' attribution is gone. I re-enumerated every sign setting for n = 3 to 7 (my script): balanced settings 4, 8, 16, 32, 64 = 2^(n−1), and every one is a one- or two-camp split. The general proof (split by friends and enemies of any one person; balanced trios force friends inside and enemies across) holds for any n. Name: PMC11068007 (opened) builds its reference network 'following Harary's theorem of SB [structural balance]', and PMC6175270 (opened): 'a balanced network can be divided into two groups ... connected by positive edges, and between which nodes ... are connected by negative edges'. |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

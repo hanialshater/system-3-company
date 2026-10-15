@@ -56,3 +56,16 @@ Open items (each blocks publishing until fixed and re-checked by a fact-checker 
 
 - c4 (disputed): see the basis above for the fix or the source it needs.
 - seen (disputed): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED. home-lessons.ts question now reads 'At this 28 cm tray, how many 10 cm discs fit in this square grid once each is turned 45°?', key '4 discs, as before'. In a square grid of 10 cm discs, 28 cm gives floor(28/10) = 2 per row, 2² = 4, and a 45° turn of a disc changes nothing. The distractors are false for the grid: '5 discs: corners fill' (the corner-plus-centre packing is not a square grid) and '9 discs' (needs 30 cm). The pass 38-41 objection (a free packing fits 5) no longer applies, because the question now names the grid. |
+| seen | verified | VERIFIED. resultLabel is now 'Discs in the grid' (home-lessons.ts). Re-computed floor(W/10)² for every slider side from 22 to 34 cm: 4 at 22-29 and 9 at 30-34, the same in both modes. At 28 cm the reveal line (engine-v2 homeRevealLine: first amount row plus result row per mode) reads 'As placed: discs per row 2; discs in the grid 4 discs. Each turned 45°: discs per row 2; discs in the grid 4 discs.' As a grid count this is true at every side. It no longer claims a fit count. |
+
+**Result (Pass 42):** 2 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

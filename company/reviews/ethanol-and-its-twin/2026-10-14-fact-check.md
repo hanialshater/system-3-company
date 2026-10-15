@@ -33,3 +33,16 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 | c5 | verified | Convention: Demo.tsx hBonds() returns 6 bonds for ethanol (each molecule k donates to (k + 1) mod 6), marks the 2 touching molecule 0 broken when it is pulled, and returns [] for the ether. The reveal and record lines say 6, 2 and 0; the stage comment calls the ring schematic of one instant. |
 
 **Result (Pass 41):** 3 verified, 0 disputed, 0 unverified (held).
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | VERIFIED. Demo.tsx: question option 'about −25 °C', record BP 'Dimethyl ether boils −25 °C', reveal 'ethanol boils at about 78 °C and dimethyl ether at about −25 °C'. I opened PyPI chemicals 1.5.2 this pass. CRC 'Physical Constants of Organic Compounds': ethanol Tb 351.39 K = 78.24 °C, dimethyl ether 248.35 K = −24.80 °C. Yaws: 78.29 / −24.84 °C. HEOS: 78.42 / −24.78 °C. OpenStax Chemistry 2e m68761 (opened): dimethylether −24.8 °C, ethanol 78.4 °C. −24.8 rounds to −25. |
+| c3 | verified | VERIFIED. I opened OpenStax Chemistry 2e from raw.githubusercontent.com this pass (openstax/osbooks-chemistry-bundle). m68761 'Intermolecular Forces': the strong attraction 'may occur when a molecule contains a hydrogen atom bonded to a fluorine, oxygen, or nitrogen atom'; electronegativity and the small H 'leads to highly concentrated partial charges'; 'Molecules with F-H, O-H, or N-H moieties ... hydrogen bonding'. Dispersion and dipole-dipole are the weaker forces. m68693: ethanol and methoxymethane (dimethyl ether) have the same composition. m68848: 'CH3OCH3: all are tetrahedral', so all six H sit on carbon. 'Still a liquid below about −25 °C' follows from c2. Stage legend and reveal agree ('White: H on O', 'Grey: C, each with its own Hs (not drawn)', 'only a weaker pull to break'). |
+
+**Result (Pass 42):** 2 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

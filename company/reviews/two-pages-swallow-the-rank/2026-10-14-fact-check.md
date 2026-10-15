@@ -44,3 +44,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c5 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | VERIFIED on the primary source, opened this pass: Page, Brin, Motwani and Winograd, 'The PageRank Citation Ranking: Bringing Order to the Web' (PDF in papers-we-love/papers-we-love, information_retrieval/, raw.githubusercontent.com, pdftotext). Section 2.4: 'The loop forms a sort of trap which we call a rank sink. To overcome this problem of rank sinks, we introduce a rank source'. Section 2.5: the surfer 'periodically "gets bored" and jumps to a random page chosen based on the distribution in E'. Section 6: E 'is used as a source of rank to make up for the rank sinks'. Demo.tsx reveal now says 'PageRank adds these jumps to fix sinks' (the unopened 'Scaled PageRank' name is gone). |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

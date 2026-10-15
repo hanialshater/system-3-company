@@ -22,3 +22,16 @@ Unrecorded claims: One, correct but unrecorded: the recall's why, "A litre of ai
 **Result (Pass 38):** 6 verified.
 
 Non-blocking for cm-chemistry: CO2 rises about 2.5 ppm a year. NOAA global annual means (datasets/co2-ppm mirror): 2023 419.35, 2024 422.79, 2025 425.62 ppm; mid-2026 monthly about 428. "About 420 ppm" with no year is already dated. Consider "about 420 ppm in 2023", or about 425 citing the 2025 NOAA global mean. "4 of 10,000" holds either way.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | VERIFIED. Opened datasets/co2-ppm data/co2-annmean-gl.csv (raw.githubusercontent.com, NOAA GML global marine-surface annual mean) this pass: 2025 425.62 ppm (2024 422.79). 'About 425 parts per million in 2025' holds. 425.62 ppm = 0.042562%, shown as 0.043%. Per 10,000 it is 4.26, shown as 4 (legend 'CO₂ 4'; Demo.tsx comment 7,808 + 2,095 + 93 + 4 = 10,000). |
+| c4 | verified | VERIFIED. My own constants (R = 8.314462618): n = 101,325 × 0.0005 / (R × 298.15) = 0.020437 mol; × 6.02214076e23 × 425e-6 = 5.23e18 (5.24e18 at 425.62 ppm). The stage shows (BREATH_CO2/1e18).toFixed(0) = '5 × 10¹⁸'. Tidal volume: I opened OpenStax Anatomy and Physiology 2e m46549 'The Process of Breathing' (raw.githubusercontent.com, openstax/osbooks-anatomy-physiology) this pass: 'Tidal volume (TV) is the amount of air that normally enters the lungs during quiet breathing, which is about 500 milliliters'. |
+
+**Result (Pass 42):** 2 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.

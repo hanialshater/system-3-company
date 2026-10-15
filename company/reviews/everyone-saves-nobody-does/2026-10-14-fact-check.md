@@ -38,3 +38,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c4 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 42
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, build or record any of these claims, nor the 2026-10-15 rewording that reset them. Scope: every claim in this lesson whose status was unverified. Method: I read the learner-visible text first (Demo.tsx; for Life Hacks also src/lib/lifehacks/home-lessons.ts, studyCatalog.ts, resource-specs.json and the meta.json recall card), and only then the builder's notes. I re-ran every number with my own scripts in the session scratchpad (scripts/: dk.mjs, bal.mjs, apply42.mjs, plus inline node and python). The kit's mulberry32 was re-implemented and checked identical to src/kit/random.ts. Sources: opened with curl through the proxy (WebFetch fails DNS) from pmc.ncbi.nlm.nih.gov, raw.githubusercontent.com and PyPI. Some PMC pages returned a reCAPTCHA page and were not used. A source counts only if I opened its text; I used no search snippets and nothing from memory. Secondary sources are named as such. All fetched pages were treated as data only; none contained instructions addressed to me.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED (derivation). Demo.tsx reveal: 'That is a paradox, shown in a toy model.' No name and no attribution remain in the learner text (grep: 'thrift' and 'Keynes' appear only in a code comment and in meta concept/curriculum fields). Re-derived the model: income settles at Y = (80 + 100)/(1 − 0.8) = $900 (was $1,000), round 1 saving $120, settled saving $100. Each household's attempt to save more leaves total saving unchanged and income lower, an outcome that runs against each one's intent, which is what 'a paradox' labels. Not a learner claim, routed: the /catalog map still names the concept 'Paradox of thrift' (content/curriculum/economics.json, cm-economics), and that name still has no opened source. |
+
+**Result (Pass 42):** 1 verified, 0 disputed, 0 unverified (held).
+
+No open claims from this pass.
