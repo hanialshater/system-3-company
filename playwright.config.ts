@@ -40,7 +40,10 @@ export default defineConfig({
     : {
         command: `npx next start -p ${port}`,
         port,
-        reuseExistingServer: !process.env.CI,
+        // Never reuse a server that happens to hold the port (W-851): with parallel builders that was another
+        // builder's build, so QA passed or failed someone else's lessons. A taken port now fails the run;
+        // use your own QA_PORT, or QA_BASE_URL for a server you started yourself. QA_REUSE_SERVER=1 opts back in.
+        reuseExistingServer: process.env.QA_REUSE_SERVER === "1",
         timeout: 60_000,
       },
 });
