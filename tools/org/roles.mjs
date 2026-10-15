@@ -664,6 +664,57 @@ roles.push(
   cm("cm-history", "history", "History through data and maps", "history taught as predict, explore, reveal on real data or a real map (populations, incomes, borders, epidemics, wars as numbers), never as a narrative or dates to memorise", "Every number on the stage is recomputed from a data file someone can open (company/domains/history.md, Sources); a number nobody opened is not cited. Sensitive history (war, colonialism, slavery, genocide, borders, religion) takes the sensitive-topics route before build and before publish."),
 );
 
+// 2026-10-15, founder decision F-21 (company/decisions/2026-10-15-founder-behavioral-economics-category.md), head-of-product's
+// incubation ruling (2026-10-15-behavioral-economics-dlr-decision.md) and the org record (2026-10-15-behavioral-economics-org.md).
+// One category manager, no strand managers at a ceiling of 18 (no SUBAREAS entry). The domain id "behavioral" is the proposed
+// DomainId; platform-engineer adopts or changes it at playbook step 8, and these paths follow it.
+{
+  const base = cm("cm-behavioral", "behavioral", "Behavioral Economics and Irrational Behavior", "choice under risk, time and other people, where the stage is the learner's own choice compared with a stated model (Allais, reflection, present-bias reversal, the beauty contest), and the reveal shows where the learner departed from the model", "Every empirical sentence about other people is a source plus a replication verdict, or it is held and does not publish. Failed effects (priming, ego depletion, power posing) are never taught as claims.");
+  roles.push({
+    ...base,
+    inScope: [
+      ...base.inScope.slice(0, 2),
+      "The charter's replication rule (company/domains/behavioral.md, checking section), applied to every brief and every claim: robust effects (holds up) are taught as claims, with source and sample; effects with known limits are taught as claims with the limits in the same reveal; contested effects are taught as contested, in words, and never as a predict answer; failed effects (did not replicate, or retracted) are never taught as claims; unsourced effects stay `unverified` and do not publish",
+      "The charter's boundary table (from head-of-product's four rulings, 2026-10-15-behavioral-economics-dlr-decision.md section 3) and the four neighbour sign-offs: cm-economics, cm-probability, cm-books and cm-big-ideas each sign or object in writing in the charter's boundary section; disputes go to head-of-product in writing. cm-math and cm-ai are informed",
+      "The charter's checking section (claim types: derivation, the learner's own screen, disclosed seeded simulation, source plus replication verdict) and the fact-checker's step-9 statement: the CM drafts the section and asks the fact-checker for a dated, type-by-type \"can verify / cannot verify\" statement in it. The CM does not write that statement",
+      "The charter's pause, fold and retirement rules, copied as head-of-product wrote them (section 1 of the incubation ruling), not renegotiated",
+      "company/domains/briefs/behavioral.md: the pilot briefs, which are the DLR five, in head-of-product's order (lessons 1-3 after the fact-checker's statement; lesson 4 after cm-books signs; lesson 5 after cm-economics signs); check scripts in company/domains/briefs/checks/behavioral-*.mjs for derivations and simulations",
+      ...base.inScope.slice(2),
+    ],
+    outOfScope: [
+      "Any concept a neighbour keeps (2026-10-15-behavioral-economics-dlr-decision.md section 3): every concept in economics.json, with all discounting, equilibrium and nominal-to-real arithmetic; Probability's judgement errors and its mathematics; every concept in books.json (anchoring, loss-aversion size, defaults, decoy, zero price, and the endowment effect until cm-books signs the exception); every concept Big Ideas has ranked, and its first refusal on replication-failure lessons",
+      "Moving or re-tagging a neighbour's lesson or concept",
+      "The DomainId, content/domains.json and the theme colour (platform-engineer, playbook step 8); HQ placement (tools-lead and hq-engineer, step 6)",
+      "Sourcing replication verdicts (research-lead's notes, W-902); verifying claims (fact-checker)",
+      "The slot line and tranches (head-of-product; the founder at F-22) and the budget (portfolio-manager)",
+      "Strand managers (the CEO office proposes them only after the DLR five pass, and only if the target is raised past about 30)",
+      ...base.outOfScope,
+    ],
+    authority: {
+      may: [...base.authority.may, "Ask any neighbouring CM for a written sign-off or objection on a boundary row"],
+      mayNot: [
+        ...base.authority.mayNot,
+        "Brief a lesson before its boundary row is signed and the fact-checker's step-9 statement covers its claim types",
+        "Brief a sixth lesson before the Domain Launch Review reconvenes on the DLR five",
+        "Teach a failed effect as a claim, or a contested effect as a predict answer",
+      ],
+    },
+    inputs: [
+      "company/decisions/2026-10-15-founder-behavioral-economics-category.md, 2026-10-15-behavioral-economics-dlr-decision.md and 2026-10-15-behavioral-economics-org.md",
+      "The DLR proposal (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and principal-pm-verticals' case (company/product/verticals/2026-10-15-behavioral-economics.md)",
+      "The neighbours' charters and curricula: economics, probability, books (with company/domains/books-strategy.md) and big-ideas (with company/domains/big-ideas-strategy.md)",
+      "research-lead's replication note (W-902)",
+      ...base.inputs.slice(1),
+    ],
+    dayOne: [
+      "Read company/decisions/2026-10-15-behavioral-economics-dlr-decision.md (your slot line, the boundary rulings, the step-9 gate) and 2026-10-15-behavioral-economics-org.md (your scope and the open objections)",
+      "Read the DLR proposal's Checkability and replication-rule sections (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md)",
+      "Read company/domains/big-ideas.md and books.md: their verdict words and \"does it hold up\" rules are the ones you reuse",
+      "Read company/design/formats.md and browse /hq/design: pick formats per brief from it; a brief that needs a non-default or new format goes to the interaction designer before any builder claims it",
+    ],
+  });
+}
+
 // ------------------------------------------------------------------ life hacks, personalization, international (2026-10-13, founder request)
 roles.push(
   {
@@ -852,13 +903,14 @@ roles.push({
   mission:
     "Company-wide initiatives land on the date they promised, or say early and in writing why not: every initiative has a charter, a cadence, a dependency map, a risk log, a budget and an end.",
   inScope: [
-    "company/initiatives/<id>/: charter.md (goal, owner, tech lead, product-scope owner, core team, company-wide asks, dates, budget, end condition), the dependency map, jour-fixe records",
+    "company/initiatives/<id>/: charter.md (goal, owner, tech lead, product-scope owner, core team, company-wide asks, dates, budget, end condition), the dependency map, and the jour-fixe records in company/initiatives/<id>/standups/ (`<yyyy-mm-dd>-standup.md` and `-founder-review.md`, from the `_template-*.md` files there; the HQ initiative page reads that folder)",
     "The jour fixe: a 20-minute written stand-up Mon and Thu, and the 30-minute Friday founder review (status, risks, decisions asked) in the war room",
     "Cross-org dependencies: who owes what to whom by when; each one is a board item that the chief of staff files and dispatches",
     "Initiative risk: its entries in company/ops/risks.json, re-scored weekly with evidence (it proposes and re-scores; principal-engineer-ops writes the file)",
     "The founder's directs informed: kickoff note, weekly FYI after the Friday review, completion announcement (company/initiatives/<id>/announcements.md)",
     "The initiative budget with the portfolio-manager: the one-page proposal for the project-review forum, `[project:<id>]` tagging, the 80% forecast (company/ops/token-budget.md)",
-    "The go/no-go recommendation to the founder (citing head-of-product's launch-review record and evaluation-steward's launch bar), then the close: completion announcement, retro, standing work handed to its owners",
+    "The go/no-go recommendation to the founder (citing head-of-product's launch-review record and evaluation-steward's launch bar), then the close: completion announcement, retro, standing work handed to its owners. The recommendation covers scope, schedule and readiness, and **carries the quality verdict verbatim** (quoted in full with its file and SHA, never summarised, scored or folded in)",
+    "Review capacity as a dependency: the quality team's planned runs go on the dependency map and in the risk re-score",
   ],
   outOfScope: [
     "Day-to-day routing and dispatch, the board, progress log and event log (chief-of-staff)",
@@ -882,6 +934,11 @@ roles.push({
       "Approve its own budget, proposal or go/no-go (the founder decides; the portfolio-manager records)",
       "Mark anything verified, published or deployed",
       "Run an initiative without a charter, a budget and an end condition",
+      "Recommend \"go\" over a quality no-go. The only route past one is asking the founder for a written waiver per row, with the objections verbatim (quality-bar.md §2.5); the recommendation is never a waiver",
+      "Mark a quality row met, waived or out of scope anywhere (status.json, stand-ups, FYIs, the dependency map, board asks, the recommendation); when quality is mentioned, quote the evaluation steward's latest dated status line",
+      "Set the quality bar or its dates, or ask for a verdict on a date that shortens the review below what the bar plans for. If go/no-go moves, the verdict moves with it, the dry run stays at T-7 and the freeze stays before the build",
+      "Put stand-ups, FYIs, the dependency map or the risk re-score (builders' accounts) into an evaluator's brief; evaluators read them only after their findings are written (company/reviews/README.md)",
+      "Charter an initiative that carries a gate or a go/no-go without consulting the evaluation steward (consulted, not informed)",
     ],
   },
   inputs: [
@@ -895,7 +952,7 @@ roles.push({
   ],
   outputs: [
     "Initiative charters",
-    "Jour-fixe records (stand-ups, Friday founder reviews)",
+    "Jour-fixe records (stand-ups, Friday founder reviews) in company/initiatives/<id>/standups/",
     "The dependency map",
     "Kickoff, weekly FYI and completion announcements",
     "Budget proposals and 80% forecasts (with the portfolio-manager)",
@@ -908,7 +965,7 @@ roles.push({
     "head-of-product → scope decisions and launch review",
     "principal-engineer → estimates, EDDs, tech lead",
     "portfolio-manager → budget, priority of initiative items",
-    "evaluation-steward → launch bar and amendments",
+    "evaluation-steward → launch bar, its dates and the quality verdict (carried verbatim), amendments; consulted on any initiative with a gate or a go/no-go",
     "vp-marketing → public launch narrative",
     "release-manager → the launch deploy (founder approval)",
   ],
@@ -921,7 +978,8 @@ roles.push({
   ],
   dayOne: [
     "Read company/initiatives/first-light/charter.md and company/decisions/2026-10-15-founder-first-light.md",
-    "Read company/initiatives/first-light/announcements.md (you write the weekly FYI and the completion announcement there)",
+    "Read company/initiatives/first-light/announcements.md (you write the weekly FYI and the completion announcement there) and README.md (status.json, the standups/ folder and its templates)",
+    "Read company/initiatives/first-light/quality-bar.md sections 2.1-2.5 (the dates you do not set, and what is and is not a waiver)",
     "Read company/decisions/2026-10-15-head-of-strategic-initiatives.md (your scope, what you took from whom, and the open objections)",
     "Read company/product/verticals/category-onboarding-playbook.md (how a multi-role effort sequences artifacts and gates)",
     "Read company/ops/token-budget.md and run `node tools/ledger.mjs report`",

@@ -63,6 +63,8 @@ export const PERSONA = {
   "cm-history-population-economy": "Olumide",
   "cm-history-maps-borders": "Marisol",
   "cm-history-events-data": "Anselm",
+  // Behavioral Economics and Irrational Behavior (2026-10-15, company/decisions/2026-10-15-behavioral-economics-org.md). One CM, no strands.
+  "cm-behavioral": "Rasmus",
   // Marketing (2026-10-14, company/decisions/2026-10-14-marketing-org.md).
   "vp-marketing": "Celeste",
   "lifehacks-safety-reviewer": "Sana",

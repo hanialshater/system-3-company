@@ -28,7 +28,7 @@ pattern: company/ceo-office/org-change-process.md, 2026-10-14-marketing-org.md
 ## Scope: what the role owns
 
 1. **Initiative charters:** `company/initiatives/<id>/charter.md` (goal, owner, tech lead, product-scope owner, core team, company-wide asks, dates, budget, end condition). It takes over First Light's charter from the chief of staff now.
-2. **Cadence, the jour fixe:** Monday and Thursday, a 20-minute written stand-up. Friday, a 30-minute founder review covering status, risks and the decisions asked for. The records go in `company/initiatives/<id>/jour-fixe/`. The role writes its own template, so this adds no new ritual file in `company/rituals/` until it has run twice.
+2. **Cadence, the jour fixe:** Monday and Thursday, a 20-minute written stand-up. Friday, a 30-minute founder review covering status, risks and the decisions asked for. The records go in `company/initiatives/<id>/standups/` (corrected 2026-10-15, W-971: the HQ initiative page reads that folder; it was written here as `jour-fixe/`). The role writes its own template, so this adds no new ritual file in `company/rituals/` until it has run twice.
 3. **Cross-org dependencies:** a dependency map (who owes what to whom, and by when) in the initiative folder. Every dependency is a board item, which the chief of staff files and dispatches.
 4. **Risk:** the initiative's entries in `company/ops/risks.json`, re-scored every week with evidence. The role proposes and re-scores. principal-engineer-ops writes the file, as it does for every other owner.
 5. **Directs informed:** the kickoff note, the weekly FYI after the Friday review, and the completion announcement, all in `company/initiatives/<id>/announcements.md`.
@@ -127,7 +127,7 @@ Every answer below is **my synthesis (Leonie)**, written from the direct's role 
 | 5 | Kenji (synthesis) | The critical path is review capacity (readiness, privacy), not ownership | proposed: the first risk re-scored. Awaiting Kenji |
 | 6 | Selin (synthesis) | Coordination load with no capacity added | accepted in part: no reports and no dispatch, plus the sunset check. Awaiting Selin |
 | 7 | Odette (synthesis) | There is no measured basis for a budget by tomorrow's forum | proposed: tranche 1 covers the re-estimate and design only. Awaiting Odette |
-| 8 | Hilde (her own words) | Without a "carries the quality verdict verbatim; may not recommend go over a quality no-go" line, the two keys collapse into one recommendation | open: for the CEO office to take into the role's data (change 1 in her answer), or for the founder to decide |
+| 8 | Hilde (her own words) | Without a "carries the quality verdict verbatim; may not recommend go over a quality no-go" line, the two keys collapse into one recommendation | taken 2026-10-15 (W-936): changes 1 to 5 are in the role's data (tools/org/roles.mjs: the verdict carried verbatim in scope; five may-nots for no go over a quality no-go, no quality row marked met, no bar dates set, no builders' accounts in evaluator briefs, and consult the evaluation steward on any initiative with a gate; the handoff line). Hilde to confirm the wording |
 
 ## Board asks (for the chief of staff to file; this record does not edit board.json)
 
