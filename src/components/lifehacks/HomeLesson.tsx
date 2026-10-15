@@ -10,6 +10,20 @@ import { homeLessons } from '@/lib/lifehacks/home-lessons';
 import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
 import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, type Mode } from '@/lib/lifehacks/engine-v2';
 import s from './HomeLesson.module.css';
+import a11y from './a11y.module.css';
+
+/**
+ * TP-1 (W-598, W-1066; engines-v2 spec section 1 and R1) for the v1 Home stages: the layout in effect is drawn
+ * selected (tint, 2 px border, leading check mark), carries aria-pressed="true" and stays focusable (aria-disabled,
+ * W-557). It is never dimmed. The other layout is outlined, aria-pressed="false", and pressable. Button text is
+ * unchanged; v2 lessons use ModeControl, which adds the A/B letter.
+ */
+function HomeMode({ locked, pressed, onPress, children }: { locked: boolean; pressed: boolean; onPress: () => void; children: ReactNode }) {
+  return <StageControl locked={locked} inactive={pressed} aria-pressed={!locked && pressed}
+    className={`${a11y.mode}${!locked && pressed ? ' active' : ''}`} onClick={onPress}>
+    {!locked && pressed && <span aria-hidden="true">✓ </span>}{children}
+  </StageControl>;
+}
 
 /** v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none. */
 type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string };
@@ -188,8 +202,8 @@ function Stage({spec,p,setP,after,setAfter,locked,interact}:{spec:HomeSpec;p:num
   return <div className={s.stage}>
     <Scene spec={spec} p={p} after={after} result={result} locked={locked}/>
     <div className={s.controls}>
-      <StageControl locked={locked} inactive={!after} onClick={()=>{setAfter(false);}}>{spec.choices[0]}</StageControl>
-      <StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</StageControl>
+      <HomeMode locked={locked} pressed={!after} onPress={()=>{setAfter(false);}}>{spec.choices[0]}</HomeMode>
+      <HomeMode locked={locked} pressed={after} onPress={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</HomeMode>
     </div>
     <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)}${spec.unit}`} disabled={locked} onChange={setP}/>
     <p className={s.inputs}>{result.inputs}</p>
@@ -209,7 +223,7 @@ function WobbleStage({p,setP,locked,interact}:{p:number;setP:(p:number)=>void;lo
       <path d="M35,200h230" className={s.line}/><path d={`M90,165v${35-gap*4}`} className={s.object}/><path d={`M190,165v${35+gap*4}`} className={s.target}/><path d="M70,164h140" className={s.line}/><circle cx="90" cy={200-gap*4} r="4" fill="var(--domain)"/><circle cx="190" cy={200+gap*4} r="4" fill="var(--good)"/>
       <text x="150" y="222" textAnchor="middle">Signed-contact schematic</text>
     </svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={p===0} onClick={()=>setP(0)}>Start angle</StageControl><StageControl locked={locked} inactive={p===45} onClick={()=>{setP(45);reach('zero');}}>Find balance</StageControl></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={p===0} onPress={()=>setP(0)}>Start angle</HomeMode><HomeMode locked={locked} pressed={p===45} onPress={()=>{setP(45);reach('zero');}}>Find balance</HomeMode></div>
     <Slider label="Turn" value={p} min={0} max={90} disabled={locked} format={n=>`${n}°`} onChange={n=>{setP(n);if(n===45)reach('zero');}}/>
     <p className={s.inputs}>Equal legs · gentle continuous ground</p><div className={s.data}><span>Signed gap</span><strong>{locked?'?':`${fmt(gap)}mm`}</strong></div><StageStatus locked={locked} text={`Signed gap ${fmt(gap)}mm`}/>
     <p className={s.caption}>Not necessarily level. Clear hot drinks.</p>
@@ -222,7 +236,7 @@ function BowStage({steps,setSteps,after,setAfter,locked,interact}:{steps:number;
   const shoe=(x:number,balanced:boolean,remaining:number)=><g transform={`translate(${x},20)`}><path d="M-35,180V50Q-35,0 0,0T35,50v130z" className={s.outline}/>{[-1,1].map(i=><g key={i} transform={`rotate(${balanced?0:90},0,105)`}><ellipse cx={i*(15+remaining/2)} cy="105" rx={Math.max(2,remaining)} ry="12" className={i<0?s.object:s.target}/></g>)}<path d="M-30,72L30,92" className={s.object}/><path d="M-30,92L30,72" className={s.target}/><path d="M-7,86l14,-7" stroke="var(--bg-2)" strokeWidth="5"/><path d="M-8,86l16,-7" className={s.target}/><path d={balanced?"M-22,115C-16,83 18,82 22,115L-15,103":"M22,115C16,83 -18,82 -22,115L15,103"} className={s.object}/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} stroke="var(--bg-2)" strokeWidth="6"/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} className={s.target}/><text x="0" y="205" textAnchor="middle">{balanced?'Opposing':'Matching'}</text><text x="0" y="222" textAnchor="middle">{locked?'?':`${fmt(remaining)}mm`}</text></g>;
   return <div className={s.stage}>
     <svg viewBox="0 0 300 265" className={s.scene} role="img" aria-label="Two shoelace bows: matching versus opposing wrap directions">{shoe(75,false,weak)}{shoe(225,after,strong)}</svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('wrap');}}>Second: right-over-left</StageControl><StageControl locked={locked} inactive={steps>=20} onClick={()=>{setSteps(20);reach('walk');}}>Walk 20 steps</StageControl></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={after} onPress={()=>{setAfter(true);reach('wrap');}}>Second: right-over-left</HomeMode><StageControl locked={locked} inactive={steps>=20} onClick={()=>{setSteps(20);reach('walk');}}>Walk 20 steps</StageControl></div>
     <p className={s.inputs}>First: left-over-right · 20mm loops · loss=0.8/0.3mm/step</p>
     <p className={s.caption}>Model steps={steps}. Both can fail.</p>
     <StageStatus locked={locked} text={`Matching ${fmt(weak)}mm; ${after?'Opposing':'Matching'} ${fmt(strong)}mm; steps ${steps}`}/>
@@ -242,7 +256,7 @@ function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number
       }))}
       <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length}/20`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length}/20`:'?'}</text>
     </svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={runs>=1} onClick={()=>{setRuns(1);reach('short');}}>Test 0.3m</StageControl><StageControl locked={locked} inactive={runs>=2} onClick={()=>{setRuns(2);reach('long');}}>Test 3m</StageControl></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Test 0.3m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('long');}}>Test 3m</HomeMode></div>
     <p className={s.inputs}>30cm box · 1rev/s · 10s · seed17{runs===2?' · p=0/0.55':''}</p>
     <p className={s.caption}>Study model; plain cord storage</p>
     <StageStatus locked={locked} text={runs<1?'':`0.3m: ${short.filter(Boolean).length}/20${runs>=2?`; 3m: ${long.filter(Boolean).length}/20`:''}`}/>
