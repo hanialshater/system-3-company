@@ -8,16 +8,16 @@ export const study_spaced_beats_cram = {
   "title": "Same hours, different calendar",
   "hook": "Three hours in one block or across three days: what changes a month later?",
   "objective": "Separate the research-supported spacing effect from invented memory curves.",
-  "question": "For equal study time, which plan generally supports longer-term verbal recall?",
+  "question": "Same 3 hours of rereading. A month later, which plan remembers more?",
   "options": [
-    "Distributed sessions",
-    "One massed session",
-    "Calendar cannot matter"
+    "Plan A",
+    "Plan B",
+    "About the same: same 3 hours"
   ],
-  "answer": 0,
-  "principle": "Research on verbal recall supports distributed practice. The curves illustrate that idea; they do not predict your memory.",
-  "boundary": "Illustrative curves; not personal memory predictions.",
-  "source": "Cepeda et al. (2006), Distributed practice in verbal recall tasks, Psychological Bulletin132(3),354–380, DOI10.1037/0033-2909.132.3.354, author abstract via https://pubmed.ncbi.nlm.nih.gov/16719566/ retrieved2026-10-13; 839 assessments in317 experiments. Rawson & Kintsch(2005), Rereading Effects Depend on Time of Test, JEP97(1),70–80, DOI10.1037/0022-0663.97.1.70, author abstract search record https://eric.ed.gov/?id=EJ688037 retrieved2026-10-13 (direct page timed out). Retrieval line supported separately by Roediger & Karpicke(2006), Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner.",
+  "answer": 1,
+  "principle": "Studies of verbal recall show the same shape: massed study can tie or win on an immediate test, while spacing usually wins after a delay.",
+  "boundary": "Illustrative toy numbers, not a forecast of your memory.",
+  "source": "Smith & Scarf (2017), Spacing Repetitions Over Long Timescales: A Review and a Reconsolidation Explanation, Frontiers in Psychology 8:962, DOI 10.3389/fpsyg.2017.00962, full text https://pmc.ncbi.nlm.nih.gov/articles/PMC5476736/ opened 2026-10-15. It cites Rawson & Kintsch (2005) and Cepeda et al. (2006). Benjamin & Tullis (2010), What makes distributed practice effective?, Cogn Psychol 61(3), 228-247, https://pmc.ncbi.nlm.nih.gov/articles/PMC2930147/ opened 2026-10-15. The stage curves are a chosen toy model in src/demos/lifehacks/spaced-beats-cram/model.ts, not fitted data.",
   "misconception": "Equal study hours imply equal long-term recall regardless of calendar.",
   "days": [
     -2,
