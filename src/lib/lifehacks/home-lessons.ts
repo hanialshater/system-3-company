@@ -4,7 +4,7 @@ import type { HomeSpec } from "./home-models";
 export const homeLessons: HomeSpec[] = [
   {
     "slug": "towel-spread-dries-first",
-    "title": "Same towel, smaller doorway",
+    "title": "Fold it or spread it?",
     "model": "dry",
     "view": "cloth",
     "initial": 70,
@@ -21,17 +21,60 @@ export const homeLessons: HomeSpec[] = [
       "Quarter-fold",
       "Spread flat"
     ],
-    "question": "Same water and model flux: which towel layout dries sooner?",
-    "idea": "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time.",
+    "question": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
+    "idea": "Spreading the towel opens both large faces to the air. In this model each square metre of open face dries at the same speed, so the time falls as the open face grows.",
     "limit": "Real drying depends on fabric, temperature, humidity and airflow; this is not a twelve-hour promise.",
     "formula": "Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted.",
     "recall": "What should you change before comparing the drying speed of two towel layouts?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
-    "answer": 1,
+    "answer": 0,
     "concept": "surface-area-drying",
     "unit": "cm",
-    "inputLabel": "Width",
-    "hook": "Same water and model flux: which towel layout dries sooner?"
+    "inputLabel": "Towel width",
+    "hook": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
+    "engine": 2,
+    "modeLabels": [
+      "Folded in four",
+      "Spread flat"
+    ],
+    "options": [
+      "3 h",
+      "6 h",
+      "12 h: same water"
+    ],
+    "amounts": [
+      {
+        "label": "Face open to air",
+        "unit": "m²",
+        "a": [
+          "/",
+          [
+            "*",
+            2,
+            "p",
+            "a"
+          ],
+          [
+            "*",
+            10000,
+            "b"
+          ]
+        ],
+        "b": [
+          "/",
+          [
+            "*",
+            2,
+            "p",
+            "a"
+          ],
+          10000
+        ]
+      }
+    ],
+    "resultLabel": "Drying time (model)",
+    "revealLine": "{A}: {amountA0} of face open to the air, {resultA} to dry. {B}: {amountB0} open, {resultB}. The same water leaves through {ratio} times the face, so it dries {ratio} times faster.",
+    "plainNumbers": true
   },
   {
     "slug": "wobbly-table-quarter-turn",
@@ -63,7 +106,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "square-bow-stays-tied",
-    "title": "Which way does your bow lie?",
+    "title": "Flat bow or twisted bow?",
     "model": "bow",
     "view": "bow",
     "initial": 0,
@@ -79,17 +122,36 @@ export const homeLessons: HomeSpec[] = [
       "Matching wraps",
       "Opposing wraps"
     ],
-    "question": "Which wrap pattern tends to hold better?",
-    "idea": "Opposing knot stages make the balanced reef bow lie flat; the granny bow twists out of line. Impact and moving lace ends can work a bow loose.",
+    "question": "Two bows tied in the same laces: one lies across the shoe, one twists toe-to-heel. Which comes undone first?",
+    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat across the shoe. To read your own: loops across the shoe are flat, loops pointing toe-to-heel are twisted.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
-    "formula": "Both illustrative loops start at 20 mm at step 0. Changing the second wrap changes its geometry and model loss rate without advancing steps. Walk 20 steps advances from 0 to 20: remaining loop = max(0, 20 − steps × rate) mm, with matching rate 0.8 and opposing rate 0.3. The displayed results are 4 mm and 14 mm. No empirical lifetime is claimed.",
+    "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
     "recall": "A bow twists out of line. Which knot step could you reverse?",
     "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
     "answer": 1,
     "concept": "shoelace-square-bow",
     "unit": "steps",
     "inputLabel": "Steps",
-    "hook": "Which wrap pattern tends to hold better?"
+    "hook": "Two bows in the same laces: one lies flat, one twists. Which comes undone first?",
+    "engine": 2,
+    "modeLabels": [
+      "Twisted bow",
+      "Flat bow"
+    ],
+    "options": [
+      "The flat one",
+      "The twisted one",
+      "Neither: a bow is a bow"
+    ],
+    "amounts": [
+      {
+        "label": "Steps walked",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Loop left"
   },
   {
     "slug": "long-cord-knots-itself",
@@ -449,7 +511,7 @@ export const homeLessons: HomeSpec[] = [
     "title": "Half the footprint, twice the stack",
     "model": "layers",
     "view": "cloth",
-    "initial": 6,
+    "initial": 5,
     "min": 4,
     "max": 12,
     "step": 1,
@@ -461,17 +523,42 @@ export const homeLessons: HomeSpec[] = [
       "One fold",
       "Two folds"
     ],
-    "question": "Which fold count gives the taller stack of the same shirts?",
+    "question": "Five shirts folded once stack 4 cm high. Fold each once more. How tall now?",
     "idea": "An ideal incompressible sheet trades footprint for thickness. Doubling the layers doubles the height of an equally sized stack while conserving material volume.",
     "limit": "Real fabrics compress and trap air; these are sheet-model dimensions.",
     "formula": "Stack height=N×0.4×layers cm, layers=2 or 4; footprint fraction=1/layers.",
     "recall": "Why can smaller folded shirts make a drawer too shallow?",
     "source": null,
-    "answer": 1,
+    "answer": 0,
     "concept": "folded-shirt-stack-height",
     "unit": "shirts",
-    "inputLabel": "Count",
-    "hook": "What changes when you halve the footprint again?"
+    "inputLabel": "Shirts",
+    "hook": "What changes when you halve the footprint again?",
+    "engine": 2,
+    "modeLabels": [
+      "Folded once",
+      "Folded twice"
+    ],
+    "options": [
+      "8 cm",
+      "4 cm",
+      "2 cm: smaller shirts"
+    ],
+    "plainNumbers": true,
+    "amounts": [
+      {
+        "label": "Layers per shirt",
+        "unit": "",
+        "a": "b",
+        "b": [
+          "*",
+          2,
+          "b"
+        ]
+      }
+    ],
+    "resultLabel": "Stack height",
+    "revealLine": "{A}: {amountA0} layers per shirt, stack {resultA}. {B}: {amountB0} layers, stack {resultB}: half the footprint, {ratio} times the height."
   },
   {
     "slug": "file-fold-see-each-shirt",
@@ -697,7 +784,7 @@ export const homeLessons: HomeSpec[] = [
       "Faces touching",
       "Faces separated"
     ],
-    "question": "Which arrangement exposes more of the chosen faces?",
+    "question": "Over one bar, the towel's two inner faces touch. Across two bars, how much more face is open to the air?",
     "idea": "Two cloth faces pressed together are hidden from the surrounding air in this geometric model. Separating them restores exposed area; the cloth amount has not changed.",
     "limit": "This is exposed-area bookkeeping, not a measured drying-time prediction.",
     "formula": "Area=2×W×140/10000 times fraction; touching fraction=0.5, separated=1.",
@@ -707,7 +794,45 @@ export const homeLessons: HomeSpec[] = [
     "concept": "towel-over-two-bars",
     "unit": "cm",
     "inputLabel": "Towel width",
-    "hook": "Which arrangement exposes more of the chosen faces?"
+    "hook": "Which arrangement exposes more of the chosen faces?",
+    "engine": 2,
+    "modeLabels": [
+      "One bar",
+      "Two bars"
+    ],
+    "options": [
+      "None: same towel",
+      "0.98 m² more",
+      "1.96 m² more"
+    ],
+    "plainNumbers": true,
+    "amounts": [
+      {
+        "label": "Faces touching",
+        "unit": "m²",
+        "a": [
+          "*",
+          [
+            "/",
+            [
+              "*",
+              2,
+              "p",
+              "a"
+            ],
+            10000
+          ],
+          [
+            "-",
+            1,
+            "b"
+          ]
+        ],
+        "b": 0
+      }
+    ],
+    "resultLabel": "Face open to air",
+    "revealLine": "{A}: {amountA0} of face pressed together, {resultA} open. {B}: nothing touching, {resultB} open: {diff} more face in the air, from the same towel."
   },
   {
     "slug": "laundry-gap-air-path",
@@ -755,26 +880,61 @@ export const homeLessons: HomeSpec[] = [
       "Overlapped",
       "Separate"
     ],
-    "question": "Which layout exposes more cloth area?",
+    "question": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
     "idea": "Overlap hides the contacting regions from surrounding air. Separating the illustrated sheets restores those regions, although the total amount of cloth stays the same.",
     "limit": "Real draping and edge exposure differ; no universal time saving is claimed.",
     "formula": "Two sheets each 100×60cm, both faces: 24000cm². Contact hides 2×overlap×60; separation hides 0.",
     "recall": "Why does hanging two sheets in the same outline not expose both fully?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
-    "answer": 1,
+    "answer": 2,
     "concept": "garment-overlap-hides-face",
     "unit": "cm",
     "inputLabel": "Overlap",
-    "hook": "Which layout exposes more cloth area?"
+    "hook": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
+    "engine": 2,
+    "modeLabels": [
+      "Overlapping",
+      "Hung apart"
+    ],
+    "options": [
+      "None: both are out",
+      "1,800 cm²",
+      "3,600 cm²"
+    ],
+    "amounts": [
+      {
+        "label": "Overlap",
+        "unit": "cm²",
+        "a": [
+          "*",
+          "p",
+          "b"
+        ],
+        "b": 0
+      },
+      {
+        "label": "Hidden from air",
+        "unit": "cm²",
+        "a": [
+          "*",
+          2,
+          "p",
+          "b"
+        ],
+        "b": 0
+      }
+    ],
+    "resultLabel": "Cloth open to air",
+    "revealLine": "{A}: {amountA0} of overlap hides {amountA1}, one patch on each shirt; {resultA} stays open. {B}: nothing hidden, {resultB} open."
   },
   {
     "slug": "drying-room-water-load",
     "title": "The water goes somewhere",
     "model": "water-load",
     "view": "volume",
-    "initial": 4,
+    "initial": 12,
     "min": 1,
-    "max": 8,
+    "max": 16,
     "step": 1,
     "values": [
       250,
@@ -784,46 +944,92 @@ export const homeLessons: HomeSpec[] = [
       "One item",
       "Whole load"
     ],
-    "question": "Which number describes water released by all items?",
+    "question": "Each wet shirt holds about 250 g of water. Twelve dry indoors. How much water goes into the room's air?",
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
     "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
     "warning": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
     "formula": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
     "recall": "Why should you count the whole wet load rather than one garment?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
-    "answer": 1,
+    "answer": 2,
     "concept": "drying-room-water-load",
-    "unit": "items",
-    "inputLabel": "Count",
-    "hook": "Which number describes water released by all items?"
+    "unit": "shirts",
+    "inputLabel": "Shirts",
+    "hook": "Twelve wet shirts dry indoors. How much water goes into the room's air?",
+    "engine": 2,
+    "modeLabels": [
+      "One shirt",
+      "Whole load"
+    ],
+    "options": [
+      "A few grams",
+      "250 g",
+      "3,000 g"
+    ],
+    "amounts": [
+      {
+        "label": "Shirts counted",
+        "unit": "",
+        "a": 1,
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Water into the air",
+    "revealLine": "{A}: {resultA}. {B}: {amountB0} shirts, {resultB} into the room."
   },
   {
     "slug": "humidity-evaporation-gap",
     "title": "Humid air narrows the gap",
     "model": "humidity",
     "view": "cloth",
-    "initial": 70,
-    "min": 40,
-    "max": 90,
+    "initial": 80,
+    "min": 50,
+    "max": 95,
     "step": 1,
     "values": [
-      1
+      1,
+      40
     ],
     "choices": [
       "Humid setting",
       "Drier setting"
     ],
-    "question": "Which equal-temperature setting has the larger vapour-pressure gap?",
-    "idea": "At equal temperature, higher relative humidity means a smaller difference between a wet surface’s saturation vapour pressure and surrounding water vapour. This model shows the gap, not a drying clock.",
+    "question": "Same temperature. A room at 40% humidity and one at 80%. How much weaker is the drying push in the humid room?",
+    "idea": "At the same temperature, humid air already holds close to all the water vapour it can, so it takes water from a wet surface more slowly. The push is how far the air is from full.",
     "limit": "Surface temperature, airflow and fabric also matter; no room-control advice is implied.",
-    "formula": "Normalised gap=1−RH/100; comparison RH=max(0,input−30). Assumes wet surface and air have equal temperature.",
+    "formula": "Drying push=100−humidity, out of 100; the drier room is 40 points less humid than the humid room. Assumes wet surface and air have equal temperature.",
     "recall": "At the same temperature, why can high humidity hinder evaporation?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
-    "answer": 1,
+    "answer": 2,
     "concept": "humidity-evaporation-gap",
     "unit": "%",
-    "inputLabel": "Humidity",
-    "hook": "Which equal-temperature setting has the larger vapour-pressure gap?"
+    "inputLabel": "Humid room",
+    "hook": "Same temperature, 40% or 80% humidity: how much weaker is the drying push?",
+    "engine": 2,
+    "modeLabels": [
+      "Humid room",
+      "Drier room"
+    ],
+    "options": [
+      "No weaker: same warmth",
+      "A bit weaker",
+      "A lot weaker"
+    ],
+    "amounts": [
+      {
+        "label": "Room humidity",
+        "unit": "%",
+        "a": "p",
+        "b": [
+          "-",
+          "p",
+          "b"
+        ]
+      }
+    ],
+    "resultLabel": "Drying push, of 100",
+    "resultUnit": "",
+    "revealLine": "{A}: {amountA0} humidity, drying push {resultA} of 100. {B}: {amountB0}, push {resultB}. At the same warmth the drier room pushes {ratio} times as hard."
   },
   {
     "slug": "breeze-is-not-extra-surface",
@@ -842,17 +1048,39 @@ export const homeLessons: HomeSpec[] = [
       "Still-air model",
       "Moving-air model"
     ],
-    "question": "Which change alters flux while keeping exposed area fixed?",
-    "idea": "The model keeps cloth area fixed and changes the assumed mass-transfer flux. Area and transfer conditions multiply; changing one does not secretly change the other.",
-    "limit": "The doubled flux is an illustrative parameter, not a measured benefit from any fan.",
-    "formula": "Rate=exposed area×chosen flux; area=input m²; still flux=1, moving flux=2 arbitrary water units/(m²·step).",
+    "question": "Same towel, same cool air. Does a breeze make it dry sooner?",
+    "idea": "The model keeps the cloth area fixed and changes only how fast the moving air takes water away. Area and air movement multiply; changing one does not secretly change the other.",
+    "limit": "The doubled speed is an illustrative setting, not a measured benefit from any fan.",
+    "formula": "Drying speed=cloth area×air setting; area=input m²; still air=1, breeze=2 arbitrary model units.",
     "recall": "Does improving airflow expose an inner towel face that is still folded shut?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
     "answer": 1,
     "concept": "breeze-is-not-extra-surface",
     "unit": "m²",
-    "inputLabel": "Area",
-    "hook": "Which change alters flux while keeping exposed area fixed?"
+    "inputLabel": "Cloth area",
+    "hook": "Same towel, same cool air. Does a breeze make it dry sooner?",
+    "engine": 2,
+    "modeLabels": [
+      "Still air",
+      "Breeze"
+    ],
+    "options": [
+      "No: only warm air helps",
+      "Yes, about 2× sooner",
+      "Only if the breeze spreads it"
+    ],
+    "plainNumbers": true,
+    "amounts": [
+      {
+        "label": "Cloth open to air",
+        "unit": "m²",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Drying speed (model)",
+    "resultUnit": "",
+    "revealLine": "{A}: {amountA0} of cloth open, drying speed {resultA}. {B}: the same {amountB0}, speed {resultB}: {ratio}× sooner, with no extra cloth open."
   },
   {
     "slug": "wetter-cloth-more-water",
@@ -898,27 +1126,47 @@ export const homeLessons: HomeSpec[] = [
       "One rectangle",
       "Two halves"
     ],
-    "question": "Does splitting this fully exposed sheet add face area?",
+    "question": "Cut a towel in half and hang both halves flat. How much face area now?",
     "idea": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation.",
     "limit": "Edges and fabric thickness are omitted from this area comparison.",
     "formula": "Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
     "recall": "How is cutting one flat sheet different from opening a folded one?",
     "source": null,
-    "answer": 2,
+    "answer": 1,
     "concept": "half-size-two-towels",
     "unit": "cm",
     "inputLabel": "Width",
-    "hook": "Does splitting this fully exposed sheet add face area?"
+    "hook": "Does splitting this fully exposed sheet add face area?",
+    "engine": 2,
+    "modeLabels": [
+      "One towel",
+      "Two halves"
+    ],
+    "options": [
+      "Double",
+      "The same",
+      "Half"
+    ],
+    "amounts": [
+      {
+        "label": "Pieces",
+        "unit": "",
+        "a": 1,
+        "b": 2
+      }
+    ],
+    "resultLabel": "Face area, both sides",
+    "revealLine": "{A}: {resultA} of face, front and back. {B}: two pieces, {resultB}: the same area, with more edges."
   },
   {
     "slug": "wet-knit-hang-stretch",
-    "title": "Hanging concentrates the load",
+    "title": "Hang the jumper or lay it flat?",
     "model": "support-load",
     "view": "cloth",
-    "initial": 600,
-    "min": 300,
-    "max": 900,
-    "step": 10,
+    "initial": 0.6,
+    "min": 0.3,
+    "max": 0.9,
+    "step": 0.1,
     "values": [
       2,
       6
@@ -927,17 +1175,39 @@ export const homeLessons: HomeSpec[] = [
       "Two support points",
       "Six support points"
     ],
-    "question": "Which ideal support shares less load per point?",
-    "idea": "In an ideal equal-share model, more support points reduce the load assigned to each. A garment’s care label can require flat drying; this drawing explains support sharing without predicting fabric stretch.",
+    "question": "A wet jumper holds about 0.6 kg. Pegged at two points, how much does each point carry?",
+    "idea": "In an ideal equal-share model, more support points reduce the load assigned to each. A care label can require flat drying; this drawing shows load sharing, not fabric stretch.",
     "limit": "Real knit deformation is not calculated. Follow the garment’s drying instructions.",
-    "formula": "Load per point=water-plus-garment mass/2 or /6 g-equivalent; equal sharing assumed.",
+    "formula": "Load per peg=wet mass/2 or /6 kg; equal sharing assumed.",
     "recall": "Why should a flat-dry instruction take priority over a convenient hanger?",
     "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
-    "answer": 1,
+    "answer": 0,
     "concept": "wet-knit-hang-stretch",
-    "unit": "g",
-    "inputLabel": "Wet mass",
-    "hook": "Which ideal support shares less load per point?"
+    "unit": "kg",
+    "inputLabel": "Wet jumper",
+    "hook": "A wet jumper holds about 0.6 kg. Pegged at two points, how much does each point carry?",
+    "engine": 2,
+    "modeLabels": [
+      "Two pegs",
+      "Six pegs"
+    ],
+    "options": [
+      "0.3 kg",
+      "0.1 kg",
+      "Almost nothing: it's soft"
+    ],
+    "plainNumbers": true,
+    "amounts": [
+      {
+        "label": "Pegs",
+        "unit": "",
+        "a": "a",
+        "b": "b"
+      }
+    ],
+    "resultLabel": "Load on each peg",
+    "resultUnit": "kg",
+    "revealLine": "{A}: each peg carries {resultA}. {B}: {resultB} each. Pegs gather the weight onto a few points; if the label says dry flat, lay the jumper flat."
   },
   {
     "slug": "towel-thickness-hidden-volume",

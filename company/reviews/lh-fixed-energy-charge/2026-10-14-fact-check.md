@@ -36,3 +36,21 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c6 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 51 (2026-10-15, W-1101)
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of the claims I verify here. Scope: the claims demo-builder reset in v2 (merge d20a39a, branch lh-res, fix plan W6/W7: TP-7 plain-words stage, TP-8 answer positions), plus this lesson's W-1078 trust-sheet row. Method: I read the rendering code first (Demo.tsx, src/components/lifehacks/ResourceLesson.tsx, src/lib/lifehacks/resource-model.ts with this lesson's `display: "plain"` spec in resource-specs.json), then ran a copy of resource-model.ts in node (scratchpad fc51/dump.mts) to print every card value, readout, slider text, assumptions line and reveal sentence at the start, the slider ends and the A/B crossings. The same dump listed the claim texts beside the stage output; I read the claim sources and build.md only after that. No build, server or screenshot. Every claim here is a derivation from declared fictional inputs; no outside source was needed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own run: at 40 kWh A = 40 × 0.2 + 10 = €18.00, B = 40 × 0.3 = €12.00; readouts '40 kWh × €0.20 + €10 fixed' / '40 kWh × €0.30'. Bills equal at 100 kWh (€30), a slider stop. |
+| c7 | verified | The hook is a question with no assertion of its own, and the stage can run it (40 → 20 kWh are stops). See c8 for the problem with its keyed answer; a reworded c8 will likely reword this hook too. |
+| c8 | disputed | The keyed answer is true only for the bill with a fixed charge. The stage shows two bills, and the question names neither. Halving usage 40 → 20 kWh (both slider stops): card A €18.00 → €14.00 (does not halve), card B 'No fee' €12.00 → €6.00 (halves exactly). A learner who answers 'Yes' about card B is marked wrong while the stage shows them right. Fix (cm-lifehacks owns the plan line, demo-builder implements): name the bill in the question, e.g. 'Your bill has a €10 fixed charge. Halve your usage from 40 to 20 kWh: does the bill halve?', or make the keyed answer conditional on the fixed charge. |
+
+**W-1078 (trust sheet matches the stage):** closed. c4 recall break-even 100 kWh; 100 kWh is a stop and both cards show €30.00 there (A lower from 110).
+
+**Result (Pass 51):** 2 verified, 1 disputed, 0 withdrawn.
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c8 (disputed): see the basis above for the fix. Owner: cm-lifehacks (plan line), then demo-builder.

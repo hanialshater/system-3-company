@@ -1,7 +1,7 @@
 {
   "slug": "lh-fixed-volume-fill",
-  "title": "Fill time is not water saved",
-  "hook": "A slower flow takes longer to fill the same bucket.",
+  "title": "Does a slower tap save water?",
+  "hook": "Filling a 10 L bucket slowly or fast. Which uses less water?",
   "domain": "lifehacks",
   "concept": "low-flow-saves-timed-use-only",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-fixed-volume-fill.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Bucket=10L, A=2min and B=4min. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Bucket=10L, A=2 min and B=4 min. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", \"x\", 5], B=[\"/\", \"x\", 2.5], variable {\"label\": \"Bucket\", \"start\": 10, \"min\": 1, \"max\": 20, \"unit\": \"L\", \"step\": 1}. Both flows deliver the 10L bucket volume (Bucket slider = 10L); fill times 10/5 = 2 min and 10/2.5 = 4 min. Water used is the bucket volume in both cases, no spills modeled. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at Bucket 10 L A = 10/5 = 2 min, B = 10/2.5 = 4 min, shown '2 min' / '4 min'; readouts '10 L at 5 L a minute' / '10 L at 2.5 L a minute'. Water timer picture: arc = value / fixed scale (max 8 min over 1-20 L). Record: company/reviews/lh-fixed-volume-fill/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-fixed-volume-fill.c3",
@@ -53,19 +53,28 @@
       "id": "lifehacks.lh-fixed-volume-fill.c4",
       "text": "A 12L container is filled by a hypothetical constant 4L/min or 2L/min flow, with no spills. How much water does the slower flow use? Correct: 12L. Both fill the same 12L; the slower flow only takes longer (6 minutes instead of 3).",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; same 12 L either way (3 vs 6 min); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",5]; B=[\"/\",\"x\",2.5]; x denotes Bucket. At x=10, A=2, B=4. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; same 12 L either way (3 vs 6 min); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: STILL OPEN (worked example uses a different fixture from the stage). c4 recall uses 4 and 2 L/min (6 vs 3 min for 12 L). The stage's rates are 5 and 2.5 L/min; at 12 L it shows 2.4 and 4.8 min. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-fixed-volume-fill.c5",
-      "text": "A slower flow takes longer to fill the same bucket.",
+      "text": "Filling a 10 L bucket slowly or fast. Which uses less water?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-volume-fill\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (5L/min)=[\"/\", \"x\", 5]; B (2.5L/min)=[\"/\", \"x\", 2.5]; x denotes Bucket, 1 to 20, start 10. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): fill time x/5 vs x/2.5 (2 vs 4 min at 10 L); same volume, slower flow takes twice as long. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-volume-fill\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (5L/min)=[\"/\", \"x\", 5]; B (2.5L/min)=[\"/\", \"x\", 2.5]; x denotes Bucket, 1 to 20, start 10. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): fill time x/5 vs x/2.5 (2 vs 4 min at 10 L); same volume, slower flow takes twice as long. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Hook scenario (10 L bucket, two flow rates) is the stage start; both cards deliver the same 10 L. No other assertion. Record: company/reviews/lh-fixed-volume-fill/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "lifehacks.lh-fixed-volume-fill.c6",
+      "text": "Title: Does a slower tap save water?. Filling a 10 L bucket slowly or fast. Which uses less water? Options: Slow / Same: 10 L either way. Correct: Same: 10 L either way.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W6), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Both flows deliver the 10L bucket volume (Bucket slider = 10L); fill times 10/5 = 2 min and 10/2.5 = 4 min. Water used is the bucket volume in both cases, no spills modeled. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Title and question are questions. Answer 'Same: 10 L either way' (spec index 1) follows from the fixed-volume, no-spill model: both readouts name 10 L; only the time differs (2 vs 4 min). Record: company/reviews/lh-fixed-volume-fill/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -89,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:low-flow-saves-timed-use-only",

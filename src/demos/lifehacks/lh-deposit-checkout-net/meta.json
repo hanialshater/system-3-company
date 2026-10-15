@@ -1,7 +1,7 @@
 {
   "slug": "lh-deposit-checkout-net",
   "title": "Checkout cost versus net cost",
-  "hook": "A refundable deposit changes checkout cash without changing the modeled net price.",
+  "hook": "You pay a deposit at checkout. Does it cost you anything?",
   "domain": "lifehacks",
   "concept": "deposit-is-not-cost",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Containers=4, A=€9.6 and B=€10.6. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Containers=4, A=€9.60 and B=€10.60. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"*\", 2.4, \"x\"], B=[\"*\", 2.65, \"x\"], variable {\"label\": \"Containers\", \"start\": 4, \"min\": 1, \"max\": 10, \"unit\": \"\", \"step\": 1}. Four containers × €0.25 = €1 deposit at checkout (€10.60); after the full refund the net is 4 × €2.40 = €9.60, the same as with no deposit. Bracket fill: [x] = €1 (4 × €0.25 at the stage's start). | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at 4 containers A = 4 × 2.40 = €9.60, B = 4 × 2.65 = €10.60; readouts '4 × €2.40, deposits refunded' / '4 × (€2.40 + €0.25 deposit)'. Record: company/reviews/lh-deposit-checkout-net/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c3",
@@ -53,19 +53,28 @@
       "id": "lifehacks.lh-deposit-checkout-net.c4",
       "text": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. You buy ten and return all ten containers. What are the checkout and after-return amounts? Correct: €26.50 at checkout, €24.00 after return. The checkout includes ten €0.25 deposits; the return takes the same €2.50 back. They are two different moments.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×(2.40+0.25) = €26.50, minus 10×0.25 = €24.00; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2.4,\"x\"]; B=[\"*\",2.65,\"x\"]; x denotes Containers. At x=4, A=9.6, B=10.6. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10×(2.40+0.25) = €26.50, minus 10×0.25 = €24.00; option 0 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall ten items: €26.50 at checkout, €24.00 after return; 10 is the slider maximum and the cards show those amounts. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-deposit-checkout-net.c5",
-      "text": "A refundable deposit changes checkout cash without changing the modeled net price.",
+      "text": "You pay a deposit at checkout. Does it cost you anything?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-deposit-checkout-net\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (After-return)=[\"*\", 2.4, \"x\"]; B (Checkout)=[\"*\", 2.65, \"x\"]; x denotes Containers, 1 to 10, start 4. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): checkout 2.65x vs after-return 2.40x (10.60 vs 9.60 at 4): checkout cash changes by 0.25 per container while the after-return amount stays 2.40 per item. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-deposit-checkout-net\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (After-return)=[\"*\", 2.4, \"x\"]; B (Checkout)=[\"*\", 2.65, \"x\"]; x denotes Containers, 1 to 10, start 4. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): checkout 2.65x vs after-return 2.40x (10.60 vs 9.60 at 4): checkout cash changes by 0.25 per container while the after-return amount stays 2.40 per item. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. The hook is a question; on the stage the checkout is higher (€10.60) and the after-return amount equals the no-deposit price (€9.60). No other assertion. Record: company/reviews/lh-deposit-checkout-net/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "lifehacks.lh-deposit-checkout-net.c6",
+      "text": "€1 deposit, refunded in full. Net cost? Options: Equal to no deposit / €1 more. Correct: Equal to no deposit.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Four containers × €0.25 = €1 deposit at checkout (€10.60); after the full refund the net is 4 × €2.40 = €9.60, the same as with no deposit. Bracket fill: [x] = €1 (4 × €0.25 at the stage's start). | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. At the stage start the total deposit is 4 × €0.25 = €1.00 (€10.60 − €9.60), so the question's '€1 deposit' is the stage's number. Refunded in full, the net cost equals no deposit (spec index 0); '€1 more' is the checkout moment. Record: company/reviews/lh-deposit-checkout-net/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -89,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:deposit-is-not-cost",

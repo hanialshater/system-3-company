@@ -34,3 +34,16 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c6 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 51 (2026-10-15, W-1101)
+
+Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or record any of the claims I verify here. Scope: the claims demo-builder reset in v2 (merge d20a39a, branch lh-res, fix plan W6/W7: TP-7 plain-words stage, TP-8 answer positions), plus this lesson's W-1078 trust-sheet row. Method: I read the rendering code first (Demo.tsx, src/components/lifehacks/ResourceLesson.tsx, src/lib/lifehacks/resource-model.ts with this lesson's `display: "plain"` spec in resource-specs.json), then ran a copy of resource-model.ts in node (scratchpad fc51/dump.mts) to print every card value, readout, slider text, assumptions line and reveal sentence at the start, the slider ends and the A/B crossings. The same dump listed the claim texts beside the stage output; I read the claim sources and build.md only after that. No build, server or screenshot. Every claim here is a derivation from declared fictional inputs; no outside source was needed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Own run: at 3 kWh A = 3 × 0.4 = €1.20, B = 3 × 0.2 = €0.60 (float noise 1.2000000000000002 shown to 2 decimals as €1.20); readouts '3 kWh × €0.40' / '3 kWh × €0.20'. |
+| c7 | verified | Both readouts name the same kWh; only the price multiplier differs, so 'No: same kWh, lower price' (spec index 1) holds in the model, and a tariff is a price, not a quantity of energy, by definition. |
+
+**W-1078 (trust sheet matches the stage):** closed. c4 recall €2.40 / €1.20 at €0.40 / €0.20 = 6 kWh; 6 kWh is a stop and the cards show €2.40 and €1.20 there.
+
+**Result (Pass 51):** 2 verified, 0 disputed, 0 withdrawn.

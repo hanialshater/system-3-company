@@ -1,7 +1,7 @@
 {
   "slug": "lh-small-leak-large-duration",
   "title": "Small flow, long duration",
-  "hook": "A millilitre-per-minute amount repeats many more times in a day than in an hour.",
+  "hook": "A tap drips 5 mL a minute. Per day, about how much?",
   "domain": "lifehacks",
   "concept": "small-leak-adds-up",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-small-leak-large-duration.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Flow=5mL/min, A=7.2L and B=0.3L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Flow=5mL/min, A=7.2L and B=0.3L. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", [\"*\", \"x\", 1440], 1000], B=[\"/\", [\"*\", \"x\", 60], 1000], variable {\"label\": \"Flow\", \"start\": 5, \"min\": 1, \"max\": 15, \"unit\": \"mL/min\", \"step\": 1}. 5 mL/min × 1,440 min = 7,200 mL = 7.2L a day (about 7L); 0.3L is one hour (5×60 = 300 mL); 70L is ten times the daily total. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at 5 mL/min A = 5 × 1440 / 1000 = 7.2 L, B = 5 × 60 / 1000 = 0.3 L; readouts '5 mL × 1,440 minutes in a day' / '5 mL × 60 minutes in an hour'. Note for demo-builder: the readout omits the mL to L step (÷ 1,000), which only the assumptions line states. Record: company/reviews/lh-small-leak-large-duration/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-small-leak-large-duration.c3",
@@ -53,10 +53,19 @@
       "id": "lifehacks.lh-small-leak-large-duration.c4",
       "text": "A hypothetical constant 10mL/min flow runs for one whole day. What volume is that? Correct: 14.4L. A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10 mL × 1,440 min = 14,400 mL = 14.4 L (0.6 L is one hour); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",\"x\",1440],1000]; B=[\"/\",[\"*\",\"x\",60],1000]; x denotes Flow. At x=5, A=7.2, B=0.3. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 10 mL × 1,440 min = 14,400 mL = 14.4 L (0.6 L is one hour); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall 10 mL/min for a day = 14.4 L; 10 mL/min is a stop and card A shows 14.4L there. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-small-leak-large-duration.c5",
+      "text": "A tap drips 5 mL a minute. Per day, about how much? Options: 0.3 L / 7 L / 70 L. Correct: 7 L.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W6), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: 5 mL/min × 1,440 min = 7,200 mL = 7.2L a day (about 7L); 0.3L is one hour (5×60 = 300 mL); 70L is ten times the daily total. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. 5 mL/min × 1,440 min = 7,200 mL = 7.2 L per day, so 'about 7 L' (spec index 1) is right; 0.3 L is one hour, 70 L is ten times too much. Stage start shows 7.2L. Record: company/reviews/lh-small-leak-large-duration/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -80,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:small-leak-adds-up",

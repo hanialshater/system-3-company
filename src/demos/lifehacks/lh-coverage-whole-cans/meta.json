@@ -1,7 +1,7 @@
 {
   "slug": "lh-coverage-whole-cans",
   "title": "Coverage and whole containers",
-  "hook": "A label says 8m² per litre. Fractional need is not a whole-container order.",
+  "hook": "The wall needs 2.3 tins of paint. How many tins do you buy?",
   "domain": "lifehacks",
   "concept": "paint-coverage",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-coverage-whole-cans.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Area=10m², A=2L and B=1.25L. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Area=18.4m², A=3L and B=2.3L. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"ceil\", [\"/\", \"x\", 8]], B=[\"/\", \"x\", 8], variable {\"label\": \"Area\", \"start\": 18.4, \"min\": 4, \"max\": 30, \"unit\": \"m\\u00b2\", \"step\": 0.4}. At Area 18.4m² and 8m² per 1L tin, exact need 18.4/8 = 2.3L; rounded up to whole tins = 3. Slider steps of 0.4m² cross 16m² (2 tins) to 16.4m² (3 tins). | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own node run of resource-model.ts on the v2 spec: at Area 18.4 m² A = ceil(18.4/8) = 3 and B = 2.3, shown as '3L' / '2.3L'; card A reads '18.4 ÷ 8 = 2.3, rounded up to 3 whole tins', card B '18.4 ÷ 8' (no ceil on screen). 18.4 is a slider stop (4 + 36 × 0.4). Allocation picture: fill = value / resourceGraphicScale (fixed, max over the range). Note for demo-builder: at 4 to 8 m² card A reads 'rounded up to 1 whole tins' (plural). Record: company/reviews/lh-coverage-whole-cans/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-coverage-whole-cans.c3",
@@ -53,19 +53,28 @@
       "id": "lifehacks.lh-coverage-whole-cans.c4",
       "text": "A fictional label states 8m² per litre; containers hold 1L and cannot be split. How many containers for 17m²? Correct: 3. 17 ÷ 8 = 2.125L exactly, and whole containers round that up to 3.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 17/8 = 2.125 L, ceil = 3 (lesson model 3 / 2.125 at 17 m²); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"ceil\",[\"/\",\"x\",8]]; B=[\"/\",\"x\",8]; x denotes Area. At x=10, A=2, B=1.25. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 17/8 = 2.125 L, ceil = 3 (lesson model 3 / 2.125 at 17 m²); option 2 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall uses the stage's fixture (8 m² per 1 L tin, whole tins). Its 17 m² lies between slider stops 16.8 and 17.2 (both 3 tins), so a learner can bracket it but not set it exactly. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.lh-coverage-whole-cans.c5",
-      "text": "A label says 8m² per litre. Fractional need is not a whole-container order.",
+      "text": "The wall needs 2.3 tins of paint. How many tins do you buy?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-coverage-whole-cans\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Whole-litres)=[\"ceil\", [\"/\", \"x\", 8]]; B (Exact-need)=[\"/\", \"x\", 8]; x denotes Area, 5 to 30, start 10. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): at 10 m², exact need 10/8 = 1.25 L vs ceil = 2 whole litres; the stage label is the fictional 8 m²/L of the details line. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-coverage-whole-cans\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Whole-litres)=[\"ceil\", [\"/\", \"x\", 8]]; B (Exact-need)=[\"/\", \"x\", 8]; x denotes Area, 5 to 30, start 10. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): at 10 m², exact need 10/8 = 1.25 L vs ceil = 2 whole litres; the stage label is the fictional 8 m²/L of the details line. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Hook scenario matches the stage start: 18.4 m² ÷ 8 m² per 1 L tin = 2.3 L = 2.3 tins exact need (card B). No other assertion. Record: company/reviews/lh-coverage-whole-cans/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "lifehacks.lh-coverage-whole-cans.c6",
+      "text": "The wall needs 2.3 tins of paint. How many tins do you buy? Options: 2.3 / 2 / 3. Correct: 3.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W6), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: At Area 18.4m² and 8m² per 1L tin, exact need 18.4/8 = 2.3L; rounded up to whole tins = 3. Slider steps of 0.4m² cross 16m² (2 tins) to 16.4m² (3 tins). | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. ceil(2.3) = 3; options 2.3 / 2 / 3, spec answer index 2 = '3'; stage card A shows 3L at the start. Note: the stage cards say litres, the hook says tins; the 1 L tin size is only in the trust sheet (c1) and in card A's 'whole tins' readout. Record: company/reviews/lh-coverage-whole-cans/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -89,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:paint-coverage",

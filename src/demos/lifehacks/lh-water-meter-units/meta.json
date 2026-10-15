@@ -1,7 +1,7 @@
 {
   "slug": "lh-water-meter-units",
   "title": "Litres and cubic metres",
-  "hook": "A thousand litres is not a thousand cubic metres.",
+  "hook": "The meter moved 1.5 m³. How many litres is that?",
   "domain": "lifehacks",
   "concept": "decimal-unit-conversion",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-water-meter-units.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Litres=1500L, A=1.5m³ and B=1,500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Litres=1500L, A=1.5m³ and B=1500m³. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", \"x\", 1000], B=\"x\", variable {\"label\": \"Litres\", \"start\": 1500, \"min\": 1000, \"max\": 3000, \"unit\": \"L\", \"step\": 100}. 1 m³ = 1,000 L, so 1.5 m³ = 1,500 L; the stage starts at 1,500L, converted A = 1.5m³. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at 1,500 L A = 1500/1000 = 1.5 m³, B = 1500 (deliberately wrong), shown '1.5m³' / '1,500m³' (the claim's '1500' is the same number without the thousands comma). Readouts '1,500 L ÷ 1,000 litres in each m³' / 'same digits, unit swapped'. Record: company/reviews/lh-water-meter-units/2026-10-15-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-water-meter-units.c3",
@@ -53,10 +53,19 @@
       "id": "lifehacks.lh-water-meter-units.c4",
       "text": "A meter reading of 1,800 litres is converted to cubic metres. What is the correct value? Correct: 1.8m³. One cubic metre holds 1,000 litres, so divide by 1,000: 1.8m³. Keeping the digits would describe a thousand times the volume.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 1,800 L / 1,000 = 1.8 m³; option 2 only; the safety B8 wrong-digits key is gone. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",\"x\",1000]; B=\"x\"; x denotes Litres. At x=1500, A=1.5, B=1500. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 1,800 L / 1,000 = 1.8 m³; option 2 only; the safety B8 wrong-digits key is gone. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall 1,800 L = 1.8 m³; 1,800 L is a stop and card A shows 1.8m³ there. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-water-meter-units.c5",
+      "text": "The meter moved 1.5 m³. How many litres is that? Options: 15 / 150 / 1500. Correct: 1500.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: 1 m³ = 1,000 L, so 1.5 m³ = 1,500 L; the stage starts at 1,500L, converted A = 1.5m³. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. 1.5 m³ × 1,000 L/m³ = 1,500 L; spec index 2 = '1500'. The stage runs the same pair in the other direction (1,500 L → 1.5 m³) at its start. Record: company/reviews/lh-water-meter-units/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -80,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:decimal-unit-conversion",

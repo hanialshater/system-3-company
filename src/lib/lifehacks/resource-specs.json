@@ -155,8 +155,8 @@
   },
   {
     "slug": "lh-two-for-one-boundary",
-    "title": "Two-for-one has a boundary",
-    "hook": "A promotion can change its effective price when you need an odd quantity.",
+    "title": "Pairs for €4",
+    "hook": "You buy 3. You pay?",
     "concept": "lh-two-for-one-boundary",
     "family": "receipt",
     "aLabel": "Singles",
@@ -187,16 +187,16 @@
       "step": 1
     },
     "unit": "€",
-    "question": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible. For three required items, which checkout is lower?",
+    "question": "You buy 3. You pay?",
     "options": [
-      "Singles",
-      "Pairs",
-      "Equal"
+      "€6",
+      "€8",
+      "€12"
     ],
     "answer": 1,
     "assumptions": "Scaled model; fictional offer; pair-only purchase.",
     "details": "Singles cost €3 each. A two-for-one pair costs €4; pairs are indivisible.",
-    "principle": "A pair-only offer bills complete pairs. The ceiling rounds an odd requirement up, so the unneeded extra item still appears on the checkout total.",
+    "principle": "Pairs are sold whole, so the number of items is rounded up to whole pairs: 3 items need 2 pairs, €8, and even 1 item costs a full €4 pair. Half the pair price per item only works for an even count.",
     "objective": "Account for indivisible promotional bundles and odd demand.",
     "misconception": "Two-for-one always halves the checkout cost for the exact quantity needed.",
     "recall": {
@@ -208,7 +208,10 @@
       ],
       "answer": 1,
       "why": "Five items need three whole pairs (rounded up), so you pay €12 including one item you did not need."
-    }
+    },
+    "wordsA": "{x} × €3 singles",
+    "roundTo": "whole pairs",
+    "display": "plain"
   },
   {
     "slug": "lh-fixed-coupon-percent",
@@ -346,7 +349,15 @@
         "x"
       ]
     ],
-    "formulaB": 28,
+    "formulaB": [
+      "+",
+      24,
+      [
+        "*",
+        4,
+        1
+      ]
+    ],
     "variable": {
       "label": "Orders",
       "start": 2,
@@ -377,12 +388,13 @@
       ],
       "answer": 1,
       "why": "The fee repeats per order: three orders pay three fees, one order pays one, a difference of two fees (€8)."
-    }
+    },
+    "display": "plain"
   },
   {
     "slug": "lh-voucher-minimum",
     "title": "The voucher has a minimum",
-    "hook": "A €5 voucher can leave a small basket unchanged.",
+    "hook": "€28 basket, €5 off from €30. Add a €2 item: does your bill go down?",
     "concept": "lh-voucher-minimum",
     "family": "receipt",
     "aLabel": "No-voucher",
@@ -417,13 +429,12 @@
       "step": 1
     },
     "unit": "€",
-    "question": "A fictional voucher subtracts €5 only when the basket is at least €30. At €28, how do the totals compare?",
+    "question": "€28 basket, €5 off from €30. Add a €2 item: does your bill go down?",
     "options": [
-      "No-voucher lower",
-      "Voucher lower",
-      "Equal"
+      "Yes, to €25",
+      "No"
     ],
-    "answer": 2,
+    "answer": 0,
     "assumptions": "Scaled model; fictional rule; €30 qualifying minimum.",
     "details": "A fictional voucher subtracts €5 only when the basket is at least €30.",
     "principle": "The threshold is part of the rule. Below €30 the deduction is zero; at €30 it becomes €5. An advertised deduction cannot be applied before checking eligibility.",
@@ -438,7 +449,10 @@
       ],
       "answer": 2,
       "why": "€29 is below the threshold, so the deduction is zero; eligibility comes before the advertised discount."
-    }
+    },
+    "wordsA": "€{x} basket",
+    "wordsB": "€{x} − €5 if the basket is €30 or more",
+    "display": "plain"
   },
   {
     "slug": "lh-sequential-discounts",
@@ -541,7 +555,7 @@
   {
     "slug": "lh-pay-for-used-quantity",
     "title": "Price per item you actually use",
-    "hook": "A ten-pack can have a lower sticker price per piece and a higher cost per used piece.",
+    "hook": "Singles at €0.50 or a ten-pack for €4: which costs less per piece you use?",
     "concept": "lh-pay-for-used-quantity",
     "family": "receipt",
     "aLabel": "Singles",
@@ -586,12 +600,15 @@
       ],
       "answer": 1,
       "why": "Divide by pieces used, not bought: €4 ÷ 8 = €0.50; with fewer used, each used piece costs more."
-    }
+    },
+    "wordsA": "€0.50 for each single",
+    "wordsB": "€4 ÷ {x} pieces used",
+    "display": "plain"
   },
   {
     "slug": "lh-deposit-checkout-net",
     "title": "Checkout cost versus net cost",
-    "hook": "A refundable deposit changes checkout cash without changing the modeled net price.",
+    "hook": "You pay a deposit at checkout. Does it cost you anything?",
     "concept": "lh-deposit-checkout-net",
     "family": "receipt",
     "aLabel": "After-return",
@@ -615,13 +632,12 @@
       "step": 1
     },
     "unit": "€",
-    "question": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return. For four items, which amount is higher?",
+    "question": "€1 deposit, refunded in full. Net cost?",
     "options": [
-      "After return",
-      "Checkout",
-      "Equal"
+      "Equal to no deposit",
+      "€1 more"
     ],
-    "answer": 1,
+    "answer": 0,
     "assumptions": "Scaled model; fictional deposit; full return assumed.",
     "details": "Each item is €2.40 plus a fictional €0.25 deposit, refunded in full on return.",
     "principle": "The checkout includes a deposit for each container. The after-return amount subtracts those same deposits. These are different moments in the arithmetic; the scenario does not describe any region’s actual deposit law.",
@@ -636,7 +652,10 @@
       ],
       "answer": 0,
       "why": "The checkout includes ten €0.25 deposits; the return takes the same €2.50 back. They are two different moments."
-    }
+    },
+    "wordsA": "{x} × €2.40, deposits refunded",
+    "wordsB": "{x} × (€2.40 + €0.25 deposit)",
+    "display": "plain"
   },
   {
     "slug": "lh-scale-recipe-portions",
@@ -902,7 +921,7 @@
   {
     "slug": "lh-coverage-whole-cans",
     "title": "Coverage and whole containers",
-    "hook": "A label says 8m² per litre. Fractional need is not a whole-container order.",
+    "hook": "The wall needs 2.3 tins of paint. How many tins do you buy?",
     "concept": "lh-coverage-whole-cans",
     "family": "allocation",
     "aLabel": "Whole-litres",
@@ -922,20 +941,20 @@
     ],
     "variable": {
       "label": "Area",
-      "start": 10,
-      "min": 5,
+      "start": 18.4,
+      "min": 4,
       "max": 30,
       "unit": "m²",
-      "step": 1
+      "step": 0.4
     },
     "unit": "L",
-    "question": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact. For 10m², which volume is larger?",
+    "question": "The wall needs 2.3 tins of paint. How many tins do you buy?",
     "options": [
-      "Whole containers",
-      "Exact need",
-      "Equal"
+      "2.3",
+      "2",
+      "3"
     ],
-    "answer": 0,
+    "answer": 2,
     "assumptions": "Scaled model; hypothetical coverage; no application guidance.",
     "details": "A fictional coverage label states 8m² per litre. Containers hold 1L; coverage is assumed exact.",
     "principle": "Area divided by coverage gives modeled exact volume. The whole-container order rounds that result up. This ignores surface losses and product variation, so it teaches order arithmetic rather than actual application instructions.",
@@ -950,7 +969,9 @@
       ],
       "answer": 2,
       "why": "17 ÷ 8 = 2.125L exactly, and whole containers round that up to 3."
-    }
+    },
+    "roundTo": "whole tins",
+    "display": "plain"
   },
   {
     "slug": "lh-percentage-overage",
@@ -1618,7 +1639,7 @@
   {
     "slug": "lh-standby-days-add-up",
     "title": "A tiny load accumulates",
-    "hook": "Two watts over a whole day and over one hour are different annual totals.",
+    "hook": "A 2 W standby all year. About how much energy?",
     "concept": "lh-standby-days-add-up",
     "family": "energy",
     "aLabel": "24h/day",
@@ -1645,20 +1666,19 @@
     "variable": {
       "label": "Days",
       "start": 365,
-      "min": 100,
+      "min": 5,
       "max": 400,
       "unit": "",
-      "step": 1
+      "step": 5
     },
     "unit": "kWh",
-    "question": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Over 365 days, which accumulates more energy?",
+    "question": "A 2 W standby all year. About how much energy?",
     "options": [
-      "24h/day",
-      "1h/day",
-      "Equal"
+      "Almost nothing",
+      "17.5 kWh"
     ],
-    "answer": 0,
-    "assumptions": "Scaled model; illustrative:2W;24h/day-or-1h/day;€0.30/kWh.",
+    "answer": 1,
+    "assumptions": "Scaled model; illustrative:2W;24h/day-or-1h/day.",
     "details": "A constant illustrative 2W load runs for either 24h/day or 1h/day.",
     "principle": "A daily amount repeats across days. The formula multiplies watts, hours per day, and days before dividing by one thousand. It describes a hypothetical constant load and does not instruct you to disconnect safety-critical equipment.",
     "objective": "Convert a small stated constant load into a multiday energy quantity.",
@@ -1673,12 +1693,15 @@
       "answer": 2,
       "why": "3W × 24h × 365 days = 26,280Wh, about 26.3kWh: a small daily amount repeats every day."
     },
-    "warning": "Tariffs and appliance ratings vary: check your own."
+    "warning": "Tariffs and appliance ratings vary: check your own.",
+    "wordsA": "2 W × 24 h × {x} days ÷ 1,000",
+    "wordsB": "2 W × 1 h × {x} days ÷ 1,000",
+    "display": "plain"
   },
   {
     "slug": "lh-duty-cycle-energy",
     "title": "Rated power and active time",
-    "hook": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
+    "hook": "A 100 W fridge compressor runs a quarter of the time. Energy per day?",
     "concept": "lh-duty-cycle-energy",
     "family": "energy",
     "aLabel": "Quarter-on",
@@ -1704,18 +1727,17 @@
     ],
     "variable": {
       "label": "Hours",
-      "start": 8,
+      "start": 24,
       "min": 1,
-      "max": 24,
+      "max": 48,
       "unit": "h",
       "step": 1
     },
     "unit": "kWh",
-    "question": "Illustrative power is 100W when on and 0W when off. A runs one quarter of the time; B continuously. Over eight hours, which modeled energy total is lower?",
+    "question": "A 100 W fridge compressor runs a quarter of the time. Energy per day?",
     "options": [
-      "Quarter-on",
-      "Always-on",
-      "Equal"
+      "0.6 kWh",
+      "2.4 kWh: 100 W all day"
     ],
     "answer": 0,
     "assumptions": "Scaled model; illustrative:100W-on;0W-off;25%-or-100%;€0.30/kWh.",
@@ -1733,12 +1755,15 @@
       "answer": 1,
       "why": "Charge only the on-time: 200W × (0.5 × 10h) = 1,000Wh = 1kWh, not 2kWh for the whole ten hours."
     },
-    "warning": "Tariffs and appliance ratings vary: check your own."
+    "warning": "Tariffs and appliance ratings vary: check your own.",
+    "wordsA": "100 W × a quarter of {x} h ÷ 1,000",
+    "wordsB": "100 W × {x} h ÷ 1,000",
+    "display": "plain"
   },
   {
     "slug": "lh-fixed-energy-charge",
     "title": "The fixed charge changes the bill",
-    "hook": "A lower per-kWh price can still produce a higher total at small usage.",
+    "hook": "Halve your usage. Does the bill halve?",
     "concept": "lh-fixed-energy-charge",
     "family": "energy",
     "aLabel": "Low-rate+fee",
@@ -1766,13 +1791,12 @@
       "step": 10
     },
     "unit": "€",
-    "question": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge. At 40kWh, which modeled bill is lower?",
+    "question": "Halve your usage. Does the bill halve?",
     "options": [
-      "A",
-      "B",
-      "Equal"
+      "No: the fixed charge stays",
+      "Yes"
     ],
-    "answer": 1,
+    "answer": 0,
     "assumptions": "Scaled model; fictional:€0.20/kWh+€10;€0.30/kWh;no taxes.",
     "details": "Fictional tariff A is €0.20/kWh plus €10. B is €0.30/kWh without a fixed charge.",
     "principle": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
@@ -1788,12 +1812,15 @@
       "answer": 1,
       "why": "A's €10 fixed charge is recovered at €0.10 per kWh saved, so the bills match at 100kWh; below that, B is lower."
     },
-    "warning": "Tariffs and appliance ratings vary: check your own."
+    "warning": "Tariffs and appliance ratings vary: check your own.",
+    "wordsA": "{x} kWh × €0.20 + €10 fixed",
+    "wordsB": "{x} kWh × €0.30",
+    "display": "plain"
   },
   {
     "slug": "lh-same-energy-new-tariff",
     "title": "Same energy, different tariff",
-    "hook": "Moving a hypothetical load changes its price while leaving its energy unchanged.",
+    "hook": "Moving to a cheaper tariff: do you use less energy?",
     "concept": "lh-same-energy-new-tariff",
     "family": "energy",
     "aLabel": "Peak",
@@ -1817,11 +1844,10 @@
       "step": 1
     },
     "unit": "€",
-    "question": "The same 3kWh is billed at fictional rates of €0.40/kWh or €0.20/kWh, with no other charges. Which modeled cost is lower at 3kWh?",
+    "question": "Moving to a cheaper tariff: do you use less energy?",
     "options": [
-      "Peak",
-      "Off-peak",
-      "Equal"
+      "Yes",
+      "No: same kWh, lower price"
     ],
     "answer": 1,
     "assumptions": "Scaled model; fictional:€0.40/kWh-or-€0.20/kWh;same kWh.",
@@ -1839,12 +1865,15 @@
       "answer": 0,
       "why": "€2.40 ÷ €0.40 = 6kWh and €1.20 ÷ €0.20 = 6kWh: the price changed, the energy did not."
     },
-    "warning": "Tariffs and appliance ratings vary: check your own."
+    "warning": "Tariffs and appliance ratings vary: check your own.",
+    "wordsA": "{x} kWh × €0.40",
+    "wordsB": "{x} kWh × €0.20",
+    "display": "plain"
   },
   {
     "slug": "lh-annual-label-cost",
     "title": "Read the annual-energy number",
-    "hook": "Two illustrative annual labels differ. How does that difference repeat over years?",
+    "hook": "The labels say €60 and €105 a year. Over 8 years, the difference between two fridges is?",
     "concept": "lh-annual-label-cost",
     "family": "energy",
     "aLabel": "200kWh/year",
@@ -1863,23 +1892,22 @@
     ],
     "variable": {
       "label": "Years",
-      "start": 2,
+      "start": 8,
       "min": 1,
       "max": 10,
       "unit": "",
       "step": 1
     },
     "unit": "€",
-    "question": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year. At two years, which modeled running cost is lower?",
+    "question": "The labels say €60 and €105 a year. Over 8 years, the difference between two fridges is?",
     "options": [
-      "200kWh/year",
-      "350kWh/year",
-      "Equal"
+      "€45: the label's gap",
+      "€360"
     ],
-    "answer": 0,
+    "answer": 1,
     "assumptions": "Scaled model; illustrative:200-or-350kWh/year;€0.30/kWh;constant years.",
     "details": "Illustrative annual quantities are 200kWh and 350kWh. Both are priced at €0.30/kWh every year.",
-    "principle": "Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product.",
+    "principle": "Multiply annual energy by years and the stated unit price. The two labels differ by €45 a year (150kWh × €0.30), so the gap grows every year: €360 over 8 years. This assumes unchanged use and tariff; it is not a measured forecast for a named product.",
     "objective": "Translate a stated annual energy figure into a multiyear running-cost model.",
     "misconception": "An annual energy label is already the multiyear cost.",
     "recall": {
@@ -1891,7 +1919,10 @@
       ],
       "answer": 1,
       "why": "Annual energy × years × price: 250 × 4 × €0.30 = €300. The label is one year, not the multiyear cost."
-    }
+    },
+    "wordsA": "200 kWh × {x} years × €0.30",
+    "wordsB": "350 kWh × {x} years × €0.30",
+    "display": "plain"
   },
   {
     "slug": "lh-purchase-plus-running",
@@ -2057,8 +2088,8 @@
   },
   {
     "slug": "lh-fixed-volume-fill",
-    "title": "Fill time is not water saved",
-    "hook": "A slower flow takes longer to fill the same bucket.",
+    "title": "Does a slower tap save water?",
+    "hook": "Filling a 10 L bucket slowly or fast. Which uses less water?",
     "concept": "lh-fixed-volume-fill",
     "family": "water",
     "aLabel": "5L/min",
@@ -2082,11 +2113,10 @@
       "step": 1
     },
     "unit": "min",
-    "question": "A fixed 10L volume is filled by hypothetical constant flows of 5L/min or 2.5L/min. No spills occur. Which modeled fill time is longer?",
+    "question": "Filling a 10 L bucket slowly or fast. Which uses less water?",
     "options": [
-      "5L/min",
-      "2.5L/min",
-      "Equal"
+      "Slow",
+      "Same: 10 L either way"
     ],
     "answer": 1,
     "assumptions": "Scaled model; illustrative rates; fixed volume; no spills.",
@@ -2103,12 +2133,15 @@
       ],
       "answer": 1,
       "why": "Both fill the same 12L; the slower flow only takes longer (6 minutes instead of 3)."
-    }
+    },
+    "wordsA": "{x} L at 5 L a minute",
+    "wordsB": "{x} L at 2.5 L a minute",
+    "display": "plain"
   },
   {
     "slug": "lh-small-leak-large-duration",
     "title": "Small flow, long duration",
-    "hook": "A millilitre-per-minute amount repeats many more times in a day than in an hour.",
+    "hook": "A tap drips 5 mL a minute. Per day, about how much?",
     "concept": "lh-small-leak-large-duration",
     "family": "water",
     "aLabel": "One-day",
@@ -2140,13 +2173,13 @@
       "step": 1
     },
     "unit": "L",
-    "question": "A hypothetical constant 5mL/min flow continues for either one hour or one day. Which modeled volume is larger?",
+    "question": "A tap drips 5 mL a minute. Per day, about how much?",
     "options": [
-      "One day",
-      "One hour",
-      "Equal"
+      "0.3 L",
+      "7 L",
+      "70 L"
     ],
-    "answer": 0,
+    "answer": 1,
     "assumptions": "Scaled model; illustrative constant flow; 24h/day; 1000mL/L.",
     "details": "A hypothetical constant 5mL/min flow continues for either one hour or one day.",
     "principle": "A day contains 1,440 minutes; an hour contains sixty. Multiply by the relevant minute count and convert millilitres to litres. A small rate and a long duration belong in the same calculation.",
@@ -2161,7 +2194,10 @@
       ],
       "answer": 2,
       "why": "A day is 1,440 minutes: 10mL × 1,440 = 14,400mL = 14.4L. A small rate and a long time belong in one calculation."
-    }
+    },
+    "wordsA": "{x} mL × 1,440 minutes in a day",
+    "wordsB": "{x} mL × 60 minutes in an hour",
+    "display": "plain"
   },
   {
     "slug": "lh-jug-rounding-extra",
@@ -2227,7 +2263,7 @@
   {
     "slug": "lh-water-meter-units",
     "title": "Litres and cubic metres",
-    "hook": "A thousand litres is not a thousand cubic metres.",
+    "hook": "The meter moved 1.5 m³. How many litres is that?",
     "concept": "lh-water-meter-units",
     "family": "water",
     "aLabel": "Converted",
@@ -2247,13 +2283,13 @@
       "step": 100
     },
     "unit": "m³",
-    "question": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits. For 1,500L, which result has the correct cubic-metre unit?",
+    "question": "The meter moved 1.5 m³. How many litres is that?",
     "options": [
-      "Converted",
-      "Same digits",
-      "Both"
+      "15",
+      "150",
+      "1500"
     ],
-    "answer": 0,
+    "answer": 2,
     "assumptions": "Scaled model; unit model; 1000L=1m³; B deliberately wrong.",
     "details": "A converts litres to cubic metres by dividing by 1,000. B incorrectly keeps the same numeric digits.",
     "principle": "Changing units can require changing the number. One cubic metre contains one thousand litres, so dividing by one thousand preserves the volume. Keeping the digits while changing the unit describes a different volume.",
@@ -2268,7 +2304,10 @@
       ],
       "answer": 2,
       "why": "One cubic metre holds 1,000 litres, so divide by 1,000: 1.8m³. Keeping the digits would describe a thousand times the volume."
-    }
+    },
+    "wordsA": "{x} L ÷ 1,000 litres in each m³",
+    "wordsB": "same digits, unit swapped",
+    "display": "plain"
   },
   {
     "slug": "lh-turn-container-volume",
@@ -2553,7 +2592,7 @@
   {
     "slug": "lh-around-versus-across",
     "title": "Around is not across",
-    "hook": "A perimeter measurement and a corner-to-corner measurement follow different paths.",
+    "hook": "A 3×4 m room. Corner to corner is how far?",
     "concept": "lh-around-versus-across",
     "family": "geometry",
     "aLabel": "Perimeter",
@@ -2588,16 +2627,16 @@
       "step": 1
     },
     "unit": "m",
-    "question": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal. Which path needs more length?",
+    "question": "A 3×4 m room. Corner to corner is how far?",
     "options": [
-      "Perimeter",
-      "Diagonal",
-      "Equal"
+      "7 m: along two walls",
+      "5 m",
+      "3.5 m"
     ],
-    "answer": 0,
+    "answer": 1,
     "assumptions": "Scaled model; ideal rectangle; length only.",
     "details": "An ideal rectangle is 4m wide and 3m high. Compare one full perimeter with one diagonal.",
-    "principle": "Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements.",
+    "principle": "Perimeter adds all four edges: 2 × (4 + 3) = 14m. Along two walls is 4 + 3 = 7m. Corner to corner is one straight line: 5m, because 5 × 5 = 4 × 4 + 3 × 3. Name the route before you measure.",
     "objective": "Select the correct length formula for boundary versus corner-to-corner routes.",
     "misconception": "Every measurement associated with a rectangle is its perimeter.",
     "recall": {
@@ -2609,7 +2648,9 @@
       ],
       "answer": 0,
       "why": "The diagonal is √(8² + 6²) = 10m; 28m is the perimeter, a different route."
-    }
+    },
+    "wordsB": "corner to corner: {B} × {B} = {x} × {x} + 3 × 3",
+    "display": "plain"
   },
   {
     "slug": "lh-reuse-cost-per-use",

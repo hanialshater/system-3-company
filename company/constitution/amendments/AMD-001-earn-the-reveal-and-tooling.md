@@ -708,10 +708,12 @@ AMD-002 (allowed, because it changes nothing about how the founder is judged).
 ## Decision (constitutional review board)
 (Left for the board. Record a decision for each part: (a), (b), (c1), (c2).)
 
-### (c2) with rider R1: what the founder signs (prepared 2026-10-15; not signed)
+### (c2) with rider R1: what the founder signs (prepared 2026-10-15; SIGNED 2026-10-15)
 > I ratify AMD-001 part **(c2) with rider R1**, as written in "(c2) ratification packet" above: the generator moves to `tools/registry.mjs`, and `check` judges its output with invariants 1 to 6. It is applied in **one commit** with the A1 split, from `AMD-001-c2/tools-company-mjs.c2-r1.diff`, under `S3_AMENDMENT=AMD-001` with the trailer `Amendment: AMD-001`, after the principal-engineer's review of the split and the EDD-007 readiness record. This ratifies nothing in parts (a), (b), (c1) or (d). I accept objections O1, O2, O4 and O5 as open with their triggers, and O3 mitigated until AMD-003. Board: sole-approver ratification / board sat (strike one).
 >
-> Signed: ________ (founder), date ________
+> Signed: founder, 2026-10-15. Sole-approver ratification. Founder's words, in the chief of staff conversation: "Ok do 2", answering the item "Sign AMD-001 (c2): closes the leak that puts drafts' metadata in the downloadable code, and makes phones about 5x faster". Recorded by: chief of staff.
+>
+> Sequencing (O3): the `status:` line stays `proposed` until the applying commit, which sets it to `ratified`; a separate follow-up push sets `applied in part ((c2)+R1, <sha>)` once CI is green, closing the licence.
 
 Deploying the result is a separate founder approval.
 

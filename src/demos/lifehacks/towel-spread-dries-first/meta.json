@@ -1,7 +1,7 @@
 {
   "slug": "towel-spread-dries-first",
-  "title": "Same towel, smaller doorway",
-  "hook": "Same water and model flux: which towel layout dries sooner?",
+  "title": "Fold it or spread it?",
+  "hook": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
   "domain": "lifehacks",
   "concept": "surface-area-drying",
   "status": "review",
@@ -23,48 +23,45 @@
   "claims": [
     {
       "id": "lifehacks.towel-spread-dries-first.c1",
-      "text": "Spreading the towel exposes both large faces. This constant-rate model divides water mass by exposed area and assumed flux; a smaller evaporation doorway gives a longer model time.",
+      "text": "Spreading the towel opens both large faces to the air. In this model each square metre of open face dries at the same speed, so the time falls as the open face grows.",
       "support": "source",
-      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.c2",
       "text": "Real drying depends on fabric, temperature, humidity and airflow; this is not a twelve-hour promise.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.c3",
       "text": "Area=2×(width/100)×1.4/layers; layers=4 or 1. Model hours=0.6/(area×0.1020408163). Edges and falling-rate drying omitted.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.c4",
-      "text": "Same water and model flux: which towel layout dries sooner?",
+      "text": "Title: Fold it or spread it? Hook: Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long? Options: 3 h / 6 h / 12 h: same water. Correct option: 3 h.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'dry' at the starting input 70; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.recall",
       "text": "In this model, time = water mass ÷ (exposed area × flux). With the same water and flux, doubling exposed area halves the model time. This does not promise a real household drying-time ratio.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.towel-spread-dries-first.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Folded in four: 0.49 m² of face open to the air, 12 h to dry. Spread flat: 1.96 m² open, 3 h. The same water leaves through 4 times the face, so it dries 4 times faster.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -88,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:surface-area-drying",
     "prerequisites": [],

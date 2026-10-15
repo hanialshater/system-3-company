@@ -1,7 +1,7 @@
 {
   "slug": "lh-fixed-energy-charge",
   "title": "The fixed charge changes the bill",
-  "hook": "A lower per-kWh price can still produce a higher total at small usage.",
+  "hook": "Halve your usage. Does the bill halve?",
   "domain": "lifehacks",
   "concept": "standing-charge-vs-unit-rate",
   "status": "review",
@@ -33,12 +33,12 @@
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Usage=40kWh, A=€18 and B=€12. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Usage=40kWh, A=€18.00 and B=€12.00. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"+\", [\"*\", \"x\", 0.2], 10], B=[\"*\", \"x\", 0.3], variable {\"label\": \"Usage\", \"start\": 40, \"min\": 10, \"max\": 140, \"unit\": \"kWh\", \"step\": 10}. Tariff A at 40kWh: 40 × 0.20 + 10 = €18; at 20kWh: €14, not €9, because the €10 fixed charge stays. Tariff B (no fixed charge) halves, €12 to €6. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at 40 kWh A = 40 × 0.2 + 10 = €18.00, B = 40 × 0.3 = €12.00; readouts '40 kWh × €0.20 + €10 fixed' / '40 kWh × €0.30'. Bills equal at 100 kWh (€30), a slider stop. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c3",
@@ -53,7 +53,7 @@
       "id": "lifehacks.lh-fixed-energy-charge.c4",
       "text": "Fictional tariff A is €0.20/kWh plus €10; tariff B is €0.30/kWh with no fixed charge. Above what usage is A's bill lower? Correct: 100kWh. A's €10 fixed charge is recovered at €0.10 per kWh saved, so the bills match at 100kWh; below that, B is lower.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 0.2u+10 < 0.3u iff u > 100 (lesson model €30/€30 at 100 kWh); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 0.2u+10 < 0.3u iff u > 100 (lesson model €30/€30 at 100 kWh); option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall break-even 100 kWh; 100 kWh is a stop and both cards show €30.00 there (A lower from 110). Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
@@ -79,12 +79,21 @@
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c7",
-      "text": "A lower per-kWh price can still produce a higher total at small usage.",
+      "text": "Halve your usage. Does the bill halve?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 0.2u+10, B = 0.3u: at 40 kWh A €18 > B €12; A is higher below 100 kWh, equal at 100, lower above. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 0.2u+10, B = 0.3u: at 40 kWh A €18 > B €12; A is higher below 100 kWh, equal at 100, lower above. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. The hook is a question with no assertion of its own, and the stage can run it (40 → 20 kWh are stops). See c8 for the problem with its keyed answer; a reworded c8 will likely reword this hook too. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "lifehacks.lh-fixed-energy-charge.c8",
+      "text": "Halve your usage. Does the bill halve? Options: No: the fixed charge stays / Yes. Correct: No: the fixed charge stays.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Tariff A at 40kWh: 40 × 0.20 + 10 = €18; at 20kWh: €14, not €9, because the €10 fixed charge stays. Tariff B (no fixed charge) halves, €12 to €6. | FC pass 51 (fact-checker, 2026-10-15, W-1101): DISPUTED. The keyed answer is true only for the bill with a fixed charge. The stage shows two bills, and the question names neither. Halving usage 40 → 20 kWh (both slider stops): card A €18.00 → €14.00 (does not halve), card B 'No fee' €12.00 → €6.00 (halves exactly). A learner who answers 'Yes' about card B is marked wrong while the stage shows them right. Fix (cm-lifehacks owns the plan line, demo-builder implements): name the bill in the question, e.g. 'Your bill has a €10 fixed charge. Halve your usage from 40 to 20 kWh: does the bill halve?', or make the keyed answer conditional on the fixed charge. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     }
   ],
   "confidence": "",
@@ -108,7 +117,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:standing-charge-vs-unit-rate",

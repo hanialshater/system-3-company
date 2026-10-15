@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { evaluateResource, resourceAmount, resourceAxisEnd, resourceCylinderDimensions, resourceFormula, resourceGraphicScale, resourceNumber, resourcePair, type ResourceSpec } from "@/lib/lifehacks/resource-model";
+import { evaluateResource, resourceAmountFor, resourceAssumptions, resourceAxisEnd, resourceCylinderDimensions, resourceGraphicScale, resourceLabel, resourceNumber, resourcePair, resourceReadout, resourceVariableText, type ResourceSpec } from "@/lib/lifehacks/resource-model";
 import { StageStatus, useKeepFocus } from "./a11y";
 import s from "./ResourceLesson.module.css";
 
@@ -22,13 +22,28 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
   const values = resourcePair(spec, x);
   const max = resourceGraphicScale(spec);
   const proportion = (index: number) => seen[index] ? Math.max(0, Math.min(1, values[index] / max)) : 0;
-  const imageName = `${spec.title}. ${seen[0] ? `${spec.aLabel}: ${resourceAmount(values[0], spec.unit)}` : "A not tested"}; ${seen[1] ? `${spec.bLabel}: ${resourceAmount(values[1], spec.unit)}` : "B not tested"}. ${spec.variable.label}: ${x}${spec.variable.unit}.`;
+  const imageName = `${spec.title}. ${seen[0] ? `${resourceLabel(spec, spec.aLabel)}: ${resourceAmountFor(spec, values[0])}` : "A not tested"}; ${seen[1] ? `${resourceLabel(spec, spec.bLabel)}: ${resourceAmountFor(spec, values[1])}` : "B not tested"}. ${spec.variable.label}: ${resourceVariableText(spec, x)}.`;
   return (
     <svg viewBox="0 0 320 130" className={s.picture} role="img" aria-label={imageName}>
       {[0, 1].map((i) => {
         const left = 14 + i * 158;
         const selectedClass = selected === i ? s.active : "";
         const p = proportion(i);
+        if (spec.slug === "lh-split-order-fixed-fee") {
+          // Fix plan W7: one fee line per order on each receipt, so the repeated fee is visible, not only summed.
+          const fees = i === 0 ? x : 1;
+          return (
+            <g key={i}>
+              <path d={`M${left + 14} 4h104v111l-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5V4Z`} className={`${s.paper} ${selectedClass}`} />
+              {seen[i] ? <>
+                <text x={left + 22} y={18} fontSize="9" fill="var(--fg)">Goods €24.00</text>
+                {Array.from({ length: fees }, (_, k) => <text key={k} x={left + 22} y={30 + k * 11} fontSize="9" fill="var(--fg)">Fee €4.00</text>)}
+                <path d={`M${left + 22} ${30 + fees * 11 - 6}h88`} className={s.path} />
+                <text x={left + 22} y={30 + fees * 11 + 6} fontSize="9" fontWeight="700" fill="var(--fg)">Total {resourceAmountFor(spec, values[i])}</text>
+              </> : [0, 1, 2].map((line) => <line key={line} x1={left + 22} y1={22 + line * 17} x2={left + 70} y2={22 + line * 17} className={s.path} />)}
+            </g>
+          );
+        }
         if (spec.family === "receipt") return (
           <g key={i}>
             <path d={`M${left + 24} 8h84v107l-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5-7-5-7 5V8Z`} className={`${s.paper} ${selectedClass}`} />
@@ -117,7 +132,7 @@ function ResourcePicture({ spec, x, seen, selected }: { spec: ResourceSpec; x: n
             <path d={`M${left + 20} 102V15M${left + 20} 102h111`} className={s.ink} />
             <path d={samples.map((point, tick) => `${tick === 0 ? "M" : "L"}${point.x} ${point.y}`).join(" ")} className={`${s.ink} ${selectedClass}`} />
             {samples.map((point, tick) => <circle key={tick} cx={point.x} cy={point.y} r={seen[i] ? 4 : 2} className={seen[i] ? s.solid : s.ghost} />)}
-            <text x={left + 20} y={10} fill="var(--muted)" fontSize="11">{resourceAmount(max, spec.unit)}</text>
+            <text x={left + 20} y={10} fill="var(--muted)" fontSize="11">{resourceAmountFor(spec, max)}</text>
             <text x={left + 70} y={124} textAnchor="middle" fill="var(--muted)" fontSize="11">{resourceAxisEnd(spec, i, x)}</text>
           </g>
         );
@@ -155,19 +170,19 @@ export function ResourceStage({ spec, x, selected, seen, children }: { spec: Res
   // W-557: the Test A/B buttons live in each lesson file and disable themselves; keep focus in the stage.
   const keep = useKeepFocus<HTMLDivElement>();
   // W-558/F3: one atomic status region; the result cards are no longer a live region with live outputs inside.
-  const status = [0, 1].filter((i) => seen[i]).map((i) => `${i === 0 ? "A" : "B"}: ${resourceAmount(values[i], spec.unit)}`).join("; ");
+  const status = [0, 1].filter((i) => seen[i]).map((i) => `${i === 0 ? "A" : "B"}: ${resourceAmountFor(spec, values[i])}`).join("; ");
   return (
     <div className={s.wrap} ref={keep}>
       <ResourcePicture spec={spec} x={x} seen={seen} selected={selected} />
       <StageStatus locked={false} text={status} />
       <div className={s.results}>
         {[0, 1].map((i) => <div key={i} className={s.result} data-active={selected === i}>
-          <span className={s.label}>{i === 0 ? "A" : "B"}: {i === 0 ? spec.aLabel : spec.bLabel}</span>
-          <span className={s.value}>{seen[i] ? resourceAmount(values[i], spec.unit) : "?"}</span>
-          <span className={s.formula}>{seen[i] ? resourceFormula(i === 0 ? spec.formulaA : spec.formulaB, x) : "—"}</span>
+          <span className={s.label}>{i === 0 ? "A" : "B"}: {resourceLabel(spec, i === 0 ? spec.aLabel : spec.bLabel)}</span>
+          <span className={s.value}>{seen[i] ? resourceAmountFor(spec, values[i]) : "?"}</span>
+          <span className={s.formula}>{seen[i] ? resourceReadout(spec, i as 0 | 1, x) : "—"}</span>
         </div>)}
       </div>
-      <p className={s.assumptions}>{spec.family === "geometry" ? spec.assumptions : spec.assumptions.replace("Scaled model;", `Full scale:${resourceAmount(resourceGraphicScale(spec), spec.unit)};`)}</p>
+      <p className={s.assumptions}>{resourceAssumptions(spec)}</p>
       {spec.warning && <p className={s.assumptions}>{spec.warning}</p>}
       {children}
     </div>
@@ -177,8 +192,10 @@ export function ResourceStage({ spec, x, selected, seen, children }: { spec: Res
 export function ResourceReveal({ spec, x }: { spec: ResourceSpec; x: number }) {
   const initial = resourcePair(spec, spec.variable.start);
   const now = resourcePair(spec, x);
+  // Older lessons keep their reviewed reveal text exactly ("1,500L"); plain lessons spell money and word units out.
+  const at = (value: number) => spec.display === "plain" ? resourceVariableText(spec, value) : `${resourceNumber(value)}${spec.variable.unit}`;
   return <>
-    <p>At the prediction’s {resourceNumber(spec.variable.start)}{spec.variable.unit}, A gives <strong>{resourceAmount(initial[0], spec.unit)}</strong> and B gives <strong>{resourceAmount(initial[1], spec.unit)}</strong>. Your stage now uses {resourceNumber(x)}{spec.variable.unit}: A {resourceAmount(now[0], spec.unit)}, B {resourceAmount(now[1], spec.unit)}.</p>
+    <p>At the prediction’s {at(spec.variable.start)}, A gives <strong>{resourceAmountFor(spec, initial[0])}</strong> and B gives <strong>{resourceAmountFor(spec, initial[1])}</strong>. Your stage now uses {at(x)}: A {resourceAmountFor(spec, now[0])}, B {resourceAmountFor(spec, now[1])}.</p>
     <p>{spec.principle}</p>
   </>;
 }

@@ -51,3 +51,15 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c5 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 50
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1084). I did not write, build or record any of these claims. Method: I read Demo.tsx and the shared spec or model files for every learner-visible string before any builder note. Derivations were re-run in my own node script (session scratchpad fc50/m.mjs). Sources were opened myself: PMC full text via the OAI API, the Crossref REST API (publisher-deposited abstracts), and raw.githubusercontent.com (OpenStax CNXML). The proxy refuses mdpi.com, pubs.aip.org, doaj.org, arxiv.org, eia.gov, ofgem.gov.uk, fsis.usda.gov, food.gov.uk, cdc.gov and who.int, and WebFetch fails DNS. Search-result summaries were not counted as opened sources. No fetched page contained instructions addressed to an AI; all were treated as data. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 50').
+
+Scope: c5, the cooking-time safety line.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | held unverified | HELD UNVERIFIED (not disputed). The factual half ('Cooking times do not scale in proportion to quantity') still has no opened source. Hosts tried this pass: fsis.usda.gov, food.gov.uk, foodsafety.gov, cdc.gov, who.int, arxiv.org, pubs.aip.org, doaj.org, semanticscholar and openalex all fail at the proxy. PMC and Crossref open, but no PMC article and no Crossref-deposited abstract I found states how cooking time scales with quantity. A candidate the builder or a connected host can open: Jin, Wang & Wang (2021), 'Physics in turkey cooking: Revisit the Panofsky formula', AIP Advances 11(11), DOI 10.1063/5.0067811, CC BY 4.0 (metadata via Crossref; the full text was not opened, so it is not evidence here). The second half ('follow the recipe's own times and check food is cooked through') is advice, not a factual claim. My read of the wording: plausible and hedged; I found nothing against it. Not verified on an unopened source. |
+
+**Result (Pass 50):** 0 verified, 0 disputed, 1 held unverified. Still open: c5 needs an openable food-safety or heat-transfer source (candidate in the note), or an evaluation-steward ruling on safety hedges. It blocks publishing.

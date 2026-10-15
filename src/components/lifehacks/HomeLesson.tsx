@@ -8,8 +8,22 @@ import { SeenTable } from './SeenTable';
 import { useMilestones } from '@/kit/milestones';
 import { homeLessons } from '@/lib/lifehacks/home-lessons';
 import { evaluateHome, fmt, sourceConditionedCordTrials, rectangularPackingScene, homeRulerScene, homeCordScene, type HomeSpec, type HomeResult } from '@/lib/lifehacks/home-models';
-import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, type Mode } from '@/lib/lifehacks/engine-v2';
+import { homeColumn, homeModeLabels, homeResultLabel, homeRevealLine, homeSliderMatters, type Mode } from '@/lib/lifehacks/engine-v2';
 import s from './HomeLesson.module.css';
+import a11y from './a11y.module.css';
+
+/**
+ * TP-1 (W-598, W-1066; engines-v2 spec section 1 and R1) for the v1 Home stages: the layout in effect is drawn
+ * selected (tint, 2 px border, leading check mark), carries aria-pressed="true" and stays focusable (aria-disabled,
+ * W-557). It is never dimmed. The other layout is outlined, aria-pressed="false", and pressable. Button text is
+ * unchanged; v2 lessons use ModeControl, which adds the A/B letter.
+ */
+function HomeMode({ locked, pressed, onPress, children }: { locked: boolean; pressed: boolean; onPress: () => void; children: ReactNode }) {
+  return <StageControl locked={locked} inactive={pressed} aria-pressed={!locked && pressed}
+    className={`${a11y.mode}${!locked && pressed ? ' active' : ''}`} onClick={onPress}>
+    {!locked && pressed && <span aria-hidden="true">✓ </span>}{children}
+  </StageControl>;
+}
 
 /** v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none. */
 type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string };
@@ -123,9 +137,63 @@ function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number
 
 const caption=(spec:HomeSpec)=>spec.slug==='door-swing-clearance'?'Model; keep exits clear':spec.slug==='rug-chair-pullback'?'Model; keep paths clear':spec.view==='cord'?'Plain cord; storage only':spec.view==='mechanics'?'Model; no safe load limit':'Illustrative model';
 
+/**
+ * Wave W2 pictures (r11 fix plan, laundry drying): each draws the arrangement the mode puts on the stage, with the
+ * quantity the lesson asks about visible (touching faces, the overlapped patch, the two halves apart, the vapour in
+ * the air, the breeze, the stack height, every shirt counted). `mode` null (neutral start) draws A's arrangement.
+ */
+function w2Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
+  const v=spec.values,b=mode==='b';
+  const up=(x:number,y:number,len:number,key:string)=><path key={key} d={`M${x},${y}v-${len}l-4,6m4,-6l4,6`} className={s.air}/>;
+  switch(spec.model) {
+    case 'exposed': return b
+      ? <><circle cx="90" cy="40" r="6" fill="var(--fg)"/><circle cx="210" cy="40" r="6" fill="var(--fg)"/>
+          <rect x="84" y="32" width="132" height="8" rx="3" className={s.object}/><rect x="74" y="38" width="10" height="150" rx="3" className={s.object}/><rect x="216" y="38" width="10" height="150" rx="3" className={s.object}/>
+          {[110,150,190].map((x,i)=>up(x,190,40,`a${i}`))}{[54,246].map((x,i)=>up(x,190,40,`o${i}`))}</>
+      : <><circle cx="150" cy="40" r="6" fill="var(--fg)"/><path d="M140,46a10,10 0 0 1 20,0" className={s.line}/>
+          <rect x="139" y="46" width="11" height="150" rx="3" className={s.object}/><rect x="150" y="46" width="11" height="150" rx="3" className={s.object}/>
+          <rect x="145" y="50" width="10" height="144" className={s.overlap}/>{[124,176].map((x,i)=>up(x,190,40,`o${i}`))}</>;
+    case 'overlap': {
+      const k=1.3,w=v[0]*k,h=v[1]*k,y=70,x1=b?12:20,x2=b?158:20+w-p*k;
+      return <><rect x={x1} y={y} width={w} height={h} rx="3" className={s.object}/><rect x={x2} y={y} width={w} height={h} rx="3" className={s.object}/>
+        {!b&&<rect x={x2} y={y} width={p*k} height={h} className={s.overlap}/>}<line x1="5" x2="295" y1={y-12} y2={y-12} className={s.line}/></>;
+    }
+    case 'split-area': {
+      const k=1.2,w=p*k,h=120*k;
+      return b
+        ? <><rect x={150-w-8} y={50+h/4} width={w} height={h/2} rx="3" className={s.object}/><rect x={158} y={50+h/4} width={w} height={h/2} rx="3" className={s.object}/></>
+        : <rect x={150-w/2} y={50} width={w} height={h} rx="3" className={s.object}/>;
+    }
+    case 'humidity': {
+      const rh=b?Math.max(0,p-v[1]):p,push=100-rh,dots=Math.round(rh/5);
+      return <><rect x="115" y="70" width="70" height="140" rx="3" className={s.object}/>
+        {Array.from({length:dots},(_,i)=>{ const col=i%4,left=Math.floor(i/4)%2===0,row=Math.floor(i/8); return <circle key={i} cx={left?20+col*22:216+col*22} cy={50+row*32+(col%2)*14} r="4" className={s.hidden}/>; })}
+        {[130,150,170].map((x,i)=>up(x,64,Math.max(8,push*0.55),`p${i}`))}</>;
+    }
+    case 'flux': {
+      const w=40+p*40;
+      return <><rect x={150-w/2+20} y="70" width={w} height="130" rx="3" className={s.object}/>
+        {b&&[95,135,175].map((y,i)=><path key={i} d={`M8,${y}q12,-8 24,0t24,0t24,0m-8,-5l8,5l-8,5`} className={s.air}/>)}
+        {[150-w/4+20,170,150+w/4+20].map((x,i)=>up(x,64,b?44:22,`u${i}`))}</>;
+    }
+    case 'layers': {
+      const n=Math.min(12,Math.max(1,Math.round(p))),t=(b?2*v[1]:v[1])*v[0]*8,w=b?100:200;
+      return <><line x1="20" x2="280" y1="226" y2="226" className={s.line}/>{Array.from({length:n},(_,i)=><rect key={i} x={150-w/2} y={226-(i+1)*t} width={w} height={t} rx="1" className={s.object}/>)}</>;
+    }
+    case 'water-load': {
+      const n=Math.min(16,Math.max(1,Math.round(p)));
+      return <>{Array.from({length:n},(_,i)=>{ const x=40+(i%4)*62,y=30+Math.floor(i/4)*52,on=b||i===0;
+        return <path key={i} d={`M${x},${y}l12,-6h16l12,6l-6,10h-6v26h-20v-26h-6z`} className={on?s.target:s.hidden}/>; })}</>;
+    }
+    default: return null;
+  }
+}
+
 /** v2 picture marks (spec section 3): a to-scale fit drawing with a dimension line, or a radius stripe per disc. */
 function v2Marks(spec:HomeSpec,p:number,mode:Mode|null):SceneV2Props {
   const v=spec.values;
+  const w2=w2Picture(spec,p,mode);
+  if(w2) return {override:w2};
   if(spec.pictureMark==='dimension'&&spec.model==='clearance') {
     // 4 px per cm, centred: opening, body and both handles share one scale, so the outermost points can be judged by eye.
     const k=4,body=v[0]*k,h=v[1]*k,open=p*k,L=150-open/2,R=150+open/2,env=body+2*h;
@@ -159,7 +227,10 @@ function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:H
   const [A,B]=homeModeLabels(spec);
   const press=(m:Mode)=>{setMode(m);setSeen(prev=>({...prev,[m]:true}));reach(m==='a'?'tested-a':'tested-b');};
   const cols={a:homeColumn(spec,p,'a'),b:homeColumn(spec,p,'b')};
-  const shown=(m:Mode)=>!locked&&seen[m];
+  // TP-2(a) (W-1066): once the prediction is in, both columns show their numbers side by side, live with the slider;
+  // "?" stays only while locked. The A and B presses still switch the picture and earn the reveal (tested-a, tested-b).
+  void seen;
+  const shown=(_m:Mode)=>!locked;
   const resultLabel=homeResultLabel(spec,p);
   const rows=[...(spec.amounts??[]).map((r,i)=>({label:r.label,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].amounts[i]:'?')})),
     {label:resultLabel,cells:(['a','b'] as Mode[]).map(m=>shown(m)?cols[m].result:'?')}];
@@ -176,7 +247,8 @@ function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:H
       <ModeControl locked={locked} pressed={!locked&&mode==='a'} letter="A" label={A} onPress={()=>press('a')}/>
       <ModeControl locked={locked} pressed={!locked&&mode==='b'} letter="B" label={B} onPress={()=>press('b')}/>
     </div>
-    <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)} ${spec.unit}`.trim()} disabled={locked} onChange={setP}/>
+    {/* TP-2(c): a slider that changes no cell in either column is not drawn. */}
+    {homeSliderMatters(spec)&&<Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)} ${spec.unit}`.trim()} disabled={locked} onChange={setP}/>}
     <StageStatus locked={locked} text={status}/>
     {!textInPicture&&<p className={s.caption}>{caption(spec)}</p>}
   </div>;
@@ -188,8 +260,8 @@ function Stage({spec,p,setP,after,setAfter,locked,interact}:{spec:HomeSpec;p:num
   return <div className={s.stage}>
     <Scene spec={spec} p={p} after={after} result={result} locked={locked}/>
     <div className={s.controls}>
-      <StageControl locked={locked} inactive={!after} onClick={()=>{setAfter(false);}}>{spec.choices[0]}</StageControl>
-      <StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</StageControl>
+      <HomeMode locked={locked} pressed={!after} onPress={()=>{setAfter(false);}}>{spec.choices[0]}</HomeMode>
+      <HomeMode locked={locked} pressed={after} onPress={()=>{setAfter(true);reach('comparison');}}>{spec.choices[1]}</HomeMode>
     </div>
     <Slider label={spec.inputLabel} value={p} min={spec.min} max={spec.max} step={spec.step} format={v=>`${fmt(v)}${spec.unit}`} disabled={locked} onChange={setP}/>
     <p className={s.inputs}>{result.inputs}</p>
@@ -209,23 +281,32 @@ function WobbleStage({p,setP,locked,interact}:{p:number;setP:(p:number)=>void;lo
       <path d="M35,200h230" className={s.line}/><path d={`M90,165v${35-gap*4}`} className={s.object}/><path d={`M190,165v${35+gap*4}`} className={s.target}/><path d="M70,164h140" className={s.line}/><circle cx="90" cy={200-gap*4} r="4" fill="var(--domain)"/><circle cx="190" cy={200+gap*4} r="4" fill="var(--good)"/>
       <text x="150" y="222" textAnchor="middle">Signed-contact schematic</text>
     </svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={p===0} onClick={()=>setP(0)}>Start angle</StageControl><StageControl locked={locked} inactive={p===45} onClick={()=>{setP(45);reach('zero');}}>Find balance</StageControl></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={p===0} onPress={()=>setP(0)}>Start angle</HomeMode><HomeMode locked={locked} pressed={p===45} onPress={()=>{setP(45);reach('zero');}}>Find balance</HomeMode></div>
     <Slider label="Turn" value={p} min={0} max={90} disabled={locked} format={n=>`${n}°`} onChange={n=>{setP(n);if(n===45)reach('zero');}}/>
     <p className={s.inputs}>Equal legs · gentle continuous ground</p><div className={s.data}><span>Signed gap</span><strong>{locked?'?':`${fmt(gap)}mm`}</strong></div><StageStatus locked={locked} text={`Signed gap ${fmt(gap)}mm`}/>
     <p className={s.caption}>Not necessarily level. Clear hot drinks.</p>
   </div>;
 }
 
-function BowStage({steps,setSteps,after,setAfter,locked,interact}:{steps:number;setSteps:(n:number)=>void;after:boolean;setAfter:(v:boolean)=>void;locked:boolean;interact:()=>void}) {
-  const {reach}=useMilestones(interact,['wrap','walk']);
-  const weak=Math.max(0,20-steps*0.8),strong=Math.max(0,20-steps*(after?0.3:0.8));
-  const shoe=(x:number,balanced:boolean,remaining:number)=><g transform={`translate(${x},20)`}><path d="M-35,180V50Q-35,0 0,0T35,50v130z" className={s.outline}/>{[-1,1].map(i=><g key={i} transform={`rotate(${balanced?0:90},0,105)`}><ellipse cx={i*(15+remaining/2)} cy="105" rx={Math.max(2,remaining)} ry="12" className={i<0?s.object:s.target}/></g>)}<path d="M-30,72L30,92" className={s.object}/><path d="M-30,92L30,72" className={s.target}/><path d="M-7,86l14,-7" stroke="var(--bg-2)" strokeWidth="5"/><path d="M-8,86l16,-7" className={s.target}/><path d={balanced?"M-22,115C-16,83 18,82 22,115L-15,103":"M22,115C16,83 -18,82 -22,115L15,103"} className={s.object}/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} stroke="var(--bg-2)" strokeWidth="6"/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} className={s.target}/><text x="0" y="205" textAnchor="middle">{balanced?'Opposing':'Matching'}</text><text x="0" y="222" textAnchor="middle">{locked?'?':`${fmt(remaining)}mm`}</text></g>;
+/**
+ * W2 / TP-2 (square-bow-stays-tied): both bows are drawn from the start, the twisted one (both knot stages the same
+ * way round) and the flat one (the second stage reversed). Walking shrinks both loops; the twisted bow's loops run
+ * out first. No loss rates or step counters on screen (TP-2d).
+ */
+const bowLoops=(steps:number,spec:HomeSpec)=>{ const [start=20,twist=0.8,flat=0.3]=spec.values; return {twisted:Math.max(0,start-steps*twist),flat:Math.max(0,start-steps*flat)}; };
+const WALK=25;
+function BowStage({spec,steps,setSteps,locked,interact}:{spec:HomeSpec;steps:number;setSteps:(n:number)=>void;locked:boolean;interact:()=>void}) {
+  const {reach}=useMilestones(interact,['walk']);
+  const {twisted,flat}=bowLoops(steps,spec);
+  const loopText=(mm:number)=>locked?'?':mm<=0?'undone':`${fmt(mm)} mm`;
+  const shoe=(x:number,balanced:boolean,remaining:number)=><g transform={`translate(${x},20)`}><path d="M-35,180V50Q-35,0 0,0T35,50v130z" className={s.outline}/>{remaining>0&&[-1,1].map(i=><g key={i} transform={`rotate(${balanced?0:90},0,105)`}><ellipse cx={i*(15+remaining/2)} cy="105" rx={Math.max(2,remaining)} ry="12" className={i<0?s.object:s.target}/></g>)}<path d="M-30,72L30,92" className={s.object}/><path d="M-30,92L30,72" className={s.target}/><path d="M-7,86l14,-7" stroke="var(--bg-2)" strokeWidth="5"/><path d="M-8,86l16,-7" className={s.target}/>{remaining>0&&<><path d={balanced?"M-22,115C-16,83 18,82 22,115L-15,103":"M22,115C16,83 -18,82 -22,115L15,103"} className={s.object}/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} stroke="var(--bg-2)" strokeWidth="6"/><path d={balanced?"M-8,105l12,3":"M8,105l-12,3"} className={s.target}/></>}<text x="0" y="205" textAnchor="middle">{balanced?'Flat':'Twisted'}</text><text x="0" y="222" textAnchor="middle">{loopText(remaining)}</text></g>;
+  const walkTo=(n:number)=>{setSteps(n);if(n>=WALK)reach('walk');};
   return <div className={s.stage}>
-    <svg viewBox="0 0 300 265" className={s.scene} role="img" aria-label="Two shoelace bows: matching versus opposing wrap directions">{shoe(75,false,weak)}{shoe(225,after,strong)}</svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={after} onClick={()=>{setAfter(true);reach('wrap');}}>Second: right-over-left</StageControl><StageControl locked={locked} inactive={steps>=20} onClick={()=>{setSteps(20);reach('walk');}}>Walk 20 steps</StageControl></div>
-    <p className={s.inputs}>First: left-over-right · 20mm loops · loss=0.8/0.3mm/step</p>
-    <p className={s.caption}>Model steps={steps}. Both can fail.</p>
-    <StageStatus locked={locked} text={`Matching ${fmt(weak)}mm; ${after?'Opposing':'Matching'} ${fmt(strong)}mm; steps ${steps}`}/>
+    <svg viewBox="0 0 300 265" className={s.scene} role="img" aria-label={`Two shoelace bows: twisted, loops ${loopText(twisted)}; flat, loops ${loopText(flat)}`}>{shoe(75,false,twisted)}{shoe(225,true,flat)}</svg>
+    <div className={s.controls}><StageControl locked={locked} inactive={steps>=WALK} onClick={()=>walkTo(WALK)}>Walk {WALK} steps</StageControl></div>
+    <Slider label="Steps walked" value={steps} min={spec.min} max={spec.max} step={spec.step} format={n=>`${n}`} disabled={locked} onChange={walkTo}/>
+    <p className={s.caption}>Illustrative model</p>
+    <StageStatus locked={locked} text={`Twisted ${loopText(twisted)}; flat ${loopText(flat)}`}/>
   </div>;
 }
 
@@ -242,7 +323,7 @@ function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number
       }))}
       <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length}/20`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length}/20`:'?'}</text>
     </svg>
-    <div className={s.controls}><StageControl locked={locked} inactive={runs>=1} onClick={()=>{setRuns(1);reach('short');}}>Test 0.3m</StageControl><StageControl locked={locked} inactive={runs>=2} onClick={()=>{setRuns(2);reach('long');}}>Test 3m</StageControl></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Test 0.3m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('long');}}>Test 3m</HomeMode></div>
     <p className={s.inputs}>30cm box · 1rev/s · 10s · seed17{runs===2?' · p=0/0.55':''}</p>
     <p className={s.caption}>Study model; plain cord storage</p>
     <StageStatus locked={locked} text={runs<1?'':`0.3m: ${short.filter(Boolean).length}/20${runs>=2?`; 3m: ${long.filter(Boolean).length}/20`:''}`}/>
@@ -254,7 +335,7 @@ type HomeStageState = { spec: HomeSpec; p: number; setP: (n:number)=>void; after
 const isV2=(spec:HomeSpec)=>spec.engine===2&&!['wobble','bow','cord'].includes(spec.model);
 export function Controls({spec,p,setP,after,setAfter,runs,setRuns,mode,setMode,seen,setSeen,locked,interact}:HomeStageState & StageContext) {
   if(isV2(spec)) return <StageV2 spec={spec} p={p} setP={setP} mode={mode} setMode={setMode} seen={seen} setSeen={setSeen} locked={locked} interact={interact}/>;
-  return spec.model==='wobble'?<WobbleStage p={p} setP={setP} locked={locked} interact={interact}/>:spec.model==='bow'?<BowStage steps={p} setSteps={setP} after={after} setAfter={setAfter} locked={locked} interact={interact}/>:spec.model==='cord'?<CordStage runs={runs} setRuns={setRuns} locked={locked} interact={interact}/>:<Stage spec={spec} p={p} setP={setP} after={after} setAfter={setAfter} locked={locked} interact={interact}/>;
+  return spec.model==='wobble'?<WobbleStage p={p} setP={setP} locked={locked} interact={interact}/>:spec.model==='bow'?<BowStage spec={spec} steps={p} setSteps={setP} locked={locked} interact={interact}/>:spec.model==='cord'?<CordStage runs={runs} setRuns={setRuns} locked={locked} interact={interact}/>:<Stage spec={spec} p={p} setP={setP} after={after} setAfter={setAfter} locked={locked} interact={interact}/>;
 }
 export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'children'>;stage:HomeStageState} {
   const spec=homeLessons.find(d=>d.slug===slug);
@@ -264,10 +345,17 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
   const stage={spec,p,setP,after,setAfter,runs,setRuns,mode,setMode,seen,setSeen};
   if(isV2(spec)) return {stage,lessonProps:{
     slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
-    exploreHint:'Press A, then B. Then move the slider.',minInteractions:2,
+    exploreHint:homeSliderMatters(spec)?'Press A, then B. Then move the slider.':'Press A, then B.',minInteractions:2,
     // R6: the first sentence quotes both Seen columns; the kit already prints the verdict line, so it is not repeated.
     reveal:()=><div className={s.reveal}><p>{homeRevealLine(spec,p)}</p><p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}</div>
   }};
+  if(spec.model==='bow') { const {twisted,flat}=bowLoops(p,spec), mm=(x:number)=>x<=0?'undone (0 mm)':`${fmt(x)} mm`;
+    return {stage,lessonProps:{
+      slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
+      exploreHint:`Walk ${WALK} steps, then try other step counts.`,minInteractions:1,
+      // TP-2(b, e): the reveal compares both bows at the learner's step count; the kit prints the only verdict line.
+      reveal:()=><div className={s.reveal}><p>{`After ${p} steps: the twisted bow's loops are ${mm(twisted)}, the flat bow's ${mm(flat)}.`}</p><p>{spec.idea}</p><p>{spec.limit}</p></div>
+    }}; }
   const result=evaluateHome(spec,p,after), special=spec.model==='cord'||spec.model==='bow';
   return {stage,lessonProps:{
     slug:spec.slug,predict:{question:spec.question,options:[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},

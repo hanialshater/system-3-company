@@ -45,7 +45,8 @@ export function evaluateHome(s: HomeSpec, p: number, changed: boolean): HomeResu
     case 'gaps': value=changed?Math.max(0,(p-a*b)/(a-1)):0;other=changed&&value>0?a-1:0;label='Clear gap';unit='cm';inputs=`${a}items×${b}cm · ${other}channels`;break;
     case 'overlap': other=changed?0:p;value=4*a*b-2*other*b;label='Exposed faces';unit='cm²';inputs=`2×${a}×${b}cm · overlap=${other}cm`;break;
     case 'water-load': value=a*(changed?p:1);other=p;label='Released water';unit='g';inputs=`${a}g/item · ${b}m³room`;break;
-    case 'humidity': other=changed?Math.max(0,p-30):p;value=1-other/100;label='Normalised gap';inputs=`Same temperature · RH=${fmt(other)}%`;break;
+    // W-1074: the slider is the humid room's humidity; the drier room is b points lower (40). Push = 100 − humidity.
+    case 'humidity': other=changed?Math.max(0,p-b):p;value=100-other;label='Drying push';inputs=`Same temperature · RH=${fmt(other)}%`;break;
     case 'flux': other=changed?a:b;value=p*other;label='Model rate';unit='units/step';inputs=`Flux=${other}units/(m²·step)`;break;
     case 'water-time': other=changed?2*p:p;value=other/a;label='Model duration';unit='steps';inputs=`Water=${fmt(other)}g · rate=${a}g/step`;break;
     case 'split-area': value=2*p*a/10000;other=changed?2:1;label='Both-face area';unit='m²';inputs=`${fmt(p)}×${a}cm · ${other}pieces`;break;
