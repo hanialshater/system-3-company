@@ -35,7 +35,7 @@ To: chief-of-staff, head-of-product, evaluation-steward, principal-engineer, chi
 
 **What your org owes, by when** (full map: dependencies.md)
 - **principal-engineer:** W-930 by 10-22, on whether Q5 (feed weight, first-load JS, time to usable) is reachable and whether the all-metas fix joins the critical path. W-908 re-estimate by 10-23. The auth and progress EDD (with backend-engineer) before any account code.
-- **evaluation-steward:** the W-906 Surface Value draft by 10-21. The bar freeze on 10-23.
+- **evaluation-steward:** the W-906 Surface Value draft is on disk early (AMD-008, proposed, not applied). Next: the founder ratifies it (F-19) by 10-30, and the bar freezes on 10-23.
 - **head-of-product:** the launch-catalog plan by 10-22 (freeze 11-13, W-931). W-891 slot rules before 10-30. Owners and scope for mastery and social, in a record.
 - **chief-of-staff-ceo-office:** the consultation confirmations (W-910 to W-913) and the steward's changes in the role data (W-936).
 - **vp-marketing:** domain shortlist with quotes (W-916) for F-23. The ads reviews follow F-17.
@@ -47,6 +47,6 @@ To: chief-of-staff, head-of-product, evaluation-steward, principal-engineer, chi
 2. **FL-07, the performance budget (4×4 = 16).** First-load JS measures 2.32 MB gz against a 500 KB bar. If the fix is needed, it pulls EDD-003 A1 onto the critical path. Answer on 10-22.
 3. **Founder decisions on the path (4×4 = 16, R-013).** F-01 (auth provider, database, age floor) has been open since 10-13. Tranche 2 for every account workstream needs it by 10-23.
 
-**Decisions asked of the founder next** (Friday 10-23 review): F-01; accept the bar freeze (W-937); the W-908 dates; the charter's end condition, if it is not taken on 10-16.
+**Decisions asked of the founder next** (Friday 10-23 review): F-01; F-19 (AMD-008) by 10-30; accept the bar freeze (W-937); the W-908 dates; the charter's end condition, if it is not taken on 10-16.
 
 **Quality key, as it stands** (verbatim, quality-bar.md, 2026-10-15): "status: **proposed, 2026-10-15** (week-1 scoping, untagged). Open for objections until the freeze on **2026-10-23**."

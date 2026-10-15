@@ -33,7 +33,7 @@ The stop rule releases tranche 2 only if W-908 keeps it at or under 10.2M **and*
 
 | # | Waits on | Kind | Owner | Due | Source | Board | Blocks |
 |---|---|---|---|---|---|---|---|
-| D-09 | **W-906**: Surface Value amendment drafted (personalization, mastery, the ad slot) | amendment draft | evaluation-steward | **2026-10-21** | quality-bar.md §4 | W-906 | F-19 |
+| D-09 | **W-906**: Surface Value amendment drafted (personalization, mastery, the ad slot). **Met early on 2026-10-15**: AMD-008, proposed, not applied (commit 497e8b3) | amendment draft | evaluation-steward | **2026-10-21** | quality-bar.md §4 | W-906 | F-19 |
 | D-10 | **W-906 ratified** (F-19) | founder ratification | founder | **2026-10-30 at the latest** | quality-bar.md §4.4 | W-906 (F-19) | if it slips: personalization and the ad slot ship **switched off**, and mastery ships only under today's "no streaks and no guilt" (a consequence of the constitution, not a quality call). AMD-FL-B encodes it |
 | D-11 | F-17: whether to pursue ads, on these terms | founder decision | founder | before W-891 (no date set; proposed 10-23) | ads override note in status.json | W-891 (F-17) | the ads workstream; W-891 |
 | D-12 | W-891: the ad-slot rules (1 per 6, never first, never next to a revisit) | product ruling | head-of-product | before **2026-10-30** | quality-bar.md board ask 4 | W-891, W-931 | W-906's ad text, AMD-FL-B's ad tests, Q1.9 |
@@ -101,7 +101,7 @@ D-01 Project Review 1 (10-16)
 **The binding segment is 10-23 → 11-09**: 17 calendar days for an EDD, three sequential reviews (PE, privacy, readiness) and the account build. Its duration is unknown until W-908. The work in it is cheap in tokens (the pack's whole auth line is 2.2M); what limits it is review: each review waits on the artifact before it, a rework round restarts the chain, and the reviewers in it (privacy-reviewer, principal-engineer-ops) have 0 and 3 measured runs. That is the first risk (risk-rescore.md, FL-06).
 
 **Near-critical (about one week of slack each, if nothing slips):**
-- D-09 → D-10 → D-15: W-906 drafted 10-21, ratified by 10-30, AMD-FL-B and -C merged 11-06. If W-906 slips past 10-30, personalization and the ad slot ship switched off.
+- D-09 → D-10 → D-15: W-906 drafted (AMD-008, 10-15, early), ratified by 10-30, AMD-FL-B and -C merged 11-06. If W-906 slips past 10-30, personalization and the ad slot ship switched off.
 - D-22 privacy rulings by 11-09: no ruling means social and the ad slot are cut. The privacy reviewer also sits on the main path (D-17), so the two compete for the same role.
 
 **Conditional (decided on 10-22):** D-05. If the tech lead answers W-930 "yes, but only with A1", the all-metas fix becomes a second critical path: A1 needs AMD-001 (c2) (F-03, open since 10-12) and must merge before RC1 on 11-13. It also pulls EDD-003 stage-1 work onto the path the founder kept it off (D-21). If he answers "not reachable", the founder must lower Q5 **before the freeze**, in writing, or accept a quality no-go on Q5.
