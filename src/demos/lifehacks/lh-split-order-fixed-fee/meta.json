@@ -35,8 +35,10 @@
       "id": "lifehacks.lh-split-order-fixed-fee.c2",
       "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Orders=2, A=€32.00 and B=€28.00. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"+\", 24, [\"*\", 4, \"x\"]], B=[\"+\", 24, [\"*\", 4, 1]], variable {\"label\": \"Orders\", \"start\": 2, \"min\": 1, \"max\": 6, \"unit\": \"\", \"step\": 1}. Card B now prints 24 + (4 × 1) = 28 instead of a bare 28; the receipts draw one €4.00 fee line per order (A: 2 at the start, B: 1). Values unchanged: A = 24 + 4×2 = €32, B = €28.",
-      "status": "unverified"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"+\", 24, [\"*\", 4, \"x\"]], B=[\"+\", 24, [\"*\", 4, 1]], variable {\"label\": \"Orders\", \"start\": 2, \"min\": 1, \"max\": 6, \"unit\": \"\", \"step\": 1}. Card B now prints 24 + (4 × 1) = 28 instead of a bare 28; the receipts draw one €4.00 fee line per order (A: 2 at the start, B: 1). Values unchanged: A = 24 + 4×2 = €32, B = €28. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. Own run: at 2 orders A = 24 + 4 × 2 = €32.00, B = 24 + 4 × 1 = €28.00; readouts '24 + (4 × 2)' / '24 + (4 × 1)'. The receipts print 'Goods €24.00', one 'Fee €4.00' line per order (2 and 1 at the start, up to 6) and the total. Note: this receipt prints exact amounts, so the claim's fixed-scale sentence describes no picture in this lesson; harmless, but the builder may trim it. Record: company/reviews/lh-split-order-fixed-fee/2026-10-15-fact-check.md, Pass 51.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-15"
     },
     {
       "id": "lifehacks.lh-split-order-fixed-fee.c3",
@@ -51,10 +53,24 @@
       "id": "lifehacks.lh-split-order-fixed-fee.c4",
       "text": "The same goods total €24, and each order adds a fictional €4 delivery fee. Placing three orders instead of one adds how much to the receipts? Correct: €8. The fee repeats per order: three orders pay three fees, one order pays one, a difference of two fees (€8).",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 3×€4 − 1×€4 = €8; option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",24,[\"*\",4,\"x\"]]; B=28; x denotes Orders. At x=2, A=32, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Recall patch by learning-designer (session 2, company/reviews/lifehacks-200/recall-patch-resources.lines.txt), applied 2026-10-14 by demo-builder; c4 restates the new recall item. FC LH-4 (2026-10-14, fact-checker, W-380): verified (recall): meta.json recall, resource-specs.json recall and this claim match the patch line; 3×€4 − 1×€4 = €8; option 1 only. Re-computed in node. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. | FC pass 51 (fact-checker, 2026-10-15, W-1101), W-1078 trust-sheet row: CLOSED (matches the stage). c4 recall three orders vs one: +€8; at 3 orders the cards show €36.00 and €28.00. Arithmetic unchanged and still true; status unchanged.",
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c5",
+      "text": "The same goods can produce different totals when a fee repeats.",
+      "support": "derivation",
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-split-order-fixed-fee\".hook). Learner-visible and unrecorded until FC pass 51 (fact-checker, 2026-10-15, W-1101), which recorded it verbatim. Recorded by fact-checker, so a different fact-checker must verify it.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-split-order-fixed-fee.c6",
+      "text": "The same goods total €24. Each order adds a fictional €4 delivery fee. For two separate orders, which receipt is lower? Options: Split / Combined / Equal. Correct: Combined.",
+      "support": "derivation",
+      "source": "Prediction (resource-specs.json \"lh-split-order-fixed-fee\".question, options, answer). Learner-visible and unrecorded until FC pass 51 (fact-checker, 2026-10-15, W-1101), which recorded it verbatim from the spec. Recorded by fact-checker, so a different fact-checker must verify it (a checker may not verify a claim they wrote). Pass 51 arithmetic, for the next checker to redo independently, is in the Pass 51 record.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
