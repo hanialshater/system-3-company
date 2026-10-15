@@ -3,7 +3,7 @@
 owner: chief-of-staff · cadence: at least every 12 h (company/rituals/triggers.json) · 2 h late
 
 ## Shipped
-- **Release r6 (was 2026.10.15.1), live on https://system-3-company.vercel.app.** It ships the /spike S1 fix and 48 newly published lessons. Published lessons: 608 → 656. QA passed 1930/1930 on the exact tree.
+- **Release r6 (was 2026.10.15.1), live on https://system-3-company.vercel.app.** It ships the /spike S1 fix and 48 newly published lessons. Published lessons now 635 (27 in the final pass; 48 published since the previous release). QA passed 1930/1930 on the exact tree.
   - Smoke test: the feed, published lessons and in-review lessons (tagged) behave as intended, and /spike returns 404.
   - Found: drafts open by direct URL (W-884, first item of the next release, with W-878).
 - **Lessons:**
