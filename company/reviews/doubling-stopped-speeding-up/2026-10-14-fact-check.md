@@ -51,3 +51,18 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-954). I did not write, bu
 **Result (Pass 43):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 6 verified of 6.
 
 No open claim items. Non-blocking advisories are in the basis column.
+
+## Pass 47
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1014). I did not write, build or record any of these claims. Scope: the claims the History r1 revisions (W-990, commits c7a927e, db7bda4, 3d4a9c1 and the doubling v3) reset to unverified or added. Method: (1) `node company/domains/briefs/checks/history-data.mjs`: all 23 pins hold, and my script re-hashes the four files it reads (all match). (2) I read Demo.tsx first, then built the app and regenerated the walkthrough (`npm run walkthrough -- <slug>`; the transcripts on disk predated the revisions), and checked every learner-visible string against the claims. (3) Every number re-derived by my own node script with my own CSV parser (session scratchpad fc47/check.mjs); arrays copied into Demo.tsx compared value by value with the pinned files (0 mismatches in all four). (4) The simulation: mulberry32 re-typed from src/kit/random.ts, run for seed 1 and seeds 1-1000. (5) Sources opened this pass from this host: the OWID Maddison 2020 README.md and datapackage.json (raw.githubusercontent.com), OWID 'The Spanish flu' and 'Life Expectancy' pages (ourworldindata.org). No page contained instructions addressed to an AI; all were treated as data. The full basis for each verdict is in the claim's `note` in meta.json (prefix 'FC pass 47').
+
+Unrecorded claims: none found in the regenerated walkthrough.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | VERIFIED. Rendered (fresh walkthrough 2026-10-15): question 'took 122 years to go from 1 to 2 billion, and 48 years to reach 4 billion. How long to reach 8?', options 'About 24 years' / 'About 48 years' / 'About 96 years' (half, same, double of 48; all three from d2), answer 'About 48'; reveal 'the last was about as fast as the one before'. Own node script on the pinned gapminder-pop-global.csv (sha256 84e8705b... matches): first year at or above 1/2/4/8 bn = 1805, 1927, 1975, 2022; spans 122, 48, 47. 47 against 48 is within the one-year resolution of 'first year at or above', so 'About 48' is the right option and 'about as fast' holds. Average yearly rate over the doublings: 1.48% (1927-1975), 1.45% (1975-2022). |
+| c7 | verified | VERIFIED. Rendered: strip '1 to 2 bn: 122 yrs +1 bn', '48 yrs +2 bn', '47 yrs +4 bn'; aria label 'added 1/2/4 billion people'; reveal 'It added 4 billion people, not 2, only because it started from twice as many; as a share of those alive, growth is slowing.' Own node script, pinned file: P(1927) - P(1805) = 1.005 bn; P(1975) - P(1927) = 2.063 bn; P(2022) - P(1975) = 3.951 bn, so the +1/+2/+4 labels (threshold differences) match the data to the shown precision. 'Only because it started from twice as many': the doubling times are 48 and 47 years (c2), and the average rate per year over each doubling is about the same (1.48% and 1.45%), so twice the base is what doubled the people added. 'Growth is slowing' as a share: yearly rate 100 x (P[y+1]/P[y] - 1) peaked at 2.245% in 1963; 2.03% (1970), 1.83% (1980), 1.71% (1990), 1.35% (2000), 1.27% (2010), 0.88% (2022 to 2023). Advisory, not blocking: the last rate is slightly up from 0.84% (2021 to 2022) and 0.86% (2020 to 2021), so 'slowing' is the decades-long trend, not every year. |
+
+**Result (Pass 47):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 7 verified of 7.
+
+No open claim items. Non-blocking advisories are in the basis column.
