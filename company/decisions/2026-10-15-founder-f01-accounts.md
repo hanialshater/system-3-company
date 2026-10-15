@@ -30,3 +30,6 @@ Asked "What should we implement together right now?", the founder picked **"F-01
 - The spike fails on Next 16.4 (Auth.js fallback).
 - Neon or Resend in fact requires fields the gate forbids, or cannot delete or export a user by API (privacy gate provider test).
 - Counsel reads Art. 8 strictly (16+).
+
+## Founder setup (2026-10-15, reported "Done")
+The founder reported the setup done after the corrected steps: Neon via the Vercel Marketplace, Frankfurt, connected to Production only, preview branching off, no prefix, Neon Auth off; Resend account, sending-access key added as `RESEND_API_KEY` for Preview only, open and click tracking off. Recorded from the founder's word; not verified from here (the Vercel API returns 403 for this session). The backend engineer verifies the variable names, without reading values, at the start of the spike.
