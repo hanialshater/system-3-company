@@ -77,7 +77,11 @@ const BAT = D.filter((x) => x.w === "Battersea");
 // v2 (cm-history ruling, W-868): r is not shown (jargon this lesson never teaches); its sign sets the readout's words,
 // and the value (-0.68) stays only in claim c4's derivation support.
 const R_BAT = corr(BAT.map((x) => x.e), BAT.map((x) => x.rate));
-const ONE_SAYS = R_BAT < 0 ? "still falls with height" : "does not fall with height";
+// v3 (learner r1, W-989): the readout also says that no central-Thames district is high (the highest is 22 ft, Wandsworth),
+// so "still falls" is not read as proof that height mattered with the water held fixed.
+const BAT_MAX = Math.max(...BAT.map((x) => x.e));
+const BAT_HIGH = BAT.filter((x) => x.e >= 80).length;
+const ONE_SAYS = `${R_BAT < 0 ? "still falls" : "does not fall"}${BAT_HIGH === 0 ? `, but none is high (max ${BAT_MAX} ft)` : ""}`;
 
 type Mode = "low" | "high" | "water" | "one";
 const MILESTONES = ["low", "high", "water"] as const;
@@ -131,7 +135,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
       case "low": return { label: `${LOW.length} districts under 20 ft`, value: `${R_LOW} per 10,000` };
       case "high": return { label: `${HIGH.length} districts at 80 ft and up`, value: `${R_HIGH} per 10,000` };
       case "water": return { label: "Low districts on central Thames water", value: `${LOW_B} of ${LOW.length}` };
-      case "one": return { label: "Central Thames", value: ONE_SAYS };
+      case "one": return { label: "Central Thames only", value: ONE_SAYS };
       default: return { label: "Cholera deaths", value: "-" };
     }
   })();
@@ -194,6 +198,9 @@ function Stage({ locked, reach, mode, seen, pick }: {
           <Dot key={x.name} x={xOf(x.e)} y={yOf(x.rate)} w={x.w} shaped={shaped} cls={cls(x)} />
         ))}
       </svg>
+      {/* v3 (W-989): the presets fold at the reveal; the reveal quotes no control, and each preset's state stays in the
+          picture (pooled-rate lines and labels, colours, "11 of 16 low", dimmed dots); the Readout is outside the row. */}
+      <Row foldAtReveal>
       <div className={s.presets}>
         {PRESETS.map((p) => (
           <Control key={p.id} disabled={locked} className={!locked && mode === p.id ? "active" : ""}
@@ -202,6 +209,7 @@ function Stage({ locked, reach, mode, seen, pick }: {
           </Control>
         ))}
       </div>
+      </Row>
       <Row>
         <Readout label={readout.label} value={readout.value} />
       </Row>
@@ -229,12 +237,12 @@ export default function CholeraFellWithHeight({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The {LOW.length} districts under 20 feet lost {R_LOW} per 10,000; the {HIGH.length} at 80 feet or more lost{" "}
+            The {LOW.length} districts under 20 ft lost {R_LOW} per 10,000; the {HIGH.length} at 80 ft or more lost{" "}
             {R_HIGH}, about {TIMES} times fewer. The pattern in Farr&apos;s table is real.
           </p>
           <p>
             But {LOW_B} of those {LOW.length} low districts drew their water from the Thames between Battersea and Waterloo,
-            so height and water went together, and this table alone cannot say which mattered.
+            and none on that water was high, so height and water went together, and this table alone cannot say which mattered.
           </p>
           <p>Where it stops: these are deaths registered in one year, district by district.</p>
         </>

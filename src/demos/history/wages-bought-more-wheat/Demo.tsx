@@ -144,7 +144,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
               <>
                 <circle cx={xs(BEST.y)} cy={yQ(BEST.q)} r={5} className={s.best} />
                 <text x={xs(BEST.y) + 6} y={yQ(BEST.q) - 9} className={s.lab} textAnchor="end">
-                  best year {BEST.y}: {f2(BEST.q)}
+                  best year {BEST.y}: {f2(BEST.q)} quarters
                 </text>
               </>
             )}
@@ -180,7 +180,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           locked || view === "price"
             ? `wheat ×${f1(PRICE_X)}`
             : ratio
-              ? `wheat ×${f1(PRICE_X)}, wage ×${fx(WAGE_X)}: buys ×${f1(RATIO_X)} the wheat`
+              ? `wheat ×${f1(PRICE_X)}, wage ×${fx(WAGE_X)}: buys ×${f1(RATIO_X)}`
               : `wheat ×${f1(PRICE_X)}, wage ×${fx(WAGE_X)}`
         }
       />
@@ -206,8 +206,8 @@ export default function WagesBoughtMoreWheat({ slug }: { slug: string }) {
             {f1(RATIO_X)} times as much wheat.
           </p>
           <p>
-            Playfair drew price and wages on two different scales, which hides this ratio; dividing one by the other shows it
-            as one line. On his own figures the best year for wages in wheat was {BEST.y}, not the last one.
+            Playfair drew price and wages on two scales, which hides this ratio; dividing one by the other shows it as one
+            line. On his figures the best year was {BEST.y}, not the last.
           </p>
           <p>Where it stops: this is one trade&rsquo;s wage and one food, not a cost of living.</p>
         </>

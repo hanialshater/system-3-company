@@ -44,33 +44,27 @@
     },
     {
       "id": "history.rome-placed-too-far-east.c3",
-      "text": "Only 1 of 12 came within 2 degrees (G. Jansonius, 1605: 17.7), and every one put Rome too far east: the estimates ran from 17.7 to 30.1 degrees.",
+      "text": "Only 1 of 12 came within 2 degrees (G. Jansonius, 1605: 17.7), and every one put Rome too far east, from 17.7 to 30.1 degrees (reveal: 'every one put Rome too far east, from 17.7 to 30.1 degrees').",
       "support": "derivation",
       "source": "Computed in Demo.tsx from the 12 rows (|lon - 16.53| <= 2; min, max; count lon > 16.53); same as history-cycle1-check.mjs section 6 ('6 within 2 degrees', '6 all too far east').",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). |lon - 16.53| <= 2: only G. Jansonius 1605, 17.736; all 12 > 16.53; min 17.736, max 30.128 (shown 17.7, 30.1). Demo.tsx WITHIN, EAST, LO, HI use the same rules.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Re-derived in my own node script from the pinned file (history-data.mjs pins all hold; sha256 re-checked) and compared with the copied array in Demo.tsx (identical). |lon - 16.53| <= 2: only G. Jansonius 1605, 17.736; all 12 > 16.53; min 17.736, max 30.128 (shown 17.7, 30.1). Demo.tsx WITHIN, EAST, LO, HI use the same rules. | v3 (demo-builder, 2026-10-15, W-989): reveal reworded for the 90-word budget and the phone fit (was 'every one put Rome too far east: the estimates ran from 17.7 to 30.1 degrees'). Numbers unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.rome-placed-too-far-east.c4",
-      "text": "The middle estimate was 25.8 degrees, 9.3 degrees too far, about 780 km.",
+      "text": "The middle estimate was 25.8 degrees, 9.3 degrees too far, about 780 km (reveal: 'The middle, 25.8, was 780 km too far'; readout label in the year view 'Reading · 780 km too far'; median view readout '9.3° too far ≈ 780 km').",
       "support": "derivation",
       "source": "Median of 12 = mean of the 6th and 7th sorted values (25.617, 26) = 25.81; 25.81 - 16.53 = 9.28 degrees x 111.32 x cos(40.875 deg) = 84.2 km per degree = 781 km, rounded to the nearest 10 = 780. Computed in Demo.tsx; history-cycle1-check.mjs section 6 '6 middle estimate in km'. The stage's 500 km scale bar uses the same km per degree.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Median (25.617 + 26) / 2 = 25.8085; minus 16.53 = 9.2785 degrees; 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens = 780. Demo.tsx MEDIAN, KM_PER_DEG, MEDIAN_KM are the same formulas.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Median (25.617 + 26) / 2 = 25.8085; minus 16.53 = 9.2785 degrees; 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens = 780. Demo.tsx MEDIAN, KM_PER_DEG, MEDIAN_KM are the same formulas. | v3 (demo-builder, 2026-10-15, W-989): reveal reworded for the phone fit (was 'The middle one was 25.8, about 780 km too far'; 'about' dropped, matching the stage's own '780 km too far'; 781 rounded to the nearest 10). In the year view the km moved from the readout value to its label. Numbers unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.rome-placed-too-far-east.c5",
-      "text": "Sorted by year, the estimates show no steady improvement: the earliest (150) is 27.8 and the latest (1610) is 28.2.",
+      "text": "Sorted by year, the estimates show no steady improvement: the earliest (AD 150) is 27.8 and the latest (1610) is 28.2 (year-view readout 'AD 150: 27.8°, 1610: 28.2°'; year rows labelled 'AD 150' ... '1610').",
       "support": "derivation",
       "source": "Rows sorted by the Year column: C. Ptolomeus 150, 27.787; A. Argelius 1610, 28.17. history-cycle1-check.mjs section 6 '6 no steady improvement by year'.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Sorted by Year: C. Ptolomeus 150, 27.787 (27.8); A. Argelius 1610, 28.17 (28.2). Demo.tsx BY_YEAR.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Sorted by Year: C. Ptolomeus 150, 27.787 (27.8); A. Argelius 1610, 28.17 (28.2). Demo.tsx BY_YEAR. | v3 (demo-builder, 2026-10-15, W-989): learner r1 finding 3: the bare '150' read as a count; the stage rows and readout now say 'AD 150' (readout shortened to one line: was '780 km too far; earliest (150) 27.8°, latest (1610) 28.2°') (the closest-estimate label goes through the same formatter and still reads '1605'). Numbers unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.rome-placed-too-far-east.c6",
@@ -111,6 +105,14 @@
       "note": "v2 (demo-builder, 2026-10-15): new claim for the hook, which was unrecorded. Was 'Astronomers spent centuries measuring one short distance' (FC39 wording note: not all 12 were astronomers, and the map-read ones were not measured). | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Hook: 'Astronomers and mapmakers spent centuries on one short distance. How close did they get?' Years in the file run 150 (C. Ptolomeus) to 1610 (A. Argelius); Source has both levels (Astron 10, Map 2); the HistData doc calls it 'even this modest distance'. Advisory on the claim text only: say 'likely' ('each marked with its likely source, astronomical or a map'), as the doc does.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c10",
+      "text": "Why all east? Many inherited Ptolemy's AD 150 coordinates, which stretched the Mediterranean (reveal).",
+      "support": "source",
+      "source": "HELD (the reveal's one held source sentence; c7 was verified by FC39 against the HistData doc, so this is now the only held one). No opened source carries it. The pinned Langren1644.csv and its HistData documentation (opened by the builder, 2026-10-15) give the twelve values, years and 'Likely source' only; the doc calls the graph 'a compelling example of the notions of statistical variability and bias' but does not say why the bias ran east. Candidate sources, none reachable from this host (datavis.ca and en.wikipedia.org refused by the proxy, 2026-10-15): Friendly, Valero-Mora & Ulargui (2010), The American Statistician 64(2), 185-191 and its supplementary page datavis.ca/gallery/langren/; any edition of Ptolemy's Geography with its coordinate tables. The builder's belief (general knowledge, not checked): Ptolemy's longitudes overstate the Mediterranean's east-west length (so it is 'stretched' east-west, which is why the error runs east from Toledo) and Renaissance tables long reused them. What the data file does show (derivation, c5): the earliest estimate (C. Ptolomeus, AD 150, 27.787) and the latest (A. Argelius, 1610, 28.17) differ by 0.4 degrees; the data cannot show who copied whom. Fallback if not checkable: cut the paragraph (the lesson then ends as v2 did), or replace it with the derived 'Nor did they improve: AD 150 and 1610 both say about 28°.' (c5).",
+      "status": "unverified",
+      "note": "v3 (demo-builder, 2026-10-15, W-989): learner r1 finding 1: the stage makes the learner ask why all twelve erred the same way and the reveal answered only why the errors were large; one held source sentence added. New claim; unverified until a fact-checker who is not the builder checks it."
     }
   ],
   "confidence": "",
@@ -132,7 +134,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "history:longitude-problem-estimates",
     "also": [],

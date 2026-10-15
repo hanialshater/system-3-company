@@ -19,3 +19,9 @@ Builder: history-builder-2 (demo-builder) · 2026-10-14 · brief company/domains
 7. **Phone fit.** `REVEAL_FIT_TIMEOUT_MS=300000 node tools/reveal-fit.mjs --url http://localhost:3622 lakes-misplaced-east-west` (2026-10-14): crop 0 px, namedHidden 0 (north-south, east-west visible), phoneFit true, 77 words. Picture fitted 180/198 at the reveal; the smallest label then renders at 10.26 px (measured with getScreenCTM in a 390×844 Playwright run), 11.3 px at predict. Screenshot `artifacts/reveal-fit/lakes-misplaced-east-west.png`.
 
 QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c5 unverified.
+
+## v2 (2026-10-15, demo-builder, branch hrA: W-989, learner r1)
+- Finding 1 (Coronelli's "59 / 363" label clipped to "59 / 3(" at the reveal): the bar chart's scale end X1 moved 300 -> 278, so the longest bar (Coronelli east-west) ends 22 units earlier and its label fits inside the 340 viewBox. Text size unchanged (12 px). Seen in the 390x844 screenshot: "59 / 363" and "24 / 41" whole.
+- No learner text or claim changed; meta.json version 2 (layout only). Not done: faint lake outlines and the white notch (optional findings).
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 77 reveal words with the verdict line. 412x839: crop 1 px, phoneFit true.
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.

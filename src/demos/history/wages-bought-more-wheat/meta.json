@@ -54,23 +54,19 @@
     },
     {
       "id": "history.wages-bought-more-wheat.c4",
-      "text": "On his own figures the best year for wages in wheat was 1785 (0.55 quarters a week), not the last one; the worst was 1595 (0.09).",
+      "text": "On his own figures the best year for wages in wheat was 1785 (0.55 quarters a week), not the last one; the worst was 1595 (0.09) (reveal: 'On his figures the best year was 1785, not the last'; stage labels 'best year 1785: 0.55 quarters', 'worst year 1595: 0.09').",
       "support": "derivation",
       "source": "Max and min of Wages / Wheat over the rows with a wage: 1785, 23/42 = 0.548; 1595, 5.54/64 = 0.087. history-cycle1-check.mjs section 7 '7 best and worst'.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Over the 50 rows with a wage: max Wages/Wheat 1785, 23/42 = 0.548; min 1595, 5.54/64 = 0.087. Matches.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Over the 50 rows with a wage: max Wages/Wheat 1785, 23/42 = 0.548; min 1595, 5.54/64 = 0.087. Matches. | v2 (demo-builder, 2026-10-15, W-989): learner r1 finding 2: the reveal-time stage could lose the axis title, so the best-year label now carries its unit ('0.55 quarters'); the reveal sentence was shortened for the phone fit (was 'On his own figures the best year for wages in wheat was 1785, not the last one'). Re-derived from the pinned Wheat.csv (sha256 holds): 23/42 = 0.548 in 1785, 5.54/64 = 0.087 in 1595. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.wages-bought-more-wheat.c5",
-      "text": "Playfair drew price and wages on two different scales, which hides this ratio; dividing one by the other shows it as one line.",
+      "text": "Playfair drew price and wages on two scales, which hides this ratio; dividing one by the other shows it as one line (reveal).",
       "support": "source",
       "source": "HELD (the reveal's one held source sentence). Playfair (1821), A Letter on our Agricultural Distresses (public domain; not opened); the HistData Wheat doc (opened by cm-history) describes the chart. Fallback if not checkable: 'Drawn on two scales, price and wages hide this ratio' (no name). The stage's two-axis view is our re-draw from the data, not a trace of the original.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Held sentence checked against the HistData Wheat doc (opened; Playfair 1821 not opened): Playfair's graph 'commits the sin of showing two non-commensurable Y variables on different axes. Scatterplots of wages vs. price or plots of ratios (e.g., wages/price) are in some ways better'. That carries 'two different scales' and the ratio point. Source string should name the doc as the opened source.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Held sentence checked against the HistData Wheat doc (opened; Playfair 1821 not opened): Playfair's graph 'commits the sin of showing two non-commensurable Y variables on different axes. Scatterplots of wages vs. price or plots of ratios (e.g., wages/price) are in some ways better'. That carries 'two different scales' and the ratio point. Source string should name the doc as the opened source. | v2 (demo-builder, 2026-10-15, W-989): reveal wording 'two different scales' -> 'two scales' for the phone fit. Meaning unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.wages-bought-more-wheat.c6",
@@ -102,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:real-wages-playfair",
     "also": [],

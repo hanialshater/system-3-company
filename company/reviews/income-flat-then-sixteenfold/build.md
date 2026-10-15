@@ -30,3 +30,12 @@ Held source sentence (one): "reconstructions from wages, prices and output recor
 - No learner text changed (Demo.tsx untouched). Claim reset to unverified: c8. I verified none. meta.json version 3.
 - Phone fit: tools/reveal-fit.mjs against the dev server on :3662 at 390x844: verdict fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 75 reveal words with the verdict line.
 - QA contract (QA_BASE_URL=http://localhost:3662): phone and desktop pass (4/4 with london-buried-six-times-more).
+
+## v4 (2026-10-15, demo-builder, branch hrA: W-989, learner r1)
+- Finding 1/3 (reveal said "looks flat on this chart" while the log view was on screen; the dashed 0.87% line misfit with no word on why): the reveal now names both views and explains the misfit. Reveal paragraph 1 now ends "On the linear scale most of history looks flat; on the log scale the record sags below the dashed 0.87% average, as growth was slower before 1850 and faster after." I chose naming the views over forcing the stage back to linear, because the learner may end on any preset.
+- Stage: in the log view a caption "log scale: each gridline is ×2" (ticks 50-1,600 double each step), and ", log scale" dropped from the title in that view to stay within the 25-word stage budget; legend now "dashed: steady average rate (our line)".
+- Numbers re-derived in node from the pinned maddison2020.csv (sha256 holds), UK GDP per capita rounded as in Demo.tsx: 1700-1850 ×1.80, 0.39%/yr; 1850-2018 ×8.79, 1.30%/yr; the series sits below the 0.87% model in 304 of 317 years 1701-2017 and first meets it in 2002. The sub-rates are not shown to the learner (they are not on the stage); only "slower before 1850 and faster after" is.
+- To fit 90 words: "in the 318 years after" -> "in the 318 after"; "Growth of 0.16% a year" -> "0.16% a year".
+- Claims: c3 (re-quoted), c6 (legend, caption), c7 ("on the linear scale") reset to unverified; c11 new (the sag sentence, derivation), unverified. I verified none. meta.json version 4.
+- Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 90 reveal words with the verdict line (artifacts/reveal-fit/hrA-w989.json). At 412x839 (the walkthrough's Pixel 7): crop 0, phoneFit true (artifacts/reveal-fit/hrA-w989-412.json).
+- QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.

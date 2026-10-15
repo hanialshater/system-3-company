@@ -34,13 +34,11 @@
     },
     {
       "id": "history.cholera-fell-with-height.c2",
-      "text": "The 16 districts under 20 feet lost 92 per 10,000; the 4 at 80 feet or more lost 20, about 5 times fewer.",
+      "text": "The 16 districts under 20 ft lost 92 per 10,000; the 4 at 80 ft or more lost 20, about 5 times fewer (reveal; stage labels 'under 20 ft: 92 per 10,000', '80 ft+: 20, about 5× fewer').",
       "support": "derivation",
       "source": "history-cycle2-check.mjs section 20: pooled deaths / population x 10,000: under 20 ft 8,584 / 935,869 = 91.7 -> 92; 80 ft and up (St Pancras, Islington, Marylebone, Hampstead) 19.8 -> 20; ratio 4.6 -> 'about 5'. Demo.tsx computes the same; the question's 92 is also computed. Dots plot each district's own rate (deaths / popn x 10,000, rounded; equals the file's cholera_drate).",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Under 20 ft: 16 districts, 8,584 / 935,869 = 91.7 (92); 80 ft and up: 4 districts (St Pancras, Islington, Marylebone, Hampstead), 817 / 412,415 = 19.8 (20); ratio 4.63, 'about 5' (and 'about a fifth as many'). Every district's own rate rounds to the file's cholera_drate.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Under 20 ft: 16 districts, 8,584 / 935,869 = 91.7 (92); 80 ft and up: 4 districts (St Pancras, Islington, Marylebone, Hampstead), 817 / 412,415 = 19.8 (20); ratio 4.63, 'about 5' (and 'about a fifth as many'). Every district's own rate rounds to the file's cholera_drate. | v3 (demo-builder, 2026-10-15, W-989): reveal wording 'feet' -> 'ft' to match the stage labels it quotes (the presets now fold at the reveal, so the button text 'Under 20 feet' is hidden). Numbers unchanged. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.cholera-fell-with-height.c3",
@@ -54,13 +52,11 @@
     },
     {
       "id": "history.cholera-fell-with-height.c4",
-      "text": "Height and water went together, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height (stage readout 'still falls with height').",
+      "text": "Height and water went together, and none of the districts on central Thames water was high, so this table alone cannot say which mattered; within the central-Thames districts, deaths still fall with height, but the highest of them is 22 ft and none is at 80 ft or more (stage readout 'Central Thames only: still falls, but none is high (max 22 ft)'; reveal: 'and none on that water was high, so height and water went together').",
       "support": "derivation",
-      "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates, -0.68) and shows only its direction: the readout reads 'still falls with height' because r < 0. r is derivation support only and is not on the stage or in the reveal (cm-history ruling). Brief: the lesson never says water alone.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475. | v2 (demo-builder, 2026-10-15): cm-history ruling (W-868): stage readout 'r = −0.68: still falls' became 'still falls with height'; r moved from the claim text to the source. Reset to unverified for a fact-checker who is not the builder. | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Stage readout 'Central Thames' / 'still falls with height'. Own node script (quoted-field CSV parser) on the pinned Cholera.csv (sha matches): 16 districts under 20 ft, 11 of them Battersea; the 4 at 80 ft and up are New River or Kew, none Battersea, so height and water go together. Within Battersea (12 districts, -2 to 22 ft) Pearson r(elevation, rate) = -0.680 (same on the file's cholera_drate and on deaths/popn rounded), Spearman -0.71, leave-one-out -0.55 to -0.80: always negative, so 'still falls' is robust. New River -0.55 (20), Kew -0.47 (6). r is not on the stage.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "source": "history-cycle2-check.mjs section 20: within-supplier correlations of elevation and death rate: Battersea -0.68 (12 districts), New River -0.55, Kew -0.47. Demo.tsx computes the Battersea value (Pearson r on the rounded rates, -0.68) and shows only its direction: the readout reads 'still falls' because r < 0. r is derivation support only and is not on the stage or in the reveal (cm-history ruling). Heights (history-data.mjs: cholera, Cholera.csv, column elevation, rows with water = Battersea; builder's quote-aware node parse, 2026-10-15, 38 rows): the 12 Battersea districts run from -2 ft (Newington) to 22 ft (Wandsworth, the only one at 20 ft or more); 0 are at 50 ft or more and 0 at 80 ft or more. The four districts at 80 ft and up are St Pancras and Islington (New River) and Marylebone and Hampstead (Kew). Demo.tsx computes the max (22) and the count at 80 ft+ (0) from DISTRICTS. 'High' = the lesson's own 80 ft and up. Brief: the lesson never says water alone.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Within-supplier Pearson r (elevation vs rounded rate): Battersea -0.680 (12 districts), New River -0.548, Kew -0.475. | v2 (demo-builder, 2026-10-15): cm-history ruling (W-868): stage readout 'r = −0.68: still falls' became 'still falls with height'; r moved from the claim text to the source. Reset to unverified for a fact-checker who is not the builder. | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Stage readout 'Central Thames' / 'still falls with height'. Own node script (quoted-field CSV parser) on the pinned Cholera.csv (sha matches): 16 districts under 20 ft, 11 of them Battersea; the 4 at 80 ft and up are New River or Kew, none Battersea, so height and water go together. Within Battersea (12 districts, -2 to 22 ft) Pearson r(elevation, rate) = -0.680 (same on the file's cholera_drate and on deaths/popn rounded), Spearman -0.71, leave-one-out -0.55 to -0.80: always negative, so 'still falls' is robust. New River -0.55 (20), Kew -0.47 (6). r is not on the stage. | v3 (demo-builder, 2026-10-15, W-989): learner r1 finding 1: step 4's 'still falls with height' read as proof that height mattered with the water fixed. Readout now 'Central Thames only: still falls, but none is high (max 22 ft)', and the reveal adds 'and none on that water was high'. Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.cholera-fell-with-height.c5",
@@ -92,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "history:cholera-1849-elevation",
     "also": [],

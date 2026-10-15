@@ -17,5 +17,5 @@
 .poolText { font-size: 12px; font-weight: 800; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .noteB { font-size: 12px; font-weight: 700; fill: var(--bad); }
 .halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
-.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; flex: 1 1 100%; min-width: 0; }
 .presets :global(.control) { padding: 6px 4px; min-height: 40px; line-height: 1.2; }
