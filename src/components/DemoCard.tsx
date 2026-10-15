@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { flushSync } from "react-dom";
-import type { DemoMeta } from "@/kit/types";
+import { STATUS_LABEL, SUPPORT_LABEL, type PublicMeta } from "@/lib/trust";
 import type { FeedItem } from "@/lib/feed-types";
 import { createFoldStore, FoldScope, FOLD_TOGGLE_MIN_PX, type FoldStore } from "@/kit/controls";
 import { DemoHost } from "./DemoHost";
@@ -19,6 +19,8 @@ export interface DomainInfo {
  * EDD-001 option 2: a card renders from the slim index (FeedItem). The claims ledger and evidence load
  * only when the learner opens "Why trust this?" (from /api/meta/<slug>), unless the page already has
  * the full meta (`full`, the single-lesson page).
+ * W-878: both arrive as PublicMeta (src/lib/trust.ts): the sheet shows a claim's text, what it rests on, whether
+ * it is checked, its address and its openable source links. Fact-check and builder notes never reach the browser.
  */
 export function DemoCard({
   meta,
@@ -28,13 +30,13 @@ export function DemoCard({
   standalone = false,
 }: {
   meta: FeedItem;
-  full?: DemoMeta;
+  full?: PublicMeta;
   domain: DomainInfo;
   active: boolean;
   standalone?: boolean;
 }) {
   const [trustOpen, setTrustOpen] = useState(false);
-  const [fetched, setFetched] = useState<DemoMeta | null>(null);
+  const [fetched, setFetched] = useState<PublicMeta | null>(null);
   const [fetchFailed, setFetchFailed] = useState(false);
   const full = fullProp ?? fetched;
   useEffect(() => {
@@ -42,7 +44,7 @@ export function DemoCard({
     let live = true;
     setFetchFailed(false);
     fetch(`/api/meta/${encodeURIComponent(meta.slug)}`)
-      .then((r) => (r.ok ? (r.json() as Promise<DemoMeta>) : Promise.reject(new Error(String(r.status)))))
+      .then((r) => (r.ok ? (r.json() as Promise<PublicMeta>) : Promise.reject(new Error(String(r.status)))))
       .then((m) => live && setFetched(m))
       .catch(() => live && setFetchFailed(true));
     return () => {
@@ -102,11 +104,24 @@ export function DemoCard({
             <>
             <ul className="claims">
               {full.claims.map((c) => (
-                <li key={c.id}>
+                <li key={c.id} data-testid="trust-claim">
                   <p>{c.text}</p>
                   <p className="muted small">
-                    <span className={`pill ${c.status}`}>{c.status}</span> rests on {c.support}: {c.source}
-                    {c.checkedBy ? ` · checked by ${c.checkedBy}, ${c.checkedOn}` : ""}
+                    <span className={`pill ${c.status}`}>{STATUS_LABEL[c.status] ?? c.status}</span> rests on{" "}
+                    {SUPPORT_LABEL[c.support] ?? c.support}
+                    {c.links.length > 0 && (
+                      <>
+                        {" · "}
+                        {c.links.map((l, i) => (
+                          <span key={l.href}>
+                            {i > 0 && ", "}
+                            <a href={l.href} target="_blank" rel="noopener noreferrer" data-testid="trust-source">
+                              {c.links.length > 1 ? `source ${i + 1}` : "open the source"} ({l.label})
+                            </a>
+                          </span>
+                        ))}
+                      </>
+                    )}
                   </p>
                   <p className="muted tiny">address: {c.id}</p>
                 </li>

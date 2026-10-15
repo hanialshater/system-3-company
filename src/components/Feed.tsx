@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { DemoMeta } from "@/kit/types";
+import type { PublicMeta } from "@/lib/trust";
 import type { FeedItem, FeedPage } from "@/lib/feed-types";
 import { dayMsFromLocation, loadProgress, revisitDue, track, updateProgress } from "@/kit/progress";
 import { DemoCard, type DomainInfo } from "./DemoCard";
@@ -9,7 +9,7 @@ import { DemoCard, type DomainInfo } from "./DemoCard";
 type Item =
   | { kind: "intro"; key: string }
   | { kind: "lesson"; key: string; meta: FeedItem }
-  | { kind: "revisit"; key: string; meta: DemoMeta };
+  | { kind: "revisit"; key: string; meta: PublicMeta };
 
 /**
  * One loaded list per filter: the cards fetched so far and the next page to ask for (null at the end).
@@ -31,7 +31,7 @@ const MAX_REVISITS = 12;
 export function Feed({ first, counts, domains }: { first: FeedPage; counts: Record<string, number>; domains: DomainInfo[] }) {
   const [filter, setFilter] = useState<string>("all");
   const [lists, setLists] = useState<Record<string, List>>({ all: { items: first.items, next: first.next, loading: false, failed: false } });
-  const [revisits, setRevisits] = useState<DemoMeta[]>([]);
+  const [revisits, setRevisits] = useState<PublicMeta[]>([]);
   // Revisits go only at item positions after this one, frozen when they arrive, so the card the
   // learner is on (and the ones above it) never shift (review finding 3).
   const [revisitFrom, setRevisitFrom] = useState(0);
@@ -68,12 +68,12 @@ export function Feed({ first, counts, domains }: { first: FeedPage; counts: Reco
     let live = true;
     const fetchMeta = (slug: string) =>
       fetch(`/api/meta/${encodeURIComponent(slug)}`)
-        .then((r) => (r.ok ? (r.json() as Promise<DemoMeta>) : null))
+        .then((r) => (r.ok ? (r.json() as Promise<PublicMeta>) : null))
         .catch(() => null);
     // The cap applies after the status filter: fetch in batches of MAX_REVISITS until enough are shown
     // or the due list runs out, so retired or renamed slugs (404s) cannot starve valid ones.
     (async () => {
-      const shown: DemoMeta[] = [];
+      const shown: PublicMeta[] = [];
       for (let at = 0; at < due.length && shown.length < MAX_REVISITS && live; at += MAX_REVISITS) {
         const metas = await Promise.all(due.slice(at, at + MAX_REVISITS).map(fetchMeta));
         // Only lessons the feed shows come back (drafts and retired lessons stay out, as before).
@@ -248,7 +248,7 @@ function IntroCard({ onStart, count }: { onStart: () => void; count: number }) {
   );
 }
 
-function RevisitCard({ meta, domain }: { meta: DemoMeta; domain: DomainInfo }) {
+function RevisitCard({ meta, domain }: { meta: PublicMeta; domain: DomainInfo }) {
   const [picked, setPicked] = useState<number | null>(null);
   const answer = (i: number) => {
     if (picked !== null) return;

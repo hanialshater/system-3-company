@@ -10,7 +10,7 @@ export interface FeedItem {
   domain: DomainId;
   status: DemoMeta["status"];
   durationSec: number;
-  /** Claim counts for the "Why trust this? (verified/total)" line. The claims themselves load on demand. */
+  /** Claim counts for the "Why trust this? (verified/total)" line, withdrawn claims excluded (W-879). The claims themselves load on demand. */
   claims: { total: number; verified: number };
 }
 

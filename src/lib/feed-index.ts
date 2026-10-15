@@ -3,6 +3,7 @@
 // cut pages and filter by subject without shipping every lesson to the browser.
 import type { DemoMeta } from "@/kit/types";
 import { visibleDemos } from "./catalog";
+import { trustCounts } from "./trust";
 import { FEED_PAGE_SIZE, type FeedItem, type FeedPage } from "./feed-types";
 
 export function toFeedItem(d: DemoMeta): FeedItem {
@@ -13,7 +14,7 @@ export function toFeedItem(d: DemoMeta): FeedItem {
     domain: d.domain,
     status: d.status,
     durationSec: d.durationSec,
-    claims: { total: d.claims.length, verified: d.claims.filter((c) => c.status === "verified").length },
+    claims: trustCounts(d.claims), // W-879: withdrawn claims are out of both numbers
   };
 }
 
