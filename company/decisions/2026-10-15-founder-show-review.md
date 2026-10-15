@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-15
 - **Decided by:** the founder, in the chief of staff's conversation ("2 show review")
-- **owner:** release-manager (production config), platform-engineer (W-480)
+owner: founder (recorded by chief-of-staff); release-manager (production config), platform-engineer (W-480)
 
 ## Decision
 Production keeps showing lessons in review, tagged "In review" (`SHOW_REVIEW` on, the current behaviour). Published lessons show untagged.
