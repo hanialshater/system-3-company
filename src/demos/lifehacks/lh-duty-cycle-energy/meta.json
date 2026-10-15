@@ -1,7 +1,7 @@
 {
   "slug": "lh-duty-cycle-energy",
   "title": "Rated power and active time",
-  "hook": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
+  "hook": "A 100 W fridge compressor runs a quarter of the time. Energy per day?",
   "domain": "lifehacks",
   "concept": "energy-power-times-time",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Hours=8h, A=0.2kWh and B=0.8kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Hours=24h, A=0.6kWh and B=2.4kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",100,0.25,\"x\"],1000]; B=[\"/\",[\"*\",100,\"x\"],1000]; x denotes Hours. At x=8, A=0.2, B=0.8. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", [\"*\", 100, 0.25, \"x\"], 1000], B=[\"/\", [\"*\", 100, \"x\"], 1000], variable {\"label\": \"Hours\", \"start\": 24, \"min\": 1, \"max\": 48, \"unit\": \"h\", \"step\": 1}. Per day = 24h: quarter on 100W × 0.25 × 24h = 600Wh = 0.6kWh; 100W all day = 2,400Wh = 2.4kWh. Hours slider now 1-48 so the start (24h) can move both ways.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c3",
@@ -79,12 +77,17 @@
     },
     {
       "id": "lifehacks.lh-duty-cycle-energy.c7",
-      "text": "A hypothetical load runs only one quarter of each hour. Should every hour use full power?",
+      "text": "A 100 W fridge compressor runs a quarter of the time. Energy per day?",
       "support": "convention",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-duty-cycle-energy\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 100, 0.25, \"x\"], 1000]; B=[\"/\", [\"*\", 100, \"x\"], 1000]; x denotes Hours, 1 to 24, start 8). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: 100W×0.25×8h = 0.2 kWh vs 100W×8h = 0.8 kWh; quarter-on is a quarter of always-on at every hour count. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-duty-cycle-energy\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). A stipulated hypothetical scenario or question that the stage then computes; its numbers are the declared spec values (A=[\"/\", [\"*\", 100, 0.25, \"x\"], 1000]; B=[\"/\", [\"*\", 100, \"x\"], 1000]; x denotes Hours, 1 to 24, start 8). Not a measurement. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): question; the stage answers it: 100W×0.25×8h = 0.2 kWh vs 100W×8h = 0.8 kWh; quarter-on is a quarter of always-on at every hour count. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.lh-duty-cycle-energy.c8",
+      "text": "A 100 W fridge compressor runs a quarter of the time. Energy per day? Options: 0.6 kWh / 2.4 kWh: 100 W all day. Correct: 0.6 kWh.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Per day = 24h: quarter on 100W × 0.25 × 24h = 600Wh = 0.6kWh; 100W all day = 2,400Wh = 2.4kWh. Hours slider now 1-48 so the start (24h) can move both ways.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -108,7 +111,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:energy-power-times-time",

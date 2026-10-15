@@ -1,7 +1,7 @@
 {
   "slug": "lh-annual-label-cost",
   "title": "Read the annual-energy number",
-  "hook": "Two illustrative annual labels differ. How does that difference repeat over years?",
+  "hook": "The labels say €60 and €105 a year. Over 8 years, the difference between two fridges is?",
   "domain": "lifehacks",
   "concept": "bill-equals-energy-times-rate",
   "status": "review",
@@ -33,21 +33,17 @@
     },
     {
       "id": "lifehacks.lh-annual-label-cost.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Years=2, A=€120 and B=€210. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Years=8, A=€480.00 and B=€840.00. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"*\", 200, \"x\", 0.3], B=[\"*\", 350, \"x\", 0.3], variable {\"label\": \"Years\", \"start\": 8, \"min\": 1, \"max\": 10, \"unit\": \"\", \"step\": 1}. 200kWh × €0.30 = €60/year; 350kWh × €0.30 = €105/year; gap €45/year; over 8 years A = €480, B = €840, difference 8 × €45 = €360. Bracket fill: [a] = the two labels' yearly costs €60 and €105 (the line's 'The label says €[a]' is written as 'The labels say €60 and €105').",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-annual-label-cost.c3",
-      "text": "Multiply annual energy by years and the stated unit price. This extrapolation assumes unchanged use and tariff; it is not a measured forecast for a named product.",
+      "text": "Multiply annual energy by years and the stated unit price. The two labels differ by €45 a year (150kWh × €0.30), so the gap grows every year: €360 over 8 years. This assumes unchanged use and tariff; it is not a measured forecast for a named product.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",200,\"x\",0.3]; B=[\"*\",350,\"x\",0.3]; x denotes Years. At x=2, A=120, B=210. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): principle changed.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-annual-label-cost.c4",
@@ -66,6 +62,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-annual-label-cost.c6",
+      "text": "The labels say €60 and €105 a year. Over 8 years, the difference between two fridges is? Options: €45: the label's gap / €360. Correct: €360.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: 200kWh × €0.30 = €60/year; 350kWh × €0.30 = €105/year; gap €45/year; over 8 years A = €480, B = €840, difference 8 × €45 = €360. Bracket fill: [a] = the two labels' yearly costs €60 and €105 (the line's 'The label says €[a]' is written as 'The labels say €60 and €105').",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -89,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:bill-equals-energy-times-rate",

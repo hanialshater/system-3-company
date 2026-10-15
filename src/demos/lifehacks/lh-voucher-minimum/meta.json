@@ -1,7 +1,7 @@
 {
   "slug": "lh-voucher-minimum",
   "title": "The voucher has a minimum",
-  "hook": "A €5 voucher can leave a small basket unchanged.",
+  "hook": "€28 basket, €5 off from €30. Add a €2 item: does your bill go down?",
   "domain": "lifehacks",
   "concept": "spend-threshold-trap",
   "status": "review",
@@ -33,12 +33,10 @@
     },
     {
       "id": "lifehacks.lh-voucher-minimum.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Basket=28€, A=€28 and B=€28. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Basket=€28.00, A=€28.00 and B=€28.00. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=\"x\"; B=[\"-\",\"x\",[\"*\",5,[\"floor\",[\"min\",1,[\"/\",\"x\",30]]]]]; x denotes Basket. At x=28, A=28, B=28. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=\"x\", B=[\"-\", \"x\", [\"*\", 5, [\"floor\", [\"min\", 1, [\"/\", \"x\", 30]]]]], variable {\"label\": \"Basket\", \"start\": 28, \"min\": 10, \"max\": 40, \"unit\": \"\\u20ac\", \"step\": 1}. At €28 the voucher does not apply (€28). Adding €2 makes €30, which qualifies: €30 − €5 = €25, below €28.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-voucher-minimum.c3",
@@ -57,6 +55,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-voucher-minimum.c5",
+      "text": "€28 basket, €5 off from €30. Add a €2 item: does your bill go down? Options: Yes, to €25 / No. Correct: Yes, to €25.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: At €28 the voucher does not apply (€28). Adding €2 makes €30, which qualifies: €30 − €5 = €25, below €28.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +85,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:spend-threshold-trap",

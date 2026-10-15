@@ -1,7 +1,7 @@
 {
   "slug": "lh-standby-days-add-up",
   "title": "A tiny load accumulates",
-  "hook": "Two watts over a whole day and over one hour are different annual totals.",
+  "hook": "A 2 W standby all year. About how much energy?",
   "domain": "lifehacks",
   "concept": "standby-power-cost",
   "status": "review",
@@ -24,21 +24,17 @@
   "claims": [
     {
       "id": "lifehacks.lh-standby-days-add-up.c1",
-      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; illustrative:2W;24h/day-or-1h/day;€0.30/kWh.",
+      "text": "A constant illustrative 2W load runs for either 24h/day or 1h/day. Scaled model; illustrative:2W;24h/day-or-1h/day.",
       "support": "convention",
-      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Declared hypothetical inputs and limits in resource-specs.json. No actual product, price, tariff, shelf-life, treatment or physical appliance specification is asserted. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): assumptions changed.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Days=365, A=17.52kWh and B=0.73kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Days=365, A=17.52kWh and B=0.73kWh. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"/\",[\"*\",2,24,\"x\"],1000]; B=[\"/\",[\"*\",2,\"x\"],1000]; x denotes Days. At x=365, A=17.52, B=0.73. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"/\", [\"*\", 2, 24, \"x\"], 1000], B=[\"/\", [\"*\", 2, \"x\"], 1000], variable {\"label\": \"Days\", \"start\": 365, \"min\": 5, \"max\": 400, \"unit\": \"\", \"step\": 5}. 2W × 24h × 365 days = 17,520Wh = 17.52kWh (about 17.5kWh). Days slider now 5-400 in steps of 5 (365 is on the grid). The unused €0.30/kWh is taken out of the assumptions line.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-standby-days-add-up.c3",
@@ -76,6 +72,13 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15",
       "note": "FC pass 41 (fact-checker, 2026-10-15): UNVERIFIED. HELD. Same safety line and gap as lh-duty-cycle-energy c6: no energy-regulator host is allow-listed, and OWID has no household tariff page. Needs a source or an evaluation-steward ruling."
+    },
+    {
+      "id": "lifehacks.lh-standby-days-add-up.c7",
+      "text": "A 2 W standby all year. About how much energy? Options: Almost nothing / 17.5 kWh. Correct: 17.5 kWh.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: 2W × 24h × 365 days = 17,520Wh = 17.52kWh (about 17.5kWh). Days slider now 5-400 in steps of 5 (365 is on the grid). The unused €0.30/kWh is taken out of the assumptions line.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -99,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:standby-power-cost",

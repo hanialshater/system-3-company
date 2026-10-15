@@ -1,7 +1,7 @@
 {
   "slug": "lh-around-versus-across",
   "title": "Around is not across",
-  "hook": "A perimeter measurement and a corner-to-corner measurement follow different paths.",
+  "hook": "A 3×4 m room. Corner to corner is how far?",
   "domain": "lifehacks",
   "concept": "around-vs-across",
   "status": "review",
@@ -33,21 +33,17 @@
     },
     {
       "id": "lifehacks.lh-around-versus-across.c2",
-      "text": "The stage's two results are computed by the printed expressions. At Width=4m, A=14m and B=5m. Geometry follows the declared dimension relationships. Other pictures use a fixed full scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
+      "text": "The stage's two results are computed by this lesson's declared expressions; each card prints its working in plain words. At Width=4m, A=14m and B=5m. Geometry follows the declared dimension relationships. Other pictures use a fixed scale across the slider range; continuous fills and arcs show relative amounts rather than literal object counts.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. Diagram scale: resourceGraphicScale in resource-model.ts takes the maximum modeled magnitude across both formulas and the declared slider range. For non-geometry figures, full-scale values are displayed; the scale stays fixed when the slider changes. Energy axis endpoints use resourceAxisEnd, including B=5×A hours in lh-watts-hours-trade; cylinder rx and ry both scale with radius in resourceCylinderDimensions. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): v2 stage: plain-words readouts (TP-7a), no 'Full scale' label (TP-7b), money to 2 decimals (TP-7c); A=[\"*\", 2, [\"+\", \"x\", 3]], B=[\"sqrt\", [\"+\", [\"*\", \"x\", \"x\"], 9]], variable {\"label\": \"Width\", \"start\": 4, \"min\": 1, \"max\": 8, \"unit\": \"m\", \"step\": 1}. Width 4m, height 3m: along two walls 4+3 = 7m; perimeter 2×(4+3) = 14m; corner to corner sqrt(16+9) = 5m (5×5 = 25 = 4×4 + 3×3).",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-around-versus-across.c3",
-      "text": "Perimeter adds all four edges. The diagonal follows one straight corner-to-corner path and uses the square-root relationship. Name the route before calculating the required length; the same rectangle supports different measurements.",
+      "text": "Perimeter adds all four edges: 2 × (4 + 3) = 14m. Along two walls is 4 + 3 = 7m. Corner to corner is one straight line: 5m, because 5 × 5 = 4 × 4 + 3 × 3. Name the route before you measure.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"*\",2,[\"+\",\"x\",3]]; B=[\"sqrt\",[\"+\",[\"*\",\"x\",\"x\"],9]]; x denotes Width. At x=4, A=14, B=5. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): principle changed.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-around-versus-across.c4",
@@ -57,6 +53,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.lh-around-versus-across.c5",
+      "text": "A 3×4 m room. Corner to corner is how far? Options: 7 m: along two walls / 5 m / 3.5 m. Correct: 5 m.",
+      "support": "derivation",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W6), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Width 4m, height 3m: along two walls 4+3 = 7m; perimeter 2×(4+3) = 14m; corner to corner sqrt(16+9) = 5m (5×5 = 25 = 4×4 + 3×3).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -80,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "format": "side-by-side",
   "curriculum": {
     "primary": "lifehacks:around-vs-across",
