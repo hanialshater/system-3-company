@@ -20,6 +20,10 @@ Why tier 2: `src/kit/**` is tier 2 in paths.json. The kit change is one literal 
 6. **Data.** No learner data. Static content only.
 7. **Risks.** None added or closed.
 
+## Engineering review (principal-engineer, playbook step 8)
+
+Kit change approved, 2026-10-15: [reviews/2026-10-15-W-981-behavioral-domainid-review.md](../reviews/2026-10-15-W-981-behavioral-domainid-review.md). There is no EDD because none is needed for a one-literal union addition. Condition: `npm run verify` passes on the integrated tree before merge, and its summary is pasted here. This is not the readiness approval. That comes from principal-engineer-ops below, because this change is outside the ops area.
+
 ## Approval (tier 2; written by principal-engineer-ops)
 
 - Decision:
