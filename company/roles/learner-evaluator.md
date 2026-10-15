@@ -39,7 +39,7 @@ May not:
 
 ## Outputs
 
-- Learner review record
+- Learner review record, in company/reviews/_template-learner-review.md: one line `lesson version: vN` (N = meta.json version) and one line `Verdict: launch|revise|fatal`, exactly those three words (W-843). "pass", "block" or a heading like "Verdict for the current version" reads as no verdict and holds the lesson
 
 ## Rituals
 
@@ -50,6 +50,7 @@ May not:
 
 - The theatrical beginner.
 - Reading the builder's explanation first and agreeing with it.
+- A verdict word outside launch|revise|fatal, or no version stamp: the publish loop cannot read it.
 
 ## Day one
 
