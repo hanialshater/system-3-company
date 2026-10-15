@@ -73,7 +73,7 @@ The import skips a usage event already written by hand, matching on label and to
 
 **How a budget is set.** The owner proposes a token figure computed from a **measured unit cost** times
 planned units, and names the measurement. Today's measured unit costs are 101k tokens per published lesson
-(all recorded subagent spend, 61.2M, divided by 608 published), 82k on the catalog line alone, and per
+(all recorded subagent spend, 61.2M, divided by 608 published; re-measured on 2026-10-15 as 122k: 77.4M over 588 runs, including 115 runs after the log's 15:20 cut-off read from the transcript, / 635 published), 82k on the catalog line alone, and per
 run: builder 149k, fact-checker 131k, learner-evaluator 179k, platform-engineer 136k. Big projects are
 funded in **tranches**: tranche 1 buys the pilot that tests the riskiest assumption, and the next
 tranche is approved on the pilot's result. A budget counts spend from `budget.countFrom` (the approval
@@ -113,7 +113,29 @@ approved project's budget. Untagged work is treated as small and is never gated.
 **The bite** is a mechanism, not a reminder:
 
 - `node tools/ledger.mjs gate --project=<id>` exits 1 for a major project that is proposed, returned, paused, killed, legacy, past its grace period, or at 100% of budget. The dispatch preflight being built by chief-of-staff-ceo-office calls it (board item; I did not edit her files).
-- `node tools/ledger.mjs check` exits 1 if any **tagged** ledger line after `enforceFrom` (2026-10-14 19:00 UTC) went to a project the gate refused at that moment; if an approved major project has no approval record on disk, no budget, or was approved by its own proposer; or if its approval record has no `## Objections` section or answers an objection with "noted". Wiring `check` into `npm run check` needs a change to `tools/company.mjs`, which is protected. That is routed for an amendment and not done here.
+- `node tools/ledger.mjs check` exits 1 if any **tagged** ledger line after `enforceFrom` (2026-10-14 19:00 UTC) went to a project the gate refused at that moment; if an approved major project has no approval record on disk, no budget, or was approved by its own proposer; or if its approval record has no `## 9. Initiative proposals carry the budget line first (added 2026-10-15, W-905)
+
+**Why.** First Light, the first public release, reached the founder with no token budget and no money line, and the portfolio manager had not seen it (founder correction in company/decisions/2026-10-15-founder-first-light.md). The founder decided the program and left its spend "pending Project Review 1". A decision without a cost is a decision on half the facts.
+
+**The rule.** Any **initiative proposal** that reaches the founder carries a portfolio-manager **budget line** before it does. That covers a founder-inbox item, a decision ask in a conversation, or a proposal document. An initiative is anything that would be a major project under section 6, or that asks for money. This applies to every proposer, not only the chief of staff. The budget line holds:
+
+1. **tokens per tranche**, from measured per-run or per-lesson unit costs, naming the measurement, and saying which units are proxies or extrapolations;
+2. **money** where there is real spend, each line marked verified (a quote or a price page opened) or unverified;
+3. a **return measure**, and a **stop rule** for each tranche;
+4. **what it displaces**: review capacity, named roles, founder decisions and lesson-equivalents at the current cost per published lesson;
+5. a **register entry**: the project in projects.json as `proposed`, with its `premortem`.
+
+**How it runs.**
+- The proposer asks the portfolio manager for the line. A board item to portfolio-manager is enough. The portfolio manager writes it within one operating loop, into projects.json and the proposal (a "Budget line (portfolio-manager)" section), or says in writing why the item is not an initiative.
+- The chief of staff and the CEO office, who write the founder inbox, do not file an initiative item without a link to the budget line (the `budget` field on the inbox item, pointing at the projects.json id). An item without one goes back to its proposer, not to the founder.
+- If the founder decides before a line exists (as with First Light), the decision record says "budget pending", the project is registered as `proposed`, and the gate refuses tagged dispatch until the forum or the founder sets the budget.
+- The portfolio manager writes the line but does not approve it (the authority rule). The forum or the founder approves it.
+
+**Mechanism, not only a rule.** This text is a rule until a tool checks it. The proposed check is for `node tools/ledger.mjs check` to warn on an open founder-inbox item in category `decision` that links a file under `company/initiatives/` or a major projects.json id and has no `budget` field. It is routed as a board item to the chief of staff and the tools lead (founder-inbox.json has one writer). Until it lands, the CEO office checks by hand at each founder digest.
+
+**Would be wrong if:** within two weeks, more than one initiative reaches the founder without a line, or the line delays founder decisions by more than one operating loop (median, measured from the board item to the line).
+
+## Objections` section or answers an objection with "noted". Wiring `check` into `npm run check` needs a change to `tools/company.mjs`, which is protected. That is routed for an amendment and not done here.
 - **Grace period.** Projects started before the forum existed are `in-flight` and pass with a warning until 2026-10-16 23:59 UTC (wave J, Life Hacks v2, Books decks, History, Marketing), or until 2026-10-21 (Big Ideas, multi-card, NCM). After that the gate fails until the forum rules.
 
 ## 7. Today's backfill (labelled)
@@ -149,3 +171,5 @@ ledger:** about 64 runs after 15:20 (missing item 1), the 32 stopped runs, and t
 | Attributing 82% of spend by role default could mislead: a builder fixing a Life Hacks lesson counts to the catalog | portfolio-manager (self-check) | evidence | accepted: every report shows the attribution split, and tagging from today replaces inference |
 | A forum adds a wait to work that is already slow because review is the bottleneck | principal-pm-verticals (stated against new orgs in plan-to-2000 §4; applied here by me) | purpose | accepted in part: only major work is gated, and small work and lines never block; open for the forum to test after 2 weeks (kill criterion for the forum itself: if the median approval wait is over 24 h, add the delegation in agenda item 0) |
 | `subagent_tokens` may not be the billed unit, so budgets in it may not track the plan's usage limit | portfolio-manager | evidence | open, routed: forum question 1 in the first agenda |
+| An initiative reached the founder without a budget (First Light, 2026-10-15) | founder | purpose | accepted: section 9 (budget line first); mechanism routed (ledger check on the founder inbox) |
+| Unit costs for roles that have never run (backend coding, learner-model-engineer, personalization-lead, growth-designer, privacy-reviewer) are proxies, so a First Light budget built on them may be wrong | portfolio-manager (self-check) | evidence | accepted: tranche 1 buys a spike per workstream and tranche 2 is re-priced at the week-1 re-estimate, with a 1.25x ceiling before cuts |

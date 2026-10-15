@@ -235,7 +235,7 @@
       "grandfatheredUntil": "2026-10-16T23:59:59Z",
       "budget": {
         "tokens": null,
-        "proposed": 2000000,
+        "proposed": 2500000,
         "basis": "set at the first project review",
         "topUps": []
       },
@@ -263,14 +263,28 @@
       ],
       "proposedBy": "principal-pm-verticals",
       "proposal": {
-        "budgetTokens": 2000000,
-        "basis": "tranche 1: org, charter, curriculum (~1M at today's leadership and CM run costs) plus the Wave K pilot of 10 (~1M at 101k); measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
-        "kill": "Stop after the pilot if more than 40% of pilot claims are held on unopenable sources, or fewer than 5 of 10 pilot lessons reach a launch verdict.",
+        "budgetTokens": 2500000,
+        "basis": "F-16 option (a), two tranches (company/decisions/2026-10-15-founder-sensitive-route-and-history-tranches.md). Portfolio-manager check of the owner's figure (F-16: 2.5-3M): 2.5M from approval; the ~1.45M already spent on the 15 drafts (7 [project:history] runs) plus the untagged History org run (387k) is history under countFrom. The owner's one-page proposal (W-723, principal-pm-verticals) is the proposal of record; these are the check figures, not a second proposal. measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "kill": "Tranche 1: stop at the DLR five if more than 40% of claims are held or fewer than 3 of the five reach a launch verdict; tranche 2 is not released without all four F-16 triggers. Gate stops tagged dispatch at 2.5M.",
         "by": "portfolio-manager",
-        "date": "2026-10-14",
-        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+        "date": "2026-10-15",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)",
+        "supersedes": "2026-10-14 proposal of 2.0M for org, charter, curriculum and a pilot of 10 (before the founder set 100 lessons)"
       },
-      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+      "tranches": [
+        {
+          "n": 1,
+          "tokens": 2500000,
+          "buys": "~25 standard briefs on opened data (15 already built as drafts): 10 new lessons all-in (10 x 122k) plus learner review, fixes, re-check and publish for the 15 drafts (15 x ~75k, the measured review-publish stage: 2.09M over 13 runs for 28 published)"
+        },
+        {
+          "n": 2,
+          "tokens": 10800000,
+          "buys": "~75 lessons (75 x 122k = 9.15M) plus two cultural-reviewer reviews per sensitive lesson (~54 concepts, ~22 runs x 75k = 1.6M)",
+          "releasedWhen": "F-16 (a) triggers: sensitive route in use, web-capable fact-check available, DLR five pass, held-claim rate 25% or lower"
+        }
+      ]
     },
     {
       "id": "marketing",
@@ -320,7 +334,7 @@
     },
     {
       "id": "scale-stage-1",
-      "title": "EDD-003 stage 1: lesson code out of the app's static import graph (runtime bundles)",
+      "title": "Scalability: A1 (EDD-001 option 4, registry split) and the A2 pilot (EDD-003 stage 1, 50 lessons as runtime bundles) off First Light's critical path",
       "kind": "project",
       "major": true,
       "majorBecause": [
@@ -331,7 +345,7 @@
       "status": "proposed",
       "budget": {
         "tokens": null,
-        "proposed": 3000000,
+        "proposed": 2450000,
         "basis": "set at the first project review",
         "topUps": []
       },
@@ -356,14 +370,28 @@
       ],
       "proposedBy": "principal-engineer",
       "proposal": {
-        "budgetTokens": 3000000,
-        "basis": "~22 platform-engineer runs at the measured 136k per run; checkpoint at 1.5M with the stage-1 measures; measured 2026-10-14: 101k subagent tokens per published lesson over all recorded spend (61.2M / 608); catalog line alone 82k",
-        "kill": "Abandon if at the 1.5M checkpoint the measured next build time or full QA time has not fallen by at least a third against the EDD-003 baseline.",
+        "budgetTokens": 2450000,
+        "basis": "re-scoped to the founder's 50-lesson pilot (First Light decision, objections) plus A1 from company/engineering/notes/2026-10-14-scalability-options-for-founder.md; P3-P6 (~0.64M: P3 1 run, P4 and P5 tools-lead 4 runs, P6 2 runs plus steward review) go to the maintenance line, not gated. Money: C1 GitHub Pro ~$4/mo (unverified); C3 $60-150/mo only if the step-2 measurements fail. measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "kill": "At the 1.2M checkpoint: stop the frame path and fall back to same-origin import() (EDD-003 A2-a) if warm frame time stays over 300 ms after preloading; abandon A2 if the pilot does not show app build <= 5 min independent of lesson count and <= 30 s QA per changed lesson. Revert A1 if first-load JS on / does not drop by >= 2.3 MB gz. Stop any stage-1 work that blocks a First Light go/no-go item.",
         "by": "portfolio-manager",
-        "date": "2026-10-14",
-        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)"
+        "date": "2026-10-15",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own proposal)",
+        "supersedes": "2026-10-14 proposal of 3.0M for all of stage 1"
       },
-      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md",
+      "tranches": [
+        {
+          "n": 1,
+          "tokens": 2450000,
+          "buys": "A1: 4 platform-engineer runs, PE review, AMD-001 (c2) draft (~0.56M). A2 pilot of 50: bundler decision record, 10 build runs plus 2 fix runs, 3 PE reviews, 4 QA runs through the frame, 2 steward amendment drafts (company.mjs, tests/qa, ci.yml), 1 readiness record (~1.89M)",
+          "checkpoint": "1.2M: A1 merged and 25 lessons migrated"
+        },
+        {
+          "n": 2,
+          "tokens": null,
+          "estimate": "3-4M (extrapolated) to migrate the other ~910 lessons; a later review on the pilot's measures"
+        }
+      ]
     },
     {
       "id": "big-ideas",
@@ -473,6 +501,226 @@
         "W-555"
       ],
       "refs": []
+    },
+    {
+      "id": "first-light",
+      "title": "First Light: the first public release (domain, accounts, server-side progress, rule-based personalization, mastery and challenges, light social, a labelled house-card ad slot, legal basics, infra and readiness)",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "over 5M tokens",
+        "over 20 agent runs",
+        "changes the deploy path, the event API and adds auth and learner data (tier 2, EDD-007)",
+        "new org role (Head of Strategic Initiatives)",
+        "more than 7 days"
+      ],
+      "owner": "head-of-strategic-initiatives (chief-of-staff until the role exists, W-904)",
+      "status": "proposed",
+      "budget": {
+        "tokens": null,
+        "proposed": 3590000,
+        "basis": "tranche 1 only (design, EDDs, spikes, amendment, org role, week-1 re-estimate, to 2026-10-23); tranche 2 (8.17M) is released on the tranche-1 checkpoint. measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "topUps": []
+      },
+      "tranches": [
+        {
+          "n": 1,
+          "tokens": 3590000,
+          "to": "2026-10-23",
+          "buys": "EDD and spike per workstream, privacy and PE reviews, Surface Value amendment draft and reviews, Head of Strategic Initiatives org change, war room, week-1 re-estimate (W-908)",
+          "checkpoint": "2026-10-23: W-908 re-estimate and F-01"
+        },
+        {
+          "n": 2,
+          "tokens": 8170000,
+          "to": "2026-11-30",
+          "buys": "build, fix rounds, reviews, QA, readiness records, go/no-go 2026-11-23, launch 2026-11-30",
+          "releasedWhen": "tranche-1 stop rule passes and the forum (or founder under item 0a) releases it"
+        }
+      ],
+      "workstreams": {
+        "auth-progress": {
+          "owner": "backend-engineer",
+          "t1": 445000,
+          "t2": 1729000
+        },
+        "personalization": {
+          "owner": "learner-model-engineer, personalization-lead",
+          "t1": 357000,
+          "t2": 1144000
+        },
+        "mastery-challenges": {
+          "owner": "growth-designer, platform-engineer",
+          "t1": 393000,
+          "t2": 1221000
+        },
+        "light-social": {
+          "owner": "backend-engineer with privacy-reviewer",
+          "t1": 259000,
+          "t2": 823000
+        },
+        "ad-slot": {
+          "owner": "vp-marketing",
+          "t1": 364000,
+          "t2": 530000,
+          "note": "stages 0-1 of the ads proposal (first-party house cards, no money); stage 2 (paid) is not budgeted here and comes back as its own project after F-17/F-20"
+        },
+        "legal": {
+          "owner": "privacy-reviewer (founder decides on outside counsel)",
+          "t1": 288000,
+          "t2": 287000
+        },
+        "infra-readiness": {
+          "owner": "principal-engineer, principal-engineer-ops, release-manager",
+          "t1": 337000,
+          "t2": 950000
+        },
+        "surface-value-amendment": {
+          "owner": "evaluation-steward",
+          "t1": 429000,
+          "t2": 0
+        },
+        "war-room-and-head-of-si": {
+          "owner": "chief-of-staff-ceo-office (role), hq-engineer (room), head-of-strategic-initiatives (cadence)",
+          "t1": 718000,
+          "t2": 1485000
+        }
+      },
+      "money": {
+        "verified": false,
+        "note": "to be confirmed by quote (W-908, F-18); figures from the scalability note C4 and from memory; nothing purchased",
+        "lines": [
+          {
+            "item": "Vercel Pro",
+            "monthlyUSD": "~20 per member, 1 seat assumed",
+            "source": "scalability note C4, unverified"
+          },
+          {
+            "item": "domain",
+            "yearlyUSD": "~10-20 for a .com; other TLDs vary",
+            "source": "memory, unverified"
+          },
+          {
+            "item": "managed Postgres",
+            "monthlyUSD": "0 on a free tier; ~5-25 paid",
+            "source": "memory, unverified"
+          },
+          {
+            "item": "auth provider",
+            "monthlyUSD": "0 with Auth.js (open source, a new dependency needs a decision record); hosted provider free tier, then ~25",
+            "source": "memory, unverified"
+          },
+          {
+            "item": "error monitoring",
+            "monthlyUSD": "0 on a free developer tier; ~26 team tier",
+            "source": "memory, unverified"
+          }
+        ],
+        "rangeMonthlyUSD": "~21 (free tiers) to ~100 (paid tiers)"
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-15-founder-first-light.md",
+        "note": "founder decided the program, scope and dates; spend waits for this forum (budget pending Project Review 1)"
+      },
+      "returns": {
+        "notLessons": "release return: go at the 2026-11-23 go/no-go with every tier-2 path carrying an approved EDD-007 record and no open SEV1/SEV2; launch metrics set by analytics-steward before launch (first real-learner data, R-011): accounts created, anonymous history kept at sign-up (100% in QA), 7-day return rate; money: hosting cost per month against ad revenue (house cards only at launch, so $0 revenue is expected)"
+      },
+      "kill": null,
+      "match": [
+        "first[ -]?light"
+      ],
+      "board": [
+        "W-904",
+        "W-905",
+        "W-907",
+        "W-908"
+      ],
+      "refs": [
+        "company/decisions/2026-10-15-founder-first-light.md",
+        "company/initiatives/first-light/charter.md",
+        "company/marketing/2026-10-15-monetization-ads-proposal.md",
+        "company/engineering/edd/EDD-007-ops-readiness-gate.md"
+      ],
+      "proposedBy": "chief-of-staff",
+      "proposal": {
+        "budgetTokens": 3590000,
+        "programTokens": 11760000,
+        "basis": "per-workstream runs x measured per-run means (platform-engineer 110k as the code-run unit, PE review 69k, PE-ops 81k, design spec 115k, privacy review 75k proxy, steward 52k, CEO-office org run 160k, written status run 63k); no backend-engineer coding, learner-model-engineer, personalization-lead, growth-designer or privacy-reviewer run exists in the ledger, so those units are proxies (extrapolated). measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "kill": "Tranche 1: release tranche 2 only if the W-908 re-estimate puts tranche 2 at or under 10.2M (1.25x) and F-01 (auth, DB, age) is decided by 2026-10-23; otherwise return to the forum with cuts in this order: ad slot (to release 2), light social, challenges. Tranche 2: ad slot and light social are cut to release 2 if the privacy-reviewer ruling (and, for the slot, the ratified Surface Value amendment) is not on file by 2026-11-09. One no-go at 2026-11-23 allows one re-plan inside tranche 2; a second no-go returns First Light to the forum. At 11.76M spent without a go, stop: a top-up needs the founder and one PE.",
+        "by": "portfolio-manager",
+        "date": "2026-10-15",
+        "status": "proposed, not approved: the forum sets it (portfolio-manager cannot approve its own budget)"
+      },
+      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
+    },
+    {
+      "id": "behavioral-econ",
+      "title": "Behavioral Economics and Irrational Behavior category (F-21): DLR, cm-behavioral, pilot of 5, then 30 on triggers",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new category",
+        "new org (cm-behavioral, later strand managers)"
+      ],
+      "owner": "principal-pm-verticals (cm-behavioral once created, W-899)",
+      "status": "proposed",
+      "budget": {
+        "tokens": null,
+        "proposed": 1830000,
+        "basis": "tranche 1 (category variant, pilot of 5). measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "topUps": []
+      },
+      "tranches": [
+        {
+          "n": 1,
+          "tokens": 1830000,
+          "buys": "DLR proposal, boundary rulings, research sourcing note, cm-behavioral org change, charter and curriculum, DomainId and theme, HQ office, 4 neighbour sign-offs, 5 pilot lessons all-in, Domain Launch Review"
+        },
+        {
+          "n": 2,
+          "tokens": 4030000,
+          "buys": "30 lessons all-in plus strand-manager org change and charters",
+          "releasedWhen": "DLR five pass, held-claim rate 25% or lower, a Project Review approves, and (once data exists) the path's commit rate is at least the feed median"
+        }
+      ],
+      "approval": {
+        "record": "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "note": "founder decided the category (F-21); slots (F-22) are still the founder's; the forum sets budget, return and stop rule"
+      },
+      "returns": {
+        "notLessons": "published lessons in the new category once its DomainId exists (W-897, W-899), held-claim rate in the pilot, and the 'Why we decide badly' path's commit and 7-day recall against the feed median; not measured until the DomainId exists"
+      },
+      "kill": null,
+      "match": [
+        "behavio(u)?ral[ -]?econ",
+        "cm-behavioral",
+        "irrational"
+      ],
+      "board": [
+        "W-896",
+        "W-897",
+        "W-898",
+        "W-899",
+        "W-900",
+        "W-902",
+        "W-905"
+      ],
+      "refs": [
+        "company/product/verticals/2026-10-15-behavioral-economics.md",
+        "company/decisions/2026-10-15-founder-behavioral-economics-category.md",
+        "company/product/verticals/category-onboarding-playbook.md"
+      ],
+      "proposedBy": "principal-pm-verticals",
+      "proposal": {
+        "budgetTokens": 1830000,
+        "programTokens": 5860000,
+        "basis": "the vertical's 0.6M and 3.0M were sized at 101k per lesson for the strand variant with ~0.1M of set-up; the founder chose the category variant, and the measured set-up runs (domain-scout 54k, head-of-product 2x63k, research note 182k proxy, CEO-office org run 160k, CM charter and curriculum 177k, DomainId 59k as W-538, HQ 64k, 4 neighbour sign-offs 4x71k, DLR ritual 117k) add ~1.2M; pilot 5 x 122k = 0.61M. Tranche 2: 30 x 122k = 3.66M plus 0.37M strand set-up. measured 2026-10-15 (W-905): 77.4M subagent tokens over 588 finished runs (ledger to 2026-10-14 15:20 plus 115 later runs read from the session transcript, not yet in the event log, W-716) / 635 published = 122k per published lesson all-in (101k on 2026-10-14). Per-run means by role in the agenda's W-905 addendum",
+        "kill": "Pause if 3 of the DLR five are rejected as duplicates of a neighbour's lesson, the pilot held-claim rate passes 40%, or tranche 1 reaches 1.83M before the DLR five are reviewed. Tranche 2 is not released without the four triggers. Fold into Economics 60 days after deploy if 7-day recall is more than 10 points below the feed median and commit rate is below it.",
+        "by": "portfolio-manager",
+        "date": "2026-10-15",
+        "status": "proposed, not approved: the forum sets it"
+      },
+      "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
     },
     {
       "id": "lifehacks-200",
