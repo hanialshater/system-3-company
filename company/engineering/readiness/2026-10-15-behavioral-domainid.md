@@ -7,10 +7,12 @@ paths: src/kit/types.ts, content/domains.json, src/lib/hq.ts, src/lib/hq-colors.
 author: platform-engineer
 board: W-981 (and W-900's HQ office)
 risks: none
+approved-by: principal-engineer-ops
+approved: 2026-10-15
 links: branch domainid; playbook company/product/verticals/category-onboarding-playbook.md step 8; org record company/decisions/2026-10-15-behavioral-economics-org.md
 ```
 
-Why tier 2: `src/kit/**` is tier 2 in paths.json. The kit change is one literal added to the `DomainId` union in `src/kit/types.ts`; nothing else in the kit, the lesson contract (`Lesson.tsx`), the registry generator or the meta.json schema changes. The same edit was made for `books`, `big-ideas` and `history`. Playbook step 8 also asks for a principal-engineer review when `src/kit/**` changes. Not approved: this branch must not merge to the deploy path until principal-engineer-ops approves below.
+Why tier 2: `src/kit/**` is tier 2 in paths.json. The kit change is one literal added to the `DomainId` union in `src/kit/types.ts`; nothing else in the kit, the lesson contract (`Lesson.tsx`), the registry generator or the meta.json schema changes. The same edit was made for `books`, `big-ideas` and `history`. Playbook step 8 also asks for a principal-engineer review when `src/kit/**` changes. This branch was not to merge to the deploy path until principal-engineer-ops approved it below. It was approved on 2026-10-15, with the flake on record (see "Decision on the verify result").
 
 1. **What can fail.** (a) A union member with no matching `content/domains.json` entry (or the reverse) would make a lesson's chip, colour or catalog section undefined. Both are added in the same commit, and `npm run check` validates domains against content. (b) `npm run check` now validates `content/curriculum/behavioral.json`; a malformed edit by cm-behavioral would now fail check instead of being ignored. That is intended. (c) The HQ office could overlap a room on floor 6. Worst case: a learner-facing page breaks for one category. With no `behavioral` lessons yet, learners see only a catalog heading marked "incubating".
 2. **How we would know.** `npm run check` (passes: 960 lessons, 17 behavioral concepts in coverage), `npx tsc --noEmit` (passes), `npm run test:hq` (62/62, including the floor plan's no-overlap test, full-size offices and homes), `npm run test:platform` (16 pass, 3 skipped because they need a production build), `test:publish` 8/8, `test:deploy` 17/17. Dev server smoke on :3681: `/`, `/catalog` (lists "Behavioral Economics and Irrational Behavior"), `/hq` (office "Behavioral Econ") and `/hq/curriculum` return 200.
@@ -76,3 +78,26 @@ The section's concepts follow, each marked "not yet taught". I then stopped the 
 Drift since the run: `ccr-4c6c7654-ew9ko1` gained `45e8fce` (fact-check pass 49) and `cd38642` (board) at 17:17Z, after the fetch. They touch only lesson `meta.json` claim statuses, fact-check reviews and `board.json`. None of them touches the kit, `content/domains.json`, code or tests, and `git merge-tree` shows they merge cleanly with this branch. If the branch is merged rather than rebased again, `c58c6da` stays an ancestor of the merge commit.
 
 For principal-engineer-ops: verify did not exit 0, so condition 2 is not met as written. The one failing test is on a lesson outside this change and passed on rerun. Two ways forward: re-run verify (or only `npm run qa`) on the integrated tree, or accept this run with the flake recorded. Choosing between them is your call, not mine.
+
+## Decision on the verify result (principal-engineer-ops, 2026-10-15)
+
+Decision: **approved, with the flake on record (option a).** I have added `approved-by` and `approved` to the header. No further run is required.
+
+My condition said "exits 0", and this run exited 1. I am not pretending it was met. I am changing my own condition, and here is the reasoning so the next reader can disagree with it:
+
+1. **The one allowed re-run has already happened.** House practice allows one re-run to confirm a flake. The diagnostic run above was exactly that: the failing spec, on the same build (`.next-dom`) and commit (`c58c6da`), covering the phone project that failed. It passed 6/6, with each run at 6.3 to 8.3 s against a 45 s budget. Requiring option (b) would repeat a run we already have. Option (c) would take the host for about 1 h 36 min to re-run the same 2-worker load that produced the timeout. That might show the flake again, but it would tell us nothing new about this change.
+2. **The failure is outside every step I said would make me refuse.** Check, typecheck, build and test:hq all passed. In QA, every test on `/`, `/catalog` and `/hq` passed, and so did 1929 of 1930 tests overall, including every other lesson page that reads `content/domains.json`. The failing lesson (`ai/sudden-skill-or-strict-score`) is in a domain whose entry this change does not edit. It failed while waiting in the dead-control loop (`waitForTimeout(450)`), not on an assertion, and it passed in the r7 run (1930/1930). The record also shows this lesson was slow under load before this change: the wave-J QA board item says builder runs of these ai drafts needed `--timeout=240000`.
+3. **The evidence my condition existed to obtain is here.** I asked for verify because it was the only route to a production build and QA of the feed and catalog with the new domain. Both exist, and both are pinned to a sha that is an ancestor of the integration work. The `/catalog` section was checked directly on that build (quoted above), because no QA spec asserts it.
+
+"Flake" is a label, not a root cause. Accepting this run does not close the question. It moves it to the owner:
+
+- **W-1056 (evaluation-steward):** root-cause the timing budget of the dead-control loop under 2 workers. This does not block the merge. If it shows the timeout depends on anything this change touches (domains.json loading, catalog or feed rendering), the approval is revoked and verify re-runs in full.
+- **W-1057 (evaluation-steward):** add a `/catalog` assertion that names the domain section. This does not block the merge.
+
+Merge conditions (release manager checks them by hand, because `tools/readiness.mjs` does not exist yet):
+
+- Merge `domainid` into `ccr-4c6c7654-ew9ko1`. Do not rebase it again, so that `c58c6da` stays an ancestor of the merge commit. I checked the drift since verify ran (`45e8fce`, `cd38642`, `f171174`): it is only meta.json claim statuses, fact-check reviews and board.json. None of it is kit, `content/domains.json`, code or tests.
+- The revoke clauses in the approval section above still apply. The approval is revoked if `c58c6da` is not an ancestor of the merged commit, if the branch gains a kit or `domains.json` change after verify, or if a `src/demos/behavioral/` lesson lands before the merge.
+- Merging is not deploying. A deploy of this change still needs the founder's approval of that specific deploy.
+
+Objections, and what happened to each: (i) Mine: "the condition said exit 0". I answered it above: I amended it and recorded why. (ii) The house rule that "flake is not a root cause". It is adopted as W-1056 with an owner, and the revoke trigger above is attached to it. (iii) The author's offer of a re-run or acceptance. Acceptance was chosen, for reasons 1 to 3.
