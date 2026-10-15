@@ -15,5 +15,6 @@
 .note { font-size: 12px; font-weight: 700; fill: var(--fg); font-variant-numeric: tabular-nums; }
 .mark .note { fill: var(--muted); }
 .halo { paint-order: stroke; stroke: var(--bg-2); stroke-width: 3px; stroke-linejoin: round; }
-.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
-.presets :global(.control) { padding: 6px 4px; min-height: 40px; line-height: 1.2; }
+.wrap :global(.row[data-fold-row]) { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+.wrap :global(.row[data-fold-row] .control) { padding: 6px 4px; min-height: 40px; line-height: 1.2; }
+.barGirl { fill: var(--bad); opacity: 0.8; }

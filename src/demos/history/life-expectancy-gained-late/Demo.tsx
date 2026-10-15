@@ -7,10 +7,13 @@
 // labelled; the caption says one point every 25 years.
 //
 // Presets in DOM order (each sets the whole view; no Reset):
-//   "1800 to 1900"  points 1800-1900 on a 0-40 axis, the span shaded; milestone `c19` records +2.8
+//   "1800 to 1900"  points 1800-1900 on a 0-40 axis, the span shaded; milestone `c19` records +2.9
 //   "1900 to 2000"  the line extends to 2000 on a 0-80 axis; milestone `c20` records +34.7
 //   "2000 to 2023"  the line extends to 2023; milestone `now` records 74.0 (quoted by the reveal)
-//   "Years gained per century"  three bars of years gained (2.8, 34.7, 5.8), each with its start and end
+//   "Years gained in each span"  three bars of years gained (2.9, 34.7, 5.8), each with its start, end and length
+// v3 (W-990, learner r1): gains are differences of the one-decimal values the learner sees (33.5 - 30.6 = 2.9; the
+// unrounded 2.84 would show as 2.8 and fail a beginner's subtraction), and the bars are labelled as spans with
+// their length in years ("2000 to 2023 (23 years)"), not "per century".
 // The locked frame draws only 1800-1900 (the question's given part) on the 0-40 axis, with no values, so
 // nothing after 1900 shows before the commit. The reveal is gated on c19, c20 and now (the brief gated
 // c19 and c20; the reveal also quotes 2023, so `now` is gated too; it is press 3 of 4).
@@ -36,12 +39,14 @@ const PTS: [number, number][] = [
 ];
 const lex = (y: number) => PTS.find((p) => p[0] === y)![1];
 const one = (x: number) => x.toFixed(1);
+const shown = (x: number) => Math.round(x * 10) / 10;
 const SPANS = [
   { a: 1800, b: 1900, name: "1800 to 1900" },
   { a: 1900, b: 2000, name: "1900 to 2000" },
   { a: 2000, b: 2023, name: "2000 to 2023" },
 ] as const;
-const gain = (a: number, b: number) => lex(b) - lex(a);
+// Years gained between the two values as shown (one decimal), so the sum a learner does on screen comes out.
+const gain = (a: number, b: number) => shown(lex(b)) - shown(lex(a));
 
 type View = "none" | "c19" | "c20" | "now" | "bars";
 
@@ -68,7 +73,7 @@ export default function LifeExpectancyGainedLate({ slug }: { slug: string }) {
         options: ["About 35 years", "About 15 years", "About 5 years"],
         answer: 0,
       }}
-      exploreHint="Press each span in turn, then compare the years gained per century."
+      exploreHint="Press each span in turn, then compare the years gained in each."
       minInteractions={3}
       reveal={() => (
         <>
@@ -80,8 +85,8 @@ export default function LifeExpectancyGainedLate({ slug }: { slug: string }) {
             before. By 2023 it was {l2023 !== null ? one(l2023) : "?"}.
           </p>
           <p>
-            Where it stops: these are one source&apos;s world figures; the chart shows one year in every 25, and single
-            years, such as epidemic years, fell sharply.
+            Where it stops: these are one source&apos;s world figures, shown one year in every 25, so the chart hides
+            single years when life expectancy fell sharply, such as epidemic years.
           </p>
         </>
       )}
@@ -151,7 +156,7 @@ function Stage({
     ["c19", "1800 to 1900"],
     ["c20", "1900 to 2000"],
     ["now", "2000 to 2023"],
-    ["bars", "Years gained per century"],
+    ["bars", "Years gained in each span"],
   ];
 
   return (
@@ -168,7 +173,7 @@ function Stage({
             return (
               <g key={sp.name}>
                 <text x={4} y={y} className={s.barName}>
-                  {sp.name}
+                  {sp.name} ({sp.b - sp.a} years)
                 </text>
                 <rect x={4} y={y + 6} width={w} height={18} className={i === 1 ? s.barBig : s.bar} />
                 <text x={w + 10} y={y + 19} className={s.barVal}>
