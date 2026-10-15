@@ -22,40 +22,46 @@
   "objective": "Separate the research-supported spacing effect from invented memory curves.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Three hours in one block or across three days: what changes a month later? For equal study time, which plan generally supports longer-term verbal recall? Correct option: Distributed sessions. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three hours in one block or across three days: what changes a month later? Same 3 hours of rereading. A month later, which plan remembers more? Options: Plan A / Plan B / About the same: same 3 hours. Correct option: Plan B. Stage labels: A: 3 hours on day 0; B: 1 hour on each of 3 days (days −2, −1 and 0). Both plans do the same activity, rereading, for the same total time; neither has a recall step, so only the calendar differs. All labels, days and durations are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture study_spaced_beats_cram in src/lib/lifehacks/studyCatalog.ts (question, options, answer, days) and the stage labels in src/demos/lifehacks/spaced-beats-cram/Demo.tsx. The keyed option rests on claims c5 (research) and c3 (what the toy model shows). Previous v1 verification (FC LH-1, company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md) covered the v1 wording only.",
       "id": "lifehacks.spaced-beats-cram.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "v2 (W-1075, demo-builder, 2026-10-15): text and/or support rewritten for the r11 learner review (company/reviews/spaced-beats-cram/2026-10-15-learner-adult-beginner-r11.md); reset to unverified. Not checked by the builder."
     },
     {
       "text": "Research on verbal recall supports distributed practice. The curves illustrate that idea; they do not predict your memory.",
       "support": "source",
       "source": "Cepeda et al. (2006), Distributed practice in verbal recall tasks, Psychological Bulletin132(3),354–380, DOI10.1037/0033-2909.132.3.354, author abstract via https://pubmed.ncbi.nlm.nih.gov/16719566/ retrieved2026-10-13; 839 assessments in317 experiments. Rawson & Kintsch(2005), Rereading Effects Depend on Time of Test, JEP97(1),70–80, DOI10.1037/0022-0663.97.1.70, author abstract search record https://eric.ed.gov/?id=EJ688037 retrieved2026-10-13 (direct page timed out). Retrieval line supported separately by Roediger & Karpicke(2006), Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
       "id": "lifehacks.spaced-beats-cram.c2",
-      "status": "verified",
+      "status": "withdrawn",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-14",
+      "note": "Withdrawn in v2 (W-1075, demo-builder, 2026-10-15): this sentence is no longer shown. The reveal's research sentence is now claim c5 and the toy-model boundary is in c3. Kept for history; the v1 check (FC LH-1) stays recorded in checkedBy/checkedOn."
     },
     {
-      "text": "Every displayed result is computed from the visible exercise state: spacing. Illustrative curves; not personal memory predictions. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
+      "text": "Every displayed result is computed from the visible exercise state by a toy model: right after the last hour (day 0) A shows 93% and B 90%; a month later (day 30) A shows 23% and B 37%; the Day slider shows both plans at the chosen day (0 to 30). Illustrative toy numbers, not a forecast of your memory. The reveal quotes the two tests the learner ran and never translates them into a personal memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, spaced-beats-cram fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cram=exp(-day/7), distributed=exp(-day/18); illustrative parameters, not fitted data. Marker visits gate the reveal; three sessions on days-2,-1,0 are calendar markers, not fitted review boosts. Future decay curves, scrub marker and retention-point markers are not rendered before prediction; only neutral stipulated calendars and chart axes are shown while locked. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/demos/lifehacks/spaced-beats-cram/model.ts (pure, deterministic; chosen constants, no fit to data). Plan A sessions at days −2/24, −1/24 and 0 (three consecutive hours on day 0); plan B at days −2, −1 and 0. Each one-hour session sets m ← m + 0.6(1 − m). Recall fades as hold(dt) = (1 + dt/τ)^−0.75, τ starting at 5 days. A session that follows forgetting slows the fade: τ ← τ·(1 + 6·(1 − hold(gap))). Values, rounded as on the stage: day 0 A 93 / B 90; day 1 A 82 / B 85; day 2 A 74 / B 81; day 7 A 50 / B 65; day 28 A 24 / B 38; day 30 A 23 / B 37. The crossover falls between day 0 and day 1 only because of these chosen constants; the research (c5) gives the direction, not the timing or the sizes. Curves, cursor and test markers are hidden before the prediction; the locked stage shows only the two calendars and axes. The reveal's numbers appear only after both test milestones and stay on the two test buttons.",
       "id": "lifehacks.spaced-beats-cram.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "v2 (W-1075, demo-builder, 2026-10-15): text and/or support rewritten for the r11 learner review (company/reviews/spaced-beats-cram/2026-10-15-learner-adult-beginner-r11.md); reset to unverified. Not checked by the builder."
     },
     {
-      "text": "Massed rereading can perform better on an immediate test while distributed rereading can perform better on a delayed test; this does not establish the model curves or next-morning performance.",
+      "text": "Studies of verbal recall show the same shape: massed study can tie or win on an immediate test, while spacing usually wins after a delay.",
       "support": "source",
-      "source": "Rawson & Kintsch(2005) author abstract via ERIC EJ688037. Retrieval is supported separately by Roediger & Karpicke(2006), publisher abstract. The lesson does not use Cepeda2006 as evidence for immediate-test reversal. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Smith & Scarf (2017), Spacing Repetitions Over Long Timescales: A Review and a Reconsolidation Explanation, Frontiers in Psychology 8:962, DOI 10.3389/fpsyg.2017.00962, full text https://pmc.ncbi.nlm.nih.gov/articles/PMC5476736/ (opened by the builder 2026-10-15). Passages: Bloom and Shuell (1981) 'compared a spaced group that studied French words on 3 consecutive days to a massed group that studied French words all in the same day. On an immediate test conducted to assess learning, the spaced and massed groups were equivalent, but on a retention test 4 days later the spaced group's performance was superior'; and 'at very short retention intervals massing is better than or equal to spacing (Cepeda et al., 2006; Maddox, 2016)'. The same review lists Rawson and Kintsch (2005), Rereading effects depend on time of test, J Educ Psychol 97(1), 70-80, DOI 10.1037/0022-0663.97.1.70, among studies where the best spacing depends on the retention delay. Cepeda et al. (2006) and Rawson & Kintsch (2005) themselves were not opened (pubmed.ncbi.nlm.nih.gov and eric.ed.gov return proxy 403 from here); they are cited through Smith & Scarf. 'Usually' is the hedge: the claim is about the direction of the effect, not its size.",
       "id": "lifehacks.spaced-beats-cram.c5",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified",
+      "note": "v2 (W-1075, demo-builder, 2026-10-15): text and/or support rewritten for the r11 learner review (company/reviews/spaced-beats-cram/2026-10-15-learner-adult-beginner-r11.md); reset to unverified. Not checked by the builder."
+    },
+    {
+      "id": "lifehacks.spaced-beats-cram.c6",
+      "text": "One explanation: each later session reminds you of something half-forgotten, and that strengthens memory more than rereading what is still fresh.",
+      "support": "source",
+      "source": "Benjamin & Tullis (2010), What makes distributed practice effective?, Cognitive Psychology 61(3), 228-247, https://pmc.ncbi.nlm.nih.gov/articles/PMC2930147/ (opened by the builder 2026-10-15). Abstract: they 'recommend an alternative approach based on the idea that some study events remind learners of other study events'. Model section: 'The act of retrieval potentiates memory, and the degree to which it does so is positively related to the difficulty of the retrieval. That is, successful reminding following either a high degree of forgetting or a low amount of reminding potential enhances memory more for the retrieved information than would a reminding following little forgetting or high reminding potential.' 'One explanation' is the hedge: this is one theory of the spacing effect (the paper reviews encoding-variability accounts as the main alternative), not a settled mechanism. The toy model in model.ts uses the same idea (a session after more forgetting slows the fade more); the stage does not test it.",
+      "status": "unverified",
+      "note": "New in v2 (W-1075, demo-builder, 2026-10-15): the reveal's reason sentence, asked for by the r11 learner review. Not checked by the builder."
     },
     {
       "id": "lifehacks.spaced-beats-cram.recall",
@@ -89,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:spaced-repetition-study",
     "prerequisites": [],
