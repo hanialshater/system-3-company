@@ -34,3 +34,13 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, bu
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - recall (disputed): see the basis above for the fix or the source it needs.
+
+## Pass 44
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-963). I did not write, build or record this claim. Disclosure: the recall's "why" now uses Pass 42's suggested wording word for word, so the words came from the fact-checker role, though not from me. My check is independent at the instance level only. cm-life should read the why as the second reader at launch-review. Method: I read Demo.tsx and the meta.json recall card first, then the claim and the builder's notes. I re-ran c1's counts in node from my own copy of alive(). The walkthrough transcript (2026-10-14) does not show the recall card. No web sources were needed: this is a derivation.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| recall | verified | Derivation. Keyed option 0, 'Compare death rates in randomly assigned scanned and unscanned groups', is right. 'Trust the higher 5-year survival' is the measure that lead time inflates, and 'Count how many more cases the scan finds' measures finding, not benefit, so both are wrong. The why matches Pass 42's fix word for word. Clause 1: survival from diagnosis = death date - diagnosis date. Moving diagnosis earlier by L with death fixed adds L to every survival time, so 5-year survival cannot fall (node: 6 -> 12 of 14 at L = 3, as c1). Clause 2: a group's death rate over a fixed follow-up is counted from assignment, never from diagnosis, so lead time cannot move it. Random assignment makes the groups alike apart from the scan. It no longer says deaths 'do not depend on' diagnosis, which implied a trial could never show a benefit. Non-blocking: 'only a real change in deaths moves them' leaves out chance, which is fine at this level. |
+
+**Result (Pass 44):** 1 verified, 0 disputed, 0 unverified. All recorded claims in this lesson (c1-c4, recall) are now verified.

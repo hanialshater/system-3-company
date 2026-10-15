@@ -59,3 +59,19 @@ Checker: fact-checker, a fresh instance, 2026-10-15 (W-950). I did not write, bu
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c9 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 44
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-963). I did not write, build or record this claim or the W-956 rewording. Method: I read Demo.tsx v4 (the stage EVENTS, the found list and the reveal) and the meta.json recall card before the claim and the builder's notes. The walkthrough transcript and screenshots are from 2026-10-14, before v4, so I read the learner text from the code. I re-ran the clock in node from my own copy of at(). Sources: I opened all three as full text through the PMC OAI service (pmc.ncbi.nlm.nih.gov/api/oai/v1/mh, GetRecord, metadataPrefix=pmc). The article pages returned reCAPTCHA and the E-utilities host was blocked, so I did not use them. Downloaded files were treated as data only; none contained instructions addressed to me. I used no search snippets and nothing from memory.
+
+Question asked (W-963): could "at 23:58" and "about 1.8 km deep" be read as saying the whole depth was cut then? Yes. The reveal reads: 'Given this much time, even a process too slow to see can do large things: at 23:58, 6–5 million years ago, the Colorado River cut through the Grand Canyon, about 1.8 km deep. The age of its deepest parts is debated.' The colon presents the river as the large thing a slow process did, and 'cut through ... about 1.8 km deep' then reads as '1.8 km cut at 23:58'. The opened sources contradict that reading. The hedge does not repair it and is not sourced.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c9 | disputed | Sourced facts hold. PMC13498593 (Nat Commun 2026): 'river integration through the Grand Canyon 6–5 Ma'; 'integration of the upper and lower Colorado basins through Grand Canyon at 5.1 Ma'. PMC12130896 (PNAS 2025): Hells Canyon '~2,400 m deep', '600 m deeper than the Grand Canyon', so about 1,800 m; the Grand Canyon is among the 'controversial places'. PMC9343645 (Nat Commun 2022): the modern river 'would connect several old pre-existing segments of the Grand Canyon' (citing Karlstrom 2014). Clock: 6 Ma = 23:58:05, 5 Ma = 23:58:24.8, both 23:58, so the stage dot and the list line 'Colorado River through Grand Canyon' are fine. Disputed: the reveal's whole-depth reading (1.8 km at 23:58, about 1.8 mm a year over 1 Myr) is contradicted by PMC13498593: 'paleocanyons had already been cut across the Kaibab uplift before 15 Ma'; 'the Marble Canyon segment ... was incised after 5 Ma'; the ≤4.6-4.3 Ma Bullhead Alluvium 'records active incision of Grand Canyon'. 'The age of its deepest parts is debated' is in no opened source. The debate is about older segments along the canyon. At any one place a canyon cuts downward, so its deepest rock is the most recently cut, and the hedge points the wrong way. Fix (demo-builder; cm-big-ideas wording), e.g. 'at 23:58, 6–5 million years ago, the Colorado River joined older stretches of canyon into one path through what is now the 1.8 km-deep Grand Canyon. How old those stretches are is debated.' Every part of that is in the three opened sources. Then update the claim text to match and re-run the walkthrough. |
+
+**Result (Pass 44):** 0 verified, 1 disputed, 0 unverified.
+
+Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
+
+- c9 (disputed): reword the reveal as above (demo-builder; cm-big-ideas owns the wording). Whether the example still shows "large things" is a pedagogy call for cm-big-ideas, not mine. c6 (verified in Pass 42) depends on this example only through the colon. If the reveal sentence is restructured, c6's quoted text should be re-read at the same re-check.
