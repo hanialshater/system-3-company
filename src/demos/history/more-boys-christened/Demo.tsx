@@ -8,11 +8,19 @@
 // Presets in DOM order (no Reset): Boys minus girls each year, Boys per 100 girls, Closest year, Widest year.
 // Any preset draws the bars (milestone `bars`); the other three are milestones ratio, closest, widest, and each
 // leaves a label on the chart, so every value the reveal quotes is still on the stage when it opens.
+// v2 (W-990, learner r1): the cause is shown, not told. The axis title carries the real yearly totals
+// (5,612 to 16,145 christened a year, min and max of boys + girls), and "If only 100 a year (simulated)"
+// (milestone sim, second in DOM order) redraws the chart as a simulation: 82 years of 100 christenings each,
+// each a boy with the file's overall share p = 484,382 / 938,223 = 0.516, drawn from mulberry32(SEED = 1), on a
+// scale one tenth of the real one. Seed 1 is the first seed tried, not chosen for its result (over seeds 1-1000,
+// girls lead in 14 to 41 years, median 28; seed 1 gives 23). Its count stays as a line in the empty band below zero
+// on the real chart, so the reveal can quote it after the learner returns there. Tick labels sit left of the bars.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
 import { Milestones } from "@/kit/milestones";
 import { Control, Readout, Row } from "@/kit/controls";
+import { mulberry32 } from "@/kit/random";
 import s from "./styles.module.css";
 
 const CHRISTENED: [number, number, number][] = [
@@ -41,11 +49,30 @@ const HI = YEARS.reduce((a, x) => (x.r > a.r ? x : a));
 const Y0 = YEARS[0].y;
 const N = YEARS.length;
 const fmt = (n: number) => n.toLocaleString("en-US");
+const TOTALS = YEARS.map((x) => x.m + x.f);
+const TMIN = Math.min(...TOTALS);
+const TMAX = Math.max(...TOTALS);
 
-type Mode = "bars" | "ratio" | "closest" | "widest";
-const MILESTONES = ["bars", "ratio", "closest", "widest"] as const;
+// Simulation (labelled as one on the stage): 100 christenings a year, each a boy with the record's overall share.
+const SEED = 1;
+const PER_YEAR = 100;
+const P_BOY = BOYS / (BOYS + GIRLS);
+const SIM = (() => {
+  const rng = mulberry32(SEED);
+  return YEARS.map(({ y }) => {
+    let b = 0;
+    for (let k = 0; k < PER_YEAR; k++) if (rng() < P_BOY) b++;
+    return { y, d: b - (PER_YEAR - b) };
+  });
+})();
+const SIM_GIRLS = SIM.filter((x) => x.d < 0).length;
+const SIM_SCALE = 10; // the simulation's chart reads one tenth of the real one
+
+type Mode = "bars" | "sim" | "ratio" | "closest" | "widest";
+const MILESTONES = ["bars", "sim", "ratio", "closest", "widest"] as const;
 const PRESETS: { id: Mode; label: string }[] = [
   { id: "bars", label: "Boys minus girls, each year" },
+  { id: "sim", label: "If only 100 a year (simulated)" },
   { id: "ratio", label: "Boys per 100 girls" },
   { id: "closest", label: "Closest year" },
   { id: "widest", label: "Widest year" },
@@ -53,7 +80,7 @@ const PRESETS: { id: Mode; label: string }[] = [
 
 const W = 340;
 const H = 202;
-const PL = 4;
+const PL = 34;
 const PR = 336;
 const TOP = 40;
 const LABEL_Y = 50;
@@ -76,22 +103,28 @@ function Stage({ locked, reach, mode, seen, pick }: {
   const press = (m: Mode) => {
     if (locked || m === mode) return;
     pick(m);
-    reach("bars");
+    if (m !== "sim") reach("bars");
     reach(m);
   };
-  const shown = !locked && seen.size > 0;
+  const sim = !locked && mode === "sim";
+  const shown = !locked && seen.size > 0 && (sim || [...seen].some((m) => m !== "sim"));
+  const k = sim ? SIM_SCALE : 1;
   const readout = (() => {
     switch (mode) {
       case "bars": return { label: "Years with more boys", value: `${MORE} of ${N}` };
+      case "sim": return { label: `Simulated, ${PER_YEAR} a year`, value: `girls ahead ${SIM_GIRLS} of ${N}` };
       case "ratio": return { label: `All ${N} years`, value: `${ALL} boys per 100 girls` };
       case "closest": return { label: `Closest year, ${LO.y}`, value: `${Math.round(LO.r)} boys per 100 girls` };
       case "widest": return { label: `Widest year, ${HI.y}`, value: `${Math.round(HI.r)} boys per 100 girls` };
       default: return { label: "Years with more boys", value: "-" };
     }
   })();
-  const mark = (x: typeof LO, now: boolean, anchor: "start" | "end") => (
+  const mark = (x: typeof LO, name: string, now: boolean, anchor: "start" | "end") => (
     <g className={now ? s.markNow : s.mark}>
       <line x1={xc(x.y)} x2={xc(x.y)} y1={yOf(x.d) - 2} y2={LABEL_Y + 3} />
+      <text x={xc(x.y) + (anchor === "start" ? -2 : 2)} y={LABEL_Y - 12} textAnchor={anchor} className={s.tick}>
+        {name}
+      </text>
       <text x={xc(x.y) + (anchor === "start" ? -2 : 2)} y={LABEL_Y} textAnchor={anchor} className={s.note}>
         {x.y}: {Math.round(x.r)} per 100
       </text>
@@ -102,43 +135,60 @@ function Stage({ locked, reach, mode, seen, pick }: {
     <div className={s.wrap}>
       {locked && <p className={s.msg}>Make a prediction to start.</p>}
       <svg viewBox={`0 0 ${W} ${H}`} className={`stage-svg ${s.svg}`} role="img"
-        aria-label={shown ? `Boys minus girls christened in London each year, ${Y0} to ${YEARS[N - 1].y}` : "Empty chart of boys minus girls christened each year"}>
-        <text x={PL} y={12} className={s.axisTitle}>boys minus girls christened, each year (0 = equal)</text>
+        aria-label={sim
+          ? `Simulation, not data: boys minus girls if only ${PER_YEAR} babies a year were christened, ${N} years; girls ahead in ${SIM_GIRLS}`
+          : shown ? `Boys minus girls christened in London each year, ${Y0} to ${YEARS[N - 1].y}, out of ${fmt(TMIN)} to ${fmt(TMAX)} a year` : "Empty chart of boys minus girls christened each year"}>
+        <text x={4} y={12} className={s.axisTitle}>
+          {sim ? `simulated: boys minus girls of ${PER_YEAR} a year` : `boys minus girls, of ${fmt(TMIN)}–${fmt(TMAX)} a year`}
+        </text>
         {shown && (
-          <text x={PL} y={27} className={s.headline}>
-            {MORE} of {N} years above zero{seen.has("ratio") ? ` · overall ${ALL} per 100` : ""}
+          <text x={4} y={27} className={s.headline}>
+            {sim
+              ? `simulation: girls ahead in ${SIM_GIRLS} of ${N} years`
+              : `${MORE} of ${N} years above zero${seen.has("ratio") ? ` · overall ${ALL} per 100` : ""}`}
           </text>
         )}
         {[-400, 400, 800].map((v) => (
           <line key={v} x1={PL} x2={PR} y1={yOf(v)} y2={yOf(v)} className={s.grid} />
         ))}
-        {shown && YEARS.map((x) => (
+        {shown && !sim && YEARS.map((x) => (
           <rect key={x.y} x={xOf(x.y) + 0.4} width={SLOT - 0.8} y={yOf(x.d)} height={Y0LINE - yOf(x.d)}
             className={(mode === "closest" && x === LO) || (mode === "widest" && x === HI) ? s.barNow : s.bar} />
         ))}
+        {sim && SIM.map((x) => (
+          <rect key={x.y} x={xOf(x.y) + 0.4} width={SLOT - 0.8} y={Math.min(yOf(x.d * k), Y0LINE)}
+            height={Math.abs(Y0LINE - yOf(x.d * k))} className={x.d < 0 ? s.barGirl : s.bar} />
+        ))}
         <line x1={PL} x2={PR} y1={Y0LINE} y2={Y0LINE} className={s.zero} />
         <line x1={PL} x2={PR} y1={BOT} y2={BOT} className={s.grid} />
-        <text x={PL + 2} y={Y0LINE - 3} className={`${s.tick} ${s.halo}`}>0</text>
-        {[-400, 400].map((v) => (
-          <text key={v} x={PL + 2} y={yOf(v) - 3} className={`${s.tick} ${s.halo}`}>{v > 0 ? `+${v}` : `−${-v} (more girls)`}</text>
+        {[-400, 0, 400, 800].map((v) => (
+          <text key={v} x={PL - 3} y={yOf(v) + 4} textAnchor="end" className={s.tick}>
+            {v > 0 ? `+${v / k}` : v < 0 ? `−${-v / k}` : "0"}
+          </text>
         ))}
+        <text x={PR} y={BOT - 4} textAnchor="end" className={s.tick}>below 0: more girls</text>
+        {shown && !sim && seen.has("sim") && (
+          <text x={PR} y={Y0LINE + 16} textAnchor="end" className={`${s.note} ${s.halo}`}>
+            simulated, {PER_YEAR} a year: girls ahead {SIM_GIRLS} of {N}
+          </text>
+        )}
         {[1630, 1650, 1670, 1690, 1710].map((y) => (
           <g key={y}>
             <line x1={xc(y)} x2={xc(y)} y1={BOT} y2={BOT + 4} className={s.zero} />
             <text x={Math.max(14, Math.min(xc(y), W - 14))} y={BOT + 16} textAnchor="middle" className={s.tick}>{y}</text>
           </g>
         ))}
-        {shown && seen.has("closest") && mark(LO, mode === "closest", "end")}
-        {shown && seen.has("widest") && mark(HI, mode === "widest", "end")}
+        {shown && !sim && seen.has("closest") && mark(LO, "closest year", mode === "closest", "end")}
+        {shown && !sim && seen.has("widest") && mark(HI, "widest year", mode === "widest", "end")}
       </svg>
-      <div className={s.presets}>
+      <Row foldAtReveal>
         {PRESETS.map((p) => (
           <Control key={p.id} disabled={locked} className={!locked && mode === p.id ? "active" : ""}
             aria-pressed={!locked && mode === p.id} onClick={() => press(p.id)}>
             {p.label}
           </Control>
         ))}
-      </div>
+      </Row>
       <Row>
         <Readout label={readout.label} value={readout.value} />
       </Row>
@@ -169,7 +219,10 @@ export default function MoreBoysChristened({ slug }: { slug: string }) {
             Boys outnumbered girls at christening in all {MORE} years, by about {ALL} to 100 overall. Even the closest year,{" "}
             {LO.y}, had {Math.round(LO.r)} boys for every 100 girls, and the widest, {HI.y}, had {Math.round(HI.r)}.
           </p>
-          <p>A small, steady difference shows every single year once the counts are in the thousands.</p>
+          <p>
+            London christened {fmt(TMIN)} to {fmt(TMAX)} babies a year, so the small surplus showed every year. Simulated
+            with only {PER_YEAR} a year and the same split, girls led in {SIM_GIRLS} of {N} years.
+          </p>
           <p>Where it stops: these are christenings in London, not births, so babies who were never christened are missing.</p>
         </>
       )}

@@ -43,13 +43,19 @@
     },
     {
       "id": "history.more-boys-christened.c3",
-      "text": "A small, steady difference shows every single year once the counts are in the thousands.",
+      "text": "London christened 5,612 to 16,145 babies a year, so the small surplus showed every year (reveal; axis title 'boys minus girls, of 5,612–16,145 a year').",
       "support": "derivation",
-      "source": "Each year's christenings of each sex in the file are between about 2,700 and 8,500 (CHRISTENED); with a surplus near 7%, the yearly surplus (82 to 800 on the stage) stays above zero in every year. The general point (a sign test / sampling noise falls with count) is owned by probability; stated here as what the record shows.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Each year's counts are 2,722-8,426 per sex; yearly surplus 82-800, all above zero. As stated.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "history-data.mjs: arbuthnot, Arbuthnot.csv, Males + Females per year (CHRISTENED, re-derived in node from the pinned file 2026-10-15, sha256 d81babe6... matches): smallest 1650, 2,890 + 2,722 = 5,612; largest 1705, 8,366 + 7,779 = 16,145; mean 11,442. 'So the small surplus showed every year': with these counts the yearly surplus is 82 to 800 (stage), above zero in all 82 years (c2); the simulation (c5) shows the same split at 100 a year does not. The general point (sampling noise falls with count) is owned by probability; stated here as what the record and the simulation show.",
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Each year's counts are 2,722-8,426 per sex; yearly surplus 82-800, all above zero. As stated. | v2 (demo-builder, 2026-10-15, W-990, learner r1 finding 1): was 'A small, steady difference shows every single year once the counts are in the thousands.' (told, not shown). Now the yearly totals are on the stage and a labelled simulation stands for the cause. Reset to unverified for a fact-checker who is not the builder."
+    },
+    {
+      "id": "history.more-boys-christened.c5",
+      "text": "Simulated with only 100 christenings a year and the same split, girls led in 23 of 82 years (reveal; 'If only 100 a year (simulated)' view: headline 'simulation: girls ahead in 23 of 82 years', and, back on the real chart, the line 'simulated, 100 a year: girls ahead 23 of 82' below zero). This is a simulation, not data.",
+      "support": "simulation",
+      "source": "Demo.tsx SIM: 82 years x 100 draws, each a boy if rng() < p, p = 484,382 / (484,382 + 453,841) = 0.51628 (the file's overall share), rng = mulberry32(1) from src/kit/random.ts, drawn in year order. Seed 1: boys ahead 55, tied 4, girls ahead 23; yearly boys minus girls from -22 to +24. Seed 1 is the first seed tried and was not chosen for its result (pattern disclose-chosen-seeds). Spread over seeds 1-1000 (node, 2026-10-15): girls ahead median 28, 5th-95th percentile 20 to 35, range 14 to 41; so every seed tried shows girls ahead in at least 14 years, and seed 1's 23 is on the low side of typical. The chart's scale in this view is one tenth of the real one (ticks +40, +80, −40).",
+      "status": "unverified",
+      "note": "v2 (demo-builder, 2026-10-15, W-990): new, the learner r1 'if only 100 a year' control. Not verified by the builder."
     },
     {
       "id": "history.more-boys-christened.c4",
@@ -81,7 +87,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "history:sex-ratio-at-baptism",
     "also": [
@@ -102,6 +108,7 @@
     "choice-before-reveal",
     "preset-buttons",
     "milestone-gate",
-    "locked-readouts"
+    "locked-readouts",
+    "simulation-run"
   ]
 }
