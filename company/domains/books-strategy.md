@@ -96,7 +96,7 @@ Status: **map** = in `content/curriculum/books.json` and `content/works.json` to
 | 27 | *Moneyball*, Lewis (2003) | business | new | a cheap stat that wins games, until the market prices it | holds up, then arbitraged away |
 | 28 | *The Marshmallow Test*, Mischel (2014) | psychology | new | delay predicts outcomes | **failure lesson** (shrinks with background controls) |
 | 29 | *The Better Angels of Our Nature*, Pinker (2011) | science-history | new | the decline of war | **contested** (heavy tails: a long calm is weak evidence) |
-| 30 | *Misbehaving*, Thaler (2015) | psychology | new | the endowment effect | mostly holds, scope debated |
+| 30 | *Misbehaving*, Thaler (2015) | psychology | new | ~~the endowment effect~~ none for now: endowment yielded to Behavioral (W-903), and mental accounting is behavioral #8 | slot reopens at next ranking |
 | 31 | *The Selfish Gene*, Dawkins (1976) | science-history | new | hawks and doves settle at a mix | derivation; overlap check with life first |
 | 32 | *Grit*, Duckworth (2016) | psychology | new | grit predicts success | **failure lesson** (largely conscientiousness) |
 | 33 | *The Signal and the Noise*, Silver (2012) | science-history | map | calibration; Bayes | **deferred**: both ideas duplicate published lessons (section 8) |
@@ -363,7 +363,7 @@ Ranks 13-24 are written in `company/domains/briefs/books.md` under "## Strategy 
 | 32 | cheap-stat-wins-games | new: moneyball-on-base | Moneyball | business | Single card | holds up, then priced in | ranked |
 | 33 | wait-for-two-marshmallows | new: marshmallow-controls | The Marshmallow Test | psychology | Single card | shrinks with controls | ranked |
 | 34 | long-peace-heavy-tail | new: angels-war-tails | The Better Angels of Our Nature | science-history | Simulation run | contested | ranked |
-| 35 | keep-the-mug | new: misbehaving-endowment | Misbehaving | psychology | Single card | mostly | ranked |
+| 35 | ~~keep-the-mug~~ | ~~new: misbehaving-endowment~~ | Misbehaving | psychology | — | — | **yielded** to `behavioral:endowment-effect` (cm-books signed the exception, 2026-10-15, W-903; `company/domains/behavioral-signoffs.md` B2). Books takes it back if that lesson is struck. The slot reopens at the next ranking |
 | 36 | hawks-and-doves-settle | new: selfish-gene-ess | The Selfish Gene | science-history | Single card | holds up (derivation) | ranked (overlap check with cm-life) |
 
 Wave 1 (13-24): 12 books, 9 of them new to the briefs; psychology 5, business 3, science-history 4; answers A ×4, B ×4, C ×4; verdicts not "holds up" in 7 of 12. Ranks 25-36 bring business back up (3 new business books) and add four failure lessons.
