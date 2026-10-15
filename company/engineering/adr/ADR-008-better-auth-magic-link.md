@@ -34,3 +34,10 @@ Progress lives only in the browser (`src/kit/progress.ts`, `s3c:progress:v1`). F
 - **Hand-rolled magic links:** no packages, but we would own the session, CSRF and cookie code alone.
 - **An anonymous server id to "claim" history later:** refused by the privacy gate (2.1). The merge at sign-up needs no id.
 - **A session cookie on `/`:** simpler, but every same-origin request, including `sendBeacon("/api/events")`, would carry it. That breaks P6.2.
+
+## Principal-engineer review (2026-10-15, W-1138)
+**Architecture approved with changes** (principal-engineer, Kenji). Status stays `proposed` until SPIKE-002 passes. Then the author sets it to `accepted` and links the spike report.
+- Confirmed in the 1.7.10 source: the cookie path is settable for every auth cookie through `advanced.defaultCookieAttributes`, and sign-out clears on the same path; database hooks get the endpoint context, so the user-create hook can read the verify token (decision 5) and the session hook can blank IP and user agent (decision 6).
+- Changes to this decision before acceptance: (C2) one public door for sign-in mail (`/sign-in/magic-link` in `disabledPaths`, `start` calls the library server-side with its own rate limit); (C3) no `name` ever accepted; (C4) lazy construction, so a build without accounts variables passes; (C5) the switch is read per request in handlers only, and the UI follows `/me`; (C6) account routes `nodejs` + `preferredRegion = "fra1"`; (C7) Origin check on our own state-changing routes.
+- Objections: Q9 (client-rendered signed-in UI) **accepted**. The per-instance rate limiter **accepted for release 1**, because C2 puts the same limit in front of the one door and Resend's quota caps the rest.
+- Review: [2026-10-15-accounts-f01-review.md](../reviews/2026-10-15-accounts-f01-review.md)

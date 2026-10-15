@@ -25,3 +25,15 @@ Stop it with `pg_ctl -D $D/data stop` and delete the folder at the end. Docker a
 
 ## Not in the spike
 The production database; any deploy beyond a preview the release manager runs; UI copy (growth-designer, E5); `settings` (F-19).
+
+## Principal-engineer decision (2026-10-15, W-1138)
+**The spike may install `better-auth@1.7.10` and `pg@8.23.1`** (exact pins, and `@types/pg` as an exact-pinned devDependency if `tsc` needs it) **in `/home/user/s3c-acct` on branch `accounts` only.** Before installing, run `rm -rf node_modules && npm ci` there: today its files are hard links to the main checkout's (same inode), so an install could rewrite main's `node_modules` (C1). Nothing merges to the main branch from this spike without the merge review.
+Additions to the questions, each answered in the report with a test or a number (review conditions C2–C11):
+10. A direct POST to `/api/account/auth/sign-in/magic-link` returns 404; `start` rate-limits on its own (C2).
+11. A request carrying `name` stores no name anywhere, `auth_verification` included (C3).
+12. `npm run build` passes and `/api/account/*` returns 404 with **no** accounts variables set (C4). Flipping `ACCOUNTS_ENABLED` on a preview needs no rebuild (C5).
+13. `x-vercel-id` from `/api/account/me` on a preview shows `fra1` (C6). A cross-origin POST to `start` is refused (C7).
+14. Function size of the auth route, and the feed's first-load JS before and after (it must be unchanged; no `better-auth/*` in client code) (C9).
+15. The Postgres statement log shows no DDL at run time; open connections in Neon under a small burst (C10).
+Database for the preview part: the test database `first-light` (Development + Preview, per the founder's correction), not a hand-set branch. Use fake data and staff addresses only.
+Review: [2026-10-15-accounts-f01-review.md](../reviews/2026-10-15-accounts-f01-review.md)

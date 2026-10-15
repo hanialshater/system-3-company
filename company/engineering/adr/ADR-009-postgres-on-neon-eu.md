@@ -34,3 +34,14 @@ Accounts (ADR-008) and server-side progress need a database. Until now the compa
 - **Neon automatic preview branching:** it is what Neon recommends, but it copies production rows into every preview (gate watch-out in f01-options.md).
 - **Running migrations in the build** (as Neon's guide suggests): it ties schema changes to deploys and skips the per-migration privacy read.
 - **An ORM's migration tool:** a large dependency and a DSL in front of the SQL that the review is about.
+
+## Principal-engineer review (2026-10-15, W-1138)
+**Approved with changes** (principal-engineer, Kenji). Status stays `proposed` until SPIKE-002 passes **and** §4 is rewritten (C8). Decisions 1–3, 5 and 6 stand as written.
+- **§4 no longer matches the setup.** Founder correction (same evening): the Neon database `first-light` is connected to **Development and Preview**, not Production, and is now the **test database** (fake data only). Rewrite §4 to say:
+  - Test: `first-light`, Development + Preview, fake data only. Previews with accounts on stay behind Vercel Deployment Protection, and only staff sign up there.
+  - Production: a **separate Neon project** in Frankfurt (not a branch of `first-light`, and `first-light` never a branch of it), connected to Production only, created at go-live by backend-engineer with the release manager. Being separate only counts if no branch tree joins the two, because a branch, reset or restore can carry rows across.
+  - Preview branching off on both (the founder confirms for `first-light`).
+  - Readiness (W-966) checks that no Preview or Development variable points at the Production project.
+- Functions in `fra1` (decision 1) are not set anywhere today: `vercel.json` has no `regions`. The spike sets `preferredRegion = "fra1"` per account route and proves it with `x-vercel-id` (C6).
+- Migrations: confirmed by hand only. Better Auth's CLI migrator is not used, and no DDL runs at run time (C10).
+- Review: [2026-10-15-accounts-f01-review.md](../reviews/2026-10-15-accounts-f01-review.md)

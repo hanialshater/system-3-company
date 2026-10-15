@@ -292,3 +292,12 @@ would_be_wrong_if: a hook cannot blank the IP and user agent; the cookie path ca
 | Q10 | Resend's region, log retention and DPA; Vercel's log retention | founder with counsel (F-25); principal-engineer-ops (E13) | open |
 
 **Objections:** none raised yet by a reviewer. My own, carried from the founder record: confidence about 65% on Better Auth on Next 16.4 (the spike decides), and every vendor fact that I marked unverified.
+
+## Principal-engineer review (2026-10-15, W-1138)
+**Architecture: approve with changes** (principal-engineer, Kenji). The data model (§6–§10) is **not** decided here; it is the privacy reviewer's (W-965 / W-1139). Conditions C1–C11 in the [review](../reviews/2026-10-15-accounts-f01-review.md). For the architecture:
+- §6.2: the hook path works in principle (hooks receive the endpoint context with `query.token`). Only one door may send sign-in mail (C2), no `name` is accepted (C3), and `sendMagicLink` refuses to send without a valid band.
+- Proposal 5: `ACCOUNTS_ENABLED` is run-time only if it is read in handlers and the UI follows `/api/account/me` (C5). Build and routes must work with **no** accounts variables set (C4); Production has none until go-live.
+- §9 purge: run the expired-row delete inside `start`, with no cron (C10).
+- Proposal 3: one full merge per tab session, not per page load.
+- Q9: **accepted**.
+- Rollout step 3 now needs a **new Production database** (separate Neon project) first. `first-light` is the test database (founder correction; ADR-009 C8).

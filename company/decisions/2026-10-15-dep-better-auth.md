@@ -65,3 +65,10 @@ A. Add `better-auth` as a **runtime dependency, exact pin `1.7.10`** (no caret),
 | The release cadence is very fast (1.7.8, 1.7.9 and 1.7.10 within 24 h), so a pin goes stale quickly, and a minor could change privacy-relevant defaults | backend-engineer | evidence | Accepted: exact pin, and the 6-item settings list is re-checked on every minor upgrade |
 | The library's defaults store IP and user agent, which the gate forbids | backend-engineer (from source) | evidence | Open, funded by the spike: hook plus DB `CHECK` (EDD-008 §6.3). If either fails, this record is wrong |
 | Confidence on Better Auth on Next 16.4 is about 65% | backend-engineer (founder record) | evidence | Open with a trigger: the spike (W-1135) |
+
+## Principal-engineer review (2026-10-15, W-1138)
+**Acknowledged, with conditions** (principal-engineer, Kenji). `better-auth` 1.7.10, exact pin, may be installed in the SPIKE-002 worktree (`/home/user/s3c-acct`, branch `accounts`) only, after a fresh `npm ci` there (the current `node_modules` is hard-linked to the main checkout's). It does not reach the main branch until the conditions in the [review](../engineering/reviews/2026-10-15-accounts-f01-review.md) are met, the privacy review passes and `npm run verify` runs on the integrated tree.
+- I read the 1.7.10 source and confirmed findings 2 to 5, with one widening: the sign-in body also accepts a caller-supplied `name`, which is stored in `auth_verification` before the `CHECK` can refuse it (review F1.2, condition C3).
+- `auth.api.*` calls skip the library's rate limiter and `disabledPaths`. Exactly one HTTP entry may send a sign-in email, with its own limit (C2).
+- Conditions for this record: C1 (clean install), C2, C3, C4 (lazy construction, build passes with no accounts variables), C9 (function size; browser bundle unchanged, no `better-auth/*` import in client code), C11 (audit and licences from the real lockfile).
+- Objections: supply-chain surface **accepted risk** (answer in the review's objection table); cadence **accepted as written**; IP/UA **confirmed feasible in source, open until the spike test**; 65% on Next 16.4 **open with its trigger**.

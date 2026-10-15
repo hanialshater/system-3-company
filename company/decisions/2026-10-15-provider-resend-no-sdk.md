@@ -44,3 +44,11 @@ Founder F-01 item 4; privacy gate P1.7 and P1.8; the SDK source read above.
 | The sign-in link is a credential, and the sender keeps a copy of every email it sends | backend-engineer | evidence | Open, mitigated: the link is single-use, lasts 300 s, and only its hash is stored by us. Resend's log retention is unverified (proxy). The founder can read it on the Resend dashboard |
 | Sending region and international transfer are unknown | backend-engineer | evidence | Open: counsel (F-25). P1.7 fails on "unknown" until then |
 | An email sender without our own domain (F-23) can only send test mail | chief-of-staff (founder record) | evidence | Accepted for the spike, as in the founder record |
+
+## Principal-engineer review (2026-10-15, W-1138)
+**Acknowledged** (principal-engineer, Kenji): Resend over plain `fetch`, no SDK, no new dependency. The single-caller grep test is kept, and the review adds a sibling grep test: no `better-auth/*` import in client code (C9).
+- The engineering side is complete. P1.7 and P1.8 (processor, region, retention, DPA) stay with the privacy reviewer and counsel (F-25); I do not decide them.
+- Setup today: the key is in **Preview only**, which matches the test database (`first-light`, Development and Preview). Production needs its own sending-only key at go-live, next to the separate Production database (review C8).
+- `sendMagicLink` sends only after it has re-validated the age band (C3), so no email leaves for a request that skipped the age screen.
+- Objections: all three stay as recorded (the open ones belong to counsel and the founder).
+- Review: [2026-10-15-accounts-f01-review.md](../engineering/reviews/2026-10-15-accounts-f01-review.md)
