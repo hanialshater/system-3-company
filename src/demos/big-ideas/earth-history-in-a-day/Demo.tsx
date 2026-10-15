@@ -17,6 +17,9 @@
 // v4 (W-956, FC42): the canyon event is 'Colorado River through Grand Canyon' (6-5 Ma; no rate, no whole-depth
 // claim; the reveal says the age of the deepest parts is debated). The dial's viewBox is cropped to the circle
 // (x 30-210) so the same column draws it larger (it was a reveal-fit 'thumb' at 0.53 scale).
+// v5 (W-979, cm ruling 2026-10-15, W-984): the canyon event leaves the stage (c9 withdrawn). Reveal paragraph 2's
+// example is now a derivation on the dinosaurs' end at 23:39 (c10: 66e6 years x 1 cm a year = 660 km). EVENTS[1]
+// is still the dinosaurs, which check() uses for the milestone.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,7 +35,6 @@ type Ev = { id: string; name: string; t: number };
 const EVENTS: Ev[] = [
   { id: "life", name: "Earliest life (debated)", t: at(3.7e9) },
   { id: "dinos", name: "Non-bird dinosaurs end", t: at(66e6) },
-  { id: "canyon", name: "Colorado River through Grand Canyon", t: at(6e6) },
   { id: "humans", name: "Homo sapiens", t: at(300e3) },
 ];
 
@@ -99,7 +101,7 @@ export default function EarthHistoryInADay({ slug }: { slug: string }) {
             Our species appeared at {humansAt}, about six seconds before midnight; one second here is about 52,500 years.
           </p>
           <p>
-            Given this much time, even a process too slow to see can do large things: at 23:58, 6&ndash;5 million years ago, the Colorado River cut through the Grand Canyon, about 1.8 km deep. The age of its deepest parts is debated.
+            Given this much time, even a process too slow to see can do large things: since the non-bird dinosaurs ended at 23:39, about 66 million years ago, something creeping just 1 cm a year would have moved about 660 km.
           </p>
           <p>
             Where it stops: the clock shows how long things took, not how fast they happened. An even spread of time can hide
