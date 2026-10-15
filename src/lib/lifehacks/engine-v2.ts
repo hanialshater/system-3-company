@@ -164,8 +164,7 @@ export function homeV2Problems(spec: HomeSpec): string[] {
   if (spec.engine !== 2) return [];
   const out: string[] = [];
   if (!spec.options || spec.options.length !== 3) out.push("options");
-  // The bow stage is lesson-specific (both bows drawn at once, no Seen table), so it carries no amount rows.
-  if (spec.model !== "bow" && (!spec.amounts || spec.amounts.length < 1 || spec.amounts.length > 2)) out.push("amounts");
+  if (!spec.amounts || spec.amounts.length < 1 || spec.amounts.length > 2) out.push("amounts");
   const labels = homeModeLabels(spec);
   if (labels.some((l) => l.length > 16)) out.push("modeLabels > 16 chars");
   if (spec.options?.some((o) => labels.includes(o) || spec.choices.includes(o))) out.push("options repeat a button label (R7)");

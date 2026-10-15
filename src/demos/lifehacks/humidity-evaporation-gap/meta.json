@@ -1,7 +1,7 @@
 {
   "slug": "humidity-evaporation-gap",
   "title": "Humid air narrows the gap",
-  "hook": "Which equal-temperature setting has the larger vapour-pressure gap?",
+  "hook": "Same temperature, 40% or 80% humidity: how much weaker is the drying push?",
   "domain": "lifehacks",
   "concept": "drying-humidity",
   "status": "review",
@@ -23,57 +23,52 @@
   "claims": [
     {
       "id": "lifehacks.humidity-evaporation-gap.c1",
-      "text": "At equal temperature, higher relative humidity means a smaller difference between a wet surface’s saturation vapour pressure and surrounding water vapour. This model shows the gap, not a drying clock.",
+      "text": "At the same temperature, humid air already holds close to all the water vapour it can, so it takes water from a wet surface more slowly. The push is how far the air is from full.",
       "support": "source",
-      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Opened OpenStax §13.6 (m42219): 'Relative humidity is related to the partial pressure of water vapor in the air. At 100% humidity, the partial pressure is equal to the vapor pressure ... If the partial pressure is less than the vapor pressure, then evaporation will take place'; 'evaporation is inhibited by high humidity'. At fixed temperature the saturation vapour pressure is fixed and partial pressure = RH x saturation pressure, so the gap is p_sat(1 - RH) and shrinks as RH rises. 'Shows the gap, not a drying clock': engine case 'humidity' computes only value = 1 - RH/100, labelled 'Normalised gap', with no time output.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Opened OpenStax §13.6 (m42219): 'Relative humidity is related to the partial pressure of water vapor in the air. At 100% humidity, the partial pressure is equal to the vapor pressure ... If the partial pressure is less than the vapor pressure, then evaporation will take place'; 'evaporation is inhibited by high humidity'. At fixed temperature the saturation vapour pressure is fixed and partial pressure = RH x saturation pressure, so the gap is p_sat(1 - RH) and shrinks as RH rises. 'Shows the gap, not a drying clock': engine case 'humidity' computes only value = 1 - RH/100, labelled 'Normalised gap', with no time output. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.humidity-evaporation-gap.c2",
       "text": "Surface temperature, airflow and fabric also matter; no room-control advice is implied.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Normalised gap=1−RH/100; comparison RH=max(0,input−30). Assumes wet surface and air have equal temperature. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Normalised gap=1−RH/100; comparison RH=max(0,input−30). Assumes wet surface and air have equal temperature. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.humidity-evaporation-gap.c3",
-      "text": "Normalised gap=1−RH/100; comparison RH=max(0,input−30). Assumes wet surface and air have equal temperature.",
+      "text": "Drying push=100−humidity, out of 100; the drier room is 40 points less humid than the humid room. Assumes wet surface and air have equal temperature.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.humidity-evaporation-gap.c4",
-      "text": "Which equal-temperature setting has the larger vapour-pressure gap?",
+      "text": "Title: Humid air narrows the gap Hook: Same temperature, 40% or 80% humidity: how much weaker is the drying push? Question: Same temperature. A room at 40% humidity and one at 80%. How much weaker is the drying push in the humid room? Options: No weaker: same warmth / A bit weaker / A lot weaker. Correct option: A lot weaker.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'humidity' at the starting input 80; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.humidity-evaporation-gap.c5",
       "text": "At the same temperature, why can high humidity hinder evaporation?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention: a transfer question (spec.recall), not a factual sentence; it is not rendered by HomeLesson or Feed (the recall card uses meta.recall instead). Its presupposition, that high humidity can hinder evaporation at equal temperature, is stated in the opened OpenStax §13.6 ('evaporation is inhibited by high humidity').",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention: a transfer question (spec.recall), not a factual sentence; it is not rendered by HomeLesson or Feed (the recall card uses meta.recall instead). Its presupposition, that high humidity can hinder evaporation at equal temperature, is stated in the opened OpenStax §13.6 ('evaporation is inhibited by high humidity'). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.humidity-evaporation-gap.recall",
       "text": "Normalised gap = 1 − RH/100: 0.6 at 40% and 0.2 at 80%, three times larger. A smaller gap means less drive for evaporation. This is not a drying clock.",
       "support": "source",
-      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Arithmetic OK: (1−0.4)/(1−0.8) = 3 (node); key unique; matches c3 normalised gap. Source OpenStax §13.6 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: 1 - 0.40 = 0.6, 1 - 0.80 = 0.2, ratio 3.0; the keyed option (index 2, 'Three times as large in the 40% room') is the only one that fits. Formula matches the engine (value = 1 - other/100). 'A smaller gap means less drive for evaporation' follows from the opened §13.6 text (evaporation proceeds when partial pressure is below vapour pressure and stops at 100%). 'Not a drying clock' matches the engine.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. Scenario values in the recall question are stipulated. Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): left unverified, source not opened. Arithmetic OK: (1−0.4)/(1−0.8) = 3 (node); key unique; matches c3 normalised gap. Source OpenStax §13.6 NOT OPENED (proxy 403; WebFetch DNS failure). Re-check from a host that can open it. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Own node: 1 - 0.40 = 0.6, 1 - 0.80 = 0.2, ratio 3.0; the keyed option (index 2, 'Three times as large in the 40% room') is the only one that fits. Formula matches the engine (value = 1 - other/100). 'A smaller gap means less drive for evaporation' follows from the opened §13.6 text (evaporation proceeds when partial pressure is below vapour pressure and stops at 100%). 'Not a drying clock' matches the engine. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.humidity-evaporation-gap.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Humid room: 80 % humidity, drying push 20 of 100. Drier room: 40 %, push 60. At the same warmth the drier room pushes 3 times as hard.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:drying-humidity",
     "prerequisites": [

@@ -25,55 +25,50 @@
       "id": "lifehacks.half-size-two-towels.c1",
       "text": "Splitting a flat rectangle preserves the combined front-and-back face area. It adds edges, but does not double the large faces; separating folded layers is a different operation.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Both layouts have area=2×width×120/10000 m²; each half has height60cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Both layouts have area=2×width×120/10000 m²; each half has height60cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.half-size-two-towels.c2",
       "text": "Edges and fabric thickness are omitted from this area comparison.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Both layouts have area=2×width×120/10000 m²; each half has height60cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Both layouts have area=2×width×120/10000 m²; each half has height60cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.half-size-two-towels.c3",
       "text": "Both layouts have area=2×width×120/10000 m²; each half has height60cm.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.half-size-two-towels.c4",
-      "text": "Does splitting this fully exposed sheet add face area?",
+      "text": "Title: Cut size, keep area Hook: Does splitting this fully exposed sheet add face area? Question: Cut a towel in half and hang both halves flat. How much face area now? Options: Double / The same / Half. Correct option: The same.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'split-area' at the starting input 80; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.half-size-two-towels.c5",
       "text": "How is cutting one flat sheet different from opening a folded one?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt; spec.recall, not rendered by HomeLesson.tsx). It presupposes that cutting and unfolding differ, which matches the split-area model: area = 2 × width × 120/10000 in both layouts (unchanged by cutting), and the idea text 'separating folded layers is a different operation'. Nothing false is implied.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention (a transfer prompt; spec.recall, not rendered by HomeLesson.tsx). It presupposes that cutting and unfolding differ, which matches the split-area model: area = 2 × width × 120/10000 in both layouts (unchanged by cutting), and the idea text 'separating folded layers is a different operation'. Nothing false is implied. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.half-size-two-towels.recall",
       "text": "Each half has half the face area, so together they match the original: 2 × 0.8 × 1.2 = 1.92 m² either way. Cutting adds edges; only opening a folded sheet reveals hidden faces.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 2 × 0.8 × 1.2 = 1.92 m² = 2 halves × 2 × 0.8 × 0.6 (node). Matches c1/c3. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 2 × 0.8 × 1.2 = 1.92 m² = 2 halves × 2 × 0.8 × 0.6 (node). Matches c1/c3. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.half-size-two-towels.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: One towel: 1.92 m² of face, front and back. Two halves: two pieces, 1.92 m²: the same area, with more edges.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) or the bow stage in src/components/lifehacks/HomeLesson.tsx from this lesson's spec in home-lessons.ts (wave W2, demo-builder 2026-10-15). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:surface-area-drying",
     "prerequisites": [],

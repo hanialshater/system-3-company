@@ -13,3 +13,11 @@
 ## Pre-flight note (W-383, version unchanged)
 
 2026-10-14, demo-builder. From FC LH-2 Pass LH-2. The unrendered c5 transfer prompt is deleted (`.recall` replaces it). Nothing a learner sees changed, so the version stays 2.
+
+## Revision v3 (r11 fix plan wave W2, TP-1/TP-2/TP-8, 2026-10-15, demo-builder)
+
+- engine: 2 (Seen table, both columns after the prediction, comparison reveal). Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md applied as written; correct option is 3 of 3 (TP-8).
+- Start count 4 → 12 (max 16) so 12 × 250 g = 3,000 g. Every shirt drawn; A highlights one. Hook condensed from the question (the plan's question is over 90 characters). Safety warning unchanged.
+- First reveal sentence at the start: "One shirt: 250 g. Whole load: 12 shirts, 3,000 g into the room."
+- Claims: all reset to unverified (new: lifehacks.drying-room-water-load.seen). Nothing marked verified.
+- QA contract (QA_ONLY, port 3701, release build): phone and desktop passed.
