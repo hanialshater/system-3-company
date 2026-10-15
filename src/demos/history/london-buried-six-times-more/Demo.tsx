@@ -6,6 +6,8 @@
 // unit is "deaths"; c3 (Great Plague) is verified and unchanged.
 // v3 (FC43, W-957): the limit sentence (c4) now says "recorded deaths and recorded causes, from one later compilation
 // (Creighton)", and the question cites "(Creighton; 1965 edition)": 1965 is the edition date, not the compiling date.
+// v4 (FC45, W-992): c4 now says "from later compilations (Creighton; Campbell)" and the question cites both names,
+// "(Creighton, 1965 edition; Campbell)", as the Rd says the columns were "obtained by Campbell and from Creighton (1965)".
 // BILLS is copied from the pinned file (history-data.mjs: arbuthnot, Arbuthnot.csv): [Year, Males + Females
 // (christenings), Plague, Mortality (burials)]. Every number on the stage and in the reveal is computed here from
 // BILLS, as in company/domains/briefs/checks/history-cycle1-check.mjs section 8: 15,453 -> 97,306 (x6.3),
@@ -195,7 +197,7 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          `London's yearly records of deaths (Creighton; 1965 edition) show ${fmt(B1664.burials)} in 1664. In 1665, the year of the Great Plague, about how many?`,
+          `London's yearly records of deaths (Creighton, 1965 edition; Campbell) show ${fmt(B1664.burials)} in 1664. In 1665, the year of the Great Plague, about how many?`,
         options: ["About 30,000", "About 100,000", "About 300,000"],
         answer: 1,
       }}
@@ -209,7 +211,7 @@ export default function LondonBuriedSixTimesMore({ slug }: { slug: string }) {
             child christened. A year later, deaths were back to {fmt(B1666.burials)}.
           </p>
           <p>
-            Where it stops: these are recorded deaths and recorded causes, from one later compilation (Creighton).
+            Where it stops: these are recorded deaths and recorded causes, from later compilations (Creighton; Campbell).
           </p>
         </>
       )}
