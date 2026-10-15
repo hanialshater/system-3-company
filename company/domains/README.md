@@ -20,6 +20,8 @@ teach yet. **Unmet demand** is the roadmap's raw material: `npm run company -- c
 | Life Hacks | [lifehacks.md](lifehacks.md) | incubating |
 | Book Summaries | [books.md](books.md) | incubating (2026-10-14, founder request) |
 | Big Ideas | [big-ideas.md](big-ideas.md) | incubating (2026-10-14, founder request) |
+| History through data and maps | [history.md](history.md) | incubating (2026-10-14, founder request) |
+| Behavioral Economics and Irrational Behavior | [behavioral.md](behavioral.md) | incubating (2026-10-15, founder decision F-21; DLR pilot of five) |
 
 ## Expanding into a new domain
 

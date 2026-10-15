@@ -74,14 +74,21 @@ ok("predict answer follows from the derivation", predict.answer === 0 && pickAA 
 const name = { "1A": "the sure $1M", "1B": "the 10% chance of $5M", "2A": "the 11% chance of $1M", "2B": "the 10% chance of $5M" };
 const common = "Take away the 89% each pair shares, and both pairs become 11% of $1M against 10% of $5M.";
 const stops = "Where it stops: you chose knowing the pairs were linked.";
-function reveal(p1, p2) {
-  const lead = `You took ${name[p1]} in pair 1 and ${name[p2]} in pair 2.`;
+const held = "Re-run with 4,098 people in 19 countries, it held up, weaker than first reported.";
+const heldReverse = "That is the reverse of the certainty effect, which held up with 4,098 people in 19 countries, weaker than first reported.";
+// Branch text as revised by the learning designer (company/reviews/sure-million-or-long-shot/design.md) and accepted
+// by cm-behavioral on 2026-10-15: shorter lead, and the matched branches also name the certainty effect.
+function reveal(p1, p2, withHeld = false) {
+  const lead = name[p1] === name[p2] ? `You took ${name[p1]} both times.` : `You took ${name[p1]}, then ${name[p2]}.`;
   if (p1[1] === p2[1]) {
     const fit = p1 === "1A" ? "a cautious one, for which $1M is worth more than 10/11 of $5M" : "a bolder one, for which $5M is worth more than 1.1 times $1M";
-    return `${lead} ${common} You answered that comparison the same way twice, so one utility function fits both of your choices: ${fit}. ${stops}`;
+    return `${lead} ${common} You answered it the same way both times, so one utility function fits your two choices: ${fit}. The sure $1M, then the 10% chance of $5M, would fit none: that is the certainty effect. ${stops}`;
   }
-  const label = p1 === "1A" ? "Leaning to the sure thing like this is called the certainty effect." : "Leaning away from the sure thing is the reverse of the certainty effect.";
-  return `${lead} ${common} Expected utility weighs it the same in both pairs, so no utility function fits both of your choices: a departure from the model, not a slip. ${label} ${stops}`;
+  // The held type (d) line goes in the mixed branches only (one held sentence per reveal; G1 condition 2).
+  const label = p1 === "1A"
+    ? `This lean to the sure thing is the certainty effect.${withHeld ? " " + held : ""}`
+    : withHeld ? heldReverse : "Leaning away from the sure thing is the reverse of the certainty effect.";
+  return `${lead} ${common} Expected utility must answer it the same way both times, so no utility function fits your two choices: a departure from the model, not a slip. ${label} ${stops}`;
 }
 console.log("\nReveal branches (every combination the controls allow)");
 for (const p1 of ["1A", "1B"]) for (const p2 of ["2A", "2B"]) {
@@ -90,25 +97,30 @@ for (const p1 of ["1A", "1B"]) for (const p2 of ["2A", "2B"]) {
   ok(`reveal ${p1}+${p2} <= 90 words, verdict matches the derivation`, words(t) <= 90 && (/no utility function fits/i.test(t) === !consistentByModel), `${words(t)} words: "${t}"`);
 }
 
-// ---------- Held type (d) line (one only; D4 / G1) ----------
-const held = "A version of this pair held up when re-run in 19 countries.";
-console.log("\nHeld type (d) line, not in the published text until W-902 sources it and the fact-checker opens it");
-// When the held line is published, it takes the place of the certainty-effect sentence in the mixed branches
-// and goes before "Where it stops" in the matched branches.
+// ---------- Held type (d) line (one only; D4 / G1); declared above the reveal function's use ----------
+console.log("\nHeld type (d) line, mixed branches only; not in the published text until the fact-checker opens it");
+console.log("  W-902 row 'Allais / certainty effect' (robust, smaller than in 1979): Ruggeri et al. 2020 as reported by Cicerale et al. 2022, PMC9337702 (second-hand; the fact-checker rules on it)");
 let worst = 0;
-for (const p1 of ["1A", "1B"]) for (const p2 of ["2A", "2B"]) {
-  const base = reveal(p1, p2).replace(/ Leaning [^.]*certainty effect\./, "");
-  worst = Math.max(worst, words(base) + words(held));
+for (const [p1, p2] of [["1A", "2B"], ["1B", "2A"]]) {
+  const t = reveal(p1, p2, true);
+  worst = Math.max(worst, words(t));
+  ok(`reveal ${p1}+${p2} with the held line <= 90 words and one held sentence`, words(t) <= 90 && (t.match(/4,098/g) || []).length === 1, `${words(t)} words: "${t}"`);
 }
-ok("reveal with the held line stays within 90 words", worst <= 90,
-  `held: "${held}" (${words(held)} words); longest branch with it: ${worst} words. Fallback when not checkable: the sentence is cut and nothing replaces it`);
+ok("matched branches carry no held line", ["1A2A", "1B2B"].every((k) => !/4,098/.test(reveal(k.slice(0, 2), k.slice(2), true))), "fallback when not checkable: the sentence is cut and the unheld text above stands");
 
-// ---------- Transfer recall (common ratio: same logic, different shape) ----------
-const X1 = { 3: 100 }, X2 = { 4: 80, 0: 20 }, Y1 = { 3: 25, 0: 75 }, Y2 = { 4: 20, 0: 80 };   // $ thousands
+// ---------- Transfer recall (common consequence, new numbers; the learning designer's pair, accepted 2026-10-15) ----------
+// X: $2,000 for sure, or 20% of $3,000, 75% of $2,000 and 5% nothing. Y: 25% of $2,000, or 20% of $3,000.
+const recall = "Pair X: $2,000 for sure, or 20% of $3,000, 75% of $2,000 and 5% nothing. Pair Y: 25% of $2,000, or 20% of $3,000. Under expected utility, someone who takes the sure $2,000 must choose in Y:";
+const X1 = { 2: 100 }, X2 = { 3: 20, 2: 75, 0: 5 }, Y1 = { 2: 25, 0: 75 }, Y2 = { 3: 20, 0: 80 };   // $ thousands
+for (const [k, g] of Object.entries({ X1, X2, Y1, Y2 })) ok(`recall gamble ${k} sums to 100%`, Object.values(g).reduce((a, b) => a + b, 0) === 100, JSON.stringify(g));
+const rc = (a, b) => [0, 2, 3].map((x) => (a[x] || 0) - (b[x] || 0));
+const rx = rc(X1, X2), ry = rc(Y1, Y2);
+ok("recall: EU(X1)-EU(X2) and EU(Y1)-EU(Y2) have identical coefficients", rx.every((c, i) => c === ry[i]), `both = ${rx[0] / 100}*u(0) + ${rx[1] / 100}*u($2k) + ${rx[2] / 100}*u($3k)`);
+const shared = (g, x) => { const h = { ...g }; h[x] -= 75; if (h[x] === 0) delete h[x]; return h; };
+ok("recall: taking away the shared 75% turns X into Y", same(shared(X1, 2), shared(Y1, 0)) && same(shared(X2, 2), shared(Y2, 0)), "25% of $2,000 against 20% of $3,000 and 5% nothing");
 let rAgree = 0;
 for (const [, u] of fams) { const a = EU(X1, u) - EU(X2, u), b = EU(Y1, u) - EU(Y2, u); if (Math.sign(a) === Math.sign(b) || Math.abs(a - b) < 1e-12) rAgree++; }
-ok("recall: $3,000 sure vs 80% of $4,000; 25% of $3,000 vs 20% of $4,000", rAgree === fams.length,
-  `pair Y = pair X with every chance divided by 4, so EU(Y1)-EU(Y2) = (EU(X1)-EU(X2))/4 for any u; ${rAgree}/${fams.length} functions agree. Answer: "the 25% chance of $3,000"`);
+ok("recall: every increasing u picks the same letter in X and Y", rAgree === fams.length, `${rAgree}/${fams.length}; ${words(recall)} words: "${recall}" Answer: "The 25% chance of $2,000"`);
 
 console.log(`\n${fail ? `${fail} check(s) FAILED` : "all checks pass"}`);
 process.exit(fail ? 1 : 0);

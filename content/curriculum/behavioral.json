@@ -1,7 +1,7 @@
 {
   "domain": "behavioral",
   "owner": "cm-behavioral",
-  "note": "Owned by the category manager (cm-behavioral, Rasmus); charter company/domains/behavioral.md; sign-off requests company/domains/behavioral-signoffs.md. Domain id 'behavioral' is a PROPOSAL: platform-engineer decides the DomainId at playbook step 8 (W-981); until content/domains.json lists it, npm run check does not validate this file. Drafted 2026-10-15 by cm-behavioral from the DLR (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and head-of-product's rulings (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md). No subarea: no strands at this size. demand: 1 low, 3 high; EVERY value is an estimate (demandEstimate: true), not learner data: the counted concepts carry domain-scout's DLR estimates, the reserves cm-behavioral's. level: intro | core | stretch. reserve: true = not counted and not briefed until a counted concept is struck and the reserve's own boundary line is signed. pilot: the DLR five in head-of-product's order (1-3 after the fact-checker's step-9 statement; 4 after cm-books signs, fallback reflection-effect; 5 after cm-economics signs); no sixth brief before the DLR reconvenes. claimTypes: a derivation, b the learner's own screen, c disclosed seeded simulation, d source plus replication verdict (charter, checking section). nearest: the closest existing concept in any category (a brief says how it differs). boundary: which neighbour rows it depends on, the close-call line if any, who signs, and status, copied from behavioral-signoffs.md on 2026-10-15 (signoffs: one entry per sign-off line with verdict and conditions; rowSignoffs: the row-wide lines). A condition is binding on the brief; if a brief breaks one, that signature lapses. 11 counted concepts after #12 money-illusion was dropped on the E9 objection (see `dropped`). contested: true = taught only as contested, never as a predict answer. held: why the concept cannot be briefed even after its row is signed. Prerequisites link neighbour concepts by domain:id; nothing is moved or re-tagged out of a neighbour. reviewRoute: 'sensitive' where a reveal would compare groups or countries (the sensitive-topics route, company/international/sensitive-topics-checklist.md), 'standard' otherwise.",
+  "note": "Owned by the category manager (cm-behavioral, Rasmus); charter company/domains/behavioral.md; sign-off requests company/domains/behavioral-signoffs.md. Domain id 'behavioral' is merged (platform-engineer, W-981; content/domains.json, status incubating), so npm run check validates this file. Drafted 2026-10-15 by cm-behavioral from the DLR (company/domains/proposals/2026-10-15-behavioral-economics-dlr.md) and head-of-product's rulings (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md). No subarea: no strands at this size. demand: 1 low, 3 high; EVERY value is an estimate (demandEstimate: true), not learner data: the counted concepts carry domain-scout's DLR estimates, the reserves cm-behavioral's. level: intro | core | stretch. reserve: true = not counted and not briefed until a counted concept is struck and the reserve's own boundary line is signed. pilot: the DLR five in head-of-product's order (1-3 after the fact-checker's step-9 statement; 4 after cm-books signs, fallback reflection-effect; 5 after cm-economics signs); no sixth brief before the DLR reconvenes. claimTypes: a derivation, b the learner's own screen, c disclosed seeded simulation, d source plus replication verdict (charter, checking section). nearest: the closest existing concept in any category (a brief says how it differs). boundary: which neighbour rows it depends on, the close-call line if any, who signs, and status, copied from behavioral-signoffs.md on 2026-10-15 (E6 and E8 updated the same day from cm-economics' replies to the comparison drafts, commit d5508ca) (signoffs: one entry per sign-off line with verdict and conditions; rowSignoffs: the row-wide lines). A condition is binding on the brief; if a brief breaks one, that signature lapses. 11 counted concepts after #12 money-illusion was dropped on the E9 objection (see `dropped`). contested: true = taught only as contested, never as a predict answer. held: why the concept cannot be briefed even after its row is signed. Prerequisites link neighbour concepts by domain:id; nothing is moved or re-tagged out of a neighbour. reviewRoute: 'sensitive' where a reveal would compare groups or countries (the sensitive-topics route, company/international/sensitive-topics-checklist.md), 'standard' otherwise. Fold floor (head-of-product, decision Amendment 1 A1.1): counted or reserve concepts with every neighbour line signed and an effect not taught only as contested; 14 on 2026-10-15 (margin 2), recounted in the charter when the fact-checker's W-975 type (d) line lands.",
   "concepts": [
     {
       "id": "allais-certainty-effect",
@@ -196,6 +196,7 @@
         "books:tfs-loss-aversion"
       ],
       "claimTypes": [
+        "a",
         "b",
         "d"
       ],
@@ -409,7 +410,8 @@
       ],
       "claimTypes": [
         "a",
-        "b"
+        "b",
+        "d"
       ],
       "nearest": [
         "economics:sunk-cost",
@@ -424,14 +426,14 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "pending: agreed in principle; signature waits for the E6 comparison draft (behavioral-signoffs.md, cm-behavioral's comparison drafts)",
+        "status": "signed with changes (E6, on the comparison draft, 2026-10-15)",
         "signoffs": [
           {
             "line": "E6",
             "by": "cm-economics",
             "date": "2026-10-15",
-            "verdict": "agreed in principle; signature pending the comparison draft",
-            "conditions": "(1) a stage with no past payment; (2) the predict's wrong answer and reason are not 'money already spent should count'; (3) the reveal is the inconsistency between the learner's two answers (type b), not 'ignore sunk costs' or a forward-looking cost comparison; (4) no hidden-rate or cash-discount arithmetic and no 'true cost includes what you give up' reveal; (5) nearest sunk-cost-exit, with one line on how it differs. Objects if the stage needs a past, unrecoverable payment"
+            "verdict": "signed with changes (on the comparison draft; agreed in principle earlier the same day)",
+            "conditions": "(1) a stage with no past payment; (2) the predict's wrong answer and reason are not 'money already spent should count'; (3) the reveal is the inconsistency between the learner's two answers (type b), not 'ignore sunk costs' or a forward-looking cost comparison; (4) no hidden-rate or cash-discount arithmetic and no 'true cost includes what you give up' reveal; (5) nearest sunk-cost-exit, with one line on how it differs. Objects if the stage needs a past, unrecoverable payment; changes on the draft: (1) 'her groceries are already covered' becomes wording that cannot read as prepaid, e.g. 'her grocery costs are met from her regular pay', on the stage and in option B; (2) no budget line or trade-off between two goods on the stage (economics:budget-constraint, unbuilt; link it if anything). Objects to a brief that mentions money already spent, paid in advance or lost, or says 'ignore what you've spent'"
           }
         ],
         "rowSignoffs": [
@@ -499,6 +501,7 @@
       ],
       "claimTypes": [
         "a",
+        "b",
         "c",
         "d"
       ],
@@ -514,14 +517,14 @@
         "signer": [
           "cm-economics"
         ],
-        "status": "signed with changes; the brief waits for cm-economics' reply to the E8 comparison draft",
+        "status": "signed with changes (E8, and its comparison draft signed with changes 2026-10-15)",
         "signoffs": [
           {
             "line": "E8",
             "by": "cm-economics",
             "date": "2026-10-15",
             "verdict": "signed with changes (cm-economics-markets consulted through the records)",
-            "conditions": "(1) rename the concept (done 2026-10-15); (2) the predict names the disclosed simulated crowd and its options are not the 33/22/0 ladder under common knowledge of rationality; (3) the ceilings 66.7, 44.4, ... are not derived on the stage: one linked prerequisite step to two-thirds-of-the-average; (4) the Nagel 1995 first-round line stays held until sourced; before the brief, a three-line comparison draft (stage, predict with options, reveal claim)"
+            "conditions": "(1) rename the concept (done 2026-10-15); (2) the predict names the disclosed simulated crowd and its options are not the 33/22/0 ladder under common knowledge of rationality; (3) the ceilings 66.7, 44.4, ... are not derived on the stage: one linked prerequisite step to two-thirds-of-the-average; (4) the Nagel 1995 first-round line stays held until sourced; the comparison draft was signed with changes 2026-10-15: (1) the crowd rule gives each group's share and guess ('40% guess near 33') and may label 'one step' / 'two steps' with a link to two-thirds-of-the-average, never explaining why one step gives 33; (2) every reveal number comes from the seeded check script and includes the learner's guess in the average (the stated mix gives an average about 35 and a target about 23, not 36 and 24). Objects to a stage that derives 33 or 22 from 50, a crowd described as real players, or options that put the ladder back"
           }
         ],
         "rowSignoffs": [
