@@ -6694,7 +6694,7 @@
       "id": "W-480",
       "title": "G1/G2 (company/rituals/records/2026-10-14-constitutional-review.md): make production deploys wait for green ci (disable Vercel git-triggered production builds or add a Deployment Check on ci), and make drafts unreachable in production regardless of SHOW_REVIEW (findDemo passes includeDrafts:true). Decision record with founder.",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -6703,7 +6703,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Approved for the engineering half: 8 drafts now exist, so findDemo includeDrafts:true makes them reachable by URL on the next deploy. Deploy-path half (G1) is a founder decision, see triage-2026-10-14.md."
-      }
+      },
+      "updated": "2026-10-15"
     },
     {
       "id": "W-481",
@@ -11103,19 +11104,21 @@
       "id": "W-878",
       "title": "Trust sheet ('Why trust this?') shows internal fact-checker notes to learners (e.g. 'FACT-CHECK ... pass NCM-3', 'Fact-checker to confirm the citation'): show learner-facing support only (learner r11, company/reviews/<slug>/2026-10-14-learner-*-r11.md)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-879",
       "title": "Trust line counts withdrawn claims (news-comes-from-acquaintances 4/5 with c5 withdrawn; two-said-blue 8/9 with c8 withdrawn): exclude withdrawn (learner r11, company/reviews/<slug>/2026-10-14-learner-*-r11.md)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-880",
@@ -11158,10 +11161,11 @@
       "id": "W-884",
       "title": "W-480 now confirmed in production: draft lessons are reachable by direct URL (e.g. /d/rome-placed-too-far-east returns 200). Fix findDemo includeDrafts so drafts 404 in production while In review stays visible (founder decision 2026-10-15-founder-show-review); ship in the next release with W-878",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-885",
@@ -11511,6 +11515,51 @@
       "id": "W-923",
       "title": "Register the new pre-mortem rows (first-light, behavioral-econ) and link first-light/behavioral-econ to R-001, R-003, R-006, R-012, R-013",
       "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-924",
+      "title": "Approve (or not) the tier-2 readiness record for r7 (catalog visibility, /d/** and /api/meta shape) before it ships (company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-925",
+      "title": "r7: /api/meta claims no longer carry source/checkedBy/checkedOn (public API shape change); decide whether test:platform joins npm run verify (company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-926",
+      "title": "deploy.mjs: production smoke must test a DRAFT for 404 (a review lesson now correctly returns 200); deploy.mjs forces SHOW_REVIEW=off for production, contradicting the founder decision 2026-10-15-founder-show-review; after r7 deploy check /d/rome-placed-too-far-east returns 404 (company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-927",
+      "title": "QA harness: feed.spec 'subject chips filter the feed' fails under QA_ONLY because the allowed list is cut to the subset but the feed shows every lesson in the subject (company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-928",
+      "title": "Only 72 of 5158 claims have an openable URL, so the new trust sheet shows no source for most; many claim texts contain builder notes ('The stage line reads...', 'on the QA path'). Plan a source-URL and claim-text cleanup with the fact-checker (company/engineering/readiness/2026-10-15-r7-drafts-trust-sheet.md)",
+      "owner": "head-of-product",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-15",
