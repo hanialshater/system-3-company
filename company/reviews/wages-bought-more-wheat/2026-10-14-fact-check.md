@@ -35,3 +35,18 @@ Unrecorded claims: none. The readout "wheat ×2.4, wage ×6: buys ×2.5" is c2 a
 **Result (Pass 48):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 6 verified of 6.
 
 Open item for demo-builder: update the c5 source string (above).
+
+## Pass 49
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1042). I did not write, build or record any of these claims. Scope: the claims reset to unverified by the History r1 revisions and the patience merge (e2747d6, 68e1668). Method: I read Demo.tsx in full and the meta.json hook before any builder note. The walkthrough transcripts predate e2747d6 (10:05-10:38 against 10:54), so Demo.tsx and the hook were my source for the rendered text. I re-derived every number with my own node scripts and a quote-aware CSV parser, written fresh in the session scratchpad (fc49/check.mjs, apply.mjs), from artifacts/history-data/. Every file's SHA-256 matches its pin, and `history-data.mjs` reports all 23 pins hold. Each data array copied into Demo.tsx equals the file value by value. Sources were opened myself: raw.githubusercontent.com (Rdatasets HistData docs, OWID Maddison README) and PMC full text (the OAI API; for PMC2831262, which OAI does not serve, the article page). The egress proxy refuses cambridge.org, ideas.repec.org, iris.santannapisa.it, eutils and ebi.ac.uk, and WebFetch fails DNS. Search summaries were not counted as opened sources. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 49').
+
+Unrecorded claims: none found in the revised text.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | Pinned Wheat.csv: 99/41 = 2.4146 (2.4), 30/5 = 6. Hook, question, readout and reveal all carry 2.4 and 6. The wordless options hold: buys ×2.4848 > 2. |
+| c5 | verified | I opened the HistData Wheat doc myself (sha256 443ae182...): 'two non-commensurable Y variables on different axes ... plots of ratios (e.g., wages/price) are in some ways better'. The source field now names the doc (pass 48's fix is done). |
+
+**Result (Pass 49):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 6 verified of 6.
+
+No open claim items.

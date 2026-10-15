@@ -92,3 +92,17 @@ Checker: fact-checker, a fresh instance, 2026-10-15. I did not write, build or r
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c5 (unverified): see the basis above for the fix or the source it needs.
+
+## Pass 49
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1042). I did not write, build or record any of these claims. Scope: the claims reset to unverified by the History r1 revisions and the patience merge (e2747d6, 68e1668). Method: I read Demo.tsx in full and the meta.json hook before any builder note. The walkthrough transcripts predate e2747d6 (10:05-10:38 against 10:54), so Demo.tsx and the hook were my source for the rendered text. I re-derived every number with my own node scripts and a quote-aware CSV parser, written fresh in the session scratchpad (fc49/check.mjs, apply.mjs), from artifacts/history-data/. Every file's SHA-256 matches its pin, and `history-data.mjs` reports all 23 pins hold. Each data array copied into Demo.tsx equals the file value by value. Sources were opened myself: raw.githubusercontent.com (Rdatasets HistData docs, OWID Maddison README) and PMC full text (the OAI API; for PMC2831262, which OAI does not serve, the article page). The egress proxy refuses cambridge.org, ideas.repec.org, iris.santannapisa.it, eutils and ebi.ac.uk, and WebFetch fails DNS. Search summaries were not counted as opened sources. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 49').
+
+Unrecorded claims: none found in the revised text.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c5 | verified | Caption 'Model: both rational, both know the shrink', checked as a derivation from the code. share() is the backward-induction solution (offer d x the responder's next-proposer value), which assumes rational players who know d. My own explicit induction equals share() for n = 1..400 at 10/30/50%, and V(400) = 1/(1 + d). No learner-visible text names Rubinstein. |
+
+**Result (Pass 49):** 1 verified, 0 disputed, 0 held, of 1 re-checked. Lesson now: 6 verified of 6.
+
+No open claim items. The claims gate that refused this lesson for r7 should now pass on facts.

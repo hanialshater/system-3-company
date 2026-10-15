@@ -90,3 +90,18 @@ Unrecorded claims: none. Every sentence in the v5 reveal maps to c2/c7 (paragrap
 **Result (Pass 46):** 2 verified, 0 disputed, 0 unverified.
 
 Lesson state after this pass: c1, c2, c3, c5, c6, c7, c8 and c10 are verified; c4 and c9 are withdrawn. No claim is unverified or disputed. The non-blocking notes from earlier passes still stand: c2's source field should add the Sci Adv 2018 citation (demo-builder), and c5's readout prints '3.70 billion' (cm-big-ideas-science). Neither blocks publishing.
+
+## Pass 49
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1042). I did not write, build or record any of these claims. Scope: the claims reset to unverified by the History r1 revisions and the patience merge (e2747d6, 68e1668). Method: I read Demo.tsx in full and the meta.json hook before any builder note. The walkthrough transcripts predate e2747d6 (10:05-10:38 against 10:54), so Demo.tsx and the hook were my source for the rendered text. I re-derived every number with my own node scripts and a quote-aware CSV parser, written fresh in the session scratchpad (fc49/check.mjs, apply.mjs), from artifacts/history-data/. Every file's SHA-256 matches its pin, and `history-data.mjs` reports all 23 pins hold. Each data array copied into Demo.tsx equals the file value by value. Sources were opened myself: raw.githubusercontent.com (Rdatasets HistData docs, OWID Maddison README) and PMC full text (the OAI API; for PMC2831262, which OAI does not serve, the article page). The egress proxy refuses cambridge.org, ideas.repec.org, iris.santannapisa.it, eutils and ebi.ac.uk, and WebFetch fails DNS. Search summaries were not counted as opened sources. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 49').
+
+Unrecorded claims: none found in the revised text.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c2 | verified | I opened Neubauer, Hublin and Gunz (2018), Sci Adv (PMC5783678): Jebel Irhoud fossils 'dated to around 300,000 years ago', 'early H. sapiens'. Clock: 5.71 s before midnight, shown 23:59:54. The source field now names the paper. |
+| c5 | verified | Opened on PMC: PMC12329462, 'tenuous signs of life in rocks 3.8-3.7 billion years old'; PMC7615569, 'an eternally controversial concept'. The readout now says 'about 3.7 billion years ago'. Clock 04:26:25, shown 04:26. |
+
+**Result (Pass 49):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 8 verified and 2 withdrawn (c4, c9) of 10.
+
+No open claim items.

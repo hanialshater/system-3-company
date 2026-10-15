@@ -86,3 +86,17 @@ Unrecorded claims: none. The new log caption and legend text are covered by c6, 
 **Result (Pass 48):** 4 verified, 0 disputed, 0 held, of 4 re-checked. Lesson now: 11 verified of 11.
 
 Open item for demo-builder: correct the c11 source string (above).
+
+## Pass 49
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1042). I did not write, build or record any of these claims. Scope: the claims reset to unverified by the History r1 revisions and the patience merge (e2747d6, 68e1668). Method: I read Demo.tsx in full and the meta.json hook before any builder note. The walkthrough transcripts predate e2747d6 (10:05-10:38 against 10:54), so Demo.tsx and the hook were my source for the rendered text. I re-derived every number with my own node scripts and a quote-aware CSV parser, written fresh in the session scratchpad (fc49/check.mjs, apply.mjs), from artifacts/history-data/. Every file's SHA-256 matches its pin, and `history-data.mjs` reports all 23 pins hold. Each data array copied into Demo.tsx equals the file value by value. Sources were opened myself: raw.githubusercontent.com (Rdatasets HistData docs, OWID Maddison README) and PMC full text (the OAI API; for PMC2831262, which OAI does not serve, the article page). The egress proxy refuses cambridge.org, ideas.repec.org, iris.santannapisa.it, eutils and ebi.ac.uk, and WebFetch fails DNS. Search summaries were not counted as opened sources. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 49').
+
+Unrecorded claims: none found in the revised text.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c11 | verified | Pinned Maddison UK series, rounded as Demo.tsx (the array equals the file). The average is 0.8713%/yr. 1700-1850: x1.796, 0.391%; 1850-2018: x8.785, 1.302%. The record is below the line in 304 of 317 years. It is above only in 1701, 1702, 1704, 1705, 1708, 2002-2008 and 2017. The source's list now matches (pass 48's fix is done). |
+
+**Result (Pass 49):** 1 verified, 0 disputed, 0 held, of 1 re-checked. Lesson now: 11 verified of 11.
+
+No open claim items.

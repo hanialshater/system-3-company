@@ -37,3 +37,18 @@ Unrecorded claims: none found in the regenerated walkthrough.
 Open items (each blocks publishing until fixed and re-checked by a fact-checker who is not the builder):
 
 - c6 (disputed): fix in the basis above. Owner: history-builder-1; the pin text in history-data.mjs is cm-history's.
+
+## Pass 49
+
+Checker: fact-checker, a fresh instance, 2026-10-15 (W-1042). I did not write, build or record any of these claims. Scope: the claims reset to unverified by the History r1 revisions and the patience merge (e2747d6, 68e1668). Method: I read Demo.tsx in full and the meta.json hook before any builder note. The walkthrough transcripts predate e2747d6 (10:05-10:38 against 10:54), so Demo.tsx and the hook were my source for the rendered text. I re-derived every number with my own node scripts and a quote-aware CSV parser, written fresh in the session scratchpad (fc49/check.mjs, apply.mjs), from artifacts/history-data/. Every file's SHA-256 matches its pin, and `history-data.mjs` reports all 23 pins hold. Each data array copied into Demo.tsx equals the file value by value. Sources were opened myself: raw.githubusercontent.com (Rdatasets HistData docs, OWID Maddison README) and PMC full text (the OAI API; for PMC2831262, which OAI does not serve, the article page). The egress proxy refuses cambridge.org, ideas.repec.org, iris.santannapisa.it, eutils and ebi.ac.uk, and WebFetch fails DNS. Search summaries were not counted as opened sources. The full basis is in each claim's `note` in meta.json (prefix 'FC pass 49').
+
+Unrecorded claims: none found in the revised text.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Pass 47's dispute is resolved: the 'names no unit' clause is gone. I opened the OWID Maddison README myself: 'Italy 1310-1871 (North Italy) Malanima, P. (2010) ... GDP in central and northern Italy'. The stage draws 1310-1871 only, and the GDP array equals the file. The index is 1450 = 100. |
+| c8 | verified | Malanima (2011) is proxy-refused. Opened on PMC instead: A'Hearn, Peracchi and Vecchi (2009), Demography 46(1) (PMC2831262), report Fenoaltea (2006) and Daniele and Malanima (2007): the gap began 'in the 1880s with an acceleration of industrialization in the North'. Niedertscheider et al. (2014), Land Use Policy 39 (PMC4375606): 'until far into the 20th century the level of industrialization was low to moderate ... Italy became one of the leading industrial players after WWII'. Both date industrialisation long after 1800. Limit: neither gives a start year; the hook holds as 'before industrialisation'. |
+
+**Result (Pass 49):** 2 verified, 0 disputed, 0 held, of 2 re-checked. Lesson now: 8 verified of 8.
+
+Open item for demo-builder (non-blocking, source field only): c8's source still says 'To be opened by the fact-checker'. Replace it with the two PMC citations above. Also, 'runs 1310-2018' omits the file's Italy row for year 1.
