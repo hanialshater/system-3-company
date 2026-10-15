@@ -1,5 +1,6 @@
 /** Pure, deterministic exercise rules. Fixtures are assumptions, never personal forecasts. */
 import type { StudyV2Fields } from "./engine-v2";
+import type { Retrieval } from "./studyRecall";
 export type StudyFamily = "spacing" | "recall" | "schedule" | "order" | "files" | "message" | "edit";
 /** v2 fields (engine-v2.ts) are optional; a spec without `engine: 2` renders as v1. */
 interface Base extends StudyV2Fields {
@@ -10,9 +11,14 @@ interface Base extends StudyV2Fields {
 export interface CalendarRow { label: string; start: number; duration: number; parts?: Array<{ label: string; minutes: number }> }
 export interface FileItem { name: string; value: string; [key: string]: string | number | boolean }
 export interface SpacingSpec extends Base { family: "spacing"; days: number[] }
-export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string; candidates?: { a: number; b: number }; rowLabels?: [string, string]; hideTarget?: boolean }
-export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button?: string; deadline: number; event?: { row: number; minutes: number; label: string } }
-export interface OrderSpec extends Base { family: "order"; labels: string[]; durations: number[]; due: number[]; target: number[]; initial: number[]; metric: string; dependencies: Record<string, number>; tags: string[]; switchCost: number }
+export interface RecallSpec extends Base { family: "recall"; labels: string[]; words: string[]; kind: string; candidates?: { a: number; b: number }; rowLabels?: [string, string]; hideTarget?: boolean; retrieval?: Retrieval }
+export interface ScheduleSpec extends Base { family: "schedule"; rows: CalendarRow[]; target: number[]; movable: number; button?: string; deadline: number; event?: { row: number; minutes: number; label: string };
+  /** v1 options (r11 fix plan W9): free-gap window; rows run back to back after the movable first row; the row the deadline applies to;
+   *  a row that runs long after the button; a plan's claimed finish to compare with the layout. */
+  window?: number; chain?: boolean; dueRow?: number; longer?: { row: number; minutes: number }; claimed?: { label: string; minute: number } }
+export interface OrderSpec extends Base { family: "order"; labels: string[]; durations: number[]; due: number[]; target: number[]; initial: number[]; metric: string; dependencies: Record<string, number>; tags: string[]; switchCost: number;
+  /** v1 options (W9): the job tagged high priority; the job whose finish the stage reports (metric "release"). */
+  priority?: number; watch?: number }
 export interface FilesSpec extends Base { family: "files"; items: FileItem[]; operation: string; button: string; button2: string; field?: string; field2?: string; value?: string | number; value2?: string }
 export interface MessageSpec extends Base { family: "message"; labels: string[]; words: string[]; fields: string[]; aFields?: number }
 export interface EditSpec extends Base { family: "edit"; before: string[]; step1: string[]; step2: string[]; button: string; button2: string }
@@ -29,6 +35,25 @@ export function calendarResult(rows: readonly CalendarRow[], deadline: number, d
   const finish = Math.max(0,...rows.map(r => r.start+r.duration));
   const dueFinish = dueRow >= 0 ? rows[dueRow].start+rows[dueRow].duration : finish;
   return { conflict, finish, spill: Math.max(0,dueFinish-deadline) };
+}
+/** Rows at the given starts for a v1 schedule: a chain follows its first row back to back; `long` adds the overrun. */
+export function scheduleLayout(spec: ScheduleSpec, starts: readonly number[], long = false): CalendarRow[] {
+  const rows = spec.rows.map((r, i) => ({ ...r, start: starts[i], duration: r.duration + (long && spec.longer?.row === i ? spec.longer.minutes : 0) }));
+  if (spec.chain) for (let i = 1; i < rows.length; i++) rows[i].start = rows[i - 1].start + rows[i - 1].duration;
+  return rows;
+}
+/** Free intervals before `window` left by the rows other than `skip` (TP-4: total free time versus the longest gap). */
+export function freeGaps(rows: readonly CalendarRow[], window: number, skip = -1) {
+  const busy = rows.filter((_, i) => i !== skip).map(r => [r.start, r.start + r.duration] as const).sort((a, b) => a[0] - b[0]);
+  const gaps: Array<{ start: number; end: number }> = [];
+  let at = 0;
+  for (const [start, end] of busy) {
+    if (start > at && at < window) gaps.push({ start: at, end: Math.min(start, window) });
+    at = Math.max(at, end);
+  }
+  if (at < window) gaps.push({ start: at, end: window });
+  const lengths = gaps.map(g => g.end - g.start);
+  return { gaps, total: lengths.reduce((a, b) => a + b, 0), longest: Math.max(0, ...lengths) };
 }
 export function queueResult(spec: OrderSpec, order: readonly number[], roundRobin = false) {
   if(roundRobin) return roundRobinQueue(spec,order,5);

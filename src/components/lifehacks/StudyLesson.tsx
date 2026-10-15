@@ -5,7 +5,9 @@ import { Lesson } from "@/kit/Lesson";
 import { Slider } from "@/kit/controls";
 import { StageControl, StageStatus, resultText } from "./a11y";
 import { useMilestones } from "@/kit/milestones";
-import { calendarResult, queueResult, fileResult, editResult, illustrativeMemory, reconstructionMatches, swapPositions, type StudySpec, type FilesSpec } from "@/lib/lifehacks/studyModels";
+import { calendarResult, freeGaps, queueResult, scheduleLayout, fileResult, editResult, illustrativeMemory, reconstructionMatches, swapPositions, type StudySpec, type FilesSpec } from "@/lib/lifehacks/studyModels";
+import { cap, dueRowOf, queueObservation, scheduleObservation } from "@/lib/lifehacks/studyStages";
+import { RetrievalLesson } from "./RetrievalLesson";
 import { StudyLessonV2 } from "./StudyLessonV2";
 import s from "./StudyLesson.module.css";
 
@@ -36,17 +38,12 @@ function observation(spec: StudySpec,state: State): string {
     const v=illustrativeMemory(state.day);
     return `At day ${state.day}, the illustration shows A at ${Math.round(v.cram*100)}% and B at ${Math.round(v.spaced*100)}%. These values follow chosen decay constants, not observations of you.`;
   }
-  if(spec.family==="schedule") {
-    const rows=spec.rows.map((r,i)=>({...r,start:state.starts[i]}));
-    const dueRow=["work-back-from-a-deadline","arrival-is-not-departure"].includes(spec.slug)?0:-1;
-    const v=calendarResult(rows,spec.deadline,dueRow);
-    return `Your layout has ${v.conflict} overlapping minutes and ends at minute ${v.finish}. ${dueRow>=0?`The first task extends ${v.spill} minutes beyond its minute-${spec.deadline} deadline.`:"All rows use the same person and the durations shown."}`;
-  }
+  if(spec.family==="schedule") return scheduleObservation(spec,state.starts,state.refined);
   if(spec.family==="order") {
     const roundRobin=spec.slug==="work-in-process-limit"&&state.step<2;
     const v=queueResult(spec,state.order,roundRobin);
     if(spec.slug==="work-in-process-limit") return `In order ${state.order.map(i=>spec.labels[i]).join(" → ")}, your ${roundRobin?"five-minute-turn":"whole-job"} schedule first completes a task at minute ${v.firstFinish}. All jobs together still require ${v.time} minutes of execution. Starting and finishing are different events.`;
-    return `Your order ${state.order.map(i=>spec.labels[i]).join(" → ")} gives ${v.waiting} total waiting minutes, ${v.late} late jobs and ${v.breaches} prerequisite breaches. ${spec.switchCost?`Each context change adds ${spec.switchCost} minutes.`:"All jobs are ready except for the stated prerequisites."}`;
+    return queueObservation(spec,state.order);
   }
   if(spec.family==="recall") {
     const matched=reconstructionMatches(spec.words,state.order);
@@ -68,7 +65,10 @@ function observation(spec: StudySpec,state: State): string {
 
 /** Engines v2 (W-608): a spec with `engine: 2` gets the v2 stage; every other lesson renders the v1 stage below, unchanged. */
 export function StudyLesson({slug,spec}:{slug:string;spec:StudySpec}) {
-  return spec.engine===2?<StudyLessonV2 slug={slug} spec={spec}/>:<StudyLessonV1 slug={slug} spec={spec}/>;
+  if(spec.engine===2) return <StudyLessonV2 slug={slug} spec={spec}/>;
+  // TP-3: recall lessons with a `retrieval` fixture answer from memory; the others keep the v1 swap stage.
+  if(spec.family==="recall"&&spec.retrieval) return <RetrievalLesson slug={slug} spec={spec}/>;
+  return <StudyLessonV1 slug={slug} spec={spec}/>;
 }
 
 function StudyLessonV1({slug,spec}:{slug:string;spec:StudySpec}) {
@@ -77,7 +77,7 @@ function StudyLessonV1({slug,spec}:{slug:string;spec:StudySpec}) {
     slug={slug}
     predict={{question:spec.question,options:spec.options,answer:spec.answer}}
     minInteractions={2}
-    exploreHint={spec.slug==="apply-not-quote"?"Try the visible values. Rearrange them into ascending order, then check.":spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":"Try both labelled operations; inspect what changes in the fixture."}
+    exploreHint={spec.slug==="apply-not-quote"?"Try the visible values. Rearrange them into ascending order, then check.":spec.family==="recall"?"Cover the target, reconstruct it, then check the positions.":spec.family==="spacing"?"Visit both test markers, then compare the two calendars.":spec.family==="schedule"?"Test the plan, try the other layout, then move the start.":spec.family==="order"?"Run the queue, then try the other orders.":"Try both labelled operations; inspect what changes in the fixture."}
     reveal={()=> <><p>{observation(spec,state)}</p><p>{spec.principle}</p></>}
   >
     {({locked,interact})=> <Stage spec={spec} state={state} setState={setState} locked={locked} interact={interact}/>}
@@ -133,15 +133,22 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     </div>;
   }
   if(spec.family==="schedule") {
-    const rows=spec.rows.map((r,i)=>({...r,start:state.starts[i]}));
-    const dueRow=["work-back-from-a-deadline","arrival-is-not-departure"].includes(spec.slug)?0:-1;
+    const rows=scheduleLayout(spec,state.starts,state.refined);
+    const dueRow=dueRowOf(spec);
     const values=calendarResult(rows,spec.deadline,dueRow);
     const limit=100, x=(v:number)=>82+v/limit*220;
-    const moved=state.starts.every((v,i)=>v===spec.target[i]);
+    const tested=state.step>0&&!locked;
+    const dueFinish=dueRow>=0?rows[dueRow].start+rows[dueRow].duration:values.finish;
+    // TP-4: readouts in words; an overlapping plan has no valid finish.
+    const finishText=values.conflict?"no valid finish":dueRow>=0?`finishes at ${dueFinish}`:`minute ${values.finish}`;
+    const gaps=spec.window!==undefined?freeGaps(rows,spec.window,spec.movable):null;
+    const moved=spec.longer?state.refined:state.starts.every((v,i)=>v===spec.target[i]);
+    const maxStart=Math.min(70,100-(spec.chain?rows.reduce((t,r)=>t+r.duration,0):rows[spec.movable].duration));
     return <div className={s.wrap}>
-      <div className={s.caption}>One person · minutes</div>
-      <Frame label={`One-person calendar. ${rows.map(r=>`${r.label} starts ${r.start} lasts ${r.duration} minutes`).join("; ")}. ${state.step&&!locked?`${values.conflict} overlap minutes; ${dueRow>=0?`first task finishes at minute ${rows[0].start+rows[0].duration}, due at minute ${spec.deadline}`:`last finish at minute ${values.finish}`}.`:"Results not yet tested."}`}>
+      <div className={s.caption}>{gaps?"One person · dashed = free gap · the job runs in one piece":"One person · minutes"}</div>
+      <Frame label={`One-person calendar. ${rows.map(r=>`${r.label} from minute ${r.start} to ${r.start+r.duration}`).join("; ")}.${gaps?` Free gaps before minute ${spec.window}: ${gaps.gaps.map(g=>`${g.start} to ${g.end}`).join(", ")}.`:""} ${tested?`${values.conflict} minutes of overlap; ${dueRow>=0?`due at minute ${spec.deadline}, `:"finish: "}${finishText}.`:"Results not yet tested."}`}>
         {hatchDefs}
+        {gaps&&gaps.gaps.map(g=><rect key={g.start} x={x(g.start)} y={15+spec.movable*36} width={(g.end-g.start)/limit*220} height="19" rx="4" fill="none" stroke={textColor} strokeDasharray="3 2"/>)}
         {rows.map((r,i)=><g key={r.label}>
           <text x="2" y={32+i*36} fill={textColor} className={s.rowLabel}>{r.label}</text>
           <rect x={x(r.start)} y={15+i*36} width={r.duration/limit*220} height="19" rx="4" fill={i===spec.movable?"var(--domain)":"var(--line)"} stroke={textColor}/>
@@ -149,14 +156,14 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
           <text x={x(r.start)} y={46+i*36} fill={textColor}>{r.start}–{r.start+r.duration}</text>
         </g>)}
         <text x="82" y="140" fill={textColor}>0</text><text x="302" y="140" textAnchor="end" fill={textColor}>100</text>
-        {dueRow>=0&&<line x1={x(spec.deadline)} x2={x(spec.deadline)} y1="8" y2="34" stroke="var(--bad)" strokeWidth="2"/>}
+        {dueRow>=0&&<line x1={x(spec.deadline)} x2={x(spec.deadline)} y1={8+dueRow*36} y2={34+dueRow*36} stroke="var(--bad)" strokeWidth="2"/>}
       </Frame>
-      <Results locked={locked} items={[["Overlap",state.step?`${values.conflict}m`:"?"],[dueRow>=0?`Due${spec.deadline}`:"Finish",state.step?`${dueRow>=0?rows[0].start+rows[0].duration:values.finish}m`:"?"]]}/>
+      <Results locked={locked} items={[...(gaps?[["Free before "+spec.window,tested?`${gaps.total} min · longest gap ${gaps.longest}`:"?"]] as Array<[string,string]>:[]),...(spec.chain?[]:[["Overlap",tested?`${values.conflict} min`:"?"]] as Array<[string,string]>),[dueRow>=0?`Due at ${spec.deadline}`:"Finish",tested?finishText:"?"],...(dueRow>=0&&!values.conflict?[["Late",tested?(values.spill?`${values.spill} min`:"on time"):"?"]] as Array<[string,string]>:[]),...(spec.claimed?[[spec.claimed.label,tested?`minute ${spec.claimed.minute}`:"?"]] as Array<[string,string]>:[])]}/>
       <div className={s.controls}>
         <StageControl locked={locked} inactive={state.step>0} onClick={()=>step(1)}>Test plan</StageControl>
-        <StageControl locked={locked} inactive={!state.step||moved} onClick={()=>{setState(p=>({...p,step:2,starts:[...spec.target]}));reach("key-comparison");}}>{spec.button}</StageControl>
+        <StageControl locked={locked} inactive={!state.step||moved} onClick={()=>{setState(p=>({...p,step:2,starts:[...spec.target],refined:Boolean(spec.longer)}));reach("key-comparison");}}>{spec.button}</StageControl>
       </div>
-      <Slider label="Start" value={state.starts[spec.movable]} min={0} max={70} disabled={locked||!state.step} format={v=>`${v}m`} onChange={v=>setState(p=>({...p,starts:p.starts.map((n,i)=>i===spec.movable?v:n)}))}/>
+      <Slider label={spec.chain?`Start (${rows[spec.movable].label})`:"Start"} value={state.starts[spec.movable]} min={0} max={maxStart} disabled={locked||!state.step} format={v=>`minute ${v}`} onChange={v=>setState(p=>({...p,starts:p.starts.map((n,i)=>i===spec.movable?v:n)}))}/>
     </div>;
   }
   if(spec.family==="order") {
@@ -165,20 +172,21 @@ function Stage({spec,state,setState,locked,interact}:{spec:StudySpec;state:State
     const roundRobin=wip&&state.step<2;
     const v=queueResult(spec,state.order,roundRobin);
     const target=state.order.every((id,i)=>id===spec.target[i]);
+    const hasDeps=Object.keys(spec.dependencies).length>0;
     const x=(time:number)=>74+time/80*225;
     return <div className={s.wrap}>
-      <div className={s.caption}>{roundRobin?"Slice=5m · duration/due":wip?"Whole jobs · duration/due":spec.switchCost?`Setup=${spec.switchCost}m/switch`:"Exercise · duration/due"}</div>
-      <Frame label={`Queue order: ${state.order.map(id=>`${spec.labels[id]}, duration ${spec.durations[id]} minutes, due at minute ${spec.due[id]}${spec.dependencies[String(id)]!==undefined?`, requires ${spec.labels[spec.dependencies[String(id)]]}`:""}`).join("; ")}. ${roundRobin?"Five-minute slices.":spec.switchCost?`Each context change adds ${spec.switchCost} minutes.`:"Whole-job execution."} ${state.step&&!locked?`${spec.metric==="completion"?`First completion at minute ${v.firstFinish}`:`Total waiting ${v.waiting} minutes`}; ${v.late} late jobs; ${spec.metric==="switches"?`${v.switches} context switches`:`${v.breaches} prerequisite breaches`}.`:"Results not yet tested."}`}>
+      <div className={s.caption}>{roundRobin?"5-minute turns, one job after another":wip?"Whole jobs, one at a time":`Total waiting: each job's start time, added up${spec.switchCost?` · a switch adds ${spec.switchCost} min`:""}`}</div>
+      <Frame label={`Queue order: ${state.order.map(id=>`${spec.labels[id]}, ${spec.durations[id]} minutes, due at minute ${spec.due[id]}${spec.dependencies[String(id)]!==undefined?`, needs ${spec.labels[spec.dependencies[String(id)]]} first`:""}`).join("; ")}. ${roundRobin?"Five-minute turns.":spec.switchCost?`Each switch adds ${spec.switchCost} minutes.`:"Whole jobs, one at a time."} ${state.step&&!locked?`${spec.metric==="completion"?`First job done at minute ${v.firstFinish}`:`Total waiting ${v.waiting} minutes`}; ${v.late} late jobs${spec.metric==="switches"?`; ${v.switches} switches`:hasDeps?`; ${v.breaches} run before the job they need`:""}.`:"Results not yet tested."}`}>
         {hatchDefs}
         {state.order.map((id,i)=><g key={id}>
           <text x="2" y={29+i*35} fill={textColor} className={s.rowLabel}>{spec.labels[id]}</text>
           {v.segments.filter(seg=>seg.id===id).map((seg,index)=><g key={index}><rect x={x(seg.start)} y={13+i*35} width={(seg.end-seg.start)/80*225} height="20" rx="4" fill={i===0?"var(--domain)":"var(--line)"} stroke={textColor}/>{i===0&&<rect x={x(seg.start)} y={13+i*35} width={(seg.end-seg.start)/80*225} height="20" rx="4" fill={`url(#${hatch})`} stroke={textColor} strokeWidth="2"/>}</g>)}
-          <text x="4" y={43+i*35} fill="var(--muted)">{spec.durations[id]}m/{spec.due[id]}due{spec.dependencies[String(id)]!==undefined?`←${spec.labels[spec.dependencies[String(id)]]}`:""}</text>
+          <text x="4" y={43+i*35} fill="var(--muted)">{spec.durations[id]} min · due {spec.due[id]}{spec.dependencies[String(id)]!==undefined?` · needs ${spec.labels[spec.dependencies[String(id)]]}`:""}{spec.priority===id?" · high priority":""}</text>
           <line x1={x(spec.due[id])} x2={x(spec.due[id])} y1={10+i*35} y2={34+i*35} stroke="var(--bad)" strokeWidth="2"/>
         </g>)}
         <text x="74" y="136" fill={textColor}>0</text><text x="299" y="136" textAnchor="end" fill={textColor}>80m</text>
       </Frame>
-      <Results locked={locked} items={[[spec.metric==="completion"?"First":"Wait",state.step?`${spec.metric==="completion"?v.firstFinish:v.waiting}m`:"?"],["Late",state.step?v.late:"?"],[spec.metric==="switches"?"Switches":"Prereq",state.step?(spec.metric==="switches"?v.switches:v.breaches):"?"]]}/>
+      <Results locked={locked} items={[[spec.metric==="completion"?"First job done":"Total waiting",state.step?(spec.metric==="completion"?`minute ${v.firstFinish}`:`${v.waiting} min`):"?"],["Late jobs",state.step?v.late:"?"],...(spec.metric==="switches"?[["Switches",state.step?v.switches:"?"]]:hasDeps?[["Run before input",state.step?v.breaches:"?"]]:[]) as Array<[string,string|number]>,...(spec.watch!==undefined?[[`${cap(spec.labels[spec.watch])} done`,state.step?`minute ${v.ends[v.segments.findIndex(g=>g.id===spec.watch)]}`:"?"]]:[]) as Array<[string,string|number]>]}/>
       <div className={s.controls}>
         <StageControl locked={locked} inactive={state.step>0} onClick={()=>step(1)}>Run queue</StageControl>
         {wip?<>

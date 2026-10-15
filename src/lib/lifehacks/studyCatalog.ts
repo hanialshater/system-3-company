@@ -30,18 +30,19 @@ export const study_cover_before_recall = {
   "family": "recall",
   "slug": "cover-before-recall",
   "title": "Cover before you test",
-  "hook": "Seeing the answer and retrieving it are different activities.",
+  "hook": "Cover the answers: how many can you give?",
   "objective": "Perform a closed-answer check before using feedback.",
-  "question": "Which check asks you to retrieve an answer?",
+  "question": "You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give?",
   "options": [
-    "Answer covered",
-    "Answer beside the cue"
+    "3: I just saw them",
+    "Can't tell until you try",
+    "0"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
-  "misconception": "Answer beside the cue",
+  "misconception": "Rereading a card with the answer showing tests what you know.",
   "labels": [
     "bell",
     "kite",
@@ -52,36 +53,136 @@ export const study_cover_before_recall = {
     "plum",
     "door"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each card from memory: tap a box to change its answer, then check.",
+    "studyCaption": "Three cards, answers showing",
+    "caption": "Answers covered · tap a box to answer",
+    "study": [
+      {
+        "top": "bell",
+        "main": "lake"
+      },
+      {
+        "top": "kite",
+        "main": "plum"
+      },
+      {
+        "top": "leaf",
+        "main": "door"
+      }
+    ],
+    "covered": [
+      {
+        "top": "bell",
+        "main": "?"
+      },
+      {
+        "top": "kite",
+        "main": "?"
+      },
+      {
+        "top": "leaf",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Covered",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "leaf",
+            "answer": "door",
+            "choices": [
+              "door",
+              "dock",
+              "plum"
+            ]
+          },
+          {
+            "cue": "bell",
+            "answer": "lake",
+            "choices": [
+              "lane",
+              "lake",
+              "door"
+            ]
+          },
+          {
+            "cue": "kite",
+            "answer": "plum",
+            "choices": [
+              "plum",
+              "pear",
+              "lake"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Answers showing",
+      "3/3"
+    ],
+    "lead": "With the answers showing, all three cards read right.",
+    "allRight": "Nothing missed this time, and only the covered try could tell you that."
+  }
 } satisfies StudySpec;
 
 export const study_one_question_one_card = {
   "family": "recall",
   "slug": "one-question-one-card",
   "title": "One question per card",
-  "hook": "A card asking three things can hide which one you missed.",
+  "hook": "You answer two of three and mark it right. What did the card record?",
   "objective": "Split a compound prompt into separately checkable cues.",
-  "question": "Which card makes a missed item identifiable?",
+  "question": "Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record?",
   "options": [
-    "One target per cue",
-    "Three targets per cue"
+    "That you know all three",
+    "A pass that hides a miss"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Separate cues expose separate gaps. A correct answer to one cue does not establish knowledge of the other two.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Three targets per cue",
   "labels": [
-    "who",
-    "where",
-    "when"
+    "capital",
+    "currency",
+    "language"
   ],
   "words": [
-    "Mina",
-    "library",
-    "Tuesday"
+    "Lima",
+    "sol",
+    "Spanish"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "compound",
+    "hint": "Mark the card as one, then split it into three cards.",
+    "caption": "One card, three questions",
+    "card": "Capital, currency and language of Peru?",
+    "parts": [
+      {
+        "label": "capital",
+        "given": "Lima",
+        "answer": "Lima"
+      },
+      {
+        "label": "currency",
+        "given": "peso",
+        "answer": "sol"
+      },
+      {
+        "label": "language",
+        "given": "Spanish",
+        "answer": "Spanish"
+      }
+    ],
+    "one": "Mark as one card",
+    "split": "Split into 3 cards"
+  }
 } satisfies StudySpec;
 
 export const study_cue_needs_a_boundary = {
@@ -132,12 +233,12 @@ export const study_reverse_the_flashcard = {
   "family": "recall",
   "slug": "reverse-the-flashcard",
   "title": "Test the other direction",
-  "hook": "Knowing a word from its meaning does not check the reverse direction.",
+  "hook": "Shown 'dog', can you give 'perro'?",
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
-  "question": "Which checks meaning-to-word retrieval?",
+  "question": "You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'?",
   "options": [
-    "Hide the word",
-    "Hide the meaning"
+    "Not tested yet",
+    "Yes: same card"
   ],
   "answer": 0,
   "principle": "Reverse the cue and answer to check the opposite mapping. A result in one direction is not a test of the other.",
@@ -154,7 +255,110 @@ export const study_reverse_the_flashcard = {
     "wug",
     "zib"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer the cards both ways: tap a box to change it, then check each row.",
+    "studyCaption": "Three cards: word, then meaning",
+    "caption": "Cards covered · answer both ways",
+    "study": [
+      {
+        "top": "dax",
+        "main": "red"
+      },
+      {
+        "top": "wug",
+        "main": "blue"
+      },
+      {
+        "top": "zib",
+        "main": "green"
+      }
+    ],
+    "covered": [
+      {
+        "top": "?",
+        "main": "?"
+      },
+      {
+        "top": "?",
+        "main": "?"
+      },
+      {
+        "top": "?",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Word → meaning",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "zib",
+            "answer": "green",
+            "choices": [
+              "green",
+              "red",
+              "blue"
+            ]
+          },
+          {
+            "cue": "dax",
+            "answer": "red",
+            "choices": [
+              "red",
+              "blue",
+              "green"
+            ]
+          },
+          {
+            "cue": "wug",
+            "answer": "blue",
+            "choices": [
+              "blue",
+              "green",
+              "red"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Meaning → word",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "red",
+            "answer": "dax",
+            "choices": [
+              "dux",
+              "dax",
+              "zib"
+            ]
+          },
+          {
+            "cue": "blue",
+            "answer": "wug",
+            "choices": [
+              "wug",
+              "wog",
+              "dax"
+            ]
+          },
+          {
+            "cue": "green",
+            "answer": "zib",
+            "choices": [
+              "zeb",
+              "zib",
+              "wug"
+            ]
+          }
+        ]
+      }
+    ],
+    "allRight": "Both directions passed this time, but only testing each one could show it."
+  }
 } satisfies StudySpec;
 
 export const study_rebuild_the_procedure = {
@@ -190,12 +394,12 @@ export const study_note_gap_check = {
   "family": "recall",
   "slug": "note-gap-check",
   "title": "Find the missing note",
-  "hook": "A complete-looking page can still lack the detail you need.",
+  "hook": "Cover it and rebuild its three fields: how many do you expect to get?",
   "objective": "Reconstruct a missing field from a short source note.",
-  "question": "Which check tests whether the missing details are known?",
+  "question": "Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?",
   "options": [
-    "Cover then reconstruct",
-    "Read the completed note"
+    "Can't tell until you try",
+    "All 3: it's all there"
   ],
   "answer": 0,
   "principle": "The note has three named fields. Reconstructing their values makes missing details visible; this is a local completeness check.",
@@ -212,36 +416,172 @@ export const study_note_gap_check = {
     "Friday",
     "627"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Rebuild each field from memory: tap a box to change it, then check.",
+    "studyCaption": "Your note",
+    "caption": "Note covered · rebuild each field",
+    "study": [
+      {
+        "top": "room",
+        "main": "B4"
+      },
+      {
+        "top": "day",
+        "main": "Friday"
+      },
+      {
+        "top": "code",
+        "main": "627"
+      }
+    ],
+    "covered": [
+      {
+        "top": "room",
+        "main": "?"
+      },
+      {
+        "top": "day",
+        "main": "?"
+      },
+      {
+        "top": "code",
+        "main": "?"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Rebuilt",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "room",
+            "answer": "B4",
+            "choices": [
+              "B4",
+              "D4",
+              "B6"
+            ]
+          },
+          {
+            "cue": "day",
+            "answer": "Friday",
+            "choices": [
+              "Friday",
+              "Tuesday",
+              "Thursday"
+            ]
+          },
+          {
+            "cue": "code",
+            "answer": "627",
+            "choices": [
+              "672",
+              "627",
+              "267"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Note looks",
+      "3/3 filled"
+    ],
+    "lead": "The note showed all three fields filled.",
+    "allRight": "Nothing was missing this time, and only rebuilding it could tell you that."
+  }
 } satisfies StudySpec;
 
 export const study_explain_the_link = {
   "family": "recall",
   "slug": "explain-the-link",
   "title": "Remember the links",
-  "hook": "A list of words is not yet an explanation.",
+  "hook": "Asked 'why is there a puddle?', can you answer?",
   "objective": "Reconstruct an explicit cause-and-consequence chain without its source.",
-  "question": "Which test preserves the explanatory links?",
+  "question": "You can list 'cloud, rain, puddle'. Asked 'why is there a puddle?', can you answer?",
   "options": [
-    "Ordered cause chain",
-    "Alphabetical words"
+    "Only if you learned the links",
+    "Yes: I know the words"
   ],
   "answer": 0,
-  "principle": "The example says cloud then rain then puddle. This checks the stated chain, not whether every cloud produces rain.",
+  "principle": "Listing tav, bix and rell does not say which turns which, so it cannot answer 'why does rell turn?'. Only the remembered links can. A list like cloud, rain, puddle is the same: words, not yet the explanation.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Alphabetical words",
   "labels": [
-    "cause",
-    "event",
-    "result"
+    "first",
+    "middle",
+    "last"
   ],
   "words": [
-    "cloud",
-    "rain",
-    "puddle"
+    "tav",
+    "bix",
+    "rell"
   ],
-  "kind": "sequence"
+  "kind": "sequence",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each 'what turns it?' from memory, then check.",
+    "studyCaption": "Three gears: each arrow means 'turns'",
+    "caption": "Links covered · the words, A to Z",
+    "study": [
+      {
+        "main": "tav"
+      },
+      {
+        "main": "bix"
+      },
+      {
+        "main": "rell"
+      }
+    ],
+    "arrow": "turns",
+    "covered": [
+      {
+        "main": "bix"
+      },
+      {
+        "main": "rell"
+      },
+      {
+        "main": "tav"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Links",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "What turns rell?",
+            "answer": "bix",
+            "choices": [
+              "tav",
+              "bix",
+              "rell"
+            ]
+          },
+          {
+            "cue": "What turns bix?",
+            "answer": "tav",
+            "choices": [
+              "tav",
+              "rell",
+              "bix"
+            ]
+          }
+        ]
+      }
+    ],
+    "contrast": [
+      "Words listed",
+      "3/3"
+    ],
+    "lead": "You could list all three words.",
+    "allRight": "Both links came back: the words alone could not have given them."
+  }
 } satisfies StudySpec;
 
 export const study_apply_not_quote = {
@@ -293,29 +633,88 @@ export const study_separate_confusable_pairs = {
   "family": "recall",
   "slug": "separate-confusable-pairs",
   "title": "Separate similar pairs",
-  "hook": "Two almost identical labels need a distinguishing cue.",
+  "hook": "Asked for the grey cable's code, how often do you pick the right one?",
   "objective": "Check the specific difference between two arbitrary codes.",
-  "question": "Which notes distinguish these codes?",
+  "question": "Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one?",
   "options": [
-    "Code plus distinguishing field",
-    "Shared description only"
+    "Always: I learned it",
+    "About half the time"
   ],
-  "answer": 0,
-  "principle": "The last digit distinguishes the two codes in the fixture. The same shared description would not identify which code was intended.",
+  "answer": 1,
+  "principle": "K-417 and K-471 share the note 'grey cable', so that cue fits both and a pick is a guess. Adding what differs, here the length, makes the cue fit one code.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
   "misconception": "Shared description only",
   "labels": [
-    "AX1",
-    "AX2",
-    "AX3"
+    "grey 2 m",
+    "grey 5 m"
   ],
   "words": [
-    "left",
-    "right",
-    "centre"
+    "K-417",
+    "K-471"
   ],
-  "kind": "pairs"
+  "kind": "pairs",
+  "retrieval": {
+    "kind": "rows",
+    "hint": "Answer each cue from memory, then check it.",
+    "studyCaption": "Two cables · your notes say only 'grey cable'",
+    "caption": "Codes covered · answer each cue",
+    "study": [
+      {
+        "top": "grey · 2 m",
+        "main": "K-417"
+      },
+      {
+        "top": "grey · 5 m",
+        "main": "K-471"
+      }
+    ],
+    "covered": [
+      {
+        "top": "grey · 2 m",
+        "main": "K-???"
+      },
+      {
+        "top": "grey · 5 m",
+        "main": "K-???"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Cue 'grey cable'",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "grey cable",
+            "answer": "K-471",
+            "choices": [
+              "K-417",
+              "K-471",
+              "K-714"
+            ]
+          }
+        ],
+        "fits": "this cue fits 2 codes"
+      },
+      {
+        "label": "Cue 'grey, 5 m'",
+        "check": "Check",
+        "prompts": [
+          {
+            "cue": "grey, 5 m",
+            "answer": "K-471",
+            "choices": [
+              "K-471",
+              "K-417",
+              "K-714"
+            ]
+          }
+        ],
+        "fits": "this cue fits 1 code"
+      }
+    ],
+    "allRight": "The first pick was a lucky guess: that cue fits two codes."
+  }
 } satisfies StudySpec;
 
 export const study_check_confidence_with_output = {
@@ -359,21 +758,22 @@ export const study_check_confidence_with_output = {
   "rowLabels": [
     "studied order",
     "your attempt"
-  ]
+  ],
+  "hideTarget": true
 } satisfies StudySpec;
 
 export const study_keep_the_error_feedback = {
   "family": "recall",
   "slug": "keep-the-error-feedback",
   "title": "Keep the correction",
-  "hook": "Comparing your attempt with the target shows which item you got wrong.",
+  "hook": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong.",
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
-  "question": "Which feedback locates the mistake?",
+  "question": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong. Which lets you fix it next time?",
   "options": [
-    "Target beside attempt",
-    "Attempt count alone"
+    "Either",
+    "Only the marked item"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Comparison marks each position, including errors. A count of attempts alone would not reveal which item needs correction.",
   "boundary": "One short reconstruction; not a retention experiment.",
   "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations.",
@@ -384,11 +784,48 @@ export const study_keep_the_error_feedback = {
     "3"
   ],
   "words": [
-    "draft",
-    "check",
-    "send"
+    "4",
+    "9",
+    "2"
   ],
-  "kind": "sequence"
+  "kind": "sequence",
+  "retrieval": {
+    "kind": "feedback",
+    "hint": "See each kind of feedback, then change a digit and try again.",
+    "name": "Bike lock",
+    "label": "digit",
+    "code": [
+      "4",
+      "9",
+      "2"
+    ],
+    "choices": [
+      [
+        "4",
+        "1",
+        "6"
+      ],
+      [
+        "7",
+        "9",
+        "1"
+      ],
+      [
+        "2",
+        "5",
+        "8"
+      ]
+    ],
+    "attempt": [
+      0,
+      0,
+      0
+    ],
+    "tries": 3,
+    "countButton": "Count only",
+    "markButton": "Mark each digit",
+    "retryButton": "Try again"
+  }
 } satisfies StudySpec;
 
 export const study_calendar_needs_travel = {
@@ -507,43 +944,46 @@ export const study_work_back_from_a_deadline = {
   "family": "schedule",
   "slug": "work-back-from-a-deadline",
   "title": "Plan backwards",
-  "hook": "A thirty-minute task due at minute forty cannot start whenever you like.",
+  "hook": "Three tasks (10, 15 and 20 min) in a row, due at minute 60.",
   "objective": "Compute a latest start from duration and deadline.",
-  "question": "Latest start for 30 minutes due at minute 40?",
+  "question": "Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first?",
   "options": [
-    "Minute 10",
-    "Minute 30"
+    "Minute 50: its own length",
+    "Minute 40: the longest",
+    "Minute 15: all three"
   ],
-  "answer": 0,
-  "principle": "Latest start equals deadline minus duration. Moving the block later than minute ten leaves part of it after the deadline.",
+  "answer": 2,
+  "principle": "Work back from the deadline through the whole chain: 60 minus 20, minus 15, minus 10 is minute 15. Starting the first task any later makes the last one late.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Minute 30",
   "rows": [
     {
-      "label": "draft",
-      "start": 20,
-      "duration": 30
-    },
-    {
-      "label": "review",
+      "label": "outline",
       "start": 50,
       "duration": 10
     },
     {
-      "label": "send",
+      "label": "draft",
       "start": 60,
-      "duration": 5
+      "duration": 15
+    },
+    {
+      "label": "edit",
+      "start": 75,
+      "duration": 20
     }
   ],
   "target": [
-    10,
-    40,
-    50
+    15,
+    25,
+    40
   ],
   "movable": 0,
-  "button": "Start backwards",
-  "deadline": 40
+  "button": "Work back from 60",
+  "deadline": 60,
+  "chain": true,
+  "dueRow": 2
 } satisfies StudySpec;
 
 export const study_meeting_and_preparation = {
@@ -552,10 +992,10 @@ export const study_meeting_and_preparation = {
   "title": "Preparation needs its own slot",
   "hook": "You booked the presentation, but where did preparation go?",
   "objective": "Schedule preparation before a dependent live task.",
-  "question": "Which layout makes preparation finish first?",
+  "question": "The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready?",
   "options": [
-    "Prepare then present",
-    "Prepare during presentation"
+    "Only if prep is booked before 30",
+    "Yes: prep fits somewhere"
   ],
   "answer": 0,
   "principle": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",
@@ -564,114 +1004,101 @@ export const study_meeting_and_preparation = {
   "misconception": "Prepare during presentation",
   "rows": [
     {
-      "label": "prepare",
-      "start": 10,
+      "label": "prep",
+      "start": 45,
       "duration": 20
     },
     {
       "label": "present",
-      "start": 20,
+      "start": 30,
       "duration": 15
-    },
-    {
-      "label": "notes",
-      "start": 35,
-      "duration": 10
     }
   ],
   "target": [
-    0,
-    20,
-    35
+    10,
+    30
   ],
   "movable": 0,
-  "button": "Move preparation",
-  "deadline": 90
+  "button": "Book prep before 30",
+  "deadline": 30,
+  "dueRow": 0
 } satisfies StudySpec;
 
 export const study_estimate_a_range = {
   "family": "schedule",
   "slug": "estimate-a-range",
   "title": "Try the longer estimate",
-  "hook": "A task estimated at fifteen to twenty-five minutes needs more than one calendar test.",
+  "hook": "A 15-25 minute task, then a call at 20.",
   "objective": "Stress-test a schedule at the longer end of an explicit range.",
-  "question": "Which checks the stated worst duration?",
+  "question": "A 15-25 minute task, then a call at 20. Plan with 15: is the call safe?",
   "options": [
-    "Use 25 minutes",
-    "Use 15 minutes"
+    "Yes",
+    "Not if it runs long"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Use 15 minutes",
   "rows": [
     {
-      "label": "write",
+      "label": "task",
       "start": 0,
-      "duration": 25
-    },
-    {
-      "label": "call",
-      "start": 15,
       "duration": 15
     },
     {
-      "label": "file",
-      "start": 30,
+      "label": "call",
+      "start": 20,
       "duration": 10
     }
   ],
   "target": [
     0,
-    25,
-    40
+    20
   ],
-  "movable": 1,
-  "button": "Use upper estimate",
-  "deadline": 90
+  "movable": 0,
+  "button": "Use the long end, 25",
+  "deadline": 90,
+  "longer": {
+    "row": 0,
+    "minutes": 10
+  }
 } satisfies StudySpec;
 
 export const study_one_person_two_jobs = {
   "family": "schedule",
   "slug": "one-person-two-jobs",
   "title": "One person, two blocks",
-  "hook": "Separate rows do not give you two pairs of hands.",
+  "hook": "Two 30-minute jobs on separate rows from minute 0, one person.",
   "objective": "Detect simultaneous bookings for one constrained resource.",
-  "question": "How many blocks can one person do simultaneously in this model?",
+  "question": "Two 30-minute jobs on separate rows from minute 0, one person. When is everything done?",
   "options": [
-    "One",
-    "Two"
+    "Minute 30",
+    "Minute 60"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "All rows use the same person. The overlap calculation tests concurrent demand; drawing tasks on separate rows does not create extra capacity.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Two",
   "rows": [
     {
-      "label": "scan",
+      "label": "job A",
       "start": 0,
-      "duration": 20
+      "duration": 30
     },
     {
-      "label": "write",
-      "start": 10,
-      "duration": 20
-    },
-    {
-      "label": "call",
-      "start": 25,
-      "duration": 10
+      "label": "job B",
+      "start": 0,
+      "duration": 30
     }
   ],
   "target": [
     0,
-    20,
-    40
+    30
   ],
   "movable": 1,
-  "button": "Separate jobs",
+  "button": "One after the other",
   "deadline": 90
 } satisfies StudySpec;
 
@@ -679,58 +1106,54 @@ export const study_fit_before_fixed_slot = {
   "family": "schedule",
   "slug": "fit-before-fixed-slot",
   "title": "Fit around the fixed slot",
-  "hook": "A movable task fits only if it respects the fixed appointment.",
+  "hook": "A 25-minute task and a call at 20 to 30. Free until 60.",
   "objective": "Place flexible work around a fixed calendar interval.",
-  "question": "Which placement avoids the fixed call?",
+  "question": "A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?",
   "options": [
-    "Finish before the call",
-    "Overlap the call"
+    "From 0, across the call",
+    "From 30",
+    "Anywhere"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The call is fixed at minute twenty. Only the movable task changes; fitting flexible work requires respecting occupied intervals.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Overlap the call",
   "rows": [
     {
-      "label": "write",
-      "start": 10,
-      "duration": 20
+      "label": "task",
+      "start": 0,
+      "duration": 25
     },
     {
       "label": "call",
       "start": 20,
-      "duration": 15
-    },
-    {
-      "label": "file",
-      "start": 35,
       "duration": 10
     }
   ],
   "target": [
-    0,
-    20,
-    35
+    30,
+    20
   ],
   "movable": 0,
-  "button": "Place before call",
-  "deadline": 90
+  "button": "Place after call",
+  "deadline": 90,
+  "window": 60
 } satisfies StudySpec;
 
 export const study_include_the_wrap_up = {
   "family": "schedule",
   "slug": "include-the-wrap-up",
   "title": "The finish is not the end",
-  "hook": "The call ends, but notes still need ten minutes.",
+  "hook": "A call from 0 to 30, then 10 minutes of notes.",
   "objective": "Include a required follow-up block in total calendar capacity.",
-  "question": "Which plan counts the follow-up?",
+  "question": "A call from 0 to 30, then 10 minutes of notes. When is the job done?",
   "options": [
-    "Call plus notes",
-    "Call alone"
+    "30",
+    "40"
   ],
-  "answer": 0,
-  "principle": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload.",
+  "answer": 1,
+  "principle": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this exercise's workload.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Call alone",
@@ -738,70 +1161,69 @@ export const study_include_the_wrap_up = {
     {
       "label": "call",
       "start": 0,
-      "duration": 20
+      "duration": 30
     },
     {
       "label": "notes",
-      "start": 15,
-      "duration": 10
-    },
-    {
-      "label": "review",
-      "start": 25,
+      "start": 20,
       "duration": 10
     }
   ],
   "target": [
     0,
-    20,
     30
   ],
   "movable": 1,
-  "button": "Place follow-up",
-  "deadline": 90
+  "button": "Place notes after",
+  "deadline": 90,
+  "claimed": {
+    "label": "Call-only plan",
+    "minute": 30
+  }
 } satisfies StudySpec;
 
 export const study_fragmented_time_does_not_fit = {
   "family": "schedule",
   "slug": "fragmented-time-does-not-fit",
   "title": "Thirty scattered minutes",
-  "hook": "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap.",
+  "hook": "Thirty free minutes in scattered gaps: will a 30-minute job fit?",
   "objective": "Distinguish total free time from one continuous interval.",
-  "question": "What does an unsplittable 30-minute block require?",
+  "question": "Gaps of 10, 10 and 10 minutes before minute 40. Does the 30-minute job fit?",
   "options": [
-    "A continuous 30-minute gap",
-    "Any three 10-minute gaps"
+    "Yes: 30 minutes free",
+    "No: it needs one 30-minute gap"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Any three 10-minute gaps",
   "rows": [
     {
-      "label": "write",
+      "label": "job",
       "start": 0,
       "duration": 30
     },
     {
       "label": "call",
       "start": 10,
-      "duration": 10
+      "duration": 5
     },
     {
-      "label": "meeting",
-      "start": 30,
-      "duration": 10
+      "label": "chat",
+      "start": 25,
+      "duration": 5
     }
   ],
   "target": [
     40,
     10,
-    30
+    25
   ],
   "movable": 0,
-  "button": "Use continuous gap",
-  "deadline": 90
+  "button": "Use one 30-min gap",
+  "deadline": 90,
+  "window": 40
 } satisfies StudySpec;
 
 export const study_handoff_after_finish = {
@@ -1059,49 +1481,43 @@ export const study_earliest_deadline_first = {
   "family": "order",
   "slug": "earliest-deadline-first",
   "title": "Read the due dates",
-  "hook": "A shorter task can wait while an earlier deadline cannot.",
+  "hook": "Short job (5 min, due 30) or urgent job (10 min, due 10).",
   "objective": "Compare deadline misses instead of only completion count.",
-  "question": "Which order respects the minute-15 deadline here?",
+  "question": "Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late?",
   "options": [
-    "Urgent job first",
-    "Short job first"
+    "Yes, the urgent one",
+    "No"
   ],
   "answer": 0,
-  "principle": "The red deadline markers compare completion with due time. This fixture rewards meeting due dates, rather than minimising average waiting.",
+  "principle": "The red deadline markers compare completion with due time. This exercise rewards meeting due dates, rather than minimising average waiting.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Short job first",
   "labels": [
-    "urgent",
-    "quick",
-    "later"
+    "short",
+    "urgent"
   ],
   "durations": [
-    15,
     5,
     10
   ],
   "due": [
-    15,
-    40,
-    50
+    30,
+    10
   ],
   "target": [
-    0,
-    1,
-    2
-  ],
-  "initial": [
-    2,
     1,
     0
+  ],
+  "initial": [
+    0,
+    1
   ],
   "metric": "late",
   "dependencies": {},
   "tags": [
     "A",
-    "B",
-    "A"
+    "B"
   ],
   "switchCost": 0
 } satisfies StudySpec;
@@ -1110,12 +1526,12 @@ export const study_dependency_before_priority = {
   "family": "order",
   "slug": "dependency-before-priority",
   "title": "Priority cannot bypass input",
-  "hook": "The important output cannot run before its input exists.",
+  "hook": "Which runs first?",
   "objective": "Distinguish task priority from prerequisite readiness.",
-  "question": "Which order respects the stated dependency?",
+  "question": "Which runs first?",
   "options": [
-    "Draft before review",
-    "Review before draft"
+    "The draft it needs",
+    "The high-priority review"
   ],
   "answer": 0,
   "principle": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",
@@ -1157,7 +1573,8 @@ export const study_dependency_before_priority = {
     "B",
     "A"
   ],
-  "switchCost": 0
+  "switchCost": 0,
+  "priority": 0
 } satisfies StudySpec;
 
 export const study_batch_by_setup = {
@@ -1215,14 +1632,14 @@ export const study_unlock_the_following_work = {
   "family": "order",
   "slug": "unlock-the-following-work",
   "title": "Start the blocking input",
-  "hook": "A tiny input task can unlock a much larger dependent task.",
+  "hook": "A 2-minute input unlocks a 30-minute build.",
   "objective": "Identify the work that releases a blocked successor.",
-  "question": "Which goes before the dependent build?",
+  "question": "A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish?",
   "options": [
-    "Input task",
-    "Unrelated polish"
+    "Same either way",
+    "10 minutes later with polish first"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
@@ -1233,9 +1650,9 @@ export const study_unlock_the_following_work = {
     "build"
   ],
   "durations": [
-    15,
-    5,
-    20
+    10,
+    2,
+    30
   ],
   "due": [
     60,
@@ -1252,7 +1669,7 @@ export const study_unlock_the_following_work = {
     1,
     2
   ],
-  "metric": "dependency",
+  "metric": "release",
   "dependencies": {
     "2": 1
   },
@@ -1261,7 +1678,8 @@ export const study_unlock_the_following_work = {
     "B",
     "A"
   ],
-  "switchCost": 0
+  "switchCost": 0,
+  "watch": 2
 } satisfies StudySpec;
 
 export const study_do_not_starve_the_long_job = {
@@ -1480,11 +1898,11 @@ export const study_choose_the_metric_first = {
   "objective": "Compare waiting and deadline misses for one fixed order.",
   "question": "What is required before calling an order better?",
   "options": [
-    "Choose the objective",
-    "Count visible movement"
+    "Count visible movement",
+    "Choose the objective"
   ],
-  "answer": 0,
-  "principle": "The displayed waiting and late counts measure different things. A preference requires an explicit objective; more animation is not an outcome.",
+  "answer": 1,
+  "principle": "The displayed waiting and late counts measure different things. A preference requires an explicit objective.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Count visible movement",

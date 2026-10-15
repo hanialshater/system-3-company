@@ -1,7 +1,7 @@
 {
   "slug": "one-question-one-card",
   "title": "One question per card",
-  "hook": "A card asking three things can hide which one you missed.",
+  "hook": "You answer two of three and mark it right. What did the card record?",
   "domain": "lifehacks",
   "concept": "one-cue-one-answer",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Split a compound prompt into separately checkable cues.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A card asking three things can hide which one you missed. Which card makes a missed item identifiable? Correct option: One target per cue. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: You answer two of three and mark it right. What did the card record? Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record? Correct option: A pass that hides a miss. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
       "id": "lifehacks.one-question-one-card.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Separate cues expose separate gaps. A correct answer to one cue does not establish knowledge of the other two.",
@@ -42,11 +40,23 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, one-question-one-card fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), one-question-one-card fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the stipulated answers are scored once as one card (one mark) and once as three cards (one mark each). Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage now marks a stipulated attempt as one card and as three cards. Not checked by the builder.",
       "id": "lifehacks.one-question-one-card.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: one card asks “Capital, currency and language of Peru?”. The stipulated answers are Lima · peso · Spanish, two of three right, as the question says. “Mark as one card” records one mark, right. “Split into 3 cards” marks capital Lima right, currency peso wrong (it is sol) and language Spanish right. Reveal sentences: As one card, the record is a single “right”: the missed currency left no trace. As three cards, the currency card is marked wrong (peso, not sol).",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field) and src/components/lifehacks/RetrievalLesson.tsx (compound stage). The scoring rule (mark the card right after two of three) is the question's own premise. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.one-question-one-card.c4",
+      "status": "unverified"
+    },
+    {
+      "text": "Peru's capital is Lima, its currency is the sol, and Spanish is an official language of Peru (Quechua and Aymara are also official), so the stage counts Lima, sol and Spanish right and peso wrong.",
+      "support": "source",
+      "source": "CIA World Factbook, Peru, https://www.cia.gov/the-world-factbook/countries/peru/ (capital; languages; exchange rates: soles per US dollar). Not opened by the builder in this session; for the fact-checker. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.one-question-one-card.c5",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.one-question-one-card.recall",
@@ -79,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:one-cue-one-answer",
     "prerequisites": [],

@@ -1,7 +1,7 @@
 {
   "slug": "unlock-the-following-work",
   "title": "Start the blocking input",
-  "hook": "A tiny input task can unlock a much larger dependent task.",
+  "hook": "A 2-minute input unlocks a 30-minute build.",
   "domain": "lifehacks",
   "concept": "do-the-blocking-task-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Identify the work that releases a blocked successor.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: A tiny input task can unlock a much larger dependent task. Which goes before the dependent build? Correct option: Input task. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A 2-minute input unlocks a 30-minute build. A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish? Correct option: 10 minutes later with polish first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.unlock-the-following-work.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
@@ -42,11 +40,16 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, unlock-the-following-work fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, unlock-the-following-work fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.unlock-the-following-work.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: input 2 min; build 30 min, needs the input; polish 10 min. Polish first: build done at minute 42. Input first, then build: build done at minute 32, 10 minutes sooner, while total waiting rises from 22 to 34 minutes.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.unlock-the-following-work.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.unlock-the-following-work.recall",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:do-the-blocking-task-first",
     "prerequisites": [],

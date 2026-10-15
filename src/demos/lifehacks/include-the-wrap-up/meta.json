@@ -1,7 +1,7 @@
 {
   "slug": "include-the-wrap-up",
   "title": "The finish is not the end",
-  "hook": "The call ends, but notes still need ten minutes.",
+  "hook": "A call from 0 to 30, then 10 minutes of notes.",
   "domain": "lifehacks",
   "concept": "book-travel-and-wrap-up",
   "status": "review",
@@ -22,31 +22,32 @@
   "objective": "Include a required follow-up block in total calendar capacity.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: The call ends, but notes still need ten minutes. Which plan counts the follow-up? Correct option: Call plus notes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: A call from 0 to 30, then 10 minutes of notes. A call from 0 to 30, then 10 minutes of notes. When is the job done? Correct option: 40. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.include-the-wrap-up.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
-      "text": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this fixture’s workload.",
+      "text": "The notes block is a separate required task. The last finish counts it, so a calendar ending at the call understates this exercise's workload.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): reveal principle edited (W9 stage fix). Not checked by the builder.",
       "id": "lifehacks.include-the-wrap-up.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, include-the-wrap-up fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, include-the-wrap-up fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.include-the-wrap-up.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: the call runs 0–30 and notes take 10 minutes. The notes start squeezed into the call (20–30), so they overlap it for 10 minutes; “Place notes after” moves them to 30–40, and the job is done at minute 40. The readout “Call-only plan: minute 30” is the plan that ends at the call. Reveal sentence: The call-only plan said minute 30: N minutes too early.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.include-the-wrap-up.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.include-the-wrap-up.recall",
@@ -79,7 +80,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:book-travel-and-wrap-up",
     "prerequisites": [],

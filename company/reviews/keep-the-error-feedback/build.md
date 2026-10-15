@@ -1,5 +1,29 @@
 # Build note: keep-the-error-feedback
 
+## Revision v3 (W1, r11 fix plan, 2026-10-15, demo-builder)
+
+Input: company/reviews/keep-the-error-feedback/2026-10-15-learner-adult-beginner-r11.md (verdict revise) and the W1 row of company/decisions/2026-10-15-lifehacks-r11-fix-plan.md.
+
+**What changed**
+- **The default attempt contains an error (plan).** A bike lock with the stipulated code 4 · 9 · 2; the last try was 4 · 7 · 2, after 3 tries. "Count only" shows "3 tries · still locked". "Mark each digit" marks digit 2 wrong. The learner can then change digits (fixed choices) and press "Try again", which adds a try; the lock opens only at 4 · 9 · 2. The code itself is never shown, so the marks are the only help.
+- The old hook stated the answer (r11 finding 1). The new hook is the scenario sentence from the cm line, unchanged.
+- **Hook is provisional.** The plan gives this lesson a question but no hook, and the old hook stated the answer. I used the cm's own words from the line, unchanged; cm-lifehacks may replace it.
+
+**Claims** (none marked verified by me): c1 rewritten; c3 reset; c4 new. c2 and recall unchanged and verified.
+
+**Version** → 3.
+
+## Pre-flight v3
+1. **Title and hook:** "Keep the correction" / "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong." Neutral, though not a question.
+2. **Options:** "Either", "Only the marked item". Same precision.
+3. **Locked stage:** the last try 4 · 7 · 2, "Feedback: ?", both readouts "?". No mark is drawn.
+4. **Reveal values:** the count sentence and the marks sentence are fixture values, each shown only after its milestone. The last sentence ("Try n …") is computed from the learner's tries.
+5. **QA path:** Count only, Mark each digit, digits 1-3, Try again. Both milestones; marks and the count are on screen.
+6. **Reset:** none. QA-path reveal: "“3 tries, still locked” did not say which digit was wrong. The marks did: digit 2 (7) wrong, the rest right. Try 4 is still locked."
+7. **Phone fit:** reveal-fit at 390×844 (committed tool, clean stamp, dev server): verdict fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, 52 words, phoneFit true.
+
+**Checks** (worktree /home/user/s3c-lh-study, branch lh-study, dev server `NEXT_DIST_DIR=.next-lhs next dev -p 3711`): QA contract (`tests/qa/contract.spec.ts`, `QA_BASE_URL=http://localhost:3711`, `QA_ONLY` = the 28 lessons changed on this branch) phone and desktop passed; `npm run test:lifehacks` 64/64; `npm run check` passed; `npx tsc --noEmit` clean.
+
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-367 (FC LH-1 dispute, company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md).

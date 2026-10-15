@@ -1,7 +1,7 @@
 {
   "slug": "cover-before-recall",
   "title": "Cover before you test",
-  "hook": "Seeing the answer and retrieving it are different activities.",
+  "hook": "Cover the answers: how many can you give?",
   "domain": "lifehacks",
   "concept": "retrieval-practice",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Perform a closed-answer check before using feedback.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Seeing the answer and retrieving it are different activities. Which check asks you to retrieve an answer? Correct option: Answer covered. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Cover the answers: how many can you give? You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give? Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
       "id": "lifehacks.cover-before-recall.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",
@@ -42,11 +40,16 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, cover-before-recall fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: check reconstructed token positions against the covered target; count exact matches out of three. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), cover-before-recall fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder.",
       "id": "lifehacks.cover-before-recall.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: the card (bell → lake, kite → plum, leaf → door) shows at the prediction and is covered after it (bell → ?, kite → ?, leaf → ?). Each answer box starts empty and cycles through fixed choices (leaf: door, dock, plum; bell: lane, lake, door; kite: plum, pear, lake). Pressing each box once gives: Covered 2 of 3. The readout “Answers showing 3/3” stands for the check made with everything in view. Reveal sentences: With the answers showing, all three cards read right. Nothing missed this time, and only the covered try could tell you that.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.cover-before-recall.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.cover-before-recall.recall",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:retrieval-practice",
     "prerequisites": [],

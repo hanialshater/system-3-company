@@ -1,7 +1,7 @@
 {
   "slug": "fragmented-time-does-not-fit",
   "title": "Thirty scattered minutes",
-  "hook": "Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap.",
+  "hook": "Thirty free minutes in scattered gaps: will a 30-minute job fit?",
   "domain": "lifehacks",
   "concept": "pieces-are-not-one-whole",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Distinguish total free time from one continuous interval.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Two ten-minute gaps before minute 40. A thirty-minute task needs one continuous gap. What does an unsplittable 30-minute block require? Correct option: A continuous 30-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Thirty free minutes in scattered gaps: will a 30-minute job fit? Gaps of 10, 10 and 10 minutes before minute 40. Does the 30-minute job fit? Correct option: No: it needs one 30-minute gap. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: call 10–20 and meeting 30–40, so before minute 40 the free gaps are 0–10 and 20–30 (two 10-minute gaps). FC wording \"Before minute 40 the calendar has two separate ten-minute gaps. A thirty-minute task needs one continuous gap.\" is 110 characters; the hook bound is 90 (tests/lifehacks/study.test.mjs), so the same content is shortened to 84 characters. Predict distractor \"Any three 10-minute gaps\" left as is (FC note on the recall distractor is moot after the recall patch). Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: fixture call 10–20 and meeting 30–40 leave free gaps 0–10 and 20–30 before minute 40 (two 10-minute gaps); the 30-minute write block fits only at 40–70 (calendarResult: 0 overlap, finish 70, within deadline 90). Hook is 84 characters. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. W-367 (2026-10-14, demo-builder): Fixture: call 10–20 and meeting 30–40, so before minute 40 the free gaps are 0–10 and 20–30 (two 10-minute gaps). FC wording \"Before minute 40 the calendar has two separate ten-minute gaps. A thirty-minute task needs one continuous gap.\" is 110 characters; the hook bound is 90 (tests/lifehacks/study.test.mjs), so the same content is shortened to 84 characters. Predict distractor \"Any three 10-minute gaps\" left as is (FC note on the recall distractor is moot after the recall patch). Fixed after FC LH-1 dispute; awaiting fact-checker re-check. FC LH-4 (2026-10-14, fact-checker, W-380): verified: fixture call 10–20 and meeting 30–40 leave free gaps 0–10 and 20–30 before minute 40 (two 10-minute gaps); the 30-minute write block fits only at 40–70 (calendarResult: 0 overlap, finish 70, within deadline 90). Hook is 84 characters. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-4): hook, question and options replaced by the W1 prediction line; new fixture. Not checked by the builder.",
       "id": "lifehacks.fragmented-time-does-not-fit.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "This task is explicitly unsplittable. Total available minutes and the longest continuous gap answer different questions.",
@@ -42,11 +40,16 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, fragmented-time-does-not-fit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts (calendarResult, freeGaps) and src/components/lifehacks/StudyLesson.tsx (scheduleObservation), fragmented-time-does-not-fit fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: overlap is the time two blocks share; an overlapping layout reports its overlap minutes and no valid finish; free gaps are the intervals before minute 40 not used by the other rows. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-4): the reveal now reads the final layout, and readouts are in words. Not checked by the builder.",
       "id": "lifehacks.fragmented-time-does-not-fit.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: one person; the 30-minute job runs in one piece. Call 10–15 and chat 25–30 leave free gaps 0–10, 15–25 and 30–40: 30 free minutes before minute 40, longest gap 10 minutes. The job starts at minute 0, where it overlaps call and chat for 10 minutes and has no valid finish; “Use one 30-min gap” moves it to 40–70. Reveal sentence: Before minute 40 there are 30 free minutes in 3 gaps, and the longest gap is 10 minutes.",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; free gaps computed by freeGaps in src/lib/lifehacks/studyModels.ts. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.fragmented-time-does-not-fit.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fragmented-time-does-not-fit.recall",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:pieces-are-not-one-whole",
     "prerequisites": [],

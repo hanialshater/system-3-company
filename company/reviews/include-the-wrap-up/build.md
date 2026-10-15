@@ -1,0 +1,28 @@
+# Build note: include-the-wrap-up
+
+## Revision v2, W9 (r11 fix plan, 2026-10-15, demo-builder)
+
+Input: the W9 row of company/decisions/2026-10-15-lifehacks-r11-fix-plan.md and this lesson's r11 learner review.
+
+**What changed**
+- The call runs 0–30 and the notes start squeezed into it (20–30). The v1 stage gained `claimed`: the readout "Call-only plan: minute 30" appears once the plan is tested, and the reveal says how far it understates the finish ("The call-only plan said minute 30: 10 minutes too early" on the button's layout). In the principle, "fixture’s" became "exercise's" (c2 reset).
+- The version was already bumped to v2 by the TP-4/TP-5 template change on this branch, and is not bumped twice.
+
+**Claims** (none marked verified by me): c1 unverified, c2 unverified, c3 unverified, c4 unverified, recall verified.
+
+## Pre-flight v2
+1. **Title and hook:** "The finish is not the end" / "A call from 0 to 30, then 10 minutes of notes."
+2. **Options:** "30", "40".
+3. **Locked stage:** the call and the squeezed notes, readouts "?".
+4. **Reveal values:** every number in the first reveal sentence is computed from the learner's final layout or order. The milestones are "Test plan"/"Run queue" and the lesson's button.
+5. **QA path:** the first button, the lesson's button, then the slider (schedule) or the swaps (queue). Both milestones are reached, and the final state is on screen at the reveal.
+6. **Reset:** there is no Reset control, and the reveal reads the current state.
+7. **Phone fit:** reveal-fit 390×844 (committed tool, clean stamp, dev server; it commits the first option): verdict fit, crop 0 px, hiddenBelow 0 px, 52 words, phoneFit true.
+
+**Checks** (worktree /home/user/s3c-lh-study, branch lh-study, dev server :3711): QA contract phone and desktop (`QA_BASE_URL`, the 28 lessons changed on the branch); `npm run test:lifehacks` 64/64; `npm run check`; `npx tsc --noEmit`. Results in the commit message.
+
+## Template change v2 (r11 fix plan, 2026-10-15, demo-builder)
+
+- TP-4 (shared v1 schedule stage, `StudyLesson.tsx`): readouts in words ("Overlap 5 min", "Due at 40: finishes at 50", slider "minute 12"); an overlapping layout reports "no valid finish" instead of a normal finish; the reveal's first sentence reads the final layout and names each overlapping pair with its minutes. The explore hint no longer says "fixture". The lesson's own text (title, hook, question, options, principle) is unchanged.
+- **Claims:** c3 (displayed results and the reveal) reset to unverified, because the shared stage text changed. No other claim changed. Version → 2.
+- **Checks:** QA contract phone and desktop passed on the dev server (`QA_BASE_URL=http://localhost:3711`); `npm run test:lifehacks`, `npm run check`, `npx tsc --noEmit` green.

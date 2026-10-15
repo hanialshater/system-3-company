@@ -1,7 +1,7 @@
 {
   "slug": "dependency-before-priority",
   "title": "Priority cannot bypass input",
-  "hook": "The important output cannot run before its input exists.",
+  "hook": "Which runs first?",
   "domain": "lifehacks",
   "concept": "do-the-blocking-task-first",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Distinguish task priority from prerequisite readiness.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: The important output cannot run before its input exists. Which order respects the stated dependency? Correct option: Draft before review. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Which runs first? Which runs first? Correct option: The draft it needs. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
       "id": "lifehacks.dependency-before-priority.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "The review requires the draft to be finished. A high priority label changes neither that prerequisite nor the input release time.",
@@ -42,11 +40,16 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, dependency-before-priority fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, dependency-before-priority fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
       "id": "lifehacks.dependency-before-priority.c3",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
+    },
+    {
+      "text": "Stage: the review (10 min) is tagged high priority and needs the draft (20 min); send (5 min) needs the review. Review first, the review runs before the draft it needs; draft first, nothing runs before its input, and total waiting is 10 minutes more (50 against 40).",
+      "support": "convention",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "id": "lifehacks.dependency-before-priority.c4",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.dependency-before-priority.recall",
@@ -79,7 +82,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:do-the-blocking-task-first",
     "prerequisites": [],
