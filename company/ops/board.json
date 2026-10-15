@@ -13289,10 +13289,11 @@
       "id": "W-1111",
       "title": "R1: should a pressed mode button carry aria-disabled (screen reader says 'pressed, dimmed'), and should CordStage 'Test' buttons carry aria-pressed? Decide before the Life Hacks launch slate ships (W-598 half-open)",
       "owner": "accessibility-reviewer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-15"
     },
     {
       "id": "W-1112",
@@ -13307,6 +13308,24 @@
       "id": "W-1113",
       "title": "Wave W2 follow-through: QA the 10 W2 lessons + fresh slate QA after TP-1 (W-1068/W-1081); then fact-check reset claims; then r12 walk",
       "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1114",
+      "title": "W-1111 ruling (company/reviews/_accessibility/2026-10-15-w1111-pressed-mode-aria.md): remove aria-disabled from pressed mode buttons (keep aria-pressed, check, tint, no-op via noop prop on StageControl); CordStage Test buttons: no aria-pressed, state in the accessible name ('Test 0.3m, done'); role=group with label around mode rows; ratchet tests. Check tests/qa and useKeepFocus first (protected: amendment request if blocked). Ships before the slate",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-15",
+      "links": []
+    },
+    {
+      "id": "W-1115",
+      "title": "Amend lifehacks-engines-v2 spec R1 (line 47) and Special stages (line 79) to match the W-1111 ruling",
+      "owner": "cm-lifehacks",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-15",
