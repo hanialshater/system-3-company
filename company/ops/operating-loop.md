@@ -118,6 +118,7 @@ Mechanism: `dispatch-check` rule I1 blocks a wave while a founder record dated 2
 | Kind of ask | First owner | Then | Org part | Founder decides |
 |---|---|---|---|---|
 | New category, vertical or course | principal-pm-verticals | domain-scout (DLR proposal) → head-of-product (DLR, slots) → courses-lead for a course | chief-of-staff-ceo-office, after head-of-product accepts | the vertical, budget, org |
+| Company-wide initiative (e.g. First Light) | head-of-strategic-initiatives (charter, jour fixe, dependencies, risk, directs' FYI) | portfolio-manager (budget line first, before the founder sees it); chief-of-staff files and dispatches every dependency within the caps; ties in priority go to the Friday founder review | chief-of-staff-ceo-office if a role changes | the initiative, budget, go/no-go |
 | Lesson content in an existing category | cm-&lt;domain&gt; | head-of-product if slots change | none | no |
 | Format, look, multi-card, layout | design-lead | learning-designer, interaction-designer; principal-engineer for kit work | none | only if Surface Value changes |
 | Product direction, targets, cross-category priorities | head-of-product | portfolio-manager; principal-pm-verticals for targets | none | targets, budgets |
