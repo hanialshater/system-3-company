@@ -7,48 +7,284 @@
   "updated": "2026-10-15",
   "decision": "company/decisions/2026-10-15-founder-first-light.md",
   "charter": "company/initiatives/first-light/charter.md",
-  "dates": { "go_no_go": "2026-11-23", "launch": "2026-11-30", "note": "Re-estimated in week 1 by the tech lead and the owner (W-908). Ads may slip to release 2." },
+  "dates": {
+    "go_no_go": "2026-11-23",
+    "launch": "2026-11-30",
+    "note": "Re-estimated in week 1 by the tech lead and the owner (W-908). Ads may slip to release 2."
+  },
   "whiteboard": "first-light",
   "workstreams": [
-    { "id": "domain-brand", "name": "Domain and brand", "owner": "vp-marketing", "board": ["W-905"], "override": { "status": "blocked", "note": "The domain name is a founder decision and the purchase waits for a priced quote (decision item 8). No board item tracks the name yet." }, "next": "Propose 3 domain names with prices; founder picks one." },
-    { "id": "auth-progress", "name": "Auth and progress", "owner": "backend-engineer", "board": ["W-706", "W-908"], "next": "Week-1 re-estimate (W-908); founder answers F-01 (auth provider, database host, age floor)." },
-    { "id": "personalization", "name": "Personalization (rule-based)", "owner": "personalization-lead", "board": ["W-089", "W-091"], "next": "Write the rule set and what it may never do, under the Surface Value amendment (W-906)." },
-    { "id": "mastery", "name": "Mastery and challenges", "owner": "learner-model-engineer", "board": [], "next": "Define mastery without streaks or guilt; needs server-side progress first." },
-    { "id": "social", "name": "Social (light)", "owner": "growth-designer", "board": [], "next": "Scope the lightest social feature that survives the privacy review; no board item yet." },
-    { "id": "ads", "name": "Ads (one labelled slot)", "owner": "vp-marketing", "board": ["W-891", "W-892", "W-893", "W-894", "W-895"], "override": { "status": "in progress", "note": "The proposal is written (company/marketing/2026-10-15-monetization-ads-proposal.md); the five reviews are queued. Founder rules on F-17 first." }, "next": "Founder rules on F-17; then W-891 (slot rules) and W-892 (privacy call)." },
-    { "id": "legal", "name": "Legal (privacy policy, terms, age gate)", "owner": "privacy-reviewer", "board": ["W-892"], "next": "List what must exist at launch (privacy policy, terms, age gate) and who reads it; R-007 shows no legal read exists." },
-    { "id": "infra", "name": "Infra and readiness", "owner": "principal-engineer", "board": ["W-908", "W-727", "W-480", "W-884", "W-878"], "next": "W-908 re-estimate; confirm Vercel Pro need (F-18); W-884 and W-878 ship first." },
-    { "id": "surface-value", "name": "Surface Value amendment", "owner": "evaluation-steward", "board": ["W-906", "W-895"], "next": "Draft one amendment covering personalization, mastery and the ad slot (W-906) for the founder to ratify (F-19)." },
-    { "id": "launch-catalog", "name": "Launch catalog (published lessons)", "owner": "head-of-product", "board": [], "next": "Each category manager names its launch set of published lessons; revisit W-479 for launch day." },
-    { "id": "budget", "name": "Budget (tokens and money)", "owner": "portfolio-manager", "board": ["W-905", "W-730"], "next": "Budget First Light for Project Review 1 on 2026-10-16 (W-905); founder chairs it (W-730)." },
-    { "id": "team-role", "name": "Team and role", "owner": "chief-of-staff-ceo-office", "board": ["W-904", "W-907"], "next": "Create the Head of Strategic Initiatives role through the org-change process (W-904)." }
+    {
+      "id": "domain-brand",
+      "name": "Domain and brand",
+      "owner": "vp-marketing",
+      "board": [
+        "W-905"
+      ],
+      "override": {
+        "status": "blocked",
+        "note": "The domain name is a founder decision and the purchase waits for a priced quote (decision item 8). No board item tracks the name yet."
+      },
+      "next": "Propose 3 domain names with prices; founder picks one."
+    },
+    {
+      "id": "auth-progress",
+      "name": "Auth and progress",
+      "owner": "backend-engineer",
+      "board": [
+        "W-706",
+        "W-908"
+      ],
+      "next": "Week-1 re-estimate (W-908); founder answers F-01 (auth provider, database host, age floor)."
+    },
+    {
+      "id": "personalization",
+      "name": "Personalization (rule-based)",
+      "owner": "personalization-lead",
+      "board": [
+        "W-089",
+        "W-091"
+      ],
+      "next": "Write the rule set and what it may never do, under the Surface Value amendment (W-906)."
+    },
+    {
+      "id": "mastery",
+      "name": "Mastery and challenges",
+      "owner": "learner-model-engineer",
+      "board": [],
+      "next": "Define mastery without streaks or guilt; needs server-side progress first."
+    },
+    {
+      "id": "social",
+      "name": "Social (light)",
+      "owner": "growth-designer",
+      "board": [],
+      "next": "Scope the lightest social feature that survives the privacy review; no board item yet."
+    },
+    {
+      "id": "ads",
+      "name": "Ads (one labelled slot)",
+      "owner": "vp-marketing",
+      "board": [
+        "W-891",
+        "W-892",
+        "W-893",
+        "W-894",
+        "W-895"
+      ],
+      "override": {
+        "status": "in progress",
+        "note": "The proposal is written (company/marketing/2026-10-15-monetization-ads-proposal.md); the five reviews are queued. Founder rules on F-17 first."
+      },
+      "next": "Founder rules on F-17; then W-891 (slot rules) and W-892 (privacy call)."
+    },
+    {
+      "id": "legal",
+      "name": "Legal (privacy policy, terms, age gate)",
+      "owner": "privacy-reviewer",
+      "board": [
+        "W-892"
+      ],
+      "next": "List what must exist at launch (privacy policy, terms, age gate) and who reads it; R-007 shows no legal read exists."
+    },
+    {
+      "id": "infra",
+      "name": "Infra and readiness",
+      "owner": "principal-engineer",
+      "board": [
+        "W-908",
+        "W-727",
+        "W-480",
+        "W-884",
+        "W-878"
+      ],
+      "next": "W-908 re-estimate; confirm Vercel Pro need (F-18); W-884 and W-878 ship first."
+    },
+    {
+      "id": "surface-value",
+      "name": "Surface Value amendment",
+      "owner": "evaluation-steward",
+      "board": [
+        "W-906",
+        "W-895"
+      ],
+      "next": "Draft one amendment covering personalization, mastery and the ad slot (W-906) for the founder to ratify (F-19)."
+    },
+    {
+      "id": "launch-catalog",
+      "name": "Launch catalog (published lessons)",
+      "owner": "head-of-product",
+      "board": [],
+      "next": "Each category manager names its launch set of published lessons; revisit W-479 for launch day."
+    },
+    {
+      "id": "budget",
+      "name": "Budget (tokens and money)",
+      "owner": "portfolio-manager",
+      "board": [
+        "W-905",
+        "W-730"
+      ],
+      "next": "Budget First Light for Project Review 1 on 2026-10-16 (W-905); founder chairs it (W-730)."
+    },
+    {
+      "id": "team-role",
+      "name": "Team and role",
+      "owner": "chief-of-staff-ceo-office",
+      "board": [
+        "W-904",
+        "W-907"
+      ],
+      "next": "Create the Head of Strategic Initiatives role through the org-change process (W-904)."
+    },
+    {
+      "id": "quality",
+      "name": "Quality bar and quality go/no-go",
+      "owner": "evaluation-steward",
+      "board": [
+        "W-919"
+      ],
+      "next": "Write the launch quality bar before build starts; T-7 dry run 2026-11-16; quality go/no-go on 2026-11-23 (only the founder can overrule)."
+    }
   ],
   "founder_decisions": [
-    { "id": "F-17", "why": "Whether to pursue ads, on these terms" },
-    { "id": "F-18", "why": "Hosting spend before any commercial use (Vercel Pro)" },
-    { "id": "F-19", "why": "Surface Value amendment for ads" },
-    { "id": "F-20", "why": "Accounts and terms for monetization" },
-    { "id": "F-22", "why": "Slot budget for behavioral economics inside the 2,000 (competes with launch-catalog effort)" },
-    { "id": "F-01", "why": "Auth provider, database host and the age floor (blocks auth and progress)" },
-    { "id": "domain-name", "title": "Which domain name to buy", "status": "open", "why": "The purchase waits for a priced quote and the name. No founder-inbox item exists yet; the chief of staff should add one." }
+    {
+      "id": "F-17",
+      "why": "Whether to pursue ads, on these terms"
+    },
+    {
+      "id": "F-18",
+      "why": "Hosting spend before any commercial use (Vercel Pro)"
+    },
+    {
+      "id": "F-19",
+      "why": "Surface Value amendment for ads"
+    },
+    {
+      "id": "F-20",
+      "why": "Accounts and terms for monetization"
+    },
+    {
+      "id": "F-22",
+      "why": "Slot budget for behavioral economics inside the 2,000 (competes with launch-catalog effort)"
+    },
+    {
+      "id": "F-01",
+      "why": "Auth provider, database host and the age floor (blocks auth and progress)"
+    },
+    {
+      "id": "domain-name",
+      "title": "Which domain name to buy",
+      "status": "open",
+      "why": "The purchase waits for a priced quote and the name. No founder-inbox item exists yet; the chief of staff should add one."
+    }
   ],
   "risks": [
-    { "id": "R-001", "why": "One shared host runs every build and QA run" },
-    { "id": "R-003", "why": "Production deploys bypass CI; launch day is a deploy" },
-    { "id": "R-005", "why": "In-review lessons shown in production vs published-only launch catalog" },
-    { "id": "R-007", "why": "No legal read; legal basics are in scope" },
-    { "id": "R-011", "why": "No real-learner data until events persist" },
-    { "id": "R-012", "why": "Token budget is unmeasured" },
-    { "id": "R-013", "why": "Founder bandwidth; many decisions land on one person" },
-    { "id": "FL-01", "status": "proposed", "title": "Two big migrations at once (First Light and EDD-003 stage 1)", "likelihood": 3, "impact": 4, "owner": "principal-engineer", "why": "Founder-decision objection; stage 1 runs only as a 50-lesson pilot off the critical path." },
-    { "id": "FL-02", "status": "proposed", "title": "The dates are a guess until the week-1 re-estimate", "likelihood": 4, "impact": 3, "owner": "principal-engineer", "why": "No workstream has a plan yet; W-908 re-estimates." },
-    { "id": "FL-03", "status": "proposed", "title": "Accounts launch without a privacy, terms and age-gate read", "likelihood": 3, "impact": 5, "owner": "privacy-reviewer", "why": "Anonymous-first auth keeps history at sign-up, so learner data exists from day one; under-13 handling is undecided (F-01)." },
-    { "id": "FL-04", "status": "proposed", "title": "The new role duplicates chief-of-staff and head-of-product", "likelihood": 3, "impact": 3, "owner": "chief-of-staff-ceo-office", "why": "Founder-decision objection; the CEO office checks this in the consultation (W-904)." },
-    { "id": "FL-05", "status": "proposed", "title": "Vercel Hobby is non-commercial; accounts or ads on it break the terms", "likelihood": 4, "impact": 3, "owner": "principal-engineer", "why": "W-893 and W-908 must confirm the Pro requirement before launch." }
+    {
+      "id": "R-001",
+      "why": "One shared host runs every build and QA run"
+    },
+    {
+      "id": "R-003",
+      "why": "Production deploys bypass CI; launch day is a deploy"
+    },
+    {
+      "id": "R-005",
+      "why": "In-review lessons shown in production vs published-only launch catalog"
+    },
+    {
+      "id": "R-007",
+      "why": "No legal read; legal basics are in scope"
+    },
+    {
+      "id": "R-011",
+      "why": "No real-learner data until events persist"
+    },
+    {
+      "id": "R-012",
+      "why": "Token budget is unmeasured"
+    },
+    {
+      "id": "R-013",
+      "why": "Founder bandwidth; many decisions land on one person"
+    },
+    {
+      "id": "FL-01",
+      "status": "proposed",
+      "title": "Two big migrations at once (First Light and EDD-003 stage 1)",
+      "likelihood": 3,
+      "impact": 4,
+      "owner": "principal-engineer",
+      "why": "Founder-decision objection; stage 1 runs only as a 50-lesson pilot off the critical path."
+    },
+    {
+      "id": "FL-02",
+      "status": "proposed",
+      "title": "The dates are a guess until the week-1 re-estimate",
+      "likelihood": 4,
+      "impact": 3,
+      "owner": "principal-engineer",
+      "why": "No workstream has a plan yet; W-908 re-estimates."
+    },
+    {
+      "id": "FL-03",
+      "status": "proposed",
+      "title": "Accounts launch without a privacy, terms and age-gate read",
+      "likelihood": 3,
+      "impact": 5,
+      "owner": "privacy-reviewer",
+      "why": "Anonymous-first auth keeps history at sign-up, so learner data exists from day one; under-13 handling is undecided (F-01)."
+    },
+    {
+      "id": "FL-04",
+      "status": "proposed",
+      "title": "The new role duplicates chief-of-staff and head-of-product",
+      "likelihood": 3,
+      "impact": 3,
+      "owner": "chief-of-staff-ceo-office",
+      "why": "Founder-decision objection; the CEO office checks this in the consultation (W-904)."
+    },
+    {
+      "id": "FL-05",
+      "status": "proposed",
+      "title": "Vercel Hobby is non-commercial; accounts or ads on it break the terms",
+      "likelihood": 4,
+      "impact": 3,
+      "owner": "principal-engineer",
+      "why": "W-893 and W-908 must confirm the Pro requirement before launch."
+    }
   ],
   "jour_fixe": [
-    { "id": "standup", "name": "Stand-up", "days": ["Mon", "Thu"], "minutes": 20, "kind": "written, in the war room", "record": "company/initiatives/first-light/standups/<yyyy-mm-dd>-standup.md" },
-    { "id": "founder-review", "name": "Founder review", "days": ["Fri"], "minutes": 30, "kind": "status, risks, decisions; the weekly FYI follows", "record": "company/initiatives/first-light/standups/<yyyy-mm-dd>-founder-review.md" },
-    { "id": "risk-rescore", "name": "Risk re-score", "days": ["Fri"], "minutes": 0, "kind": "weekly, in company/ops/risks.json", "record": "company/ops/risks.json" }
+    {
+      "id": "standup",
+      "name": "Stand-up",
+      "days": [
+        "Mon",
+        "Thu"
+      ],
+      "minutes": 20,
+      "kind": "written, in the war room",
+      "record": "company/initiatives/first-light/standups/<yyyy-mm-dd>-standup.md"
+    },
+    {
+      "id": "founder-review",
+      "name": "Founder review",
+      "days": [
+        "Fri"
+      ],
+      "minutes": 30,
+      "kind": "status, risks, decisions; the weekly FYI follows",
+      "record": "company/initiatives/first-light/standups/<yyyy-mm-dd>-founder-review.md"
+    },
+    {
+      "id": "risk-rescore",
+      "name": "Risk re-score",
+      "days": [
+        "Fri"
+      ],
+      "minutes": 0,
+      "kind": "weekly, in company/ops/risks.json",
+      "record": "company/ops/risks.json"
+    }
   ]
 }

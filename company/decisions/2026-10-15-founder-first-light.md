@@ -21,3 +21,10 @@ My proposal had no token budget and did not involve the portfolio manager. Every
 - **Two big migrations at once** (First Light and EDD-003 stage 1). Stage 1 runs only as a 50-lesson pilot off the launch's critical path. Owner: principal-engineer.
 - **A new founder direct** adds a seat while 97 roles exist. Its scope must take initiative running away from the chief of staff and head-of-product, not duplicate it. The CEO office checks this in the consultation.
 - **The dates are a guess** until the week-1 re-estimate.
+
+## Amendment 1 (2026-10-15): the quality team owns the quality go/no-go
+Founder: "I want the quality team to be part of First Light and own go/no-go for quality."
+- The **quality team** is the evaluation steward (Hilde) and her org: qa-tester, accessibility-reviewer, fact-checker, learner-evaluator and pedagogy-critic. It joins the core team.
+- **Go/no-go has two keys.** The evaluation steward gives the **quality go/no-go**, against a launch quality bar she writes and publishes before build starts. A quality no-go stops the launch: neither the Head of Strategic Initiatives nor anyone else can overrule it, and only the founder can, in writing, with the objection recorded. The Head of Strategic Initiatives' go/no-go recommendation covers scope, schedule and readiness, and must include the quality verdict as it stands.
+- The bar covers at least: the QA contract on the exact release build (catalog and new surfaces: auth, progress, personalization, mastery, social, the ad slot); accessibility; claims verified on every published lesson in the launch catalog; learner review on new surfaces; the phone-fit and performance budgets; and no open SEV1 or SEV2. Privacy remains the privacy reviewer's own gate, and readiness (EDD-007) stays the principal engineers'.
+- Objection (carried): two keys can deadlock on launch day. Answer: the bar is fixed early, and a quality dry run at T-7 (2026-11-16) shows what fails while there is time to fix it.

@@ -23,8 +23,8 @@ test("status.json loads, is valid, and every id resolves against the board, risk
   assert.equal(st.dates.launch, "2026-11-30");
 });
 
-test("the twelve workstreams are all there, each with an owner role, board ids and a next step", () => {
-  assert.deepEqual(st.workstreams.map((w) => w.id), ["domain-brand", "auth-progress", "personalization", "mastery", "social", "ads", "legal", "infra", "surface-value", "launch-catalog", "budget", "team-role"]);
+test("the thirteen workstreams are all there, each with an owner role, board ids and a next step", () => {
+  assert.deepEqual(st.workstreams.map((w) => w.id), ["domain-brand", "auth-progress", "personalization", "mastery", "social", "ads", "legal", "infra", "surface-value", "launch-catalog", "budget", "team-role", "quality"]);
   for (const w of st.workstreams) assert.ok(w.owner && w.next, w.id);
   const tracked = new Set(st.workstreams.flatMap((w) => w.board));
   for (const id of ["W-904", "W-905", "W-906", "W-907", "W-908", "W-878", "W-884", "W-891", "W-892", "W-893", "W-894", "W-895"]) assert.ok(tracked.has(id), `${id} is not tracked`);
