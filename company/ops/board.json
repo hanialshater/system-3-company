@@ -12269,10 +12269,11 @@
       "id": "W-999",
       "title": "Fix the event beacon: src/app/api/events/route.ts line 17 logs the whole request body (...body), log allow-listed fields only; name a reader for local s3c:events:v1 or remove it; NEXT_PUBLIC_EVENTS has no run-time kill switch (company/initiatives/first-light/privacy-gate.md)",
       "owner": "backend-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1000",
@@ -15087,6 +15088,15 @@
       "id": "W-1302",
       "title": "fold-lock.test.mjs 'F1 + F2: two fold loops in parallel' fails 2 of 3 full test:dispatch runs at load 14-18 (passes alone 6/6); make it robust under load or gate it",
       "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1303",
+      "title": "registry-split.test.mjs 'every meta.json carries an unquoted zero-tolerance internal string' fails on main for 3 new lessons with no fact-checked claim yet (saved-or-die-same-600, zero-loses-to-this-crowd, literacy-split-france): it blocks npm run verify for everyone between build and fact-check; tighten the ratchet or give new drafts a placeholder that is not learner-visible platform-engineer",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
