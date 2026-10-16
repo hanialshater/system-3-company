@@ -492,6 +492,37 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - **Reveal fit.** Each brief has one picture. The quoted values sit in that picture as labels or a single Seen row, which survives Reset. Stage-top crop must be 0 px at 390×844 with the reveal open.
 - No human-learner data exists for any brief. Simulated reviews will not count as learning evidence.
 
+### Ruling r3 (2026-10-16)
+
+Copied word for word from the cm-physics round-3 batch (`company/ops/dispatch-requests/2026-10-16-r3-physics.md`, "Rulings"), so that a builder of any brief in this round finds them here. Counting rule: `company/decisions/2026-10-16-stage-word-budget-counting.md`. R1's reading that a unit written after a space counts 1 ("10 ns", "60.6 kg") is the stricter one and stands until head-of-product rules on it (r3 ask A4, still open on 2026-10-16). Each brief #64-70 below now has a `Stage word budget:` line, counted under that reading.
+
+**How the #64-70 counts were made (cm-physics, 2026-10-16, r5).** From the brief's own text, not a rendered stage. Each line lists **every** word the stage may show, from the locked frame to the open reveal, and adds them up as if all were on screen at once. Some (a 60° stop label, a readout that changes) are never all visible together, so each total is an upper bound on the busiest frame. Numerals, percentages, degree signs and fused units count 0. Spaced units ("V", "m", "kg", "°C", "Ω") count 1. Where a brief was over 25, I trimmed control labels, picture labels or readouts and edited the brief's Controls and Seen row lines to match (marked "r3 trim"). No claim's numbers changed and no reveal draft changed. **The list is closed.** A builder who wants to add any stage word not listed (an object label such as "battery" or "bulb", an axis title, a cover line, a unit) recounts first. If the total goes over 25, the builder stops and this goes back to cm-physics (decision, "What a builder does", point 3). The caption in each line is claim-bearing idealisation text, fixed word for word by this brief, and the builder must not cut it. None of these briefs has manipulated stimulus. The counts are the builder's starting point. Evaluators count from the artifact.
+
+**R1 · Stage word budget for #61-63 (answers lane 2 r2 ask 4, W-1185).** These lessons are v1 in `review`, not published, and the revision makes v2. So the 25 binds (demo-standard "Text budget"). Count under the 2026-10-16 decision: busiest frame, words with a letter, numerals 0, controls and captions count, and spaced units count 1 (objection 2). Nothing on these stages is manipulated stimulus. Claim-bearing idealisation captions are **not** cut: "1 A in 1 mm² copper wire. Tinted dot: one electron.", "Identical speakers, same distance, no echoes." and "1,200 kg car, all-wheel drive, no air drag." stay word for word. The builder recounts from the rendered stage, writes `## Stage word budget` in build.md, then applies **only** these cuts, **in this order, stopping as soon as the count is 25 or under**:
+- **electron-speed-in-a-wire** (builder count 41 with numerals; my estimate about 33 under the rule):
+  - E1: remove the marker label ("lit after ~10 ns" / "2 m trip: 7.6 h"). The Seen row already carries lit and trip, and the reveal reads from it.
+  - E2: the wait presets become "+1 s", "+1 min" and "+1 h" (the word "Wait" goes, three times).
+  - E3: remove the "battery" text label. The symbol stays, and the alt text still names it.
+  - If it is still over 25 after E3: stop, and it goes to the learning designer for a re-layout. Do not cut the Seen row, because the reveal points at its values.
+- **second-speaker-decibels** (builder count 30 with numerals; my estimate about 20 under the rule): no cut expected. If the recount is over 25, stop and report. Do not cut the caption.
+- **what-pushes-the-car** (builder count 31 with numerals; my estimate about 30 under the rule):
+  - P1: the Seen row shows forces only: "dry: 2,400 N · ice: 1,177 N · frictionless: 0 N". The acceleration stays in the live readout and in the reveal.
+  - P2: the readout drops the word "forward" ("2,400 N · 2.0 m/s²"). "slipping" and "wheels spin" stay, because they are the ice and frictionless cues.
+  - P3: if the arrows also print their newton values, they keep only "road on tyre" and "tyre on road", and the value stays in the readout.
+  - If it is still over 25 after P3: stop, and it goes to the learning designer.
+- Any learner-visible text a cut changes that sits in a claim: reset that claim to `unverified`.
+- **Briefs #64-70** count the same way before they are built (B1 pre-counts them).
+
+**R2 · second-speaker-decibels c4 (W-1256): adopt the fact-checker's wording.** The reveal's last sentence becomes "So 120 dB is not two 60 dB speakers; it is a million times one speaker's power." This adds 2 words (71 to about 73, under 90). Reset c4 to `unverified`, and update the claim text to match.
+
+**R3 · electron-speed-in-a-wire c5/c6 (W-1256, optional): adopt it.** My charter asks for stated idealisations. Add "the bulb's filament is drawn as the same wire" to c6's idealisations. Assumptions only, not on the stage. Reset c6 to `unverified`. c5's text does not change.
+
+**R4 · what-pushes-the-car alt text (W-1256).** The ice frame's alt text reads "Car on a ice road". Make it read "Car on the ice road" for every surface: the template's article becomes "the". This is not a claim.
+
+**R5 · Sources (W-1256).** Add the OpenStax University Physics module ids that FC 55 opened to the `source` field of the claims they support, next to the existing Halliday and Purcell-Morin citations: electron c1 m58730; second-speaker c1 m58377 and m58372; what-pushes c1 m58323 and m58295; plus any other module the FC 55 note for a claim quotes. Use the OpenStax bundle commit 2300d5b. Only the source string changes, so these claims keep their status. If the builder touches anything else in such a claim, it resets the claim.
+
+**R6 · throw-it-fast-enough v7, W-471: confirm the cut.** The stage still says "No air. 10 km peak.", so the main idealisation is still shown. The ISS figure was context, not part of the lesson's claim (c5 is withdrawn). A round, non-spinning Earth is a modelling choice the picture shows; it is not a fact the learner needs told. Do not restore the line.
+
 ### 56. tug-of-war-scale · concept: rope-tension · intro · demand 3 · format: Single card
 - Strand: mechanics.
 - Learner knows: a pull is a force in newtons; a spring scale measures a pull. / does not know: that a scale reads the tension passed through it, so two equal opposite 100 N pulls give 100 N, and a wall pulls back exactly as hard as a second person would.
@@ -670,15 +701,16 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Misconception: Two 1.5 V batteries always make 3 V, however they are connected.
 - Prediction: "Two 1.5 V batteries are joined side by side: plus to plus, minus to minus. The voltage across the pair is..." options: A. 0 V / B. 1.5 V / C. 3.0 V (answer: B).
 - Check: ideal 1.5 V cells of 2,000 mAh each and a 5 Ω bulb. One cell: 1.5 V, 0.3 A, 0.45 W, 6.7 h. Side by side: 1.5 V, 0.3 A, 0.45 W, 13.3 h. End to end: 3.0 V, 0.6 A, 1.8 W (4×), 3.3 h.
-- What the stage shows: a battery holder (empty at first), a voltmeter, a bulb whose glow follows the power, and a fuel gauge for run time. Inside each cell an arrow labelled "lifts 1.5 V" stands for the cause; end to end the arrows stack, side by side they sit in parallel.
-- Controls (DOM order): 1. "Side by side" → 1.5 V, 0.45 W, "runs 13.3 h" (milestone 1, the question's case). 2. "End to end" → 3.0 V, 1.8 W, "runs 3.3 h" (milestone 2). 3. "One battery" → 1.5 V, 0.45 W, "runs 6.7 h" (milestone 3).
+- What the stage shows: a battery holder (empty at first), a voltmeter, a bulb whose glow follows the power, and a fuel gauge for run time (fill only, no text). Inside each cell an arrow stands for the cause (only the first cell's arrow is labelled "lifts 1.5 V", r3 trim); end to end the arrows stack, side by side they sit in parallel.
+- Controls (DOM order): 1. "Side by side" → voltmeter 1.5 V, gauge fills to 13.3 h (milestone 1, the question's case). 2. "End to end" → 3.0 V, gauge 3.3 h, bulb 4× as bright by glow (milestone 2). 3. "One" → 1.5 V, gauge 6.7 h (milestone 3). (r3 trim: the third control was "One battery". The bulb's watts and the gauge's "runs … h" text are no longer on the stage: power shows as glow, hours show in the Seen row. Only the first cell's arrow carries the "lifts 1.5 V" label.)
 - Seen row: "side by side: 1.5 V, 13.3 h · end to end: 3.0 V, 3.3 h · one: 1.5 V, 6.7 h".
 - Reveal payoff (draft, 74 words): "Side by side, your voltmeter read 1.5 V, the same as one battery. The bulb glowed as brightly as with one, but for 13.3 hours instead of 6.7. End to end it read 3.0 V: the bulb drew twice the current at twice the voltage, four times the power, and lasted only 3.3 hours. Each battery lifts charge through 1.5 V. In a row the lifts add; side by side they share the work."
 - Phone fit: one circuit band with the readouts as labels.
+- Stage word budget: controls "Side by side", "End to end", "One" = 7; first cell's arrow "lifts 1.5 V" = 2; voltmeter "1.5 V" = 1; Seen row "side by side: 1.5 V, 13.3 h · end to end: 3.0 V, 3.3 h · one: 6.7 h" = 12; caption "Ideal cells, 2,000 mAh." = 3. **Total 25, at the limit** (17 if spaced units count 0). No other stage word: no "battery", "bulb" or "voltmeter" labels (the symbols and alt text name them). Any added word is a stop.
 - Planned claims:
   1. Cell voltages in series add; identical cells in parallel keep one cell's voltage (Kirchhoff's voltage law). support: derivation; source: Halliday, Resnick and Walker, chapter on circuits.
   2. With a 5 Ω bulb: 0.3 A and 0.45 W at 1.5 V; 0.6 A and 1.8 W at 3.0 V. support: arithmetic (I = V/R, P = VI); source: check.mjs.
-  3. Run times 6.7 h, 13.3 h and 3.3 h from 2,000 mAh per cell. support: arithmetic; source: check.mjs. The capacity is labelled illustrative (real AA capacity falls at higher current).
+  3. Run times 6.7 h, 13.3 h and 3.3 h from 2,000 mAh per cell. support: arithmetic; source: check.mjs. The capacity is stated on the stage (caption "Ideal cells, 2,000 mAh.") and is illustrative: real AA capacity falls at higher current. Say so in this claim's idealisations.
   4. Idealisations stated: identical ideal cells with no internal resistance, and a constant-resistance bulb (a real filament's resistance rises as it heats).
 - Recall: "A toy needs 3 V. You have two 1.5 V cells. How must they go in?" (End to end, plus to minus.)
 - curriculum: `{"primary":"physics:cells-series-parallel","also":["physics:series-parallel"],"prerequisites":["physics:series-parallel"],"level":"core","strand":"electricity","tags":["batteries","voltage","circuits"]}`
@@ -692,10 +724,11 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Prediction: "You clap facing a cliff and hear the echo 1.0 s later. Sound travels 343 m each second. The cliff is about..." options: A. 170 m away / B. 340 m away / C. 690 m away (answer: A).
 - Check: c = sqrt(γRT/M) = 343.2 m/s at 20 °C. Echo time = 2d/c: 85 m gives 0.50 s, 170 m gives 0.99 s, 340 m gives 1.98 s. A 1.0 s echo means 171.5 m.
 - What the stage shows: one side-view band with a person and a cliff. A sound pulse travels out and back (replayed in ≤ 400 ms, reporting simulated seconds). A path readout, "sound travelled 340 m", stands for the cause: the round trip.
-- Controls (DOM order): 1. "Cliff at 85 m: clap" → echo 0.50 s (milestone 1). 2. "Cliff at 170 m: clap" → echo 0.99 s, path 340 m (milestone 2, the question's case). 3. "Cliff at 340 m: clap" → echo 1.98 s, path 680 m (milestone 3).
+- Controls (DOM order): 1. "85 m: clap" → echo 0.50 s (milestone 1). 2. "170 m: clap" → echo 0.99 s, path 340 m (milestone 2, the question's case). 3. "340 m: clap" → echo 1.98 s, path 680 m (milestone 3). (r3 trim: "Cliff at" dropped from each control. The cliff in the picture carries its distance.)
 - Seen row: "85 m: 0.50 s · 170 m: 0.99 s · 340 m: 1.98 s".
 - Reveal payoff (draft, 70 words): "With the cliff 170 m away, your echo came back after 0.99 s, close to the 1.0 s in the question. At 340 m it took 1.98 s. The clap has to reach the cliff and come back, so in 1 s the sound covered 343 m in total: half out, half back. The distance to a cliff is the speed of sound times the echo time, divided by two."
 - Phone fit: one band with readouts on the cliff; one Seen row.
+- Stage word budget: controls "85 m: clap", "170 m: clap", "340 m: clap" = 6; cliff distance "340 m" = 1; echo readout "echo 1.98 s" = 2; path readout "sound travelled 680 m" = 3; Seen row "85 m: 0.50 s · 170 m: 0.99 s · 340 m: 1.98 s" = 6; caption "Still air, 20 °C." = 3. **Total 21** (8 if spaced units count 0).
 - Planned claims:
   1. The speed of sound in air is c = sqrt(γRT/M), about 343 m/s at 20 °C. support: derivation; source: check.mjs; Halliday, Resnick and Walker, chapter on sound waves.
   2. Echo delay is 2d/c: 0.50 s, 0.99 s and 1.98 s for 85, 170 and 340 m; a 1.0 s echo means about 171 m. support: arithmetic; source: check.mjs.
@@ -716,6 +749,7 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Seen row: "30°: 60.6 kg · 60°: 35.0 kg · flat: 70.0 kg".
 - Reveal payoff (draft, 69 words): "On the 30° ramp your scale read 60.6 kg, and at 60° only 35.0 kg, though you still weighed 70 kg. A scale measures only the push straight into its surface. On a slope your weight splits in two: part presses into the scale (the arrow into the ramp), and part pulls you down the slope, held by friction. The steeper the slope, the smaller the push into it."
 - Phone fit: one ramp picture with the arrow labels; one Seen row.
+- Stage word budget: controls "Tilt 30°", "Tilt 60°", "Back to flat" = 5; scale readout "35.0 kg" = 1; arrows "into the ramp", "along the ramp" = 6; stop label (60° only) "stop block" = 2; Seen row "30°: 60.6 kg · 60°: 35.0 kg · flat: 70.0 kg" = 4; caption "At rest, not slipping." = 4. **Total 22** (18 if spaced units count 0). No trim needed. The weight arrow itself carries no word ("weight" would make 23).
 - Planned claims:
   1. On a slope the normal force is N = m g cos θ, and the along-slope part m g sin θ is balanced by friction (or a stop). support: derivation; source: Halliday, Resnick and Walker, chapter on Newton's laws (inclined planes); check.mjs.
   2. 70 kg reads 60.6 kg at 30° and 35.0 kg at 60°. support: arithmetic; source: check.mjs.
@@ -732,11 +766,12 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Misconception: With a strong enough pump you can suck water up a straw of any height.
 - Prediction: "A perfect pump sucks on a very tall straw standing in water at sea level. Water can rise up the straw by at most..." options: A. About 1 m / B. About 10 m / C. Any height, with enough pull (answer: B).
 - Check: h = (P_atm − P_vapour)/(ρ g). At sea level (101,325 Pa, water at 20 °C with vapour pressure 2,339 Pa) h = 10.11 m; ignoring vapour it is 10.35 m. On the summit of Everest (about 33,700 Pa) h = 3.20 m.
-- What the stage shows: a glass with a tall straw against a 0–14 m height scale (labels ≥ 10 px) and a pump at the top. Down-arrows of air pressure press on the open water in the glass; they are the cause. When the column stops, the empty space above it is labelled "no air: nothing to push".
-- Controls (DOM order): 1. "5 m straw: pump" → water reaches the top (milestone 1). 2. "12 m straw: pump" → the column stops at 10.1 m with a gap above (milestone 2, the question's case). 3. "Same, on Everest" → the column falls to 3.2 m and the air arrows thin (milestone 3).
-- Seen row: "5 m: reaches top · 12 m: stops at 10.1 m · Everest: 3.2 m".
+- What the stage shows: a glass with a tall straw against a 0–14 m height scale (labels ≥ 10 px) and a pump at the top. Down-arrows of air pressure press on the open water in the glass; they are the cause. When the column stops, the empty space above it is labelled "no air", and the arrows are labelled "air pushes" (r3 trim: was "no air: nothing to push"; the two labels now carry the contrast).
+- Controls (DOM order): 1. "5 m straw" → the pump runs and the water reaches the top (milestone 1). 2. "12 m straw" → the column stops at 10.1 m with a gap above (milestone 2, the question's case). 3. "On Everest" → the same 12 m straw; the column falls to 3.2 m and the air arrows thin (milestone 3). (r3 trim: ": pump" and "Same," dropped from the controls. The pump is drawn but not labelled, and the caption names it.)
+- Seen row: "5 m: top · 12 m: stops at 10.1 m · Everest: 3.2 m". (r3 trim: was "5 m: reaches top".)
 - Reveal payoff (draft, 77 words): "In your 5 m straw the water reached the top, but in the 12 m straw it stopped at 10.1 m, with empty space above, however hard the pump worked. Suction does not pull water. The pump only removes air from the straw; the air pressing on the water in the glass pushes it up, and that push can hold up only about 10 m of water. On Everest, under thinner air, it held just 3.2 m."
 - Phone fit: the tall straw is drawn compressed against its scale, in one picture; the heights are labels on the scale.
+- Stage word budget: controls "5 m straw", "12 m straw", "On Everest" = 6; height scale unit "m" (once; tick numerals 0) = 1; air arrows "air pushes" = 2; gap label "no air" = 2; column readout "3.2 m" = 1; Seen row "5 m: top · 12 m: stops at 10.1 m · Everest: 3.2 m" = 8; caption "Perfect pump, 20 °C water." = 4. **Total 24** (15 if spaced units count 0). Before the trim it was about 30. A "pump" label would make 25.
 - Planned claims:
   1. A column of liquid held by a pressure difference ΔP has height h = ΔP/(ρ g). support: derivation (hydrostatics); source: Halliday, Resnick and Walker, chapter on fluids; check.mjs.
   2. Standard sea-level pressure is 101,325 Pa; water's vapour pressure at 20 °C is about 2.34 kPa. support: textbook tables; source: CRC Handbook (vapour pressure of water). The column reaches 10.1 m (10.3 m ignoring vapour).
@@ -755,10 +790,11 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Prediction: "A village draws the same 10 kW through the same cable. Send it at 10 times the voltage. The cable's heat loss becomes..." options: A. 10 times more / B. About the same / C. 100 times less (answer: C).
 - Check: 10 kW through a cable of 0.5 Ω in total. At 230 V: 43.48 A, 945 W lost (9.5%). At 2,300 V: 4.35 A, 9.45 W (0.09%). At 23,000 V: 0.43 A, 0.09 W.
 - What the stage shows: a station, one cable and a village. The cable's glow follows the heat loss, with readouts for current and watts lost. Moving dots in the cable stand for the current, the cause: fewer dots means less heating. No voltage is picked at first, the cable is dark, and the readouts show "–".
-- Controls (DOM order): 1. "Send at 230 V" → 43.5 A, 945 W lost (milestone 1). 2. "Send at 2,300 V" → 4.35 A, 9.5 W lost (milestone 2, the question's case). 3. "Send at 23,000 V" → 0.43 A, 0.09 W (milestone 3).
+- Controls (DOM order): 1. "230 V" → 43.5 A, 945 W lost (milestone 1). 2. "2,300 V" → 4.35 A, 9.5 W lost (milestone 2, the question's case). 3. "23,000 V" → 0.43 A, 0.09 W lost (milestone 3). (r3 trim: "Send at" dropped from each control. The chips sit on the station, which makes the action plain.)
 - Seen row: "230 V: 43.5 A, 945 W · 2,300 V: 4.35 A, 9.5 W · 23,000 V: 0.09 W".
 - Reveal payoff (draft, 77 words): "At 230 V your cable carried 43.5 A and wasted 945 W as heat. At 2,300 V the same 10 kW needed only 4.35 A, and the cable wasted 9.5 W: 100 times less. Power is voltage times current, so a higher voltage delivers the same power with less current. Cable heating goes as current squared, so a tenth of the current wastes a hundredth of the heat. That is why long-distance lines run at high voltage."
 - Phone fit: one horizontal band; readouts sit on the cable.
+- Stage word budget: controls "230 V", "2,300 V", "23,000 V" = 3; picture labels "station", "village", "10 kW" = 3; cable readouts "0.43 A", "0.09 W lost" = 3; Seen row "230 V: 43.5 A, 945 W · 2,300 V: 4.35 A, 9.5 W · 23,000 V: 0.09 W" = 8; caption "Cable 0.5 Ω, values illustrative." = 4. **Total 21** (6 if spaced units count 0). The initial "–" readouts count 0.
 - Planned claims:
   1. Delivered power P = V I, so I = P/V for a fixed power. support: derivation; source: Halliday, Resnick and Walker, chapter on current and resistance.
   2. Power lost in a cable is I² R. support: derivation (Joule heating); source: same.
@@ -777,10 +813,11 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Prediction: "A lens casts a sharp image of a candle onto a screen. You cover the lens's top half with card. The image now..." options: A. Loses its top half / B. Loses its bottom half / C. Stays whole, but dimmer (answer: C).
 - Check: thin lens, f = 10 cm, a 2 cm candle 30 cm away: image at 15 cm, magnification −0.5 (1 cm, inverted). The ray trace in check.mjs, with 20 rays per object point across the aperture, puts every ray from a point on the same image point whether the top half is covered or not. Brightness equals the open fraction: 100%, 50% for either half, 10% for a slit.
 - What the stage shows: candle, lens and screen in one band. Three rays from the flame tip and three from the base are drawn (the cause): each point's rays spread over the whole lens and meet again on the screen. A brightness readout sits on the screen.
-- Controls (DOM order): 1. "Cover top half" → the top rays stop at the card; the image stays whole, 50% (milestone 1, the question's case). 2. "Cover bottom half" → whole, 50% (milestone 2). 3. "Leave a thin slit" → whole, 10% (milestone 3).
+- Controls (DOM order): 1. "Cover top half" → the top rays stop at the card; the image stays whole, 50% (milestone 1, the question's case). 2. "Cover bottom half" → whole, 50% (milestone 2). 3. "Thin slit" → whole, 10% (milestone 3). (r3 trim: was "Leave a thin slit".)
 - Seen row: "top covered: whole, 50% · bottom covered: whole, 50% · slit: whole, 10%".
 - Reveal payoff (draft, 75 words): "With the top half covered, your candle's image stayed whole and upside down at 50% brightness. Covering the bottom half did the same, and a thin slit still gave the whole image at 10%. Every point of the flame sends light through every part of the lens, and the lens bends all of it to the same image point. Covering part of the lens removes some of each point's light, not part of the picture."
 - Phone fit: one optical band, with a ray count of ≤ 6 so the lines stay readable at 390 px.
+- Stage word budget: controls "Cover top half", "Cover bottom half", "Thin slit" = 8; picture labels "candle", "lens", "screen" = 3; screen readout "brightness 10%" = 1; Seen row "top covered: whole, 50% · bottom covered: whole, 50% · slit: whole, 10%" = 8; caption "Ideal thin lens." = 3. **Total 23** (no spaced units). The card is drawn, not labelled.
 - Planned claims:
   1. Thin-lens equation 1/f = 1/u + 1/v: v = 15 cm and m = −0.5 for f = 10 cm, u = 30 cm. support: derivation; source: Hecht, *Optics*, chapter on geometrical optics; check.mjs.
   2. For an ideal lens, every ray from an object point that passes through the lens meets at one image point, wherever it crosses the lens. support: simulation (paraxial ray trace); source: check.mjs.
@@ -802,6 +839,7 @@ Every number below comes from `artifacts/scratch/cm-physics-r4/check.mjs` (deriv
 - Seen row: "45°: 12.5% · 30°: 9.4% · removed: 0%".
 - Reveal payoff (draft, 69 words): "With only the crossed pair, your meter read 0%. Sliding in the middle filter at 45° raised it to 12.5%, and at 30° it read 9.4%. A filter does not just block: it passes the part of the light lined up with it, turned to its own direction. The first filter passes half; the 45° filter passes half of that, now tilted; the last passes half again: one eighth."
 - Phone fit: one band; the vibration lines are labels inside it.
+- Stage word budget: controls "Insert middle at 45°", "Turn middle to 30°", "Remove middle" = 8; picture labels "lamp", "meter" = 2; meter readout "0%" and the filter angles "0°", "90°", "45°" = 0; Seen row "45°: 12.5% · 30°: 9.4% · removed: 0%" = 1; caption "Ideal filters, unpolarised lamp." = 4. **Total 15** (no spaced units). Room for "filter" labels if the builder wants them (3 more, 18).
 - Planned claims:
   1. An ideal polariser passes half of unpolarised light, and polarised light at angle θ to it is passed as I₀ cos² θ (Malus's law), leaving along the filter's own axis. support: textbook + derivation (projecting the electric field; intensity ∝ E²); source: Hecht, *Optics*, chapter on polarisation.
   2. 0%, 12.5% and 9.4% for no middle filter, 45° and 30°. support: arithmetic; source: check.mjs.

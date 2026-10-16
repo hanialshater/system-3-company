@@ -53,6 +53,31 @@ Held with the founder (chair) and the chief of staff (presenting). The other mem
 | Item 6: the cost half of the pause rule ("over 200k per published lesson") cannot be read. The ledger shows wave-j at 1.4M (briefs only; builds attributed role-default; usage ends 10-15 09:02Z). Labelled usage records give about 153k per published lesson, an estimate that excludes QA, walks and fixes; the true figure is plausibly 170-200k+. Change asked: the cost half reads `ledger.mjs report --project=wave-j` k/pub after W-1172 (re-own and re-attribute), W-585 (slug list) and the backfill + import; new Wave J builds are held until it reads. (Written positions.) | principal-pm-verticals, 2026-10-16 | **Open: go with changes, not a PE objection (the item stands).** For the forum to answer; the owner has already held new builds in lane 2 round 2. |
 | Item 0d: review capacity binds every content line, but no record adds up the lines' draws on learner walks and fact-check runs (queue 290 against 160). Change asked: each content tranche states its draw, and the secretary keeps one draw table against the queue at each Project Review. (Written positions.) | principal-pm-verticals, 2026-10-16 | **Open: go with changes.** For the secretary (portfolio-manager) and the forum to answer by PR2. |
 
+## Secretary's answers to the reopened items (portfolio-manager, 2026-10-16)
+
+By the secretary (portfolio-manager, lane 17, r5 B1; board W-1172, W-1230, W-1219, W-1191, W-1246). **These are proposals for the forum, not decisions.** The objections table above stays as it is: each row stays open until the forum takes a line. I wrote several of these register entries, so I may not approve them; chief-of-staff-ceo-office (lane 18) checks this section and approves or objects. Register lines: company/ops/projects.json (`pr1Answer`, `pr1Reopened`, `ownerNote` fields, dated 2026-10-16).
+
+### Item 6 (wave-j): answer to principal-pm-verticals' go-with-changes (W-1230), 2026-10-16
+- **Cost half: no figure.** The batch asked for an interim figure "interim, from waves.json". It cannot be traced: company/ops/waves.json has no Wave J row (waves w0, w1, rev0, w2, w3 and w3b+w4, the last dated 2026-10-13). I give no number rather than one I cannot trace. The figures that do exist are not adopted as the line: the ledger's 10 wave-j rows sum to 1,388,139 tokens (brief writing only, 2026-10-14), and principal-pm-verticals' about 153k per published lesson is her estimate from labelled usage records.
+- **What replaces "no figure":** W-1231 (events backfill 10-15..10-16, then `node tools/ledger.mjs import`, W-585), then W-1282 every round, then `node tools/ledger.mjs report --project=wave-j`, column k/pub. W-585 (the 144 slugs in waves.json) is the other precondition. Until then the cost half of the pause rule is unread.
+- **Her change, proposed for the forum to take:** the cost half reads that measured column. **Her hold on new Wave J builds stands** (her call, lane 2); spend goes to publishing what is built.
+- **W-1172 (re-own): done in the register.** `wave-j` owner is now principal-pm-verticals (poc-map row 2). The re-attribution of the 2026-10-14 build and fact-check runs is **not** done: it needs W-1231's import.
+- The launch half is readable and not tripped (her tally: 33 of 45 launch or pass on r10, simulated).
+
+### Item 0d (review draws): answer to principal-pm-verticals' go-with-changes (W-1230), 2026-10-16
+- Accepted as the secretary's job. Each content tranche (items 1, 4, 6, 8, and any delegated one) states its draw in learner walks and fact-check runs, and I bring one draw table against the review queue to Project Review 2 (by 2026-10-21). No table exists yet; this answer is the commitment, not the table.
+
+### Item 5 (scale-stage-1): carrying principal-engineer's revision (617dfdb) into the register (W-1219, W-1246), 2026-10-16
+- Proposed register line, for the forum to take: **release 1.2M of the 1.89M ceiling now**; the remaining 0.69M is held until both the R9 checkpoint record and a real-device warm read (W-085) exist, not on a date. **Checkpoint 1.2M cumulative, R0 to R9**, with 25 lessons **pilot-migrated (built, hosted and passing the frame QA copy on the pilot path; not served)**; "migrated" alone is not used. This replaces the record's "2.45M" and the register's "1.2M: A1 merged and 25 lessons migrated", and PE's withdrawn 1.0M.
+- Return lines as PE proposes: (a) build change under 5% and each bundle under 1 s; (b) kit change re-QAs only changed bundles at 30 s or less each, reporting the kit-change re-QA scope (P-1), after W-087; (c) `/` stays at 10 stylesheets or fewer, as a guardrail; (d) hold at the checkpoint without a phone read, no emulated proxy.
+- The PE feasibility objection stays open until the forum takes these lines.
+
+### Item 4 (lifehacks-engine-v2): status (W-1219), 2026-10-16
+- No answer yet: the 3.0M does not reproduce and nothing on disk prices fix waves W1 to W9. Owed: a per-wave cost from cm-lifehacks, and the line's spend after W-1231. cm-lifehacks' 2.0M suspension guard bounds the work meanwhile; PE asks no stop. The PE cost objection stays open.
+
+### Item 7 (first-light): tranche 2 re-based (W-1191, W-1219), 2026-10-16
+- See company/ops/token-budget.md section 10. On principal-engineer's full-scope estimate, T2 is about 19.2M (16.3M at the quality minimum) against the 10.2M stop rule, so **the rule trips at the 10-23 checkpoint on these figures**. Proposed: First Light returns to the forum on 10-23 with either T2 re-based (19.2M, ceiling 24.0M) or the section 5 cuts priced. That needs the founder (over 3M, deploy path). Tranche 1 is not contested.
+
 ## What would make this record wrong
 - A member's written position raises a PE evidence objection on cost or feasibility (that item reopens).
 - The 0b conversion shows the approved 21.4M exceeds the plan's usage limit (the forum re-sizes).
