@@ -13,7 +13,7 @@ Source: company/decisions/2026-10-16-founder-org-and-dispatch-rule.md · lanes: 
 ## Every wave
 1. [ ] Briefs ready for every builder (`company/domains/briefs/<d>.md` has ≥ 10 unbuilt briefs)
 2. [ ] Kit changes landed **before** dispatch (tier-2 changes have an EDD and an engineering review)
-3. [ ] Dispatch builders **from the lanes' batches** (worktrees, unique `NEXT_DIST_DIR`, `QA_PORT`, `QA_OUT`). **At most 8 agents at once, of which at most 5 on Opus** (COE 2026-10-13; restated 2026-10-13 after the operator broke the 4+4 version: total load is what the limit protects). Builders commit after every 2 lessons. Log the wave in `ops/waves.json`. If agents stop, resume them with SendMessage before re-dispatching.
+3. [ ] Dispatch builders **from the lanes' batches** (worktrees, unique `NEXT_DIST_DIR`, `QA_PORT`, `QA_OUT`). **At most 14 agents at once, of which at most 3 builders** (founder 2026-10-16, company/decisions/2026-10-16-founder-agent-cap-14.md; earlier: 8, at most 5 on Opus) (COE 2026-10-13; restated 2026-10-13 after the operator broke the 4+4 version: total load is what the limit protects). Builders commit after every 2 lessons. Log the wave in `ops/waves.json`. If agents stop, resume them with SendMessage before re-dispatching.
 4. [ ] Merge each branch → `npm run registry` → `npm run verify` on the integrated tree → `npm run company -- qa-record`
 5. [ ] `npm run walkthrough -- --domain <d>` for every domain with new lessons
 6. [ ] Fact-check per domain + **second check** of claims added by the previous checker (a different agent)
