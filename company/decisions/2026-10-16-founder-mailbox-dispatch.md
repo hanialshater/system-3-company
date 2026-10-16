@@ -2,7 +2,7 @@
 
 owner: founder (decides) · design: tools-lead (mechanism), chief-of-staff-ceo-office (lanes, independence) · date: 2026-10-16 · class: org mechanism
 route: founder proposal → tools-lead builds tools/mailbox.mjs on a branch → chief-of-staff-ceo-office reviews lanes and independence → chief-of-staff merges → pilot on one lane → founder confirms after 3 days
-recorded by: chief-of-staff · status: decided in principle (founder's design); pilot terms below
+recorded by: chief-of-staff · status: decided; pilot approved by the founder ("Ok I appeove try it", 2026-10-16). Pilot lane: verticals (Wave J, physics first), chosen by the chief of staff because it holds the most build-ready briefs (r6 B2, physics #64-68); the founder may switch it to Life Hacks
 
 ## What the founder said
 > "We can have alternative design by mailboxes, you strart all of them thet communicate through mailbox files" (2026-10-16, on F-30)
