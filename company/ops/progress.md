@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 (14:30Z): qa-tester - SO-10-1 batch=SO-10-1 [project:lifehacks-engine-v2], Life Hacks re-QA a-l (W-1235, W-1341)
+- **Changed:** 15 QA records (contract spec, phone + desktop, 0 retries, all pass) on the shared server 3bf1d341adc9871e1036cfecef083e093660732c (SHA and tree unchanged start to end; R3a exit 0 for all). W-1341 locked-stage lessons in a-l: elastic-loop-release, fitted-sheet-corners-nest, group-cables-with-ends, long-cord-knots-itself, all pass, reveal unlocks on the reverse pass, locked pictures state no count or result. socks-use-shoe-space (the fifth) is for run B. Feed specs (R5) 10/10 on this SHA. Records for the 4 W3 lessons overwrote the earlier same-day fail records (in git history). Commit 67169e9.
+- **Believe (medium):** contract and R4 held in a browser; no dead ends. Not evidence of learning.
+- **Next:** run B (m-z) does socks-use-shoe-space; /home/user/s3c-eng1/.next-eng1 is NOT deleted yet (needs all 5 records). cm-lifehacks: lh-annual-label-cost shows EUR1,050.00 axis label while locked (board). Skipped for disputed claims: cue-needs-a-boundary, keep-the-error-feedback. elastic-loop-release has 2 disputed claims but was QA'd as a W-1341 lesson.
+- **Blocked:** nothing.
+
 ## 2026-10-16 (13:45Z): learner-evaluator — SO-10-3 batch=SO-10-3 [project:wave-j], W-1326 r15 re-walk
 - **Changed:** r15 learner records for calibrated-but-unequal-alarms v2 and cut-the-busiest-link v2 (both **launch**), walked on the shared review server built from 3bf1d341adc9871e1036cfecef083e093660732c (SHA unchanged start to end; R3a exit 0 for both). Findings committed before meta.json was read (9be5921); comparison section, evidence.simulatedLearner links and board after. W-1326 done; W-1367 (qa-tester: does the 'B at 50' trace line render under a real drag), W-1368 (cm-ai notes), W-1369 (cm-cs notes).
 - **Believe (medium):** neither lesson has a finding that blocks a first-time learner. The likeliest real defect is the calibrated stage trace staying at 'B at 32' with the slider at 50 (could be a walkthrough-jump artifact). Simulated learner only: not evidence that anyone learned.
