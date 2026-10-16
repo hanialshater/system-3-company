@@ -4,6 +4,17 @@ owner: founder (words recorded by chief-of-staff) · date: 2026-10-16 · class: 
 route: chief-of-staff-ceo-office (Leonie) designs the company, the VP role and the floor from this brief **after First Light** → founder approves → the VP onboards with this file as the first thing they read
 recorded by: chief-of-staff · status: brief; nothing exists yet (company/decisions/2026-10-16-founder-system3-meta-sibling.md)
 
+## 0. Value proposition (founder, 2026-10-16; this comes first, before everything else here)
+> "It is System 3; we call it science." We are replicating the philosophy of science, the great invention that made human civilisation work. Every autonomous company is just the philosophy of science, because it is a harness for a community of fallible agents, robots and humans.
+
+**What System 3 Meta sells:** not app generation and not agent orchestration, but **the scientific method as an operating system for a company**: a harness in which fallible agents and people make public claims, check each other independently, criticise openly, record everything, and correct errors through mechanisms instead of trusting any one member. The use case (lessons, a service, a product) is what the community works on; the harness is the product.
+
+**What follows for every company System 3 Meta generates:**
+- The harness ships first and is not optional: claims with sources, independent checking, falsification tests, objections on the record, the disk as memory, COEs and retros (section 1a).
+- Members are interchangeable kinds of fallible agent: a model, a person or a tool takes a role on the same terms and is checked the same way. No member is trusted because of what it is.
+- Success is measured outside the community (contact with reality), fixed before the company starts.
+- Pitch test for any feature: does it make errors easier to find and cheaper to correct, without relying on anyone being right? If not, it is not System 3.
+
 ## 1. In the founder's words
 - "Create a new floor, new VP of system 3 meta: it is a meta company with mandate to create whole company for specific use-case. I am seeing a leap from lovable/replit style platforms and probably this is a big idea for AI or a killer app. To keep us focused lets do that after first light. The new VP is running independently and it is a sibling company."
 - "When I started this it was a choice to go with demos: they are kind of independent but need collective work to scale. We need to try other kind of companies, higher risk, real infra, and also make it work for others. I have few people who want to try and build their own stuff. Also we need to decouple from Claude and allow for more choices, we need to integrate humans, tools."
@@ -26,7 +37,7 @@ Science works without trusting any one scientist: claims are public, criticism i
 The test for any new mechanism, role or generated company: does it make errors easier to find and cheaper to correct, without relying on anyone being right?
 
 ## 2. The mission (what the VP owns)
-Build the capability to **generate and run a whole company of agents (and humans) for a stated use case**, then prove it on companies harder than this one. App builders generate an app; System 3 Meta generates the organisation that builds, checks, ships and runs it.
+Deliver the value proposition (section 0): build the capability to **generate and run a whole company of agents (and humans) for a stated use case**, then prove it on companies harder than this one. App builders generate an app; System 3 Meta generates the organisation that builds, checks, ships and runs it.
 
 What success looks like, in order:
 1. **A second company that is not lessons.** Higher risk: real infrastructure, real users or customers, real money or real consequences, where "done" is judged outside the company.
