@@ -26,12 +26,10 @@
   "claims": [
     {
       "id": "physics.head-on-is-a-wall.c1",
-      "text": "In a head-on collision of identical cars at equal speeds, total momentum is zero, so both cars stop at the meeting point, which does not move (stage: dashed 'meeting point' line; reveal: 'The cars stopped at the meeting point, which never moved').",
+      "text": "In a head-on collision of identical cars at equal speeds, total momentum is zero, so both cars stop at the meeting point, which does not move (stage: dashed 'meeting point' line; reveal: 'The meeting point never moved').",
       "support": "derivation",
-      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation: equal masses at equal and opposite speeds give total momentum 1500*(13.89) - 1500*(13.89) = 0, so a perfectly inelastic pair ends at rest; by symmetry the contact point stays at MID. Stage draws car B mirrored about MID and the dashed 'meeting point' line there; reveal sentence matches.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1. Reveal quote updated in v2 (cm-physics r5 R7); FC pass 35 verification of v1 replaced; reset to unverified for re-check.",
+      "status": "unverified"
     },
     {
       "id": "physics.head-on-is-a-wall.c2",
@@ -53,12 +51,10 @@
     },
     {
       "id": "physics.head-on-is-a-wall.c4",
-      "text": "Doubling the closing speed doubles the total energy, but two cars share it.",
+      "text": "Two identical cars at 50 km/h carry twice one car's energy (2 × 145 kJ), and each crumple zone absorbs its own car's half (145 kJ).",
       "support": "derivation",
-      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ, absorbed half by each car (symmetry). A single car at 100 km/h has 578.7 kJ, four times. check.mjs. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Derivation, in the comparison the reveal makes (head-on at 50 + 50 against the 50 km/h wall): closing speed 100 vs 50 km/h, total energy dissipated 2 x 144.7 = 289 kJ vs 145 kJ, i.e. doubled, and split equally so each car gets 145 kJ. Note for the builder (not a dispute): as a free-standing rule the sentence would be false (the 100 km/h wall also has closing speed 100 and 4x the energy); it is true only in the context of the preceding sentence.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ (0.5 x 1,500 x (50/3.6)^2), absorbed half by each car's crumple zone by symmetry (each car stops from its own 50 km/h against a contact plane that does not move). check.mjs (artifacts/scratch/cm-physics-r3/check.mjs). Reveal (v2, cm-physics r5 R7): 'Two cars at 50 carry twice one car's energy, and each crumple zone takes its own half.' v1 text and its FC pass 35 verification replaced; reset to unverified for re-check.",
+      "status": "unverified"
     },
     {
       "id": "physics.head-on-is-a-wall.c5",
@@ -92,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:head-on-equals-wall",
     "also": [
