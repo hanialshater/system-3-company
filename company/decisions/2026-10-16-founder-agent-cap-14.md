@@ -23,3 +23,4 @@ After "Why 1 task only is running we have tons to do" and "Go more", asked wheth
 
 ## Addendum (chief of staff, 2026-10-16 ~11:30Z): production builds share the builder cap
 Concurrent `next build` runs were OOM-killed by the host's memory cgroup (2 of 3 SO-10-1 builds; one fact-check build exit 137). Until tools-lead adds a build-slot guard to dispatch-check, **every run that performs a production build (builders, QA runs, checks that build for a walkthrough) counts against the 3-builder cap.** This tightens the founder's cap; it loosens nothing.
+- **2026-10-16 ~12:30Z (chief of staff, on the steward's ruling R3/O3):** QA, fact-check and learner-review runs that use the shared review server (http://localhost:3591, built once per main SHA by the chief of staff) do not build and do not count against the builder cap.
