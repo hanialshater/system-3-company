@@ -33,3 +33,10 @@ Root owns integrated check/typecheck/build and registration. Independent QA owns
 7. Body word count remains below84; crop/screenshot for v4 not measured by builder. Independent QA/fit and learner re-review pending.
 
 Shared diagram finding: the small queued-job mark and its number before the handoff are unlabelled. Builder does not own shared renderer. Routed to root/platform for a named queue legend or removal before learner re-review. No diagram fix or browser pass is claimed here.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F8: predict options now use the stage's number format (formatBookValue: no trailing zeros, ASCII hyphen-minus, no plus sign, thousands commas). Before ["6.00","10.00","5.00","3.00"]; after ["6","10","5","3"]. Answer index 2 unchanged and equals a computed scenario output. Distractors normalised too, so format cannot single out the answer.
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.

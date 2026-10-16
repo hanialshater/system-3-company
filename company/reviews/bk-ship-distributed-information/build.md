@@ -35,3 +35,11 @@ Family follow-through from the actual E-Myth learner finding in `company/reviews
 7. Reveal body 77→75 words by builder count; stage/title/hook unchanged. Actual v2 crop and phone fit are unmeasured. The final phone image must be inspected before claiming this is complete.
 
 Only prediction wording and model explanation changed. All scenario values, answer index/options, recall, book identity and book paraphrase remain unchanged. The addressed toy claim is rewritten and unverified; version2 and empty evidence ensure old screenshots cannot count as current QA. Source/manifest alignment needs this named review exception, not a claim that it is byte-identical to the original brief.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F8: predict options now use the stage's number format (formatBookValue: no trailing zeros, ASCII hyphen-minus, no plus sign, thousands commas). Before ["8.00","12.00","6.00","2.00"]; after ["8","12","6","2"]. Answer index 2 unchanged and equals a computed scenario output. Distractors normalised too, so format cannot single out the answer.
+- meta.json: the .toy claim's "Prediction correct option" token updated to match; claim stays unverified.
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.

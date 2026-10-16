@@ -21,3 +21,13 @@ The shared model validator accepted the payload. Direct calculation: "Exponent t
 ## Handoff
 
 Root owns integrated check/typecheck/build and registration. Independent QA owns every route and Reset-last result. Learning/design/accessibility reviewers own representative and bounded-group review. Fact-checker owns all claim verification. No publication or deploy.
+
+## Revision 2026-10-16 · PR #5 review F7/F8 (demo-builder, run pr5-f7f8)
+
+Input: company/engineering/reviews/2026-10-16-pr5-engineering-review.md (in the PR #5 review worktree).
+
+- F7: the compound caption showed "× (1 + 68.1792830507429/100) + 0". Scenario A rate is now 68.18 (2^(3/4)−1 rounded to 2 dp; implied exponent 0.750006), so the caption reads "× (1 + 68.18/100) + 0". A computes 8.000136…, shown as 8 at the shared 2-dp readout; B stays 16. Predict question, options and answer (16×) unchanged.
+- Honesty edits that follow: modelBoundary now says "The three-quarter exponent, rounded to 68.18% per doubling, gives {A}…" and doesItHoldUp drops "These power-law calculations are exact" for "Only as power-law arithmetic." Matching claim texts (.toy, .world) and the .toy source inputs/outputs updated in meta.json; all claims stay unverified.
+- Rejected: one 16× size step (16^(3/4)=8 exactly, rate 700) because exponent one then needs rate 1500, above the engine's compound bound of 1000 (src/lib/books/model.ts); validation threw. Exponent ½ on 4× steps would be exact but drops West's three-quarter exponent; that is a cm-books choice, not mine.
+- Reveal grows by about 3 words (was 59). The source brief company/domains/briefs/books-100/science-history.json still holds the old rate (cm-books owns it).
+- Checks: books tests 12/12; npm run check passed; script over all 100 payloads: every answer equals a formatted computed output, every option number is in stage format. Not done: browser, phone fit or reveal-fit; qa-tester owns those. Status stays draft.
