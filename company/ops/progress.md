@@ -3,11 +3,46 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
+
+**Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
+**Believe:** sure the flips match the r7 preconditions table (all four rows "yes", `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md`). `npm run check` passes (3 unrelated lifehacks warnings). `node tools/publish-ready.mjs`: candidates include same-picture-two-histories, price-tag-or-auction, worth-something-alone; the-swap-that-goes-in-circles is in "held (verdict revise)" because `decide()` picks r1 (`2026-10-16-learner-knows-preference.md`, revise) over r2 (launch) by the mtime tie (W-1596). Not worked around.
+**Next:** release-manager runs W-1594 for the three candidates under the record's lapse conditions; swap waits on tools-lead W-1596 (or the chair's ruling 2 applied by the release-manager). No deploy without the founder. **Blocked:** swap publish on W-1596.
+
+## 2026-10-16 · head-of-product · Launch review r7 (NCM gap four): 4 go, each held open on the strand manager's draft->review call
+
+**Changed:** new `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` covering same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2 and the-swap-that-goes-in-circles v1 (with fc8c53b8).
+- Rulings: (1) head-of-product may not move lesson status, so each go takes effect only after the strand manager's decision is on disk (W-1574, W-1575, and new W-1595 for cm-math-discrete) and the status is review. (2) For the swap, learner r2 (post-fix build e092f6c3) governs, and r1 (pre-fix 236737ff) is history.
+- Board: W-1595 (cm-math-discrete), W-1596 (tools-lead: publish-ready breaks ties by mtime), W-1593 (platform-engineer, plus my 360 question), W-1594 (release-manager publish, conditional).
+- Mail sent to cm-probability-statistics, cm-economics-markets and cm-math-discrete.
+
+**Believe:**
+- Fairly sure all four have every gate on the code that ships. `git diff 975a4851 ed992963` over each import closure is empty, and the meta diffs are claim status and evidence only.
+- Sure that publish-ready will hold the swap as "verdict revise" by the mtime tie. I reproduced it with `decide()`.
+- Published NCM coverage becomes about 96 of 110, not 110. 110 is built coverage.
+
+**Next:** the three strand managers fill the record's preconditions table. Then release-manager runs W-1594 under the record's lapse conditions. No deploy without the founder. **Blocked:** on the three strand-manager decisions.
+
+## 2026-10-16 · demo-builder · W-1540 tricolour-check built (draft)
+
+**Changed:** new lesson `src/demos/math/tricolour-check/` (draft, 8 claims, all unverified), build note `company/reviews/tricolour-check/build.md`, registry regenerated; board W-1540 → review. Follows S1 to S4, T1, T3a, the ticks rule and W-1583 (A/B/C letter rings, arc sets in one constant). W-1583's tricolour part of W-1585 is done here; W-1585 stays open for unknot-game and left-or-right.
+**Believe:** local contract QA passes on phone and desktop; reveal-fit at 390x844 is fit, crop 0, 87 words; check and typecheck pass. Fairly sure on the picture (viewed both themes at 390x844); untested with learners. Two calls for others: `loopOne` fires on opening ○ (the only way the QA path reaches it), and the control row hides at the reveal (crop was 22 px without it). Both are in build.md "Decisions".
+**Next:** fact-checker c1 to c8 (c5 is the proof); design-lead S4 review of the walkthrough; qa-tester record; learner walk. **Blocked:** nothing.
 ## 2026-10-16 · platform-engineer · W-1587 EDD-004 C4 ruled met; W-1582 `.knot-tint` added
 
 **Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.
 **Believe:** fairly sure of the ruling (two busy-host runs, same shape); not sure of absolute phone numbers (no device, no idle host).
 **Next:** principal-engineer marks C4 met in the EDD-004 record (W-1590). demo-builder can use `.knot-tint` for unknot-game (W-1585) instead of a lesson-local rule. **Blocked:** nothing.
+## 2026-10-16 · fact-checker · W-1589: draw-a-table-knot c1-c8
+
+**Changed:** draw-a-table-knot meta.json claims only (7 verified, c5 disputed); new `company/reviews/draw-a-table-knot/2026-10-16-fact-check.md` and its scripts in `fc-2026-10-16/`; board W-1589 done, W-1591 (demo-builder) added.
+**Believe:** sure of the knot facts (own Jones bracket, Gauss words, picture geometry, all 11 switches agree with the kit). c5 disputed for the generic sentence "A switch makes a new knot." (false for a nugatory crossing; fix "Your switch made a new knot."). c7's general clause rests on the kit table and naming sources, not on Rolfsen's opened pictures (hosts blocked): medium-high.
+**Next:** demo-builder applies W-1591 (cm-math-discrete owns the script wording); a fact-checker who did not draft the fix re-verifies c5. **Blocked:** nothing.
+## 2026-10-16 · design-lead · W-1588: S4 check of draw-a-table-knot (first built knot lesson)
+
+**Changed:** new `company/design/reviews/2026-10-16-draw-a-table-knot-s4.md` (+ `fit-probe.mjs`, `bbox.mjs`, `contrast.mjs` beside it); board W-1588 done, W-1592 (demo-builder) added.
+**Believe:** pass with changes. Reveal at 390×844: reveal-fit --strict fit, crop 0, 80 words (70 to 81 over all 6 variants, 27 to 68 px spare). Departures accepted: (a) switched-crossing ring, but light-mode colour fails 3:1 (2.26) so D1 darkens it; (b) 231 px reveal picture (2.24 px/unit, my measured floor). Tightened viewBox -1.5 -1 103 105 accepted (curve bbox re-measured over all 13 pictures). D2: the Seen line is pastel text at 2.26:1 in light mode and must use the 45% ink mix. D3: height-aware board width removes the 360×740 stage overflow (31 to 51 px → 0) at no change at 390×844; 360×640 still scrolls (accepted). Sure on the measures; D3's constant depends on kit chrome.
+**Next:** demo-builder W-1592 (D1 to D3, re-run checks); fact-checker W-1589. **Blocked:** nothing.
 
 ## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
 
