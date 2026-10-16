@@ -39,6 +39,12 @@ Unused exports are tree-shaken by the build.
      game, as the VP ruled), any diagram that has been through `scramble`, `simplify`, `randomMove` or `apply`, and any
      diagram from `project`. The block lifts when the follow-up fixes the defect, or when the library exports a planarity
      check and the lesson uses it to redraw a bad result.
+     **Scope (W-407, 2026-10-16; [EDD-011](../../../company/engineering/edd/EDD-011-knots-extra-crossings.md) Part 1,
+     proposed, for the principal engineer to confirm):** block (a) does not cover *table-knot pictures*: a one-component
+     `KNOTS` entry drawn with the default or its stored layout, its `mirror`, or the entry after any `crossingChange`s
+     drawn with its stored layout. All of them draw with 0 extra crossings (test "table knots stay clean when mirrored or
+     after crossing changes on the stored layout" in `test/draw.test.mjs`). Every other picture stays inside block (a).
+     Blocks (b), (c) and the design limits below still apply to table-knot pictures.
    - **(b) Flattened bigons.** No lesson may draw **3_1 or 4_1** with the default layout (tricolour-check, unknot-game).
      *Status 2026-10-14:* the library fix has shipped (fix1-bigon: 3_1 bigon width 23.5, 4_1 17.0, both above the
      design floors of 20 and 15; `company/rnd/evolution/knots-fix1.md`), and the design lead accepted those pictures in
@@ -62,9 +68,9 @@ Unused exports are tree-shaken by the build.
 
 ## Tests
 
-`npm run test:kit` runs `node --test src/kit/knots/test/*.test.mjs`. It is part of `npm run verify`. There are 97 tests:
-the lab's codes, invariants, moves, draw (including the crossing-change test) and lesson-entry tests without U10, plus
-`types.test.mjs`, which keeps `index.d.ts` and `index.mjs` in step.
+`npm run test:kit` runs `node --test src/kit/knots/test/*.test.mjs`. It is part of `npm run verify`. There are 98 tests:
+the lab's codes, invariants, moves, draw (including the crossing-change test and, since 2026-10-16, the block (a)
+scope test) and lesson-entry tests without U10, plus `types.test.mjs`, which keeps `index.d.ts` and `index.mjs` in step.
 
 ## Changing this library
 
@@ -81,6 +87,10 @@ This is kit code, so the engineering tiers apply (company/engineering/README.md)
 
 ## Changelog
 
+- 2026-10-16, **W-407 close-out** (tests and docs only; library code and `table.mjs` unchanged). Added the block (a)
+  scope test to `test/draw.test.mjs` (98 tests) and the scope paragraph under rule 2(a) (EDD-011 Part 1). Re-checked
+  C1: `derive.mjs --write` reproduces `table.derived.mjs` byte for byte, and `table.mjs` equals it after the `sed`.
+  Change note: `company/engineering/reviews/2026-10-16-knots-w407-change.md`.
 - 2026-10-14, **draw: gen2-force-smooth → fix1-bigon** (EDD-004 Addendum A, tier 2). `draw.mjs` copied byte-identical
   from `src/lab/knots/candidates/fix1-bigon/`; one doc comment in `index.d.ts`. API and `layout` shape unchanged.
   Pictures change for every table entry: bigons open into lenses (minimum width/chord 0.10 → 0.28 over prime table

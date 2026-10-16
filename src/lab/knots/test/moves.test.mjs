@@ -2,6 +2,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import * as K from '../index.mjs'
+// The monster unknot comes from the lab bench data, not the table, so these tests pass on the derived table too (W-407).
+import { MONSTER } from './benchdata.mjs'
 
 const norm = (p) => JSON.stringify(Object.entries(p).map(([e, c]) => [+e, c]).sort((a, b) => a[0] - b[0]))
 const lk = (pd) => JSON.stringify(K.linkingMatrix(pd).flatMap((r, i) => r.filter((_, j) => j > i)).sort())
@@ -70,7 +72,7 @@ test('crossing change: one switch unknots the trefoil; it flips that sign and mo
 
 test('simplify: honest statuses, never "knotted" from being stuck', () => {
   assert.equal(K.simplify(K.KNOTS['3_1'].pd).status, 'minimal')
-  assert.equal(K.simplify(K.knot('monster-unknot').pd).status, 'unknot')
+  assert.equal(K.simplify(MONSTER).status, 'unknot')
   assert.equal(K.simplify(K.scramble([], 4, 15)).status, 'unknot')
   assert.equal(K.simplify(K.deleteComponent(K.knot('borromean').pd, 0)).status, 'unlink')
   for (let s = 1; s <= 5; s++) {

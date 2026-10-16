@@ -2,6 +2,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import * as K from '../index.mjs'
+// The monster unknot comes from the lab bench data, not the table, so these tests pass on the derived table too (W-407).
+import { MONSTER } from './benchdata.mjs'
 
 const norm = (p) => JSON.stringify(Object.entries(p).map(([e, c]) => [+e, c]).sort((a, b) => a[0] - b[0]))
 const sameUpToMirror = (a, b) => [norm(K.jones(b)), norm(K.pinv(K.jones(b)))].includes(norm(K.jones(a)))
@@ -64,6 +66,6 @@ test('identify: scrambled table knots are found, mirrors flagged, unknown knots 
     assert.deepEqual(K.identify(K.mirror(q)).map((x) => x.name), [n])
   }
   assert.deepEqual(K.identify(K.mirror(K.KNOTS['3_1'].pd)), [{ name: '3_1', mirror: true }])
-  assert.deepEqual(K.identify(K.knot('monster-unknot').pd), [{ name: '0_1', mirror: false }])
+  assert.deepEqual(K.identify(MONSTER), [{ name: '0_1', mirror: false }])
   assert.deepEqual(K.identify(K.fromBraid([1, 1, 1, 1, 1, 1, 1, 1, 1])), [], '9_1 is not in the table')
 })

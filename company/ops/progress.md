@@ -31,6 +31,15 @@ who no longer exists: check what you rely on.
 **Believe:** every number in briefs 1-4 is a kit computation I re-ran (high). Found while checking: switching two crossings of the figure-eight gives a trefoil for 2 of 6 pairs, so unknot-game must show "Still a knot" from `simplify` status `minimal`, never from absence of `unknot`. All citations are unverified (the research note read them through snippets); no brief claims `verified`. The misconceptions are hypotheses (no study exists); test with 3-5 people.
 
 **Next:** demo-builder can claim 1 then 2, 3, 4; design-lead reviews each contact sheet (mirror and turned-over pictures of left-or-right have never been seen by design); fact-checker opens the cited sources; rnd-lead owns W-1519 and W-1518. **Blocked:** nothing for 1-4. I accidentally took and released a claim lock (`friends-of-friends-overlap`) while testing `claim.mjs next`; it is released.
+## 2026-10-16 · rnd-lead (Bram) · W-407 knots close-out: what still stands between the kit and a lesson
+
+**Changed:** C1 and C2 were already done on 2026-10-14; re-checked today (`derive.mjs --write` reproduces `table.derived.mjs` byte for byte, kit `table.mjs` = it after the README `sed`; lab README pointer present, status line freshened). The 4 U10 monster-unknot lab tests now read `MONSTER` from `test/benchdata.mjs`, not the table (lab 105/105; 103/103 on a scratch derived-table swap; a test pins table U10 = MONSTER). New EDD-011 (`company/engineering/edd/EDD-011-knots-extra-crossings.md`): Part 1 scopes import block (a) so table-knot pictures (entry, mirror, crossing changes on the stored layout) are outside it, backed by a new kit/lab draw test (0 extra crossings over 301 pictures; only the link L6a4 shows extras, already block c); Part 2 (exported `extraCrossings`) designed, paused per the R&D Review. Kit: one test + README only (`test:kit` 98/98). Change note for the principal engineer: `company/engineering/reviews/2026-10-16-knots-w407-change.md`; readiness `company/engineering/readiness/2026-10-16-knots-w407.md` (ops approval W-1521). Board: W-407 → review; W-857, W-143, W-144 → done; W-1520 (portfolio-manager: rnd-knots budget, my role may not change projects.json); W-1521. `npm run check` and `typecheck` pass. Not pushed, not deployed.
+
+**Believe (high):** no rnd-lead item now blocks a lesson that draws table knots. **Medium:** EDD-011 Part 1 holds as written; it needs the principal engineer's confirmation.
+
+**Next:** principal-engineer re-reads the change note (caller dispatches). cm-math-discrete can brief draw-a-table-knot (5_2) now (W-146, W-419). platform-engineer: C3 (W-408). First layout lesson: C4 phone timing.
+
+**Blocked:** lessons on random diagrams (block a, EDD-011 Part 2 paused, no brief); 3_1/4_1 pictures until per-lesson design review (block b); links (block c).
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 

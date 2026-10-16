@@ -9,8 +9,8 @@ const bez = (d) => { const v = nums(d), p = [[v[0], v[1]]]; for (let i = 2; i < 
 const sample = (d) => { const p = bez(d), out = []; for (let s = 0; s + 3 < p.length; s += 3) for (let i = 0; i <= 8; i++) { const t = i / 8, u = 1 - t; out.push([0, 1].map((k) => u * u * u * p[s][k] + 3 * u * u * t * p[s + 1][k] + 3 * u * t * t * p[s + 2][k] + t * t * t * p[s + 3][k])) } return out }
 const hit = (a, b, c, d) => { const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])); return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0 }
 
-function check(pd, name) {
-  const D = K.draw(pd), n = K.crossingCount(pd)
+function check(pd, name, opts) {
+  const D = K.draw(pd, opts), n = K.crossingCount(pd)
   assert.equal(D.edges.length, 2 * n, name)
   for (const e of D.edges) for (const v of nums(e.d)) assert.ok(v >= -1 && v <= D.size + 1, `${name}: ${v} outside`)
   // Geometric sign at each crossing (SVG y points down) must equal the combinatorial sign.
@@ -45,6 +45,25 @@ test('a stored layout keeps the picture fixed across a crossing change', () => {
   assert.deepEqual(a.crossings.map((c) => [c.x, c.y]), b.crossings.map((c) => [c.x, c.y]))
   assert.notDeepEqual(a.edges.map((e) => e.d), b.edges.map((e) => e.d))
   assert.equal(JSON.parse(JSON.stringify(L)).crossings.length, 5, 'plain data')
+})
+
+// Scope of import block (a), extra crossings (W-407, company/engineering/edd/EDD-011-knots-extra-crossings.md). A lesson
+// that draws only table knots, their mirrors, or a table knot after crossing changes drawn on its stored layout is outside
+// block (a): every such picture has no extra strand crossing. Knots only: links stay under block (c), and L6a4 after a
+// crossing change on its stored layout does show 2 (measured 2026-10-16).
+test('table knots stay clean when mirrored or after crossing changes on the stored layout (outside block (a))', () => {
+  for (const [n, k] of Object.entries(K.KNOTS)) {
+    if (K.components(k.pd) != 1) continue
+    const pd = k.pd, L = K.layout(pd)
+    assert.equal(check(pd, `${n} stored`, { layout: L }), 0, `${n} stored layout`)
+    assert.equal(check(K.mirror(pd), `${n} mirror`), 0, `${n} mirror`)
+    let q = pd
+    for (let c = 0; c < pd.length; c++) {
+      assert.equal(check(K.crossingChange(pd, c), `${n} change ${c}`, { layout: L }), 0, `${n}: crossing ${c} changed`)
+      q = K.crossingChange(q, c)
+      assert.equal(check(q, `${n} changes 0..${c}`, { layout: L }), 0, `${n}: crossings 0..${c} changed`)
+    }
+  }
 })
 
 // Textbook look (added 2026-10-14 for gen 2; company/rnd/evolution/knots-gen1.md, "Looks"). A table knot is the

@@ -1,6 +1,6 @@
 # src/lab/knots: knot theory for 60-second lessons
 
-Status: **lab, layout from `gen2-force-smooth`** (promoted into the lab 2026-10-14, W-162; design notes of `draw.mjs` in [NOTES.md](NOTES.md); kit move proposed in `company/engineering/edd/EDD-004-knots-kit.md`). Plain ESM JavaScript, no dependencies, types and
+Status: **lab, layout from `gen2-force-smooth`** (promoted into the lab 2026-10-14, W-162; design notes of `draw.mjs` in [NOTES.md](NOTES.md); moved to the kit by `company/engineering/edd/EDD-004-knots-kit.md`; see the pointer below). Plain ESM JavaScript, no dependencies, types and
 docs in `index.d.ts`. **Lessons may not import `src/lab/`** (company/rnd/README.md). It reaches lessons
 only after the R&D lead's EDD and the principal engineer's review move it to `src/kit/`.
 
@@ -11,9 +11,11 @@ only after the R&D lead's EDD and the principal engineer's review move it to `sr
 > is copied into the kit under the kit README's tier rules (tier 1: additive exports, result-preserving fixes, table refreshes
 > via `provenance/derive.mjs --write` plus the README `sed`; tier 2: anything that changes results, by EDD and review).
 > Note: the lab's own `table.mjs` still holds the older (spherogram-labelled) codes; the kit ships `provenance/table.derived.mjs`.
+> Since 2026-10-16 (W-407) the U10 tests read the monster unknot from `test/benchdata.mjs` (`MONSTER`), not from the table,
+> so the evaluator passes on either table; a test pins table U10 = `MONSTER` while the lab table still has it.
 
 - Prior art, data sources and licences: [PRIOR-ART.md](PRIOR-ART.md)
-- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 103 tests. Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
+- Tests (the fixed evaluator): `node --test src/lab/knots/test/*.test.mjs`. 105 tests (103 until 2026-10-16: W-407 added the MONSTER-equals-U10 and the block (a) scope tests). Node 22 needs the glob, because `node --test <dir>/` does not accept a directory.
 - Bench (quality metrics, one JSON line): `node src/lab/knots/bench.mjs`
 - Sizes: `node src/lab/knots/size.mjs`
 
