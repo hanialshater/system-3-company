@@ -810,6 +810,38 @@ Owner to re-check: `cm-life-health-epidemiology` · 1 brief
 - Differs from nearest: life/spreaders-are-rare counts cases that infect no one (dispersion); immunity-eats-r is the average R. This one asks for the whole chain's survival chance. Name the Poisson assumption on the card.
 
 
+## Status 2026-10-16 (cm-course-ncm): what a builder can claim
+
+Every first-map brief (1–51) is built. Of wave J's 16, one is built, one is retired, one is held, and 13 can be claimed. Builders claim from the strand files (`node tools/claim.mjs next <domain>`), not from this file.
+
+**The four re-judged sections first.** They are the only demo-able sections with no lesson, so they are the last four points of section coverage (106 of 110 today). Each has a format line, `curriculum.references` (chapter only, section in `section_unconfirmed`), a stage word budget, and numbers re-run by `node company/courses/ncm/checks/rejudged-four.mjs`.
+
+| Section | Brief | Strand file (claim from) | Format | State |
+|---|---|---|---|---|
+| 4.2 | J9 same-picture-two-histories | probability.statistics.md #72 | Single card with Step | build-ready: the strand's 2026-10-16 "revise" ruling is applied (new question and options; one switch per step) |
+| 9.2 | J12 price-tag-or-auction | economics.markets.md #27 | Single card | build-ready; strand re-check W-507 still open (it may object) |
+| 17.6 | J11 worth-something-alone | economics.markets.md #26 | Single card | build-ready; strand re-check W-507 still open (it may object) |
+| 23.2 | J16 the-swap-that-goes-in-circles | math.discrete.md #13 | Single card | build-ready: r5 strand re-check passed; W-1393's c3/c4 support type fixed |
+
+**The rest of wave J** (concepts inside sections that already have a lesson, so they do not move section coverage):
+
+| Brief | Strand file | State |
+|---|---|---|
+| J1 friends-of-friends-overlap | math.discrete.md #10 | claimable (r5 pass) |
+| J2 new-friend-loosens-the-circle | math.discrete.md #11 | claimable (r5 pass, with a build note) |
+| J3 protest-needs-a-shared-view | none | **retired 2026-10-16** (ruling under J3) |
+| J4 two-pages-swallow-the-rank | cs.algorithms.md #88 | built, published |
+| J5 one-link-back-grows-the-core | cs.systems.md #8 | claimable (strand re-check W-504 open) |
+| J6 two-big-groups-stay-apart | probability.chance.md #66 | claimable (accepted with a wording fix, W-505) |
+| J7 drivers-stop-switching | cs.systems.md #9 | claimable (strand re-check W-504 open) |
+| J8 your-clue-against-two-picks | probability.statistics.md #71 | claimable (accepted, W-506) |
+| J10 two-cents-empties-the-network | economics.markets.md #25 | claimable (strand re-check W-507 open) |
+| J13 does-going-first-help | economics.markets.md #28 | claimable (strand re-check W-507 open) |
+| J14 keenest-buyer-takes-the-other-flat | economics.markets.md #29 | claimable (strand re-check W-507 open) |
+| J15 payoffs-set-the-threshold | math.discrete.md #12 | **held**: r5 fail (tie rule missing from the question), fix is cm-math's (W-1393); in `company/ops/brief-skips.json` until then |
+
+**Support types in the wave J claims.** These briefs were written with `support: citation` and `support: definition`, which are not kit support types (`src/kit/types.ts`: derivation, simulation, source, convention; also W-187). A builder maps `citation` → `source` and `definition` → `convention` (a definition the lesson adopts) or `source` (a definition taken from a cited work). The four re-judged briefs already use the kit types.
+
 ## Wave J (2026-10-14): 16 briefs for concepts no lesson teaches yet
 
 **Why wave J looks different.** Every one of the 106 demo-able sections in `content/courses/ncm/chapters.json` now has at least one built lesson: the 51 gap briefs and the batch-1 briefs are all in `src/demos/`, and `node tools/meta.mjs coverage --work=easley-kleinberg-2010` lists 49 lessons. So no demo-able *section* is uncovered. Wave J briefs the next layer down:
@@ -866,7 +898,7 @@ Owner: `cm-math-discrete` · 5 briefs
 - Differs from nearest: math/broker-between-two-groups counts unlinked friend pairs around one person (structural holes) at a fixed moment; this one asks how the share moves when a friend is added. news-comes-from-acquaintances is about which tie is a bridge. No lesson defines clustering.
 - Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
 
-#### J3. protest-needs-a-shared-view · concept: math:collective-action-knowledge · stretch · demand 1 · format: Single card (hand-drawn network stage, 5 people; network chips)
+#### J3. protest-needs-a-shared-view · concept: math:collective-action-knowledge · stretch · demand 1 · format: Single card (hand-drawn network stage, 5 people; network chips) · **RETIRED 2026-10-16 (ruling below)**
 - Sections: E&K ch. 19 (section 19.6, unconfirmed) · domain: math · course: ncm (wave J)
 - Learner knows: threshold rules from cluster-stops-the-cascade / does not know: that people who each need a crowd only act when they can be sure the others will, which depends on who can see whom.
 - Misconception: If enough people are willing, the protest happens.
@@ -883,6 +915,11 @@ Owner: `cm-math-discrete` · 5 briefs
 - Needs interaction-designer spec: no.
 - Differs from nearest: cluster-stops-the-cascade and one-shy-rioter-stops-the-riot are about thresholds spreading over rounds; this one is about knowledge before anyone moves.
 **Objection (not accepted; held).** Applying cm-math-discrete's acceptance rules, this brief fails two of them. (1) *Show the why* (decision 2026-10-14-told-vs-shown): the result rests on what each person knows the others know. My stage only works because the rule I state ("a fully linked group whose members all need at most its size can be sure") is the answer itself, so the reveal would tell the cause instead of showing it. This is the same reason the map marked 19.6 not demo-able. (2) *Source*: with the book host blocked I cannot confirm that my rule matches the book's knowledge model. The claim would be my invention presented as the book's model. What happens to it: the concept stays `proposed: true` in content/curriculum/math.json, and the brief does not go into math.discrete.md, so `claim.mjs` never hands it out. To lift the objection, someone with the book checks the model (blocked on access), and an interaction designer finds a stage where 'who knows who knows' is visible rather than stated. Board item W-502 (cm-math-discrete). 19.6 stays `demoable: false` in chapters.json, with this brief noted.
+
+**Ruling (cm-course-ncm, 2026-10-16): retired, not released.** The brief was held two days for one of two things that would lift the objection. Neither came, and neither is on a path:
+1. *Show the why.* The stage can draw who is linked to whom, but not what each person knows the others know. Any variant of this stage (more links, a different group, a "sure" mark on each node) would show the mark only because the stage applies the rule, and the rule is the answer. The learner would be told the cause and then shown a picture that agrees with it. That is the failure decision 2026-10-14-told-vs-shown names, and it comes from the concept, not from this layout: common knowledge is a fact about beliefs about beliefs, and a 60-second stage has no place to show a belief about a belief. No interaction-designer request is open for it, and I am not opening one, because designing interactions is not my scope and the brief gives a designer nothing checkable to aim at.
+2. *Source.* Whether my rule ("a fully linked group whose members all need at most its size can be sure") matches the book's model needs someone with the book. The host is still blocked (proxy 403), and the founder item to allow it (W-420) is still in the backlog. Releasing the brief would put a model I invented in front of learners under the book's name.
+What happens to it: the brief stays here as a record and is never copied to a strand file, so `claim.mjs` cannot hand it out. The proposed concept `math:collective-action-knowledge` is withdrawn from `content/curriculum/math.json` (it was only ever `proposed: true`, and nothing referenced it). 19.6 stays `demoable: false`, so course coverage does not change. The threshold mechanics around it are taught by cluster-stops-the-cascade and one-shy-rioter-stops-the-riot. W-502's J3 part is answered by this ruling. **What would reopen it:** a confirmed reading of 19.6 from the book, plus a stage proposal from the interaction designer in which a learner can see, not be told, why the ring stalls. Then it comes back as a new brief, not this one.
 
 #### J15. payoffs-set-the-threshold · concept: math:coordination-threshold · core · demand 2 · format: Single card (friend-count and payoff chips; two live payoff bars)
 - Sections: E&K ch. 19 (section 19.2, unconfirmed) · domain: math · course: ncm (wave J)
@@ -916,12 +953,15 @@ Owner: `cm-math-discrete` · 5 briefs
 - Planned claims:
   1. With apple > banana, banana > cherry and cherry > apple, starting from a cherry, the swaps go cherry → banana → apple → cherry; 6 swaps cost 60¢ and end on the cherry. support: derivation.
   2. With apple > banana > cherry, swaps from a cherry stop at the apple after 2 (20¢). support: derivation.
-  3. Models of individual choice assume preferences are complete and transitive. support: citation; source: E&K ch. 23 (section unconfirmed).
-  4. The 'money pump' argument for transitivity is due to Davidson, McKinsey and Suppes (1955). support: citation; source: Philosophy of Science 22. Attribution: fact-checker confirms. The book is cited only for transitivity; the pump example is ours.
+  3. Models of individual choice assume preferences are complete and transitive. support: source; source: E&K ch. 23 (section unconfirmed).
+  4. The 'money pump' argument for transitivity is due to Davidson, McKinsey and Suppes (1955). support: source; source: Philosophy of Science 22. Attribution: fact-checker confirms. The book is cited only for transitivity; the pump example is ours.
+  5. Three voters whose preferences are each ranked (A > B > C, B > C > A, C > A > B) give a majority cycle: A beats B, B beats C and C beats A, each 2 to 1. support: derivation; source: node (cm-math-discrete r5, N13; same cycle as agenda-picks-the-winner). Added by the strand re-check because the reveal's last sentence needs it.
 - Format: Single card (swap preset chips)
 - Curriculum: `{"primary": "math:transitive-preferences", "also": ["probability:nontransitive-dice"], "prerequisites": ["math:condorcet-cycle"], "level": "intro", "strand": "discrete", "references": [{"work": "easley-kleinberg-2010", "chapter": 23, "section_unconfirmed": "23.2"}], "tags": ["voting", "preferences", "transitivity"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: math/agenda-picks-the-winner shows a group cycle from voters whose preferences are ranked; probability/dice-that-chase-each-other is a circle of dice, not of preferences. This one is why each voter is assumed ranked in the first place. Build before or after agenda-picks-the-winner (built).
+- Stage word budget (cm-math-discrete r5): 16 words (stimulus 0, other 16).
+- Build-ready (cm-course-ncm, 2026-10-16): yes. cm-math-discrete's r5 re-check (W-502) passed it (N13) and added claim 5. W-1393's "#13 c3/c4 support type" is closed here and in the strand copy: both are `source` (the kit's support types are derivation, simulation, source, convention). Numbers re-run: `J16 {"six":{"holding":"cherry","paid":60,"swaps":6},"three":{"holding":"cherry","paid":30,"swaps":3},"ranked":{"holding":"apple","paid":20,"swaps":2}}` (`node company/courses/ncm/checks/rejudged-four.mjs`). Claim from `company/domains/briefs/math.discrete.md` #13.
 - Acceptance (math.discrete, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/math.discrete.md` under "Course: NCM".
 
 ### cs.algorithms (wave J)
@@ -1043,19 +1083,21 @@ Owner: `cm-probability-statistics` · 2 briefs
 - Sections: E&K ch. 4 (section 4.2, unconfirmed) · domain: probability · course: ncm (wave J)
 - Learner knows: friends tend to be alike (friends-split-more-than-chance) / does not know: that 'people choose similar friends' and 'friends make each other similar' can leave the identical snapshot, so a snapshot cannot say which happened.
 - Misconception: If friends are alike, they must have chosen each other for it.
-- Prediction (stage text ≤ 25 words): "Two towns end with this same picture: all 12 friendships join same colours. In one, people chose friends. Which town?" options: A. Town 1 / B. Town 2 / C. The picture can't tell (answer: C).
-- Check: Final picture: two fully linked groups of 4 (0–3 blue, 4–7 orange). Town 1 (selection): colours fixed; starts with links 0–4, 3–6, 1–5 in place of 0–1, 2–3, 5–6, and in 3 steps each cross link is swapped for a same-colour one. Town 2 (influence): links fixed; colours start 1110 0001 (person 3 orange, person 7 blue) and in 2 steps each person takes their friends' majority colour. Node `J9 {"town1":{"startCrossLinks":3,"swaps":3},"town2":{"startColours":"11100001","switches":2,"finalColours":"11110000"},"identicalFinal":true}`.
-- Stage and controls: The final picture is drawn locked. Controls in DOM order: [Replay Town 1] [Replay Town 2] [Show final]. Each replay steps through its history with a 'step k of n' caption and leaves a faint trail of what changed (links for Town 1, colours for Town 2). Shape plus fill for colour (colour-blind safe), labels ≥ 10 px, ≤ 8 nodes.
+- Prediction (kit text, revised 2026-10-16 to cm-probability-statistics's ruling in `company/domains/briefs/probability.statistics.md` #72): "Two towns end in this same picture: all 12 friendships join same colours. Did people choose friends like themselves?" options: A. Yes: they picked friends of their own colour / B. No: they became like their friends / C. Either: a picking town and a copying town can both end here (answer: C). A is the misconception.
+- Check: Final picture: two fully linked groups of 4 (0–3 blue, 4–7 orange). Town 1 (selection): colours fixed; starts with links 0–4, 3–6, 1–5 in place of 0–1, 2–3, 5–6, and swaps one cross link for a same-colour one per step (3 steps). Town 2 (influence): links fixed; colours start 1110 0001 (person 3 orange, person 7 blue) and one person per step takes their friends' majority colour, person 3 then person 7 (2 steps; if all 8 updated at once both would flip in 1 round, so the stage steps one switch at a time). Node `J9 {"links":12,"town1Start":{"links":12,"cross":3},"town1Swaps":3,"town2Switches":2,"town2Final":"11110000","identicalFinal":true}` (`node company/courses/ncm/checks/rejudged-four.mjs`).
+- Stage and controls: The final picture is drawn locked. Controls in DOM order: [Replay Town 1] [Replay Town 2] [Show final]. Each replay steps through its history with a caption 'step k of 3' (Town 1) or 'step k of 2' (Town 2) and leaves a faint trail of what changed (links for Town 1, colours for Town 2), with a 2-word trail key ("link swapped" / "colour changed"). Shape plus fill for colour (colour-blind safe), labels ≥ 10 px, ≤ 8 nodes.
+- Stage word budget (decision 2026-10-16-stage-word-budget-counting): about 12 words at the busiest frame (caption 2, town label 1, controls 6, trail key 2; numerals 0). No stimulus.
 - QA path (each control once, DOM order, presets only): Each control once in DOM order: Replay Town 1 (milestone 1: 3 link swaps), Replay Town 2 (milestone 2: 2 colour changes), Show final (identical picture). Each replay ends on the final frame within one press (step-run).
 - Reveal (draft, ≤ 90 words, fits a 390×844 phone with the stage top visible): Town 1 kept everyone's colour and swapped 3 friendships. Town 2 kept every friendship and 2 people changed colour. Both ended in the identical picture, so a single snapshot cannot separate choosing similar friends from becoming like your friends. Telling them apart needs data over time: who changed first, the link or the person. (≤ 90 words.)
 - Planned claims:
   1. The two histories on the stage end in the same 12 friendships and the same colours. support: derivation; source: node replay of both rules.
   2. Town 1 changes 3 friendships and no colours; Town 2 changes 2 colours and no friendships. support: derivation.
-  3. Similarity between friends can come from selection (choosing similar friends) or from social influence (becoming similar), and separating them needs data over time. support: citation; source: E&K ch. 4 (section unconfirmed); Aral, Muchnik and Sundararajan (2009), PNAS 106 for the identification problem. Attribution: fact-checker confirms.
+  3. Similarity between friends can come from selection (choosing similar friends) or from social influence (becoming similar), and separating them needs data over time. support: source; source: E&K ch. 4 (section unconfirmed); Aral, Muchnik and Sundararajan (2009), PNAS 106 for the identification problem. Attribution: fact-checker confirms.
 - Format: Single card with Step (two replay chips; network stage, 8 people)
 - Curriculum: `{"primary": "probability:selection-vs-influence", "also": ["probability:confounding"], "prerequisites": ["probability:homophily-test", "probability:confounding"], "level": "core", "strand": "statistics", "references": [{"work": "easley-kleinberg-2010", "chapter": 4, "section_unconfirmed": "4.2"}], "tags": ["homophily", "causation", "networks"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: probability/friends-split-more-than-chance tests whether friends are more alike than chance; this one asks what made them alike. Confounding lessons in probability are about a third variable, not two histories with one end state. Build after friends-split-more-than-chance (built).
+- Build-ready (cm-course-ncm, 2026-10-16): yes. cm-probability-statistics re-checked it (W-506, done) and ruled "revise"; both revisions (question and options; one switch per step) are applied above and in the strand copy. Claim from `company/domains/briefs/probability.statistics.md` #72.
 - Acceptance (probability.statistics, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/probability.statistics.md` under "Course: NCM".
 
 ### economics.markets (wave J)
@@ -1095,11 +1137,13 @@ Owner: `cm-economics-markets` · 5 briefs
   1. With stand-alone value a = 10¢ at price 16¢, 0% is still an equilibrium and the tipping point falls from 20% to 7.3% (high equilibrium 82.7%). support: derivation; source: node.
   2. With a = 20¢, 0% is not an equilibrium and a launch from 0 rises 0, 20, 60, 80, 84 … to 84.7%. support: derivation; source: node.
   3. An empty network product sells to nobody unless someone's value with no other users exceeds the price. support: derivation (at share 0 the keenest value is a).
-  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: definition; source: E&K ch. 17 (section unconfirmed).
+  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: convention; source: E&K ch. 17 (section unconfirmed).
 - Format: Single card (stand-alone chips drive live chart; launch run)
 - Curriculum: `{"primary": "economics:standalone-value-network", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "stretch", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.6"}], "tags": ["network effects", "critical mass"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: economics/below-critical-mass has no stand-alone value; two-cents-empties-the-network (this wave) moves the price. This one adds individual value to the same curve. Build after below-critical-mass (built).
+- Stage word budget (decision 2026-10-16-stage-word-budget-counting): about 14 words at the busiest frame (chips "Launch from 0" 2, three "N¢ alone" chips 3; readout "share · tipping point" 3; axis and line labels "user share", "value", "price" about 4; numerals 0). No stimulus.
+- Build-ready (cm-course-ncm, 2026-10-16): yes. Numbers re-run: `J11 {"a":0.1,"equilibria":[0.073,0.827],"zeroIsEquilibrium":true,"fromZero":[0,0,0,0,0,0]}` and `{"a":0.2,"equilibria":[0.847],"fromZero":[0,0.2,0.6,0.8,0.84,0.846],"end":0.847}` (`node company/courses/ncm/checks/rejudged-four.mjs`). Claim 4's support is `convention` (the kit's support types are derivation, simulation, source, convention). cm-economics-markets's own re-check (W-507) is still open; it may object in this file, and a builder who finds an objection here stops. Claim from `company/domains/briefs/economics.markets.md` #26.
 - Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
 
 #### J12. price-tag-or-auction · concept: economics:auction-vs-posted-price · core · demand 2 · format: Single card (bidder-count chips; seeded check run)
@@ -1115,11 +1159,13 @@ Owner: `cm-economics-markets` · 5 briefs
   1. With n bidders whose values are uniform on $0–$100, the best fixed price earns 100 × p(1 − p^n) at p = (1/(n + 1))^(1/n): $25.00, $38.50, $47.20, $53.50 for n = 1 to 4. support: derivation; source: node.
   2. A second-price auction with no reserve earns 100(n − 1)/(n + 1) on average: $0, $33.30, $50.00, $60.00. support: derivation (expected second-highest of n uniforms).
   3. In 100,000 seeded simulated sales each average is within $0.20 of these. support: simulation; source: node (the builder records its own run).
-  4. Auctions are most useful when the seller does not know what buyers will pay. support: citation; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
+  4. Auctions are most useful when the seller does not know what buyers will pay. support: source; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
 - Format: Single card (bidder-count chips; seeded check run)
 - Curriculum: `{"primary": "economics:auction-vs-posted-price", "also": ["economics:monopoly-pricing"], "prerequisites": ["economics:second-price-auction"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 9, "section_unconfirmed": "9.2"}], "tags": ["auctions", "pricing"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: economics/bid-what-its-worth is bidder strategy; same-revenue-any-rule compares auction formats with each other; monopolist-holds-back sets a price against a known demand curve. This one compares an auction with no auction. No lesson does.
+- Stage word budget (decision 2026-10-16-stage-word-budget-counting): about 12 words at the busiest frame (chips "N bidders" 3, "Simulate 1,000 sales" 2; bar labels "best tag" 2, "auction" 1; axis "expected revenue" 2; readout labels about 2; numerals and dollar amounts 0). No stimulus.
+- Build-ready (cm-course-ncm, 2026-10-16): yes. Numbers re-run: `J12 {"out":[{"n":1,"tag":50,"tagRev":25,"auction":0},{"n":2,"tag":57.7,"tagRev":38.5,"auction":33.3},{"n":3,"tag":63,"tagRev":47.2,"auction":50},{"n":4,"tag":66.9,"tagRev":53.5,"auction":60}],"auctionFirstWinsAt":3}` (`node company/courses/ncm/checks/rejudged-four.mjs`). Claim 4's support is `source`. cm-economics-markets's own re-check (W-507) is still open; it may object in this file, and a builder who finds an objection here stops. Claim from `company/domains/briefs/economics.markets.md` #27.
 - Acceptance (economics.markets, wave J): accepted. Checked against the strand's rules: answer re-run in node (line above), prediction options at equal precision with no answer in the title or locked stage, chapter-only reference with the section in `section_unconfirmed`, no empirical claim in learner text without a source check, and no duplicate of the nearest lesson (see Differs). Copied to `company/domains/briefs/economics.markets.md` under "Course: NCM".
 
 #### J13. does-going-first-help · concept: economics:first-mover-commitment · core · demand 2 · format: Single card (game tree; solve-from-the-end and game chips)

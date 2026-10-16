@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-course-ncm (Jonah) · NCM finish-line refresh
+
+**Changed:** `content/courses/ncm/chapters.json` refreshed against `src/demos` (batch1 status gone; `briefed_wave_j` folded into `covered_by`/`briefed_not_built`; stale slugs mutual-friends-add-up-slower and the-line-takes-up-to-half removed; two-pages-swallow-the-rank and who-pays-same-filter added; `not_yet_published` per section). `company/courses/ncm/coverage.md` rewritten (stale first-map tables dropped, in git at cdee168c). The 4 re-judged briefs (4.2 same-picture-two-histories, 9.2 price-tag-or-auction, 17.6 worth-something-alone, 23.2 the-swap-that-goes-in-circles) made build-ready in `company/courses/ncm/briefs.md` and their strand copies: cm-probability-statistics's "revise" ruling applied to #72, support types fixed (closes W-1393's #13 c3/c4), stage word budgets added, numbers re-run by new `company/courses/ncm/checks/rejudged-four.mjs`. **protest-needs-a-shared-view retired** (ruling in briefs.md J3; proposed concept withdrawn from `content/curriculum/math.json`). payoffs-set-the-threshold added to `company/ops/brief-skips.json` until cm-math fixes the tie rule (W-1393). New `company/courses/ncm/checks/coverage-count.mjs` recounts coverage and flags map drift. Board: W-1517..W-1520 (build the 4 gaps, demo-builder, next), W-1521 (9 concept briefs, backlog).
+
+**Believe:** high on the counts: 156 sections, 110 demo-able, 106 built (96.4%), 91 published (82.7%); the 13 review lessons are the whole built-vs-published gap. High that origin/ccr-rnd-ncm (61f01320) has no NCM lesson or brief that main lacks; main is equal or newer on every NCM lesson, so drop it (schelling-on-new-york's `review` there must not come back). Medium on the 4 re-judged sections matching the book's emphasis (host still blocked, W-420).
+
+**Next:** demo-builder W-1517..W-1520; fact-checker on the 13 review lessons, then the publish gate; cm-economics-markets W-507 (may still object to #26/#27); cm-math W-1393 (J15 tie rule).
+
+**Blocked:** section-number confirmation (book host 403, W-420). Not pushed.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
 **Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
