@@ -2073,7 +2073,7 @@
       "id": "W-143",
       "title": "Knot library gen 0 baseline in src/lab/knots (93 tests, bench, evolve.json): review the evaluator before gen 1; strengthen the hard-unknot set (only Haken's Gordian separates); messy-diagram layout weak (40/70 cramped fallback)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -2082,13 +2082,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "R&D lab, not on the 2,000 path."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-144",
       "title": "Knots evaluator size gate: measures raw whole-library closure (12,815 B gz) vs 10,240 → baseline gated out; per-lesson minified cost is 4.3–7.3 KB. Gate per-lesson cost (or raise whole-library budget) in evolve.json / tools/evolve.mjs",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -2097,7 +2098,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "R&D lab gate tuning."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-145",
@@ -2113,7 +2115,7 @@
       "id": "W-146",
       "title": "Knot theory lesson briefs (research note company/research/notes/2026-10-13-teachable-knot-theory.md + src/lab/knots/README.md ideas); library stays lab-only until promoted",
       "owner": "cm-math-discrete",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -2122,7 +2124,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Lab-only until promoted."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-147",
@@ -5645,17 +5648,20 @@
       "id": "W-407",
       "title": "EDD-004 conditions before any lesson imports @/kit/knots (eng review 2026-10-14-eng-review-EDD-004.md): C1 switch 10_8 to Conway 5 1 4, derive --write, provenance README row, re-copy kit table.mjs; C2 lab README pointer to the kit. Also the looks/extra-crossings follow-up EDD and the 4 U10 monster-unknot tests (session 2 inbox)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
-      "note": "(PR #3 merge: originally W-374 on the merge branch)",
+      "links": [
+        "company/engineering/reviews/2026-10-16-knots-w407-change.md"
+      ],
+      "note": "(PR #3 merge: originally W-374 on the merge branch) | 2026-10-16 rnd-lead: C1 and C2 re-checked done (derive --write reproduces the table; kit table.mjs = derived + sed). 4 U10 lab tests now read MONSTER from benchdata (lab 105/105; 103/103 on a derived-table swap). Extra-crossings follow-up = EDD-011: Part 1 scopes block (a) so table-knot pictures are outside it (new kit test, test:kit 98/98), Part 2 paused. Waiting on principal-engineer re-read (Part 1 confirmation) and principal-engineer-ops readiness W-1521. Still before lessons import: C3 (W-408, platform-engineer), C4 at the first layout lesson.",
       "priority": 3,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Lab conditions before any lesson uses knots."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-408",
@@ -5837,7 +5843,7 @@
       "id": "W-419",
       "title": "Knots lesson briefs follow-ups (session 2 inbox): add concept knot-table-names to content/curriculum/math.json; brief must say which 6_1 drawing draw-a-table-knot uses; asks T1-T4 and U1 in company/design/reviews/2026-10-14-knot-pictures.md carry into the tricolour-check and unknot-game briefs",
       "owner": "cm-math-discrete",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -5847,7 +5853,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Lab follow-up."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-420",
@@ -11009,10 +11016,14 @@
       "id": "W-857",
       "title": "W-407: close C1 and C2 (done); planarity-check EDD and monster-unknot tests paused; close W-143 and W-144 (superseded by later generations and EDD-004) (R&D review 2026-10-14, company/rituals/records/2026-10-14-rnd-review.md)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [
+        "company/engineering/reviews/2026-10-16-knots-w407-change.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 rnd-lead: closed by the W-407 close-out; W-143 and W-144 closed as superseded (R&D Review 2026-10-14)."
     },
     {
       "id": "W-858",
@@ -17736,6 +17747,430 @@
     },
     {
       "id": "W-1517",
+      "title": "Books renderer: Reset disables itself on press and drops focus to body (B1 pattern); keep focus, then accessibility-reviewer confirms. company/engineering/reviews/2026-10-16-books-a11y-reread.md F1",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Real: books-a11y-reread F1 (low, not a regression, not blocking). Not a dup of W-1511 (W-1511 is B1-B4 on case buttons; F1 is the same pattern on Reset). Owner right (renderer code). Behind F-46: drop if the 106 Books lessons are retired (W-1530, closeout ruling)."
+      }
+    },
+    {
+      "id": "W-1519",
+      "title": "Knots import block (a): unpause the extra-crossings / planarity-check EDD (W-407 follow-on) so briefs unknot-in-disguise, wiggle-keeps-the-fingerprint and more-crossings-same-knot (math.discrete.md, Knots batch 1) can be built; they are held in company/ops/brief-skips.json until block (a) lifts (src/kit/knots/README.md rule 2a)",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Real; it is the work of rnd-knots tranche 2 (EDD-011 Part 2, 0.6M proposed). R&D Review restart trigger (a written brief that needs it) is met by briefs 5/7/8, but it is a kit change: no tagged dispatch until the forum with the founder approves the budget (W-1543). Not a dup of W-1520 (budget) or W-407 (Part 1 + close-out)."
+      }
+    },
+    {
+      "id": "W-1518",
+      "title": "Knots import block (c): link drawing for the kit, or a design-lead-approved hand-authored Borromean-rings SVG, so brief cut-one-ring (math.discrete.md, Knots batch 1) can be built; held in company/ops/brief-skips.json (src/kit/knots/README.md rule 2c)",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Real (src/kit/knots README rule 2c; brief 6 cut-one-ring held). Try the cheap route first: a design-lead-approved hand-authored SVG needs no kit change and no rnd-knots budget; kit link drawing is a kit change and would need its own forum budget. Not in rnd-knots tranche 2."
+      }
+    },
+    {
+      "id": "W-1520",
+      "title": "rnd-knots budget (company/ops/projects.json status legacy, budget never set): founder wants knot lessons shipping. Asked by rnd-lead: set rnd-knots active with a budget line covering (1) the W-407 close-out re-reads (principal-engineer, principal-engineer-ops readiness approval) and (2) EDD-011 Part 2 (exported extraCrossings check for random-knot), which stays paused until a random-knot brief exists. rnd-lead's estimate, not a measured unit cost: 0.5M tokens (1.7M bought the whole library over 3 generations; Part 2 is one additive export plus a measured run and a review). Price it per token-budget.md section 3 and take it to the forum. Records: company/engineering/edd/EDD-011-knots-extra-crossings.md, company/engineering/reviews/2026-10-16-knots-w407-change.md",
+      "owner": "portfolio-manager",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Budget line written: projects.json rnd-knots legacy->proposed, tranche 2 0.6M (re-priced from measured per-run means; rnd-lead est 0.5M), returns as lessons (8 slugs). Close-out re-reads need no project budget (routine reviews, maintenance line); briefs 1-4 build on the catalog line (W-1539..1536). Decision moves to the forum via W-1543. Record company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md"
+      }
+    },
+    {
+      "id": "W-1521",
+      "title": "Readiness approval for knots W-407 close-out (tier 2 by path: one kit test + kit README; no library code): company/engineering/readiness/2026-10-16-knots-w407.md",
+      "owner": "principal-engineer-ops",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1522",
+      "title": "Build same-picture-two-histories (NCM 4.2 gap; probability:selection-vs-influence; Single card with Step): claim from company/domains/briefs/probability.statistics.md #72 (strand 'revise' ruling applied 2026-10-16); numbers: node company/courses/ncm/checks/rejudged-four.mjs; status lines in company/courses/ncm/briefs.md 'Status 2026-10-16'",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "probability",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Approved: NCM section gap with a build-ready brief re-judged 2026-10-16 (company/courses/ncm/briefs.md 'Status 2026-10-16'), numbers rerun by company/courses/ncm/checks/rejudged-four.mjs. P3: closes course coverage, blocks no launch. No duplicate on the board."
+      }
+    },
+    {
+      "id": "W-1523",
+      "title": "Build price-tag-or-auction (NCM 9.2 gap; economics:auction-vs-posted-price; Single card): claim from company/domains/briefs/economics.markets.md #27; stop if cm-economics-markets objects under W-507; numbers: node company/courses/ncm/checks/rejudged-four.mjs",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Approved: NCM section gap with a build-ready brief re-judged 2026-10-16 (company/courses/ncm/briefs.md 'Status 2026-10-16'), numbers rerun by company/courses/ncm/checks/rejudged-four.mjs. P3: closes course coverage, blocks no launch. No duplicate on the board."
+      }
+    },
+    {
+      "id": "W-1524",
+      "title": "Build worth-something-alone (NCM 17.6 gap; economics:standalone-value-network; Single card): claim from company/domains/briefs/economics.markets.md #26; stop if cm-economics-markets objects under W-507; numbers: node company/courses/ncm/checks/rejudged-four.mjs",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "economics",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Approved: NCM section gap with a build-ready brief re-judged 2026-10-16 (company/courses/ncm/briefs.md 'Status 2026-10-16'), numbers rerun by company/courses/ncm/checks/rejudged-four.mjs. P3: closes course coverage, blocks no launch. No duplicate on the board."
+      }
+    },
+    {
+      "id": "W-1525",
+      "title": "Build the-swap-that-goes-in-circles (NCM 23.2 gap; math:transitive-preferences; Single card): claim from company/domains/briefs/math.discrete.md #13 (r5 pass; c3/c4 support now source); numbers: node company/courses/ncm/checks/rejudged-four.mjs",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": "math",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Approved: NCM section gap with a build-ready brief re-judged 2026-10-16 (company/courses/ncm/briefs.md 'Status 2026-10-16'), numbers rerun by company/courses/ncm/checks/rejudged-four.mjs. P3: closes course coverage, blocks no launch. No duplicate on the board."
+      }
+    },
+    {
+      "id": "W-1526",
+      "title": "NCM wave J concept briefs, 9 claimable (do not move section coverage): friends-of-friends-overlap, new-friend-loosens-the-circle (math.discrete #10-11), one-link-back-grows-the-core, drivers-stop-switching (cs.systems #8-9), two-big-groups-stay-apart (probability.chance #66), your-clue-against-two-picks (probability.statistics #71), two-cents-empties-the-network, does-going-first-help, keenest-buyer-takes-the-other-flat (economics.markets #25, 28, 29). Map support citation->source, definition->convention (company/courses/ncm/briefs.md 'Status 2026-10-16'). After the 4 NCM section gaps.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Real, sequenced after W-1522..1525 by its own text. Overlaps W-504 (cm-cs-systems re-check of #8, #9): build those two only after W-504 closes. Stays backlog to keep demo-builder's next list true."
+      }
+    },
+    {
+      "id": "W-1527",
+      "title": "Publish cut-the-busiest-link per launch review r6 go (company/rituals/records/2026-10-16-launch-review.md, preconditions in 'For the release-manager'); no deploy",
+      "owner": "release-manager",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1528",
+      "title": "Question: company status 'Ready to publish' lists 11 when publish-ready names 2 (ignores verdict currency and holds). Should the status line join decide() and publish-holds? (launch review r6 objection 1)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Real (r6 objection 1: status lists 11, publish-ready 2). Related to, not a dup of, W-1049 (publish-ready vs the claims gate); tools-lead may fold them. tools/company.mjs is protected, so a change to the status line needs an amendment; the answer may be 'no'."
+      }
+    },
+    {
+      "id": "W-1529",
+      "title": "Commit a launch prediction row for cut-the-busiest-link in company/rituals/records/2026-10-16-launch-review.md before the next deploy that includes it (r6 objection 2)",
+      "owner": "analytics-steward",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Small and it gates the next deploy that carries cut-the-busiest-link (W-1527); r6 objection 2. Not a dup of W-1463 (Life Hacks prediction rename)."
+      }
+    },
+    {
+      "id": "W-1530",
+      "title": "F-46 retirement notes due 10-19 18:00 for 137 lessons ruled (c) in company/product/2026-10-16-closeout-ruling.md (106 Books if F1/F2 unanswered, 30 parked LH unless argued by 10-18, schelling-on-new-york); head-of-product checks each note before the status flip",
+      "owner": "chief-of-staff",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Hard date 10-19 18:00 (F-46). Sub-item of W-1483 (head-of-product owns closeout). Kept on chief-of-staff because it is a dispatch deadline: notes are written by cm-books (106), cm-lifehacks (30), cm-geography (schelling) per F-46 item 7. Conflict: W-1531 may save schelling-on-new-york; if it lands by 10-19, drop schelling from the list."
+      }
+    },
+    {
+      "id": "W-1531",
+      "title": "schelling-on-new-york c10b: Rothstein still unreachable (5 passes). Approve the swap to the opened replacement Swope, Hernandez & Cushing 2022, J Urban Health 99(6):959-983, PMC9342590; the builder then applies the c10b text/source fix in company/reviews/schelling-on-new-york/2026-10-16-fact-check.md and resets it to unverified for a fact-checker. Card text unchanged. Last claim hiding the lesson.",
+      "owner": "cm-geography",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1532",
+      "title": "Wave J physics one-line fixes from fact-check lane B (2026-10-16): clap-at-the-cliff recall question add 'about' (about 1,500 m each second); scale-on-a-slope alt string at 0 deg 'Flat ground. The person's whole weight presses straight down into the scale.'; two-batteries-side-by-side series alt 'The bulb glows brighter, taking four times the power;'. Exact text in company/reviews/<slug>/2026-10-16-fact-check-laneB.md. Reset each claim to unverified after the fix.",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Exact text in company/reviews/<slug>/2026-10-16-fact-check-laneB.md; one-line fixes that block three Wave J physics launches. Partial overlap with W-1491 (cm-physics fix round, same three texts plus c4 and citations): W-1532 carries the three text fixes; W-1491 keeps c4 and the citation swap. Lane B is finished, not in flight."
+      }
+    },
+    {
+      "id": "W-1533",
+      "title": "FC lane A fixes (exact text in each claim note + company/reviews/<slug>/2026-10-16-fact-check-lane-a.md): sock-pairing-by-pattern c1 c3 c4 recall seen (state one partner per sock, draw sizes; new recall 12/6); cue-needs-a-boundary seen (drop Match row when candidates declared); two-batteries-side-by-side alt1 ('glows brighter, at four times the power'); scale-on-a-slope c4 (add perfect-grip idealisation) and alt1 (flat-ground sentence); source-field updates for hailstone c4, drying-room c6, schelling c10b, literacy-split-france c4",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1534",
+      "title": "FC lane A: 8 held claims need a reword or a ruling (W-847): tariff hedge c6 on lh-duty-cycle-energy, lh-fixed-energy-charge, lh-same-energy-new-tariff, lh-standby-days-add-up -> 'These prices and ratings are illustrative: use your own bill and your appliance's label.'; lh-scale-recipe-portions c5; mail-exact-phrase and mail-minus-noise recall (fixture-only wording); wet-knit-hang-stretch c1. Proposed text in each claim note",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1535",
+      "title": "Rule on 6 claims where two fact-check lanes disagreed (2026-10-16): schelling c10b, literacy-split-france c4, schooling-and-crime-1830s c1 (lane A verified on PMC sources, lane B unverified); clap-at-the-cliff recall (A verified 'about 1500', B disputed 'exactly 1500'); scale-on-a-slope alt1 and two-batteries alt1 (both disputed, notes differ). Merge kept the more cautious status; records company/reviews/<slug>/2026-10-16-fact-check-lane-a.md and -laneB.md",
+      "owner": "evaluation-steward",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1536",
+      "title": "Check cm-geography's retirement note company/reviews/schelling-on-new-york/retirement.md (F-46 item 7) by 10-19 18:00; then status flip and retired-lessons row on 10-20. The note corrects the stage figure: built v4.1 is 66 by cm-geography's source count (ruled 38), not 83 (v1 brief bound).",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1537",
+      "title": "Comeback precondition for schelling-on-new-york (not urgent, after closeout): do cultural-review-mandated disclosure lines on a sensitive-topic stage (R1, R6, S4 left-out line) count like declared stimulus under company/decisions/2026-10-16-stage-word-budget-counting.md (exempt from 25, inside 50, declared word for word by the CM)? Cut plan reaching 47 total in company/reviews/schelling-on-new-york/retirement.md.",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1539",
+      "title": "Build draw-a-table-knot (Knots batch 1 brief 1, company/domains/briefs/math.discrete.md; concept knot-table-names; single card). Start only after W-407 closes (principal-engineer re-read), W-1521 readiness is approved and C3 (W-408) is met. Untagged, catalog line: do NOT tag [project:rnd-knots] (gate refuses it while proposed). Table-knot pictures only (EDD-011 Part 1).",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored (W-1520): founder wants knot lessons shipped; brief build-ready and outside import block (a). Proposed P2; left in backlog because the PM may not approve its own item: chief-of-staff-ceo-office approves (W-1538)."
+      }
+    },
+    {
+      "id": "W-1540",
+      "title": "Build tricolour-check (Knots batch 1 brief 2, company/domains/briefs/math.discrete.md; concept knot-tricolouring; two chips). Start only after W-407 closes, W-1521 is approved and C3 (W-408) is met. Untagged, catalog line: do NOT tag [project:rnd-knots]. Block (b) lifts in this lesson's design review (3_1/4_1 bigons).",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored (W-1520): founder wants knot lessons shipped; brief build-ready and outside import block (a). Proposed P2; left in backlog because the PM may not approve its own item: chief-of-staff-ceo-office approves (W-1538)."
+      }
+    },
+    {
+      "id": "W-1541",
+      "title": "Build unknot-game (Knots batch 1 brief 3, company/domains/briefs/math.discrete.md; concept knot-crossing-change; two chips). Start only after W-407 closes, W-1521 is approved and C3 (W-408) is met. Untagged, catalog line: do NOT tag [project:rnd-knots]. Block (b) lifts in this lesson's design review; simplify() for status only, nothing it returns is drawn.",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored (W-1520): founder wants knot lessons shipped; brief build-ready and outside import block (a). Proposed P2; left in backlog because the PM may not approve its own item: chief-of-staff-ceo-office approves (W-1538)."
+      }
+    },
+    {
+      "id": "W-1542",
+      "title": "Build left-or-right (Knots batch 1 brief 4, company/domains/briefs/math.discrete.md; concept knot-chirality; before/after toggle). Start only after W-407 closes, W-1521 is approved and C3 (W-408) is met. Untagged, catalog line: do NOT tag [project:rnd-knots]. Block (b) in its design review; mirror/turnOver pictures are unreviewed, so design-lead contact sheet first (brief 4).",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "math",
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored (W-1520): founder wants knot lessons shipped; brief build-ready and outside import block (a). Proposed P2; left in backlog because the PM may not approve its own item: chief-of-staff-ceo-office approves (W-1538)."
+      }
+    },
+    {
+      "id": "W-1543",
+      "title": "File a founder-inbox decision for rnd-knots tranche 2 (0.6M, EDD-011 Part 2: exported extraCrossings, unlocks knot briefs 5, 7, 8) with budget: rnd-knots, for the next Project Review with the founder in the chair (kit change: not delegable under PR2 0a). Budget line: company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md; register company/ops/projects.json rnd-knots (proposed).",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored (W-1520): the founder-inbox filing for rnd-knots tranche 2. Proposed P2; chief-of-staff-ceo-office approves (W-1538)."
+      }
+    },
+    {
+      "id": "W-1538",
+      "title": "Approve or reject the portfolio-manager-authored items W-1539..W-1543 (knot builds 1-4, rnd-knots founder-inbox filing); the PM may not approve its own items (company/ops/triage.md). Record: company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PM-authored routing item: the independence rule (company/ops/triage.md) sends the PM's own items to chief-of-staff-ceo-office."
+      }
+    },
+    {
+      "id": "W-1544",
+      "title": "W-1535 ruling: third independent check on schelling-on-new-york c10b by an instance that is neither lane A nor lane B; after W-1531 + builder fix, or on current text answering lane B's two points ('largely through home equity' not on card; 'widening'). See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1545",
+      "title": "W-1535 ruling: once W-1532/W-1533 land, re-verify clap-at-the-cliff recall, scale-on-a-slope alt1, two-batteries-side-by-side alt1 with an instance other than wj64, lane A and lane B (all drafted the wording). See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1546",
+      "title": "W-1535 ruling: behavioral HELD lines are withdrawn as cut (same-week c6, saved-or-die c5, sure-million c6, zero-loses c6). Any commit that sets HELD_LINE = true must reset that claim to unverified in the same commit, or delete the dead branch; next walkthrough of same-week confirms c6 absent. See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "cm-behavioral",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1547",
+      "title": "Adopt company/qa/fact-check-lanes.md: every parallel fact-check lane is an explicit, disjoint slug list stated in its brief; on any overlap, quote each lane's note in full (never truncated) and mark for a steward ruling. Merge 82e560a0 truncated lane A notes (fixed by W-1535).",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1548",
+      "title": "W-1535 ruling (non-blocking source hygiene): schooling-and-crime-1830s c1 and literacy-split-france c4 are verified on PMC5776539/PMC5772286 (FC lane A) but their source fields still say no source was opened for 'young men'; add both citations, leave status as is. See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1549",
+      "title": "Knots: add a margin/size ratio row ({ size: 360, margin: 28.8 }) to the kit and lab block (a) scope test, so EDD-011 Part 1 condition (ii) has a test behind it (tier 1). Record: company/engineering/reviews/2026-10-16-knots-w407-reread.md",
+      "owner": "rnd-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1550",
+      "title": "Knots brief 4 (left-or-right): a drawn turnOver(pd) stays inside import block (a) (EDD-011 Part 1 ruling); and a CSS rotateY flip that shows the SVG back face draws the MIRROR knot, not the turned-over one: use backface-visibility hidden and end on the original drawing. Also brief U1 padding must use the SVG viewBox, not draw size/margin. Record: company/engineering/reviews/2026-10-16-knots-w407-reread.md F2, F4",
+      "owner": "cm-math-discrete",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1551",
       "title": "History maps 100: rule on the practice-set scope, concept placement and case mix; pending sensitive stage-A review. See company/decisions/2026-10-16-founder-history-maps-100-pr.md",
       "owner": "cm-history",
       "state": "review",
@@ -17745,7 +18180,7 @@
       "updated": "2026-10-16"
     },
     {
-      "id": "W-1518",
+      "id": "W-1552",
       "title": "History maps 100: route independent research and cultural stage-A reviews, then artifact-first fact-check and learner review; all 500 claims unverified. See company/reviews/history-maps-100/build.md",
       "owner": "evaluation-steward",
       "state": "backlog",
@@ -17754,7 +18189,7 @@
       "links": []
     },
     {
-      "id": "W-1519",
+      "id": "W-1553",
       "title": "History maps 100: reconcile renewed founder content request with F-43 before admitting a production wave; no top-up recorded",
       "owner": "portfolio-manager",
       "state": "backlog",
@@ -17763,7 +18198,7 @@
       "links": []
     },
     {
-      "id": "W-1520",
+      "id": "W-1554",
       "title": "Existing verification blocker on Git 2.51.1: W-1337 C2 dispatch guard fixture expects no stash, receives autostash; reproduces running unchanged guards.test.mjs alone. History maps verification record has details.",
       "owner": "principal-engineer-ops",
       "state": "backlog",
