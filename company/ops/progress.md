@@ -8,6 +8,11 @@ who no longer exists: check what you rely on.
 **Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.
 **Believe:** fairly sure of the ruling (two busy-host runs, same shape); not sure of absolute phone numbers (no device, no idle host).
 **Next:** principal-engineer marks C4 met in the EDD-004 record (W-1590). demo-builder can use `.knot-tint` for unknot-game (W-1585) instead of a lesson-local rule. **Blocked:** nothing.
+## 2026-10-16 · fact-checker · W-1589: draw-a-table-knot c1-c8
+
+**Changed:** draw-a-table-knot meta.json claims only (7 verified, c5 disputed); new `company/reviews/draw-a-table-knot/2026-10-16-fact-check.md` and its scripts in `fc-2026-10-16/`; board W-1589 done, W-1591 (demo-builder) added.
+**Believe:** sure of the knot facts (own Jones bracket, Gauss words, picture geometry, all 11 switches agree with the kit). c5 disputed for the generic sentence "A switch makes a new knot." (false for a nugatory crossing; fix "Your switch made a new knot."). c7's general clause rests on the kit table and naming sources, not on Rolfsen's opened pictures (hosts blocked): medium-high.
+**Next:** demo-builder applies W-1591 (cm-math-discrete owns the script wording); a fact-checker who did not draft the fix re-verifies c5. **Blocked:** nothing.
 
 ## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
 
