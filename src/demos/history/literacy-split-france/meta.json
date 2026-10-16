@@ -1,0 +1,90 @@
+{
+  "slug": "literacy-split-france",
+  "title": "Where France could read in the 1830s",
+  "hook": "Literacy by French department in the 1830s: does one average describe the whole country?",
+  "domain": "history",
+  "concept": "guerry-literacy-map",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder-h23"
+  },
+  "learner": {
+    "knows": [
+      "France had regional differences"
+    ],
+    "doesNotKnow": [
+      "how sharp the 1830s literacy split was: north and east about twice the south, west and centre"
+    ]
+  },
+  "misconception": "A national average describes most of the country.",
+  "objective": "The learner can say that in Guerry's 1830s figures the north and east of France averaged about 55% of conscripts who could read and write against about 29% in the south, west and centre, so the 39% average across departments described neither half.",
+  "claims": [
+    {
+      "id": "history.literacy-split-france.c1",
+      "text": "Around the 1830s (Guerry 1833), the share of army conscripts who could read and write in each of France's 86 departments, and Guerry's region for each (north, east, south, west, centre; Corse has none).",
+      "support": "source",
+      "source": "history-data.mjs: guerry, Guerry.csv (HistData), columns dept, Region, Department, Literacy ('percent of military conscripts who can read and write', per the HistData doc). Copied verbatim into departments.json rows by gen.mjs (committed alongside); Demo.tsx reads them. Corse (dept 200) has an empty Region in the file, so it is in neither group but is in the mean of 86.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.literacy-split-france.c2",
+      "text": "The map draws today's department outlines standing in for those of the 1830s (Seine = today's 75, 92, 93, 94; Seine-et-Oise = 78, 91, 95; Haut-Rhin with 90; Corse = 2A, 2B), on a conic equal-area projection; 06, 73 and 74 have no value in Guerry's table and are hatched.",
+      "support": "convention",
+      "source": "history-data.mjs: frdep, france-departements-simplifiee.geojson (gregoiredavid/france-geojson, from IGN Admin Express per the README; Licence ouverte). The stand-in mapping is the brief's (history.md #23) and history-cycle2-check.mjs section 23 ('23 outlines': all 86 matched; no value 06, 73, 74). gen.mjs simplifies the outlines for drawing (shared-edge Douglas-Peucker, 0.025 degrees; total area 547.6 thousand km2 vs 547 before) and computes the region edges. Projection: geoConicEqualArea().parallels([44, 49]).rotate([-3, 0]) from d3-geo via @/kit/geo. Areas are not compared on the stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.literacy-split-france.c3",
+      "text": "Departments in Guerry's north and east averaged 55% of conscripts who could read and write; in the south, west and centre, 29%. The extremes were Meuse, 74%, and Corrèze, 12%; Seine (Paris) 71%. The average across the 86 departments was 39%.",
+      "support": "derivation",
+      "source": "history-cycle2-check.mjs section 23: N 54.1, E 56.4, S 31.9, W 27.6, C 25.8 (17 departments each); N+E 55.2, S+W+C 28.8; unweighted mean of 86 departments 39.26; Meuse 74, Corrèze 12, Seine 71. Demo.tsx computes the same from departments.json rows (Math.round of unweighted means of departments; the readout row and reveal show them rounded to whole percent).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A country's average literacy is 50%: half its regions are at 80%, half at 20%. What does the average hide?",
+    "options": [
+      "Nothing",
+      "Two very different halves",
+      "A counting error"
+    ],
+    "answer": 1,
+    "why": "No region is anywhere near 50%: the average sits between two very different halves and describes neither."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:guerry-literacy-map",
+    "also": [
+      "history:thematic-maps-guerry"
+    ],
+    "prerequisites": [
+      "geography:choropleth-area-bias"
+    ],
+    "level": "intro",
+    "strand": "maps-borders",
+    "references": [],
+    "tags": [
+      "Guerry",
+      "literacy",
+      "choropleth",
+      "France",
+      "averages"
+    ]
+  },
+  "format": "map-explorer",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
