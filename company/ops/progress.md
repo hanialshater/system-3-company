@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1494 phase A simulator + W-1504 trace (run lme-w1494-sim-1016, branch perso-sim-w1494)
+
+**Changed:** new `company/personalization/model/sim/` (offline, no dependencies, nothing in src/ imports it): `catalog.mjs` (230 pilot lessons, dims from meta.json + curriculum, default order = feed interleave on the pilot, **misconceptionStrength a placeholder hash**), `composer.ts` (`composeExplained()` / `gamCompose: ComposeFn`, port of edp compose() with all §2.5 constraints; draft rules, default, random baselines; ablation by term), `simulate.mjs` (episodes + per-step trace schema `personalization-sim-trace-v0`), `learner.ts` + `score.ts` (**PROVISIONAL**, builder placeholders behind `SimLearner` / `scoreEpisode()`, to be replaced or owned by personalization-eval per company/ceo-office/2026-10-16-personalization-org-proposal.md §2), `run.mjs`, `README.md`. Outputs to `sim/out/` (gitignored). Run: `node company/personalization/model/sim/run.mjs` (~3 min). Board: W-1494, W-1504 → review; added W-1505 (contract findings, personalization-lead), W-1506 (replace the provisional learner/scorer).
+
+**Believe:** the composer follows model.ts's contract and is replay-deterministic (high: replay test identical, strict tsc clean on the .ts files). The comparison is **UNSCORED** (no W-1496 criterion) and comes from a builder-made learner, so it is a smoke test, not evidence (certain). Fragility (medium): policy gaps are ~0.01-0.02 recall against an episode sd of ~0.13, and the GAM's edge over default order disappears (reverses) when the learner's prerequisite penalty is set to 0, so any edge is an assumption of the simulated learner, not a property of the composer. The overlap term never affects the served card (W-1505).
+
+**Next:** W-1496 criterion (analytics-steward) before any scored run; W-1506 learner/scorer to personalization-eval; W-1505 answers (personalization-lead); W-1503 HQ page can render `sim/out/traces/*.json` now.
+
+**Blocked:** HQ page import location (W-1498, principal-engineer / personalization org); real misconceptionStrength ratings (CMs); W-1497 parameter ranges for the learner.
+
 ## 2026-10-16 · personalization-lead (Mateo) · W-1493 phase A model in code (run pl-w1493-curves-1016)
 
 **Changed:** new `company/personalization/model/`: `model.ts` (7 curve signals each with inputs and privacy status pending W-1495; needs repair/build/breadth/stretch with 7 shape terms and a cold-start dampener, each with a written reason marked "guess"; `pwl`, `detect`, `explainNeeds`, `fingerprintFrom`; composer weights, relational constants, hard constraints, engagement as a floor only; objective; 7 policies; `checkModel`; `inspect`/`curveViews` for the founder's HQ inspect ask), `personas.ts` (6 simulation-only personas with names, descriptions, fingerprint means, latent ground truth), `self-check.mjs`, `README.md` (change rule, interface). Change log: `company/decisions/2026-10-16-personalization-model-v0.md` (self-check fails if a version has no line). Curves in code, not JSON, per founder brief §6. No `src/` change, no protected path; self-check asserts nothing in `src/` imports the folder. W-1493 done.
