@@ -26,49 +26,68 @@
       "text": "Guerry's table for 86 French departments: Literacy (percent of military conscripts who can read and write), and population per crime against property and against persons (Compte général, 1825-1830). Stage: every bar and dot; title '1830s' (Guerry's 1833 table of 1825-1830 records); hook: 'young men could read', 'France, 1825-30'.",
       "support": "source",
       "source": "history-data.mjs: guerry, HistData Guerry.csv (sha256 13f9ff6ad1413d9e75a26374147a5a840a432adc418d5faa1d4e40df763c8433), columns Literacy, Crime_prop, Crime_pers; doc HistData/Guerry.html. The 86 rows are copied into Demo.tsx (RAW) unchanged, in file order. Brief 24 claim 1.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): UNVERIFIED, HELD on one phrase. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets (SHA-256 13f9ff6a...8433 = the history-data.mjs pin); doc HistData/Guerry.html and CRAN Guerry_1.8.5.tar.gz man/Guerry.Rd opened. Own script (session scratchpad fc57/scripts/guerry.mjs). Verified: 86 rows; RAW in Demo.tsx equals the file's [Literacy, Crime_prop, Crime_pers] in 86 of 86 rows, file order. Doc: Literacy = 'Percent of military conscripts who can read and write'; Crime_pers/Crime_prop = 'Population per Crime against persons/property. Source: A2 (Compte general, 1825-1830)'; hook 'France, 1825-30' matches. Not supported by any opened source: hook 'Where more young men could read'. The opened docs say 'military conscripts' only (Guerry.Rd, Angeville.Rd, vignettes); that they were young men (the 1818 law's yearly draw of 20-year-old men) comes only from search snippets: ac-orleans-tours.fr, halshs, archives.somme.fr, archives.isere.fr, globalsecurity.org, herodote.net all refused by the proxy. Fix (builder), either: (a) hook 'Where more conscripts could read, did fewer crimes reach court?'; or (b) a session that can open a source on Restoration conscription (e.g. halshs-00384617) verifies 'young men' as written. Advisory, non-blocking: title '1830s' vs records of 1825-1830 (doc: 'around 1830'); 'Reading and the courts, around 1830' or '1825-30' would match the hook."
     },
     {
       "id": "history.schooling-and-crime-1830s.c2",
       "text": "Quarters of 21 departments by literacy: the least literate quarter averages 19% literate, the most literate 63% (stage panel heads).",
       "support": "derivation",
       "source": "Stable sort of the 86 rows by Literacy in file order; lowest 21 and highest 21 (floor(86/4)). Unweighted means 18.6% and 63.4%, shown rounded. Ties: literacy 25% sits on the lower boundary, so which 25% departments fall in the lowest quarter is decided by file order, exactly as history-cycle2-check.mjs section 24 '24 quarters' does. Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets (SHA-256 13f9ff6a...8433 = the history-data.mjs pin); doc HistData/Guerry.html and CRAN Guerry_1.8.5.tar.gz man/Guerry.Rd opened. Own script (session scratchpad fc57/scripts/guerry.mjs). Stable sort by Literacy in file order, floor(86/4) = 21 per quarter: lowest-quarter mean 18.57% (shown 19%), highest 63.38% (shown 63%). Tie: three departments at 25%, 20 below 25%, so one 25% department enters the lowest quarter by file order, as the claim says; no tie at the top boundary (53 vs 52). Stage heads '19% literate', '63% literate' match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "history.schooling-and-crime-1830s.c3",
       "text": "The most literate quarter of departments recorded 18.9 property crimes per 100,000 people, against 11.3 in the least literate: 1.7 times as many (reveal; stage bars and the '×1.7' label; question options 'about 1.7 times').",
       "support": "derivation",
       "source": "Crimes per 100,000 = 100,000 / Crime_prop per department; unweighted mean of each quarter's 21 departments: 18.9 and 11.3; ratio of the unrounded means 1.67, shown 1.7. history-cycle2-check.mjs section 24 '24 property crime'. Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED, with an advisory. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets (SHA-256 13f9ff6a...8433 = the history-data.mjs pin); doc HistData/Guerry.html and CRAN Guerry_1.8.5.tar.gz man/Guerry.Rd opened. Own script (session scratchpad fc57/scripts/guerry.mjs). 100,000 / Crime_prop, unweighted quarter means: least literate 11.293 (shown 11.3), most literate 18.925 (18.9); ratio of unrounded means 1.676 (shown x1.7). Rendered: question options 'about 1.7 times as high', bars 11.3 / 18.9, label 'x1.7', reveal sentence; all match. Tie sensitivity (my addition): with each of the three possible 25% departments in the lowest quarter, its mean is 11.11 to 11.57 and the ratio 1.635 to 1.703, so 'about 1.7' holds for the file-order rule but one alternative tie-break would read 1.6. Advisory (non-blocking, cm-history): Guerry's columns are 'population per crime' (doc); a search snippet (not opened; datavis.ca blocked) says Guerry counted persons accused, which would make 'recorded crimes' 'recorded accusations'. Not a verdict basis.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "history.schooling-and-crime-1830s.c4",
       "text": "Crimes against persons were the same, 5.9 per 100,000 in both quarters (reveal; stage 'persons' bars).",
       "support": "derivation",
       "source": "100,000 / Crime_pers per department, unweighted quarter means, both 5.9 at one decimal. history-cycle2-check.mjs section 24 '24 crimes against persons'. Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED, with an advisory. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets (SHA-256 13f9ff6a...8433 = the history-data.mjs pin); doc HistData/Guerry.html and CRAN Guerry_1.8.5.tar.gz man/Guerry.Rd opened. Own script (session scratchpad fc57/scripts/guerry.mjs). 100,000 / Crime_pers, unweighted quarter means: least literate 5.886, most literate 5.863; both 5.9 at one decimal, as rendered (stage bars, reveal 'the same, 5.9 per 100,000 in both'). Advisory (non-blocking, cm-history): 'the same' rests on rounding (0.4% apart) and on the tie-break: with another 25% department in the lowest quarter, its mean is up to 5.99 (shown 6.0). 'About the same, 5.9 per 100,000' would hold under every tie-break.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "history.schooling-and-crime-1830s.c5",
       "text": "Across all 86 departments, literacy and property crimes per 100,000 correlate at r = 0.37 (stage, 'All 86 departments' scatter).",
       "support": "derivation",
       "source": "Pearson correlation of Literacy with 100,000 / Crime_prop over the 86 rows, 0.37 at two decimals (crimes against persons r = 0.03, not shown). history-cycle2-check.mjs section 24 '24 all departments'. Computed in Demo.tsx.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets (SHA-256 13f9ff6a...8433 = the history-data.mjs pin); doc HistData/Guerry.html and CRAN Guerry_1.8.5.tar.gz man/Guerry.Rd opened. Own script (session scratchpad fc57/scripts/guerry.mjs). Pearson r of Literacy with 100,000 / Crime_prop over 86 rows = 0.3694 (shown 'r = 0.37'); with persons 0.0320 (not shown, matches the source note). Scatter axis 0-80: the file's maximum is 73.1, so every dot is inside; quarter labels 11.3 and 18.9 match c3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "history.schooling-and-crime-1830s.c6",
       "text": "In this record, the more literate departments did not have fewer cases brought to court (reveal).",
       "support": "derivation",
       "source": "Follows from c3 and c4: property cases higher, persons cases equal, in the most literate quarter. Wording by cultural-reviewer, company/reviews/schooling-and-crime-1830s/2026-10-16-culture-en-brief.md change 2, applied by cm-history.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Reveal: 'In this record, the more literate departments did not have fewer cases brought to court.' Follows from c3 (property 18.9 vs 11.3, higher) and c4 (persons 5.9 vs 5.9, not lower), both re-derived. 'Cases brought to court': the doc gives the source as the 'Compte general, 1825-1830', and CRAN Guerry_1.8.5 man/Guerry-package.Rd (opened) cites Guerry's work as 'd'apres les comptes de l'administration de la justice criminelle ... en France', i.e. criminal-justice accounts, not police reports; I read that as supporting 'cases brought to court'. Provenance: wording by cultural-reviewer, applied by cm-history; not written by the fact-checker.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "history.schooling-and-crime-1830s.c7",
       "text": "Where it stops: these are cases brought to court in 1825 to 1830, which depend on policing as well as crime; they compare departments, not people, and two numbers moving together say nothing, alone, about what caused what (reveal).",
       "support": "source",
       "source": "'Cases brought to court', '1825 to 1830': history-data.mjs guerry 'what' (Crime_pers and Crime_prop = population per crime, Compte général 1825-1830) and the HistData Guerry doc. 'Depend on policing as well as crime': a general limit of court records (wording by cultural-reviewer, culture-en-brief change 1); the fact-checker decides whether it needs a source. 'Compare departments, not people': the table has one row per department. The last clause is a reasoning limit, not a fact about the record.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 58 (fact-checker, 2026-10-16, SO-10-2 [project:history], shared review server bc0edc0): VERIFIED. Read the rendered lesson first (npm run walkthrough --url http://localhost:3591, BUILT_FROM bc0edc0, transcript cut at the trust-sheet appendix per R1). Reveal: 'Where it stops: these are cases brought to court in 1825 to 1830, which depend on policing as well as crime; they compare departments, not people, and two numbers moving together say nothing, alone, about what caused what.' '1825 to 1830' and the court source: the doc ('Compte general, 1825-1830') and Guerry-package.Rd (criminal-justice accounts), as in c6. 'Depend on policing as well as crime': the claim asks the fact-checker to decide whether it needs a source. Ruling: no. It states a limit that follows from what the record is (a case reaches the count only once an offence is detected and prosecuted). It asserts no size or direction for that effect, so it is a reasoning limit, like the last clause. 'Compare departments, not people': the file has one row per department (86 rows). Not written by the fact-checker.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
