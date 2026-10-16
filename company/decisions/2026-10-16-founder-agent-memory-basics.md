@@ -11,6 +11,10 @@ owner: founder · date: 2026-10-16 · class: org mechanism (all agents) · route
 3. **Offboarding:** each run ends by appending a dated entry (≤ 12 lines) to its memory file: what it did, what it learned, what the next holder should know, what's open. Then the memory is compacted when it passes about 150 lines, keeping lessons and dropping the narrative.
 4. The memory file is the role's only own writable file. It is not a single-writer file, and it never holds claims or verdicts; those stay in records.
 
+## Compaction threshold (founder, 2026-10-16: "Memory have a threshold for compaction for all agents")
+5. One threshold for every role, set in one place (tools/org, not per role file): when a role's memory passes **150 lines or 12 KB**, whichever comes first, it is compacted before the next run reads it. Compaction keeps the dated lessons learned, standing context, mistakes not to repeat and open threads, each still citing a file; it drops narrative and closed items into a dated archive file next to it (nothing is deleted). The target after compaction is ≤ 80 lines.
+6. Enforced by the tool, not by goodwill: the memory tool compacts (or refuses to append and says "compact first") at the threshold, and `npm run check` warns on any memory file over it.
+
 ## Objections
 | Objection | Raised by | Status |
 |---|---|---|
