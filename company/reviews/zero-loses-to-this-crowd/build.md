@@ -80,3 +80,14 @@ builder: demo-builder · dispatch `company/ops/dispatch-requests/2026-10-16-r3-b
 ### For whoever looks next
 - The "Why trust this?" panel serialises every claim, so c6's text (marked "HELD, CUT") is in the page data and readable there, as it was in v1. It is not in the reveal. If the fact-checker wants held claims kept out of the provenance panel, that is a kit question (platform-engineer), not a lesson change.
 - The claim lease (`node tools/claim.mjs release zero-loses-to-this-crowd --done`) was not closed in this run: the permission system denied the write to the main checkout's company/ops/claims/. Someone with that permission closes it.
+
+## Revision build (r4, 2026-10-16, r4 B2, brief 3 "Decisions (r4)", W-1306)
+What changed: the predict and the recall, word for word from `node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs` (unchanged, all checks pass).
+- Predict: "0 is this game's equilibrium guess. Against this simulated crowd, which guess lands closest to the target?" options "0" / "About 35" / "About 23", answer index 2. Seen rendered so on the server (scripted check).
+- Recall (meta.json): "A simulated crowd of 100 averages 60. The target is half of everyone's average, yours included. 0 is the equilibrium guess. Which guess lands closest?" options "0" / "About 60" / "About 30", answer index 2. `why` unchanged.
+- `"version": 2`. Stage untouched: still the 24-word rule line (no stage string edited). Reveal untouched.
+- Claims reset to `unverified` because their quoted predict or recall text changed: c1 (predict quote), c2 (predict answer and options), c5 ("equilibrium" now in the question, not option A), c10 (recall). Old text and the prior FC note kept in each note. Not re-verified by me. c6 stays `unverified`, cut.
+- Measured reveal with the "Not quite" verdict (predict "0", guess 100, the longest branch): 80 words (74 + 6), 390 x 844.
+- Build: `NEXT_DIST_DIR=.next-beh2 NODE_OPTIONS=--max-old-space-size=3072 npx next build` → exit 0 (load 5.7 before; the tsconfig.json edit next made was reverted; dist dir deleted after QA). `npx tsc --noEmit` → no errors. `npm run check` → passed (969 lessons, 0 errors; 6 warnings, none on these three lessons).
+- QA: `QA_BASE_URL=http://localhost:4142 QA_ONLY=zero-loses-to-this-crowd,sure-million-or-long-shot,same-week-a-year-apart npx playwright test --workers=2` → 14 passed, 2 failed, both `feed.spec.ts` "subject chips filter the feed" (the known QA_ONLY artifact noted in earlier build notes); `tests/qa/feed.spec.ts` unfiltered → 10 passed.
+- `node tools/reveal-fit.mjs --url http://localhost:4142 zero-loses-to-this-crowd sure-million-or-long-shot same-week-a-year-apart --jobs 2` → fit 3, pass 3, phoneFit 3, namedHidden 0 (clean stamp, head 4e78fdf + this diff).

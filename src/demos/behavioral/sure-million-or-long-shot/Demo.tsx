@@ -132,7 +132,7 @@ function revealParas(key: string): [string, string] {
       key === "AA"
         ? "a cautious one, for which $1M is worth more than 10/11 of $5M."
         : "a bolder one, for which $5M is worth more than 1.1 times $1M.";
-    verdict = `You answered it the same way both times, so one utility function fits your two choices: ${fit} The sure $1M, then the 10% chance of $5M, would fit none: that is the certainty effect.`;
+    verdict = `You answered it the same way both times, so one utility function fits both: ${fit} The sure $1M, then the 10% chance, would fit none: the certainty effect.`;
   }
   return [`${CHOSE[key]} ${SHARED}`, verdict];
 }
