@@ -36,6 +36,10 @@ The next move is chosen from the evidence. It is not fixed in advance. Typical m
 
 ## 3. Dispatch
 
+**Founder rule (2026-10-16, company/decisions/2026-10-16-founder-org-and-dispatch-rule.md):**
+- Never create a new role, agent, org, floor or room. Send it to Leonie (chief-of-staff-ceo-office), who designs and routes it; the founder approves every one. Never run a missing role as general-purpose.
+- Before dispatching in a lane, ask that lane's manager (POC map in the record) what to run, by whom, in what order. Their answer is the brief's source. Oversight is through managers, not specialists.
+
 Use the Agent tool with `subagent_type: <role>`. A good brief:
 
 - names the task, the input files and the output files, and the definition of done;
