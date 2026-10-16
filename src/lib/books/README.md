@@ -57,3 +57,10 @@ Run focused checks without a server/build:
 node --import ./tests/lifehacks/register.mjs --test tests/books/models.test.mjs
 ./node_modules/.bin/tsc --noEmit --incremental false
 ```
+
+Accessibility (B1–B4, company/engineering/reviews/2026-10-16-books-a11y-b1-b4-change.md):
+the pressed case stays focusable (`aria-pressed`, no-op on repeat press) instead of
+`disabled`. `describeScene` names the picture by restating only what it draws (payload
+labels, unit, inputs and `calculateModel` outputs); it must never add words that state
+a fact the lesson's claims do not already hold. `announceCase` feeds a visually hidden
+polite live region ("Case B: 45 work minutes"); the visible Seen row is not live.
