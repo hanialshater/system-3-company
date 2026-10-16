@@ -76,8 +76,12 @@ test('exactly batch D and the listed r11 waves are on engine 2; every other less
   assert.equal(resource.filter(s => s.engine === 2).length, 0, 'Resource v2 is not built yet');
 });
 
-test('v2 specs have the section 8 required fields and no option repeats a button label (R7)', () => {
-  for (const s of home.filter(s => s.engine === 2)) assert.deepEqual(homeV2Problems(s), [], s.slug);
+test('v2 specs have the section 8 required fields, the answer is one of the options, and no option repeats a button label (R7)', () => {
+  for (const s of home.filter(s => s.engine === 2)) {
+    assert.deepEqual(homeV2Problems(s), [], s.slug);
+    // W-1247 (PE-ops W3 condition 1): the Home twin of the Study check below. Two-option lines arrived in W3.
+    assert.ok(Number.isInteger(s.answer) && s.answer >= 0 && s.answer < s.options.length, `${s.slug}: answer ${s.answer} is not one of its ${s.options?.length} options`);
+  }
   for (const s of study.filter(s => s.engine === 2)) {
     assert.deepEqual(studyV2Problems(s), [], s.slug);
     assert.ok(STUDY_V2_FAMILIES.includes(s.family), s.slug);
