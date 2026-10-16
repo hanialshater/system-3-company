@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "High Output Management",
+    "author": "Andrew S. Grove",
+    "year": 1983,
+    "work": "grove-leverage-1983"
+  },
+  "family": "network",
+  "predict": {
+    "question": "In B, two new people per trainer, three rounds, capped at 12 people including the original. What is B’s toy result?",
+    "options": [
+      "8",
+      "12",
+      "3",
+      "7"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "One round",
+      "values": [
+        12,
+        2,
+        1
+      ]
+    },
+    {
+      "label": "Three rounds",
+      "values": [
+        12,
+        2,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "Rounds"
+  ],
+  "unit": "people",
+  "bookIdea": "High Output Management treats training as a managerial activity with leverage beyond the manager’s own direct work.",
+  "modelBoundary": "A reaches {A} people; B reaches {B}. Newly trained people each teach two more, so new layers add 2, 4, then 5 before the 12-person cap. A collision-free teaching tree is stipulated; reach is not learning or workplace performance.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

@@ -1,0 +1,134 @@
+{
+  "slug": "bk-strategy-credible-commitment",
+  "title": "The other player’s mix",
+  "hook": "A toy rival changes its action mix. What happens to the same response’s expected payoff?",
+  "domain": "books",
+  "concept": "book-strategy-credible-commitment",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Recompute a fixed response under a changed opponent mix while holding its conditional payoffs fixed."
+    ]
+  },
+  "misconception": "A response’s payoff can be ranked without specifying what the other player does.",
+  "objective": "Recompute a fixed response under a changed opponent mix while holding its conditional payoffs fixed.",
+  "claims": [
+    {
+      "id": "books.bk-strategy-credible-commitment.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Art of Strategy, by Avinash K. Dixit and Barry J. Nalebuff, candidate publication year 2008.",
+      "support": "source",
+      "source": "Avinash K. Dixit and Barry J. Nalebuff, The Art of Strategy (2008); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-strategy-credible-commitment.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Art of Strategy analyzes choices whose payoffs depend on other people’s choices.",
+      "support": "source",
+      "source": "Avinash K. Dixit and Barry J. Nalebuff, The Art of Strategy (2008); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-strategy-credible-commitment.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [50, 8, -2] yield 3; B inputs [80, 8, -2] yield 6. Prediction correct option 6. A pays {A}; B pays {B}. The response itself is unchanged; the rival’s probability of choosing X rises from 50% to 80%. The rival mix is prescribed; no equilibrium, commitment or strategic adaptation is computed.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-strategy-credible-commitment.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy response pays 6 against X and −4 against Y; X occurs with probability 70%. Expected payoff? 0.7 × 6 + 0.3 × (−4) = 3; the same response could rank differently against another mix.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [70, 6, -4], output 3; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-strategy-credible-commitment.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy response pays 6 against X and −4 against Y; X occurs with probability 70%. Expected payoff?",
+    "options": [
+      "4.20",
+      "3.00",
+      "2.00",
+      "6.00"
+    ],
+    "answer": 1,
+    "why": "0.7 × 6 + 0.3 × (−4) = 3; the same response could rank differently against another mix."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-strategy-credible-commitment/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-strategy-credible-commitment/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-strategy-credible-commitment",
+    "also": [
+      "economics:mixed-strategy-equilibrium"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "strategy-credible-2008",
+        "note": "Avinash K. Dixit and Barry J. Nalebuff, The Art of Strategy, 2008 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "strategy-credible-commitment"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

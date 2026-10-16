@@ -1,0 +1,135 @@
+{
+  "slug": "bk-innovator-demand-crossing",
+  "title": "When is it enough?",
+  "hook": "A toy design improves 30% each round. When does it meet its requirement?",
+  "domain": "books",
+  "concept": "book-innovator-demand-crossing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Check a growing design against a fixed good-enough threshold at two horizons."
+    ]
+  },
+  "misconception": "A design below a customer requirement today will always remain irrelevant.",
+  "objective": "Check a growing design against a fixed good-enough threshold at two horizons.",
+  "claims": [
+    {
+      "id": "books.bk-innovator-demand-crossing.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Innovator's Dilemma, by Clayton M. Christensen, candidate publication year 1997.",
+      "support": "source",
+      "source": "Clayton M. Christensen, The Innovator's Dilemma (1997); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-innovator-demand-crossing.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Innovator’s Dilemma considers technologies whose performance eventually becomes sufficient for customers previously served differently.",
+      "support": "source",
+      "source": "Clayton M. Christensen, The Innovator's Dilemma (1997); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-innovator-demand-crossing.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "title"
+      ],
+      "text": "Original stipulated compound model: A inputs [5, 30, 2, 0] yield 8.45; B inputs [5, 30, 4, 0] yield 14.2805. Prediction correct option 14.28. Two rounds reach {A}, below requirement 12; four reach {B}, above it. The fixed 30% rate and requirement are invented, not technology forecasts. Hook premise: a toy design improves 30% each round. The shorter title and hook ask when it meets the stipulated requirement; no real technology forecast is made.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-innovator-demand-crossing.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy design starts at 4 and doubles each round. What capability does it have after two rounds? 4 × 2 × 2 = 16; compare that capability with any separately stated requirement.",
+      "support": "derivation",
+      "source": "Original transfer toy, compound, inputs [4, 100, 2, 0], output 16; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-innovator-demand-crossing.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy design starts at 4 and doubles each round. What capability does it have after two rounds?",
+    "options": [
+      "8.00",
+      "16.00",
+      "12.00",
+      "20.00"
+    ],
+    "answer": 1,
+    "why": "4 × 2 × 2 = 16; compare that capability with any separately stated requirement."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-innovator-demand-crossing/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-innovator-demand-crossing/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 2,
+  "curriculum": {
+    "primary": "books:book-innovator-demand-crossing",
+    "also": [
+      "books:habits-one-percent"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "christensen-innovators-dilemma-1997",
+        "note": "Clayton M. Christensen, The Innovator's Dilemma, 1997 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "compound",
+      "innovator-demand-crossing"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

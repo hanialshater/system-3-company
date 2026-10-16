@@ -1,0 +1,118 @@
+{
+  "slug": "bk-information-repeated-messages",
+  "title": "Redundancy has a capacity cost",
+  "hook": "Add protected bytes while keeping payload per frame fixed.",
+  "domain": "books",
+  "concept": "book-information-repeated-messages",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Separate explicit redundancy cost from its unmodeled reliability benefit."
+    ]
+  },
+  "misconception": "Extra protective symbols are free under a fixed communication budget.",
+  "objective": "Separate explicit redundancy cost from its unmodeled reliability benefit.",
+  "claims": [
+    {
+      "id": "books.bk-information-repeated-messages.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Redundancy trades transmission capacity for protection against communication errors.",
+      "status": "unverified",
+      "source": "{\"work\":\"information-repeated-2011\",\"edition\":2011,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-information-repeated-messages.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "James Gleick, The Information (2011)",
+      "status": "unverified",
+      "source": "{\"work\":\"information-repeated-2011\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-information-repeated-messages.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Less redundancy carries {A}; more carries {B}. Every frame spends more of its fixed budget on extra bytes, leaving fewer payload bytes.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"floor(budget/(work+overhead))*work\",\"inputs\":[[40,6,2],[40,6,4]],\"outputs\":[30,24]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-information-repeated-messages.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This shows capacity cost only. It supplies no error channel, decoder or evidence that these extra bytes correct errors.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Budget 30 symbols; each frame has 4 payload and 2 checks. How much payload fits?",
+    "options": [
+      "20",
+      "24",
+      "30"
+    ],
+    "answer": 0,
+    "why": "Five whole six-symbol frames carry 20 payload symbols."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-information-repeated-messages/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-information-repeated-messages/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-information-repeated-messages",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "information-repeated-2011",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "intervals"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

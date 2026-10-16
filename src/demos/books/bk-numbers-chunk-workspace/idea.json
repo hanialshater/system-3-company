@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "A Mind for Numbers",
+    "author": "Barbara Oakley",
+    "year": 2014,
+    "work": "numbers-chunk-2014"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "A 24-minute routine uses eight-minute work blocks, each preceded by four minutes setup. Complete-block work time?",
+    "options": [
+      "8 minutes",
+      "16 minutes",
+      "24 minutes"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Four-minute block",
+      "values": [
+        24,
+        4,
+        4
+      ]
+    },
+    {
+      "label": "Eight-minute block",
+      "values": [
+        24,
+        8,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Setup"
+  ],
+  "unit": "work min",
+  "bookIdea": "A Mind for Numbers describes building practiced chunks that can be used in larger tasks.",
+  "modelBoundary": "Small blocks yield {A}; larger blocks {B}. Larger chunks spread each fixed setup over more useful work.",
+  "doesItHoldUp": "Does it hold up? This is workflow arithmetic, not a measured working-memory capacity or learning curve."
+}

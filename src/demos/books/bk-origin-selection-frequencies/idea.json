@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Introduction to Probability",
+    "author": "Joseph K. Blitzstein and Jessica Hwang",
+    "year": 2014,
+    "work": "blitzstein-hwang-introduction-probability-2014"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "What is the mean of +8 half the time and 0 otherwise?",
+    "options": [
+      "2 points",
+      "4 points",
+      "8 points"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Variable payoff",
+      "values": [
+        50,
+        8,
+        0
+      ]
+    },
+    {
+      "label": "Certain payoff",
+      "values": [
+        100,
+        4,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Outcome A",
+    "Outcome B"
+  ],
+  "unit": "points",
+  "bookIdea": "Expected value summarizes a distribution without determining every outcome.",
+  "modelBoundary": "The two means are {A} and {B}. One case can give zero or eight; the other always gives four. Equal means discard this difference.",
+  "doesItHoldUp": "Does it hold up? The means are exact. This does not measure risk preference or recommend either option."
+}

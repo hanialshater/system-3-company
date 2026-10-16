@@ -1,0 +1,118 @@
+{
+  "slug": "bk-law-symmetry-shift",
+  "title": "The missing group changes the rate",
+  "hook": "Omit a low-rate group without changing any group’s own rate.",
+  "domain": "books",
+  "concept": "book-law-symmetry-shift",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Audit who was omitted before interpreting an aggregate improvement."
+    ]
+  },
+  "misconception": "A higher reported rate proves underlying outcomes improved.",
+  "objective": "Audit who was omitted before interpreting an aggregate improvement.",
+  "claims": [
+    {
+      "id": "books.bk-law-symmetry-shift.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Statistical conclusions depend on how data were selected and measured.",
+      "status": "unverified",
+      "source": "{\"work\":\"spiegelhalter-art-statistics-2019\",\"edition\":2019,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-law-symmetry-shift.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "David Spiegelhalter, The Art of Statistics (2019)",
+      "status": "unverified",
+      "source": "{\"work\":\"spiegelhalter-art-statistics-2019\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-law-symmetry-shift.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Both groups give {A}%; omitting group B gives {B}%. No unit’s stipulated rate improves; selection changes whose rates count.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"(nA*rA+nB*rB)/(nA+nB)\",\"inputs\":[[20,80,80,20],[20,80,0,20]],\"outputs\":[32,80]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-law-symmetry-shift.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This exact aggregation shows selection sensitivity. It does not diagnose missingness in a real dataset.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A report now includes only a high-rate subgroup. Does a higher average alone establish improvement?",
+    "options": [
+      "Yes",
+      "No",
+      "Only above 50%"
+    ],
+    "answer": 1,
+    "why": "Changed inclusion can raise an aggregate with every subgroup rate unchanged."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-law-symmetry-shift/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-law-symmetry-shift/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-law-symmetry-shift",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "spiegelhalter-art-statistics-2019",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "selection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

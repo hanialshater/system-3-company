@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Measure What Matters",
+    "author": "John Doerr",
+    "year": 2018,
+    "work": "okr-output-and-2018"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "B counts ten usable and ten unusable items. What is B’s toy result?",
+    "options": [
+      "50",
+      "100",
+      "20",
+      "10"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Quality work only",
+      "values": [
+        10,
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "Extra counted work",
+      "values": [
+        10,
+        100,
+        10,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Usable",
+    "Unusable"
+  ],
+  "unit": "%",
+  "bookIdea": "Measure What Matters pairs an objective with measurable results intended to express progress toward it.",
+  "modelBoundary": "A shows {A}%; B shows {B}%. The count doubles from ten to twenty, but usable outputs remain ten and their fraction halves. Usability is a stipulated binary score; no organizational incentive effect is inferred.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

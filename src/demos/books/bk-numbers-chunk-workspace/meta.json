@@ -1,0 +1,132 @@
+{
+  "slug": "bk-numbers-chunk-workspace",
+  "title": "What does a practiced chunk save?",
+  "hook": "Two toy routines pay a setup cost before each completed block of work.",
+  "domain": "books",
+  "concept": "book-numbers-chunk-workspace",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to explain setup amortization without equating a toy block with a measured cognitive chunk"
+    ]
+  },
+  "misconception": "Chunking must expand a fixed human memory capacity by the same factor as grouped toy work.",
+  "objective": "Explain setup amortization without equating a toy block with a measured cognitive chunk.",
+  "claims": [
+    {
+      "id": "books.bk-numbers-chunk-workspace.bibliography",
+      "text": "A Mind for Numbers; Barbara Oakley; 2014.",
+      "support": "source",
+      "source": "Candidate bibliographic record for numbers-chunk-2014; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-numbers-chunk-workspace.book",
+      "text": "A Mind for Numbers describes building practiced chunks that can be used in larger tasks.",
+      "support": "source",
+      "source": "A Mind for Numbers (2014), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-numbers-chunk-workspace.model",
+      "text": "Original stipulated toy: Fixed four-minute setup per chunk; every chunk is already executable; chunk acquisition has no time or learning model. Exact intervals inputs [{\"label\": \"Four-minute block\", \"values\": [24, 4, 4]}, {\"label\": \"Eight-minute block\", \"values\": [24, 8, 4]}]; second author arithmetic check A=12, B=16. Small blocks yield {A}; larger blocks {B}. Larger chunks spread each fixed setup over more useful work.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-numbers-chunk-workspace.world",
+      "text": "Does it hold up? This is workflow arithmetic, not a measured working-memory capacity or learning curve.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-numbers-chunk-workspace.recall",
+      "text": "{\"question\": \"Thirty minutes, ten-minute work chunks, five-minute setup each: how much completed work?\", \"options\": [\"10 minutes\", \"20 minutes\", \"30 minutes\"], \"answer\": 1, \"why\": \"floor(30/15)*10=20; grouping amortizes setup under this specified workflow.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Thirty minutes, ten-minute work chunks, five-minute setup each: how much completed work?",
+    "options": [
+      "10 minutes",
+      "20 minutes",
+      "30 minutes"
+    ],
+    "answer": 1,
+    "why": "floor(30/15)*10=20; grouping amortizes setup under this specified workflow."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-numbers-chunk-workspace/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-numbers-chunk-workspace/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-numbers-chunk-workspace",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "numbers-chunk-2014",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "practiced-chunks"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

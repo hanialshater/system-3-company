@@ -1,0 +1,134 @@
+{
+  "slug": "bk-elegant-team-slack",
+  "title": "The interruption reserve",
+  "hook": "A toy team spends reserve capacity on interruptions. How much remains after four rounds?",
+  "domain": "books",
+  "concept": "book-elegant-team-slack",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Compute reserve depletion from sustained imbalance and identify when the zero floor is reached."
+    ]
+  },
+  "misconception": "A small reserve is safe whenever the average team schedule appears full.",
+  "objective": "Compute reserve depletion from sustained imbalance and identify when the zero floor is reached.",
+  "claims": [
+    {
+      "id": "books.bk-elegant-team-slack.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is An Elegant Puzzle, by Will Larson, candidate publication year 2019.",
+      "support": "source",
+      "source": "Will Larson, An Elegant Puzzle (2019); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-elegant-team-slack.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "An Elegant Puzzle discusses engineering organizations through capacity, constraints and deliberate choices about operating them.",
+      "support": "source",
+      "source": "Will Larson, An Elegant Puzzle (2019); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-elegant-team-slack.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated feedback model: A inputs [4, 2, 3, 4] yield 0; B inputs [8, 2, 3, 4] yield 4. Prediction correct option 4. A ends with {A} reserve hours; B with {B}. Interruptions consume one more hour than is replenished each round, exhausting the smaller reserve. Reserve replenishment and interruption demand are invented; this is not a staffing or burnout model.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-elegant-team-slack.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy reserve starts at 7 hours, replenishes 1 and spends 3 each round for two rounds. Reserve left? The reserve loses two hours each round: 7 − 2 − 2 = 3.",
+      "support": "derivation",
+      "source": "Original transfer toy, feedback, inputs [7, 1, 3, 2], output 3; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-elegant-team-slack.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy reserve starts at 7 hours, replenishes 1 and spends 3 each round for two rounds. Reserve left?",
+    "options": [
+      "5.00",
+      "3.00",
+      "2.00",
+      "0.00"
+    ],
+    "answer": 1,
+    "why": "The reserve loses two hours each round: 7 − 2 − 2 = 3."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-elegant-team-slack/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-elegant-team-slack/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-elegant-team-slack",
+    "also": [
+      "lifehacks:plan-with-the-long-estimate"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "elegant-team-2019",
+        "note": "Will Larson, An Elegant Puzzle, 2019 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "feedback",
+      "elegant-team-slack"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

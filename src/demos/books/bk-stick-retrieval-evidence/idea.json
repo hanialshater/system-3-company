@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Make It Stick",
+    "author": "Peter C. Brown, Henry L. Roediger III and Mark A. McDaniel",
+    "year": 2014,
+    "work": "stick-retrieval-2014"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "A mock hidden-answer assessment assigns each of ten items a 50% success probability. Expected score?",
+    "options": [
+      "40%",
+      "50%",
+      "90%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Answer shown",
+      "values": [
+        10,
+        90,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "Answer hidden",
+      "values": [
+        10,
+        50,
+        0,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Scored items",
+    "Unused"
+  ],
+  "unit": "% correct",
+  "bookIdea": "Make It Stick argues retrieval practice can support durable learning.",
+  "modelBoundary": "Shown answers yield {A}%; hidden answers {B}%, because we assigned different item probabilities. Neither is a measured learning gain.",
+  "doesItHoldUp": "Does it hold up? Recognition support and unaided retrieval are different tests; durable benefits require research."
+}

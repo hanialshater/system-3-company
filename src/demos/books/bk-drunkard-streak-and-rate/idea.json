@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Drunkard's Walk",
+    "author": "Leonard Mlodinow",
+    "year": 2008,
+    "work": "drunkard-streak-and-2008"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Equal groups have expected rates 90% and 10%. What is their aggregate?",
+    "options": [
+      "10%",
+      "50%",
+      "90%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Different rates",
+      "values": [
+        50,
+        90,
+        50,
+        10
+      ]
+    },
+    {
+      "label": "Equal rates",
+      "values": [
+        50,
+        50,
+        50,
+        50
+      ]
+    }
+  ],
+  "labels": [
+    "Group A",
+    "Group B"
+  ],
+  "unit": "%",
+  "bookIdea": "Aggregate outcomes can conceal differences in how success is distributed.",
+  "modelBoundary": "Both mixtures give {A}% and {B}%. One separates high and low expected rates; the other gives both groups the aggregate rate.",
+  "doesItHoldUp": "Does it hold up? Rates are stipulated, not observed streaks. Equal averages establish neither equal randomness nor equal skill or individual outcomes."
+}

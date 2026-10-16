@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Mistakes Were Made (But Not by Me)",
+    "author": "Carol Tavris and Elliot Aronson",
+    "year": 2007,
+    "work": "mistakes-selective-2007"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Two favorable and eight contrary records exist. Keeping only favorable records yields what favorable share in the retained set?",
+    "options": [
+      "20%",
+      "80%",
+      "100%"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "All records",
+      "values": [
+        2,
+        100,
+        8,
+        0
+      ]
+    },
+    {
+      "label": "Favorable only",
+      "values": [
+        2,
+        100,
+        0,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Favorable",
+    "Contrary"
+  ],
+  "unit": "% favorable",
+  "bookIdea": "Mistakes Were Made discusses self-justification and selective treatment of evidence.",
+  "modelBoundary": "All records are {A}% favorable; the filtered set {B}%. Discarding contrary records changes the denominator, not the original evidence.",
+  "doesItHoldUp": "Does it hold up? This programmed filter does not diagnose dissonance or self-justification in a person."
+}

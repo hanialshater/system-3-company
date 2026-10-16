@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Grit",
+    "author": "Angela Duckworth",
+    "year": 2016,
+    "work": "grit-product-2016"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "Starting with one progress unit, add one unit per round without proportional growth. After eight rounds?",
+    "options": [
+      "5 units",
+      "8 units",
+      "9 units"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Four rounds",
+      "values": [
+        1,
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "label": "Eight rounds",
+      "values": [
+        1,
+        0,
+        8,
+        1
+      ]
+    }
+  ],
+  "labels": [
+    "Rounds"
+  ],
+  "unit": "progress units",
+  "bookIdea": "Grit emphasizes sustained effort toward long-term goals.",
+  "modelBoundary": "Four rounds finish at {A}; eight at {B}. Extra rounds add fixed units; nothing in this recurrence measures passion or grit.",
+  "doesItHoldUp": "Does it hold up? Real progress can stall or reverse, and effort’s productivity is not fixed."
+}

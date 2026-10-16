@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "The Song of the Dodo",
+    "author": "David Quammen",
+    "year": 1996,
+    "work": "dodo-fragmented-1996"
+  },
+  "family": "network",
+  "predict": {
+    "question": "A two-round binary expansion has an accessible component of 3 cells. How many count?",
+    "options": [
+      "3 cells",
+      "4 cells",
+      "7 cells"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Large component",
+      "values": [
+        7,
+        2,
+        2
+      ]
+    },
+    {
+      "label": "Small component",
+      "values": [
+        3,
+        2,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "rounds"
+  ],
+  "unit": "cells",
+  "bookIdea": "Habitat isolation can matter in addition to total habitat area.",
+  "modelBoundary": "The large component permits {A}; the accessible fragment caps reach at {B}. Component sizes are supplied premises, not inferred from a geographic map.",
+  "doesItHoldUp": "Does it hold up? This is a capped tree, not animal movement, general habitat connectivity or extinction risk."
+}

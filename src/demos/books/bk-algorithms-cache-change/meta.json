@@ -1,0 +1,118 @@
+{
+  "slug": "bk-algorithms-cache-change",
+  "title": "Batching spends less time switching",
+  "hook": "Keep switch cost fixed and do more useful work in each batch.",
+  "domain": "books",
+  "concept": "book-algorithms-cache-change",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish modeled throughput gains from unmeasured waiting costs."
+    ]
+  },
+  "misconception": "Shorter batches improve every dimension of a schedule.",
+  "objective": "Distinguish modeled throughput gains from unmeasured waiting costs.",
+  "claims": [
+    {
+      "id": "books.bk-algorithms-cache-change.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Scheduling choices trade switching overhead against other performance goals.",
+      "status": "unverified",
+      "source": "{\"work\":\"algorithms-cache-2016\",\"edition\":2016,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-algorithms-cache-change.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Brian Christian and Tom Griffiths, Algorithms to Live By (2016)",
+      "status": "unverified",
+      "source": "{\"work\":\"algorithms-cache-2016\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-algorithms-cache-change.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Short batches complete {A}; long batches complete {B}. Fewer batches pay fewer switches, increasing useful work in this fixed budget.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"floor(budget/(work+overhead))*work\",\"inputs\":[[30,5,5],[30,10,5]],\"outputs\":[15,20]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-algorithms-cache-change.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This accounts for setup only. Waiting time, fairness, concentration and the best real scheduling policy remain unmodeled.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Budget 24: change work/setup 2/2 to 6/2. Which follows from this packing model?",
+    "options": [
+      "More useful work",
+      "Guaranteed shorter waits",
+      "Better fairness"
+    ],
+    "answer": 0,
+    "why": "Useful work rises from 12 to 18; waiting and fairness are not represented."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-algorithms-cache-change/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-algorithms-cache-change/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-algorithms-cache-change",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "algorithms-cache-2016",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "intervals"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

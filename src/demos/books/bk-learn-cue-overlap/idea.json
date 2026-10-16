@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "How We Learn",
+    "author": "Benedict Carey",
+    "year": 2014,
+    "work": "learn-cue-2014"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "An invented exact-match retrieval rule succeeds on three matching cues and fails on seven others. Retrieval rate?",
+    "options": [
+      "30%",
+      "70%",
+      "80%"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Familiar context",
+      "values": [
+        8,
+        100,
+        2,
+        0
+      ]
+    },
+    {
+      "label": "Changed context",
+      "values": [
+        3,
+        100,
+        7,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Cue matches",
+    "No match"
+  ],
+  "unit": "% retrieved",
+  "bookIdea": "How We Learn discusses learning conditions and the cues available during later retrieval.",
+  "modelBoundary": "Familiar context retrieves {A}%; changed context {B}%. The matching share shrinks under an exact-match rule.",
+  "doesItHoldUp": "Does it hold up? Human memory is not an exact-match lookup; these are invented cue counts."
+}

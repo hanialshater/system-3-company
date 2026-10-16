@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "Learning How to Learn",
+    "author": "Barbara Oakley, Terrence Sejnowski and Alistair McConville",
+    "year": 2018,
+    "work": "learning-link-new-to-2018"
+  },
+  "family": "network",
+  "predict": {
+    "question": "Starting from one known cue, each node links to two new nodes. With two hops and no overlaps, how many nodes including the cue?",
+    "options": [
+      "3 items",
+      "5 items",
+      "7 items"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "One link onward",
+      "values": [
+        10,
+        1,
+        2
+      ]
+    },
+    {
+      "label": "Two links onward",
+      "values": [
+        10,
+        2,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "Hops"
+  ],
+  "unit": "reachable items",
+  "bookIdea": "Learning How to Learn encourages connecting new material with what a learner already knows.",
+  "modelBoundary": "One-link branches reach {A}; two-link branches {B}. Added outgoing links expose more descendants within two hops.",
+  "doesItHoldUp": "Does it hold up? Reachability does not establish comprehension, recall, or useful associations."
+}

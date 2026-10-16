@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Indistractable",
+    "author": "Nir Eyal",
+    "year": 2019,
+    "work": "indistractable-cue-2019"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Twelve actions are available. Opening takes one action plus two required access steps. Complete openings?",
+    "options": [
+      "3 openings",
+      "4 openings",
+      "12 openings"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "One action/open",
+      "values": [
+        12,
+        1,
+        0
+      ]
+    },
+    {
+      "label": "Three actions/open",
+      "values": [
+        12,
+        1,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "Open",
+    "Extra steps"
+  ],
+  "unit": "openings",
+  "bookIdea": "Indistractable discusses changing environments and access conditions around distractions.",
+  "modelBoundary": "Direct access permits {A}; added steps {B}. Required access actions consume the fixed budget before another opening fits.",
+  "doesItHoldUp": "Does it hold up? People can spend more actions, bypass friction, or need the same access for useful work."
+}

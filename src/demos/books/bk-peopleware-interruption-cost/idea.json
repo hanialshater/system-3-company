@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Peopleware",
+    "author": "Tom DeMarco and Timothy Lister",
+    "year": 1987,
+    "work": "peopleware-interruption-1987"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "B has sixty minutes; each complete cycle is ten work plus ten startup minutes. What is B’s toy result?",
+    "options": [
+      "20",
+      "30",
+      "40",
+      "60"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Long work chunks",
+      "values": [
+        60,
+        20,
+        10
+      ]
+    },
+    {
+      "label": "Short work chunks",
+      "values": [
+        60,
+        10,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Startup"
+  ],
+  "unit": "work minutes",
+  "bookIdea": "Peopleware treats interruptions and the working environment as relevant to software work.",
+  "modelBoundary": "A yields {A} work minutes; B {B}. Shorter chunks repeat the same ten-minute startup more often, leaving a larger share of the hour outside work. The startup cost is invented and constant, not a measured cognitive recovery time.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

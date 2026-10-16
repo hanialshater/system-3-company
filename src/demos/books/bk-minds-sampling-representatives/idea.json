@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "How Minds Change",
+    "author": "David McRaney",
+    "year": 2022,
+    "work": "minds-sampling-2022"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "An invented population contains five yes responses and five no responses. Its yes share?",
+    "options": [
+      "10%",
+      "50%",
+      "90%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Lopsided sample",
+      "values": [
+        9,
+        100,
+        1,
+        0
+      ]
+    },
+    {
+      "label": "Balanced population",
+      "values": [
+        5,
+        100,
+        5,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Says yes",
+    "Says no"
+  ],
+  "unit": "% yes",
+  "bookIdea": "How Minds Change examines how conversations and social contexts relate to changes in belief.",
+  "modelBoundary": "The selected sample is {A}% yes; the population {B}%. Changing who is included changes the apparent consensus.",
+  "doesItHoldUp": "Does it hold up? No one changes a belief here; sampling arithmetic cannot establish a persuasion method."
+}

@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Wisdom of Crowds",
+    "author": "James Surowiecki",
+    "year": 2004,
+    "work": "crowds-correlated-2004"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "Six judgments have a 60% expected individual hit rate; six have90%. Average individual hit rate?",
+    "options": [
+      "60%",
+      "75%",
+      "90%"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "One method",
+      "values": [
+        12,
+        60,
+        0,
+        90
+      ]
+    },
+    {
+      "label": "Two methods",
+      "values": [
+        6,
+        60,
+        6,
+        90
+      ]
+    }
+  ],
+  "labels": [
+    "Method A",
+    "Method B"
+  ],
+  "unit": "% individual hits",
+  "bookIdea": "The Wisdom of Crowds connects successful aggregation with conditions including diversity and independence.",
+  "modelBoundary": "One method averages {A}% individual hits; mixing methods {B}%. The higher-rate group raises this mean, not a calculated majority-vote accuracy.",
+  "doesItHoldUp": "Does it hold up? Dependence and an aggregation rule are needed to infer whether the crowd’s combined answer improves."
+}

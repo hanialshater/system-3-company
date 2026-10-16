@@ -1,0 +1,132 @@
+{
+  "slug": "bk-organized-offload-buffer",
+  "title": "Which queue did the task leave?",
+  "hook": "A task can leave a toy mental queue by being recorded elsewhere; completion is separate.",
+  "domain": "books",
+  "concept": "book-organized-offload-buffer",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to track offloaded commitments separately from completed commitments"
+    ]
+  },
+  "misconception": "Moving a task out of an in-head queue means the task has been completed.",
+  "objective": "Track offloaded commitments separately from completed commitments.",
+  "claims": [
+    {
+      "id": "books.bk-organized-offload-buffer.bibliography",
+      "text": "The Organized Mind; Daniel J. Levitin; 2014.",
+      "support": "source",
+      "source": "Candidate bibliographic record for organized-offload-2014; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-organized-offload-buffer.book",
+      "text": "The Organized Mind discusses external organization as support for managing information and tasks.",
+      "support": "source",
+      "source": "The Organized Mind (2014), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-organized-offload-buffer.model",
+      "text": "Original stipulated toy: Fixed eight-task initial queue; no new tasks; transfers remove from this queue but do not complete tasks or delete the external record. Exact feedback inputs [{\"label\": \"No transfers\", \"values\": [8, 0, 0, 3]}, {\"label\": \"Two transfers/round\", \"values\": [8, 0, 2, 3]}]; second author arithmetic check A=8, B=2. No transfers leaves {A}; recording two per round leaves {B}. Transferred tasks remain pending on another list.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-organized-offload-buffer.world",
+      "text": "Does it hold up? A smaller tracked queue does not prove reduced cognitive load or completed work.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-organized-offload-buffer.recall",
+      "text": "{\"question\": \"Ten pending tasks; six are recorded externally and none completed. Total pending tasks?\", \"options\": [\"4 tasks\", \"6 tasks\", \"10 tasks\"], \"answer\": 2, \"why\": \"All ten remain pending; six changed storage location rather than completion state.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Ten pending tasks; six are recorded externally and none completed. Total pending tasks?",
+    "options": [
+      "4 tasks",
+      "6 tasks",
+      "10 tasks"
+    ],
+    "answer": 2,
+    "why": "All ten remain pending; six changed storage location rather than completion state."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-organized-offload-buffer/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-organized-offload-buffer/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-organized-offload-buffer",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "organized-offload-2014",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "feedback",
+      "offloading"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

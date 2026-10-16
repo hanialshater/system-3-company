@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Distracted Mind",
+    "author": "Adam Gazzaley and Larry D. Rosen",
+    "year": 2016,
+    "work": "distracted-switching-2016"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "Thirty minutes contain three-minute task chunks plus seven minutes switching per chunk. Completed task minutes?",
+    "options": [
+      "9 minutes",
+      "18 minutes",
+      "21 minutes"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Two-minute switch",
+      "values": [
+        30,
+        3,
+        2
+      ]
+    },
+    {
+      "label": "Seven-minute switch",
+      "values": [
+        30,
+        3,
+        7
+      ]
+    }
+  ],
+  "labels": [
+    "Task",
+    "Switch"
+  ],
+  "unit": "task min",
+  "bookIdea": "The Distracted Mind discusses interference and the costs of switching between goals.",
+  "modelBoundary": "Short switches allow {A}; longer switches {B}. The larger overhead leaves room for fewer complete task chunks.",
+  "doesItHoldUp": "Does it hold up? Actual switching costs vary; neither invented time is a measured human effect."
+}

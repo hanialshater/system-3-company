@@ -1,0 +1,43 @@
+{
+  "book": {
+    "title": "The Computer and the Brain",
+    "author": "John von Neumann",
+    "year": 1958,
+    "work": "von-neumann-computer-brain-1958"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Input supplies 4 jobs per step and calculation handles 16. What is serial throughput?",
+    "options": [
+      "4 jobs/step",
+      "8 jobs/step",
+      "16 jobs/step"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Original machine",
+      "values": [
+        4,
+        8
+      ]
+    },
+    {
+      "label": "Faster arithmetic",
+      "values": [
+        4,
+        16
+      ]
+    }
+  ],
+  "labels": [
+    "Input",
+    "Calculate"
+  ],
+  "unit": "jobs/step",
+  "bookIdea": "Computation depends on how components communicate and operate together.",
+  "modelBoundary": "The original gives {A}; faster arithmetic still gives {B}. Input cannot supply work fast enough to use the extra calculation capacity.",
+  "doesItHoldUp": "Does it hold up? This ideal serial limit is exact inside the toy. It does not model a brain or machine parallelism."
+}

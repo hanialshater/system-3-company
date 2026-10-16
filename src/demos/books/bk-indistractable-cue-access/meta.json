@@ -1,0 +1,132 @@
+{
+  "slug": "bk-indistractable-cue-access",
+  "title": "How many openings fit?",
+  "hook": "An interface can require extra actions before each opening; the action budget is fixed.",
+  "domain": "books",
+  "concept": "book-indistractable-cue-access",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to explain the mechanical access limit while keeping real behavioral adaptation outside the model"
+    ]
+  },
+  "misconception": "Adding access friction automatically measures how much a real person’s distraction will fall.",
+  "objective": "Explain the mechanical access limit while keeping real behavioral adaptation outside the model.",
+  "claims": [
+    {
+      "id": "books.bk-indistractable-cue-access.bibliography",
+      "text": "Indistractable; Nir Eyal; 2019.",
+      "support": "source",
+      "source": "Candidate bibliographic record for indistractable-cue-2019; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-indistractable-cue-access.book",
+      "text": "Indistractable discusses changing environments and access conditions around distractions.",
+      "support": "source",
+      "source": "Indistractable (2019), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-indistractable-cue-access.model",
+      "text": "Original stipulated toy: Action budget fixed; no alternative route, habituation or extra actions; every opening repeats access steps; at most twelve openings. Exact intervals inputs [{\"label\": \"One action/open\", \"values\": [12, 1, 0]}, {\"label\": \"Three actions/open\", \"values\": [12, 1, 2]}]; second author arithmetic check A=12, B=4. Direct access permits {A}; added steps {B}. Required access actions consume the fixed budget before another opening fits.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-indistractable-cue-access.world",
+      "text": "Does it hold up? People can spend more actions, bypass friction, or need the same access for useful work.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-indistractable-cue-access.recall",
+      "text": "{\"question\": \"Fifteen actions, one opening action plus four access actions each: complete openings?\", \"options\": [\"3 openings\", \"4 openings\", \"15 openings\"], \"answer\": 0, \"why\": \"floor(15/5)=3; the toy fixes both available actions and required access sequence.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Fifteen actions, one opening action plus four access actions each: complete openings?",
+    "options": [
+      "3 openings",
+      "4 openings",
+      "15 openings"
+    ],
+    "answer": 0,
+    "why": "floor(15/5)=3; the toy fixes both available actions and required access sequence."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-indistractable-cue-access/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-indistractable-cue-access/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-indistractable-cue-access",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "indistractable-cue-2019",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "access-friction"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

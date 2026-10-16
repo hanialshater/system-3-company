@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Hyperfocus",
+    "author": "Chris Bailey",
+    "year": 2018,
+    "work": "hyperfocus-salience-2018"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "The selected set has eight relevant items and two irrelevant ones. What share is relevant?",
+    "options": [
+      "20%",
+      "60%",
+      "80%"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Salience rule",
+      "values": [
+        2,
+        100,
+        8,
+        0
+      ]
+    },
+    {
+      "label": "Relevance rule",
+      "values": [
+        8,
+        100,
+        2,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Relevant",
+    "Irrelevant"
+  ],
+  "unit": "% relevant",
+  "bookIdea": "Hyperfocus distinguishes directing attention intentionally from following what captures it.",
+  "modelBoundary": "Salience selection contains {A}% relevant items; relevance selection {B}%. The selected mix changes; item relevance itself does not.",
+  "doesItHoldUp": "Does it hold up? The supplied filter outputs are not measured human attention or proof that relevance is easy to judge."
+}

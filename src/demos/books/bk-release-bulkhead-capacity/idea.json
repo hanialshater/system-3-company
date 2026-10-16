@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Release It!",
+    "author": "Michael T. Nygard",
+    "year": 2007,
+    "work": "release-bulkhead-2007"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B earns eight with 90% probability and loses ten otherwise. What is B’s toy result?",
+    "options": [
+      "8",
+      "7.2",
+      "6.2",
+      "-1"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Uncontained loss",
+      "values": [
+        90,
+        10,
+        -100
+      ]
+    },
+    {
+      "label": "Loss contained",
+      "values": [
+        90,
+        8,
+        -10
+      ]
+    }
+  ],
+  "labels": [
+    "Normal",
+    "Failure"
+  ],
+  "unit": "credits",
+  "bookIdea": "Release It! treats failure containment as a design concern for production systems.",
+  "modelBoundary": "A averages {A}; B averages {B}. The intervention gives up two credits in the normal branch but limits the failure loss from 100 to 10. Net branch values are stipulated; no circuit-breaker timing, bulkhead pool or real outage probability is simulated.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

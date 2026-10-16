@@ -1,0 +1,118 @@
+{
+  "slug": "bk-cooperation-one-error",
+  "title": "Repair the cost of one mistake",
+  "hook": "Keep cooperation equally likely; change what a mistaken defection costs.",
+  "domain": "books",
+  "concept": "book-cooperation-one-error",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Separate reducing an error’s cost from reducing its probability."
+    ]
+  },
+  "misconception": "Repair cannot help unless cooperation becomes more likely.",
+  "objective": "Separate reducing an error’s cost from reducing its probability.",
+  "claims": [
+    {
+      "id": "books.bk-cooperation-one-error.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Cooperation depends on how strategies handle errors as well as successful exchanges.",
+      "status": "unverified",
+      "source": "{\"work\":\"axelrod-evolution-of-cooperation-1984\",\"edition\":1984,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-cooperation-one-error.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Robert Axelrod, The Evolution of Cooperation (1984)",
+      "status": "unverified",
+      "source": "{\"work\":\"axelrod-evolution-of-cooperation-1984\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-cooperation-one-error.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Without repair the mean is {A}; reducing the error loss raises it to {B}. The cooperation probability does not change.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[90,4,-6],[90,4,-1]],\"outputs\":[3,3.5]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-cooperation-one-error.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is one stipulated encounter. It does not simulate repeated strategies, retaliation or the book’s tournament.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A rule earns +6 half the time. Its other outcome improves from −4 to −2. What changes?",
+    "options": [
+      "Mean rises by 1",
+      "Mean rises by 2",
+      "Success probability rises"
+    ],
+    "answer": 0,
+    "why": "Half the encounters receive the 2-point improvement: the mean rises by 1."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-cooperation-one-error/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-cooperation-one-error/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-cooperation-one-error",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "axelrod-evolution-of-cooperation-1984",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

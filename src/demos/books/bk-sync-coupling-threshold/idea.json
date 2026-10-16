@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Computer Organization and Design, Enhanced",
+    "author": "David A. Patterson and John L. Hennessy",
+    "year": 2014,
+    "work": "patterson-hennessy-computer-organization-2014"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "After the last stage rises to 8, other capacities stay 8 and 6. What is throughput?",
+    "options": [
+      "4 jobs/step",
+      "6 jobs/step",
+      "8 jobs/step"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Original pipeline",
+      "values": [
+        8,
+        6,
+        4
+      ]
+    },
+    {
+      "label": "Upgrade last",
+      "values": [
+        8,
+        6,
+        8
+      ]
+    }
+  ],
+  "labels": [
+    "Fetch",
+    "Decode",
+    "Execute"
+  ],
+  "unit": "jobs/step",
+  "bookIdea": "Pipeline performance depends on the capacities of its stages.",
+  "modelBoundary": "The original gives {A}; the upgrade gives {B}. Decode now limits output, so doubling one stage does not double the whole pipeline.",
+  "doesItHoldUp": "Does it hold up? This is an ideal serial abstraction, not a CPU simulation. Hazards, latency and buffering are omitted."
+}
