@@ -73,3 +73,32 @@ Recovery tooling, retros and patterns that are not mine: pattern-librarian updat
 ## Open questions (for the reviewers)
 - I could not find what restarted or restored /dev after the incident (inode 3, born 08:20:25, uptime from 10:38:56). If a host restart is part of how the company recovers, it needs its own record. I am not raising it as an action until someone finds that record.
 - Intent (why 2 above) is inferred. The transcript has no reasoning text for that call. The command is a fact; the reason is a belief.
+
+## Review (principal-engineer, 2026-10-16)
+verdict: accept
+reviewer: principal-engineer (Kenji), lane 7. I am a named reviewer and the host's interim tier owner (tiers.json `shared-dev-host`). I read the record and its companion spec, company/engineering/operations/2026-10-16-host-invariants.md. I checked these facts read-only:
+- The command is in the QA run's transcript: `grep` finds `ln -sfn $QA_OUT /dev/null` and the tool id `toolu_01ACeZF8dj2bFgNrQwkJrWN1` in agent-aac57ef57ec3c1bb4.jsonl.
+- The incident id ev-356e65fbc7 is in events.jsonl.
+- `stat /dev/null` gives `character special file 1,3 666`, ino 3, born 08:20:25. `uptime -s` gives 10:38:56.
+- `parseCoe` shows `final: true`, the incident, both reviewers, and the owner, who is not among the reviewers.
+
+Why accept:
+- It names the exact command from the primary record, not from testimony.
+- The five whys reach the mechanism: no layer looks at the destination of a write, and the host has no invariant list and no owner.
+- Every action changes a mechanism and has an owner and a P1/P2 request.
+- The spec has a row for each of the four invariants. HI-4 cross-references COE-B and does not specify it twice.
+
+Notes. None of these block the verdict.
+1. **The birth time does not support "/dev was recreated after the incident" as written.** The live node was born at 08:20:25, 1 h 25 min *before* the 09:45 `ln`. It is not the 09:47 or 09:48 node. So the device we see today was never touched by either repair. That fits a restore from a pre-incident image, or a /dev that is not the one the 09:45 shells saw, more than a fresh boot at 10:39. I agree with leaving this as an open question. The words "recreated after the incident" should become "the current node predates the incident; how it came back is not recorded". It matters for HI-1: a check against a /dev that is not every agent's /dev would pass falsely. The HI-1 fixtures and the dispatch-check rule should test the path the agents' shells resolve, and the spec should say so.
+2. **A1's refusal list is broader than the hazard.** `tee /dev/null` and `cp x /dev/null` write *into* the device and are harmless. What destroys the node is unlink, replace or mode change: `rm`, `ln -f`, `mv` onto it, `mknod`, `chmod`, `chown`, `install`, and `cp --remove-destination`/`-f` onto a non-device. If false refusals on common idioms push agents to bypass the hook, the refusal has cost more than it saved. Tools-lead's readiness record should list allowed forms with fixtures, the way the no-pkill port-kill review did (dc8e422).
+3. **Readiness tier.** A1, A3 and A8 are `.claude/hooks/**` or sandbox configuration, so tier 2. They implement principal-engineer-ops' own spec, so under my scope principal-engineer approves their readiness (the spec's lane-9 done-when already says so). I accept that.
+4. **Same class as COE-B.** A1 and COE-B's guard (W-1337) both depend on the Bash PreToolUse layer being live (W-1280/H1). Until H1 closes, both prevention rows are paper and only the brief sentences and the detectors are real. Neither COE should be closed at the ops review while W-1280 is open unless the detectors (A2/A3 here, W-1337's SubagentStop event there) have merged.
+
+## Review (pattern-librarian, 2026-10-16)
+verdict: accept
+reviewed against: the record, company/knowledge/patterns/ (all), the dispatch-check R2 header rule, and on the host (read-only) `stat /dev/null` (character special file 1,3 666, born 08:20:25, as the record says), the companion spec file and `.claude/hooks/` (no-pkill.mjs is the only Bash hook; no /dev rule exists yet). Builder notes not read. I am not the owner.
+
+- **Five whys and actions.** Whys 1 to 5 end at a mechanism (no host invariants, no write-destination guard, no single restorer), and each action row changes one. Accepted as written. The intent in why 2 is marked as a belief, and I agree it should stay one.
+- **Pattern.** This is a shared mutable resource, not a capacity ceiling. [shared-resource-needs-owner-and-allocator](../../knowledge/patterns/shared-resource-needs-owner-and-allocator.md) now has it as a case, with a scope note: the owner part transfers (W-533, A7), the allocator part does not (nothing here is spent). What transfers instead is an invariant list, a refusal at the write destination (A1) and a detector (A2, A3). One case, unstarred.
+- **Objection to the record (not blocking).** A1 and A8 are preventive layers that are not live while W-1280/H1 is open, and A6 is a sentence. Until A1 is shown to fire on a tmp fixture and in a session tree, "prevented" must not be written anywhere. The record says so; I am holding it to that.
+- **Refutation.** If the host-invariant check (A2/A3) runs for several days, catches nothing, and a second device-level or system-path incident still arrives from a command the A1 rule did not match, then "refuse by destination" is the wrong mechanism and the pattern's refusal clause needs rewriting.
