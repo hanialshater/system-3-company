@@ -1,0 +1,123 @@
+{
+  "slug": "tricolour-check",
+  "title": "A colour test for knots",
+  "hook": "Can three colours tell a knot from a plain loop?",
+  "domain": "math",
+  "concept": "knot-tricolouring",
+  "status": "draft",
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons",
+    "locked-readouts"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a knot drawing has gaps where one strand passes under, and 'the same knot' means you can wiggle one into the other without cutting"
+    ],
+    "doesNotKnow": [
+      "that a colouring rule can separate the trefoil from a plain loop: the trefoil can be coloured with all three colours, a plain loop only with one, and wiggling never changes which of these a knot allows (the last clause is told context; the first two are shown)"
+    ]
+  },
+  "misconception": "The only way to show a knot can't be undone is to try hard and fail; and if I couldn't colour it, it can't be coloured (one failed try is not a proof).",
+  "objective": "The learner can explain that the trefoil is not a plain loop because it allows a three-colouring that a plain loop never allows, and that settling 'can't be coloured' takes checking every colouring, not one failed try.",
+  "claims": [
+    {
+      "id": "math.tricolour-check.c1",
+      "text": "The colouring rule: colour every arc (the rope between two gaps) one of three colours; at each crossing the three arcs that meet are all one colour or all different ('Rule: at each crossing, the three arcs (rope between gaps) are all one colour or all different.'). A knot is tricolourable when it has such a colouring using more than one colour. On the stage each crossing shows a solid ring and a tick when its three arcs obey the rule, a dashed ring and a cross when they do not, and the counter 'Crossings OK: n of 3' (n of 4 on 4₁; 'No crossings' on ○).",
+      "support": "source",
+      "source": "Adams, The Knot Book, section 1.5; Wikipedia 'Tricolorability' (research note company/research/notes/2026-10-13-teachable-knot-theory.md §2.2, high; full text unchecked). Brief claim 1 (company/domains/briefs/math.discrete.md, Knots batch 1, brief 2). The stage applies it with colouringOk(pd, colours, 3) from src/kit/knots (2*over = in + out mod 3, which for p = 3 is all same or all different). The stage counts single-colour colourings as obeying the rule, as colourings() does; the 'more than one colour' condition is carried by the question 'Can the trefoil use all three colours?'. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c2",
+      "text": "A plain loop has one arc, so it can only ever be one colour ('A plain loop has one arc, so it can only ever be one colour.'; stage on ○ after Check all: '○: 3 of 3 obey: all one colour').",
+      "support": "derivation",
+      "source": "Definition of arc (no crossings, so no gaps: one arc). K2: colourings([], 3) = 3, one per colour (node company/domains/briefs/checks/knots-check.mjs; builder re-run 2026-10-16 with src/kit/knots: 3). The ○ chip is a plain SVG circle with one arc; census(null, 1) in Demo.tsx gives 3 of 3, all one colour. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c3",
+      "text": "The kit's trefoil drawing has 3 arcs and 3 crossings; 9 of its 27 colourings obey the rule, 3 using one colour and 6 using all three, and none using exactly two (stage on 3₁ after Check all: '3₁: 9 of 27 obey: 3 one colour, 6 all three'). Tapping its first two arcs once each (staggered cycle) gives colours B, C, A with all 3 crossings OK ('Seen on 3₁: 3 colours, 3 of 3 OK'; reveal: 'The trefoil took all three colours with every crossing obeying the rule.').",
+      "support": "derivation",
+      "source": "K2 and K16 (node company/domains/briefs/checks/knots-check.mjs). Builder re-run 2026-10-16 (scratch geom.mjs, the same census and cycle as Demo.tsx on src/kit/knots): colourings(3_1, 3) = 9; enumeration with colouringOk: one 3, two 0, three 6 of 27; taps arc 0 then arc 1 give (1,2,0), 3 of 3 crossings OK, 3 colours used. The seen line and the reveal quote the state recorded when milestone trefoil3 fired. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c4",
+      "text": "The kit's figure-eight drawing has 4 arcs and 4 crossings; of its 81 colourings only the 3 single-colour ones obey the rule ('The figure-eight (4₁) failed, and all 81 ways were checked: only the three one-colour ones obey the rule.'; stage after Check all on 4₁, and on every chip at the reveal: '4₁: 3 of 81 obey: all one colour').",
+      "support": "derivation",
+      "source": "K2 (node company/domains/briefs/checks/knots-check.mjs). Builder re-run 2026-10-16 (scratch geom.mjs on src/kit/knots): colourings(4_1, 3) = 3; enumeration: one 3, two 0, three 0 of 81. Reveal numbers are read from the census recorded when Check all was pressed on 4₁ (milestone eightAll). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c5",
+      "text": "Whether a knot can be coloured this way (with more than one colour) does not change when the knot is wiggled without cutting (Reidemeister moves), so the trefoil cannot be wiggled into a plain loop ('Wiggling a knot, without cutting, never changes whether it can be coloured this way, so the trefoil can never be wiggled into a plain loop.'). Told context, not shown on the stage.",
+      "support": "source",
+      "source": "Theorem (tricolourability is a knot invariant): Wikipedia 'Tricolorability'; Adams, The Knot Book, section 1.5; CEMC Grade 9/10 knot theory problem set (research note §2.2, high; full text unchecked). Brief claim 5. If this claim is held, the brief says cut the sentence and tell cm-math-discrete the lesson has lost its proof. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c6",
+      "text": "This test cannot tell the figure-eight from a plain loop: neither can be coloured with more than one colour ('That does not make it a plain loop: this test cannot tell the two apart.').",
+      "support": "derivation",
+      "source": "K2 (4_1: 3 of 81, all single-colour; plain loop: 3, all single-colour) plus claim c1's definition. Brief claim 6. Not claimed: that the figure-eight is knotted (true, but not shown here). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c7",
+      "text": "Each arc's label ring shows its colour's letter, A, B or C, in the arc's colour; every arc starts as A, and a tap moves it to another colour.",
+      "support": "convention",
+      "source": "Lesson convention: design lead W-1583 (company/design/reviews/2026-10-16-knots-specs-review.md, T3-letters), from the visual designer's colour ruling W-1580 (company/design/reviews/2026-10-16-knots-colour-ruling.md). A = dark #56B4E9 / light #0072B2, B = #D55E00 / #C24E00, C = #F0E442 / #6B6B6B (ARC_SETS in Demo.tsx). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.tricolour-check.c8",
+      "text": "In the knot table, 3₁ is the trefoil and 4₁ is the figure-eight knot ('The figure-eight (4₁)'; chips 3₁ and 4₁).",
+      "support": "source",
+      "source": "Rolfsen, Knots and Links, knot table (attribution for the fact-checker); src/kit/knots KNOTS entries 3_1 (alias trefoil) and 4_1 (alias figure-eight). Builder-written; unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A knot drawing can be coloured with all three colours under the crossing rule. Can it be wiggled into a plain loop?",
+    "options": [
+      "No, never",
+      "Yes, if you find the right wiggle",
+      "Only if it has fewer than 3 crossings"
+    ],
+    "answer": 0,
+    "why": "A plain loop can only be one colour, and wiggling never changes whether a knot can be coloured with all three, so no wiggle can turn it into a plain loop."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/tricolour-check/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:knot-tricolouring",
+    "also": [],
+    "prerequisites": [
+      "math:knot-table-names"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [],
+    "tags": [
+      "knots",
+      "colouring",
+      "invariant"
+    ]
+  }
+}
