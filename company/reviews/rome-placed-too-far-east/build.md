@@ -54,3 +54,6 @@ The "v4" heading above was the r1-revision build; meta.json stayed at version 3 
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3841, QA_ONLY=rome-placed-too-far-east): phone and desktop pass, 2/2 (artifacts/qa-rome4/qa-report.json). Production build, but of my working tree, so it is not a qa-tester release record.
 - Claims now: c11 new and c4 reset, both unverified; 8 of 10 verified. I verified none. Status stays draft.
 - Open, not in this change (per the ruling): the km-per-degree gloss; naming the year view in the reveal; the sourced reason for "all east" (W-1045/W-1026), which may only replace c11's clause, never sit beside it.
+
+## 2026-10-16 · SO-history-1 flip, draft -> review (demo-builder, branch hist-rome-flip, r4 B3, W-1209)
+- meta.json `status` draft -> review, nothing else changed. Gate records for v4: QA `company/reviews/rome-placed-too-far-east/2026-10-16-qa.md` (qa-tester, pass, production build of b3ec971 via own `next start`); learner `company/reviews/rome-placed-too-far-east/2026-10-16-learner-adult-beginner-r13.md` (Verdict: launch, v4); fact-check `company/reviews/rome-placed-too-far-east/2026-10-16-fact-check.md` pass 53 (10/10 verified). `git diff b3ec971 -- Demo.tsx` is empty (last Demo.tsx change f49df18, before both r13 and b3ec971). Not on the W-961 hold. Not published; publish is not mine.
