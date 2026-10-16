@@ -1,7 +1,7 @@
 {
   "slug": "reverse-the-flashcard",
-  "title": "Perro to dog, dog to perro",
-  "hook": "You always get 'perro → dog' right. Does it work the other way round?",
+  "title": "Dax to red, red to dax",
+  "hook": "You always get 'dax → red' right. Does it work the other way round?",
   "domain": "lifehacks",
   "concept": "test-both-directions",
   "status": "review",
@@ -22,14 +22,12 @@
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: You always get 'perro → dog' right. Does it work the other way round? You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'? Options: Not tested yet / Yes: same card. Correct option: Not tested yet. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: You always get 'dax → red' right. Does it work the other way round? You get 'dax → red' right every time. Shown 'red', can you give 'dax'? Options: Not tested yet / Yes: same card. Correct option: Not tested yet. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Shown 'dog', can you give 'perro'?', question, answer 'Not tested yet'. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"reverse-the-flashcard\"). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Shown 'dog', can you give 'perro'?', question, answer 'Not tested yet'. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"reverse-the-flashcard\"). Not checked by the builder. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook and question now use the stage's dax/red card instead of perro/dog; options and answer unchanged (dispatch 2026-10-16-r5-lifehacks.md D3, FC 61 advisory W-1347). Not checked by the builder.",
       "id": "lifehacks.reverse-the-flashcard.c1",
-      "status": "verified",
-      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED (convention). Text equals studyCatalog; hook = patch r2 1B row. The key 'Not tested yet' is true by construction: a result in one direction is no test of the other (stage rows Word -> meaning / Meaning -> word, walk: 3 of 3 vs 1 of 3). Advisory for cm-lifehacks (not a factual error): the title, hook and question speak of perro/dog, while the stage cards are dax/red, wug/blue, zib/green; the claim covers both as stipulated exercise data. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED (convention). Text equals studyCatalog; hook = patch r2 1B row. The key 'Not tested yet' is true by construction: a result in one direction is no test of the other (stage rows Word -> meaning / Meaning -> word, walk: 3 of 3 vs 1 of 3). Advisory for cm-lifehacks (not a factual error): the title, hook and question speak of perro/dog, while the stage cards are dax/red, wug/blue, zib/green; the claim covers both as stipulated exercise data. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD."
     },
     {
       "text": "Reverse the cue and answer to check the opposite mapping. A result in one direction is not a test of the other.",
@@ -70,11 +68,11 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "You can say 'dog' when you see 'perro'. Which check tests the other direction?",
+    "question": "You can say 'red' when you see 'dax'. Which check tests the other direction?",
     "options": [
-      "See 'perro', say 'dog'",
+      "See 'dax', say 'red'",
       "See both words together",
-      "See 'dog', say 'perro'"
+      "See 'red', say 'dax'"
     ],
     "answer": 2,
     "why": "Swapping cue and answer tests the opposite mapping; success in one direction is not a test of the other."

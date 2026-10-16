@@ -232,10 +232,10 @@ export const study_cue_needs_a_boundary = {
 export const study_reverse_the_flashcard = {
   "family": "recall",
   "slug": "reverse-the-flashcard",
-  "title": "Perro to dog, dog to perro",
-  "hook": "You always get 'perro → dog' right. Does it work the other way round?",
+  "title": "Dax to red, red to dax",
+  "hook": "You always get 'dax → red' right. Does it work the other way round?",
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
-  "question": "You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'?",
+  "question": "You get 'dax → red' right every time. Shown 'red', can you give 'dax'?",
   "options": [
     "Not tested yet",
     "Yes: same card"
@@ -1581,16 +1581,16 @@ export const study_batch_by_setup = {
   "family": "order",
   "slug": "batch-by-setup",
   "title": "Same tasks, different order",
-  "hook": "Three short tasks, two kinds. Does the order change how long they take?",
+  "hook": "Three short tasks, two kinds. Does the order change how long they wait?",
   "objective": "Compare setup overhead under an explicit switching cost.",
-  "question": "Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how many minutes does that save?",
+  "question": "Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how much less total waiting (each task's start time, added up)?",
   "options": [
-    "2 minutes",
+    "2 minutes: one switch fewer",
     "0: same three tasks",
     "4 minutes"
   ],
-  "answer": 0,
-  "principle": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",
+  "answer": 2,
+  "principle": "Each change of tag costs the stated two minutes. Grouping the A tasks removes one switch, and that switch was delaying both later starts, so total waiting drops by 4 minutes (21 → 17). This model does not estimate your real concentration cost.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
   "misconception": "Alternate tags",
