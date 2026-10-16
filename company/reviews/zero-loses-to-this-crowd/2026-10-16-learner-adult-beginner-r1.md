@@ -21,4 +21,10 @@ Verdict reason: the option glosses and option 3's stated average let a learner r
 
 ## After reading build.md / meta.json
 
-(pending: written below after findings were committed)
+Read after the findings above were committed (30fa641). I read meta.json only. build.md is unread.
+
+- **The middle-option cue is also in the recall.** The recall's answer is "About 30, between the other two" (distractors "0, the equilibrium guess" and "About 60, the crowd's average"). Its target is "half the average" of 60, so it can be answered the same two ways as the predict: middle position, or arithmetic on option 3. A recall that is answerable by test-taking gives no retention signal. This extends finding 1 to c10.
+- c2 confirms that 23 is the predict answer and that the slider was the intended "your guess". The recorded "86 simulated guesses were closer" (at g = 52) and c2's "84" (at g = 0) are consistent, being different guesses. This is not a claim error.
+- c3 says the 100 dots average 34.6 alone. Option 3's "About 35" is that number, rounded, and the two-thirds rule is in the hook. So finding 2 holds as designed: the card states both inputs to the answer.
+- The objective ("can explain that the winning guess is two thirds of what the crowd actually averages") is what the reveal line c7 says, and the stage shows it well (finding 5). My objection is to how the predict is built, and the content is fine.
+- For cm-behavioral, in short: yes, "between the other two" reads as a middle-option cue to this mind. It is the only gloss that names a position and not a concept, and on its own it would be enough for a test-wise adult. Combined with option 3's stated average, the card hands over the answer. This is a finding about the artifact. How to fix it belongs to the builder and the CM.

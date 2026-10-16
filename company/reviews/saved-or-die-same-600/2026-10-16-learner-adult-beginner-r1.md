@@ -21,4 +21,11 @@ Verdict reason: the predict question's own premise ("judged by outcomes, not wor
 
 ## After reading build.md / meta.json
 
-(pending: written below after findings were committed)
+Read after the findings above were committed (30fa641). I read meta.json only. build.md is unread.
+
+- **The stated misconception is the option the premise removes.** meta.json's misconception is "A sure 200 saved and a sure 400 dead are different offers". That is predict option 3. The question's own opening ("Judged by outcomes, not wording") rules it out. Intent and experience diverge here, which strengthens finding 1: the card cannot catch the belief it names.
+- **Finding 4 is partly answered by c3/c4.** The inconsistent branches say "the wording moved you" and name the framing effect. The recorded path (chance, then chance) was the consistent branch, so it showed neither. A learner who answers consistently, as a careful learner told "judged by outcomes" will, never hears the words "framing effect" and never learns that people switch. Finding 3 stands for that branch.
+- **Finding 3's missing fact is the held line c5** ("Re-run in 2020 with 88,181 people ... the wording shifted choices"). It is cut under brief rule 6, so I make no request to restore it. That is the CM's and research-lead's call (W-1059). As shipped, the consistent branch has no line saying real people respond to the wording.
+- The objective ("can explain that the saved and die wordings describe the same outcomes") matches what step 5 shows well. My objection is to the predict card, which gives that away first, and not to the stage.
+- The recall ("90% survive" vs "10% die", "Judged by outcomes") repeats the predict's premise-as-hint pattern.
+- On the SO-10-3 question ("quiz about wording or one decision"): unchanged after reading. The predict reads as a wording quiz. The stage reads as two decisions that the toggle collapses into one.
