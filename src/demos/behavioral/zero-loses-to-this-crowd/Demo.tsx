@@ -19,9 +19,9 @@ import { Milestones } from "@/kit/milestones";
 import { mulberry32, randInt } from "@/kit/random";
 import s from "./styles.module.css";
 
-// The one held type (d) sentence (claim c6). It is unverified: if the fact-checker cannot open the source, set
-// this to false (brief 3: cut, nothing replaces it; the lesson teaches fully without it).
-const HELD_LINE = true;
+// The one held type (d) sentence (claim c6). Cut under brief rule 6 (cm-behavioral, W-1267): it ships false until a
+// dated type (d) statement covers it, the fact-checker verifies it, and the measured reveal recounts at 90 or less.
+const HELD_LINE = false;
 
 const MILESTONES = ["guess", "crowd", "zero"] as const;
 
@@ -95,7 +95,7 @@ export default function ZeroLosesToThisCrowd({ slug }: { slug: string }) {
       predict={{
         question:
           "Against this simulated crowd, which guess lands closest to two thirds of the average, your guess included?",
-        options: ["0, the equilibrium guess", "About 23", "About 35, the crowd's average"],
+        options: ["0, the equilibrium guess", "About 23, between the other two", "About 35, the crowd's average"],
         answer: 1,
       }}
       exploreHint="Set your guess, show the crowd, then mark the 0 guess."
