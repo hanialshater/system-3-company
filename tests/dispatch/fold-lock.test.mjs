@@ -187,3 +187,60 @@ test("F2: an append through a file handle opened before the fold renamed the fil
     fs.closeSync(fd);
   }
 });
+
+// F5 (same approval, board W-1278): `fold` and `readSpool` collected events with push(...spread), which throws
+// RangeError (call stack) once one spread passes ~125k elements (Node 22), so one large spool file stuck every later
+// fold. Here a 200,000-line spool file and 130,000 unparseable lines go through `fold --dry` (readSpool) and `fold`.
+// It is the last test in this file on purpose: tests in one file run in order, so its CPU load never overlaps the
+// timing-bound two-fold-loops test above (as a separate test file it ran in parallel and made that test flake).
+const REAL_SPOOL = path.join(ROOT, "company/ops/events-spool");
+const realSpool = () => (fs.existsSync(REAL_SPOOL) ? fs.readdirSync(REAL_SPOOL).sort().join(",") : null);
+const BIG = 200_000;
+const bigLine = (i) => JSON.stringify({ id: `hk-big-${i}`, ts: `2026-10-16T10:00:00.${String(((i % 1000) + 1000) % 1000).padStart(3, "0")}Z`, type: "note", room: "tools", actor: "tools-lead", summary: `e${i}` });
+const countLines = (f) => fs.readFileSync(f, "utf8").split("\n").filter(Boolean).length;
+
+test("F5: a 200,000-line spool file (plus 130,000 unparseable lines) reads, dry-folds and folds without RangeError", () => {
+  const before = realSize();
+  const spoolBefore = realSpool();
+  const sb = sandbox();
+  const B = 130_000;
+  fs.writeFileSync(sb.events, bigLine(-1) + "\n"); // one event already in the log, and also in the spool: a duplicate
+  {
+    const parts = [];
+    for (let i = 0; i < BIG; i++) parts.push(bigLine(i));
+    fs.writeFileSync(path.join(sb.spool, "2026-10-16.jsonl"), parts.join("\n") + "\n");
+  }
+  fs.appendFileSync(path.join(sb.spool, "2026-10-16.jsonl"), bigLine(-1) + "\n");
+
+  // fold --dry goes through readSpool (tools/lib/events-spool.mjs), the reader metrics and dispatch-check also use
+  const dry = cli(sb, ["fold", "--dry"]);
+  assert.equal(dry.code, 0, dry.err);
+  assert.doesNotMatch(dry.err, /RangeError|Maximum call stack/);
+  assert.match(dry.out, new RegExp(`fold --dry: ${BIG} event\\(s\\) would be folded .* 1 already in the log$`, "m"));
+  assert.equal(countLines(sb.events), 1, "--dry writes nothing");
+
+  // Unparseable lines are added after the dry run (it only counts them), so the slow parse runs once less.
+  const bad = [];
+  for (let i = 0; i < B; i++) bad.push(`{not json ${i}`);
+  fs.writeFileSync(path.join(sb.spool, "2026-10-17.jsonl"), bad.join("\n") + "\n");
+
+  const r = cli(sb, ["fold"]);
+  assert.equal(r.code, 0, r.err);
+  assert.doesNotMatch(r.err, /RangeError|Maximum call stack/);
+  assert.match(r.out, new RegExp(`fold: ${BIG} event\\(s\\) folded .* 1 already in the log; ${B} unparseable spool line\\(s\\) kept in unparsed-\\*\\.txt`));
+  const got = fs.readFileSync(sb.events, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l).id);
+  assert.equal(got.length, BIG + 1);
+  assert.equal(new Set(got).size, BIG + 1, "no duplicate id");
+  assert.deepEqual(fs.readdirSync(sb.spool).filter((f) => /\.jsonl/.test(f)), [], "spool emptied (no *.folding-* left to adopt)");
+  const kept = fs.readdirSync(sb.spool).filter((f) => f.startsWith("unparsed-"));
+  assert.equal(kept.length, 1);
+  assert.equal(countLines(path.join(sb.spool, kept[0])), B);
+
+  const again = cli(sb, ["fold"]); // not stuck: before F5 every later fold adopted the same file and threw again
+  assert.equal(again.code, 0, again.err);
+  assert.match(again.out, /fold: 0 event\(s\) folded/);
+
+  assert.equal(realSize(), before, "the real log is untouched");
+  assert.equal(realSpool(), spoolBefore, "the real spool is untouched");
+  fs.rmSync(sb.dir, { recursive: true, force: true });
+});

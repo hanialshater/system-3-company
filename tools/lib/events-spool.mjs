@@ -72,7 +72,7 @@ export function readSpool(dir = spoolDir()) {
   let skipped = 0;
   for (const f of files) {
     const r = readJsonlFile(f);
-    events.push(...r.events);
+    for (const e of r.events) events.push(e); // F5: no push(...spread), it overflows the stack above ~120k events
     skipped += r.bad.length;
   }
   const oldest = events.reduce((m, e) => (typeof e?.ts === "string" && (!m || e.ts < m) ? e.ts : m), null);

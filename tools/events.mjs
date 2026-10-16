@@ -191,8 +191,9 @@ export function fold({ log = LOG, dir = spoolDir(), dry = false, settleMs = 100 
     const events = [];
     const bad = [];
     for (const r of parts.values()) {
-      events.push(...r.events);
-      bad.push(...r.bad);
+      // F5: loops, not push(...spread): a spread over ~120k elements overflows the call stack (RangeError).
+      for (const e of r.events) events.push(e);
+      for (const l of r.bad) bad.push(l);
     }
     events.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
     let folded = append(events.filter((e) => e && e.id), log);
@@ -215,7 +216,7 @@ export function fold({ log = LOG, dir = spoolDir(), dry = false, settleMs = 100 
         folded += append(extra, log);
       }
       const known = new Set(parts.get(f).bad);
-      bad.push(...again.bad.filter((l) => !known.has(l)));
+      for (const l of again.bad) if (!known.has(l)) bad.push(l);
     }
     if (bad.length) fs.writeFileSync(path.join(dir, `unparsed-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`), bad.join("\n") + "\n");
     for (const f of work) fs.rmSync(f, { force: true });
@@ -366,7 +367,8 @@ function gitEvents() {
 const text = (c) => (typeof c === "string" ? c : Array.isArray(c) ? c.map((x) => (typeof x === "string" ? x : x?.text ?? "")).join("\n") : "");
 function dedent(s) {
   const lines = s.split("\n");
-  const ind = Math.min(...lines.filter((l) => l.trim()).map((l) => l.match(/^ */)[0].length));
+  let ind = Infinity; // F5: a loop, not Math.min(...spread), so a very long message cannot overflow the stack
+  for (const l of lines) if (l.trim()) ind = Math.min(ind, l.match(/^ */)[0].length);
   return lines.map((l) => l.slice(Number.isFinite(ind) ? ind : 0)).join("\n").trim();
 }
 const firstLine = (s, n = 140) => {
