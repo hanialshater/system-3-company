@@ -49,6 +49,15 @@ who no longer exists: check what you rely on.
 **Next:** demo-builder W-1522..W-1525; fact-checker on the 13 review lessons, then the publish gate; cm-economics-markets W-507 (may still object to #26/#27); cm-math W-1393 (J15 tie rule).
 
 **Blocked:** section-number confirmation (book host 403, W-420). Not pushed.
+## 2026-10-16 20:55Z · head-of-product (Priya) · F-46 closeout ruling + launch review r6 (W-1483)
+
+**Changed:** launch review r6 (`company/rituals/records/2026-10-16-launch-review.md`) on the 11 lessons `company status` calls ready. **Go: cut-the-busiest-link** (v2 learner launch r15; qa-tester QA on bf6fde86, which is identical to HEAD for the lesson and kit; claims verified). **No-go: 10**: eight have current versions that were never walked (XW-1/XW-2), karatsuba has a revise verdict on v5, and patience is held by W-1333. Closeout ruling `company/product/2026-10-16-closeout-ruling.md` covers all **364** (235 review + 129 draft): **(a) push 140 · (b) fix once 87 · (c) retire 137** (106 Books if F1/F2 are unanswered by 10-19 18:00; 30 parked Life Hacks unless argued by 10-18; schelling-on-new-york). New stuck rule: 11 path-W lessons with 3+ revised versions get the walk only, and revise means retire. Created `company/product/retired-lessons.md` (no rows). Mailed all 14 lane managers plus release-manager, evaluation-steward and chief-of-staff (ids in the ruling). Board W-1527..W-1530. **Retired: none.** F-46 item 7 requires a CM-written note for each lesson, and none exists yet. Nothing published by me, nothing deployed.
+
+**Believe:** high that only cut-the-busiest-link clears the gates and the verdict-currency check today. `company status`'s ready line overcounts by 10 (W-1528). Medium on the 10-20/10-23 dates: lane-10 capacity is still unconfirmed (plan objection 2).
+
+**Next:** release-manager publishes cut-the-busiest-link (W-1527). Lane-10 XW/LW walks, QA-1 and FC-1 per the plan. CMs send their (b) rounds and write (c) notes by 10-19 18:00 (W-1530). chief-of-staff puts F1/F2 to the founder in the daily line. I check notes and chair DLR-H on 10-19.
+
+**Blocked:** Books 106 on the founder's F1/F2. schelling on a source this host cannot open.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
