@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-math-discrete · W-1581: rulings on the unknot-game and left-or-right specs
+
+**Changed:** math.discrete.md Knots batch 1 briefs 3 and 4 ("Spec rulings (W-1581)"), knots-check.mjs (new K20 tint facts 7 of 7, K21 B2 four rest states), brief-skips.json (both lines removed).
+**Believe:** high that the checks hold (rerun clean). All unknot-game choices accepted; left-or-right built as B2 (Mirror scaleX(-1) with the spec's table), no Reset, seen line prefixed "Trefoil:", 9-word caption for fallback A only, figure-eight fallback sentence is the default. Not known: that the browser composes the wrapper as the table says; the builder's rendered check shows it.
+**Next:** demo-builder builds briefs 3 and 4 (spec obligations 1 to 3). **Blocked:** nothing.
+
 ## 2026-10-16 · cm-math-discrete · W-1577 and W-1576: knots batch 1 folded in the design lead's and principal engineer's rulings
 
 **Changed:** company/domains/briefs/math.discrete.md (Knots batch 1), knots-check.mjs (K13 at 260/290/320 px, new K18 gap 0.5 on all subsets of 3_1/4_1/5_2/6_1, new K19 four card rest states), brief-skips.json (unknot-game, left-or-right held for W-1568). Brief 4 builds as version B (two-sided card) with PE-C1 to C4 and DL-C1 to C6; A is a fallback with its control renamed "Turned over?". Mirror stays face-swap (DL-C6), not `scaleX(-1)`. S1 to S4 added to all four briefs; stale EDD-011 sentence replaced. Status: brief 1 and 2 READY; brief 3 waits only on W-1568 (tint spec); brief 4 waits on W-1568 (card spec).
