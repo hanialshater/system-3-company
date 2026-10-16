@@ -18029,10 +18029,16 @@
       "id": "W-1537",
       "title": "Wire the N1/N3 composer privacy tests into npm run check or CI (privacy ruling T1, company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §1); serving layer needs its own N1/N3 (T2)",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "package.json",
+        "company/personalization/model/sim/README.md",
+        "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "Review: privacy-reviewer (T1 met? npm run check now runs self-check + N1/N3 via test:personalization; CI verify job runs check, so no ci.yml change) and principal-engineer (package.json: new script test:personalization, check script extended; no dependency). Run lme-w1537-1016. T2 (serving N1/N3) stays open for phase B."
     },
     {
       "id": "W-1538",

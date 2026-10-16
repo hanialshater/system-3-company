@@ -10,7 +10,7 @@
     "typecheck": "npm run registry && tsc --noEmit",
     "registry": "node tools/company.mjs registry",
     "company": "node tools/company.mjs",
-    "check": "node tools/company.mjs check && node tools/memory.mjs check",
+    "check": "node tools/company.mjs check && node tools/memory.mjs check && npm run test:personalization",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
     "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run check && npm run typecheck && npm run build && npm run qa",
@@ -26,7 +26,8 @@
     "test:hq": "node --import ./tests/lifehacks/register.mjs --test tests/hq/*.test.mjs",
     "test:spike": "node --import ./tests/lifehacks/register.mjs --test tests/spike/*.test.mjs",
     "test:platform": "node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs",
-    "test:mailbox": "node --test tests/mailbox/*.test.mjs"
+    "test:mailbox": "node --test tests/mailbox/*.test.mjs",
+    "test:personalization": "node company/personalization/model/self-check.mjs && node --test company/personalization/model/sim/privacy-n1-n3.test.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

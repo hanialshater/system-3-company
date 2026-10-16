@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1537 privacy T1: personalization tests wired into check (run lme-w1537-1016, branch perso-w1537)
+
+**Changed:** package.json only for wiring (no dependency): new script `test:personalization` = `node company/personalization/model/self-check.mjs && node --test company/personalization/model/sim/privacy-n1-n3.test.mjs`; `check` now ends `&& npm run test:personalization`. So `npm run verify` and the CI verify job (it runs `npm run check`) run them with no ci.yml change. privacy-breaks.mjs (~10 s) deliberately not wired. Notes in company/personalization/model/README.md and sim/README.md. W-1537 → review.
+**Verified by running:** `npm run check` rc 0 (~1.4 s total, tests add ~1 s); `npm run test:personalization` rc 0. Deliberate breaks, each reverted: ageBand penalty in composer.ts → check rc 1 (N3 fails); model.ts naming "personas" → check rc 1 (self-check boundary).
+**Believe:** T1 is met as "enforced" for every check/verify/CI run (high). Risk: CI's node 22 must be ≥22.18 for type stripping; setup-node "22" resolves latest 22.x (high, not run in CI here).
+**Next:** privacy-reviewer confirms T1; principal-engineer reviews the package.json change. T2 (serving-layer N1/N3) stays open for phase B (learner-model-engineer / personalization-engineer).
 ## 2026-10-16 · privacy-reviewer (Elif) · three personalization reads: W-1526, W-1527, W-1521 (run pr-perso-reads-1016)
 
 **Changed:** new company/reviews/_privacy/2026-10-16-personalization-batch-reads.md. Rulings: W-1526 N1/N3 composer tests pass with conditions (T1 wire into check/CI, T2 serving layer needs its own, T3 renamed-key limit); W-1527 own-route fetch exception accepted narrowly (literal /api/hq/personalization only, L1-L5), lab not privacy-done until W-1528 and W-1529 land and I read the rendered page; W-1521 settings schema pass with conditions B1-B4 (not clear to apply), personalization_on option A accepted (D1-D4), merge pass with G1-G4 (an explicit off is never turned on by a merge). Data-inventory: D21.1-D21.4 (3.6a) and D22 written, "designed, not built". Board: W-1526 done; W-1527, W-1521 doing; W-1528, W-1529 next; two new items (wire tests; settings API read).

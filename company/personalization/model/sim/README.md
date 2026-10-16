@@ -13,6 +13,8 @@ node company/personalization/model/sim/privacy-breaks.mjs           # shows each
 
 Run the privacy tests after any change to `composer.ts`, `../model.ts` (fingerprint, needs, `FORBIDDEN_INPUTS`) or `catalog.mjs`, alongside `node company/personalization/model/self-check.mjs` (which holds P1, P2 and N6; not repeated here).
 
+**Wired in (W-1537, privacy condition T1 in `company/reviews/_privacy/2026-10-16-personalization-batch-reads.md`):** `npm run test:personalization` runs `../self-check.mjs` then this N1/N3 test, and `npm run check` calls it, so `npm run verify` and the CI `verify` job (which runs `npm run check`) fail when either fails. About 1 s. `privacy-breaks.mjs` (~10 s) is not wired in; run it by hand after a composer refactor, since its anchors are literal composer lines.
+
 **Status of the numbers: UNSCORED.** There is no committed pass criterion (W-1496, analytics-steward). The runner prints numbers and draws no conclusion about which policy is better.
 
 **PROVISIONAL learner and scorer.** `learner.ts` and `score.ts` are placeholders by the builder, to be replaced or owned by personalization-eval (independence rule, company/ceo-office/2026-10-16-personalization-org-proposal.md §2: builders never build the thing that grades them). Results from them are smoke tests, not evidence. They sit behind the `SimLearner` interface and `scoreEpisode()` so the evaluator can swap them without touching the composer.
