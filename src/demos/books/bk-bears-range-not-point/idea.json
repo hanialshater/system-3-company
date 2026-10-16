@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Waltzing with Bears",
+    "author": "Tom DeMarco and Timothy Lister",
+    "year": 2003,
+    "work": "bears-range-not-2003"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B has equally likely net schedule scores +50 and −30. What is B’s toy result?",
+    "options": [
+      "10",
+      "50",
+      "0",
+      "-30"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Narrow outcomes",
+      "values": [
+        50,
+        20,
+        0
+      ]
+    },
+    {
+      "label": "Wide outcomes",
+      "values": [
+        50,
+        50,
+        -30
+      ]
+    }
+  ],
+  "labels": [
+    "Upper",
+    "Lower"
+  ],
+  "unit": "schedule points",
+  "bookIdea": "Waltzing with Bears argues for acknowledging uncertainty instead of treating a single project estimate as a guarantee.",
+  "modelBoundary": "Both A and B average {A} points. B can still lose 30, while A’s lower branch is zero; equal means do not erase downside. Scores are invented net outcomes, not durations or a deadline-risk distribution.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

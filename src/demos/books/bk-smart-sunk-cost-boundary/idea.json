@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "You Are Not So Smart",
+    "author": "David McRaney",
+    "year": 2011,
+    "work": "smart-sunk-cost-2011"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "A past 30-point fee cannot be recovered. Continuing yields +12 or -8 with equal probability. Switching guarantees +3. Expected future points from continuing?",
+    "options": [
+      "2 points",
+      "3 points",
+      "32 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Continue",
+      "values": [
+        50,
+        12,
+        -8
+      ]
+    },
+    {
+      "label": "Switch",
+      "values": [
+        100,
+        3,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "Success",
+    "Failure"
+  ],
+  "unit": "future net points",
+  "bookIdea": "You Are Not So Smart discusses sunk costs and the pull of past commitments.",
+  "modelBoundary": "Continuing averages {A}; switching {B}. The unrecoverable fee is shared history, not an additional future branch payoff.",
+  "doesItHoldUp": "Does it hold up? Real past spending may reveal information; the toy fixes future chances independently."
+}

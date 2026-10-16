@@ -1,0 +1,134 @@
+{
+  "slug": "bk-release-bulkhead-capacity",
+  "title": "The failure branch",
+  "hook": "A toy isolated request earns less and loses less when it fails. Compare both branches.",
+  "domain": "books",
+  "concept": "book-release-bulkhead-capacity",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Include a rare failure’s stipulated loss when comparing a containment cost with its avoided exposure."
+    ]
+  },
+  "misconception": "Only the normal branch matters when failures are uncommon.",
+  "objective": "Include a rare failure’s stipulated loss when comparing a containment cost with its avoided exposure.",
+  "claims": [
+    {
+      "id": "books.bk-release-bulkhead-capacity.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Release It!, by Michael T. Nygard, candidate publication year 2007.",
+      "support": "source",
+      "source": "Michael T. Nygard, Release It! (2007); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-release-bulkhead-capacity.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Release It! treats failure containment as a design concern for production systems.",
+      "support": "source",
+      "source": "Michael T. Nygard, Release It! (2007); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-release-bulkhead-capacity.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [90, 10, -100] yield -1; B inputs [90, 8, -10] yield 6.2. Prediction correct option 6.2. A averages {A}; B averages {B}. The intervention gives up two credits in the normal branch but limits the failure loss from 100 to 10. Net branch values are stipulated; no circuit-breaker timing, bulkhead pool or real outage probability is simulated.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-release-bulkhead-capacity.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy request earns 6 with 80% probability and loses 14 otherwise. Expected net? 0.8 × 6 + 0.2 × (−14) = 2; failure probability and loss magnitude are separate inputs.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [80, 6, -14], output 2; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-release-bulkhead-capacity.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy request earns 6 with 80% probability and loses 14 otherwise. Expected net?",
+    "options": [
+      "4.80",
+      "2.00",
+      "6.00",
+      "-14.00"
+    ],
+    "answer": 1,
+    "why": "0.8 × 6 + 0.2 × (−14) = 2; failure probability and loss magnitude are separate inputs."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-release-bulkhead-capacity/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-release-bulkhead-capacity/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-release-bulkhead-capacity",
+    "also": [
+      "probability:relative-vs-absolute-risk"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "release-bulkhead-2007",
+        "note": "Michael T. Nygard, Release It!, 2007 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "release-bulkhead-capacity"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

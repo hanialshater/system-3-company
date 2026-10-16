@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "The Mathematical Theory of Communication",
+    "author": "Claude E. Shannon and Warren Weaver",
+    "year": 1949,
+    "work": "shannon-weaver-mathematical-communication-1949"
+  },
+  "family": "network",
+  "predict": {
+    "question": "Counting the empty root and lengths 1–2, how many binary prefixes exist?",
+    "options": [
+      "4 prefixes",
+      "6 prefixes",
+      "7 prefixes"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "One round",
+      "values": [
+        1000,
+        2,
+        1
+      ]
+    },
+    {
+      "label": "Two rounds",
+      "values": [
+        1000,
+        2,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "rounds"
+  ],
+  "unit": "prefixes",
+  "bookIdea": "Communication models distinguish possible messages from their statistical uncertainty.",
+  "modelBoundary": "One round gives {A}; two give {B}. Each next symbol extends existing prefixes without collisions; the empty prefix counts once.",
+  "doesItHoldUp": "Does it hold up? This counts possibilities, not entropy. No symbol probabilities, noise model or coding theorem is supplied."
+}

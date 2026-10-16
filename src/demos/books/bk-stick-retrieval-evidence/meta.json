@@ -1,0 +1,132 @@
+{
+  "slug": "bk-stick-retrieval-evidence",
+  "title": "Shown answers or supplied answers?",
+  "hook": "Compare two toy assessment scores; one assessment leaves the answer visible.",
+  "domain": "books",
+  "concept": "book-stick-retrieval-evidence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to distinguish a supported assessment score from evidence of unaided retrieval"
+    ]
+  },
+  "misconception": "A high score while answers remain visible establishes unaided recall or long-term learning.",
+  "objective": "Distinguish a supported assessment score from evidence of unaided retrieval.",
+  "claims": [
+    {
+      "id": "books.bk-stick-retrieval-evidence.bibliography",
+      "text": "Make It Stick; Peter C. Brown, Henry L. Roediger III and Mark A. McDaniel; 2014.",
+      "support": "source",
+      "source": "Candidate bibliographic record for stick-retrieval-2014; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-stick-retrieval-evidence.book",
+      "text": "Make It Stick argues retrieval practice can support durable learning.",
+      "support": "source",
+      "source": "Make It Stick (2014), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-stick-retrieval-evidence.model",
+      "text": "Original stipulated toy: Ten invented equally weighted item expectations; no people measured; the assessment support differs; no future retention parameter. Exact selection inputs [{\"label\": \"Answer shown\", \"values\": [10, 90, 0, 0]}, {\"label\": \"Answer hidden\", \"values\": [10, 50, 0, 0]}]; second author arithmetic check A=90, B=50. Shown answers yield {A}%; hidden answers {B}%, because we assigned different item probabilities. Neither is a measured learning gain.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-stick-retrieval-evidence.world",
+      "text": "Does it hold up? Recognition support and unaided retrieval are different tests; durable benefits require research.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-stick-retrieval-evidence.recall",
+      "text": "{\"question\": \"A mock quiz has expected score 95% with answers shown. Does that establish 95% unaided recall?\", \"options\": [\"Yes, identical material guarantees it\", \"No, the support condition differs\", \"Yes, if the quiz was repeated\"], \"answer\": 1, \"why\": \"The displayed-answer condition does not specify performance after removing that support.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A mock quiz has expected score 95% with answers shown. Does that establish 95% unaided recall?",
+    "options": [
+      "Yes, identical material guarantees it",
+      "No, the support condition differs",
+      "Yes, if the quiz was repeated"
+    ],
+    "answer": 1,
+    "why": "The displayed-answer condition does not specify performance after removing that support."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-stick-retrieval-evidence/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-stick-retrieval-evidence/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-stick-retrieval-evidence",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "stick-retrieval-2014",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "retrieval-assessment"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

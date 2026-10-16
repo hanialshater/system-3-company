@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "How to Take Smart Notes",
+    "author": "Sonke Ahrens",
+    "year": 2017,
+    "work": "notes-links-not-2017"
+  },
+  "family": "network",
+  "predict": {
+    "question": "A note links to two new notes, each repeating that rule. With three hops, no overlaps, and a 12-note cap, how many including the start?",
+    "options": [
+      "3 notes",
+      "7 notes",
+      "12 notes"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "One hop",
+      "values": [
+        12,
+        2,
+        1
+      ]
+    },
+    {
+      "label": "Three hops",
+      "values": [
+        12,
+        2,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "Hops"
+  ],
+  "unit": "reachable notes",
+  "bookIdea": "How to Take Smart Notes emphasizes meaningful connections between notes rather than collection alone.",
+  "modelBoundary": "One hop reaches {A}; three hops {B}. Deeper traversal accesses notes absent from the immediate neighborhood.",
+  "doesItHoldUp": "Does it hold up? A tree of reachable notes says nothing about the quality of their connections."
+}

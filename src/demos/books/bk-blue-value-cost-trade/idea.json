@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Blue Ocean Strategy",
+    "author": "W. Chan Kim and Renee Mauborgne",
+    "year": 2005,
+    "work": "blue-value-cost-2005"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B has equally likely net outcomes 10 and 0. What is B’s toy result?",
+    "options": [
+      "20",
+      "5",
+      "10",
+      "0"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Feature-heavy",
+      "values": [
+        50,
+        20,
+        -20
+      ]
+    },
+    {
+      "label": "Feature reduced",
+      "values": [
+        50,
+        10,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Win",
+    "Loss"
+  ],
+  "unit": "points",
+  "bookIdea": "Blue Ocean Strategy considers changing which factors a business offers rather than competing only by adding more.",
+  "modelBoundary": "A averages {A}; B averages {B}. The redesign gives up ten points in the favorable branch and recovers twenty in the unfavorable branch. Net values are invented; no buyer response, new market or innovation effect is established.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

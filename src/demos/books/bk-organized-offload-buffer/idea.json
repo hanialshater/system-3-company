@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Organized Mind",
+    "author": "Daniel J. Levitin",
+    "year": 2014,
+    "work": "organized-offload-2014"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "Eight pending tasks start in one queue. Two move to an external list each round, for three rounds. How many remain in the first queue?",
+    "options": [
+      "0 tasks",
+      "2 tasks",
+      "6 tasks"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "No transfers",
+      "values": [
+        8,
+        0,
+        0,
+        3
+      ]
+    },
+    {
+      "label": "Two transfers/round",
+      "values": [
+        8,
+        0,
+        2,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "New tasks",
+    "To pending list",
+    "Rounds"
+  ],
+  "unit": "in-head tasks",
+  "bookIdea": "The Organized Mind discusses external organization as support for managing information and tasks.",
+  "modelBoundary": "No transfers leaves {A}; recording two per round leaves {B}. Transferred tasks remain pending on another list.",
+  "doesItHoldUp": "Does it hold up? A smaller tracked queue does not prove reduced cognitive load or completed work."
+}

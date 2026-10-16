@@ -1,0 +1,118 @@
+{
+  "slug": "bk-time-light-cone-budget",
+  "title": "Options grow with every branch",
+  "hook": "Expand a design tree and count candidates, not their quality.",
+  "domain": "books",
+  "concept": "book-time-light-cone-budget",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Identify how local branching multiplies candidate-search size."
+    ]
+  },
+  "misconception": "Doubling local options only doubles exhaustive multi-stage search work.",
+  "objective": "Identify how local branching multiplies candidate-search size.",
+  "claims": [
+    {
+      "id": "books.bk-time-light-cone-budget.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Design involves searching alternatives under constraints on computation and attention.",
+      "status": "unverified",
+      "source": "{\"work\":\"simon-sciences-artificial-1969\",\"edition\":1969,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-time-light-cone-budget.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Herbert A. Simon, The Sciences of the Artificial (1969)",
+      "status": "unverified",
+      "source": "{\"work\":\"simon-sciences-artificial-1969\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-time-light-cone-budget.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "One option per stage creates {A} nodes; two create {B}. Extra local choices multiply later alternatives in this collision-free tree.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(total,sum(branch**i,i=0..rounds)); includes root\",\"inputs\":[[1000,1,2],[1000,2,2]],\"outputs\":[3,7]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-time-light-cone-budget.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This counts enumerated candidates only. It does not measure quality, attention, partial-design reuse or search-heuristic performance.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three stages offer three independent choices each. How many complete designs?",
+    "options": [
+      "9",
+      "27",
+      "6"
+    ],
+    "answer": 1,
+    "why": "3×3×3=27; total tree nodes additionally count prefixes."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-time-light-cone-budget/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-time-light-cone-budget/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-time-light-cone-budget",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "simon-sciences-artificial-1969",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "network"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -1,6 +1,6 @@
 # AMD-012: the revisit test picks a lesson the feed lists (published or review), never a draft
 
-status: proposed (emergency session, Article 3.2)
+status: ratified 2026-10-16 (emergency session, Article 3.2)
 date: 2026-10-16
 proposed_by: evaluation-steward (Hilde), from platform-engineer's root cause of W-1451 (company/roles/memory/platform-engineer/2026-10-16-pe-w1451-revisit.md)
 prepared_by: evaluation-steward
@@ -127,7 +127,7 @@ None filed yet. Recorded here so it can be objected to: this is an emergency cha
 for. The side-by-side is one server and one SHA, not a full cycle (Article 3.4 says "where possible").
 
 ## Decision (constitutional review board)
-(pending: emergency session. Question for the founder below.)
+**Ratified 2026-10-16, emergency session.** Founder: "Ratify AMD-012" (conversation, 2026-10-16). head-of-product: approve with conditions C1–C4 (e3d58e3); platform-engineer: approve with conditions P1–P4 (94ee564); evaluation-steward: proposer, abstains. C1 is met by the "C1 evidence" section (565e64e: old 8/10, new 10/10, mutant 8/10). The patch is applied unchanged (P1) in the commit that carries `Amendment: AMD-012`, recorded by chief-of-staff. C2–C4 and P2–P4 stand as conditions; C3 is board W-1486.
 
 **Question for ratification:** "Do you ratify AMD-012? It changes only the revisit test in tests/qa/feed.spec.ts, so it seeds
 the first published-or-review lesson instead of the first lesson on disk (today a draft the feed correctly hides). Old rule:

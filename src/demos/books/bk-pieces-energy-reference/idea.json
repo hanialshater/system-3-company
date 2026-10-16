@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Six Easy Pieces",
+    "author": "Richard P. Feynman",
+    "year": 1994,
+    "work": "pieces-energy-1994"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "Start at 100; 4 enter and 6 leave each step. What remains after five steps?",
+    "options": [
+      "90 units",
+      "98 units",
+      "100 units"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Balanced transfers",
+      "values": [
+        100,
+        4,
+        4,
+        5
+      ]
+    },
+    {
+      "label": "Extra outward",
+      "values": [
+        100,
+        4,
+        6,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Energy accounting tracks transformations and transfers across a defined system boundary.",
+  "modelBoundary": "Balanced transfers retain {A}; extra outward transfer leaves {B}. The store’s decrease is accounted for by net transfer beyond its boundary.",
+  "doesItHoldUp": "Does it hold up? This conserves stated accounting units. It does not establish a physical law experimentally or represent every energy form."
+}

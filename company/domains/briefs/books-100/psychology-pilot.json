@@ -1,0 +1,1419 @@
+{
+  "owner": "cm-books-psychology",
+  "strand": "psychology",
+  "date": "2026-10-16",
+  "status": "author arithmetic checked; all claims unverified; draft PR only",
+  "briefs": [
+    {
+      "rank": 35,
+      "slug": "bk-nudge-default-choice-model",
+      "concept": "book-nudge-default-choice-model",
+      "title": "Which default, which result?",
+      "hook": "Two forms offer identical alternatives. Compare their stated choice rules.",
+      "work": "thaler-sunstein-nudge-2008",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to identify which group changes when a default changes"
+        ]
+      },
+      "misconception": "Identical alternatives guarantee identical outcomes regardless of the supplied decision rule.",
+      "objective": "Identify which group changes when a default changes.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "thaler-sunstein-nudge-2008",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "selection",
+        "defaults"
+      ],
+      "recall": {
+        "question": "Four followers choose X; six independent choosers choose X with 50% probability. Expected X share?",
+        "options": [
+          "40%",
+          "70%",
+          "100%"
+        ],
+        "answer": 1,
+        "why": "(4*100+6*50)/10 = 70%; the follower count is a stipulated input."
+      },
+      "nearest": "behavioral/saved-or-die-same-600",
+      "distinctness": "Tests a default-following subgroup rather than framing identical risky outcomes.",
+      "idea": {
+        "book": {
+          "title": "Nudge",
+          "author": "Richard H. Thaler and Cass R. Sunstein",
+          "year": 2008,
+          "work": "thaler-sunstein-nudge-2008"
+        },
+        "family": "selection",
+        "predict": {
+          "question": "Six toy users follow the default. Four choose X with 50% probability. What expected share chooses X when X is the default?",
+          "options": [
+            "20%",
+            "50%",
+            "80%"
+          ],
+          "answer": 2
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Default X",
+            "values": [
+              6,
+              100,
+              4,
+              50
+            ]
+          },
+          {
+            "label": "Default Y",
+            "values": [
+              6,
+              0,
+              4,
+              50
+            ]
+          }
+        ],
+        "labels": [
+          "Followers",
+          "Choosers"
+        ],
+        "unit": "% choose X",
+        "bookIdea": "Nudge argues defaults can influence choices while alternatives remain available.",
+        "modelBoundary": "Default X gives {A}%; default Y gives {B}%: only the six followers change. Following is assumed, not measured.",
+        "doesItHoldUp": "Does it hold up? The arithmetic cannot estimate how many real people follow a default."
+      },
+      "claims": [
+        {
+          "id": "books.bk-nudge-default-choice-model.bibliography",
+          "text": "Nudge; Richard H. Thaler and Cass R. Sunstein; 2008.",
+          "support": "source",
+          "source": "Candidate bibliographic record for thaler-sunstein-nudge-2008; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-nudge-default-choice-model.book",
+          "text": "Nudge argues defaults can influence choices while alternatives remain available.",
+          "support": "source",
+          "source": "Nudge (2008), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-nudge-default-choice-model.model",
+          "text": "Original stipulated toy: Follower and chooser groups are disjoint; follower behavior is deterministic; chooser probabilities stay fixed. Exact selection inputs [{\"label\": \"Default X\", \"values\": [6, 100, 4, 50]}, {\"label\": \"Default Y\", \"values\": [6, 0, 4, 50]}]; second author arithmetic check A=80, B=20. Default X gives {A}%; default Y gives {B}%: only the six followers change. Following is assumed, not measured.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-nudge-default-choice-model.world",
+          "text": "Does it hold up? The arithmetic cannot estimate how many real people follow a default.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-nudge-default-choice-model.recall",
+          "text": "{\"question\": \"Four followers choose X; six independent choosers choose X with 50% probability. Expected X share?\", \"options\": [\"40%\", \"70%\", \"100%\"], \"answer\": 1, \"why\": \"(4*100+6*50)/10 = 70%; the follower count is a stipulated input.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "Follower and chooser groups are disjoint; follower behavior is deterministic; chooser probabilities stay fixed.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 80,
+        "B": 20,
+        "method": "(countA*rateA + countB*rateB)/(countA+countB), in percent",
+        "predictAnswer": 2,
+        "recallAnswer": 1,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "Test a disclosed default-following toy rule, then set following to zero",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 36,
+      "slug": "bk-irrational-decoy-dominance",
+      "concept": "book-irrational-decoy-dominance",
+      "title": "Free entry, uncertain payoff",
+      "hook": "A free entry and a paid entry use different stipulated win and loss rules.",
+      "work": "ariely-predictably-irrational-2008",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to compare complete future outcomes rather than the free label"
+        ]
+      },
+      "misconception": "A zero entry price guarantees the highest overall expected return.",
+      "objective": "Compare complete future outcomes rather than the free label.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "ariely-predictably-irrational-2008",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "payoff",
+        "zero-price"
+      ],
+      "recall": {
+        "question": "A free game gives +8 with probability 25% and -4 otherwise. Expected net points?",
+        "options": [
+          "-1 point",
+          "2 points",
+          "4 points"
+        ],
+        "answer": 0,
+        "why": "0.25*8+0.75*(-4)=-1; entry price alone omits the loss branch."
+      },
+      "nearest": "behavioral/sure-million-or-long-shot",
+      "distinctness": "Uses zero entry as a potentially incomplete comparison; makes no human choice prediction.",
+      "idea": {
+        "book": {
+          "title": "Predictably Irrational",
+          "author": "Dan Ariely",
+          "year": 2008,
+          "work": "ariely-predictably-irrational-2008"
+        },
+        "family": "payoff",
+        "predict": {
+          "question": "Free entry has a 20% chance of +12 points and an 80% chance of -3. Over many entries under these rules, what is the mean net points per entry?",
+          "options": [
+            "0 points",
+            "3 points",
+            "12 points"
+          ],
+          "answer": 0
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Free entry",
+            "values": [
+              20,
+              12,
+              -3
+            ]
+          },
+          {
+            "label": "Paid entry",
+            "values": [
+              80,
+              5,
+              -5
+            ]
+          }
+        ],
+        "labels": [
+          "Win",
+          "Lose"
+        ],
+        "unit": "net points",
+        "bookIdea": "Predictably Irrational questions whether the attraction of free options supports good comparisons.",
+        "modelBoundary": "Free entry averages {A}; paid entry {B}. Net outcomes include entry fees; different chances and consequences outweigh the free label.",
+        "doesItHoldUp": "Does it hold up? This invented game cannot establish a psychological zero-price effect."
+      },
+      "claims": [
+        {
+          "id": "books.bk-irrational-decoy-dominance.bibliography",
+          "text": "Predictably Irrational; Dan Ariely; 2008.",
+          "support": "source",
+          "source": "Candidate bibliographic record for ariely-predictably-irrational-2008; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-irrational-decoy-dominance.book",
+          "text": "Predictably Irrational questions whether the attraction of free options supports good comparisons.",
+          "support": "source",
+          "source": "Predictably Irrational (2008), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-irrational-decoy-dominance.model",
+          "text": "Original stipulated toy: Win and loss are net of every cost; points are fictional; repeated-trial average is not a single-trial guarantee. Paid-entry net outcomes already include its entry fee; no extra subtraction is due. Exact payoff inputs [{\"label\": \"Free entry\", \"values\": [20, 12, -3]}, {\"label\": \"Paid entry\", \"values\": [80, 5, -5]}]; second author arithmetic check A=0, B=3. Free entry averages {A}; paid entry {B}. Net outcomes include entry fees; different chances and consequences outweigh the free label. Plain-language prediction premise: Free entry has a 20% chance of +12 points and an 80% chance of -3. Over many entries under these rules, what is the mean net points per entry? The mean is probability-weighted: 0.2*12+0.8*(-3)=0 points per entry; this is not a guarantee for a single entry.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-irrational-decoy-dominance.world",
+          "text": "Does it hold up? This invented game cannot establish a psychological zero-price effect.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-irrational-decoy-dominance.recall",
+          "text": "{\"question\": \"A free game gives +8 with probability 25% and -4 otherwise. Expected net points?\", \"options\": [\"-1 point\", \"2 points\", \"4 points\"], \"answer\": 0, \"why\": \"0.25*8+0.75*(-4)=-1; entry price alone omits the loss branch.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "Win and loss are net of every cost; points are fictional; repeated-trial average is not a single-trial guarantee. Paid-entry net outcomes already include its entry fee; no extra subtraction is due.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 0,
+        "B": 3,
+        "method": "p/100*win + (1-p/100)*lose; signed net outcomes",
+        "predictAnswer": 0,
+        "recallAnswer": 0,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "Add a dominated option to explicit toy choice rules; no invented human response",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 37,
+      "slug": "bk-habit-cue-policy",
+      "concept": "book-habit-cue-policy",
+      "title": "When does the routine run?",
+      "hook": "A toy cue starts two actions per round. Compare keeping and removing that cue.",
+      "work": "duhigg-power-of-habit-2012",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to separate a specified trigger policy from evidence about an acquired habit"
+        ]
+      },
+      "misconception": "Repeating a rule-driven cue simulation demonstrates that human habits persist after removing cues.",
+      "objective": "Separate a specified trigger policy from evidence about an acquired habit.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "duhigg-power-of-habit-2012",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "feedback",
+        "habit-cues"
+      ],
+      "recall": {
+        "question": "A programmed cue adds three actions for two rounds. Can six counted actions prove a human habit formed?",
+        "options": [
+          "Yes, repetition proves habit",
+          "No, the trigger policy was assumed",
+          "Yes, if actions were identical"
+        ],
+        "answer": 1,
+        "why": "The counter gives 3*2=6, but it contains no mechanism for human habit acquisition."
+      },
+      "nearest": "lifehacks/cue-needs-a-boundary",
+      "distinctness": "Tests removing a programmed trigger, rather than wording a study cue narrowly.",
+      "idea": {
+        "book": {
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "year": 2012,
+          "work": "duhigg-power-of-habit-2012"
+        },
+        "family": "feedback",
+        "predict": {
+          "question": "A toy rule adds two completed actions whenever a cue appears, once each round for four rounds. How many actions?",
+          "options": [
+            "2 actions",
+            "6 actions",
+            "8 actions"
+          ],
+          "answer": 2
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Cue present",
+            "values": [
+              0,
+              2,
+              0,
+              4
+            ]
+          },
+          {
+            "label": "Cue absent",
+            "values": [
+              0,
+              0,
+              0,
+              4
+            ]
+          }
+        ],
+        "labels": [
+          "Actions in",
+          "Removed",
+          "Rounds"
+        ],
+        "unit": "actions",
+        "bookIdea": "The Power of Habit describes routines in relation to cues and rewards.",
+        "modelBoundary": "Keeping the cue records {A}; removing it records {B}. The programmed trigger supplies actions; no habit strength is inferred.",
+        "doesItHoldUp": "Does it hold up? Real cues do not guarantee actions; rewards and competing cues are outside this counter."
+      },
+      "claims": [
+        {
+          "id": "books.bk-habit-cue-policy.bibliography",
+          "text": "The Power of Habit; Charles Duhigg; 2012.",
+          "support": "source",
+          "source": "Candidate bibliographic record for duhigg-power-of-habit-2012; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-habit-cue-policy.book",
+          "text": "The Power of Habit describes routines in relation to cues and rewards.",
+          "support": "source",
+          "source": "The Power of Habit (2012), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-habit-cue-policy.model",
+          "text": "Original stipulated toy: No starting actions; each present cue supplies exactly two counted actions; no decay, acquisition, rewards or competing causes. Exact feedback inputs [{\"label\": \"Cue present\", \"values\": [0, 2, 0, 4]}, {\"label\": \"Cue absent\", \"values\": [0, 0, 0, 4]}]; second author arithmetic check A=8, B=0. Keeping the cue records {A}; removing it records {B}. The programmed trigger supplies actions; no habit strength is inferred.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-habit-cue-policy.world",
+          "text": "Does it hold up? Real cues do not guarantee actions; rewards and competing cues are outside this counter.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-habit-cue-policy.recall",
+          "text": "{\"question\": \"A programmed cue adds three actions for two rounds. Can six counted actions prove a human habit formed?\", \"options\": [\"Yes, repetition proves habit\", \"No, the trigger policy was assumed\", \"Yes, if actions were identical\"], \"answer\": 1, \"why\": \"The counter gives 3*2=6, but it contains no mechanism for human habit acquisition.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "No starting actions; each present cue supplies exactly two counted actions; no decay, acquisition, rewards or competing causes.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 8,
+        "B": 0,
+        "method": "repeat x=max(0,x+inPerStep-outPerStep)",
+        "predictAnswer": 2,
+        "recallAnswer": 1,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "A repeated cue triggers a toy state transition; remove the cue to test its boundary",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 38,
+      "slug": "bk-influence-social-sample",
+      "concept": "book-influence-social-sample",
+      "title": "Many copies, how many sources?",
+      "hook": "Compare two message trees whose endorsements all originate from one source.",
+      "work": "cialdini-influence-1984",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to distinguish message reach from the number of independent information origins"
+        ]
+      },
+      "misconception": "A dozen repeated endorsements necessarily represent a dozen independent observations.",
+      "objective": "Distinguish message reach from the number of independent information origins.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "cialdini-influence-1984",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "network",
+        "social-proof"
+      ],
+      "recall": {
+        "question": "Eight reposts all copy one original observation. How many independent origins are established?",
+        "options": [
+          "One origin",
+          "Eight origins",
+          "Nine origins"
+        ],
+        "answer": 0,
+        "why": "The copying rule supplies one origin; repeated messages add reach without independent observations."
+      },
+      "nearest": "probability/two-public-clues-break-the-herd",
+      "distinctness": "Isolates copied social proof from independent observations, rather than modeling rational sequential information cascades.",
+      "idea": {
+        "book": {
+          "title": "Influence",
+          "author": "Robert B. Cialdini",
+          "year": 1984,
+          "work": "cialdini-influence-1984"
+        },
+        "family": "network",
+        "predict": {
+          "question": "Starting with one source at round 0, each newly reached node sends to two unused nodes next round. After three rounds, including the source and capped at 12, how many nodes?",
+          "options": [
+            "7 nodes",
+            "12 nodes",
+            "15 nodes"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "One recipient",
+            "values": [
+              12,
+              1,
+              3
+            ]
+          },
+          {
+            "label": "Two recipients",
+            "values": [
+              12,
+              2,
+              3
+            ]
+          }
+        ],
+        "labels": [
+          "Rounds"
+        ],
+        "unit": "reached nodes",
+        "bookIdea": "Influence discusses using other people’s behavior as a guide to choice.",
+        "modelBoundary": "One-recipient forwarding reaches {A}; two-recipient forwarding {B}. Extra branches multiply copies, while the original source remains one.",
+        "doesItHoldUp": "Does it hold up? Reach is not independent evidence or a measured persuasion effect."
+      },
+      "claims": [
+        {
+          "id": "books.bk-influence-social-sample.bibliography",
+          "text": "Influence; Robert B. Cialdini; 1984.",
+          "support": "source",
+          "source": "Candidate bibliographic record for cialdini-influence-1984; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-influence-social-sample.book",
+          "text": "Influence discusses using other people’s behavior as a guide to choice.",
+          "support": "source",
+          "source": "Influence (1984), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-influence-social-sample.model",
+          "text": "Original stipulated tree model: Source at round 0. In each following round, each newly reached node sends to two previously unused nodes. The first case uses one recipient instead. Count the source and all descendants once; cap total at twelve. No overlaps, credibility, persuasion or behavior model. Scenario A (one recipient) reaches 1+1+1+1=4 nodes; scenario B (two recipients) reaches min(12,1+2+4+8)=12 nodes. Prediction premise: Starting with one source at round 0, each newly reached node sends to two unused nodes next round. After three rounds, including the source and capped at 12, how many nodes? One-recipient forwarding reaches {A}; two-recipient forwarding {B}. Extra branches multiply copies, while the original source remains one.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-influence-social-sample.world",
+          "text": "Does it hold up? Reach is not independent evidence or a measured persuasion effect.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-influence-social-sample.recall",
+          "text": "{\"question\": \"Eight reposts all copy one original observation. How many independent origins are established?\", \"options\": [\"One origin\", \"Eight origins\", \"Nine origins\"], \"answer\": 0, \"why\": \"The copying rule supplies one origin; repeated messages add reach without independent observations.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "Source at round 0. In each following round, each newly reached node sends to two previously unused nodes. The first case uses one recipient instead. Count the source and all descendants once; cap total at twelve. No overlaps, credibility, persuasion or behavior model.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 4,
+        "B": 12,
+        "method": "min(totalNodes, sum(branchFactor**i for i=0..rounds)); no collisions",
+        "predictAnswer": 1,
+        "recallAnswer": 0,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "Compare a copied choice with a disclosed independent signal",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 39,
+      "slug": "bk-mindset-small-effect-scale",
+      "concept": "book-mindset-small-effect-scale",
+      "title": "Different test, different score",
+      "hook": "Easy and hard toy tasks have fixed accuracy rates; change the assessment mix.",
+      "work": "dweck-mindset-2006",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to explain why changing task difficulty changes the aggregate without measuring learning potential"
+        ]
+      },
+      "misconception": "A lower score under a harder task mix establishes reduced ability to learn.",
+      "objective": "Explain why changing task difficulty changes the aggregate without measuring learning potential.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "dweck-mindset-2006",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "selection",
+        "assessment-mix"
+      ],
+      "recall": {
+        "question": "At fixed easy/hard accuracies, what can a score change after switching task mix establish?",
+        "options": [
+          "A permanent ability limit",
+          "A mindset treatment effect",
+          "A change in the weighted test result"
+        ],
+        "answer": 2,
+        "why": "The toy changes only the mix; it never models a treatment, ability limit or learning trajectory."
+      },
+      "nearest": "lifehacks/lh-weighted-unit-average",
+      "distinctness": "Tests an assessment interpretation about capacity, not a reversal of group rankings.",
+      "idea": {
+        "book": {
+          "title": "Mindset",
+          "author": "Carol S. Dweck",
+          "year": 2006,
+          "work": "dweck-mindset-2006"
+        },
+        "family": "selection",
+        "predict": {
+          "question": "Toy accuracy is 100% on easy tasks and 50% on hard tasks. For two easy and eight hard tasks, expected score?",
+          "options": [
+            "50%",
+            "60%",
+            "90%"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Mostly easy",
+            "values": [
+              8,
+              100,
+              2,
+              50
+            ]
+          },
+          {
+            "label": "Mostly hard",
+            "values": [
+              2,
+              100,
+              8,
+              50
+            ]
+          }
+        ],
+        "labels": [
+          "Easy",
+          "Hard"
+        ],
+        "unit": "% correct",
+        "bookIdea": "Mindset challenges treating present performance as a fixed limit on what someone can learn.",
+        "modelBoundary": "Mostly easy yields {A}%; mostly hard {B}%. Only task weights change; neither group’s assumed accuracy changes.",
+        "doesItHoldUp": "Does it hold up? These invented scores measure no mindset intervention or future learning capacity."
+      },
+      "claims": [
+        {
+          "id": "books.bk-mindset-small-effect-scale.bibliography",
+          "text": "Mindset; Carol S. Dweck; 2006.",
+          "support": "source",
+          "source": "Candidate bibliographic record for dweck-mindset-2006; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-mindset-small-effect-scale.book",
+          "text": "Mindset challenges treating present performance as a fixed limit on what someone can learn.",
+          "support": "source",
+          "source": "Mindset (2006), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-mindset-small-effect-scale.model",
+          "text": "Original stipulated toy: Invented expected accuracies 100% and 50%; independent item expectations; fractional expected correct items; not an observed experiment. Exact selection inputs [{\"label\": \"Mostly easy\", \"values\": [8, 100, 2, 50]}, {\"label\": \"Mostly hard\", \"values\": [2, 100, 8, 50]}]; second author arithmetic check A=90, B=60. Mostly easy yields {A}%; mostly hard {B}%. Only task weights change; neither group’s assumed accuracy changes.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-mindset-small-effect-scale.world",
+          "text": "Does it hold up? These invented scores measure no mindset intervention or future learning capacity.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-mindset-small-effect-scale.recall",
+          "text": "{\"question\": \"At fixed easy/hard accuracies, what can a score change after switching task mix establish?\", \"options\": [\"A permanent ability limit\", \"A mindset treatment effect\", \"A change in the weighted test result\"], \"answer\": 2, \"why\": \"The toy changes only the mix; it never models a treatment, ability limit or learning trajectory.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "Invented expected accuracies 100% and 50%; independent item expectations; fractional expected correct items; not an observed experiment.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 90,
+        "B": 60,
+        "method": "(countA*rateA + countB*rateB)/(countA+countB), in percent",
+        "predictAnswer": 1,
+        "recallAnswer": 2,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "A small hypothetical mean difference need not separate overlapping groups",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 40,
+      "slug": "bk-choosing-information-budget",
+      "concept": "book-choosing-information-budget",
+      "title": "How much time goes into choosing?",
+      "hook": "Two comparison plans share 30 minutes, including a one-minute setup for every option.",
+      "work": "art-choosing-information-2010",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to separate the number of options opened from time spent inspecting them"
+        ]
+      },
+      "misconception": "Inspecting more options necessarily leaves more time for substantive comparison.",
+      "objective": "Separate the number of options opened from time spent inspecting them.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "art-choosing-information-2010",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "intervals",
+        "choice-time"
+      ],
+      "recall": {
+        "question": "With 20 minutes, a three-minute inspection and one-minute setup per option, total inspection time?",
+        "options": [
+          "12 minutes",
+          "15 minutes",
+          "20 minutes"
+        ],
+        "answer": 1,
+        "why": "floor(20/4)*3=15 inspection minutes; five minutes go to repeated setup."
+      },
+      "nearest": "lifehacks/count-setup-in-the-block",
+      "distinctness": "Compares breadth and depth of option examination; it does not promise reduced choice overload.",
+      "idea": {
+        "book": {
+          "title": "The Art of Choosing",
+          "author": "Sheena Iyengar",
+          "year": 2010,
+          "work": "art-choosing-information-2010"
+        },
+        "family": "intervals",
+        "predict": {
+          "question": "In 30 minutes, each option takes four minutes to inspect plus one minute setup. Count complete options only. Total inspection time?",
+          "options": [
+            "20 minutes",
+            "24 minutes",
+            "30 minutes"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Two-minute look",
+            "values": [
+              30,
+              2,
+              1
+            ]
+          },
+          {
+            "label": "Four-minute look",
+            "values": [
+              30,
+              4,
+              1
+            ]
+          }
+        ],
+        "labels": [
+          "Inspection",
+          "Setup"
+        ],
+        "unit": "inspection min",
+        "bookIdea": "The Art of Choosing examines how options and decision contexts shape choosing.",
+        "modelBoundary": "Short looks use {A} inspecting; longer looks {B}. Longer chunks repeat the setup less often, within the same budget.",
+        "doesItHoldUp": "Does it hold up? More inspection time need not produce a better real choice."
+      },
+      "claims": [
+        {
+          "id": "books.bk-choosing-information-budget.bibliography",
+          "text": "The Art of Choosing; Sheena Iyengar; 2010.",
+          "support": "source",
+          "source": "Candidate bibliographic record for art-choosing-information-2010; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-choosing-information-budget.book",
+          "text": "The Art of Choosing examines how options and decision contexts shape choosing.",
+          "support": "source",
+          "source": "The Art of Choosing (2010), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-choosing-information-budget.model",
+          "text": "Original stipulated toy: Each option has independent one-minute setup; only full inspections count; all time units are minutes; no decision quality function. Exact intervals inputs [{\"label\": \"Two-minute look\", \"values\": [30, 2, 1]}, {\"label\": \"Four-minute look\", \"values\": [30, 4, 1]}]; second author arithmetic check A=20, B=24. Short looks use {A} inspecting; longer looks {B}. Longer chunks repeat the setup less often, within the same budget.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-choosing-information-budget.world",
+          "text": "Does it hold up? More inspection time need not produce a better real choice.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-choosing-information-budget.recall",
+          "text": "{\"question\": \"With 20 minutes, a three-minute inspection and one-minute setup per option, total inspection time?\", \"options\": [\"12 minutes\", \"15 minutes\", \"20 minutes\"], \"answer\": 1, \"why\": \"floor(20/4)*3=15 inspection minutes; five minutes go to repeated setup.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "Each option has independent one-minute setup; only full inspections count; all time units are minutes; no decision quality function.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 20,
+        "B": 24,
+        "method": "floor(budget/(workPerChunk+switchOverhead))*workPerChunk; no partial chunks",
+        "predictAnswer": 1,
+        "recallAnswer": 1,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "Compare an assumed forecast with two explicitly hypothetical recovery curves",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    },
+    {
+      "rank": 41,
+      "slug": "bk-scarcity-attention-budget",
+      "concept": "book-scarcity-attention-budget",
+      "title": "Where did the task time go?",
+      "hook": "A 30-minute task budget includes repeated urgent admin work in one plan.",
+      "work": "scarcity-attention-2013",
+      "learner": {
+        "knows": [
+          "basic arithmetic and how to compare two stated rules"
+        ],
+        "doesNotKnow": [
+          "how to explain the lost task time while keeping the psychological claim separate"
+        ]
+      },
+      "misconception": "A mathematical time allocation by itself measures the psychological effect of scarcity.",
+      "objective": "Explain the lost task time while keeping the psychological claim separate.",
+      "format": "single-card",
+      "level": "intro",
+      "strand": "psychology",
+      "also": [],
+      "prerequisites": [],
+      "references": [
+        {
+          "work": "scarcity-attention-2013",
+          "note": "relevant chapter/section unconfirmed; independent source check required"
+        }
+      ],
+      "tags": [
+        "book-idea",
+        "toy-model",
+        "intervals",
+        "attention-budget"
+      ],
+      "recall": {
+        "question": "A toy reserves 12 of 30 minutes for urgent work. Does that establish a measured attentional effect of scarcity?",
+        "options": [
+          "Yes, twelve minutes is the effect",
+          "No, it only specifies an allocation",
+          "Yes, if the urgent task is important"
+        ],
+        "answer": 1,
+        "why": "The reservation is invented; a causal human effect requires evidence beyond this budget."
+      },
+      "nearest": "lifehacks/fragmented-time-does-not-fit",
+      "distinctness": "Addresses the boundary between an imposed resource drain and a psychological scarcity claim.",
+      "idea": {
+        "book": {
+          "title": "Scarcity",
+          "author": "Sendhil Mullainathan and Eldar Shafir",
+          "year": 2013,
+          "work": "scarcity-attention-2013"
+        },
+        "family": "intervals",
+        "predict": {
+          "question": "Thirty minutes contain five-minute task chunks, each with five minutes of urgent admin first. How much completed task time fits?",
+          "options": [
+            "10 minutes",
+            "15 minutes",
+            "30 minutes"
+          ],
+          "answer": 1
+        },
+        "exploreHint": "Compare both named cases; keep each result for the reveal.",
+        "scenarios": [
+          {
+            "label": "Admin each chunk",
+            "values": [
+              30,
+              5,
+              5
+            ]
+          },
+          {
+            "label": "No urgent admin",
+            "values": [
+              30,
+              5,
+              0
+            ]
+          }
+        ],
+        "labels": [
+          "Task",
+          "Admin"
+        ],
+        "unit": "task min",
+        "bookIdea": "Scarcity argues pressing shortages can capture attention and leave less for other demands.",
+        "modelBoundary": "Admin leaves {A} for task chunks; removing it leaves {B}. The consumed time is explicit, not an estimated cognitive penalty.",
+        "doesItHoldUp": "Does it hold up? Scarcity’s real attentional effects are not established by this scheduling identity."
+      },
+      "claims": [
+        {
+          "id": "books.bk-scarcity-attention-budget.bibliography",
+          "text": "Scarcity; Sendhil Mullainathan and Eldar Shafir; 2013.",
+          "support": "source",
+          "source": "Candidate bibliographic record for scarcity-attention-2013; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+          "status": "unverified",
+          "addresses": [
+            "idea.book.title",
+            "idea.book.author",
+            "idea.book.year"
+          ]
+        },
+        {
+          "id": "books.bk-scarcity-attention-budget.book",
+          "text": "Scarcity argues pressing shortages can capture attention and leave less for other demands.",
+          "support": "source",
+          "source": "Scarcity (2013), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+          "status": "unverified",
+          "addresses": [
+            "idea.bookIdea",
+            "objective",
+            "misconception"
+          ]
+        },
+        {
+          "id": "books.bk-scarcity-attention-budget.model",
+          "text": "Original stipulated toy: No task can overlap admin; no partial task chunks count; zero admin is a counterfactual stipulated schedule, not a treatment result. Exact intervals inputs [{\"label\": \"Admin each chunk\", \"values\": [30, 5, 5]}, {\"label\": \"No urgent admin\", \"values\": [30, 5, 0]}]; second author arithmetic check A=15, B=30. Admin leaves {A} for task chunks; removing it leaves {B}. The consumed time is explicit, not an estimated cognitive penalty.",
+          "support": "derivation",
+          "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+          "status": "unverified",
+          "addresses": [
+            "title",
+            "hook",
+            "idea.predict",
+            "idea.scenarios",
+            "idea.labels",
+            "idea.unit",
+            "idea.modelBoundary",
+            "idea.exploreHint"
+          ]
+        },
+        {
+          "id": "books.bk-scarcity-attention-budget.world",
+          "text": "Does it hold up? Scarcity’s real attentional effects are not established by this scheduling identity.",
+          "support": "convention",
+          "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+          "status": "unverified",
+          "addresses": [
+            "idea.doesItHoldUp"
+          ]
+        },
+        {
+          "id": "books.bk-scarcity-attention-budget.recall",
+          "text": "{\"question\": \"A toy reserves 12 of 30 minutes for urgent work. Does that establish a measured attentional effect of scarcity?\", \"options\": [\"Yes, twelve minutes is the effect\", \"No, it only specifies an allocation\", \"Yes, if the urgent task is important\"], \"answer\": 1, \"why\": \"The reservation is invented; a causal human effect requires evidence beyond this budget.\"}",
+          "support": "derivation",
+          "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+          "status": "unverified",
+          "addresses": [
+            "recall"
+          ]
+        }
+      ],
+      "assumptions": "No task can overlap admin; no partial task chunks count; zero admin is a counterfactual stipulated schedule, not a treatment result.",
+      "milestones": [
+        "case-a-observed",
+        "case-b-observed"
+      ],
+      "reset": "Retain both labelled Seen outputs and all milestones; reset active scene only.",
+      "answerCheck": {
+        "A": 15,
+        "B": 30,
+        "method": "floor(budget/(workPerChunk+switchOverhead))*workPerChunk; no partial chunks",
+        "predictAnswer": 1,
+        "recallAnswer": 1,
+        "status": "author arithmetic checked; not independent fact verification"
+      },
+      "candidateDisposition": {
+        "candidate": "A fixed attention budget shifts what remains available for a second task",
+        "resolution": "Use this explicitly bounded original model; do not imply the roster candidate mechanism was demonstrated.",
+        "reason": "The seven-family engine permits only its stated deterministic calculation; book argument and empirical applicability remain separate unverified claims."
+      }
+    }
+  ],
+  "works": [
+    {
+      "id": "thaler-sunstein-nudge-2008",
+      "title": "Nudge",
+      "authors": [
+        "Richard H. Thaler",
+        "Cass R. Sunstein"
+      ],
+      "year": 2008,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "ariely-predictably-irrational-2008",
+      "title": "Predictably Irrational",
+      "authors": [
+        "Dan Ariely"
+      ],
+      "year": 2008,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "duhigg-power-of-habit-2012",
+      "title": "The Power of Habit",
+      "authors": [
+        "Charles Duhigg"
+      ],
+      "year": 2012,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "cialdini-influence-1984",
+      "title": "Influence",
+      "authors": [
+        "Robert B. Cialdini"
+      ],
+      "year": 1984,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "dweck-mindset-2006",
+      "title": "Mindset",
+      "authors": [
+        "Carol S. Dweck"
+      ],
+      "year": 2006,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "art-choosing-information-2010",
+      "title": "The Art of Choosing",
+      "authors": [
+        "Sheena Iyengar"
+      ],
+      "year": 2010,
+      "category": "books",
+      "chapters": []
+    },
+    {
+      "id": "scarcity-attention-2013",
+      "title": "Scarcity",
+      "authors": [
+        "Sendhil Mullainathan",
+        "Eldar Shafir"
+      ],
+      "year": 2013,
+      "category": "books",
+      "chapters": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "book-nudge-default-choice-model",
+      "name": "Nudge: Which default, which result?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "thaler-sunstein-nudge-2008"
+    },
+    {
+      "id": "book-irrational-decoy-dominance",
+      "name": "Predictably Irrational: Free entry, uncertain payoff",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "ariely-predictably-irrational-2008"
+    },
+    {
+      "id": "book-habit-cue-policy",
+      "name": "The Power of Habit: When does the routine run?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "duhigg-power-of-habit-2012"
+    },
+    {
+      "id": "book-influence-social-sample",
+      "name": "Influence: Many copies, how many sources?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "cialdini-influence-1984"
+    },
+    {
+      "id": "book-mindset-small-effect-scale",
+      "name": "Mindset: Different test, different score",
+      "level": "intro",
+      "demand": 2,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "dweck-mindset-2006"
+    },
+    {
+      "id": "book-choosing-information-budget",
+      "name": "The Art of Choosing: How much time goes into choosing?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "art-choosing-information-2010"
+    },
+    {
+      "id": "book-scarcity-attention-budget",
+      "name": "Scarcity: Where did the task time go?",
+      "level": "intro",
+      "demand": 3,
+      "prerequisites": [],
+      "subarea": "psychology",
+      "work": "scarcity-attention-2013"
+    }
+  ],
+  "holds": [
+    "Independent fact-checker must open authoritative bibliographic and book/chapter sources; no source access is claimed.",
+    "All attributions, scenario conventions, derivations, transfer answers and world-evidence claims start unverified.",
+    "No publication, deployment, measured psychological effect, or human learner evidence is claimed.",
+    "Single original idea prototype per book; zero quotes, no covers, copied scenes, exercises or figures."
+  ],
+  "substitutions": [
+    {
+      "rank": 40,
+      "from": {
+        "title": "Stumbling on Happiness",
+        "author": "Daniel Gilbert",
+        "year": 2006,
+        "work": "happiness-forecast-2006",
+        "slug": "bk-happiness-forecast-duration",
+        "concept": "book-happiness-forecast-duration"
+      },
+      "to": {
+        "title": "The Art of Choosing",
+        "author": "Sheena Iyengar",
+        "year": 2010,
+        "work": "art-choosing-information-2010",
+        "slug": "bk-choosing-information-budget",
+        "concept": "book-choosing-information-budget"
+      },
+      "why": "The candidate wellbeing-duration forecast needs an unapproved curve model and risks a wellbeing interpretation. Replace one-for-one within psychology with a finite option-comparison budget; root approved the unique reservation."
+    }
+  ],
+  "authorChecks": {
+    "briefCount": 7,
+    "wordBudget": "Book attribution <=20; title <=40 characters; hook <=90; complete reveal with book prefix <=85 words.",
+    "overlap": "node tools/overlap.mjs run against 969-lesson base; nearest existing lesson and additional boundary recorded per brief.",
+    "humanEvidence": false,
+    "sourceOpened": false,
+    "editorialDemand": "Demand2/3 is editorial estimate, never learner demand data.",
+    "actual": {
+      "scenarioResultsRecomputed": 14,
+      "numericTransferAnswersRecomputed": 3,
+      "conceptualTransferAnswersReviewed": 4,
+      "allNearestPathsExist": true,
+      "allClaimStatuses": "unverified",
+      "titleMaxChars": 33,
+      "hookMaxChars": 85,
+      "attributionMaxWords": 14,
+      "completeRevealMaxWords": 57,
+      "independence": "Second arithmetic method by author; not an independent fact-check or learner test."
+    }
+  }
+}

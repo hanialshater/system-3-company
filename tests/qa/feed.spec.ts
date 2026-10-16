@@ -32,7 +32,11 @@ test("provenance is legible on demand", async ({ page }) => {
 });
 
 test("a finished lesson comes back as a spaced revisit", async ({ page }) => {
-  const first = lessons()[0];
+  // AMD-012 (W-1451): only lessons the feed lists come back as revisits (src/components/Feed.tsx keeps drafts out
+  // by design), so pick the first lesson that is published or in review, never a draft.
+  const first = lessons().find((l) => l.status === "published" || l.status === "review");
+  expect(first, "no published or review lesson in this run's pool (QA_ONLY?)").toBeTruthy();
+  if (!first) return;
   await page.goto("/");
   await page.evaluate((slug) => {
     const past = Date.now() - 2 * 86_400_000;

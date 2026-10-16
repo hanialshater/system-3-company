@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "The Art of Computer Programming, Volume 1: Fundamental Algorithms",
+    "author": "Donald E. Knuth",
+    "year": 1968,
+    "work": "knuth-art-computer-programming-vol1-1968"
+  },
+  "family": "network",
+  "predict": {
+    "question": "A full binary tree includes root and two outward rounds. How many nodes total?",
+    "options": [
+      "4 nodes",
+      "6 nodes",
+      "7 nodes"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Unary path",
+      "values": [
+        1000,
+        1,
+        2
+      ]
+    },
+    {
+      "label": "Binary tree",
+      "values": [
+        1000,
+        2,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "rounds"
+  ],
+  "unit": "nodes",
+  "bookIdea": "Tree analysis requires counting all relevant nodes in the data structure.",
+  "modelBoundary": "The unary path contains {A}; the binary tree contains {B}. The final layer is only part of each total because earlier nodes remain.",
+  "doesItHoldUp": "Does it hold up? This is a full collision-free tree, not a search with incomplete branches or reused states."
+}

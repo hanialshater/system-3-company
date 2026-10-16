@@ -1,0 +1,68 @@
+{
+  "source": "3155e779ceaf63b7eaadb631ce82d647af389875",
+  "dist": ".next-books100-completion-v4",
+  "results": [
+    {
+      "name": "verify",
+      "exit": 1,
+      "wallSeconds": 28.212162658001034
+    },
+    {
+      "name": "check",
+      "exit": 0,
+      "wallSeconds": 0.5239630970008875
+    },
+    {
+      "name": "typecheck",
+      "exit": 0,
+      "wallSeconds": 34.854813597999964
+    },
+    {
+      "name": "build",
+      "exit": 0,
+      "wallSeconds": 56.31498547800038
+    }
+  ],
+  "buildId": "hRTmaGoytSUx1B12hERpO",
+  "bytes": 522065145,
+  "verificationFailure": {
+    "suite": "test:dispatch",
+    "fixture": "tests/dispatch/guards.test.mjs:531",
+    "actual": [
+      "autostash"
+    ],
+    "expected": [],
+    "disposition": "Inherited Git2.51.1 fixture; full verify red. No waiver/weakening."
+  },
+  "hqSuite": {
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0
+  },
+  "platformOnV3": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 4
+  },
+  "consoleLogNormalization": {
+    "method": "Remove terminal carriage returns/trailing whitespace, expand indentation tabs; commands/results unchanged. Original console SHA-256 retained here.",
+    "files": {
+      "company/reviews/books-100/checks/completion-verify.txt": {
+        "rawSha256": "be75f7ed843f820a762d974e8ed25fab6d52891c03485f18295cd5509b51c5ef",
+        "normalizedSha256": "60925ebf07fac1c66809f2926424c2b42457060c13afd60394205580c7580974"
+      },
+      "company/reviews/books-100/checks/completion-check.txt": {
+        "rawSha256": "37aa48732fff6db772229ca1f82bd7208f4fd28b1351c7ea02e0cea80956a21d",
+        "normalizedSha256": "37aa48732fff6db772229ca1f82bd7208f4fd28b1351c7ea02e0cea80956a21d"
+      },
+      "company/reviews/books-100/checks/completion-typecheck.txt": {
+        "rawSha256": "6ada1ed848f729433c37a57d807c7b0cc1ad52d63bfeecdf58f0f3eb78d71c2e",
+        "normalizedSha256": "6ada1ed848f729433c37a57d807c7b0cc1ad52d63bfeecdf58f0f3eb78d71c2e"
+      },
+      "company/reviews/books-100/checks/completion-build.txt": {
+        "rawSha256": "b96c35e6d16708ae380dcc7f0827cd9162275903f88e9a1494e714e8b4940ea3",
+        "normalizedSha256": "b6db980dc4cccf1ac28d64f67440d81d7d78d5031c9490fd0a9ece7f5ba9c963"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Thinking in Systems",
+    "author": "Donella H. Meadows",
+    "year": 2008,
+    "work": "meadows-thinking-in-systems-2008"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "With 10 units initially and three updates, which final stock follows from inflow 4 and outflow 3?",
+    "options": [
+      "10 units",
+      "13 units",
+      "19 units"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare balanced flows with a smaller drain. Track each update.",
+  "scenarios": [
+    {
+      "label": "Balanced flows",
+      "values": [
+        10,
+        4,
+        4,
+        3
+      ]
+    },
+    {
+      "label": "Smaller drain",
+      "values": [
+        10,
+        4,
+        3,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Stocks change through accumulated inflows and outflows.",
+  "modelBoundary": "Balanced flows leave {A}; reducing the drain leaves {B}. Three net additions accumulate; the starting stock is not itself a flow. Rates stay fixed.",
+  "doesItHoldUp": "Does it hold up? This accounting follows the stated recurrence. It does not model feedback control or verify environmental forecasts."
+}

@@ -1,0 +1,132 @@
+{
+  "slug": "bk-minds-sampling-representatives",
+  "title": "Who did the conversation sample?",
+  "hook": "Compare a selected conversation sample with an explicitly balanced toy population.",
+  "domain": "books",
+  "concept": "book-minds-sampling-representatives",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to separate who was sampled from whether any individual changed their mind"
+    ]
+  },
+  "misconception": "Agreement in selected conversations establishes either population consensus or successful persuasion.",
+  "objective": "Separate who was sampled from whether any individual changed their mind.",
+  "claims": [
+    {
+      "id": "books.bk-minds-sampling-representatives.bibliography",
+      "text": "How Minds Change; David McRaney; 2022.",
+      "support": "source",
+      "source": "Candidate bibliographic record for minds-sampling-2022; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-minds-sampling-representatives.book",
+      "text": "How Minds Change examines how conversations and social contexts relate to changes in belief.",
+      "support": "source",
+      "source": "How Minds Change (2022), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-minds-sampling-representatives.model",
+      "text": "Original stipulated toy: Invented response classes fixed100/0; selected sample is not random; balanced population explicitly stipulated; no before/after belief outcomes. Exact selection inputs [{\"label\": \"Lopsided sample\", \"values\": [9, 100, 1, 0]}, {\"label\": \"Balanced population\", \"values\": [5, 100, 5, 0]}]; second author arithmetic check A=90, B=50. The selected sample is {A}% yes; the population {B}%. Changing who is included changes the apparent consensus.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-minds-sampling-representatives.world",
+      "text": "Does it hold up? No one changes a belief here; sampling arithmetic cannot establish a persuasion method.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-minds-sampling-representatives.recall",
+      "text": "{\"question\": \"Nine of ten selected conversations agree, but the population mix is unknown. Which conclusion follows?\", \"options\": [\"The population is 90% in agreement\", \"Ninety percent of the selected sample agreed\", \"The conversations changed nine minds\"], \"answer\": 1, \"why\": \"The sample fraction alone establishes neither representativeness nor a before/after belief change.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Nine of ten selected conversations agree, but the population mix is unknown. Which conclusion follows?",
+    "options": [
+      "The population is 90% in agreement",
+      "Ninety percent of the selected sample agreed",
+      "The conversations changed nine minds"
+    ],
+    "answer": 1,
+    "why": "The sample fraction alone establishes neither representativeness nor a before/after belief change."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-minds-sampling-representatives/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-minds-sampling-representatives/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-minds-sampling-representatives",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "minds-sampling-2022",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "conversation-sampling"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

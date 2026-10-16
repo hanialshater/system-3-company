@@ -1,0 +1,482 @@
+{
+  "config": {
+    "configFile": "/workspace/scratch/16c35eb5bad4/system-3-company/playwright.config.ts",
+    "rootDir": "/workspace/scratch/16c35eb5bad4/system-3-company/tests/qa",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "qaStamp": {
+        "files": [
+          "tests/qa",
+          "playwright.config.ts"
+        ],
+        "head": "5479029c4826492ece24017e46988181d4c5899b",
+        "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+        "blobs": {
+          "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+          "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+          "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+          "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+        },
+        "modified": [],
+        "clean": true
+      },
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results-books100-postmerge-5479029c-v3-feed/qa-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/workspace/scratch/16c35eb5bad4/system-3-company/test-results-books100-postmerge-5479029c-v3-feed",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "5479029c4826492ece24017e46988181d4c5899b",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 2
+        },
+        "id": "phone",
+        "name": "phone",
+        "testDir": "/workspace/scratch/16c35eb5bad4/system-3-company/tests/qa",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/workspace/scratch/16c35eb5bad4/system-3-company/test-results-books100-postmerge-5479029c-v3-feed",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "qaStamp": {
+            "files": [
+              "tests/qa",
+              "playwright.config.ts"
+            ],
+            "head": "5479029c4826492ece24017e46988181d4c5899b",
+            "commit": "5acecbca1e91262d0c156ab7187ee813b0550590",
+            "blobs": {
+              "playwright.config.ts": "ce609a465f9d9c56cfe4e77d5a20fa418e7be9fa",
+              "tests/qa/contract.spec.ts": "6fe304a61ef88ebbeefed12d670fcccdf3c65319",
+              "tests/qa/feed.spec.ts": "9b7393c753f5a14b0ce780d774c3f110bec2561c",
+              "tests/qa/lessons.ts": "8a5597a6e48aef13f97475a3f74d23a70234f072"
+            },
+            "modified": [],
+            "clean": true
+          },
+          "actualWorkers": 2
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/workspace/scratch/16c35eb5bad4/system-3-company/tests/qa",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "feed.spec.ts",
+      "file": "feed.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "home feed opens honestly and starts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 531,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:16.069Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-2aa6aa1e9fe08ada53f4",
+          "file": "feed.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "subject chips filter the feed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 585,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:16.022Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-63de40ac1f3268fca2db",
+          "file": "feed.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "provenance is legible on demand",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 604,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:16.685Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-52922d3408ef71f65561",
+          "file": "feed.spec.ts",
+          "line": 25,
+          "column": 5
+        },
+        {
+          "title": "a finished lesson comes back as a spaced revisit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 667,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:16.690Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-c0a491223554a0c00819",
+          "file": "feed.spec.ts",
+          "line": 34,
+          "column": 5
+        },
+        {
+          "title": "the map shows taught and untaught concepts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 631,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:17.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-8fe145f91a9a0f3eacd3",
+          "file": "feed.spec.ts",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "title": "home feed opens honestly and starts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 379,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:18.091Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-fc2c0cc9f3848870f3c7",
+          "file": "feed.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "subject chips filter the feed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 537,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:18.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-3d9ebee7eef8bb6d680a",
+          "file": "feed.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "provenance is legible on demand",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 440,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:18.545Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-6960ac9e52c87f9c83b6",
+          "file": "feed.spec.ts",
+          "line": 25,
+          "column": 5
+        },
+        {
+          "title": "a finished lesson comes back as a spaced revisit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 588,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:18.998Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-3efd7beb196488eb86b3",
+          "file": "feed.spec.ts",
+          "line": 34,
+          "column": 5
+        },
+        {
+          "title": "the map shows taught and untaught concepts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 592,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-16T16:58:19.221Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "02288723d35f41b5ad69-a84d0cc126736ecf76a2",
+          "file": "feed.spec.ts",
+          "line": 53,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-16T16:58:15.360Z",
+    "duration": 4504.001,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -30,6 +30,8 @@ partial IDs, conflicting local/environment links and a CLI-resolved owner/projec
 
 ## Deploy (release manager)
 
+**Since 2026-10-16 (F-48, company/decisions/2026-10-16-founder-no-git-deployments.md): pushes create no Vercel deployment (`vercel.json` `git.deploymentEnabled: false`). Deploy only through the Deploy to Vercel workflow, after the founder approves that deploy. The commit marker no longer deploys.**
+
 ```sh
 npm run deploy -- preview --dry-run  # plan only; no credentials or cloud mutation
 npm run deploy -- preview            # tagged review lessons available for testing

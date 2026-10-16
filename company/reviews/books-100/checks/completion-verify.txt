@@ -1,0 +1,601 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 verify
+> npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run check && npm run typecheck && npm run build && npm run qa
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:deploy
+> node --test tests/deploy/*.test.mjs
+
+✔ preview verifies and smoke-tests, records its URL, and never promotes (14.104748ms)
+✔ production stages with published-only config and promotes after all checks (2.956166ms)
+✔ verify failure leaves a failed record and never promotes (2.035485ms)
+✔ upload failure leaves a failed record and never promotes (1.482705ms)
+✔ ready failure leaves a failed record and never promotes (2.555816ms)
+✔ an unhealthy or unpublished production page blocks promotion (2.295965ms)
+✔ an unhealthy or unpublished production page blocks promotion (1.710598ms)
+✔ an unhealthy or unpublished production page blocks promotion (1.817918ms)
+✔ missing links and conflicting IDs stop before any external operation (1.340061ms)
+✔ CLI project mismatch and dirty production source stop before upload (1.671068ms)
+✔ CI can use explicit project IDs without a local link (2.000041ms)
+✔ CI uploads a locally built preview deployment after verification (2.269365ms)
+✔ CI uploads a locally built production deployment after verification (2.793222ms)
+✔ CI pull failure prevents upload and promotion (1.602515ms)
+✔ CI build failure prevents upload and promotion (1.432069ms)
+✔ dry-run needs no credentials, executes nothing and writes no records (0.824277ms)
+✔ only deployment origins from Vercel are accepted (0.21989ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.367958
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:publish
+> node --test tests/publish/*.test.mjs
+
+✔ --help, -h, a typo flag and a stray positional leave meta.json byte-identical (362.531446ms)
+✔ a plain list run writes nothing and says what it would link (73.619991ms)
+✔ --link writes the link, and a second --link changes nothing (129.94644ms)
+✔ list and --link print the same candidates and holds (linking does not change the list) (124.139782ms)
+✔ parseArgs (0.502033ms)
+✔ canonical verdicts are read, case-insensitive, with optional bold (1.650246ms)
+✔ synonyms are not translated: pass and block hold, and are named (0.608624ms)
+✔ a verdict not on a 'Verdict:' line is not a verdict (0.183245ms)
+✔ conflicting verdict lines hold the lesson (0.142814ms)
+✔ the version stamp stays strict (0.297807ms)
+✔ latest review wins by version, then date, then write order (7.164652ms)
+✔ fail closed: an unreadable review dated after the chosen one holds the lesson (0.229304ms)
+✔ no review, no candidate (0.109945ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 775.038395
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:lifehacks
+> node --import ./tests/lifehacks/register.mjs --test tests/lifehacks/*.test.mjs
+
+✔ home: idea, limit, formula and warning appear in claims (15.151283ms)
+✔ resource: principle, assumptions, details and warning appear in claims (6.864641ms)
+✔ study: principle and boundary appear in claims (16.197783ms)
+✔ expressions take named variables; literal text is not a number (1.850468ms)
+✔ R5 number format: three significant figures, 1/20 and 1/22 differ, a real minus sign (18.061945ms)
+✔ v2 field lists: HomeV2Fields declares every listed Home key (1.074252ms)
+✔ each r11 wave lists only lessons that the fix plan puts in that wave (0.527492ms)
+✔ exactly batch D and the listed r11 waves are on engine 2; every other lesson carries no v2 field (renders as v1) (2.69219ms)
+✔ v2 specs have the section 8 required fields, the answer is one of the options, and no option repeats a button label (R7) (2.30532ms)
+✔ Home v2: every amount and result is finite at min, initial and max in both modes, and the reveal resolves (10.206427ms)
+✔ Home v2 batch D numbers match the patch tables (0.870106ms)
+✔ Study v2: schedule overruns, named clashes and the movable gap (0.999981ms)
+✔ Study v2: files, message and recall columns (0.877958ms)
+✔ Study v2 reveal quotes the predicted column first, and Yours only when it differs from both (0.904287ms)
+✔ the new learner-visible sentences are recorded as claims, versions bumped (2.062095ms)
+✔ v1 lessons still on default predict options (cm-lifehacks writes them in batches of 20, W-613) (0.355213ms)
+ℹ 39 Home lessons still build options from button labels: wobbly-table-quarter-turn, door-swing-clearance, furniture-through-door, sofa-diagonal-room, drawer-divider-cost, suitcase-rotate-block, packing-cube-walls, rolled-or-folded-volume, file-fold-see-each-shirt, heavy-book-close-to-back, wetter-cloth-more-water, pillowcase-set-kit, small-items-in-mesh, shelf-front-labels, transparent-box-visibility, mug-handle-packing, round-box-leftover-gap, rectangular-bin-nesting, flat-pack-volume-dimensions, rug-chair-pullback, shelf-gap-wasted-height, trays-slide-out-reach, keys-fixed-drop-zone, duplicates-two-stations, labels-specific-address, seasonal-bin-rotation, lids-match-by-size, nested-box-retrieval, spacer-protects-clearance, wrapping-paper-minimum-area, ribbon-around-box-length, tape-mark-same-spacing, measure-diagonal-for-square, ruler-start-not-zero, measure-inside-not-outside, cm-to-inches, margin-before-cut, resize-photo-frame-ratio, weight-spread-on-table
+✔ GIVENS lists at most 3 texts, each stated in its question and drawn in its locked picture (43.580076ms)
+✔ locked: no engine-2 Home picture text states an A or B amount or result at initial, except the listed givens (84.020345ms)
+✔ locked: every number in an engine-2 Home picture is one the question or a mode label already states (77.27127ms)
+✔ unlocked before the first press: no engine-2 Home picture text states an A or B amount or result at initial, except the listed givens (106.321942ms)
+✔ unlocked before the first press: every number in an engine-2 Home picture is one the question or a mode label already states (37.969066ms)
+✔ the locked-picture check is not vacuous: after a press, the same pictures do state their numbers (7.879164ms)
+✔ W-1299 jacket-last-first, locked: an empty bag, the items beside it in use order, no arrows, no highlight (9.021749ms)
+✔ W-1299 group-cables-with-ends, locked: the loose ends are not drawn as highlighted targets (2.740563ms)
+✔ E1 tote-balance-sides: the rotated balance-point dot hangs on the dashed vertical under the pivot (±1 unit) (22.58963ms)
+✔ E2 socks-use-shoe-space: the hollow label after the socks fill it (400 at 200, 0 from 600 up); no label while neutral (10.367599ms)
+✔ E3 desk-supply-near-use: locked and before the first press, no journey is drawn and the tape sits at the far station (15.040046ms)
+✔ W-1241 long-cord-knots-itself: the reveal unlocks after either press order (12.35809ms)
+✔ homeDifference: diff is the size of the gap B - A with its unit, whichever result is larger (18.782216ms)
+✔ homeDifference: opposite signs give the full distance, and the ratio of the sizes (0.271267ms)
+✔ homeDifference: a zero smaller result leaves the ratio empty; equal results give a zero gap (0.43362ms)
+✔ homeDifference: diff follows the spec number format, ratio is always plain; resultUnit replaces the unit (0.387001ms)
+✔ homeDifference feeds {diff} and {ratio} in revealLine; an empty ratio is an empty string, not a raw token (0.620591ms)
+✔ plainNumbers: up to two decimals, trailing zeros dropped, thousands separator, real minus sign (0.24646ms)
+✔ without plainNumbers the R5 format is unchanged (three significant figures) (0.255333ms)
+✔ plainNumbers reaches amount cells and the result cell; literal and empty cells are untouched (0.710165ms)
+✔ homeSliderMatters: true when the result moves with the slider, false when no cell in either column does (3.222516ms)
+✔ homeSliderMatters samples the whole range, including the last step (0.60627ms)
+✔ wave W3 (v2 stage): every slider step resolves every token in the reveal and every Seen cell, with no NaN or bare "−0" (11.256803ms)
+✔ wave W2 (v2 stage): every slider step resolves every reveal token, a used {ratio} is never empty, sliders stay (35.675268ms)
+✔ waves W2 and W3: the plain-number lessons show no R5 trailing zeros in any cell or reveal (10.38832ms)
+✔ all sixty-nine lesson models stay finite throughout their allowed controls (31.574824ms)
+✔ the prepared towel exposes four times the faces, with chosen flux kept fixed (0.35325ms)
+✔ equal-leg contact illustration crosses zero rather than proving a level tabletop (0.1663ms)
+✔ twenty illustrative walking steps can reduce both bow loops (0.163315ms)
+✔ cord trials reproduce a fixed seed and retain genuine trial sampling variation (1.622565ms)
+✔ a width fit differs from a volume check and includes protrusions (0.194401ms)
+✔ two-dimensional packing uses integer rows and rotation, not just total area (0.205108ms)
+✔ rolling and splitting conserve material and face area under the stated assumptions (0.188283ms)
+✔ access, grouping and repeated routes have concrete counts (0.33965ms)
+✔ geometry checks dimensions, conservative bounds and an actual origin (0.636475ms)
+✔ static mechanics never claims to reduce the total load (0.182604ms)
+✔ conversion uses an exact definition while a repeated bias adds up (0.698779ms)
+✔ metadata retains independent gates and complete model addresses (16.630297ms)
+✔ the ruler drawing places a three-to-twenty centimetre span on the actual scale (0.337977ms)
+✔ the shown suitcase fills two exact-height rows without suggesting an extra column (0.337747ms)
+✔ fold allowances, conversion span and repeated mark bias use their own real scale (0.267581ms)
+✔ every plain-cord lesson on the generic stage gets a cord drawing that matches its model (1.235835ms)
+✔ sixty distinct objectives cover seven visible interaction families (17.318901ms)
+✔ same units expose the big pack and 100g-label traps (1.265379ms)
+✔ checkout thresholds and bundle remainders use their declared boundaries (0.32691ms)
+✔ sequential percentages preserve the changing base (0.154672ms)
+✔ allocation keeps discrete leftovers and repeat allowances (0.15965ms)
+✔ inventory subtracts usable and committed counts, then rounds purchases (0.137176ms)
+✔ constant-load energy scenarios use watts, hours, duty and explicit charges (0.290696ms)
+✔ fixed-duration flow and fixed-volume filling are different quantities (0.21958ms)
+✔ geometry uses internal dimensions, squared radii, openings and paths (0.423115ms)
+✔ reuse boundaries include odd sheets, separate offcuts and declared material limits (0.419289ms)
+✔ fixed picture scales preserve growth and actual energy-axis durations (29.495049ms)
+✔ cylinder projected bases preserve fourfold area at doubled radius (1.890567ms)
+✔ revised transfer recalls require scaling, an equality and stock-at-ordering meaning (0.443807ms)
+✔ decimal rounding follows the declared half-up toy convention (0.327742ms)
+✔ resource metadata keeps independent claim addresses and bounded lesson copy (11.616834ms)
+✔ ceil and floor ignore floating-point noise but still round real fractions (2.490647ms)
+✔ retrieval: the seven opted-in recall fixtures are exactly the expected set, and rebuild-the-procedure is not one (4.380333ms)
+✔ retrieval: every recall spec with a retrieval fixture has no problems (0.513ms)
+✔ retrieval: an answer missing from its choices is a problem (0.269414ms)
+✔ retrieval: a box with no distractor is a problem (0.221172ms)
+✔ retrieval: a repeated choice is a problem (0.291197ms)
+✔ retrieval: study and covered cards of different length is a problem (6.678313ms)
+✔ retrieval: problems in a second row are found too, and several problems are all listed (0.373891ms)
+✔ retrieval: a feedback attempt with no error is a problem, and a code digit missing from its choices is one (0.297096ms)
+✔ retrieval: a compound attempt with no miss is a problem (0.214091ms)
+✔ nextChoice: an empty box shows the first choice, a tap moves on, the last wraps to the first (0.773541ms)
+✔ nextChoice: from empty, every answer of every fixture box is reachable within its number of choices (0.407461ms)
+✔ scoreRow: an untouched row is incomplete, scores 0 and every miss chose "nothing" (0.325499ms)
+✔ scoreRow: one empty box among right answers is a miss and keeps the row incomplete (0.215433ms)
+✔ scoreRow: a full right row (0.127021ms)
+✔ scoreRow: a full partial row names each wrong choice (0.169254ms)
+✔ scoreRow: fewer picks than boxes is incomplete; the answer word as text never counts, only the chosen index (0.111708ms)
+✔ markAttempt: the stipulated bike-lock attempt marks the middle digit wrong; the code itself marks all right (0.147382ms)
+✔ scheduleLayout: without chain or longer the rows sit at the given starts and the spec is not mutated (0.281202ms)
+✔ scheduleLayout: a chain runs back to back after its first row, whatever the other starts say (0.171518ms)
+✔ scheduleLayout: long adds the overrun to its row only, and only when long is set (0.283125ms)
+✔ scheduleLayout: in a chain, a long overrun pushes the following rows later (3.591951ms)
+✔ freeGaps: fragmented-time-does-not-fit has 30 free minutes before 40 but no gap longer than 10 (0.37358ms)
+✔ freeGaps: fit-before-fixed-slot has a gap long enough for the task (0.192119ms)
+✔ freeGaps: edges (empty, touching, overlapping, unsorted, past the window, nothing free) (0.33321ms)
+✔ freeGaps invariant: gaps are ordered, disjoint, non-empty, inside the window and miss every busy row (3.086062ms)
+✔ scheduleObservation: an overlapping layout has no valid finish and names the minutes and clashes (0.587021ms)
+✔ scheduleObservation: a clean layout reports its finish (0.140721ms)
+✔ scheduleObservation: a due-row lesson, late and on time (0.307872ms)
+✔ scheduleObservation: the due row is the travel row for arrival-is-not-departure, not the whole trip (0.114222ms)
+✔ scheduleObservation: chain reports the start of the first row and the due row's finish (0.177135ms)
+✔ scheduleObservation: longer names the long end and then the clash it causes (0.150886ms)
+✔ scheduleObservation: claimed compares the plan with the layout, and is silent when the layout overlaps (2.078284ms)
+✔ scheduleObservation invariant: claimed never reads zero or negative minutes on any slider value (0.51276ms)
+✔ scheduleObservation invariant: every v1 schedule lesson at every slider value says "no valid finish" exactly when the layout overlaps (30.596812ms)
+✔ queueObservation: plain waiting lesson, no goal sentence at the target (it waits less) (0.81951ms)
+✔ queueObservation: metric late, more waiting at the target, says the goal is no late jobs (0.275944ms)
+✔ queueObservation: metric dependency, says the goal is running each job after the job it needs (0.258418ms)
+✔ queueObservation: metric release with watch, says when the watched job is done in both orders (0.229314ms)
+✔ queueObservation: metric switches counts switches with their cost; the goal sentence appears only when the target waits more (0.172138ms)
+✔ queueObservation: no goal sentence when the target waits less, when the order is not the target, or for metric waiting (0.151638ms)
+✔ queueObservation: release without watch falls back to the late-jobs wording and shows no watch readout (0.2464ms)
+✔ queueObservation invariant: every v1 queue lesson, every order, says "more minutes" only with a positive number (1.166371ms)
+✔ calendar: touching intervals are compatible, triple overlap is counted once (1.786651ms)
+✔ calendar: a task-specific deadline does not incorrectly include downstream tasks (0.274752ms)
+✔ queue: short jobs reduce waiting but an urgent long job may be late (0.261322ms)
+✔ queue: context cost and prerequisites remain separate (0.145038ms)
+✔ recall: exact positions matter, checking does not mutate the target (0.183286ms)
+✔ files: AND is intersection and OR is union, never summed counts (0.385328ms)
+✔ files: quoted phrase differs from separate words; exclusion preserves wanted notes (0.234111ms)
+✔ files: fixed-width dates and numeric padding produce known text order (0.184747ms)
+✔ files: metadata, identity and deletion are different dimensions (0.374783ms)
+✔ editor: Find and zoom change view state while preserving content; cut changes content (0.277206ms)
+✔ spacing parameters are explicitly illustrative and do not estimate personal recall (0.268853ms)
+✔ 70 unique objectives, review-only artifacts and bounded hooks (8.765925ms)
+✔ round-robin activity does not imply the first task is complete (0.503666ms)
+✔ application sorts new visible values rather than recalling a hidden target (0.135893ms)
+✔ ten labels: observed scan and midpoint elimination have an independent four-check trace (0.258298ms)
+✔ a smaller target keeps the left interval; scanning stops at the found label (0.162494ms)
+✔ fresh recall transfer requires sorting and fixed travel arithmetic (0.341392ms)
+ℹ tests 133
+ℹ suites 0
+ℹ pass 133
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1924.686573
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:kit
+> node --test src/kit/knots/test/*.test.mjs
+
+✔ PD codes are validated: bad labels, non-planar codes and inconsistent orientations throw (3.292081ms)
+✔ signed Gauss codes round-trip; unsigned Gauss and DT codes recover the knot up to mirror image (78.838032ms)
+✔ braid closures: σ1³ is the right trefoil, (σ1 σ2⁻¹)² the figure-eight, σ1² the positive Hopf link (1.469736ms)
+✔ random knots are seeded, one component, and the same for the same seed (2.382566ms)
+✔ 3-D curves: a parametric trefoil projects to a trefoil; random walks close and project to valid diagrams (34.633274ms)
+✔ identify: scrambled table knots are found, mirrors flagged, unknown knots return [] (25.103383ms)
+✔ table knots draw cleanly: right handedness, no extra strand crossings (306.882068ms)
+✔ random diagrams draw with the right handedness (143.067702ms)
+✔ a stored layout keeps the picture fixed across a crossing change (5.01816ms)
+✔ table knots look like the textbook: round strands, no long straight runs, no sharp corners (41.276043ms)
+✔ a stored layout keeps every strand where it was across a crossing change (268.73067ms)
+✔ 0_1: Jones, Alexander, components, writhe match the reference (3.395225ms)
+✔ 0_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.796736ms)
+✔ 3_1: Jones, Alexander, components, writhe match the reference (1.869796ms)
+✔ 3_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (2.999031ms)
+✔ 4_1: Jones, Alexander, components, writhe match the reference (1.077788ms)
+✔ 4_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (6.454746ms)
+✔ 5_1: Jones, Alexander, components, writhe match the reference (2.719161ms)
+✔ 5_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.66687ms)
+✔ 5_2: Jones, Alexander, components, writhe match the reference (6.340405ms)
+✔ 5_2: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.740722ms)
+✔ 6_1: Jones, Alexander, components, writhe match the reference (1.142875ms)
+✔ 6_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (1.19294ms)
+✔ 6_2: Jones, Alexander, components, writhe match the reference (0.934522ms)
+✔ 6_2: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.975825ms)
+✔ 6_3: Jones, Alexander, components, writhe match the reference (1.758058ms)
+✔ 6_3: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (1.193531ms)
+✔ 7_1: Jones, Alexander, components, writhe match the reference (1.629676ms)
+✔ 7_1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.873901ms)
+✔ 7_2: Jones, Alexander, components, writhe match the reference (1.592359ms)
+✔ 7_2: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (2.354573ms)
+✔ 7_3: Jones, Alexander, components, writhe match the reference (1.004808ms)
+✔ 7_3: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.461963ms)
+✔ 7_4: Jones, Alexander, components, writhe match the reference (1.483707ms)
+✔ 7_4: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.584607ms)
+✔ 7_5: Jones, Alexander, components, writhe match the reference (1.063616ms)
+✔ 7_5: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.581022ms)
+✔ 7_6: Jones, Alexander, components, writhe match the reference (1.086571ms)
+✔ 7_6: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (2.363657ms)
+✔ 7_7: Jones, Alexander, components, writhe match the reference (0.819509ms)
+✔ 7_7: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.494102ms)
+✔ 10_8: Jones, Alexander, components, writhe match the reference (2.382225ms)
+✔ 10_8: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (2.867894ms)
+✔ L2a1: Jones, Alexander, components, writhe match the reference (0.342073ms)
+✔ L2a1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.277207ms)
+✔ L5a1: Jones, Alexander, components, writhe match the reference (0.371367ms)
+✔ L5a1: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.304066ms)
+✔ L6a4: Jones, Alexander, components, writhe match the reference (0.436706ms)
+✔ L6a4: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.323846ms)
+✔ granny: Jones, Alexander, components, writhe match the reference (0.555153ms)
+✔ granny: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.341944ms)
+✔ square: Jones, Alexander, components, writhe match the reference (0.558298ms)
+✔ square: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.308943ms)
+✔ rtrefoil: Jones, Alexander, components, writhe match the reference (0.345388ms)
+✔ rtrefoil: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.306169ms)
+✔ hopfplus: Jones, Alexander, components, writhe match the reference (0.488574ms)
+✔ hopfplus: determinant = |V(-1)| (and |Δ(-1)| for knots); colourings agree with it (0.215714ms)
+✔ tricolourability: 3_1 yes, 4_1 no, and the full table list (1.502324ms)
+✔ a colouring checker for lessons: the trefoil with three colours passes, one colour per arc (1.354562ms)
+✔ linking numbers: Hopf ±1, Whitehead 0, Borromean all 0 (0.482273ms)
+✔ signature: |σ| matches the table, σ(right trefoil) = -2, Traczyk formula, Murasugi mod 4 (18.495176ms)
+✔ mirror inverts t in V; turning over changes nothing; connected sum multiplies (8.937413ms)
+✔ chirality fingerprints: trefoil V(t) != V(1/t), figure-eight and 6_3 equal (17.005676ms)
+✔ Jones identities: V(1) = 1 for knots, span = crossing number for the alternating table knots (5.660094ms)
+✔ polynomial helpers: format and parse round trip (0.647051ms)
+✔ size entry: draw a table knot (39.187404ms)
+✔ size entry: tricolour check (17.932281ms)
+✔ size entry: unknot game (19.274214ms)
+✔ size entry: random knot (107.057631ms)
+✔ 0_1: invariants survive 12 random Reidemeister moves (3 seeds) (9.386496ms)
+✔ 3_1: invariants survive 12 random Reidemeister moves (3 seeds) (14.75688ms)
+✔ 4_1: invariants survive 12 random Reidemeister moves (3 seeds) (11.56792ms)
+✔ 5_1: invariants survive 12 random Reidemeister moves (3 seeds) (13.538688ms)
+✔ 5_2: invariants survive 12 random Reidemeister moves (3 seeds) (21.341767ms)
+✔ 6_1: invariants survive 12 random Reidemeister moves (3 seeds) (12.117705ms)
+✔ 6_2: invariants survive 12 random Reidemeister moves (3 seeds) (10.552195ms)
+✔ 6_3: invariants survive 12 random Reidemeister moves (3 seeds) (11.849317ms)
+✔ 7_1: invariants survive 12 random Reidemeister moves (3 seeds) (20.697431ms)
+✔ 7_2: invariants survive 12 random Reidemeister moves (3 seeds) (19.052512ms)
+✔ 7_3: invariants survive 12 random Reidemeister moves (3 seeds) (7.538052ms)
+✔ 7_4: invariants survive 12 random Reidemeister moves (3 seeds) (8.565274ms)
+✔ 7_5: invariants survive 12 random Reidemeister moves (3 seeds) (13.29368ms)
+✔ 7_6: invariants survive 12 random Reidemeister moves (3 seeds) (10.938686ms)
+✔ 7_7: invariants survive 12 random Reidemeister moves (3 seeds) (8.616781ms)
+✔ 10_8: invariants survive 12 random Reidemeister moves (3 seeds) (28.741162ms)
+✔ L2a1: invariants survive 12 random Reidemeister moves (3 seeds) (13.794121ms)
+✔ L5a1: invariants survive 12 random Reidemeister moves (3 seeds) (4.995968ms)
+✔ L6a4: invariants survive 12 random Reidemeister moves (3 seeds) (7.091722ms)
+✔ granny: invariants survive 12 random Reidemeister moves (3 seeds) (6.620004ms)
+✔ square: invariants survive 12 random Reidemeister moves (3 seeds) (6.627737ms)
+✔ writhe: R1 changes it by ±1, R2 and R3 keep it (9.185525ms)
+✔ move detection: reduced alternating diagrams offer no moves; a kink offers R1; a bigon offers R2 (1.354653ms)
+✔ R3 is reversible and keeps the crossing count (2.120983ms)
+✔ crossing change: one switch unknots the trefoil; it flips that sign and moves the writhe by 2 (0.413681ms)
+✔ simplify: honest statuses, never "knotted" from being stuck (10.419917ms)
+✔ operations: delete a component, turn over, reverse (2.273742ms)
+✔ index.d.ts declares exactly the runtime exports of index.mjs (2.160463ms)
+ℹ tests 97
+ℹ suites 0
+ℹ pass 97
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 892.831018
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:hq
+> node --import ./tests/lifehacks/register.mjs --test tests/hq/*.test.mjs
+
+✔ status.json loads, is valid, and every id resolves against the board, risks and founder inbox (2.783626ms)
+✔ the thirteen workstreams are all there, each with an owner role, board ids and a next step (1.469144ms)
+✔ founder decisions cover F-17..F-20, F-22 and the domain name; proposed risks are well-formed (0.241673ms)
+✔ deriveStatus: from board states, dropped ignored, nothing tracked means not started (0.177557ms)
+✔ workstream views follow the board and update when the board moves (0.487512ms)
+✔ an override wins over the derived status, keeps the derived one, and needs a note (0.45962ms)
+✔ the live data renders: derived statuses equal the board, overrides in status.json win (6.980755ms)
+✔ validation refuses bad input (0.97651ms)
+✔ countdown, RAG and jour fixe dates (2.448474ms)
+✔ stand-up records: latest of each kind by date, none is fine (0.304276ms)
+✔ the war room is a meeting room on the CEO-office floor, so /hq/whiteboard/first-light exists (0.340591ms)
+✔ room ids are unique (1.427372ms)
+✔ every room sits inside the 1000 x 660 plan and no two rooms on a floor overlap (5.746893ms)
+✔ every category in content/domains.json has a full office, the same size and kind as the others (1.114843ms)
+✔ stairs lead to a floor that exists, floors 3 and 4 link both ways, and every floor 2 to 7 has stairs down to floor 1 (0.402073ms)
+✔ every category lead and strand manager has a home room that exists (people.ts and the event log agree) (3.812451ms)
+✔ Marketing has floor 7: the VP's office is there, floors 1 and 7 link both ways, and the event log and people.ts agree (0.625859ms)
+✔ HOME (people.ts) and ROOM_BY_ROLE (tools/events.mjs) agree for every role in roles.mjs, and the room is drawn (1.158358ms)
+✔ no room has more resident roles than drawn seats, and no floor holds more than 30 roles (0.457296ms)
+✔ every room id in the event log is drawn or aliased, and no alias points at a missing room (68.069508ms)
+✔ types come from the path (1.294512ms)
+✔ types: reviews, templates, design, experiments, standards (real paths) (0.448033ms)
+✔ deny list: secret-like files only (5.159051ms)
+✔ search: short terms match whole words (5.997765ms)
+✔ progress links are stable when a duplicate heading is added at the top (0.677486ms)
+✔ old progress slugs redirect to the stable path (0.907902ms)
+✔ frontmatter is stripped, shown as meta, and feeds owner/status (0.383746ms)
+✔ renderer source: table cells break at word edges, ol keeps its start (0.719249ms)
+✔ index: title, date, owner, progress split, no hidden or symlinked files (0.851488ms)
+✔ search: AND of terms, title beats body, default hides lesson reviews, sort by date (9.853235ms)
+✔ doc links resolve to library paths (0.429204ms)
+✔ splitProgress ignores headings inside code fences (0.155964ms)
+✔ path guard (0.710837ms)
+✔ the snapshot is valid: shape, unique ids, every boss exists, one root (the founder), no cycles (3.104989ms)
+✔ every role is placed: in a room that exists, listed by that room, in the right row, and drawn on floor 8 (0.414071ms)
+✔ every press room id is prefixed press-, and floor 8 holds only those plus its stairs (0.549474ms)
+✔ floor 8 exists with stairs both ways and is labelled a sibling company (1.806942ms)
+✔ the Book room holds 9 residents at their own seats plus visitors, inside its walls (1.209014ms)
+✔ the floor shows roster only: no press events, no presence code on floor 8 (0.398608ms)
+✔ nothing from System 3 Company's people.mjs is used for press names (0.730156ms)
+✔ company/ops/releases.json is valid and runs r1..r7 with the five backfilled releases first (8.428046ms)
+✔ every backfilled commit is a [deploy] commit in git history (53.91989ms)
+✔ validator rejects bad entries (0.646229ms)
+✔ nextVersion is r(max+1), whatever the date (0.375784ms)
+✔ shortDate shows the UTC day (0.192659ms)
+✔ newest first does not mutate; commit links point at the commit (0.328152ms)
+✔ loadReleases reads the real file and reports a broken one instead of throwing (0.502824ms)
+✔ unreleased commits are computed from the last release commit (45.704969ms)
+✔ release-draft tool prints a draft with TODO approval and writes nothing (4959.085437ms)
+✔ dedupeUsage keeps one record per run: the max, even when a resume reports fewer tokens (15.93504ms)
+✔ dedupeUsage: the same label outside the session window is a separate run; unmeasured lines pass through (0.290766ms)
+✔ on the real event log, dedupe leaves one usage record per agent label and lowers the total (89.479804ms)
+✔ the ledger sums count a resumed run once (spend by line, against budget, and the total) (69.509574ms)
+✔ ledger check warns on open initiative/decision inbox items that propose spend or a project with no budget (1.288794ms)
+✔ rooms: head-of-strategic-initiatives sits in ceo-office; first-light is documented and drawn (0.232649ms)
+✔ backfill path for stopped events: the transcript's stops after a cut-off are selected, nothing is invented (2.030757ms)
+✔ servers: a taken port is refused loudly, never borrowed (W-851) (4.403948ms)
+✔ no browser tool falls back to a fixed port (0.986871ms)
+✔ every shape type validates (1.967993ms)
+✔ bad sketches are rejected with a reason (0.469044ms)
+✔ svg shapes may not carry scripts, handlers or links (0.317667ms)
+✔ path allow-list (0.402534ms)
+✔ origin guard (0.608603ms)
+✔ production writes need WHITEBOARD_WRITE=1 (0.184497ms)
+✔ every sketch committed under company/meetings/whiteboards is valid and in the right folder (0.943446ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5701.653618
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:platform
+> node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs
+
+﹣ W-945: no draft slug is in the prerender manifest or the prerendered files (0.667352ms) # set BUILT_DIST_DIR to a production build (VERCEL=1 VERCEL_ENV=production next build)
+﹣ W-947: no prerendered RSC payload, page or /api/meta body carries an internal string (0.088383ms) # set BUILT_DIST_DIR to a production build (VERCEL=1 VERCEL_ENV=production next build)
+﹣ W-946: no client chunk under static/chunks carries an internal string, and none is over 300 KB raw (0.090346ms) # set BUILT_DIST_DIR to a production build (VERCEL=1 VERCEL_ENV=production next build)
+﹣ W-945 / W-947: next start with VERCEL vars unset at runtime 404s every draft, twice (0.341763ms) # set BUILT_DIST_DIR to a production build (VERCEL=1 VERCEL_ENV=production next build)
+✔ C1: a POST with extra keys does not log them, for every existing type (11.06257ms)
+✔ C1: the fields current senders use are all kept (src/kit/Lesson.tsx, src/components/Feed.tsx) (1.224928ms)
+✔ C1: strings are capped and wrongly typed fields drop the event (8.435838ms)
+✔ C2: the registered-experiment list is empty in this change, so no exp record is accepted (0.516044ms)
+✔ C2: an unregistered or malformed exp is dropped silently with 204 (4.29876ms)
+✔ the catalog is asked only after every other exp field passes (0.211507ms)
+✔ the W-477 guard still refuses cross-origin and spike writes with 403, and logs nothing (0.514242ms)
+✔ the registry is split: index and loaders exist, registry.generated.ts is gone and nothing imports it (5.358961ms)
+✔ the generated files keep to their side (metas without import(), loaders without meta.json) (1.312149ms)
+✔ only DemoHost.tsx imports loaders.generated, and it is a client module (no server module imports it) (1.332209ms)
+✔ only catalog.ts imports index.generated, and catalog.ts is server-only (0.3394ms)
+✔ no "use client" module reaches index.generated or catalog.ts, directly or through its imports (3.600893ms)
+✔ the scanner sees what it must (self-check: a planted client import is caught) (0.262804ms)
+✔ every meta.json carries an unquoted zero-tolerance internal string (keeps the static/chunks field ratchet safe) (39.169336ms)
+✔ W-879: withdrawn claims are excluded from numerator and denominator (1.505339ms)
+✔ W-879: news-comes-from-acquaintances reads 4/4, not 4/5 (c5 withdrawn) (0.547672ms)
+✔ W-879: no lesson's trust line counts a withdrawn claim (2.518929ms)
+✔ W-878: a learner claim has text, support, status, address and links only, never the source record (0.363996ms)
+✔ W-878: withdrawn claims are not shown on the sheet (0.458137ms)
+✔ W-878: no lesson's public claims carry a source record or a fact-check note (13.20888ms)
+✔ W-878: openable sources are http(s) links found in the record, trimmed and deduplicated (0.382874ms)
+✔ W-947: publicMeta passes exactly the allow-listed fields, evidence as counts (0.240421ms)
+✔ W-947: a field added to meta.json later does not reach publicMeta (0.234612ms)
+✔ W-947: no lesson's publicMeta carries an internal string (reference notes, owner, evidence paths, keyState) (30.056561ms)
+✔ a draft opened by URL is not found on Vercel production, whatever SHOW_REVIEW or SHOW_DRAFTS say (0.955414ms)
+✔ in review stays visible on production and published always is (0.123024ms)
+✔ builders still open drafts on the dev server and local builds (0.138689ms)
+✔ Vercel previews hide drafts unless SHOW_DRAFTS=on (0.112649ms)
+✔ drafts never list in the feed or map, and retired lessons are never visible (0.13363ms)
+✔ catalog.ts applies the rule (findDemo and generateStaticParams go through statusVisible) (0.35964ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 4
+ℹ todo 0
+ℹ duration_ms 1015.949542
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> system-3-company@0.1.0 test:dispatch
+> node --test tests/dispatch/*.test.mjs
+
+✔ PreToolUse with batch= writes one dispatch with role, batch= and the batch file's poc as chooser (179.019461ms)
+✔ a dispatch with no source is still written, marked source=none, chooser = the dispatcher (169.57519ms)
+✔ explicit chooser=, SO- ids and §4 reasons are parsed (500.731174ms)
+✔ async launch writes no report (the dispatch stays open); SubagentStop then writes the report under the same label (410.001451ms)
+✔ a foreground (sync) PostToolUse is the report (394.841506ms)
+✔ never blocks: garbage stdin, other tools and a broken log path all exit 0 (328.464885ms)
+✔ lastDispatchAge: fresh, stale and never (0.524347ms)
+✔ metrics on a fixture log print the last-dispatch line and mark never-dispatched STALE (2721.426432ms)
+✔ backfill reuses the hook's label and writes no second dispatch for a hooked tool_use_id (4.357558ms)
+✔ E1: `add` on a log holding a conflict-marker line still appends, keeps the bad line, and reports 1 skipped (176.806927ms)
+✔ E1: a spool holding a `<<<<<<<` line still gets the hook's hk- event, and the hook log shows the skipped count (188.618611ms)
+✔ H2: the default spool is the main checkout's, found through the git common dir from a linked worktree (23.550283ms)
+✔ H2: dispatch-check counts dispatches in the log plus the spool, deduped by id, and a spool report closes one (1081.693169ms)
+✔ H2: `fold` moves the spool into the log in ts order, dedupes by id, keeps unparseable lines aside and empties the spool (534.106406ms)
+✔ H2/H4: metrics read the spool beside a fixture log and print unreadable and unfolded counts (640.815598ms)
+✔ W-1337: SubagentStop with rebase-merge/ in the main checkout writes one incident naming the agent and the autostash (650.033069ms)
+✔ W-1337: a stash entry gained since dispatch is a note in room incident; a clean main checkout writes nothing extra (810.998355ms)
+✔ W-1337: MERGE_HEAD alone is a note; an unreadable .git still exits 0 and the report is still written (777.838116ms)
+✔ scan: records and held claims come from sentences that name the host and a block word (3.491068ms)
+✔ blockedMention needs host and block word in the same sentence (0.191959ms)
+✔ classify maps curl outcomes to one word (0.199439ms)
+✔ a second probe changes only lastProbe (1.345589ms)
+✔ F1: a fold refuses while a live pid holds fold.lock, and writes nothing (78.388745ms)
+✔ F1: a lock left by a dead pid (or holding no pid) is taken over, and released after the fold (534.7901ms)
+✔ F1: a *.folding-<pid> file is adopted only when that pid is dead; a live fold's file is left alone (555.991629ms)
+✔ F1: two folds started together on the same spool leave every id in the log exactly once (375.549427ms)
+✔ F1 + F2: two fold loops in parallel with two writers each way: no duplicate id, nothing lost (3695.127914ms)
+✔ F2: an append through a file handle opened before the fold renamed the file still reaches the log (900.935175ms)
+﹣ F5: a 200,000-line spool file (plus 130,000 unparseable lines) reads, dry-folds and folds without RangeError (0.252699ms) # slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)
+✔ commit-own.sh refuses when a foreign path is staged, and commits nothing (64.266555ms)
+✔ commit-own.sh succeeds with only listed paths, and does not sweep unstaged edits (74.794752ms)
+✔ commit-own.sh rejects options in place of a message or a path (42.716257ms)
+✔ pre-commit refuses a bare commit with a foreign staged path in the main checkout (123.458135ms)
+✔ pre-commit refuses `git commit -a` in the main checkout (116.179818ms)
+✔ pre-commit passes an explicit-path commit and commit-own.sh, leaving the foreign path staged (247.65061ms)
+✔ pre-commit refuses S3_COMMIT_PATHS that does not cover what is staged (113.025319ms)
+✔ pre-commit refuses `git commit --no-edit` on a merge with a foreign index, and passes it once clean (556.970188ms)
+✔ commit-own.sh commits a merge with an extra regenerated path, and refuses one with a foreign path (581.131783ms)
+✔ pre-commit passes a bare commit in a linked worktree and an empty commit in the main checkout (248.335378ms)
+✔ no-pkill.mjs refuses `pkill -f next` and names serve.sh stop and kill <pid> (68.005235ms)
+✔ no-pkill.mjs allows `kill 1234` and `tools/serve.sh stop 3399` (154.17048ms)
+✔ no-pkill.mjs fails open on garbage and ignores other tools (164.087596ms)
+✔ verdict: pattern kills are refused wherever they sit in the command (1.683426ms)
+✔ verdict: quoted mentions, read-only lookups and pid kills pass (0.209364ms)
+✔ verdict: bare stash and pop are refused; tagged push, apply/drop by ref and list pass (0.317577ms)
+✔ N1 must-pass: a heredoc body line starting with `pkill` (hook exit 0) (78.686888ms)
+✔ N1 must-pass: a $(cat <<'EOF' …) commit message with a line `git stash pop` (hook exit 0) (76.685415ms)
+✔ N1 must-refuse: a shell that reads a heredoc as commands (`cat <<EOF | sh`, `bash <<'X'`) (83.78271ms)
+✔ N1: the shell still runs what follows a heredoc, and substitutions in an unquoted body (0.238388ms)
+✔ M1: the merge-time refusal names only commit-own.sh and waiting for the owner of the listed paths (425.175869ms)
+✔ M1: outside a merge the refusal still offers both commit-own.sh and an explicit-path commit (117.005101ms)
+✔ M2: port kills are refused and name tools/serve.sh stop <port> (89.869177ms)
+✔ M2: plain kill <pid>, port lookups and serve.sh stop pass (257.360867ms)
+✔ W-1337 pre-rebase: `rebase --autostash` in the main checkout is refused; staged + unstaged edits stay, one listed stash kept (289.169738ms)
+✔ W-1337 pre-rebase: the same rebase in a linked worktree proceeds (212.304047ms)
+✔ W-1337 pre-rebase: `pull --rebase` with rebase.autoStash=true in the main checkout behaves the same (258.015449ms)
+✔ W-1337 pre-rebase: a clean-tree rebase in the main checkout is refused and adds no stash (166.585224ms)
+✔ W-1337 no-pkill: each listed git form is refused in the main checkout, naming the worktree alternative (37.119309ms)
+✔ W-1337 no-pkill: the pass forms pass in the main checkout, and everything passes in a linked worktree (64.122149ms)
+✔ W-1337 no-pkill hook process: payload cwd in the main checkout is refused (exit 2), in the worktree it passes (289.742211ms)
+✖ W-1337 C2: dirty tree during `rebase --autostash` in main skips pre-rebase; the detector writes one incident and verdict() refuses the command (115.63799ms)
+✔ batch keys: the short …r3-tools.md form names the same item; another item or file does not (1.159309ms)
+✔ a tx- dispatch is closed by an ev- report with a different label and the same batch= key (CLI) (105.391228ms)
+✔ a hand twin: the report naming the item only through its hand label closes nothing by batch; the tx- twin stays counted, the report is held as evidence (1.451578ms)
+✔ PE-ops C1: two live runs of one batch item, the finished one reported twice (both orders): the still-working run stays open (7.627405ms)
+✔ --key with the tool-use id or the ·xxxx suffix closes that dispatch; the backfill's key field joins its report (0.462704ms)
+✔ a report with no match warns, names the nearest open dispatch, is written, and keeps the dispatch open (96.077654ms)
+✔ two SendMessage continuations under one label stay one run (as before) (0.276775ms)
+✔ possiblyFinished: > 2 h, no slot, no spool activity is listed with its stopped command; a slot or spool event hides it (0.413811ms)
+✔ dispatch-check: the > 2 h run is listed as possibly finished and STILL counted; no-hk- warning without hook events (1123.029379ms)
+✔ dispatch-check: a fresh hk- event in the tmp spool gives the age line and no hook warning; spool activity hides the run (1232.148633ms)
+✔ backfill selection keeps one event per id (a transcript echoes each report twice) (0.562203ms)
+✔ backfill writes the run key (tool_use id) on its tx- dispatch and report; --since after the newest tx- event warns (157.240546ms)
+✔ a same-day stub with no incident id clears nothing (the old date-only bug) (2.995415ms)
+✔ a COE that names the id but is still a draft does not clear it, and says why (1.174132ms)
+✔ a final, accepted COE clears only the incident it names (1.286731ms)
+✔ records in drafts/ are not read; SEV3 and non-incident events are ignored (0.509445ms)
+✔ an incident event with no id is never covered (0.528974ms)
+✔ the real events.jsonl still has the three 10-14 SEV1/SEV2 incidents; any newer one is reported, not failed (75.374413ms)
+ℹ newer SEV1/SEV2 ev-ff2a7438e3: cleared by a COE
+ℹ newer SEV1/SEV2 ev-356e65fbc7: cleared by a COE
+✔ every real 10-14 COE names its own incident id on its header incident: line, and names two reviewers who are not its owner (1.486761ms)
+✔ the real records clear an incident only when every reviewer has accepted (2.510697ms)
+✔ the real records in company/rituals/records/ as they stand clear all three incidents (both reviewers accepted: 907772b, b49adad) (280.97502ms)
+✔ W-782, intended: while a reviewer says revise (as all three did before b49adad), wave and build fail R2 and check only warns (947.685153ms)
+✔ W-782: reviewers: parses both header forms (own line, and on the owner line after ' · ') (1.205048ms)
+✔ the three records, once final and accepted by both reviewers, clear R2 in dispatch-check itself (end to end) (820.450206ms)
+✔ W-782: final with no review is not covered (0.627071ms)
+✔ W-782: one reviewer accepts and one is missing, not covered (0.374162ms)
+✔ W-782: a review section with no verdict line is not an accept (0.29339ms)
+✔ W-782: a revise is not covered, with the reason 'revise by <role>' (0.771798ms)
+✔ W-782: the owner as a reviewer is not covered, even when every review accepts (4.802882ms)
+✔ W-782: status: final only in the body is not covered (the header's status counts) (0.810816ms)
+✔ W-782: no reviewers: line in the header is not covered (0.464257ms)
+✔ W-782: both reviewers accept, covered; a later re-review that revises un-covers it (2.77202ms)
+﹣ G5-d cross-check: with the real git on PATH, wave and build give the same R2 lines as with the stub (0.098698ms) # slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)
+✔ done-when: the B2 dispatch passes, claims one slot with role, lane, source and chooser (312.984057ms)
+✔ --no-claim checks without writing a slot (271.906517ms)
+✔ S1: no source is a warning in warn mode (exit 0) and a FAIL in enforce mode (exit 1) (927.0549ms)
+✔ S1 in warn mode still claims the slot, with source none, so the gap is visible in the ledger (342.849236ms)
+✔ S1: malformed source, missing item, wrong role, wrong chooser, §4 without a reason, unknown SO (2381.523996ms)
+✔ S1: a standing order resolves to the batch that issued it (lane and chooser from its header) (9.948488ms)
+✔ S2: general-purpose only with a §4 integration reason; an unknown role is refused (1293.575253ms)
+✔ S3: live slots count toward the 14-agent cap; the larger count wins; warn vs enforce (998.720465ms)
+✔ S3: builder slots count against the 3-builder cap (library) (8.224101ms)
+✔ S3: a slot older than 6 h is reported as stale, not counted, and not deleted (431.007211ms)
+✔ S3: a concurrent double-claim of the same slot: exactly one wins (180.742332ms)
+✔ S3: dispatching the same item twice while its slot is live is flagged; enforce refuses it (1171.688407ms)
+✔ release on report: a later report naming the batch item (abbreviated path) or the agent frees the slot (917.585619ms)
+✔ S4 is off by default; on with --s4 or S3_SLOTS_S4=on it refuses a checker from a non-lane-10 batch (1467.882485ms)
+✔ lane-10 checker roles are read from poc-map.md, and the CLI usage names the new flags (6.101936ms)
+✔ F1/F4/F7/F8 fixture: release joins the hook's report through its dispatch event (real hook, log + spool) (2667.31106ms)
+✔ F1 negatives: no dispatch event, other role, report before the slot, #B21 vs #B2, >60 s after dispatch; oldest-first (1.260682ms)
+✔ F2 / L1: a ledger exception warns and goes ahead in warn mode (exit 0) and FAILs in enforce mode (exit 1) (499.754261ms)
+✔ F3 / L2: an unreadable slot ages by its mtime: live while young, stale after 6 h, replaced by a claim (220.972237ms)
+✔ F5: general-purpose needs §4:integration: <what>, with a non-empty <what> (928.475782ms)
+✔ F6 / Q1: with S4 on, §4:ritual: <id> passes only when <id> is in the role's rituals: in roles.mjs (1068.956569ms)
+﹣ G5-d cross-check: with the real git on PATH, S1/S2/S3 and C1 give the same result as with the stub (0.183756ms) # slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)
+ℹ tests 116
+ℹ suites 0
+ℹ pass 112
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 3
+ℹ todo 0
+ℹ duration_ms 16232.277308
+
+✖ failing tests:
+
+test at tests/dispatch/guards.test.mjs:507:1
+✖ W-1337 C2: dirty tree during `rebase --autostash` in main skips pre-rebase; the detector writes one incident and verdict() refuses the command (115.63799ms)
+  AssertionError [ERR_ASSERTION]: nothing on git stash list
+  + actual - expected
+
+  + [
+  +   'autostash'
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file:///workspace/scratch/16c35eb5bad4/system-3-company/tests/dispatch/guards.test.mjs:531:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'autostash' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

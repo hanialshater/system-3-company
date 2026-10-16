@@ -1,0 +1,118 @@
+{
+  "slug": "bk-drunkard-streak-and-rate",
+  "title": "The same average can hide a split",
+  "hook": "Keep the aggregate unchanged while changing group heterogeneity.",
+  "domain": "books",
+  "concept": "book-drunkard-streak-and-rate",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Recognize that one mean cannot identify the underlying group distribution."
+    ]
+  },
+  "misconception": "An aggregate rate of 50% means every subgroup is also 50%.",
+  "objective": "Recognize that one mean cannot identify the underlying group distribution.",
+  "claims": [
+    {
+      "id": "books.bk-drunkard-streak-and-rate.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Aggregate outcomes can conceal differences in how success is distributed.",
+      "status": "unverified",
+      "source": "{\"work\":\"drunkard-streak-and-2008\",\"edition\":2008,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-drunkard-streak-and-rate.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Leonard Mlodinow, The Drunkard's Walk (2008)",
+      "status": "unverified",
+      "source": "{\"work\":\"drunkard-streak-and-2008\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-drunkard-streak-and-rate.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Both mixtures give {A}% and {B}%. One separates high and low expected rates; the other gives both groups the aggregate rate.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"(nA*rA+nB*rB)/(nA+nB)\",\"inputs\":[[50,90,50,10],[50,50,50,50]],\"outputs\":[50,50]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-drunkard-streak-and-rate.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? Rates are stipulated, not observed streaks. Equal averages establish neither equal randomness nor equal skill or individual outcomes.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Equal groups average 60% overall. Must each group be 60%?",
+    "options": [
+      "Yes",
+      "No",
+      "Only for 100 units"
+    ],
+    "answer": 1,
+    "why": "80% and 40% also average 60%; the aggregate cannot identify both group rates."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-drunkard-streak-and-rate/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-drunkard-streak-and-rate/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-drunkard-streak-and-rate",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "drunkard-streak-and-2008",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "selection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

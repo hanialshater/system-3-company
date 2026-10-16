@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Infinite Powers",
+    "author": "Steven Strogatz",
+    "year": 2019,
+    "work": "strogatz-infinite-powers-2019"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "Starting at 1, what follows four 25% updates without additions?",
+    "options": [
+      "2 units",
+      "2.44 units",
+      "3 units"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Four steps",
+      "values": [
+        1,
+        25,
+        4,
+        0
+      ]
+    },
+    {
+      "label": "Eight steps",
+      "values": [
+        1,
+        12.5,
+        8,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Calculus relates finite approximations to limiting processes.",
+  "modelBoundary": "Four steps give {A}; eight smaller steps give {B}. Both nominal rate totals are 100%, but later multipliers act on earlier increases.",
+  "doesItHoldUp": "Does it hold up? The finite recurrences are exact. Two approximations alone do not prove a limit or a physical growth law."
+}

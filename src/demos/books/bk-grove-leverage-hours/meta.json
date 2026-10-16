@@ -1,0 +1,134 @@
+{
+  "slug": "bk-grove-leverage-hours",
+  "title": "Teach the next teacher",
+  "hook": "A toy training tree has one manager. What changes when trained people also teach?",
+  "domain": "books",
+  "concept": "book-grove-leverage-hours",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Count indirect reach while distinguishing people reached from people who learned."
+    ]
+  },
+  "misconception": "Only the manager’s direct trainees can benefit from a training activity.",
+  "objective": "Count indirect reach while distinguishing people reached from people who learned.",
+  "claims": [
+    {
+      "id": "books.bk-grove-leverage-hours.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is High Output Management, by Andrew S. Grove, candidate publication year 1983.",
+      "support": "source",
+      "source": "Andrew S. Grove, High Output Management (1983); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-grove-leverage-hours.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "High Output Management treats training as a managerial activity with leverage beyond the manager’s own direct work.",
+      "support": "source",
+      "source": "Andrew S. Grove, High Output Management (1983); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-grove-leverage-hours.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated network model: A inputs [12, 2, 1] yield 3; B inputs [12, 2, 3] yield 12. Prediction correct option 12. A reaches {A} people; B reaches {B}. Newly trained people each teach two more, so new layers add 2, 4, then 5 before the 12-person cap. A collision-free teaching tree is stipulated; reach is not learning or workplace performance.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-grove-leverage-hours.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "In a toy tree, one trainer teaches three people, then each teaches three new people. Total reached including the original? The levels contain 1 + 3 + 9 = 13 different people; no overlaps or learning effects are assumed.",
+      "support": "derivation",
+      "source": "Original transfer toy, network, inputs [20, 3, 2], output 13; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-grove-leverage-hours.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "In a toy tree, one trainer teaches three people, then each teaches three new people. Total reached including the original?",
+    "options": [
+      "9.00",
+      "13.00",
+      "12.00",
+      "16.00"
+    ],
+    "answer": 1,
+    "why": "The levels contain 1 + 3 + 9 = 13 different people; no overlaps or learning effects are assumed."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-grove-leverage-hours/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-grove-leverage-hours/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-grove-leverage-hours",
+    "also": [
+      "cs:bfs-vs-dfs-frontier"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "grove-leverage-1983",
+        "note": "Andrew S. Grove, High Output Management, 1983 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "network",
+      "grove-leverage-hours"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

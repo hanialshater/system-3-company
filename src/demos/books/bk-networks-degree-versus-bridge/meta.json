@@ -1,0 +1,118 @@
+{
+  "slug": "bk-networks-degree-versus-bridge",
+  "title": "Growth cannot outrun its cap",
+  "hook": "Add a branching round after the finite node budget is exhausted.",
+  "domain": "books",
+  "concept": "book-networks-degree-versus-bridge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Apply a finite node cap before extending an exponential count."
+    ]
+  },
+  "misconception": "Exponential branching guarantees continued count growth without limit.",
+  "objective": "Apply a finite node cap before extending an exponential count.",
+  "claims": [
+    {
+      "id": "books.bk-networks-degree-versus-bridge.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Network size and structure constrain the reach of expanding paths.",
+      "status": "unverified",
+      "source": "{\"work\":\"networks-degree-versus-2010\",\"edition\":2010,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-networks-degree-versus-bridge.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Mark E. J. Newman, Networks (2010)",
+      "status": "unverified",
+      "source": "{\"work\":\"networks-degree-versus-2010\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-networks-degree-versus-bridge.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Three rounds reach {A}; four still reach {B}. After the supplied finite cap is reached, another round cannot create additional allowed nodes.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(total,sum(branch**i,i=0..rounds)); includes root\",\"inputs\":[[7,2,3],[7,2,4]],\"outputs\":[7,7]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-networks-degree-versus-bridge.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This bounds a capped tree, not general-network distances, hubs or bridges. Collisions are absent before the cap.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Expansion would count 31 nodes, but only 20 are allowed. What is the capped count?",
+    "options": [
+      "11",
+      "20",
+      "31"
+    ],
+    "answer": 1,
+    "why": "min(20,31)=20."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-networks-degree-versus-bridge/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-networks-degree-versus-bridge/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-networks-degree-versus-bridge",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "networks-degree-versus-2010",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "network"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

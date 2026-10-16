@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Punished by Rewards",
+    "author": "Alfie Kohn",
+    "year": 1993,
+    "work": "rewards-metric-1993"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "A 30-minute session includes four-minute work chunks and six minutes reward logging per chunk. Completed work time?",
+    "options": [
+      "12 minutes",
+      "24 minutes",
+      "30 minutes"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Brief logging",
+      "values": [
+        30,
+        4,
+        1
+      ]
+    },
+    {
+      "label": "Detailed logging",
+      "values": [
+        30,
+        4,
+        6
+      ]
+    }
+  ],
+  "labels": [
+    "Task",
+    "Logging"
+  ],
+  "unit": "task min",
+  "bookIdea": "Punished by Rewards challenges the assumption that incentives reliably improve performance.",
+  "modelBoundary": "Brief logging permits {A}; detailed logging {B}. Monitoring consumes time even before any motivational response is considered.",
+  "doesItHoldUp": "Does it hold up? Actual schemes may create benefits that outweigh administration; this model does not estimate them."
+}

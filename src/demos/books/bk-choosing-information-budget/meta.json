@@ -1,0 +1,134 @@
+{
+  "slug": "bk-choosing-information-budget",
+  "title": "How much time goes into choosing?",
+  "hook": "Two comparison plans share 30 minutes, including a one-minute setup for every option.",
+  "domain": "books",
+  "concept": "book-choosing-information-budget",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to separate the number of options opened from time spent inspecting them"
+    ]
+  },
+  "misconception": "Inspecting more options necessarily leaves more time for substantive comparison.",
+  "objective": "Separate the number of options opened from time spent inspecting them.",
+  "claims": [
+    {
+      "id": "books.bk-choosing-information-budget.bibliography",
+      "text": "The Art of Choosing; Sheena Iyengar; 2010.",
+      "support": "source",
+      "source": "Candidate bibliographic record for art-choosing-information-2010; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-choosing-information-budget.book",
+      "text": "The Art of Choosing examines how options and decision contexts shape choosing.",
+      "support": "source",
+      "source": "The Art of Choosing (2010), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-choosing-information-budget.model",
+      "text": "Original stipulated toy: Each option has independent one-minute setup; only full inspections count; all time units are minutes; no decision quality function. Exact intervals inputs [{\"label\": \"Two-minute look\", \"values\": [30, 2, 1]}, {\"label\": \"Four-minute look\", \"values\": [30, 4, 1]}]; second author arithmetic check A=20, B=24. Short looks use {A} inspecting; longer looks {B}. Longer chunks repeat the setup less often, within the same budget.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-choosing-information-budget.world",
+      "text": "Does it hold up? More inspection time need not produce a better real choice.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-choosing-information-budget.recall",
+      "text": "{\"question\": \"With 20 minutes, a three-minute inspection and one-minute setup per option, total inspection time?\", \"options\": [\"12 minutes\", \"15 minutes\", \"20 minutes\"], \"answer\": 1, \"why\": \"floor(20/4)*3=15 inspection minutes; five minutes go to repeated setup.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "With 20 minutes, a three-minute inspection and one-minute setup per option, total inspection time?",
+    "options": [
+      "12 minutes",
+      "15 minutes",
+      "20 minutes"
+    ],
+    "answer": 1,
+    "why": "floor(20/4)*3=15 inspection minutes; five minutes go to repeated setup."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-choosing-information-budget/2026-10-16-qa.md",
+      "company/reviews/bk-choosing-information-budget/2026-10-16-qa-pr5.md"
+    ],
+    "simulatedLearner": [
+      "company/reviews/bk-choosing-information-budget/2026-10-16-learner-beginner-v3.md"
+    ],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "books:book-choosing-information-budget",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "art-choosing-information-2010",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "choice-time"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

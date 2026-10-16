@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Innovator's Dilemma",
+    "author": "Clayton M. Christensen",
+    "year": 1997,
+    "work": "christensen-innovators-dilemma-1997"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "B starts at 5 and grows 30% for four rounds; requirement 12. What is B’s toy result?",
+    "options": [
+      "14.28",
+      "6.5",
+      "11",
+      "20"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Toy requirement: 12. Run both cases.",
+  "scenarios": [
+    {
+      "label": "2 rounds; need 12",
+      "values": [
+        5,
+        30,
+        2,
+        0
+      ]
+    },
+    {
+      "label": "4 rounds; need 12",
+      "values": [
+        5,
+        30,
+        4,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Rounds"
+  ],
+  "unit": "capability",
+  "bookIdea": "The Innovator’s Dilemma considers technologies whose performance eventually becomes sufficient for customers previously served differently.",
+  "modelBoundary": "Two rounds reach {A}, below requirement 12; four reach {B}, above it. The fixed 30% rate and requirement are invented, not technology forecasts.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

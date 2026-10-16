@@ -1,0 +1,49 @@
+{
+  "book": {
+    "title": "An Elegant Puzzle",
+    "author": "Will Larson",
+    "year": 2019,
+    "work": "elegant-team-2019"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "B starts with eight reserve hours, gains two and consumes three per round for four rounds. What is B’s toy result?",
+    "options": [
+      "4",
+      "0",
+      "8",
+      "12"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Reserve four",
+      "values": [
+        4,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "Reserve eight",
+      "values": [
+        8,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "reserve hours",
+  "bookIdea": "An Elegant Puzzle discusses engineering organizations through capacity, constraints and deliberate choices about operating them.",
+  "modelBoundary": "A ends with {A} reserve hours; B with {B}. Interruptions consume one more hour than is replenished each round, exhausting the smaller reserve. Reserve replenishment and interruption demand are invented; this is not a staffing or burnout model.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

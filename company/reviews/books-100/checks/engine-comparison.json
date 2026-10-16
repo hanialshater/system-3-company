@@ -1,0 +1,4154 @@
+{
+  "label": "Production comparison; Python oracle supplies independent expected values",
+  "cases": [
+    {
+      "key": "bk-checklist-series-reliability:0",
+      "family": "compound",
+      "values": [
+        100,
+        -10,
+        3,
+        0
+      ],
+      "expected": 72.9,
+      "actual": 72.9,
+      "trace": [
+        100,
+        90,
+        81,
+        72.9
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-checklist-series-reliability:1",
+      "family": "compound",
+      "values": [
+        100,
+        -5,
+        3,
+        0
+      ],
+      "expected": 85.7375,
+      "actual": 85.7375,
+      "trace": [
+        100,
+        95,
+        90.25,
+        85.7375
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-bets-process-versus-outcome:0",
+      "family": "payoff",
+      "values": [
+        80,
+        5,
+        -20
+      ],
+      "expected": 0,
+      "actual": 8.881784197001252e-16,
+      "trace": [
+        4,
+        -3.999999999999999
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-bets-process-versus-outcome:1",
+      "family": "payoff",
+      "values": [
+        40,
+        20,
+        -5
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        8,
+        -3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-brooks-ramp-up-cost:0",
+      "family": "intervals",
+      "values": [
+        60,
+        20,
+        0
+      ],
+      "expected": 60,
+      "actual": 60,
+      "trace": [
+        20,
+        40,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-brooks-ramp-up-cost:1",
+      "family": "intervals",
+      "values": [
+        90,
+        20,
+        20
+      ],
+      "expected": 40,
+      "actual": 40,
+      "trace": [
+        40,
+        80
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-innovator-demand-crossing:0",
+      "family": "compound",
+      "values": [
+        5,
+        30,
+        2,
+        0
+      ],
+      "expected": 8.45,
+      "actual": 8.450000000000001,
+      "trace": [
+        5,
+        6.5,
+        8.450000000000001
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-innovator-demand-crossing:1",
+      "family": "compound",
+      "values": [
+        5,
+        30,
+        4,
+        0
+      ],
+      "expected": 14.2805,
+      "actual": 14.280500000000002,
+      "trace": [
+        5,
+        6.5,
+        8.450000000000001,
+        10.985000000000001,
+        14.280500000000002
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-zero-tail-concentration:0",
+      "family": "payoff",
+      "values": [
+        5,
+        99,
+        -1
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4.95,
+        -0.95
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-zero-tail-concentration:1",
+      "family": "payoff",
+      "values": [
+        5,
+        19,
+        -1
+      ],
+      "expected": 0,
+      "actual": 1.1102230246251565e-16,
+      "trace": [
+        0.9500000000000001,
+        -0.95
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-yes-trade-different-values:0",
+      "family": "payoff",
+      "values": [
+        100,
+        12,
+        12
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        12,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-yes-trade-different-values:1",
+      "family": "payoff",
+      "values": [
+        70,
+        20,
+        -10
+      ],
+      "expected": 11,
+      "actual": 11,
+      "trace": [
+        14,
+        -3.0000000000000004
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-grove-leverage-hours:0",
+      "family": "network",
+      "values": [
+        12,
+        2,
+        1
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-grove-leverage-hours:1",
+      "family": "network",
+      "values": [
+        12,
+        2,
+        3
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        3,
+        7,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drucker-time-fragments:0",
+      "family": "intervals",
+      "values": [
+        39,
+        20,
+        0
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        20
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drucker-time-fragments:1",
+      "family": "intervals",
+      "values": [
+        40,
+        20,
+        0
+      ],
+      "expected": 40,
+      "actual": 40,
+      "trace": [
+        20,
+        40
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-personal-mba-break-even:0",
+      "family": "payoff",
+      "values": [
+        50,
+        60,
+        -40
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        30,
+        -20
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-personal-mba-break-even:1",
+      "family": "payoff",
+      "values": [
+        50,
+        30,
+        -70
+      ],
+      "expected": -20,
+      "actual": -20,
+      "trace": [
+        15,
+        -35
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-emyth-owner-bottleneck:0",
+      "family": "flow",
+      "values": [
+        3,
+        10,
+        10
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        3,
+        3,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-emyth-owner-bottleneck:1",
+      "family": "flow",
+      "values": [
+        6,
+        5,
+        10
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        6,
+        5,
+        5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-fifth-upstream-orders:0",
+      "family": "feedback",
+      "values": [
+        10,
+        2,
+        6,
+        3
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        10,
+        6,
+        2,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-fifth-upstream-orders:1",
+      "family": "feedback",
+      "values": [
+        10,
+        2,
+        4,
+        3
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        10,
+        8,
+        6,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-great-selected-winners:0",
+      "family": "selection",
+      "values": [
+        10,
+        100,
+        0,
+        0
+      ],
+      "expected": 100,
+      "actual": 100,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-great-selected-winners:1",
+      "family": "selection",
+      "values": [
+        10,
+        100,
+        90,
+        0
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-strategy-credible-commitment:0",
+      "family": "payoff",
+      "values": [
+        50,
+        8,
+        -2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        4,
+        -1
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-strategy-credible-commitment:1",
+      "family": "payoff",
+      "values": [
+        80,
+        8,
+        -2
+      ],
+      "expected": 6,
+      "actual": 6,
+      "trace": [
+        6.4,
+        -0.3999999999999999
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-playing-capability-fit:0",
+      "family": "flow",
+      "values": [
+        8,
+        2,
+        8
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        8,
+        2,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-playing-capability-fit:1",
+      "family": "flow",
+      "values": [
+        5,
+        5,
+        5
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        5,
+        5,
+        5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-blue-value-cost-trade:0",
+      "family": "payoff",
+      "values": [
+        50,
+        20,
+        -20
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        10,
+        -10
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-blue-value-cost-trade:1",
+      "family": "payoff",
+      "values": [
+        50,
+        10,
+        0
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        5,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-chasm-segment-readiness:0",
+      "family": "selection",
+      "values": [
+        90,
+        90,
+        10,
+        10
+      ],
+      "expected": 82,
+      "actual": 82,
+      "trace": [
+        81,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-chasm-segment-readiness:1",
+      "family": "selection",
+      "values": [
+        10,
+        90,
+        90,
+        10
+      ],
+      "expected": 18,
+      "actual": 18,
+      "trace": [
+        9,
+        9
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-solution-asymmetric-incentives:0",
+      "family": "payoff",
+      "values": [
+        20,
+        100,
+        -10
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        20,
+        -8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-solution-asymmetric-incentives:1",
+      "family": "payoff",
+      "values": [
+        20,
+        100,
+        -40
+      ],
+      "expected": -12,
+      "actual": -12,
+      "trace": [
+        20,
+        -32
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-jobs-context-changes-choice:0",
+      "family": "payoff",
+      "values": [
+        20,
+        18,
+        2
+      ],
+      "expected": 5.2,
+      "actual": 5.2,
+      "trace": [
+        3.6,
+        1.6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-jobs-context-changes-choice:1",
+      "family": "payoff",
+      "values": [
+        80,
+        18,
+        2
+      ],
+      "expected": 14.8,
+      "actual": 14.8,
+      "trace": [
+        14.4,
+        0.3999999999999999
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-lean-analytics-cohort-mix:0",
+      "family": "selection",
+      "values": [
+        10,
+        50,
+        10,
+        0
+      ],
+      "expected": 25,
+      "actual": 25,
+      "trace": [
+        5,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-lean-analytics-cohort-mix:1",
+      "family": "selection",
+      "values": [
+        100,
+        50,
+        100,
+        0
+      ],
+      "expected": 25,
+      "actual": 25,
+      "trace": [
+        50,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-okr-output-and-quality:0",
+      "family": "selection",
+      "values": [
+        10,
+        100,
+        0,
+        0
+      ],
+      "expected": 100,
+      "actual": 100,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-okr-output-and-quality:1",
+      "family": "selection",
+      "values": [
+        10,
+        100,
+        10,
+        0
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-topologies-handoff-edges:0",
+      "family": "intervals",
+      "values": [
+        60,
+        10,
+        10
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        20,
+        40,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-topologies-handoff-edges:1",
+      "family": "intervals",
+      "values": [
+        60,
+        10,
+        2
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        12,
+        24,
+        36,
+        48,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-accelerate-small-batches:0",
+      "family": "intervals",
+      "values": [
+        60,
+        5,
+        2
+      ],
+      "expected": 40,
+      "actual": 40,
+      "trace": [
+        7,
+        14,
+        21,
+        28,
+        35,
+        42,
+        49,
+        56
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-accelerate-small-batches:1",
+      "family": "intervals",
+      "values": [
+        60,
+        15,
+        2
+      ],
+      "expected": 45,
+      "actual": 45,
+      "trace": [
+        17,
+        34,
+        51
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-devops-limit-work-in-progress:0",
+      "family": "feedback",
+      "values": [
+        0,
+        8,
+        5,
+        4
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-devops-limit-work-in-progress:1",
+      "family": "feedback",
+      "values": [
+        0,
+        5,
+        5,
+        4
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-elegant-team-slack:0",
+      "family": "feedback",
+      "values": [
+        4,
+        2,
+        3,
+        4
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-elegant-team-slack:1",
+      "family": "feedback",
+      "values": [
+        8,
+        2,
+        3,
+        4
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-data-replica-read-lag:0",
+      "family": "feedback",
+      "values": [
+        6,
+        4,
+        3,
+        4
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-data-replica-read-lag:1",
+      "family": "feedback",
+      "values": [
+        6,
+        4,
+        6,
+        4
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        6,
+        4,
+        2,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-release-bulkhead-capacity:0",
+      "family": "payoff",
+      "values": [
+        90,
+        10,
+        -100
+      ],
+      "expected": -1,
+      "actual": -0.9999999999999982,
+      "trace": [
+        9,
+        -9.999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-release-bulkhead-capacity:1",
+      "family": "payoff",
+      "values": [
+        90,
+        8,
+        -10
+      ],
+      "expected": 6.2,
+      "actual": 6.2,
+      "trace": [
+        7.2,
+        -0.9999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-peopleware-interruption-cost:0",
+      "family": "intervals",
+      "values": [
+        60,
+        20,
+        10
+      ],
+      "expected": 40,
+      "actual": 40,
+      "trace": [
+        30,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-peopleware-interruption-cost:1",
+      "family": "intervals",
+      "values": [
+        60,
+        10,
+        10
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        20,
+        40,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-bears-range-not-point:0",
+      "family": "payoff",
+      "values": [
+        50,
+        20,
+        0
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-bears-range-not-point:1",
+      "family": "payoff",
+      "values": [
+        50,
+        50,
+        -30
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        25,
+        -15
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-flow-utilization-queue:0",
+      "family": "feedback",
+      "values": [
+        0,
+        5,
+        6,
+        6
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-flow-utilization-queue:1",
+      "family": "feedback",
+      "values": [
+        0,
+        7,
+        6,
+        6
+      ],
+      "expected": 6,
+      "actual": 6,
+      "trace": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-ship-distributed-information:0",
+      "family": "flow",
+      "values": [
+        12,
+        2,
+        12
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        12,
+        2,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-ship-distributed-information:1",
+      "family": "flow",
+      "values": [
+        6,
+        8,
+        6
+      ],
+      "expected": 6,
+      "actual": 6,
+      "trace": [
+        6,
+        6,
+        6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-manager-delegation-interface:0",
+      "family": "intervals",
+      "values": [
+        90,
+        20,
+        10
+      ],
+      "expected": 60,
+      "actual": 60,
+      "trace": [
+        30,
+        60,
+        90
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-manager-delegation-interface:1",
+      "family": "intervals",
+      "values": [
+        80,
+        20,
+        0
+      ],
+      "expected": 80,
+      "actual": 80,
+      "trace": [
+        20,
+        40,
+        60,
+        80
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-startup-test-before-scale:0",
+      "family": "payoff",
+      "values": [
+        50,
+        30,
+        -20
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        15,
+        -10
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-startup-test-before-scale:1",
+      "family": "payoff",
+      "values": [
+        50,
+        20,
+        -5
+      ],
+      "expected": 7.5,
+      "actual": 7.5,
+      "trace": [
+        10,
+        -2.5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-porter-same-budget-opportunity:0",
+      "family": "payoff",
+      "values": [
+        100,
+        0,
+        0
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-porter-same-budget-opportunity:1",
+      "family": "payoff",
+      "values": [
+        30,
+        25,
+        -15
+      ],
+      "expected": -3,
+      "actual": -3,
+      "trace": [
+        7.5,
+        -10.5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-measure-value-information:0",
+      "family": "payoff",
+      "values": [
+        80,
+        8,
+        -12
+      ],
+      "expected": 4,
+      "actual": 4.000000000000001,
+      "trace": [
+        6.4,
+        -2.3999999999999995
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-measure-value-information:1",
+      "family": "payoff",
+      "values": [
+        80,
+        2,
+        -18
+      ],
+      "expected": -2,
+      "actual": -1.9999999999999991,
+      "trace": [
+        1.6,
+        -3.599999999999999
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-nudge-default-choice-model:0",
+      "family": "selection",
+      "values": [
+        6,
+        100,
+        4,
+        50
+      ],
+      "expected": 80,
+      "actual": 80,
+      "trace": [
+        6,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-nudge-default-choice-model:1",
+      "family": "selection",
+      "values": [
+        6,
+        0,
+        4,
+        50
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        0,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-irrational-decoy-dominance:0",
+      "family": "payoff",
+      "values": [
+        20,
+        12,
+        -3
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        2.4000000000000004,
+        -2.4000000000000004
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-irrational-decoy-dominance:1",
+      "family": "payoff",
+      "values": [
+        80,
+        5,
+        -5
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        4,
+        -0.9999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-habit-cue-policy:0",
+      "family": "feedback",
+      "values": [
+        0,
+        2,
+        0,
+        4
+      ],
+      "expected": 8,
+      "actual": 8,
+      "trace": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-habit-cue-policy:1",
+      "family": "feedback",
+      "values": [
+        0,
+        0,
+        0,
+        4
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-influence-social-sample:0",
+      "family": "network",
+      "values": [
+        12,
+        1,
+        3
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-influence-social-sample:1",
+      "family": "network",
+      "values": [
+        12,
+        2,
+        3
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        3,
+        7,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-mindset-small-effect-scale:0",
+      "family": "selection",
+      "values": [
+        8,
+        100,
+        2,
+        50
+      ],
+      "expected": 90,
+      "actual": 90,
+      "trace": [
+        8,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-mindset-small-effect-scale:1",
+      "family": "selection",
+      "values": [
+        2,
+        100,
+        8,
+        50
+      ],
+      "expected": 60,
+      "actual": 60,
+      "trace": [
+        2,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-choosing-information-budget:0",
+      "family": "intervals",
+      "values": [
+        30,
+        2,
+        1
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-choosing-information-budget:1",
+      "family": "intervals",
+      "values": [
+        30,
+        4,
+        1
+      ],
+      "expected": 24,
+      "actual": 24,
+      "trace": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-scarcity-attention-budget:0",
+      "family": "intervals",
+      "values": [
+        30,
+        5,
+        5
+      ],
+      "expected": 15,
+      "actual": 15,
+      "trace": [
+        10,
+        20,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-scarcity-attention-budget:1",
+      "family": "intervals",
+      "values": [
+        30,
+        5,
+        0
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-stick-retrieval-evidence:0",
+      "family": "selection",
+      "values": [
+        10,
+        90,
+        0,
+        0
+      ],
+      "expected": 90,
+      "actual": 90,
+      "trace": [
+        9,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-stick-retrieval-evidence:1",
+      "family": "selection",
+      "values": [
+        10,
+        50,
+        0,
+        0
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        5,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-learn-cue-overlap:0",
+      "family": "selection",
+      "values": [
+        8,
+        100,
+        2,
+        0
+      ],
+      "expected": 80,
+      "actual": 80,
+      "trace": [
+        8,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-learn-cue-overlap:1",
+      "family": "selection",
+      "values": [
+        3,
+        100,
+        7,
+        0
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        3,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-numbers-chunk-workspace:0",
+      "family": "intervals",
+      "values": [
+        24,
+        4,
+        4
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        8,
+        16,
+        24
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-numbers-chunk-workspace:1",
+      "family": "intervals",
+      "values": [
+        24,
+        8,
+        4
+      ],
+      "expected": 16,
+      "actual": 16,
+      "trace": [
+        12,
+        24
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-learning-link-new-to-known:0",
+      "family": "network",
+      "values": [
+        10,
+        1,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        2,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-learning-link-new-to-known:1",
+      "family": "network",
+      "values": [
+        10,
+        2,
+        2
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pro-feedback-target:0",
+      "family": "flow",
+      "values": [
+        10,
+        2,
+        8
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        10,
+        2,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pro-feedback-target:1",
+      "family": "flow",
+      "values": [
+        10,
+        6,
+        8
+      ],
+      "expected": 6,
+      "actual": 6,
+      "trace": [
+        10,
+        6,
+        6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-notes-links-not-piles:0",
+      "family": "network",
+      "values": [
+        12,
+        2,
+        1
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-notes-links-not-piles:1",
+      "family": "network",
+      "values": [
+        12,
+        2,
+        3
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        3,
+        7,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-extended-external-state:0",
+      "family": "feedback",
+      "values": [
+        0,
+        3,
+        2,
+        3
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-extended-external-state:1",
+      "family": "feedback",
+      "values": [
+        0,
+        3,
+        0,
+        3
+      ],
+      "expected": 9,
+      "actual": 9,
+      "trace": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-organized-offload-buffer:0",
+      "family": "feedback",
+      "values": [
+        8,
+        0,
+        0,
+        3
+      ],
+      "expected": 8,
+      "actual": 8,
+      "trace": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-organized-offload-buffer:1",
+      "family": "feedback",
+      "values": [
+        8,
+        0,
+        2,
+        3
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        8,
+        6,
+        4,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-distracted-switching-budget:0",
+      "family": "intervals",
+      "values": [
+        30,
+        3,
+        2
+      ],
+      "expected": 18,
+      "actual": 18,
+      "trace": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-distracted-switching-budget:1",
+      "family": "intervals",
+      "values": [
+        30,
+        3,
+        7
+      ],
+      "expected": 9,
+      "actual": 9,
+      "trace": [
+        10,
+        20,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-deep-unbroken-block:0",
+      "family": "intervals",
+      "values": [
+        15,
+        20,
+        5
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [],
+      "pass": true
+    },
+    {
+      "key": "bk-deep-unbroken-block:1",
+      "family": "intervals",
+      "values": [
+        30,
+        20,
+        5
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        25
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-digital-attention-allocation:0",
+      "family": "payoff",
+      "values": [
+        20,
+        20,
+        -2
+      ],
+      "expected": 2.4,
+      "actual": 2.4,
+      "trace": [
+        4,
+        -1.6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-digital-attention-allocation:1",
+      "family": "payoff",
+      "values": [
+        70,
+        8,
+        -2
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        5.6,
+        -0.6000000000000001
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-hyperfocus-salience-filter:0",
+      "family": "selection",
+      "values": [
+        2,
+        100,
+        8,
+        0
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        2,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-hyperfocus-salience-filter:1",
+      "family": "selection",
+      "values": [
+        8,
+        100,
+        2,
+        0
+      ],
+      "expected": 80,
+      "actual": 80,
+      "trace": [
+        8,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-indistractable-cue-access:0",
+      "family": "intervals",
+      "values": [
+        12,
+        1,
+        0
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-indistractable-cue-access:1",
+      "family": "intervals",
+      "values": [
+        12,
+        1,
+        2
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drive-proxy-reward:0",
+      "family": "payoff",
+      "values": [
+        20,
+        20,
+        20
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        4,
+        16
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drive-proxy-reward:1",
+      "family": "payoff",
+      "values": [
+        20,
+        50,
+        0
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        10,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-rewards-metric-gaming:0",
+      "family": "intervals",
+      "values": [
+        30,
+        4,
+        1
+      ],
+      "expected": 24,
+      "actual": 24,
+      "trace": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-rewards-metric-gaming:1",
+      "family": "intervals",
+      "values": [
+        30,
+        4,
+        6
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        10,
+        20,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-gorilla-selection-rule:0",
+      "family": "selection",
+      "values": [
+        8,
+        0,
+        0,
+        100
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-gorilla-selection-rule:1",
+      "family": "selection",
+      "values": [
+        8,
+        0,
+        2,
+        100
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        0,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-smart-sunk-cost-boundary:0",
+      "family": "payoff",
+      "values": [
+        50,
+        12,
+        -8
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        6,
+        -4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-smart-sunk-cost-boundary:1",
+      "family": "payoff",
+      "values": [
+        100,
+        3,
+        3
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        3,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-minds-sampling-representatives:0",
+      "family": "selection",
+      "values": [
+        9,
+        100,
+        1,
+        0
+      ],
+      "expected": 90,
+      "actual": 90,
+      "trace": [
+        9,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-minds-sampling-representatives:1",
+      "family": "selection",
+      "values": [
+        5,
+        100,
+        5,
+        0
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        5,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-knowledge-missing-mechanism:0",
+      "family": "flow",
+      "values": [
+        5,
+        0,
+        5
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        5,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-knowledge-missing-mechanism:1",
+      "family": "flow",
+      "values": [
+        5,
+        3,
+        5
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        5,
+        3,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-mistakes-selective-evidence:0",
+      "family": "selection",
+      "values": [
+        2,
+        100,
+        8,
+        0
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        2,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-mistakes-selective-evidence:1",
+      "family": "selection",
+      "values": [
+        2,
+        100,
+        0,
+        0
+      ],
+      "expected": 100,
+      "actual": 100,
+      "trace": [
+        2,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-certain-confidence-score:0",
+      "family": "payoff",
+      "values": [
+        90,
+        10,
+        -10
+      ],
+      "expected": 8,
+      "actual": 8,
+      "trace": [
+        9,
+        -0.9999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-certain-confidence-score:1",
+      "family": "payoff",
+      "values": [
+        50,
+        10,
+        -10
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        5,
+        -5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-forecast-proper-score:0",
+      "family": "payoff",
+      "values": [
+        20,
+        10,
+        -5
+      ],
+      "expected": -2,
+      "actual": -2,
+      "trace": [
+        2,
+        -4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-forecast-proper-score:1",
+      "family": "payoff",
+      "values": [
+        60,
+        10,
+        -5
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        6,
+        -2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-crowds-correlated-errors:0",
+      "family": "selection",
+      "values": [
+        12,
+        60,
+        0,
+        90
+      ],
+      "expected": 60,
+      "actual": 60,
+      "trace": [
+        7.2,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-crowds-correlated-errors:1",
+      "family": "selection",
+      "values": [
+        6,
+        60,
+        6,
+        90
+      ],
+      "expected": 75,
+      "actual": 75,
+      "trace": [
+        3.6,
+        5.4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-range-transfer-rule:0",
+      "family": "selection",
+      "values": [
+        10,
+        0,
+        0,
+        50
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-range-transfer-rule:1",
+      "family": "selection",
+      "values": [
+        4,
+        0,
+        6,
+        50
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        0,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-grit-product-assumption:0",
+      "family": "compound",
+      "values": [
+        1,
+        0,
+        4,
+        1
+      ],
+      "expected": 5,
+      "actual": 5,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-grit-product-assumption:1",
+      "family": "compound",
+      "values": [
+        1,
+        0,
+        8,
+        1
+      ],
+      "expected": 9,
+      "actual": 9,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-peak-feedback-discriminates:0",
+      "family": "feedback",
+      "values": [
+        8,
+        0,
+        0,
+        4
+      ],
+      "expected": 8,
+      "actual": 8,
+      "trace": [
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-peak-feedback-discriminates:1",
+      "family": "feedback",
+      "values": [
+        8,
+        0,
+        1,
+        4
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-swan-unseen-regime-change:0",
+      "family": "payoff",
+      "values": [
+        99,
+        1,
+        0
+      ],
+      "expected": 0.99,
+      "actual": 0.99,
+      "trace": [
+        0.99,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-swan-unseen-regime-change:1",
+      "family": "payoff",
+      "values": [
+        99,
+        1,
+        -200
+      ],
+      "expected": -1.01,
+      "actual": -1.0100000000000018,
+      "trace": [
+        0.99,
+        -2.0000000000000018
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-cooperation-one-error:0",
+      "family": "payoff",
+      "values": [
+        90,
+        4,
+        -6
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        3.6,
+        -0.5999999999999999
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-cooperation-one-error:1",
+      "family": "payoff",
+      "values": [
+        90,
+        4,
+        -1
+      ],
+      "expected": 3.5,
+      "actual": 3.5,
+      "trace": [
+        3.6,
+        -0.09999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-fact-middle-of-distribution:0",
+      "family": "selection",
+      "values": [
+        80,
+        20,
+        20,
+        80
+      ],
+      "expected": 32,
+      "actual": 32,
+      "trace": [
+        16,
+        16
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-fact-middle-of-distribution:1",
+      "family": "selection",
+      "values": [
+        50,
+        20,
+        50,
+        80
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        10,
+        40
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-signal-overfit-validation:0",
+      "family": "payoff",
+      "values": [
+        30,
+        5,
+        -4
+      ],
+      "expected": -1.3,
+      "actual": -1.2999999999999998,
+      "trace": [
+        1.5,
+        -2.8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-signal-overfit-validation:1",
+      "family": "payoff",
+      "values": [
+        60,
+        5,
+        -4
+      ],
+      "expected": 1.4,
+      "actual": 1.4,
+      "trace": [
+        3,
+        -1.6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-systems-delay-control:0",
+      "family": "feedback",
+      "values": [
+        10,
+        4,
+        4,
+        3
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-systems-delay-control:1",
+      "family": "feedback",
+      "values": [
+        10,
+        4,
+        3,
+        3
+      ],
+      "expected": 13,
+      "actual": 13,
+      "trace": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-spring-selection-resistance:0",
+      "family": "selection",
+      "values": [
+        10,
+        90,
+        90,
+        10
+      ],
+      "expected": 18,
+      "actual": 18,
+      "trace": [
+        9,
+        9
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-spring-selection-resistance:1",
+      "family": "selection",
+      "values": [
+        50,
+        90,
+        50,
+        10
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        45,
+        5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-gene-frequency-dependent:0",
+      "family": "payoff",
+      "values": [
+        25,
+        4,
+        -2
+      ],
+      "expected": -0.5,
+      "actual": -0.5,
+      "trace": [
+        1,
+        -1.5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-gene-frequency-dependent:1",
+      "family": "payoff",
+      "values": [
+        75,
+        4,
+        -2
+      ],
+      "expected": 2.5,
+      "actual": 2.5,
+      "trace": [
+        3,
+        -0.5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-watchmaker-cumulative-retention:0",
+      "family": "network",
+      "values": [
+        1000,
+        2,
+        1
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-watchmaker-cumulative-retention:1",
+      "family": "network",
+      "values": [
+        1000,
+        2,
+        2
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-climbing-small-valid-steps:0",
+      "family": "compound",
+      "values": [
+        1,
+        25,
+        4,
+        0
+      ],
+      "expected": 2.44140625,
+      "actual": 2.44140625,
+      "trace": [
+        1,
+        1.25,
+        1.5625,
+        1.953125,
+        2.44140625
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-climbing-small-valid-steps:1",
+      "family": "compound",
+      "values": [
+        1,
+        12.5,
+        8,
+        0
+      ],
+      "expected": 2.565784513950348,
+      "actual": 2.565784513950348,
+      "trace": [
+        1,
+        1.125,
+        1.265625,
+        1.423828125,
+        1.601806640625,
+        1.802032470703125,
+        2.0272865295410156,
+        2.2806973457336426,
+        2.565784513950348
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-phenotype-external-effect:0",
+      "family": "payoff",
+      "values": [
+        50,
+        8,
+        0
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-phenotype-external-effect:1",
+      "family": "payoff",
+      "values": [
+        50,
+        6,
+        -2
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        3,
+        -1
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-wonderful-contingent-branches:0",
+      "family": "flow",
+      "values": [
+        4,
+        8
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-wonderful-contingent-branches:1",
+      "family": "flow",
+      "values": [
+        4,
+        16
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-dodo-fragmented-habitat:0",
+      "family": "network",
+      "values": [
+        7,
+        2,
+        2
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-dodo-fragmented-habitat:1",
+      "family": "network",
+      "values": [
+        3,
+        2,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        3,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-island-arrival-loss-balance:0",
+      "family": "feedback",
+      "values": [
+        20,
+        3,
+        3,
+        4
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-island-arrival-loss-balance:1",
+      "family": "feedback",
+      "values": [
+        40,
+        3,
+        3,
+        4
+      ],
+      "expected": 40,
+      "actual": 40,
+      "trace": [
+        40,
+        40,
+        40,
+        40,
+        40
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-diversity-species-area-model:0",
+      "family": "feedback",
+      "values": [
+        50,
+        2,
+        7,
+        10
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        50,
+        45,
+        40,
+        35,
+        30,
+        25,
+        20,
+        15,
+        10,
+        5,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-diversity-species-area-model:1",
+      "family": "feedback",
+      "values": [
+        50,
+        7,
+        7,
+        10
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-origin-selection-frequencies:0",
+      "family": "payoff",
+      "values": [
+        50,
+        8,
+        0
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-origin-selection-frequencies:1",
+      "family": "payoff",
+      "values": [
+        100,
+        4,
+        0
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        4,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-growth-surface-volume:0",
+      "family": "compound",
+      "values": [
+        1,
+        100,
+        2,
+        0
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        1,
+        2,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-growth-surface-volume:1",
+      "family": "compound",
+      "values": [
+        1,
+        100,
+        3,
+        0
+      ],
+      "expected": 8,
+      "actual": 8,
+      "trace": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-scale-exponent-boundary:0",
+      "family": "compound",
+      "values": [
+        1,
+        68.1792830507429,
+        4,
+        0
+      ],
+      "expected": 7.999999999999998,
+      "actual": 7.999999999999998,
+      "trace": [
+        1,
+        1.681792830507429,
+        2.82842712474619,
+        4.756828460010883,
+        7.999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-scale-exponent-boundary:1",
+      "family": "compound",
+      "values": [
+        1,
+        100,
+        4,
+        0
+      ],
+      "expected": 16,
+      "actual": 16,
+      "trace": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-sync-coupling-threshold:0",
+      "family": "flow",
+      "values": [
+        8,
+        6,
+        4
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        8,
+        6,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-sync-coupling-threshold:1",
+      "family": "flow",
+      "values": [
+        8,
+        6,
+        8
+      ],
+      "expected": 6,
+      "actual": 6,
+      "trace": [
+        8,
+        6,
+        6
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-linked-hub-removal:0",
+      "family": "network",
+      "values": [
+        1000,
+        1,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        2,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-linked-hub-removal:1",
+      "family": "network",
+      "values": [
+        1000,
+        2,
+        2
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-degrees-shortcut-paths:0",
+      "family": "intervals",
+      "values": [
+        60,
+        8,
+        2
+      ],
+      "expected": 48,
+      "actual": 48,
+      "trace": [
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-degrees-shortcut-paths:1",
+      "family": "intervals",
+      "values": [
+        60,
+        16,
+        2
+      ],
+      "expected": 48,
+      "actual": 48,
+      "trace": [
+        18,
+        36,
+        54
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-networks-degree-versus-bridge:0",
+      "family": "network",
+      "values": [
+        7,
+        2,
+        3
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-networks-degree-versus-bridge:1",
+      "family": "network",
+      "values": [
+        7,
+        2,
+        4
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7,
+        7,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-information-repeated-messages:0",
+      "family": "intervals",
+      "values": [
+        40,
+        6,
+        2
+      ],
+      "expected": 30,
+      "actual": 30,
+      "trace": [
+        8,
+        16,
+        24,
+        32,
+        40
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-information-repeated-messages:1",
+      "family": "intervals",
+      "values": [
+        40,
+        6,
+        4
+      ],
+      "expected": 24,
+      "actual": 24,
+      "trace": [
+        10,
+        20,
+        30,
+        40
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-code-carry-chain:0",
+      "family": "compound",
+      "values": [
+        1,
+        100,
+        4,
+        0
+      ],
+      "expected": 16,
+      "actual": 16,
+      "trace": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-code-carry-chain:1",
+      "family": "compound",
+      "values": [
+        1,
+        100,
+        5,
+        0
+      ],
+      "expected": 32,
+      "actual": 32,
+      "trace": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-algorithms-cache-change:0",
+      "family": "intervals",
+      "values": [
+        30,
+        5,
+        5
+      ],
+      "expected": 15,
+      "actual": 15,
+      "trace": [
+        10,
+        20,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-algorithms-cache-change:1",
+      "family": "intervals",
+      "values": [
+        30,
+        10,
+        5
+      ],
+      "expected": 20,
+      "actual": 20,
+      "trace": [
+        15,
+        30
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-qed-add-amplitudes:0",
+      "family": "payoff",
+      "values": [
+        50,
+        4,
+        -4
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        2,
+        -2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-qed-add-amplitudes:1",
+      "family": "payoff",
+      "values": [
+        50,
+        4,
+        4
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        2,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pieces-energy-reference:0",
+      "family": "feedback",
+      "values": [
+        100,
+        4,
+        4,
+        5
+      ],
+      "expected": 100,
+      "actual": 100,
+      "trace": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pieces-energy-reference:1",
+      "family": "feedback",
+      "values": [
+        100,
+        4,
+        6,
+        5
+      ],
+      "expected": 90,
+      "actual": 90,
+      "trace": [
+        100,
+        98,
+        96,
+        94,
+        92,
+        90
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-law-symmetry-shift:0",
+      "family": "selection",
+      "values": [
+        20,
+        80,
+        80,
+        20
+      ],
+      "expected": 32,
+      "actual": 32,
+      "trace": [
+        16,
+        16
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-law-symmetry-shift:1",
+      "family": "selection",
+      "values": [
+        20,
+        80,
+        0,
+        20
+      ],
+      "expected": 80,
+      "actual": 80,
+      "trace": [
+        16,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-time-light-cone-budget:0",
+      "family": "network",
+      "values": [
+        1000,
+        1,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        1,
+        2,
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-time-light-cone-budget:1",
+      "family": "network",
+      "values": [
+        1000,
+        2,
+        2
+      ],
+      "expected": 7,
+      "actual": 7,
+      "trace": [
+        1,
+        3,
+        7
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-cosmos-scale-compression:0",
+      "family": "compound",
+      "values": [
+        1,
+        900,
+        6,
+        0
+      ],
+      "expected": 1000000,
+      "actual": 1000000,
+      "trace": [
+        1,
+        10,
+        100,
+        1000,
+        10000,
+        100000,
+        1000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-cosmos-scale-compression:1",
+      "family": "compound",
+      "values": [
+        1,
+        900,
+        7,
+        0
+      ],
+      "expected": 10000000,
+      "actual": 10000000,
+      "trace": [
+        1,
+        10,
+        100,
+        1000,
+        10000,
+        100000,
+        1000000,
+        10000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pale-angular-size:0",
+      "family": "compound",
+      "values": [
+        8,
+        -50,
+        1,
+        0
+      ],
+      "expected": 4,
+      "actual": 4,
+      "trace": [
+        8,
+        4
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-pale-angular-size:1",
+      "family": "compound",
+      "values": [
+        8,
+        -50,
+        2,
+        0
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        8,
+        4,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-order-clock-comparison:0",
+      "family": "feedback",
+      "values": [
+        0,
+        1,
+        0,
+        10
+      ],
+      "expected": 10,
+      "actual": 10,
+      "trace": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-order-clock-comparison:1",
+      "family": "feedback",
+      "values": [
+        0,
+        1.2,
+        0,
+        10
+      ],
+      "expected": 12,
+      "actual": 11.999999999999998,
+      "trace": [
+        0,
+        1.2,
+        2.4,
+        3.5999999999999996,
+        4.8,
+        6,
+        7.2,
+        8.4,
+        9.6,
+        10.799999999999999,
+        11.999999999999998
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-chaos-nearby-trajectories:0",
+      "family": "compound",
+      "values": [
+        0.01,
+        100,
+        5,
+        0
+      ],
+      "expected": 0.32,
+      "actual": 0.32,
+      "trace": [
+        0.01,
+        0.02,
+        0.04,
+        0.08,
+        0.16,
+        0.32
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-chaos-nearby-trajectories:1",
+      "family": "compound",
+      "values": [
+        0.01,
+        200,
+        5,
+        0
+      ],
+      "expected": 2.43,
+      "actual": 2.43,
+      "trace": [
+        0.01,
+        0.03,
+        0.09,
+        0.27,
+        0.81,
+        2.43
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drunkard-streak-and-rate:0",
+      "family": "selection",
+      "values": [
+        50,
+        90,
+        50,
+        10
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        45,
+        5
+      ],
+      "pass": true
+    },
+    {
+      "key": "bk-drunkard-streak-and-rate:1",
+      "family": "selection",
+      "values": [
+        50,
+        50,
+        50,
+        50
+      ],
+      "expected": 50,
+      "actual": 50,
+      "trace": [
+        25,
+        25
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:0",
+      "family": "flow",
+      "values": [
+        0,
+        1000000000
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:1",
+      "family": "flow",
+      "values": [
+        1000000000,
+        1000000000,
+        1000000000,
+        1000000000
+      ],
+      "expected": 1000000000,
+      "actual": 1000000000,
+      "trace": [
+        1000000000,
+        1000000000,
+        1000000000,
+        1000000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:2",
+      "family": "payoff",
+      "values": [
+        0,
+        1000000000,
+        -1000000000
+      ],
+      "expected": -1000000000,
+      "actual": -1000000000,
+      "trace": [
+        0,
+        -1000000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:3",
+      "family": "payoff",
+      "values": [
+        100,
+        1000000000,
+        -1000000000
+      ],
+      "expected": 1000000000,
+      "actual": 1000000000,
+      "trace": [
+        1000000000,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:4",
+      "family": "compound",
+      "values": [
+        3,
+        -100,
+        12,
+        2
+      ],
+      "expected": 2,
+      "actual": 2,
+      "trace": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:5",
+      "family": "compound",
+      "values": [
+        3,
+        0,
+        0,
+        2
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:6",
+      "family": "compound",
+      "values": [
+        0,
+        1000,
+        12,
+        0
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:7",
+      "family": "selection",
+      "values": [
+        0,
+        100,
+        1,
+        0
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:8",
+      "family": "selection",
+      "values": [
+        1000000000,
+        100,
+        1000000000,
+        100
+      ],
+      "expected": 100,
+      "actual": 100,
+      "trace": [
+        1000000000,
+        1000000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:9",
+      "family": "network",
+      "values": [
+        1,
+        1,
+        0
+      ],
+      "expected": 1,
+      "actual": 1,
+      "trace": [
+        1
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:10",
+      "family": "network",
+      "values": [
+        1000000,
+        6,
+        12
+      ],
+      "expected": 1000000,
+      "actual": 1000000,
+      "trace": [
+        1,
+        7,
+        43,
+        259,
+        1555,
+        9331,
+        55987,
+        335923,
+        1000000,
+        1000000,
+        1000000,
+        1000000,
+        1000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:11",
+      "family": "network",
+      "values": [
+        1000000,
+        1,
+        12
+      ],
+      "expected": 13,
+      "actual": 13,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:12",
+      "family": "feedback",
+      "values": [
+        0,
+        0,
+        1,
+        12
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:13",
+      "family": "feedback",
+      "values": [
+        1000000000,
+        1000000000,
+        0,
+        12
+      ],
+      "expected": 13000000000,
+      "actual": 13000000000,
+      "trace": [
+        1000000000,
+        2000000000,
+        3000000000,
+        4000000000,
+        5000000000,
+        6000000000,
+        7000000000,
+        8000000000,
+        9000000000,
+        10000000000,
+        11000000000,
+        12000000000,
+        13000000000
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:14",
+      "family": "feedback",
+      "values": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "expected": 3,
+      "actual": 3,
+      "trace": [
+        3
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:15",
+      "family": "intervals",
+      "values": [
+        0,
+        1,
+        0
+      ],
+      "expected": 0,
+      "actual": 0,
+      "trace": [],
+      "pass": true
+    },
+    {
+      "key": "boundary:16",
+      "family": "intervals",
+      "values": [
+        12,
+        1,
+        0
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "boundary:17",
+      "family": "intervals",
+      "values": [
+        12.9,
+        1,
+        0
+      ],
+      "expected": 12,
+      "actual": 12,
+      "trace": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "pass": true
+    },
+    {
+      "key": "invalid:0",
+      "family": "flow",
+      "values": [
+        1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: flow needs 2–4 nonnegative capacities",
+      "pass": true
+    },
+    {
+      "key": "invalid:1",
+      "family": "flow",
+      "values": [
+        -1,
+        2
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: flow needs 2–4 nonnegative capacities",
+      "pass": true
+    },
+    {
+      "key": "invalid:2",
+      "family": "payoff",
+      "values": [
+        101,
+        1,
+        -1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: payoff probability must be 0–100 percent",
+      "pass": true
+    },
+    {
+      "key": "invalid:3",
+      "family": "payoff",
+      "values": [
+        -1,
+        1,
+        -1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: payoff probability must be 0–100 percent",
+      "pass": true
+    },
+    {
+      "key": "invalid:4",
+      "family": "compound",
+      "values": [
+        1,
+        -101,
+        1,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: invalid compound stock, rate, steps or addition",
+      "pass": true
+    },
+    {
+      "key": "invalid:5",
+      "family": "compound",
+      "values": [
+        1,
+        1001,
+        1,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: invalid compound stock, rate, steps or addition",
+      "pass": true
+    },
+    {
+      "key": "invalid:6",
+      "family": "compound",
+      "values": [
+        1,
+        1,
+        12.5,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: invalid compound stock, rate, steps or addition",
+      "pass": true
+    },
+    {
+      "key": "invalid:7",
+      "family": "compound",
+      "values": [
+        1000000000,
+        1000,
+        12,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: computed result exceeds finite 1e12 bound",
+      "pass": true
+    },
+    {
+      "key": "invalid:8",
+      "family": "selection",
+      "values": [
+        0,
+        50,
+        0,
+        50
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: selection needs nonzero whole population and 0–100 percent rates",
+      "pass": true
+    },
+    {
+      "key": "invalid:9",
+      "family": "selection",
+      "values": [
+        1.5,
+        50,
+        1,
+        50
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: selection needs nonzero whole population and 0–100 percent rates",
+      "pass": true
+    },
+    {
+      "key": "invalid:10",
+      "family": "network",
+      "values": [
+        0,
+        1,
+        1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: network bounds: total 1–1e6, branches 1–6, rounds 0–12",
+      "pass": true
+    },
+    {
+      "key": "invalid:11",
+      "family": "network",
+      "values": [
+        1,
+        7,
+        1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: network bounds: total 1–1e6, branches 1–6, rounds 0–12",
+      "pass": true
+    },
+    {
+      "key": "invalid:12",
+      "family": "network",
+      "values": [
+        10,
+        2,
+        13
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: network bounds: total 1–1e6, branches 1–6, rounds 0–12",
+      "pass": true
+    },
+    {
+      "key": "invalid:13",
+      "family": "feedback",
+      "values": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: feedback needs nonnegative rates/stock and 0–12 whole steps",
+      "pass": true
+    },
+    {
+      "key": "invalid:14",
+      "family": "feedback",
+      "values": [
+        0,
+        0,
+        0,
+        13
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: feedback needs nonnegative rates/stock and 0–12 whole steps",
+      "pass": true
+    },
+    {
+      "key": "invalid:15",
+      "family": "intervals",
+      "values": [
+        13,
+        1,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: intervals supports at most 12 completed chunks",
+      "pass": true
+    },
+    {
+      "key": "invalid:16",
+      "family": "intervals",
+      "values": [
+        1,
+        0,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: intervals needs nonnegative budget/overhead and positive work",
+      "pass": true
+    },
+    {
+      "key": "invalid:18",
+      "family": "payoff",
+      "values": [
+        50,
+        1000000001,
+        0
+      ],
+      "reject": true,
+      "rejected": "Error: Book model: inputs must be finite numbers with absolute value at most 1e9",
+      "pass": true
+    }
+  ],
+  "nanRejected": true,
+  "failures": []
+}

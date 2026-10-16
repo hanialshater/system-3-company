@@ -1,0 +1,118 @@
+{
+  "slug": "bk-fact-middle-of-distribution",
+  "title": "Weight the groups you combine",
+  "hook": "Two group percentages are not two equally sized groups.",
+  "domain": "books",
+  "concept": "book-fact-middle-of-distribution",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Use group denominators rather than averaging headline percentages."
+    ]
+  },
+  "misconception": "The midpoint of two displayed percentages always describes the population.",
+  "objective": "Use group denominators rather than averaging headline percentages.",
+  "claims": [
+    {
+      "id": "books.bk-fact-middle-of-distribution.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Group labels and dramatic extremes can obscure how populations are distributed.",
+      "status": "unverified",
+      "source": "{\"work\":\"rosling-factfulness-2018\",\"edition\":2018,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-fact-middle-of-distribution.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Hans Rosling, Ola Rosling and Anna Rosling Ronnlund, Factfulness (2018)",
+      "status": "unverified",
+      "source": "{\"work\":\"rosling-factfulness-2018\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-fact-middle-of-distribution.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Actual sizes give {A}%; equal weighting gives {B}%. Group rates stay fixed; their denominators change the aggregate.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"(nA*rA+nB*rB)/(nA+nB)\",\"inputs\":[[80,20,20,80],[50,20,50,80]],\"outputs\":[32,50]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-fact-middle-of-distribution.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This weighted average is exact for the stipulated rates. These groups are not income data or evidence for historical progress.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Nine units have an 80% rate and one a 20% rate. What is their combined rate?",
+    "options": [
+      "50%",
+      "74%",
+      "80%"
+    ],
+    "answer": 1,
+    "why": "(9×80+1×20)/10=74%; group sizes differ."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-fact-middle-of-distribution/2026-10-16-qa-pr5.md",
+      "company/reviews/bk-fact-middle-of-distribution/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-fact-middle-of-distribution",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "rosling-factfulness-2018",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "selection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

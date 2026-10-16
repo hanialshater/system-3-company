@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "year": 2016,
+    "work": "deep-unbroken-2016"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "A task needs 20 uninterrupted minutes plus 5 setup. Compare two 15-minute blocks with one 30-minute block. Completed work in the long block?",
+    "options": [
+      "0 minutes",
+      "20 minutes",
+      "30 minutes"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Each 15-min block",
+      "values": [
+        15,
+        20,
+        5
+      ]
+    },
+    {
+      "label": "One 30-min block",
+      "values": [
+        30,
+        20,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Setup"
+  ],
+  "unit": "work min/block",
+  "bookIdea": "Deep Work advocates protecting sustained periods for demanding work.",
+  "modelBoundary": "Each short block completes {A}; the long block {B}. Setup and indivisible work must fit inside the same block.",
+  "doesItHoldUp": "Does it hold up? Real tasks may allow resumption; this model assumes they cannot."
+}

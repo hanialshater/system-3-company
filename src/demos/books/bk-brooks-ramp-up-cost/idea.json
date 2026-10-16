@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Mythical Man-Month",
+    "author": "Frederick P. Brooks Jr.",
+    "year": 1975,
+    "work": "brooks-mythical-man-month-1975"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "B has 90 hours; each task requires 20 work plus 20 coordination hours. What is B’s toy result?",
+    "options": [
+      "50",
+      "40",
+      "60",
+      "90"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Original team",
+      "values": [
+        60,
+        20,
+        0
+      ]
+    },
+    {
+      "label": "Added onboarding",
+      "values": [
+        90,
+        20,
+        20
+      ]
+    }
+  ],
+  "labels": [
+    "Chunk",
+    "Overhead"
+  ],
+  "unit": "work hours",
+  "bookIdea": "The Mythical Man-Month warns that adding people can impose training and communication costs.",
+  "modelBoundary": "A finishes {A} work hours; B finishes {B}. B has more total hours, but each complete 20-hour task now also costs 20 coordination hours. Person-hours and indivisible tasks are invented; no staffing effect is estimated.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

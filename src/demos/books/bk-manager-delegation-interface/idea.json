@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Manager's Path",
+    "author": "Camille Fournier",
+    "year": 2017,
+    "work": "manager-delegation-2017"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "B retains eighty minutes after setup; each task needs twenty work minutes and no recurring clarification. What is B’s toy result?",
+    "options": [
+      "40",
+      "80",
+      "60",
+      "90"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Clarify each task",
+      "values": [
+        90,
+        20,
+        10
+      ]
+    },
+    {
+      "label": "Setup once",
+      "values": [
+        80,
+        20,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Clarify"
+  ],
+  "unit": "work minutes",
+  "bookIdea": "The Manager’s Path treats delegation and explicit expectations as part of developing engineering leadership.",
+  "modelBoundary": "A completes {A} work minutes; B {B}. B spends ten of the original ninety minutes once on setup, then avoids the repeated clarification charge. Setup and clarification costs are invented; the model does not assess whether expectations are complete.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}
