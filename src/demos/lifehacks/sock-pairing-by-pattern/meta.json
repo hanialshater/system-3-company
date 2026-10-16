@@ -25,50 +25,64 @@
       "id": "lifehacks.sock-pairing-by-pattern.c1",
       "text": "In a pile you pick socks up one at a time, so the partner can be the last one you check. Sorted by pattern first, you only check the socks in that pattern's bin.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): DISPUTED. The numbers need an assumption the card never states and the picture contradicts. Twelve socks of three patterns is four socks per pattern, two pairs each, and the stage draws the four striped socks in a bin identically (walkthrough 03-step-2.png). Read normally (same-pattern socks match), any sock of the same pattern is a partner: in the bin the first sock you pick matches (1 check, not up to 3), and in the mixed pile the worst case is the 8 other-pattern socks plus 1 = 9, not 11. \"The partner can be the last one you check\" holds only if each sock has exactly one partner that is told apart from the other same-pattern pair by something not drawn. Fix (cm-lifehacks/builder, pick one): (a) say and draw that each sock has one partner (e.g. same pattern, different sizes) and keep 11/3; (b) make each pattern one pair (6 socks, 3 patterns: pile 5, bin 1); or (c) recount for interchangeable pairs (pile 9, bin 1 at 12). Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c2",
       "text": "Sorting takes its own time, and this counts the worst case: the partner turns up last.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Candidate count=N−1 in mixed pool, ceil(N/2)−1 in one of two equal pattern groups. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered limit; it truly describes what the model counts (worst case, sorting time excluded). Leave as is; it reads correctly once the c1 assumption is stated. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c3",
       "text": "Socks to check at most=N−1 in one mixed pile, N/3−1 in one of three equal pattern bins; N is a multiple of 6.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): DISPUTED. Formula matches the engine (pair-search: N-1 and ceil(N/3)-1; 11/3 at 12, 5/1 at 6, 17/5 at 18, node), but as the worst-case check count for a sock's partner it is right only under the unstated one-partner assumption disputed in c1. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c4",
       "text": "Title: Match a pattern before searching Hook: Twelve socks, three patterns, one pile. To find one sock's partner, how many do you check? Question: Twelve socks of three patterns in one pile. To find one sock's partner, how many socks do you check? Options: 11 / 3. Correct option: 11.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'pair-search' at the starting input 12; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'pair-search' at the starting input 12; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): DISPUTED. Rendered question/options match the plan W3 row, and 11 is the engine's [pile]. But under the scenario as worded and drawn (three patterns, identical-looking socks within a pattern) the keyed 11 is not the worst case (9) and option \"3\" is not the bin worst case (1). See c1. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.c5",
       "text": "What makes a sorting rule useful for finding a matching sock?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Transfer prompt, not rendered; no number in it. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.recall",
       "text": "In a mixed pile every other sock is a candidate: 10 − 1 = 9. In its pattern bin of 5, only 4 remain. The model counts candidates, not seconds, and assumes both socks are there.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): DISPUTED. Same assumption: \"in its pattern bin of 5, only 4 remain\" as candidates for one partner is true only if same-pattern socks are not interchangeable; with five socks of a pattern the card should say what makes one of them the partner. Arithmetic (10-1=9, 5-1=4) is right. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.sock-pairing-by-pattern.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: One mixed pile: the partner could be any of the other 11 socks. Pattern bins: sorted first, it is one of the other 3 in its pattern's bin.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16). | FC pass 54 (fact-checker, 2026-10-16): DISPUTED. homeRevealLine at p=12 reproduces the text exactly (\"any of the other 11 ... one of the other 3\"), but these are the disputed counts of c1/c4. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
