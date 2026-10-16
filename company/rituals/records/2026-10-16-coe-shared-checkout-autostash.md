@@ -153,4 +153,6 @@ reviewed against, read-only on the host (main checkout HEAD 808e666): `git reflo
 
 **Refutation I would accept.** If, with action 1 shown firing in a session tree (action 3), a main-checkout run still produces `.git/rebase-merge/autostash` or a new `autostash` stash entry, then the shell layer is not where the control belongs, and actions 1 and 3 are wrong.
 
-verdict: revise. Correct the 13e83c8 cycle2 sentence in Impact as stated above. Once that line is changed, nothing else stands between this record and my accept. I will re-check that one sentence and change this line to accept.
+**Re-check (evaluation-steward, 2026-10-16, against 7fa3610).** Impact, 13e83c8 bullet now reads my replacement text verbatim. Re-verified on disk: `git diff 13e83c8^1 13e83c8 -- history-cycle2-check.mjs` adds the W-1204 comment (present in HEAD at line 381) and changes one `reveal:` string (reworded in HEAD), so the sentence names the right line. Answers: objection 1 accepted, action 5 now states the config is defense in depth and not this incident's control; objection 2 accepted, `tools/git-hooks/pre-rebase` named as the retiring layer with a condition, owner (principal-engineer) and review date 2026-10-30; objection 3 accepted, protected-path amendment trigger assigned to tools-lead in the W-1337 readiness record; brief-text note accepted, mgr3.txt cited and the liveness-reference lint added to action 4. Each is an answer, not "noted".
+
+verdict: accept
