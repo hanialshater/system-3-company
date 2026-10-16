@@ -30,7 +30,7 @@ export const study_cover_before_recall = {
   "family": "recall",
   "slug": "cover-before-recall",
   "title": "Cover before you test",
-  "hook": "Cover the answers: how many can you give?",
+  "hook": "You've just read three cards, answers showing. Covered, how many will you get?",
   "objective": "Perform a closed-answer check before using feedback.",
   "question": "You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give?",
   "options": [
@@ -134,8 +134,8 @@ export const study_cover_before_recall = {
 export const study_one_question_one_card = {
   "family": "recall",
   "slug": "one-question-one-card",
-  "title": "One question per card",
-  "hook": "You answer two of three and mark it right. What did the card record?",
+  "title": "Three facts, one card",
+  "hook": "One flashcard asks for three facts. What does marking it right tell you?",
   "objective": "Split a compound prompt into separately checkable cues.",
   "question": "Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record?",
   "options": [
@@ -232,8 +232,8 @@ export const study_cue_needs_a_boundary = {
 export const study_reverse_the_flashcard = {
   "family": "recall",
   "slug": "reverse-the-flashcard",
-  "title": "Test the other direction",
-  "hook": "Shown 'dog', can you give 'perro'?",
+  "title": "Perro to dog, dog to perro",
+  "hook": "You always get 'perro → dog' right. Does it work the other way round?",
   "objective": "Distinguish two directions of an arbitrary word-pair mapping.",
   "question": "You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'?",
   "options": [
@@ -393,8 +393,8 @@ export const study_rebuild_the_procedure = {
 export const study_note_gap_check = {
   "family": "recall",
   "slug": "note-gap-check",
-  "title": "Find the missing note",
-  "hook": "Cover it and rebuild its three fields: how many do you expect to get?",
+  "title": "A note that looks complete",
+  "hook": "Your note has every field filled in. Would you get it all back from memory?",
   "objective": "Reconstruct a missing field from a short source note.",
   "question": "Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?",
   "options": [
@@ -497,8 +497,8 @@ export const study_note_gap_check = {
 export const study_explain_the_link = {
   "family": "recall",
   "slug": "explain-the-link",
-  "title": "Remember the links",
-  "hook": "Asked 'why is there a puddle?', can you answer?",
+  "title": "Cloud, rain, puddle",
+  "hook": "You can list the three words. Can you explain the puddle?",
   "objective": "Reconstruct an explicit cause-and-consequence chain without its source.",
   "question": "You can list 'cloud, rain, puddle'. Asked 'why is there a puddle?', can you answer?",
   "options": [
@@ -632,8 +632,8 @@ export const study_apply_not_quote = {
 export const study_separate_confusable_pairs = {
   "family": "recall",
   "slug": "separate-confusable-pairs",
-  "title": "Separate similar pairs",
-  "hook": "Asked for the grey cable's code, how often do you pick the right one?",
+  "title": "Two codes, one description",
+  "hook": "Two part codes, both noted as 'grey cable'. Which one will you remember?",
   "objective": "Check the specific difference between two arbitrary codes.",
   "question": "Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one?",
   "options": [
@@ -720,8 +720,8 @@ export const study_separate_confusable_pairs = {
 export const study_check_confidence_with_output = {
   "family": "recall",
   "slug": "check-confidence-with-output",
-  "title": "Sure is not the same as right?",
-  "hook": "You studied map, key, route and feel sure of the order.",
+  "title": "Feeling sure of the order",
+  "hook": "You studied three words in order and feel sure of it. How sure should you be?",
   "objective": "Compare felt familiarity with a scored local reconstruction.",
   "question": "Your attempt feels familiar. Before checking it, how many places do you know are right?",
   "options": [
@@ -765,8 +765,8 @@ export const study_check_confidence_with_output = {
 export const study_keep_the_error_feedback = {
   "family": "recall",
   "slug": "keep-the-error-feedback",
-  "title": "Keep the correction",
-  "hook": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong.",
+  "title": "Which feedback helps?",
+  "hook": "A wrong try at a bike lock. Which kind of feedback helps you get it right?",
   "objective": "Use feedback to locate a specific mismatch instead of only counting attempts.",
   "question": "Two kinds of feedback after a wrong attempt: 'took 3 tries' or the item marked wrong. Which lets you fix it next time?",
   "options": [
@@ -944,7 +944,7 @@ export const study_work_back_from_a_deadline = {
   "family": "schedule",
   "slug": "work-back-from-a-deadline",
   "title": "Plan backwards",
-  "hook": "Three tasks (10, 15 and 20 min) in a row, due at minute 60.",
+  "hook": "Three tasks in a row, one deadline. When must the first one start?",
   "objective": "Compute a latest start from duration and deadline.",
   "question": "Three tasks (10, 15 and 20 min) in a row, due at minute 60. Latest start for the first?",
   "options": [
@@ -989,8 +989,8 @@ export const study_work_back_from_a_deadline = {
 export const study_meeting_and_preparation = {
   "family": "schedule",
   "slug": "meeting-and-preparation",
-  "title": "Preparation needs its own slot",
-  "hook": "You booked the presentation, but where did preparation go?",
+  "title": "The talk is booked. Is the prep?",
+  "hook": "The presentation is in your calendar. Are you ready for it?",
   "objective": "Schedule preparation before a dependent live task.",
   "question": "The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready?",
   "options": [
@@ -1027,8 +1027,8 @@ export const study_meeting_and_preparation = {
 export const study_estimate_a_range = {
   "family": "schedule",
   "slug": "estimate-a-range",
-  "title": "Try the longer estimate",
-  "hook": "A 15-25 minute task, then a call at 20.",
+  "title": "15 to 25 minutes, call at 20",
+  "hook": "A task takes 15 to 25 minutes. Which number do you plan with?",
   "objective": "Stress-test a schedule at the longer end of an explicit range.",
   "question": "A 15-25 minute task, then a call at 20. Plan with 15: is the call safe?",
   "options": [
@@ -1069,7 +1069,7 @@ export const study_one_person_two_jobs = {
   "family": "schedule",
   "slug": "one-person-two-jobs",
   "title": "One person, two blocks",
-  "hook": "Two 30-minute jobs on separate rows from minute 0, one person.",
+  "hook": "Two jobs on two calendar rows, both yours. When are you done?",
   "objective": "Detect simultaneous bookings for one constrained resource.",
   "question": "Two 30-minute jobs on separate rows from minute 0, one person. When is everything done?",
   "options": [
@@ -1105,8 +1105,8 @@ export const study_one_person_two_jobs = {
 export const study_fit_before_fixed_slot = {
   "family": "schedule",
   "slug": "fit-before-fixed-slot",
-  "title": "Fit around the fixed slot",
-  "hook": "A 25-minute task and a call at 20 to 30. Free until 60.",
+  "title": "Where do the 25 minutes go?",
+  "hook": "A 25-minute task, a fixed call at 20, and an hour free. Where does it go?",
   "objective": "Place flexible work around a fixed calendar interval.",
   "question": "A 25-minute task and a call at 20 to 30. Free until 60. Where does it fit?",
   "options": [
@@ -1144,8 +1144,8 @@ export const study_fit_before_fixed_slot = {
 export const study_include_the_wrap_up = {
   "family": "schedule",
   "slug": "include-the-wrap-up",
-  "title": "The finish is not the end",
-  "hook": "A call from 0 to 30, then 10 minutes of notes.",
+  "title": "When is the call job done?",
+  "hook": "The call ends at minute 30. Is that when the job is done?",
   "objective": "Include a required follow-up block in total calendar capacity.",
   "question": "A call from 0 to 30, then 10 minutes of notes. When is the job done?",
   "options": [
@@ -1386,13 +1386,13 @@ export const study_arrival_is_not_departure = {
 export const study_reserve_an_unassigned_slot = {
   "family": "schedule",
   "slug": "reserve-an-unassigned-slot",
-  "title": "Slack has a size",
-  "hook": "A completely booked hour has no space for an extra ten-minute task.",
+  "title": "A full hour, an urgent task",
+  "hook": "Your hour is fully booked. Where does an urgent 10-minute task go?",
   "objective": "Recognise that spare calendar capacity is an explicit resource.",
-  "question": "What can accommodate an unplanned 10-minute task here?",
+  "question": "Focus, admin and a call fill minutes 0 to 60. An urgent 10-minute task has to go in after focus. When is everything done?",
   "options": [
-    "A free 10-minute interval",
-    "A fully booked hour"
+    "Minute 70",
+    "Minute 60: it's only 10 minutes"
   ],
   "answer": 0,
   "principle": "The final layout reserves capacity by moving optional work. Slack is unused time in this fixture, not evidence that the day will stay predictable.",
@@ -1480,8 +1480,8 @@ export const study_short_jobs_clear_a_queue = {
 export const study_earliest_deadline_first = {
   "family": "order",
   "slug": "earliest-deadline-first",
-  "title": "Read the due dates",
-  "hook": "Short job (5 min, due 30) or urgent job (10 min, due 10).",
+  "title": "Quick job or urgent job?",
+  "hook": "Do the quickest job first. Does anything end up late?",
   "objective": "Compare deadline misses instead of only completion count.",
   "question": "Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late?",
   "options": [
@@ -1525,10 +1525,10 @@ export const study_earliest_deadline_first = {
 export const study_dependency_before_priority = {
   "family": "order",
   "slug": "dependency-before-priority",
-  "title": "Priority cannot bypass input",
-  "hook": "Which runs first?",
+  "title": "High priority, missing input",
+  "hook": "One job is tagged high priority. Does that decide what runs first?",
   "objective": "Distinguish task priority from prerequisite readiness.",
-  "question": "Which runs first?",
+  "question": "The review is tagged high priority, and it works from the draft. Which runs first?",
   "options": [
     "The draft it needs",
     "The high-priority review"
@@ -1580,13 +1580,14 @@ export const study_dependency_before_priority = {
 export const study_batch_by_setup = {
   "family": "order",
   "slug": "batch-by-setup",
-  "title": "Batch the shared setup",
-  "hook": "Changing contexts costs two minutes here. Count the changes.",
+  "title": "Same tasks, different order",
+  "hook": "Three short tasks, two kinds. Does the order change how long they take?",
   "objective": "Compare setup overhead under an explicit switching cost.",
-  "question": "Which order needs fewer setup switches?",
+  "question": "Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how many minutes does that save?",
   "options": [
-    "Group equal tags",
-    "Alternate tags"
+    "2 minutes",
+    "0: same three tasks",
+    "4 minutes"
   ],
   "answer": 0,
   "principle": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",
@@ -1631,13 +1632,13 @@ export const study_batch_by_setup = {
 export const study_unlock_the_following_work = {
   "family": "order",
   "slug": "unlock-the-following-work",
-  "title": "Start the blocking input",
-  "hook": "A 2-minute input unlocks a 30-minute build.",
+  "title": "What holds up the build?",
+  "hook": "A 2-minute input unlocks a 30-minute build. What should you do first?",
   "objective": "Identify the work that releases a blocked successor.",
-  "question": "A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish?",
+  "question": "Polish (10 min), then the input, then the build: the build is done at minute 42. Input, then build, then polish: when is the build done?",
   "options": [
-    "Same either way",
-    "10 minutes later with polish first"
+    "Minute 42: same jobs, same finish",
+    "Minute 32"
   ],
   "answer": 1,
   "principle": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
@@ -1685,15 +1686,15 @@ export const study_unlock_the_following_work = {
 export const study_do_not_starve_the_long_job = {
   "family": "order",
   "slug": "do-not-starve-the-long-job",
-  "title": "The short-job trade-off",
-  "hook": "Clearing tiny tasks first can delay the long task’s own deadline.",
+  "title": "Short jobs first?",
+  "hook": "Short jobs first means the least waiting. Is it always the right order?",
   "objective": "Compare waiting and lateness when their objectives conflict.",
-  "question": "For this long job due at minute 25, which order meets its deadline?",
+  "question": "Two 5-minute jobs, and a 25-minute job due at minute 25. Do the short ones first: is the long job on time?",
   "options": [
-    "Long job first",
-    "Small jobs first"
+    "Yes: least waiting, so nothing waits too long",
+    "No: it finishes late"
   ],
-  "answer": 0,
+  "answer": 1,
   "principle": "Short-job ordering is not a universal priority rule. The stated deadline makes the long job urgent in this fixture.",
   "boundary": "Exercise only; no measured productivity gain.",
   "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred.",
@@ -1893,8 +1894,8 @@ export const study_delegate_the_whole_handoff = {
 export const study_choose_the_metric_first = {
   "family": "order",
   "slug": "choose-the-metric-first",
-  "title": "Choose the metric first",
-  "hook": "A queue can look better by one score and worse by another.",
+  "title": "Which queue is better?",
+  "hook": "One order waits less, the other is late less. Which one is better?",
   "objective": "Compare waiting and deadline misses for one fixed order.",
   "question": "What is required before calling an order better?",
   "options": [

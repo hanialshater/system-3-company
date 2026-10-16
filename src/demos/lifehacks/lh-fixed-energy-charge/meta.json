@@ -1,7 +1,7 @@
 {
   "slug": "lh-fixed-energy-charge",
-  "title": "The fixed charge changes the bill",
-  "hook": "Halve your usage. Does the bill halve?",
+  "title": "Half the energy, half the bill?",
+  "hook": "Your bill has a €10 fixed charge. Halve your usage: does the bill halve?",
   "domain": "lifehacks",
   "concept": "standing-charge-vs-unit-rate",
   "status": "review",
@@ -79,21 +79,17 @@
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c7",
-      "text": "Halve your usage. Does the bill halve?",
+      "text": "Your bill has a €10 fixed charge. Halve your usage: does the bill halve?",
       "support": "derivation",
-      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 0.2u+10, B = 0.3u: at 40 kWh A €18 > B €12; A is higher below 100 kWh, equal at 100, lower above. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. The hook is a question with no assertion of its own, and the stage can run it (40 → 20 kWh are stops). See c8 for the problem with its keyed answer; a reworded c8 will likely reword this hook too. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "source": "Hook (meta.json hook; resource-specs.json \"lh-fixed-energy-charge\".hook), recorded as a claim per FC LH-1 \"Hooks with no claim (25)\" (W-367, 2026-10-14, demo-builder). Follows from this lesson's declared expressions in src/lib/lifehacks/resource-specs.json, evaluated by resource-model.ts: A (Low-rate+fee)=[\"+\", [\"*\", \"x\", 0.2], 10]; B (No-fee)=[\"*\", \"x\", 0.3]; x denotes Usage, 10 to 140, start 40. Values are fictional/ideal assumptions, not measurements. FC LH-4 (2026-10-14, fact-checker, W-380): verified (hook): A = 0.2u+10, B = 0.3u: at 40 kWh A €18 > B €12; A is higher below 100 kWh, equal at 100, lower above. Record: company/reviews/lifehacks-200/fact-check-LH4-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (v2, company/decisions/2026-10-15-lifehacks-r11-fix-plan.md): hook replaced by the plan line. | FC pass 51 (fact-checker, 2026-10-15, W-1101): VERIFIED. The hook is a question with no assertion of its own, and the stage can run it (40 → 20 kWh are stops). See c8 for the problem with its keyed answer; a reworded c8 will likely reword this hook too. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (W-1106). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c8",
-      "text": "Halve your usage. Does the bill halve? Options: No: the fixed charge stays / Yes. Correct: No: the fixed charge stays.",
+      "text": "The bill with the €10 fixed charge is €18 at 40 kWh. Cut usage to 20 kWh: what is that bill now? Options: €9 / €10 / €14. Correct: €14.",
       "support": "derivation",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Tariff A at 40kWh: 40 × 0.20 + 10 = €18; at 20kWh: €14, not €9, because the €10 fixed charge stays. Tariff B (no fixed charge) halves, €12 to €6. | FC pass 51 (fact-checker, 2026-10-15, W-1101): DISPUTED. The keyed answer is true only for the bill with a fixed charge. The stage shows two bills, and the question names neither. Halving usage 40 → 20 kWh (both slider stops): card A €18.00 → €14.00 (does not halve), card B 'No fee' €12.00 → €6.00 (halves exactly). A learner who answers 'Yes' about card B is marked wrong while the stage shows them right. Fix (cm-lifehacks owns the plan line, demo-builder implements): name the bill in the question, e.g. 'Your bill has a €10 fixed charge. Halve your usage from 40 to 20 kWh: does the bill halve?', or make the keyed answer conditional on the fixed charge. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51.",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W7), implemented by demo-builder 2026-10-15; options and answer in src/lib/lifehacks/resource-specs.json. Model check: Tariff A at 40kWh: 40 × 0.20 + 10 = €18; at 20kWh: €14, not €9, because the €10 fixed charge stays. Tariff B (no fixed charge) halves, €12 to €6. | FC pass 51 (fact-checker, 2026-10-15, W-1101): DISPUTED. The keyed answer is true only for the bill with a fixed charge. The stage shows two bills, and the question names neither. Halving usage 40 → 20 kWh (both slider stops): card A €18.00 → €14.00 (does not halve), card B 'No fee' €12.00 → €6.00 (halves exactly). A learner who answers 'Yes' about card B is marked wrong while the stage shows them right. Fix (cm-lifehacks owns the plan line, demo-builder implements): name the bill in the question, e.g. 'Your bill has a €10 fixed charge. Halve your usage from 40 to 20 kWh: does the bill halve?', or make the keyed answer conditional on the fixed charge. Record: company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md, Pass 51. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): question, options and answer replaced (FC38 c8 dispute, W-1106). Not checked by the builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

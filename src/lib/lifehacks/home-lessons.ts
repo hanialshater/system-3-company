@@ -31,7 +31,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "surface-area-drying",
     "unit": "cm",
     "inputLabel": "Towel width",
-    "hook": "Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long?",
+    "hook": "Fold it or spread it: does that change how long a towel takes to dry?",
     "engine": 2,
     "modeLabels": [
       "Folded in four",
@@ -122,8 +122,8 @@ export const homeLessons: HomeSpec[] = [
       "Matching wraps",
       "Opposing wraps"
     ],
-    "question": "Two bows tied in the same laces: one lies across the shoe, one twists toe-to-heel. Which comes undone first?",
-    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat across the shoe. To read your own: loops across the shoe are flat, loops pointing toe-to-heel are twisted.",
+    "question": "Two bows tied in the same laces: one lies flat, one twists out of line. Which comes undone first?",
+    "idea": "The twisted bow comes from tying both knot stages the same way round; tying the second the opposite way makes the bow lie flat. To read your own: a flat bow lies flat, a twisted bow twists out of line.",
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
     "recall": "A bow twists out of line. Which knot step could you reverse?",
@@ -581,7 +581,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "folded-shirt-stack-height",
-    "title": "Half the footprint, twice the stack",
+    "title": "Fold the shirts once more",
     "model": "layers",
     "view": "cloth",
     "initial": 5,
@@ -606,7 +606,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "folded-shirt-stack-height",
     "unit": "shirts",
     "inputLabel": "Shirts",
-    "hook": "What changes when you halve the footprint again?",
+    "hook": "Fold a stack of shirts smaller. What happens to its height?",
     "engine": 2,
     "modeLabels": [
       "Folded once",
@@ -928,7 +928,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "towel-over-two-bars",
-    "title": "Give both towel faces air",
+    "title": "One bar or two?",
     "model": "exposed",
     "view": "cloth",
     "initial": 70,
@@ -953,7 +953,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "towel-over-two-bars",
     "unit": "cm",
     "inputLabel": "Towel width",
-    "hook": "Which arrangement exposes more of the chosen faces?",
+    "hook": "A towel over one bar, or across two. Is more of it open to the air?",
     "engine": 2,
     "modeLabels": [
       "One bar",
@@ -1024,7 +1024,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "garment-overlap-hides-face",
-    "title": "Overlap can hide a drying face",
+    "title": "Two shirts, one overlap",
     "model": "overlap",
     "view": "cloth",
     "initial": 30,
@@ -1049,7 +1049,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "garment-overlap-hides-face",
     "unit": "cm",
     "inputLabel": "Overlap",
-    "hook": "Two shirts overlap by 1,800 cm². How much cloth is hidden from the air?",
+    "hook": "Two wet shirts overlap on the line. Does that hide any cloth from the air?",
     "engine": 2,
     "modeLabels": [
       "Overlapping",
@@ -1107,7 +1107,7 @@ export const homeLessons: HomeSpec[] = [
     "idea": "Water leaving laundry enters the surroundings. This example multiplies retained water per item by the item count; it is a mass balance, not a forecast of room humidity.",
     "limit": "Ventilation, temperature and condensation affect the room. This card counts water only; it does not predict room humidity.",
     "warning": "Dry indoors with a window open or a vent on: the water you dry goes into the room's air, and without ventilation it can cause damp and mould.",
-    "formula": "Water=250g for one item or count×250g; hypothetical complete drying, 30m³ room shown only as context.",
+    "formula": "Water=250g for one item or count×250g; hypothetical complete drying.",
     "recall": "Why should you count the whole wet load rather than one garment?",
     "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
     "answer": 2,
@@ -1138,7 +1138,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "humidity-evaporation-gap",
-    "title": "Humid air narrows the gap",
+    "title": "Damp room, dry room",
     "model": "humidity",
     "view": "cloth",
     "initial": 80,
@@ -1192,7 +1192,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "breeze-is-not-extra-surface",
-    "title": "Airflow and surface are different",
+    "title": "Does a breeze help a towel dry?",
     "model": "flux",
     "view": "cloth",
     "initial": 1,
@@ -1212,12 +1212,12 @@ export const homeLessons: HomeSpec[] = [
     "limit": "The doubled speed is an illustrative setting, not a measured benefit from any fan.",
     "formula": "Drying speed=cloth area×air setting; area=input m²; still air=1, breeze=2 arbitrary model units.",
     "recall": "Does improving airflow expose an inner towel face that is still folded shut?",
-    "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate.",
+    "source": "OpenStax College Physics 2e §13.6, https://openstax.org/books/college-physics-2e/pages/13-6-humidity-evaporation-and-boiling (opened 2026-10-14). Evaporation is inhibited by humidity. The card's constant flux is an explicitly illustrative assumption, not a measured household drying rate. OpenStax College Physics 2e §14.6 (air flow replaces the saturated air by dry air and evaporation continues), the support for the keyed outcome.",
     "answer": 1,
     "concept": "breeze-is-not-extra-surface",
     "unit": "m²",
     "inputLabel": "Cloth area",
-    "hook": "Same towel, same cool air. Does a breeze make it dry sooner?",
+    "hook": "Cool day, wet towel on the line. Is a breeze any help?",
     "engine": 2,
     "modeLabels": [
       "Still air",
@@ -1225,8 +1225,8 @@ export const homeLessons: HomeSpec[] = [
     ],
     "options": [
       "No: only warm air helps",
-      "Yes, about 2× sooner",
-      "Only if the breeze spreads it"
+      "Yes: moving air carries the damp away",
+      "Only if the breeze spreads it out"
     ],
     "plainNumbers": true,
     "amounts": [
@@ -1271,7 +1271,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "half-size-two-towels",
-    "title": "Cut size, keep area",
+    "title": "Cut the towel in half?",
     "model": "split-area",
     "view": "cloth",
     "initial": 80,
@@ -1295,7 +1295,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "half-size-two-towels",
     "unit": "cm",
     "inputLabel": "Width",
-    "hook": "Does splitting this fully exposed sheet add face area?",
+    "hook": "Two half towels hung flat, or one whole one. Which has more face to dry?",
     "engine": 2,
     "modeLabels": [
       "One towel",
@@ -1370,7 +1370,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "towel-thickness-hidden-volume",
-    "title": "Thicker cloth, less face per volume",
+    "title": "A towel twice as thick",
     "model": "area-volume",
     "view": "cloth",
     "initial": 2,
@@ -1385,17 +1385,74 @@ export const homeLessons: HomeSpec[] = [
       "Thin sheet",
       "Double thickness"
     ],
-    "question": "Which sheet has less face area per material volume?",
+    "question": "Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now?",
     "idea": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
     "limit": "This geometric ratio alone does not determine a fabric’s drying time.",
     "formula": "Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
     "recall": "What happens to face-area-to-volume ratio when thickness doubles?",
     "source": null,
-    "answer": 1,
+    "answer": 2,
     "concept": "towel-thickness-hidden-volume",
     "unit": "mm",
     "inputLabel": "Thickness",
-    "hook": "Which sheet has less face area per material volume?"
+    "hook": "Same size, twice as thick, twice the water. Does it get more face to dry from?",
+    "options": [
+      "The same: same size towel",
+      "Twice as much",
+      "Half as much"
+    ],
+    "engine": 2,
+    "modeLabels": [
+      "Single thickness",
+      "Twice as thick"
+    ],
+    "amounts": [
+      {
+        "label": "Open face",
+        "unit": "cm²",
+        "a": [
+          "*",
+          2,
+          "a",
+          "b"
+        ],
+        "b": [
+          "*",
+          2,
+          "a",
+          "b"
+        ]
+      },
+      {
+        "label": "Cloth volume",
+        "unit": "cm³",
+        "a": [
+          "/",
+          [
+            "*",
+            "a",
+            "b",
+            "p"
+          ],
+          10
+        ],
+        "b": [
+          "/",
+          [
+            "*",
+            "a",
+            "b",
+            2,
+            "p"
+          ],
+          10
+        ]
+      }
+    ],
+    "resultLabel": "Open face per cm³ of cloth",
+    "resultUnit": "cm²",
+    "plainNumbers": true,
+    "revealLine": "{A}: {amountA0} of open face on {amountA1} of cloth, {resultA} per cm³. {B}: the same {amountB0} on {amountB1}, {resultB} per cm³: half as much."
   },
   {
     "slug": "fitted-sheet-corners-nest",
@@ -1630,7 +1687,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "care-label-first-choice",
-    "title": "The label beats the fastest layout",
+    "title": "What does 'dry flat' allow?",
     "model": "label-rule",
     "view": "cloth",
     "initial": 3,
@@ -1644,17 +1701,37 @@ export const homeLessons: HomeSpec[] = [
       "Hang every item",
       "Respect flat-dry text"
     ],
-    "question": "Which layout follows the shown flat-dry instruction?",
+    "question": "Three jumpers say 'dry flat'. You hang them on the line with the rest. How many are dried the way the label says?",
     "idea": "The example garment’s instruction is flat dry. Selecting a convenient line-dry arrangement does not override that instruction; the task is to choose a compatible method before optimising space.",
     "limit": "Read the real label; different garments permit different processes. No care-symbol artwork is reproduced.",
     "formula": "Compatible items=0 if all chosen garments hang, or N when placed flat, given the stated flat-dry instruction.",
     "recall": "Which information should you check before applying a generic drying hack?",
     "source": "GINETEX, CARE SYMBOLS, https://www.ginetex.net/article/FR/care-symbols (opened 2026-10-14), natural drying: flat, line, drip and shade; this lesson uses text instructions and original clothing drawings, not licensed care-symbol artwork.",
-    "answer": 1,
+    "answer": 0,
     "concept": "care-label-first-choice",
     "unit": "items",
     "inputLabel": "Count",
-    "hook": "Which layout follows the shown flat-dry instruction?"
+    "hook": "The label says 'dry flat', and the line has room. Does it matter?",
+    "options": [
+      "None",
+      "All 3: dry is dry"
+    ],
+    "engine": 2,
+    "modeLabels": [
+      "Hung on the line",
+      "Laid flat"
+    ],
+    "amounts": [
+      {
+        "label": "Jumpers marked 'dry flat'",
+        "unit": "",
+        "a": "p",
+        "b": "p"
+      }
+    ],
+    "resultLabel": "Dried the way the label says",
+    "plainNumbers": true,
+    "revealLine": "{A}: {amountA0} jumpers, {resultA} dried the way the label says. {B}: {resultB} of {amountB0}."
   },
   {
     "slug": "shelf-front-labels",
