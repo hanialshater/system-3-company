@@ -35,7 +35,8 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DEMOS = "src/demos";
-const REGISTRY = "src/demos/registry.generated.ts";
+/** Generated registry files (tools/registry.mjs): regenerated from metas, and metas are lesson files. */
+const GENERATED = /^src\/demos\/[^/]+\.generated\.ts$/;
 const CODE_EXT = [".tsx", ".ts", ".mjs", ".js", ".jsx"];
 const RESOLVE_EXT = ["", ...CODE_EXT, ".json", ".css", ...CODE_EXT.map((e) => `/index${e}`)];
 
@@ -90,7 +91,7 @@ function directDeps(file) {
     for (const m of src.matchAll(IMPORT_RE)) {
       const spec = m[1] ?? m[2] ?? m[3] ?? m[4];
       const r = resolveSpec(file, spec);
-      if (r && r !== REGISTRY) deps.push(r); // the registry is regenerated from metas; metas are lesson files
+      if (r && !GENERATED.test(r)) deps.push(r); // the registry is regenerated from metas; metas are lesson files
     }
   }
   depCache.set(file, deps);

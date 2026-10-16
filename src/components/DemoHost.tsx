@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
-import { loaders } from "@/demos/registry.generated";
+// W-946: loaders only. Metas never reach the client; they come from the server (src/lib/catalog.ts).
+import { loaders } from "@/demos/loaders.generated";
 
 // One lazily loaded component per lesson; only cards near the viewport mount.
 const components: Record<string, ComponentType<{ slug: string }>> = Object.fromEntries(

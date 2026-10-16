@@ -1,6 +1,6 @@
 # AMD-001: Earn the reveal in the kit, three rituals in the cadence table, and a second check for checker-added claims
 
-status: proposed
+status: ratified
 date: 2026-10-12
 proposed_by: chief-of-staff
 prepared_by: evaluation-steward

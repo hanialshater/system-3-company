@@ -1,5 +1,7 @@
+// W-946: every meta.json, drafts and fact-check notes included. Server only: a client import fails the build.
+import "server-only";
 import domainsFile from "../../content/domains.json";
-import { demos as allDemos } from "@/demos/registry.generated";
+import { demos as allDemos } from "@/demos/index.generated";
 import type { DemoMeta } from "@/kit/types";
 import { statusVisible } from "./visibility";
 

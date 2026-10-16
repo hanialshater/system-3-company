@@ -8,13 +8,19 @@
 // for every draft slug on /d/<slug> and /api/meta/<slug>, twice (a 200 must never be rendered and cached).
 // W-947: no prerendered RSC payload, HTML page or /api/meta body under server/app carries an internal string
 // (./internal-strings.mjs), and neither do live /api/meta responses.
-// Out of scope: static/chunks (the 5.3 MB client chunk that bundles every meta.json is W-946). It still leaks.
+// W-946 (AMD-001 (c2) + R1): no file under static/chunks (what every browser downloads) carries an internal string,
+// and no chunk is over 300 KB raw (the combined registry chunk was 5.39 MB; lesson code in the shell was 3.6 MB).
+// The import scan in registry-split.test.mjs guards the cause in source; this guards the result.
+// Excluded: chunks that only /hq pages reference (server/app/hq/**/page_client-reference-manifest.js and no other
+// manifest). /hq 404s on production (src/lib/hq.ts hqEnabled), and its chunk carries org role text ("checkedBy:
+// fact-checker" in the fact-checker's scope), not meta.json. The chunk file is still fetchable by URL: reported
+// separately (readiness record 2026-10-15-amd001-c2-split.md), not hidden here. The test prints what it excluded.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
-import { INTERNAL_STRINGS } from "./internal-strings.mjs";
+import { INTERNAL_STRINGS, LESSON_CODE_FIELDS } from "./internal-strings.mjs";
 
 const repo = path.resolve(new URL("../..", import.meta.url).pathname);
 const distArg = process.env.BUILT_DIST_DIR;
@@ -74,6 +80,45 @@ test("W-947: no prerendered RSC payload, page or /api/meta body carries an inter
     for (const s of INTERNAL_STRINGS) if (text.includes(s)) hits.push(`${path.relative(dist, f)}: ${s}`);
   }
   assert.deepEqual(hits.slice(0, 20), [], `${hits.length} hits`);
+});
+
+const CHUNK_MAX_RAW = 300 * 1024;
+// Field names that lesson code also uses on its own, outside any meta.json: a Life Hacks UI label ("owner") and
+// src/lib/lifehacks/resource-specs.json (60 resource-lesson specs with "concept", "objective", "misconception"),
+// bundled with the resource lessons. Measured on the split build (2026-10-15, readiness record
+// company/engineering/readiness/2026-10-15-amd001-c2-split.md): 2 chunks, both present byte-identical before the
+// split. Ratchet: they may not spread to more chunks. Every other INTERNAL_STRING must have 0 hits.
+// LESSON_CODE_FIELDS lives in internal-strings.mjs; registry-split.test.mjs checks the property this relies on.
+const LESSON_CODE_FIELD_CHUNKS_MAX = 2;
+
+test("W-946: no client chunk under static/chunks carries an internal string, and none is over 300 KB raw", { skip }, () => {
+  const dir = path.join(dist, "static/chunks");
+  const refs = (f) => new Set([...fs.readFileSync(f, "utf8").matchAll(/static\/chunks\/([^"\\]+\.(?:js|css))/g)].map((m) => m[1]));
+  const manifests = walk(path.join(dist, "server/app")).filter((f) => f.endsWith("page_client-reference-manifest.js"));
+  const hq = new Set(), learner = new Set();
+  for (const m of manifests) for (const c of refs(m)) (/[\\/]server[\\/]app[\\/]hq[\\/]/.test(m) ? hq : learner).add(c);
+  const hqOnly = new Set([...hq].filter((c) => !learner.has(c)));
+  const files = walk(dir).filter((f) => /\.(js|css)$/.test(f) && !hqOnly.has(path.relative(dir, f).split(path.sep).join("/")));
+  if (hqOnly.size) console.log(`# static/chunks: ${hqOnly.size} chunk(s) referenced only by /hq excluded`);
+  assert.ok(files.some((f) => f.endsWith(".js")), "found client chunks (is this a full build?)");
+  const hits = [];
+  const fieldChunks = new Map();
+  const big = [];
+  for (const f of files) {
+    const text = fs.readFileSync(f, "utf8");
+    const name = path.relative(dist, f);
+    for (const s of INTERNAL_STRINGS) {
+      if (!text.includes(s)) continue;
+      if (LESSON_CODE_FIELDS.includes(s)) fieldChunks.set(name, [...(fieldChunks.get(name) ?? []), s]);
+      else hits.push(`${name}: ${s}`);
+    }
+    const size = fs.statSync(f).size;
+    if (size > CHUNK_MAX_RAW) big.push(`${name}: ${size} B`);
+  }
+  for (const [name, found] of fieldChunks) console.log(`# lesson-code field names in ${name}: ${found.join(", ")}`);
+  assert.deepEqual(hits.slice(0, 20), [], `${hits.length} internal-string hits in static/chunks`);
+  assert.ok(fieldChunks.size <= LESSON_CODE_FIELD_CHUNKS_MAX, `field names ${LESSON_CODE_FIELDS.join(" ")} in ${fieldChunks.size} chunks (max ${LESSON_CODE_FIELD_CHUNKS_MAX}): ${[...fieldChunks.keys()].join(", ")}`);
+  assert.deepEqual(big, [], `chunks over ${CHUNK_MAX_RAW} B raw`);
 });
 
 test("W-945 / W-947: next start with VERCEL vars unset at runtime 404s every draft, twice", { skip, timeout: 180_000 }, async () => {
