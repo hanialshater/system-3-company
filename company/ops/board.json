@@ -14520,7 +14520,7 @@
       "id": "W-1241",
       "title": "Fix long-cord-knots-itself soft lock: tapping 'Tumble 3 m' first sets runs=2 but only reach('long'); reveal never unlocks (HomeLesson.tsx ~453, shared Home engine); then qa-tester re-runs it + elastic-loop-release + fitted-sheet-corners-nest on a quiet host",
       "owner": "platform-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14579,7 +14579,7 @@
       "id": "W-1247",
       "title": "Home engine: add an answer-in-range test (a 2-option lesson with answer 2 passed 120/120) and W3 in the every-step ratchet; W4 is not cleared until this lands (PE-ops W3 condition 1)",
       "owner": "platform-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14685,7 +14685,7 @@
       "id": "W-1258",
       "title": "Home engine 2: the locked stage draws option A with its caption/result before commit, giving away the answer across lessons (W3 r14); decide whether to change it (shared engine, tier 2)",
       "owner": "principal-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14937,10 +14937,11 @@
       "id": "W-1284",
       "title": "Brief 11 disaster-deaths-fell: paste the owiddisasters SOURCES entry (research note P7, 3de062e), re-script §11 on the current series (×9.75 recorded, ×36.5 per million; option C 'Fell more than 30-fold'), finish W-1038 brief-11 item, then ask the cultural reviewer's addendum; fact-check of P5 first (lane 10)",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1285",
@@ -14992,10 +14993,11 @@
       "id": "W-1290",
       "title": "History: brief 12 rename slug (mongol-khanates-vs-russia-1279 or -on-a-1279-map) + pointers, brief 4 curriculum concept name ('Disease killed about eight times as many as wounds…'), then release lines for 12, 4, 5, 3 (cultural addenda 6d65dc3) cm-history",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1291",
@@ -15074,7 +15076,7 @@
       "id": "W-1299",
       "title": "Home engine locked pictures (patch r3 d16eecc): jacket-last-first reverse-order case at mode null draws an empty bag with items beside it, no arrows; group-cables locked loose ends not drawn as target dots (after W-1094 safety re-look) — fold into lh-engine-locked (eng r3 B1)",
       "owner": "platform-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15186,10 +15188,11 @@
       "id": "W-1311",
       "title": "History learner r1 findings (all launch): schooling scatter needs a dot key, explain r = 0.37, label the outlier, say 'army conscripts' early, 'department' unexplained, title 1830s vs data 1825-30; literacy question tests a different belief than the misconception and 'north and east' is the only two-region option (giveaway); london: compare 9.8 deaths per christening to a normal year, say why deaths dropped in 1666",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1312",
@@ -15243,10 +15246,11 @@
       "id": "W-1317",
       "title": "History FC 58 holds: 'young men' unsourced in schooling c1 (hook) and literacy c4 (reveal) — reword to 'conscripts' / 'these are army conscripts, not everyone', or source it; advisories: 'around 1830' vs '1830s', 'about the same', 'accusations' vs 'recorded crimes'; literacy c4 needs a different fact-checker | FC pass 59 (3884267) confirms the hold with its own fetch; exact wording proposed in company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md ## Pass 59",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1318",
@@ -15397,6 +15401,78 @@
       "id": "W-1335",
       "title": "W-556 note: proxy blocks French archive/encyclopedia hosts (wikipedia fr/en, hal, persee, cairn, openedition, gallica, archive.org, legifrance, universalis, britannica, datavis.ca) — FC pass 59 list",
       "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1336",
+      "title": "SO tag rule: confirm case sensitivity of commit-subject matching (5 catalog-run lessons would be wave-j case-insensitively; 7 wave-j lessons filed under catalog in 2d6b4d5); and let the selector treat a newer qa-tester record as clearing the W-1235 audit rule (it re-prints recorded lessons)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1337",
+      "title": "Main checkout: a session ran 'rebase --autostash' at ~13:06 and left it unfinished, wiping uncommitted work (stash 166ee49 + 13e83c8; two behavioral check files lost: behavioral-beauty-contest-level-k.mjs, behavioral-gain-loss-framing.mjs). Add a pre-rebase guard in tools/git-hooks refusing rebase in the main checkout",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1338",
+      "title": "Recover or redo uncommitted edits to behavioral-beauty-contest-level-k.mjs and behavioral-gain-loss-framing.mjs lost at ~13:06 (check stash 13e83c8 first)",
+      "owner": "cm-behavioral",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1339",
+      "title": "lh-engine-locked condition 3: amend company/design/specs/lifehacks-engines-v2.md R2 for the jacket picture, or object (then revert the reverse-order hunk of a2f14c3 with its test + readiness note); jacket-last-first does not publish until then",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1340",
+      "title": "lh-engine-locked condition 4: socks-use-shoe-space, shoes-opposite-ends, desk-supply-near-use, tote-balance-sides each draw 1 target mark while locked — does any give the answer away?",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1341",
+      "title": "lh-engine-locked condition 5: 5-lesson QA re-run of the locked Home stage (now on main 0ad1525; use the shared server after rebuild, then delete /home/user/s3c-eng1/.next-eng1)",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1342",
+      "title": "History r4 B4: v2 builds of briefs 23/24 (literacy-split-france band-count prediction, schooling-and-crime-1830s key/outlier/r in words) from history.md sections 23-24 + r15 — builder slot",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1343",
+      "title": "Brief 11 reveal change ('Per million people, about 36 times fewer') + brief 12 rename + brief 4 name: cultural-reviewer confirm (History lane 10 asks d/e); FC P5 first",
+      "owner": "cultural-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
