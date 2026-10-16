@@ -1,7 +1,7 @@
 {
   "slug": "suitcase-layer-access",
   "title": "Pack for the first thing you need",
-  "hook": "Which layout needs fewer removals for the orange item?",
+  "hook": "The rain jacket is under five items. How many do you lift to reach it?",
   "domain": "lifehacks",
   "concept": "pack-in-reverse-order",
   "status": "review",
@@ -19,61 +19,70 @@
     ]
   },
   "misconception": "Packing order doesn't matter as long as everything fits in the bag.",
-  "objective": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves.",
+  "objective": "Every item above the one you need has to come out first. With the jacket on top, nothing is in the way, so the thing you need first is best packed last.",
   "claims": [
     {
       "id": "lifehacks.suitcase-layer-access.c1",
-      "text": "Access has a cost. In this stack model, retrieving the bottom item requires lifting everything above it; placing the first-needed item on top removes those intermediate moves.",
+      "text": "Every item above the one you need has to come out first. With the jacket on top, nothing is in the way, so the thing you need first is best packed last.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. access: N-1 at the bottom, 0 on top (node); picture draws a stack with the jacket marked and lift arrows above it. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.suitcase-layer-access.c2",
-      "text": "The model counts removals, not travel time; pockets and side access change the result.",
+      "text": "This counts items lifted, not time; pockets and side openings change it.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Scope limits and illustrative assumptions of this card; Removals=N−1 at bottom or 0 at top; one target and N−1 other layers. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered limit. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.suitcase-layer-access.c3",
-      "text": "Removals=N−1 at bottom or 0 at top; one target and N−1 other layers.",
+      "text": "Items to lift=N−1 with the jacket at the bottom of N items, 0 with it on top.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. N=3..10: N-1/0 (node); 5/0 at 6, 7/0 at 8 rendered. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.suitcase-layer-access.c4",
-      "text": "Which layout needs fewer removals for the orange item?",
+      "text": "Title: Pack for the first thing you need Hook: The rain jacket is under five items. How many do you lift to reach it? Question: The rain jacket is under five items. How many do you lift to reach it? Options: 0: it's in the bag / 1 / 5. Correct option: 5.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'access' at the starting input 6; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered question and options match the plan W3 row; \"under five items\" = 5 lifts, keyed 5 correct (N=6). Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.suitcase-layer-access.c5",
       "text": "Which packing question should you ask after checking that everything fits?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Transfer prompt, not rendered. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.suitcase-layer-access.recall",
       "text": "With top access, a bottom item has N − 1 = 7 layers above it; on top, it has 0. The bag fits the same either way; access does not. Pockets and side openings change the count.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. 8-1=7, 0 on top. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
       "status": "verified",
       "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "checkedOn": "2026-10-16"
+    },
+    {
+      "id": "lifehacks.suitcase-layer-access.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Jacket at bottom: you lift 5 items to reach the jacket. Jacket on top: you lift 0.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16). | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. homeRevealLine at p=6 reproduces the text exactly. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
@@ -97,7 +106,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:pack-in-reverse-order",
     "prerequisites": [],

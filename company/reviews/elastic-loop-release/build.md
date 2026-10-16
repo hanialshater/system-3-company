@@ -1,5 +1,17 @@
 # Build note: elastic-loop-release
 
+
+## Revision v3 → v4 (r11 fix plan wave W3, TP-1/TP-2/TP-8, 2026-10-16, demo-builder)
+
+- engine: 2. Question and options from the plan (a hair tie on a cord).
+- Picture (r11 finding 1, 3): a new drawing: the cord with a twisted hair tie (figure-eight round the cord, one crossing marked) near its free end; B slides the loop along the cord and off the end (animated translate, 0.7 s), with an arrow. No stretching is drawn (safety record: no elastic under tension).
+- Slider (finding 4): hidden. No honest physical reason makes the free-end length change the outcome (any free end lets a closed loop slide off), so I took the plan's "or hide it" branch; "slider-drives-live-chart" removed from interactions.
+- Seen table: Hair tie (on the cord / off the end) and Crossings (1 · still looped / 0 · free).
+- Safety: caption and limit line kept verbatim.
+- Claims: every claim reset to unverified (checkedBy/checkedOn removed, reset note in each source); new `.seen` claim for the first reveal sentence. Nothing marked verified. Version bumped.
+- Correct option: Sliding it off the end, 2nd of 3 (TP-8).
+- Reveal: 90 words or fewer (counted on the built reveal at the starting value).
+- QA contract on a production build (`next build`, NEXT_DIST_DIR=.next-lhw3, QA_PORT=3811, harness stamp clean, contract commit 3b97991): phone and desktop passed.
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-358.

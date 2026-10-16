@@ -19,6 +19,7 @@ const BATCH_D_HOME = ['bag-weight-before-volume', 'box-handle-clearance', 'circl
 const FIX_PLAN = read('company/decisions/2026-10-15-lifehacks-r11-fix-plan.md');
 const R11_WAVES_HOME = {
   W2: ['breeze-is-not-extra-surface', 'drying-room-water-load', 'folded-shirt-stack-height', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap', 'square-bow-stays-tied', 'towel-over-two-bars', 'towel-spread-dries-first', 'wet-knit-hang-stretch'],
+  W3: ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'long-cord-knots-itself', 'shoes-opposite-ends', 'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'],
 };
 const V2_HOME = [...BATCH_D_HOME, ...Object.values(R11_WAVES_HOME).flat()].sort();
 const planWaveSlugs = wave => {
