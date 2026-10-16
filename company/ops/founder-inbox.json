@@ -423,10 +423,10 @@
     },
     {
       "id": "F-31",
-      "title": "Allow tools-lead hooks in .claude/settings.json: agent-events (PreToolUse, PostToolUse and SubagentStop on Agent, writes dispatch/report events) and, when B3 lands, the no-pkill guard (retro D-3, C1/C6)",
+      "title": "Wire the agent hooks and install the commit guard: (1) .claude/settings.json gets agent-events (Pre/PostToolUse, SubagentStop) and no-pkill/stash (Bash PreToolUse), after tools-lead's E1/N1/spool fixes; (2) the main checkout gets `git config core.hooksPath tools/git-hooks` (pre-commit guard). Both are persistent session/repo settings the permission system will not let the chief of staff apply.",
       "category": "decision",
       "priority": 2,
-      "recommendation": "yes: config change only, adds a record, no capability",
+      "recommendation": "yes, after E1/N1 land; install the pre-commit guard now (PE-ops approved 90fc0de; one-line undo: git config --unset core.hooksPath)",
       "links": [
         "company/rituals/records/2026-10-16-retro-delegation.md",
         "company/engineering/readiness/2026-10-16-agent-events-hook.md (branch tools-events, after PE-ops approval)",
