@@ -14791,10 +14791,11 @@
       "id": "W-1272",
       "title": "Spool follow-ups (PE 4be84f6): S2 move tools/ops-health.mjs and tools/rituals-due.mjs onto readJsonlFile (they read only events.jsonl and throw on a bad line); S1 re-read each .folding-* file just before deleting it (fold race) tools-lead",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1273",
@@ -14819,10 +14820,11 @@
       "id": "W-1275",
       "title": "F1 (gates wiring): events.mjs fold takes an exclusive lock and only takes over a *.folding-<pid> file when that pid is dead, + a two-simultaneous-folds no-duplicate test; F2: close the fold race (re-read the renamed file before removing). One diff to tools/events.mjs, back to PE-ops as a diff only (e1c9162) tools-lead",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1276",
