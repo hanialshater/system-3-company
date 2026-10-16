@@ -1,0 +1,97 @@
+{
+  "slug": "scale-on-a-slope",
+  "title": "A scale on a slope",
+  "hook": "Your bathroom scale reads 70 kg on the floor. What does it read on a ramp?",
+  "domain": "physics",
+  "concept": "normal-force-incline",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a bathroom scale reads your weight on the floor",
+      "a scale's reading changes with acceleration (elevator-scale, apparent weight)"
+    ],
+    "doesNotKnow": [
+      "that a scale measures only the push straight into its surface, which on a slope is m g cos θ",
+      "that the rest of your weight pulls you along the slope and is held by friction"
+    ]
+  },
+  "misconception": "A scale always reads your full weight, whatever it is resting on.",
+  "objective": "The learner can explain that on a slope a scale reads only the part of the weight pushing straight into it (m g cos θ), so 70 kg reads 60.6 kg at 30°, while the along-slope part is held by friction.",
+  "claims": [
+    {
+      "id": "physics.scale-on-a-slope.c1",
+      "text": "On a slope the weight splits into a part straight into the surface, N = m g cos θ, and a part along the slope, m g sin θ, which friction (or a stop) balances when the person is at rest (stage: the weight arrow split into 'into the ramp' and 'along the ramp'; caption 'At rest, not slipping.'; reveal: 'On a slope your weight splits in two: part presses into the scale (the arrow into the ramp), and part pulls you down the slope, held by friction. The steeper the slope, the smaller the push into it').",
+      "support": "derivation",
+      "source": "Newton's second law with a = 0, resolved perpendicular and parallel to the incline. artifacts/scratch/cm-physics-r4/check.mjs (block '64 scale-on-a-slope': frictionNeeded_N 343 at 30°, muMin 0.577; 595 N and 1.732 at 60°). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on Newton's laws (inclined planes). Brief #66 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.scale-on-a-slope.c2",
+      "text": "A 70 kg person's scale reads 70.0 kg flat, 60.6 kg at 30° and 35.0 kg at 60° (reading = m cos θ, the normal force shown as N/g) (stage: the scale display and Seen row '30°: 60.6 kg · 60°: 35.0 kg · flat: 70.0 kg'; reveal: 'On the 30° ramp your scale read 60.6 kg, and at 60° only 35.0 kg, though you still weighed 70 kg').",
+      "support": "derivation",
+      "source": "70 cos 30° = 60.62; 70 cos 60° = 35.00. artifacts/scratch/cm-physics-r4/check.mjs (reads_kg 70, 60.6, 35). Demo.tsx reads(). Brief #66 claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.scale-on-a-slope.c3",
+      "text": "A bathroom scale measures the force perpendicular to its platform (reveal: 'A scale measures only the push straight into its surface').",
+      "support": "source",
+      "source": "A spring or load cell under the platform responds to the force pressing the platform toward its base; the scale's display converts that force to kg by dividing by g. Brief #66 claim 3 (textbook; idealisation stated in c4).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.scale-on-a-slope.c4",
+      "text": "Idealisations: a rigid scale that measures only the perpendicular force, the person at rest, and a stop block holding the scale at 60° (a friction coefficient of at least 1.73 would be needed without it). The arrows are drawn to scale with each other (62 px for the full weight), not with the person.",
+      "support": "convention",
+      "source": "Stated assumption, brief #66 claim 4 and Check (muMin 1.732 at 60°). Demo.tsx: WLEN 62, components WLEN cos θ and WLEN sin θ. The caption 'At rest, not slipping.' and the 'stop block' label carry the assumptions on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A crate rests on a steep ramp. Is the ramp pushing on it, straight out of its surface, with more, less or the same force as its weight?",
+    "options": [
+      "More",
+      "Less",
+      "The same"
+    ],
+    "answer": 1,
+    "why": "Only part of the weight presses into a sloping surface (m g cos θ); the rest pulls the crate along the slope and is held by friction."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:normal-force-incline",
+    "also": [
+      "physics:force-vectors-add"
+    ],
+    "prerequisites": [
+      "physics:apparent-weight"
+    ],
+    "level": "core",
+    "strand": "mechanics",
+    "references": [],
+    "tags": [
+      "forces",
+      "normal force",
+      "slopes"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

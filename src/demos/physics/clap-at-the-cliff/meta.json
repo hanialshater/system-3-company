@@ -1,0 +1,89 @@
+{
+  "slug": "clap-at-the-cliff",
+  "title": "Clap at the cliff",
+  "hook": "You clap at a cliff and time the echo. How far away is the rock face?",
+  "domain": "physics",
+  "concept": "echo-round-trip",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "sound takes time to travel (count-the-thunder)",
+      "echoes bounce off walls"
+    ],
+    "doesNotKnow": [
+      "that an echo's delay covers the trip there and back, so the distance is half of speed × time"
+    ]
+  },
+  "misconception": "An echo 1 s later means the cliff is 343 m away (one sound-second).",
+  "objective": "The learner can explain that an echo's delay covers the trip out and back, so the distance to the cliff is the speed of sound times the echo time, divided by two.",
+  "claims": [
+    {
+      "id": "physics.clap-at-the-cliff.c1",
+      "text": "The speed of sound in still air at 20 °C is about 343 m/s, from c = sqrt(γRT/M) (stage caption 'Still air, 20 °C.'; predict question 'Sound travels 343 m each second'; reveal: 'in 1 s the sound covered 343 m in total').",
+      "support": "derivation",
+      "source": "c = sqrt(γRT/M) with γ = 1.4, R = 8.314 J/(mol K), T = 293.15 K, M = 0.02897 kg/mol gives 343.2 m/s. artifacts/scratch/cm-physics-r4/check.mjs (block '68 clap-at-the-cliff', 'sound 20 C'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on sound waves. Brief #65 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clap-at-the-cliff.c2",
+      "text": "The echo delay is 2d/c: 0.50 s, 0.99 s and 1.98 s for cliffs 85, 170 and 340 m away, and the sound travels 170, 340 and 680 m; a 1.0 s echo means about 171 m (stage: echo and 'sound travelled' readouts, Seen row '85 m: 0.50 s · 170 m: 0.99 s · 340 m: 1.98 s'; reveal: 'your echo came back after 0.99 s, close to the 1.0 s in the question. At 340 m it took 1.98 s', 'The clap has to reach the cliff and come back', 'half out, half back', 'The distance to a cliff is the speed of sound times the echo time, divided by two').",
+      "support": "derivation",
+      "source": "t = 2d/c with c = 343 m/s. artifacts/scratch/cm-physics-r4/check.mjs (echo_s 0.5, 0.99, 1.98; 'echo 1.0 s' d_m 171.5). Demo.tsx echoS(). Brief #65 claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.clap-at-the-cliff.c3",
+      "text": "Idealisations: still air at 20 °C, a flat cliff face that reflects the clap straight back, no reaction time. The pulse animation runs in 360 ms whatever the distance; the readouts report the simulated seconds. The picture's distances are to scale with each other (0.74 px per m), not with the person.",
+      "support": "convention",
+      "source": "Stated assumption, brief #65 claim 3. Demo.tsx: PX_PER_M 0.74, animation 360 ms. The caption 'Still air, 20 °C.' states the air conditions on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A ship's sonar ping returns from the seabed after 2 s. Sound in sea water travels 1,500 m each second. How deep is the seabed?",
+    "options": [
+      "750 m",
+      "1,500 m",
+      "3,000 m"
+    ],
+    "answer": 1,
+    "why": "In 2 s the ping covers 3,000 m, down and back up. Half of that is the depth: 1,500 m."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:echo-round-trip",
+    "also": [
+      "physics:sound-vs-light-delay"
+    ],
+    "prerequisites": [
+      "physics:sound-vs-light-delay"
+    ],
+    "level": "intro",
+    "strand": "waves",
+    "references": [],
+    "tags": [
+      "sound",
+      "echo",
+      "speed"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}
