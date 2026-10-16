@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-evaluator (ncm-final-four) · borrowed-mind walks of the 4 NCM gap lessons
+
+**Changed:** walked same-picture-two-histories, price-tag-or-auction, worth-something-alone and the-swap-that-goes-in-circles (all v1, draft) from their meta.json learner boundaries, on a private build of 236737ff. Four records, each linked in its meta.json evidence.simulatedLearner (nothing else in meta.json touched): `company/reviews/<slug>/2026-10-16-learner-knows-*.md`. Verdicts: launch, launch, launch, revise.
+**Believe:** medium. The-swap-that-goes-in-circles: the reveal's takeaway ("choice models assume preferences are transitive") never says what transitive means; the objective and recall already gloss it as "ranked (transitive)", so the fix is text-only. The other three carry non-blocking notes (unkeyed red/green links and a giveaway option in same-picture; the "tag:" row label in price-tag; overlapping curve labels in worth-something-alone). Simulated learner only: not evidence that anyone learned.
+**Next:** demo-builder glosses "transitive" in the swap reveal (and decides on the group-majority sentence), then learner-evaluator re-walks it. cm-probability / cm-economics decide on moving the other three to review.
+**Blocked:** nothing.
+
 ## 2026-10-16 · chief-of-staff-ceo-office · W-1538 approval of the PM-authored knot items
 
 **Changed:** W-1539..W-1542 (knot builds 1-4, demo-builder) approved, P2, next. Each carries the EDD-011 Part 1 conditions in its triage note: default layout and relax, default size/margin, scaling only via the viewBox, and C4 on the first to ship. W-1542 starts only after W-1550 (brief 4: turnOver is still blocked; the back-face flip draws the mirror knot). W-1543 (chief-of-staff founder-inbox filing for tranche 2) approved with a 5-point filing checklist. W-1565 to rnd-lead closes W-407, which is board lag. W-1538 is done. Record: the "Approval" section of company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md.
