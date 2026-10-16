@@ -9,6 +9,7 @@
 //            [--types=stopped,usage] [--since=<ISO>] [--dry]  only those types / from that time; --dry counts, writes nothing
 //   node tools/events.mjs add … --spool      append to the hook spool instead of the log (tools/lib/events-spool.mjs)
 //   node tools/events.mjs fold [--dry]        fold the spool into the log (dedupe by id) and empty it; chief of staff, before an events commit
+//                                             one fold at a time (<spool>/fold.lock); exit 2 when a live fold holds it (F1)
 //   node tools/events.mjs tail [n]
 //
 // S3_EVENTS=<file> points every command at another log (tests, fixtures); default company/ops/events.jsonl.
@@ -50,38 +51,204 @@ function append(events, file = LOG, alsoHave = []) {
   return fresh.length;
 }
 
+// ------------------------------------------------------------------ fold (ruling H2; F1 and F2 of e1c9162)
+
+/** True when `pid` is a running process (EPERM: it runs, under another user). */
+export function pidAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (e) {
+    return e.code === "EPERM";
+  }
+}
+const sleepMs = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+// The pid in a lock file: null when the file is gone, NaN when it holds no pid. An empty file may be a lock created a
+// moment ago whose pid is not written yet, so an empty or garbled read is retried once after 50 ms.
+function readPid(f) {
+  const once = () => {
+    try {
+      const t = fs.readFileSync(f, "utf8").trim();
+      return /^\d+$/.test(t) ? Number(t) : NaN;
+    } catch (e) {
+      if (e.code === "ENOENT") return null;
+      throw e;
+    }
+  };
+  const v = once();
+  if (!Number.isNaN(v)) return v;
+  sleepMs(50);
+  return once();
+}
+// Create `f` holding our pid, exclusively. true = created; false = it exists.
+function createExclusive(f) {
+  try {
+    const fd = fs.openSync(f, "wx");
+    fs.writeSync(fd, String(process.pid));
+    fs.closeSync(fd);
+    return true;
+  } catch (e) {
+    if (e.code === "EEXIST") return false;
+    throw e;
+  }
+}
+
+export const FOLD_LOCK = "fold.lock";
+
 /**
- * Fold the spool into the log (ruling H2): each spool file is renamed to *.folding-<pid> first, so hook writes
- * that arrive during the fold start a new file and are not lost; events are appended in ts order, deduped by id
- * against the log; the folded files are then removed. Unparseable spool lines are not dropped: they are kept in
- * <spool>/unparsed-<stamp>.txt for a person to look at. Returns { folded, duplicates, unparsed, files }.
+ * F1: one fold at a time. `<spool>/fold.lock` is created with O_EXCL and holds the folder's pid. A lock held by a
+ * live pid is refused (error code EFOLDLOCKED, with the pid). A lock whose pid is dead (or whose content is not a pid
+ * after a grace moment for a lock being written) is taken over, but only inside `fold.lock.takeover`, a second
+ * O_EXCL file, so two folds that both find the same dead lock cannot both take it: the one that gets the takeover
+ * file re-reads the lock, removes it only if it still holds the dead pid, and creates its own. A takeover file whose
+ * pid is dead is removed the same way on the next try; a live one means another fold is taking over, so we refuse.
+ * Returns release(), which removes the lock only if it still holds our pid.
  */
-export function fold({ log = LOG, dir = spoolDir(), dry = false } = {}) {
+export function acquireFoldLock(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+  const lock = path.join(dir, FOLD_LOCK);
+  const takeover = `${lock}.takeover`;
+  const refuse = (pid, what = "a fold") => {
+    const err = new Error(`fold: ${what} is already running (pid ${pid}, ${rel(lock)}); not folding. Run it again when that one has finished.`);
+    err.code = "EFOLDLOCKED";
+    err.pid = pid;
+    return err;
+  };
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (createExclusive(lock)) {
+      return () => {
+        if (readPid(lock) === process.pid) fs.rmSync(lock, { force: true });
+      };
+    }
+    const held = readPid(lock);
+    if (held === null) continue; // released between our two calls: try again
+    if (pidAlive(held)) throw refuse(held);
+    // The lock is stale (dead pid, or no pid): take it over under the takeover file.
+    if (!createExclusive(takeover)) {
+      const t = readPid(takeover);
+      if (t !== null && pidAlive(t)) throw refuse(t, "a fold taking over a stale lock");
+      if (t !== null && Object.is(readPid(takeover), t)) fs.rmSync(takeover, { force: true }); // its taker died
+      continue;
+    }
+    try {
+      // Remove the lock only if it still is the stale one we judged; a fold that took it meanwhile keeps it.
+      if (Object.is(readPid(lock), held)) fs.rmSync(lock, { force: true });
+    } finally {
+      fs.rmSync(takeover, { force: true });
+    }
+  }
+  throw refuse(readPid(lock), "a fold (lock could not be taken after 5 tries)");
+}
+
+/**
+ * Fold the spool into the log (ruling H2), holding the fold lock (F1). Each active spool file is renamed to
+ * *.folding-<pid> first, so hook writes that arrive during the fold start a new file. A *.folding-<pid> file is
+ * adopted only when that pid is dead (a fold that died); a live pid's file is left alone and counted in `skipped`.
+ * Events are appended in ts order, deduped by id against the log. F2: an append that opened a file just before the
+ * rename can land in the renamed file after it was read, so each renamed file is re-read after the append, once it
+ * has stopped growing for `settleMs`, and any id not yet folded is appended before the file is removed. (Writers
+ * through `events.mjs add --spool` also re-append when their file was renamed under them; see spoolAppend.)
+ * Unparseable spool lines are kept in <spool>/unparsed-<stamp>.txt for a person to look at.
+ * Returns { folded, duplicates, unparsed, files, late, skipped }.
+ */
+export function fold({ log = LOG, dir = spoolDir(), dry = false, settleMs = 100 } = {}) {
   const files = spoolFiles(dir);
   if (dry) {
     const s = readSpool(dir);
     const have = new Set(readFile(log).map((e) => e.id));
     const fresh = new Set(s.events.filter((e) => !have.has(e.id)).map((e) => e.id));
-    return { folded: fresh.size, duplicates: s.events.length - fresh.size, unparsed: s.skipped, files: files.length };
+    return { folded: fresh.size, duplicates: s.events.length - fresh.size, unparsed: s.skipped, files: files.length, late: 0, skipped: 0 };
   }
-  const work = files.map((f) => {
-    if (/\.folding-\d+$/.test(f)) return f; // left by a fold that died: fold it now (ids dedupe)
-    const to = `${f}.folding-${process.pid}`;
-    fs.renameSync(f, to);
-    return to;
-  });
-  const events = [];
-  const bad = [];
-  for (const f of work) {
-    const r = readJsonlFile(f);
-    events.push(...r.events);
-    bad.push(...r.bad);
+  const release = acquireFoldLock(dir);
+  try {
+    const work = [];
+    const skipped = [];
+    // Adopt dead folds' files first (read into `work` before any rename, so a same-named target is never overwritten unread).
+    const adopted = new Map();
+    for (const f of spoolFiles(dir)) {
+      const m = f.match(/\.folding-(\d+)$/);
+      if (!m) continue;
+      const pid = Number(m[1]);
+      if (pid !== process.pid && pidAlive(pid)) skipped.push(f);
+      else adopted.set(f, readJsonlFile(f));
+    }
+    for (const f of spoolFiles(dir)) {
+      if (/\.folding-\d+$/.test(f)) {
+        if (adopted.has(f)) work.push(f);
+        continue;
+      }
+      let to = `${f}.folding-${process.pid}`;
+      if (adopted.has(to)) to = `${f}.${Date.now()}.folding-${process.pid}`; // never rename over an unread file
+      fs.renameSync(f, to);
+      work.push(to);
+    }
+    const parts = new Map(); // file -> { events, bad, size }
+    for (const f of work) {
+      const r = adopted.get(f) ?? readJsonlFile(f);
+      parts.set(f, { ...r, size: fs.existsSync(f) ? fs.statSync(f).size : 0 });
+    }
+    const events = [];
+    const bad = [];
+    for (const r of parts.values()) {
+      events.push(...r.events);
+      bad.push(...r.bad);
+    }
+    events.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
+    let folded = append(events.filter((e) => e && e.id), log);
+    // F2: re-read each renamed file once it has stopped growing; fold anything that arrived after the first read.
+    let late = 0;
+    const seen = new Set(events.map((e) => e?.id));
+    const deadline = Date.now() + Math.max(settleMs * 10, 1000);
+    for (const f of work) {
+      let size = parts.get(f).size;
+      for (;;) {
+        if (settleMs > 0) sleepMs(settleMs);
+        const now = fs.existsSync(f) ? fs.statSync(f).size : 0;
+        if (now === size || Date.now() > deadline) break;
+        size = now;
+      }
+      const again = readJsonlFile(f);
+      const extra = again.events.filter((e) => e && e.id && !seen.has(e.id) && (seen.add(e.id), true));
+      if (extra.length) {
+        late += extra.length;
+        folded += append(extra, log);
+      }
+      const known = new Set(parts.get(f).bad);
+      bad.push(...again.bad.filter((l) => !known.has(l)));
+    }
+    if (bad.length) fs.writeFileSync(path.join(dir, `unparsed-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`), bad.join("\n") + "\n");
+    for (const f of work) fs.rmSync(f, { force: true });
+    return { folded, duplicates: events.length + late - folded, unparsed: bad.length, files: work.length, late, skipped: skipped.length };
+  } finally {
+    release();
   }
-  events.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
-  const folded = append(events.filter((e) => e && e.id), log);
-  if (bad.length) fs.writeFileSync(path.join(dir, `unparsed-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`), bad.join("\n") + "\n");
-  for (const f of work) fs.rmSync(f, { force: true });
-  return { folded, duplicates: events.length - folded, unparsed: bad.length, files: work.length };
+}
+
+/**
+ * The spool writer (`add --spool`). F2, writer side: an append into a file that a fold renamed before or during the
+ * write may land after the fold read it. After the append, if the path no longer names the file we wrote (renamed,
+ * or replaced by a new file), the event is appended again to the current spool file. The fold dedupes by id, so a
+ * second copy costs nothing; a lost copy cannot happen unless the writer dies between the two appends.
+ */
+export function spoolAppend(e, file = spoolFileFor(new Date()), have = []) {
+  if (have.some((x) => x?.id === e.id)) return 0;
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const line = JSON.stringify(e) + "\n";
+  const fd = fs.openSync(file, "a");
+  let ino;
+  try {
+    fs.writeSync(fd, line);
+    ino = fs.fstatSync(fd).ino;
+  } finally {
+    fs.closeSync(fd);
+  }
+  let still = false;
+  try {
+    still = fs.statSync(file).ino === ino;
+  } catch {}
+  if (!still) fs.appendFileSync(file, line);
+  return 1;
 }
 
 export const ROOM_BY_ROLE = {
@@ -331,7 +498,7 @@ if (cmd === "add") {
     // The hook's path (ruling H2): the spool only, deduped against the spool (hk- ids are fixed per tool_use_id).
     // It never reads or writes events.jsonl, so a conflicted log cannot stop it and it costs nothing as the log grows.
     const have = spoolFiles().flatMap((f) => readFile(f));
-    const n = append([e], spoolFileFor(new Date()), have);
+    const n = spoolAppend(e, spoolFileFor(new Date()), have);
     console.log(n ? `spooled ${e.id}` : `already spooled ${e.id}`);
   } else {
     const n = append([e]);
@@ -354,8 +521,15 @@ if (cmd === "add") {
     for (const e of picked.slice(0, 50)) console.log(`  ${e.ts.slice(0, 16)} ${e.type.padEnd(8)} ${e.summary}`);
   } else console.log(`backfill: ${append(picked)} new event(s) (${scope}; ${all.length} seen)`);
 } else if (cmd === "fold") {
-  const r = fold({ dry: !!opt.dry });
-  console.log(`fold${opt.dry ? " --dry" : ""}: ${r.folded} event(s) ${opt.dry ? "would be " : ""}folded into ${rel(LOG)} from ${r.files} spool file(s) in ${spoolDir()}; ${r.duplicates} already in the log${r.unparsed ? `; ${r.unparsed} unparseable spool line(s)${opt.dry ? "" : " kept in unparsed-*.txt"}` : ""}`);
+  let r;
+  try {
+    r = fold({ dry: !!opt.dry });
+  } catch (err) {
+    if (err.code !== "EFOLDLOCKED") throw err;
+    console.error(err.message);
+    process.exit(2);
+  }
+  console.log(`fold${opt.dry ? " --dry" : ""}: ${r.folded} event(s) ${opt.dry ? "would be " : ""}folded into ${rel(LOG)} from ${r.files} spool file(s) in ${spoolDir()}; ${r.duplicates} already in the log${r.late ? `; ${r.late} arrived during the fold and were folded (F2)` : ""}${r.skipped ? `; ${r.skipped} file(s) of a live fold left alone` : ""}${r.unparsed ? `; ${r.unparsed} unparseable spool line(s)${opt.dry ? "" : " kept in unparsed-*.txt"}` : ""}`);
 } else if (cmd === "tail") {
   const n = Number(args[0] ?? 20);
   for (const e of readLog().sort((a, b) => a.ts.localeCompare(b.ts)).slice(-n)) console.log(`${e.ts.slice(0, 16).replace("T", " ")}  ${e.type.padEnd(9)} ${e.room.padEnd(15)} ${e.summary}`);
