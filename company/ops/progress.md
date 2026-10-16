@@ -22,6 +22,15 @@ who no longer exists: check what you rely on.
 **Next:** principal-engineer-ops approves `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md`; integrator merges my branch; accessibility-reviewer re-scans before publish (W-1511).
 
 **Blocked:** nothing on engineering.
+## 2026-10-16 · cm-math-discrete (Chiara) · knot theory briefs (W-146, W-419; both moved to done)
+
+**Changed:** `company/domains/briefs/math.discrete.md` section "Knots, batch 1" now holds 8 ranked briefs: 1 draw-a-table-knot (rewritten with the 6_1 decision), 2 tricolour-check, 3 unknot-game, 4 left-or-right (buildable now, each needs its design contact sheet before launch: block (b) lifts per lesson), then 5 unknot-in-disguise, 6 cut-one-ring, 7 wiggle-keeps-the-fingerprint, 8 more-crossings-same-knot (held). 8 `knot-*` concepts added to `content/curriculum/math.json` (knot-table-names first; prerequisites chained). Answer checks: `company/domains/briefs/checks/knots-check.mjs` (K1-K9) and `knots-check-blocked.mjs` (K10-K12). Held briefs are in `company/ops/brief-skips.json` with board ids W-1519 (block a: scramble/apply output) and W-1518 (block c: link drawing), both owner rnd-lead.
+
+**Decisions:** draw-a-table-knot draws the kit's default `draw(knot('6_1').pd)`, which is now the fix1-bigon drawing (`cmp` shows kit `draw.mjs` identical to the candidate); the design lead preferred it. T1-T4 and U1 (U2) from `company/design/reviews/2026-10-14-knot-pictures.md` are copied into tricolour-check and unknot-game (U1 also into left-or-right and the 4_1 chip). The research note's rank-1 idea (unknot in disguise) cannot be built until block (a) lifts, so the buildable order differs from the research order on purpose.
+
+**Believe:** every number in briefs 1-4 is a kit computation I re-ran (high). Found while checking: switching two crossings of the figure-eight gives a trefoil for 2 of 6 pairs, so unknot-game must show "Still a knot" from `simplify` status `minimal`, never from absence of `unknot`. All citations are unverified (the research note read them through snippets); no brief claims `verified`. The misconceptions are hypotheses (no study exists); test with 3-5 people.
+
+**Next:** demo-builder can claim 1 then 2, 3, 4; design-lead reviews each contact sheet (mirror and turned-over pictures of left-or-right have never been seen by design); fact-checker opens the cited sources; rnd-lead owns W-1519 and W-1518. **Blocked:** nothing for 1-4. I accidentally took and released a claim lock (`friends-of-friends-overlap`) while testing `claim.mjs next`; it is released.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
