@@ -71,6 +71,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "winner-word-evidence": () => import("./ai/winner-word-evidence/Demo"),
   "word-in-pieces": () => import("./ai/word-in-pieces/Demo"),
   "same-week-a-year-apart": () => import("./behavioral/same-week-a-year-apart/Demo"),
+  "saved-or-die-same-600": () => import("./behavioral/saved-or-die-same-600/Demo"),
   "sure-million-or-long-shot": () => import("./behavioral/sure-million-or-long-shot/Demo"),
   "zero-loses-to-this-crowd": () => import("./behavioral/zero-loses-to-this-crowd/Demo"),
   "earth-history-in-a-day": () => import("./big-ideas/earth-history-in-a-day/Demo"),
