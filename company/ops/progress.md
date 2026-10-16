@@ -44,6 +44,33 @@ who no longer exists: check what you rely on.
 **Tests:** `npm run test:settings` 25/25 (B1 incl. real-catalog drop test; B2 repo-wide write/import scan with planted-break control; B4 sentinel through 11 paths incl. pg-style error detail, with capture control; D1-D3; G2-G3); typecheck clean; build passes (`ƒ /api/settings`); test:platform 30/30; `npm run check` passes.
 **Believe:** the code meets B1, B2 (as a grep), B4, D1-D3, G2-G3 (high). **It cannot work at /api/settings as mounted:** ADR-008 scopes the session cookie to `Path=/api/account`, so this path never receives a session. I recommend mounting at /api/account/settings (one path change + one test constant); principal-engineer (location) and backend-engineer (namespace) decide, and privacy-reviewer's B2 wording follows. Unverified against the accounts branch: session helper, db query shape, flag, FK/table name, migration number, file tracing (note §4).
 **Next:** privacy-reviewer reads B1-B4; backend-engineer: B3 patches (note §5) + order review + wiring; principal-engineer: tier 2 location and package.json. **Blocked:** wiring and any apply on the accounts branch (not in this clone); deploy on the founder.
+## 2026-10-16 · personalization-eval (Uma) · batch 3 K1: criterion 2 interface, draft and harness (run eval-k1-1016, branch perso-k1)
+
+**Changed:**
+- **Interface first, commit 45826c6:** company/personalization/eval/2026-10-16-criterion-2.md §I. P1 and P2 read §I only. §I.7, commit 8edbc78, answers P1's question: the fixed baseline counts successes over the full history, while the candidate sees 30-day recalls. No behaviour change.
+- **Criterion 2 draft (unfrozen), §0–§10:**
+  - primary R₇: knowledge kept at a final test 7 days after the last session, per lesson the reference arm completed; R₁ and R₃₀ reported;
+  - `oracle-order` and `oracle-review` (θ chosen on disjoint tuning seeds) as the headroom references;
+  - the named draft-rules pair; the GAM pinned at v0.2.2;
+  - review guardrails NEW and LOAD;
+  - 14 one-at-a-time cells and 8 corners; C2 notes ruled (§7).
+- **New harness** at company/personalization/eval/harness/c2/. Phase A files are untouched.
+- **S = 660**, from the reference arm alone: records/2026-10-16-seeds-c2-k1.json.
+- W-1545 → review.
+
+**Believe:**
+- The read resists "revisit early" (medium-high). It happens at one time for every arm, not in the policy's input; revisits cost feed positions; strengthening depends on lag. A revisit-everything fixture loses 0.06 to 0.19 per lesson at base.
+- Under the product's own schedule with revisits first, a daily learner spends about 65–83% of cards on revisits (seed 1001, reference arm only). That makes review timing consequential in this world.
+- Phase A identity: default-order, draft-rules and random give the same hashes as at readout 1's commit. gam, gam-no-breadth and epsilon-greedy differ only because v0.2.2 gated novelty off.
+- No arm under test was scored.
+
+**Next:**
+- E1 (W-1544) lands.
+- F1 (W-1548, learning-scientist-personalization) reviews criterion 2 §1 and §4 and c2's learner2 and world2.
+- P2 freezes the candidate.
+- K2 (W-1549) fills from E1, records P2's hash and path, freezes and runs (about 2 h at --jobs=4).
+
+**Blocked:** the freeze waits on E1, F1 and P2's frozen hash.
 
 ## 2026-10-16 · vp-personalization (Mateo) · lane 14 batch 3: criterion 2, headroom first, plus review timing (run vp-batch3-1016)
 
