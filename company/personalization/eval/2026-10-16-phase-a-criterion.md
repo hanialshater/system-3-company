@@ -2,7 +2,7 @@
 
 status: frozen
 owner: personalization-eval (Uma) · run: eval-b1-1016 · brief: company/personalization/batches/2026-10-16-batch-1.md B1
-frozen: run eval-c4-1016 (batch 2 C4, board W-1496), before any policy under test was scored. Freeze commit: written below in a second commit (§11). Every C4 change made before the freeze is listed in §10.
+frozen: run eval-c4-1016 (batch 2 C4, board W-1496), before any policy under test was scored. **Freeze commit: e9909edc78a0f60914e9b89c790878ecb4b65576** (sha256 of this file at that commit: 0bc2cbbd9d16e48ad19df750206eea56d876ca02a8438720b44862cbe4f325c7; §11). Every C4 change made before the freeze is listed in §10.
 freezes in: **C4 of batch 2** (company/personalization/batches/2026-10-16-batch-2.md; moved from batch 1's C1 by the VP), after the B2 placeholders are filled from the C0-corrected table. Frozen = `status: frozen` plus the commit hash written into this file. Any change after a scored run is a new criterion, says so in the readout, and the old result stands (company/ceo-office/2026-10-16-personalization-org-proposal.md §2.3).
 learner/scorer decision: company/personalization/eval/2026-10-16-learner-scorer-decision.md (W-1513)
 harness (built in C1, run eval-c1-1016): company/personalization/eval/harness/ (README.md there: how to run and reproduce). Every C1 change to this text is listed in §9.
@@ -236,3 +236,10 @@ C2's record: company/personalization/evidence/2026-10-16-simulator-fidelity-revi
 | §5 | C4 test status | T5–T7 must pass before the run |
 | run.mjs | `--kinds=` option (run only some cell kinds first on a loaded host); the manifest records the kinds | Host load (the run is otherwise unchanged and deterministic) |
 | tests.test.mjs | Freeze-lock test on temporary copies in both states; one-at-a-time count 9; two C4 known-answer tests | The real file is frozen from now on |
+
+## 11. Freeze record
+
+- Freeze commit: **e9909edc78a0f60914e9b89c790878ecb4b65576** (branch perso-c4, run eval-c4-1016). The criterion is this file's text at that commit.
+- sha256 of the file at the freeze commit: `0bc2cbbd9d16e48ad19df750206eea56d876ca02a8438720b44862cbe4f325c7` (`git show e9909edc78a0:company/personalization/eval/2026-10-16-phase-a-criterion.md | sha256sum`).
+- This section and the header's freeze line were added in a second commit, as batch-2 C4 step 3 requires; they change no rule. The run's manifest records the sha256 of the file as run (with this section), `criterionSha256`.
+- After this point any change is a new criterion; the readout says so and the old result stands.
