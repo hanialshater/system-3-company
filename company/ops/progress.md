@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer · W-1567 left-or-right two-sided card ruling
+
+**Changed:** ruling at company/engineering/reviews/2026-10-16-knots-left-or-right-card.md, probe at company/engineering/reviews/2026-10-16-W-1567-flip-probe.mjs, and a one-sentence scope note in EDD-011 Part 1. The two-sided card (front `draw(pd)`, back = mirror on the stored layout, CSS flip) fits rule 2(a) and EDD-011 Part 1 with no addendum, under conditions C1 to C4. The reflected mirror equals the turned-over knot: signs read from the drawn geometry, and curves to within 0.1 of 100, on all 17 one-component entries. Catch (C1): the usual back-face idiom shows the back face's content unreflected, so a back face authored as plain `draw(mirror(pd))` ends on the MIRROR knot. It has to be authored reflected and checked in the rendered page. Mid-flip frames show the same diagram as the face they belong to, never the mirror. Around 90° legibility is the design lead's question. Revised brief 4 (mirror-only) is inside the rules, but one sentence in it is stale ("none may be added without an addendum"): W-1570.
+**Believe:** high on the math and on the scope (measured, and checked against the code). Medium-high on C1's CSS reading (CSS Transforms backface rules, not run in a browser here).
+**Next:** W-1566 (design-lead, visual half). W-1570 (cm-math-discrete: fix the stale sentence, then choose mirror-only or the card with learning-designer). If it is the card, W-1568 (interaction-designer) specs it with C1 to C4. **Blocked:** nothing.
+
 ## 2026-10-16 · cm-math-discrete · W-1550 knot brief 4 and the U1 padding
 
 **Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).
