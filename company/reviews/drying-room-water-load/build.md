@@ -21,3 +21,10 @@
 - First reveal sentence at the start: "One shirt: 250 g. Whole load: 12 shirts, 3,000 g into the room."
 - Claims: all reset to unverified (new: lifehacks.drying-room-water-load.seen). Nothing marked verified.
 - QA contract (QA_ONLY, port 3701, release build): phone and desktop passed.
+
+## Revision B4 (content patch r2, 2026-10-16, demo-builder)
+
+- Applied by demo-builder on branch lhfix-r2 (batch B4), rows from company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1, every old value asserted against disk before writing. Not merged: the change touches src/lib/lifehacks (tier 2, company/engineering/readiness/2026-10-16-lh-content-patch-r2-b4.md, awaiting principal-engineer-ops).
+- Formula: '30m³ room shown only as context' dropped (FC52 c3 dispute). Reset: c3 (text = new formula). c6 untouched (held, health line).
+- NOT applied: the singular 'Whole load: 1 shirt' at 1 shirt. revealLine '{amountB0} shirts' has no plural support in engine-v2.ts; fixing it without changing the p=12 sentence needs a shared-engine change (a plural token), which this batch does not make. Rewording the revealLine would change the seen claim. Left as is; routed in the B4 report.
+- QA contract on a release build (NEXT_DIST_DIR=.next-lhfix, QA_PORT=4051, QA_ONLY = the 33 touched lessons, 2 workers): this lesson passed on phone and desktop (74 passed; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 when run without QA_ONLY).

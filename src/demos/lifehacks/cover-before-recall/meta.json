@@ -1,7 +1,7 @@
 {
   "slug": "cover-before-recall",
   "title": "Cover before you test",
-  "hook": "Cover the answers: how many can you give?",
+  "hook": "You've just read three cards, answers showing. Covered, how many will you get?",
   "domain": "lifehacks",
   "concept": "retrieval-practice",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Perform a closed-answer check before using feedback.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Cover the answers: how many can you give? You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give? Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: You've just read three cards, answers showing. Covered, how many will you get? You look at 'cue → answer' cards with the answers showing and get 3 of 3. Cover the answers: how many can you give? Options: 3: I just saw them / Can't tell until you try / 0. Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Cover the answers: how many can you give?', question, options '3: I just saw them' / 'Can't tell until you try' / '0', answer 1.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Cover the answers: how many can you give?', question, options '3: I just saw them' / 'Can't tell until you try' / '0', answer 1. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"cover-before-recall\"). Not checked by the builder.",
       "id": "lifehacks.cover-before-recall.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "Covering the answer removes the direct reading route. This reconstruction records one attempt, not a long-term memory score.",

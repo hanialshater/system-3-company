@@ -1,7 +1,7 @@
 {
   "slug": "note-gap-check",
-  "title": "Find the missing note",
-  "hook": "Cover it and rebuild its three fields: how many do you expect to get?",
+  "title": "A note that looks complete",
+  "hook": "Your note has every field filled in. Would you get it all back from memory?",
   "domain": "lifehacks",
   "concept": "fluency-illusion",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Reconstruct a missing field from a short source note.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Cover it and rebuild its three fields: how many do you expect to get? Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get? Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Your note has every field filled in. Would you get it all back from memory? Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get? Options: Can't tell until you try / All 3: it's all there. Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?', answer 'Can't tell until you try'.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?', answer 'Can't tell until you try'. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"note-gap-check\"). Not checked by the builder.",
       "id": "lifehacks.note-gap-check.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "The note has three named fields. Reconstructing their values makes missing details visible; this is a local completeness check.",

@@ -134,7 +134,8 @@ test('homeSliderMatters samples the whole range, including the last step', () =>
 /* ---------------------------------------------------------------- wave W2 ratchet */
 
 const W2 = ['towel-spread-dries-first', 'towel-over-two-bars', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap',
-  'breeze-is-not-extra-surface', 'folded-shirt-stack-height', 'wet-knit-hang-stretch', 'drying-room-water-load'];
+  'breeze-is-not-extra-surface', 'folded-shirt-stack-height', 'wet-knit-hang-stretch', 'drying-room-water-load',
+  'towel-thickness-hidden-volume', 'care-label-first-choice']; // last two: B4, 2026-10-16
 const steps = (s) => Array.from({ length: Math.round((s.max - s.min) / s.step) + 1 }, (_, i) => s.min + i * s.step);
 
 test('wave W2 (v2 stage): every slider step resolves every reveal token, a used {ratio} is never empty, sliders stay', () => {

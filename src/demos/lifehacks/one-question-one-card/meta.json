@@ -1,7 +1,7 @@
 {
   "slug": "one-question-one-card",
-  "title": "One question per card",
-  "hook": "You answer two of three and mark it right. What did the card record?",
+  "title": "Three facts, one card",
+  "hook": "One flashcard asks for three facts. What does marking it right tell you?",
   "domain": "lifehacks",
   "concept": "one-cue-one-answer",
   "status": "review",
@@ -22,13 +22,11 @@
   "objective": "Split a compound prompt into separately checkable cues.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: You answer two of three and mark it right. What did the card record? Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record? Correct option: A pass that hides a miss. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: One flashcard asks for three facts. What does marking it right tell you? Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record? Options: That you know all three / A pass that hides a miss. Correct option: A pass that hides a miss. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record?', answer 'A pass that hides a miss'.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Card: 'Capital, currency and language of Peru?' You answer two of three and mark it right. What did the card record?', answer 'A pass that hides a miss'. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"one-question-one-card\"). Not checked by the builder.",
       "id": "lifehacks.one-question-one-card.c1",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
       "text": "Separate cues expose separate gaps. A correct answer to one cue does not establish knowledge of the other two.",

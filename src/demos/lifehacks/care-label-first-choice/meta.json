@@ -1,7 +1,7 @@
 {
   "slug": "care-label-first-choice",
-  "title": "The label beats the fastest layout",
-  "hook": "Which layout follows the shown flat-dry instruction?",
+  "title": "What does 'dry flat' allow?",
+  "hook": "The label says 'dry flat', and the line has room. Does it matter?",
   "domain": "lifehacks",
   "concept": "dry-knits-flat",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.care-label-first-choice.c4",
-      "text": "Which layout follows the shown flat-dry instruction?",
+      "text": "Title: What does 'dry flat' allow? Hook: The label says 'dry flat', and the line has room. Does it matter? Question: Three jumpers say 'dry flat'. You hang them on the line with the rest. How many are dried the way the label says? Options: None / All 3: dry is dry. Correct option: None.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, question, options, answer replaced (row \"care-label-first-choice\"). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.care-label-first-choice.c5",
@@ -74,6 +72,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.care-label-first-choice.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Hung on the line: 3 jumpers, 0 dried the way the label says. Laid flat: 3 of 3.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 by demo-builder 2026-10-16, batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1D). Added unverified. Not checked by the builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +102,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:dry-knits-flat",
     "prerequisites": [],

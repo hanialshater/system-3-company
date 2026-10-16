@@ -18,3 +18,9 @@
 - First reveal sentence at the start: "Folded once: 2 layers per shirt, stack 4 cm. Folded twice: 4 layers, stack 8 cm: half the footprint, 2 times the height."
 - Claims: all reset to unverified (new: lifehacks.folded-shirt-stack-height.seen). Nothing marked verified.
 - QA contract (QA_ONLY, port 3701, release build): phone and desktop passed.
+
+## Revision B4 (content patch r2, 2026-10-16, demo-builder)
+
+- Applied by demo-builder on branch lhfix-r2 (batch B4), rows from company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1, every old value asserted against disk before writing. Not merged: the change touches src/lib/lifehacks (tier 2, company/engineering/readiness/2026-10-16-lh-content-patch-r2-b4.md, awaiting principal-engineer-ops).
+- Title and/or hook replaced as the patch row gives it (no question, option or key change). Reset: the claim quoting them (c1 Study, c4 Home).
+- QA contract on a release build (NEXT_DIST_DIR=.next-lhfix, QA_PORT=4051, QA_ONLY = the 33 touched lessons, 2 workers): this lesson passed on phone and desktop (74 passed; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 when run without QA_ONLY).
