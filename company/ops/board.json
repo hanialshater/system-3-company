@@ -14210,10 +14210,11 @@
       "id": "W-1209",
       "title": "Rome v4: 10/10 claims verified (pass 53) and learner r13 launch; needs a qa-tester release QA record on a production build, then draft->review (W-996). Optional source-string fixes: c11 lists 5 of 10 columns; c7 pages 174-184 per Crossref",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1210",
@@ -14682,6 +14683,33 @@
       "id": "W-1261",
       "title": "E2 standing check: re-measure agent-events hook cost once events.jsonl passes 20 MB",
       "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1262",
+      "title": "dispatch-check: count every run that does a production next build (QA, walkthrough-building checks) against the 3-builder cap, or add a build-slot guard (host OOM-kills concurrent next-builds, 2026-10-16); and decide whether QA_ONLY runs skip/adapt feed specs",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1263",
+      "title": "'Why trust this?' button is 231x23 px at phone width, 1 px under the 24 px target (shared shell; contract does not flag it)",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1264",
+      "title": "QA_ONLY: feed specs 'subject chips filter the feed' and 'finished lesson comes back as a spaced revisit' fail because lessons()[0] is a draft; decide skip or adapt (protected tests/qa: amendment)",
+      "owner": "evaluation-steward",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
