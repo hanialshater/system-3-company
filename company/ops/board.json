@@ -2073,7 +2073,7 @@
       "id": "W-143",
       "title": "Knot library gen 0 baseline in src/lab/knots (93 tests, bench, evolve.json): review the evaluator before gen 1; strengthen the hard-unknot set (only Haken's Gordian separates); messy-diagram layout weak (40/70 cramped fallback)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -2082,13 +2082,14 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "R&D lab, not on the 2,000 path."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-144",
       "title": "Knots evaluator size gate: measures raw whole-library closure (12,815 B gz) vs 10,240 → baseline gated out; per-lesson minified cost is 4.3–7.3 KB. Gate per-lesson cost (or raise whole-library budget) in evolve.json / tools/evolve.mjs",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -2097,7 +2098,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "R&D lab gate tuning."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-145",
@@ -5645,17 +5647,20 @@
       "id": "W-407",
       "title": "EDD-004 conditions before any lesson imports @/kit/knots (eng review 2026-10-14-eng-review-EDD-004.md): C1 switch 10_8 to Conway 5 1 4, derive --write, provenance README row, re-copy kit table.mjs; C2 lab README pointer to the kit. Also the looks/extra-crossings follow-up EDD and the 4 U10 monster-unknot tests (session 2 inbox)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
-      "links": [],
-      "note": "(PR #3 merge: originally W-374 on the merge branch)",
+      "links": [
+        "company/engineering/reviews/2026-10-16-knots-w407-change.md"
+      ],
+      "note": "(PR #3 merge: originally W-374 on the merge branch) | 2026-10-16 rnd-lead: C1 and C2 re-checked done (derive --write reproduces the table; kit table.mjs = derived + sed). 4 U10 lab tests now read MONSTER from benchdata (lab 105/105; 103/103 on a derived-table swap). Extra-crossings follow-up = EDD-011: Part 1 scopes block (a) so table-knot pictures are outside it (new kit test, test:kit 98/98), Part 2 paused. Waiting on principal-engineer re-read (Part 1 confirmation) and principal-engineer-ops readiness W-1518. Still before lessons import: C3 (W-408, platform-engineer), C4 at the first layout lesson.",
       "priority": 3,
       "triage": {
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Lab conditions before any lesson uses knots."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-408",
@@ -11009,10 +11014,14 @@
       "id": "W-857",
       "title": "W-407: close C1 and C2 (done); planarity-check EDD and monster-unknot tests paused; close W-143 and W-144 (superseded by later generations and EDD-004) (R&D review 2026-10-14, company/rituals/records/2026-10-14-rnd-review.md)",
       "owner": "rnd-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [
+        "company/engineering/reviews/2026-10-16-knots-w407-change.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 rnd-lead: closed by the W-407 close-out; W-143 and W-144 closed as superseded (R&D Review 2026-10-14)."
     },
     {
       "id": "W-858",
@@ -17729,6 +17738,24 @@
       "id": "W-1516",
       "title": "r8 deploy (6cbce51, F-47) blocked by Vercel free-plan rate limit ('Deployment rate limited, retry in 24 hours', status 19:11Z 10-16). Retry after 19:11Z 10-17, or founder upgrades (F-18 Vercel Pro)",
       "owner": "release-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1517",
+      "title": "rnd-knots budget (company/ops/projects.json status legacy, budget never set): founder wants knot lessons shipping. Asked by rnd-lead: set rnd-knots active with a budget line covering (1) the W-407 close-out re-reads (principal-engineer, principal-engineer-ops readiness approval) and (2) EDD-011 Part 2 (exported extraCrossings check for random-knot), which stays paused until a random-knot brief exists. rnd-lead's estimate, not a measured unit cost: 0.5M tokens (1.7M bought the whole library over 3 generations; Part 2 is one additive export plus a measured run and a review). Price it per token-budget.md section 3 and take it to the forum. Records: company/engineering/edd/EDD-011-knots-extra-crossings.md, company/engineering/reviews/2026-10-16-knots-w407-change.md",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1518",
+      "title": "Readiness approval for knots W-407 close-out (tier 2 by path: one kit test + kit README; no library code): company/engineering/readiness/2026-10-16-knots-w407.md",
+      "owner": "principal-engineer-ops",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

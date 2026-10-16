@@ -4,9 +4,11 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import * as K from '../index.mjs'
 import { REF, SIGNATURE_ABS, TRICOLOURABLE } from './published.mjs'
+// U10 (the monster unknot) comes from the lab bench data, not the table, so these tests pass on the derived table too (W-407).
+import { MONSTER } from './benchdata.mjs'
 
 const norm = (p) => JSON.stringify(Object.entries(p).map(([e, c]) => [+e, c]).filter(([, c]) => c).sort((a, b) => a[0] - b[0]))
-const pdOf = (n) => (n == 'rtrefoil' ? K.mirror(K.KNOTS['3_1'].pd) : n == 'hopfplus' ? K.fromBraid([1, 1]) : K.KNOTS[n].pd)
+const pdOf = (n) => (n == 'U10' ? MONSTER : n == 'rtrefoil' ? K.mirror(K.KNOTS['3_1'].pd) : n == 'hopfplus' ? K.fromBraid([1, 1]) : K.KNOTS[n].pd)
 // V at t^(1/2) = i, as a Gaussian integer: |V(-1)| is the determinant.
 const vAtMinus1 = (p) => { let re = 0, im = 0; for (const [e, c] of Object.entries(p)) { const k = (((2 * +e) % 4) + 4) % 4; if (k == 0) re += c; else if (k == 1) im += c; else if (k == 2) re -= c; else im -= c } return Math.hypot(re, im) }
 
