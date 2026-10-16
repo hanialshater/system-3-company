@@ -1,0 +1,24 @@
+*Simulated learner. This review finds problems; it is not evidence that anyone learned.*
+
+# Learner review: saved-or-die-same-600
+lesson version: v2
+boundary: adult beginner: reads carefully, can compare 200 with "1 in 3 of 600", has never heard of framing effects, expected utility or "a model that judges outcomes"
+Screenshots seen: yes (artifacts/walkthroughs/saved-or-die-same-600/sheet.png, recorded 2026-10-16T14:29:58Z)
+Verdict: revise
+
+Run: SO-10-3 batch SO-10-3 [project:behavioral-econ]. Walkthrough `npm run walkthrough -- saved-or-die-same-600 --url http://localhost:3591`, shared review server, built from 6838dbac0613a3d1f2f5353e83b27d5c0dbf4f2c (BUILT_FROM read at start; R3a check.sh exit 0). Transcript cut at the trust-sheet appendix.
+
+## Findings (written from the walkthrough before reading build.md or meta.json)
+
+1. **Where understanding first broke: the question, not the stage.** The stage is clear: "200 people will be saved" next to a 1-in-3 bar, with a legend. The question then asks "Can one model that judges outcomes fit both?" An adult beginner does not know what a "model" is here, or what "judges outcomes" means as opposed to judging words. I would read it as "is that person being consistent?" and answer from that. The phrase is only explained in the reveal ("a model that judges outcomes fits both"), and even there it is used, not defined.
+2. **What the prediction felt like: a reading quiz with the answer named in the title.** (a) **Option 3 is a cue.** "No: same programmes, two wordings" repeats the title ("Saved or die: two wordings") and the hook ("then pick again when it is said in deaths"). It is the only option that uses the lesson's own words, so a test-wise learner picks it without thinking about the outbreak. (b) The locked stage already shows the button "Say both in the same words". That tells me before I commit that the two wordings can be rewritten as one, which is option 3. (c) Option 2 ("only the sure option both times fits") is the one honest distractor: a cautious person could believe it.
+3. **Quiz about wording, or one decision? (lane 10 queue item): it reads as a quiz about wording.** The hook announces the second wording in advance, the title says "two wordings", and the die cards appear right under the saved cards once I answer the first. So I never meet the second wording as a fresh decision: I meet it as a rewording I am checking. The predict question is also about "someone" else, not about my choice. What I actually do on the stage is two picks plus a rewrite button, and with both on screen together the natural thing is to pick the same column twice (the harness did: risky, then risky). The stage never lets me feel the pull of "200 saved" against "400 die", which is the effect the reveal names. The reveal's own line "Where it stops: you saw both wordings back to back" admits this, but admitting it does not turn the stage into a decision.
+4. **Whether the reveal answered the question I had.** Partly. My question after choosing "Yes, different offers" was "why are they not different?". The reveal answers it: "400 sure to die is 200 sure to be saved, and the two chances are one chance." The rewrite (step 5, both rows now read "200 people will be saved" and the same chance) shows it well. That is the best frame in the lesson. But the reveal mostly talks about my own picks ("You chose the 1-in-3 chance ... then ... Same offer, same answer twice"). The question was about a person who flips. The flip gets only one clause ("would fit none: that is called a framing effect"), and that is the term I came for.
+5. Smaller: the legend says "■ = alive · □ = die" (filled vs hollow square), but the bars draw the dead as grey filled segments. On a phone I had to work out that the grey means die. The die-wording cards label the same bar "400" where the saved-wording cards label it "200". That is intended, but with no word next to the number ("die" / "saved") a quick reader takes it as a different outcome.
+6. R4-style check from the artifact: the stage was never stuck. The die row unlocks after the first pick, and "Show me why" unlocked after the rewrite.
+
+Verdict reason: option 3 ("same programmes, two wordings") repeats the title and hook, and the pre-commit "Say both in the same words" button gives the answer away, so the prediction is a reading quiz; the stage reads as a check of wording, not as one decision under two frames (finding 2a/2b, 3).
+
+## After reading build.md / meta.json
+
+(pending: added in a second commit after the findings above are committed)
