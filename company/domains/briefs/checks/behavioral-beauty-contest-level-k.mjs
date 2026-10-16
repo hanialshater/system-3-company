@@ -77,13 +77,15 @@ ok("(a) 0, the equilibrium, loses to this crowd", closer(0) > 0, `with a guess o
 // ---------- Predict ----------
 const predict = {
   q: "Against this simulated crowd, which guess lands closest to two thirds of the average, your guess included?",
-  options: [["0, the equilibrium guess", 0], ["About 23", 23], ["About 35, the crowd's average", 35]],
+  options: [["0, the equilibrium guess", 0], ["About 23, between the other two", 23], ["About 35, the crowd's average", 35]],
   answer: 1,
 };
 ok("predict question <= 25 words", words(predict.q) <= 25, `${words(predict.q)} words: "${predict.q}"`);
 const optMiss = predict.options.map(([, g]) => miss(g));
 ok("predict answer: 'about 23' misses least when played", optMiss.indexOf(Math.min(...optMiss)) === predict.answer,
   predict.options.map(([t, g], i) => `${t}: target ${r1(target(g))}, miss ${r1(optMiss[i])}`).join("; "));
+// Equal precision (cm-behavioral, 2026-10-16, W-1267): every option carries a gloss; B's says only where it sits.
+ok("predict options: each carries a gloss, and B's gloss is true", predict.options.every(([t]) => /, /.test(t)) && predict.options[0][1] < predict.options[1][1] && predict.options[1][1] < predict.options[2][1], predict.options.map(([t]) => `"${t}"`).join(" / "));
 ok("predict options are not the 33 / 22 / 0 ladder", !predict.options.some(([, g]) => g === 33 || g === 22), predict.options.map(([, g]) => g).join(" / "));
 
 // ---------- Stage text ----------
@@ -129,7 +131,7 @@ const S2 = 6000, T2 = (g) => (S2 + g) / (N + 1) / 2, m2 = (g) => Math.abs(g - T2
 const recOpts = [0, 30, 60];
 const rm = recOpts.map(m2);
 ok("recall: half-the-average game, crowd averages 60: 'about 30' misses least", rm.indexOf(Math.min(...rm)) === 1,
-  recOpts.map((g, i) => `${g}: miss ${rm[i].toFixed(1)}`).join("; ") + `. Answer: "About 30"`);
+  recOpts.map((g, i) => `${g}: miss ${rm[i].toFixed(1)}`).join("; ") + `. Options: "0, the equilibrium guess" / "About 30, between the other two" / "About 60, the crowd's average". Answer: "About 30, between the other two"`);
 
 console.log(`\n${fail ? `${fail} check(s) FAILED` : "all checks pass"}`);
 process.exit(fail ? 1 : 0);
