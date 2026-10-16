@@ -25,3 +25,9 @@ Verification: `company/domains/briefs/checks/algorithms-200-4.mjs` and `algorith
 Next: independent fact/design/learner/QA roles inspect artifact before this note. Do not mark published or call these checks quality approval.
 
 Integration check: the isolated builder worktree’s `npm run check` reports 50 missing new curriculum concepts plus stale generated registries, owned by the existing coverage/integration lanes. The focused 50-spec checker reports zero errors and zero claim coverage warnings; full `verify` and browser QA belong to integration.
+
+## 2026-10-16 · PR #6 fix (demo-builder, pr6/build)
+
+W-1524: claim c12 'learner' (a stage row label) tripped the W-947 internal-string guard. The row label is now 'mixed loss', matching the mechanism's 'displayed cumulative mixed loss'; c12 text updated to match. Model change: approximation-online.ts weights() row labels only; numbers unchanged.
+
+Verification (builder, not QA evidence): node --test tests/algorithms 12/12; tests/platform 29/30 with only #18 (evidence tripwire, qa-tester) failing; npm run check and typecheck pass; tools/algorithms-200-check.mjs 0 errors 0 warnings; retained checkers 1-4 pass; fixture-sync rewritten with --write (modelSha256 for every row of the changed topic modules, plus this lesson's countercase fields where they changed). next build --webpack with own dist dir; QA contract (QA_ONLY = 5 W-1527/M3 slugs) 10/10 contract tests passed on phone and desktop; the 4 feed.spec failures are QA_ONLY artifacts (draft-only pool). A browser probe of Run example then Try another confirmed the stage's visible text differs on the final frame for all five; a model scan found no other algorithm lesson (of 200) whose two final frames are visibly identical apart from the step counter. Status stays draft; all claims stay unverified.
