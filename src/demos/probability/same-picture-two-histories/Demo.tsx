@@ -8,8 +8,11 @@
 //   Town 2 (copying): links never change (the final 12). Person 3 starts orange and person 7 blue; one
 //   person per step takes their friends' majority colour, person 3 then person 7: 2 steps.
 // Numbers: node company/courses/ncm/checks/rejudged-four.mjs (J9) and model() below.
-// Each replay runs to its final frame on its own (one step every 700 ms; Step advances by hand).
-// The milestone is recorded on the press: the history is fixed, and the Seen row states its count.
+// Each replay runs to its final frame on its own (one step every 700 ms; Step advances by hand), then the
+// trail fades after 1 s so the end frame looks exactly like the final picture.
+// The milestone is recorded on the press (the QA contract presses each control once, 450 ms apart, so a
+// gate on the run's end would need steps too fast to watch); the Seen row and the reveal's counts appear
+// only for a history watched to its last step.
 
 import { useEffect, useRef, useState } from "react";
 import { Lesson, type StageContext } from "@/kit/Lesson";
@@ -83,11 +86,12 @@ function linkPath([a, b]: Edge) {
   return `M${p.x},${p.y} L${q.x},${q.y}`;
 }
 
-function Person({ i, colour, changed }: { i: number; colour: number; changed: boolean }) {
+function Person({ i, colour, was }: { i: number; colour: number; was: number | null }) {
   const { x, y } = POS[i];
   return (
     <g>
-      {changed && <circle cx={x} cy={y} r={16} className={s.trailRing} />}
+      {/* The ring is drawn in the colour the person had before they changed. */}
+      {was !== null && <circle cx={x} cy={y} r={16} className={was === 0 ? s.ringBlue : s.ringOrange} />}
       {colour === 0 ? (
         <circle cx={x} cy={y} r={10} className={s.blue} />
       ) : (
@@ -97,10 +101,29 @@ function Person({ i, colour, changed }: { i: number; colour: number; changed: bo
   );
 }
 
+/** A short line sample for the key, drawn with the same class as the stage line it names. */
+function Swatch({ cls }: { cls: string }) {
+  return (
+    <svg viewBox="0 0 22 8" className={s.swatch} aria-hidden="true">
+      <line x1={1} y1={4} x2={21} y2={4} className={cls} />
+    </svg>
+  );
+}
+function RingSwatch() {
+  return (
+    <svg viewBox="0 0 12 12" className={s.ringSwatch} aria-hidden="true">
+      <circle cx={6} cy={6} r={4.5} className={s.keyRingLine} />
+    </svg>
+  );
+}
+
+/** Which histories have been watched to their last step (the Seen row and the reveal's counts). */
 interface Seen {
   t1: boolean;
   t2: boolean;
 }
+
+const SETTLE_MS = 1000; // the trail fades this long after a history's last step, leaving the bare picture
 
 function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (t: 1 | 2) => void }) {
   const { locked } = ctx;
@@ -108,22 +131,46 @@ function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (
   const [town, setTown] = useState<0 | 1 | 2>(0); // 0: the final picture
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [settled, setSettled] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const stop = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
     setPlaying(false);
   };
-  useEffect(() => () => stop(), []);
+  const unsettle = () => {
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    settleTimer.current = null;
+    setSettled(false);
+  };
+  useEffect(
+    () => () => {
+      stop();
+      unsettle();
+    },
+    [],
+  );
+
+  // A history reaching its last step (on its own or by Step): record it, then let the trail fade.
+  const last = town === 0 ? 0 : STEPS[town];
+  useEffect(() => {
+    if (town === 0 || step < STEPS[town]) return;
+    onSeen(town);
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    settleTimer.current = setTimeout(() => setSettled(true), SETTLE_MS);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [town, step]);
 
   const replay = (t: 1 | 2) => {
     if (locked) return;
     stop();
+    unsettle();
     setTown(t);
     setStep(0);
     setPlaying(true);
-    onSeen(t);
+    // The gate opens on the press: the run then plays to its last step on its own (1.4 s / 0.7 s).
     reach(t === 1 ? "town1" : "town2");
     timer.current = setInterval(() => {
       setStep((k) => {
@@ -136,6 +183,7 @@ function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (
   const showFinal = () => {
     if (locked) return;
     stop();
+    unsettle();
     setTown(0);
     setStep(0);
   };
@@ -146,17 +194,21 @@ function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (
   };
 
   const frame: Frame = town === 0 ? { links: FINAL_LINKS, colours: FINAL_COLOURS } : frameOf(town, step);
-  const last = town === 0 ? 0 : STEPS[town];
-  // Trail: what has changed so far in this history.
-  const removed = town === 1 ? SWAPS.slice(0, step).map(([rem]) => rem) : [];
-  const added = new Set(town === 1 ? SWAPS.slice(0, step).map(([, add]) => key(add)) : []);
-  const switched = new Set(town === 2 ? SWITCHES.slice(0, step) : []);
+  // Trail: what has changed so far in this history (hidden once the history has settled on its end).
+  const trail = town !== 0 && !settled;
+  const removed = trail && town === 1 ? SWAPS.slice(0, step).map(([rem]) => rem) : [];
+  const added = new Set(trail && town === 1 ? SWAPS.slice(0, step).map(([, add]) => key(add)) : []);
+  const switched = new Map(trail && town === 2 ? SWITCHES.slice(0, step).map((p) => [p, frameOf(2, 0).colours[p]] as const) : []);
   const ends = town !== 0 && step === last && sameFrame(frame, frameOf(town === 1 ? 2 : 1, STEPS[town === 1 ? 2 : 1]));
+  const cross = crossing(frame);
 
   const caption =
     town === 0
       ? "Final picture"
       : `Town ${town} (${town === 1 ? "picking" : "copying"}) · step ${step} of ${last}`;
+  // The Seen row lists histories watched to the end, except the one being replayed until it ends again.
+  const showT1 = seen.t1 && !(town === 1 && step < last);
+  const showT2 = seen.t2 && !(town === 2 && step < last);
 
   return (
     <div className={s.wrap}>
@@ -168,7 +220,7 @@ function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (
         viewBox="0 0 320 172"
         className="stage-svg"
         role="img"
-        aria-label={`${frame.links.length} friendships, ${crossing(frame)} join different colours`}
+        aria-label={`${frame.links.length} friendships, ${cross} join different colours`}
       >
         {removed.map((e) => (
           <path key={`r${key(e)}`} d={linkPath(e)} className={s.trailLink} />
@@ -181,39 +233,49 @@ function Stage({ ctx, seen, onSeen }: { ctx: StageContext; seen: Seen; onSeen: (
           />
         ))}
         {POS.map((_, i) => (
-          <Person key={i} i={i} colour={frame.colours[i]} changed={switched.has(i)} />
+          <Person key={i} i={i} colour={frame.colours[i]} was={switched.get(i) ?? null} />
         ))}
       </svg>
       <p className={s.key}>
-        {town === 1 && step > 0 && (
-          <>
-            <span className={s.keyDash}>- -</span> link swapped
-          </>
+        {cross > 0 && (
+          <span className={s.keyItem}>
+            <Swatch cls={s.crossLink} /> joins two colours
+          </span>
         )}
-        {town === 2 && step > 0 && (
-          <>
-            <span className={s.keyRing}>◯</span> colour changed
-          </>
+        {added.size > 0 && (
+          <span className={s.keyItem}>
+            <Swatch cls={s.newLink} /> new link
+          </span>
+        )}
+        {removed.length > 0 && (
+          <span className={s.keyItem}>
+            <Swatch cls={s.trailLink} /> dropped link
+          </span>
+        )}
+        {switched.size > 0 && (
+          <span className={s.keyItem}>
+            <RingSwatch /> colour before
+          </span>
         )}
       </p>
       <Row>
         <Control className={town === 1 && playing ? "active" : ""} disabled={locked} onClick={() => replay(1)}>
-          Replay Town 1
+          <span aria-hidden="true">▶</span> Town 1
         </Control>
         <Control className={town === 2 && playing ? "active" : ""} disabled={locked} onClick={() => replay(2)}>
-          Replay Town 2
+          <span aria-hidden="true">▶</span> Town 2
         </Control>
         <Control disabled={locked || town === 0} onClick={showFinal}>
-          Show final
+          Final
         </Control>
         <Control disabled={locked || town === 0 || step >= last} onClick={stepOnce}>
           Step
         </Control>
       </Row>
       <p className={s.seen}>
-        {seen.t1 && <span>Town 1: {SWAPS.length} links swapped</span>}
-        {seen.t1 && seen.t2 && " · "}
-        {seen.t2 && <span>Town 2: {SWITCHES.length} colours changed</span>}
+        {showT1 && <span>Town 1: {SWAPS.length} links swapped</span>}
+        {showT1 && showT2 && " · "}
+        {showT2 && <span>Town 2: {SWITCHES.length} colours changed</span>}
       </p>
     </div>
   );
@@ -230,16 +292,16 @@ export default function SamePictureTwoHistories({ slug }: { slug: string }) {
         options: [
           "Yes: they picked friends of their own colour",
           "No: they became like their friends",
-          "Either: a picking town and a copying town can both end here",
+          "Can't tell from this picture alone",
         ],
         answer: 2,
       }}
-      exploreHint="Replay each town's history, then compare where both end."
+      exploreHint="Play each town's history, then compare where both end."
       minInteractions={2}
       reveal={() => (
         <>
           <p>
-            Town 1 kept everyone&apos;s colour and swapped {seen.t1 ? SWAPS.length : "its"} friendships. Town 2 kept every friendship and{" "}
+            Town 1 kept everyone&apos;s colour and swapped {seen.t1 ? SWAPS.length : "some"} friendships. Town 2 kept every friendship and{" "}
             {seen.t2 ? SWITCHES.length : "some"} people changed colour. Both ended in the identical picture.
           </p>
           <p>
