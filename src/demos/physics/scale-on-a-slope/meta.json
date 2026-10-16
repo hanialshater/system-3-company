@@ -28,28 +28,48 @@
       "text": "On a slope the weight splits into a part straight into the surface, N = m g cos θ, and a part along the slope, m g sin θ, which friction (or a stop) balances when the person is at rest (stage: the weight arrow split into 'into the ramp' and 'along the ramp'; caption 'At rest, not slipping.'; reveal: 'On a slope your weight splits in two: part presses into the scale (the arrow into the ramp), and part pulls you down the slope, held by friction. The steeper the slope, the smaller the push into it').",
       "support": "derivation",
       "source": "Newton's second law with a = 0, resolved perpendicular and parallel to the incline. artifacts/scratch/cm-physics-r4/check.mjs (block '64 scale-on-a-slope': frictionNeeded_N 343 at 30°, muMin 0.577; 595 N and 1.732 at 60°). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on Newton's laws (inclined planes). Brief #66 claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Walkthrough read first (own next dev on :3644 from the main checkout, transcript to the appendix and screenshots). Numbers re-derived in own node (scratchpad fc-wj64/recompute.mjs, reproduced in the record). build.md and check.mjs not read. Own: at rest, N = mg cos(theta), friction = mg sin(theta): 343.3 N at 30 deg (mu >= 0.577), 594.7 N at 60 deg (mu >= 1.732). Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42075 (Normal, Tension, and Other Examples of Forces): w_perp = mg cos(theta), w_par = mg sin(theta), 'N is always perpendicular to the slope'. The arrows in Demo.tsx are WLEN*cos(theta) along the inward normal and WLEN*sin(theta) down the slope and sum to the vertical weight (checked). The law is right; the 60 deg 'At rest, not slipping' state depends on c4, which is disputed."
     },
     {
       "id": "physics.scale-on-a-slope.c2",
       "text": "A 70 kg person's scale reads 70.0 kg flat, 60.6 kg at 30° and 35.0 kg at 60° (reading = m cos θ, the normal force shown as N/g) (stage: the scale display and Seen row '30°: 60.6 kg · 60°: 35.0 kg · flat: 70.0 kg'; reveal: 'On the 30° ramp your scale read 60.6 kg, and at 60° only 35.0 kg, though you still weighed 70 kg').",
       "support": "derivation",
       "source": "70 cos 30° = 60.62; 70 cos 60° = 35.00. artifacts/scratch/cm-physics-r4/check.mjs (reads_kg 70, 60.6, 35). Demo.tsx reads(). Brief #66 claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: 70 cos 30 = 60.62 -> 60.6 kg; 70 cos 60 = 35.00 -> 35.0 kg; flat 70.0 kg. Predict answer '61 kg' is the nearest option. Stage, Seen row and reveal match the walkthrough."
     },
     {
       "id": "physics.scale-on-a-slope.c3",
       "text": "A bathroom scale measures the force perpendicular to its platform (reveal: 'A scale measures only the push straight into its surface').",
       "support": "source",
       "source": "A spring or load cell under the platform responds to the force pressing the platform toward its base; the scale's display converts that force to kg by dividing by g. Brief #66 claim 3 (textbook; idealisation stated in c4).",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42132 (Further Applications of Newton's Laws): 'The bathroom scale is an excellent example of a normal force acting on a body', and the scale 'reading will equal F_p, the magnitude of the force the person exerts downward on it'; m42075: 'The word normal means perpendicular to a surface'. Together: the scale reads the force normal to its platform. Source fix for the builder: the current source is 'textbook' with no citation; cite m42132 and m42075."
     },
     {
       "id": "physics.scale-on-a-slope.c4",
       "text": "Idealisations: a rigid scale that measures only the perpendicular force, the person at rest, and a stop block holding the scale at 60° (a friction coefficient of at least 1.73 would be needed without it). The arrows are drawn to scale with each other (62 px for the full weight), not with the person.",
       "support": "convention",
       "source": "Stated assumption, brief #66 claim 4 and Check (muMin 1.732 at 60°). Demo.tsx: WLEN 62, components WLEN cos θ and WLEN sin θ. The caption 'At rest, not slipping.' and the 'stop block' label carry the assumptions on the stage.",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): DISPUTED. The stated idealisation does not hold the 60 deg picture together. The stop block (Demo.tsx, drawn at the downhill end of the scale, x = BX-34..BX-23; the feet are at BX+-6) holds the scale against the ramp, but nothing holds the person on the platform: the person still needs 594.7 N of friction from the platform, mu >= tan 60 = 1.73 between shoes and platform, which is exactly the coefficient the claim says the block removes. As written ('a stop block holding the scale at 60 deg (a friction coefficient of at least 1.73 would be needed without it)') the claim is wrong, and the caption 'At rest, not slipping.' at 60 deg depends on it. Fix (builder, with cm-physics): either draw the stop against the person's feet (a cleat or foot rail fixed to the ramp, touching the shoes and the scale) and say so in c4, or state the idealisation as 'perfect grip: the shoes would need mu >= 1.73 on the platform at 60 deg', or replace 60 deg with an angle where ordinary grip holds. The arrow-length part (62 px, WLEN cos and WLEN sin) is correct."
+    },
+    {
+      "id": "physics.scale-on-a-slope.alt1",
+      "text": "Flat ground: the person's weight arrow splits into a part into the ramp and a part along the ramp (stage picture text, aria-label, flat state after 'Back to flat').",
+      "support": "derivation",
+      "source": "Recorded by the fact-checker (FC wj64, 2026-10-16) from the walkthrough step 3 picture text. Demo.tsx alt string (the same sentence for every angle).",
+      "status": "unverified",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): UNRECORDED CLAIM, recorded here by the fact-checker, so left unverified. Finding: on flat ground there is no ramp and the along-slope part is mg sin 0 = 0; the stage itself draws only one arrow then. As written the sentence is false for theta = 0. Fix for the builder: for th === 0 use 'Flat ground. The person's whole weight presses into the scale.' Then retire this claim."
     }
   ],
   "confidence": "",

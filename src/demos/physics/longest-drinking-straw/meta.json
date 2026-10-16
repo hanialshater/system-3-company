@@ -28,35 +28,50 @@
       "text": "A column of liquid held up by a pressure difference ΔP has height h = ΔP/(ρ g); with air pressing on the open water and only water vapour above the column, the push can hold up only about 10 m of water (stage: the column stopping on the 0-14 m scale with 'no air' above it; reveal: 'that push can hold up only about 10 m of water').",
       "support": "derivation",
       "source": "Hydrostatics: P_atm − P_top = ρ g h. artifacts/scratch/cm-physics-r4/check.mjs (block '65 longest-drinking-straw'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on fluids. Brief #67 claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Walkthrough read first (own next dev on :3644 from the main checkout, transcript to the appendix and screenshots). Numbers re-derived in own node (scratchpad fc-wj64/recompute.mjs, reproduced in the record). build.md and check.mjs not read. Own: h = dP/(rho g). Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42195 (Gauge Pressure, Absolute Pressure, and Pressure Measurement): 'atmospheric pressure can support a column of fluid of height h'; barometer 'h rho g = P_atm ... because the pressure above the mercury is zero'; m42192: 'Just 10.3 m of water creates the same pressure as' one atmosphere. 'About 10 m' matches. Source fix: replace the unopened Halliday citation with m42195 and m42192."
     },
     {
       "id": "physics.longest-drinking-straw.c2",
       "text": "At standard sea-level pressure (101,325 Pa), with water at 20 °C (vapour pressure about 2.34 kPa, density 998 kg/m³), the column reaches 10.1 m (10.3 m if vapour is ignored), so a 5 m straw fills to the top and a 12 m straw stops at 10.1 m (stage: column readout and Seen row '5 m: top · 12 m: stops at 10.1 m'; caption 'Perfect pump, 20 °C water.'; reveal: 'In your 5 m straw the water reached the top, but in the 12 m straw it stopped at 10.1 m, with empty space above').",
       "support": "derivation",
       "source": "(101,325 − 2,339) / (998 × 9.81) = 10.11 m; 101,325 / (998 × 9.81) = 10.35 m. artifacts/scratch/cm-physics-r4/check.mjs (h_withVapour_m 10.11, h_ideal_m 10.35). Standard atmosphere 101,325 Pa; vapour pressure of water at 20 °C from the CRC Handbook of Chemistry and Physics (table of vapour pressure of water). Demo.tsx hMax(). Brief #67 claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: (101325 - 2339)/(998 * 9.81) = 10.11 m -> 10.1; 101325/(998*9.81) = 10.35 m; with rho 998.2 the same to 0.01 m. Vapour pressure at 20 C: opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42219 (Humidity, Evaporation, and Boiling), table 'Saturation Vapor Density of Water': 20 C, 2.33 x 10^3 Pa; Antoine equation (own) gives 2330 Pa. 'About 2.34 kPa' is within 0.5% and changes h by under 0.01 m. 101,325 Pa: m42195 conversion table 1.013 bar. CRC Handbook not opened, not relied on; builder should cite m42219 instead. 5 m fills (5 < 10.1); 12 m stops at 10.1 m. Stage, Seen row and reveal match the walkthrough."
     },
     {
       "id": "physics.longest-drinking-straw.c3",
       "text": "Air pressure on the summit of Everest is about 33.7 kPa, so there the column holds only 3.2 m (stage: thinner air arrows, column readout and Seen row 'Everest: 3.2 m'; reveal: 'On Everest, under thinner air, it held just 3.2 m').",
       "support": "source",
       "source": "West, J. B., 'Barometric pressures on Mt. Everest: new data and physiological significance', Journal of Applied Physiology 86 (1999). (33,700 − 2,339) / (998 × 9.81) = 3.20 m: artifacts/scratch/cm-physics-r4/check.mjs (Everest summit h_withVapour_m 3.2). Cross-check in the brief: an isothermal atmosphere (scale height about 7.4 km) gives about 31 kPa, also about 3 m. Brief #67 claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Opened West, J. B. (1999) J Appl Physiol 86(3):1062-1066, doi 10.1152/jappl.1999.86.3.1062, abstract via api.crossref.org (publisher host blocked): 'on days when the mountain is usually climbed, during May and October, the summit pressure is 251-253 Torr'. 253 Torr * 133.322 = 33.73 kPa (251 Torr 33.46 kPa). Own: (33,730 - 2,339)/(998*9.81) = 3.21 m; at 251 Torr 3.18 m; both 3.2 m to 1 dp. 'About 33.7 kPa' and 3.2 m hold. Water kept at 20 C on Everest is a stated idealisation (c5)."
     },
     {
       "id": "physics.longest-drinking-straw.c4",
       "text": "Suction does not pull water: the pump only removes air from the straw, and the air pressing on the water in the glass pushes it up into the region of lower pressure (stage: 'air pushes' arrows on the open water, the pump drawn at the top; reveal: 'Suction does not pull water. The pump only removes air from the straw; the air pressing on the water in the glass pushes it up').",
       "support": "derivation",
       "source": "A fluid cannot sustain the tension a 'pull' would need here; the net force on the column is the pressure difference between its bottom (air pressure through the open water) and its top (near-vacuum). Same fluids chapter. Brief #67 claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. m42195: in the barometer 'The atmosphere is able to force mercury in the tube to a height h because the pressure above the mercury is zero'; the same push explains the straw: the net force on the column is the pressure difference, supplied by the air on the open water. Reveal sentence matches. Source fix: the source line says 'A fluid cannot sustain the tension a pull would need'; that is too strong (water can sustain metastable tension in clean narrow tubes and plant xylem). Suggest 'in an ordinary straw, dissolved gas and nucleation sites prevent the water from holding tension'. The learner-facing sentence is fine under c5's idealisation."
     },
     {
       "id": "physics.longest-drinking-straw.c5",
       "text": "Idealisations: a perfect pump that leaves only water vapour above the column, water at 20 °C, a rigid straw, no dissolved gas coming out of the water. The 0-14 m scale is drawn compressed (12.6 px per m) and the air arrows are schematic (thinner on Everest).",
       "support": "convention",
       "source": "Stated assumption, brief #67 claim 5. Demo.tsx: PX_PER_M 12.6; arrow width 3 px at sea level, 1.4 px on Everest. The caption 'Perfect pump, 20 °C water.' states the main assumptions on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Matches Demo.tsx: PX_PER_M 12.6, arrow strokeWidth 3 at sea level, 1.4 on Everest; caption 'Perfect pump, 20 C water.'. Stated idealisations."
     }
   ],
   "confidence": "",

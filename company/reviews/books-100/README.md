@@ -20,7 +20,7 @@ Open a `/d/<slug>` path from the table. Local builds include direct draft lesson
 - Formal learner review covers seven representatives; its updated-artifact review is separate from design and QA. It is borrowed-mind inspection, not a human learning study.
 - Independent design review samples the named artifacts; its results must not be described as an all100 design pass.
 - Known 360×640 reveal cropping is retained as a pre-launch defect. The binding strict phone fit is390×844.
-- Final integrated test results and build identity are recorded in the final integration and QA records beside this guide. An earlier mid-generation verify failed the platform metadata sentinel while QA arrays were still empty; only actual final verification establishes its resolution.
+- Final validation: 200/200 phone/desktop contracts, 100/100 strict 390×844 fits and 100/100 Reset/reveal explorations on frozen v2; 12/12 model tests. The current integrated build additionally passes the upstream unmodified feed suite, 10/10, and seven reverse paths. Design covers 30 bounded artifacts (70 unseen), and formal simulated learner review covers seven distinct pilots. See [final integration](2026-10-16-final-integration.md) and [QA summary](2026-10-16-qa-summary.md) for identities, historical failures and limits. The platform metadata sentinel passes after the actual QA links were recorded; the inherited Git C2 fixture remains a disclosed red verification result.
 
 ## Board identities after concurrent base integration
 
@@ -28,18 +28,22 @@ The upstream company allocated the original task's board IDs concurrently. Upstr
 
 | Earlier task ID | Final task ID |
 |---|---|
-| W-1464 | W-1486 |
-| W-1465 | W-1487 |
-| W-1466 | W-1488 |
-| W-1467 | W-1489 |
-| W-1468 | W-1490 |
-| W-1469 | W-1491 |
-| W-1470 | W-1492 |
-| W-1471 | W-1493 |
-| W-1472 | W-1494 |
-| W-1473 | W-1495 |
-| W-1474 | W-1496 |
-| W-1475 | W-1497 |
+| W-1464 | W-1492 |
+| W-1465 | W-1493 |
+| W-1466 | W-1494 |
+| W-1467 | W-1495 |
+| W-1468 | W-1496 |
+| W-1469 | W-1497 |
+| W-1470 | W-1498 |
+| W-1471 | W-1499 |
+| W-1472 | W-1500 |
+| W-1473 | W-1501 |
+| W-1474 | W-1502 |
+| W-1475 | W-1503 |
+
+## Pull request
+
+[Draft PR #5](https://github.com/hanialshater/system-3-company/pull/5). No merge, lesson publication or deployment was performed. The PR also discloses a narrow historical HQ room-alias repair for this task’s append-only event labels.
 
 ## Inventory
 

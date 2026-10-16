@@ -28,35 +28,50 @@
       "text": "Delivered power is P = V I, so for a fixed 10 kW the current is I = P/V: 43.5 A at 230 V, 4.35 A at 2,300 V, 0.43 A at 23,000 V (stage: current readout, moving dots in the cable, Seen row; reveal: 'At 230 V your cable carried 43.5 A', 'At 2,300 V the same 10 kW needed only 4.35 A', 'Power is voltage times current, so a higher voltage delivers the same power with less current').",
       "support": "derivation",
       "source": "P = V I. artifacts/scratch/cm-physics-r4/check.mjs (block '66 power-line-voltage-loss': I_A 43.48, 4.35, 0.43). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on current and resistance. Demo.tsx amps(). Brief #68 claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Walkthrough read first (own next dev on :3644 from the main checkout, transcript to the appendix and screenshots). Numbers re-derived in own node (scratchpad fc-wj64/recompute.mjs, reproduced in the record). build.md and check.mjs not read. Own: I = 10,000/V: 43.478 -> 43.5 A, 4.348 -> 4.35 A, 0.4348 -> 0.43 A (fmtA). Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42714 (Electric Power and Energy): P = IV. Stage, Seen row and reveal match the walkthrough. Source fix: replace the unopened Halliday citation with m42714."
     },
     {
       "id": "physics.power-line-voltage-loss.c2",
       "text": "The power lost as heat in a cable is I² R, so a tenth of the current wastes a hundredth of the heat (stage: the cable's glow and the 'W lost' readout; reveal: 'Cable heating goes as current squared, so a tenth of the current wastes a hundredth of the heat').",
       "support": "derivation",
       "source": "Joule heating P = I² R (from P = V I with V = I R across the cable). Halliday, Resnick and Walker, same chapter. Brief #68 claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: P = I^2 R, so (I/10)^2 = I^2/100. m42714: 'substituting V = IR gives P = I(IR) = I^2 R'; m42414 (Transformers): 'less current is required for a given amount of power, and this means less line loss'."
     },
     {
       "id": "physics.power-line-voltage-loss.c3",
       "text": "For 10 kW through a 0.5 Ω cable the heat loss is 945 W at 230 V, 9.45 W (shown 9.5 W) at 2,300 V and 0.09 W at 23,000 V; 945 W to 9.5 W is 100 times less (stage: 'W lost' readout, caption 'Cable 0.5 Ω, values illustrative.', Seen row '230 V: 43.5 A, 945 W · 2,300 V: 4.35 A, 9.5 W · 23,000 V: 0.09 W'; reveal: 'wasted 945 W as heat', 'the cable wasted 9.5 W: 100 times less'; predict question 'A village draws the same 10 kW through the same cable').",
       "support": "derivation",
       "source": "I² R with I = 10,000 / V and R = 0.5 Ω. artifacts/scratch/cm-physics-r4/check.mjs (loss_W 945.18, 9.45, 0.09; loss_pct 9.452, 0.095, 0.001). Demo.tsx lossW(); display rounding fmtW (945, 9.5, 0.09). Brief #68 claim 3.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: 0.5 * 43.478^2 = 945.18 -> '945'; 0.5 * 4.3478^2 = 9.452 -> '9.5'; 0.5 * 0.43478^2 = 0.0945 -> '0.09'. 945.18/9.452 = 100.0 exactly; the displayed 945/9.5 = 99.5, so '100 times less' is right. Predict answer '100 times less' matches. Caption 'values illustrative' covers the 0.5 ohm cable. The cable drop at 230 V would be 21.7 V (9.5%); ignoring it is stated in c5."
     },
     {
       "id": "physics.power-line-voltage-loss.c4",
       "text": "Long-distance power lines run at high voltage (tens to hundreds of kilovolts) to cut these losses, with transformers stepping the voltage up and down (reveal: 'That is why long-distance lines run at high voltage').",
       "support": "source",
       "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on electromagnetic oscillations and alternating current (transformers and power transmission). Brief #68 claim 4.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42414 (Transformers): 'Power is sent long distances at high voltages, because less current is required for a given amount of power, and this means less line loss'; 'transmitted long distances at voltages over 200 kV, sometimes as great as 700 kV'; local distribution 5 to 13 kV; transformers step up and down. The learner sentence ('long-distance lines run at high voltage') is supported directly. Precision note: the source puts long-distance lines at over 200 kV, so 'hundreds of kilovolts' fits it better than 'tens to hundreds' (claim text only, not on the stage). Source fix: replace the unopened Halliday citation with m42414."
     },
     {
       "id": "physics.power-line-voltage-loss.c5",
       "text": "Idealisations: a resistive load, the current computed at the village's voltage (the cable's own voltage drop ignored), ideal transformers, values illustrative. The glow is on a log scale of the loss and the dot count is proportional to the current (about 0.46 dots per amp, at least one dot); every dot moves at the same speed.",
       "support": "convention",
       "source": "Stated assumption, brief #68 claim 5. Demo.tsx: glow opacity (log10 W + 1.2) / 4.2 clamped to 0.06-1; DOT_PER_A 0.46 (20, 2 and 1 dots); FLOW_PX_S 24. The caption 'Cable 0.5 Ω, values illustrative.' states it on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Matches Demo.tsx: glow opacity clamp(0.06, 1, (log10 W + 1.2)/4.2) gives 0.994, 0.518, 0.06; dots max(1, round(0.46 A)) give 20, 2, 1 (1 at 0.43 A is the stated 'at least one dot' floor); FLOW_PX_S 24 for all dots. Stated idealisations; caption carries them."
     }
   ],
   "confidence": "",

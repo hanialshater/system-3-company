@@ -37,4 +37,4 @@ recorded by: chief-of-staff
 
 ## Board
 
-W-1486 cm-books roster; W-1487 product scope; W-1488 format; W-1489 quality route; W-1490 engineering architecture; W-1491 strand briefs; W-1492 shared renderer; W-1493 source holds; W-1494 independent QA. All allocated through the company CLI.
+W-1492 cm-books roster; W-1493 product scope; W-1494 format; W-1495 quality route; W-1496 engineering architecture; W-1497 strand briefs; W-1498 shared renderer; W-1499 source holds; W-1500 independent QA. All allocated through the company CLI.
