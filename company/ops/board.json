@@ -18424,10 +18424,11 @@
       "id": "W-1576",
       "title": "PR #6 merge gate M7: correct company/engineering/readiness/2026-10-16-algorithms-200.md to tier 2, link the PE review, add the M5 integrated verify evidence, final commit list and grouped revert; then principal-engineer-ops approves readiness. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F5",
       "owner": "chief-of-staff",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1577",
@@ -18453,6 +18454,24 @@
       "title": "Give the 200 algo-* concepts in content/curriculum/cs.json lesson-independent label names (not lesson titles or assertions), then reconsider listing them as 'not yet taught' on /catalog. After the F-46 closeout. See company/decisions/2026-10-16-pr6-catalog-algorithms-section.md F1",
       "owner": "cm-cs",
       "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1600",
+      "title": "PR #6 readiness C1 (before merge): merge PR #6 into the current base; resolve index.generated.ts by npm run registry (not by hand) and the 4 company/ops record conflicts; on the merge commit run npm run check, test:algorithms, typecheck and test:platform, and record results in company/engineering/community/prs/6.md. test:platform #18 failing only on src/demos/math/draw-a-table-knot is base's (W-1589), not PR #6's. See company/engineering/readiness/2026-10-16-algorithms-200.md Approval",
+      "owner": "community-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1601",
+      "title": "PR #6 readiness C2 (deploy blocker): before the first production deploy that includes PR #6, run the 4 built-output tests in tests/platform (W-945/946/947 + runtime 404) with BUILT_DIST_DIR on a VERCEL=1 VERCEL_ENV=production build of the exact tree to be deployed, all must pass; after that deploy, smoke /catalog: no Algorithms section, no algo- slug or topic name. See company/engineering/readiness/2026-10-16-algorithms-200.md Approval",
+      "owner": "release-manager",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
       "links": []

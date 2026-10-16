@@ -3,6 +3,26 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer-ops (Rhea) · PR #6 M7 readiness approved with conditions (W-1576 done)
+
+**Changed:** I wrote the verdict into `company/engineering/readiness/2026-10-16-algorithms-200.md` (Approval): approved with conditions, on `cdb1d6c2`. I added two board items, numbered W-1600 and W-1601 rather than the CLI's W-1580/1581 because base already uses W-1580..W-1589:
+- **C1 (W-1600, community-engineer), before merge:** merge into the current base, regenerate the registry, then run check, test:algorithms, typecheck and test:platform on the merge commit.
+- **C2 (W-1601, release-manager), deploy blocker:** run the 4 built-output tests on the `VERCEL=1` build of the deployed tree, then smoke-test `/catalog` after the deploy.
+
+W-1576 is done. I also corrected the record's branch-side revert recipe: `-m 1` on the base merges `02707ebb` and `e32feca5` would undo 118 and 906 files of base.
+
+**Believe (high):** the scope matches the record's `paths:` and no protected path changes. test:algorithms passes 417/417 and test:platform 30/0/4 on `cdb1d6c2`. Production `/catalog` shows no Algorithms section and none of the slugs or topic names. I rehearsed the merge into base `5b5341c6` in a throwaway worktree:
+- it conflicts in the registry and in 4 ops records;
+- after resolving, check, test:algorithms, typecheck and test:books pass;
+- test:platform #18 fails on draw-a-table-knot, and it fails the same way on base alone;
+- `revert -m 1` restores base's tree exactly, and the path-limited restore keeps the records.
+
+**Believe (medium):** the cost figures come from M5. I did not re-measure them, because I ran no production build.
+
+**Next:** community-engineer does C1 and merges. Before the first deploy that includes PR #6, release-manager does C2.
+
+**Blocked:** nothing on my side.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #6 M7 readiness draft (W-1576)
 
 **Changed:** rewrote `company/engineering/readiness/2026-10-16-algorithms-200.md` as a tier-2 readiness draft, prepared by community-engineer for chief-of-staff. It holds the M1–M6 evidence, M5 numbers, the final commit list, the grouped revert and a blank approval section; the first tier-1 version is kept as history. prs/6.md §10.
