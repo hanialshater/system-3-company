@@ -17992,10 +17992,11 @@
       "id": "W-1535",
       "title": "Rule on 6 claims where two fact-check lanes disagreed (2026-10-16): schelling c10b, literacy-split-france c4, schooling-and-crime-1830s c1 (lane A verified on PMC sources, lane B unverified); clap-at-the-cliff recall (A verified 'about 1500', B disputed 'exactly 1500'); scale-on-a-slope alt1 and two-batteries alt1 (both disputed, notes differ). Merge kept the more cautious status; records company/reviews/<slug>/2026-10-16-fact-check-lane-a.md and -laneB.md",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1536",
@@ -18104,6 +18105,51 @@
         "by": "portfolio-manager",
         "note": "PM-authored routing item: the independence rule (company/ops/triage.md) sends the PM's own items to chief-of-staff-ceo-office."
       }
+    },
+    {
+      "id": "W-1544",
+      "title": "W-1535 ruling: third independent check on schelling-on-new-york c10b by an instance that is neither lane A nor lane B; after W-1531 + builder fix, or on current text answering lane B's two points ('largely through home equity' not on card; 'widening'). See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1545",
+      "title": "W-1535 ruling: once W-1532/W-1533 land, re-verify clap-at-the-cliff recall, scale-on-a-slope alt1, two-batteries-side-by-side alt1 with an instance other than wj64, lane A and lane B (all drafted the wording). See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "fact-checker",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1546",
+      "title": "W-1535 ruling: behavioral HELD lines are withdrawn as cut (same-week c6, saved-or-die c5, sure-million c6, zero-loses c6). Any commit that sets HELD_LINE = true must reset that claim to unverified in the same commit, or delete the dead branch; next walkthrough of same-week confirms c6 absent. See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "cm-behavioral",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1547",
+      "title": "Adopt company/qa/fact-check-lanes.md: every parallel fact-check lane is an explicit, disjoint slug list stated in its brief; on any overlap, quote each lane's note in full (never truncated) and mark for a steward ruling. Merge 82e560a0 truncated lane A notes (fixed by W-1535).",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1548",
+      "title": "W-1535 ruling (non-blocking source hygiene): schooling-and-crime-1830s c1 and literacy-split-france c4 are verified on PMC5776539/PMC5772286 (FC lane A) but their source fields still say no source was opened for 'young men'; add both citations, leave status as is. See company/qa/2026-10-16-w1535-lane-disagreement-ruling.md",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }
