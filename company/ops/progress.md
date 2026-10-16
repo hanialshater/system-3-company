@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1537 review conditions C1-C4 (run lme-w1537b-1016, branch perso-w1537)
+
+**Changed:** new company/personalization/model/gate.mjs (plain JS, no deps, no TS imports): Node >= 22.18 guard that exits 1 with "test:personalization needs Node >= 22.18 (have vX)" (never skips; C1), then runs self-check.mjs and the N1/N3 test, and on failure names owner learner-model-engineer (escalate vp-personalization) and the READMEs (C4). `test:personalization` now = `node company/personalization/model/gate.mjs`. package.json + package-lock.json root `engines.node` >=22.18, new `.nvmrc` = 22 (C2). sim/README.md "Wired in" says why check, not verify (CI verify job runs only check/typecheck/build/qa; ci.yml protected) and the 3 s budget (C3); gate.mjs header says it too. self-check.mjs FAIL block adds an owner line (C4). Board: W-1537 → review.
+**Verified by running:** `gate.mjs --node-version=` 20.11.0, 22.17.1, garbage → exit 1 with the message; 22.18.0, 24.1.0 → exit 0 (simulated, no other Node installed). Failure path on a scratch copy with a src/ file importing the model → self-check FAIL with owner line, gate exit 1. `npm run check` exit 0, ~1.4 s.
+**Believe:** C1-C3 met, C4 done (high). The version override is argument-only, so it cannot leak into a real run (high). Not run: CI, `npm run verify`.
+**Next:** privacy-reviewer T1 read (W-1537); principal-engineer may confirm conditions against this commit. T2 serving-layer N1/N3 stays with phase B. **Blocked:** nothing.
+
 ## 2026-10-16 · principal-engineer (Kenji) · W-1537 check wiring review + W-1498 tier review (run pe-w1537-review-1016, branch perso-w1537)
 
 **Changed:** review record company/engineering/reviews/2026-10-16-w1537-check-wiring.md; board W-1537 → doing (conditions), W-1498 note. No code changed.

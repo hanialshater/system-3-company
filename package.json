@@ -27,7 +27,7 @@
     "test:spike": "node --import ./tests/lifehacks/register.mjs --test tests/spike/*.test.mjs",
     "test:platform": "node --import ./tests/lifehacks/register.mjs --test tests/platform/*.test.mjs",
     "test:mailbox": "node --test tests/mailbox/*.test.mjs",
-    "test:personalization": "node company/personalization/model/self-check.mjs && node --test company/personalization/model/sim/privacy-n1-n3.test.mjs"
+    "test:personalization": "node company/personalization/model/gate.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",
@@ -48,6 +48,6 @@
     "world-atlas": "^2.0.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.18"
   }
 }
