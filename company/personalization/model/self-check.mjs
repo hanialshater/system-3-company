@@ -21,8 +21,17 @@ fails.push(...M.checkModel());
 if (/personas/.test(readFileSync(join(here, "model.ts"), "utf8").replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "")))
   fails.push("model.ts code references personas (serving code must never read them)");
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
+// W-1498 (README.md "Where the model lives"): src/ never imports this folder (no import, import() or require
+// naming it). The HQ lab reaches the simulator only by running sim/hq-cli.mjs as a separate process, and only
+// from SIM_GATEWAY. Other src mentions (a library link, a comment) are allowed.
+const SIM_GATEWAY = join("src", "lib", "hq-personalization-server.ts");
+const importsModel = /(\bfrom\s*|\bimport\s*\(\s*|\brequire\s*\(\s*|^\s*import\s+)["'`][^"'`]*personalization\/model/m;
 for (const f of walk(join(root, "src"))) {
-  if (/\.(t|j)sx?$|\.mjs$/.test(f) && readFileSync(f, "utf8").includes("personalization/model")) fails.push(`src imports the model: ${f}`);
+  if (!/\.(t|j)sx?$|\.mjs$/.test(f)) continue;
+  const txt = readFileSync(f, "utf8");
+  if (!txt.includes("personalization/model")) continue;
+  if (importsModel.test(txt)) fails.push(`src imports the model: ${f}`);
+  if (/child_process/.test(txt) && !f.endsWith(SIM_GATEWAY)) fails.push(`src runs the simulator outside ${SIM_GATEWAY}: ${f}`);
 }
 const decision = readFileSync(join(root, M.DECISION), "utf8");
 for (const v of [M.MODEL_VERSION, PERSONAS_VERSION]) if (!decision.includes(v)) fails.push(`${v} has no line in ${M.DECISION}`);

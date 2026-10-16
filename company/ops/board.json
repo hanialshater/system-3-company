@@ -17550,12 +17550,15 @@
     },
     {
       "id": "W-1498",
-      "title": "Personalization lesson dims: where they live (derived index from meta.json + curriculum vs new meta.json fields, EDD-003), where engine code lives (src/lib/learner tier 2, W-1220), pilot set probability + cs (company/personalization/2026-10-16-brief-response.md §2.4, O4). Scope grows if the founder's answer to Q2 is new in-lesson features",
+      "title": "Personalization lesson dims: where they live (derived index from meta.json + curriculum vs new meta.json fields, EDD-003), where engine code lives (src/lib/learner tier 2, W-1220), pilot set probability + cs (company/personalization/2026-10-16-brief-response.md §2.4, O4). Scope grows if the founder's answer to Q2 is new in-lesson features · PROPOSED 2026-10-16 (learner-model-engineer, W-1503): model stays in company/personalization/model, app never imports it, HQ runs sim/hq-cli.mjs as a child process (local only); no tsconfig/next.config change; principal-engineer tier review",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "company/personalization/model/README.md"
+      ],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1499",
@@ -17599,10 +17602,14 @@
       "id": "W-1503",
       "title": "HQ Personalization Lab (founder ask, company/personalization/2026-10-16-founder-brief.md §7): select a simulated persona, run the phase A simulation, inspect fingerprint, need curves with the persona's point, each slot's score terms and rejected candidates, policy comparison on simulated recall. Read-only (curves change in code). Starts after W-1493 + W-1494; import location per W-1498",
       "owner": "hq-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "src/app/hq/personalization/Personalization.tsx",
+        "company/personalization/model/sim/hq-cli.mjs"
+      ],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1504",
@@ -17736,6 +17743,24 @@
       "id": "W-1518",
       "title": "Phase B privacy read (not urgent): a session-local, never-stored list of cards served this session, so the 1-in-3 default floor also counts moved cards the learner skipped (model.ts antiBubbleFloor.knownGap, model-v0.2)",
       "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1519",
+      "title": "Review HQ shared code from W-1503: new tab in src/app/hq/HqTop.tsx and HQ.tsx, /hq/personalization page, /api/hq/personalization route (spawns the sim CLI, local only), src/lib/hq-personalization*.ts",
+      "owner": "hq-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1520",
+      "title": "Ack or amend the W-1498 boundary change to company/personalization/model/self-check.mjs (src may not import the model; only src/lib/hq-personalization-server.ts may run sim/hq-cli.mjs) and the README 'Where the model lives' note",
+      "owner": "personalization-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

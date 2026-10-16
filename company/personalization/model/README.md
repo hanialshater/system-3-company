@@ -2,7 +2,7 @@
 
 owner: personalization-lead · board: W-1493 · decision and change log: `company/decisions/2026-10-16-personalization-model-v0.md`
 
-Offline only. Nothing here is served to a learner, and **nothing in `src/` may import this folder** until its home is ruled (W-1498). `self-check.mjs` fails if `src/` does.
+Offline only. Nothing here is served to a learner, and **nothing in `src/` may import this folder** (W-1498, below). `self-check.mjs` fails if `src/` does.
 
 | File | What | Who may read it |
 |---|---|---|
@@ -36,3 +36,19 @@ There is no curve-editing tool.
 Ownership note: per the founder (company/decisions/2026-10-16-founder-personalization-org.md), the next steps that were routed to other teams (W-1496, W-1497, W-1498, W-1503) are "personalization org, pending role approval". The privacy review (W-1495) stays company-wide.
 
 model-v0.2 (W-1512): compose one card then recompute, overlap/slot terms removed, surprise gated off until real ratings (company/personalization/2026-10-16-misconception-strength-ratings-plan.md), floor counting rule written into `antiBubbleFloor`. Decisions per simulator finding: the decision record's model-v0.2 section.
+
+## Where the model lives and how the app reaches it (W-1498, proposed 2026-10-16)
+
+status: **proposed** by learner-model-engineer (Ifeoma, run lme-w1503-hqlab-1016) · review: principal-engineer (tier review, board), hq-engineer (shared HQ code), personalization-lead (owner of this folder and of `self-check.mjs`)
+
+**Context.** The founder asked for the simulation in HQ (founder brief §7, W-1503). The page needs the model (`inspect()`, `explainNeeds()`) and the simulator. The model must stay free of app imports, must not become serving code by accident, and is edited in parallel (`MODEL_VERSION` bumps). The `.ts` files use Node type stripping and the simulator runtime is `.mjs` importing `.ts` with extensions, which the Next build and `tsc` do not accept without config changes.
+
+**Decision.** The model and simulator **stay here**. The app **does not import them**. HQ runs `sim/hq-cli.mjs` as a separate Node process and reads one JSON document from stdout (schemas `personalization-hq-meta-v0`, `personalization-hq-compare-v0`, and the trace `personalization-sim-trace-v0`). Exactly one file runs it: `src/lib/hq-personalization-server.ts`, with arguments only from `parseSimRequest()` (id-shaped, bounded integers, no shell). It is local only: it refuses in production, even with `HQ_PUBLIC=1`. `self-check.mjs` now enforces two rules: no `import` / `import()` / `require` of this folder anywhere in `src/`, and no `child_process` next to this path except in that one file. Other mentions, such as a library link or a comment, are allowed.
+
+**Why this is the smallest change.** It needs no change to `tsconfig.json`, `next.config.mjs` or `package.json`, adds no dependency, and keeps the model out of the client and server bundles. The only coupling is the JSON contract, which is versioned by its schema name. A run takes about 0.3 s, a 7-policy × 5-seed comparison for one persona about 1.5 s, so precomputing traces was not needed.
+
+**Rejected.** (a) A tsconfig path alias and a bundler import. That needs `allowImportingTsExtensions` or an import rewrite, and it puts `catalog.mjs`'s `import.meta.url` root inside a bundle. It also makes model code part of the app build, which is the first step towards serving it without W-1495 or an experiment. (b) Moving the module to `src/lib/personalization/`. That has the same build coupling, and it places personas (simulation only) next to serving code. (c) Precomputed JSON only. It allows no arbitrary seed, and 0.3 to 1.6 MB per trace is too large to commit.
+
+**Revisit when** the model is served (phase B). The serving composer will then need a real home under `src/lib/` behind an EDD and ADR. The simulator and personas stay offline.
+
+**Objections and costs.** A process per request (fine for one local founder; not for a deployed HQ). The CLI needs Node 22.18 or later (the server reports the version on failure). The type mirror in `src/lib/hq-personalization.ts` can drift from the CLI output. `tests/hq/personalization.test.mjs` runs the real CLI to catch that drift.
