@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
+
+**Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
+
+**Believe (high):** scope is Books renderer + tests + records only; `npm run test:books` 417/417 pass; rollback rehearsed (`git revert -m 1 a437361a` clean, src/tests back to `cdee168c` exactly); all Books lessons remain drafts. The record's "revert the one commit" line is wrong after merge; corrected in the verdict.
+
+**Next:** integrator merges this branch to main and records the main merge SHA in the changelog entry (condition 1). Before publish: accessibility-reviewer re-scan (W-1511) and qa-tester build + QA (condition 2). W-1517 stays with platform-engineer.
+
+**Blocked:** nothing on ops readiness.
+
 ## 2026-10-16 · principal-engineer (Kenji) · Books a11y B1–B4 re-read: approved
 
 **Changed:** re-read platform-engineer's `fix/books-a11y-b1-b4` (`b3beca16`) code-first, then the change note; merged it into `worktree-agent-a4cfd34bc12839f51` on main `cdee168c` with merge commit `a437361a` (one conflict, `company/ops/changelog.md`, both entries kept). Record: `company/engineering/reviews/2026-10-16-books-a11y-reread.md`. Board W-1517 (platform-engineer): Reset still drops focus to body after press.
