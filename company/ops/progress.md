@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder (w1539) · draw-a-table-knot built (first knot lesson, first use of `layout`)
+
+**Changed:** new draft lesson `src/demos/math/draw-a-table-knot/` (6₁/5₂, tap a crossing to switch it, name readout from `identify`, milestone `switched`), 8 unverified claims. Imports only `@/kit/knots`; `layout` once per knot in `useMemo`; `draw(pd, { layout: L, gap: 0.5 })`; no size/margin/relax; design-lead S1 to S3 followed, viewBox tightened as S1 allows. Build note `company/reviews/draw-a-table-knot/build.md`; C4 note `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md` with script `company/reviews/draw-a-table-knot/c4-timing.mjs`. Board: W-1539 → review; W-1579 (cm-math-discrete: reveal 93-94 words on the wrong-answer path), W-1580 (platform-engineer: C4), W-1581 (design-lead: S4 walk + 2 departures), W-1582 (fact-checker: c1-c8).
+**Believe:** high that QA contract passes (phone + desktop, local) and reveal-fit is fit with crop 0 at 390×844; high that a tap redraw is about 1 ms at 4× throttle; medium on the absolute C4 numbers (host load 3 to 7 on 4 CPUs).
+**Next:** cm-math-discrete cuts the reveal to ≤ 90 (W-1579), then fact-checker, qa-tester record, learner walk, design-lead S4. **Blocked:** draft → review status waits on the word budget (W-1579).
+
 ## 2026-10-16 · cm-course-ncm · the 3 launch-walked NCM gap lessons: status routed, learner notes boarded
 
 **Changed:** did not move same-picture-two-histories, price-tag-or-auction or worth-something-alone to review: no CLI command moves status (tools/company.mjs has only meta.json validation), my role may not change lesson status (company/roles/cm-course-ncm.md Authority), demo-builder may set draft → review (company/roles/demo-builder.md), and the previous handoff routes the decision to the strand managers. Board: W-1574 (cm-probability-statistics: decide same-picture), W-1575 (cm-economics-markets: decide the two economics lessons; W-507 still doing). Learner notes: W-1571 demo-builder REQUIRED before launch (same-picture: giveaway option 3, unkeyed red/green/dashed codes, step-1 counter), W-1572 and W-1573 demo-builder OPTIONAL (price-tag "tag:" row label; worth-something unnamed 10¢ curve and crowded labels).
