@@ -55,3 +55,31 @@ All runs used a production build of 9236a7f (`NEXT_DIST_DIR=.next-h23 npm run bu
 - `node company/domains/briefs/checks/history-cycle2-check.mjs 23`: all checks pass (the script as committed; see the stop flag for its S+W+C filter).
 
 Claims c1-c3 are unverified (fact-checker). Status stays draft: flipping it needs the cm-history ruling above first.
+
+## v2 (r4 B4): Stage over budget: 29 words. Not built (demo-builder, 2026-10-16)
+
+Batch `company/ops/dispatch-requests/2026-10-16-r4-history.md#B4`, branch `hist-r4-b4` (worktree `/home/user/s3c-h4`). Spec: `company/domains/briefs/history.md` section 23 (v2; this is the full spec, not wording only) and ruling r15. I counted before building, under `company/decisions/2026-10-16-stage-word-budget-counting.md` points 1-3 and Ruling 2. **Preset labels count** (point 3). The brief declares no stimulus, so the ceiling is 25. **The v2 spec cannot be built at 25 or fewer stage words**, so I did not build it. Demo.tsx and meta.json are unchanged: draft, version 1, no claim reset. The stale "S+W+C 28.8" / "Seine 71" header comment is also still there; it goes with the v2 build.
+
+The busiest frame is explore after all four presets, with Meuse and Corrèze latched and every readout cell filled (the reveal quotes 15 of 86, 55%, 28% and 39%, so they have to be on the stage when it opens):
+
+| Stage text | Whose | Words |
+|---|---|---|
+| presets "Within 5 points of 39%" / "North and east" / "South, west and centre" / "Most and least literate" | brief | 14 |
+| hatch label "no value in Guerry's table" | brief | 5 |
+| projection name, shortest "Conic equal-area" (v1: 5 words with "projection; today's outlines") | brief (named projection) | 2 |
+| "Meuse 74%", "Corrèze 12%" | brief | 2 |
+| legend title, shortest "% could read" (v1 "Conscripts who could read and write, %", 6) | own | 2 |
+| readout cells, shortest "±5: 15 of 86" / "N+E 55%" / "S+W+C 28%" / "All 39%" (beginner-hostile, for the count only) | own | 4 |
+| **total** | brief 23, own 6 | **29** |
+
+- With v1's own words (legend title, projection note, readout labels "North and east" / "South, west, centre" / "All 86" plus a band cell), the frame is **43**.
+- **v1 is already over:** about 39. v1's count ("at most 25 … plus the four preset labels") left out the presets.
+- The brief's text alone is 23. That leaves 2 words for the legend title and four readout labels, so the frame is over even with abbreviations a beginner cannot read.
+
+Possible cuts for cm-history. These are suggestions; the choice is cm-history's:
+1. Shorter preset labels: "Near 39%" (1, saves 2), "South, west, centre" (saves 1), "Extremes" or "Highest and lowest" (saves 3 or 2).
+2. Hatch label "no value" (saves 3). The reveal explains the hatching (r15).
+3. Put the three means and the band count on the map as numbers, which cost 0 (for example "55%" inside the N+E outline, "15 of 86" beside the band outline). The readout row goes. This is a layout change, so it needs learning-designer, and it must not shrink the map: QA's hard stop applies, with the labels at 10.00 px at 390.
+- Cuts 1 and 2 bring the frame to about 23 with my minimum legend and projection. Then a readable legend title ("% who could read and write", 5) puts it back to about 26, so cut 3 is probably needed as well.
+
+Check script: `node company/domains/briefs/checks/history-cycle2-check.mjs 23` prints "all checks pass" (band count 15 and 14, exactly one option true, options name no region, presets in DOM order).
