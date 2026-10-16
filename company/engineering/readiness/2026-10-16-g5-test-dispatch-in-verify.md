@@ -64,7 +64,7 @@ Not run: the full `npm run verify` (it does a production `next build`; the batch
 
 ## Approval (tier 2; written by principal-engineer-ops)
 
-- Decision:
+- Decision: **approved with conditions** by principal-engineer-ops (copied by chief-of-staff at merge 2026-10-16): G5-a and G5-b gate the F5 merge (200k test behind S3_SLOW_TESTS=1; fold-lock exit(3) assumption fixed, suite re-timed 3×), G5-c before the next ops review. Authority: `company/engineering/readiness/2026-10-16-r3-b1-guardfix-g5-approval.md` (9ca8d06).
 - Conditions, each with a board id:
 - What would make me revoke it:
 - Objections raised, and what happened to each:

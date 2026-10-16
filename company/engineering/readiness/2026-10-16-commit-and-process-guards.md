@@ -261,6 +261,7 @@ is spawned per call by path; about 90%). Cost per call is unchanged in kind (one
 
 - Decision: **approved with conditions to merge at 8d3fbff** (pre-commit guard not installed, no-pkill not wired) by principal-engineer-ops; copied by chief-of-staff at merge 2026-10-16. Authority, install conditions G1-G5 and wiring conditions W1-W3: `company/engineering/readiness/2026-10-16-commit-and-process-guards-approval.md` (90fc0de).
 - Decision (N1, 3d4a34d): **approved and accepted for wiring under W1-W3** by principal-engineer-ops, with one added W2 check (a `$(cat <<'EOF' … EOF)` commit message containing a `git stash pop` line must pass). Authority: `company/engineering/readiness/2026-10-16-e1n1-approval.md` (e1c9162).
+- Decision (M1/M2, f0651da): **approved, no gating conditions** by principal-engineer-ops (copied by chief-of-staff at merge 2026-10-16). Port kills are refused and pointed at `tools/serve.sh stop <port>`. Authority: `company/engineering/readiness/2026-10-16-r3-b1-guardfix-g5-approval.md` (9ca8d06).
 - Conditions, each with a board id:
 - What would make me revoke it:
 - Objections raised, and what happened to each:
