@@ -17,3 +17,7 @@ test-results-*/
 # SPIKE-001 build output (reproducible: node spike/build.mjs)
 spike/dist/
 company/ops/claims/
+
+# Slot ledger runtime state (tools/lib/slots.mjs, W-1196): one file per in-flight agent; history is events.jsonl
+company/ops/slots/*
+!company/ops/slots/README.md
