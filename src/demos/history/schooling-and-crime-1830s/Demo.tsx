@@ -92,9 +92,17 @@ function Bars({ view, seen }: { view: View; seen: Set<string> }) {
   return (
     <>
       <text x={4} y={12} className={s.title}>
-        Recorded crimes per 100,000 people
+        Recorded crimes per 100,000
       </text>
       <line x1={8} y1={BASE} x2={W - 8} y2={BASE} className={s.axis} />
+      <rect x={10} y={BASE + 7} width={10} height={10} className={s.prop} />
+      <text x={24} y={BASE + 16} className={s.tick}>
+        crimes against property
+      </text>
+      <rect x={176} y={BASE + 7} width={10} height={10} className={s.pers} />
+      <text x={190} y={BASE + 16} className={s.tick}>
+        crimes against persons
+      </text>
       {PANELS.map((p) => {
         const on = seen.has(p.key);
         return (
@@ -129,12 +137,6 @@ function Bars({ view, seen }: { view: View; seen: Set<string> }) {
                 ?
               </text>
             )}
-            <text x={xP(p.cx) + BW / 2} y={BASE + 14} textAnchor="middle" className={s.tick}>
-              property
-            </text>
-            <text x={xQ(p.cx) + BW / 2} y={BASE + 14} textAnchor="middle" className={s.tick}>
-              persons
-            </text>
           </g>
         );
       })}
