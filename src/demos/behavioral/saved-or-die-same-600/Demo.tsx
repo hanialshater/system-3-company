@@ -61,9 +61,11 @@ const BARS: Record<Opt, Bar[]> = {
 };
 
 // 600 cells: 60 columns of 10, filled column by column, so 200 alive is exactly the first 20 columns.
+// Drawn at its natural pixel size (no viewBox, 90 x 15 px): the bars are small parts of choice buttons,
+// not one picture squeezed to fit.
 const COLS = 60;
 const ROWS = 10;
-const P = 3; // cell pitch in viewBox units
+const P = 1.5; // cell pitch in px
 const W = COLS * P;
 const H = ROWS * P;
 
@@ -71,18 +73,32 @@ function CellBar({ alive }: { alive: number }) {
   const id = useId().replace(/:/g, "");
   const aliveW = (alive / ROWS) * P;
   return (
-    <svg className={s.bar} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+    <svg className={s.bar} width={W} height={H} aria-hidden="true">
       <defs>
         <pattern id={`on${id}`} width={P} height={P} patternUnits="userSpaceOnUse">
-          <rect x={0.35} y={0.35} width={P - 0.7} height={P - 0.7} className={s.cellOn} />
+          <rect x={0.15} y={0.15} width={P - 0.3} height={P - 0.3} className={s.cellOn} />
         </pattern>
         <pattern id={`off${id}`} width={P} height={P} patternUnits="userSpaceOnUse">
-          <rect x={0.6} y={0.6} width={P - 1.2} height={P - 1.2} className={s.cellOff} />
+          <rect x={0.25} y={0.25} width={P - 0.5} height={P - 0.5} className={s.cellOff} />
         </pattern>
       </defs>
       {aliveW > 0 && <rect x={0} y={0} width={aliveW} height={H} fill={`url(#on${id})`} />}
       {aliveW < W && <rect x={aliveW} y={0} width={W - aliveW} height={H} fill={`url(#off${id})`} />}
     </svg>
+  );
+}
+
+/** The option text, with "1-in-3" and "2-in-3" kept on one line (the words themselves are unchanged). */
+function Wording({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(" ").map((w, i) => (
+        <span key={i}>
+          {i > 0 ? " " : ""}
+          {w.includes("-in-") ? <span className={s.nowrap}>{w}</span> : w}
+        </span>
+      ))}
+    </>
   );
 }
 
@@ -177,7 +193,9 @@ export default function SavedOrDieSame600({ slug }: { slug: string }) {
                   }}
                 >
                   <span className={s.optHead}>
-                    <span className={s.optText}>{text}</span>
+                    <span className={s.optText}>
+                      <Wording text={text} />
+                    </span>
                     <span className={s.tick} aria-hidden="true">
                       {chosen ? "✓" : ""}
                     </span>
