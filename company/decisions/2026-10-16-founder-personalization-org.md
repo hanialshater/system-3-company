@@ -24,10 +24,21 @@ recorded by: chief-of-staff
 | 2 | chief-of-staff-ceo-office | pending | company/ceo-office/ (org change proposal) |
 | 3 | founder | pending | this record |
 
+
+## Founder decision, second message (2026-10-16)
+
+> "Mateo is VP he should be independent instead of taping onto others in the compay, leoni to help with he org experience but not levergae other teams for his internal scope"  (founder, conversation)
+
+- **Decided by the founder:** personalization-lead becomes **VP of Personalization** and runs a **self-contained org**. Its internal work (feed ordering for personalization, the model and curves, the simulator, evaluation of its own policies, applied science, lesson dims for its use, its HQ simulation lab) is staffed inside the org, not borrowed from other teams. Leonie designs the org and brings org-design experience; she does not route Mateo's internal scope to other teams.
+- **Consequence for open items:** W-1496 (analytics-steward), W-1497 (research-lead), W-1498 (principal-engineer, location of dims and code) and W-1503 (hq-engineer, HQ lab) move into the personalization org once its roles are approved; until then they wait for those roles rather than going to the other teams. personalization-eval reports inside the org, not to evaluation-steward.
+- **What stays company-wide (not "leveraging", they are gates every org passes):** privacy review of learner data (W-1495), the founder's approval of every deploy, protected paths and the constitution, the claims rule for anything a learner reads, and the platform owner's review where personalization code touches the shared feed or kit. Leonie is asked to state the interface for each in the org design.
+
 ## Objections
 
 - **chief-of-staff:** a "head of feed" and a personalization "eval" role overlap with owners that exist (platform-engineer owns the feed surface; analytics-steward and evaluation-steward own experiments and the harness). Creating them without moving those scopes leaves two owners for one thing. **Answer:** sent to step 1 and 2: Mateo must name each overlap, Leonie must resolve it (move the scope, split it, or drop the role) before it reaches the founder.
 - **chief-of-staff:** most of the org has no work until phase A's simulator and lesson dims exist; staffing ahead of work produces unused roles (the CEO office's role evaluation already looks for these). **Answer:** Mateo marks each role phase A or later; Leonie may stage the approvals.
+
+- **chief-of-staff:** a self-contained org duplicates capabilities other teams already have (experiment analysis, research, engineering review), and its own evaluation of its own policies loses independence. **Answer:** the founder chose independence; Leonie's design must give the org's eval a written independence rule (eval roles never build what they grade), and the company-wide gates above still apply.
 
 ## Board
 
