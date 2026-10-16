@@ -78,5 +78,16 @@ through `events.mjs add`, with ids `hk-…`. It is **not wired** until the found
 and `npm run metrics` prints `last dispatch event: N h ago` so a dark log shows. `S3_EVENTS=<file>` points
 `events.mjs`, `metrics.mjs`, `dispatch-check.mjs` and the hook at another log (tests).
 
+**The hook writes a spool, not this log (ruling H2, company/decisions/2026-10-16-cos-ruling-h2-hook-spool.md).**
+The hook calls `events.mjs add --spool`, which appends to `company/ops/events-spool/<UTC date>.jsonl`
+(gitignored) in the **main checkout**, found through the git common dir, so every worktree shares one spool.
+`dispatch-check` and `metrics` read this log plus the spool (deduped by id), so in-flight counts are right between
+folds. The chief of staff, the single writer of this log, runs `node tools/events.mjs fold` (`--dry` to count)
+before an events commit: spool events not already here are appended in ts order and the spool is emptied;
+unparseable spool lines are kept in `events-spool/unparsed-*.txt`. `S3_SPOOL=<dir>` overrides the spool
+(tests); with only `S3_EVENTS=<file>` set, the spool is `<that file's dir>/events-spool/`.
+Unparseable lines here or in the spool are skipped and counted, never thrown (E1): `add` prints the count to
+stderr, metrics prints `events.jsonl: N unreadable line(s)`, dispatch-check warns.
+
 Session transcripts are imported from `~/.claude/projects/**/*.jsonl` (dispatches, reports and
 stop notices). Internal agent ids are reduced to a short hash; prompts and reports are stored as written.

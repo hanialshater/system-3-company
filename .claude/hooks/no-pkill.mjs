@@ -14,7 +14,9 @@
 //     pop or apply takes whatever is on top, which may be another session's work (B2's run, 2026-10-16).
 //
 // Only the command position of each simple command is read (after `;`, `&&`, `||`, `|`, `$(`, backticks,
-// `bash -c`), so `git commit -m "add pkill -f hook"` or `grep "pkill -f" file` pass.
+// `bash -c`), so `git commit -m "add pkill -f hook"` or `grep "pkill -f" file` pass. Heredoc bodies are data
+// (N1), unless a shell reads them as commands (`sh <<EOF`, `cat <<EOF | sh`) or they hold a command
+// substitution under an unquoted delimiter.
 // Hook I/O follows .claude/hooks/protect-constitution.mjs: JSON on stdin, exit 2 + stderr to refuse.
 // It fails open: unreadable input or an internal error exits 0. It is a guard, not the only line of defence.
 
@@ -28,35 +30,127 @@ const STASH_HINT =
   '`git stash push -u -m "<unique-tag>"`, capture the SHA with `git stash list --format=\'%H %gs\'`, restore with ' +
   "`git stash apply <sha>`, then drop your own entry by its re-found `stash@{n}`.";
 
+// Heredocs (N1, company/engineering/reviews/2026-10-16-agent-hooks-wiring-review.md): `<<WORD`, `<<-WORD`,
+// `<<'WORD'`, `<<"WORD"`, `<<\WORD`. Returns { delim, strip, quoted, end } or null when s[i] does not start one.
+// A here-string (`<<<`) is not a heredoc. An unquoted delimiter must start with a letter or `_`, so arithmetic like
+// `$((1<<2))` is not mistaken for one.
+function heredocOp(s, i) {
+  if (s[i] !== "<" || s[i + 1] !== "<" || s[i + 2] === "<" || s[i - 1] === "<") return null;
+  let j = i + 2;
+  const strip = s[j] === "-";
+  if (strip) j++;
+  while (s[j] === " " || s[j] === "\t") j++;
+  let word = "";
+  let quoted = false;
+  for (; j < s.length; j++) {
+    const c = s[j];
+    if (c === "'" || c === '"') {
+      const k = s.indexOf(c, j + 1);
+      if (k === -1) return null;
+      quoted = true;
+      word += s.slice(j + 1, k);
+      j = k;
+      continue;
+    }
+    if (c === "\\" && j + 1 < s.length) { quoted = true; word += s[++j]; continue; }
+    if (/[\s;&|<>()`]/.test(c)) break;
+    word += c;
+  }
+  if (!word || !(quoted || /^[A-Za-z_]/.test(word))) return null;
+  return { delim: word, strip, quoted, end: j };
+}
+
+// Read the bodies of the pending heredocs, starting at `from` (just after the newline that ends their command line).
+// Sets h.body on each; returns the index just after the last terminator line (or past the end, if unterminated).
+function readBodies(s, from, pending) {
+  let pos = from;
+  for (const h of pending) {
+    let body = "";
+    while (pos <= s.length) {
+      let e = s.indexOf("\n", pos);
+      if (e === -1) e = s.length;
+      const line = s.slice(pos, e);
+      pos = e + 1;
+      if ((h.strip ? line.replace(/^\t+/, "") : line) === h.delim) break;
+      body += line + "\n";
+      if (e >= s.length) break;
+    }
+    h.body = body;
+  }
+  return pos;
+}
+
+// Find the end of a `$(` … `)` starting at index i (just after `$(`); returns index of the closing paren.
+// Heredoc bodies inside are skipped, so a `)` or a lone `'` in a commit message cannot end it early.
+function closeParen(s, i) {
+  let depth = 1;
+  let q = null;
+  let pending = [];
+  for (; i < s.length; i++) {
+    const c = s[i];
+    if (q === "'") { if (c === "'") q = null; continue; }
+    if (c === "\\") { i++; continue; }
+    if (q === '"') { if (c === '"') q = null; continue; }
+    if (c === "'" || c === '"') { q = c; continue; }
+    if (c === "<") {
+      const h = heredocOp(s, i);
+      if (h) { pending.push(h); i = h.end - 1; continue; }
+    }
+    if (c === "\n" && pending.length) { i = readBodies(s, i + 1, pending) - 1; pending = []; continue; }
+    if (c === "(") depth++;
+    if (c === ")" && --depth === 0) return i;
+  }
+  return s.length;
+}
+
+// Command substitutions in an unquoted heredoc body: the shell runs them, so they are checked; the rest is data.
+function substitutions(body) {
+  const out = [];
+  for (let i = 0; i < body.length; i++) {
+    const c = body[i];
+    if (c === "\\") { i++; continue; }
+    if (c === "$" && body[i + 1] === "(") {
+      const j = closeParen(body, i + 2);
+      out.push(...simpleCommands(body.slice(i + 2, j)));
+      i = j;
+      continue;
+    }
+    if (c === "`") {
+      const j = body.indexOf("`", i + 1);
+      const end = j === -1 ? body.length : j;
+      out.push(...simpleCommands(body.slice(i + 1, end)));
+      i = end;
+    }
+  }
+  return out;
+}
+
 // Split a shell command into simple commands (token arrays). Quote-aware; command substitutions are
-// returned as their own commands, also when they sit inside double quotes.
+// returned as their own commands, also when they sit inside double quotes, and the outer token keeps the
+// substitution's text (`$(pgrep x)`), so `kill $(pgrep x)` is seen as one pattern kill.
+// Heredoc bodies are data (N1): they are attached to their command as `.heredoc` and not split into commands,
+// except command substitutions in an unquoted-delimiter body. A command after a pipe carries `.pipedFrom`, so
+// `cat <<EOF | sh` can be checked: the shell reads the body as commands.
 export function simpleCommands(cmd) {
   const out = [];
   let tokens = [];
   let tok = null;
+  let pending = []; // heredocs opened on the current line, bodies read at its newline
+  let last = null; // the last command pushed at this level
+  let pipeFrom = null;
   const endTok = () => {
     if (tok !== null) tokens.push(tok);
     tok = null;
   };
   const endCmd = () => {
     endTok();
-    if (tokens.length) out.push(tokens);
-    tokens = [];
-  };
-  // Find the end of a `$(` … `)` starting at index i (just after `$(`); returns index of the closing paren.
-  const closeParen = (s, i) => {
-    let depth = 1;
-    let q = null;
-    for (; i < s.length; i++) {
-      const c = s[i];
-      if (q === "'") { if (c === "'") q = null; continue; }
-      if (c === "\\") { i++; continue; }
-      if (q === '"') { if (c === '"') q = null; continue; }
-      if (c === "'" || c === '"') { q = c; continue; }
-      if (c === "(") depth++;
-      if (c === ")" && --depth === 0) return i;
+    if (tokens.length) {
+      if (pipeFrom) tokens.pipedFrom = pipeFrom;
+      out.push(tokens);
+      last = tokens;
+      pipeFrom = null;
     }
-    return s.length;
+    tokens = [];
   };
   let q = null;
   for (let i = 0; i < cmd.length; i++) {
@@ -72,7 +166,7 @@ export function simpleCommands(cmd) {
       if (c === "$" && cmd[i + 1] === "(") {
         const j = closeParen(cmd, i + 2);
         out.push(...simpleCommands(cmd.slice(i + 2, j)));
-        tok += "$(…)";
+        tok += `$(${cmd.slice(i + 2, j)})`;
         i = j;
         continue;
       }
@@ -80,7 +174,7 @@ export function simpleCommands(cmd) {
         const j = cmd.indexOf("`", i + 1);
         const end = j === -1 ? cmd.length : j;
         out.push(...simpleCommands(cmd.slice(i + 1, end)));
-        tok += "`…`";
+        tok += `\`${cmd.slice(i + 1, end)}\``;
         i = end;
         continue;
       }
@@ -94,16 +188,15 @@ export function simpleCommands(cmd) {
       continue;
     }
     if (c === "#" && tok === null) {
-      // comment to end of line
-      while (i < cmd.length && cmd[i] !== "\n") i++;
-      endCmd();
+      // comment to end of line (the newline itself is handled next, so pending heredoc bodies are still read)
+      while (i + 1 < cmd.length && cmd[i + 1] !== "\n") i++;
       continue;
     }
     if (c === "$" && cmd[i + 1] === "(") {
-      // unquoted command substitution: its own command; the outer token keeps a placeholder
+      // unquoted command substitution: its own command; the outer token keeps its text
       const j = closeParen(cmd, i + 2);
       out.push(...simpleCommands(cmd.slice(i + 2, j)));
-      tok = (tok ?? "") + "$(…)";
+      tok = (tok ?? "") + `$(${cmd.slice(i + 2, j)})`;
       i = j;
       continue;
     }
@@ -111,11 +204,39 @@ export function simpleCommands(cmd) {
       const j = cmd.indexOf("`", i + 1);
       const end = j === -1 ? cmd.length : j;
       out.push(...simpleCommands(cmd.slice(i + 1, end)));
-      tok = (tok ?? "") + "`…`";
+      tok = (tok ?? "") + `\`${cmd.slice(i + 1, end)}\``;
       i = end;
       continue;
     }
-    if (";&|\n()".includes(c)) { endCmd(); continue; }
+    if (c === "<") {
+      const h = heredocOp(cmd, i);
+      if (h) {
+        endTok();
+        h.target = tokens;
+        pending.push(h);
+        i = h.end - 1;
+        continue;
+      }
+    }
+    if (c === "\n") {
+      endCmd();
+      if (pending.length) {
+        const next = readBodies(cmd, i + 1, pending);
+        for (const h of pending) {
+          h.target.heredoc = (h.target.heredoc ?? "") + h.body;
+          if (!h.quoted) out.push(...substitutions(h.body));
+        }
+        pending = [];
+        i = next - 1;
+      }
+      continue;
+    }
+    if (";&|()".includes(c)) {
+      const pipe = c === "|" && cmd[i + 1] !== "|" && cmd[i - 1] !== "|";
+      endCmd();
+      if (pipe) pipeFrom = last;
+      continue;
+    }
     if (c === " " || c === "\t" || c === "\r") { endTok(); continue; }
     if (c === "<" || c === ">") { endTok(); continue; }
     tok = (tok ?? "") + c;
@@ -183,6 +304,12 @@ function checkSimple(tokens, raw, depth) {
   if (["bash", "sh", "zsh", "dash", "ksh"].includes(cmd) && depth < 4) {
     const ci = args.findIndex((a) => /^-[A-Za-z]*c[A-Za-z]*$/.test(a));
     if (ci !== -1 && args[ci + 1] !== undefined) return verdict(args[ci + 1], depth + 1);
+    // No -c and no script file: the shell reads commands from stdin, here a heredoc (`sh <<EOF`) or a piped one
+    // (`cat <<EOF | sh`). Its body is commands, not data.
+    if (args.every((a) => a.startsWith("-"))) {
+      const body = tokens.heredoc ?? tokens.pipedFrom?.heredoc;
+      if (body) return verdict(body, depth + 1);
+    }
     return null;
   }
   if (cmd === "pkill") return `\`pkill\` kills by name or pattern on a host every agent shares (with -f it matches the shell running it). ${STOP_HINT}`;
@@ -194,6 +321,8 @@ function checkSimple(tokens, raw, depth) {
   }
   if (cmd === "kill") {
     if (via === "xargs") return `\`xargs kill\` kills whatever the pipeline matched (a pattern kill). ${STOP_HINT}`;
+    if (args.some((a) => /(\$\(|`)\s*(\S*\/)?(pgrep|pidof)\b/.test(a)))
+      return `\`kill\` fed by \`pgrep\`/\`pidof\` is a pattern kill on a shared host. ${STOP_HINT}`;
     // pid positions: after `--`, or every arg that is not an option / signal spec
     let pids = [];
     for (let i = 0; i < args.length; i++) {
@@ -233,9 +362,8 @@ function checkSimple(tokens, raw, depth) {
 // Returns a refusal reason (string) or null when the command may run.
 export function verdict(command, depth = 0) {
   if (typeof command !== "string" || !command.trim()) return null;
-  // `kill $(pgrep …)` / `kill $(pidof …)`: the inner command alone may be harmless; together they are a pattern kill.
-  if (/(^|[;&|(\s])kill\b[^;&|\n]*(\$\(|`)\s*(pgrep|pidof)\b/.test(command))
-    return `\`kill\` fed by \`pgrep\`/\`pidof\` is a pattern kill on a shared host. ${STOP_HINT}`;
+  // `kill $(pgrep …)` / `kill $(pidof …)` is checked on the kill command's own tokens (checkSimple), so a heredoc
+  // body that only mentions it is data.
   for (const tokens of simpleCommands(command)) {
     const r = checkSimple(tokens, command, depth);
     if (r) return r;
