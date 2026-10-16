@@ -31,7 +31,7 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.2.1" as const;
+export const MODEL_VERSION = "model-v0.2.2" as const;
 export const DECISION = "company/decisions/2026-10-16-personalization-model-v0.md" as const;
 
 /** The pilot set (response §3, phase A). Life Hacks is out: 15/200 lessons have prerequisites.
@@ -373,7 +373,8 @@ export type ComposerTermName =
 // model-v0.2: "overlap" and "slot" removed. With compose-one-recompute (slotsAhead 1, below) the queue
 // is always empty and the slot index is always 0, so both terms were identically 0 in every pick
 // (simulator finding 1, W-1512; company/personalization/model/sim/README.md). Repeats of a concept are
-// still damped by novelty.perSimilarRecent over the last 3 completed cards.
+// still damped by novelty.perSimilarRecent over the last 3 completed cards (until model-v0.2.2, which gates
+// novelty off with its damping; COMPOSER.noveltyGate).
 
 export const COMPOSER = {
   version: "composer-v0.2",
@@ -402,7 +403,8 @@ export const COMPOSER = {
      *  INACTIVE in model-v0.2: see surpriseGate. The weight is kept so turning it on is one flag. */
     surprise: 0.15,
     /** guess: smaller than surprise; novelty without a learning reason is the feed-optimisation
-     *  drift we exist to avoid. Kept only while recall does not fall. */
+     *  drift we exist to avoid. Kept only while recall does not fall.
+     *  INACTIVE from model-v0.2.2: see noveltyGate. The weight is kept so the gate is one flag. */
     novelty: 0.1,
   },
   /**
@@ -418,6 +420,23 @@ export const COMPOSER = {
     active: false,
     requiresStrengthSource: ["dims-owner", "cm", "classifier", "data"] as StrengthSource[],
     why: "inactive: no real misconceptionStrength ratings on the pilot; placeholder hash ranks by noise (W-1512 finding 3)",
+  },
+  /**
+   * model-v0.2.2 (W-1542): novelty is OFF. Killed on phase A readout 1 under the pre-registered rule
+   * (company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §3): `gam` won against
+   * `gam-no-surprise-novelty` for 0 of 6 personas at the judge's novelty benefit 0 and at +.05
+   * (company/personalization/eval/2026-10-16-phase-a-readout-1.md; reproduced byte for byte,
+   * company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md). Keep/kill decision:
+   * company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md §2.
+   * An objective-level switch, not a curve or weight: `weights.novelty` (.1) and the `novelty` constants
+   * are unchanged, so the term is one flag from coming back, and that is a version bump with a new
+   * readout behind it. While off the term scores 0 and still shows in every trace (value 0), and the
+   * repeat damping (`novelty.perSimilarRecent`) goes with it. Consequence: `gam` equals
+   * `gam-no-surprise-novelty` (both terms gated), as `gam` equalled `gam-off-surprise` from model-v0.2.
+   */
+  noveltyGate: {
+    active: false,
+    why: "inactive: killed on phase A readout 1 (0 of 6 wins vs gam-no-surprise-novelty at novelty benefit 0 and +.05; W-1536, W-1542)",
   },
   /** guess: a card moves only if score − score(default card) > .1; otherwise the default card is
    *  shown and no reason is claimed (constraint 3). .1 is a tenth of the default-rank range. */
@@ -520,6 +539,7 @@ export function checkModel(): string[] {
   const errs: string[] = [];
   if (COMPOSER.slotsAhead !== 1 && COMPOSER.servingMode === "compose-one-recompute") errs.push("compose-one-recompute needs slotsAhead 1");
   if (COMPOSER.surpriseGate.active && !COMPOSER.surpriseGate.requiresStrengthSource.length) errs.push("surprise active needs a required strength source");
+  if (typeof COMPOSER.noveltyGate.active !== "boolean" || COMPOSER.noveltyGate.why.length < 20) errs.push("noveltyGate needs a boolean active and a written reason");
   const curves: [string, Curve & { why: string }][] = [["dampener", DAMPENER]];
   for (const need of NEEDS) {
     if (!NEED_SHAPES[need]?.length) errs.push(`${need}: no shape terms`);

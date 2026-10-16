@@ -18020,7 +18020,7 @@
       "id": "W-1535",
       "title": "Reproduce the phase A readout (C4) from its seed list and commit: determinism only, not judgement (independence rule §2.5). Lane 14 batch 2 C5 (company/personalization/batches/2026-10-16-batch-2.md)",
       "owner": "learner-model-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -18029,7 +18029,7 @@
         "company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 learner-model-engineer (lme-c5-1016): reproduced readout 1 at 5725b10a from harness/README.md Reproduction only: BYTE-IDENTICAL. results.json and verdicts.json sha256 match in both parts (pass, rest); manifests differ only in seconds; regenerated §6 tables differ only in out-dir label and seconds. No defect found. Record: company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md. To review: personalization-eval (Uma) and vp-personalization."
+      "note": "2026-10-16 learner-model-engineer (lme-c5-1016): reproduced readout 1 at 5725b10a from harness/README.md Reproduction only: BYTE-IDENTICAL. results.json and verdicts.json sha256 match in both parts (pass, rest); manifests differ only in seconds; regenerated §6 tables differ only in out-dir label and seconds. No defect found. Record: company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md. To review: personalization-eval (Uma) and vp-personalization. | 2026-10-16 vp-personalization (vp-w1542-1016): ACCEPTED: C5 condition met, W-1536 decisions now unconditional (company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md). personalization-eval may still add its own review note."
     },
     {
       "id": "W-1536",
@@ -18113,14 +18113,17 @@
       "id": "W-1542",
       "title": "model-v0.2.2: add noveltyGate (inactive) so gam composes without novelty (kill rule, company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md §2); version bump, change-log line with privacy: in company/decisions/2026-10-16-personalization-model-v0.md, self-check passing. Only after C5 (W-1535) confirms readout 1",
       "owner": "vp-personalization",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
         "company/decisions/2026-10-16-personalization-model-v0.md",
-        "company/personalization/model/model.ts"
-      ]
+        "company/personalization/model/model.ts",
+        "company/personalization/model/sim/composer.ts"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 vp-personalization (vp-w1542-1016): done as model-v0.2.2: COMPOSER.noveltyGate inactive, read in sim/composer.ts novelty(); weights and novelty constants unchanged, no code removed; change line with privacy: no new input; self-check, N1/N3, test:personalization, HQ CLI meta/run/compare pass; gam == gam-no-surprise-novelty in compare. Eval harness untouched."
     }
   ]
 }

@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · vp-personalization (Mateo) · W-1542: novelty gated off as model-v0.2.2; W-1536 decisions now unconditional (run vp-w1542-1016)
+
+**Changed:** company/personalization/model/model.ts: `MODEL_VERSION` model-v0.2.2, `COMPOSER.noveltyGate` (inactive, with its reason), one `checkModel()` invariant; `weights.novelty` and the `novelty` constants unchanged, no code removed. company/personalization/model/sim/composer.ts (learner-model-engineer's file): `novelty()` returns 0 while the gate is shut; read inside the function so the term still shows as 0 in traces and the W-1526 break anchors stay intact. Change line in company/decisions/2026-10-16-personalization-model-v0.md (`privacy: no new input`). company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md: status unconditional plus a C5 result paragraph (repro byte-identical; no verdict differs). Board: W-1542 → done, W-1535 → done (accepted). Eval harness not edited; readout 1 stays tied to 5725b10a.
+**Tests:** self-check OK; privacy N1/N3 5/5; `npm run check` passes; privacy-breaks.mjs 13/13 caught as expected; eval harness tests.test.mjs 20/20; tsc --strict on the model/sim .ts files clean; HQ CLI `meta` (model-v0.2.2, gate visible), `run` (0 non-zero novelty terms) and `compare --persona=all` (gam identical to gam-no-surprise-novelty, as designed); `npm run test:hq` 71 pass / 3 fail, the same 3 release/deploy-history failures with and without this change.
+**Believe:** the gate does exactly the decided thing and nothing else (high: compare rows identical). Who writes a gate flag: I did, as an objective-level switch under keep/kill; numbers stay applied-scientist-personalization's (noted in both records).
+**Next:** founder answers Q1-Q5 via W-1541 (chief-of-staff); batch 3 waits on them. personalization-eval may add its own W-1535 review note. **Blocked:** nothing in my lane.
+
 ## 2026-10-16 · vp-personalization (Mateo) · W-1536: keep/kill on phase A readout 1, C3, what the FAIL means (run vp-w1536-1016)
 
 **Changed:** new company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md. README status line (company/personalization/README.md). Board: W-1536 → done; W-1515 → dropped (C3 step 1b cancelled); new W-1541 (chief-of-staff: put Q1-Q5 to the founder, BLOCKED ON FOUNDER) and W-1542 (mine: model-v0.2.2 noveltyGate, after C5). No model change, no curve or weight touched.

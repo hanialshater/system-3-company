@@ -7,9 +7,10 @@
  * `model` argument (COMPOSER), never from a literal here, except where marked "sim choice".
  *
  *   score(lesson | learner) = defaultRank·rank + Σ onRem[n]·remaining[n]·addr[lesson,n]
- *                           + wS·surprise·[surpriseGate open] + wN·novelty
+ *                           + wS·surprise·[surpriseGate open] + wN·novelty·[noveltyGate open]
  * (model-v0.2: overlap and slot terms removed from the contract; slotsAhead is 1, compose-one-recompute.
- *  Surprise is 0 unless COMPOSER.surpriseGate is active AND the lesson's strengthSource is a real rating.)
+ *  Surprise is 0 unless COMPOSER.surpriseGate is active AND the lesson's strengthSource is a real rating.
+ *  model-v0.2.2: novelty is 0 unless COMPOSER.noveltyGate is active.)
  *
  * Hard constraints (not terms; no weight buys past them): due revisits first; default order when the
  * dampener is 0 or the learner switched off; move threshold; 1-in-3 default share (anti-bubble floor);
@@ -143,6 +144,10 @@ export function readiness(l: LessonDims, ctx: Ctx, m: Model): number {
 }
 
 export function novelty(l: LessonDims, ctx: Ctx, m: Model, queuedConcepts: string[]): number {
+  // model-v0.2.2 (W-1542, written by vp-personalization per the readout 1 kill decision): the gate is read
+  // here, not on the add() line, so the term still appears in every trace as 0 and the W-1526 break
+  // anchors (privacy-breaks.mjs) are unchanged.
+  if (!m.noveltyGate.active) return 0;
   const n = m.novelty;
   const recent = [...ctx.last3Concepts, ...queuedConcepts].slice(-3);
   const similar = recent.filter((c) => c === l.concept).length;
