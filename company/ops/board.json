@@ -17635,15 +17635,43 @@
       "id": "W-1506",
       "title": "PR #5 merge gate: principal-engineer tier-2 engineering review of src/components/books/BookIdeaLesson.tsx, src/lib/books/model.ts, generated registry and EDD-010 as shipped at fe7fc95 (prior review covered cded0cd9 only; fe7fc95 changed both files). See company/engineering/community/prs/5.md",
       "owner": "principal-engineer",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1507",
+      "title": "PR #5 pre-publish: accessibility scan of the 100 bk- Books lessons (not a merge blocker). See company/engineering/community/prs/5.md",
+      "owner": "accessibility-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
       "links": []
     },
     {
-      "id": "W-1507",
-      "title": "PR #5 pre-publish: accessibility scan of the 100 bk- Books lessons (not a merge blocker). See company/engineering/community/prs/5.md",
-      "owner": "accessibility-reviewer",
+      "id": "W-1508",
+      "title": "PR #5 merge blocker: test:books fails 2/100 on the merged tree (feat/books-100-demos @ 51785c4). tests/books/payloads.test.mjs distractor rule treats an integer option as naming any value within ±0.5; after F8 (review/pr5-build) bk-climbing-small-valid-steps ('2 units' vs answer 2.44) and bk-cooperation-one-error ('3 points' vs 3.5) fail. Fix the rule or the two distractors with demo-builder; see company/engineering/community/prs/5.md §8",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1509",
+      "title": "Books bk-scale-exponent-boundary: keep the rounded 68.18% rate (F7, review/pr5-build 0791013f) or switch to an exact exponent-1/2 version (rates 100 and 300 on 4x steps); also update company/domains/briefs/books-100/science-history.json, which still has the 15-digit rate",
+      "owner": "cm-books",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1510",
+      "title": "Books 100 recall cards: meta.json recall options still use '10.00'-style numbers and the U+2212 minus sign; align with the stage number format before publish (F8 follow-up, company/engineering/reviews/2026-10-16-pr5-engineering-review.md)",
+      "owner": "cm-books",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

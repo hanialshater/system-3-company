@@ -20,7 +20,7 @@ Open a `/d/<slug>` path from the table. Local builds include direct draft lesson
 - Formal learner review covers seven representatives; its updated-artifact review is separate from design and QA. It is borrowed-mind inspection, not a human learning study.
 - Independent design review samples the named artifacts; its results must not be described as an all100 design pass.
 - Known 360×640 reveal cropping is retained as a pre-launch defect. The binding strict phone fit is390×844.
-- Final integrated test results and build identity are recorded in the final integration and QA records beside this guide. An earlier mid-generation verify failed the platform metadata sentinel while QA arrays were still empty; only actual final verification establishes its resolution.
+- Integration record (corrected 2026-10-16 by community-engineer, PR #5 review F4/M4): the integration evidence, final commit list, build result and revert command are in [company/engineering/community/prs/5.md](../../engineering/community/prs/5.md); the merge-gate engineering review is [2026-10-16-pr5-engineering-review.md](../../engineering/reviews/2026-10-16-pr5-engineering-review.md). No separate integration record exists beside this guide, and the final full `npm run verify` (M3) is recorded there only once it has run. An earlier mid-generation verify failed the platform metadata sentinel while QA arrays were still empty; only actual final verification establishes its resolution.
 
 ## Board identities after concurrent base integration
 
