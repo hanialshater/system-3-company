@@ -69,3 +69,7 @@ Separately dispatch the existing learner-evaluator for a fresh seven-of-seven bo
 ## Integration sampling adjustment (2026-10-16)
 
 Actual generation groups omit the seven representatives, so manifest row groups and builder groups differ. Add `bk-topologies-handoff-edges` (business generation group2) and `bk-porter-same-budget-opportunity` (business generation group4). The final minimum is20 distinct artifacts, plus longest-reveal/densest/flagged additions. All actual generated groups then have at least one sample; this does not expand the independent learner review beyond its named seven.
+
+## Final review expansion from actual findings
+
+V1 design found a rounded compound multiplier inconsistent with the actual fractional rate. The repaired caption path therefore requires fresh design inspection for all10 compound consumers. Add the two business flow questions repaired from the EMyth clarity pattern (`bk-playing-capability-fit`, `bk-ship-distributed-information`). Actual DOM stress selection adds `bk-jobs-context-changes-choice` for both longest reveal (88words) and densest stage (24words). The union is30distinct artifacts: original20 plus7previously unsampled compound cases,2flows and1stress case. The fresh v2 compound/flow artifacts replace their historical findings; unaffected paths can retain actual v1 inspection with explicit identity comparison. Full100 browser checks rerun on v2; this remains a30artifact design sample, not100.

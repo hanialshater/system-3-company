@@ -45,6 +45,12 @@ outside the stage; their words still count in the reveal's 90-word budget.
 Use the existing reveal-fit tool and independent phone QA on actual payloads;
 the pure model tests establish arithmetic and snapshot invariants only.
 
+Compound captions show the actual operation `× (1 ± rate/100) + addition`, with
+shortest round-trip input literals. They do not round a multiplier (for example,
+12.5% remains 12.5/100 rather than suggesting ×1.13). Output and Seen readouts
+retain their common two-decimal rounding. This changes presentation only;
+calculations still use JavaScript numbers and their ordinary binary precision.
+
 Run focused checks without a server/build:
 
 ```sh

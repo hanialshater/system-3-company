@@ -5,7 +5,7 @@ import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import {
-  calculateModel, canResetObservation, fillSeen, formatBookValue, initialObservation, observeScenario,
+  calculateModel, canResetObservation, fillSeen, formatBookValue, formatCompoundOperation, initialObservation, observeScenario,
   resetObservation, validateBookIdeaSpec, type BookIdeaSpec, type CaseIndex,
   type ModelResult, type Observation, type ValidatedBookIdeaSpec,
 } from "@/lib/books/model";
@@ -119,7 +119,7 @@ function CausalPicture({ spec, values, result }: {
       const y = (n: number) => 118 - n / max * 77;
       const path = trace.map((n, i) => i ? `H ${x(i)} V ${y(n)}` : `M ${x(i)} ${y(n)}`).join(" ");
       return <>
-        <text x="160" y="21" textAnchor="middle">{v ? `× ${fmt(1 + v[1] / 100)} + ${fmt(v[3])}` : "× ? + ?"}</text>
+        <text x="160" y="21" textAnchor="middle">{v ? formatCompoundOperation(v[1], v[3]) : "× ? + ?"}</text>
         <path d="M 25 37 V 118 H 302" className={s.axis} />
         {v ? <>
           <path d={path} className={s.highlight} />

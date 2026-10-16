@@ -1,7 +1,7 @@
 {
   "slug": "bk-innovator-demand-crossing",
-  "title": "When enough becomes enough",
-  "hook": "A toy design improves by 30% per round. Does its later performance clear a requirement?",
+  "title": "When is it enough?",
+  "hook": "A toy design improves 30% each round. When does it meet its requirement?",
   "domain": "books",
   "concept": "book-innovator-demand-crossing",
   "status": "draft",
@@ -52,9 +52,10 @@
         "idea.scenarios",
         "idea.labels",
         "idea.unit",
-        "idea.modelBoundary"
+        "idea.modelBoundary",
+        "title"
       ],
-      "text": "Original stipulated compound model: A inputs [5, 30, 2, 0] yield 8.45; B inputs [5, 30, 4, 0] yield 14.2805. Prediction correct option 14.28. A reaches {A}; B reaches {B}. Four repeated 30% increases cross the stated requirement of 12, although two rounds do not. Fixed improvement and requirement 12 are invented; no technology trajectory is predicted.",
+      "text": "Original stipulated compound model: A inputs [5, 30, 2, 0] yield 8.45; B inputs [5, 30, 4, 0] yield 14.2805. Prediction correct option 14.28. Two rounds reach {A}, below requirement 12; four reach {B}, above it. The fixed 30% rate and requirement are invented, not technology forecasts. Hook premise: a toy design improves 30% each round. The shorter title and hook ask when it meets the stipulated requirement; no real technology forecast is made.",
       "support": "derivation",
       "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
       "status": "unverified"
@@ -100,7 +101,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "books:book-innovator-demand-crossing",
     "also": [

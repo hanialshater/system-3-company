@@ -21,3 +21,21 @@ The shared model validator accepted the payload. Direct calculation: "2 rounds; 
 ## Handoff
 
 Root owns integrated check/typecheck/build and registration. Independent QA owns every route and Reset-last result. Learning/design/accessibility reviewers own representative and bounded-group review. Fact-checker owns all claim verification. No publication or deploy.
+
+## Pre-flight v2 — measured phone-crop revision
+
+Actual v1 proof inspected: `artifacts/books100-final-51c8a4ed-v1/fit-shots/bk-innovator-demand-crossing.png`; source freeze `51c8a4edaf8ee3cd7108b1b195dd43221eac9fcc`, 390×844. The report `reports/fit-01.json` has stage-top crop **26 px**, `phoneFit: false`, despite coarse `verdict: fit`. The viewed shot loses the Toy model heading above the controls. Its two-line title and three-line hook use extra header height.
+
+1. Title and hook: "When is it enough?" / "A toy design improves 30% each round. When does it meet its requirement?". They retain the stipulated 30% rate and ask about the requirement without printing the winning result.
+2. Options unchanged: 14.28 / 6.50 / 11.00 / 20.00, uniformly numeric.
+3. Locked shared stage is unchanged. No calculated result is introduced by this metadata-only revision; all stage controls remain locked until commit.
+4. Reveal values remain the exact saved A=8.45 and B=14.28 from [5,30,2,0] and [5,30,4,0]. Requirement12 and invented fixed-rate boundary are unchanged.
+5. Source path remains A, B, Reset with two milestones. This revision starts no browser, server or build; final v2 DOM-order run remains independent QA's work.
+6. Reset behavior and the reveal body are unchanged. Both snapshots remain alongside the restored A picture under the reviewed shared renderer; fresh v2 Reset-last observation pending.
+7. Header budget: title 26→18 characters (4→4 words); hook 87→72 characters (15→13 words). The reveal remains71 body words by builder count; unchanged tool measured74 including verdict. Stage content unchanged. Expected fit improvement is fewer header lines; no v2 crop value or pass is claimed until actually rendered and viewed.
+
+Only this lesson's title/hook and their addressed unverified toy-claim record changed; version bumped2 and evidence cleared. All scenario values, prediction, recall, book identity, attribution and limits are unchanged. Integrator must regenerate the title registry and reconcile any manifest display title. Final v2 screenshot inspection remains open.
+
+### Final prepared v2 wording
+
+The header-only candidate above was not served or declared passing. To leave room for the adaptive picture to return toward its natural height, the same unserved v2 also shortens the model explanation from33 to23 words; full reveal body71→61 words. Final text: "Two rounds reach {A}, below requirement 12; four reach {B}, above it. The fixed 30% rate and requirement are invented, not technology forecasts.". It preserves both captured results, both sides of requirement12, the fixed30% rate and invented/nonforecast boundary. The book attribution, prediction and all numbers remain unchanged. The toy claim is updated and stays unverified. Fresh phone measurement and actual viewing remain pending.

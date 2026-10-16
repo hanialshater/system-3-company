@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  calculateModel, canResetObservation, fillSeen, formatBookValue, initialObservation, observeScenario,
+  calculateModel, canResetObservation, fillSeen, formatBookValue, formatCompoundOperation, initialObservation, observeScenario,
   resetObservation, validateBookIdeaSpec,
 } from "../../src/lib/books/model.ts";
 
@@ -28,6 +28,16 @@ test("selection weights denominators and preserves expected fractional successes
   assert.deepEqual(calculateModel("selection", [3, 50, 1, 100]), { output: 62.5, trace: [1.5, 1] });
   assert.equal(calculateModel("selection", [0, 99, 10, 30]).output, 30);
   assert.equal(calculateModel("selection", [90, 10, 10, 90]).output, 18);
+});
+test("fractional compound input remains inspectable while results round to two decimals", () => {
+  const result = calculateModel("compound", [1, 12.5, 8, 0]);
+  assert.ok(Math.abs(result.output - (9 / 8) ** 8) < 1e-12);
+  assert.equal(formatBookValue(result.output), "2.57");
+  assert.notEqual(formatBookValue(1.13 ** 8), "2.57");
+  assert.equal(formatCompoundOperation(12.5, 0), "× (1 + 12.5/100) + 0");
+  assert.equal(formatCompoundOperation(-12.5, 0), "× (1 − 12.5/100) + 0");
+  assert.equal(formatCompoundOperation(68.1792830507429, 0), "× (1 + 68.1792830507429/100) + 0");
+  assert.throws(() => formatCompoundOperation(NaN, 0), /Book model:/);
 });
 test("branching counts include the seed and stop at total capacity", () => {
   assert.deepEqual(calculateModel("network", [100, 2, 3]), { output: 15, trace: [1, 3, 7, 15] });

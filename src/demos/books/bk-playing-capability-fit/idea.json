@@ -7,7 +7,7 @@
   },
   "family": "flow",
   "predict": {
-    "question": "B requires three serial capabilities, each at five jobs/hour. What is B’s toy result?",
+    "question": "Every job passes Make, Deliver and Support. In B, each handles five jobs/hour. How many completed jobs per hour can B sustain?",
     "options": [
       "15.00",
       "18.00",
@@ -42,6 +42,6 @@
   ],
   "unit": "jobs/hour",
   "bookIdea": "Playing to Win connects strategic choices with the capabilities needed to make those choices work together.",
-  "modelBoundary": "A completes {A} jobs/hour; B completes {B}. B has fewer total capacity units, but every required step can sustain five jobs. Serial equal-job capabilities are stipulated; a real strategy is not reduced to one rate.",
+  "modelBoundary": "Every job needs all three steps. A completes {A} jobs/hour; B completes {B}. B has less total capacity, yet each step handles five. Jobs are identical; real strategy involves more than this stipulated rate model.",
   "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
 }

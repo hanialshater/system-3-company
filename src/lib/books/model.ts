@@ -129,6 +129,13 @@ export function formatBookValue(value: number): string {
   if (!Number.isFinite(value)) fail("cannot format a nonfinite value");
   return new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(Object.is(value, -0) ? 0 : value);
 }
+/** Show the actual input operation, never a rounded multiplier implying a different rate.
+ * String(number) retains a shortest round-trip literal; result readouts still round to 2dp.
+ */
+export function formatCompoundOperation(ratePercent: number, additionEachStep: number): string {
+  if (!finite(ratePercent) || !finite(additionEachStep)) return fail("compound caption inputs must be finite");
+  return `× (1 ${ratePercent < 0 ? "−" : "+"} ${String(Math.abs(ratePercent))}/100) + ${String(additionEachStep)}`;
+}
 /** Literal substitution only: no HTML, interpolation engine, eval or computed fallback. */
 export function fillSeen(text: string, seen: Observation["seen"]): string {
   return text.replace(/\{([AB])\}/g, (_, key: string) => {

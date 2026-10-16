@@ -7,7 +7,7 @@
   },
   "family": "flow",
   "predict": {
-    "question": "B prepares six, approves eight and acts on six decisions/hour. What is B’s toy result?",
+    "question": "Each decision needs Prepare, Approve and Act. B handles 6, 8 and 6 decisions/hour at those steps. How many completed decisions per hour can B sustain?",
     "options": [
       "8.00",
       "12.00",
@@ -42,6 +42,6 @@
   ],
   "unit": "decisions/hour",
   "bookIdea": "Turn the Ship Around! describes moving authority toward people able to act on local knowledge.",
-  "modelBoundary": "A completes {A} decisions/hour; B completes {B}. Approval stops limiting flow after redistribution, but preparation and action now jointly cap it at six. Only serial capacity is modeled; knowledge quality, military operations and leadership outcomes are outside it.",
+  "modelBoundary": "Every decision needs all three steps. A completes {A} decisions/hour; B completes {B}. B’s approval handles eight, but preparation and action each cap completions at six. Knowledge quality, military operations and leadership outcomes are not modeled.",
   "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
 }

@@ -21,3 +21,17 @@ The shared model validator accepted the payload. Direct calculation: "Uneven inv
 ## Handoff
 
 Root owns integrated check/typecheck/build and registration. Independent QA owns every route and Reset-last result. Learning/design/accessibility reviewers own representative and bounded-group review. Fact-checker owns all claim verification. No publication or deploy.
+
+## Pre-flight v2 — serial completion clarity
+
+Family follow-through from the actual E-Myth learner finding in `company/reviews/books-100/2026-10-16-learner-seven-v3.md`. Builder actually viewed this lesson’s v1 phone reveal at `artifacts/books100-final-51c8a4ed-v1/fit-shots/bk-playing-capability-fit.png` before changing it.
+
+1. Title and hook unchanged: "A strategy’s working parts" / "A toy strategy has three required capabilities. Does the largest capacity total win?". No new winning result is added there.
+2. Options unchanged and uniformly numeric: ["15.00", "18.00", "5.00", "2.00"]. The question now asks explicitly for completed output/hour and says all three stages are required: "Every job passes Make, Deliver and Support. In B, each handles five jobs/hour. How many completed jobs per hour can B sustain?".
+3. Locked diagram and all controls are unchanged. The new question states the model premise rather than naming the winning option. Fresh browser inspection pending.
+4. Saved values are unchanged, computed from the same A/B capacities. Reveal now explains the required passage through every stage in plain language: "Every job needs all three steps. A completes {A} jobs/hour; B completes {B}. B has less total capacity, yet each step handles five. Jobs are identical; real strategy involves more than this stipulated rate model.".
+5. DOM-order source path remains A, B, Reset with two milestones; no browser/build/server was started for this edit. Independent v2 run pending.
+6. Reset and Seen evidence are unchanged; reveal references the same A/B snapshots. Fresh v2 Reset-last screenshot pending.
+7. Reveal body 78→78 words by builder count; stage/title/hook unchanged. Actual v2 crop and phone fit are unmeasured. The final phone image must be inspected before claiming this is complete.
+
+Only prediction wording and model explanation changed. All scenario values, answer index/options, recall, book identity and book paraphrase remain unchanged. The addressed toy claim is rewritten and unverified; version2 and empty evidence ensure old screenshots cannot count as current QA. Source/manifest alignment needs this named review exception, not a claim that it is byte-identical to the original brief.
