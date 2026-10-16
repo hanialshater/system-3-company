@@ -1,6 +1,6 @@
 # EDD-011: Extra crossings in drawn knot diagrams (EDD-004 defect a, import block a)
 
-author: rnd-lead (Bram) · reviewers: principal-engineer + design-lead (random-knot pictures) · tier: 2 · status: **proposed**. Part 1 (scope) asks the principal engineer to confirm it; Part 2 (the fix) is **paused** by the R&D Review of 2026-10-14 until a written brief needs it
+author: rnd-lead (Bram) · reviewers: principal-engineer + design-lead (random-knot pictures) · tier: 2 · status: **Part 1 approved with changes** (principal engineer, 2026-10-16: [re-read](../reviews/2026-10-16-knots-w407-reread.md); conditions in Part 1 below); Part 2 (the fix) is **paused** by the R&D Review of 2026-10-14 until a written brief needs it
 date: 2026-10-16 · board: W-407 (remainder), W-857 · follows: [EDD-004](EDD-004-knots-kit.md) defect (a), [eng review](../../rituals/records/2026-10-14-eng-review-EDD-004.md) item 5 and "Follow-ups"
 
 ## Problem and why now
@@ -21,7 +21,9 @@ Why now: the founder wants knot lessons shipping, and board W-407 ("conditions b
 - Random and moved diagrams (EDD-004 defect a): `randomKnot` defaults 0/10,000; the bench's disguised braid closures 25/1,000 (2.5 %); projected random polygons 9/1,000 (0.9 %).
 - **New, 2026-10-16 (this EDD):** every one-component `KNOTS` entry (0_1 … 7_7, 10_8, granny, square), drawn (1) with its stored `layout`, (2) as its `mirror` with the default layout, (3) after each single `crossingChange` on the stored layout, and (4) after cumulative crossing changes 0..c on the stored layout: **0 extra crossings in all cases**, handedness correct at every crossing. Probe: 301 pictures over all 21 entries; the only non-zero results were 7 pictures of the link L6a4 after crossing changes (2 extra each), which block (c) already forbids. Now a test in both the kit and the lab: "table knots stay clean when mirrored or after crossing changes on the stored layout (outside block (a))" (`src/kit/knots/test/draw.test.mjs`, `src/lab/knots/test/draw.test.mjs`).
 
-## Part 1: scope of block (a) (proposed for the principal engineer to confirm; no code change in the library)
+## Part 1: scope of block (a) (approved with changes 2026-10-16; no code change in the library)
+
+**Ruling ([re-read](../reviews/2026-10-16-knots-w407-reread.md)).** Approved, with the safe set tightened so that it matches what was measured. The pictures below are outside block (a) only when (i) the layout is the diagram's default or `layout(pd)` with **default `relax`** from the current kit (computed at run time, or frozen and pinned by a test to equal it), and a crossing-changed diagram uses the stored layout of the entry or mirror it came from; and (ii) `draw` is called with the **default `size` and `margin`**, or `margin = 0.08 × size`, with scaling and padding done by the SVG `viewBox` or CSS. Reason: `margin` is absolute, and handles are clamped to the view box, so the margin/size ratio changes the picture's shape. `draw(knot('4_1').pd, { size: 360 })` shows 1 extra crossing, and 6_3 at size 360 / margin 8 shows 2; `relax: 0` shows 1 on 3_1 and 4_1 (re-read F2). "Any sequence" of crossing changes is confirmed for every subset, by code reading and an exhaustive probe (F1), and it also holds for the mirror with its own layout. `turnOver` pictures are not in the set (F4).
 
 **Outside block (a)** ("table-knot pictures"): a lesson that draws only
 1. a one-component entry of `KNOTS` (`knot(name).pd`), with the default layout or its own stored `layout`;
@@ -60,6 +62,6 @@ Part 1 changes tests and documentation only: no runtime code, no route, no data,
 
 ## Open questions and objections
 
-- **"Part 1 lets lessons draw knots that block (a) was meant to stop."** No: Part 1 covers only pictures that were never in block (a)'s reasons (EDD-004 defect a names `randomKnot` and moved diagrams); it adds a test that shows each such picture is clean. Raised by me as a self-check; open for the principal engineer.
+- **"Part 1 lets lessons draw knots that block (a) was meant to stop."** No: Part 1 covers only pictures that were never in block (a)'s reasons (EDD-004 defect a names `randomKnot` and moved diagrams); it adds a test that shows each such picture is clean. Raised by me as a self-check. **Answered by the principal engineer (re-read, Decision):** holds for the stated set, which is now tightened by conditions (i) and (ii).
 - **Crossing changes on a stored layout of a link (L6a4) show 2 extra crossings.** Not a lesson risk while block (c) holds. Whoever lifts block (c) must add links to the new test (owner: rnd-lead, only if a brief needs links).
 - **Should Part 2 start now, since the founder wants knot lessons?** No brief needs random-knot yet (W-146 has none). Starting it would spend R&D budget against the R&D Review's pause; that is for the portfolio forum and vp-rnd, not this EDD.
