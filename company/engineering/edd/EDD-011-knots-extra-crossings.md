@@ -32,6 +32,8 @@ Why now: the founder wants knot lessons shipping, and board W-407 ("conditions b
 
 **Inside block (a)** (unchanged): every picture not in 1–3. For example anything from `randomKnot`, `scramble`, `simplify`, `randomMove`, `apply`, `addKink`, `addBigon`, `reduce`, `project`, `fromDT`/`fromGauss`/`fromBraid` on a code that is not a table entry, `connectedSum` of entries other than the tabled granny and square, and any of the above re-drawn with a fresh `layout`.
 
+**Scope note (2026-10-16, [W-1567 ruling](../reviews/2026-10-16-knots-left-or-right-card.md)).** A CSS reflection or flip of a picture in 1–3 is presentation, like `viewBox` scaling: the reflected mirror at rest is the turned-over knot, measured, and needs no addendum. Conditions C1–C3 in the ruling, because the usual back-face idiom ends on the mirror. `draw`/`layout` of `turnOver(pd)` stays inside block (a).
+
 Blocks (b) and (c), the 6_3 limit and the "other knots go to the design lead" limits still apply to table-knot pictures: Part 1 only says that block (a) is not what stops them. Enforcement stays by review (eng review item 5); the new test is the evidence a reviewer cites.
 
 ## Part 2: lifting block (a) for random-knot (paused)

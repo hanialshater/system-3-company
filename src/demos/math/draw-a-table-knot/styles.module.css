@@ -1,0 +1,47 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; }
+.wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
+
+.caption { margin: 0; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+
+/* Fixed aspect so the HTML tap targets sit exactly on the crossings (viewBox -1.5 -1 103 105, S1 tightened).
+   Explore: 2.76 px per unit (the 320 px / 116 scale of a 390 phone). Reveal: 2.24 px per unit
+   (260 px / 116, the smallest scale the design-lead measured for S3), so the stage top stays on screen. */
+.board {
+  position: relative;
+  width: min(100%, 284px, calc(36dvh * 103 / 105));
+  aspect-ratio: 103 / 105;
+  margin: 0 auto;
+}
+.atReveal .board { width: min(100%, 231px); }
+.board .svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+
+/* S2: stroke 2 viewBox units, butt caps. */
+.strand { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: butt; stroke-linejoin: round; }
+.ring { fill: none; stroke: var(--domain); stroke-width: 1.2; }
+
+/* S3: a 44 px hit circle per crossing. */
+.hit {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.hit:disabled { cursor: default; }
+.hit:focus-visible { outline: 3px solid var(--accent); outline-offset: -6px; }
+
+.now { margin: 0; text-align: center; font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+.seen { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 600; line-height: 1.3; min-height: 1.3em; color: var(--domain); }
+/* Phone fit at the reveal: tighter spacing only; no text or tap target is made smaller. */
+.wrap.atReveal { gap: 1px; }

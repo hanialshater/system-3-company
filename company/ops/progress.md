@@ -73,12 +73,134 @@ W-1616 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 
 **Blocked:** the push and merge, on W-1608, W-1612, W-1609, W-1610.
 
+## 2026-10-16 · platform-engineer · W-1587 EDD-004 C4 ruled met; W-1582 `.knot-tint` added
+
+**Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.
+**Believe:** fairly sure of the ruling (two busy-host runs, same shape); not sure of absolute phone numbers (no device, no idle host).
+**Next:** principal-engineer marks C4 met in the EDD-004 record (W-1590). demo-builder can use `.knot-tint` for unknot-game (W-1585) instead of a lesson-local rule. **Blocked:** nothing.
+
+## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
+
+**Changed:** `company/design/specs/unknot-game.md` (U-1 selected chip = `.control.active` disabled, never greyed; U-2 rings only, pointer events only on the 44 px circle; tint confirmed W-1580 with a lesson-local `.knot-tint` until the platform rule lands). `company/design/specs/left-or-right.md` rewritten as a self-contained B2 build spec: L-1 ring 13 + ≥ 2.0-unit badge gap test (expected min 2.43 at 4_1 crossing 0, the right-hand beak; "right lens" wording fixed), L-2 dip (100 out / transform untransitioned / 100 in), L-3 marks timing with timer fallbacks and retargeting, L-4 no blanking, L-5 perspective ≥ 1200 px + 8 % vertical room (kit `.stage` is overflow auto), L-6 aria-pressed; W-1581 seen line "Trefoil: turned over −3 · mirror +3", no Reset, figure-eight fallback reveal default; A and B1 moved to an appendix. `knots-batch1-mockups.mjs` at ring 13 (prints gap 2.43 PASS, same as the design lead's probe), both SVGs regenerated (QA-path row, mid-dip frame, 4_1 rest states). Board W-1584 done.
+**Believe:** sure the numbers match the probe (rerun). Fairly sure the specs are unambiguous for a builder; the timing rules are untested in a browser.
+**Next:** demo-builder builds both (W-1585); design-lead checks the built sheets (S4). **Blocked:** nothing.
+
+## 2026-10-16 · design-lead · W-1568 spec review (unknot-game, left-or-right) and W-1583 arc sets
+
+**Changed:** new `company/design/reviews/2026-10-16-knots-specs-review.md` (+ `badge-probe.mjs`); board W-1584 (interaction-designer), W-1585 (demo-builder).
+**Believe:** both specs approved with changes. unknot-game: U-1 selected chip looks selected not greyed, U-2 crossing buttons never filled. left-or-right B2: L-1 badge ring 13 units (spec's 10 leaves 2.9 px at 4_1's beak; 13 gives 6.1 px) with a 2.0-unit floor test; L-2 Mirror is an opacity dip, never a cross-fade (two outlines superimposed = false crossings); L-3 marks timing; L-4 readout never blanks; L-5 perspective >= 1200 px, no clipping; L-6 Turn over aria-pressed. Mid-flip on 4_1 accepted (53 ms in the touch band at 300 ms ease-in-out). Dropping Reset accepted. W-1583: tricolour-check takes the visual designer's sets plus A/B/C letter rings (replaces arc numbers). Sure on the measures; fairly sure on readability (mockups, not a device).
+**Next:** builders apply the conditions now (W-1585), even before the spec text is updated (W-1584); design-lead reviews built sheets (S4). **Blocked:** nothing.
+
+## 2026-10-16 · cm-math-discrete · W-1581: rulings on the unknot-game and left-or-right specs
+
+**Changed:** math.discrete.md Knots batch 1 briefs 3 and 4 ("Spec rulings (W-1581)"), knots-check.mjs (new K20 tint facts 7 of 7, K21 B2 four rest states), brief-skips.json (both lines removed).
+**Believe:** high that the checks hold (rerun clean). All unknot-game choices accepted; left-or-right built as B2 (Mirror scaleX(-1) with the spec's table), no Reset, seen line prefixed "Trefoil:", 9-word caption for fallback A only, figure-eight fallback sentence is the default. Not known: that the browser composes the wrapper as the table says; the builder's rendered check shows it.
+**Next:** demo-builder builds briefs 3 and 4 (spec obligations 1 to 3). **Blocked:** nothing.
+
+## 2026-10-16 · cm-math-discrete · W-1577 and W-1576: knots batch 1 folded in the design lead's and principal engineer's rulings
+
+**Changed:** company/domains/briefs/math.discrete.md (Knots batch 1), knots-check.mjs (K13 at 260/290/320 px, new K18 gap 0.5 on all subsets of 3_1/4_1/5_2/6_1, new K19 four card rest states), brief-skips.json (unknot-game, left-or-right held for W-1568). Brief 4 builds as version B (two-sided card) with PE-C1 to C4 and DL-C1 to C6; A is a fallback with its control renamed "Turned over?". Mirror stays face-swap (DL-C6), not `scaleX(-1)`. S1 to S4 added to all four briefs; stale EDD-011 sentence replaced. Status: brief 1 and 2 READY; brief 3 waits only on W-1568 (tint spec); brief 4 waits on W-1568 (card spec).
+**Believe:** high on the numbers (check reruns clean, K13 matches the design lead's 29/26/32 px and 79/71/87 px); high that B is right if the back face is authored reflected (K17, K19); not known: that the browser does what the arithmetic says.
+**Next:** interaction-designer W-1568; demo-builder builds 1 and 2 (W-1579). **Blocked:** 3 and 4 on W-1568.
+
+## 2026-10-16 · interaction-designer · W-1568 specs: unknot-game tint, left-or-right versions A and B
+
+**Changed:** company/design/specs/unknot-game.md + .svg and left-or-right.md + .svg, both rendered with the kit by company/design/specs/knots-batch1-mockups.mjs (S1 gap 0.5, stroke 2 butt, viewBox -8 -8 116 116; turnOver never drawn). unknot-game: one switch at a time; the tint is only the first R2's edge that is over at both crossings (design-lead condition), 3 units wide, --domain dark / domain 70% + black light; both tally rows always shown; DOM order crossings, Reset, chips (chips last because QA counts controls once and 4_1 adds a button). left-or-right: A (question chip "Turned over?" per the design lead's objection, optional in-plane "Turn it round", Mirror) and B (two-sided card with the back face authored reflected, PE-C1; Mirror as an outer scaleX(-1) wrapper with a cross-fade, never an animated squeeze; rest-state composition table; builder's browser check and signs test). Both drop Reset and keep a seen line. Board: W-1568 → review; W-1581 (cm-math-discrete decisions), W-1580 (visual-designer tint token).
+**Believe:** high that every number quoted is the kit's (script output; first R2 contains the tapped crossing in 7 of 7, one edge over at both, one under at both). Medium on badge placement near 4_1's right lens (7.0 units clearance in the mockup) and on mid-flip legibility, both for the design lead on the built sheet.
+**Next:** cm-math-discrete W-1581 (A or B and the wording), then demo-builder. Design review of the specs. **Blocked:** nothing.
+## 2026-10-16 · demo-builder (w1539) · draw-a-table-knot built (first knot lesson, first use of `layout`)
+
+**Changed:** new draft lesson `src/demos/math/draw-a-table-knot/` (6₁/5₂, tap a crossing to switch it, name readout from `identify`, milestone `switched`), 8 unverified claims. Imports only `@/kit/knots`; `layout` once per knot in `useMemo`; `draw(pd, { layout: L, gap: 0.5 })`; no size/margin/relax; design-lead S1 to S3 followed, viewBox tightened as S1 allows. Build note `company/reviews/draw-a-table-knot/build.md`; C4 note `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md` with script `company/reviews/draw-a-table-knot/c4-timing.mjs`. Board: W-1539 → review; W-1586 (cm-math-discrete: reveal 93-94 words on the wrong-answer path), W-1587 (platform-engineer: C4), W-1588 (design-lead: S4 walk + 2 departures), W-1589 (fact-checker: c1-c8).
+**Believe:** high that QA contract passes (phone + desktop, local) and reveal-fit is fit with crop 0 at 390×844; high that a tap redraw is about 1 ms at 4× throttle; medium on the absolute C4 numbers (host load 3 to 7 on 4 CPUs).
+**Next:** cm-math-discrete cuts the reveal to ≤ 90 (W-1586), then fact-checker, qa-tester record, learner walk, design-lead S4. **Blocked:** draft → review status waits on the word budget (W-1586).
+
+## 2026-10-16 · cm-course-ncm · the 3 launch-walked NCM gap lessons: status routed, learner notes boarded
+
+**Changed:** did not move same-picture-two-histories, price-tag-or-auction or worth-something-alone to review: no CLI command moves status (tools/company.mjs has only meta.json validation), my role may not change lesson status (company/roles/cm-course-ncm.md Authority), demo-builder may set draft → review (company/roles/demo-builder.md), and the previous handoff routes the decision to the strand managers. Board: W-1574 (cm-probability-statistics: decide same-picture), W-1575 (cm-economics-markets: decide the two economics lessons; W-507 still doing). Learner notes: W-1571 demo-builder REQUIRED before launch (same-picture: giveaway option 3, unkeyed red/green/dashed codes, step-1 counter), W-1572 and W-1573 demo-builder OPTIONAL (price-tag "tag:" row label; worth-something unnamed 10¢ curve and crowded labels).
+**Believe:** high that the status move is not mine. Medium on calling same-picture's option 3 required: the learner said launch, but a prediction answerable by text-matching defeats the format; the strand manager may overrule in W-1574.
+**Next:** demo-builder W-1571 (then fact-check of changed claims + learner re-walk); strand managers W-1574/W-1575. **Blocked:** nothing.
+## 2026-10-16 · cm-math-discrete · W-1569 answers to the knot design notes (briefs 1 to 4)
+
+**Changed:** company/domains/briefs/math.discrete.md, briefs 1 to 4. Accepted: draw-a-table-knot switch-not-count (and the joke option out, determinant sentence out); tricolour-check staggered cycles (a real QA-path bug in my brief), narrowed doesNotKnow, and the plain-loop chip, which I made required (the narrowed doesNotKnow names it); unknot-game one switch at a time with tally, the "on top twice" tint, and "switch all three" dropped. Brief 4 now holds both versions: A (mirror only, caption "Flip it over", buildable now) and B (designer's two-sided card, only if design lead W-1566 and principal engineer W-1567 both rule yes). knots-check.mjs gained K14 (single switches of 5_2: 3 trefoil, 2 plain loop; 6_1: 4 figure-eight, 2 plain loop), K15 (every single switch on 3_1 and 4_1 offers an R2), K16 (staggered cycles reach three colours), K17 (card end state signs equal signs(turnOver) only if the back face is reflected).
+**Believe:** high that the new numbers are true (rerun the check); high that B is mathematically right if the back face is reflected, and wrong with the usual counter-rotated back face (K17); medium that the tint and card read well (design questions). All citations still unverified.
+**Next:** interaction-designer spec for the tint and the card (W-1568); design lead and principal engineer rulings (W-1566, W-1567); the demo-builder builds 1 to 3 from the revised briefs. **Blocked:** brief 4 build waits on W-1566/W-1567 for version B; version A needs only the design lead's mirror contact sheets.
+## 2026-10-16 · principal-engineer · W-1567 left-or-right two-sided card ruling
+
+**Changed:** ruling at company/engineering/reviews/2026-10-16-knots-left-or-right-card.md, probe at company/engineering/reviews/2026-10-16-W-1567-flip-probe.mjs, and a one-sentence scope note in EDD-011 Part 1. The two-sided card (front `draw(pd)`, back = mirror on the stored layout, CSS flip) fits rule 2(a) and EDD-011 Part 1 with no addendum, under conditions C1 to C4. The reflected mirror equals the turned-over knot: signs read from the drawn geometry, and curves to within 0.1 of 100, on all 17 one-component entries. Catch (C1): the usual back-face idiom shows the back face's content unreflected, so a back face authored as plain `draw(mirror(pd))` ends on the MIRROR knot. It has to be authored reflected and checked in the rendered page. Mid-flip frames show the same diagram as the face they belong to, never the mirror. Around 90° legibility is the design lead's question. Revised brief 4 (mirror-only) is inside the rules, but one sentence in it is stale ("none may be added without an addendum"): W-1576.
+**Believe:** high on the math and on the scope (measured, and checked against the code). Medium-high on C1's CSS reading (CSS Transforms backface rules, not run in a browser here).
+**Next:** W-1566 (design-lead, visual half). W-1576 (cm-math-discrete: fix the stale sentence, then choose mirror-only or the card with learning-designer). If it is the card, W-1568 (interaction-designer) specs it with C1 to C4. **Blocked:** nothing.
+## 2026-10-16 · design-lead (Ines) · knots batch 1 contact sheet, block (b) per lesson, W-1566
+
+**Changed:**
+- Wrote `company/design/reviews/2026-10-16-knots-batch1-contact-sheet.md` with sheets, `metrics.json` and `sheet.mjs` in the folder beside it: 67 pictures drawn by the kit at 290 and 320 px, both themes.
+- **Rulings:**
+  - Block (b) is **lifted** for tricolour-check, unknot-game and left-or-right (knot and mirror pictures), with conditions S1 to S4: `gap: 0.5`, stroke 2 units with butt caps, viewBox `-8 -8 116 116`, 44 px hit circles.
+  - draw-a-table-knot is cleared, including the switched states.
+  - W-1566: I prefer the **two-sided card**, under C1 to C6. It needs W-1567 (principal-engineer) and a brief revision (cm-math-discrete); until then the caption-only brief stands.
+- **Board:** W-1566 done. Added W-1577 (cm-math-discrete) and W-1578 (design-lead, the S4 check at build).
+
+**Believe:**
+- Sure: 0 false crossings in all 67 pictures, including within 3 % of a real crossing (the detector has a self-test).
+- Sure: the card's back face reads the signs of `turnOver(pd)`.
+- Fairly sure: 4_1's right-hand crossing needs `gap: 0.5`. At the default, its gap is 4.2 px, narrower than the stroke.
+- The real phone stage is 290 px, not 360.
+
+**Next:** principal-engineer W-1567, cm-math-discrete W-1577, interaction-designer W-1568 (tint one strand, the card).
+
+**Blocked:** the left-or-right card, on W-1567.
+
+## 2026-10-16 · cm-math-discrete · W-1550 knot brief 4 and the U1 padding
+
+**Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).
+**Believe:** high that the brief draws only allowed pictures and its answer (B) is true; medium that "Flip it over" reads well with no picture change (a design-review question). Citations stay unverified.
+**Next:** design-lead contact sheet for the mirror pictures; demo-builder W-1542 may start. **Blocked:** nothing.
+## 2026-10-16 · learner-evaluator (ncm-final-four) · borrowed-mind walks of the 4 NCM gap lessons
+
+**Changed:** walked same-picture-two-histories, price-tag-or-auction, worth-something-alone and the-swap-that-goes-in-circles (all v1, draft) from their meta.json learner boundaries, on a private build of 236737ff. Four records, each linked in its meta.json evidence.simulatedLearner (nothing else in meta.json touched): `company/reviews/<slug>/2026-10-16-learner-knows-*.md`. Verdicts: launch, launch, launch, revise.
+**Believe:** medium. The-swap-that-goes-in-circles: the reveal's takeaway ("choice models assume preferences are transitive") never says what transitive means; the objective and recall already gloss it as "ranked (transitive)", so the fix is text-only. The other three carry non-blocking notes (unkeyed red/green links and a giveaway option in same-picture; the "tag:" row label in price-tag; overlapping curve labels in worth-something-alone). Simulated learner only: not evidence that anyone learned.
+**Next:** demo-builder glosses "transitive" in the swap reveal (and decides on the group-majority sentence), then learner-evaluator re-walks it. cm-probability / cm-economics decide on moving the other three to review.
+**Blocked:** nothing.
+
+## 2026-10-16 · chief-of-staff-ceo-office · W-1538 approval of the PM-authored knot items
+
+**Changed:** W-1539..W-1542 (knot builds 1-4, demo-builder) approved, P2, next. Each carries the EDD-011 Part 1 conditions in its triage note: default layout and relax, default size/margin, scaling only via the viewBox, and C4 on the first to ship. W-1542 starts only after W-1550 (brief 4: turnOver is still blocked; the back-face flip draws the mirror knot). W-1543 (chief-of-staff founder-inbox filing for tranche 2) approved with a 5-point filing checklist. W-1565 to rnd-lead closes W-407, which is board lag. W-1538 is done. Record: the "Approval" section of company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md.
+**Believe:** high that the gates are met (re-read cebe763d, readiness 9f7e90cc, verify 0225a38a, all on disk). Medium that brief 4 is otherwise build-ready: it has not been re-read since the F4 finding.
+**Next:** the operating chief of staff dispatches builds 1-3 now (host guard permitting), build 4 after W-1550, and files W-1543 per the checklist. rnd-lead closes W-407 (W-1565). The founder decides tranche 2.
+**Blocked:** nothing on briefs 1-3.
+## 2026-10-16 · learning-designer (Lena) · design notes for knots batch 1 (briefs 1 to 4)
+
+**Changed:** wrote `company/reviews/{draw-a-table-knot,tricolour-check,unknot-game,left-or-right}/design.md` (boundary, misconception, objective, prediction, interaction, notice, reveal ≤ 90 words, recall, flags). Board W-1569 (cm-math-discrete: accept/reject brief changes, add K labels), W-1566 (design-lead) and W-1567 (principal-engineer): the left-or-right flip ruling, W-1568 (interaction-designer: unknot-game tint, left-or-right flip card). No code, no meta.json (no lessons exist).
+**Believe:** sure that a one-sided CSS flip of a knot drawing shows the mirror, not the turned-over knot (planar reflection keeping gaps = mirror; kit `turnOver` = reflection plus every crossing switched, `src/kit/knots/index.d.ts`). Fairly sure the two-sided card (back face = `draw(mirror(pd))`) depicts `turnOver` exactly without drawing it, but whether that is inside README rule 2(a) is for the design lead and principal engineer. Fairly sure draw-a-table-knot as briefed (tap-to-count) confirms its own misconception; the switch redesign fixes that. Found a QA-path flaw in tricolour-check (one tap per arc cannot reach three colours). Kit numbers I quote for new claims (switched names, R2 after one switch) are my probe, not a K check.
+**Next:** cm-math-discrete W-1569; then draw-a-table-knot is buildable; tricolour-check and unknot-game build to draft (unknot-game after W-1568's tint spec); left-or-right waits on W-1566/W-1567, then W-1568.
+**Blocked:** left-or-right (ruling). Briefs 2 to 4 launch only after the design lead's per-lesson contact-sheet review lifts block (b).
+
+## 2026-10-16 · fact-checker · W-1562 the 4 NCM gap drafts fact-checked
+
+**Changed:** checked all 23 claims on same-picture-two-histories (4), price-tag-or-auction (6), worth-something-alone (7), the-swap-that-goes-in-circles (6) against Demo.tsx at f1568498 and my own re-derivations (Python closed forms, an independent Monte Carlo, the lesson's model.ts run with the kit RNG). 23 verified, 0 disputed, 0 withdrawn, no unrecorded claims. One record per slug: `company/reviews/<slug>/2026-10-16-fact-check.md`. W-1562 → done.
+**Believe:** high on every number (all reproduce exactly). Medium on the two source attributions resting partly on search summaries because the book host is blocked: price-tag-or-auction c5 (E&K 9.2, not on the card, also backed by a derivation) and worth-something-alone c6 (17.6 pointer only). Other sources were opened through PMC and Crossref and are quoted in the records.
+**Next:** qa-tester W-1563, then borrowed-mind walks. Non-blocking wording notes for demo-builder / cm-math are in the records (worth-something-alone c5 source "a >= 0.16" should be "a > 0.16"; swap recall "stop at his favourite").
+**Blocked:** nothing.
+
+## 2026-10-16 · demo-builder (demo-builder-ncm-gap4) · the 4 NCM gap lessons built, draft
+
+**Changed:** built `probability/same-picture-two-histories` (4.2, W-1522), `economics/price-tag-or-auction` (9.2, W-1523), `economics/worth-something-alone` (17.6, W-1524), `math/the-swap-that-goes-in-circles` (23.2, W-1525) from the strand briefs, numbers re-run with `company/courses/ncm/checks/rejudged-four.mjs`. All draft, all 23 claims unverified (kit support types). Build notes with pre-flight and stage word counts in `company/reviews/<slug>/build.md`. Board W-1522..W-1525 → review; added W-1562 (fact-checker) and W-1563 (qa-tester). Claims taken by slug and still held (not merged).
+**Believe (high):** local contract QA 8/8 (phone + desktop, unmodified spec) on my own Turbopack build; reveal-fit (tool clean) fit, crop 0, phoneFit true for all four; stage words ≤ 21 strict; typecheck and check pass. Every phone screenshot viewed. These are builder runs, not QA records. **Departure to check:** price-tag-or-auction uses exact cents ($38.49, $47.25, $33.33) where the brief wrote one-decimal roundings as cents ($38.50, $47.20, $33.30).
+**Next:** fact-checker W-1562, qa-tester W-1563, then borrowed-mind walks. cm-economics-markets W-507 is still open: an objection there sends price-tag-or-auction / worth-something-alone back (none recorded on 2026-10-16).
+**Blocked:** nothing. Section coverage reaches 110/110 only once these merge.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 
 **Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.
 **Believe (high):** no protected paths, no dependencies, 500/500 claims unverified, 100/100 draft; check, typecheck, all suites (hq 3 shallow-clone failures, W-1514), build, and the QA contract 200/200 on the 100 map- lessons (stamp clean) pass. The generator reproduces all 300 lesson files byte for byte from the 25 pinned upstream snapshots. **Not ready to merge:** tier 2 with no EDD, readiness record or engineering review (W-1556); the map paths are bulk-derived GPL-3.0 data with no decision record (best-practices 11, W-1557); the sensitive-route stage A (borders, colonialism) was skipped (W-1559 research note, then W-1558 cultural-reviewer).
 **Next:** chief of staff dispatches W-1556, W-1557, W-1559→W-1558; W-1560 (a11y) and W-1561 (reviewRoute shape, cm-history) run alongside, not merge gates. Then community-engineer merges the review branches, re-merges base, rebuilds, re-runs QA and pushes.
 **Blocked:** the push (by design, until those three gates are recorded). W-1554 may duplicate W-1503; test:dispatch passed here.
+## 2026-10-16 · platform-engineer (Noor) · W-408 EDD-004 C3 integrated verify
+
+**Changed:** recorded verify on 29f77f03 in `company/engineering/reviews/2026-10-16-w408-verify.md`. W-408 is done. One test-only fix: the default `BUILT_PORT` in `tests/platform/built-output.test.mjs` was 3659, which Next reserves, so the runtime-404 test could never start a server; it is now 3660. Routed W-1564 to tools-lead: dispatch-check's C3 worktree false positive.
+
+**Believe (high):** C3 is met. Every stage passes. The exceptions are 3 test:hq tests that fail only because this clone is shallow (W-1514). qa passed 2160/2160 in 1.2 h, and test:kit passed 98/98. The 4 built-output tests pass 34/34 on a local VERCEL=1 build, and nothing was deployed.
+
+**Next:** knot builds W-1539..W-1542 still wait on W-1521 (readiness approval by principal-engineer-ops); C3 no longer blocks them. tools-lead: W-1564. **Blocked:** nothing.
 
 ## 2026-10-16 · evaluation-steward (Hilde) · W-1535 lane A/B fact-check disagreements
 

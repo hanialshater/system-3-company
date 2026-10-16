@@ -1,0 +1,52 @@
+# Build note: worth-something-alone
+
+Builder: demo-builder (demo-builder-ncm-gap4), 2026-10-16. Board W-1524 (NCM 17.6 gap). Brief: `company/domains/briefs/economics.markets.md` #26 (J11). Numbers re-run first: `node company/courses/ncm/checks/rejudged-four.mjs` (both J11 lines reproduced). Status draft; every claim unverified.
+
+**W-507 (cm-economics-markets re-check) is still open.** No objection was recorded in `company/courses/ncm/briefs.md` (J11) or the strand file on 2026-10-16, so I built, as the brief allows. If the strand manager objects, this lesson goes back under that objection.
+
+Kept from evaluators until they report.
+
+Built as briefed: the value curve against the 16¢ price line. The curve is the keenest non-user's value at each share, (1 − z)(a + z); above the price line the share grows, below it shrinks, crossings are resting points (low crossing = tipping point, open dot). Its left end (marked "a¢: empty app" with a dotted leader) is the keenest fan's value with nobody else on it, the cause the reveal points at. A launch from 0 draws dots on the curve, one per round. Each stand-alone chip relaunches from 0; earlier stand-alone values stay as grey ghost curves labelled "N¢ alone" with their tipping point and end share. Readouts "share" and "tipping point" (one decimal; "none" when a ≥ price). Seen row "launches from 0: 10¢ → 0% · 20¢ → 85% · 0¢ → 0%". The locked stage shows axes and the price line only ("The chart appears after you answer").
+
+Departures:
+- Third milestone "no-alone" (0¢ alone), so the reveal's 20.0% is milestone-gated and on screen (ghost tipping label). minInteractions 3; still one press per control.
+- Tipping points shown to one decimal (20.0%, 7.3%), shares to whole percent (85% for 84.7%); the reveal uses the stage's rounding.
+- Added claims c1 (model rules, convention) and c7 (how to read the chart). Title "Worth something alone", hook "A network app gets some value even with nobody else on it. Is that enough to start?" (not in the brief).
+
+## Stage word budget
+
+Builder probe at 390×844, strict count. Busiest frames **21** (locked: axis captions 6, "price" 1, locked note 6, readout labels 3, chips 5; explore with two ghosts: axis 6, "price" 1, ghost "alone" ×2, "empty app" 2, readouts 3, "launches from" 2, chips 5). Brief estimate about 14. Under 25. Smallest SVG text 10 px at 390 wide.
+
+## Pre-flight v1
+
+1. **Title and hook.** "Worth something alone" / "A network app gets some value even with nobody else on it. Is that enough to start?" No share named.
+2. **Options.** "About 0%", "About 10%", "About 80%": same form.
+3. **Locked stage.** Axes, the dashed price line "price 16¢" and the note; no curve, no crossing, no fan dot.
+4. **Reveal values.** "0%" (10¢ launch): milestone stuck, readout and Seen row. "16¢": price line. "20.0%": milestone no-alone, ghost tipping label. "7.3%": computed from current state (a = 10¢), tipping readout. "85%": milestone climbs, Seen row and ghost end label.
+5. **QA path.** Launch from 0 (stuck), 20¢ alone (climbs), 0¢ alone (no-alone), 10¢ alone (back to the question's case). All quoted values on screen at the reveal.
+6. **Reset.** No Reset; relaunching replaces a value's entry with the same result. Reveal on the QA path: "At 10¢ alone, even the keenest fan values an empty app below the 16¢ price, so nobody starts: your launch stayed at 0%. The stand-alone value did lower the critical mass, from 20.0% to 7.3%. At 20¢ alone the first buyers come with nobody else on it, and the app climbed to 85%. Stand-alone value removes the trap only when it beats the price."
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3731 <4 slugs> --jobs 2 --width 390 --height 844 --out artifacts/reveal-fit/ncmgap4-c.json --shots` (tool clean, head 471aabce + this lesson uncommitted): **fit, crop 0, hiddenBelow 0, phoneFit true**, revealWords 67, namedHidden 0.
+
+## Local contract QA (the builder's pass, not the qa-tester's record)
+
+Own build (`NEXT_DIST_DIR=.next-ncmgap4 npx next build`, Turbopack, exit 0), `tools/serve.sh start 3731 .next-ncmgap4`, `QA_BASE_URL=http://localhost:3731 QA_ONLY=<4 slugs> QA_OUT=artifacts/qa-ncmgap4-c npx playwright test tests/qa/contract.spec.ts --workers=2`: **8 passed** (all four lessons, phone and desktop). Phone predict and reveal screenshots viewed, plus probe frames after each press; fixed before this run: ghost labels on the y-axis ticks, the price label on the high crossing, the "empty app" label on the y-axis, a trail polyline that cut under the curve. `npx tsc --noEmit` exit 0; `npm run check` passed. The qa-tester's run is still owed.
+
+## 2026-10-16 fix round: fact-check notes (demo-builder, ncm-w507-fix)
+
+Input: company/reviews/worth-something-alone/2026-10-16-fact-check.md (non-blocking notes).
+
+- **c5 source**: "is gone once a >= 0.16" changed to "is gone once a > 0.16" (at a = 0.16 share 0 still rests, per the record). The claim text is unchanged, so c5 keeps `verified`. No other claim changed.
+- **PMC sources**: this lesson's fact-check record names no PMC or other opened source to add (c6 records only search results for E&K 17.6). The dispatch's PMC item fits the records for same-picture-two-histories (c3) and the-swap-that-goes-in-circles (c3, c4), which were outside this round's two slugs, so I added nothing here.
+- Demo.tsx was not changed. The record also notes tipping() returns "none" at a = 0.16 exactly. A learner cannot reach that value (the chips are 0, 10¢ and 20¢), so it stays as is.
+- **Local QA** (the builder's pass, not the qa-tester's record): same build and run as price-tag-or-auction's fix round (`QA_OUT=artifacts/qa-w507fix`): phone and desktop passed. reveal-fit `artifacts/reveal-fit/w507fix.json`: fit, crop 0, hiddenBelow 0, phoneFit true, revealWords 67. I viewed the phone reveal. `npx tsc --noEmit` exit 0; `npm run check` passed.
+
+## Fix round W-1573 (demo-builder-ncm-fix3, 2026-10-16), v2
+
+Source: board W-1573 (cm-course-ncm, optional polish) and company/reviews/worth-something-alone/2026-10-16-learner-knows-critical-mass.md. Question wording ("Same app at 16¢") left as it is, per the dispatch (that is the category manager's call). Options, answer and model unchanged.
+
+- Every curve is named on the curve at its own peak, over a background halo: the current one in the curve colour ("10¢ alone" at step 4), earlier ones in grey. "0¢ alone" now sits on the 0¢ curve, not under the 10¢ curve's peak. Peaks are at least 18 px apart, so the names never overlap.
+- Tipping-point labels of earlier launches now sit below the price line to the right of their dot, like the current one ("7.3%" at dot + 7, "20.0%" at dot + 6), so they no longer crowd from opposite sides of the line. Viewed at step 4 on Pixel 7: separate, readable.
+
+Claims: c7 reset to unverified (the chart's labels changed). c8 added, unverified (each curve named by its stand-alone value; coloured = current, grey = earlier). version 1 to 2. Stage words at step 4 (Pixel 7 probe, same counting rule): 22, including the current curve's added "alone".
+
+Build and QA (the builder's pass, not the qa-tester's record): own production build `NEXT_DIST_DIR=.next-ncmfix3 npx next build` (exit 0), served by `tools/serve.sh start 3793 .next-ncmfix3`. `QA_BASE_URL=http://localhost:3793 QA_ONLY=same-picture-two-histories,price-tag-or-auction,worth-something-alone QA_OUT=artifacts/qa-ncmfix3 npx playwright test tests/qa/contract.spec.ts --workers=3`, unmodified spec: **6 passed** (phone and desktop, all three lessons). `node tools/reveal-fit.mjs --url http://localhost:3793 <3 slugs> --jobs 3 --width 390 --height 844 --out artifacts/reveal-fit/ncmfix3.json --shots` (tool clean true, head 834a404c plus these uncommitted edits): 3 fit, crop 0, hiddenBelow 0, phoneFit 3. Phone predict and reveal screenshots viewed, plus a Pixel 7 probe of the changed frames. `npx tsc --noEmit` exit 0; `npm run check` passed. Status stays draft; qa-tester run, fact-check of the reset/added claims and a learner re-walk are owed.
