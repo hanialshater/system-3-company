@@ -81,7 +81,8 @@ if (cmd === "meta") {
 } else if (cmd === "compare") {
   const ps = args.persona === "all" ? PERSONAS : [persona(args.persona)];
   const seeds = int("seeds", 5, 1, 10), days = int("days", 7, 1, 14);
-  const set = args.set === "all" ? ALL_POLICIES : args.set === "main" || args.set === undefined ? [...M.POLICIES] : fail("--set must be main or all");
+  // "main" = model.ts POLICIES that order new cards; "review-timing" (W-1547) is not an ordering policy and has no episode here.
+  const set = args.set === "all" ? ALL_POLICIES : args.set === "main" || args.set === undefined ? M.POLICIES.filter((p) => ALL_POLICIES.includes(p)) : fail("--set must be main or all");
   const cat = loadCatalog();
   const t0 = Date.now();
   const rows = set.map((pol) => {

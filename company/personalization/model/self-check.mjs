@@ -40,6 +40,13 @@ for (const v of [M.MODEL_VERSION, PERSONAS_VERSION]) if (!decision.includes(v)) 
 const curLine = decision.split("\n").find((l) => l.startsWith(`| ${M.MODEL_VERSION} |`));
 if (curLine && !/privacy:/.test(curLine)) fails.push(`${M.MODEL_VERSION} change line lacks "privacy: no new input" or the read it needed (ruling N6)`);
 
+// W-1547: the review-timing candidate is registered in POLICIES and its version has a change line with "privacy:".
+const RT = await import("./sim/review-timing.ts");
+if (!M.POLICIES.includes(RT.REVIEW_TIMING_POLICY.name)) fails.push(`${RT.REVIEW_TIMING_POLICY.name} is not in POLICIES`);
+const rtLine = decision.split("\n").find((l) => l.startsWith(`| ${RT.REVIEW_TIMING_POLICY.version} |`));
+if (!rtLine) fails.push(`${RT.REVIEW_TIMING_POLICY.version} has no change line in ${M.DECISION}`);
+else if (!/privacy:/.test(rtLine)) fails.push(`${RT.REVIEW_TIMING_POLICY.version} change line lacks "privacy:" (ruling N6)`);
+
 // 3. Determinism and inspectability.
 const fp = (p) => ({ version: "fp-v0", statedSubjects: [], lessOfThis: [], ...p.fingerprintMeans });
 for (const p of PERSONAS) if (JSON.stringify(M.detect(fp(p))) !== JSON.stringify(M.detect(fp(p)))) fails.push(`${p.id}: detect not deterministic`);

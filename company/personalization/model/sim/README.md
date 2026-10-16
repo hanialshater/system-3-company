@@ -27,6 +27,8 @@ Run the privacy tests after any change to `composer.ts`, `../model.ts` (fingerpr
 | `learner.ts` | **PROVISIONAL** simulated learner (`SimLearner`) from the persona's latent block | personalization-eval (pending) |
 | `score.ts` | **PROVISIONAL** episode metrics: recall over all lessons, breadth, prerequisite-first share, reveal proxy, gain | personalization-eval (pending) |
 | `hq-cli.mjs` | JSON CLI for the HQ lab `/hq/personalization` (W-1503): `meta`, `run`, `compare`, `saved`; the only way the app reaches the simulator (W-1498, ../README.md) | learner-model-engineer |
+| `review-timing.ts` | Criterion 2's review-timing candidate (W-1547): `REVIEW_TIMING_POLICY` (§I.4 types copied from criterion 2 §I at 45826c6), `explainReviewTiming()` per-lesson trace; every number and the order rule from `../review-timing-curves.ts` (rtc-v1, applied-scientist-personalization). **Frozen**: touch it no more; a change is a new candidate (batch 3 V3, V5) | learner-model-engineer |
+| `review-timing.test.mjs` | §I.4 rules 1-3 (replay in a second process, no mutation, well formed, readable act-only reasons), the rule as P1 wrote it, V4 (baseline's due list served first), and byte-identity of every existing policy against `policy-golden.json` (recorded at 4e13ef1 by `policy-golden.mjs`). N1/N3 for the candidate are in `privacy-n1-n3.test.mjs`. Smoke sessions use hashed outcomes, not a learner, and never the eval harness | learner-model-engineer |
 | `run.mjs` | Runner: replay test, base table, per-persona table, sensitivity table, writes `out/` (gitignored) | learner-model-engineer |
 
 ## Composer (port of edp-engine.js compose())
