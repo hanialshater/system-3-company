@@ -49,3 +49,10 @@ These still bind, whatever the design (onboarding doc; AMD-008 as drafted; priva
 ## 5. Asked of personalization-lead now
 
 A response to this brief (`2026-10-16-brief-response.md`): the vocabulary (persona, fingerprint, need, dim) as data shapes; the phases; what can be built and simulated before real learners; who else must be involved; objections to the brief; questions back to the founder. No code in `src/` yet.
+
+## 6. Founder ratification of Mateo's §6a guesses (2026-10-16)
+
+> "Ok approve but for curves maybe in code instead of json"  (founder, conversation)
+
+- **Q1, Q2, Q4, Q5, Q6: ratified as written** in company/personalization/2026-10-16-brief-response.md §6a. Engagement is a guardrail only (no AMD-008 X1 change); dims are data the composer reads plus `misconceptionStrength` on the probability + cs pilot; hand edits checked against aggregate data until phase C; badges and points only for verified recall and mastery after phase C, no streaks; phase A starts now offline, phase B after the accounts milestone and W-706.
+- **Q3: ratified with a change.** The curves live **in code** (a typed module, like `edp-engine.js`'s shapes), not a JSON file. What stays from the guess: the team edits them, every change carries a written reason (a commit message plus a decision-record line), and there is no curve-editing tool. Where the module lives is W-1498 (principal-engineer); until then it is written under company/personalization/model/ and nothing imports it from src/.
