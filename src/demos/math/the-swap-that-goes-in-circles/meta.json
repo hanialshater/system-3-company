@@ -52,8 +52,10 @@
       "text": "Models of individual choice assume preferences are complete and transitive ('That is why choice models assume preferences are ranked (transitive)').",
       "support": "source",
       "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23 (section 23.2 unconfirmed: individual preferences as complete, transitive rankings). Attribution: fact-checker confirms.",
-      "status": "unverified",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c3. | W-1570 fix round (demo-builder, 2026-10-16): the reveal sentence was 'That is why choice models assume preferences are transitive.'; it now reads '... are ranked (transitive): ...' (learner walk 2026-10-16-learner-knows-preference.md finding 1). Text changed, so reset to unverified; the gloss after the colon is claim c7."
+      "status": "verified",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c3. | W-1570 fix round (demo-builder, 2026-10-16): the reveal sentence was 'That is why choice models assume preferences are transitive.'; it now reads '... are ranked (transitive): ...' (learner walk 2026-10-16-learner-knows-preference.md finding 1). Text changed, so reset to unverified; the gloss after the colon is claim c7. | W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c3.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "math.the-swap-that-goes-in-circles.c4",
@@ -88,7 +90,10 @@
       "text": "Ranked (transitive) preferences mean that if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him ('if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him').",
       "support": "convention",
       "source": "Definition of transitivity (Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23, section 23.2 unconfirmed: if X is preferred to Y and Y to Z, then X is preferred to Z), applied to the lesson's ranked mode. 'No circle to sell him' is what the stage shows: in ranked mode (replay('ranked', 6) in Demo.tsx) the apple -> cherry offer is refused (dashed, 'refused'), so the swaps stop at the apple after 2. Builder-written (W-1570 fix round, 2026-10-16); unverified.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "W-1570..W-1573 re-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at 975a4851 (every branch read before build.md) and an independent re-derivation or opened source; basis in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under the 2026-10-16 W-1570..W-1573 re-check section, c7."
     }
   ],
   "confidence": "",
