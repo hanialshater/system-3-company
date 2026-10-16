@@ -17779,6 +17779,68 @@
       "domain": null,
       "created": "2026-10-16",
       "links": []
+    },
+    {
+      "id": "W-1522",
+      "title": "External PR #6: Add 200 algorithm demos grouped into 20 distinct topics (codex/algorithms-200 @ 6008cd52) - community-engineer intake; record company/engineering/community/prs/6.md",
+      "owner": "portfolio-manager",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "https://github.com/hanialshater/system-3-company/pull/6"
+      ],
+      "github": 6,
+      "labels": [
+        "external-pr",
+        "cs",
+        "tier-2"
+      ]
+    },
+    {
+      "id": "W-1523",
+      "title": "PR #6 merge gate (tier 2): principal-engineer engineering review of the SHIPPED head (pr/6-algorithms-200 after base merge e32feca5): shared engine src/components/algorithms/** + src/lib/algorithms/** used by 200 lessons, catalog page change (src/app/catalog/page.tsx, globals.css, imports content/algorithms-200.json), tools/serve.sh -H 127.0.0.1 (owning-engineer read for the Tools row), tests/algorithms/*.test.mjs not wired into package.json verify, paths.json has no shared-engine rule for algorithms. The PR's readiness record classed it tier 1 and reviewed at 150/200 wrappers. EDD needed or a ruling that none is. See company/engineering/community/prs/6.md",
+      "owner": "principal-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1524",
+      "title": "PR #6: cs.algo-multiplicative-weights.c12 has claim text exactly 'learner', which JSON-serialises to the W-947 internal string '\"learner\"' and fails test:platform #28 (tests/platform/trust.test.mjs:108). Change the row label/claim text (e.g. 'learner loss') in src/lib/algorithms/topics/approximation-online.ts and the meta claim; keep it unverified. See company/engineering/community/prs/6.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1525",
+      "title": "PR #6: test:platform #18 (tests/platform/registry-split.test.mjs:136) fails for all 200 algo-* metas: none carries a zero-tolerance internal string because evidence is empty. Same tripwire as PR #5 (fixed in be0b1df4 by linking each lesson's own QA record into evidence.qa). Write per-lesson QA records for the 200 (phone + desktop) and link them, or platform-engineer rules on tightening the ratchet. See company/engineering/community/prs/6.md",
+      "owner": "qa-tester",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1526",
+      "title": "PR #6: accessibility scan of (a) the new Algorithms section on /catalog, which is live public surface and not draft-gated (20 topic sections, 'Not yet visible' rows, topic index links), and (b) the shared algorithm renderer src/components/algorithms/AlgorithmLesson.tsx (Run/Step/Try another/Reset, disabled-control focus, trace table semantics). (a) before any deploy that includes PR #6; (b) before publish. See company/engineering/community/prs/6.md",
+      "owner": "accessibility-reviewer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1527",
+      "title": "PR #6 merge gate: QA contract fails 3 of 200 algo lessons on phone and desktop with 'controls that changed nothing observable: Try another' (algo-dinic-levels, algo-pollard-rho-factor, algo-topological-uniqueness). In each, cases[1] ends on a final frame identical to cases[0] (checked by running the models), so Try another shows no change. Make the changed case visibly differ (src/lib/algorithms/topics/spanning-matching-flow.ts dinic_levels, number-theoretic-algorithms.ts pollard_rho_factor, graph-traversal-decomposition.ts topological_uniqueness) and update their claims (stay unverified). See company/engineering/community/prs/6.md",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }

@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #6 Algorithms 200: evaluation and base merge, blocked
+
+**Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1517..W-1521 (map in `company/engineering/community/prs/6.md` §3). Intake W-1522; review/fix requests W-1523 (principal-engineer, tier-2 merge gate), W-1524 and W-1527 (demo-builder), W-1525 (qa-tester), W-1526 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
+
+**Believe (high):** no protected paths, no dependencies, 4,401/4,401 claims unverified, 200/200 draft. check, typecheck, tests/algorithms 12/12 and the build pass on the merged tree. **Tier 2** (one engine for 200 lessons, plus a live catalog section), although the PR's readiness says tier 1. QA contract 394/400: algo-dinic-levels, algo-pollard-rho-factor and algo-topological-uniqueness have a "Try another" case whose final frame equals the question case's (I ran the models). test:platform #18 and #28 fail because of this PR.
+
+**Next:** chief-of-staff dispatches W-1523, W-1527, W-1524, W-1525 (and W-1526 before any deploy). Then community-engineer merges the fixes, re-runs check, typecheck, test:platform, build and the 200-lesson QA contract, fetches and pushes `codex/algorithms-200` without force.
+
+**Blocked:** the push and merge, on W-1523, W-1527, W-1524, W-1525.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
 **Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
