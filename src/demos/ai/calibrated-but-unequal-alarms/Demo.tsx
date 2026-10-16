@@ -84,7 +84,7 @@ function Grid({ x0, high, shown, name, first }: { x0: number; high: number; show
 }
 
 const Ring = ({ cls }: { cls: string }) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+  <svg width="16" height="16" aria-hidden="true">
     <circle cx="8" cy="8" r="6" fill="none" className={cls} />
   </svg>
 );
@@ -115,14 +115,14 @@ export default function CalibratedButUnequalAlarms({ slug }: { slug: string }) {
                 return (
           <>
             <p>
-              The score was honest: in A and in B, 8 in 10 ringed dots reoffended. Yet with {c.re} reoffenders in B,{" "}
-              {pc(a.faPct)} of A&apos;s innocent people were flagged against {pc(c.faPct)} of B&apos;s, and B&apos;s misses were{" "}
-              {pc(c.missPct)} against A&apos;s {pc(a.missPct)}.
+              The score was honest in both groups: 8 in 10 ringed dots reoffended. Yet with {c.re} reoffenders in B, A&apos;s
+              innocent people were flagged {pc(a.faPct)} of the time, B&apos;s {pc(c.faPct)}; B&apos;s misses were {pc(c.missPct)},
+              A&apos;s {pc(a.missPct)}.
             </p>
             <p>
-              A has more reoffenders, so more of A is ringed, guilty or not. The slider changed who is in B, not the score. With{" "}
-              {a.re} reoffenders in B, B&apos;s base rate {atEqual ? "matches" : "matched"} A&apos;s, and so {atEqual ? "do" : "did"} both
-              errors. Unless base rates match, a score that makes any mistakes cannot be calibrated and equal on both errors.
+              A has more reoffenders, so more of A is ringed, guilty or not. The slider changed B&apos;s people, not the score: at{" "}
+              {a.re}, base rates {atEqual ? "match" : "matched"}, and so {atEqual ? "do" : "did"} both errors. Otherwise no score that
+              makes mistakes is calibrated with equal errors.
             </p>
           </>
         );
