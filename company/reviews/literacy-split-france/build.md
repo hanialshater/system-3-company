@@ -9,6 +9,7 @@ Builder: demo-builder-h23 (demo-builder) · 2026-10-16 · brief company/domains/
 - Reproduce: `node -e 'const d=require("./src/demos/history/literacy-split-france/departments.json"); const s=d.rows.filter(r=>["S","W","C"].includes(r.region)); console.log(s.length, s.reduce((t,r)=>t+r.lit,0)/s.length)'` prints `51 28.41176470588235`. With `"SWC".includes(r.region)` it prints `52 28.807692307692307`.
 - What I did: the card computes the mean from the 51 departments the stage draws, so the readout and the reveal both say **28%**. Claim c3 says 28% and records the discrepancy. N+E (55%), the mean of 86 (39%) and the extremes are not affected. "About twice" still holds (55 / 28 = 1.97).
 - This trips B2's stop rule ("stop if a check-script number fails"). I built through instead of stopping. The fix is one line in a script I do not own, the lesson stays a draft with every claim unverified, and nothing goes to review. **cm-history to rule**, choosing one of two options. (a) Fix the filter (for example `["S","W","C"].includes(x.reg)`) and the brief's 28.8 / 29. (b) Rule that Corse counts with the south, and I will add it to the S+W+C outline and the mean. Until then, do not merge this branch to review.
+- Ruled (a), r14 S1; deviations confirmed, S2.
 
 ## What was built
 
