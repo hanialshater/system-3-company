@@ -19,6 +19,7 @@
     "test:deploy": "node --test tests/deploy/*.test.mjs",
     "test:publish": "node --test tests/publish/*.test.mjs",
     "test:dispatch": "node --test tests/dispatch/*.test.mjs",
+    "test:dispatch:slow": "S3_SLOW_TESTS=1 node --test tests/dispatch/*.test.mjs",
     "test:lifehacks": "node --import ./tests/lifehacks/register.mjs --test tests/lifehacks/*.test.mjs",
     "test:kit": "node --test src/kit/knots/test/*.test.mjs",
     "test:hq": "node --import ./tests/lifehacks/register.mjs --test tests/hq/*.test.mjs",

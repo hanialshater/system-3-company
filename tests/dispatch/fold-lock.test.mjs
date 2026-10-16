@@ -142,18 +142,29 @@ test("F1 + F2: two fold loops in parallel with two writers each way: no duplicat
         const e = { id: "${tag}-" + i, ts: new Date().toISOString(), type: "note", room: "tools", actor: "t", summary: "w" };
         if ("${mode}" === "raw") fs.appendFileSync(f, JSON.stringify(e) + "\\n"); else spoolAppend(e, f);
       }`], { stdio: "inherit" });
-  const folder = () =>
-    spawn("node", ["--input-type=module", "-e", `
+  // G5-b (PE-ops 9ca8d06): under load one loop may never win the lock in the window, so each loop reports its
+  // counts instead of exiting 3. Each loop tries at least once (do-while, even if it starts after the window), and
+  // a refused try means the other loop held the lock, so the two together fold at least once.
+  const folder = () => {
+    const c = spawn("node", ["--input-type=module", "-e", `
       const { fold } = await import(${JSON.stringify(EVENTS_URL)});
-      let ok = 0;
-      while (Date.now() < ${until}) {
+      let ok = 0, locked = 0;
+      do {
         try { fold({ dir: ${JSON.stringify(sb.spool)}, log: ${JSON.stringify(sb.events)} }); ok++; }
-        catch (e) { if (e.code !== "EFOLDLOCKED") throw e; }
-      }
-      if (!ok) process.exit(3);`], { stdio: "inherit" });
-  const procs = [folder(), folder(), writer("raw-a", "raw"), writer("raw-b", "raw"), writer("api-a", "api"), writer("api-b", "api")];
+        catch (e) { if (e.code !== "EFOLDLOCKED") throw e; locked++; }
+      } while (Date.now() < ${until});
+      console.log(JSON.stringify({ ok, locked }));`], { stdio: ["ignore", "pipe", "inherit"] });
+    c.out = "";
+    c.stdout.on("data", (d) => (c.out += d));
+    return c;
+  };
+  const loops = [folder(), folder()];
+  const procs = [...loops, writer("raw-a", "raw"), writer("raw-b", "raw"), writer("api-a", "api"), writer("api-b", "api")];
   const codes = await Promise.all(procs.map(exited));
   assert.deepEqual(codes, [0, 0, 0, 0, 0, 0]);
+  const counts = loops.map((c) => JSON.parse(c.out.trim().split("\n").pop()));
+  for (const n of counts) assert.ok(n.ok + n.locked >= 1, `each fold loop tried at least once: ${JSON.stringify(counts)}`);
+  assert.ok(counts[0].ok + counts[1].ok >= 1, `the two loops folded at least once between them: ${JSON.stringify(counts)}`);
   assert.equal(cli(sb, ["fold"]).code, 0);
   const got = ids(sb.events);
   assert.equal(dupes(got), 0, "no duplicate id in the log");
@@ -186,4 +197,65 @@ test("F2: an append through a file handle opened before the fold renamed the fil
   } finally {
     fs.closeSync(fd);
   }
+});
+
+// F5 (same approval, board W-1278): `fold` and `readSpool` collected events with push(...spread), which throws
+// RangeError (call stack) once one spread passes ~125k elements (Node 22), so one large spool file stuck every later
+// fold. Here a 200,000-line spool file and 130,000 unparseable lines go through `fold --dry` (readSpool) and `fold`.
+// It is the last test in this file on purpose: tests in one file run in order, so its CPU load never overlaps the
+// timing-bound two-fold-loops test above (as a separate test file it ran in parallel and made that test flake).
+// G5-a (PE-ops 9ca8d06): it takes ~20 s at load, so it runs only with S3_SLOW_TESTS=1 (`npm run test:dispatch:slow`),
+// not in the default `test:dispatch` that `npm run verify` calls. Run the slow suite before any change to events.mjs
+// or tools/lib/events-spool.mjs.
+const SLOW = process.env.S3_SLOW_TESTS === "1";
+const REAL_SPOOL = path.join(ROOT, "company/ops/events-spool");
+const realSpool = () => (fs.existsSync(REAL_SPOOL) ? fs.readdirSync(REAL_SPOOL).sort().join(",") : null);
+const BIG = 200_000;
+const bigLine = (i) => JSON.stringify({ id: `hk-big-${i}`, ts: `2026-10-16T10:00:00.${String(((i % 1000) + 1000) % 1000).padStart(3, "0")}Z`, type: "note", room: "tools", actor: "tools-lead", summary: `e${i}` });
+const countLines = (f) => fs.readFileSync(f, "utf8").split("\n").filter(Boolean).length;
+
+test("F5: a 200,000-line spool file (plus 130,000 unparseable lines) reads, dry-folds and folds without RangeError", { skip: !SLOW && "slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)" }, () => {
+  const before = realSize();
+  const spoolBefore = realSpool();
+  const sb = sandbox();
+  const B = 130_000;
+  fs.writeFileSync(sb.events, bigLine(-1) + "\n"); // one event already in the log, and also in the spool: a duplicate
+  {
+    const parts = [];
+    for (let i = 0; i < BIG; i++) parts.push(bigLine(i));
+    fs.writeFileSync(path.join(sb.spool, "2026-10-16.jsonl"), parts.join("\n") + "\n");
+  }
+  fs.appendFileSync(path.join(sb.spool, "2026-10-16.jsonl"), bigLine(-1) + "\n");
+
+  // fold --dry goes through readSpool (tools/lib/events-spool.mjs), the reader metrics and dispatch-check also use
+  const dry = cli(sb, ["fold", "--dry"]);
+  assert.equal(dry.code, 0, dry.err);
+  assert.doesNotMatch(dry.err, /RangeError|Maximum call stack/);
+  assert.match(dry.out, new RegExp(`fold --dry: ${BIG} event\\(s\\) would be folded .* 1 already in the log$`, "m"));
+  assert.equal(countLines(sb.events), 1, "--dry writes nothing");
+
+  // Unparseable lines are added after the dry run (it only counts them), so the slow parse runs once less.
+  const bad = [];
+  for (let i = 0; i < B; i++) bad.push(`{not json ${i}`);
+  fs.writeFileSync(path.join(sb.spool, "2026-10-17.jsonl"), bad.join("\n") + "\n");
+
+  const r = cli(sb, ["fold"]);
+  assert.equal(r.code, 0, r.err);
+  assert.doesNotMatch(r.err, /RangeError|Maximum call stack/);
+  assert.match(r.out, new RegExp(`fold: ${BIG} event\\(s\\) folded .* 1 already in the log; ${B} unparseable spool line\\(s\\) kept in unparsed-\\*\\.txt`));
+  const got = fs.readFileSync(sb.events, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l).id);
+  assert.equal(got.length, BIG + 1);
+  assert.equal(new Set(got).size, BIG + 1, "no duplicate id");
+  assert.deepEqual(fs.readdirSync(sb.spool).filter((f) => /\.jsonl/.test(f)), [], "spool emptied (no *.folding-* left to adopt)");
+  const kept = fs.readdirSync(sb.spool).filter((f) => f.startsWith("unparsed-"));
+  assert.equal(kept.length, 1);
+  assert.equal(countLines(path.join(sb.spool, kept[0])), B);
+
+  const again = cli(sb, ["fold"]); // not stuck: before F5 every later fold adopted the same file and threw again
+  assert.equal(again.code, 0, again.err);
+  assert.match(again.out, /fold: 0 event\(s\) folded/);
+
+  assert.equal(realSize(), before, "the real log is untouched");
+  assert.equal(realSpool(), spoolBefore, "the real spool is untouched");
+  fs.rmSync(sb.dir, { recursive: true, force: true });
 });
