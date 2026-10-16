@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learning-designer (Lena) · design notes for knots batch 1 (briefs 1 to 4)
+
+**Changed:** wrote `company/reviews/{draw-a-table-knot,tricolour-check,unknot-game,left-or-right}/design.md` (boundary, misconception, objective, prediction, interaction, notice, reveal ≤ 90 words, recall, flags). Board W-1565 (cm-math-discrete: accept/reject brief changes, add K labels), W-1566 (design-lead) and W-1567 (principal-engineer): the left-or-right flip ruling, W-1568 (interaction-designer: unknot-game tint, left-or-right flip card). No code, no meta.json (no lessons exist).
+**Believe:** sure that a one-sided CSS flip of a knot drawing shows the mirror, not the turned-over knot (planar reflection keeping gaps = mirror; kit `turnOver` = reflection plus every crossing switched, `src/kit/knots/index.d.ts`). Fairly sure the two-sided card (back face = `draw(mirror(pd))`) depicts `turnOver` exactly without drawing it, but whether that is inside README rule 2(a) is for the design lead and principal engineer. Fairly sure draw-a-table-knot as briefed (tap-to-count) confirms its own misconception; the switch redesign fixes that. Found a QA-path flaw in tricolour-check (one tap per arc cannot reach three colours). Kit numbers I quote for new claims (switched names, R2 after one switch) are my probe, not a K check.
+**Next:** cm-math-discrete W-1565; then draw-a-table-knot is buildable; tricolour-check and unknot-game build to draft (unknot-game after W-1568's tint spec); left-or-right waits on W-1566/W-1567, then W-1568.
+**Blocked:** left-or-right (ruling). Briefs 2 to 4 launch only after the design lead's per-lesson contact-sheet review lifts block (b).
+
 ## 2026-10-16 · fact-checker · W-1562 the 4 NCM gap drafts fact-checked
 
 **Changed:** checked all 23 claims on same-picture-two-histories (4), price-tag-or-auction (6), worth-something-alone (7), the-swap-that-goes-in-circles (6) against Demo.tsx at f1568498 and my own re-derivations (Python closed forms, an independent Monte Carlo, the lesson's model.ts run with the kit RNG). 23 verified, 0 disputed, 0 withdrawn, no unrecorded claims. One record per slug: `company/reviews/<slug>/2026-10-16-fact-check.md`. W-1562 → done.
