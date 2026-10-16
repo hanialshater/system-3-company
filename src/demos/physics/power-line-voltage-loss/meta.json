@@ -1,0 +1,105 @@
+{
+  "slug": "power-line-voltage-loss",
+  "title": "Same power, ten times the voltage",
+  "hook": "A village draws 10 kW down one long cable. What does the voltage do to the waste?",
+  "domain": "physics",
+  "concept": "transmission-voltage-loss",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "P = V I (toaster-trips-breaker)",
+      "wires have resistance (wire-eight-times)"
+    ],
+    "doesNotKnow": [
+      "that cable heating goes as I²R",
+      "that delivering the same power at 10× the voltage needs a tenth of the current and wastes a hundredth of the heat"
+    ]
+  },
+  "misconception": "Higher voltage on a power line means more energy wasted (or makes no difference).",
+  "objective": "The learner can explain that for the same delivered power a higher voltage needs less current (I = P/V), and because cable heating goes as I²R, ten times the voltage wastes a hundredth of the heat.",
+  "claims": [
+    {
+      "id": "physics.power-line-voltage-loss.c1",
+      "text": "Delivered power is P = V I, so for a fixed 10 kW the current is I = P/V: 43.5 A at 230 V, 4.35 A at 2,300 V, 0.43 A at 23,000 V (stage: current readout, moving dots in the cable, Seen row; reveal: 'At 230 V your cable carried 43.5 A', 'At 2,300 V the same 10 kW needed only 4.35 A', 'Power is voltage times current, so a higher voltage delivers the same power with less current').",
+      "support": "derivation",
+      "source": "P = V I. artifacts/scratch/cm-physics-r4/check.mjs (block '66 power-line-voltage-loss': I_A 43.48, 4.35, 0.43). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on current and resistance. Demo.tsx amps(). Brief #68 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.power-line-voltage-loss.c2",
+      "text": "The power lost as heat in a cable is I² R, so a tenth of the current wastes a hundredth of the heat (stage: the cable's glow and the 'W lost' readout; reveal: 'Cable heating goes as current squared, so a tenth of the current wastes a hundredth of the heat').",
+      "support": "derivation",
+      "source": "Joule heating P = I² R (from P = V I with V = I R across the cable). Halliday, Resnick and Walker, same chapter. Brief #68 claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.power-line-voltage-loss.c3",
+      "text": "For 10 kW through a 0.5 Ω cable the heat loss is 945 W at 230 V, 9.45 W (shown 9.5 W) at 2,300 V and 0.09 W at 23,000 V; 945 W to 9.5 W is 100 times less (stage: 'W lost' readout, caption 'Cable 0.5 Ω, values illustrative.', Seen row '230 V: 43.5 A, 945 W · 2,300 V: 4.35 A, 9.5 W · 23,000 V: 0.09 W'; reveal: 'wasted 945 W as heat', 'the cable wasted 9.5 W: 100 times less'; predict question 'A village draws the same 10 kW through the same cable').",
+      "support": "derivation",
+      "source": "I² R with I = 10,000 / V and R = 0.5 Ω. artifacts/scratch/cm-physics-r4/check.mjs (loss_W 945.18, 9.45, 0.09; loss_pct 9.452, 0.095, 0.001). Demo.tsx lossW(); display rounding fmtW (945, 9.5, 0.09). Brief #68 claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.power-line-voltage-loss.c4",
+      "text": "Long-distance power lines run at high voltage (tens to hundreds of kilovolts) to cut these losses, with transformers stepping the voltage up and down (reveal: 'That is why long-distance lines run at high voltage').",
+      "support": "source",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on electromagnetic oscillations and alternating current (transformers and power transmission). Brief #68 claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.power-line-voltage-loss.c5",
+      "text": "Idealisations: a resistive load, the current computed at the village's voltage (the cable's own voltage drop ignored), ideal transformers, values illustrative. The glow is on a log scale of the loss and the dot count is proportional to the current (about 0.46 dots per amp, at least one dot); every dot moves at the same speed.",
+      "support": "convention",
+      "source": "Stated assumption, brief #68 claim 5. Demo.tsx: glow opacity (log10 W + 1.2) / 4.2 clamped to 0.06-1; DOT_PER_A 0.46 (20, 2 and 1 dots); FLOW_PX_S 24. The caption 'Cable 0.5 Ω, values illustrative.' states it on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why do power companies step the voltage up before sending electricity across the country?",
+    "options": [
+      "The energy travels along faster",
+      "Less current, and losses go as current squared",
+      "The cable's resistance drops"
+    ],
+    "answer": 1,
+    "why": "P = V I, so a higher voltage carries the same power with less current, and the heat lost in the cable is I² R: a tenth of the current wastes a hundredth of the heat."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:transmission-voltage-loss",
+    "also": [
+      "physics:electric-power-vi",
+      "physics:wire-resistance"
+    ],
+    "prerequisites": [
+      "physics:electric-power-vi"
+    ],
+    "level": "core",
+    "strand": "electricity",
+    "references": [],
+    "tags": [
+      "power",
+      "transmission",
+      "resistance"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

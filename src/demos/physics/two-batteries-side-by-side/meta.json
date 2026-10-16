@@ -1,0 +1,97 @@
+{
+  "slug": "two-batteries-side-by-side",
+  "title": "Two batteries side by side",
+  "hook": "Two 1.5 V batteries, joined side by side instead of end to end. What do you get?",
+  "domain": "physics",
+  "concept": "cells-series-parallel",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "a battery's label says 1.5 V",
+      "batteries in a torch go end to end"
+    ],
+    "doesNotKnow": [
+      "that cells end to end add their voltages",
+      "that cells side by side keep 1.5 V and only last longer"
+    ]
+  },
+  "misconception": "Two 1.5 V batteries always make 3 V, however they are connected.",
+  "objective": "The learner can explain that each cell lifts charge through 1.5 V, so cells end to end add their voltages (3.0 V) while cells side by side keep 1.5 V and share the work, lasting longer.",
+  "claims": [
+    {
+      "id": "physics.two-batteries-side-by-side.c1",
+      "text": "Each cell lifts charge through 1.5 V. Cell voltages in series add (two cells end to end give 3.0 V); identical cells in parallel keep one cell's voltage (side by side give 1.5 V) (stage: the arrow inside each cell, the first labelled 'lifts 1.5 V', and the voltmeter readout; reveal: 'Side by side, your voltmeter read 1.5 V, the same as one battery', 'End to end it read 3.0 V', 'Each battery lifts charge through 1.5 V. In a row the lifts add; side by side they share the work').",
+      "support": "derivation",
+      "source": "Kirchhoff's voltage law: around a loop the emfs in series add; ideal identical cells in parallel share both terminals, so the pair's voltage is one cell's emf. artifacts/scratch/cm-physics-r4/check.mjs (block '67 two-batteries-side-by-side', V = 1.5, 1.5, 3.0). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on circuits. Brief #64 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-batteries-side-by-side.c2",
+      "text": "With a 5 Ω bulb: 0.3 A and 0.45 W at 1.5 V (one cell, or two side by side); 0.6 A and 1.8 W at 3.0 V (end to end), twice the current at twice the voltage and four times the power (stage: bulb glow, the same for one cell and side by side and larger end to end; reveal: 'The bulb glowed as brightly as with one', 'the bulb drew twice the current at twice the voltage, four times the power').",
+      "support": "derivation",
+      "source": "I = V/R, P = V I. artifacts/scratch/cm-physics-r4/check.mjs (block '67 two-batteries-side-by-side': I_A 0.3, 0.3, 0.6; P_W 0.45, 0.45, 1.8). Demo.tsx circuit(). Brief #64 claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-batteries-side-by-side.c3",
+      "text": "From 2,000 mAh per cell: one cell runs the bulb 6.7 h, two side by side 13.3 h, two end to end 3.3 h (stage caption 'Ideal cells, 2,000 mAh.', the run-time gauge fill and the Seen row 'side by side: 1.5 V, 13.3 h · end to end: 3.0 V, 3.3 h · one: 6.7 h'; reveal: 'for 13.3 hours instead of 6.7', 'lasted only 3.3 hours').",
+      "support": "derivation",
+      "source": "run time = capacity / current: 2,000 mAh / 300 mA = 6.7 h; 4,000 mAh / 300 mA = 13.3 h (the parallel pair's current is shared); 2,000 mAh / 600 mA = 3.3 h (series: the same current flows through both cells). artifacts/scratch/cm-physics-r4/check.mjs (runtime_h 6.7, 13.3, 3.3). Demo.tsx circuit(). Brief #64 claim 3. Idealisations: The 2,000 mAh capacity is illustrative and stated on the stage. A real AA cell's usable capacity falls at higher current, so the end-to-end run time would be shorter than 3.3 h in practice.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.two-batteries-side-by-side.c4",
+      "text": "Idealisations: identical ideal cells with no internal resistance, and a bulb of constant 5 Ω resistance (a real filament's resistance rises as it heats). The glow size and the gauge fill are schematic: the glow grows with the power, the gauge fill is the run time over a 13.3 h full scale.",
+      "support": "convention",
+      "source": "Stated assumption, brief #64 claim 4. Demo.tsx: glow radius 14 + 9 px per W; gauge fill h / 13.3. Recorded here, not shown as a sentence on the stage (the caption 'Ideal cells, 2,000 mAh.' states the cells are ideal).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy needs 3 V. You have two 1.5 V cells. How must they go in?",
+    "options": [
+      "Side by side, plus to plus",
+      "End to end, plus to minus",
+      "Either way gives 3 V"
+    ],
+    "answer": 1,
+    "why": "Each cell lifts charge through 1.5 V. End to end the lifts add to 3 V; side by side the pair stays at 1.5 V and only lasts longer."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:cells-series-parallel",
+    "also": [
+      "physics:series-parallel"
+    ],
+    "prerequisites": [
+      "physics:series-parallel"
+    ],
+    "level": "core",
+    "strand": "electricity",
+    "references": [],
+    "tags": [
+      "batteries",
+      "voltage",
+      "circuits"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

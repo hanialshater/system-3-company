@@ -1,0 +1,28 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 36dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; min-height: 44px; padding-left: 4px; padding-right: 4px; white-space: normal; line-height: 1.15; }
+.caption { margin: 0; font-size: 13px; color: var(--fg); }
+.seen { margin: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.wire { stroke: var(--fg); stroke-width: 2; fill: none; stroke-linecap: round; }
+.wireOff { stroke: var(--muted); stroke-width: 2; fill: none; stroke-dasharray: 4 4; }
+.holder { fill: none; stroke: var(--line); stroke-width: 1.4; }
+.holderEmpty { fill: var(--bg-2); stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.cell { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.nub { fill: var(--fg); }
+.sign { fill: var(--fg); font-size: 11px; font-weight: 800; }
+.lift { stroke: var(--domain); stroke-width: 3; }
+.headLift { fill: var(--domain); }
+.lab { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.meter { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.read { fill: var(--fg); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.bulb { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.4; }
+.bulbOn { fill: color-mix(in srgb, #f6c445 55%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.4; }
+.filament { fill: none; stroke: var(--fg); stroke-width: 1.2; }
+.base { fill: var(--muted); }
+.glow { transition: r 0.3s ease, opacity 0.3s ease; }
+.glowIn { stop-color: #f6c445; stop-opacity: 1; }
+.glowOut { stop-color: #f6c445; stop-opacity: 0; }
+.gauge { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.2; }
+.gaugeNub { fill: var(--fg); }
+.gaugeFill { fill: var(--good); transition: width 0.3s ease; }

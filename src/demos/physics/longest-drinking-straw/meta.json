@@ -1,0 +1,104 @@
+{
+  "slug": "longest-drinking-straw",
+  "title": "The longest drinking straw",
+  "hook": "A perfect pump on a very tall straw. How high can it lift the water?",
+  "domain": "physics",
+  "concept": "atmospheric-pressure-push",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "you drink through a straw by sucking",
+      "pressure grows with depth (dam-depth-not-width)"
+    ],
+    "doesNotKnow": [
+      "that suction does not pull: the air pressing on the open water pushes it up the straw",
+      "that this push can hold only about 10 m of water"
+    ]
+  },
+  "misconception": "With a strong enough pump you can suck water up a straw of any height.",
+  "objective": "The learner can explain that a pump only removes air, and that the air pressing on the open water pushes the water up, so at sea level the column can be at most about 10 m tall (less under thinner air).",
+  "claims": [
+    {
+      "id": "physics.longest-drinking-straw.c1",
+      "text": "A column of liquid held up by a pressure difference ΔP has height h = ΔP/(ρ g); with air pressing on the open water and only water vapour above the column, the push can hold up only about 10 m of water (stage: the column stopping on the 0-14 m scale with 'no air' above it; reveal: 'that push can hold up only about 10 m of water').",
+      "support": "derivation",
+      "source": "Hydrostatics: P_atm − P_top = ρ g h. artifacts/scratch/cm-physics-r4/check.mjs (block '65 longest-drinking-straw'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on fluids. Brief #67 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.longest-drinking-straw.c2",
+      "text": "At standard sea-level pressure (101,325 Pa), with water at 20 °C (vapour pressure about 2.34 kPa, density 998 kg/m³), the column reaches 10.1 m (10.3 m if vapour is ignored), so a 5 m straw fills to the top and a 12 m straw stops at 10.1 m (stage: column readout and Seen row '5 m: top · 12 m: stops at 10.1 m'; caption 'Perfect pump, 20 °C water.'; reveal: 'In your 5 m straw the water reached the top, but in the 12 m straw it stopped at 10.1 m, with empty space above').",
+      "support": "derivation",
+      "source": "(101,325 − 2,339) / (998 × 9.81) = 10.11 m; 101,325 / (998 × 9.81) = 10.35 m. artifacts/scratch/cm-physics-r4/check.mjs (h_withVapour_m 10.11, h_ideal_m 10.35). Standard atmosphere 101,325 Pa; vapour pressure of water at 20 °C from the CRC Handbook of Chemistry and Physics (table of vapour pressure of water). Demo.tsx hMax(). Brief #67 claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.longest-drinking-straw.c3",
+      "text": "Air pressure on the summit of Everest is about 33.7 kPa, so there the column holds only 3.2 m (stage: thinner air arrows, column readout and Seen row 'Everest: 3.2 m'; reveal: 'On Everest, under thinner air, it held just 3.2 m').",
+      "support": "source",
+      "source": "West, J. B., 'Barometric pressures on Mt. Everest: new data and physiological significance', Journal of Applied Physiology 86 (1999). (33,700 − 2,339) / (998 × 9.81) = 3.20 m: artifacts/scratch/cm-physics-r4/check.mjs (Everest summit h_withVapour_m 3.2). Cross-check in the brief: an isothermal atmosphere (scale height about 7.4 km) gives about 31 kPa, also about 3 m. Brief #67 claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.longest-drinking-straw.c4",
+      "text": "Suction does not pull water: the pump only removes air from the straw, and the air pressing on the water in the glass pushes it up into the region of lower pressure (stage: 'air pushes' arrows on the open water, the pump drawn at the top; reveal: 'Suction does not pull water. The pump only removes air from the straw; the air pressing on the water in the glass pushes it up').",
+      "support": "derivation",
+      "source": "A fluid cannot sustain the tension a 'pull' would need here; the net force on the column is the pressure difference between its bottom (air pressure through the open water) and its top (near-vacuum). Same fluids chapter. Brief #67 claim 4.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.longest-drinking-straw.c5",
+      "text": "Idealisations: a perfect pump that leaves only water vapour above the column, water at 20 °C, a rigid straw, no dissolved gas coming out of the water. The 0-14 m scale is drawn compressed (12.6 px per m) and the air arrows are schematic (thinner on Everest).",
+      "support": "convention",
+      "source": "Stated assumption, brief #67 claim 5. Demo.tsx: PX_PER_M 12.6; arrow width 3 px at sea level, 1.4 px on Everest. The caption 'Perfect pump, 20 °C water.' states the main assumptions on the stage.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A pump at the top of a 15 m well cannot lift the water, but one at the bottom can. Why?",
+    "options": [
+      "The air can push water up only about 10 m; a pump at the bottom pushes",
+      "A pump at the top is too far from the water to suck it",
+      "Water gets heavier the higher it is lifted"
+    ],
+    "answer": 0,
+    "why": "A pump at the top only removes air; the atmosphere's push holds up at most about 10 m of water. A pump at the bottom pushes the water up itself."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:atmospheric-pressure-push",
+    "also": [
+      "physics:fluid-pressure-depth"
+    ],
+    "prerequisites": [
+      "physics:fluid-pressure-depth"
+    ],
+    "level": "core",
+    "strand": "mechanics",
+    "references": [],
+    "tags": [
+      "pressure",
+      "fluids",
+      "atmosphere"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate",
+    "locked-readouts"
+  ]
+}

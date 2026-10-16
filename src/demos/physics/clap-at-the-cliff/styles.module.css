@@ -1,0 +1,22 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 130px; max-height: 34dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; min-height: 44px; padding-left: 4px; padding-right: 4px; white-space: normal; line-height: 1.15; }
+.caption { margin: 0; font-size: 13px; color: var(--fg); }
+.seen { margin: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ground { stroke: var(--fg); stroke-width: 2; }
+.body { fill: color-mix(in srgb, var(--muted) 40%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.2; }
+.limb { stroke: var(--fg); stroke-width: 2.4; stroke-linecap: round; }
+.cliff { fill: color-mix(in srgb, var(--muted) 35%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.4; }
+.path { stroke: var(--domain); stroke-width: 2.2; stroke-dasharray: 5 3; }
+.head { fill: var(--domain); }
+.front { fill: none; stroke: var(--domain); stroke-width: 2.6; stroke-linecap: round; }
+.pulse { animation: cc-trip 360ms ease-in-out forwards; }
+@keyframes cc-trip {
+  0% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(var(--out)); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pulse { animation: none; opacity: 0; } }
+.lab { fill: var(--fg); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.big { fill: var(--fg); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
