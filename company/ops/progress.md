@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · design-lead · W-1588: S4 check of draw-a-table-knot (first built knot lesson)
+
+**Changed:** new `company/design/reviews/2026-10-16-draw-a-table-knot-s4.md` (+ `fit-probe.mjs`, `bbox.mjs`, `contrast.mjs` beside it); board W-1588 done, W-1590 (demo-builder) added.
+**Believe:** pass with changes. Reveal at 390×844: reveal-fit --strict fit, crop 0, 80 words (70 to 81 over all 6 variants, 27 to 68 px spare). Departures accepted: (a) switched-crossing ring, but light-mode colour fails 3:1 (2.26) so D1 darkens it; (b) 231 px reveal picture (2.24 px/unit, my measured floor). Tightened viewBox -1.5 -1 103 105 accepted (curve bbox re-measured over all 13 pictures). D2: the Seen line is pastel text at 2.26:1 in light mode and must use the 45% ink mix. D3: height-aware board width removes the 360×740 stage overflow (31 to 51 px → 0) at no change at 390×844; 360×640 still scrolls (accepted). Sure on the measures; D3's constant depends on kit chrome.
+**Next:** demo-builder W-1590 (D1 to D3, re-run checks); fact-checker W-1589. **Blocked:** nothing.
+
 ## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
 
 **Changed:** `company/design/specs/unknot-game.md` (U-1 selected chip = `.control.active` disabled, never greyed; U-2 rings only, pointer events only on the 44 px circle; tint confirmed W-1580 with a lesson-local `.knot-tint` until the platform rule lands). `company/design/specs/left-or-right.md` rewritten as a self-contained B2 build spec: L-1 ring 13 + ≥ 2.0-unit badge gap test (expected min 2.43 at 4_1 crossing 0, the right-hand beak; "right lens" wording fixed), L-2 dip (100 out / transform untransitioned / 100 in), L-3 marks timing with timer fallbacks and retargeting, L-4 no blanking, L-5 perspective ≥ 1200 px + 8 % vertical room (kit `.stage` is overflow auto), L-6 aria-pressed; W-1581 seen line "Trefoil: turned over −3 · mirror +3", no Reset, figure-eight fallback reveal default; A and B1 moved to an appendix. `knots-batch1-mockups.mjs` at ring 13 (prints gap 2.43 PASS, same as the design lead's probe), both SVGs regenerated (QA-path row, mid-dip frame, 4_1 rest states). Board W-1584 done.
