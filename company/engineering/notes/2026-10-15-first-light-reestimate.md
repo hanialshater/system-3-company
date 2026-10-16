@@ -3,6 +3,8 @@
 owner: principal-engineer (Kenji), tech lead · for: Head of Strategic Initiatives (chief-of-staff until W-904), portfolio-manager, evaluation-steward, founder · date: 2026-10-15 · tier: advice (no change made; untagged week-1 scoping, the first-light budget waits on Project Review 1)
 Inputs: [charter](../../initiatives/first-light/charter.md), [founder decision](../../decisions/2026-10-15-founder-first-light.md), [quality bar](../../initiatives/first-light/quality-bar.md), [budget pack](../../ceo-office/2026-10-14-project-review-1-agenda.md) (Addendum 2026-10-15), [scalability note](2026-10-14-scalability-options-for-founder.md), [stage-0 note](2026-10-14-edd-003-stage0-feed-and-qa-changed.md), [r7 readiness record](../readiness/2026-10-15-r7-drafts-trust-sheet.md). Companion: [W-946 loaders design](2026-10-15-w946-loaders-design.md).
 
+> **Updated 2026-10-16 (W-1121):** the full-scope re-estimate (ad slot, prediction swap, challenges) is in [2026-10-16-first-light-reestimate-full-scope.md](2026-10-16-first-light-reestimate-full-scope.md). It supersedes this note's §2 totals, §3 dates and odds, and the cut order. §1 (Q5) and the unit costs stand. A1 is already applied (0d76ae1).
+
 ## Short answer
 
 1. **Q5 is reachable, and cheaply.** I built the registry split in a scratch worktree and measured it. `/` HTML goes from 309,937 B to **47,614 B**, first-load JS from 2.71 MB gz to **230 KB gz**, and the 4x-throttled phone time from 4.6 s to **0.89 s**, with 24/24 contract tests (12 lessons on 2 viewports) and the feed spec 10/10 passing. So **A1 (W-946) goes onto First Light's critical path**, as the bar asked. It is about one code run once AMD-001 (c2) is ratified, and it also halves build time.

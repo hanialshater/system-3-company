@@ -1,0 +1,112 @@
+{
+  "slug": "what-pushes-the-car",
+  "title": "What pushes a car forward?",
+  "hook": "Press the pedal and the car pulls away. Something has to push it. What?",
+  "domain": "physics",
+  "concept": "friction-drives-forward",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "friction resists sliding (crate-wont-budge)",
+      "action and reaction (truck-hits-car-force)"
+    ],
+    "doesNotKnow": [
+      "that a car's forward force comes from the road gripping the tyres",
+      "that the engine only turns the wheels, and internal forces cannot move the car"
+    ]
+  },
+  "misconception": "The engine pushes the car forward; friction only ever slows things down.",
+  "objective": "The learner can explain that the engine only turns the wheels, the tyres push back on the road, and the road's grip pushing forward on the tyres is the force that speeds the car up, so with no grip the car cannot move however hard the wheels spin.",
+  "claims": [
+    {
+      "id": "physics.what-pushes-the-car.c1",
+      "text": "Forces inside the car (engine on wheels, wheels on axles) come in equal and opposite pairs and cannot change the car's motion; only a force from outside can, so on a frictionless road the engine spins the wheels and the car stays put (stage: wheels turn, 0 N, car does not move; reveal: 'On a frictionless road the engine spun the wheels just as hard and the car went nowhere').",
+      "support": "derivation",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapters on Newton's laws and on systems of particles (only external forces change the centre of mass's motion). Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.what-pushes-the-car.c2",
+      "text": "The forward force on a driven car is static friction from the road on the tyres; the tyres push back on the road with an equal and opposite force (stage arrows 'road on tyre' forward and 'tyre on road' backward; reveal: 'The engine turns the wheels and the tyres push back on the road; the road pushing forward on the tyres is what moves the car').",
+      "support": "source",
+      "source": "Halliday, Resnick and Walker, friction chapter and rolling without slipping (the friction on a driven wheel points forward). Newton's third law for the pair. Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.what-pushes-the-car.c3",
+      "text": "A 1,200 kg car asking for 2.0 m/s² needs 2,400 N from the road (F = m a); a dry road (μ 0.8) can give up to 9,418 N, so the grip holds (stage readout '2,400 N forward · 2.0 m/s²'; Seen row 'dry: 2,400 N, 2.0 m/s²'; reveal 'your car gained speed at 2.0 m/s², pushed by the road's 2,400 N grip on the tyres').",
+      "support": "derivation",
+      "source": "1,200 × 2 = 2,400 N; 0.8 × 1,200 × 9.81 = 9,417.6 N. artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '63 what-pushes-the-car'. Demo.tsx M, A_ASK, MU. The μ values are illustrative (typical textbook ranges). Brief claim 3.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.what-pushes-the-car.c4",
+      "text": "On ice (μ 0.1) the road can give at most μ m g = 1,177 N, less than the 2,400 N asked for, so the wheels slip and the car gains speed at only 0.98 m/s² (stage readout '1,177 N max · 0.98 m/s² · slipping', spin marks; Seen row 'ice: 1,177 N, slips'; reveal 'On ice the road could give only 1,177 N and the wheels slipped').",
+      "support": "derivation",
+      "source": "0.1 × 1,200 × 9.81 = 1,177.2 N; 1,177.2 / 1,200 = 0.981 m/s². check.mjs block 63. Brief claim 3 (the brief's stage text rounds this to ~1,200 N; the lesson shows 1,177 N so that it matches 0.98 m/s²).",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.what-pushes-the-car.c5",
+      "text": "On a frictionless road the road gives 0 N, so the car does not speed up at all (stage readout '0 N forward · 0 m/s² · wheels spin'; Seen row 'frictionless: 0 N, stays put').",
+      "support": "derivation",
+      "source": "μ = 0 gives μ m g = 0 N. check.mjs block 63.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.what-pushes-the-car.c6",
+      "text": "Idealisations: a 1,200 kg all-wheel-drive car on a flat road, no air drag, and the maximum static grip also used while slipping (real sliding grip is a little lower) (stage caption '1,200 kg car, all-wheel drive, no air drag.'). The car is drawn where it would be 2 s after pulling away (4.0 m dry, 2.0 m on ice, 0 m frictionless; 12 px per m; the dashed outline is where it started), and the force arrows are drawn in proportion, one pair per axle.",
+      "support": "convention",
+      "source": "Brief claim 4. Demo.tsx T_SHOW (2 s), PXM (12 px per m), FPX (1 px per 40 N per axle). x = ½ a t²: 4.0 m and 1.96 m.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can't a car pull away on perfectly smooth ice, however powerful its engine?",
+    "options": [
+      "The engine cannot turn the wheels on ice",
+      "Nothing outside pushes it forward: the road's grip on the tyres is the push",
+      "The ice pushes the car backwards harder than the engine pushes forwards"
+    ],
+    "answer": 1,
+    "why": "The engine only turns the wheels. The forward push on the car comes from the road gripping the tyres, and smooth ice gives no grip, so the wheels just spin."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:friction-drives-forward",
+    "also": [
+      "physics:action-reaction",
+      "physics:static-friction"
+    ],
+    "prerequisites": [
+      "physics:static-friction",
+      "physics:action-reaction"
+    ],
+    "level": "core",
+    "strand": "mechanics",
+    "references": [],
+    "tags": [
+      "friction",
+      "forces",
+      "cars"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

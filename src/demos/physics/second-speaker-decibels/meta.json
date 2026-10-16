@@ -1,0 +1,100 @@
+{
+  "slug": "second-speaker-decibels",
+  "title": "Two speakers, how many decibels?",
+  "hook": "One speaker reads 60 dB. Add an identical second one. What does the meter say?",
+  "domain": "physics",
+  "concept": "decibels-logarithmic",
+  "status": "review",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-physics",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "decibels measure loudness",
+      "more speakers are louder"
+    ],
+    "doesNotKnow": [
+      "that decibels count multiplications of sound power, so doubling the power adds only 3 dB and ten times the power adds 10 dB"
+    ]
+  },
+  "misconception": "Two 60 dB speakers together make 120 dB.",
+  "objective": "The learner can explain that a second identical speaker doubles the sound power but adds only 3 dB, because decibels count multiplications of power: every doubling adds 3 dB and every tenfold adds 10 dB.",
+  "claims": [
+    {
+      "id": "physics.second-speaker-decibels.c1",
+      "text": "Sound intensity level is L = 10 log10(I / I0) with I0 = 10⁻¹² W/m², so 60 dB is a sound power of 1 µW/m² reaching you (stage at start: one speaker, meter '60 dB', bar '1 µW/m²'; hook 'One speaker reads 60 dB').",
+      "support": "source",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on sound waves (sound level β = 10 log(I/I0), I0 = 10⁻¹² W/m²). artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '62 second-speaker-decibels'. Demo.tsx I0, I1. Brief claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.second-speaker-decibels.c2",
+      "text": "Identical speakers playing uncorrelated sound at the same distance add their powers, so 2, 4 and 10 speakers give 2, 4 and 10 µW/m² and 63, 66 and 70 dB (stage bar 'sound power reaching you, µW/m²', scale 0 to 10, and meter; Seen row 'power ×2: 63 dB · ×4: 66 dB · ×10: 70 dB'; reveal 'the meter went from 60 to only 63 dB', 'Four speakers read 66 dB and ten read 70 dB').",
+      "support": "derivation",
+      "source": "10 log10(n × 10⁶) = 60 + 10 log10 n: 63.0, 66.0, 70.0 dB (check.mjs block 62). Demo.tsx levelDb(). Brief claim 2.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.second-speaker-decibels.c3",
+      "text": "Decibels count multiplications of power, not amounts: every doubling adds 3 dB (10 log10 2 = 3.01) and every tenfold adds 10 dB (reveal: 'ten times the power adds just 10 dB', 'every doubling adds 3 dB and every tenfold adds 10').",
+      "support": "derivation",
+      "source": "From the definition in c1: L(k I) = L(I) + 10 log10 k. check.mjs block 62.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.second-speaker-decibels.c4",
+      "text": "120 dB is a million (10⁶) times the sound power of 60 dB, not two 60 dB speakers (reveal: 'So 120 dB is not two 60 dB speakers; it is a million times their power').",
+      "support": "derivation",
+      "source": "10^((120 − 60) / 10) = 10⁶. check.mjs block 62. Brief claim 3. 'Their power' is the power of one 60 dB speaker; two give 2 µW/m², so 120 dB (1 W/m²) is 500,000 times two speakers' power.",
+      "status": "unverified"
+    },
+    {
+      "id": "physics.second-speaker-decibels.c5",
+      "text": "Idealisations: identical speakers playing uncorrelated sound (such as different music or noise) at the same distance, with no room echoes (stage caption 'Identical speakers, same distance, no echoes.'). Not on the stage: identical in-phase tones can reach up to +6 dB at some spots and less at others. How loud it feels is not claimed.",
+      "support": "convention",
+      "source": "Brief claim 4. Interference of coherent sources: |2p|² = 4 p² gives +6 dB at in-phase spots (Halliday, Resnick and Walker, chapter on sound waves, interference).",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A 70 dB vacuum cleaner runs, and an identical one starts up beside it. About what does the meter read now?",
+    "options": [
+      "73 dB",
+      "80 dB",
+      "140 dB"
+    ],
+    "answer": 0,
+    "why": "Two identical machines give twice the sound power, and each doubling adds only about 3 dB."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "physics:decibels-logarithmic",
+    "also": [
+      "math:logarithm-as-digit-count"
+    ],
+    "prerequisites": [],
+    "level": "core",
+    "strand": "waves",
+    "references": [],
+    "tags": [
+      "sound",
+      "decibels",
+      "logarithms"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

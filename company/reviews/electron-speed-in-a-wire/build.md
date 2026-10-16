@@ -1,0 +1,23 @@
+# Build note: electron-speed-in-a-wire
+
+Builder: demo-builder (builder-wavej-pr1, project wave-j), 2026-10-16. Brief: `company/domains/briefs/physics.md` round 4 (Wave J), #61. Status draft → review (QA contract and reveal-fit passed locally); every claim unverified.
+
+Built as briefed: one circuit picture (battery, switch, 2 m of wire to the bulb, return wire) full of faint dots for the free electrons, one tinted electron at the switch, and a ruler of the wire's first 30 cm folded under the circuit. The first 30 cm of the top wire and the ruler share one tint so the ruler reads as that stretch magnified. Every dot shifts by the same distance as the tinted one, which stands for the cause (all electrons start moving together). Presets set the time since switch-on (1 s, 1 min, 1 h); each press tweens the dots and marker for 380 ms; milestones fire on the press.
+
+Departures: title and hook written here ("How fast does one electron go?" / "A lamp lights the moment you flip its switch. So how quick are the electrons?"). The wait presets are disabled until "Switch on" (QA presses in DOM order, so Switch on enables them first). Reveal says "about 10 ns (10 billionths of a second)" so it uses the stage's "~10 ns" rounding. The reveal names the faint dots instead of the brief's "the wire is already full of free electrons" told sentence. The AC-mains sentence is in claim c6 only, not on the stage. Ruler labels cut to 0 and 30 cm for the text budget.
+
+Open item for cm-physics (not fixed): stage text counts 26 words locked and 41 at the 1 h state, counting every number and unit token (labels switch/battery/bulb/2 m, "lit after ~10 ns" or "2 m trip: 7.6 h", marker label, caption, and the brief's four-value Seen row). The budget is 25. The brief's Seen row and labels alone exceed it; which to cut is a teaching call.
+
+## Pre-flight v1
+
+1. **Title and hook.** "How fast does one electron go?" / "A lamp lights the moment you flip its switch. So how quick are the electrons?" The hook states the instant-light premise that drives the misconception; it names no speed or time.
+2. **Options.** "Under a millionth of a second", "About one second", "Several hours": none uses a digit, all at the same vague precision.
+3. **Locked stage.** Circuit with the switch open, dark bulb, faint dots, tinted electron at the switch, "2 m" dimension, ruler 0 to 30 cm with the marker at 0, caption. No time, speed or distance moved.
+4. **Reveal values.** "10 ns": milestone switch-on (Seen "lit: ~10 ns"). "4.4 mm": milestone one-minute (Seen "1 min: 4.4 mm"). "26 cm": milestone one-hour (Seen "1 h: 26 cm"). "7.6 h": milestone one-hour (Seen "trip: 7.6 h", label "2 m trip: 7.6 h"). "0.07 mm a second": constant V_DRIFT (claim c3), the rate, not a state. "2 m": the question's route, constant.
+5. **QA path.** DOM order: Switch on (switch-on), Wait 1 s (no milestone, marker "+0.07 mm"), Wait 1 min (one-minute), Wait 1 h (one-hour, the question's case). Four presses reach all three milestones. At the reveal the 1 h state ("2 m trip: 7.6 h", marker "+26 cm") and the Seen row "lit: ~10 ns · 1 min: 4.4 mm · 1 h: 26 cm · trip: 7.6 h" are on the stage.
+6. **Reset.** No Reset control; the Seen row is never cleared and every preset can be revisited. Reveal on the QA path: "Your bulb lit about 10 ns (10 billionths of a second) after the switch. Your tinted electron crept only 4.4 mm in a minute and 26 cm in an hour: the 2 m trip takes 7.6 h. The faint dots are the wire's free electrons, there all along. Closing the switch pushed on all of them at once, so the ones in the bulb moved straight away. Each only drifts, about 0.07 mm a second."
+7. **Phone fit.** `tools/reveal-fit.mjs` (committed copy, clean stamp, tool commit 79c22aa, HEAD a926418) at 390×844 against a production build (`NEXT_DIST_DIR=.next-wj`, port 3821), 2026-10-16: verdict fit, crop 0 px, hiddenBelow 0, namedHidden 0 (named: switch, bulb, 10), phoneFit true, picScale 1, 81 reveal words including the verdict line (about 76 in the body). Output `artifacts/reveal-fit/wj-pr1-physics.json` (gitignored). Builder probe: stage top 174 px, reveal bottom 712 of 844, smallest SVG label 10.5 px, every press changed the stage, no console errors.
+
+## QA
+
+Computer-use QA, unmodified `tests/qa/contract.spec.ts`, `QA_BASE_URL=http://localhost:3821 QA_ONLY=electron-speed-in-a-wire,second-speaker-decibels,what-pushes-the-car`, production build of the worktree at a926418 plus the final label edits (committed with this note), 2026-10-16: phone and desktop passed (6/6, default timeouts). This is the builder's local pass, not the qa-tester's record.

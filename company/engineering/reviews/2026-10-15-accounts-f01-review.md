@@ -97,3 +97,58 @@ ADR-009 §4 says Production is the Neon default branch with the integration on P
 
 ## Kudos
 - @backend-engineer: read Better Auth's source rather than its docs, and found all five defaults that collide with the privacy gate before any code was written. Every one checked out in the tarball, and the scratch evidence made it possible to check.
+
+## Addendum, 2026-10-16: rulings on SPIKE-002 R1, R2 and the C11 reading (W-1148)
+
+owner: principal-engineer (Kenji) · batch: first-light/2026-10-16-round-1#2 · inputs: SPIKE-002 results (branch `accounts` at 2f5c500), [privacy review of EDD-008](../../reviews/_privacy/2026-10-16-edd-008-accounts.md), `vercel.json` on main, main at the time of writing (A1 applied at 0d76ae1)
+
+How I checked, beyond the spike report: I read `@vercel/next` 22.0.1 and `@vercel/build-utils` in the worktree's `node_modules` (read only, nothing installed or built). I sent one GET each to production `/api/events`, `/api/feed/all/1` and `/` to read `x-vercel-id`. I ran `npm audit` and `npm audit --omit=dev` on main's lockfile. And I checked where `accounts` forks from main: it forks at 119c807, **before A1** (0d76ae1).
+
+### Ruling 1: R2 / C9, +445 B gzip on the feed. **Accepted as meeting C9, with C9 reworded and a re-measure on the rebased branch.**
+- C9 exists to keep account and library code out of the feed. The spike shows that holds. No `better-auth`, `nanostores`, `better-fetch`, `kysely`, `pg-pool` or `/api/account` string appears in any feed script, and no client file imports them (grep tests 23 to 27). The two other changed chunks differ only by module-id renumbering. The rest of the delta is Turbopack's generic async-module runtime. That is framework loader code, and it is the same bytes whether `account-route.ts` uses a static or a dynamic import. "Byte-identical" was my wording, and it was stricter than the purpose. The backend engineer's 60% reading of the cause does not need to be settled for this ruling.
+- **C9 now reads:** (a) no account, auth-library or database-driver code in any first-load script on `/` or `/d/*`, enforced by the grep test; (b) first-load JS on `/` grows by **at most 1 KB gzip**, all of it framework runtime or id churn, shown by a normalised diff. Anything above 1 KB, or any library string, fails C9.
+- **Re-measure before merge (merge condition, backend-engineer).** The +445 B was measured against a pre-A1 baseline of 2.76 MB gzip. Main is now about 230 KB gzip, so the same bytes are about 0.2% of first load, not 0.016%, and A1's split may change whether the async runtime appears at all. After rebasing `accounts` onto main, re-run the `firstload` script and paste before and after into the merge record. The 1 KB ceiling applies to that number.
+- Objection carried: *"A rule that tolerates a little growth invites more."* (principal-engineer, against myself.) **Answer:** the ceiling is a number, applies once per change, and does not accumulate. The next change gets its own 1 KB only with its own ruling. Q5.3's 500 KB budget stays the real limit.
+
+### Ruling 2: C11, the stop rule. **Confirmed: it covers what a change adds, plus the runtime tree.**
+- Measured on main's lockfile today: 33 advisories (8 moderate, 24 high, 1 critical). The only direct root is `vercel` (devDependency), and `npm audit --omit=dev` shows **0**. The spike's lockfile shows the same 33, with 0 added and 0 changed. Nothing reaches a function or the browser.
+- **C11 now reads:** a change stops if it **adds or changes** any high or critical advisory, or if `npm audit --omit=dev` is not 0. Pre-existing advisories in devDependencies do not stop an unrelated change. They are their own item. The merge review re-runs both commands on the integrated lockfile.
+- The pre-existing 33 are real. `tar` (critical) and `undici` sit in the CLI that the release manager runs to deploy. **Routed:** platform-engineer, tier 1, bump the `vercel` CLI devDependency to a release that clears them, or record why not (board ask below). It does not block accounts.
+- Objection carried: *"Reading the stop rule narrowly lets a known critical stay forever."* (implicit in the spike's own note.) **Answer:** the item routed above is how it closes. The stop rule is not the right tool, because the critical is in a tool the learner never runs.
+
+### Ruling 3: C6 / R1, `fra1`. **R1 confirmed. Use per-function `regions` in `vercel.json`, scoped to the account routes. The founder approves it as a deploy-config change.**
+What I verified:
+- `@vercel/next` 22.0.1 drops `regions` from Next's functions-config manifest for Node functions (`dist/index.js`: `const { regions: _regions, ...manifestOpts }`). It reads `preferredRegion` only for edge functions (`dist/adapter/index.js`). So the route export does nothing for us. R1 holds, and I put it at 90%: a newer `@vercel/next` on Vercel's build image could differ.
+- The same code merges `vercel.json` `functions` options into each function (`getLambdaOptionsFromFunction` in `@vercel/build-utils` passes `regions: fn.regions`, and the `functions` schema accepts `regions`). Functions are grouped only when their `regions` match (`compareRegions(group.regions, opts.regions)`). So a glob scoped to the account routes gets its own function group in `fra1`, and no other route joins it.
+- Today every function runs in **`iad1`**. Production `/api/events` answered `x-vercel-id: iad1::iad1::…`, read at 2026-10-16 from this host. The second segment is the function region.
+
+The three ways, and what each does to the existing functions:
+
+| Option | Change | Effect on `/api/events`, `/api/feed/*`, `/api/meta/*`, `/api/hq/*`, `/api/whiteboard`, render functions | Verdict |
+|---|---|---|---|
+| A. Project default function region = `fra1` (dashboard) | none on disk | **All** functions move to Frankfurt. The beacon is fire-and-forget, so learners do not wait on it. Cached and prerendered responses are unchanged. Uncached function calls from the Americas add about 90 ms | **Rejected.** It is invisible in git, cannot be reviewed or reverted by commit, and has the widest blast radius |
+| B. `"regions": ["fra1"]` at the top of `vercel.json` | 1 line | Same as A, but in git | **Fallback only**, if C is refused by the plan or not honoured on the preview |
+| **C. `"functions": { "src/app/api/account/**/route.ts": { "regions": ["fra1"] } }` in `vercel.json`** | one key | **None.** Every existing function stays in `iad1`. Only `/api/account/*` runs in `fra1`, next to the Neon database | **Ruled** |
+
+Conditions on C (platform-engineer, W-1149, then release-manager):
+1. The change lands **on branch `accounts`**, not on main by itself. The glob matches nothing on main, and the Vercel CLI refuses a `functions` pattern that matches no function (about 70% sure of that check; either way, the change belongs with the routes it serves). It merges with accounts.
+2. Keep the per-route `preferredRegion` export (harmless, and it documents intent). Do not add `regions` anywhere else.
+3. **Proof without turning accounts on.** One founder-approved preview of `accounts` with `ACCOUNTS_ENABLED` **unset**. `/api/account/me` still answers 404 from its function, so `x-vercel-id` shows the function region. Pass: `/api/account/me` shows `::fra1::` and `/api/events` still shows `::iad1::`. The proof needs no test database and no sign-in. It settles R1 and the privacy review's G3. The preview part of SPIKE-002 (Q8, Q12, Q13, Q15, accounts on) can follow on the same build or a later one.
+4. If the preview shows `iad1` for the account route, use B and record it here: every function moves, with the effect in the table, and then the privacy reviewer must also update the Vercel processor row, since the beacon would then run in the EU too.
+5. **Unverified:** whether Vercel Hobby allows a per-function region that differs from the project default. vercel.com is unreachable from this host (403 on 10-15). The preview settles it. If Hobby refuses it, that is one more reason for F-18 (Pro) before accounts reach production.
+
+**For the founder (through head-of-strategic-initiatives, W-1122):** approve the C change to `vercel.json` (account routes only, region `fra1`) and one preview of `accounts` with accounts off to prove it. No production deploy is involved.
+
+### Smaller rulings the privacy review addressed to me
+- **M3 (retention wording or a cron):** C10 stands. No cron in release 1. Make the wording true ("removed at the next sign-in request"), and add a readiness query for the oldest expired row. A cron would be one more piece of deploy config and one more secret, and it would not change what is stored.
+- **F-f (verify limit 5 per 60 s per IP, shared school addresses):** **accepted for staff testing, changed before go-live.** Verify tokens are single-use and hashed, and they expire in 300 s, so guessing them is not the risk the limit guards. Before any real learner, backend-engineer raises the library's `/magic-link/verify` limit to 30 per 60 s per IP and adds a test. `start` keeps 5 per 60 s per IP and per email. Go-live condition, not a merge condition.
+- **R3 (kill switch means a redeploy):** not mine to rule. It is correct as found, and it belongs in the release manager's runbook (W-1150). I note only that it makes C5's test "flip on a preview *with a redeploy* and the UI follows".
+
+### Where the conditions stand after the spike
+C1, C2, C3 (with M1 still open), C4, C7, C10 (with M3 still open): **met** locally. C5: **met in code**, flip semantics per R3. C6: **open**, Ruling 3 and the preview proof. C8: **text met** (f26ab4a), its readiness check is W-966. C9: **met as reworded**, with the re-measure after rebase. C11: **met as reworded**. Merge still needs M1 to M6, the privacy re-read, the readiness approval (W-966), the rebase onto main with `npm run verify` on the integrated tree, and this review's merge pass.
+
+### Board asks (for the chief of staff; I did not edit board.json)
+1. platform-engineer: W-1149 per Ruling 3 (option C on `accounts`), then hand to release-manager for the founder-approved proof preview.
+2. platform-engineer (new, tier 1): bump the `vercel` CLI devDependency to clear the 33 pre-existing advisories (`tar` critical), or record why not.
+3. backend-engineer: after the rebase onto main, re-measure first-load JS against the 1 KB C9 ceiling. Before go-live, the verify limit (F-f).
+4. principal-engineer: close W-1148 against this addendum.

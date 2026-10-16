@@ -1,0 +1,20 @@
+.wrap { display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto; min-height: 0; }
+.fit { flex: 1 1 0; min-height: 140px; max-height: 36dvh; }
+.wrap :global(.row) { margin-top: 2px; gap: 6px; }
+.wrap :global(.control) { flex: 1 1 0; min-width: 0; min-height: 44px; padding-left: 4px; padding-right: 4px; white-space: normal; line-height: 1.15; }
+.caption { margin: 0; font-size: 13px; color: var(--fg); }
+.seen { margin: 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.spkOn rect { fill: color-mix(in srgb, var(--domain) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.4; }
+.spkOff rect { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.7; }
+.cone { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.2; }
+.wave { fill: none; stroke: var(--domain); stroke-width: 2; stroke-linecap: round; }
+.head { fill: color-mix(in srgb, var(--muted) 30%, var(--bg-2)); stroke: var(--fg); stroke-width: 1.4; }
+.ear { fill: none; stroke: var(--fg); stroke-width: 1.4; }
+.meter { fill: var(--bg-2); stroke: var(--fg); stroke-width: 1.6; }
+.meterText { fill: var(--fg); font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.track { fill: var(--bg-2); stroke: var(--line); stroke-width: 1; }
+.bar { fill: var(--domain); }
+.tick { stroke: var(--muted); stroke-width: 1; }
+.lab { fill: var(--fg); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.labD { fill: var(--domain); font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.labIn { fill: #0d0f14; font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums; }
