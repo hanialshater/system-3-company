@@ -45,3 +45,5 @@ Claims (I verified none):
 - Typecheck passes. `npm run check`: one error, the hook (above).
 
 Publish needs culture-en on the walkthrough (stage B), a fact-check of c1-c3, c6 and c8, and a QA record on v3.
+
+r16 fix (W-1360): hook and title set to cm-history's wording, skip line removed; fit was measured with the longer strings, so not re-run.
