@@ -1,7 +1,7 @@
 {
   "slug": "sock-pairs-not-all-combinations",
   "title": "Six socks are not six possible pairs",
-  "hook": "Six plain socks, three pairs, no marks. How many two-sock pairings could you try?",
+  "hook": "Which method checks fewer pairs in this matching puzzle?",
   "domain": "lifehacks",
   "concept": "sock-pair-count",
   "status": "review",
@@ -19,56 +19,61 @@
     ]
   },
   "misconception": "Six loose socks need only a handful of checks to pair up.",
-  "objective": "Each sock can go with any of the others, so six socks give 15 pairings: 5 + 4 + 3 + 2 + 1. The pairings grow much faster than the socks: ten socks give 45. A mark on each pair leaves one pairing per pair.",
+  "objective": "Without partner marks, every unordered pair is a candidate. Unique partner marks reduce the pictured task to one match per marked pair. The combinatorial growth explains the appeal of distinctive patterns.",
   "claims": [
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.c1",
-      "text": "Each sock can go with any of the others, so six socks give 15 pairings: 5 + 4 + 3 + 2 + 1. The pairings grow much faster than the socks: ten socks give 45. A mark on each pair leaves one pairing per pair.",
+      "text": "Without partner marks, every unordered pair is a candidate. Unique partner marks reduce the pictured task to one match per marked pair. The combinatorial growth explains the appeal of distinctive patterns.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.c2",
-      "text": "This assumes pairs that look alike but are not interchangeable; identical pairs would need fewer tries.",
+      "text": "Real socks may have multiple identical partners; unique marks are an assumption here.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.c3",
       "text": "Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.c4",
-      "text": "Title: Six socks are not six possible pairs Hook: Six plain socks, three pairs, no marks. How many two-sock pairings could you try? Question: Six plain socks, three pairs, no marks. How many different two-sock pairings could you try? Options: 3 / 6 / 15. Correct option: 15.",
+      "text": "Which method checks fewer pairs in this matching puzzle?",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'combinations' at the starting input 6; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.c5",
       "text": "Why can a unique partner mark change a matching task more than a tidy pile?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.sock-pairs-not-all-combinations.recall",
       "text": "Without marks every unordered pair is a candidate: 8 × 7 ÷ 2 = 28. Unique marks leave one match per pair: 4. The candidate count grows much faster than the sock count.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
-    },
-    {
-      "id": "lifehacks.sock-pairs-not-all-combinations.seen",
-      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: No marks: 6 socks give 15 pairings to try. Marked partners: only 3, one per pair.",
-      "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -92,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 1,
   "curriculum": {
     "primary": "lifehacks:sock-pair-count",
     "prerequisites": [],

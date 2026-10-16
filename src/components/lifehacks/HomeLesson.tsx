@@ -226,7 +226,8 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
     }
     case 'pair-search': {
       const n=Math.max(3,Math.round(p));
-      if(!b) return <>{Array.from({length:n},(_,i)=>sock(40+(i*73)%220,46+(i*47)%160,(i*53)%360-180,i%3,i===0?s.target:s.object,i))}</>;
+      // A heap: socks on a golden-angle spiral, patterns interleaved, so no pattern sits in its own corner.
+      if(!b) return <>{Array.from({length:n},(_,i)=>{ const t=i*2.39996,r=22*Math.sqrt(i+0.5); return sock(150+r*Math.cos(t)*1.2,122+r*Math.sin(t),(i*67)%360-180,i%3,i===0?s.target:s.object,i); })}</>;
       return <>{[0,1,2].map(k=><rect key={`bin${k}`} x={8+k*96} y="40" width="88" height="186" rx="6" className={k===0?s.outline:s.hidden}/>)}
         {Array.from({length:n},(_,i)=>{ const k=i%3,j=Math.floor(i/3),col=j%2,row=Math.floor(j/2);
           return sock(36+k*96+col*36,76+row*58,0,k,i===0?s.target:k===0?s.object:s.hidden,i); })}</>;
@@ -251,8 +252,11 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
     case 'pairpack': {
       // 7 units per cm, top view, toes up: each shoe narrows evenly from a 12 cm toe to a 6 cm heel over 24 cm.
       const k=7,toe=v[0]*k,heel=v[1]*k,top=52,bottom=52+24*k,bag=p*k,L=150-bag/2,x0=L+2,width=b?toe+heel:2*toe;
-      const one=`M${x0},${top}H${x0+toe}L${x0+heel},${bottom}H${x0}Z`;
-      const two=b?`M${x0+toe},${top}H${x0+toe+heel}V${bottom}H${x0+heel}Z`:`M${x0+toe},${top}H${x0+2*toe}V${bottom}H${x0+2*toe-heel}Z`;
+      // Rounded toe and heel caps beyond y1 and y2; between them the reversed shoe's edge lies on the first one's, so they touch without overlap.
+      const y1=top+12,y2=bottom-12,cap=(xa:number,xb:number,y:number,d:number)=>`Q${(xa+xb)/2},${y+d} ${xb},${y}`;
+      const one=`M${x0},${y1}${cap(x0,x0+toe,y1,-24)}L${x0+heel},${y2}${cap(x0+heel,x0,y2,24)}Z`;
+      const two=b?`M${x0+toe},${y1}${cap(x0+toe,x0+toe+heel,y1,-24)}V${y2}${cap(x0+toe+heel,x0+heel,y2,24)}Z`
+        :`M${x0+toe},${y1}${cap(x0+toe,x0+2*toe,y1,-24)}V${y2}${cap(x0+2*toe,x0+2*toe-heel,y2,24)}Z`;
       return <><rect x={L} y="44" width={bag} height={bottom-36} rx="4" className={s.outline}/>
         <path d={one} className={s.object} strokeLinejoin="round"/><path d={two} className={s.target} strokeLinejoin="round"/>
         <path d={`M${x0},32H${x0+width}M${x0},25v14M${x0+width},25v14`} className={s.line}/>
@@ -261,13 +265,13 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
     case 'balance': {
       // 3 units per cm; the two loads sit 20 cm either side of the handle. The bag hangs from the handle top, so it
       // turns until the balance point is under it: a straight bag means a centred balance point.
-      const k=3,[right=1,pos=20]=v,left=b?(p+right)/2:p,rightKg=b?(p+right)/2:right;
+      const k=2.5,[right=1,pos=20]=v,left=b?(p+right)/2:p,rightKg=b?(p+right)/2:right;
       const centre=(-pos*left+pos*rightKg)/(left+rightKg),hL=14*left,hR=14*rightKg;
       const turn=Math.atan2(centre*k,150)*180/Math.PI;
       return <><path d="M150,14V236" stroke="var(--line)" strokeDasharray="4 5"/>
         <g transform={`rotate(${turn},150,20)`}>
           <path d="M108,82Q108,20 150,20Q192,20 192,82" className={s.line}/>
-          <path d="M58,82H242L226,200H74Z" className={s.outline}/>
+          <path d="M58,82H242L232,200H68Z" className={s.outline}/>
           <rect x={150-pos*k-25} y={196-hL} width="50" height={hL} rx="3" className={s.object}/>
           <rect x={150+pos*k-25} y={196-hR} width="50" height={hR} rx="3" className={s.object}/>
           <text x={150-pos*k} y={190-hL} textAnchor="middle">{fmt(left)} kg</text>

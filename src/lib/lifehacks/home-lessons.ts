@@ -685,8 +685,8 @@ export const homeLessons: HomeSpec[] = [
     "source": null,
     "answer": 2,
     "concept": "suitcase-layer-access",
-    "unit": "layers",
-    "inputLabel": "Layers",
+    "unit": "items",
+    "inputLabel": "Items in the case",
     "hook": "The rain jacket is under five items. How many do you lift to reach it?",
     "engine": 2,
     "modeLabels": [
@@ -734,7 +734,7 @@ export const homeLessons: HomeSpec[] = [
     "answer": 0,
     "concept": "jacket-last-first",
     "unit": "items",
-    "inputLabel": "Count",
+    "inputLabel": "Items packed",
     "hook": "Jacket needed first, sweater next, shoes last. Which goes into the bag first?",
     "engine": 2,
     "modeLabels": [
@@ -1522,7 +1522,7 @@ export const homeLessons: HomeSpec[] = [
       }
     ],
     "resultLabel": "Socks to check, at most",
-    "revealLine": "{A}: the partner could be any of the other {resultA} socks. {B}: sorted first, it is one of {resultB} in its pattern's bin."
+    "revealLine": "{A}: the partner could be any of the other {resultA} socks. {B}: sorted first, it is one of the other {resultB} in its pattern's bin."
   },
   {
     "slug": "sock-pairs-not-all-combinations",

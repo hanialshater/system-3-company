@@ -1,7 +1,7 @@
 {
   "slug": "tote-balance-sides",
   "title": "Two sides, one centre",
-  "hook": "3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
+  "hook": "Which layout centres the shown load?",
   "domain": "lifehacks",
   "concept": "balance-the-load",
   "status": "review",
@@ -19,56 +19,61 @@
     ]
   },
   "misconception": "As long as the total weight is the same, how you load a bag makes no difference to how it hangs.",
-  "objective": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
+  "objective": "The load’s centre is a mass-weighted average of positions. Moving some of the load to the other side can put that average under the handle while leaving total mass unchanged.",
   "claims": [
     {
       "id": "lifehacks.tote-balance-sides.c1",
-      "text": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
+      "text": "The load’s centre is a mass-weighted average of positions. Moving some of the load to the other side can put that average under the handle while leaving total mass unchanged.",
       "support": "source",
-      "source": "REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.tote-balance-sides.c2",
       "text": "A centred drawing does not certify a bag’s strength or make a heavy load safe.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Initial masses=m and 1kg at x=−20,+20cm; after each side=(m+1)/2. Centre=sum(mx)/sum(m). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Initial masses=m and 1kg at x=−20,+20cm; after each side=(m+1)/2. Centre=sum(mx)/sum(m). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.tote-balance-sides.c3",
-      "text": "As packed: m kg left and 1 kg right, at −20 and +20 cm from the handle; evened out, each side=(m+1)/2 kg. Balance point=sum(mass×position)/total mass.",
+      "text": "Initial masses=m and 1kg at x=−20,+20cm; after each side=(m+1)/2. Centre=sum(mx)/sum(m).",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.tote-balance-sides.c4",
-      "text": "Title: Two sides, one centre Hook: 3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight? Question: 3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight? Options: No: the total didn't change / Yes. Correct option: Yes.",
+      "text": "Which layout centres the shown load?",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'balance' at the starting input 3; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.tote-balance-sides.c5",
       "text": "Why is the total weight insufficient to describe balance?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.tote-balance-sides.recall",
       "text": "The centre is a mass-weighted average of positions. With 3 kg on each side at equal distances it sits under the handle, and the total is still 6 kg. Centred is not the same as strong enough.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
-    },
-    {
-      "id": "lifehacks.tote-balance-sides.seen",
-      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: As packed: 3 kg left, 1 kg right; balance point −10 cm (left of the handle). Evened out: 2 kg each side; balance point 0 cm (under the handle), same total.",
-      "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -92,7 +97,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 1,
   "curriculum": {
     "primary": "lifehacks:balance-the-load",
     "prerequisites": [],

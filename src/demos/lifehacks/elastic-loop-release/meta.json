@@ -1,7 +1,7 @@
 {
   "slug": "elastic-loop-release",
   "title": "A loop is not a permanent knot",
-  "hook": "A hair tie is looped round a cord's end, and it looks knotted. What frees it?",
+  "hook": "Which manipulation removes the drawn crossing?",
   "domain": "lifehacks",
   "concept": "loop-is-not-a-knot",
   "status": "review",
@@ -19,49 +19,52 @@
     ]
   },
   "misconception": "A loop that crosses itself is a knot that has to be picked apart or cut.",
-  "objective": "A hair tie round a cord is a closed loop, not a knot, so there is nothing to pick apart. While the cord's end is free, the loop slides along the cord and off the end, and the cord lies straight again.",
+  "objective": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
   "claims": [
     {
       "id": "lifehacks.elastic-loop-release.c1",
-      "text": "A hair tie round a cord is a closed loop, not a knot, so there is nothing to pick apart. While the cord's end is free, the loop slides along the cord and off the end, and the cord lies straight again.",
+      "text": "A crossing in a two-dimensional drawing is not enough to prove a knot. This open loop can be slid over an accessible end, removing the shown crossing without cutting the cord.",
       "support": "derivation",
-      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, which could not be opened from this host) to derivation, as FC LH-1 and FC LH-2 asked. Argument: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink). A one-crossing diagram is never a knot, so the crossing alone does not prove a knot. The cord has a free end, so the loop can be slid along the cord and off that end, which removes the crossing without cutting; on the stage the free end (15 to 35 cm on the slider) always exceeds the 10 cm loop travel (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read the cord scene in HomeLesson.tsx and homeCordScene first. Derivation: an arc with free ends is unknotted (any tangle in an open string can be undone by moving an end), and the drawn curl is a one-crossing kink (Reidemeister I), so one crossing never proves a knot. Own run of the transpiled home-models.ts: crossings = 1 before and 0 after 'Slide loop off'. The free end minus the start is 3p px for p = 15 to 35 cm, always more than the 10 cm loop travel (30 px). The reveal shows spec.idea, the claim text. No source is relied on. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "W-383 (2026-10-14, demo-builder): retyped from source (Raymer & Smith 2007, which could not be opened from this host) to derivation, as FC LH-1 and FC LH-2 asked. Argument: the drawn curl is a one-crossing diagram of an open arc (a Reidemeister I kink). A one-crossing diagram is never a knot, so the crossing alone does not prove a knot. The cord has a free end, so the loop can be slid along the cord and off that end, which removes the crossing without cutting; on the stage the free end (15 to 35 cm on the slider) always exceeds the 10 cm loop travel (src/lib/lifehacks/home-models.ts evaluateHome, homeCordScene). Earlier history: FC LH-2 held it unverified only because its sole source was unopenable. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Read the cord scene in HomeLesson.tsx and homeCordScene first. Derivation: an arc with free ends is unknotted (any tangle in an open string can be undone by moving an end), and the drawn curl is a one-crossing kink (Reidemeister I), so one crossing never proves a knot. Own run of the transpiled home-models.ts: crossings = 1 before and 0 after 'Slide loop off'. The free end minus the start is 3p px for p = 15 to 35 cm, always more than the 10 cm loop travel (30 px). The reveal shows spec.idea, the claim text. No source is relied on.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c2",
       "text": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: stage caption reads \"Plain cord; storage only\" and the reveal limit matches word for word (390x844 screenshots, both states); homeCordScene draws only a path, a grey ellipse, an arrow, dots and a bracket: no plug, device or limit value. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Scope limits and illustrative assumptions of this card; Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: stage caption reads \"Plain cord; storage only\" and the reveal limit matches word for word (390x844 screenshots, both states); homeCordScene draws only a path, a grey ellipse, an arrow, dots and a bracket: no plug, device or limit value.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c3",
-      "text": "Crossings=1 while the hair tie is on the cord, 0 once it has slid off the free end; nothing is cut and the elastic is not stretched.",
+      "text": "Depicted crossings=1 or0; available free end=input cm, required loop travel=10cm.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for p=15..35, both states: drawn crossings = value = 1 before, 0 after (0 mismatches); stage readout \"Loop travel=10cm · end=Ncm\" matches; slider min 15 cm > 10 cm travel, so the slide is always possible on this slider. Minor drawing note: the orange crossing dot is at y=125 but the two segments cross at y=116.7. W-383 (2026-10-14, demo-builder): the crossing dot is now drawn at the true crossing (150, 350/3 ≈ 116.7) instead of (150,125); the count of drawn crossings is unchanged. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: re-ran evaluateHome and homeCordScene for p=15..35, both states: drawn crossings = value = 1 before, 0 after (0 mismatches); stage readout \"Loop travel=10cm · end=Ncm\" matches; slider min 15 cm > 10 cm travel, so the slide is always possible on this slider. Minor drawing note: the orange crossing dot is at y=125 but the two segments cross at y=116.7. W-383 (2026-10-14, demo-builder): the crossing dot is now drawn at the true crossing (150, 350/3 ≈ 116.7) instead of (150,125); the count of drawn crossings is unchanged.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.c4",
-      "text": "Title: A loop is not a permanent knot Hook: A hair tie is looped round a cord's end, and it looks knotted. What frees it? Question: A hair tie is looped round a cord's end, and it looks knotted. What frees it? Options: Picking the knot apart / Sliding it off the end / Cutting it. Correct option: Sliding it off the end.",
+      "text": "Which manipulation removes the drawn crossing?",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'loop-release' at the starting input 20; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified: the rendered predict and stage question; key = 1 \"Slide loop off\", which is the manipulation that removes the crossing (threading the end through the loop would add crossings, tying an overhand).",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     },
     {
       "id": "lifehacks.elastic-loop-release.recall",
       "text": "A crossing in a drawing does not prove a knot. An open loop can slide off an accessible end, and the crossing disappears without cutting.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: a one-crossing curl in an open cord is not a knot and slides off an accessible end; keyed option 1 \"Not if the loop slides off the free end\" matches; both distractors are false. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
-      "status": "unverified"
-    },
-    {
-      "id": "lifehacks.elastic-loop-release.seen",
-      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Pick at it: the hair tie stays on the cord, crossings 1 (still looped). Slide it off: it comes off the end, crossings 0 (free), and nothing is cut.",
-      "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
-      "status": "unverified"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-2 (2026-10-14, fresh fact-checker instance, W-369): verified by derivation: a one-crossing curl in an open cord is not a knot and slides off an accessible end; keyed option 1 \"Not if the loop slides off the free end\" matches; both distractors are false.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-14"
     }
   ],
   "confidence": "",
@@ -85,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 4,
+  "version": 3,
   "curriculum": {
     "primary": "lifehacks:loop-is-not-a-knot",
     "prerequisites": [],
@@ -99,6 +102,7 @@
     "choice-before-reveal",
     "locked-readouts",
     "milestone-gate",
-    "toggle-before-after"
+    "toggle-before-after",
+    "slider-drives-live-chart"
   ]
 }
