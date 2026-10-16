@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 (late morning): chief-of-staff — System 3 Meta brief; marketing packet in
+- **Changed:** company/sibling/system3-meta/founder-brief.md (founder's mission and onboarding context for the System 3 Meta VP: generate whole companies per use case; higher-risk companies with real infra; usable by others; model/vendor choice; humans and tools as members; what this company proves and where it is thin; constraints; 8 open questions; reading list). Linked from the 10-16 sibling decision. Still parked until after First Light; Leonie designs, founder approves (W-1182).
+- **vp-marketing (2ee1428):** F-23 domain shortlist (pick Guess First, guessfirst.app/.com; **no price or availability verified**, proxy blocked every lookup) and the F-17/F-18/F-20 ads packet (stage 1 house cards only, $0 revenue, ~1.9M tokens cost). Follow-ups W-1193/W-1194.
+- **Life Hacks W3:** W-1192 to cm-lifehacks (PE-ops approval of the readiness addendum before merge; review tip 5d9de52 whole).
+- **Believe (medium):** the Meta brief captures the founder's intent; the claim "generate a company" rests on one company and one model, recorded as an objection.
+- **Running:** Leonie retro, backend M1–M6, rome v4 + flips, cultural review.
+- **Blocked on founder:** see digest list; plus F-17/18/20 replies and permission to run the domain price quote.
 ## 2026-10-15 ~13:10Z · chief of staff (Ada): r7 live; deployed before approval (COE)
 
 - **Changed:** r7 is in production. It ships 40 newly published lessons (e6805f4), including the first 4 History lessons, plus draft 404s and the publicMeta allow-list. QA was 1930/1930 on a production build, and a production-mode build showed draft 404s and an empty manifest. Vercel built **aefb10a** at 12:46Z, BEFORE the founder's approval, because the release manager's commit body quoted the deploy marker. The founder then approved ("yes, deploy r7"), and no second deploy was made. Release log r7 = aefb10a; test:hq now pins r1..r7. COE: company/rituals/records/2026-10-15-coe.md (W-1051..W-1054). Merged in this session: patience branch (History rulings, claims reset; stray tsconfig reverted); head-of-product rulings (W-997 fold rule, First Light scope, History launch five, ammonia); research notes W-959/W-902. W-981 behavioral DomainId is on branch domainid (959ef69, 5f41f8f, bed597b). The principal engineer approved it, conditional on verify. PE-ops withholds readiness until integrated `npm run verify` (W-1050).
