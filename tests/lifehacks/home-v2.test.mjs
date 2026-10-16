@@ -136,7 +136,41 @@ test('homeSliderMatters samples the whole range, including the last step', () =>
 const W2 = ['towel-spread-dries-first', 'towel-over-two-bars', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap',
   'breeze-is-not-extra-surface', 'folded-shirt-stack-height', 'wet-knit-hang-stretch', 'drying-room-water-load',
   'towel-thickness-hidden-volume', 'care-label-first-choice']; // last two: B4, 2026-10-16
+// W-1247 (PE-ops W3 condition 1): wave W3's v2-stage lessons join the every-step sweep. long-cord-knots-itself is on
+// engine 2 but draws its own cord stage (no slider, no Seen table), so it is not swept; the test below pins that.
+const W3 = ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'shoes-opposite-ends',
+  'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'];
+const W3_OWN_STAGE = ['long-cord-knots-itself'];
 const steps = (s) => Array.from({ length: Math.round((s.max - s.min) / s.step) + 1 }, (_, i) => s.min + i * s.step);
+
+/** The W2 sweep, shared with W3: every slider step, both columns and the reveal. */
+function sweep(slug) {
+  const s = homeLessons.find((l) => l.slug === slug);
+  assert.ok(s, slug);
+  assert.equal(s.engine, 2, `${slug} is on engine 2`);
+  for (const p of steps(s)) {
+    const line = homeRevealLine(s, p);
+    const cells = ['a', 'b'].flatMap((m) => { const c = homeColumn(s, p, m); return [...c.amounts, c.result]; });
+    for (const text of [line, ...cells]) {
+      assert.doesNotMatch(text, /\{\w+\}/, `${slug} at ${p}: no raw token in "${text}"`);
+      assert.doesNotMatch(text, /NaN|Infinity|undefined/, `${slug} at ${p}: "${text}"`);
+      assert.doesNotMatch(text, /(^|[^\d.,])−0(?![\d.,])/, `${slug} at ${p}: no bare "−0" in "${text}"`);
+    }
+    const d = homeDifference(s, p);
+    if (s.revealLine?.includes('{ratio}')) {
+      assert.notEqual(d.ratio, '', `${slug} at ${p}: {ratio} is used, so the smaller result must not be zero`);
+      const ra = evaluateHome(s, p, false).value, rb = evaluateHome(s, p, true).value;
+      assert.ok(ra * rb > 0, `${slug} at ${p}: results ${ra} and ${rb} share a sign`);
+    }
+    if (s.revealLine?.includes('{diff}')) assert.doesNotMatch(d.diff, /^−/, `${slug} at ${p}`);
+  }
+  return s;
+}
+
+test('wave W3 (v2 stage): every slider step resolves every token in the reveal and every Seen cell, with no NaN or bare "−0"', () => {
+  for (const slug of W3) sweep(slug);
+  for (const slug of W3_OWN_STAGE) assert.equal(homeLessons.find((l) => l.slug === slug)?.model, 'cord', `${slug} keeps its own stage`);
+});
 
 test('wave W2 (v2 stage): every slider step resolves every reveal token, a used {ratio} is never empty, sliders stay', () => {
   for (const slug of W2) {
@@ -144,6 +178,7 @@ test('wave W2 (v2 stage): every slider step resolves every reveal token, a used 
     assert.ok(s, slug);
     assert.equal(s.engine, 2, `${slug} is on engine 2`);
     assert.equal(homeSliderMatters(s), true, `${slug} keeps its slider`);
+    sweep(slug);
     for (const p of steps(s)) {
       const line = homeRevealLine(s, p);
       assert.doesNotMatch(line, /\{\w+\}/, `${slug} at ${p}: no raw token`);
@@ -160,8 +195,8 @@ test('wave W2 (v2 stage): every slider step resolves every reveal token, a used 
   }
 });
 
-test('wave W2: the plain-number lessons show no R5 trailing zeros in any cell or reveal', () => {
-  for (const slug of W2) {
+test('waves W2 and W3: the plain-number lessons show no R5 trailing zeros in any cell or reveal', () => {
+  for (const slug of [...W2, ...W3]) {
     const s = homeLessons.find((l) => l.slug === slug);
     if (!s.plainNumbers) continue;
     for (const p of steps(s)) {
