@@ -33,3 +33,29 @@ Advisories (non-blocking, owner cm-history; the builder makes any change):
 - c4: "the same" depends on rounding and on the tie-break. "About the same, 5.9 per 100,000" would hold under every tie-break. Under one alternative tie-break, c3's ratio would also read 1.6.
 - c1: the title says "1830s", but the records run 1825-1830 (the doc says "around 1830"). The hook and the reveal give the exact years. "around 1830" or "1825-30" in the title would match them.
 - c3: the doc calls the columns "population per crime". A search snippet (not opened) says Guerry counted persons accused. If a session opens Friendly 2007 or the Whitt translation and confirms this, "recorded crimes" should become "recorded accusations".
+
+## Pass 59
+
+Checker: fact-checker, a fresh instance, 2026-10-16. SO-10-2 batch SO-10-2-2, `[project:history]`. I did not write, build or record any of c1-c7.
+
+Server: shared review server, built from 5b2fee71701e8645e3cd6e2fde60bcea004833e8 (BUILT_FROM and `git -C /home/user/s3c-qa rev-parse HEAD`, read at start and end, unchanged). `check.sh 5b2fee7 src/demos/history/schooling-and-crime-1830s`: R3a pass (exit 0). Walkthrough `--url http://localhost:3591` read first, cut at the R1 appendix; build.md not read.
+
+Why a second pass: the queue named c1-c7, but FC pass 58 (00f629b, on bc0edc0) had already checked them. Between 00f629b and 5b2fee7 the lesson changed only in `evidence.qa`, so no SO-10-2 trigger fired. I re-derived everything anyway, on my own fetch and my own script, so the verdicts rest on two independent passes.
+
+Data: Guerry.csv re-fetched from raw.githubusercontent.com/vincentarelbundock/Rdatasets, SHA-256 13f9ff6a...8433 = the history-data.mjs pin. CRAN Guerry_1.8.5.tar.gz opened (man, vignettes, inst/doc). Script: scratchpad scripts/fc.mjs.
+
+| Claim | Verdict | Basis (my numbers) |
+|---|---|---|
+| c1 | **held (unverified)** | RAW = the file 86/86 rows in file order, and the column meanings match the doc. "Young men" in the hook still has no source I could open (see below). |
+| c2 | verified | 18.571 / 63.381, shown 19% / 63%. Three departments at 25%, and the lower boundary falls on a tie, as recorded. |
+| c3 | verified | 11.293 / 18.925, ratio 1.6758, shown 11.3 / 18.9 / x1.7. |
+| c4 | verified | 5.886 / 5.863, both shown 5.9. |
+| c5 | verified | r = 0.3694 (persons 0.0320). |
+| c6 | verified | Follows from c3 and c4. The rendered reveal matches the claim word for word. |
+| c7 | verified | The rendered reveal matches. One row per department. I agree with pass 58 that "policing" is a reasoning limit. |
+
+Correction to the pass-58 note on c5 (wording only, verdict unchanged): 73.1 is the file's highest property-crime rate per 100,000 (the y axis, 0-80). It is not the highest Literacy, which is 74 (the x axis, 10-80). Every dot is inside both axes.
+
+Blocked hosts for c1 ("young men", the 1818 Gouvion-Saint-Cyr law's draw of 20-year-old men): fr.wikipedia.org, en.wikipedia.org, halshs.archives-ouvertes.fr, hal.science, persee.fr, gallica.bnf.fr, archive.org, cairn.info, journals.openedition.org, legifrance.gouv.fr, herodote.net, napoleon.org, universalis.fr, archives.creuse.fr, fr.vikidia.org, fr.geneawiki.com, www2.assemblee-nationale.fr, datavis.ca, gutenberg.org, openlibrary.org, britannica.com and core.ac.uk. curl got a proxy CONNECT 403 on each, and WebFetch got ENOTFOUND. CRAN Guerry's opened material says only "military conscripts". A web-search summary says the men were 20, but a search summary is not a source. c1 stays held, under SO-10-2's blocked-host exclusion (W-556). Fix (demo-builder, via cm-history): hook "Where more conscripts could read, did fewer crimes reach court?".
+
+Counts: 6 verified, 1 held, 0 disputed. Pass 58's advisories still stand.

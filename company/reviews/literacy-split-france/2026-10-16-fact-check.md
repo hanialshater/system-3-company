@@ -34,3 +34,20 @@ Measured on :3591 at a viewport of 390x844 (deviceScaleFactor 3) with Playwright
 Note: the map scales down from 0.941 at predict to 0.833 at the reveal. Any further shrink of the reveal stage would take every map label below the floor.
 
 **Result (Pass 58):** 3 verified, 0 disputed, 1 held (c4, new). Lesson now: 3 verified of 4.
+
+## Pass 59
+
+Checker: fact-checker, a fresh instance, 2026-10-16. SO-10-2 batch SO-10-2-2, `[project:history]`. I did not write, build or record c1-c4. Pass 58's instance recorded c4, so an independent verification of c4 is open to me. I could not verify it, because the source hosts are blocked.
+
+Server: 5b2fee71701e8645e3cd6e2fde60bcea004833e8, read at start and end. It is after 7742055, so the queue condition holds. check.sh gave R3a pass (exit 0). Walkthrough on :3591 read first, cut at R1. Method and data as in schooling-and-crime-1830s pass 59 (same fetch, same pin, own script). No lesson change since pass 58 apart from `evidence.qa`.
+
+| Claim | Verdict | Basis (my numbers) |
+|---|---|---|
+| c1 | verified | departments.json = the file, 86/86 rows. Regions have 17 departments each, and Corse's Region is empty. Mean 39.256 (Pop1831-weighted 39.856). |
+| c2 | verified (convention) | 96 outlines. Stand-in map 75/92/93/94, 78/91/95, 68/90 and 2A/2B, with 06/73/74 null. Every Guerry department has an outline. The legend bins 12-19 ... 65-74 cover the file's integer range 12-74 with no gap. |
+| c3 | verified | N 54.06, E 56.41, S 31.88, W 27.59, C 25.76. N+E 55.24, S+W+C 28.41, all 39.26. Meuse 74 and Correze 12 (no ties), Seine 71. Every rendered number matches. |
+| c4 | **held (unverified)** | The rendered reveal says "these are young men called up for the army, not everyone". The doc supports "army conscripts ... not everyone". For "young men", the host list and result are the same as schooling c1 pass 59, so c4 is blocked-host held (W-556). Fix (demo-builder, via cm-history): "Where it stops: these are army conscripts, not everyone, ...". |
+
+The label-floor result is pass 58's, and qa-tester has confirmed it since (ac1c38f). I did not re-measure.
+
+Counts: 3 verified, 1 held, 0 disputed.
