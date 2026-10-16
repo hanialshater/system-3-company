@@ -58,4 +58,4 @@ None added. When merged, the P6.1 finding (route.ts logs the full body, privacy-
 
 ## Approval (tier 2; written by principal-engineer-ops)
 
-- Decision: (not given)
+- Decision: **approved with conditions E1-E4** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16); the catalog check stays for this change, and the catalog leaves the events bundle before the first experiment registers (E1). Authority: `company/engineering/readiness/2026-10-16-events-allow-list-approval.md` (790efeb).
