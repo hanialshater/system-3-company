@@ -4,7 +4,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { parseSimRequest, cliArgs, pwlAt, curvePath, policyGroups, stepLine, UNSCORED_LABEL } from "../../src/lib/hq-personalization.ts";
-import { runSim } from "../../src/lib/hq-personalization-server.ts";
+import { runSim, BUSY, CHILD_ENV, modelStamp } from "../../src/lib/hq-personalization-server.ts";
 
 const q = (o) => new URLSearchParams(o);
 
@@ -66,4 +66,21 @@ test("compare and errors: the table is labelled UNSCORED; an unknown persona is 
   const bad = await runSim({ op: "run", persona: "a-real-learner", policy: "gam", seed: 1, days: 1 });
   assert.equal(bad.ok, false);
   assert.match(bad.error, /unknown persona/);
+});
+
+// W-1530 (company/reviews/hq/2026-10-16-w1503-review.md findings 3 and 5; lab privacy DoD §3 child env)
+test("runSim hardening: minimal child env, one process in flight, meta cached on the model stamp", async () => {
+  assert.deepEqual(Object.keys(CHILD_ENV), ["NODE_NO_WARNINGS"], "the CLI gets no copy of the server env");
+  const a = runSim({ op: "run", persona: "wanderer", policy: "gam", seed: 4, days: 1 });
+  const same = runSim({ op: "run", persona: "wanderer", policy: "gam", seed: 4, days: 1 });
+  const other = await runSim({ op: "run", persona: "wanderer", policy: "random", seed: 4, days: 1 });
+  assert.equal(same, a, "an identical request joins the running one");
+  assert.deepEqual(other, { ok: false, error: BUSY }, "a different request is refused while one runs");
+  assert.ok((await a).ok);
+  assert.ok((await runSim({ op: "run", persona: "wanderer", policy: "random", seed: 4, days: 1 })).ok, "the lock is released");
+  assert.match(modelStamp(), /^\d+(\.\d+)?:\d+(\.\d+)?$/);
+  const m1 = await runSim({ op: "meta" });
+  const m2 = await runSim({ op: "meta" });
+  assert.ok(m1.ok);
+  assert.equal(m2, m1, "meta comes from the cache while the model folder is unchanged");
 });
