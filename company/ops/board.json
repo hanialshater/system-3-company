@@ -14520,11 +14520,12 @@
       "id": "W-1241",
       "title": "Fix long-cord-knots-itself soft lock: tapping 'Tumble 3 m' first sets runs=2 but only reach('long'); reveal never unlocks (HomeLesson.tsx ~453, shared Home engine); then qa-tester re-runs it + elastic-loop-release + fitted-sheet-corners-nest on a quiet host",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
-      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked)."
+      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked).",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1242",
@@ -14578,11 +14579,12 @@
       "id": "W-1247",
       "title": "Home engine: add an answer-in-range test (a 2-option lesson with answer 2 passed 120/120) and W3 in the every-step ratchet; W4 is not cleared until this lands (PE-ops W3 condition 1)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
-      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked). Gates any further Home engine-2 move, not only W4 (PE-ops 3523e83)."
+      "note": "Re-owned to platform-engineer: engineering r3 B1 (lh-engine-locked). Gates any further Home engine-2 move, not only W4 (PE-ops 3523e83).",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1248",
@@ -14683,10 +14685,11 @@
       "id": "W-1258",
       "title": "Home engine 2: the locked stage draws option A with its caption/result before commit, giving away the answer across lessons (W3 r14); decide whether to change it (shared engine, tier 2)",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1259",
@@ -15069,10 +15072,11 @@
       "id": "W-1299",
       "title": "Home engine locked pictures (patch r3 d16eecc): jacket-last-first reverse-order case at mode null draws an empty bag with items beside it, no arrows; group-cables locked loose ends not drawn as target dots (after W-1094 safety re-look) — fold into lh-engine-locked (eng r3 B1)",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1300",
@@ -15279,6 +15283,24 @@
       "id": "W-1322",
       "title": "Launch review for rome-placed-too-far-east v4 (in review; QA, learner r13 launch, FC 53 10/10); v5 waits on the chaired review (W-1170) head-of-product",
       "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1323",
+      "title": "Home spec R2: amend it or object to the jacket-last-first locked picture (empty bag with items beside it, not A's arrangement; lh-engine-locked a2f14c3); aria label still says 'drawn as In use order'",
+      "owner": "interaction-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1324",
+      "title": "Safety re-look W-1094 now also covers the group-cables locked-dots change (separable commit 1b5fa53 on lh-engine-locked): keep or revert; plus the W3 cord rows, tote idea, elastic reveal",
+      "owner": "lifehacks-safety-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
