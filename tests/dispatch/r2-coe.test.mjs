@@ -9,7 +9,8 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { coeCoverage, readCoes } from "../../tools/lib/coe-coverage.mjs";
+import { coeCoverage, readCoes, isSevere } from "../../tools/lib/coe-coverage.mjs";
+import { readJsonlFile } from "../../tools/lib/events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const REC = path.join(ROOT, "company/rituals/records");
@@ -83,10 +84,21 @@ test("an incident event with no id is never covered", () => {
   assert.equal(uncovered.length, 1);
 });
 
-test("the real events.jsonl has exactly these three SEV1/SEV2 incidents (if this fails, add the new id here)", () => {
-  const events = fs.readFileSync(path.join(ROOT, "company/ops/events.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
-  const sev = events.filter((e) => e.type === "incident" && /SEV ?[12]\b/i.test(e.summary ?? "")).map((e) => e.id).sort();
-  assert.deepEqual(sev, Object.values(IDS).sort());
+// G5-c (PE-ops 9ca8d06): this runs in every engineer's `npm run verify`, so it reads the real log through
+// readJsonlFile (a torn line is skipped, not thrown) and does not pin the count. The three 10-14 ids must still be
+// there (the log is append-only); a later SEV1/SEV2 is reported as a diagnostic with its COE status, not failed:
+// holding work on an uncovered incident is dispatch-check R2's job, not verify's.
+test("the real events.jsonl still has the three 10-14 SEV1/SEV2 incidents; any newer one is reported, not failed", (t) => {
+  const { events, bad } = readJsonlFile(path.join(ROOT, "company/ops/events.jsonl"));
+  if (bad.length) t.diagnostic(`${bad.length} unreadable line(s) in events.jsonl skipped`);
+  const sev = events.filter(isSevere).map((e) => e.id);
+  for (const id of Object.values(IDS)) assert.ok(sev.includes(id), `${id} is in the log`);
+  const known = new Set(Object.values(IDS));
+  const { uncovered } = coeCoverage(events.filter((e) => !known.has(e.id)), REC);
+  for (const e of events.filter((x) => isSevere(x) && !known.has(x.id))) {
+    const u = uncovered.find((x) => x.id === e.id);
+    t.diagnostic(`newer SEV1/SEV2 ${e.id}: ${u ? `no COE clears it (${u.why})` : "cleared by a COE"}`);
+  }
 });
 
 test("every real 10-14 COE names its own incident id on its header incident: line, and names two reviewers who are not its owner", () => {
