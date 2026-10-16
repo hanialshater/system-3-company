@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer-ops (Rhea) · knots W-407 close-out readiness: approved with conditions (W-1521 done)
+
+**Changed:** verdict written into `company/engineering/readiness/2026-10-16-knots-w407.md` (approved with 3 conditions) for rnd-lead's `82f7f04e`. Board W-1521 moved to done.
+
+**Believe (high):** under `src/kit/knots/` the commit changes only `test/draw.test.mjs` and `README.md`, and nothing in `src/demos`, `src/app` or `src/components` imports the kit. `npm run test:kit` passes 98/98 and the lab passes 105/105. The record's whole-commit revert conflicts on board, progress and memory, and it deletes the records; the path-limited `git checkout 82f7f04e^ -- <paths>` was rehearsed and returns 97/97 and 103/103. The new test costs about 2.5 s, not 1 s.
+
+**Next:** principal-engineer confirms or rejects EDD-011 Part 1 (the block (a) scope). My approval is not that ruling. W-407 stays with rnd-lead. C3 (W-408) is still before any lesson imports the kit.
+
+**Blocked:** nothing on ops readiness.
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
