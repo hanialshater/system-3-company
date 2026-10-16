@@ -236,8 +236,8 @@ export default function TheSwapThatGoesInCircles({ slug }: { slug: string }) {
             )}
           </p>
           <p>
-            That is why choice models assume preferences are transitive. A group&apos;s majority can still go round in a circle even when every
-            voter&apos;s preferences are ranked.
+            That is why choice models assume preferences are ranked (transitive): if Max prefers apple to banana and banana to cherry,
+            he prefers apple to cherry, so there is no circle to sell him.
           </p>
         </>
       )}

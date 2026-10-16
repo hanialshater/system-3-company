@@ -29,3 +29,15 @@ Builder probe at 390×844, strict count. Busiest frame **21** (after "Rank them:
 ## Local contract QA (the builder's pass, not the qa-tester's record)
 
 Same build and command as worth-something-alone (`QA_OUT=artifacts/qa-ncmgap4-c`): **phone and desktop passed**. Phone predict and reveal screenshots viewed, and the probe frame after "Rank them" (refused arrow, log cherry › banana › apple). `npx tsc --noEmit` exit 0; `npm run check` passed. The qa-tester's run is still owed.
+
+## Fix round W-1570 (demo-builder, 2026-10-16)
+
+Board W-1570 (W-1566 on the evaluator's branch). Input: learner walk `2026-10-16-learner-knows-preference.md` (revise, finding 1). Text-only change to the reveal's second paragraph; stage, predict and gates unchanged.
+
+- Was: "That is why choice models assume preferences are transitive. A group's majority can still go round in a circle even when every voter's preferences are ranked."
+- Now: "That is why choice models assume preferences are ranked (transitive): if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him."
+- The gloss uses the stage's own ranked mode (apple first; the apple → cherry offer is drawn "✕ refused"), so it states nothing the learner has not seen. The voter sentence is cut: no groups or voters appear on the stage and math:condorcet-cycle is outside learner.knows.
+
+Claims: c3 text updated to quote the new sentence, reset to unverified. c5 (group majority cycle) withdrawn with a note: its sentence was cut. New c7 (convention, unverified): the gloss after the colon. c1, c2, c4, c6 untouched (still verified). curriculum.prerequisites (math:condorcet-cycle) and the "voting" tag are left as they were; whether they still belong is cm-math's call.
+
+QA (builder's pass, not the qa-tester's record): build with NEXT_DIST_DIR=.next-w1570, served on 3571. Contract spec for this slug, phone and desktop: 2 passed (QA_OUT=artifacts/qa-w1570). With QA_ONLY set, feed.spec's two feed tests fail on both projects; feed.spec alone without QA_ONLY passes 5/5 on phone, so that is the filter narrowing the feed, not this lesson. reveal-fit (tool clean, --strict, `artifacts/reveal-fit/w1570-swap.json`): fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, revealWords 79 (was 72; budget 90), 10 lines. Viewed phone-3-reveal, phone-2-explore and the reveal-fit shot: the whole reveal and stage are on screen above "Why trust this?". `npm run check` passed; `npx tsc --noEmit` exit 0. Status stays draft.

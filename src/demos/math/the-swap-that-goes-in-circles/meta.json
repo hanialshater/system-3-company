@@ -49,13 +49,11 @@
     },
     {
       "id": "math.the-swap-that-goes-in-circles.c3",
-      "text": "Models of individual choice assume preferences are complete and transitive ('That is why choice models assume preferences are transitive').",
+      "text": "Models of individual choice assume preferences are complete and transitive ('That is why choice models assume preferences are ranked (transitive)').",
       "support": "source",
       "source": "Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23 (section 23.2 unconfirmed: individual preferences as complete, transitive rankings). Attribution: fact-checker confirms.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c3."
+      "status": "unverified",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c3. | W-1570 fix round (demo-builder, 2026-10-16): the reveal sentence was 'That is why choice models assume preferences are transitive.'; it now reads '... are ranked (transitive): ...' (learner walk 2026-10-16-learner-knows-preference.md finding 1). Text changed, so reset to unverified; the gloss after the colon is claim c7."
     },
     {
       "id": "math.the-swap-that-goes-in-circles.c4",
@@ -72,10 +70,8 @@
       "text": "A group's majority can still go round in a circle even when every voter's preferences are ranked: three voters ranking A > B > C, B > C > A and C > A > B give A beating B, B beating C and C beating A, each 2 to 1.",
       "support": "derivation",
       "source": "Pairwise majority count, builder's node re-run (scratch j16check.mjs): A over B 2, B over C 2, C over A 2. Same cycle as math/agenda-picks-the-winner. Brief: company/domains/briefs/math.discrete.md #13 (claim 5, N13 voters). Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c5."
+      "status": "withdrawn",
+      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c5. | W-1570 fix round (demo-builder, 2026-10-16): WITHDRAWN. The sentence \"A group's majority can still go round in a circle even when every voter's preferences are ranked.\" was cut from the reveal: the lesson never shows groups or voters, and math:condorcet-cycle is outside the learner boundary (learner walk 2026-10-16-learner-knows-preference.md finding 1). The derivation itself was not disputed."
     },
     {
       "id": "math.the-swap-that-goes-in-circles.c6",
@@ -86,6 +82,13 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-16",
       "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/the-swap-that-goes-in-circles/2026-10-16-fact-check.md under c6."
+    },
+    {
+      "id": "math.the-swap-that-goes-in-circles.c7",
+      "text": "Ranked (transitive) preferences mean that if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him ('if Max prefers apple to banana and banana to cherry, he prefers apple to cherry, so there is no circle to sell him').",
+      "support": "convention",
+      "source": "Definition of transitivity (Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 23, section 23.2 unconfirmed: if X is preferred to Y and Y to Z, then X is preferred to Z), applied to the lesson's ranked mode. 'No circle to sell him' is what the stage shows: in ranked mode (replay('ranked', 6) in Demo.tsx) the apple -> cherry offer is refused (dashed, 'refused'), so the swaps stop at the apple after 2. Builder-written (W-1570 fix round, 2026-10-16); unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
