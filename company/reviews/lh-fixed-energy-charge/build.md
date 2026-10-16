@@ -1,5 +1,12 @@
 # Build notes: lh-fixed-energy-charge
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit eccf80f (r5 D3, FC 61 note): spec principle (c3) states the 20 kWh bill (€18 → €14, only the €8 energy part halves; B €12 at 40 kWh; match at 100 kWh); spec and meta misconception `Halve the energy and the whole bill halves.`. resourcePair on this tree: 20 kWh [14, 6], 40 kWh [18, 12], 100 kWh [30, 30].
+- Reset: c3. Not changed: the engine reveal ("At the prediction's 40kWh"), as the batch says. c6 waits on sources (not this batch).
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 ## 2026-10-15 v2 (demo-builder, fix plan W6/W7, TP-7 and TP-8)
 
 - Kept from evaluators until they report (company/reviews/README.md).

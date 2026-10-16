@@ -1,7 +1,7 @@
 {
   "slug": "batch-by-setup",
   "title": "Same tasks, different order",
-  "hook": "Three short tasks, two kinds. Does the order change how long they take?",
+  "hook": "Three short tasks, two kinds. Does the order change how long they wait?",
   "domain": "lifehacks",
   "concept": "batch-shared-overhead",
   "status": "review",
@@ -18,26 +18,22 @@
       "that each switch has a setup cost, so grouping similar tasks cuts the number of switches and the time they use"
     ]
   },
-  "misconception": "Switching between kinds of task costs nothing, so their order doesn't matter.",
+  "misconception": "Removing one 2-minute switch saves 2 minutes of waiting.",
   "objective": "Compare setup overhead under an explicit switching cost.",
   "claims": [
     {
-      "text": "Scenario, hook and prediction: Three short tasks, two kinds. Does the order change how long they take? Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how many minutes does that save? Options: 2 minutes / 0: same three tasks / 4 minutes. Correct option: 2 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
+      "text": "Scenario, hook and prediction: Three short tasks, two kinds. Does the order change how long they wait? Tasks A, B, A take 5 minutes each, and every change between A and B costs 2 minutes. Group the two A tasks: how much less total waiting (each task's start time, added up)? Options: 2 minutes: one switch fewer / 0: same three tasks / 4 minutes. Correct option: 4 minutes. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"batch-by-setup\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): DISPUTED. Text matches studyCatalog (hook, question, options, answer 0). The key '2 minutes' is the finish-time saving (queueResult time 19 alternating vs 17 grouped), but the stage never shows a finish time: it measures 'Total waiting: each job's start time, added up' and shows 21 min (A1→B1→A2) against 17 min (A1→A2→B1), a 4-minute drop. 'Swap first' shows 19. So the distractor '4 minutes' is what the stage itself reports, and a learner who reads the stage is marked wrong. Fix (cm-lifehacks for the line, demo-builder implements): either ask for the stage's own metric ('Group the two A tasks: how much does total waiting drop?' with 4 minutes keyed and 2 minutes as the one-switch slip), or keep the 2-minute key and add the finish time ('all done at minute 19 / 17') to the stage and the question. Re-check after the change. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook, question, options, answer replaced (row \"batch-by-setup\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): DISPUTED. Text matches studyCatalog (hook, question, options, answer 0). The key '2 minutes' is the finish-time saving (queueResult time 19 alternating vs 17 grouped), but the stage never shows a finish time: it measures 'Total waiting: each job's start time, added up' and shows 21 min (A1→B1→A2) against 17 min (A1→A2→B1), a 4-minute drop. 'Swap first' shows 19. So the distractor '4 minutes' is what the stage itself reports, and a learner who reads the stage is marked wrong. Fix (cm-lifehacks for the line, demo-builder implements): either ask for the stage's own metric ('Group the two A tasks: how much does total waiting drop?' with 4 minutes keyed and 2 minutes as the one-switch slip), or keep the 2-minute key and add the finish time ('all done at minute 19 / 17') to the stage and the question. Re-check after the change. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): hook, question, options and answer replaced: the stage measures total waiting (21 → 17 min), not finish time (dispatch 2026-10-16-r5-lifehacks.md D3, FC 61 W-1344). Not checked by the builder.",
       "id": "lifehacks.batch-by-setup.c1",
-      "status": "disputed",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified"
     },
     {
-      "text": "Each change of tag costs the stated two minutes. Grouping equal tags removes switches in this model; it does not estimate your real concentration cost.",
+      "text": "Each change of tag costs the stated two minutes. Grouping the A tasks removes one switch, and that switch was delaying both later starts, so total waiting drops by 4 minutes (21 → 17). This model does not estimate your real concentration cost.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): principle replaced: states the 4-minute drop in waiting (dispatch 2026-10-16-r5-lifehacks.md D3). Not checked by the builder.",
       "id": "lifehacks.batch-by-setup.c2",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "status": "unverified"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",

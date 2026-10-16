@@ -19,34 +19,28 @@
     ]
   },
   "misconception": "A thick towel dries about as fast as a thin one of the same size.",
-  "objective": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
+  "objective": "Twice as thick at the same width and length means twice the cloth, but the open face is still the same two sides. So each cm³ of cloth gets half as much open face.",
   "claims": [
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c1",
-      "text": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
+      "text": "Twice as thick at the same width and length means twice the cloth, but the open face is still the same two sides. So each cm³ of cloth gets half as much open face.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): idea replaced (content-patch-2026-10-16-r3.md D1 rows \"towel-thickness-hidden-volume\" (no \"ratio\")). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c2",
-      "text": "This geometric ratio alone does not determine a fabric’s drying time.",
+      "text": "Open face per cm³ of cloth does not, on its own, set a towel’s drying time.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): limit replaced (content-patch-2026-10-16-r3.md D1 rows \"towel-thickness-hidden-volume\" (no \"ratio\")). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c3",
-      "text": "Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
+      "text": "Open face=2×50×100 cm²; cloth=50×100×thickness/10 cm³, doubled when twice as thick. Open face per cm³=open face÷cloth.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula replaced (content-patch-2026-10-16-r3.md D1 rows \"towel-thickness-hidden-volume\" (no \"ratio\")). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c4",
@@ -60,21 +54,17 @@
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c5",
-      "text": "What happens to face-area-to-volume ratio when thickness doubles?",
+      "text": "Same size cloth, twice as thick: what happens to the open face each cm³ of cloth gets?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): transfer prompt replaced (content-patch-2026-10-16-r3.md D1 rows \"towel-thickness-hidden-volume\" (no \"ratio\")). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.recall",
-      "text": "The two large faces stay 50 × 100 cm each while the volume doubles with thickness, so the ratio halves. The ratio alone does not set a drying time.",
+      "text": "The two faces stay 50 × 100 cm each, 10,000 cm² in all, while the cloth goes from 500 cm³ to 1,000 cm³: 20 cm² of open face per cm³, then 10. Half as much. That alone does not set a drying time.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): recall item replaced: question 1 → 2 mm, options, why (content-patch-2026-10-16-r3.md D1 rows \"towel-thickness-hidden-volume\" (no \"ratio\")). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.seen",
@@ -89,14 +79,14 @@
   ],
   "confidence": "",
   "recall": {
-    "question": "A 50 × 100 cm cloth goes from 2 mm to 4 mm thick. What happens to its face-area-to-volume ratio?",
+    "question": "A 50 × 100 cm cloth goes from 1 mm to 2 mm thick. How much open face does each cm³ of cloth get now?",
     "options": [
-      "It doubles",
-      "It is unchanged",
-      "It halves"
+      "Twice as much",
+      "The same",
+      "Half as much"
     ],
     "answer": 2,
-    "why": "The two large faces stay 50 × 100 cm each while the volume doubles with thickness, so the ratio halves. The ratio alone does not set a drying time."
+    "why": "The two faces stay 50 × 100 cm each, 10,000 cm² in all, while the cloth goes from 500 cm³ to 1,000 cm³: 20 cm² of open face per cm³, then 10. Half as much. That alone does not set a drying time."
   },
   "evidence": {
     "qa": [

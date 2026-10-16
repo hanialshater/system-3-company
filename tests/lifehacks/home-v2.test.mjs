@@ -135,11 +135,13 @@ test('homeSliderMatters samples the whole range, including the last step', () =>
 
 const W2 = ['towel-spread-dries-first', 'towel-over-two-bars', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap',
   'breeze-is-not-extra-surface', 'folded-shirt-stack-height', 'wet-knit-hang-stretch', 'drying-room-water-load',
-  'towel-thickness-hidden-volume', 'care-label-first-choice']; // last two: B4, 2026-10-16
+  'towel-thickness-hidden-volume', 'care-label-first-choice', // B4, 2026-10-16
+  'laundry-gap-air-path']; // lhfix-r3 (content-patch-2026-10-16-r3.md D1): the third W2 line that did not fit, now on engine 2
 // W-1247 (PE-ops W3 condition 1): wave W3's v2-stage lessons join the every-step sweep. long-cord-knots-itself is on
 // engine 2 but draws its own cord stage (no slider, no Seen table), so it is not swept; the test below pins that.
 const W3 = ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'shoes-opposite-ends',
-  'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'];
+  'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides',
+  'laundry-sort-before-walk']; // lhfix-r3 E5 (r5 D4, W-1251): the plan's W3 row, moved to engine 2 after the wave
 const W3_OWN_STAGE = ['long-cord-knots-itself'];
 const steps = (s) => Array.from({ length: Math.round((s.max - s.min) / s.step) + 1 }, (_, i) => s.min + i * s.step);
 

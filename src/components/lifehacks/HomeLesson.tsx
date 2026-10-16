@@ -28,8 +28,11 @@ function HomeMode({ locked, pressed, onPress, children }: { locked: boolean; pre
 /**
  * v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none.
  * `neutral` (W-1258, engines-v2 spec R2 "Predict (locked)" row): no mode is in effect (locked, or before the first press).
- * The picture keeps A's arrangement but draws no text that states a count, amount or result for either mode, and no
- * highlight that marks what to look at (W-1299). Givens the question states may stay (tests/lifehacks/home-locked.test.mjs).
+ * The picture keeps A's arrangement but draws no text that states a count, amount or result for either mode. Givens the
+ * question states may stay (tests/lifehacks/home-locked.test.mjs). Highlights (W-1299): only group-cables-with-ends'
+ * end dots are un-highlighted while neutral. socks-use-shoe-space, shoes-opposite-ends, desk-supply-near-use and
+ * tote-balance-sides keep one target mark on the named object or a given (the socks, the turned shoe, the tape, the
+ * balance-point dot), ruled harmless in company/ops/dispatch-requests/2026-10-16-r5-lifehacks.md D5 (W-1340).
  */
 type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string; neutral?: boolean };
 function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean; v2?:SceneV2Props }) {
@@ -86,12 +89,16 @@ function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number
     })}{['access','reverse-order','weighted-access','nest-access'].includes(model)&&<path d={after?'M30,174h30l-5,-5m5,5l-5,5':'M150,180v-30l-5,5m5,-5l5,5'} className={s.air}/>}</>;
   } else if(spec.view==='route') {
     const roundTrip=model!=='two-stations';
-    const journeys=model==='trips'?(after?1:Math.round(p)):(after?0:v[0]);
+    // E3 (r5 D4, D5): on the v2 stage of distance-use (desk-supply-near-use), the neutral picture draws no journeys: six
+    // there-and-back pairs were the 24-vs-48 step the question tests. While neutral and in A the tape sits at the far
+    // station, where the question puts it; B keeps it at the desk. v1 never passes v2, so v1 is unchanged.
+    const use=v2!==undefined&&model==='distance-use',useNeutral=use&&neutral,tapeFar=use&&!after;
+    const journeys=useNeutral?0:model==='trips'?(after?1:Math.round(p)):(after?0:v[0]);
     const oneWay=model==='trips'?v[0]:p;
     art=<><rect x="20" y="30" width="260" height="165" className={s.outline}/>{rect(38,80,40,45,'desk')}{rect(225,80,40,45,'bin')}{Array.from({length:journeys},(_,i)=>{
       const y=58+i*(journeys>8?9:14),reverse=!roundTrip&&i%2===1;
       return <g key={i}><path d={reverse?`M220,${y}H80l6,-3m-6,3l6,3`:`M80,${y}H220l-6,-3m6,3l-6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>{roundTrip&&<path d={`M220,${y+5}H80l6,-3m-6,3l6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>}</g>;
-    })}{model!=='trips'&&rect(49,94,16,16,'tool',true)}{after&&model==='two-stations'&&rect(236,94,16,16,'copy',true)}<text x="150" y="182" textAnchor="middle">{fmt(oneWay)}m {roundTrip?'one-way':'between desks'}</text></>;
+    })}{model!=='trips'&&rect(tapeFar?236:49,94,16,16,'tool',true)}{after&&model==='two-stations'&&rect(236,94,16,16,'copy',true)}<text x="150" y="182" textAnchor="middle">{useNeutral?`${fmt(oneWay)} m to the tape`:<>{fmt(oneWay)}m {roundTrip?'one-way':'between desks'}</>}</text></>;
   } else if(spec.view==='mechanics') {
     if(model==='balance') art=<><path d="M50,75h200l-20,110H70z" className={s.outline}/><path d="M95,75q0,-50 55,-50t55,50" className={s.line}/>{rect(70,95,after?50:80,62,'left')}{rect(182,after?95:130,after?50:35,after?62:27,'right',true)}<line x1={150+result.value*2} y1="65" x2={150+result.value*2} y2="190" className={s.air}/></>;
     else if(model==='pressure') art=<><line x1="30" x2="270" y1="175" y2="175" className={s.line}/>{rect(after?60:105,110,after?180:90,64,'load')}<path d="M150,60v45l-5,-7m5,7l5,-7" className={s.line}/><text x="150" y="50" textAnchor="middle">{fmt(p)}kg</text></>;
@@ -272,7 +279,8 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
       // turns until the balance point is under it: a straight bag means a centred balance point.
       const k=2.5,[right=1,pos=20]=v,left=b?(p+right)/2:p,rightKg=b?(p+right)/2:right;
       const centre=(-pos*left+pos*rightKg)/(left+rightKg),hL=14*left,hR=14*rightKg;
-      const turn=Math.atan2(centre*k,150)*180/Math.PI;
+      // E1 (FC54 note, W-1300): the lever arm is the dot's distance below the pivot (208 − 20 = 188), so the dot lands on the vertical.
+      const turn=Math.atan2(centre*k,188)*180/Math.PI;
       return <><path d="M150,14V236" stroke="var(--line)" strokeDasharray="4 5"/>
         <g transform={`rotate(${turn},150,20)`}>
           <path d="M108,82Q108,20 150,20Q192,20 192,82" className={s.line}/>
@@ -314,7 +322,8 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
         <ellipse cx="80" cy="150" rx={rx} ry={ry} fill="none" stroke="var(--line)" strokeDasharray="5 4"/>
         {inside>0&&<ellipse cx="80" cy="150" rx={rx*f} ry={ry*f} className={s.target}/>}
         {outside>0&&<rect x={b?60:206} y={(b?95:205)-side(outside)} width={side(outside)} height={side(outside)} rx="4" className={s.target}/>}
-        {mode&&<text x="80" y="60" textAnchor="middle">{fmt(hollow)} cm³ empty</text>}</>;
+        {/* E2 (W-1300): after the socks go in (B), the label says what is left of the hollow; A keeps the whole 600. Neutral: no label. */}
+        {mode&&<text x="80" y="60" textAnchor="middle">{b?`${fmt(hollow-inside)} cm³ still empty`:`${fmt(hollow)} cm³ empty`}</text>}</>;
     }
     default: return null;
   }

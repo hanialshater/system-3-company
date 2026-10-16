@@ -1,5 +1,11 @@
 # Build note: drying-room-water-load
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit 764ef10 (r3 dispatch D1): slider `min` 1 → 2, so "1 shirts" never renders. revealLine, c3 and the p = 12 sentence unchanged; no claim reset. c6 waits on the steward (W-1346), not this batch.
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 ## Pre-flight v2
 
 2026-10-14, demo-builder. Board W-361(a).

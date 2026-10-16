@@ -87,7 +87,9 @@ test('the locked-picture check is not vacuous: after a press, the same pictures 
   assert.ok(after('group-cables-with-ends', 'a').includes('6 loose ends'));
   assert.ok(after('shoes-opposite-ends', 'a').includes('24 cm'));
   assert.ok(after('fitted-sheet-corners-nest', 'a').includes('32 cm'));
-  assert.ok(after('socks-use-shoe-space', 'b').includes('600 cm³ empty'));
+  // E2 (dispatch 2026-10-16-r5-lifehacks.md D4): B now says what is left of the hollow (600 − 200 = 400 at the initial 200); A keeps 600.
+  assert.ok(after('socks-use-shoe-space', 'a').includes('600 cm³ empty'));
+  assert.ok(after('socks-use-shoe-space', 'b').includes('400 cm³ still empty'));
   assert.ok(after('coiled-cord-bend-radius', 'a').some((t) => t.startsWith('3.18 turns')));
 });
 
@@ -110,6 +112,48 @@ test('W-1299 group-cables-with-ends, locked: the loose ends are not drawn as hig
   const spec = bySlug('group-cables-with-ends');
   assert.doesNotMatch(picture(spec, stage(spec)).svg, /class="target"/);
   assert.match(picture(spec, stage(spec, { locked: false, mode: 'a' })).svg, /class="target"/, 'mode A still marks the ends');
+});
+
+/* ------------------------------------------------------------------ E1: tote lever arm */
+
+test('E1 tote-balance-sides: the rotated balance-point dot hangs on the dashed vertical under the pivot (±1 unit)', () => {
+  // Dispatch 2026-10-16-r5-lifehacks.md D4 row E1 (FC54 note): the bag turns about (150, 20) until the dot is under it.
+  const spec = bySlug('tote-balance-sides');
+  for (const p of [3, 5]) for (const [locked, mode] of [[false, 'a'], [true, null]]) {
+    const { svg } = picture(spec, stage(spec, { locked, mode, p }));
+    const [, deg, px, py] = svg.match(/<g transform="rotate\(([-\d.e]+),([\d.]+),([\d.]+)\)">/).map(Number);
+    const dot = svg.match(/<circle cx="([-\d.e]+)" cy="([-\d.e]+)" r="6" class="target"/);
+    assert.ok(dot, `p=${p}: the balance-point dot is drawn`);
+    const [dx, dy] = [Number(dot[1]) - px, Number(dot[2]) - py], t = deg * Math.PI / 180;
+    const x = px + dx * Math.cos(t) - dy * Math.sin(t);
+    assert.ok(Math.abs(x - px) <= 1, `p=${p} ${mode ?? 'locked'}: rotated dot at x=${x.toFixed(2)}, pivot at ${px}`);
+    assert.ok(Math.abs(deg) > 1, `p=${p}: the bag is drawn tilted (${deg.toFixed(2)} degrees), so the check is not vacuous`);
+  }
+});
+
+test('E2 socks-use-shoe-space: the hollow label after the socks fill it (400 at 200, 0 from 600 up); no label while neutral', () => {
+  const spec = bySlug('socks-use-shoe-space');
+  const texts = (p, mode, locked = false) => picture(spec, stage(spec, { locked, mode, p })).texts;
+  assert.deepEqual(texts(200, 'b'), ['400 cm³ still empty']);
+  for (const p of [600, 800]) assert.deepEqual(texts(p, 'b'), ['0 cm³ still empty']);
+  for (const p of [200, 800]) assert.deepEqual(texts(p, 'a'), ['600 cm³ empty']);
+  assert.deepEqual(texts(200, null), []); assert.deepEqual(texts(200, null, true), []);
+});
+
+test('E3 desk-supply-near-use: locked and before the first press, no journey is drawn and the tape sits at the far station', () => {
+  // Dispatch 2026-10-16-r5-lifehacks.md D4 row E3 / D5: six dashed there-and-back pairs drew the 24-vs-48 step.
+  const spec = bySlug('desk-supply-near-use');
+  const tape = (svg) => Number(svg.match(/<rect x="([\d.]+)" y="94" width="16" height="16" rx="3" class="target"/)?.[1]);
+  for (const p of [spec.min, spec.initial, spec.max]) for (const locked of [true, false]) {
+    const { svg, texts } = picture(spec, stage(spec, { locked, p }));
+    assert.doesNotMatch(svg, /<path/, `p=${p} ${locked ? 'locked' : 'pre-press'}: no journey path`);
+    assert.ok(tape(svg) > 225, `p=${p}: the tape is at the far station (x=${tape(svg)})`);
+    assert.ok(texts.includes(`${p} m to the tape`), `p=${p}: "${texts.join(' / ')}"`);
+  }
+  // After a press: A draws the six round trips with the tape far away; B has the copy at the desk and no journeys.
+  const a = picture(spec, stage(spec, { locked: false, mode: 'a' })).svg, b = picture(spec, stage(spec, { locked: false, mode: 'b' })).svg;
+  assert.equal(a.match(/<path/g)?.length, 12); assert.ok(tape(a) > 225);
+  assert.doesNotMatch(b, /<path/); assert.ok(tape(b) < 80);
 });
 
 /* ------------------------------------------------------------------ W-1241: cord press order */

@@ -1,5 +1,12 @@
 # Build note: reverse-the-flashcard
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit c715f7f (r5 D3, FC 61 advisory W-1347): title `Dax to red, red to dax`, hook and question with dax/red (spec and meta); options and key unchanged. Every other learner-visible perro/dog replaced in the same sense: c1 text; meta recall.question (`You can say 'red' when you see 'dax'. …`) and recall.options (`See 'dax', say 'red'` / `See both words together` / `See 'red', say 'dax'`). The 2 remaining "perro" hits in meta.json are in c1's source and note (history, not shown to learners).
+- Reset: c1.
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 ## Revision v2 (W1, r11 fix plan, 2026-10-15, demo-builder)
 
 Input: company/reviews/reverse-the-flashcard/2026-10-15-learner-adult-beginner-r11.md (verdict revise) and the W1 row of company/decisions/2026-10-15-lifehacks-r11-fix-plan.md.
