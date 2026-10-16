@@ -7,7 +7,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { calculateModel, validateBookIdeaSpec } from "../../src/lib/books/model.ts";
+import { calculateModel, formatBookValue, validateBookIdeaSpec } from "../../src/lib/books/model.ts";
 
 const booksDir = fileURLToPath(new URL("../../src/demos/books/", import.meta.url));
 const slugs = readdirSync(booksDir, { withFileTypes: true })
@@ -35,6 +35,9 @@ function optionNumber(option) {
 }
 /** An option names an output if it equals the output rounded to the option's own precision. */
 const names = (parsed, output) => Math.abs(output - parsed.value) <= 0.5 * 10 ** -parsed.dp + 1e-9;
+/** The number the stage shows for an output (formatBookValue: at most two decimals). */
+const shown = (output) => Number(formatBookValue(output).replace(/,/g, ""));
+const same = (a, b) => Math.abs(a - b) <= 1e-9;
 
 test("every Books lesson directory ships an idea.json", () => {
   assert.ok(slugs.length > 0, "no src/demos/books/bk-* directories found");
@@ -65,13 +68,16 @@ for (const slug of slugs) {
       assert.ok(parsed, `answer option "${option}" has no number`);
       const matched = outputs.filter((output) => names(parsed, output));
       assert.ok(matched.length > 0, `answer option "${option}" matches neither output (A ${outputs[0]}, B ${outputs[1]})`);
-      // No distractor may name the same number as the correct answer.
+      // No distractor may be indistinguishable from the correct value as a learner sees it: the same
+      // number as the correct option, or the same number the stage displays for the matched output.
+      // Rounding the output to the distractor's own precision is too loose (W-1508): "2 units" would
+      // then name a stage readout of "2.44", which a learner reads as a different number.
       const ambiguous = valid.predict.options.filter((other, i) => {
         if (i === valid.predict.answer) return false;
         const p = optionNumber(other);
-        return p !== null && matched.some((output) => names(p, output));
+        return p !== null && (same(p.value, parsed.value) || matched.some((output) => same(p.value, shown(output))));
       });
-      assert.deepEqual(ambiguous, [], `distractors also name the answer's value ${matched[0]}`);
+      assert.deepEqual(ambiguous, [], `distractors equal the answer "${option}" or its stage readout ${formatBookValue(matched[0])}`);
     });
   });
 }
