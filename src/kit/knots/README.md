@@ -75,6 +75,11 @@ Unused exports are tree-shaken by the build.
 3. **Diagrams over 12 crossings** (from `project`, or after up-moves): measure draw time at phone-class CPU before you
    ship. 9 to 19 crossings take up to 64 ms on the reference desktop, which could be several hundred ms on a phone.
 4. `simplify(...).status == 'unknown'` must never be shown as "knotted".
+5. **Warm `identify` after first paint if a tap shows its result.** The first call in a page builds the table's
+   signature index (`sig` in `identify.mjs`: invariants and Jones for every entry), which took 88 to 187 ms at 4× CPU
+   throttling; every later call, for any knot, takes about 1 to 3 ms. Call it once for the states a tap can reach in a
+   `setTimeout` after mount (draw-a-table-knot does this at 50 ms), never in the render that mounts the stage. Measured
+   for EDD-004 C4: `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`.
 
 ## Tests
 
@@ -97,6 +102,8 @@ This is kit code, so the engineering tiers apply (company/engineering/README.md)
 
 ## Changelog
 
+- 2026-10-16, **EDD-004 C4 ruled met** (docs only). Rule 5 added (warm `identify` after first paint). Library code
+  unchanged. Ruling and numbers: `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`.
 - 2026-10-16, **EDD-011 Part 1 approved with changes** (docs only). Rule 2(a) scope now requires the default `relax`
   and the default `margin/size` ratio, and leaves `turnOver` pictures inside block (a). Record:
   `company/engineering/reviews/2026-10-16-knots-w407-reread.md`.

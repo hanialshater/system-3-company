@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-16: platform-engineer EDD-004 C4 ruling and `.knot-tint` rule (W-1587, W-1582; tier 1 self-check company/engineering/readiness/2026-10-16-knot-tint-css.md)
+- `src/app/globals.css`: `.knot-tint { stroke: var(--domain) }`, and under `prefers-color-scheme: light` `color-mix(in srgb, var(--domain) 70%, #000)` (#576db3 for math), as ruled in company/design/reviews/2026-10-16-knots-colour-ruling.md. Unused until unknot-game is built; 70% is cleared for math only. Rollback: delete the block.
+- `src/kit/knots/README.md`: rule 5 (warm `identify` after first paint when a tap shows its result; its first call builds the table signature index, 88 to 187 ms at 4x). Docs only, library unchanged. EDD-004 C4 ruled met: company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md.
+
 ## 2026-10-16: platform-engineer built-output test default port (W-408; tier 0, test only; company/engineering/reviews/2026-10-16-w408-verify.md)
 - `tests/platform/built-output.test.mjs`: default `BUILT_PORT` changed from 3659 to 3660. 3659 is on Next's reserved-port list (apple-sasl), so `next start` refused it and the W-945/W-947 runtime-404 test always failed without `BUILT_PORT` set. On a VERCEL=1 build of 29f77f03 the test now passes 34/34. Without BUILT_DIST_DIR it still skips 4. Rollback: revert the line.
 
