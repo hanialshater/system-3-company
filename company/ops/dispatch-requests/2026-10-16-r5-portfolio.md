@@ -201,3 +201,6 @@ node tools/triage.mjs set W-1193 --p=3 --note="quotes only; trademark (F-25) fir
 node tools/triage.mjs set W-1194 --p=3 --note="vp-marketing next batch · r5 triage"
 ```
 Independence: none of these items was written by the portfolio-manager, so the approvals to `next` are mine to make. B1's outputs are mine and are approved by lane 18.
+
+## Dispatched
+- B1 → portfolio-manager (~13:45Z), reported 9f66d4f; §A applied (34e40a3); B1 board lines applied.

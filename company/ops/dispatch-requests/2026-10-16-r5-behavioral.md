@@ -53,3 +53,6 @@ stop if: the merged recall "why" differs from the text quoted in this batch (the
 - **research-lead (lane 12):** W-1292 is unchanged from r4. It changes no lesson text.
 - **Lane 6:** learning-designer on W-1062 releases brief 5.
 - **Lane 1, other POCs:** cm-economics on W-1060. cm-books on W-1061, reading the merged v2 predict of `saved-or-die-same-600`.
+
+## Dispatched
+- B1 → cm-behavioral (~14:06Z).
