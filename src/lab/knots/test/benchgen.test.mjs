@@ -42,3 +42,11 @@ test('bench data: hard unknots admit no move, keep the label convention, and are
   for (const pd of [...HARD, DECOY, MONSTER, GORDIAN]) assert.deepEqual(K.signs(pd), pd.map((x) => G.knotSign(pd, x)))
   for (const pd of HARD.filter((p) => p.length <= 13)) assert.equal(K.pstr(K.jones(pd)), '1')
 })
+
+// W-407: the U10 tests (codes, invariants x2, moves) read MONSTER from here, not table entry U10, so they also pass
+// when the lab table is the derived one (no U10). While the lab table still has U10, it must be this same diagram.
+test('bench data: MONSTER is the table entry U10 while the lab table still carries it', () => {
+  const u = K.knot('monster-unknot')
+  if (u) assert.deepEqual(u.pd, MONSTER)
+  assert.equal(K.crossingCount(MONSTER), 10)
+})

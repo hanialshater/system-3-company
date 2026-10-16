@@ -844,33 +844,94 @@
     },
     {
       "id": "rnd-knots",
-      "title": "R&D: teachable knot theory and the knots kit (EDD-004)",
+      "title": "R&D: teachable knot theory and the knots kit (EDD-004); tranche 2 = EDD-011 Part 2 (exported extraCrossings) to lift import block (a)",
       "kind": "project",
       "major": true,
       "majorBecause": [
-        "kit change"
+        "kit change (src/kit/** is tier 2 in company/engineering/readiness/paths.json, so the PR2 delegation does not apply)"
       ],
       "owner": "rnd-lead",
-      "status": "legacy",
+      "status": "proposed",
       "budget": {
         "tokens": null,
-        "basis": "never budgeted",
+        "proposed": 600000,
+        "basis": "tranche 2 only. 1.8M legacy spend (8 runs, 2026-10-13/14, library gens 0-2 and EDD-004) is history and is not charged; countFrom is the approval date. unit costs measured: per-run means in company/ceo-office/2026-10-14-project-review-1-agenda.md W-905 addendum (platform-engineer 110k, principal-engineer 69k, principal-engineer-ops 81k, interaction-designer 115k as proxy for design-lead, rnd-lead has no measured coding mean so platform-engineer is the proxy); per published lesson 151k all-in from `node tools/ledger.mjs report` on 2026-10-16 (107.2M / 711 published; 122k on 2026-10-15)",
         "topUps": []
       },
       "approval": {
         "record": "company/engineering/edd/EDD-004-knots-kit.md"
       },
       "returns": {
-        "notLessons": "knot lessons built on src/kit/knots; none counted yet"
+        "slugs": [
+          "draw-a-table-knot",
+          "tricolour-check",
+          "unknot-game",
+          "left-or-right",
+          "unknot-in-disguise",
+          "cut-one-ring",
+          "wiggle-keeps-the-fingerprint",
+          "more-crossings-same-knot"
+        ],
+        "planned": "8 lessons (Knots batch 1, company/domains/briefs/math.discrete.md): 4 buildable after the W-407 close-out with no project spend; 3 more after tranche 2; 1 (cut-one-ring) needs block (c) lifted (W-1518, cheapest route a design-lead-approved hand-authored SVG, no kit change, not in this budget)",
+        "headline": "cost per published knot lesson = (1.8M legacy + tranche 2 + catalog builds) / published knot lessons; today 1.8M / 0"
       },
-      "kill": null,
+      "kill": "Tranche 2: stop before option B if the measured reject rate is over 5% (B is a new proposal, it changes draw.mjs); stop at 0.6M if the principal engineer has not approved the export; do not start if cm-math-discrete withdraws briefs 5, 7 and 8. Whole bet: if no knot lesson has a launch-review go by 2026-11-06, the bet goes 'done, dormant' (R&D Review 2026-10-14 kill trigger, moved from 'no brief' to 'no lesson') and tranche 2 is withdrawn",
       "match": [
         "R&D",
         "\\bknots?\\b",
         "EDD-004"
       ],
-      "board": [],
-      "refs": []
+      "board": [
+        "W-407",
+        "W-408",
+        "W-1518",
+        "W-1519",
+        "W-1520",
+        "W-1521",
+        "W-1539",
+        "W-1540",
+        "W-1541",
+        "W-1542",
+        "W-1543"
+      ],
+      "refs": [
+        "company/engineering/edd/EDD-004-knots-kit.md",
+        "company/engineering/edd/EDD-011-knots-extra-crossings.md",
+        "company/engineering/reviews/2026-10-16-knots-w407-change.md",
+        "company/rituals/records/2026-10-14-rnd-review.md",
+        "company/domains/briefs/math.discrete.md",
+        "company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md"
+      ],
+      "legacy": {
+        "spent": 1800000,
+        "runs": 8,
+        "note": "never budgeted (pre-forum); recorded by `node tools/ledger.mjs report --project=rnd-knots` on 2026-10-16; return so far 0 lessons"
+      },
+      "tranches": [
+        {
+          "n": 1,
+          "tokens": 0,
+          "buys": "nothing from this project: the W-407 close-out re-reads (principal-engineer W-407, principal-engineer-ops W-1521, ~150k = 69k + 81k) are routine reviews (token-budget.md section 6 'not major') and run untagged on the maintenance line; briefs 1-4 (draw-a-table-knot, tricolour-check, unknot-game, left-or-right) are outside import block (a) per EDD-011 Part 1 and build untagged on the catalog line (~4 x 151k = 0.6M)",
+          "returns": "4 lessons (briefs 1-4), unlocked once W-407 closes, W-1521 is approved and C3 (W-408) is met"
+        },
+        {
+          "n": 2,
+          "tokens": 600000,
+          "buys": "EDD-011 Part 2 option A: 1 implementation run + 1 measured run (1,000 seeds, reject rate, entry size) at 110k each, 1 fix run 110k, principal-engineer review 69k, design-lead eye check of 20+20 pictures 115k (proxy), principal-engineer-ops readiness 81k = 595k (6 runs)",
+          "returns": "3 lessons become buildable (briefs 5 unknot-in-disguise, 7 wiggle-keeps-the-fingerprint, 8 more-crossings-same-knot; held on W-1519); their builds are catalog-line spend (~3 x 151k = 0.45M), not this tranche",
+          "releasedWhen": "the project-review forum with the founder in the chair approves it (kit change: not delegable under PR2 item 0a); recommended release condition: at least one of briefs 1-4 has a launch-review go, so the kit is proven to ship a lesson before more kit spend"
+        }
+      ],
+      "proposedBy": "rnd-lead",
+      "proposal": {
+        "budgetTokens": 600000,
+        "basis": "rnd-lead estimated 0.5M (W-1520, an estimate, not a measured unit cost); re-priced from measured per-run means to 595k, rounded to 0.6M. unit costs measured: per-run means in company/ceo-office/2026-10-14-project-review-1-agenda.md W-905 addendum (platform-engineer 110k, principal-engineer 69k, principal-engineer-ops 81k, interaction-designer 115k as proxy for design-lead, rnd-lead has no measured coding mean so platform-engineer is the proxy); per published lesson 151k all-in from `node tools/ledger.mjs report` on 2026-10-16 (107.2M / 711 published; 122k on 2026-10-15)",
+        "kill": "Tranche 2: stop before option B if the measured reject rate is over 5% (B is a new proposal, it changes draw.mjs); stop at 0.6M if the principal engineer has not approved the export; do not start if cm-math-discrete withdraws briefs 5, 7 and 8. Whole bet: if no knot lesson has a launch-review go by 2026-11-06, the bet goes 'done, dormant' (R&D Review 2026-10-14 kill trigger, moved from 'no brief' to 'no lesson') and tranche 2 is withdrawn",
+        "by": "portfolio-manager",
+        "date": "2026-10-16",
+        "status": "proposed, not approved: the project-review forum with the founder in the chair sets it (kit change, not delegable); the portfolio-manager wrote this line and may not approve it"
+      },
+      "premortem": "company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md"
     },
     {
       "id": "catalog",

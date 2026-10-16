@@ -33,6 +33,147 @@ who no longer exists: check what you rely on.
 
 **Blocked:** the push and merge, on W-1568, W-1572, W-1569, W-1570.
 
+## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
+
+**Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.
+**Believe (high):** no protected paths, no dependencies, 500/500 claims unverified, 100/100 draft; check, typecheck, all suites (hq 3 shallow-clone failures, W-1514), build, and the QA contract 200/200 on the 100 map- lessons (stamp clean) pass. The generator reproduces all 300 lesson files byte for byte from the 25 pinned upstream snapshots. **Not ready to merge:** tier 2 with no EDD, readiness record or engineering review (W-1556); the map paths are bulk-derived GPL-3.0 data with no decision record (best-practices 11, W-1557); the sensitive-route stage A (borders, colonialism) was skipped (W-1559 research note, then W-1558 cultural-reviewer).
+**Next:** chief of staff dispatches W-1556, W-1557, W-1559→W-1558; W-1560 (a11y) and W-1561 (reviewRoute shape, cm-history) run alongside, not merge gates. Then community-engineer merges the review branches, re-merges base, rebuilds, re-runs QA and pushes.
+**Blocked:** the push (by design, until those three gates are recorded). W-1554 may duplicate W-1503; test:dispatch passed here.
+
+## 2026-10-16 · evaluation-steward (Hilde) · W-1535 lane A/B fact-check disagreements
+
+**Changed:** ruled on procedure for 6 claims (`company/qa/2026-10-16-w1535-lane-disagreement-ruling.md`). literacy-split-france c4 and schooling-and-crime-1830s c1 are now **verified**: lane A's verification stands, because lane B's "unverified" was only a hold for lack of an opened source. schelling c10b **stays unverified**: lane B raised specific objections that lane A never saw, so a third check is needed (W-1544). clap recall, scale alt1 and batteries alt1 **stay disputed**: no third check, and re-verification after the fix goes to a non-drafting instance (W-1545). The merge note in all 6 claims had truncated lane A's note; I restored it in full from fe7574c8. Lane A's behavioral HELD_LINE withdrawals are acceptable, with a reset condition (W-1546). New procedure `company/qa/fact-check-lanes.md`: a lane is an explicit, disjoint slug list (W-1547, chief of staff to adopt). W-1548: source-field hygiene.
+
+**Believe:** high on the rulings, which follow the records. Medium that the lanes are independent: it rests on the lanes' own statements, and the gate cannot tell checker instances apart.
+
+**Next:** fact-checker W-1544/W-1545, demo-builder W-1532/W-1533/W-1548, chief-of-staff W-1547. **Blocked:** nothing.
+
+## 2026-10-16 · release-manager (Diego) · W-1527 cut-the-busiest-link: NOT published, go lapsed
+
+**Changed:** nothing published. Memory entry added; this note.
+
+**Believe (high):** launch review r6 (`company/rituals/records/2026-10-16-launch-review.md`, "For the release-manager") step 1 requires `git diff bf6fde86 HEAD -- src/demos/cs/cut-the-busiest-link/ src/kit/` to be empty. The lesson directory diff is empty and publish-ready still lists it as a candidate, but `src/kit/` is not empty: commit `82f7f04e` (W-407 knots close-out) changed `src/kit/knots/README.md` and `src/kit/knots/test/draw.test.mjs` (docs and a test only; the lesson does not reference knots). By the record's own words the go lapses. I do not judge whether the change matters; that is the chair's call.
+
+**Next:** head-of-product either re-affirms the go in a short addendum to the r6 record (naming 82f7f04e as outside the lesson's path), or reruns the review. Then a release-manager run publishes: `node tools/company.mjs publish cut-the-busiest-link`, `npm run check`, changelog line. No deploy without founder approval.
+
+**Blocked:** on head-of-product.
+## 2026-10-16 · principal-engineer-ops (Rhea) · knots W-407 close-out readiness: approved with conditions (W-1521 done)
+
+**Changed:** verdict written into `company/engineering/readiness/2026-10-16-knots-w407.md` (approved with 3 conditions) for rnd-lead's `82f7f04e`. Board W-1521 moved to done.
+
+**Believe (high):** under `src/kit/knots/` the commit changes only `test/draw.test.mjs` and `README.md`, and nothing in `src/demos`, `src/app` or `src/components` imports the kit. `npm run test:kit` passes 98/98 and the lab passes 105/105. The record's whole-commit revert conflicts on board, progress and memory, and it deletes the records; the path-limited `git checkout 82f7f04e^ -- <paths>` was rehearsed and returns 97/97 and 103/103. The new test costs about 2.5 s, not 1 s.
+
+**Next:** principal-engineer confirms or rejects EDD-011 Part 1 (the block (a) scope). My approval is not that ruling. W-407 stays with rnd-lead. C3 (W-408) is still before any lesson imports the kit.
+
+**Blocked:** nothing on ops readiness.
+## 2026-10-16 · cm-geography (Ana) · schelling-on-new-york: c10b swap approved, retirement note written (W-1531)
+
+**Changed:** `company/reviews/schelling-on-new-york/retirement.md` (F-46 note, ahead of the 10-19 18:00 deadline); a status line under brief #1 in `company/domains/briefs/geography.people-places.md`; W-1531 → done; added W-1536 (head-of-product checks the note) and W-1537 (comeback precondition: do cultural-ruled disclosure lines count like declared stimulus in the stage budget?). No status flip, no meta.json change.
+
+**Believe:** (high) the swap to Swope, Hernández & Cushing 2022 fits cultural pass 3 ("replace the source, not the order"); it is approved on two conditions: the verifier rules on "widening", and any replacement word goes to the cultural-reviewer first. (High) The stage cannot reach 25 by any trim: the cultural-ruled lines alone count 38 on built v4.1. My source count of the busiest frame is 66, not the closeout ruling's 83 (that was the v1 brief's upper bound); I counted from code, not from the artifact. (Medium) With a stimulus-style exemption for the ruled lines and the cut plan in the note, the comeback total is 47, under the 50 ceiling.
+
+**Next:** head-of-product checks the note (W-1536), then the status flip and the retired-lessons row on 10-20. The swap is applied in the comeback build, not now.
+
+**Blocked:** the comeback, on W-1537 (head-of-product) or a W-1391 re-ruling (cultural-reviewer).
+## 2026-10-16 · portfolio-manager (Odette) · rnd-knots budget line (W-1520) and triage of W-1517..W-1532
+
+**Changed:** `company/ops/projects.json` rnd-knots: legacy → **proposed**; tranche 2 (EDD-011 Part 2) priced at 0.6M from measured per-run means (rnd-lead est. 0.5M); returns as lessons (`returns.slugs`, the 8 Knots batch 1 slugs); stop rules; kill date 2026-11-06; pre-mortem. Record: `company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md`. Board: W-1517..W-1532 triaged (P/owner/state/note; W-1520 done); new PM-authored W-1539..W-1542 (build knot briefs 1-4, demo-builder, backlog P2), W-1543 (chief-of-staff: founder-inbox filing for tranche 2), W-1538 (chief-of-staff-ceo-office approves my items).
+**Believe:** high that knot briefs 1-4 need no project budget: routine re-reads (maintenance) plus catalog builds, untagged; their gates are W-407, W-1521, W-408 (C3). High that tranche 2 needs the forum with the founder in the chair (kit is tier 2, so the PR2 delegation does not apply). Medium on 0.6M (proxies for rnd-lead and design-lead).
+**Next:** principal-engineer W-407 re-read; principal-engineer-ops W-1521; platform-engineer W-408; chief-of-staff-ceo-office W-1538; chief-of-staff W-1543.
+**Blocked:** tranche 2 on the founder-chaired forum. Not mine but flagged: history (6.3M of 2.5M) and behavioral-econ (2.7M of 1.8M) are past 100% with tagged work (`node tools/ledger.mjs check`).
+## 2026-10-16 · principal-engineer (Kenji) · knots W-407 re-read: EDD-011 Part 1 approved with changes
+
+**Changed:** re-read the W-407 kit change (`82f7f04e`: one test plus README text; no library or table byte changed) code-first, then the change note. Record: `company/engineering/reviews/2026-10-16-knots-w407-reread.md`. EDD-011 status and kit README rule 2(a) updated to "approved with changes", with two conditions: default `relax`, and the default `margin/size` ratio (scale and pad by SVG `viewBox`). `turnOver` pictures stay inside block (a). Board: W-1549 (rnd-lead, ratio row in the test) and W-1550 (cm-math-discrete, brief 4 `turnOver` and back-face flip, U1 padding).
+
+**Believe (high):** for table knots on a fixed layout, the curve set does not depend on over/under (code reading), and an exhaustive probe of 14,046 pictures found 0 extras at default options for every crossing subset. The scope as proposed was too loose: `draw(knot('4_1').pd, { size: 360 })` shows 1 extra crossing, and `relax: 0` shows 1 on 3_1 and 4_1. `test:kit` 98/98 and typecheck pass. `npm run check`: see the commit.
+
+**Next:** block (a) no longer stops knot briefs 1–4 (`company/domains/briefs/math.discrete.md`). Brief 4's drawn `turnOver` is still held. Before any lesson imports the kit: C3 (W-408, platform-engineer), C4 at the first `layout` lesson, and readiness W-1521 (principal-engineer-ops). Blocks (b) and (c) are unchanged.
+
+**Blocked:** nothing on engineering for briefs 1–4.
+
+## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
+
+**Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
+
+**Believe (high):** scope is Books renderer + tests + records only; `npm run test:books` 417/417 pass; rollback rehearsed (`git revert -m 1 a437361a` clean, src/tests back to `cdee168c` exactly); all Books lessons remain drafts. The record's "revert the one commit" line is wrong after merge; corrected in the verdict.
+
+**Next:** integrator merges this branch to main and records the main merge SHA in the changelog entry (condition 1). Before publish: accessibility-reviewer re-scan (W-1511) and qa-tester build + QA (condition 2). W-1517 stays with platform-engineer.
+
+**Blocked:** nothing on ops readiness.
+
+## 2026-10-16 · principal-engineer (Kenji) · Books a11y B1–B4 re-read: approved
+
+**Changed:** re-read platform-engineer's `fix/books-a11y-b1-b4` (`b3beca16`) code-first, then the change note; merged it into `worktree-agent-a4cfd34bc12839f51` on main `cdee168c` with merge commit `a437361a` (one conflict, `company/ops/changelog.md`, both entries kept). Record: `company/engineering/reviews/2026-10-16-books-a11y-reread.md`. Board W-1517 (platform-engineer): Reset still drops focus to body after press.
+
+**Believe (high for the code, medium for layout):** B1–B3 are fixed and `describeScene` restates only what the picture draws. `test:books` 417/417, typecheck and check pass on the merged tree. I did not build or run a browser; the fit at 13 px rests on the author's measurements.
+
+**Next:** principal-engineer-ops approves `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md`; integrator merges my branch; accessibility-reviewer re-scans before publish (W-1511).
+
+**Blocked:** nothing on engineering.
+## 2026-10-16 · cm-math-discrete (Chiara) · knot theory briefs (W-146, W-419; both moved to done)
+
+**Changed:** `company/domains/briefs/math.discrete.md` section "Knots, batch 1" now holds 8 ranked briefs: 1 draw-a-table-knot (rewritten with the 6_1 decision), 2 tricolour-check, 3 unknot-game, 4 left-or-right (buildable now, each needs its design contact sheet before launch: block (b) lifts per lesson), then 5 unknot-in-disguise, 6 cut-one-ring, 7 wiggle-keeps-the-fingerprint, 8 more-crossings-same-knot (held). 8 `knot-*` concepts added to `content/curriculum/math.json` (knot-table-names first; prerequisites chained). Answer checks: `company/domains/briefs/checks/knots-check.mjs` (K1-K9) and `knots-check-blocked.mjs` (K10-K12). Held briefs are in `company/ops/brief-skips.json` with board ids W-1519 (block a: scramble/apply output) and W-1518 (block c: link drawing), both owner rnd-lead.
+
+**Decisions:** draw-a-table-knot draws the kit's default `draw(knot('6_1').pd)`, which is now the fix1-bigon drawing (`cmp` shows kit `draw.mjs` identical to the candidate); the design lead preferred it. T1-T4 and U1 (U2) from `company/design/reviews/2026-10-14-knot-pictures.md` are copied into tricolour-check and unknot-game (U1 also into left-or-right and the 4_1 chip). The research note's rank-1 idea (unknot in disguise) cannot be built until block (a) lifts, so the buildable order differs from the research order on purpose.
+
+**Believe:** every number in briefs 1-4 is a kit computation I re-ran (high). Found while checking: switching two crossings of the figure-eight gives a trefoil for 2 of 6 pairs, so unknot-game must show "Still a knot" from `simplify` status `minimal`, never from absence of `unknot`. All citations are unverified (the research note read them through snippets); no brief claims `verified`. The misconceptions are hypotheses (no study exists); test with 3-5 people.
+
+**Next:** demo-builder can claim 1 then 2, 3, 4; design-lead reviews each contact sheet (mirror and turned-over pictures of left-or-right have never been seen by design); fact-checker opens the cited sources; rnd-lead owns W-1519 and W-1518. **Blocked:** nothing for 1-4. I accidentally took and released a claim lock (`friends-of-friends-overlap`) while testing `claim.mjs next`; it is released.
+## 2026-10-16 · rnd-lead (Bram) · W-407 knots close-out: what still stands between the kit and a lesson
+
+**Changed:** C1 and C2 were already done on 2026-10-14; re-checked today (`derive.mjs --write` reproduces `table.derived.mjs` byte for byte, kit `table.mjs` = it after the README `sed`; lab README pointer present, status line freshened). The 4 U10 monster-unknot lab tests now read `MONSTER` from `test/benchdata.mjs`, not the table (lab 105/105; 103/103 on a scratch derived-table swap; a test pins table U10 = MONSTER). New EDD-011 (`company/engineering/edd/EDD-011-knots-extra-crossings.md`): Part 1 scopes import block (a) so table-knot pictures (entry, mirror, crossing changes on the stored layout) are outside it, backed by a new kit/lab draw test (0 extra crossings over 301 pictures; only the link L6a4 shows extras, already block c); Part 2 (exported `extraCrossings`) designed, paused per the R&D Review. Kit: one test + README only (`test:kit` 98/98). Change note for the principal engineer: `company/engineering/reviews/2026-10-16-knots-w407-change.md`; readiness `company/engineering/readiness/2026-10-16-knots-w407.md` (ops approval W-1521). Board: W-407 → review; W-857, W-143, W-144 → done; W-1520 (portfolio-manager: rnd-knots budget, my role may not change projects.json); W-1521. `npm run check` and `typecheck` pass. Not pushed, not deployed.
+
+**Believe (high):** no rnd-lead item now blocks a lesson that draws table knots. **Medium:** EDD-011 Part 1 holds as written; it needs the principal engineer's confirmation.
+
+**Next:** principal-engineer re-reads the change note (caller dispatches). cm-math-discrete can brief draw-a-table-knot (5_2) now (W-146, W-419). platform-engineer: C3 (W-408). First layout lesson: C4 phone timing.
+
+**Blocked:** lessons on random diagrams (block a, EDD-011 Part 2 paused, no brief); 3_1/4_1 pictures until per-lesson design review (block b); links (block c).
+## 2026-10-16 · cm-course-ncm (Jonah) · NCM finish-line refresh
+
+**Changed:** `content/courses/ncm/chapters.json` refreshed against `src/demos` (batch1 status gone; `briefed_wave_j` folded into `covered_by`/`briefed_not_built`; stale slugs mutual-friends-add-up-slower and the-line-takes-up-to-half removed; two-pages-swallow-the-rank and who-pays-same-filter added; `not_yet_published` per section). `company/courses/ncm/coverage.md` rewritten (stale first-map tables dropped, in git at cdee168c). The 4 re-judged briefs (4.2 same-picture-two-histories, 9.2 price-tag-or-auction, 17.6 worth-something-alone, 23.2 the-swap-that-goes-in-circles) made build-ready in `company/courses/ncm/briefs.md` and their strand copies: cm-probability-statistics's "revise" ruling applied to #72, support types fixed (closes W-1393's #13 c3/c4), stage word budgets added, numbers re-run by new `company/courses/ncm/checks/rejudged-four.mjs`. **protest-needs-a-shared-view retired** (ruling in briefs.md J3; proposed concept withdrawn from `content/curriculum/math.json`). payoffs-set-the-threshold added to `company/ops/brief-skips.json` until cm-math fixes the tie rule (W-1393). New `company/courses/ncm/checks/coverage-count.mjs` recounts coverage and flags map drift. Board: W-1522..W-1525 (build the 4 gaps, demo-builder, next), W-1526 (9 concept briefs, backlog).
+
+**Believe:** high on the counts: 156 sections, 110 demo-able, 106 built (96.4%), 91 published (82.7%); the 13 review lessons are the whole built-vs-published gap. High that origin/ccr-rnd-ncm (61f01320) has no NCM lesson or brief that main lacks; main is equal or newer on every NCM lesson, so drop it (schelling-on-new-york's `review` there must not come back). Medium on the 4 re-judged sections matching the book's emphasis (host still blocked, W-420).
+
+**Next:** demo-builder W-1522..W-1525; fact-checker on the 13 review lessons, then the publish gate; cm-economics-markets W-507 (may still object to #26/#27); cm-math W-1393 (J15 tie rule).
+
+**Blocked:** section-number confirmation (book host 403, W-420). Not pushed.
+## 2026-10-16 20:55Z · head-of-product (Priya) · F-46 closeout ruling + launch review r6 (W-1483)
+
+**Changed:** launch review r6 (`company/rituals/records/2026-10-16-launch-review.md`) on the 11 lessons `company status` calls ready. **Go: cut-the-busiest-link** (v2 learner launch r15; qa-tester QA on bf6fde86, which is identical to HEAD for the lesson and kit; claims verified). **No-go: 10**: eight have current versions that were never walked (XW-1/XW-2), karatsuba has a revise verdict on v5, and patience is held by W-1333. Closeout ruling `company/product/2026-10-16-closeout-ruling.md` covers all **364** (235 review + 129 draft): **(a) push 140 · (b) fix once 87 · (c) retire 137** (106 Books if F1/F2 are unanswered by 10-19 18:00; 30 parked Life Hacks unless argued by 10-18; schelling-on-new-york). New stuck rule: 11 path-W lessons with 3+ revised versions get the walk only, and revise means retire. Created `company/product/retired-lessons.md` (no rows). Mailed all 14 lane managers plus release-manager, evaluation-steward and chief-of-staff (ids in the ruling). Board W-1527..W-1530. **Retired: none.** F-46 item 7 requires a CM-written note for each lesson, and none exists yet. Nothing published by me, nothing deployed.
+
+**Believe:** high that only cut-the-busiest-link clears the gates and the verdict-currency check today. `company status`'s ready line overcounts by 10 (W-1528). Medium on the 10-20/10-23 dates: lane-10 capacity is still unconfirmed (plan objection 2).
+
+**Next:** release-manager publishes cut-the-busiest-link (W-1527). Lane-10 XW/LW walks, QA-1 and FC-1 per the plan. CMs send their (b) rounds and write (c) notes by 10-19 18:00 (W-1530). chief-of-staff puts F1/F2 to the founder in the daily line. I check notes and chair DLR-H on 10-19.
+
+**Blocked:** Books 106 on the founder's F1/F2. schelling on a source this host cannot open.
+## 2026-10-16 · fact-checker (lane B, F-46 closeout) · NCM-13 re-check, c10b, draft claims
+
+**Changed:** 1 commit on `worktree-agent-af03a3aad9424d7e6` (claims and records; no code):
+- **NCM-13 (item 1):** at base cdee168c, the 13 NCM review lessons had no open claims (72 verified, all "Ready to publish"). I re-checked their current Demo.tsx against the claims for staleness after the later revisions (selfish v6, cluster v5, agenda v3, W-513). All still match, and I made no status changes. Record: company/reviews/ncm-review-13/2026-10-16-fact-check-laneB.md.
+- **schelling-on-new-york c10b (item 2):** still unverified, because Rothstein is unreachable on every host. I opened a replacement source, Swope et al. 2022, PMC9342590, and wrote the text/source fix (company/reviews/schelling-on-new-york/2026-10-16-fact-check.md). W-1531 (cm-geography).
+- **Item 3:** no review lesson outside lane A and books has an open claim. Among the drafts, I disputed clap-at-the-cliff recall, scale-on-a-slope alt1 and two-batteries alt1, each with a one-line fix (W-1532, demo-builder). literacy-split-france c4 and schooling-and-crime-1830s c1 are still held on "young men" (PMC search tried); the FC 58/59 rewording fix finishes them.
+
+**Believe:**
+- High: NCM-13 claims are current.
+- High: the three physics disputes are real and one-line fixes.
+- Medium: Swope 2022 carries c10b's card words. "Widening" is a judgement call, written in the record.
+
+**Next:**
+- cm-geography approves the source swap (W-1531), then demo-builder edits c10b and another fact-checker verifies it.
+- demo-builder W-1532, then fact-checker re-checks.
+- Release manager: the NCM-13 need no fact-checker action.
+
+**Blocked:** Rothstein book access (no proxy route).
+## 2026-10-16 · fact-checker · lane A (publish-blocking claims) and the remaining open claims outside Books
+
+**Changed:** 31 claims across 24 lessons. 10 verified: hailstone-27-climbs c4 c5 (Barina 2025 and Tao 2022 abstracts via api.crossref.org), drying-room-water-load c6 (AWMF mold guideline, PMC11097193), lh-pay-for-used-quantity c6, lh-split-order-fixed-fee c5 c6, literacy-split-france c4 and schooling-and-crime-1830s c1 ('young men': 1834/1838 Edinburgh Med Surg J on the French conscription law, PMC5776539/PMC5772286), clap-at-the-cliff recall, schelling-on-new-york c10b (PMC9387904, PMC8099638; Rothstein still unopened). 4 withdrawn as cut, not as false: the behavioral HELD lines (same-week c6, saved-or-die c5, sure-million c6, zero-loses c6); each is behind a `HELD_LINE = false` constant and renders nowhere. 9 disputed with exact corrected text in the claim notes: sock-pairing-by-pattern c1 c3 c4 recall seen, cue-needs-a-boundary seen, two-batteries-side-by-side alt1, scale-on-a-slope c4 alt1. 8 held (only blocked hosts can carry them), each with proposed wording that unblocks it: 4 tariff hedges, lh-scale-recipe-portions c5, mail-exact-phrase and mail-minus-noise recall, wet-knit-hang-stretch c1. batch-by-setup c1/c2 are unchanged and still disputed (W-1484). Records: company/reviews/<slug>/2026-10-16-fact-check-lane-a.md. Board: W-1533 (demo-builder), W-1534 (cm-lifehacks).
+
+**Believe (high):** status now lists 8 lessons as ready to publish that were blocked only by these claims: same-week-a-year-apart, saved-or-die-same-600, sure-million-or-long-shot, zero-loses-to-this-crowd, hailstone-27-climbs, drying-room-water-load, lh-pay-for-used-quantity, lh-split-order-fixed-fee. Four drafts now have every claim verified: literacy-split-france, schooling-and-crime-1830s, clap-at-the-cliff, schelling-on-new-york (which is hidden until c10b). Medium on the withdrawals: if a reviewer holds that a HELD line must stay unverified, revert them to unverified. That would not change what learners see.
+
+**Next:** demo-builder W-1533 (one fix round, then a fresh fact-checker re-checks the reset claims); cm-lifehacks W-1534 or evaluation-steward W-847 for the 8 held lines; the draft-to-review flip for the four claim-complete drafts belongs to their builders and CMs.
+
+**Blocked:** nothing pushed or deployed. Gov, NHS, energy-regulator, food-safety, Google Help and GINETEX hosts are still refused here.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 
 **Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
