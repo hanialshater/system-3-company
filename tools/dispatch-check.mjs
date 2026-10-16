@@ -58,6 +58,7 @@ import { fileURLToPath } from "node:url";
 import { coeCoverage } from "./lib/coe-coverage.mjs";
 import * as slots from "./lib/slots.mjs";
 import { mergeById, readJsonlFile, readSpool } from "./lib/events-spool.mjs";
+import { ageText, lastHookEvent, possiblyFinished, replay } from "./lib/inflight.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const opt = Object.fromEntries(process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
@@ -78,13 +79,10 @@ const evPath = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : pat
 const logRead = readJsonlFile(evPath);
 const spool = readSpool();
 const events = mergeById(logRead.events, spool.events).filter((e) => typeof e?.ts === "string").sort((a, b) => a.ts.localeCompare(b.ts));
-const open = new Map();
-for (const e of events) {
-  if (!e.agent) continue;
-  if (e.type === "dispatch") open.set(e.agent, e);
-  else if (e.type === "report" || e.type === "stopped") open.delete(e.agent);
-}
-const fresh = [...open.values()].filter((e) => Date.now() - Date.parse(e.ts) < STALE_H * 3.6e6);
+// r5-tools B2 (tools/lib/inflight.mjs): a report or stopped event closes the open dispatch with the same run key
+// (explicit key / tool-use id), else the same label (the old rule), else the same batch item. Never on a guess.
+const flight = replay(events);
+const fresh = flight.open.map((r) => r.dispatch).filter((e) => Date.now() - Date.parse(e.ts) < STALE_H * 3.6e6);
 const isBuilder = (e) => (e.subjects ?? []).includes("demo-builder") || /builder/i.test(e.agent ?? "");
 const logAgents = fresh.length, logBuilders = fresh.filter(isBuilder).length;
 const lastDispatch = events.filter((e) => e.type === "dispatch").at(-1)?.ts;
@@ -95,6 +93,18 @@ if (logRead.bad.length || spool.skipped) warns.push(`event log has ${logRead.bad
 if (spool.lines) info.push(`hook spool: ${spool.lines} unfolded event(s), oldest ${spool.oldest ?? "?"} (node tools/events.mjs fold)`);
 info.push(`in flight: ${running} agents, ${builders} builders (event log ${logAgents}/${logBuilders}, caller ${opt.running ?? "-"}/${opt.builders ?? "-"}; last logged dispatch ${lastDispatch ?? "never"})`);
 if (lastDispatch && Date.now() - Date.parse(lastDispatch) > 3 * 3.6e6 && opt.running === undefined) warns.push("no dispatch logged for 3 h or more: the event log may have stopped recording (pass --running)");
+{
+  const byRule = flight.closes.reduce((m, c) => ((m[c.rule] = (m[c.rule] ?? 0) + 1), m), {});
+  if (byRule.key || byRule.batch) info.push(`in-flight matching: ${byRule.key ?? 0} closed by run key, ${byRule.batch ?? 0} by batch item, ${byRule.label ?? 0} by label (tools/lib/inflight.mjs)`);
+}
+
+// ---- hook liveness (W-1280): are the repo hooks (F-31) writing hk- events in this session tree?
+const hk = lastHookEvent(events);
+let f31 = false;
+try { f31 = /agent-events\.mjs/.test(fs.readFileSync(path.join(ROOT, ".claude/settings.json"), "utf8")); } catch {}
+if (hk) info.push(`hooks: last hk- event ${ageText(Date.now() - Date.parse(hk.ts))} ago (${hk.type}, ${hk.agent ?? hk.id})`);
+else info.push("hooks: no hk- event ever: this session tree may not load the repo hooks (W-1280); dispatch/report events are hand-written");
+if (f31 && (!hk || Date.now() - Date.parse(hk.ts) > STALE_H * 3.6e6)) warns.push(`hooks: F-31 is applied (.claude/settings.json wires agent-events.mjs) but no hk- event ${hk ? `in ${STALE_H} h (last ${ageText(Date.now() - Date.parse(hk.ts))} ago)` : "was ever written"}: the hooks are not running here (W-1280), so in-flight relies on hand events and the backfill`);
 
 if (running + 1 > MAX_AGENTS) fails.push(`C1 concurrency: ${running} agents in flight; this dispatch would make ${running + 1} (limit ${MAX_AGENTS})`);
 if (builds && builders + 1 > MAX_BUILDERS) fails.push(`C2 builders: ${builders} builders in flight; this dispatch would make ${builders + 1} (limit ${MAX_BUILDERS})`);
@@ -129,6 +139,14 @@ try {
 } catch (e) { ledgerFailed("reading the ledger", e); }
 if (slotMode === "enforce") fails.push(...sFails);
 else for (const f of sFails) warns.push(`${f} [S3_SLOTS=warn: not refused this round]`);
+
+// ---- possibly finished (r5-tools B2 c): counted runs older than 2 h with no live slot and no spool activity. They stay
+// in the count (counting less is the unsafe direction); this names them and the command that closes each one.
+const maybeDone = possiblyFinished(flight.open, { now: Date.now(), minH: 2, staleH: STALE_H, slotsLive: ledger?.live ?? [], spoolEvents: spool.events, closes: flight.closes });
+if (maybeDone.length) {
+  warns.push(`possibly finished: ${maybeDone.length} counted dispatch(es) older than 2 h with no live slot and no hook activity. First run \`node tools/events.mjs backfill\` with no --since (a backfill window that skipped their reports is the usual cause: 9 of the 11 closed by hand at 2026-10-16T13:08Z); then close any still listed that you know finished:`);
+  for (const p of maybeDone) warns.push(`possibly finished: ${p.run.label} (${ageText(p.ageMs)})${p.twin ? `; same batch item as open ${p.twin}` : ""}${p.twinReported ? `; same batch item as ${p.twinReported.label}, which reported at ${p.twinReported.ts} (${p.twinReported.id})` : ""}\n         ${p.command}`);
+}
 
 // ---- C3 worktree
 if (builds) {
