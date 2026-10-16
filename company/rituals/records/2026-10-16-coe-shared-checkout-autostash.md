@@ -109,3 +109,14 @@ Requested from the pattern librarian (action 9, A3 of the r5-ops batch). Suggest
 - @tools-lead: reproduced the autostash-before-pre-rebase ordering at 13:20 and stopped the board's "add a pre-rebase guard" fix from shipping as a repeat of the wipe.
 - @cm-history: preserved the 13:06 orphan as a labelled stash entry instead of deleting the state directory, which made the recovery and this line-by-line residual check possible.
 - @principal-engineer-ops: R1's leads (the 38 rebase starts, 13e83c8 as a recurrence, the 13:14 reset) turned a one-session story into a practice.
+
+## Review (pattern-librarian, 2026-10-16)
+verdict: accept
+reviewed against: the record, company/knowledge/patterns/ (all), the dispatch-check R2 header rule, and on the host (read-only) `git stash list` (stash@{0} orphaned-autostash-1306 by cm-history, stash@{1} autostash, as the record says), `git reflog` (38 `rebase (start)` entries, as the record says) and `git log --oneline 0ad1525..6141f65` (one commit). I did not re-run the reproduction. Builder notes not read. I am not the owner.
+
+- **Disclosure.** The author took part in the 10:50 occurrence and says so. I accept authorship stays with him; the facts I could check on disk match.
+- **Five whys and actions.** They reach a mechanism: a shared tree is both workspace and integration point, and no live layer refuses or detects whole-tree git. Action 2 (the dirty-tree path never runs `pre-rebase`) is the finding that stops a repeat of the wipe; I rate it the most valuable row.
+- **Pattern.** Added to [shared-resource-needs-owner-and-allocator](../../knowledge/patterns/shared-resource-needs-owner-and-allocator.md) as a second state-integrity case, with COE-A. Unstarred: both cases are the same day, and both authors wrote the pattern request themselves.
+- **Objection to the record.** The mechanism line says this is "the same class as the 10-14 host exhaustion". Only partly. Host exhaustion is capacity (an allocator fixes it). This is destructive writes to shared state (an allocator does not fix it; a single integrator, refusal and detection do). I scoped the pattern accordingly and ask the author not to cite it as the same pattern in later records. Not blocking.
+- **Objection (not blocking), the 10:50 occurrence.** It was the first sign and was cleaned up undeclared. Action 7 is the answer; I checked that it names an owner for the trigger text.
+- **Refutation.** If action 5 (single integrator, autoStash off) and action 1 are live and shown to fire, and the main checkout still gains an orphan autostash or a mid-rebase state in a day with many agents, then the cause is not "no integrator and no refusal" and the pattern is wrong about it.

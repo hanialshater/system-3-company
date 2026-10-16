@@ -29,7 +29,7 @@ Added 2026-10-14, all unstarred (same-day cases, simulated readers; see the [rec
 |   | [preset-buttons](preset-buttons.md) | QA presses each control once, so milestones need presets |
 |   | [data-driven-engines](data-driven-engines.md) | Engine plus data scales lesson count, and its defects |
 |   | [allocate-shared-names](allocate-shared-names.md) | Concurrent agents need allocators for IDs and folders |
-|   | [shared-resource-needs-owner-and-allocator](shared-resource-needs-owner-and-allocator.md) | Owner, meter, allocator, then cleanup, for runners, quota, CPU and disk |
+|   | [shared-resource-needs-owner-and-allocator](shared-resource-needs-owner-and-allocator.md) | Owner, meter, allocator, then cleanup, for runners, quota, CPU and disk; 2026-10-16: state-integrity cases (/dev/null, shared checkout) added with a scope note, unstarred |
 |   | [a-rule-without-a-mechanism-is-a-wish](a-rule-without-a-mechanism-is-a-wish.md) | Write the mechanism beside the rule, or call it a wish |
 |   | [cap-from-the-wrong-constraint](cap-from-the-wrong-constraint.md) | A cap is the minimum across constraints; measure the one that binds |
 |   | [containment-needs-a-drain](containment-needs-a-drain.md) | A fix for new work needs a step that removes the old backlog |
