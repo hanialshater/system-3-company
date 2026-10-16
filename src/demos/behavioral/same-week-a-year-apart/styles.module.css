@@ -96,3 +96,8 @@
   fill: var(--domain);
   font-variant-numeric: tabular-nums;
 }
+
+/* The stage must fit above the reveal on a 390 x 844 phone: no extra gap above the kit rows. */
+.wrap > :global(.row) {
+  margin-top: 0;
+}

@@ -79,18 +79,20 @@ function cells(segs: Seg[]) {
   return out;
 }
 
-const CELL = 9;
-const GAP = 1.5;
+// Drawn at its natural pixel size (56.8 px, no viewBox): four small cards share the stage, and none is a
+// squeezed picture. Cells 4.6 px with 1.2 px gaps.
+const CELL = 4.6;
+const GAP = 1.2;
 const SIDE = 10 * CELL + 9 * GAP;
 
 function Grid({ segs, sharedOff }: { segs: Seg[]; sharedOff: boolean }) {
   return (
-    <svg viewBox={`0 0 ${SIDE} ${SIDE}`} className={s.grid} aria-hidden="true">
+    <svg width={SIDE} height={SIDE} className={s.grid} aria-hidden="true">
       {cells(segs).map((c, i) => {
         const x = (i % 10) * (CELL + GAP);
         const y = Math.floor(i / 10) * (CELL + GAP);
         const cls = c.shared && sharedOff ? s.cellShared : c.amount === "5M" ? s.cell5 : c.amount === "1M" ? s.cell1 : s.cell0;
-        return <rect key={i} x={x} y={y} width={CELL} height={CELL} rx={1.5} className={cls} />;
+        return <rect key={i} x={x} y={y} width={CELL} height={CELL} rx={1} className={cls} />;
       })}
     </svg>
   );

@@ -30,14 +30,14 @@ const MILESTONES = ["far", "slide", "near"] as const;
 const STOPS = [52, 13, 0]; // index = closeness; ArrowRight moves toward today
 const END = 53;
 
-// Geometry (viewBox 320 x 126).
+// Geometry (viewBox 320 x 106).
 const X0 = 22;
 const X1 = 302;
-const AXIS_Y = 94;
+const AXIS_Y = 84;
 const px = (w: number) => X0 + (w / END) * (X1 - X0);
 const GLYPH_HALF = 70;
 const COIN_DX = 44;
-const COIN_Y = 50;
+const COIN_Y = 44;
 const R = 17;
 
 const weekLabel = (t: number) => (t === 0 ? "today" : `week ${t}`);
@@ -134,7 +134,7 @@ export default function SameWeekAYearApart({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.caption}>A simple model: each week counts the same</p>
                 <svg
-                  viewBox="0 0 320 126"
+                  viewBox="0 0 320 106"
                   className="stage-svg"
                   role="img"
                   aria-label={`Timeline from today to week ${END}. The pair: $100 at ${weekLabel(t)}, $110 one week later.`}
@@ -159,26 +159,15 @@ export default function SameWeekAYearApart({ slug }: { slug: string }) {
                   ))}
                   <circle cx={px(t)} cy={AXIS_Y} r={3.5} className={s.dot} />
                   <circle cx={px(t + 1)} cy={AXIS_Y} r={3.5} className={s.dot} />
+                  {/* tick labels (week 13 is named by the slider readout); the learner's two choices stay marked beside them */}
                   <text x={px(0)} y={AXIS_Y + 16} textAnchor="start" className={s.tick}>
                     today
-                  </text>
-                  <text x={px(13)} y={AXIS_Y + 16} textAnchor="middle" className={s.tick}>
-                    13
+                    {near && <tspan className={s.mark}> ✓ {near === "take" ? "$100" : "$110"}</tspan>}
                   </text>
                   <text x={px(52) + 6} y={AXIS_Y + 16} textAnchor="end" className={s.tick}>
+                    {far && <tspan className={s.mark}>✓ {far === "take" ? "$100" : "$110"} </tspan>}
                     week 52
                   </text>
-                  {/* the learner's two choices stay marked */}
-                  {near && (
-                    <text x={px(0)} y={AXIS_Y + 29} textAnchor="start" className={s.mark}>
-                      ✓ {near === "take" ? "$100" : "$110"}
-                    </text>
-                  )}
-                  {far && (
-                    <text x={px(52) + 6} y={AXIS_Y + 29} textAnchor="end" className={s.mark}>
-                      ✓ {far === "take" ? "$100" : "$110"}
-                    </text>
-                  )}
                 </svg>
                 <p className={s.strip} aria-live="polite">
                   {far ? `Steady model: ${far === "wait" ? "wait" : "take $100"}` : " "}
