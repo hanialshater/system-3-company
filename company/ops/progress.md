@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · personalization-eval (Uma) · C4: criterion frozen, phase A readout 1 (W-1496, W-1534; run eval-c4-1016, branch perso-c4)
+
+**Changed:** C2's blocking findings answered in criterion §10. All three were fixed in the learner: F1 forgetting acts on the increment above the guess floor; F2 adds a pass-relevant `learnRate-low` 0.35 cell; F3 novelty triggers on a domain switch from the previous card. B2 filled from the C0-corrected table after I re-read C0 rows 2 (Fazio Table 2) and 4 (Manrai) in full text; both match. S=200 rechecked on default-order only (records/2026-10-16-seeds-c4.json). Criterion **frozen at e9909edc**, hash written in 5725b10a. New: company/personalization/eval/2026-10-16-phase-a-readout-1.md, harness/readout-tables.mjs, records/2026-10-16-readout-1/{pass,rest}/ (manifest, verdicts; results.json not committed, sha256 in readout). Board W-1496 and W-1534 → review.
+**Result (unedited, readout §0):** gam vs default-order **FAIL**, gam vs draft-rules **FAIL** (0 wins of 6 in the base cell and in every one-at-a-time cell; no harm; no INVALID). No per-term pair (breadth, novelty ×3, surprise ×6) meets the per-term rule. The C3 trigger condition is not met.
+**Believe:** the run is deterministic and the verdicts follow from the frozen rule (high). The simulated GAM edge is below 1 point of R in this world, with every interval's upper end ≤ 0.0092 (high for this world; low as a forecast: placeholder world, learn rate 0.70 base unsourced, F7/F16 untested).
+**Next:** learner-model-engineer reproduces it (C5, W-1535); vp-personalization reads it for keep/kill and C3 (W-1536). **Blocked:** nothing. Host note: the run took about 51 min at --jobs=2 in two parts (pass cells first).
+
 ## 2026-10-16 · learning-scientist-personalization (Oskar) · C2 simulator fidelity review, W-1533 (run ls-c2-1016)
 
 **Changed:** new company/personalization/evidence/2026-10-16-simulator-fidelity-review.md (23 findings, each marked blocking or note). Revision section appended to the B2 memo (novelty meaning, hypercorrection unit, new `learnRate` range). W-1533 moved to review, reader personalization-eval. No harness policy command run; no results or out folder read; no curve value set.

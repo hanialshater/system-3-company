@@ -58,7 +58,7 @@ Determinism only, not judgement (independence rule §2.5).
 1. Fresh worktree at the commit named in the readout's manifest (`manifest.json` `commit`). `npm ci` is not needed for the harness (no dependencies), but harmless.
 2. Check that `sha256sum company/personalization/eval/2026-10-16-phase-a-criterion.md` equals the manifest's `criterionSha256`, and that each file in `fileSha256` matches.
 3. If the manifest's `inputs` differ from `world-inputs.mjs` B2, write `manifest.inputs` to a JSON file and pass it with `--inputs=`.
-4. Run `run.mjs` with the manifest's `S` (seeds `1001..1000+S`) and any `--jobs` value, in a separate process, to a new `--out` directory.
+4. Run `run.mjs` with the manifest's `S` (seeds `1001..1000+S`) and any `--jobs` value, in a separate process, to a new `--out` directory. If the manifest has `kinds` other than "all" (readout 1 ran `base,one-at-a-time` and `corner,novelty,rho` as two runs), pass the same `--kinds=` for each. `readout-tables.mjs <out dirs>` regenerates the readout's §6 tables from verdicts.json.
 5. Compare `results.json` and `verdicts.json` byte for byte (`cmp` or `sha256sum`). `manifest.json` differs only in `seconds` and, if the worktree differs, `commit`. Report every other difference.
 6. Spot check without the full run: `harness.mjs episode` for any (persona, seed, cell, policy) prints a hash that must be the same in every process and every worktree at that commit.
 

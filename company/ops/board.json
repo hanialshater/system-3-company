@@ -17539,7 +17539,7 @@
       "id": "W-1496",
       "title": "Personalization phase A: write the simulator pass criterion BEFORE it runs (recall over all lessons, breadth, sensitivity), and a first minimum-detectable-effect estimate for the phase B holdout at plausible traffic (company/personalization/2026-10-16-brief-response.md §3, O2, O3)",
       "owner": "personalization-eval",
-      "state": "doing",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -17547,10 +17547,11 @@
         "company/personalization/eval/2026-10-16-phase-a-criterion.md",
         "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
         "company/personalization/batches/2026-10-16-batch-2.md",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/personalization/eval/2026-10-16-phase-a-readout-1.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze. | 2026-10-16 vp-personalization (vp-cgate-1016): VP response before freeze in criterion §8 (one contest: delta_harm .01; one request: novelty-benefit sweep). Freeze moves to batch 2 C4, after C0 full-text check (W-1532) and C2 fidelity review (W-1533). company/personalization/batches/2026-10-16-batch-2.md | 2026-10-16 personalization-eval (eval-c1-1016, C1): still draft (unfrozen). S = 200 (default-order arm only, sd_R 0.0315, floor binds) and the episode definition written into §1; VP §8 ruled row by row (delta_harm 0.01 accepted; novelty request accepted; gam-surprise-on pair = vs gam); C1 text changes listed in §9. Freeze is C4 (W-1534) after C0 and C2."
+      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze. | 2026-10-16 vp-personalization (vp-cgate-1016): VP response before freeze in criterion §8 (one contest: delta_harm .01; one request: novelty-benefit sweep). Freeze moves to batch 2 C4, after C0 full-text check (W-1532) and C2 fidelity review (W-1533). company/personalization/batches/2026-10-16-batch-2.md | 2026-10-16 personalization-eval (eval-c1-1016, C1): still draft (unfrozen). S = 200 (default-order arm only, sd_R 0.0315, floor binds) and the episode definition written into §1; VP §8 ruled row by row (delta_harm 0.01 accepted; novelty request accepted; gam-surprise-on pair = vs gam); C1 text changes listed in §9. Freeze is C4 (W-1534) after C0 and C2. | 2026-10-16 personalization-eval (eval-c4-1016): FROZEN at commit e9909edc (hash written in 5725b10a, criterion §11) after answering C2 F1-F3 (criterion §10: all three fixed in the learner) and filling B2 from the C0-corrected table (C0 rows 2 and 4 spot-checked). S=200 rechecked. To review: learner-model-engineer (C5, W-1535 reproduction) and vp-personalization."
     },
     {
       "id": "W-1497",
@@ -18002,13 +18003,17 @@
       "id": "W-1534",
       "title": "Phase A first scored readout: fill B2 placeholders from the C0 record, rule on criterion §8, freeze W-1496 (hash), then score all POLICIES plus the gam-surprise-on counterfactual under the frozen criterion. Lane 14 batch 2 C4 (company/personalization/batches/2026-10-16-batch-2.md)",
       "owner": "personalization-eval",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-2.md",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
-      ]
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/personalization/eval/2026-10-16-phase-a-readout-1.md",
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 personalization-eval (eval-c4-1016): readout 1 written, company/personalization/eval/2026-10-16-phase-a-readout-1.md (code 5725b10a, seeds 1001-1200, outputs harness/records/2026-10-16-readout-1/). Reported unedited; no keep/kill recommendation. To review: learner-model-engineer (C5, W-1535: reproduce from manifest) and vp-personalization (W-1536)."
     },
     {
       "id": "W-1535",
