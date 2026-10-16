@@ -50,6 +50,10 @@
 //   S4  checkers through quality: a lane-10 checker role whose source is not a lane-10 batch or standing order,
 //       nor `§4:ritual: <id>` with <id> in that role's rituals: in tools/org/roles.mjs (W-1240 Q1).
 //       Built but OFF until founder F-28 is answered: --s4 or S3_SLOTS_S4=on turns it on.
+//   M1  mailbox (F-42): with --source=mail:<id>, the message must be an unclaimed, not-done dispatch-request in the
+//       dispatcher mailbox naming --role, and it must pass the lane rule again (tools/lib/mailbox.mjs laneCheck:
+//       sender is its lane's POC on poc-map.md, role listed in that lane, checkers only from lane 10, never
+//       release-manager or anything naming deploy). M1 always FAILs, in warn mode too: S3_SLOTS does not soften it.
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -57,6 +61,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { coeCoverage } from "./lib/coe-coverage.mjs";
 import * as slots from "./lib/slots.mjs";
+import * as mailbox from "./lib/mailbox.mjs";
 import { mergeById, readJsonlFile, readSpool } from "./lib/events-spool.mjs";
 import { ageText, lastHookEvent, possiblyFinished, replay } from "./lib/inflight.mjs";
 
@@ -139,6 +144,28 @@ try {
 } catch (e) { ledgerFailed("reading the ledger", e); }
 if (slotMode === "enforce") fails.push(...sFails);
 else for (const f of sFails) warns.push(`${f} [S3_SLOTS=warn: not refused this round]`);
+
+// ---- M1 mailbox source (F-42): the lane rule again, as a refusal in every slot mode
+if (typeof opt.source === "string" && opt.source.startsWith("mail:")) {
+  const id = opt.source.slice(5).trim();
+  try {
+    const m = mailbox.find(id);
+    if (!m) fails.push(`M1 mailbox: no message ${id} in ${mailbox.baseDir()}`);
+    else if (m.fm.kind !== "dispatch-request") fails.push(`M1 mailbox: ${id} is a ${m.fm.kind}, not a dispatch-request`);
+    else if (m.role !== mailbox.DISPATCHER) fails.push(`M1 mailbox: ${id} is in the ${m.role} mailbox, not the dispatcher's`);
+    else {
+      if (m.claimed) fails.push(`M1 mailbox: ${id} is already claimed (${m.claimed.ts ?? "?"}, agent ${m.claimed.agent ?? "?"}): it was dispatched once`);
+      if (m.done) fails.push(`M1 mailbox: ${id} is already done`);
+      if (opt.role !== m.fm.role) fails.push(`M1 mailbox: ${id} requests role ${m.fm.role}, not ${opt.role}`);
+      if (opt.chooser && opt.chooser !== true && opt.chooser !== m.fm.from) fails.push(`M1 mailbox: --chooser=${opt.chooser} but ${id} is from ${m.fm.from}`);
+      const text = [m.fm.title, m.fm.budget, m.fm["done-when"], m.fm["stop-if"], m.fm.project, m.fm.role, m.body].filter(Boolean).join("\n");
+      const lc = mailbox.laneCheck({ from: m.fm.from, role: m.fm.role, lane: m.fm.lane, text }, { root: ROOT });
+      for (const r of lc.reasons) fails.push(`M1 mailbox lane: ${r}`);
+      if (m.fm["dispatch-kind"] && m.fm["dispatch-kind"] !== kind) warns.push(`M1 mailbox: ${id} asks for --kind=${m.fm["dispatch-kind"]}, this check is --kind=${kind}`);
+      info.push(`mailbox: ${id} from ${m.fm.from}, lane ${m.fm.lane}, role ${m.fm.role}, project ${m.fm.project}; brief ${m.file}`);
+    }
+  } catch (e) { fails.push(`M1 mailbox: ${e.message}`); }
+}
 
 // ---- possibly finished (r5-tools B2 c): counted runs older than 2 h with no live slot and no spool activity. They stay
 // in the count (counting less is the unsafe direction); this names them and the command that closes each one.

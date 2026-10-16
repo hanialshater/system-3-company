@@ -10,6 +10,8 @@
 //   batch=<file>#B<n>   a manager's batch item (company/ceo-office/dispatch-requests.md §2-§3)
 //   SO-<lane>-<n>       a standing order issued in a batch's "standing orders" (§2.3); `batch=SO-…` is accepted too
 //   §4:<reason>         something the chief of staff may still do alone (§4: integration, emergencies, rituals ...)
+//   mail:<id>           a manager's dispatch-request in the dispatcher mailbox (F-42, tools/lib/mailbox.mjs): lane and
+//                       chooser come from the message; dispatch-check's M1 applies the lane rule as a hard refusal
 //
 // The folder is runtime state (gitignored except its README). History lives in events.jsonl, not here.
 // S3_SLOTS_DIR overrides the folder (tests). S3_EVENTS overrides the event log (as everywhere).
@@ -22,6 +24,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { mergeById, readJsonlFile, readSpool } from "./events-spool.mjs";
+import * as mailbox from "./mailbox.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const STALE_H = 6;
@@ -52,6 +55,7 @@ export function parseSource(raw) {
   const s = String(raw).trim();
   let m;
   if ((m = /^§4:\s*(.*)$/s.exec(s))) return { type: "s4", reason: m[1].trim(), raw: s };
+  if ((m = /^mail:([A-Za-z0-9-]+)$/.exec(s))) return { type: "mail", mail: m[1], raw: s };
   const body = s.replace(/^batch=/, "");
   if ((m = /^(SO-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*-\d+)$/.exec(body))) return { type: "so", so: m[1], raw: s };
   if ((m = /^(.+\.md)#B(\d+)$/.exec(body)) && s.startsWith("batch=")) return { type: "batch", file: m[1], item: Number(m[2]), raw: s };
@@ -92,12 +96,21 @@ export function findStandingOrder(so, root = ROOT) {
 export function resolveSource(raw, { root = ROOT, role } = {}) {
   const src = parseSource(raw);
   const out = { ...src, lane: null, chooser: null, file: null, itemRole: null, problems: [] };
-  if (!src.type) { out.problems.push("no source: pass --source=batch=<file>#B<n>, SO-<lane>-<n> or §4:<reason>"); return out; }
-  if (src.type === "bad") { out.problems.push(`source "${src.raw}" is not batch=<file>#B<n>, SO-<lane>-<n> or §4:<reason>`); return out; }
+  if (!src.type) { out.problems.push("no source: pass --source=batch=<file>#B<n>, SO-<lane>-<n>, mail:<id> or §4:<reason>"); return out; }
+  if (src.type === "bad") { out.problems.push(`source "${src.raw}" is not batch=<file>#B<n>, SO-<lane>-<n>, mail:<id> or §4:<reason>`); return out; }
   if (src.type === "s4") {
     if (!src.reason) out.problems.push("§4 source with no reason: write §4:<integration | emergency | ritual | resume | manager run>: <what>");
     out.chooser = "chief-of-staff";
     out.lane = "19";
+    return out;
+  }
+  if (src.type === "mail") {
+    let msg = null;
+    try { msg = mailbox.find(src.mail); } catch (e) { out.problems.push(`mail source: ${e.message}`); return out; }
+    if (!msg) { out.problems.push(`no message ${src.mail} in the mailboxes (${mailbox.baseDir()})`); return out; }
+    out.file = msg.file; out.lane = msg.fm.lane ?? null; out.chooser = msg.fm.from ?? null; out.itemRole = msg.fm.role ?? null;
+    if (msg.fm.kind !== "dispatch-request") out.problems.push(`message ${src.mail} is a ${msg.fm.kind}, not a dispatch-request`);
+    if (role && out.itemRole && out.itemRole !== role) out.problems.push(`message ${src.mail} requests role ${out.itemRole}, not ${role} (the chief of staff never changes a request's role)`);
     return out;
   }
   if (src.type === "batch") {
@@ -179,7 +192,7 @@ export function evaluate({ role, source, chooser, kind, agent, s4 = false, root 
   // passes S4 when <id> is the first word of an entry in the role's rituals: list. Any other §4 source fails.
   const ritualId = src.type === "s4" ? /^ritual:\s*([a-z0-9-]+)(?![a-z0-9-])/i.exec(src.reason ?? "")?.[1]?.toLowerCase() : null;
   const ritualOk = !!ritualId && roleRituals(roleId).has(ritualId);
-  if (s4 && roleId && checkerRoles(root).has(roleId) && !ritualOk && !((src.type === "batch" || src.type === "so") && src.lane === "10")) {
+  if (s4 && roleId && checkerRoles(root).has(roleId) && !ritualOk && !((src.type === "batch" || src.type === "so" || src.type === "mail") && src.lane === "10")) {
     fails.push({ rule: "S4", msg: `${roleId} is a lane-10 checker; it is dispatched only from a lane-10 batch or standing order (F-28, poc-map rule 3), not ${src.raw ?? "no source"}` });
   }
   const laneOfRole = roleId ? lanesOf(roleId, lanes) : [];
