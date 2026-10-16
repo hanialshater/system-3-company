@@ -14,6 +14,9 @@
 // Each target or speed chip sets the crash up and runs it at once (the brief's separate Crash button
 // is folded into the chips: QA presses each control once, so a separate Crash after every chip is not
 // reachable). The replay takes 400 ms of wall time.
+// v2 (cm-physics r5 R8): while the stage is locked no speed chip shows as selected, because the speed
+// chip labels match the predict options; the question already states the 50 km/h scenario. Unlocked
+// behaviour, the QA path and the milestones are unchanged. R7 rewords the reveal's second paragraph.
 // Earned reveal (v1): milestones "car-50" (head-on at 50), "wall-50", "wall-100".
 // QA path (DOM order): Into a car (crash car 50), Into a wall (wall 50), 25 (wall 25), 50 (wall 50),
 // 100 (wall 100). All three milestones.
@@ -78,9 +81,9 @@ export default function HeadOnIsAWall({ slug }: { slug: string }) {
               {w100 && w50 ? (w100 / w50).toFixed(0) : "?"} times higher.
             </p>
             <p>
-              The cars stopped at the meeting point, which never moved, so each stopped from 50 to 0 in its own crumple
-              zone, as against a wall. Doubling the closing speed doubles the total energy, but two cars share
-              it. Crush energy grows with speed squared.
+              The meeting point never moved, so each car stopped from 50 to 0 in its own crumple zone, as against a
+              wall. Two cars at 50 carry twice one car&apos;s energy, and each crumple zone takes its own half. Crush
+              energy grows with speed squared.
             </p>
           </>
         );
@@ -234,7 +237,7 @@ function Stage(p: {
         {SPEEDS.map((v) => {
           const c = { target: config.target, speed: v };
           return (
-            <Control key={v} className={config.speed === v ? "active" : ""} disabled={locked || chip(c)} onClick={() => crash(c)}>
+            <Control key={v} className={!locked && config.speed === v ? "active" : ""} disabled={locked || chip(c)} onClick={() => crash(c)}>
               {v} km/h
             </Control>
           );
