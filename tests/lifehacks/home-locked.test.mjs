@@ -140,6 +140,22 @@ test('E2 socks-use-shoe-space: the hollow label after the socks fill it (400 at 
   assert.deepEqual(texts(200, null), []); assert.deepEqual(texts(200, null, true), []);
 });
 
+test('E3 desk-supply-near-use: locked and before the first press, no journey is drawn and the tape sits at the far station', () => {
+  // Dispatch 2026-10-16-r5-lifehacks.md D4 row E3 / D5: six dashed there-and-back pairs drew the 24-vs-48 step.
+  const spec = bySlug('desk-supply-near-use');
+  const tape = (svg) => Number(svg.match(/<rect x="([\d.]+)" y="94" width="16" height="16" rx="3" class="target"/)?.[1]);
+  for (const p of [spec.min, spec.initial, spec.max]) for (const locked of [true, false]) {
+    const { svg, texts } = picture(spec, stage(spec, { locked, p }));
+    assert.doesNotMatch(svg, /<path/, `p=${p} ${locked ? 'locked' : 'pre-press'}: no journey path`);
+    assert.ok(tape(svg) > 225, `p=${p}: the tape is at the far station (x=${tape(svg)})`);
+    assert.ok(texts.includes(`${p} m to the tape`), `p=${p}: "${texts.join(' / ')}"`);
+  }
+  // After a press: A draws the six round trips with the tape far away; B has the copy at the desk and no journeys.
+  const a = picture(spec, stage(spec, { locked: false, mode: 'a' })).svg, b = picture(spec, stage(spec, { locked: false, mode: 'b' })).svg;
+  assert.equal(a.match(/<path/g)?.length, 12); assert.ok(tape(a) > 225);
+  assert.doesNotMatch(b, /<path/); assert.ok(tape(b) < 80);
+});
+
 /* ------------------------------------------------------------------ W-1241: cord press order */
 
 const cord = bySlug('long-cord-knots-itself');

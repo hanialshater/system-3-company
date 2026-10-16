@@ -86,12 +86,16 @@ function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number
     })}{['access','reverse-order','weighted-access','nest-access'].includes(model)&&<path d={after?'M30,174h30l-5,-5m5,5l-5,5':'M150,180v-30l-5,5m5,-5l5,5'} className={s.air}/>}</>;
   } else if(spec.view==='route') {
     const roundTrip=model!=='two-stations';
-    const journeys=model==='trips'?(after?1:Math.round(p)):(after?0:v[0]);
+    // E3 (r5 D4, D5): on the v2 stage of distance-use (desk-supply-near-use), the neutral picture draws no journeys: six
+    // there-and-back pairs were the 24-vs-48 step the question tests. While neutral and in A the tape sits at the far
+    // station, where the question puts it; B keeps it at the desk. v1 never passes v2, so v1 is unchanged.
+    const use=v2!==undefined&&model==='distance-use',useNeutral=use&&neutral,tapeFar=use&&!after;
+    const journeys=useNeutral?0:model==='trips'?(after?1:Math.round(p)):(after?0:v[0]);
     const oneWay=model==='trips'?v[0]:p;
     art=<><rect x="20" y="30" width="260" height="165" className={s.outline}/>{rect(38,80,40,45,'desk')}{rect(225,80,40,45,'bin')}{Array.from({length:journeys},(_,i)=>{
       const y=58+i*(journeys>8?9:14),reverse=!roundTrip&&i%2===1;
       return <g key={i}><path d={reverse?`M220,${y}H80l6,-3m-6,3l6,3`:`M80,${y}H220l-6,-3m6,3l-6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>{roundTrip&&<path d={`M220,${y+5}H80l6,-3m-6,3l6,3`} className={after?s.air:s.line} strokeDasharray={after?'0':'5 4'}/>}</g>;
-    })}{model!=='trips'&&rect(49,94,16,16,'tool',true)}{after&&model==='two-stations'&&rect(236,94,16,16,'copy',true)}<text x="150" y="182" textAnchor="middle">{fmt(oneWay)}m {roundTrip?'one-way':'between desks'}</text></>;
+    })}{model!=='trips'&&rect(tapeFar?236:49,94,16,16,'tool',true)}{after&&model==='two-stations'&&rect(236,94,16,16,'copy',true)}<text x="150" y="182" textAnchor="middle">{useNeutral?`${fmt(oneWay)} m to the tape`:<>{fmt(oneWay)}m {roundTrip?'one-way':'between desks'}</>}</text></>;
   } else if(spec.view==='mechanics') {
     if(model==='balance') art=<><path d="M50,75h200l-20,110H70z" className={s.outline}/><path d="M95,75q0,-50 55,-50t55,50" className={s.line}/>{rect(70,95,after?50:80,62,'left')}{rect(182,after?95:130,after?50:35,after?62:27,'right',true)}<line x1={150+result.value*2} y1="65" x2={150+result.value*2} y2="190" className={s.air}/></>;
     else if(model==='pressure') art=<><line x1="30" x2="270" y1="175" y2="175" className={s.line}/>{rect(after?60:105,110,after?180:90,64,'load')}<path d="M150,60v45l-5,-7m5,7l5,-7" className={s.line}/><text x="150" y="50" textAnchor="middle">{fmt(p)}kg</text></>;
