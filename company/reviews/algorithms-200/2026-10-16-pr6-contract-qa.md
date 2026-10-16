@@ -1,6 +1,6 @@
 # Algorithms-200 (PR #6) computer-use contract QA
 
-recorded by: qa-tester, 2026-10-16 (W-1570, test:platform #18)
+recorded by: qa-tester, 2026-10-16 (W-1610, test:platform #18)
 Built-from SHA: start 00bc867972f5a9de98742d63d328fd73a3267935, end 00bc867972f5a9de98742d63d328fd73a3267935 (worktree .claude/worktrees/agent-abd1c676ab24ee565, branch pr/6-algorithms-200)
 Harness: tests/qa/contract.spec.ts at commit 5acecbca, stamp clean: true. 3 workers, QA_ONLY = the 200 src/demos/cs/algo-* slugs, QA_PORT 3861, QA_OUT artifacts/pr6-qa (not committed), NEXT_DIST_DIR .next-pr6, Turbopack production build (npm run build).
 Result: **400 passed / 0 failed / 0 flaky / 0 skipped / 0 retries** (200 lessons x phone + desktop), 488.9 s wall (8.1 min). Per-test time ranged 2.8 s to 4.8 s. No lesson failed.

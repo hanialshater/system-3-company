@@ -3,13 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
-## 2026-10-16 · principal-engineer-ops (Rhea) · PR #6 M7 readiness approved with conditions (W-1576 done)
+## 2026-10-16 · principal-engineer-ops (Rhea) · PR #6 M7 readiness approved with conditions (W-1616 done)
 
 **Changed:** I wrote the verdict into `company/engineering/readiness/2026-10-16-algorithms-200.md` (Approval): approved with conditions, on `cdb1d6c2`. I added two board items, numbered W-1600 and W-1601 rather than the CLI's W-1580/1581 because base already uses W-1580..W-1589:
 - **C1 (W-1600, community-engineer), before merge:** merge into the current base, regenerate the registry, then run check, test:algorithms, typecheck and test:platform on the merge commit.
 - **C2 (W-1601, release-manager), deploy blocker:** run the 4 built-output tests on the `VERCEL=1` build of the deployed tree, then smoke-test `/catalog` after the deploy.
 
-W-1576 is done. I also corrected the record's branch-side revert recipe: `-m 1` on the base merges `02707ebb` and `e32feca5` would undo 118 and 906 files of base.
+W-1616 is done. I also corrected the record's branch-side revert recipe: `-m 1` on the base merges `02707ebb` and `e32feca5` would undo 118 and 906 files of base.
 
 **Believe (high):** the scope matches the record's `paths:` and no protected path changes. test:algorithms passes 417/417 and test:platform 30/0/4 on `cdb1d6c2`. Production `/catalog` shows no Algorithms section and none of the slugs or topic names. I rehearsed the merge into base `5b5341c6` in a throwaway worktree:
 - it conflicts in the registry and in 4 ops records;
@@ -23,55 +23,55 @@ W-1576 is done. I also corrected the record's branch-side revert recipe: `-m 1` 
 
 **Blocked:** nothing on my side.
 
-## 2026-10-16 · community-engineer (Femi) · PR #6 M7 readiness draft (W-1576)
+## 2026-10-16 · community-engineer (Femi) · PR #6 M7 readiness draft (W-1616)
 
 **Changed:** rewrote `company/engineering/readiness/2026-10-16-algorithms-200.md` as a tier-2 readiness draft, prepared by community-engineer for chief-of-staff. It holds the M1–M6 evidence, M5 numbers, the final commit list, the grouped revert and a blank approval section; the first tier-1 version is kept as history. prs/6.md §10.
 
 **Believe (high):** every PR #6 merge condition except M7 approval is recorded. The qa-tester commits only add records and `evidence.qa` links. Gap, stated in the record: the 4 built-output tests (`VERCEL=1`) did not run on this head.
 
-**Next:** principal-engineer-ops approves or refuses W-1576. Then community-engineer fetches and pushes `codex/algorithms-200` without force.
+**Next:** principal-engineer-ops approves or refuses W-1616. Then community-engineer fetches and pushes `codex/algorithms-200` without force.
 
 **Blocked:** the push, on M7 approval.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #6 second integration: review/fix branches and base af8e4021 merged, not pushed
 
-**Changed:** on `pr/6-algorithms-200`, merged `pr6/pe` (PE review, approve with conditions M1–M7), `pr6/platform` (M1/M2, cm-cs M6 decision, W-1578 catalog) and `pr6/build` (M3, W-1569) with merge commits. Base moved to `af8e4021` and took W-1517..W-1561, so all 18 PR #6 ids moved +45 to W-1562..W-1579 (`64359bc7`; map in `company/engineering/community/prs/6.md` §9.2), then merged base (`02707ebb`). Engineer read of the W-1578 catalog diff: no finding (§9.4). W-1569, W-1572..W-1574, W-1578 moved to review.
+**Changed:** on `pr/6-algorithms-200`, merged `pr6/pe` (PE review, approve with conditions M1–M7), `pr6/platform` (M1/M2, cm-cs M6 decision, W-1618 catalog) and `pr6/build` (M3, W-1609) with merge commits. Base moved to `af8e4021` and took W-1517..W-1561, so all 18 PR #6 ids moved +45 to W-1602..W-1619 (`64359bc7`; map in `company/engineering/community/prs/6.md` §9.2), then merged base (`02707ebb`). Engineer read of the W-1618 catalog diff: no finding (§9.4). W-1609, W-1612..W-1614, W-1618 moved to review.
 
-**Believe (high):** check, typecheck, test:algorithms 417/417, test:books 417/417 pass; test:platform fails only #18 (W-1570); 200/200 draft, 4,407/4,407 algo claims unverified. No build or QA run in this pass.
+**Believe (high):** check, typecheck, test:algorithms 417/417, test:books 417/417 pass; test:platform fails only #18 (W-1610); 200/200 draft, 4,407/4,407 algo claims unverified. No build or QA run in this pass.
 
-**Next:** qa-tester W-1570 (per-lesson QA records linked into evidence, as PR #5) and M5 full verify; chief-of-staff + principal-engineer-ops M7 (W-1576). Then community-engineer merges those, fetches, and pushes `codex/algorithms-200` without force.
+**Next:** qa-tester W-1610 (per-lesson QA records linked into evidence, as PR #5) and M5 full verify; chief-of-staff + principal-engineer-ops M7 (W-1616). Then community-engineer merges those, fetches, and pushes `codex/algorithms-200` without force.
 
 **Blocked:** push, on M4 #18, M5, M7.
 
-## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1575)
+## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1615)
 
-**Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1575 → done. New: W-1578 (platform-engineer, code requirement R1-R6), W-1579 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.
+**Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1615 → done. New: W-1618 (platform-engineer, code requirement R1-R6), W-1619 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.
 
 **Believe (high):** production must not show the 200 draft titles or "200 planned lessons". They are lesson titles, not curriculum concepts (id = slug), 120 are declarative sentences with no claim, and the count is an unsigned promise while builds pause (F-46). The section renders only visible algorithm lessons, per topic and per row, so the first promotion does not re-expose the other 199.
 
-**Next:** platform-engineer implements W-1578 (tier 1, page.tsx + catalog.test.mjs) before M5's integrated verify. Then M6 is met.
+**Next:** platform-engineer implements W-1618 (tier 1, page.tsx + catalog.test.mjs) before M5's integrated verify. Then M6 is met.
 
-**Blocked:** PR #6 merge, on M1-M7 (M6 now waits only on W-1578).
+**Blocked:** PR #6 merge, on M1-M7 (M6 now waits only on W-1618).
 
-## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1568), approve with conditions
+## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1608), approve with conditions
 
-**Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1568 → done. New board items: W-1573 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1574 (demo-builder, two more identical-final-frame lessons beyond W-1572), W-1575 (cm-cs, what production /catalog shows), W-1576 (chief-of-staff + PE-ops, readiness to tier 2), W-1577 (PE-ops, paths.json engine rules). No code edited. Not pushed.
+**Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1608 → done. New board items: W-1613 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1614 (demo-builder, two more identical-final-frame lessons beyond W-1612), W-1615 (cm-cs, what production /catalog shows), W-1616 (chief-of-staff + PE-ops, readiness to tier 2), W-1617 (PE-ops, paths.json engine rules). No code edited. Not pushed.
 
 **Believe (high on the code, medium on scale):** tier 2; no retroactive EDD (the pre-code frozen contract matches what shipped). Engine sound: all 200 wrappers render the kit Lesson directly, pure tested transitions, 4,401 unverified claims, no protected path or dependency. typecheck pass (51.8 s), tests/algorithms 12/12, the PR's checker 0 errors on all 200, check pass. Not mergeable yet: tests not in verify, no test over the shipped specs, **five** lessons (not three) whose "Try another" ends on the same frame, test:platform #18/#28 red, no integrated verify, and the catalog shows all 200 draft titles in production (no links or content). serve.sh loopback bind accepted.
 
-**Next:** chief-of-staff dispatches W-1573, W-1574 (with W-1572), W-1569, W-1570, W-1575; then qa-tester runs integrated `npm run verify` (M5); then W-1576. Any change to `src/components/algorithms/`, `types.ts` or the checker bounds returns to principal-engineer.
+**Next:** chief-of-staff dispatches W-1613, W-1614 (with W-1612), W-1609, W-1610, W-1615; then qa-tester runs integrated `npm run verify` (M5); then W-1616. Any change to `src/components/algorithms/`, `types.ts` or the checker bounds returns to principal-engineer.
 
 **Blocked:** merge, on M1–M7 in the review.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #6 Algorithms 200: evaluation and base merge, blocked
 
-**Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1562..W-1566 (map in `company/engineering/community/prs/6.md` §3). Intake W-1567; review/fix requests W-1568 (principal-engineer, tier-2 merge gate), W-1569 and W-1572 (demo-builder), W-1570 (qa-tester), W-1571 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
+**Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1602..W-1606 (map in `company/engineering/community/prs/6.md` §3). Intake W-1607; review/fix requests W-1608 (principal-engineer, tier-2 merge gate), W-1609 and W-1612 (demo-builder), W-1610 (qa-tester), W-1611 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
 
 **Believe (high):** no protected paths, no dependencies, 4,401/4,401 claims unverified, 200/200 draft. check, typecheck, tests/algorithms 12/12 and the build pass on the merged tree. **Tier 2** (one engine for 200 lessons, plus a live catalog section), although the PR's readiness says tier 1. QA contract 394/400: algo-dinic-levels, algo-pollard-rho-factor and algo-topological-uniqueness have a "Try another" case whose final frame equals the question case's (I ran the models). test:platform #18 and #28 fail because of this PR.
 
-**Next:** chief-of-staff dispatches W-1568, W-1572, W-1569, W-1570 (and W-1571 before any deploy). Then community-engineer merges the fixes, re-runs check, typecheck, test:platform, build and the 200-lesson QA contract, fetches and pushes `codex/algorithms-200` without force.
+**Next:** chief-of-staff dispatches W-1608, W-1612, W-1609, W-1610 (and W-1611 before any deploy). Then community-engineer merges the fixes, re-runs check, typecheck, test:platform, build and the 200-lesson QA contract, fetches and pushes `codex/algorithms-200` without force.
 
-**Blocked:** the push and merge, on W-1568, W-1572, W-1569, W-1570.
+**Blocked:** the push and merge, on W-1608, W-1612, W-1609, W-1610.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 

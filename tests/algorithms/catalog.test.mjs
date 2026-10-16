@@ -25,7 +25,7 @@ test('projection covers 20 ordered topics with 200 distinct concepts and slugs',
   assert.equal(new Set(projection.topics.flatMap(t=>t.slugs)).size,200);
   assert.equal(new Set(projection.topics.flatMap(t=>t.concepts.map(c=>c.id))).size,200);
 });
-// Decision company/decisions/2026-10-16-pr6-catalog-algorithms-section.md (W-1578, R1-R6).
+// Decision company/decisions/2026-10-16-pr6-catalog-algorithms-section.md (W-1618, R1-R6).
 const allNames=projection.topics.flatMap(t=>t.concepts.map(c=>c.name));
 const withheld=['planned','Not yet visible','not yet visible'];
 const escape=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');
