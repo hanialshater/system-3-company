@@ -89,7 +89,7 @@ Retro D-5 (and founder item **F-33**) says "23 of 27 strand managers never ran".
    | principal-engineer ↔ platform-engineer | 13 | same floor (5): `engineering` beside `app-team` |
    | principal-engineer-ops ↔ tools-lead | 12 | floors 5 and 1 (Rhea's lane is ops; her line is Kenji) |
    | design-lead ↔ interaction-designer; demo-builder ↔ interaction-designer | 4; 9 | design studio beside the build floor (2) |
-   | CMs ↔ demo-builder | 4 to 8 each | category floors 3 and 4 sit next to floor 2 |
+   | CMs ↔ demo-builder | 4 to 8 each | category floors 3 and 4 are numbered next to floor 2, but §2.3 draws **no stairs between 2 and 3 or 4** (R3; stairs are founder item F4 in the consultation) |
    | qa-tester ↔ release-manager | 8 | floors 6 and 2, linked by the same stairs |
 3. **Headcount fit.** The plan is 1000×660. A full floor holds at most **10 category offices** (186×236, 9 desks each, 5 across × 2 rows), or about **25 rooms** of the floor-1 size. Targets:
    - **at most 30 resident roles per floor**, and **no room with more residents than drawn seats**. Every room also needs at least one free seat for a running agent, except single-person offices.
@@ -125,8 +125,8 @@ It also makes the two category floors adjacent, with stairs both ways. The cost 
 **Floor 1**:
 - Stairs row (y16, h84): to-floor-2, to-floor-3 ("Categories 3–4"), to-floor-5, to-floor-6, to-floor-7, to-floor-8, each 150 wide (to-floor-8 is 170).
 - Row 2 (y116):
-  - `chief-of-staff` 20,116,300,230 (1/20: the room where dispatched general-purpose agents gather)
-  - `tools` "Company tools & patterns" 330,116,250,110 (3/4)
+  - `chief-of-staff` 20,116,300,230 (2/20 after R1: Ada and pattern-librarian; also where dispatched general-purpose agents gather)
+  - `tools` "Company tools" 330,116,250,110 (2/4 after R1)
   - `boardroom` (meeting, **newly drawn**) 330,236,250,110
   - `ceo-office` 590,116,390,110 (3/7, fixes the 6-in-5 overflow)
   - `first-light` 590,236,390,110 (still beside the CEO office)
@@ -193,12 +193,12 @@ Every floor from 2 to 6 gets a "↓ Floor 1 · Lobby" stairs room. Today only 7 
 | platform-engineer | platform → head-of-product | 5 · app-team | 5 · app-team | – |
 | release-manager | platform → head-of-product | 1 · launch-room | 2 · launch-room | floor |
 | backend-engineer | backend → principal-engineer | 5 · app-team | 5 · backend | room |
-| privacy-reviewer | backend → principal-engineer | 5 · backend | 6 · privacy-review | floor |
+| privacy-reviewer | backend → principal-engineer | 5 · backend | 6 · privacy-review (conditional on F-28, §2.4) | floor (R2) |
 | growth-designer | growth → head-of-product | 1 · growth | 2 · growth | floor |
 | tools-lead | company-tools → chief-of-staff | 1 · tools | 1 · tools | – |
 | hq-engineer | company-tools → tools-lead | 1 · tools | 1 · tools | – |
 | analytics-steward | insight → head-of-product | 1 · growth | 2 · growth | floor |
-| pattern-librarian | insight → chief-of-staff | 1 · studio | 1 · tools | room |
+| pattern-librarian | insight → chief-of-staff | 1 · studio | 1 · chief-of-staff | room (R1) |
 | cm-math | categories → head-of-product | 3 · cm-math | 3 · cm-math | – |
 | cm-cs | categories → head-of-product | 3 · cm-cs | 3 · cm-cs | – |
 | cm-probability | categories → head-of-product | 3 · cm-probability | 3 · cm-probability | – |
@@ -218,7 +218,7 @@ Every floor from 2 to 6 gets a "↓ Floor 1 · Lobby" stairs room. Today only 7 
 | learner-model-engineer | personalization → personalization-lead | 2 · model-lab | 2 · model-lab | – (floor 2 renamed) |
 | localization-lead | international → head-of-product | 2 · international | 2 · international | – (floor 2 renamed) |
 | localizer | international → localization-lead (pool) | 2 · locale-desks | 2 · locale-desks | – (floor 2 renamed) |
-| cultural-reviewer | international → localization-lead (pool) | 2 · culture-review | 6 · culture-review | floor |
+| cultural-reviewer | international → localization-lead (pool) | 2 · culture-review | 6 · culture-review (conditional on F-28, §2.4) | floor (R2) |
 | chief-of-staff-ceo-office | leadership → founder | 1 · ceo-office | 1 · ceo-office | – |
 | head-of-strategic-initiatives | leadership → founder | 1 · ceo-office | 1 · ceo-office | – |
 | community-engineer | platform → principal-engineer | 5 · app-team | 5 · app-team | – |
@@ -275,6 +275,17 @@ Every floor from 2 to 6 gets a "↓ Floor 1 · Lobby" stairs room. Today only 7 
 | cm-course-ncm | courses → courses-lead | 3 · courses | 2 · courses | floor |
 | vp-marketing | marketing → founder | 7 · marketing | 7 · marketing | – |
 
+### 2.5.1 Amendments after the director consultation (2026-10-16, Leonie, under F-40 "Left to the owners")
+Source: company/ceo-office/2026-10-16-floor-reseat-consultation.md. The objections there are **inferred on paper**, not said by the directors. Real answers replace them. Only seat-level fixes are applied here. Floor-level items F1 to F4 wait for the founder and change nothing in this table.
+
+| # | Change | Why (consultation row) | Effect |
+|---|---|---|---|
+| R1 | pattern-librarian: `tools` → **`chief-of-staff`** (floor 1), in both `HOME` and `ROOM_BY_ROLE`. `tools` keeps the name "Company tools". | O1: its line and its lane (19) are both Ada's, and `tools` is lane 9. That follows rule 2 of this plan. | Floor 1 stays at 8 roles. `chief-of-staff` has 2/20 seats and `tools` 2/4. Still 52 moves (pattern-librarian is still a room-only move). |
+| R2 | privacy-reviewer and cultural-reviewer rows are marked "conditional on F-28 (§2.4)". | O6: the condition must be readable from this table, which is what the build and the WBR check use. | No seat changes. |
+| R3 | Rule-2 table, CMs ↔ demo-builder row: the claim that floors 3 and 4 "sit next to floor 2" is corrected. No stairs link them. | O8: the claim was mine and was wrong against §2.3. | Wording only. Adding the stairs is founder item F4. |
+
+For the build (lane 9): R1 is two one-line values plus the `tools` display name. If the build has already landed, it is a follow-up commit. My WBR check (2026-10-19) reads §2.5 as amended.
+
 ## 3. Moves, and what breaks
 
 ### 3.1 Moves
@@ -289,7 +300,7 @@ Every floor from 2 to 6 gets a "↓ Floor 1 · Lobby" stairs room. Today only 7 
 - Strategy and courses (3) go from 3 to 2.
 - R&D and Research (5) go from 4 to 5.
 - 3 judges go to Quality: lifehacks-safety-reviewer (floor 6 becomes Quality), privacy-reviewer (from 5) and cultural-reviewer (from 2).
-- Room only: backend-engineer moves from `app-team` to `backend`. pattern-librarian moves from `studio` to `tools`.
+- Room only: backend-engineer moves from `app-team` to `backend`. pattern-librarian moves from `studio` to `chief-of-staff` (R1).
 
 Headcount before → after (roles): F1 25→8 · F2 10→20 · F3 39→28 · F4 5→22 · F5 4→11 · F6 15→9 · F7 1→1. The largest floor goes from 39 to 28, and the smallest company floor other than Marketing goes from 4 to 8.
 
@@ -328,7 +339,7 @@ Lane 9 (POC: tools-lead). Files:
 1. **src/lib/hq-floors.ts**: `FLOOR_NAMES` 1–6 per §2.2. `FLOORS` stays 1–8, and 9 is not added.
 2. **src/lib/hq.ts**: re-lay `ROOMS` per §2.3:
    - new x/y/w/h and `floor` values;
-   - new names for tools, growth, studio, backend, rnd-office and the stairs;
+   - new names for growth, studio, backend, rnd-office and the stairs (tools keeps "Company tools", R1);
    - add boardroom, review-room, ops-room, privacy-review and the new stairs, and drop `to-floor-3-from-6`;
    - split `DOMAINS`/`NEW_CATEGORIES` into the two 7-office lists;
    - fix the stale `Room.floor` doc comment;
@@ -336,7 +347,7 @@ Lane 9 (POC: tools-lead). Files:
 3. **src/app/hq/people.ts** `HOME`:
    - principal-engineer → engineering, principal-engineer-ops → ops-room, vp-rnd → rnd-office;
    - backend-engineer → backend, privacy-reviewer → privacy-review;
-   - pattern-librarian → tools, domain-scout → strategy;
+   - pattern-librarian → chief-of-staff (R1), domain-scout → strategy;
    - add illustrator → design-studio and head-of-strategic-initiatives → ceo-office.
 4. **tools/events.mjs** `ROOM_BY_ROLE`: the same values. Also add domain-scout → strategy, learning-designer → studio, researcher → research-lab and illustrator → design-studio, so that no resident falls to the `chief-of-staff` default. Old events keep their stored rooms; only new events change.
 5. **company/ops/events.md** rooms table: the ceo-office row (it no longer lists the principal engineers or VP R&D), plus rows for review-room, ops-room and privacy-review.
@@ -350,13 +361,15 @@ A floor change touches the directs whose people move. Each should answer in writ
 
 | Direct | Why | Answer |
 |---|---|---|
-| head-of-product (Priya) | 72 of her roles are re-seated, and her org spans floors 2–4 | not asked yet |
-| evaluation-steward (Hilde) | gets a floor; three judges join it | not asked yet |
-| principal-engineer (Kenji) | leaves the CEO office for floor 5; Engineering shares the floor with R&D | not asked yet |
-| vp-rnd (Vera) | leaves the CEO office; R&D loses its own floor | not asked yet |
-| chief-of-staff (Ada) | floor 1 changes; integration is now on a different floor from the build floor | not asked yet |
-| head-of-strategic-initiatives (Beatriz) | the war room stays beside the CEO office; FYI | not asked yet |
-| vp-marketing (Celeste) | no change; FYI | not asked yet |
+| head-of-product (Priya) | 72 of her roles are re-seated, and her org spans floors 2–4 | not asked yet. Inferred on paper: O8 (founder F4, R3), O9 (no change) |
+| evaluation-steward (Hilde) | gets a floor; three judges join it | not asked yet. Inferred on paper: O6 (R2), O7 (agree) |
+| principal-engineer (Kenji) | leaves the CEO office for floor 5; Engineering shares the floor with R&D | not asked yet. Inferred on paper: O3 (founder already decided), O4 (founder F3) |
+| vp-rnd (Vera) | leaves the CEO office; R&D loses its own floor | not asked yet. Inferred on paper: O5 (founder F1) |
+| chief-of-staff (Ada) | floor 1 changes; integration is now on a different floor from the build floor | not asked yet. Inferred on paper: O1 (R1), O2 (founder F2) |
+| head-of-strategic-initiatives (Beatriz) | the war room stays beside the CEO office; FYI | not asked yet. Inferred on paper: O10 (no change) |
+| vp-marketing (Celeste) | no change; FYI | not asked yet. Inferred on paper: O11 (none) |
+
+The rows in company/ceo-office/2026-10-16-floor-reseat-consultation.md are inferred by Leonie, not said by the directors. Step 3 stays open until each direct answers in writing, or has been asked twice.
 
 ## Objections
 | # | Objection | Raised by | Status / answer |
