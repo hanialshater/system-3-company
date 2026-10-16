@@ -87,7 +87,9 @@ test('the locked-picture check is not vacuous: after a press, the same pictures 
   assert.ok(after('group-cables-with-ends', 'a').includes('6 loose ends'));
   assert.ok(after('shoes-opposite-ends', 'a').includes('24 cm'));
   assert.ok(after('fitted-sheet-corners-nest', 'a').includes('32 cm'));
-  assert.ok(after('socks-use-shoe-space', 'b').includes('600 cm³ empty'));
+  // E2 (dispatch 2026-10-16-r5-lifehacks.md D4): B now says what is left of the hollow (600 − 200 = 400 at the initial 200); A keeps 600.
+  assert.ok(after('socks-use-shoe-space', 'a').includes('600 cm³ empty'));
+  assert.ok(after('socks-use-shoe-space', 'b').includes('400 cm³ still empty'));
   assert.ok(after('coiled-cord-bend-radius', 'a').some((t) => t.startsWith('3.18 turns')));
 });
 
@@ -127,6 +129,15 @@ test('E1 tote-balance-sides: the rotated balance-point dot hangs on the dashed v
     assert.ok(Math.abs(x - px) <= 1, `p=${p} ${mode ?? 'locked'}: rotated dot at x=${x.toFixed(2)}, pivot at ${px}`);
     assert.ok(Math.abs(deg) > 1, `p=${p}: the bag is drawn tilted (${deg.toFixed(2)} degrees), so the check is not vacuous`);
   }
+});
+
+test('E2 socks-use-shoe-space: the hollow label after the socks fill it (400 at 200, 0 from 600 up); no label while neutral', () => {
+  const spec = bySlug('socks-use-shoe-space');
+  const texts = (p, mode, locked = false) => picture(spec, stage(spec, { locked, mode, p })).texts;
+  assert.deepEqual(texts(200, 'b'), ['400 cm³ still empty']);
+  for (const p of [600, 800]) assert.deepEqual(texts(p, 'b'), ['0 cm³ still empty']);
+  for (const p of [200, 800]) assert.deepEqual(texts(p, 'a'), ['600 cm³ empty']);
+  assert.deepEqual(texts(200, null), []); assert.deepEqual(texts(200, null, true), []);
 });
 
 /* ------------------------------------------------------------------ W-1241: cord press order */

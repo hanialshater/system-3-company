@@ -315,7 +315,8 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
         <ellipse cx="80" cy="150" rx={rx} ry={ry} fill="none" stroke="var(--line)" strokeDasharray="5 4"/>
         {inside>0&&<ellipse cx="80" cy="150" rx={rx*f} ry={ry*f} className={s.target}/>}
         {outside>0&&<rect x={b?60:206} y={(b?95:205)-side(outside)} width={side(outside)} height={side(outside)} rx="4" className={s.target}/>}
-        {mode&&<text x="80" y="60" textAnchor="middle">{fmt(hollow)} cm³ empty</text>}</>;
+        {/* E2 (W-1300): after the socks go in (B), the label says what is left of the hollow; A keeps the whole 600. Neutral: no label. */}
+        {mode&&<text x="80" y="60" textAnchor="middle">{b?`${fmt(hollow-inside)} cm³ still empty`:`${fmt(hollow)} cm³ empty`}</text>}</>;
     }
     default: return null;
   }
