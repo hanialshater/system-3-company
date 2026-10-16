@@ -52,6 +52,13 @@ recorded by: chief-of-staff
 - **Deferred cards** (head-of-feed, feed-engineer, splits, sub-team leads) are not approved; they come back on their triggers.
 - status: **decided**. Next: chief-of-staff-ceo-office generates the roles (tools/org/roles.mjs → tools/org/generate.mjs), then the chief of staff dispatches the first tasks through the VP.
 
+## Generated (pipeline step 5, 2026-10-16, chief-of-staff-ceo-office, run leonie-gen-perso-1016)
+
+- tools/org/roles.mjs: personalization-lead renamed to vp-personalization (card V); new personalization-eval (N1), applied-scientist-personalization (N2), learning-scientist-personalization (N3), lesson-dims-owner (N4), personalization-engineer (N5), learner-data-engineer (N6); edits E1 learner-model-engineer, E2 growth-designer, E3 backend-engineer. tools/org/people.mjs: Mateo kept on vp-personalization; Anneke, Tavi, Solenne for N4-N6; N1-N3 are pool roles (MANY). `node tools/org/generate.mjs` regenerated company/roles/ and .claude/agents/; the personalization-lead files were removed.
+- Memory carried: company/roles/memory/personalization-lead(.md, /) moved to vp-personalization (tools/memory.mjs has no rename; the files were moved and the header rewritten, entries untouched).
+- Board re-owned (W-1496, W-1513, W-1516 personalization-eval; W-1497, W-1517 learning-scientist-personalization; W-1515 lesson-dims-owner; W-1521 learner-data-engineer; W-1498 learner-model-engineer; open personalization-lead items to vp-personalization). POC map lane 14 and the handoff map updated.
+- Not done here: HQ placement of the six new roles (step 6, W-1524, hq-engineer); the `org-change` event (chief of staff); prose in other owners' records (W-1525).
+
 ## Objections
 
 - **chief-of-staff:** a "head of feed" and a personalization "eval" role overlap with owners that exist (platform-engineer owns the feed surface; analytics-steward and evaluation-steward own experiments and the harness). Creating them without moving those scopes leaves two owners for one thing. **Answer:** sent to step 1 and 2: Mateo must name each overlap, Leonie must resolve it (move the scope, split it, or drop the role) before it reaches the founder.

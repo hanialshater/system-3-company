@@ -44,7 +44,7 @@ export const HOME: Record<string, string> = {
   "hq-engineer": "tools",
   "cm-lifehacks": "cm-lifehacks",
   "lifehacks-safety-reviewer": "lifehacks-safety",
-  "personalization-lead": "personalization",
+  "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
   "localization-lead": "international",
 };

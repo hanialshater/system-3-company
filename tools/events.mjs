@@ -285,7 +285,7 @@ export const ROOM_BY_ROLE = {
   "tools-lead": "tools",
   "hq-engineer": "tools",
   "lifehacks-safety-reviewer": "lifehacks-safety",
-  "personalization-lead": "personalization",
+  "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
   "localization-lead": "international",
   localizer: "locale-desks",

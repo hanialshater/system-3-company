@@ -3,6 +3,7 @@
 owner: chief-of-staff-ceo-office (Leonie) · date: 2026-10-16 · status: **proposed, for the founder's decision, one card at a time.** Nothing here exists until the founder approves the card. No edit to tools/org/roles.mjs, .claude/agents/ or company/roles/ has been made.
 board: W-1492 · slot: company/ops/slots/chief-of-staff-ceo-office-4-founder-ratified-w-1492.json · record: company/decisions/2026-10-16-founder-personalization-org.md (this is step 2 of its route)
 process: company/ceo-office/org-change-process.md (pipeline steps 1-3; step 4 is the founder's)
+update 2026-10-16: the founder approved V, N1-N6, E1-E3 (record, "Founder approval"); generated the same day (record, "Generated"). The status line above is as of the proposal.
 
 ## The founder's words this design answers (verbatim, from the record)
 

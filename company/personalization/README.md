@@ -1,6 +1,6 @@
 # Personalization team
 
-owner: personalization-lead (Mateo) · engineer: learner-model-engineer (Ifeoma) · reports to: head-of-product · status: **the founder's brief arrived 2026-10-16; response written; questions back to the founder open (response §6); nothing built**
+owner: vp-personalization (Mateo, VP of Personalization; the id was personalization-lead until 2026-10-16) · reports to: founder · org: personalization-eval, applied-scientist-personalization, learning-scientist-personalization, lesson-dims-owner, personalization-engineer, learner-model-engineer (Ifeoma, tech owner), learner-data-engineer (Customer Data) · record: company/decisions/2026-10-16-founder-personalization-org.md · cards: company/ceo-office/2026-10-16-personalization-org-proposal.md · status: **the founder's brief arrived 2026-10-16; response written; questions back to the founder open (response §6); nothing built**
 
 ## The three files (read in this order)
 1. [`2026-10-16-founder-brief.md`](2026-10-16-founder-brief.md): the founder's brief (F-08), verbatim words, the EDP Orchestrator reference (`reference/edp-orchestrator/`), the chief of staff's mapping, the constraints that still bind.

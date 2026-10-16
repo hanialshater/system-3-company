@@ -68,8 +68,13 @@ export const PERSONA = {
   // Marketing (2026-10-14, company/decisions/2026-10-14-marketing-org.md).
   "vp-marketing": "Celeste",
   "lifehacks-safety-reviewer": "Sana",
-  "personalization-lead": "Mateo",
+  // Personalization org (2026-10-16, company/decisions/2026-10-16-founder-personalization-org.md). Mateo keeps his name under the
+  // renamed id (personalization-lead → vp-personalization). The pool roles (eval, applied and learning scientists) are in MANY.
+  "vp-personalization": "Mateo",
   "learner-model-engineer": "Ifeoma",
+  "lesson-dims-owner": "Anneke",
+  "personalization-engineer": "Tavi",
+  "learner-data-engineer": "Solenne",
   "localization-lead": "Yuki",
   "localizer": "Localizers",
   "cultural-reviewer": "Amira",
@@ -82,7 +87,7 @@ export const PERSONA = {
 };
 
 // Roles that run as many parallel agents. Their instances take names from POOL.
-export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist"]);
+export const MANY = new Set(["demo-builder", "fact-checker", "learner-evaluator", "general-purpose", "pedagogy-critic", "qa-tester", "localizer", "cultural-reviewer", "rnd-engineer", "research-scientist", "personalization-eval", "applied-scientist-personalization", "learning-scientist-personalization"]);
 
 export const POOL = [
   "Nia", "Theo", "Zara", "Felix", "Maya", "Leo", "Ines", "Kai", "Rumi", "Oskar",

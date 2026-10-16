@@ -4,7 +4,7 @@
  * demographic. The composer sees only a Fingerprint; the latent block is the simulator's ground
  * truth that no policy may read.
  *
- * owner: personalization-lead (Mateo) · board: W-1493 · change rule: as model.ts (README.md).
+ * owner: vp-personalization (Mateo; was personalization-lead until 2026-10-16) · board: W-1493 · change rule: as model.ts (README.md).
  * Every number is a guess, source "invented", until aggregate data exists; W-1497's parameter
  * ranges (personalization org, pending role approval) replace the latent guesses.
  * Pilot domains: probability, cs.

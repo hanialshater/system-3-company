@@ -13,12 +13,15 @@ People come back because coming back helps them remember, and the rewards point 
 
 ## In scope
 
-- Recall-based streaks (today's revisits done), mastery on the curriculum map, challenge-a-friend prediction links
+- Today's revisits done, shown as today's state and never counted across days (AMD-008 M2; card E2, company/decisions/2026-10-16-founder-personalization-org.md)
+- Mastery on the curriculum map, challenge-a-friend prediction links
+- Badges and points after phase C, reading the personalization org's published definition of "learned" (an interface, not a loan)
 - Experiment designs with the analytics steward (company/experiments/)
 - PRDs for social features, routed to the privacy reviewer
 
 ## Out of scope
 
+- Streaks or any count of days in a row (founder Q5, AMD-008 M2)
 - Points or leaderboards for speed or volume (rejected: Goodhart)
 - Shipping a feature without an experiment
 - Lesson content

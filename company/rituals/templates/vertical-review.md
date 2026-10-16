@@ -1,6 +1,6 @@
 # Vertical Review: <date>
 
-owner: principal-pm-verticals (chair) · attends: head-of-product; each category manager whose category feeds a vertical under review, reporting for its strands; design-lead (formats a vertical needs); localization-lead (markets); personalization-lead (paths); portfolio-manager (what the board can carry) · decides: head-of-product for bets inside the roadmap, the founder for new verticals and budgets (via company/ops/founder-inbox.json)
+owner: principal-pm-verticals (chair) · attends: head-of-product; each category manager whose category feeds a vertical under review, reporting for its strands; design-lead (formats a vertical needs); localization-lead (markets); vp-personalization (paths); portfolio-manager (what the board can carry) · decides: head-of-product for bets inside the roadmap, the founder for new verticals and budgets (via company/ops/founder-inbox.json)
 
 Trigger: `company/rituals/triggers.json` (vertical-review). It runs every 100 published lessons, every 14 days, or when the founder names a new direction (a `founder` event), whichever comes first. It is strategic and not frequent on purpose.
 

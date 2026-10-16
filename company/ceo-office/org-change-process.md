@@ -11,6 +11,7 @@ The founder's directs are the roles with `reportsTo: founder` in `tools/org/role
 - vp-rnd (Vera)
 - vp-marketing (Celeste), since 2026-10-14 (company/decisions/2026-10-14-marketing-org.md)
 - head-of-strategic-initiatives (Beatriz), since 2026-10-15 (company/decisions/2026-10-15-head-of-strategic-initiatives.md). Consult on anything that changes a running initiative's core team or owners
+- vp-personalization (Mateo), since 2026-10-16 (company/decisions/2026-10-16-founder-personalization-org.md). Consult on anything that touches learner data, the learner model, feed ordering or personalization's eval
 
 Since 2026-10-16 (company/decisions/2026-10-16-founder-org-and-dispatch-rule.md, rule 1), this process covers every **new role, agent, org, floor and room**, plus moves and retirements. The CEO office designs each one, and **the founder approves each one before it exists**. The full pipeline, from the ask to the check that the role is used, is in "The pipeline end to end" below. The steps that follow are its design and consultation core.
 

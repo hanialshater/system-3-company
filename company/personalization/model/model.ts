@@ -1,7 +1,7 @@
 /**
  * Personalization phase A model definition: probability + cs pilot.
  *
- * owner: personalization-lead (Mateo) · board: W-1493 · date: 2026-10-16
+ * owner: vp-personalization (Mateo; was personalization-lead until 2026-10-16) · board: W-1493 · date: 2026-10-16
  * design: company/personalization/2026-10-16-brief-response.md §2 (shapes), ratified with the
  *         founder's Q3 change in company/personalization/2026-10-16-founder-brief.md §6
  *         ("the curves live in code, not JSON").

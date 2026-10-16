@@ -1,6 +1,6 @@
 # Personalization phase A model (probability + cs pilot)
 
-owner: personalization-lead · board: W-1493 · decision and change log: `company/decisions/2026-10-16-personalization-model-v0.md`
+owner: vp-personalization (was personalization-lead until 2026-10-16) · board: W-1493 · decision and change log: `company/decisions/2026-10-16-personalization-model-v0.md`
 
 Offline only. Nothing here is served to a learner, and **nothing in `src/` may import this folder** (W-1498, below). `self-check.mjs` fails if `src/` does.
 
@@ -39,7 +39,7 @@ model-v0.2 (W-1512): compose one card then recompute, overlap/slot terms removed
 
 ## Where the model lives and how the app reaches it (W-1498, proposed 2026-10-16)
 
-status: **proposed** by learner-model-engineer (Ifeoma, run lme-w1503-hqlab-1016) · review: principal-engineer (tier review, board), hq-engineer (shared HQ code), personalization-lead (owner of this folder and of `self-check.mjs`)
+status: **proposed** by learner-model-engineer (Ifeoma, run lme-w1503-hqlab-1016) · review: principal-engineer (tier review, board), hq-engineer (shared HQ code), vp-personalization (owner of this folder and of `self-check.mjs`)
 
 **Context.** The founder asked for the simulation in HQ (founder brief §7, W-1503). The page needs the model (`inspect()`, `explainNeeds()`) and the simulator. The model must stay free of app imports, must not become serving code by accident, and is edited in parallel (`MODEL_VERSION` bumps). The `.ts` files use Node type stripping and the simulator runtime is `.mjs` importing `.ts` with extensions, which the Next build and `tsc` do not accept without config changes.
 

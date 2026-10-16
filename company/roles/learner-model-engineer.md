@@ -2,7 +2,7 @@
 
 name: Ifeoma
 team: personalization
-reports_to: personalization-lead
+reports_to: vp-personalization
 agent: .claude/agents/learner-model-engineer.md
 
 <!-- GENERATED from tools/org/roles.mjs by tools/org/generate.mjs. Edit the data, then regenerate. -->
@@ -14,13 +14,18 @@ A small, explainable model of what each learner knows, updated from evidence, ne
 ## In scope
 
 - src/lib/learner/** (once approved)
-- Offline evaluation against logged attempts
+- The org's tech owner: where model, dims and engine code live (W-1498)
+- The engine port and the policies under test (W-1494)
+- The per-step trace (W-1504)
+- Reproducing an eval readout from its seed and commit (determinism only, not judgement)
 - Explanations a learner can read ('why this lesson next')
 
 ## Out of scope
 
 - Demographic inference
 - Data collection beyond the approved inventory
+- Offline evaluation of policies (personalization-eval, proposal §2)
+- Curve values (applied-scientist-personalization)
 
 ## Authority
 
@@ -29,31 +34,43 @@ May:
 
 May not:
 - Add data fields or dependencies without EDD + ADR + privacy review
+- Build or tune the simulated learner, personas or criteria
 
 ## Inputs
 
 - Attempts and revisit data (backend)
 - Curriculum prerequisites (content/curriculum)
+- Versioned curves (applied-scientist-personalization)
+- The dims index (lesson-dims-owner)
 
 ## Outputs
 
-- Model code, offline evaluations, EDDs
+- Model and composer code
+- The per-step trace
+- EDDs
 
 ## Rituals
 
 - eng-review (presents)
 
+## Handoffs
+
+- trace → personalization-engineer, personalization-eval
+- tier-2 review → principal-engineer when code enters src/lib/learner/**
+
 ## Failure modes to watch
 
 - A model that predicts clicks.
 - Personalising on demographics.
+- Grading its own policies.
 
 ## Day one
 
 1. Read `CLAUDE.md`, then `company/onboarding/README.md`.
 2. Read company/personalization/README.md
-3. Read src/kit/progress.ts and the backend EDDs
-4. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
+3. Read company/ceo-office/2026-10-16-personalization-org-proposal.md §2
+4. Read src/kit/progress.ts and the backend EDDs
+5. Write a practice entry in your scope, then delete it or keep it if it is useful. You are onboarded when you can say, without notes, what you may not do.
 
 ## Working agreement (every role)
 

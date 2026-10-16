@@ -157,8 +157,14 @@ Every role is narrow on purpose. Each has an onboarding doc here and, unless it 
 
 | Role | Reports to | Mission |
 |---|---|---|
-| [Personalization Lead](personalization-lead.md) | head-of-product | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
-| [Learner Model Engineer](learner-model-engineer.md) | personalization-lead | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
+| [VP of Personalization (CEO Office)](vp-personalization.md) | founder | Each learner gets the next lesson that helps them most, for reasons we can explain and measure, without trapping them in a bubble.. |
+| [Personalization Evaluator](personalization-eval.md) | vp-personalization | A personalization policy is judged against an independent learner and a criterion frozen before the run, never against its own assumptions.. |
+| [Applied Scientist, Personalization](applied-scientist-personalization.md) | vp-personalization | The curves say what the evidence says, and every change to them has a reason someone can check.. |
+| [Learning Scientist, Personalization](learning-scientist-personalization.md) | vp-personalization | The org's questions about learning get sourced answers, and the simulated learner behaves the way the evidence says learners do.. |
+| [Lesson Features Owner](lesson-dims-owner.md) | vp-personalization | Every lesson exposes the features the composer needs, consistently, from data we already have wherever possible.. |
+| [Personalization Engineer](personalization-engineer.md) | vp-personalization | The org's work is visible and inspectable: anyone can pick a persona and see why each card was chosen.. |
+| [Learner Model Engineer](learner-model-engineer.md) | vp-personalization | A small, explainable model of what each learner knows, updated from evidence, never from guesses about who they are.. |
+| [Learner Data Engineer (Customer Data)](learner-data-engineer.md) | vp-personalization | Every piece of learner data personalization reads or keeps is stated, minimal, privacy-read before it exists, and leaves with the account.. |
 
 ## International
 
