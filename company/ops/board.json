@@ -18256,10 +18256,11 @@
       "id": "W-1559",
       "title": "PR #4 before stage A: research-lead provenance note for historical-basemaps @ da7a4b73 across the 25 snapshots PR #4 uses (who drew the polygons, precision codes, NAME vs SUBJECTO), or a written ruling that company/research/notes/2026-10-15-provenance-khanates-outsize-russia.md covers them. See company/engineering/community/prs/4.md",
       "owner": "research-lead",
-      "state": "backlog",
+      "state": "done",
       "domain": "history",
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1560",
@@ -18274,6 +18275,33 @@
       "id": "W-1561",
       "title": "PR #4 meta.json data shape: all 100 map- lessons carry reviewRoute as the string 'sensitive' with no classes, research or briefReview, unlike the W-626 shape {route, classes, research, briefReview, publishReview} (company/decisions/2026-10-14-w626-sensitive-topics-review-route.md, Decision 4); owner.builder is 'codex-history-maps', not a role. Rule and fix through the generator (tools/history-maps/generate.mjs). See company/engineering/community/prs/4.md",
       "owner": "cm-history",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1562",
+      "title": "PR #4 history maps (from company/research/notes/2026-10-16-provenance-history-maps-100.md sections 1, 2.3, 5): rule on (a) adding a stale-or-wrong-label limit sentence to all 100 reveals and limits claims, (b) whether the 10 risk-A lessons (amman-beirut, taipei-beijing, dili-kupang, kabul-peshawar, karachi-delhi, dhaka-kolkata, dali-lhasa, baku-yerevan, addis-ababa-massawa, sydney-wellington) stay in the set, (c) assigning recalls by fit instead of index%10 (recall 9 'nothing necessarily moved' lands on partition/colonisation stages). After W-1558's verdict.",
+      "owner": "cm-history",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1563",
+      "title": "PR #4 history maps engine defects found in company/research/notes/2026-10-16-provenance-history-maps-100.md: (1) map-sydney-wellington-1800-1900 crop crosses 180 deg and draws far-away polygons (Rajputs, Sikhs, Italy, Montenegro, Hong Kong) inside the Tasman view; (2) trace uses ABBREVN, which strips colonial markers ('Mesopotamia (GB)'->'Mesopotamia', 'New South Wales (UK)'->'United Kingdom', 'Netherlands Indies'->'Netherlands', 'Denmark-Norway'->'Norway'). Part of W-1556's review.",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1564",
+      "title": "PR #4 history maps: open sources for the 'unverified (memory)' year-accuracy lines in company/research/notes/2026-10-16-provenance-history-maps-100.md sections 3-4 (e.g. 1960 Israel polygon over West Bank/Gaza, Baku/Yerevan as Persia 1900, Seoul/Hangzhou as Great Khanate 1400, Dili as Indonesia 1960) before any is used as a reason in a fix or verdict. Reference hosts were refused by this session's proxy.",
+      "owner": "fact-checker",
       "state": "backlog",
       "domain": "history",
       "created": "2026-10-16",
