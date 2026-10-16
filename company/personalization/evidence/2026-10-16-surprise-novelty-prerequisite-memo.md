@@ -166,3 +166,18 @@ The last three rows are provided only in case the eval's learner models these ef
 
 - `surprise = misconceptionStrength × readiness` with readiness .5 (brief-response §2.4): the multiplicative form is supported in direction (Q2, O8). The .5 has no source. Owner of the value: applied-scientist-personalization. I set nothing.
 - The `wN · novelty` term is kept "only because, and only while, [it serves] recall" (§2.5). I found no evidence that it serves recall (1d). The term's fate is for the experiment and the VP. The simulator should not give novelty a recall benefit above the table's range.
+
+## Revision 2026-10-16 (run ls-c0-1016, W-1532): corrections after the full-text check
+
+The original text and the ranges table above are **unchanged**. The full-text check of the load-bearing [S]/[R] numbers is recorded row by row, with quotes, locations, URLs and the hosts tried, in company/personalization/evidence/2026-10-16-ranges-fulltext-check.md. New mark used there: **[F]** = read in the source's full text; **[F-r]** = read in the full text of a peer-reviewed paper that reports the primary's number, primary not reached.
+
+**What changed:**
+- `forgetRate` high 0.20 now has a source, where before it had none. Fazio, Agarwal, Marsh & Roediger (2010), *Memory & Cognition* 38(4), 407–418, Table 2 [F]: one ~90 s reading of a passage, untested, keeps about 26–30% of its above-baseline gain after a week, which gives k ≈ 0.17–0.19. **Condition:** that holds only if forgetting acts on what the lesson added above prior knowledge. On raw scores the same data give k ≈ 0.065. The bound stays 0.20, and the condition goes to C2 (W-1533).
+- Tversky & Kahneman 1983, 85%: [R] → [F-r] (Lu 2016, PMC4967104). Value unchanged.
+- Casscells et al. 1978, 27/60 and 11/60: → [F-r] via Manrai et al. 2014 (*JAMA Intern Med* 174(6), 991–993, PMC4955674), which also replicated the item. 27 of 61 (44%) gave 95% and 14 of 61 (23%) were correct, [F]. Issue 299(18), 999–1001 is confirmed.
+- St. Hilaire, Chan & Ahn: g = 0.54 (k = 97) and g = 0.04 (k = 91) → [A]. Published online 2023-08-28; *Psychonomic Bulletin & Review* 31(2), 411–441, April 2024.
+- Citation error: Pan & Carpenter is *Educational Psychology Review* 35(4), article 97 (2023), not *PBR* 31, 411–441 (those are St. Hilaire's). The finding attributed to it is unchanged, and no range used it.
+
+**What stayed marked (unverifiable this run; no primary text reachable):** Roediger & Karpicke 2006 retention values (sets `forgetRate` low/base; direction [A] from the abstract), Bransford & Johnson 1972 idea units (now [S] from web secondaries consistent with the memo), Crouch et al. 2004 percentages (direction [A]), Butler et al. 2011 56% ([S]).
+
+**No range bound moved.** The corrected source and mark columns for the affected rows are in the check record, under "What moves in the ranges table". Every statement above is still a research finding, not a verified learner-facing claim.

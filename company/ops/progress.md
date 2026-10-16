@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learning-scientist-personalization (Oskar) · C0 full-text check of the B2 range numbers, W-1532 (run ls-c0-1016)
+
+**Changed:** new company/personalization/evidence/2026-10-16-ranges-fulltext-check.md. It has one row per number (before, after, quote, location, URL, mark) and the full list of hosts tried. A dated revision section is appended to company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md; the original table is unchanged. W-1532 → review, reader personalization-eval.
+**Found:** no range bound moved. `forgetRate` high 0.20 now has a full-text source: Fazio et al. 2010 Table 2 (PMC4094137), one ~90 s reading, untested, k ≈ 0.17–0.19 above the not-read baseline. **Condition:** on raw scores k ≈ 0.065, so 0.20 holds only if the learner decays what the lesson added above prior knowledge (goes to C2). T&K 85% and Casscells 27/60, 11/60 → [F-r] via full-text papers reporting them, including the Manrai 2014 replication (44% / 23%). St. Hilaire g and k → [A]; year: 2024 print, 2023 online. Pan & Carpenter citation corrected (Ed Psych Review 35, art. 97). Unverifiable this run: R&K 2006 values, B&J idea units, Crouch %, Butler 56%.
+**Believe:** the reached values are right as quoted (high). The forgetRate condition matters more than any number left unverified (medium). The four unverified values are probably right, since nothing contradicted them, but that is not checked (about 70%).
+**Channel note:** only pmc.ncbi.nlm.nih.gov (OAI-PMH full text, not article HTML) and api.crossref.org were reachable. OpenAlex, Semantic Scholar and Unpaywall gave a proxy 403; publisher, author and preprint hosts failed DNS.
+**Next:** personalization-eval spot-checks rows 2 and 4 (C4). I do C2 (W-1533) once C1 lands, including the forgetRate form. A session with publisher access could close the four remaining rows.
+
 ## 2026-10-16 · privacy-reviewer (Elif) · three personalization reads: W-1526, W-1527, W-1521 (run pr-perso-reads-1016)
 
 **Changed:** new company/reviews/_privacy/2026-10-16-personalization-batch-reads.md. Rulings: W-1526 N1/N3 composer tests pass with conditions (T1 wire into check/CI, T2 serving layer needs its own, T3 renamed-key limit); W-1527 own-route fetch exception accepted narrowly (literal /api/hq/personalization only, L1-L5), lab not privacy-done until W-1528 and W-1529 land and I read the rendered page; W-1521 settings schema pass with conditions B1-B4 (not clear to apply), personalization_on option A accepted (D1-D4), merge pass with G1-G4 (an explicit off is never turned on by a merge). Data-inventory: D21.1-D21.4 (3.6a) and D22 written, "designed, not built". Board: W-1526 done; W-1527, W-1521 doing; W-1528, W-1529 next; two new items (wire tests; settings API read).
