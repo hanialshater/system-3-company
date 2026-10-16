@@ -18,11 +18,14 @@
 // --role / --source / --chooser / --agent: the slot ledger (tools/lib/slots.mjs, W-1196, retro 2026-10-16 C2).
 //        source = batch=<file>#B<n> | SO-<lane>-<n> | §4:<reason>. chooser defaults to the batch's poc: line
 //        (chief-of-staff for §4). When the check passes, a slot file is claimed in company/ops/slots/ (O_EXCL);
-//        --no-claim checks without claiming. A later report/stopped event for the same agent or batch item
-//        releases it; `node tools/lib/slots.mjs list | release <id> | prune` by hand.
+//        --no-claim checks without claiming. A later report/stopped event releases it: the same --agent label
+//        (or the hook's "<label> ·<hash>"), the hook's report joined through its tool-use-id to a dispatch event
+//        with the same role and source, or a summary naming the batch item (slots.mjs assignReleases, W-1240 F1).
+//        Give --agent the exact description of the Agent call. `node tools/lib/slots.mjs list | release <id> | prune`.
 // S3_SLOTS=warn|enforce (or --slots=): warn (the default for one round, until the chief of staff writes the
 //        switch-over date) prints S-rule failures as warnings and exits 0 on them; enforce makes them FAIL.
-//        C1-C4, R1, R2 and I1 are unchanged by the mode.
+//        C1-C4, R1, R2 and I1 are unchanged by the mode. An exception in the ledger is "S3 ledger error": a warning
+//        (no slot claimed) in warn mode, a FAIL in enforce mode (W-1240 F2 / PE-ops L1).
 //
 // Rules (each FAIL names the rule):
 //   C1  at most 14 agents in flight: a dispatch that would make 15 fails (every kind). Founder 2026-10-16: 14 agents, 3 builders.
@@ -44,7 +47,8 @@
 //   S3  slots: live slots (not released, not stale) are a third in-flight count beside the event log and --running;
 //       the largest wins for C1/C2. A failure that only the slot count causes is S3 (follows the mode). A slot
 //       older than 6 h is reported, not counted. Claiming an id another live slot holds is S3.
-//   S4  checkers through quality: a lane-10 checker role whose source is not a lane-10 batch or standing order.
+//   S4  checkers through quality: a lane-10 checker role whose source is not a lane-10 batch or standing order,
+//       nor `§4:ritual: <id>` with <id> in that role's rituals: in tools/org/roles.mjs (W-1240 Q1).
 //       Built but OFF until founder F-28 is answered: --s4 or S3_SLOTS_S4=on turns it on.
 import fs from "node:fs";
 import os from "node:os";
@@ -100,17 +104,29 @@ const slotMode = String(opt.slots ?? process.env.S3_SLOTS ?? "warn");
 if (!["warn", "enforce"].includes(slotMode)) { console.error(`S3_SLOTS must be warn or enforce, not ${slotMode}`); process.exit(2); }
 const s4On = opt.s4 === true || opt.s4 === "on" || process.env.S3_SLOTS_S4 === "on";
 const sFails = [];
-const ev = slots.evaluate({ role: opt.role, source: opt.source, chooser: opt.chooser, kind, agent: opt.agent, s4: s4On, root: ROOT });
-for (const f of ev.fails) sFails.push(`${f.rule} ${f.msg}`);
-for (const w of ev.warns) warns.push(`S2 ${w}`);
-const ledger = slots.inFlight({ events });
-info.push(`slots: ${ledger.agents} live, ${ledger.builders} builders (${ledger.stale.length} stale, ${ledger.released.length} released by events); mode ${slotMode}${s4On ? ", S4 on" : ", S4 off (F-28)"}`);
-for (const s of ledger.stale) warns.push(`S3 stale slot ${s.id} (${s.role}, ${s.source}, ${s.ageH.toFixed(1)} h): not counted; release it if the agent is gone (node tools/lib/slots.mjs release ${s.id})`);
-if (ledger.agents + 1 > MAX_AGENTS && running + 1 <= MAX_AGENTS) sFails.push(`S3 slots: ${ledger.agents} live slots; this dispatch would make ${ledger.agents + 1} (limit ${MAX_AGENTS}); the event log and caller count say ${running}`);
-if (builds && ledger.builders + 1 > MAX_BUILDERS && builders + 1 <= MAX_BUILDERS) sFails.push(`S3 slots: ${ledger.builders} live builder slots; this dispatch would make ${ledger.builders + 1} (limit ${MAX_BUILDERS})`);
-const slotDraft = { ...ev.slot, id: slots.slotId(ev.slot) };
-const holder = ledger.live.find((s) => s.id === slotDraft.id);
-if (holder) sFails.push(`S3 slot ${slotDraft.id} is already held (${holder.role}, ${holder.source}, since ${holder.ts}); a second dispatch of the same item needs its own --agent label`);
+// L1 (PE-ops) / W-1240 F2: an exception in the ledger (an unreadable slots folder, a batch file that cannot be read)
+// is an S3 ledger error. In warn mode it warns and the dispatch goes ahead without a slot; in enforce mode it FAILs.
+let ledgerError = null;
+const ledgerFailed = (where, e) => {
+  ledgerError = `S3 ledger error (${where}): ${e?.code ? `${e.code} ` : ""}${e?.message ?? e}`;
+  if (slotMode === "enforce") fails.push(ledgerError);
+  else warns.push(`${ledgerError} [S3_SLOTS=warn: not refused; no slot claimed]`);
+};
+let slotDraft = null, holder = null, ledger = null;
+try {
+  const ev = slots.evaluate({ role: opt.role, source: opt.source, chooser: opt.chooser, kind, agent: opt.agent, s4: s4On, root: ROOT });
+  for (const f of ev.fails) sFails.push(`${f.rule} ${f.msg}`);
+  for (const w of ev.warns) warns.push(`S2 ${w}`);
+  ledger = slots.inFlight({ events });
+  const byRule = ledger.released.reduce((m, s) => ((m[s.releasedRule] = (m[s.releasedRule] ?? 0) + 1), m), {});
+  info.push(`slots: ${ledger.agents} live, ${ledger.builders} builders (${ledger.stale.length} stale, ${ledger.released.length} released by events${ledger.released.length ? ": " + Object.entries(byRule).map(([k, v]) => `${v} ${k}`).join(", ") : ""}); mode ${slotMode}${s4On ? ", S4 on" : ", S4 off (F-28)"}`);
+  for (const s of ledger.stale) warns.push(`S3 stale slot ${s.id} (${s.role}, ${s.source}, ${s.ageH.toFixed(1)} h${s.unreadable ? ", unreadable, aged by mtime" : ""}): not counted; release it if the agent is gone (node tools/lib/slots.mjs release ${s.id})`);
+  if (ledger.agents + 1 > MAX_AGENTS && running + 1 <= MAX_AGENTS) sFails.push(`S3 slots: ${ledger.agents} live slots; this dispatch would make ${ledger.agents + 1} (limit ${MAX_AGENTS}); the event log and caller count say ${running}`);
+  if (builds && ledger.builders + 1 > MAX_BUILDERS && builders + 1 <= MAX_BUILDERS) sFails.push(`S3 slots: ${ledger.builders} live builder slots; this dispatch would make ${ledger.builders + 1} (limit ${MAX_BUILDERS})`);
+  slotDraft = { ...ev.slot, id: slots.slotId(ev.slot) };
+  holder = ledger.live.find((s) => s.id === slotDraft.id) ?? null;
+  if (holder) sFails.push(`S3 slot ${slotDraft.id} is already held (${holder.role}, ${holder.source}, since ${holder.ts}); a second dispatch of the same item needs its own --agent label`);
+} catch (e) { ledgerFailed("reading the ledger", e); }
 if (slotMode === "enforce") fails.push(...sFails);
 else for (const f of sFails) warns.push(`${f} [S3_SLOTS=warn: not refused this round]`);
 
@@ -175,15 +191,20 @@ if (badIntake.length) {
 
 // ---- claim the slot (only when everything that refuses has passed, and a role is named)
 let claimed = null;
-if (fails.length === 0 && !holder && opt["no-claim"] === undefined && slotDraft.role) {
-  if (ledger.released.some((s) => s.id === slotDraft.id)) slots.release(slotDraft.id); // its agent reported: the id is free
-  const c = slots.claim(slotDraft);
-  if (c.ok) { claimed = c.id; info.push(`slot claimed: ${c.file.startsWith(ROOT + path.sep) ? path.relative(ROOT, c.file) : c.file} (role ${slotDraft.role}, lane ${slotDraft.lane ?? "?"}, source ${slotDraft.source}, chooser ${slotDraft.chooser ?? "?"})${c.replaced ? `; replaced a stale slot from ${c.replaced.ts}` : ""}`); }
+if (ledgerError) { /* reported above; no slot */ }
+else if (fails.length === 0 && !holder && opt["no-claim"] === undefined && slotDraft.role) {
+  let c;
+  try {
+    if (ledger.released.some((s) => s.id === slotDraft.id)) slots.release(slotDraft.id); // its agent reported: the id is free
+    c = slots.claim(slotDraft);
+  } catch (e) { ledgerFailed("claiming the slot", e); c = null; }
+  if (!c) { /* ledger error reported */ }
+  else if (c.ok) { claimed = c.id; info.push(`slot claimed: ${c.file.startsWith(ROOT + path.sep) ? path.relative(ROOT, c.file) : c.file} (role ${slotDraft.role}, lane ${slotDraft.lane ?? "?"}, source ${slotDraft.source}, chooser ${slotDraft.chooser ?? "?"})${c.replaced ? `; replaced a stale slot from ${c.replaced.ts}` : ""}`); }
   else {
     const msg = `S3 slot ${c.id} was claimed by another dispatch at the same moment (${c.held?.ts ?? "?"})`;
     if (slotMode === "enforce") fails.push(msg); else warns.push(`${msg} [S3_SLOTS=warn: not refused this round]`);
   }
-} else if (!slotDraft.role && opt["no-claim"] === undefined) warns.push("no slot claimed: pass --role, --source and --chooser so the ledger records who runs and who chose");
+} else if (!slotDraft?.role && opt["no-claim"] === undefined) warns.push("no slot claimed: pass --role, --source and --chooser so the ledger records who runs and who chose");
 
 // ---- report
 const result = { kind, ok: fails.length === 0, fails, warns, info, slot: claimed, slotMode };

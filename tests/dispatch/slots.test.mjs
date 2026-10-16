@@ -235,3 +235,152 @@ test("lane-10 checker roles are read from poc-map.md, and the CLI usage names th
   const src = fs.readFileSync(CHECK, "utf8");
   for (const f of ["--role=", "--source=", "--chooser=", "--no-claim", "S3_SLOTS=warn|enforce", "S4 "]) assert.ok(src.includes(f), f);
 });
+
+// ---- r3 B6: W-1240 F1-F8 and PE-ops L1/L2 (base c73ddb9; lane 10 re-checks only the delta)
+
+const HOOK = path.join(ROOT, ".claude/hooks/agent-events.mjs");
+const TOOLS_B4 = "batch=company/ops/dispatch-requests/2026-10-16-r2-tools.md#B4";
+const S4_LONG = "§4:integration: merge tools-ledger into main and re-run the dispatch tests on the merge result, then fold";
+function hookSandbox() {
+  const sb = sandbox();
+  Object.assign(sb, { spool: path.join(sb.d, "spool"), state: path.join(sb.d, "state"), log: path.join(sb.d, "hook.log") });
+  sb.env = { S3_SPOOL: sb.spool, S3_HOOK_STATE: sb.state, S3_HOOK_LOG: sb.log, S3_ROLE: "chief-of-staff" };
+  return sb;
+}
+const hook = (sb, payload) => execFileSync("node", [HOOK], { input: JSON.stringify(payload), env: { ...process.env, S3_EVENTS: sb.ev, ...sb.env }, encoding: "utf8" });
+const readL = (f) => fs.readFileSync(f, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
+// As main's dispatch-check reads them: the log plus the spool, deduped by id.
+const logPlusSpool = (sb) => {
+  const spool = fs.existsSync(sb.spool) ? fs.readdirSync(sb.spool).filter((f) => f.endsWith(".jsonl")).flatMap((f) => readL(path.join(sb.spool, f))) : [];
+  const log = readL(sb.ev);
+  const have = new Set(log.map((e) => e.id));
+  return [...log, ...spool.filter((e) => !have.has(e.id))];
+};
+
+test("F1/F4/F7/F8 fixture: release joins the hook's report through its dispatch event (real hook, log + spool)", () => {
+  const sb = hookSandbox();
+  const claims = [
+    ["--role=tools-lead", `--source=${TOOLS_B2}`, "--chooser=tools-lead", "--agent=tools-lead: B2 ledger"],
+    ["--role=tools-lead", `--source=${TOOLS_B4}`, "--chooser=tools-lead"],
+    ["--role=qa-tester", "--source=SO-10-2", "--agent=qa-tester: SO run 2"],
+    ["--role=general-purpose", `--source=${S4_LONG}`],
+  ];
+  for (const a of claims) { const r = run(a, sb, sb.env); assert.equal(r.code, 0, JSON.stringify(r.fails)); assert.ok(r.slot, a.join(" ")); }
+  assert.equal(fs.readdirSync(sb.dir).length, 4);
+  const calls = [
+    { id: "toolu_a", role: "tools-lead", description: "tools-lead: B2 ledger", prompt: `[project:maintenance] ${TOOLS_B2} (your own batch). Do B2.` },
+    { id: "toolu_b", role: "tools-lead", description: "tools-lead B4 serve swap", prompt: `${TOOLS_B4}. Do B4.` },
+    { id: "toolu_c", role: "qa-tester", description: "qa-tester: SO run 2", prompt: "Standing order SO-10-2: smoke the feed." },
+    { id: "toolu_d", role: "general-purpose", description: "integrate tools-ledger", prompt: `${S4_LONG}, and write the merge sha into the record` },
+  ];
+  for (const c of calls) hook(sb, { hook_event_name: "PreToolUse", tool_name: "Agent", tool_use_id: c.id, tool_input: { subagent_type: c.role, description: c.description, prompt: c.prompt } });
+  for (const c of calls.filter((c) => c.id !== "toolu_c")) hook(sb, { hook_event_name: "PostToolUse", tool_name: "Agent", tool_use_id: c.id, tool_input: { subagent_type: c.role, description: c.description, prompt: c.prompt }, tool_response: { content: [{ type: "text", text: `Changed: done (${c.id})` }] } });
+  const c = calls[2];
+  hook(sb, { hook_event_name: "PostToolUse", tool_name: "Agent", tool_use_id: c.id, tool_input: { subagent_type: c.role, description: c.description, prompt: c.prompt }, tool_response: { status: "async_launched", agentId: "a0123456789abcdef" } });
+  const tr = path.join(sb.d, "agent.jsonl");
+  fs.writeFileSync(tr, JSON.stringify({ type: "assistant", message: { content: [{ type: "text", text: "SO run 2: feed smoke passed" }] } }) + "\n");
+  hook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef", agent_transcript_path: tr });
+  assert.ok(!fs.existsSync(sb.log) || fs.readFileSync(sb.log, "utf8") === "", "the hook logged an error: " + (fs.existsSync(sb.log) ? fs.readFileSync(sb.log, "utf8") : ""));
+  assert.equal(readL(sb.ev).length, 0, "the hook wrote only the spool");
+  const events = logPlusSpool(sb);
+  const reports = events.filter((e) => e.type === "report");
+  assert.equal(reports.length, 4);
+  assert.ok(reports.every((e) => e.id.startsWith("hk-") && e.toolUseId));
+  const f = slots.inFlight({ dir: sb.dir, events });
+  assert.equal(f.agents, 0, JSON.stringify(f.live));
+  const byTU = Object.fromEntries(reports.map((e) => [e.toolUseId, e.id]));
+  const rel = Object.fromEntries(f.released.map((s) => [s.source, [s.releasedBy, s.releasedRule]]));
+  assert.deepEqual(rel[TOOLS_B2], [byTU.toolu_a, "label"]);
+  assert.deepEqual(rel[TOOLS_B4], [byTU.toolu_b, "hook"], "an unlabelled batch slot is released through the dispatch event");
+  assert.deepEqual(rel["SO-10-2"], [byTU.toolu_c, "label"], "the async run's SubagentStop report, label '<agent> ·<hash>'");
+  assert.deepEqual(rel[S4_LONG], [byTU.toolu_d, "hook"], "a §4 slot with no --agent, joined on the hook's 79-character prefix (F4)");
+  // F7: dispatch-check itself reads the spool when counting slots.
+  const cli = run(["--role=tools-lead", `--source=${TOOLS_B2}`, "--no-claim"], sb, sb.env);
+  assert.ok(has(cli.info, /^slots: 0 live, 0 builders \(0 stale, 4 released by events: 2 label, 2 hook\)/), cli.info.join("\n"));
+  // F8: prune reads the spool too (nothing was folded into the log).
+  const out = execFileSync("node", [LIB, "prune"], { env: { ...process.env, S3_SLOTS_DIR: sb.dir, S3_EVENTS: sb.ev, ...sb.env }, encoding: "utf8" });
+  assert.match(out, /pruned 4 slot/);
+  assert.equal(fs.readdirSync(sb.dir).length, 0);
+});
+
+test("F1 negatives: no dispatch event, other role, report before the slot, #B21 vs #B2, >60 s after dispatch; oldest-first", () => {
+  const T = (s) => new Date(Date.parse("2026-10-16T12:00:00Z") + s * 1000).toISOString();
+  const slot = (id, extra = {}) => ({ id, role: "tools-lead", source: TOOLS_B2, ts: T(0), ...extra });
+  const disp = (tu, extra = {}) => ({ id: `d-${tu}`, type: "dispatch", ts: T(5), toolUseId: tu, subjects: ["tools-lead"], source: TOOLS_B2, agent: `x ·${tu.slice(-4)}`, ...extra });
+  const rep = (tu, extra = {}) => ({ id: `r-${tu}`, type: "report", ts: T(600), toolUseId: tu, actor: "tools-lead", agent: `x ·${tu.slice(-4)}`, summary: "x: done", ...extra });
+  const rel = (sl, evs) => slots.assignReleases(sl, evs);
+  assert.equal(rel([slot("n1")], [rep("toolu_none")]).size, 0, "a report whose tool-use-id has no dispatch event");
+  assert.equal(rel([slot("n2")], [disp("toolu_2", { subjects: ["hq-engineer"] }), rep("toolu_2", { actor: "hq-engineer" })]).size, 0, "another role, same source");
+  assert.equal(rel([slot("n3", { ts: T(900) })], [disp("toolu_3"), rep("toolu_3")]).size, 0, "a report before the slot was claimed");
+  assert.equal(rel([slot("n4")], [disp("toolu_4", { source: TOOLS_B2.replace("#B2", "#B21") }), rep("toolu_4")]).size, 0, "#B21 is not #B2");
+  assert.equal(rel([slot("n5", { ts: T(120) })], [disp("toolu_5"), rep("toolu_5")]).size, 0, "a slot claimed more than 60 s after the dispatch");
+  assert.equal(rel([slot("p0")], [disp("toolu_6"), rep("toolu_6")]).get("p0")?.rule, "hook", "the positive control");
+  // Two live slots for one source and role: one report releases only the oldest; a second report the next.
+  const two = [slot("so-run-2", { role: "qa-tester", source: "SO-10-2", ts: T(1) }), slot("so-run-1", { role: "qa-tester", source: "SO-10-2", ts: T(0) })];
+  const sd = (tu) => disp(tu, { subjects: ["qa-tester"], source: "batch=SO-10-2" });
+  const r1 = rel(two, [sd("toolu_7"), rep("toolu_7", { actor: "qa-tester" })]);
+  assert.deepEqual([...r1.keys()], ["so-run-1"]);
+  const r2 = rel(two, [sd("toolu_7"), rep("toolu_7", { actor: "qa-tester" }), sd("toolu_8"), rep("toolu_8", { actor: "qa-tester", ts: T(700) })]);
+  assert.deepEqual([...r2.keys()].sort(), ["so-run-1", "so-run-2"]);
+  // Label: exact, or the hook's "<label> ·<hash>", but not a longer label that merely starts the same.
+  const lab = slot("lab", { agent: "tools-lead: B2" });
+  assert.equal(rel([lab], [rep("toolu_9", { agent: "tools-lead: B2 ·3f2a" })]).get("lab")?.rule, "label");
+  assert.equal(rel([lab], [rep("toolu_9", { agent: "tools-lead: B21 ·3f2a" })]).size, 0);
+});
+
+test("F2 / L1: a ledger exception warns and goes ahead in warn mode (exit 0) and FAILs in enforce mode (exit 1)", () => {
+  const sb = sandbox();
+  const asFile = path.join(sb.d, "slots-is-a-file");
+  fs.writeFileSync(asFile, "not a folder\n");
+  const w = run(["--role=tools-lead", `--source=${TOOLS_B2}`], { dir: asFile, ev: sb.ev });
+  assert.equal(w.code, 0, JSON.stringify(w.fails));
+  assert.ok(has(w.warns, /^S3 ledger error \(reading the ledger\): ENOTDIR .*\[S3_SLOTS=warn: not refused; no slot claimed\]/), w.warns.join("\n"));
+  assert.equal(w.slot, null);
+  const e = run(["--role=tools-lead", `--source=${TOOLS_B2}`], { dir: asFile, ev: sb.ev }, { S3_SLOTS: "enforce" });
+  assert.equal(e.code, 1);
+  assert.ok(has(e.fails, /^S3 ledger error/), e.fails.join("\n"));
+  assert.equal(fs.readFileSync(asFile, "utf8"), "not a folder\n", "nothing was written over it");
+});
+
+test("F3 / L2: an unreadable slot ages by its mtime: live while young, stale after 6 h, replaced by a claim", () => {
+  const sb = sandbox();
+  fs.mkdirSync(sb.dir, { recursive: true });
+  const young = path.join(sb.dir, "young.json"), old = path.join(sb.dir, "garbage.json");
+  fs.writeFileSync(young, "{garbage");
+  fs.writeFileSync(old, "{garbage");
+  const seven = (Date.now() - 7 * 3.6e6) / 1000;
+  fs.utimesSync(old, seven, seven);
+  const f = slots.inFlight({ dir: sb.dir, events: [] });
+  assert.deepEqual(f.live.map((s) => s.id), ["young"]);
+  assert.deepEqual(f.stale.map((s) => s.id), ["garbage"]);
+  assert.ok(f.stale[0].unreadable && f.stale[0].ageH > 6.9);
+  const r = run(["--role=tools-lead", `--source=${TOOLS_B2}`, "--no-claim"], sb);
+  assert.ok(has(r.warns, /^S3 stale slot garbage .*unreadable, aged by mtime/), r.warns.join("\n"));
+  const c = slots.claim({ id: "garbage", role: "tools-lead", source: TOOLS_B2 }, { dir: sb.dir });
+  assert.ok(c.ok && c.replaced?.unreadable, "a stale unreadable slot is replaced like a stale readable one");
+});
+
+test("F5: general-purpose needs §4:integration: <what>, with a non-empty <what>", () => {
+  const sb = sandbox();
+  const en = { S3_SLOTS: "enforce" };
+  for (const src of ["§4:integration", "§4:integration:   ", "§4:integrations of things"]) {
+    const r = run(["--role=general-purpose", `--source=${src}`, "--no-claim"], sb, en);
+    assert.equal(r.code, 1, src);
+    assert.ok(has(r.fails, /^S2 general-purpose with §4 reason/), `${src}\n${r.fails.join("\n")}`);
+  }
+  assert.equal(run(["--role=general-purpose", "--source=§4:integration: fold", "--no-claim"], sb, en).code, 0);
+});
+
+test("F6 / Q1: with S4 on, §4:ritual: <id> passes only when <id> is in the role's rituals: in roles.mjs", () => {
+  const sb = sandbox();
+  const en = { S3_SLOTS: "enforce" };
+  const ok = run(["--role=fact-checker", "--source=§4:ritual: launch-review for wave J", "--no-claim", "--s4"], sb, en);
+  assert.ok(!has(ok.fails, /^S4/), ok.fails.join("\n"));
+  const no = run(["--role=privacy-reviewer", "--source=§4:ritual: launch-review", "--no-claim", "--s4"], sb, en);
+  assert.ok(has(no.fails, /^S4 privacy-reviewer is a lane-10 checker/), no.fails.join("\n"));
+  const near = run(["--role=fact-checker", "--source=§4:ritual: launch-reviewer", "--no-claim", "--s4"], sb, en);
+  assert.ok(has(near.fails, /^S4 /), "the id must match a whole ritual id");
+  const free = run(["--role=fact-checker", "--source=§4:emergency: launch-review", "--no-claim", "--s4"], sb, en);
+  assert.ok(has(free.fails, /^S4 /), "only the ritual: form is exempt");
+  assert.deepEqual([...slots.roleRituals("fact-checker")].sort(), ["coe", "launch-review"]);
+});

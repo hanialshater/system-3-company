@@ -2,8 +2,9 @@
 // Slot ledger (W-1173 / W-1196, retro 2026-10-16 C2): one O_EXCL file per in-flight agent in company/ops/slots/,
 // recording who runs (role), where (lane), why (source) and who chose it (chooser). dispatch-check claims a slot
 // when it passes and reads the ledger as a third count for the caps (the event log and the caller's count are the
-// other two; the largest wins). A slot is released by a later `report` or `stopped` event for the same agent or
-// the same batch item, or by hand (`node tools/lib/slots.mjs release <id>`).
+// other two; the largest wins). A slot is released by a later `report` or `stopped` event (see assignReleases:
+// the agent label, the hook's tool-use-id joined to its dispatch event, or a batch item named in a summary),
+// or by hand (`node tools/lib/slots.mjs release <id>`). Events are the log plus the hook spool (W-1240 F8).
 //
 // source is one of:
 //   batch=<file>#B<n>   a manager's batch item (company/ceo-office/dispatch-requests.md §2-§3)
@@ -20,16 +21,29 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { mergeById, readJsonlFile, readSpool } from "./events-spool.mjs";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 export const STALE_H = 6;
 export const slotsDir = (root = ROOT) => (process.env.S3_SLOTS_DIR ? path.resolve(process.env.S3_SLOTS_DIR) : path.join(root, "company/ops/slots"));
 const eventsPath = (root = ROOT) => (process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(root, "company/ops/events.jsonl"));
 
+// The log plus the hook spool, deduped by id (the same reader as dispatch-check; W-1240 F8): reports still in the
+// spool release slots before the chief of staff's next fold. Unreadable lines are skipped.
 export function readEvents(root = ROOT) {
-  const p = eventsPath(root);
-  if (!fs.existsSync(p)) return [];
-  return fs.readFileSync(p, "utf8").split("\n").filter(Boolean).flatMap((l) => { try { return [JSON.parse(l)]; } catch { return []; } });
+  const log = readJsonlFile(eventsPath(root)).events;
+  let spool = [];
+  try { spool = readSpool().events; } catch {}
+  return mergeById(log, spool);
+}
+
+// Ritual ids a role takes part in: the first word of each entry of its `rituals:` list in tools/org/roles.mjs
+// (W-1240 Q1, F6). Data, generated into the onboarding docs, so a free-text reason cannot widen it.
+let ROLES = null;
+try { ({ roles: ROLES } = await import("../org/roles.mjs")); } catch { ROLES = null; }
+export function roleRituals(role) {
+  const r = (ROLES ?? []).find((x) => x.id === role);
+  return new Set((r?.rituals ?? []).map((x) => String(x).trim().split(/\s+/)[0]).filter(Boolean));
 }
 
 // ---- sources
@@ -155,13 +169,17 @@ export function evaluate({ role, source, chooser, kind, agent, s4 = false, root 
   const lanes = pocLanes(root);
   if (roleId === "general-purpose") {
     if (src.type !== "s4") fails.push({ rule: "S2", msg: "general-purpose runs only for a §4 integration task (source §4:integration: …); a missing role is never run as general-purpose (poc-map rule 4)" });
-    else if (!/^integration\b/i.test(src.reason ?? "")) fails.push({ rule: "S2", msg: `general-purpose with §4 reason "${src.reason}": only §4:integration: <what> allows it` });
+    else if (!/^integration:\s*\S/i.test(src.reason ?? "")) fails.push({ rule: "S2", msg: `general-purpose with §4 reason "${src.reason}": only §4:integration: <what> allows it` });
   } else if (roleId && !agentRoles(root).has(roleId)) fails.push({ rule: "S2", msg: `role ${roleId} has no .claude/agents/${roleId}.md` });
   else if (roleId && src.lane && lanes.size && src.type !== "s4" && !lanes.get(src.lane)?.roles.has(roleId)) {
     const in_ = lanesOf(roleId, lanes);
     warns.push(`role ${roleId} is not listed in lane ${src.lane} of poc-map.md${in_.length ? ` (it is in lane ${in_.join(", ")})` : ""}`);
   }
-  if (s4 && roleId && checkerRoles(root).has(roleId) && !((src.type === "batch" || src.type === "so") && src.lane === "10")) {
+  // Q1 (W-1240): a §4 ritual the role takes part in is not a builder choosing its own checker: `§4:ritual: <id>`
+  // passes S4 when <id> is the first word of an entry in the role's rituals: list. Any other §4 source fails.
+  const ritualId = src.type === "s4" ? /^ritual:\s*([a-z0-9-]+)(?![a-z0-9-])/i.exec(src.reason ?? "")?.[1]?.toLowerCase() : null;
+  const ritualOk = !!ritualId && roleRituals(roleId).has(ritualId);
+  if (s4 && roleId && checkerRoles(root).has(roleId) && !ritualOk && !((src.type === "batch" || src.type === "so") && src.lane === "10")) {
     fails.push({ rule: "S4", msg: `${roleId} is a lane-10 checker; it is dispatched only from a lane-10 batch or standing order (F-28, poc-map rule 3), not ${src.raw ?? "no source"}` });
   }
   const laneOfRole = roleId ? lanesOf(roleId, lanes) : [];
@@ -191,8 +209,11 @@ export function claim(slot, { dir = slotsDir(), now = Date.now() } = {}) {
   const id = slot.id ?? slotId(slot);
   const file = slotPath(id, dir);
   let replaced = null;
-  const prev = fs.existsSync(file) ? readSlot(file) : null;
-  if (prev && prev.ts && now - Date.parse(prev.ts) > STALE_H * 3.6e6) { fs.rmSync(file, { force: true }); replaced = prev; }
+  if (fs.existsSync(file)) {
+    const prev = readSlot(file);
+    const t = prev?.ts ? Date.parse(prev.ts) : fs.statSync(file).mtimeMs; // L2: an unreadable slot ages by mtime
+    if (now - t > STALE_H * 3.6e6) { fs.rmSync(file, { force: true }); replaced = prev ?? { id, ts: new Date(t).toISOString(), unreadable: true }; }
+  }
   const body = { id, ...slot, ts: new Date(now).toISOString() };
   try {
     const fd = fs.openSync(file, "wx");
@@ -211,33 +232,88 @@ export function release(id, { dir = slotsDir() } = {}) {
   return true;
 }
 
-// The event that released a slot: a report/stopped after the slot's ts for the same agent label, or whose summary
-// names the same batch item (the CoS abbreviates paths as `batch=…r2-tools.md#B2`, so the file's basename is matched).
 // Batch references in an event summary: `batch=<path or …abbreviated>#B<n>`, as [{ tail, item }], where tail is the
 // file part after the last "/" or "…" (`…r2-tools.md#B2` -> tail "r2-tools.md").
 export const summaryRefs = (summary) => [...String(summary ?? "").matchAll(/batch=([^\s#]*?\.md)#B(\d+)\b/g)].map((m) => ({ tail: m[1].split(/[\/…]/).pop(), item: Number(m[2]) }));
-export function releasedBy(slot, events) {
-  const t = Date.parse(slot.ts ?? 0);
-  const p = parseSource(slot.source);
-  const base = p.type === "batch" ? path.basename(p.file) : null;
-  const sameItem = (e) => {
-    if (base) return summaryRefs(e.summary).some((r) => r.tail.length > 3 && base.endsWith(r.tail) && r.item === p.item);
-    if (p.type === "so") return new RegExp(`${p.so}(?![\\w-])`).test(e.summary ?? "");
-    return false;
-  };
-  const sameRole = (e) => !slot.role || e.actor === slot.role || (e.agent ?? "").startsWith(slot.role);
-  return events.find((e) => (e.type === "report" || e.type === "stopped") && Date.parse(e.ts) >= t &&
-    ((slot.agent && e.agent === slot.agent) || (!slot.agent && sameItem(e) && sameRole(e)))) ?? null;
+
+// Two sources name the same work (W-1240 F1, F4): a batch item by resolved path (by file name when one side is
+// abbreviated and not on disk) and exact item number; a standing order by id (`batch=` stripped); a §4 reason when
+// the event's reason starts with the slot's first 79 characters (the hook cuts §4 reasons to 79 + "…", and takes
+// the reason from the prompt's whole line, which may run on past the --source the chief of staff passed).
+export function sameSource(a, b, root = ROOT) {
+  const p = parseSource(a), q = parseSource(b);
+  if (!p.type || !q.type || p.type !== q.type) return false;
+  if (p.type === "so") return p.so === q.so;
+  if (p.type === "batch") {
+    if (p.item !== q.item) return false;
+    const pa = path.resolve(root, p.file), qa = path.resolve(root, q.file);
+    if (pa === qa) return true;
+    const abbreviated = (f) => f.includes("…") || !fs.existsSync(path.resolve(root, f));
+    return (abbreviated(p.file) || abbreviated(q.file)) && path.basename(p.file.split("…").pop()) === path.basename(q.file.split("…").pop());
+  }
+  if (p.type === "s4") {
+    const sr = p.reason.slice(0, 79), er = q.reason.replace(/…$/, "");
+    return sr.length > 0 && er.startsWith(sr);
+  }
+  return false;
+}
+
+const tsOf = (x) => Date.parse(x?.ts ?? "");
+// Which report released which slot. Each report or stopped event releases at most ONE slot: the first rule that
+// matches, and within a rule the oldest live slot (so a standing order run twice releases one run per report).
+// Only slots claimed at or before the report count.
+//   1. label:  the event's agent is the slot's --agent, or the hook's form "<slot.agent> ·<hash>" (F1 fallback).
+//   2. hook:   the event's toolUseId has a dispatch event (written by .claude/hooks/agent-events.mjs) whose role
+//              (subjects[0]) is the slot's role and whose source is the slot's source (sameSource), and the slot was
+//              claimed no later than 60 s after that dispatch (dispatch-check runs before the Agent call).
+//   3. summary: an unlabelled slot, and the summary names its batch item (`batch=…r2-tools.md#B2`) or standing
+//              order, from the slot's role (the chief of staff's hand-written reports).
+export function assignReleases(slotList, events, { root = ROOT } = {}) {
+  const dispatchByTU = new Map();
+  for (const e of events) if (e?.type === "dispatch" && e.toolUseId && !dispatchByTU.has(e.toolUseId)) dispatchByTU.set(e.toolUseId, e);
+  const reports = events.filter((e) => (e?.type === "report" || e?.type === "stopped") && Number.isFinite(tsOf(e))).sort((a, b) => tsOf(a) - tsOf(b));
+  const open = slotList.filter((s) => s && !s.unreadable && Number.isFinite(tsOf(s))).sort((a, b) => tsOf(a) - tsOf(b));
+  const out = new Map();
+  for (const e of reports) {
+    const cand = open.filter((s) => !out.has(s.id) && tsOf(s) <= tsOf(e));
+    if (!cand.length) continue;
+    const label = (s) => s.agent && (e.agent === s.agent || String(e.agent ?? "").startsWith(s.agent + " ·"));
+    const d = e.toolUseId ? dispatchByTU.get(e.toolUseId) : null;
+    const dRole = d ? (Array.isArray(d.subjects) ? d.subjects[0] : d.subjects) : null;
+    const hook = (s) => d && s.role && dRole === s.role && sameSource(s.source, d.source, root) && tsOf(s) <= tsOf(d) + 60e3;
+    const summary = (s) => {
+      if (s.agent) return false;
+      if (s.role && !(e.actor === s.role || String(e.agent ?? "").startsWith(s.role))) return false;
+      const p = parseSource(s.source);
+      if (p.type === "batch") { const base = path.basename(p.file); return summaryRefs(e.summary).some((r) => r.tail.length > 3 && base.endsWith(r.tail) && r.item === p.item); }
+      if (p.type === "so") return new RegExp(`${p.so}(?![\\w-])`).test(e.summary ?? "");
+      return false;
+    };
+    const pick = cand.find(label) ?? cand.find(hook) ?? cand.find(summary);
+    if (pick) out.set(pick.id, { event: e, rule: label(pick) ? "label" : hook(pick) ? "hook" : "summary" });
+  }
+  return out;
+}
+// The event that released one slot (kept for callers of the single-slot form).
+export function releasedBy(slot, events, opts) {
+  return assignReleases([slot], events, opts).get(slot.id)?.event ?? null;
 }
 
 export function listSlots({ dir = slotsDir(), events = readEvents(), now = Date.now() } = {}) {
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => {
-    const s = readSlot(path.join(dir, f)) ?? { id: f.slice(0, -5), ts: null, unreadable: true };
-    // An unreadable file is a claim being written: count it as in flight, never stale.
-    const ageH = s.ts ? (now - Date.parse(s.ts)) / 3.6e6 : 0;
-    const rel = s.unreadable ? null : releasedBy(s, events);
-    return { ...s, file: f, ageH, stale: ageH > STALE_H, releasedBy: rel?.id ?? null };
+  const all = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => {
+    const file = path.join(dir, f);
+    const s = readSlot(file) ?? { id: f.slice(0, -5), ts: null, unreadable: true };
+    // L2 (W-1240 F3): an unreadable file (a claim being written, or a corrupt one) ages by its mtime, so it is
+    // counted while young and goes stale after 6 h like any other slot.
+    let t = s.ts ? Date.parse(s.ts) : NaN;
+    if (!Number.isFinite(t)) { try { t = fs.statSync(file).mtimeMs; } catch { t = now; } }
+    return { ...s, id: s.id ?? f.slice(0, -5), file: f, ageH: (now - t) / 3.6e6 };
+  });
+  const rel = assignReleases(all, events);
+  return all.map((s) => {
+    const r = rel.get(s.id);
+    return { ...s, stale: s.ageH > STALE_H, releasedBy: r?.event.id ?? null, releasedRule: r?.rule ?? null };
   }).sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
 }
 export const isBuilderSlot = (s) => s.kind === "build" || s.kind === "wave" || s.role === "demo-builder";
