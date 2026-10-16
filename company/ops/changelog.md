@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-16: tools-lead publish-ready tie-break without mtime (W-1596; tier 1 self-check company/engineering/readiness/2026-10-16-publish-ready-tiebreak.md)
+- `tools/publish-ready.mjs` `decide()`: two learner records for the same lesson version on the same day are ordered by the `built from <sha>` each names (descendant build wins, `git merge-base --is-ancestor`), then a `supersedes: <file>` line, then the `-rN` suffix within one name stem; never by file mtime, which a fresh checkout flattens ("-r2.md" sorted before ".md", so r1 won). An unordered tie keeps the most severe verdict (fail closed). the-swap-that-goes-in-circles now lists as a candidate (r2 launch v1 over r1 revise v1); no other lesson's result changed. Tests: tests/publish/publish-ready-tiebreak.test.mjs. `company/product/demo-standard.md`: new "The lesson version" section, a reveal-text change bumps `meta.version` (Head of Product, W-1596). Rollback: revert the commit.
+
 ## 2026-10-16: platform-engineer EDD-004 C4 ruling and `.knot-tint` rule (W-1587, W-1582; tier 1 self-check company/engineering/readiness/2026-10-16-knot-tint-css.md)
 - `src/app/globals.css`: `.knot-tint { stroke: var(--domain) }`, and under `prefers-color-scheme: light` `color-mix(in srgb, var(--domain) 70%, #000)` (#576db3 for math), as ruled in company/design/reviews/2026-10-16-knots-colour-ruling.md. Unused until unknot-game is built; 70% is cleared for math only. Rollback: delete the block.
 - `src/kit/knots/README.md`: rule 5 (warm `identify` after first paint when a tap shows its result; its first call builds the table signature index, 88 to 187 ms at 4x). Docs only, library unchanged. EDD-004 C4 ruled met: company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md.
