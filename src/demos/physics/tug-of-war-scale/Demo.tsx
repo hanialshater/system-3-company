@@ -11,6 +11,8 @@
 // Earned reveal: milestones "pair-100" (the question's case), "wall-100", "pair-200". The Seen row
 // records each reading when its milestone fires and is never cleared.
 // QA path (DOM order): Both pull 100 N, Tie right end to a wall, Both pull 200 N.
+// v3 (learner r11 finding 3): one reveal answers both wrong answers. It says the two pulls do cancel (why the
+// scale stays still) and that the scale reads the one pull passing through it; c1's sentence now says what c1 says.
 
 import { Lesson } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
@@ -74,13 +76,13 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            With each friend pulling 100 N, your scale read <strong>{seen.pair100 ?? "?"} N</strong>, not 200. Tied to a
-            wall, one friend&apos;s 100 N pull also read {seen.wall100 ?? "?"} N: the wall pulls back exactly as hard, just as
-            the second friend did.
+            With each friend pulling 100 N, your scale read <strong>{seen.pair100 ?? "?"} N</strong>, not 200 or 0. The two
+            pulls do cancel: that is why the scale stays still. But a scale at rest reads the one pull passing through it: the
+            tension its two ends share.
           </p>
           <p>
-            A scale measures the tension in the rope, the pull passed through it, and at rest it is stretched only when both
-            ends are pulled equally. Only when both pulled 200 N did it read {seen.pair200 ?? "?"} N.
+            Tied to a wall, one friend&apos;s 100 N pull also read {seen.wall100 ?? "?"} N: the wall pulls back exactly as hard,
+            just as the second friend did. Only when both pulled 200 N did it read {seen.pair200 ?? "?"} N.
           </p>
         </>
       )}

@@ -48,3 +48,39 @@ Stage word count (decision 2026-10-16-stage-word-budget-counting): busiest frame
 Local contract QA: `QA_BASE_URL=http://localhost:4111 QA_ONLY=calibrated-but-unequal-alarms,cut-the-busiest-link npx playwright test tests/qa/contract.spec.ts --workers=2`: 4 passed (phone and desktop for both lessons). This is not a QA record; the evaluation steward writes those.
 
 Checked by (asked): learner-evaluator r15 re-walk on v2, artifact first; fact-checker on c1-c4 and c6.
+
+## v3 · 2026-10-16 · demo-builder (Wave J revisions, mailbox 20261016T152552171Z-principal-pm-verticals-57f8213a item 1; spec r6-ai A2 items 1-7)
+
+Worktree s3c-wjrev6, branch wj-rev-r6, from d37f621. Status `draft`, version 3. Kept from evaluators until they report.
+
+| Item (board) | What was done | Result |
+|---|---|---|
+| A2.1 reveal last sentence (W-1379) | First built the ruled sentence "Otherwise no high/low score that makes mistakes can be honest in both groups and match both errors." On the production build, reveal-fit gave **crop 16 px** (91 words). Used cm-ai's pre-approved fallback: "**Otherwise no high/low score that makes mistakes is honest with matching errors.**" With it: crop 0 (below). Sentence 1, the slider sentence and "guilty or not" are untouched. | fixed (fallback, pre-approved) |
+| A2.2 c4 rewritten (W-1379) | c4 text is the ruled wording with the rendered fallback quoted; support `source` -> `derivation`; unverified; source carries FC 35/62's derivation and the note that Chouldechova 2017 and Kleinberg et al. 2017 are not the support. | fixed |
+| A2.3 recall + c7 (W-1379) | Recall question and why are cm-ai's text word for word; options and answer 0 unchanged. New claim c7 (`derivation`, unverified). Builder's node: p = 0.05 + 0.25f; p = 10% -> f 0.2, refused share 15.56%; p = 20% -> f 0.6, 52.50%. | fixed |
+| A2.4 trace (W-1367, r15 note 3) | "B at ..." -> "Earlier at ..." in both trace strings; display logic unchanged. c3 text updated to quote the new strings, reset to unverified. | fixed |
+| A2.5 term unification (W-1368) | Hook "One risk score is equally honest for two groups. Who gets wrongly flagged?"; predict "... or low (20%), honest in both groups. Among A's non-reoffenders, the share flagged is:". Options and answer (1, "Higher than B's") unchanged; the predict answer does not move. | fixed |
+| A2.6 unchanged | Ring counts, B's "32", c1, c2, c5, c6 (their quoted strings did not change; still verified). | as ruled |
+
+Claims: c3, c4 unverified (reset); c7 new, unverified; c1, c2, c5, c6 verified (untouched). `grep -c "high/low score" Demo.tsx` = 1.
+
+### Stage word budget (v3, decision 2026-10-16-stage-word-budget-counting)
+
+Counted from the rendered DOM (Playwright, 390x844, production build, the QA path), tokens with a letter. Busiest frame: B at 50 after the 32 case, trace on = **25** (tag 3, Show outcomes 2, trace "Earlier at 32: false alarms 6%, misses 50%." 5, headers "A: ringed / B: ringed" 4, "reoffend" 1, "false alarms" 2, "misses" 1, key "high risk / false alarm" 4, slider "Reoffenders in B" 3). Same at the open reveal. Other frames: locked 20, explore before outcomes 23, outcomes at 32: 24, at 41: 24. No stimulus. "Earlier" replaced "B", so the count is unchanged from v2.
+
+### Reveal-fit (production build)
+
+`NEXT_DIST_DIR=.next-r6 npx next build` in the worktree (tree d37f621 plus this change), `tools/serve.sh start 4163 .next-r6`, then `node tools/reveal-fit.mjs --url http://localhost:4163 calibrated-but-unequal-alarms small-gap-big-extremes tug-of-war-scale --jobs 3 --shots --out <scratch>/fit.json` (2026-10-16T15:38:38Z, tool commit 79c22aa, clean):
+
+```
+calibrated-but-unequal-alarms fit crop 0 phoneFit true hiddenBelow 0 namedHidden 0 words 86 lines 10 stage 343 {"picture":190,"table":0,"controls":85,"text":33} thumb false
+{"viewport":"390x844","lessons":3,"fit":3,"scroll":0,"clip":0,"thumb":0,"errors":0,"cropped":0,"namedHidden":0,"phoneFit":3,"pass":3}
+```
+
+First run with the 17-word sentence (15:35:59Z): `fit+crop calibrated-but-unequal-alarms crop 16px ... 91 words`. Screenshot `artifacts/reveal-fit/calibrated-but-unequal-alarms.png` (I looked: trace "Earlier at 32: ..." on stage, all readouts and the last sentence on screen).
+
+Rendered reveal on the QA path: "The score was honest in both groups: 8 in 10 ringed dots reoffended. Yet with 32 reoffenders in B, A's innocent people were flagged 20% of the time, B's 6%; B's misses were 50%, A's 20%. A has more reoffenders, so more of A is ringed, guilty or not. The slider changed B's people, not the score: at 50, base rates match, and so do both errors. Otherwise no high/low score that makes mistakes is honest with matching errors."
+
+### Local contract QA (v3)
+
+`QA_BASE_URL=http://localhost:4163 QA_ONLY=<the six Wave J slugs of this batch> npx playwright test tests/qa/contract.spec.ts --workers=3`: 12 passed (phone and desktop). Not a QA record; lane 10 writes those. Next checks (r6-ai A1b/A1c, lane 10's): fact-check of c3, c4, c7; r16 re-walk; W-1367 real-drag QA.
