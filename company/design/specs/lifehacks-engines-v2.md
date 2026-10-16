@@ -49,6 +49,14 @@ R1. **Two kinds of stage button, never mixed.**
 
 R2. **Neutral start.** At the start of explore, no mode is in effect (`mode = null`). Both mode buttons are pressable and both result cells read `?`. The picture shows the shared setup, drawn in A's arrangement with no result overlay. Pressing A is then observable on the QA path, and pressing B is observable after it. This keeps batch-200 rule 3 ("do not add an enabled control that merely reassigns the current state") and lets QA press each mode exactly once.
 
+R2 amended (2026-10-16, interaction-designer, W-1339, closes W-1323; record company/reviews/jacket-last-first/2026-10-16-design.md). **A's arrangement, unless that arrangement answers the question.** The test: if the predict question asks which arrangement, order or placement to use, so that drawing A's arrangement on the stage enacts one of the predict options, the neutral picture does not draw A's arrangement. It draws the shared setup in a layout that is neither mode's answer, for example the items lying beside an empty bag. The neutral layout may show what the question already states. It shows nothing that only one mode shows: no stack, no route, no arrows, no highlight, no mode amount or result. Two requirements stay the same. Pressing A must still change the picture visibly (QA path), and the layout must not be a third arrangement that a learner could read as a hint. Example: jacket-last-first (W-1299, the `reverse-order` branch of a2f14c3). The question is "Which goes into the bag first?", and A's arrangement (jacket at the bottom, shoes on top) is the option "The jacket" acted out. Its neutral picture is the empty bag with the items beside it, unstacked, in the use order the question gives (reading order, two columns). That picture stands as built. Its revert (approval condition 3) is **not** triggered.
+
+R2 aria-label (2026-10-16). When the neutral picture is A's arrangement, the label stays `{title}: shared setup, drawn as {A}; no result shown`. When it uses a neutral layout, the label describes what is drawn and never says "drawn as {A}": `{title}: shared setup, {layout}; no result shown`. For jacket-last-first the string is
+
+`Pack the return order backwards: shared setup, an empty bag with Jacket, Sweater, Shoes beside it, not packed yet; no result shown`
+
+where the item list is `useOrder(n).join(', ')` at the current slider value (n = 7 gives "Jacket, Sweater, T-shirt, Towel, Book, Hat, Shoes"). The label avoids the words "in use order" on purpose, because that is mode A's button label, and a screen-reader user would hear it as A being in effect. This is a code change in `StageV2` (`label`) plus the two "`mode` null draws A's arrangement" comments in HomeLesson.tsx. It is owned by lane 1 or lane 7, it needs a readiness note (lane 8), and this spec does not make it.
+
 R3. **Seen table.** A two-column table, A | B, stays on the stage from the start of explore through the reveal. Each column fills the first time its mode is pressed and is never cleared. Rows: up to two *amount* rows (section 3), then one *result* row. The column for the mode in effect has a bold header and a `▸` marker, a second cue besides the button.
 
 R4. **Amounts row.** Every number the reveal uses to explain the result is a cell in the Seen table, labelled in everyday words, with its unit. A legend such as `Body=40cm · handles=2×3cm` is not an amount. The amount is the number the legend makes you compute: `Width tested 46 cm`. The old `inputs` line goes, and its constants move into the amount label or the caption.
@@ -69,7 +77,7 @@ R9. **Stage text ≤ 25 words at any moment** (demo-standard). Column headers ar
 
 | Phase | Picture | Seen table | Controls | Caption |
 |---|---|---|---|---|
-| Predict (locked) | Shared setup in A's arrangement; no result overlay; nothing that implies the outcome | Headers A, B; every cell `?` | A, B, slider: natively disabled | Safety or model line (unchanged strings) |
+| Predict (locked) | Shared setup in A's arrangement, or a neutral layout when A's arrangement answers the question (R2 amended 2026-10-16); no result overlay; nothing that implies the outcome | Headers A, B; every cell `?` | A, B, slider: natively disabled | Safety or model line (unchanged strings) |
 | Explore, nothing pressed | Same as predict | `?` | A and B outlined and pressable; slider enabled | Same |
 | Explore, A pressed | A's arrangement with its result overlay (e.g. the 40 cm body inside the 42 cm opening, `+2 cm` gap marks) | Column A filled (amounts + result + verdict); B `?` | A active ✓; B outlined | Same |
 | Explore, B pressed | B's arrangement (body + handles, overlap marked) | Both filled; B marked ▸ | B active ✓; A outlined (can switch back) | Same |
@@ -221,12 +229,30 @@ Expression grammar: the existing `ResourceExpression` tree (`number | var | [op,
 |---|---|---|---|---|
 | `engine` | `2` | yes | – | `2` |
 | `modeLabels` | `[string, string]`, ≤ 16 chars each | no | `choices` | `["Body only", "Include handles"]` |
-| `options` | `[string, string, string]`: same meaning order as now (A wins, B wins, same) so `answer` keeps its index | **yes** (content, section 9) | `[choices[0], choices[1], "Same outcome"]` (leaks; check warns) | written by cm-lifehacks |
+| `options` | `[string, string, string]`, or `[string, string]` under the two-option rule below: same meaning order as now (A wins, B wins, same) so `answer` keeps its index | **yes** (content, section 9) | `[choices[0], choices[1], "Same outcome"]` (leaks; check warns) | written by cm-lifehacks |
 | `amounts` | `Array<{ label: string; unit: string; a: Expr \| string \| null; b: Expr \| string \| null }>`, 1–2 rows | **yes** | – | `[{label:"Width tested", unit:"cm", a:"a", b:["+","a",["*",2,"b"]]}]` |
 | `resultLabel` | `string` | no | `evaluateHome().label` | `"Clearance"` |
 | `verdict` | `{ below: string; above: string; zero?: string; at?: number }`: words for result < `at`, > `at`, = `at` (default `at` 0) | yes when the result is signed or a threshold | – | `{below:"too wide", above:"fits", zero:"exact fit"}` |
 | `revealLine` | `string` template; tokens `{A} {B} {amountA0} {amountB0} {resultA} {resultB}` | no | R6 template | – |
 | `pictureMark` | `"radius-stripe" \| "dimension" \| null` | no | `null` | `"dimension"` (circle: `"radius-stripe"`) |
+
+Two predict options (2026-10-16, interaction-designer, W-1248; record company/reviews/jacket-last-first/2026-10-16-design.md). **Confirmed for Home v2, under a rule.** Two options are enough only when all four of these hold. Otherwise three are required.
+1. The question is two-way by nature: yes or no, which of two named things, or a quantity whose only plausible wrong belief is the other mode's value ("no change").
+2. Both options use the same precision (both numbers, or both words with no number), and neither one is the only exact option (section 9, finding 4).
+3. No in-between outcome is left without an option, where in-between means one that the lesson's own model produces at some slider value, or a partial belief the question's wording invites ("how much flatter" invites "a little").
+4. Neither option repeats a mode label (R7).
+
+When a third option is added, it goes last, so `answer` keeps its index. The five W3 two-option lessons:
+
+| Lesson | Options | Ruling |
+|---|---|---|
+| sock-pairing-by-pattern | "11" / "3" | Two are enough (both counts; the contrast is pile vs bins) |
+| shoes-opposite-ends | "18 cm" / "24 cm: same shoes" | Two are enough (both widths; the wrong belief is "no change") |
+| tote-balance-sides | "No: the total didn't change" / "Yes" | Two are enough (a yes/no question; evened out is always straight in the model) |
+| fitted-sheet-corners-nest | "Not at all: elastic always lumps" / "18 cm flatter" | **Third option required.** It fails 2 (the right answer is the only number) and 3 (the hook asks "how much flatter", which invites a smaller saving). Add a numeric distractor at the same precision, e.g. a one-corner saving. The answer is unchanged |
+| socks-use-shoe-space | "None" / "Same as beside" | **Third option required.** It fails 3: the model itself gives "some, but less than beside" for any sock volume over 600 cm³, and two options force a false either/or. Add that in-between option. The answer at `initial` = 200 stays "None" |
+
+The content lines are cm-lifehacks's to write (section 9). The engine already accepts two or three options, and the answer-range test is W3 approval condition 1 (demo-builder). W4 two-option lines must pass the four checks above before their addendum.
 
 `inputs` (the computed legend) stops rendering in v2. Keep it in the model for the trust sheet. Unit test (builder): for every v2 Home spec, at `min`, `initial` and `max`, each amount evaluates to a finite number in each mode, and the reveal tokens all resolve.
 
