@@ -10,6 +10,12 @@
 //   node tools/events.mjs add … --spool      append to the hook spool instead of the log (tools/lib/events-spool.mjs)
 //   node tools/events.mjs fold [--dry]        fold the spool into the log (dedupe by id) and empty it; chief of staff, before an events commit
 //                                             one fold at a time (<spool>/fold.lock); exit 2 when a live fold holds it (F1)
+//   node tools/events.mjs report  --agent=L --actor=ROLE --summary="…" [--key=K] [--room=R] [--refs=…] [--body…]
+//   node tools/events.mjs stopped --agent=L --actor=ROLE --summary="…" [--key=K] …
+//            hand-written report / stopped event (state done / stopped; room from the actor). --key names the run:
+//            its tool-use id, the ·xxxx suffix of its label, or batch=<file>#B<n> (tools/lib/inflight.mjs). When the
+//            event would close no open dispatch, it is still written and a warning names the nearest open ones (r5 B2).
+//            `add` takes --key too (written as the event's `key` field).
 //   node tools/events.mjs tail [n]
 //
 // S3_EVENTS=<file> points every command at another log (tests, fixtures); default company/ops/events.jsonl.
@@ -22,7 +28,8 @@ import os from "node:os";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { readJsonlFile, readSpool, spoolDir, spoolFileFor, spoolFiles } from "./lib/events-spool.mjs";
+import { mergeById, readJsonlFile, readSpool, spoolDir, spoolFileFor, spoolFiles } from "./lib/events-spool.mjs";
+import { ageText, keyArg, nearest, q as shq, replay } from "./lib/inflight.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOG = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl");
@@ -427,11 +434,13 @@ export function transcriptEvents(dir, { hooked = new Map() } = {}) {
             if (!raw) continue;
             const d = dispatch[c.tool_use_id];
             if (hooked.has(c.tool_use_id)) {
-              agents[raw] = { label: hooked.get(c.tool_use_id), role: d.role };
+              agents[raw] = { label: hooked.get(c.tool_use_id), role: d.role, key: c.tool_use_id };
               continue;
             }
-            agents[raw] = { label: `${d.desc} ·${hash(raw, 4)}`, role: d.role };
-            events.push({ id: `tx-${hash(raw + "dispatch")}`, ts: d.ts, type: "dispatch", room: roomFor(d.role), actor: "chief-of-staff", agent: agents[raw].label, subjects: [d.role], summary: `Dispatch ${d.role}${d.model ? ` (${d.model})` : ""}: ${d.desc}`, body: d.prompt, state: "working" });
+            // r5 B2: the run key (the Agent call's tool_use id) on every tx- event of the run, so a report or a hand
+            // `events.mjs stopped --key=…` closes this dispatch even when its label differs (tools/lib/inflight.mjs).
+            agents[raw] = { label: `${d.desc} ·${hash(raw, 4)}`, role: d.role, key: c.tool_use_id };
+            events.push({ id: `tx-${hash(raw + "dispatch")}`, ts: d.ts, type: "dispatch", room: roomFor(d.role), actor: "chief-of-staff", agent: agents[raw].label, key: c.tool_use_id, subjects: [d.role], summary: `Dispatch ${d.role}${d.model ? ` (${d.model})` : ""}: ${d.desc}`, body: d.prompt, state: "working" });
           }
         } else if (typeof content === "string" && !o.isMeta) {
           const s = content.trim();
@@ -447,7 +456,7 @@ export function transcriptEvents(dir, { hooked = new Map() } = {}) {
         const a = agents[m[1]];
         if (!a) continue;
         const body = dedent((m[2].split("The report follows:")[1] ?? m[2]).replace(/^\n/, ""));
-        events.push({ id: `tx-${hash(m[1] + "report" + body.slice(0, 80))}`, ts, type: "report", room: roomFor(a.role), actor: a.role, agent: a.label, summary: `${a.label.split(" ·")[0]}: ${firstLine(body, 110)}`, body, state: "done" });
+        events.push({ id: `tx-${hash(m[1] + "report" + body.slice(0, 80))}`, ts, type: "report", room: roomFor(a.role), actor: a.role, agent: a.label, ...(a.key ? { key: a.key } : {}), summary: `${a.label.split(" ·")[0]}: ${firstLine(body, 110)}`, body, state: "done" });
       }
       for (const m of q.matchAll(/<task-notification>[\s\S]*?<task-id>(a[0-9a-f]{8,})<\/task-id>[\s\S]*?<status>(\w+)<\/status>[\s\S]*?<summary>([\s\S]*?)<\/summary>/g)) {
         const a = agents[m[1]];
@@ -456,11 +465,11 @@ export function transcriptEvents(dir, { hooked = new Map() } = {}) {
           // Usage per finished run: the source for agent metrics (tools/metrics.mjs, WBR).
           const tok = Number(q.slice(m.index).match(/<subagent_tokens>(\d+)<\/subagent_tokens>/)?.[1] ?? 0);
           const ms = Number(q.slice(m.index).match(/<duration_ms>(\d+)<\/duration_ms>/)?.[1] ?? 0);
-          if (tok) events.push({ id: `tx-${hash(m[1] + "usage" + tok)}`, ts, type: "usage", room: roomFor(a.role), actor: a.role, agent: a.label, summary: `${a.label.split(" ·")[0]}: ${Math.round(tok / 1000)}k tokens, ${Math.round(ms / 60000)} min`, tokens: tok, durationMs: ms });
+          if (tok) events.push({ id: `tx-${hash(m[1] + "usage" + tok)}`, ts, type: "usage", room: roomFor(a.role), actor: a.role, agent: a.label, ...(a.key ? { key: a.key } : {}), summary: `${a.label.split(" ·")[0]}: ${Math.round(tok / 1000)}k tokens, ${Math.round(ms / 60000)} min`, tokens: tok, durationMs: ms });
           continue;
         }
         const reason = /session limit|rate_limit|429/.test(m[3]) ? "usage limit" : "ended early";
-        events.push({ id: `tx-${hash(m[1] + "stop" + ts.slice(0, 16))}`, ts, type: "stopped", room: roomFor(a.role), actor: a.role, agent: a.label, summary: `${a.label.split(" ·")[0]} stopped: ${reason}`, body: m[3].trim(), state: "stopped" });
+        events.push({ id: `tx-${hash(m[1] + "stop" + ts.slice(0, 16))}`, ts, type: "stopped", room: roomFor(a.role), actor: a.role, agent: a.label, ...(a.key ? { key: a.key } : {}), summary: `${a.label.split(" ·")[0]} stopped: ${reason}`, body: m[3].trim(), state: "stopped" });
       }
     }
   }
@@ -472,7 +481,9 @@ export function transcriptEvents(dir, { hooked = new Map() } = {}) {
  * Only what the sources hold is returned; nothing is synthesised.
  */
 export function selectBackfill(all, { types = null, since = null, have = new Set() } = {}) {
-  return all.filter((e) => (!types || types.includes(e.type)) && (!since || e.ts >= since) && !have.has(e.id));
+  // A transcript echoes each report and notification (queue enqueue + remove): one per id, so --dry counts right.
+  const seen = new Set(have);
+  return all.filter((e) => (!types || types.includes(e.type)) && (!since || e.ts >= since) && !seen.has(e.id) && (seen.add(e.id), true));
 }
 
 // ------------------------------------------------------------------ CLI
@@ -481,11 +492,49 @@ const isMain = process.argv[1] && import.meta.url === pathToFileURL(path.resolve
 const [cmd, ...args] = isMain ? process.argv.slice(2) : [];
 const opt = Object.fromEntries(args.filter((a) => a.startsWith("--")).map((a) => { const [k, ...v] = a.slice(2).split("="); return [k, v.join("=") || true]; }));
 
-if (cmd === "add") {
+/**
+ * r5 B2: which open dispatch a report/stopped event `e` would close, against `events` (log + spool). Returns
+ * { run, rule } or null, plus the open runs, for the "matches no open dispatch" warning.
+ */
+export function wouldClose(e, events) {
+  const r = replay(events);
+  return { hit: r.match({ ...e, ts: e.ts ?? new Date().toISOString() }), open: r.open };
+}
+function warnUnmatched(e) {
+  let events;
+  try {
+    events = mergeById(readLog(), readSpool().events);
+  } catch (err) {
+    process.stderr.write(`events: could not check which dispatch this closes (${err.message})\n`);
+    return;
+  }
+  const { hit, open } = wouldClose(e, events);
+  if (hit) {
+    process.stderr.write(`events: closes ${hit.run.label} (dispatch ${hit.run.dispatch.id}, by ${hit.rule})\n`);
+    return;
+  }
+  const near = nearest(open, e.agent ?? "");
+  const now = Date.now();
+  process.stderr.write(
+    `events: WARNING: ${e.type} ${e.agent ? `--agent=${shq(e.agent)}` : ""}${e.key ? ` --key=${shq(e.key)}` : ""} matches no open dispatch, so it closes nothing and the in-flight count is unchanged.\n` +
+      (near.length
+        ? `  nearest open dispatches (re-run with the exact --agent or --key to close one):\n` + near.map((r) => `    ${shq(r.label)}  ${ageText(now - Date.parse(r.dispatch.ts))} old${keyArg(r) ? `  --key=${shq(keyArg(r))}` : ""}`).join("\n") + "\n"
+        : "  no dispatch is open.\n"),
+  );
+}
+
+if (cmd === "add" || cmd === "report" || cmd === "stopped") {
+  if (cmd !== "add") {
+    opt.type = cmd;
+    opt.state ??= cmd === "report" ? "done" : "stopped";
+    if (!opt.agent && !opt.key) throw new Error(`${cmd}: --agent or --key is required (which run is this?)`);
+    if (opt.actor && !opt.room) opt.room = roomFor(String(opt.actor));
+  }
   for (const k of ["type", "room", "actor", "summary"]) if (!opt[k]) throw new Error(`--${k} is required`);
   const ts = opt.ts ?? new Date().toISOString();
   const e = { id: opt.id ? String(opt.id) : `ev-${hash(ts + opt.summary)}`, ts, type: opt.type, room: opt.room, actor: opt.actor, summary: opt.summary };
   if (opt.agent) e.agent = opt.agent;
+  if (opt.key && opt.key !== true) e.key = String(opt.key);
   if (opt.subjects) e.subjects = String(opt.subjects).split(",");
   if (opt.refs) e.refs = String(opt.refs).split(",");
   if (opt.state) e.state = opt.state;
@@ -503,6 +552,7 @@ if (cmd === "add") {
     const n = spoolAppend(e, spoolFileFor(new Date()), have);
     console.log(n ? `spooled ${e.id}` : `already spooled ${e.id}`);
   } else {
+    if (e.type === "report" || e.type === "stopped") warnUnmatched(e);
     const n = append([e]);
     console.log(n ? `added ${e.id}` : `already in the log ${e.id}`);
   }
@@ -515,6 +565,13 @@ if (cmd === "add") {
   const hooked = new Map(log.filter((e) => e.type === "dispatch" && e.toolUseId && e.agent).map((e) => [e.toolUseId, e.agent]));
   const hookReported = new Set(log.filter((e) => e.type === "report" && e.id.startsWith("hk-") && e.agent).map((e) => e.agent));
   const all = [...(fromGit ? gitEvents() : []), ...transcriptEvents(dir, { hooked })].sort((a, b) => a.ts.localeCompare(b.ts));
+  // r5 B2: a --since later than the newest transcript event already in the log skips everything in between (the
+  // 2026-10-16 12:24-13:00 window lost ~44 reports this way, and 9 runs stayed "in flight" until closed by hand).
+  if (since) {
+    const lastTx = log.filter((e) => typeof e.id === "string" && e.id.startsWith("tx-") && typeof e.ts === "string").reduce((m, e) => (e.ts > m ? e.ts : m), "");
+    const skipped = lastTx && lastTx < since ? new Set(selectBackfill(all.filter((e) => e.ts > lastTx && e.ts < since), { types, have: new Set(log.map((e) => e.id)) }).map((e) => e.id)).size : 0;
+    if (skipped) process.stderr.write(`backfill: WARNING: --since=${since} is after the newest transcript event in the log (${lastTx}); ${skipped} event(s) in between are not added. Run with --since=${lastTx} or no --since.\n`);
+  }
   // A run whose report the hook already wrote gets no second report from the transcript.
   const picked = selectBackfill(all, { types, since, have: new Set(log.map((e) => e.id)) }).filter((e) => !(e.type === "report" && hookReported.has(e.agent)));
   const scope = `${types ? types.join(",") : "all types"}${since ? ` since ${since}` : ""}`;
@@ -536,5 +593,5 @@ if (cmd === "add") {
   const n = Number(args[0] ?? 20);
   for (const e of readLog().sort((a, b) => a.ts.localeCompare(b.ts)).slice(-n)) console.log(`${e.ts.slice(0, 16).replace("T", " ")}  ${e.type.padEnd(9)} ${e.room.padEnd(15)} ${e.summary}`);
 } else if (isMain) {
-  console.log("usage: node tools/events.mjs add|backfill|fold|tail  (see company/ops/events.md)");
+  console.log("usage: node tools/events.mjs add|report|stopped|backfill|fold|tail  (see company/ops/events.md)");
 }

@@ -26,6 +26,7 @@ place a fact lives. The disk is still the memory, and the log is its index in ti
 | `source` | no | On a `dispatch`: what the run was chosen from, `batch=<file>#B<n>`, `batch=SO-<lane>-<n>`, `§4:<reason>` or `none` (company/ceo-office/dispatch-requests.md §2.3, §3.4, §4). |
 | `chooser` | no | On a `dispatch`: the role that chose the run (`chooser=` in the prompt, else the batch file's `poc:`, else the dispatcher; `unknown` when a batch or SO is cited but its owner cannot be read). |
 | `toolUseId` | no | The Agent tool call's id, on events the Agent-tool hook writes. The backfill uses it so a hooked run is not written twice. |
+| `key` | no | The run key (r5-tools B2): on tx- events the Agent call's tool_use id (the backfill writes it on every event of the run); on hand events whatever `--key` names: a tool_use id, the `·xxxx` suffix of the run's label, or `batch=<file>#B<n>`. A `report`/`stopped` closes the open dispatch with the same key, else the same `agent` label, else the same batch item (tools/lib/inflight.mjs). |
 
 ## Types
 
@@ -68,7 +69,15 @@ node tools/events.mjs add --type=dispatch --room=build-floor --actor=chief-of-st
   --agent="Wave 5 builder: math" --summary="Build next 10 math briefs" --subjects=math --body-file=brief.md
 node tools/events.mjs backfill   # git history + session transcripts (idempotent)
 node tools/events.mjs tail 20
+# hand-written report / stopped (room from the actor). --key names the run when the label differs; stderr says which
+# dispatch it closes, or warns that it closes nothing and names the nearest open dispatches (the event is still written)
+node tools/events.mjs report --agent="<label>" --actor=tools-lead --summary="…" [--key=<tool_use id | xxxx | batch=<file>#B<n>>]
+node tools/events.mjs stopped --agent="<label>" --actor=chief-of-staff --summary="…" [--key=…]
 ```
+
+`dispatch-check` prints `possibly finished: <label> (<age>)` for counted runs over 2 h with no live slot and no hook
+activity, with the exact `stopped` command; they stay in the count until closed. Run `backfill` without `--since`
+first: a `--since` later than the newest tx- event in the log skips the window between (it warns).
 
 **At dispatch time (W-1195, retro 2026-10-16 C1):** `.claude/hooks/agent-events.mjs` writes `dispatch`
 (PreToolUse on the Agent tool) and `report` (a foreground PostToolUse, or SubagentStop for a background agent)
