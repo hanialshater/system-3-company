@@ -17,3 +17,5 @@ looks interesting is probably wrong until those checks pass.
 |---|---|---|
 | EXP-001 | [Planted false claim](EXP-001-planted-false-claim.md) | designed, not run |
 | EXP-002 | [Real-learner recall](EXP-002-real-learner-recall.md) | designed, not run |
+| EXP-004 | [First Light prediction swap: first-revisit recall (PRD-003)](EXP-004-first-light-prediction-swap-recall.md) | registered 2026-10-16, not run; comparison, P2 and guardrail blocked on instruments |
+| EXP-005 | [First Light challenges: first-revisit recall, 20% holdout (PRD-004)](EXP-005-first-light-challenges-recall.md) | registered 2026-10-16, not run; guardrail blocked on an instrument |
