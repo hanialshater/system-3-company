@@ -26,70 +26,100 @@
       "text": "The game's rule, on the stage: 'Target: two thirds of everyone's average.' The target is two thirds of the average of all 101 guesses, the learner's included (predict: 'closest to two thirds of the average, your guess included').",
       "support": "derivation",
       "source": "The rule of the game as given in brief 3 (Stated model). Demo.tsx avg(g) = (S + g) / 101, target(g) = (2/3)·avg(g), the same formulas as node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Rule line seen on every frame: 'Target: two thirds of everyone's average.' Demo.tsx avg(g) = (SUM + g)/(N + 1), N = 100, so 101 guesses including the learner's. My own re-derivation (own mulberry32, no imports) gives the stage's numbers with that formula (g = 52: average 34.8, target 23.2, as on screen).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c2",
       "text": "Against this crowd the best guess is 2S/301 = 23.01 (S = 3,463), so 23 wins and 0 misses by 22.9 and is beaten by 84 simulated guesses; predict answer B 'About 23, between the other two' (played: 0 misses by 22.9, 23 by 0.0, 35 by 11.9). Reveal at g = 0: '0 is the equilibrium guess, and it missed by 22.9; 84 simulated guesses were closer.' Every other g: 'Had you guessed 0, the equilibrium, you would have missed by 22.9.'",
       "support": "derivation",
       "source": "g* solves g = (2/3)(S + g)/101, so g* = 2S/301 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, checks '(a) best guess', '(a) 0 loses', 'predict answer'; brief 3 claim 2). Demo.tsx computes miss(0) and closer(0) from the seeded crowd. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): My own derivation (S = 3,463): g* = 2S/301 = 23.010 (fixed point checked); played: 0 misses by 22.9 (84 simulated closer), 23 by 0.0 (0 closer, the only integer with none), 35 by 11.9; the integer argmin is 23. On :3591 I drove g = 0, 23, 35, 52 and 100: the g = 0 sentence and the 'Had you guessed 0 ... 22.9' sentence read exactly as claimed. Predict answer B is the closest of the three options.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c3",
       "text": "Stage rule line: 'Simulated crowd, seed 2: 30% guess at random, 40% near 33 (one step), 30% near 22 (two steps).' The 100 simulated guesses drawn as dots sum to 3,463 (average 34.6 alone).",
       "support": "simulation",
       "source": "100 simulated players, 30 uniform on 0-100, 40 uniform on 30-36, 30 uniform on 19-25, drawn in that order with mulberry32 (src/kit/random.ts, the same generator as the script's) from seed 2; sum 3,463 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs; brief 3 claim 3). Chosen seed, disclosed (pattern disclose-chosen-seeds): the seed is the first from 1 up whose run lies within 0.5 of the rule's expected average 34.8; the comparison draft's seed 7 (average 33.2, on the ladder's 33) and crowd of 99 were replaced (brief 3 seed note, W-1060). 'Near 33' and 'near 22' describe the ranges 30-36 and 19-25. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Rule line seen exactly as quoted. My own mulberry32 from seed 2 (30 on 0-100, 40 on 30-36, 30 on 19-25, in that order): 100 guesses, sum 3,463, average 34.63. Seed disclosure checked: rule expectation 0.3x50 + 0.4x33 + 0.3x22 = 34.8; seed 1 averages 33.57 (fails the 0.5 test), seed 2 is the first that passes. The stage says 'Simulated' and 'seed 2'; the reveal says 'simulated' and never 'people'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c4",
       "text": "The learner's own screen, conditional on the guess g (0-100): reveal 'With your {g} in, this simulated crowd averaged {avg}, so the target was {target}. Your guess missed by {d}; {k} simulated guesses were closer' ('no simulated guess was closer' at k = 0, only g = 23; '1 simulated guess was closer' at k = 1); stage markers: average (dashed) and target (solid) numerals, the learner's miss bracket and the 0 guess's miss bracket.",
       "support": "derivation",
       "source": "Computed in Demo.tsx from the seeded crowd and the learner's locked guess with the script's formulas and rounding (one decimal); all 101 guesses print and are checked in node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs (brief 3 claim 4). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Branches seen on :3591: g = 52 (walkthrough: average 34.8, target 23.2, miss 28.8, 86 closer), 0, 23 ('no simulated guess was closer'), 35 (62 closer), 100 (76.5, 100 closer). All match my independent numbers. Average and target numerals and both miss brackets seen in the step-3 and reveal frames. Note: no integer guess gives k = 1, so the '1 simulated guess was closer' text exists but never renders; harmless.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c5",
       "text": "Names: 'equilibrium' (predict option A '0, the equilibrium guess'; reveal 'the equilibrium') names the guess that survives the ladder; 'one step' and 'two steps' are the rule's labels for the 40% and 30% groups, linked to two-thirds-of-the-average.",
       "support": "convention",
       "source": "Brief 3 claim 5 and Stated model: why the ladder ends at 0 is economics/two-thirds-of-the-average's (published, concept iterated-dominance), linked, not re-derived (E0, E8 (3)). The stage shows no ceiling (66.7, 44.4, ...). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Term checked in an opened source: Pantelis & Kennedy 2017, PMC5303671 (PMC OAI-PMH, HTTP 200): 'The Nash equilibrium ... prescribes that the rational actor should select 0 - as should all of the other players' and 'the Nash equilibrium of zero'. Finding, not a dispute: the same paper's footnote i notes that with integer-only guesses, all players submitting 1 is also a Nash equilibrium. This slider is integers (step 1), so 'the equilibrium' is the standard name rather than the unique one. Whether to say so is cm-behavioral's call.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c6",
       "text": "HELD, CUT (renders nowhere: HELD_LINE = false, brief rule 6, W-1267; if it returns, it goes in every branch before 'Where it stops'): 'In one online sample of 250 real players, first guesses averaged 36.4, far above 0.'",
       "support": "source",
       "source": "W-902 row 'Beauty contest / level-k' (robust; means vary with population and group size, so a sample is quoted; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Pantelis & Kennedy 2017, Cognition, PMC5303671 (opened by research-lead, not by the builder or the fact-checker). Fallback (brief 3): cut, nothing replaces it; set HELD_LINE = false in Demo.tsx (reveals 67-74 words). The Nagel 1995 first-round line is not used and stays held (E8 condition 4). Not published until the fact-checker opens it.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): HELD, stays held (W-902 result, 07e7303; no W-975 type (d) statement). Confirmed cut on the server: absent from the walkthrough transcript cut at the appendix and from every reveal I drove (g = 0, 23, 35, 52, 100); the string appears only in the trust-sheet claim list. Not checked against its source this pass.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c7",
       "text": "Reveal, every branch: 'Against a crowd that stops after one or two steps, the winning guess sits near two thirds of the crowd's actual average, not at 0.'",
       "support": "derivation",
       "source": "Follows from c1-c2: the best reply g* = 2S/(3(N+1) - 2) is close to two thirds of the crowd's average S/N whenever the crowd is large, and is above 0 whenever S > 0; for this crowd 23.01 against 2/3 · 34.63 = 23.09 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs). 'Stops after one or two steps' refers to the rule's labelled groups (c3, c5). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Seen in every branch I drove. My numbers: g* = 23.010 against two thirds of the crowd's average 2/3 x 34.63 = 23.087; above 0 since S > 0.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c8",
       "text": "Reveal, every branch: 'Where it stops: a simulated crowd with a stated rule, not real players.'",
       "support": "convention",
       "source": "About this stage, not about other people (charter rule 5): the crowd is simulated from the rule on the stage (c3). Brief 3 reveal text. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Seen in every branch. About this stage only: the crowd is drawn from the stated rule (c3).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c9",
       "text": "Hook: 'Guess 0 to 100: closest to two thirds of the average wins. What wins against this crowd?'",
       "support": "convention",
       "source": "States the game's rule (c1) and the slider's range (whole numbers 0-100). Builder's wording (the brief gives no title or hook); it names no answer. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Hook seen exactly as quoted. The slider is 0-100, step 1 (Demo.tsx). It names no answer.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c10",
       "text": "Recall answer: a simulated crowd of 100 averages 60 and the target is half the average, your guess included; 'About 30, between the other two' lands closest (0 misses by 29.7, 30 by 0.1, 60 by 30.0).",
       "support": "derivation",
       "source": "Target(g) = (6000 + g)/101/2 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, recall check; brief 3 transfer recall). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Recall card in meta.json. My own node: target(g) = (6000 + g)/101/2; 0 misses by 29.7, 30 by 0.1, 60 by 30.0; best guess 6000/201 = 29.85. The answer 'About 30, between the other two' and its 'why' match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

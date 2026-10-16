@@ -27,63 +27,90 @@
       "text": "The stage's options and their bars (600 cells each, filled = alive): saved wording '200 people will be saved' (200 live, 400 die, for sure) and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is'; die wording '400 people will die' (the same outcome as the first) and 'a 1-in-3 chance nobody dies, a 2-in-3 chance all 600 die' (the same as the second). With the toggle 'Say both in the same words' on, the die options read '200 people will be saved' and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is' in place. Reveal, every branch: 'In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.'",
       "support": "derivation",
       "source": "Brief 4 claim (1) and its declared stimulus (company/domains/briefs/behavioral.md §4); node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks 'option A-D text matches its outcomes', '(a) C has exactly A's outcomes', '(a) D has exactly B's outcomes', 'restatements are option A's and B's texts word for word'. Demo.tsx TEXT, RESTATE and BARS hold the same strings and outcomes. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Seen in the walkthrough (phone, 7 frames) and in my own 4-branch drive: the four option texts and both restatements render exactly as declared in brief 4 (exact-line match, 6 of 6 strings); restatements replace C and D in place (step-5 frame). Demo.tsx BARS: 60x10 = 600 cells, alive/10 columns filled (A 20, B 60/0, C 20, D 60/0), legends name lives in the saved wording and deaths in the die wording. Reveal sentence 'In the same words, 400 sure to die ...' seen in all 4 branches. My own lottery comparison: C == A, D == B.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c2",
       "text": "Any rule that ranks options by their outcomes picks the sure option in both wordings or the chance in both, so someone judging by outcomes who picks the sure 200 saved must pick 'The sure 400 die' (predict answer).",
       "support": "derivation",
       "source": "Brief 4 claim (2): C has A's outcomes and D has B's, so any function of the outcome lists ranks A vs B as C vs D; the script also tries 31 outcome-based rules (u = x^a for a = 0.1-3.0, worst case, best case) and none picks A with D or B with C (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, checks '(a) every outcome-based rule tried' and 'predict answer follows from the derivation'). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): DISPUTED. True only for rules that rank one option strictly above the other. These programmes have equal expected value (200 lives each), so the risk-neutral rule (u = x^1, expected value) ranks A and B equal and does not force a pick: a chooser it describes may pick the sure 200 saved and then either die option. My sweep u = x^a, a = 0.01-3.00: 299 strict, tied at a = 1. The check script's test compares Math.sign of the differences, so the tie counts as 'consistent' (0 === 0) and the case is never tested. Learner-facing: the predict question 'someone picks the sure 200 saved ... which must they pick?' The answer is right for a strict preference. Fix (builder; wording is cm-behavioral's): make the premise strict ('someone prefers the sure 200 saved', or 'any rule that ranks one option above the other') and say so in the claim text.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c3",
       "text": "The learner's own screen, conditional on the two choices: sure-then-chance or chance-then-sure: 'No model that judges only outcomes fits both of your choices: the wording moved you'; sure-sure or chance-chance: 'You answered the same offer the same way twice: a model that judges outcomes fits both of your choices.' Each branch opens 'You chose {first}, then {second}.' with the learner's two marked options.",
       "support": "derivation",
       "source": "Brief 4 claim (3); all four branches print in node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs ('Reveal branches') and Demo.tsx copies them (revealParas). The choices quoted are the ones still marked on the stage at the reveal (fixed once the toggle is first turned on). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "disputed",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): DISPUTED (same root as c2). All four branches driven on :3591 and read: each opens 'You chose {first}, then {second}.' and matches the claim text. But in the A-D and B-C branches, 'No model that judges only outcomes fits both of your choices' is false for an outcome model that is indifferent here: expected value ranks A and B equal (200 = 200), and under weak revealed preference the pair A-then-D (or B-then-C) fits it. The A-C/B-D sentence ('a model that judges outcomes fits both') is true. Fix (builder; wording is cm-behavioral's): qualify the mixed-branch sentence for strict preference (for example 'Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices'), recount the reveal (now 72 / 69 words), and the script's rule test should treat a tie as fitting either pair.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c4",
       "text": "Names: 'Sure for gains, gamble for losses: that pattern is called a framing effect' (sure-then-chance branch); 'the reverse of the pattern called a framing effect' (chance-then-sure branch).",
       "support": "convention",
       "source": "Brief 4 claim (4) (convention: the name of the pattern). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Term checked in an opened source: Rachev et al. 2021, PLOS ONE, PMC8432807 (PMC OAI-PMH, HTTP 200): 'The framing effect ... refers to the shift of preferences depending on superficial changes in the wording of otherwise equivalent choice options ... Specifically, people tend to be risk-averse when presented with potential gains but tend to be risk-seeking when the same options are presented as potential losses.' A-D (sure for gains, gamble for losses) is that pattern, B-C its reverse. Both sentences seen in their branches on :3591. Verifies the name only; the sentences around it are c3 (disputed).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c5",
       "text": "HELD (the one type (d) line; not rendered, HELD_LINE = false): 'Re-run in 2020 with 88,181 people in 47 countries, the wording shifted choices; how much varied by country.' It would go before 'Where it stops'.",
       "support": "source",
       "source": "W-902 row 'Framing' (robust; 'varied substantially across nations'; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Rachev et al. 2021, PLoS ONE, PMC8432807, opened in full by research-lead, not by the builder or the fact-checker. Tversky & Kahneman 1981 and Many Labs 1 (d = 0.60) only as reported by Rachev et al. 2021. Brief file rule 6: ships cut until a dated type (d) statement covers it, the fact-checker verifies it against the opened source, and the measured reveal recounts at 90 or less (with it the longest branch is 90 by script, over 90 with the kit's verdict). Fallback: cut; nothing replaces it.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): HELD (type (d); stays held). Renders nowhere: absent from the walkthrough transcript cut at the appendix and from all four reveal branches I drove on :3591; it appears only in the trust-sheet claim list. Not verified because the W-975 statement still covers (a)-(c) only, so (d) is held by default (SO-10-2 stop-if). For the future (d) statement: I opened PMC8432807 itself (first-hand, not via W-902): its abstract reports a survey 'from March to May 2020 and including 88,181 participants from 47 countries' and that 'the proportion of risky choices and the framing effect varied substantially across nations'. The OAI record also carries a 2024 correction notice (PLOS ONE e0315440, PMC11620341), which I did not read; whoever writes the (d) line should.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c6",
       "text": "Reveal, every branch: 'Where it stops: you saw both wordings back to back.'",
       "support": "convention",
       "source": "About this stage, not a claim that seeing both wordings weakens framing in other people (no source for that, W-902; charter rule 5). Brief 4 reveal text. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Seen in all four branches on :3591 and in the walkthrough. A statement about this stage only: both wordings are on one stage, one after the other (walkthrough frames 2-6). It makes no claim about other people.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c7",
       "text": "Stage caption: 'An outbreak is expected to kill 600 people. Pick a programme.' The outbreak is hypothetical and unnamed (no real disease, place or group).",
       "support": "convention",
       "source": "Brief 4, 'What the stage shows' and review route (standard: hypothetical, unnamed). The setting, not a fact about the world. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Caption seen on every frame, exactly as quoted. The transcript and all four branches name no disease, place or group. Setting, not a claim about the world.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c8",
       "text": "Title 'Saved or die: two wordings' and hook 'Pick a programme to fight an outbreak, then pick again when it is said in deaths.'",
       "support": "convention",
       "source": "Describes the stage's two rows (saved wording, then die wording). Builder's wording (the brief gives no title or hook); it pairs no option with another and names no answer. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Title and hook seen exactly as quoted (walkthrough header, every screenshot). They describe the stage's two rows and name no answer.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.saved-or-die-same-600.c9",
       "text": "Recall answer: '90% survive' and '10% die' describe the same outcome (900 of 1,000 live in both).",
       "support": "derivation",
       "source": "1,000 × 0.9 = 1,000 − 1,000 × 0.1 = 900 (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, recall check; brief 4 transfer recall). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Recall card in meta.json: '90% survive' vs '10% die' of 1,000: 0.9 x 1000 = 900 = 1000 - 0.1 x 1000 (my own node). The answer 'Describe the same outcome' and its 'why' (900 live, 100 die) match.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
