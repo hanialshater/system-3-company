@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · analytics-steward · EXP-006: launch predictions for cut-the-busiest-link and the NCM gap four (W-1529 done)
+
+**Changed:** new `company/experiments/EXP-006-launch-predictions-r6-r7.md` (index row in `company/experiments/README.md`); a pointer paragraph under "Committed predictions" in the r6 and r7 launch records. Board: W-1529 done; W-1600 added (privacy-reviewer: may recall/predict events carry a first-time marker with no identifier?).
+**Believe:** sure the rows are committed before any deploy that carries the five (last `[deploy]` is 6cbce514, before publishes f6b2a22e and c97973e7), and sure they are later than the publish commits (stated in EXP-006 "Timing"). Fairly sure the current events cannot compute first-revisit recall or learner pairing (`src/lib/events-intake.ts`, `src/components/Feed.tsx`); so EXP-006 commits measurable aggregate rows A1-A6 plus F1/F2 marked "not measured" until W-1600. That gap also touches the r5 P1/P2 and Life Hacks L1/L2 definitions.
+**Next:** a deploy carrying these five needs no missing-row note from the release-manager. privacy-reviewer rules W-1600. Scoring at the first WBR after day 0 + 14 (analytics-steward). **Blocked:** any read, on W-706 (backend-engineer) and a founder-approved deploy.
+
 ## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
 
 **Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
