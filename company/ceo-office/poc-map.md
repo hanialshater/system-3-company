@@ -1,0 +1,67 @@
+# POC map: one manager per lane, for dispatch requests
+
+owner: chief-of-staff-ceo-office (Leonie) · as of: 2026-10-16 · board: W-1163
+status: in force for dispatch routing. It replaces the interim map in company/decisions/2026-10-16-founder-org-and-dispatch-rule.md, under that record's delegation ("Leonie confirms or replaces it"). The founder may overrule any row. Reporting lines in tools/org/roles.mjs are **unchanged**: this map says who answers "what runs in this lane, by whom, in what order". It does not say who manages whom.
+record: company/decisions/2026-10-16-poc-map-and-dispatch-requests.md · protocol: company/ceo-office/dispatch-requests.md
+
+## Rules of the map
+1. **Every dispatchable role sits in exactly one lane, and every lane has exactly one POC.** A board item belongs to one lane: the lane of the role that does the work. Exceptions are listed under "Overlays".
+2. **The POC is the lowest manager who owns the whole lane.** Strand managers (the 27 `cm-<domain>-<strand>`) are not POCs. Their category manager asks for them.
+3. **Checkers are dispatched from the Quality lane, never from the lane whose work they check.** This holds even when the checker's reporting line sits inside the builder's org (privacy-reviewer under principal-engineer, cultural-reviewer under localization-lead). That is the independence rule applied to routing, and it is the reason for rows 10 and 15.
+4. **No POC, no dispatch.** A role that is not on this map is not dispatched until Leonie adds it. A missing role is never run as general-purpose (founder rule 1).
+
+## The map
+
+| # | Lane | POC (manager) | Roles dispatched in this lane | Budget tag(s) | Notes / flags |
+|---|---|---|---|---|---|
+| 1 | A category's lessons: briefs, builds, revisions from findings | that category's CM: cm-ai, cm-behavioral, cm-big-ideas, cm-books, cm-chemistry, cm-cs, cm-economics, cm-geography, cm-history, cm-life, cm-lifehacks, cm-math, cm-physics, cm-probability | the CM's strand managers; demo-builder for that category's briefs (via `claim.mjs`) and its revision builds | the category's project (e.g. `lifehacks-engine-v2`, `history`, `behavioral-econ`, `big-ideas`) or the `catalog` line | Confirmed. Non-default formats go through lane 6 before a builder. Revision builds belong here (the work's owner), and the findings come from lane 10. **Flag:** `demo-builder`'s line manager is learning-designer, but its dispatch POC is the CM. That is deliberate (claim.mjs decides which builder takes which brief), and it is recorded here so nobody reads it as a gap. |
+| 2 | Verticals and the cross-category portfolio: Wave J, new-category pipeline steps 1-2 | principal-pm-verticals (Selin) | domain-scout; demo-builder for Wave J's fixed slug list only | `wave-j`, `behavioral-econ` until cm-behavioral owns it | Confirmed. portfolio-manager holds the budget and is consulted on the batch's cost, but is not a second POC. A Wave J slug is in this lane and is left out of the CM's batch. **Flag:** projects.json lists `wave-j` with owner chief-of-staff. The portfolio-manager should re-own it to principal-pm-verticals. |
+| 3 | Courses (NCM and later courses) | courses-lead (Amara) | cm-course-ncm; demo-builder for course briefs | `ncm-course` | **New row**: the interim map had no courses lane. |
+| 4 | First Light (company-wide initiative) | head-of-strategic-initiatives (Beatriz) | First Light **build and design work** for engineering (backend, platform), product, growth and release-prep roles, **in the order of the dependency map** | `first-light` | Confirmed, with three limits (see "Overlays" and the flags below). **Reviews of First Light work are not in this lane.** Privacy review is requested from lane 10 and readiness review from lane 8, with the dependency map's dates as an input. Beatriz's batches live in `company/initiatives/first-light/dispatch/`. |
+| 5 | Product scope, PRDs, launch review, analytics | head-of-product (Priya) | analytics-steward; launch-review participants | `leadership` line | Confirmed but **narrowed**. Priya is POC only for this lane, not for any lane that has its own lead. **Overloaded:** 25 directs. |
+| 6 | Design and formats | design-lead (Ines) | interaction-designer, visual-designer, mockup-artist, illustrator, design-engineer; learning-designer for pedagogy notes | `multi-card-sequence`, the category's tag for a lesson's spec | **New row.** Design review (lane 10's judgement on a contact sheet) is still requested by design-lead, who may not approve her own designs (her role says so). |
+| 7 | Engineering: kit, platform, backend, community PRs | principal-engineer (Kenji) | platform-engineer, backend-engineer, community-engineer | `scale-stage-1`, `maintenance` | Confirmed. **Flag:** platform-engineer reports to head-of-product, but its work is tiered by Kenji, so its dispatch POC is Kenji. **Overloaded:** see flags. |
+| 8 | Ops, readiness, incidents, risk | principal-engineer-ops (Rhea) | principal-engineer-ops' own runs; readiness reviews | `maintenance` | Confirmed. In an incident the chief of staff dispatches Rhea first and tells her after (protocol §4). |
+| 9 | Company tools and HQ | tools-lead (Sora) | hq-engineer, tools-lead | `maintenance` or the asking project's tag | **New row.** **Flag:** tools-lead reports to the chief of staff, so the operator manages the instruments that audit the operator (handoff map, P3). The POC is tools-lead, not the chief of staff. |
+| 10 | Quality: fact-check, QA, learner review, a11y, pedagogy crit, safety, privacy and cultural review | evaluation-steward (Hilde) | fact-checker, qa-tester, learner-evaluator, accessibility-reviewer, pedagogy-critic, lifehacks-safety-reviewer, **privacy-reviewer** (dispatch only), **cultural-reviewer** (dispatch only) | the tag of the work being checked | Confirmed and **widened** by rule 3. The highest-volume lane, so it runs mostly on standing orders (protocol §2.3). |
+| 11 | Release and deploy | release-manager (Diego) | release-manager | `maintenance` or the release's project | Confirmed. A single-role lane, so the role is its own POC. **Every deploy still needs the founder's approval in conversation.** |
+| 12 | Research | research-lead (Wen) | researcher, research-scientist | the asking project's tag | Confirmed, but **without "through vp-rnd"**. One POC per lane: Wen. vp-rnd sets priority between labs in her own runs and is not asked per round. |
+| 13 | R&D labs | rnd-lead (Bram) | rnd-engineer | `rnd-knots` and later lab projects | **New row** (it was folded into Research). |
+| 14 | Personalization | personalization-lead (Mateo) | learner-model-engineer | its project, once approved | **New row.** Privacy review goes through lane 10. |
+| 15 | International | localization-lead (Yuki) | localizer | its project, once approved | **New row.** Cultural review goes through lane 10, not Yuki (rule 3; P6 in the 2026-10-13 proposals). |
+| 16 | Marketing | vp-marketing (Celeste) | vp-marketing's org | `marketing` | **New row.** Anything public still reaches the founder every time. |
+| 17 | Triage, priority, budget | portfolio-manager (Odette) | portfolio-manager | `leadership` | **New row.** It runs on the operating loop's trigger (10 or more untriaged items, or a P1), which is a standing order. |
+| 18 | Org, roles, health | chief-of-staff-ceo-office (Leonie) | chief-of-staff-ceo-office | `leadership` | Confirmed. |
+| 19 | Rituals and integration | chief-of-staff (Ada) | pattern-librarian; the participants each ritual names | `rituals` | **New row.** It covers only what the operating loop already gives Ada (protocol §3). |
+| 20 | The Press (sibling company) | vp-books | the Press's roles, in hanialshater/system3 | the Press's own portfolio | Confirmed. **Flag:** vp-books exists only in the Press repo (`press/org/roles.mjs`, snapshot in company/sibling/press/hq-snapshot.json). It has no subagent here, so it is asked in that repo. Its runs share this host and count toward this host's caps (Press record, objection 1). |
+
+### Lanes with no clear owner
+- **Growth** (growth-designer, Jonah). A single role under head-of-product with no lead. One is running now. **Interim:** First Light growth work (gamification, social, PRD-003, PRD-004) goes in lane 4 (Beatriz). Any other growth work goes in lane 5 (Priya). **Proposal for the founder:** keep it this way until a second growth role exists. Do not create a growth lead to fill a one-person lane.
+- **The `catalog` line** in projects.json is owned by chief-of-staff. Under this map the catalog is fourteen category lanes. The portfolio-manager should re-own the line to head-of-product, who allocates category slots, or split it per category. That is Odette's file and her call.
+- **cm-course-ncm vs the categories' own course-like work** is fine today (one course). It needs a boundary line when a second course exists.
+
+### Overloaded POCs
+| POC | Load | Effect on dispatch | What this map does about it |
+|---|---|---|---|
+| founder | 8 directs (Beatriz was the 8th, 2026-10-15). Objection 2 in the HSI record is still open | Every org change consults 8 directs, and 7 of them are POCs here | Nothing structural (it is the founder's call). Founder asks come only through the protocol's §5 list, so the span costs fewer interrupts. |
+| head-of-product (Priya) | 25 directs: 14 CMs, 11 others | If Priya were asked per category, one run would decide 14 lanes | She is POC for lane 5 only. CMs, design, personalization, international and courses each answer for themselves. |
+| principal-engineer (Kenji) | Engineering lane, First Light tech lead, tier-2 reviewer, COE reviewer, founder direct | The First Light engineering items and his own lane's items come from the same person's estimates | First Light engineering items are in lane 4, but each must cite Kenji's estimate or EDD as an input (protocol §2.2). He is not asked twice. |
+| evaluation-steward (Hilde) | The busiest lane, plus gates, amendments and the First Light quality key | One run per round for routine gate checks would make her the bottleneck | Standing orders (protocol §2.3) for mechanical checks. A manager run only for non-routine checks. |
+| head-of-strategic-initiatives (Beatriz) | 0 reports, sits under a founder with 8 directs, and her lane is other people's work | She would pick specialists whose work she does not manage, and on a date she is accountable for | Her batch orders and dates First Light items. It may not name the quality checks on First Light (rule 3: those come from lane 10, against quality-bar.md). Engineering items cite Kenji, and scope items cite Priya's record. The CEO-office sunset check at First Light's retro stands. |
+
+## Overlays (not lanes)
+- **First Light priority.** Beatriz's dependency map sets the *order* of First Light items. It does not move items out of lanes 10 and 11, and it does not outrank the portfolio-manager's priority. Ties go to the Friday founder review (HSI record, objection 3).
+- **Budget.** Every batch item carries a project tag that is `approved` in company/ops/projects.json. portfolio-manager holds the ledger. A tag is not a lane.
+
+## Batches written before this map
+- `company/initiatives/first-light/dispatch/2026-10-16-round-1.md` (Beatriz, written the same morning, before this map). It asks for a privacy-reviewer re-review (lane 10) and a principal-engineer-ops readiness run (lane 8) from inside lane 4. **Round 1 stands as written:** it keeps evaluator inputs to artifacts, and stopping it would cost a day on the critical path. **From round 2,** those two runs are requested from Hilde and Rhea. Beatriz's batch lists them under "depends on", with dates.
+
+## The 8 agents already running when the rule was given (transition)
+| Agent | Lane | Its result goes to |
+|---|---|---|
+| behavioral builder | 1 | cm-behavioral |
+| Life Hacks W3 builder | 1 | cm-lifehacks |
+| Wave J builder | 2 | principal-pm-verticals |
+| fact-checker, QA tester, learner evaluator | 10 | evaluation-steward |
+| privacy reviewer | 10 (rule 3) | evaluation-steward. principal-engineer is informed |
+| growth designer | no clear owner | head-of-strategic-initiatives if the work is First Light, else head-of-product |

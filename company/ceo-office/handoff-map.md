@@ -1,6 +1,6 @@
 # Handoff map: who hands what to whom, and who checks whom
 
-owner: chief-of-staff-ceo-office (Leonie) · as of: 2026-10-13 · status: living document (update after each role evaluation)
+owner: chief-of-staff-ceo-office (Leonie) · as of: 2026-10-13, routing updated 2026-10-16 (§6, founder rule) · status: living document (update after each role evaluation)
 evidence: `company/ops/events.jsonl`, `company/ops/board.json`, `company/reviews/`, `company/rituals/records/`, `company/decisions/`, `tools/org/roles.mjs`
 
 Every handoff is labelled with one of three states:
@@ -107,7 +107,7 @@ cm-<domain> (2 runs each; geography via general-purpose) ── brief, no format
 | Life Hacks safety | cm-lifehacks | lifehacks-safety-reviewer (→ evaluation-steward) | not yet | design is sound, team label is wrong (P6) |
 | Locale variants | localizer | cultural-reviewer (→ **localization-lead**) | not yet | **no**: the judge reports to the owner of the work (P6) |
 | Personalization changes | learner-model-engineer | experiment + privacy-reviewer | not yet | yes, by design |
-| Org changes | chief-of-staff (designs roles) | founder decides, CEO office audits | founder request → operator implements; 2 of the last 4 have no decision record | **partly** |
+| Org changes | CEO office designs (founder rule, 2026-10-16); before that the chief-of-staff did | founder approves every new role, agent, org, floor and room | until 2026-10-16: founder request → operator implements, and 2 of the last 4 had no decision record | **partly**; by design from 2026-10-16 (org-change-process.md) |
 | CEO office proposals | Leonie | founder decides | (this is the first) | yes, by design: I may not approve my own proposals |
 
 ## 3. An org change, as designed and as it actually runs
@@ -120,7 +120,11 @@ Designed:  founder request or CEO-office finding
              → decision record accepted, linked from the commit
              → CEO office checks at the next WBR that the role is used (agent metrics) or retires it (offboarding)
 
-Actual:    founder request → chief-of-staff designs roles, regenerates, builds HQ rooms, writes docs in the
+Founder rule (2026-10-16, company/decisions/2026-10-16-founder-org-and-dispatch-rule.md, rule 1): a new role, agent,
+org, floor or room is never created by the chief of staff. It goes to the CEO office, which designs it, and the founder
+approves every one before it exists. The full pipeline is in company/ceo-office/org-change-process.md ("The pipeline end to end").
+
+Actual (before 2026-10-16): founder request → chief-of-staff designs roles, regenerates, builds HQ rooms, writes docs in the
            new roles' names → decision record (sometimes) → nobody dispatches the new roles
 ```
 
@@ -156,3 +160,36 @@ Actual:    founder request → chief-of-staff designs roles, regenerates, builds
 6. **L14 pedagogy-critic / demo-crit.** Overdue since day one; the v2s that would make it possible now exist. → P4
 7. **Judges under the owner of the work:** cultural-reviewer → localization-lead; safety reviewer labelled `categories`. → P6
 8. **O2/O3 org changes without records or first dispatch.** → P8
+9. **D1-D4 dispatch without the lane's manager** (until 2026-10-16 every dispatch was chosen by the operator). → §6, company/ceo-office/dispatch-requests.md
+
+## 6. Dispatch routing (since 2026-10-16: through the lane's manager)
+
+Founder rule 2 (company/decisions/2026-10-16-founder-org-and-dispatch-rule.md): the chief of staff dispatches only after asking the lane's manager. Lanes and POCs: company/ceo-office/poc-map.md. Format, cadence and limits: company/ceo-office/dispatch-requests.md. Record: company/decisions/2026-10-16-poc-map-and-dispatch-requests.md.
+
+```text
+board `next` / results / founder ask in a lane
+        ▼
+chief-of-staff ── one manager run per lane per round (dispatch-check --kind=other) ──▶ lane POC
+        ▲                                                                               │
+        │                     batch file: company/ops/dispatch-requests/<date>-r<N>-<lane>.md
+        │                     (role, order, kind, worktree, tag, budget, inputs, done-when, checked-by, stop-if;
+        │                      standing orders for mechanical work, expiring in 7 days or less)
+        │                                                                               ▼
+        │                     chief-of-staff: mechanical checks → caps (portfolio-manager priority across lanes)
+        │                       → Agent calls, event summary `batch=<file>#B<n>` → `## Dispatched` appended
+        │                       (refusals written, never rewritten)
+        │                                                                               ▼
+        └──────────── results go back to the same POC at the next round ◀────────── specialists
+```
+
+| # | Handoff | From → To | State (2026-10-16) |
+|---|---|---|---|
+| D1 | work signal → POC | chief-of-staff → lane POC (manager run) | paper (starts with the next round) |
+| D2 | POC → batch | POC → company/ops/dispatch-requests/ | paper |
+| D3 | batch → dispatch | chief-of-staff (checks, caps, Agent calls, `batch=` in the event) | paper. Before this rule every dispatch was the operator's choice, which made it **broken** by the rule's standard |
+| D4 | result → POC | specialist's report → the lane POC, not a follow-up dispatch | paper. The 8 agents already running report to their POC (poc-map.md, transition table) |
+| D5 | checker routing | lane 10 (evaluation-steward) dispatches every checker, including privacy-reviewer and cultural-reviewer, whose lines sit in the builders' orgs | paper. Founder to confirm (F2) |
+| D6 | exceptions → founder | batch items marked "for the founder" → founder-inbox.json; one line per lane in the digest | paper |
+| D7 | audit | events + batch files → CEO office WBR health section (share of dispatches with `batch=`) | paper. First check at WBR 2026-10-19 |
+
+Not routed through a manager (chief of staff alone, protocol §4): integration, the four single-writer files, emergencies (contain, then principal-engineer-ops), the rituals the loop already assigns, resumes, and standing orders that are still valid.

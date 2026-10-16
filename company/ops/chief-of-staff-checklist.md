@@ -2,10 +2,18 @@
 
 Run `npm run company -- status`, `npm run company -- rituals` and `npm run metrics` at the start of every session.
 
+## Dispatch through the manager (founder rule, 2026-10-16)
+Source: company/decisions/2026-10-16-founder-org-and-dispatch-rule.md · lanes: company/ceo-office/poc-map.md · protocol: company/ceo-office/dispatch-requests.md
+1. [ ] **Never create** a role, agent, org, floor or room, and never run a missing role as general-purpose. Board item → chief-of-staff-ceo-office (Leonie) → the founder approves (company/ceo-office/org-change-process.md).
+2. [ ] Each round, ask **one manager per lane** that has work, results or a founder ask (`--kind=other`, counts toward the caps). Skip the quiet lanes.
+3. [ ] Dispatch only from a batch item (`company/ops/dispatch-requests/<date>-r<N>-<lane>.md`) or a valid standing order. Put `batch=<file>#B<n>` in the dispatch event. Check it, fit it to the caps, refuse in writing, and never rewrite an item.
+4. [ ] Results go back to the lane's POC at the next round, not straight into a follow-up dispatch.
+5. [ ] Do these alone, with no manager asked: merges, registry, check/verify, servers, the four single-writer files, emergencies (contain, then principal-engineer-ops), the rituals you already own, resumes.
+
 ## Every wave
 1. [ ] Briefs ready for every builder (`company/domains/briefs/<d>.md` has ≥ 10 unbuilt briefs)
 2. [ ] Kit changes landed **before** dispatch (tier-2 changes have an EDD and an engineering review)
-3. [ ] Dispatch builders (worktrees, unique `NEXT_DIST_DIR`, `QA_PORT`, `QA_OUT`). **At most 8 agents at once, of which at most 5 on Opus** (COE 2026-10-13; restated 2026-10-13 after the operator broke the 4+4 version: total load is what the limit protects). Builders commit after every 2 lessons. Log the wave in `ops/waves.json`. If agents stop, resume them with SendMessage before re-dispatching.
+3. [ ] Dispatch builders **from the lanes' batches** (worktrees, unique `NEXT_DIST_DIR`, `QA_PORT`, `QA_OUT`). **At most 8 agents at once, of which at most 5 on Opus** (COE 2026-10-13; restated 2026-10-13 after the operator broke the 4+4 version: total load is what the limit protects). Builders commit after every 2 lessons. Log the wave in `ops/waves.json`. If agents stop, resume them with SendMessage before re-dispatching.
 4. [ ] Merge each branch → `npm run registry` → `npm run verify` on the integrated tree → `npm run company -- qa-record`
 5. [ ] `npm run walkthrough -- --domain <d>` for every domain with new lessons
 6. [ ] Fact-check per domain + **second check** of claims added by the previous checker (a different agent)
