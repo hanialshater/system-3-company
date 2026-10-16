@@ -11,7 +11,7 @@
     "slider-drives-live-chart",
     "locked-readouts"
   ],
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-probability",
@@ -33,28 +33,22 @@
       "id": "probability.small-gap-big-extremes.c1",
       "text": "For two normal distributions with sd 10 cm and means 100 cm (A) and 105 cm (B), the share above 130 cm is 0.135% and 0.621% (135 and 621 per 100,000); B makes up 82% of plants above 130 cm, about 4.6 to 1.",
       "support": "derivation",
-      "source": "Q(3) = 0.00135, Q(2.5) = 0.00621 (standard normal table); model.ts tailA/tailB/shareB/ratio (erfc, Numerical Recipes erfcc) in node 2026-10-14: 0.1350%, 0.6210%, 82.14%, 4.600. Seeded cross-check (brief): mulberry32(11), 100,000 per batch: A 122, B 667. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python math.erfc (independent of model.ts's erfcc): Q(3) = 0.1350%, Q(2.5) = 0.6210% → 135 and 621 per 100,000; B's share 82.14%, ratio 4.600. Stage prints fmt(tail × 100,000), pct(share) = 82%, r1(ratio) = 4.6; reveal needs at-130.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "v3 2026-10-16 (learner r1, cm-probability r5 A3): the reveal now also prints the 130 cm counts ('Per 100,000 plants, 135 of A's and 621 of B's were taller than 130 cm.'); the sentence 'But above 130 cm, B made up 82% of the plants, about 4.6 to 1.' now follows 'The two curves mostly overlap: B is only 5 cm taller.' Numbers unchanged (builder's node on model.ts: 134.99 and 620.97 per 100,000, 82.14%, 4.600); reset to unverified. | Q(3) = 0.00135, Q(2.5) = 0.00621 (standard normal table); model.ts tailA/tailB/shareB/ratio (erfc, Numerical Recipes erfcc) in node 2026-10-14: 0.1350%, 0.6210%, 82.14%, 4.600. Seeded cross-check (brief): mulberry32(11), 100,000 per batch: A 122, B 667. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python math.erfc (independent of model.ts's erfcc): Q(3) = 0.1350%, Q(2.5) = 0.6210% → 135 and 621 per 100,000; B's share 82.14%, ratio 4.600. Stage prints fmt(tail × 100,000), pct(share) = 82%, r1(ratio) = 4.6; reveal needs at-130.",
+      "status": "unverified"
     },
     {
       "id": "probability.small-gap-big-extremes.c2",
       "text": "Above 140 cm the shares are 0.0032% and 0.0233% (3 and 23 per 100,000); B makes up 88%, about 7.3 to 1, so the ratio keeps growing further out.",
       "support": "derivation",
-      "source": "Q(4) = 3.17e-5, Q(3.5) = 2.33e-4; node: 88.02%, 7.345. Other cutoffs on the slider: 100 cm 58% (1.4 to 1), 110 cm 66% (1.9), 120 cm 75% (2.9). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python erfc: Q(4) = 0.0032% (3 per 100,000), Q(3.5) = 0.0233% (23); share 88.02%, ratio 7.345 → '7.3'. Other cutoffs: 100 cm 58.0% (1.38), 110 66.0% (1.95), 120 74.6% (2.94), 130 82.1% (4.60), 140 88.0% (7.35): the ratio grows monotonically.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "v3 2026-10-16 (learner r1, cm-probability r5 A3): reveal sentence reworded to 'By 140 cm A's count fell to 3, B's only to 23, so B's share kept growing: 88%, about 7.3 to 1.' Numbers unchanged (node: 3.17 and 23.26 per 100,000, 88.02%, 7.345); reset to unverified. | Q(4) = 3.17e-5, Q(3.5) = 2.33e-4; node: 88.02%, 7.345. Other cutoffs on the slider: 100 cm 58% (1.4 to 1), 110 cm 66% (1.9), 120 cm 75% (2.9). | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Python erfc: Q(4) = 0.0032% (3 per 100,000), Q(3.5) = 0.0233% (23); share 88.02%, ratio 7.345 → '7.3'. Other cutoffs: 100 cm 58.0% (1.38), 110 66.0% (1.95), 120 74.6% (2.94), 130 82.1% (4.60), 140 88.0% (7.35): the ratio grows monotonically.",
+      "status": "unverified"
     },
     {
       "id": "probability.small-gap-big-extremes.c3",
-      "text": "The two curves mostly overlap, sharing about 80% of their area: B is only 5 cm (half a spread) taller.",
+      "text": "The two curves mostly overlap: B is only 5 cm (half a spread) taller.",
       "support": "derivation",
-      "source": "Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. 'At the averages the two batches overlap almost completely' overstates the picture. Two normal curves 0.5 sd apart share 2Φ(−0.25) = 80.3% of their area (Python erfc), so a fifth of each curve is not shared; 69% of B lies above A's mean (Cohen's U3). '5 cm (half a spread)' is correct. Fix (builder; owner decides wording): e.g. 'overlap mostly (about 80% shared)' or 'largely overlap', in the claim and the reveal. Blocks publishing. | Builder fix v2 (2026-10-14, W-501): reworded from 'At the averages the two batches overlap almost completely', which FC pass 35 found overstated. Two equal-sd normal curves d = 0.5 sd apart share 2·Φ(−d/2) of their area (overlapping coefficient); builder re-ran Python 2026-10-14: math.erfc(0.25/math.sqrt(2)) = 0.8026, shown as 'about 80%'. Reveal text changed to match. Needs a fresh fact-check. | FC pass 36 (fact-checker, fresh instance, 2026-10-14, W-637): VERIFIED (v2). Own node numeric integral of min(f_A, f_B) (means 100, 105, sd 10, step 0.001 cm): 0.80259, and 0.80258 inside the drawn 60-150 cm window; Python math.erfc(0.25/sqrt 2) = 2Φ(−0.25) = 0.80259. 'Mostly overlap, sharing about 80% of their area' and '5 cm (half a spread)' hold. Reveal text matches the claim.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "v3 2026-10-16 (learner r1, cm-probability r5 A3): the overlap figure 'sharing about 80% of their area' is cut from learner text (learner r1 finding (a): a second, different 80% beside the answer 'About 80%'). The overlap is still 2Q(0.25) = 80.26% (node), kept here as support for 'mostly overlap'; reset to unverified. | Means 100 and 105 with sd 10: the curves' peaks are 0.5 sd apart; overlap coefficient 2*Phi(-0.25) = 0.80 (node). The picture draws both curves. | FC pass 35 (fact-checker, 2026-10-14): DISPUTED. 'At the averages the two batches overlap almost completely' overstates the picture. Two normal curves 0.5 sd apart share 2Φ(−0.25) = 80.3% of their area (Python erfc), so a fifth of each curve is not shared; 69% of B lies above A's mean (Cohen's U3). '5 cm (half a spread)' is correct. Fix (builder; owner decides wording): e.g. 'overlap mostly (about 80% shared)' or 'largely overlap', in the claim and the reveal. Blocks publishing. | Builder fix v2 (2026-10-14, W-501): reworded from 'At the averages the two batches overlap almost completely', which FC pass 35 found overstated. Two equal-sd normal curves d = 0.5 sd apart share 2·Φ(−d/2) of their area (overlapping coefficient); builder re-ran Python 2026-10-14: math.erfc(0.25/math.sqrt(2)) = 0.8026, shown as 'about 80%'. Reveal text changed to match. Needs a fresh fact-check. | FC pass 36 (fact-checker, fresh instance, 2026-10-14, W-637): VERIFIED (v2). Own node numeric integral of min(f_A, f_B) (means 100, 105, sd 10, step 0.001 cm): 0.80259, and 0.80258 inside the drawn 60-150 cm window; Python math.erfc(0.25/sqrt 2) = 2Φ(−0.25) = 0.80259. 'Mostly overlap, sharing about 80% of their area' and '5 cm (half a spread)' hold. Reveal text matches the claim.",
+      "status": "unverified"
     },
     {
       "id": "probability.small-gap-big-extremes.c4",
@@ -64,6 +58,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "probability.small-gap-big-extremes.c5",
+      "text": "Between 130 cm and 140 cm, A's count per 100,000 falls from 135 to 3 (about 43-fold) and B's from 621 to 23 (about 27-fold), so A's tail thins faster and B's share of the plants above the cutoff grows (reveal: 'Per 100,000 plants, 135 of A's and 621 of B's were taller than 130 cm. By 140 cm A's count fell to 3, B's only to 23, so B's share kept growing').",
+      "support": "derivation",
+      "source": "New in v3 (cm-probability r5 A3 (c): give 'A's curve falls away faster' one concrete number). Builder's node 2026-10-16 on model.ts (exact normal tails, sd 10, means 100 and 105): per 100,000 above 130 cm A 134.99, B 620.97; above 140 cm A 3.17, B 23.26; fold A 42.62, fold B 26.69. Displayed with Math.round, matching the stage's count line at those cutoffs.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -88,7 +89,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 2,
+  "version": 3,
   "curriculum": {
     "primary": "probability:tail-ratios",
     "also": [

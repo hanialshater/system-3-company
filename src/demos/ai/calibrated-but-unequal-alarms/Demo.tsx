@@ -9,6 +9,7 @@
 // readout table is reoffend / false alarms / misses (row labels on A's side only, stage budget 25 words), and a key
 // under the picture explains both rings.
 // The two groups' error rates match only at h = 50, where the base rates match.
+// v3 (r6-ai A2): reveal's last sentence scoped to the toy's two-level label (c4), "honest" throughout, trace lines say "Earlier at".
 // Which dots reoffend is a fixed pattern ((i + row) % 5), exact for every h that is a multiple of 5. Deterministic.
 
 import { useState } from "react";
@@ -103,7 +104,7 @@ export default function CalibratedButUnequalAlarms({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "A score labels people high risk (80% reoffend) or low (20%), true in both groups. Among A's non-reoffenders, the share flagged is:",
+          "A score labels people high risk (80% reoffend) or low (20%), honest in both groups. Among A's non-reoffenders, the share flagged is:",
         options: ["The same as B's", "Higher than B's", "Lower than B's"],
         answer: 1,
       }}
@@ -121,8 +122,8 @@ export default function CalibratedButUnequalAlarms({ slug }: { slug: string }) {
             </p>
             <p>
               A has more reoffenders, so more of A is ringed, guilty or not. The slider changed B&apos;s people, not the score: at{" "}
-              {a.re}, base rates {atEqual ? "match" : "matched"}, and so {atEqual ? "do" : "did"} both errors. Otherwise no score that
-              makes mistakes is calibrated with equal errors.
+              {a.re}, base rates {atEqual ? "match" : "matched"}, and so {atEqual ? "do" : "did"} both errors. Otherwise no high/low score
+              that makes mistakes is honest with matching errors.
             </p>
           </>
         );
@@ -147,9 +148,9 @@ export default function CalibratedButUnequalAlarms({ slug }: { slug: string }) {
               : !shown
                 ? "Ringed: 80% reoffend. Others: 20%. Same in A and B."
                 : h === A_HIGH && seenCase
-                  ? `B at ${q.re}: false alarms ${pc(q.faPct)}, misses ${pc(q.missPct)}.`
+                  ? `Earlier at ${q.re}: false alarms ${pc(q.faPct)}, misses ${pc(q.missPct)}.`
                   : h !== A_HIGH && seenEqual
-                    ? `B at ${rates(A_HIGH).re}: both errors ${pc(rates(A_HIGH).faPct)}.`
+                    ? `Earlier at ${rates(A_HIGH).re}: both errors ${pc(rates(A_HIGH).faPct)}.`
                     : "Compare the false alarms.";
             return (
               <div className={s.wrap}>

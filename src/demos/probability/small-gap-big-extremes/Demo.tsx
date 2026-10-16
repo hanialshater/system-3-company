@@ -4,6 +4,9 @@
 // slider (100-140 cm) shades both tails; a count line gives plants above the cutoff per 100,000 in each
 // batch, and a bar splits the plants above the cutoff into B and A. Every cutoff visited leaves a tick
 // on that bar, so the reveal's 130 cm and 140 cm values stay on stage. Key state: cutoff 130 and 140.
+// v3 (learner r1, cm-probability r5 A3): the at-130 milestone counts only when the learner lets go of the
+// slider at 130 (pointer up, touch end or key up), so a drag that sweeps past 130 to 140 does not open the reveal.
+// The reveal drops the overlap figure and gives "falls away faster" its per-100,000 numbers.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -45,6 +48,11 @@ function Stage({ locked, reach, cut, setCut, seen, setSeen }: {
 }) {
   const sb = shareB(cut);
   const right = cut >= 130;
+  // The reveal's answer value must be set, not swept past: count 130 only where the learner lets go.
+  const settle = (e: { target: EventTarget }) => {
+    const el = e.target as HTMLInputElement;
+    if (!locked && el.type === "range" && Number(el.value) === 130) reach("at-130");
+  };
   return (
     <div className={s.wrap}>
       <p className={s.msg}>{locked ? "Make a prediction to start." : "Slide the cutoff. Shaded: plants taller than it."}</p>
@@ -83,7 +91,12 @@ function Stage({ locked, reach, cut, setCut, seen, setSeen }: {
           </>
         )}
       </svg>
-      <Row>
+      <div
+        className="row"
+        onPointerUp={settle}
+        onTouchEnd={settle}
+        onKeyUp={settle}
+      >
         <Slider
           label="Cutoff"
           value={cut}
@@ -95,11 +108,10 @@ function Stage({ locked, reach, cut, setCut, seen, setSeen }: {
           onChange={(v) => {
             setCut(v);
             if (!seen.includes(v)) setSeen([...seen, v].sort((a, b) => a - b));
-            if (v === 130) reach("at-130");
             if (v === 140) reach("at-140");
           }}
         />
-      </Row>
+      </div>
       <Row>
         <Readout label="B's share above cutoff" value={locked ? "-" : `${pct(sb)} (${r1(ratio(cut))} to 1)`} />
       </Row>
@@ -123,12 +135,13 @@ export default function SmallGapBigExtremes({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            The two curves mostly overlap, sharing about 80% of their area: B is only 5 cm taller. But above 130 cm, B made up{" "}
-            {pct(shareB(130))} of the plants, about {r1(ratio(130))} to 1.
+            The two curves mostly overlap: B is only 5 cm taller. But above 130 cm, B made up {pct(shareB(130))} of the plants,
+            about {r1(ratio(130))} to 1.
           </p>
           <p>
-            Further out, A&apos;s curve falls away faster than B&apos;s, so the ratio keeps growing: above 140 cm it was{" "}
-            {pct(shareB(140))}, about {r1(ratio(140))} to 1.
+            Per 100,000 plants, {fmt(tailA(130) * PER)} of A&apos;s and {fmt(tailB(130) * PER)} of B&apos;s were taller than 130 cm. By
+            140 cm A&apos;s count fell to {fmt(tailA(140) * PER)}, B&apos;s only to {fmt(tailB(140) * PER)}, so B&apos;s share kept
+            growing: {pct(shareB(140))}, about {r1(ratio(140))} to 1.
             {cut < 130 && ` At your cutoff of ${cut} cm it is ${pct(shareB(cut))}.`}
           </p>
           <p>A small gap between averages says little about the middle and a lot about the extremes.</p>

@@ -29,3 +29,33 @@ Not run: next build, QA, walkthrough (per task). tsc and check pass.
 - The pass 35 wording fix (above) is unchanged; pass 36 has already re-checked it. This entry only re-runs the checks that timed out before. Dev server :3631 (worktree fixes-1, HEAD 57cea14), warmed before the runs.
 - reveal-fit (tool clean, 390x844): verdict fit, crop 0 px, hiddenBelow 0 px, namedHidden 0, phoneFit true, undefined words measured (verdict line included; reveal at most 90).
 - QA contract (tests/qa/contract.spec.ts, QA_ONLY on the 7 FC35-fix lessons): phone and desktop both pass (14/14 across the 7). This was a dev-server run, not a production build.
+
+## v3 · 2026-10-16 · demo-builder (Wave J revisions, mailbox 20261016T152552171Z-principal-pm-verticals-57f8213a item 2; W-1318 small-gap half)
+
+Worktree s3c-wjrev6, branch wj-rev-r6, from d37f621. Finding: `2026-10-16-learner-adult-beginner-r1.md` (revise). Spec: cm-probability r5 A3 (`company/ops/dispatch-requests/2026-10-16-r5-probability.md`). Status `review` -> `draft`, version 3. Kept from evaluators until they report.
+
+| Item | What was done | Result |
+|---|---|---|
+| (a) overlap "80%" beside the answer | Dropped the figure: sentence 1 is now "The two curves mostly overlap: B is only 5 cm taller." c3's text drops "sharing about 80% of their area"; its source keeps 2Q(0.25) = 80.26% as support for "mostly overlap". | fixed (dropped) |
+| (b) gate on 130 cm | The at-130 milestone now fires only when the learner lets go of the slider at 130 (pointer up, touch end or key up on the range input), not when a drag sweeps through 130. Probe on the production build: drag 120 -> 140 without stopping: value 140, reveal button **disabled**; then tap at 130: reveal **enabled**. The keyboard QA path (two arrow presses, key up at 130 and 140) still unlocks. The predict question, options and answer ("About 80%") are unchanged, so the gate does not move the answer. | fixed |
+| (c) "A's curve falls away faster" | Replaced by the numbers the stage's count line shows: "Per 100,000 plants, 135 of A's and 621 of B's were taller than 130 cm. By 140 cm A's count fell to 3, B's only to 23, so B's share kept growing: 88%, about 7.3 to 1." Recorded as new claim c5 (derivation, unverified). Node on model.ts: 134.99 / 620.97 above 130; 3.17 / 23.26 above 140; fold A 42.62, fold B 26.69. | fixed |
+
+Claims: c1, c2 reset (their numbers now sit in new reveal sentences; numbers unchanged), c3 reset (text changed), c5 new; all unverified. c4 unchanged, verified. Not done: a labelled "82%" next to the 130 tick on the share bar. At 120/130/140 the tick labels would collide (19-23 px apart), and the reveal now quotes the 130 counts that the count line showed when the learner stopped at 130.
+
+### Stage word budget (v3, decision 2026-10-16, Ruling 2: a unit after a number counts 0)
+
+Counted from the rendered DOM on the QA path. Stage text unchanged from v2. Busiest frame (any explore frame after the prediction, the reveal included) = **24**: message "Slide the cutoff. Shaded: plants taller than it." 8, mean labels "A: / B:" 2, "cutoff" 1, count line "Taller than ... per ... A ... B" 5, bar "B / A" 2, readout "B's share above cutoff" 4 + value "(4.6 to 1)" 1 ("to"), slider "Cutoff" 1; "cm" after a number 0; ticks 0. Locked frame: 13 (17 raw minus 4 "cm"). No stimulus.
+
+### Reveal-fit (production build)
+
+Same run as calibrated v3 (own build `.next-r6`, port 4163, 2026-10-16T15:38:38Z, tool commit 79c22aa, clean):
+
+```
+small-gap-big-extremes fit crop 0 phoneFit true hiddenBelow 0 namedHidden 0 words 85 lines 10 stage 335 {"picture":184,"table":0,"controls":50,"text":60} thumb false
+```
+
+Named values 100, 140, 130 visible. Rendered reveal (QA path, ends at 140): "The two curves mostly overlap: B is only 5 cm taller. But above 130 cm, B made up 82% of the plants, about 4.6 to 1. Per 100,000 plants, 135 of A's and 621 of B's were taller than 130 cm. By 140 cm A's count fell to 3, B's only to 23, so B's share kept growing: 88%, about 7.3 to 1. A small gap between averages says little about the middle and a lot about the extremes."
+
+### Local contract QA (v3)
+
+Same run as calibrated v3: 12 passed across the six slugs (phone and desktop). Not a QA record.
