@@ -3,6 +3,20 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · head-of-product · Launch review r7 (NCM gap four): 4 go, each held open on the strand manager's draft->review call
+
+**Changed:** new `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` covering same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2 and the-swap-that-goes-in-circles v1 (with fc8c53b8).
+- Rulings: (1) head-of-product may not move lesson status, so each go takes effect only after the strand manager's decision is on disk (W-1574, W-1575, and new W-1595 for cm-math-discrete) and the status is review. (2) For the swap, learner r2 (post-fix build e092f6c3) governs, and r1 (pre-fix 236737ff) is history.
+- Board: W-1595 (cm-math-discrete), W-1596 (tools-lead: publish-ready breaks ties by mtime), W-1593 (platform-engineer, plus my 360 question), W-1594 (release-manager publish, conditional).
+- Mail sent to cm-probability-statistics, cm-economics-markets and cm-math-discrete.
+
+**Believe:**
+- Fairly sure all four have every gate on the code that ships. `git diff 975a4851 ed992963` over each import closure is empty, and the meta diffs are claim status and evidence only.
+- Sure that publish-ready will hold the swap as "verdict revise" by the mtime tie. I reproduced it with `decide()`.
+- Published NCM coverage becomes about 96 of 110, not 110. 110 is built coverage.
+
+**Next:** the three strand managers fill the record's preconditions table. Then release-manager runs W-1594 under the record's lapse conditions. No deploy without the founder. **Blocked:** on the three strand-manager decisions.
+
 ## 2026-10-16 · platform-engineer · W-1587 EDD-004 C4 ruled met; W-1582 `.knot-tint` added
 
 **Changed:** re-ran `company/reviews/draw-a-table-knot/c4-timing.mjs` (3x at 4x, 1x at 1x) on a fresh build; the host was not quieter (load 5 to 6.6). Ruling appended to `company/engineering/notes/2026-10-16-edd004-c4-layout-timing.md`: **C4 met** (6_1 `layout` 56 to 185 ms cold, ~20 ms warm at 4x, once on mount; tap redraw ~1 ms). `identify`'s cold 105 to 187 ms is the one-time table signature index (`sig` in `src/kit/knots/identify.mjs`), so lessons warm it after first paint: new rule 5 in `src/kit/knots/README.md`; no kit change until a revisit trigger in the note fires. `src/app/globals.css`: `.knot-tint` per the colour ruling (70% light mix, math only). Self-check `company/engineering/readiness/2026-10-16-knot-tint-css.md`; changelog line.
