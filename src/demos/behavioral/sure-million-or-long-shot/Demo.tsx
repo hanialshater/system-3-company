@@ -24,7 +24,7 @@ type Amount = "5M" | "1M" | "0";
 
 // The one held type (d) sentence (claim c6, mixed branches only). It is unverified: if the fact-checker
 // cannot open the source, set this to false (the brief's fallback: the sentence is cut, the rest stands).
-const HELD_LINE = true;
+const HELD_LINE = false; // W-1244, rule 6: cut until the fact-checker opens an item-level source
 
 const MILESTONES = ["pair1", "pair2", "shared"] as const;
 

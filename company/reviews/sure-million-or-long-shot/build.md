@@ -4,6 +4,21 @@ builder: demo-builder (builder-beh) · 2026-10-16 · brief: `company/domains/bri
 
 *Kept from evaluators until they have written their findings (demo-standard: artifact before account).*
 
+## Revision build (2026-10-16, B3, W-1244)
+
+builder: demo-builder (B3 of `company/ops/dispatch-requests/2026-10-16-r3-behavioral.md`) · brief §1 "Decision ... W-1244" and rule 6
+
+What changed:
+- `Demo.tsx`: `HELD_LINE = false`. The held c6 sentence is cut; both mixed branches now read the script's fallback text (1A+2B 75 words, 1B+2A 80 words, "Leaning away from the sure thing is the reverse of the certainty effect."). Matched branches unchanged (they never carried the line).
+- `meta.json`: c6 stays, `unverified`, with a builder line at the head of its note saying it renders nowhere. No other claim touched.
+
+Checked:
+- Check script: `node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs` → `all checks pass`, exit 0.
+- Build: `NEXT_DIST_DIR=.next-beh12 NODE_OPTIONS=--max-old-space-size=3072 npx next build` → exit 0 (tsconfig.json edit by next reverted); `npm run typecheck` → exit 0.
+- QA: `QA_BASE_URL=http://localhost:4101 QA_ONLY=sure-million-or-long-shot,same-week-a-year-apart npx playwright test --workers=2` → contract passes for both lessons on phone and desktop; `feed.spec.ts` "subject chips filter the feed" fails only under QA_ONLY (its allowed set is filtered to the two slugs while the feed shows the whole domain); the feed spec unfiltered → 10 passed.
+- Every reveal branch on screen: a scratch Playwright driver (390x844) drove all four branches of both lessons on the 4101 build and compared the reveal body (after the kit's verdict line) with the script's fallback text → 8/8 MATCH.
+- `node tools/reveal-fit.mjs --url http://localhost:4101 sure-million-or-long-shot same-week-a-year-apart` → fit 2, pass 2.
+
 ## What was built
 - Four gamble cards in two pairs; each card is a choice button holding a 10 x 10 cell grid and a legend (12 px). Cell order is the same in every card: the 89 shared cells first, then the 11 that differ, so the shared block sits in the same place in all four. 1A has no internal divider before the toggle (designer's constraint).
 - Controls in DOM order: 1A, 1B (milestone `pair1`), 2A, 2B (`pair2`), toggle "Take away the shared 89%" (`shared`). `minInteractions` 3. The toggle greys the 89 shared cells and strikes the 89% legend line in all four cards; what is left reads 11% $1M against 10% $5M + 1% $0 in both pairs.
