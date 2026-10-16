@@ -24,7 +24,7 @@ type Pick = "take" | "wait";
 
 // The one held type (d) sentence L (claim c6), in every branch. It is unverified: if the fact-checker cannot
 // open the source, set this to false (ruling 4: L is cut, nothing replaces it, the lesson still names present bias).
-const HELD_LINE = true;
+const HELD_LINE = false; // W-1244, rule 6: cut until the fact-checker opens a source for it
 
 const MILESTONES = ["far", "slide", "near"] as const;
 const STOPS = [52, 13, 0]; // index = closeness; ArrowRight moves toward today
@@ -53,7 +53,7 @@ const OPEN: Record<string, string> = {
   "take-take": "Both a year out and today you took the $100.",
 };
 const SAME =
-  "One steady rate fits both of your choices. Switching to the $100 today would fit only a model that gives today extra weight, called present bias.";
+  "One steady rate fits both of your choices. Waiting, then taking the $100 today, would fit only a model that gives today extra weight, called present bias.";
 const VERDICT: Record<string, string> = {
   "wait-wait": SAME,
   "take-take": SAME,
@@ -137,7 +137,9 @@ export default function SameWeekAYearApart({ slug }: { slug: string }) {
                   viewBox="0 0 320 106"
                   className="stage-svg"
                   role="img"
-                  aria-label={`Timeline from today to week ${END}. The pair: $100 at ${weekLabel(t)}, $110 one week later.`}
+                  aria-label={`Timeline from today to week ${END}. ${
+                    t === 0 ? "The pair: $100 today, $110 in a week." : `The pair: $100 at week ${t}, $110 one week later.`
+                  }`}
                 >
                   {/* gap bracket: drawn the same at every stop */}
                   <path
