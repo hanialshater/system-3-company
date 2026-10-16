@@ -867,6 +867,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "divide-six-by-zero": () => import("./math/divide-six-by-zero/Demo"),
   "domino-chain": () => import("./math/domino-chain/Demo"),
   "double-the-size": () => import("./math/double-the-size/Demo"),
+  "draw-a-table-knot": () => import("./math/draw-a-table-knot/Demo"),
   "enemies-allow-three-camps": () => import("./math/enemies-allow-three-camps/Demo"),
   "enemy-of-my-enemy": () => import("./math/enemy-of-my-enemy/Demo"),
   "euclid-square-cutting": () => import("./math/euclid-square-cutting/Demo"),
