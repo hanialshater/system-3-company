@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-16: tools-lead r3 B1 G5, `test:dispatch` in `npm run verify` (W-1266 G5; separate commit, awaiting principal-engineer-ops)
+- `package.json` `verify` runs `npm run test:dispatch` after `test:platform` (+35 to 40 s at load ~11; CI unchanged, it does not call verify). Tier 2: company/engineering/readiness/2026-10-16-g5-test-dispatch-in-verify.md. Merge only after PE-ops approves; drop this commit to keep M1/M2 alone.
+
 ## 2026-10-16: tools-lead r3 B1 guard follow-ups M1 and M2 (W-1266, W-529; batch 2026-10-16-r3-tools.md#B1)
 - M1 `tools/git-hooks/pre-commit`, `tools/commit-own.sh`: during a merge the refusal names only `tools/commit-own.sh` and "wait for the owner of the listed paths" (git refuses `git commit -- <path>` mid-merge). M2 `.claude/hooks/no-pkill.mjs`: refuses port kills (`kill $(lsof …)`, `kill $(fuser …)`, `fuser -k`, `lsof … | xargs kill`) and names `tools/serve.sh stop <port>`; `kill <pid>`, `lsof -i:<port>`, `fuser <port>/tcp` pass. Tests: guards.test.mjs +4 (`npm run test:dispatch` 65/65). Tier-2 delta, awaiting principal-engineer-ops: addendum in company/engineering/readiness/2026-10-16-commit-and-process-guards.md.
 
