@@ -178,3 +178,71 @@ New, not gating:
 Objections that travel with it:
 - *Mine: is accepting the `tee | sh` miss lax?* No. The guard is meant to stop accidents, and it is not a sandbox. Nobody types that pipeline by accident, and chasing every hop would rebuild a shell parser. That is the astronautics I am supposed to prevent.
 - *Mine: does the spool add a ritual (the fold) that will be skipped?* It might. The cost of skipping it is a log that lags, not a missed cap, because the in-flight readers read the spool. `company status` should show unfolded spool lines, as the ruling says, but status lives in tools/company.mjs (protected) and the branch does not change it. metrics and dispatch-check show it today.
+
+## Addendum 2026-10-16: M1 and M2 on the live guards (r3 B1, W-1266, W-529)
+
+Reviewed: branch tools-guardfix, commit f0651da in /home/user/s3c-tg1, against its branch point dc2aca4. Files: tools/git-hooks/pre-commit, tools/commit-own.sh, .claude/hooks/no-pkill.mjs, tests/dispatch/guards.test.mjs. I only read the branch. Every probe ran on `git archive` copies of f0651da and dc2aca4 in my scratchpad. G5 (e692f83, package.json) is not part of this check. It belongs to PE-ops.
+Tests: `node --test tests/dispatch/guards.test.mjs` on the f0651da copy gave **24 pass, 0 fail** (19 s wall, load average 16).
+
+**Tier.** tools-lead filed this as tier 2, not the tier 1 the batch asked for. **I agree.** In readiness/paths.json the rule `.claude/hooks/**` is tier 2 ("hooks every agent runs"), and the approval's revoke clause sends any edit to a live guard back to PE-ops. This addendum is the engineering review. The readiness approval is PE-ops'.
+
+### 1. M1: confirmed
+- pre-commit `refuse()` now takes `merging`. During a merge the hint names only `tools/commit-own.sh` and "wait for the owner of the listed paths". It no longer offers `git commit -m … -- <path>`, which git refuses mid-merge. Outside a merge the text is unchanged.
+- Only rules 2 and 3 can fire during a merge. Rule 4 is gated on `!merging`, and the `merging` flag reaches the only refusal that can run.
+- The merge refusal in commit-own.sh gains the owner-wait line, and its merge branch never prints the `git commit -m` alternative.
+- Both directions are tested against a real conflicted merge: the merge hint, and the unchanged non-merge hint.
+- No exit code and no rule changed. This is wording only.
+
+### 2. M2: confirmed. This is the W-529 answer: refuse, and name `tools/serve.sh stop <port>`
+- Refused, with `PORT_HINT`:
+  - `kill [-sig]` fed by `$(lsof|fuser …)` or backticks. This uses the same token test as the pgrep check that I accepted in the N1 addendum.
+  - `fuser` with `k` in any short-flag cluster, or with `--kill`.
+  - `lsof|fuser|ss|netstat … | xargs kill`. This was already refused as a pattern kill. Only the message changed.
+- I ran 17 must-refuse forms through the new `verdict()`, and **all 17 were refused**. Every hint named serve.sh stop. The forms beyond the tests:
+  - `kill -s KILL $(lsof …)`
+  - `/usr/bin/lsof`
+  - `sudo` and `timeout` wrappers
+  - `bash -c '…'`
+  - `kill "$(lsof …)"`
+  - `$( lsof … )` with spaces
+  - backticks after `;`
+  - `xargs -I{} kill {}`
+  - `fuser -ki`
+  - `fuser -k -n tcp`
+  - `cat <<EOF | sh` with a `fuser -k` body
+- Allowed forms, **all 25 pass**:
+  - `kill 1234`, `kill -0`, `kill -TERM a b`, `kill $(cat .serve/<port>.pid)`
+  - `lsof -i:<port>`, `lsof -t -i:<port>`, `lsof … | head -1`, `lsof -p`
+  - `fuser <port>/tcp`, `fuser -v`, `fuser -n tcp`, and `fuser -SIGTERM` without `-k`, which kills nothing
+  - `ss -ltnp | grep`
+  - `tools/serve.sh stop 3591`
+  - `PID=$(lsof …); echo $PID`
+- Misses, accepted in the same class as the N1 addendum (the pid travels through a variable, a loop or a program):
+  - `P=$(lsof -t -i:3000); kill $P`
+  - `for p in $(lsof …); do kill $p; done`
+  - `lsof … | while read p; do kill $p; done`
+  - `npx kill-port 3000`
+  - `ss -K dport = :3000`
+  - The record names the first two and kill-port, but not `ss -K` or the `while read` loop. I accept these too. A guard against accidents is not a sandbox.
+- `lsof … | sort | xargs kill` is still refused, but as a pattern kill, because the source check follows only one pipe hop. The hint still names serve.sh stop. This is a fine outcome.
+
+### 3. False-refusal risk on ordinary commands: no new false refusals found
+- **Corpus diff.** I ran every backtick code span in the repo's markdown and .claude/commands (12,375 unique strings, mostly prose, which over-tests) through the old (dc2aca4) and new (f0651da) `verdict()`. **7 verdicts changed, all of them toward refusal, and all 7 are intended port-kill forms** (`fuser -k <port>/tcp`, `kill $(lsof -t -i:<port>)`, `kill -9 $(lsof …)` and the like). No string went from refused to passed. Nothing threw.
+- **Heredocs and quoted mentions:**
+  - These pass:
+    - A `cat <<'EOF' > notes.md` body that holds all three port-kill forms.
+    - An unquoted-delimiter body that mentions `fuser -k`.
+    - `git commit -m "… kill $(lsof …) … fuser -k …"`, in both single and double quotes.
+    - `echo fuser -k`, `rg 'fuser -k'`, `git log --grep="fuser -k"`, and `node -e "…kill $(lsof…)…"`.
+    - `echo "$(lsof -t -i:3591)"`. A substitution inside double quotes is a lookup, not a kill.
+  - The N1 heredoc handling carries the new checks unchanged. They sit in `checkSimple`, after tokenising, so they inherit the rule that heredoc bodies are data.
+- **One theoretical false refusal:** `kill -0 $(lsof -t -i:<port>)`, a liveness probe. It is refused, but nobody needs it, because `lsof -t` already answers the question. Not a finding.
+- **Cost.** I timed 30 hook runs per version, interleaved, at load average 16: old 149 ms, new 128 ms. That is noise. I see no measurable change.
+
+### Decision (addendum)
+- **M1 and M2 pass the code check, with no findings that gate.** f0651da may merge once PE-ops gives readiness approval under the revoke clause (tier 2).
+- The answer for W-529 is on record: port kills are refused and pointed at `tools/serve.sh stop <port>`. Lookups pass.
+- Not gating: the record's accepted-miss list could add `ss -K` and `… | while read p; do kill $p; done`. Owner: tools-lead, at the next edit of that record. No new item is needed.
+
+Objection that travels with it:
+- *Mine: should `kill -0 $(lsof …)` be carved out?* No. It would be a special case for a probe that has a better form, and every carve-out is a parser branch someone has to keep.
