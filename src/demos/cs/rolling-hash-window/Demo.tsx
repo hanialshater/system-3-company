@@ -6,6 +6,9 @@
 // v3: the text starts FEBCD (no flag), so the first action is a slide; the false flag EBCDA is window 2. The four
 // letters both windows share are bracketed "kept" on a slide, so "only the ends change" is on the stage. The
 // letter counter is hidden until the prediction is locked, and "Slide to end" reports the per-slide cost.
+// v4 (W-1353): the long slide is "Slide to next flag". It stops at the next flagged window that has not been checked
+// (window 2 from the start, then window 9), as a rolling-hash search does; before this it skipped the false flag and the
+// reveal could never unlock.
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -32,7 +35,7 @@ const xOf = (c: number) => TX + c * TW;
 export default function RollingHashWindow({ slug }: { slug: string }) {
   const [i, setI] = useState(0);
   const [checks, setChecks] = useState<Checks>({});
-  const [jump, setJump] = useState(0); // slides taken by the last "Slide to end"
+  const [jump, setJump] = useState(0); // slides taken by the last "Slide to next flag"
 
   const rolling = K + 2 * i;
   const readd = K * (i + 1);
@@ -93,11 +96,14 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
               setI(i + 1);
               if (i + 1 === W - 1) reach("second-flag");
             };
-            const toEnd = () => {
+            // Slide to the next window that is flagged and not yet checked (the last window if none is).
+            const toNextFlag = () => {
               if (locked || atEnd || blocked) return;
-              setJump(W - 1 - i);
-              setI(W - 1);
-              reach("second-flag");
+              let j = i + 1;
+              while (j < W - 1 && !(SUMS[j] === PSUM && !checks[j])) j++;
+              setJump(j - i);
+              setI(j);
+              if (j === W - 1) reach("second-flag");
             };
 
             const msg = locked
@@ -193,8 +199,8 @@ export default function RollingHashWindow({ slug }: { slug: string }) {
                   <Control className={s.btn} disabled={locked || !flagged || !!chk} onClick={check}>
                     Check letters
                   </Control>
-                  <Control className={s.btn} disabled={locked || atEnd || blocked} onClick={toEnd}>
-                    Slide to end
+                  <Control className={s.btn} disabled={locked || atEnd || blocked} onClick={toNextFlag}>
+                    Slide to next flag
                   </Control>
                 </Row>
                 <p className={s.count}>{locked ? "" : `Letters used: sliding ${rolling} · adding each window again ${readd}`}</p>

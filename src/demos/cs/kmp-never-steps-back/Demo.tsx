@@ -8,6 +8,8 @@
 // v5 (r6): each miss in the reuse lane is marked ✗ and the table cell it uses is boxed; the step after it shows the
 // kept A's in a different colour and a caption ties them to the 2. "To next miss" stops on a miss (milestone
 // saw-miss, which a run alone cannot reach), and "Run to end" takes about 300 ms so the QA wait covers it.
+// v6 (W-1352): at the end the third button becomes "Start over" (k back to 0; milestones already reached stay reached),
+// so a learner who ran to the end first can still stop on a miss. Before this, Run to end first was a dead end.
 
 import { useEffect, useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -222,7 +224,7 @@ export default function KmpNeverStepsBack({ slug }: { slug: string }) {
     >
       {({ locked, interact }) => (
         <Milestones interact={interact} names={["saw-miss", "both-done"]}>
-          {(reach) => {
+          {(reach, reached) => {
             const step = (by: number) => {
               const next = Math.min(total, k + by);
               if (next === k) return;
@@ -238,7 +240,9 @@ export default function KmpNeverStepsBack({ slug }: { slug: string }) {
                   <Panel y={0} title="Restart one on" steps={NAIVE} k={k} table={false} />
                   <Panel y={146} title="Reuse the match" steps={KMP} k={k} table />
                 </svg>
-                <p className={s.caption} aria-live="polite">{locked ? "" : caption(k)}</p>
+                <p className={s.caption} aria-live="polite">
+                  {locked ? "" : over && !reached("saw-miss") ? "Start over, then stop on a miss to see what the reuse lane keeps." : caption(k)}
+                </p>
                 <Row>
                   <Control className={s.tap} disabled={locked || over || running} onClick={() => step(1)}>
                     Compare
@@ -246,9 +250,15 @@ export default function KmpNeverStepsBack({ slug }: { slug: string }) {
                   <Control className={s.tap} disabled={locked || over || running || !nextMiss} onClick={() => nextMiss && step(nextMiss - k)}>
                     To next miss
                   </Control>
-                  <Control className={s.tap} disabled={locked || over || running} onClick={() => setRunning(true)}>
-                    Run to end
-                  </Control>
+                  {over ? (
+                    <Control className={s.tap} disabled={locked || running} onClick={() => setK(0)}>
+                      Start over
+                    </Control>
+                  ) : (
+                    <Control className={s.tap} disabled={locked || running} onClick={() => setRunning(true)}>
+                      Run to end
+                    </Control>
+                  )}
                 </Row>
               </div>
             );
