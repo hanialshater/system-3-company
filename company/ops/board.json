@@ -8994,10 +8994,11 @@
       "id": "W-658",
       "title": "cm-cs: wave J cs brief departures to rule on. nearest-town-first-detours: brief says nearest-first is THE longest of 24 orders; it ties with 7 others at 56, reveal says 'tied for the longest' and was shortened to fit 90 words. checking-is-not-finding: added a one-square-per-group grid (hidden until first press). last-survivor: Run stream 2 shows its count at once. See company/reviews/<slug>/build.md",
       "owner": "cm-cs",
-      "state": "next",
+      "state": "done",
       "domain": "cs",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-659",
@@ -13986,10 +13987,16 @@
       "id": "W-1183",
       "title": "Incident 2026-10-16 09:45: /dev/null replaced by a symlink to an agent scratch dir (qa-hist/out), breaking git for every agent until the CoS restored it at 09:47; add a host guard (dispatch-check or a session hook fails if /dev/null is not a char device) and find the command that did it",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "absorbs W-1201: host invariants (/dev/null, disk floor, reserved ports) + COE naming the command; Rhea also rules on a COE for the 13:06 autostash · r5 triage"
+      }
     },
     {
       "id": "W-1184",
@@ -14079,7 +14086,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "quotes only; trademark (F-25) first; purchase is a founder ask · r5 triage"
+      }
     },
     {
       "id": "W-1194",
@@ -14088,7 +14101,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "vp-marketing next batch · r5 triage"
+      }
     },
     {
       "id": "W-1195",
@@ -14126,7 +14145,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "draft first; founder approves later via Leonie · r5 triage"
+      }
     },
     {
       "id": "W-1199",
@@ -14151,10 +14176,15 @@
       "id": "W-1201",
       "title": "W-1183 widened: dispatch-check host invariants (/dev/null char device, disk floor, reserved ports) + COE for the 10-16 09:45Z /dev/null replacement naming the command (retro 2026-10-16 C7)",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1183 (same 09:45 /dev/null incident); scope carried to W-1183 · r5 triage"
+      }
     },
     {
       "id": "W-1202",
@@ -14173,7 +14203,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "probably satisfied: dispatch-requests.md s2 paths, s3.3 refusals, poc-map rule 3; Leonie confirms or names the gap · r5 triage"
+      }
     },
     {
       "id": "W-1204",
@@ -14267,10 +14303,16 @@
       "id": "W-1213",
       "title": "claim.mjs: sure-million-or-long-shot held with owner 'unknown' though built and in review; release or re-own the claim",
       "owner": "cm-behavioral",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "claims/sure-million-or-long-shot.json agent unknown; with W-1338 · r5 triage"
+      }
     },
     {
       "id": "W-1214",
@@ -14288,7 +14330,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lane 10's next First Light privacy run · r5 triage"
+      }
     },
     {
       "id": "W-1216",
@@ -14297,7 +14345,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "ordered by First Light r3 B4 (W-1165) · r5 triage"
+      }
     },
     {
       "id": "W-1217",
@@ -14312,11 +14366,17 @@
     {
       "id": "W-1218",
       "title": "Write company/engineering/data-inventory.md entry for last_sign_in_at as 'last signed-in use, to the day'",
-      "owner": "privacy-reviewer",
+      "owner": "backend-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "author writes the inventory entry, privacy-reviewer checks; go-live · r5 triage"
+      }
     },
     {
       "id": "W-1219",
@@ -14334,25 +14394,42 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "before EDD-009 part 2 code · r5 triage"
+      }
     },
     {
       "id": "W-1221",
       "title": "EDD-009: add conditions M-1..M-4 (tie rule: wrong wins; tests run in verify not CI; build-time env flag; types-only kit import) and the two-part route text (company/engineering/reviews/2026-10-16-edd-009-mastery-review.md)",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "First Light row 14, due 10-29; one run with W-1297, W-1291 · r5 triage"
+      }
     },
     {
       "id": "W-1222",
       "title": "PRD-003/004: exp spacedDays must be the schedule step (1/3/7/21), not Math.round elapsed days (Feed.tsx:257) (EDD-009 review)",
       "owner": "growth-designer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "done under W-1181 by First Light r3 B3 (1c2f243) · r5 triage"
+      }
     },
     {
       "id": "W-1223",
@@ -14361,16 +14438,27 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "ordered by First Light r3 B4 + held beacon-fix run · r5 triage"
+      }
     },
     {
       "id": "W-1224",
       "title": "Confirm EDD-009 §5 (no new field/read); decide whether a founder-approved deploy is an acceptable early stop for the exp kill switch (C8)",
       "owner": "privacy-reviewer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "privacy half done in 350d2db (EDD-009 s5, C8 early-stop half); backend half is W-1295 · r5 triage"
+      }
     },
     {
       "id": "W-1225",
@@ -14379,34 +14467,56 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "after History r4 B2 moves the directory; skip line 63 still present · r5 triage"
+      }
     },
     {
       "id": "W-1226",
       "title": "Rome v5 (ruling R13 (e)): 15 deg per hour on card or aligned recall, stale Middle label, evidence.simulatedLearner; after v4 launch review is chaired",
       "owner": "cm-history",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1208 (same Rome r13 findings, v5 waits on W-1170) · r5 triage"
+      }
     },
     {
       "id": "W-1227",
       "title": "Cultural addenda on History briefs 12, 4, 5, 3 (stage A answers in history.md, a09a726); answer whether 'outsize' in the brief 12 slug is learner-visible",
       "owner": "cultural-reviewer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "done in 6d65dc3 (addenda 12,4,5,3 + slug answer); next cultural step is W-1343 · r5 triage"
+      }
     },
     {
       "id": "W-1228",
       "title": "Life Hacks content patch r2: safety re-look of W3 cord rows + tote-balance-sides (W-1094) before they are final",
       "owner": "lifehacks-safety-reviewer",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "absorbs W-1324; artifact-first on shared server after rebuild >= 0ad1525 · r5 triage"
+      }
     },
     {
       "id": "W-1229",
@@ -14415,7 +14525,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "paper restatement; rides on next lifehacks builder run · r5 triage"
+      }
     },
     {
       "id": "W-1230",
@@ -14430,10 +14546,16 @@
       "id": "W-1231",
       "title": "Repair the event log and ledger after the hook lands: events.mjs backfill 10-15..10-16 (check dispatch-check in-flight count does not gain ghosts), then ledger.mjs import (W-585); needed for PR1 kill rules",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "ledger ends 10-14 15:20Z; W-1230 and PR1 kill rules wait · r5 triage"
+      }
     },
     {
       "id": "W-1232",
@@ -14442,16 +14564,27 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "run with W-1316 · r5 triage"
+      }
     },
     {
       "id": "W-1233",
       "title": "Launch review + publish for the 15 Wave J lessons now in review and gate-clean (e7f2904); release QA records first (SO-10-1); deploy only with founder approval head-of-product",
-      "owner": "chief-of-staff",
+      "owner": "head-of-product",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "absorbs W-1281 (20 candidates, exclude calibrated/cut v2, read newest learner verdict); launch review is lane 5 · r5 triage"
+      }
     },
     {
       "id": "W-1234",
@@ -14480,7 +14613,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lane 18 · r5 triage"
+      }
     },
     {
       "id": "W-1237",
@@ -14508,7 +14647,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "trigger is R2 after accounts merges · r5 triage"
+      }
     },
     {
       "id": "W-1240",
@@ -14545,10 +14690,16 @@
       "id": "W-1243",
       "title": "After lhw3 merges: run company qa-record for the 8 passing W3 lessons so evidence.qa links land",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lhw3 merged; link 8 W3 QA + 8 r14 learner records (absorbs W-1259) · r5 triage"
+      }
     },
     {
       "id": "W-1244",
@@ -14573,11 +14724,17 @@
     {
       "id": "W-1246",
       "title": "PR1 item 5: carry 'release 1.2M of the 1.89M ceiling' and 'pilot-migrated' wording into the register and the forum line (PE revision 617dfdb) portfolio-manager",
-      "owner": "chief-of-staff",
+      "owner": "portfolio-manager",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "in lane 17 r5 B1; lane 18 approves · r5 triage"
+      }
     },
     {
       "id": "W-1247",
@@ -14623,10 +14780,16 @@
       "id": "W-1251",
       "title": "laundry-sort-before-walk needs its own readiness record (PE-ops W3 condition 5)",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "PE-ops W3 condition 5; gates laundry-sort release · r5 triage"
+      }
     },
     {
       "id": "W-1252",
@@ -14699,10 +14862,15 @@
       "id": "W-1259",
       "title": "Link the 8 W3 r14 learner records into each lesson's evidence.simulatedLearner (and the 8 QA records via company qa-record)",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1243; learner-record half carried to W-1243 · r5 triage"
+      }
     },
     {
       "id": "W-1260",
@@ -14721,7 +14889,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "events.jsonl 6 MB of 20 · r5 triage"
+      }
     },
     {
       "id": "W-1262",
@@ -14795,11 +14969,17 @@
     {
       "id": "W-1269",
       "title": "company status: show unfolded spool lines and age (H2 ruling / C5 W-1199) — tools/company.mjs is protected, so this needs an amendment evaluation-steward",
-      "owner": "chief-of-staff",
+      "owner": "evaluation-steward",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 4,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "protected tools/company.mjs: amendment route · r5 triage"
+      }
     },
     {
       "id": "W-1270",
@@ -14913,29 +15093,46 @@
       "id": "W-1281",
       "title": "Launch review for the 20 Wave J launch candidates (15 flipped + 5 r14 launches) once independent QA exists; read the newest learner verdict, not only the gate list (verticals r3 A2, objection b); exclude calibrated-but-unequal-alarms and cut-the-busiest-link head-of-product",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
-      "note": "2026-10-16: 15 Wave J launch candidates have independent QA on bc0edc0 (3d4759e); 5 more running."
+      "note": "2026-10-16: 15 Wave J launch candidates have independent QA on bc0edc0 (3d4759e); 5 more running.",
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1233; 20-lesson scope, exclusions, newest-verdict rule carried to W-1233 · r5 triage"
+      }
     },
     {
       "id": "W-1282",
       "title": "Ledger import each round: events.mjs fold && backfill && ledger.mjs import (tools r3 B3 makes per-project cost measurable; W-1249 ledger half) chief-of-staff",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "per-round ledger import · r5 triage"
+      }
     },
     {
       "id": "W-1283",
       "title": "exp.spacedDays is always 1 as specified (event sent only on first revisit); keep or drop the field under C3 (growth 1c2f243); and register both experiments (W-1214) analytics-steward",
-      "owner": "chief-of-staff",
+      "owner": "analytics-steward",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "decide with W-1214 (registration by 10-31) · r5 triage"
+      }
     },
     {
       "id": "W-1284",
@@ -14960,19 +15157,31 @@
       "id": "W-1286",
       "title": "Fact-check the 42 reset Life Hacks claims from content patch r2 (merged), incl. keep-the-error-feedback c3; before any of the 33 lessons publishes (SO-10-2 trigger d)",
       "owner": "fact-checker",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "FC pass 61 x2 (4f14ab1, 8ce9bf0) appear to cover the 42 resets; steward confirms; residual disputes are W-1234/W-1108 · r5 triage"
+      }
     },
     {
       "id": "W-1287",
       "title": "tests/dispatch/r2-coe.test.mjs reads the real events.jsonl and fails verify for everyone on a new SEV1/2 or a torn line; make it skip bad lines and stop being a hard check (matters once G5 puts test:dispatch in verify)",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "live-log test about to sit in verify (G5); run with W-1302 · r5 triage"
+      }
     },
     {
       "id": "W-1288",
@@ -14987,11 +15196,17 @@
     {
       "id": "W-1289",
       "title": "measure.mjs (A2 pilot R5): a kit major and any unmatched diff select every lesson; print the rule that fired per lesson; (b) includes the per-domain extra lessons (PE G1 re-read 965256f) platform-engineer",
-      "owner": "chief-of-staff",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lane 7 · r5 triage"
+      }
     },
     {
       "id": "W-1290",
@@ -15006,11 +15221,17 @@
     {
       "id": "W-1291",
       "title": "EDD-009: apply pedagogy rulings (company/reviews/_pedagogy/2026-10-16-edd-009-q1-q3.md): replace §3.3 held row, fixtures Q1-a and Q3-a, answer F1 ('Recalled N days later' counts from first play after a wrong) and F2 (a late wrong caps at recalled; changing revisitDue needs an amendment, protected) learner-model-engineer",
-      "owner": "chief-of-staff",
-      "state": "backlog",
+      "owner": "learner-model-engineer",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "same EDD-009 run as W-1221; F2 revisitDue needs amendment = stop-if · r5 triage"
+      }
     },
     {
       "id": "W-1292",
@@ -15019,7 +15240,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "rises to P2 if behavioral claims rest on it; Wen's call · r5 triage"
+      }
     },
     {
       "id": "W-1293",
@@ -15035,10 +15262,16 @@
       "id": "W-1294",
       "title": "A6-1: run the two A-6 log tests on the rebased accounts tip against a real Postgres; attach output to the readiness record (A-1, A-6 stay open until then)",
       "owner": "principal-engineer-ops",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "First Light merge path (A-1, A-6), readiness due 10-27; after A-13 · r5 triage"
+      }
     },
     {
       "id": "W-1295",
@@ -15047,7 +15280,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lane 4 orders it (accounts) · r5 triage"
+      }
     },
     {
       "id": "W-1296",
@@ -15056,25 +15295,43 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lane 4; before challenges build · r5 triage"
+      }
     },
     {
       "id": "W-1297",
       "title": "EDD-009: write privacy S1 (state never written or sent) and S3 (§8 offline check on real account data needs its own privacy read) into the EDD",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "same EDD-009 run as W-1221 · r5 triage"
+      }
     },
     {
       "id": "W-1298",
       "title": "Slot ledger (tools-ledger) r3 B6: answer F1-F9 (company/reviews/org/2026-10-16-slot-ledger-check.md). Before merge: F2/L1, F3/L2, F5, F7 (resolve conflicts with main, keep spool events in slots.inFlight, re-test merge result). Before any enforce date: F1 (hook report labels '<desc> ·<hash>' never release slots), F4, F6, F8 + the hook-report fixture tools-lead",
-      "owner": "chief-of-staff",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "before-merge half done (99de2a4); keep before-enforce F1,F4,F6,F8 + fixture · r5 triage"
+      }
     },
     {
       "id": "W-1299",
@@ -15090,10 +15347,16 @@
       "id": "W-1300",
       "title": "Orphaned from refused Life Hacks r3 B2: tote lever arm 150→188; laundry-sort-before-walk to engine 2 (R2 a-c re-pin); socks-use-shoe hollow label after socks fill — owner to batch (after lh-engine-locked merges)",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lh-engine-locked merged (0ad1525), ready for cm-lifehacks' batch · r5 triage"
+      }
     },
     {
       "id": "W-1301",
@@ -15102,25 +15365,43 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "after second of tools-ledger/tools-buildslot merges · r5 triage"
+      }
     },
     {
       "id": "W-1302",
       "title": "fold-lock.test.mjs 'F1 + F2: two fold loops in parallel' fails 2 of 3 full test:dispatch runs at load 14-18 (passes alone 6/6); make it robust under load or gate it",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "flaky under load, about to sit in verify; run with W-1287 · r5 triage"
+      }
     },
     {
       "id": "W-1303",
       "title": "registry-split.test.mjs 'every meta.json carries an unquoted zero-tolerance internal string' fails on main for 3 new lessons with no fact-checked claim yet (saved-or-die-same-600, zero-loses-to-this-crowd, literacy-split-france): it blocks npm run verify for everyone between build and fact-check; tighten the ratchet or give new drafts a placeholder that is not learner-visible platform-engineer",
-      "owner": "chief-of-staff",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "passes 7/7 now, recurs with each new draft before FC; blocks verify · r5 triage"
+      }
     },
     {
       "id": "W-1304",
@@ -15135,11 +15416,17 @@
     {
       "id": "W-1305",
       "title": "Beacon allow-list (optional, privacy 4b9bc25): bound dwellMs and spacedDays; slug pattern ^[a-z0-9-]+$ for non-exp types; restore the catalog slug check when the first experiment registers; run the post-deploy smoke line backend-engineer",
-      "owner": "chief-of-staff",
+      "owner": "backend-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "optional; rides W-1307 if lane 4 wants · r5 triage"
+      }
     },
     {
       "id": "W-1306",
@@ -15158,7 +15445,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "gates first experiment registration (10-31); lane 4 · r5 triage"
+      }
     },
     {
       "id": "W-1308",
@@ -15167,7 +15460,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "after a founder-approved deploy containing 7e5207f · r5 triage"
+      }
     },
     {
       "id": "W-1309",
@@ -15176,7 +15475,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "at registration, with W-1283 · r5 triage"
+      }
     },
     {
       "id": "W-1310",
@@ -15205,7 +15510,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "absorbs W-1320: lakes-misplaced-east-west, literacy-split-france, lakes SVG child bbox y=1684 · r5 triage"
+      }
     },
     {
       "id": "W-1313",
@@ -15260,28 +15571,45 @@
       "id": "W-1318",
       "title": "Wave J learner r1 revise: head-on-is-a-wall (c4 'doubling the closing speed doubles the total energy' reads as contradicting the 4x wall result; pre-highlighted 50 km/h on the locked stage) and small-gap-big-extremes (two different 80%s in one sentence; reveal unlocks before visiting 130 cm; objective wording); batch revision builds",
       "owner": "principal-pm-verticals",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "Wave J revise; both lessons show Ready to publish with no hold; builder · r5 triage"
+      }
     },
     {
       "id": "W-1319",
       "title": "tools/publish-ready.mjs runs on --help and edits meta.json (8 Life Hacks files rewritten by a reviewer's --help); refuse unknown flags and print usage",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "publish-ready edits meta.json on --help · r5 triage"
+      }
     },
     {
       "id": "W-1320",
       "title": "Locked first frame clips the bottom control row: add lakes-misplaced-east-west and literacy-split-france (and a lakes SVG child bbox at y=1684) to the kit item W-1312",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1312 (lakes + literacy + lakes SVG bbox carried) · r5 triage"
+      }
     },
     {
       "id": "W-1321",
@@ -15297,10 +15625,15 @@
       "id": "W-1322",
       "title": "Launch review for rome-placed-too-far-east v4 (in review; QA, learner r13 launch, FC 53 10/10); v5 waits on the chaired review (W-1170) head-of-product",
       "owner": "chief-of-staff",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1170 (History launch-review five covers Rome v4) · r5 triage"
+      }
     },
     {
       "id": "W-1323",
@@ -15315,19 +15648,30 @@
       "id": "W-1324",
       "title": "Safety re-look W-1094 now also covers the group-cables locked-dots change (separable commit 1b5fa53 on lh-engine-locked): keep or revert; plus the W3 cord rows, tote idea, elastic reveal",
       "owner": "lifehacks-safety-reviewer",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1228; group-cables locked dots (1b5fa53), tote idea, elastic reveal carried · r5 triage"
+      }
     },
     {
       "id": "W-1325",
       "title": "reveal-fit.mjs: measure the reveal with the longer kit verdict ('Not quite: it was …') on every branch, not only 'Your prediction held' (cm-behavioral r4: sure-million branches measured 95/93 > 90) tools-lead",
-      "owner": "chief-of-staff",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "batch with W-1274, W-1331 (same file) · r5 triage"
+      }
     },
     {
       "id": "W-1326",
@@ -15351,10 +15695,11 @@
       "id": "W-1328",
       "title": "Decide cut-the-busiest-link departure (stale-list sentence cut, ask A4): accept narrower lesson or add third-cut step; numbers in company/reviews/cut-the-busiest-link/build.md",
       "owner": "cm-cs",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1329",
@@ -15377,11 +15722,17 @@
     {
       "id": "W-1331",
       "title": "reveal-fit counts a 16px icon with viewBox as the picture once the card marks data-reveal-fit (wj-rev-r3 note)",
-      "owner": "platform-engineer",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "tools/reveal-fit.mjs is lane 9; batch with W-1325 · r5 triage"
+      }
     },
     {
       "id": "W-1332",
@@ -15390,16 +15741,28 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "absorbs W-1336 (selector: newer qa-tester record clears W-1235 rule) · r5 triage"
+      }
     },
     {
       "id": "W-1333",
       "title": "Unsignposted unlock (R4 note): patience-wins-the-split (cm-economics), cluster-stops-the-cascade, head-on-is-a-wall: does an on-screen cue say what unlocks the reveal?",
-      "owner": "cm-economics",
+      "owner": "principal-pm-verticals",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "head-on rides W-1318; Selin confirms whether patience/cluster are Wave J, else cm-economics/cm-math · r5 triage"
+      }
     },
     {
       "id": "W-1335",
@@ -15408,34 +15771,57 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "rises to P2 if lane 10 says blocked-host holds block a launch · r5 triage"
+      }
     },
     {
       "id": "W-1336",
       "title": "SO tag rule: confirm case sensitivity of commit-subject matching (5 catalog-run lessons would be wave-j case-insensitively; 7 wave-j lessons filed under catalog in 2d6b4d5); and let the selector treat a newer qa-tester record as clearing the W-1235 audit rule (it re-prints recorded lessons)",
       "owner": "evaluation-steward",
-      "state": "backlog",
+      "state": "dropped",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "duplicate of W-1332; selector half carried · r5 triage"
+      }
     },
     {
       "id": "W-1337",
       "title": "Main checkout: a session ran 'rebase --autostash' at ~13:06 and left it unfinished, wiping uncommitted work (stash 166ee49 + 13e83c8; two behavioral check files lost: behavioral-beauty-contest-level-k.mjs, behavioral-gain-loss-framing.mjs). Add a pre-rebase guard in tools/git-hooks refusing rebase in the main checkout",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "pre-rebase guard; 13:06 autostash lost work · r5 triage"
+      }
     },
     {
       "id": "W-1338",
       "title": "Recover or redo uncommitted edits to behavioral-beauty-contest-level-k.mjs and behavioral-gain-loss-framing.mjs lost at ~13:06 (check stash 13e83c8 first)",
       "owner": "cm-behavioral",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "redo, not recover: stashes 166ee49/13e83c8 contain no behavioral files · r5 triage"
+      }
     },
     {
       "id": "W-1339",
@@ -15450,19 +15836,31 @@
       "id": "W-1340",
       "title": "lh-engine-locked condition 4: socks-use-shoe-space, shoes-opposite-ends, desk-supply-near-use, tote-balance-sides each draw 1 target mark while locked — does any give the answer away?",
       "owner": "cm-lifehacks",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lh-engine-locked condition 4; gates release of 4 held lessons · r5 triage"
+      }
     },
     {
       "id": "W-1341",
       "title": "lh-engine-locked condition 5: 5-lesson QA re-run of the locked Home stage (now on main 0ad1525; use the shared server after rebuild, then delete /home/user/s3c-eng1/.next-eng1)",
       "owner": "qa-tester",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "lh-engine-locked condition 5; SO-10-1 after server rebuild · r5 triage"
+      }
     },
     {
       "id": "W-1342",
@@ -15471,7 +15869,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 2,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "claimed by History r4 B4 (queued builder) · r5 triage"
+      }
     },
     {
       "id": "W-1343",
@@ -15480,7 +15884,13 @@
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "priority": 3,
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "FC P5 first, per its title · r5 triage"
+      }
     },
     {
       "id": "W-1344",
