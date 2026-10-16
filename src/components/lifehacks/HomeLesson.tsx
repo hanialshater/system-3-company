@@ -28,8 +28,11 @@ function HomeMode({ locked, pressed, onPress, children }: { locked: boolean; pre
 /**
  * v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none.
  * `neutral` (W-1258, engines-v2 spec R2 "Predict (locked)" row): no mode is in effect (locked, or before the first press).
- * The picture keeps A's arrangement but draws no text that states a count, amount or result for either mode, and no
- * highlight that marks what to look at (W-1299). Givens the question states may stay (tests/lifehacks/home-locked.test.mjs).
+ * The picture keeps A's arrangement but draws no text that states a count, amount or result for either mode. Givens the
+ * question states may stay (tests/lifehacks/home-locked.test.mjs). Highlights (W-1299): only group-cables-with-ends'
+ * end dots are un-highlighted while neutral. socks-use-shoe-space, shoes-opposite-ends, desk-supply-near-use and
+ * tote-balance-sides keep one target mark on the named object or a given (the socks, the turned shoe, the tape, the
+ * balance-point dot), ruled harmless in company/ops/dispatch-requests/2026-10-16-r5-lifehacks.md D5 (W-1340).
  */
 type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string; neutral?: boolean };
 function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean; v2?:SceneV2Props }) {
