@@ -209,7 +209,7 @@ guards.test.mjs was the second cause, and not one anyone had named: the host's g
 
 The intermediate row 1 is why r2-coe was changed too. At load 15 its four R2 tests (21.1, 13.8 and 11.6 s) were the long pole once slots and guards were fast. After the stub, r2-coe alone is 2.1 s (slow 7.4 s), slots alone 18.3 s (slow 29.1 s), and guards alone ~14 s summed at load 14.
 
-LOADED-RUNS-PLACEHOLDER
+**The done-when bar is not met yet: no final run was at load 10 or more.** After the final change the host went idle (load1 1.2 to 4). A watcher (scratchpad, read-only apart from running the suite) waited 13:45Z to 14:15Z to run the default suite whenever load1 was 10 or more. Load never got there, so it made 0 runs. I tried to make load with busy-loop processes, as the G5-b re-time above did, and the session's permission system refused it ("interfere with workloads"). So there are no synthetic-load numbers, and none are faked. What the data does support: at load 15 to 11, before the r2-coe change, the suite took 73.6, 44.8 and 32.4 s. The r2-coe change took ~45 s of R2 spawns out of that run-1 long pole. The remaining files run under 20 s each at low load. I expect the final suite to stay under 60 s at load 12, but that is a belief, not a measurement. **Ask (principal-engineer-ops or the CoS): re-time `npm run test:dispatch` three times on tools-r5-b3 (or main once merged) when load1 is 10 to 18, and append the rows here.**
 
 ### The lasting fix (a note, not shipped: tools-lead, next round, tier 1)
 
@@ -218,4 +218,4 @@ The stub fixes the tests, not the tool: every real `dispatch-check` and `company
 ### Believed, not checked
 
 - The stub cannot hide an S/C/R2 difference: the slow cross-checks compare a sample (four S/C cases, two R2 kinds), not every case.
-- Load: see the loaded-runs section. The final low-load runs alone do not meet "load 10 or more".
+- That the final suite is under 60 s at load 10 to 18: inferred from the intermediate loaded runs and the per-file times, not measured (see above).
