@@ -17908,15 +17908,16 @@
       "id": "W-1528",
       "title": "HQ lab labelling (W-1527 DoD D2/D3, company/personalization/lab/2026-10-16-lab-privacy-dod.md F1): add 'simulated' to the fingerprint table caption and curves legend, and 'Simulated persona:' to the persona h2 and select label in src/app/hq/personalization/Personalization.tsx. After W-1519; needs hq-engineer review",
       "owner": "personalization-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
         "company/personalization/batches/2026-10-16-batch-2.md"
       ],
-      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D1 with W-1530 (W-1519 is done). company/personalization/batches/2026-10-16-batch-2.md",
-      "updated": "2026-10-16"
+      "note": "pe-d1-1016 (branch perso-d1): labels in src/app/hq/personalization/Personalization.tsx; DoD D2/D3 updated (company/personalization/lab/2026-10-16-lab-privacy-dod.md). Code review: hq-engineer; D2/D3 read: privacy-reviewer.",
+      "updated": "2026-10-16",
+      "reviewer": "hq-engineer, privacy-reviewer"
     },
     {
       "id": "W-1529",
@@ -17936,7 +17937,7 @@
       "id": "W-1530",
       "title": "HQ lab runSim hardening (company/reviews/hq/2026-10-16-w1503-review.md findings 3 and 5; company/personalization/lab/2026-10-16-lab-privacy-dod.md F3): single in-flight lock per route, cache meta per process keyed on model-folder mtime, minimal child env instead of ...process.env. After W-1519; needs hq-engineer review",
       "owner": "personalization-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -17944,8 +17945,9 @@
         "company/reviews/hq/2026-10-16-w1503-review.md",
         "company/personalization/batches/2026-10-16-batch-2.md"
       ],
-      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D1 with W-1528. company/personalization/batches/2026-10-16-batch-2.md",
-      "updated": "2026-10-16"
+      "note": "pe-d1-1016 (branch perso-d1): src/lib/hq-personalization-server.ts (lock, meta cache, CHILD_ENV), route 429 on busy, test in tests/hq/personalization.test.mjs. Code review: hq-engineer.",
+      "updated": "2026-10-16",
+      "reviewer": "hq-engineer"
     },
     {
       "id": "W-1531",

@@ -196,10 +196,10 @@ function Compare({ meta, persona, days }: { meta: SimMeta; persona: string; days
       <p className={s.unscored} role="note">{UNSCORED_LABEL}</p>
       <p className={s.muted}>{meta.provisional}. No row is better than another until a criterion is committed (W-1496).</p>
       <form className={s.controls} onSubmit={(e) => { e.preventDefault(); run(); }}>
-        <label>Personas
+        <label>Simulated personas
           <select value={scope} onChange={(e) => setScope(e.target.value as "persona" | "all")}>
             <option value="persona">{name(persona)}</option>
-            <option value="all">all six</option>
+            <option value="all">all six simulated personas</option>
           </select>
         </label>
         <label>Seeds
@@ -218,7 +218,7 @@ function Compare({ meta, persona, days }: { meta: SimMeta; persona: string; days
         <div className={s.scroll} tabIndex={0} role="region" aria-label="Policy comparison table">
           <table className={s.table}>
             <caption className={s.cap}>
-              {UNSCORED_LABEL}. {res.personas.length === 1 ? name(res.personas[0]) : `${res.personas.length} personas`} × {res.seeds} seeds, {res.days} days ({(res.ms / 1000).toFixed(1)} s, {res.modelVersion})
+              {UNSCORED_LABEL}. {res.personas.length === 1 ? `simulated persona ${name(res.personas[0])}` : `${res.personas.length} simulated personas`} × {res.seeds} seeds, {res.days} days ({(res.ms / 1000).toFixed(1)} s, {res.modelVersion})
             </caption>
             <thead><tr><th scope="col">policy</th><th scope="col">episodes</th>{cols.map(([k, l]) => <th key={k} scope="col" title={res.columns[k as string]}>{l}</th>)}</tr></thead>
             <tbody>
@@ -243,9 +243,9 @@ function Compare({ meta, persona, days }: { meta: SimMeta; persona: string; days
 function FingerprintTable({ persona, trace, step, meta }: { persona: PersonaView; trace: SimTrace | null; step: NewStep | null; meta: SimMeta }) {
   const sigs = Object.keys(persona.fingerprintMeans);
   return (
-    <div className={s.scroll} tabIndex={0} role="region" aria-label="Fingerprint">
+    <div className={s.scroll} tabIndex={0} role="region" aria-label="Simulated fingerprint">
       <table className={s.table}>
-        <caption className={s.cap}>Fingerprint (what a composer sees; never the latent truth)</caption>
+        <caption className={s.cap}>Simulated fingerprint (what a composer sees; never the latent truth)</caption>
         <thead><tr><th scope="col">signal</th><th scope="col">persona mean</th>{trace && <th scope="col">this run (jittered)</th>}{step && <th scope="col">step {step.step}</th>}<th scope="col">privacy</th></tr></thead>
         <tbody>
           {sigs.map((k) => (
@@ -357,7 +357,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
         <section className={s.panel} aria-labelledby="run-h">
           <h2 id="run-h">Run or load a simulation</h2>
           <form className={s.controls} onSubmit={(e) => { e.preventDefault(); runLive(); }}>
-            <label>Persona
+            <label>Simulated persona
               <select value={personaId} onChange={(e) => setPersonaId(e.target.value)}>
                 {meta.personas.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
               </select>
@@ -400,7 +400,7 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
         </section>
 
         <section className={s.panel} aria-labelledby="persona-h">
-          <h2 id="persona-h">{persona.name}</h2>
+          <h2 id="persona-h">Simulated persona: {persona.name}</h2>
           <p>{persona.description}</p>
           <p className={s.muted}>Why it exists: {persona.why} · source: {persona.source}</p>
           <FingerprintTable persona={persona} trace={trace} step={newStep} meta={meta} />
@@ -419,8 +419,8 @@ export default function Personalization({ meta, error, initial }: { meta: SimMet
             <label><input type="radio" name="at" checked={at === "step"} disabled={!newStep} onChange={() => setAt("step")} /> selected step{newStep ? ` (${newStep.step})` : ""}</label>
           </fieldset>
           <p className={s.muted}>
-            <span className={s.keyPersona} aria-hidden="true" /> persona mean
-            {stepFp && <> · <span className={s.keyStep} aria-hidden="true" /> selected step&apos;s fingerprint</>}
+            <span className={s.keyPersona} aria-hidden="true" /> simulated persona mean
+            {stepFp && <> · <span className={s.keyStep} aria-hidden="true" /> selected step&apos;s simulated fingerprint</>}
             {" "}· contributions shown at: {useStep ? `step ${newStep.step}` : "persona means"} · need = Σ w·curve(x) / Σ w × dampener(historySize)
           </p>
           {damp && (
