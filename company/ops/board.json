@@ -14791,7 +14791,7 @@
       "id": "W-1272",
       "title": "Spool follow-ups (PE 4be84f6): S2 move tools/ops-health.mjs and tools/rituals-due.mjs onto readJsonlFile (they read only events.jsonl and throw on a bad line); S1 re-read each .folding-* file just before deleting it (fold race) tools-lead",
       "owner": "chief-of-staff",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14820,7 +14820,7 @@
       "id": "W-1275",
       "title": "F1 (gates wiring): events.mjs fold takes an exclusive lock and only takes over a *.folding-<pid> file when that pid is dead, + a two-simultaneous-folds no-duplicate test; F2: close the fold race (re-read the renamed file before removing). One diff to tools/events.mjs, back to PE-ops as a diff only (e1c9162) tools-lead",
       "owner": "chief-of-staff",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14839,6 +14839,15 @@
     {
       "id": "W-1277",
       "title": "History r3 B1 (2026-10-16-r3-history.md): hist-b23 meta.json objective 'about 29%' → 28% and drop the c3 discrepancy note; then merge brief 23 as draft (branch updated to main d2b314b) demo-builder",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1278",
+      "title": "F5 (not gating): events.mjs fold and events-spool readSpool crash 'Maximum call stack size exceeded' above ~120k events per spool file (push(...spread) at events.mjs 194/195/218, events-spool.mjs 75); replace spreads with loops + 200k-line test; send commit to PE-ops tools-lead",
       "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
