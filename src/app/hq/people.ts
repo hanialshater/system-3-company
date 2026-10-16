@@ -46,6 +46,9 @@ export const HOME: Record<string, string> = {
   "lifehacks-safety-reviewer": "lifehacks-safety",
   "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
+  "personalization-engineer": "model-lab",
+  "learner-data-engineer": "model-lab",
+  "lesson-dims-owner": "personalization",
   "localization-lead": "international",
 };
 for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas", "history", "behavioral"]) HOME[`cm-${d}`] = `cm-${d}`;

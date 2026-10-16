@@ -10,6 +10,12 @@ who no longer exists: check what you rely on.
 **Believe:** self-check passes, and both new privacy tests fail under a mutation that breaks them (high: ran both mutations in scratch). Strict tsc on the model and sim .ts files is clean, and the HQ CLI `meta` emits the new statuses as plain strings, which the HQ types accept (high). The batch has real inputs today for every wave-1 item, except that B4's `accounts` branch is not in this clone (medium: it must be fetched or drafted on main).
 
 **Next:** chief of staff restarts the session so the six new role types load, then dispatches wave 1 from the batch file. Without a restart, B5 only. Outside lane 14: principal-engineer tier review of W-1498; W-1522/W-1523 consults; hq-engineer W-1519 after W-1524. **Blocked:** no scored comparison until C1 is committed (independence rule); F-19 for anything phase B.
+## 2026-10-16 · hq-engineer · personalization org seated, W-1503 reviewed (run hq-w1524-seats-1016)
+
+**Changed:** no new room or floor (founder rule 2026-10-16-founder-org-and-dispatch-rule.md respected). Re-cut widths in the floor 2 bottom row of src/lib/hq.ts: launch-room 300->140, personalization 150->250 (4 seats: VP, applied scientist, learning scientist, lesson-dims-owner), model-lab 150->250 (4 seats: learner-model-engineer, personalization-engineer, learner-data-engineer, personalization-eval), international 110, locale-desks 178 (both still hold their residents). HOME (people.ts) and ROOM_BY_ROLE (tools/events.mjs) updated. VP stays in the personalization room, as vp-rnd and vp-marketing sit in their own org's room. Review of W-1503 in company/reviews/hq/2026-10-16-w1503-review.md (no blocking issue; one comment fixed in HqTop.tsx; 8 items listed).
+**Verified:** test:hq 67 pass, 3 fail: 47, 53, 54, all `git rev-parse` of an old commit in a shallow clone (git rev-parse --is-shallow-repository = true); tests 18 and 19 pass. typecheck and check pass. Not viewed in a browser: room labels at the new widths are unchecked by eye.
+**Believe:** seats are right (high); the 47/53/54 failures are the shallow clone, not code (high, unproven until run in a full clone).
+**Next:** hq-engineer: dedupe the HQ tab list, look at floor 2 in a browser; owners of W-1503 follow the review (concurrency cap). Blocked: nothing.
 
 ## 2026-10-16 · chief-of-staff-ceo-office (Leonie) · personalization org generated (run leonie-gen-perso-1016)
 
