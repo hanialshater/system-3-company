@@ -34,3 +34,35 @@ Computer-use QA contract, `QA_BASE_URL=http://localhost:4041 QA_ONLY=schooling-a
 `npm run check` and `npm run typecheck` pass.
 
 Open for others: fact-check of c1-c7 (c7's "depend on policing as well as crime" is the reviewer's wording with no opened source; the fact-checker decides whether it needs one), an adult-beginner learner review (artifact first), release QA.
+
+## v2 (r4 B4): Stage over budget: 30 words. Not built (demo-builder, 2026-10-16)
+
+Batch `company/ops/dispatch-requests/2026-10-16-r4-history.md#B4`, branch `hist-r4-b4` (worktree `/home/user/s3c-h4`). Spec: `company/domains/briefs/history.md` section 24 (v2) and ruling r15 in `company/reviews/history-round-1-cm-rulings.md`. I counted before building, as the decision says (`company/decisions/2026-10-16-stage-word-budget-counting.md`, points 1-3 and Ruling 2). **Stage control labels count** (point 3), and the four preset buttons are inside `data-testid="stage"`. **The v2 spec cannot be built at 25 or fewer stage words**, so I did not build it. Nothing in Demo.tsx or meta.json changed: status is still draft, version 1, and no claim was reset. The brief does not declare any stimulus, so the ceiling is 25.
+
+How I counted: a token counts if it contains a letter; numbers count 0. Script: `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/sc/count.mjs` (session scratch, not kept). "Brief" means text the brief gives word for word, which a builder may not trim. "Own" means my words.
+
+The busiest frame is "All 86 departments" (the scatter) during explore:
+
+| Stage text | Whose | Words |
+|---|---|---|
+| y title "Property crimes per 100,000" (my shortest, down from v1's 7) | own | 3 |
+| x title "% who could read" (my shortest, down from v1's 5) | own | 3 |
+| key "least literate quarter" / "middle" / "most literate quarter" | brief | 7 |
+| "Department 75: 73.1 per 100,000" | brief | 2 |
+| r line, shortest form the brief allows (a description plus the scale): "loose (r = 0.37; 0 none, 1 perfect)" | brief | 4 |
+| presets "Least literate quarter" / "Most literate quarter" / "Crimes against persons" / "All 86 departments" | brief | 11 |
+| **total** | brief 24, own 6 | **30** |
+
+- With the r line as the brief writes it ("a loose upward drift (r = 0.37; 0 is none, 1 a perfect line)", 10) and v1's own titles, the scatter is **42**.
+- Bars view, as specced: **36**. With my words cut to the minimum it is **25**: title "Crimes per 100,000", panel heads dropped, legend "property" / "persons". That is at the limit with no margin.
+- **v1 is already over** under this rule: bars 28, scatter 24. v1's count left out the preset labels.
+- The brief's text alone is 24 on the scatter. That leaves 1 word for both axis titles, and I cannot reach 25 without removing an axis title a beginner needs. This is the "still over" case. Who decides what goes: cm-history decides which brief text is cut, and learning-designer re-lays out if cutting is not enough.
+
+Possible cuts for cm-history. These are suggestions; the choice is cm-history's:
+1. Merge the "Crimes against persons" preset into the two quarter presets, so each quarter shows its property and persons bars together (milestones `lo`, `hi`). Saves 3, and the gate stays on the bars the reveal quotes.
+2. Key on one line: "least / middle / most literate quarter", each word next to its dot. Saves 2. This is brief text, so it needs cm-history.
+3. With 1 and 2, the scatter is 25 with my minimum titles. If cm-history also takes the shortest r line, there is no margin for anything else.
+
+Nothing else in v2 is blocked by the count. The hook, title, question gloss, reveal and c4 wording are kit text outside the stage. I held them anyway, so that the lesson moves to v2 in one build and one set of claim resets, and evaluators re-check it once. If cm-history wants the W-1317 wording shipped first (wording only), that fits in the same branch.
+
+Check script: `node company/domains/briefs/checks/history-cycle2-check.mjs 24` prints "all checks pass" (outlier, dot key and r-in-words lines included). Note: the script reads only `process.argv[2]`, so `… 23 24` runs only section 23.
