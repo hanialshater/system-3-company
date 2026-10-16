@@ -98,5 +98,5 @@ for (const p of PERSONAS) {
   console.log(p.id.padEnd(24) + r(ex[0].dampener).padEnd(6) + ex.map((e) => r(e.score).padEnd(8)).join("") +
     (top.score > 0 ? `${top.need} (${term.signal}=${r(term.x)} -> ${r(term.y)})` : "none (default order)"));
 }
-console.log(fails.length ? `\nFAIL (${fails.length}):\n- ${fails.join("\n- ")}` : "\nOK: invariants, boundaries, determinism, fingerprintFrom, privacy P1/P2/N6");
+console.log(fails.length ? `\nFAIL (${fails.length}):\n- ${fails.join("\n- ")}\nowner: learner-model-engineer (escalate: vp-personalization) · read: company/personalization/model/README.md` : "\nOK: invariants, boundaries, determinism, fingerprintFrom, privacy P1/P2/N6");
 process.exit(fails.length ? 1 : 0);

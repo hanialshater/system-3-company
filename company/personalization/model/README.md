@@ -8,7 +8,7 @@ Offline only. Nothing here is served to a learner, and **nothing in `src/` may i
 |---|---|---|
 | `model.ts` | Fingerprint signals (with privacy status), needs and their shape curves, cold-start dampener, `pwl()`, `detect()`, `explainNeeds()`, `fingerprintFrom()`, composer weights, constraints and the engagement floor, the objective, the policy list, `checkModel()`, `inspect()` | serving code (later), the simulator, an inspection page |
 | `personas.ts` | 6 simulation personas: name, description, fingerprint means, latent ground truth | **the simulator and inspection only; never serving code** |
-| `self-check.mjs` | Runs invariants and boundaries, prints need scores per persona | anyone: `node company/personalization/model/self-check.mjs` |
+| `self-check.mjs` | Runs invariants and boundaries, prints need scores per persona | anyone: `node company/personalization/model/self-check.mjs`; runs automatically in `npm run check` via `npm run test:personalization` (W-1537) |
 
 Plain TypeScript, erasable syntax only, no dependencies: Node 22.18 or later runs the `.ts` files directly.
 
