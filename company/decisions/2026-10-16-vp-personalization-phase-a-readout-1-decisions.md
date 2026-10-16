@@ -126,3 +126,13 @@ Not asked, because it does not change: badges and points still wait for phase C'
 | learning-scientist-personalization (C2 F2) | learnRate 0.70 is unsourced; Fazio gives about 0.34 | **Accepted.** The readout ran 0.35 as a pass cell; the GAM and the draft rules gain nothing there (§1). The base for criterion 2 is learning-scientist-personalization's to source |
 | founder's brief (§1, his words) | He asked for GAM curves tuned from data, surprise, novelty and engagement | **Not overridden.** The parts this readout bears on go to him as questions Q1 to Q4 (§6). I decided only what my pre-registered rules already decided |
 | my own pre-freeze record (§1 bars) | "No phase B on the GAM as it stands, and no curve tuned to win a cell back" | **Kept** (§4) |
+
+## Founder answers to Q1–Q5 (2026-10-16)
+
+> "Ok approved"  (founder, conversation, answering the chief of staff's summary of Q1–Q5 with Mateo's recommendation "1 yes, 2 off, 3 approve, 4 yes, 5 ship off")
+
+- **Q1 Stop the GAM recommender for now:** yes. No GAM curves live, no live test; default order for everyone; code, simulator and HQ lab stay.
+- **Q2 Surprise and novelty:** off. No learner-chosen mode for now.
+- **Q3 Headroom-first offline study (criterion 2):** approved. Pre-registered commitments in §Options C hold (readout 1 stays the record; no re-tuning; oracle below δ_min for 4 of 6 closes personalised ordering for recall; oracle passes and GAM fails closes the GAM; a pass is not a phase B).
+- **Q4 Aim at review timing:** yes, as the second candidate in the criterion 2 study.
+- **Q5 First Light rule-based personalization:** ship off. Release 1 ships the off switch and settings, serves the default order; the rule set stays off until a study supports it. Routed to head-of-strategic-initiatives for the First Light scope record.
