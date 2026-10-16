@@ -423,12 +423,13 @@
     },
     {
       "id": "F-31",
-      "title": "Allow a tools-lead hook on the Agent tool in .claude/settings.json that writes dispatch/report events (retro D-3, C1)",
+      "title": "Allow tools-lead hooks in .claude/settings.json: agent-events (PreToolUse, PostToolUse and SubagentStop on Agent, writes dispatch/report events) and, when B3 lands, the no-pkill guard (retro D-3, C1/C6)",
       "category": "decision",
       "priority": 2,
       "recommendation": "yes: config change only, adds a record, no capability",
       "links": [
-        "company/rituals/records/2026-10-16-retro-delegation.md"
+        "company/rituals/records/2026-10-16-retro-delegation.md",
+        "company/engineering/readiness/2026-10-16-agent-events-hook.md (branch tools-events, after PE-ops approval)"
       ],
       "status": "open"
     },
