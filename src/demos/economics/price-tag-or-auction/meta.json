@@ -32,11 +32,8 @@
       "id": "economics.price-tag-or-auction.c1",
       "text": "With n bidders whose values are random and evenly spread from $0 to $100, the best price tag sells when any bidder values the item at the tag or more; it is $50.00, $57.74, $63.00 and $66.87 for 1 to 4 bidders and earns $25.00, $38.49, $47.25 and $53.50 on average.",
       "support": "derivation",
-      "source": "Revenue of a tag p (as a share of $100) is p(1 - p^n), maximised at p = (1/(n + 1))^(1/n). tagPrice() rounds to the cent, tagRevenue() in src/demos/economics/price-tag-or-auction/model.ts; builder's node run: 50, 57.74, 63, 66.87 and 25.00, 38.49, 47.247, 53.499. Brief check J12 (node company/courses/ncm/checks/rejudged-four.mjs) gives the same to one decimal (38.5, 47.2, 53.5). Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/price-tag-or-auction/2026-10-16-fact-check.md under c1."
+      "source": "Revenue of a tag p (as a share of $100) is p(1 - p^n), maximised at p = (1/(n + 1))^(1/n). tagPrice() rounds to the cent, tagRevenue() in src/demos/economics/price-tag-or-auction/model.ts; builder's node run: 50, 57.74, 63, 66.87 and 25.00, 38.49, 47.247, 53.499. Brief check J12 (node company/courses/ncm/checks/rejudged-four.mjs) gives the same to one decimal (38.5, 47.2, 53.5). Builder-written; unverified. W-1572 fix round (demo-builder, 2026-10-16): the stage row of tag prices ($50.00 ... $66.87) is now labelled 'tag price:' (was 'tag:') and drawn in the text colour, not the tag line's colour; learner-visible label of these values changed, so status reset. Builder-written; unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.price-tag-or-auction.c2",
@@ -130,7 +127,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "economics:auction-vs-posted-price",
     "also": [

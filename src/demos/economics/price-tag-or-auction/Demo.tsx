@@ -86,7 +86,7 @@ function Stage({ ctx, visited, visit }: { ctx: StageContext; visited: number[]; 
           bidders
         </text>
         <text x={4} y={YB + 30} className={s.price}>
-          tag:
+          tag price:
         </text>
         {/* series */}
         {shown.length > 1 && <polyline points={tagPts} className={s.tagLine} />}
@@ -95,14 +95,27 @@ function Stage({ ctx, visited, visit }: { ctx: StageContext; visited: number[]; 
           const t = tagRevenue(k);
           const a = auctionRevenue(k);
           const tagAbove = t >= a;
+          // Where the two points nearly meet (3 bidders: $47.25 and $50.00), pull the labels apart sideways:
+          // the auction's up and to the left, the tag's down and to the right.
+          const close = Math.abs(t - a) < 5;
           return (
             <g key={k}>
               <circle cx={xOf(k)} cy={yOf(t)} r={k === n ? 6 : 4.5} className={s.tagDot} />
               <rect x={xOf(k) - 5} y={yOf(a) - 5} width={10} height={10} className={s.aucDot} />
-              <text x={xOf(k)} y={yOf(t) + (tagAbove ? -9 : 17)} textAnchor="middle" className={s.valTag}>
-                {money(t)}
-              </text>
-              {a < 6 ? (
+              {close ? (
+                <text x={xOf(k) + 9} y={yOf(t) + 14} textAnchor="start" className={s.valTag}>
+                  {money(t)}
+                </text>
+              ) : (
+                <text x={xOf(k)} y={yOf(t) + (tagAbove ? -9 : 17)} textAnchor="middle" className={s.valTag}>
+                  {money(t)}
+                </text>
+              )}
+              {close ? (
+                <text x={xOf(k) - 9} y={yOf(a) - 6} textAnchor="end" className={s.valAuc}>
+                  {money(a)}
+                </text>
+              ) : a < 6 ? (
                 <text x={xOf(k) + 9} y={yOf(a) - 4} className={s.valAuc}>
                   {money(a)}
                 </text>
