@@ -25,13 +25,11 @@
   "claims": [
     {
       "id": "physics.tug-of-war-scale.c1",
-      "text": "A massless spring scale at rest has equal pulls on its two ends and reads that one common tension (stage: two equal 'tension' arrows on the spring, dial; reveal: 'A scale measures the tension in the rope, the pull passed through it, and it can only be stretched if both ends are pulled equally').",
+      "text": "A massless spring scale at rest has equal pulls on its two ends and reads that one common tension (stage: two equal 'tension' arrows on the spring, dial; reveal: 'A scale measures the tension in the rope, the pull passed through it, and at rest it is stretched only when both ends are pulled equally').",
       "support": "derivation",
       "source": "Newton's second law with a = 0 and m ~ 0: T_right - T_left = m a = 0, so both ends carry the same tension, which the spring carries once (artifacts/scratch/cm-physics-r4/check.mjs, block 'tug-of-war-scale'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on Newton's laws (tension). Brief claim 1.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14",
-      "note": "Derivation (Halliday et al. not opened): for a massless scale T_right - T_left = m a = 0, and a spring in series carries that one tension. Wording note for demo-builder (not blocking): the reveal's 'it can only be stretched if both ends are pulled equally' is true for the idealised massless scale at rest (c4), but not for a real scale that is accelerating. 'At rest, it is stretched only when both ends are pulled equally' would be exact."
+      "status": "unverified",
+      "note": "v2 (demo-builder, 2026-10-16): RESET to unverified: the reveal sentence changed to the fact-checker's suggested wording (W-711), 'and at rest it is stretched only when both ends are pulled equally' (was 'and it can only be stretched if both ends are pulled equally'). Stage tension label is now fg ink at 11 px (W-834); its text is unchanged. Previous record (v1): status verified, fact-checker 2026-10-14: Derivation (Halliday et al. not opened): for a massless scale T_right - T_left = m a = 0, and a spring in series carries that one tension. Wording note for demo-builder (not blocking): the reveal's 'it can only be stretched if both ends are pulled equally' is true for the idealised massless scale at rest (c4), but not for a real scale that is accelerating. 'At rest, it is stretched only when both ends are pulled equally' would be exact."
     },
     {
       "id": "physics.tug-of-war-scale.c2",
@@ -85,7 +83,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:rope-tension",
     "also": [

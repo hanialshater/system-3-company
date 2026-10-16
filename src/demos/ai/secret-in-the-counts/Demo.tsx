@@ -68,9 +68,9 @@ function generate(sentences: string[], k: number) {
 
 type Run = { id: "two" | "one" | "deleted"; k: number; drop: boolean; label: string };
 const RUNS: Run[] = [
-  { id: "two", k: 2, drop: false, label: "Prompt with 2-word context" },
-  { id: "one", k: 1, drop: false, label: "Prompt with 1-word context" },
-  { id: "deleted", k: 2, drop: true, label: "Delete the secret, prompt again" },
+  { id: "two", k: 2, drop: false, label: "2-word context" },
+  { id: "one", k: 1, drop: false, label: "1-word context" },
+  { id: "deleted", k: 2, drop: true, label: "Delete secret" },
 ];
 const MILESTONES = ["leak-seen", "short-context-seen"] as const;
 const NUM = ["zero", "one", "two", "three", "four", "five", "six", "seven"];
@@ -81,7 +81,6 @@ type Rec = Partial<Record<Run["id"], string>>;
 export default function SecretInTheCounts({ slug }: { slug: string }) {
   const [run, setRun] = useState<Run | null>(null);
   const [rec, setRec] = useState<Rec>({});
-  const result = run ? runOf(run) : null;
 
   return (
     <Lesson
@@ -114,7 +113,7 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
         );
       }}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const pick = (r: Run | null) => {
@@ -125,6 +124,11 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
               if (r.id === "two") reach("leak-seen");
               if (r.id === "one") reach("short-context-seen");
             };
+            // W-832: the reveal never opens on an emptied stage. If the learner pressed Reset last, the reveal
+            // shows the 1-word run again (the counts its second paragraph quotes); otherwise it keeps the
+            // learner's last run. The controls fold at the reveal, so this view cannot be changed there.
+            const view = phase === "reveal" && !run ? RUNS[1] : run;
+            const result = view ? runOf(view) : null;
             const shown = !locked && result;
             const leaked = shown && result.words.join(" ") === "4 7 1 9";
             const tally = shown && result.tally;
@@ -132,35 +136,38 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <ol className={s.corpus} aria-label="Training sentences">
                   {CORPUS.map((line, i) => (
-                    <li key={line} className={i === SECRET ? (run?.drop && !locked ? s.gone : s.secret) : undefined}>
+                    <li key={line} className={i === SECRET ? (view?.drop && !locked ? s.gone : s.secret) : undefined}>
                       <span>{line}</span>
-                      {i === SECRET && <span className={s.lock}>{run?.drop && !locked ? "deleted" : "private"}</span>}
+                      {i === SECRET && <span className={s.lock}>{view?.drop && !locked ? "deleted" : "private"}</span>}
                     </li>
                   ))}
                 </ol>
                 <p className={`${s.out} ${leaked ? s.leak : ""}`} data-testid="output">
-                  {shown ? `${run!.k}-word context → my pin is ${result.words.join(" ")}` : "Output: –"}
+                  {shown ? `${view!.k}-word: my pin is ${result.words.join(" ")}` : "Output: –"}
                 </p>
                 {tally ? (
                   <p className={s.chip} data-testid="tally">
                     after &apos;{tally.ctx}&apos;:{" "}
                     {tally.row
-                      .slice(0, 3)
+                      .slice(0, 2)
                       .map(([w, c]) => `${w} ×${c}`)
                       .join(", ")}
-                    {tally.row.length > 3 ? ", …" : ""}
+                    {tally.row.length > 2 ? ", …" : ""}
                   </p>
                 ) : (
                   <p className={s.chip}>counts: –</p>
                 )}
                 {!locked && (rec.two || rec.one) && (
                   <p className={s.seen} data-testid="seen">
-                    Seen:{rec.two ? ` 2-word output '${rec.two}'` : ""}
+                    Seen:{rec.two ? ` 2-word '${rec.two}'` : ""}
                     {rec.two && rec.one ? " ·" : ""}
-                    {rec.one ? ` 1-word output '${rec.one}'` : ""}
+                    {rec.one ? ` 1-word '${rec.one}'` : ""}
                   </p>
                 )}
                 <Row foldAtReveal>
+                  <Control disabled={locked || !run} onClick={() => pick(null)}>
+                    Reset
+                  </Control>
                   {RUNS.map((r) => (
                     <Control
                       key={r.id}
@@ -172,9 +179,6 @@ export default function SecretInTheCounts({ slug }: { slug: string }) {
                       {r.label}
                     </Control>
                   ))}
-                  <Control disabled={locked || !run} onClick={() => pick(null)}>
-                    Reset
-                  </Control>
                 </Row>
               </div>
             );
