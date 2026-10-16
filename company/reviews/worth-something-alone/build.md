@@ -30,3 +30,12 @@ Builder probe at 390×844, strict count. Busiest frames **21** (locked: axis cap
 ## Local contract QA (the builder's pass, not the qa-tester's record)
 
 Own build (`NEXT_DIST_DIR=.next-ncmgap4 npx next build`, Turbopack, exit 0), `tools/serve.sh start 3731 .next-ncmgap4`, `QA_BASE_URL=http://localhost:3731 QA_ONLY=<4 slugs> QA_OUT=artifacts/qa-ncmgap4-c npx playwright test tests/qa/contract.spec.ts --workers=2`: **8 passed** (all four lessons, phone and desktop). Phone predict and reveal screenshots viewed, plus probe frames after each press; fixed before this run: ghost labels on the y-axis ticks, the price label on the high crossing, the "empty app" label on the y-axis, a trail polyline that cut under the curve. `npx tsc --noEmit` exit 0; `npm run check` passed. The qa-tester's run is still owed.
+
+## 2026-10-16 fix round: fact-check notes (demo-builder, ncm-w507-fix)
+
+Input: company/reviews/worth-something-alone/2026-10-16-fact-check.md (non-blocking notes).
+
+- **c5 source**: "is gone once a >= 0.16" changed to "is gone once a > 0.16" (at a = 0.16 share 0 still rests, per the record). The claim text is unchanged, so c5 keeps `verified`. No other claim changed.
+- **PMC sources**: this lesson's fact-check record names no PMC or other opened source to add (c6 records only search results for E&K 17.6). The dispatch's PMC item fits the records for same-picture-two-histories (c3) and the-swap-that-goes-in-circles (c3, c4), which were outside this round's two slugs, so I added nothing here.
+- Demo.tsx was not changed. The record also notes tipping() returns "none" at a = 0.16 exactly. A learner cannot reach that value (the chips are 0, 10¢ and 20¢), so it stays as is.
+- **Local QA** (the builder's pass, not the qa-tester's record): same build and run as price-tag-or-auction's fix round (`QA_OUT=artifacts/qa-w507fix`): phone and desktop passed. reveal-fit `artifacts/reveal-fit/w507fix.json`: fit, crop 0, hiddenBelow 0, phoneFit true, revealWords 67. I viewed the phone reveal. `npx tsc --noEmit` exit 0; `npm run check` passed.

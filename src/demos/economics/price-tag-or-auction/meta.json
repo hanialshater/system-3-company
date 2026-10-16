@@ -60,13 +60,10 @@
     },
     {
       "id": "economics.price-tag-or-auction.c4",
-      "text": "A tag is a guess: too high and nobody buys, too low and money is left on the table. An auction lets the second-highest bidder set the price, and that gets better with every rival.",
+      "text": "A tag set knowing only the $0–$100 range is a guess: too high and nobody buys, too low and money is left on the table. An auction with no reserve lets the second-highest bidder set the price, and that gets better with every rival.",
       "support": "derivation",
-      "source": "Tag revenue p(1 - p^n): at a high p the chance of no sale (p^n) is large, at a low p the seller gets p even when buyers would pay more (c1). The second-price auction's price is the second-highest value, whose average 100(n - 1)/(n + 1) rises with n (c2). Builder-written; unverified.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
-      "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/price-tag-or-auction/2026-10-16-fact-check.md under c4."
+      "source": "Tag revenue p(1 - p^n): at a high p the chance of no sale (p^n) is large, at a low p the seller gets p even when buyers would pay more (c1). The second-price auction's price is the second-highest value, whose average 100(n - 1)/(n + 1) rises with n (c2). Builder-written; unverified. Reworded 2026-10-16 per the W-507 ruling (company/domains/briefs/economics.markets.md #27): 'set knowing only the $0–$100 range' and 'with no reserve' added; those qualifiers are also claims c8 and c7. Text changed, so status reset; builder-written, unverified.",
+      "status": "unverified"
     },
     {
       "id": "economics.price-tag-or-auction.c5",
@@ -87,6 +84,20 @@
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-16",
       "note": "W-1562 fact-check (fact-checker, 2026-10-16, did not write this claim): VERIFIED against Demo.tsx at f1568498 and an independent re-derivation; basis and any caveat in company/reviews/price-tag-or-auction/2026-10-16-fact-check.md under c6."
+    },
+    {
+      "id": "economics.price-tag-or-auction.c7",
+      "text": "The auction in this comparison has no reserve price: the highest bidder wins and pays the second-highest value, however low it is.",
+      "support": "convention",
+      "source": "Model rule adopted by the lesson: auctionRevenue() and simulate() in src/demos/economics/price-tag-or-auction/model.ts take the second-highest value with no floor, so with 1 bidder the auction earns $0 (c2). Reveal wording 'An auction with no reserve' added per the W-507 ruling (company/domains/briefs/economics.markets.md #27). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "economics.price-tag-or-auction.c8",
+      "text": "The best price tag is set knowing only that values are spread evenly from $0 to $100, not any buyer's actual value.",
+      "support": "convention",
+      "source": "Model rule adopted by the lesson: tagPrice(n) in src/demos/economics/price-tag-or-auction/model.ts depends only on n and the even $0 to $100 range ($100 x (1/(n + 1))^(1/n), maximising expected revenue before values are drawn, c1), and simulate() charges that same tag in every sale. Reveal wording 'A tag set knowing only the $0–$100 range' added per the W-507 ruling (company/domains/briefs/economics.markets.md #27). Builder-written; unverified.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

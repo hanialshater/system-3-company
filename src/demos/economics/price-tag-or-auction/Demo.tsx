@@ -151,7 +151,7 @@ export default function PriceTagOrAuction({ slug }: { slug: string }) {
       slug={slug}
       predict={{
         question:
-          "Values are random, $0 to $100. From how many bidders does a second-price auction earn more on average than the best price tag?",
+          "Values are random, $0 to $100. What is the fewest bidders for which a second-price auction beats the best price tag on average?",
         options: ["2", "3", "5"],
         answer: 1,
       }}
@@ -172,8 +172,8 @@ export default function PriceTagOrAuction({ slug }: { slug: string }) {
             )}
           </p>
           <p>
-            A tag is a guess: too high and nobody buys, too low and money is left on the table. An auction lets the second-highest bidder set the
-            price, and that gets better with every rival.
+            A tag set knowing only the $0–$100 range is a guess: too high and nobody buys, too low and money is left on the table. An auction
+            with no reserve lets the second-highest bidder set the price, and that gets better with every rival.
           </p>
         </>
       )}
