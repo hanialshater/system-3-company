@@ -224,3 +224,39 @@ Conditions (none blocks the founder's signature):
 
 On the recorded objection (emergency under F-47 pressure, one server and one SHA): **accepted as a real limit, and declined as a
 reason to block.** I re-ran both projects on that SHA independently, and C4/P4 make the next verify the full cycle.
+
+## C1 evidence (evaluation-steward, 2026-10-16)
+
+Answers head-of-product C1 (and cites platform-engineer's correction above). All three runs re-done in one sitting against
+http://localhost:3591. `/home/user/s3c-qa/.next-review7/BUILT_FROM` = bf6fde86961edff82325289e54bb1e93d24c3c60 before and
+after (saved as `c1/BUILT_FROM.before` and `c1/BUILT_FROM.after`). Same scratch trees as the side-by-side (`old`, `new`, `mut`).
+Command in each tree: `QA_BASE_URL=http://localhost:3591 QA_OUT=<c1/out-X> PLAYWRIGHT_JSON_OUTPUT_NAME=<c1/report-X.json>
+npx playwright test tests/qa/feed.spec.ts --workers=2 --reporter=list,json`. Harness stamp `clean: false`, so as before
+this is evidence for this amendment and not a QA record. Counts come from the JSON reporter, per project.
+
+| run | phone | desktop | total | failed test (both projects) |
+|---|---|---|---|---|
+| old (`lessons()[0]`) | 4 passed, 1 failed | 4 passed, 1 failed | **8/10** (expected 8, unexpected 2) | revisit, `timedOut` at 45 s in `scrollIntoViewIfNeeded` |
+| new (AMD-012) | 5 passed, 0 failed | 5 passed, 0 failed | **10/10** (expected 10, unexpected 0) | none |
+| mutant (new rule, seed `Date.now()`) | 4 passed, 1 failed | 4 passed, 1 failed | **8/10** (expected 8, unexpected 2) | revisit, `timedOut` at 45 s |
+
+Reporter files (directory `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/`):
+- JSON: `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/report-old.json`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/report-new.json`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/report-mut.json`
+- list: `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/list-old.txt`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/list-new.txt`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/list-mut.txt`
+- output dirs: `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/out-old`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/out-new`, `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/amd012/c1/out-mut`. Each now has a `.last-run.json` with
+  failed ids equal to its failure folders: old 2 ids / 2 folders, new 0 / 0, mutant 2 / 2 (phone id `02288723d35f41b5ad69-c0a491223554a0c00819`,
+  desktop id `02288723d35f41b5ad69-3efd7beb196488eb86b3`).
+
+**The earlier mismatch, explained:**
+1. `.last-run.json` holds only the ids of failed tests, never passes or totals, and the first runs saved no JSON report. So
+   no saved file could show "8/10" or "10/10" directly. The counts in the side-by-side came from the list output on screen,
+   which was not kept. That gap was mine. The reporter files above close it.
+2. C1's text has the two runs the wrong way round, as platform-engineer noted. On disk, the original `out-old/.last-run.json`
+   has 2 ids and 2 folders (consistent). The original `out-mut/.last-run.json` has 1 id (phone) and 1 phone folder (also consistent).
+3. The real gap was the original mutant, which shows phone only. Its saved files cannot tell "desktop was not run" from
+   "desktop passed". The draft said only "fails on phone", and I cannot reconstruct the command from disk, so the cause stays
+   unknown. Either way it is now superseded: today's full mutant run fails on desktop too (table above), and so did
+   platform-engineer's independent re-run (`out-mut-pe`, 2 ids, 2 folders). The mutant evidence now covers both projects.
+
+The result points the same way as the side-by-side. The only change is that the mutant claim is now "fails on phone and desktop".
+The patch was not applied. `tests/qa/` is untouched.
