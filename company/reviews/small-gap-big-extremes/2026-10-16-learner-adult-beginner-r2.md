@@ -14,3 +14,11 @@ Verdict: launch
 3. Whether the reveal answered my question: mostly. My question was "how can a tiny gap make B dominate the top?" The counts per 100,000 (135 vs 621, then 3 vs 23) made it concrete and the last line names the idea. It tells me A's tail falls faster but not why; for 60 seconds I accept that. At 140 cm the shaded tails are invisible on the chart, so the counts line carries the whole point there.
 
 Verdict reason: no finding blocks a first-time adult learner; notes 1 (unlabeled 130 tick; the 82% case can be skipped by dragging to the end) and the predict-state alt-text hint are fixes worth making.
+
+## After reading meta.json and the previous round (r1, v2)
+
+- meta.json version is 3, matching the stamp. Objective: say that a 5 cm gap makes B 82% above 130 cm and 88% above 140 cm, because A's curve falls away faster. The "because" is carried in v3 by the per-100,000 counts (135 to 3 vs 621 to 23), which worked for me better than a sentence about steepness would.
+- r1 finding (a), the second, unrelated 80% ("sharing about 80% of their area"): fixed. The v3 reveal says only "The two curves mostly overlap"; the only 80-ish number is the answer.
+- r1 finding (b), reveal unlocks before the learner sets 130 cm: **not fixed**. I found the same thing independently (finding 1). r1 called it blocking; I called it a note. My reason: the panel tells the learner to stop at 130, the reveal states the 82% and the 4.6-to-1 ratio in words, and the 140 cm case the learner did see shows the same effect more strongly. This is a disagreement with r1, recorded here so it travels: if the evaluation-steward or cm-probability treats "the asked-about number must be seen, not read" as a standard, this verdict should be read as revise on that point.
+- r1's note on the "130" marker on the share bar: still unlabelled in v3 (my finding 1).
+- Verdict changed from revise (r1) to launch.

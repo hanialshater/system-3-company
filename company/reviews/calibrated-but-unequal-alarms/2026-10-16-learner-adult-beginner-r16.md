@@ -14,3 +14,12 @@ Verdict: launch
 3. Whether the reveal answered my question: yes. My question after Show outcomes was "how can A's innocents be flagged more if the score is equally honest?" The reveal's "A has more reoffenders, so more of A is ringed, guilty or not" answers it in one line, and the slider to 50 (both errors 20%) plus the memo "Earlier at 32: false alarms 6%, misses 50%" let me hold both cases at once. The closing sentence ("Otherwise no high/low score that makes mistakes is honest with matching errors") is dense; I understood it only because the 50 case came first. It is a generalisation beyond the toy that I took on trust.
 
 Verdict reason: no finding blocks a first-time adult learner; notes 1 (three names for one quantity, unlabeled B readouts) and 3 (dense last sentence) are polish.
+
+## After reading meta.json and the previous round (r15, v2)
+
+- meta.json version is 3, matching the stamp. Objective: explain that a calibrated score with different base rates flags a larger share of the higher-base-rate group's innocents, and that errors match only when base rates match. The walk showed both halves on screen (32 vs 50). Whether a learner can explain it afterwards is for human learners to show.
+- r15 note 1 (four words for "honest", "calibrated" untied): fixed in v3. "Calibrated" no longer appears; hook, question and reveal all say "honest". The drift I found (non-reoffenders / false alarms / innocent) is a different, smaller one, about the error, not the score.
+- r15 note 3 (stale "B at 32" status line): fixed. It now reads "Earlier at 32: ...", and I used it as a memo without confusion.
+- r15 note 2 (locked stage shows ring counts, tilting the prediction): unchanged; I agree it is a hint, not a giveaway.
+- r15 note 5 (readout font size near 10 px in the reveal frame): not re-checked by me; still a qa-tester question.
+- Verdict unchanged from r15 (launch).
