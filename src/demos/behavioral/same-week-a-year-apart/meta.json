@@ -26,84 +26,120 @@
       "text": "Under steady (exponential) discounting the choice between $100 at week t and $110 at week t + 1 is the same at every start date (predict answer A, 'Wait a week again for the $110', for someone who waits at week 52); reveal: 'Steady discounting judges the pair only by its gap, one week for $10 more, and the gap never changed as the pair moved to today.'",
       "support": "derivation",
       "source": "Value ratio of the $110 to the $100 = 110·d^(t+1) / (100·d^t) = 1.1·d for every t; max deviation over d in [0.5, 1.2] and the three stops 4.4e-16; wait iff d > 1/1.1 = 0.9091 per week, whatever t is (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 1). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Re-derived: value ratio 110*d^(t+1)/(100*d^t) = 1.1*d for t = 52, 13, 0 (max deviation 4.4e-16 over d in [0.5,1.2]); wait iff d > 1/1.1. own node re-derivation (scratchpad fc54b.mjs, sweep over d) and the cm-behavioral check script re-run (all checks pass). Predict answer 1 and the 'Not quite: it was ...' feedback seen in walkthroughs choose 1 and 3; reveal sentence seen in all four branches (all branches rendered on a production build (port 3951) and driven with Playwright; walkthrough transcript read first).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c2",
       "text": "The same holds in continuous time (supports 'each week counts the same' as the stage's stated model; not a separate sentence on screen).",
       "support": "derivation",
       "source": "Ratio = 1.1·e^(-rho) for every t (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 2). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Re-derived: 110*e^(-rho(t+1))/(100*e^(-rho t)) = 1.1*e^(-rho), the same at t = 52, 13, 0 for rho = 0.01, 0.1, 0.5 (own node run). Not on screen; supports c8.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c3",
       "text": "'A model that gives today extra weight does' (fit a wait a year out and a take today); matched branches: 'Switching to the $100 today would fit only a model that gives today extra weight, called present bias.'",
       "support": "derivation",
       "source": "Witness: quasi-hyperbolic (beta-delta) with b = 0.9, d = 1: ratio at t = 52 is 1.10 (wait), at t = 0 is 0.99 (take $100) (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 3). 'Only' is the brief's script text and is relative to the two models the stage names (steady discounting, which cannot switch at any rate, against a model that weights today extra); the fact-checker may want it scoped. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Witness re-run: beta-delta b = 0.9, d = 1 gives 1.10 at t = 52 (wait) and 0.99 at t = 0 (take); a hyperbolic 1/(1+0.2t) also switches (1.08 then 0.92), consistent with the general wording. 'Only' holds by definition: wait-far/take-near means the near week is discounted more steeply than the far week, which is what 'gives today extra weight' says. Seen on the stage in the wait/wait, take/take and wait/take branches (all branches rendered on a production build (port 3951) and driven with Playwright; walkthrough transcript read first). Non-factual note for the builder: in the take/take branch 'Switching to the $100 today' describes a switch this learner did not make; true as a conditional, wording is the designer's call.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c4",
       "text": "About the learner's own two choices: switched (wait then take, or take then wait) 'No steady discount rate fits both of your choices'; same both times 'One steady rate fits both of your choices'; take then wait: 'Yours switched toward patience as the date came closer, the reverse of present bias.'",
       "support": "derivation",
       "source": "Conditional on the learner's far and near choices, read from the stage state (Demo.tsx far, near); all four combinations print in node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs and follow from c1 (brief 2 claim 4). The walkthrough must show each branch. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): All four far/near combinations driven on the stage (all branches rendered on a production build (port 3951) and driven with Playwright; walkthrough transcript read first); each reveal reads exactly as the claim says, and each follows from c1 (one rate fits a matched pair: d > 0.909 for wait/wait, d < 0.909 for take/take; no rate fits a switch). Near choice is disabled until the pair is slid to today (checked).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c5",
       "text": "Names: 'that departure is called present bias', 'called present bias', 'the reverse of present bias'.",
       "support": "convention",
       "source": "'Present bias' is the name of the departure from steady discounting toward the sooner amount as it nears (a term for the learner's own switch, not a claim that other people do it; brief 2 claim 5 and ruling 4 in company/domains/briefs/behavioral.md). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Term checked in an opened source: Ruggeri et al. 2022, Nat Hum Behav, PMC9584811 (fetched via PMC OAI-PMH): 'common difference (we refer to this as present bias, which is the more common term)'; the common-difference pattern is this stage's shifted pair. Cohen et al. 2020 (PMC10489299) uses 'present bias' for the same departure. 'The reverse of present bias' is a description of the opposite switch, not a further term.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c6",
       "text": "HELD (the one type (d) line, the limit L, in every branch): 'With real payments, reversals are clearer for effort than for money.'",
       "support": "source",
       "source": "W-902 row 'Present bias' (with limits; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Augenblick, Niederle & Sprenger 2015 as reported by Cohen, Ericson, Laibson & White 2020, J Econ Lit, PMC10489299 (opened by research-lead, not by the builder): with money the inconsistency was 'much weaker (but still statistically significant)'. 'With real payments' stays because Ruggeri et al. 2022 (PMC9584811) found present bias in unpaid monetary choices in all 61 countries. Second-hand: whether that is enough is the fact-checker's call. Fallback (ruling 4): L is cut and nothing replaces it; set HELD_LINE = false in Demo.tsx (branches 75-78 words, still naming present bias and keeping the 'Where it stops' line). Not published until the fact-checker opens it.",
-      "status": "unverified"
+      "status": "unverified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): HELD. Type (d) line. (1) The W-975 statement covers (a)-(c) only; type (d) is held by default until a dated (d) statement covers this line. (2) Second-hand attribution under W-1059 (not yet ruled). What I opened: Cohen, Ericson, Laibson & White 2020, 'Measuring Time Preferences', PMC10489299 (OAI-PMH): Augenblick, Niederle & Sprenger 2015 'found much weaker (but still statistically significant) evidence of dynamic inconsistency with respect to participant decisions that involved time-dated financial flows' than for effort. That supports 'clearer for effort than for money'. It does not state 'with real payments'; that qualifier rests on the primary paper (QJE, blocked host) or on memory, so it is not checked. Augenblick 2015 itself not opened (no reachable copy). Also seen: the line IS rendered in all four branches of the current build (HELD_LINE on), so the lesson cannot publish until this is verified or the builder sets the fallback.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c7",
       "text": "'Where it stops: imagined money, chosen once each, with your first choice in view.' (every branch)",
       "support": "derivation",
       "source": "About this stage, not other people (charter rule 5): the amounts are hypothetical, each choice is made once, and the far choice stays marked on the timeline and in the model strip while the near choice is made (Demo.tsx). Brief 2 reveal text. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Checked on the stage (all branches rendered on a production build (port 3951) and driven with Playwright; walkthrough transcript read first): the amounts are hypothetical; one choice per date (the near choice is disabled until the pair reaches today); the far choice stays shown ('✓ $110 week 52' / '✓ $100 week 52') and the model strip stays while the near choice is made. 'Chosen once each' is read as one choice per date: the stage lets a learner re-tap before the reveal, and the last tap counts.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c8",
       "text": "Stage caption: 'A simple model: each week counts the same'.",
       "support": "convention",
       "source": "Names steady (exponential) discounting as the stated model and as a simplification (brief 2 'Stated model'; neighbour condition E4). No market rate, present value or weekly factor is shown. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Convention: caption seen on every frame. 'Each week counts the same' glosses steady (exponential) discounting, where each week of delay applies the same factor (c1, c2). It names the model, not a claim about people.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c9",
       "text": "Model strip: 'Steady model: wait' (far choice $110) or 'Steady model: take $100' (far choice $100), the same at every stop of the slider.",
       "support": "derivation",
       "source": "Follows from c1: under steady discounting the choice at week 52 is the choice at every start date (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs). Demo.tsx shows the strip only after the far choice, so it never states the predict's answer before the commit. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Strip seen at week 52, week 13 and today: 'Steady model: wait' after a $110 far choice, 'Steady model: take $100' after a $100 far choice, unchanged at every stop (all branches rendered on a production build (port 3951) and driven with Playwright; walkthrough transcript read first); follows from c1. Strip appears only after the far choice (absent on the locked predict frame).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c10",
       "text": "Set-up on the stage: $100 at week t and $110 at week t + 1, with the gap bracket '1 week, +$10'; the pair starts at week 52, 13 or today (choice labels '$100 at week 52', '$110 at week 53', '$100 today', '$110 in a week').",
       "support": "convention",
       "source": "The lesson's set-up as given in brief 2 (three stops, ruling 3). $110 - $100 = $10; (t + 1) - t = 1 week at every stop. Demo.tsx STOPS. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Seen on the locked and explore frames: '1 week, +$10'; choice labels '$100 at week 52', '$110 at week 53', '$100 today', '$110 in a week'; slider 'Pair starts' with stops week 52, week 13, today. 110 - 100 = 10; (t+1) - t = 1.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c11",
       "text": "Hook: 'Would you wait a week for $10 more? Answer a year out, then again today.'",
       "support": "convention",
       "source": "Describes the set-up (c10): the far choice is made with the pair at week 52, the near choice with it at today. Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Hook seen in the transcript; it describes the stage's set-up (far choice at week 52, near choice at today; c10).",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "behavioral.same-week-a-year-apart.c12",
       "text": "Recall answer: under steady discounting, someone who prefers $50 in 10 days to $60 in 20 days still takes the $50 when offered $50 in 100 days or $60 in 110 days.",
       "support": "derivation",
       "source": "Ratio of the $60's value to the $50's = 1.2·d^10 at both dates; the gap is 10 days both times (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs, recall line). Builder statement, not self-verified.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 54b (fact-checker, 2026-10-16): Re-derived: (60*d^20)/(50*d^10) = 1.2*d^10 = (60*d^110)/(50*d^100) for d = 0.95, 0.98, 0.99 (own node run); the choice is the same at both dates. Matches meta.json recall answer 0 and its 'why'.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
