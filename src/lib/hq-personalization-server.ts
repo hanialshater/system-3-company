@@ -9,7 +9,10 @@
 // Hardening (W-1530; company/reviews/hq/2026-10-16-w1503-review.md findings 3 and 5):
 // - one simulator process in flight per module instance (Next bundles the page and the API route separately,
 //   so in practice one per route). An identical request joins the running one; a different one is refused
-//   with BUSY instead of stacking processes.
+//   with BUSY (and `busy: true` on the result) instead of stacking processes.
+// - `meta` never takes that lock (W-1539 N1, company/reviews/hq/2026-10-16-d1-review.md): it is cheap and
+//   read-only, so a cold cache spawns its own process (concurrent misses join one) and the page never shows
+//   BUSY as its error.
 // - `meta` is cached for the process lifetime, keyed on the newest mtime under the model folder (out/ skipped)
 //   plus the mtime of sim/out/traces (meta lists the saved traces).
 // - the child gets only the environment it needs (CHILD_ENV), not a copy of the server's.
@@ -23,7 +26,7 @@ const MODEL_DIR = "company/personalization/model";
 const TRACES_DIR = "company/personalization/model/sim/out/traces";
 export const simLocal = () => process.env.NODE_ENV !== "production";
 
-export type SimResult<T> = { ok: true; data: T } | { ok: false; error: string };
+export type SimResult<T> = { ok: true; data: T } | { ok: false; error: string; busy?: true };
 export const BUSY = "Another simulation is still running in this server; wait for it to finish, then try again.";
 
 /** The CLI reads no environment variables (grep of company/personalization/model: no process.env). It is
@@ -31,6 +34,7 @@ export const BUSY = "Another simulation is still running in this server; wait fo
 export const CHILD_ENV: Readonly<Record<string, string>> = Object.freeze({ NODE_NO_WARNINGS: "1" });
 
 let inFlight: { key: string; p: Promise<SimResult<unknown>> } | null = null;
+let metaInFlight: { key: string; p: Promise<SimResult<unknown>> } | null = null;
 let metaCache: { root: string; stamp: string; result: SimResult<unknown> } | null = null;
 
 /** Newest mtime under the model folder (skipping out/ and node_modules), plus the saved-traces folder's mtime. */
@@ -68,14 +72,21 @@ function spawnSim<T>(req: SimRequest, root: string, timeoutMs: number): Promise<
 /** Run one CLI command. Arguments come only from a parsed SimRequest; no shell is used. */
 export function runSim<T>(req: SimRequest, root = process.cwd(), timeoutMs = 90_000): Promise<SimResult<T>> {
   if (!simLocal()) return Promise.resolve({ ok: false, error: "The simulation lab runs locally only (npm run dev)." });
-  const stamp = req.op === "meta" ? modelStamp(root) : "";
-  if (req.op === "meta" && metaCache && metaCache.root === root && metaCache.stamp === stamp) return Promise.resolve(metaCache.result as SimResult<T>);
   const key = JSON.stringify([root, cliArgs(req)]);
-  if (inFlight) return (inFlight.key === key ? inFlight.p : Promise.resolve({ ok: false, error: BUSY })) as Promise<SimResult<T>>;
-  const p = spawnSim<T>(req, root, timeoutMs).then((r) => {
-    if (req.op === "meta" && r.ok) metaCache = { root, stamp, result: r };
-    return r;
-  }).finally(() => { inFlight = null; });
+  if (req.op === "meta") {
+    const stamp = modelStamp(root);
+    if (metaCache && metaCache.root === root && metaCache.stamp === stamp) return Promise.resolve(metaCache.result as SimResult<T>);
+    const mkey = `${key}:${stamp}`;
+    if (metaInFlight && metaInFlight.key === mkey) return metaInFlight.p as Promise<SimResult<T>>;
+    const p = spawnSim<T>(req, root, timeoutMs).then((r) => {
+      if (r.ok) metaCache = { root, stamp, result: r };
+      return r;
+    }).finally(() => { if (metaInFlight?.p === p) metaInFlight = null; });
+    metaInFlight = { key: mkey, p };
+    return p;
+  }
+  if (inFlight) return (inFlight.key === key ? inFlight.p : Promise.resolve({ ok: false, error: BUSY, busy: true })) as Promise<SimResult<T>>;
+  const p = spawnSim<T>(req, root, timeoutMs).finally(() => { inFlight = null; });
   inFlight = { key, p };
   return p;
 }

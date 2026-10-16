@@ -17923,15 +17923,18 @@
       "id": "W-1529",
       "title": "HQ lab no-real-data grep as an automated test (W-1527 DoD D5, company/personalization/lab/2026-10-16-lab-privacy-dod.md F2): fail on localStorage, s3c:, /api/, fetch, accounts/event-intake imports in the lab files; allow the own-route fetch only if privacy-reviewer accepts the exception. Needs hq-engineer review if under tests/hq",
       "owner": "personalization-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
-        "company/personalization/batches/2026-10-16-batch-2.md"
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "tests/hq/personalization-privacy.test.mjs",
+        "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md"
       ],
-      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D2, after privacy-reviewer rules on the own-route exception (W-1527 H1/H2). company/personalization/batches/2026-10-16-batch-2.md",
-      "updated": "2026-10-16"
+      "note": "2026-10-16 to review (run pe-d2-1016, branch perso-d2): tests/hq/personalization-privacy.test.mjs, own-route fetch exception only in the ruled form (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md lines 36, 39 = L1); 35 in-test breaks + 36/36 temp-copy breaks caught, clean control passes. hq-engineer: code review (tests/hq). privacy-reviewer: confirm L1 is met, and L5 needs her to read the rendered lab page before it is called privacy-done.",
+      "updated": "2026-10-16",
+      "reviewer": "hq-engineer, privacy-reviewer"
     },
     {
       "id": "W-1530",
@@ -18047,10 +18050,17 @@
       "id": "W-1539",
       "title": "HQ lab D1 review nits (company/reviews/hq/2026-10-16-d1-review.md): N1 meta cache miss bypasses the run lock or retries once; N2 busy flag on the result instead of string compare, plus Retry-After on 429; N3 test that the lock is released after a failed run",
       "owner": "personalization-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "company/reviews/hq/2026-10-16-d1-review.md",
+        "src/lib/hq-personalization-server.ts",
+        "tests/hq/personalization.test.mjs"
+      ],
+      "updated": "2026-10-16",
+      "reviewer": "hq-engineer",
+      "note": "2026-10-16 to review (run pe-d2-1016, branch perso-d2): N1 meta never takes the run lock (own join on cache miss); N2 SimResult busy:true, route 429 on busy with Retry-After: 5; N3 test of release after a failed run. N1 test fails on the pre-change server file; N3 already held (regression test). N4/N5 not done (review said note only)."
     }
   ]
 }
