@@ -27,7 +27,7 @@
       "id": "physics.what-pushes-the-car.c1",
       "text": "Forces inside the car (engine on wheels, wheels on axles) come in equal and opposite pairs and cannot change the car's motion; only a force from outside can, so on a frictionless road the engine spins the wheels and the car stays put (stage: wheels turn, 0 N, car does not move; reveal: 'On a frictionless road the engine spun the wheels just as hard and the car went nowhere').",
       "support": "derivation",
-      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapters on Newton's laws and on systems of particles (only external forces change the centre of mass's motion). Brief claim 1.",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapters on Newton's laws and on systems of particles (only external forces change the centre of mass's motion). Brief claim 1. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58323 'Center of Mass'; vol 1 m58295 'Forces' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 m58323 'Center of Mass': 'the total change of momentum of the entire object ... is due only to the external forces; the internal forces do not change the momentum of the object as a whole'; m58295 'Forces': 'only external forces acting on the free body affect its motion'. Stage seen: frictionless 0 N, 0 m/s2, wheels spin, no ghost outline (car did not move); reveal matches. The Halliday citation was not opened.",
       "checkedBy": "fact-checker",
@@ -37,7 +37,7 @@
       "id": "physics.what-pushes-the-car.c2",
       "text": "The forward force on a driven car is static friction from the road on the tyres; the tyres push back on the road with an equal and opposite force (stage arrows 'road on tyre' forward and 'tyre on road' backward; reveal: 'The engine turns the wheels and the tyres push back on the road; the road pushing forward on the tyres is what moves the car').",
       "support": "source",
-      "source": "Halliday, Resnick and Walker, friction chapter and rolling without slipping (the friction on a driven wheel points forward). Newton's third law for the pair. Brief claim 2.",
+      "source": "Halliday, Resnick and Walker, friction chapter and rolling without slipping (the friction on a driven wheel points forward). Newton's third law for the pair. Brief claim 2. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58299 \"Newton's Third Law\"; vol 1 m58719 'Work' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 m58299 'Newton's Third Law': 'A car accelerates forward because the ground pushes forward on the drive wheels, in reaction to the drive wheels pushing backward on the ground' and 'car tires push backward on road, reaction: road pushes forward on tires'; m58719 'Work': 'static friction of the road on the drive wheels'. Stage arrows 'road on tyre ->' and '<- tyre on road' seen (screenshots 02-03); reveal matches.",
       "checkedBy": "fact-checker",
@@ -45,39 +45,33 @@
     },
     {
       "id": "physics.what-pushes-the-car.c3",
-      "text": "A 1,200 kg car asking for 2.0 m/s² needs 2,400 N from the road (F = m a); a dry road (μ 0.8) can give up to 9,418 N, so the grip holds (stage readout '2,400 N forward · 2.0 m/s²'; Seen row 'dry: 2,400 N, 2.0 m/s²'; reveal 'your car gained speed at 2.0 m/s², pushed by the road's 2,400 N grip on the tyres').",
+      "text": "A 1,200 kg car asking for 2.0 m/s² needs 2,400 N from the road (F = m a); a dry road (μ 0.8) can give up to 9,418 N, so the grip holds (stage readout '2,400 N forward · 2.0 m/s²'; Seen row 'dry: 2,400 N'; reveal 'your car gained speed at 2.0 m/s², pushed by the road's 2,400 N grip on the tyres').",
       "support": "derivation",
-      "source": "1,200 × 2 = 2,400 N; 0.8 × 1,200 × 9.81 = 9,417.6 N. artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '63 what-pushes-the-car'. Demo.tsx M, A_ASK, MU. The μ values are illustrative (typical textbook ranges). Brief claim 3.",
-      "status": "verified",
-      "note": "FC pass 55 (fact-checker, 2026-10-16): Own node: 1200 x 2 = 2,400 N; 0.8 x 1200 x 9.81 = 9,417.6 N, so grip holds. Stage '2,400 N forward . 2.0 m/s2', Seen and reveal seen. mu 0.8 for dry road: opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 m58304 'Friction', table: rubber on dry concrete mu_s 1.0, wet 0.5-0.7; 0.8 is illustrative and any mu above 0.204 gives the same stage. 9,418 N is not shown to the learner.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "1,200 × 2 = 2,400 N; 0.8 × 1,200 × 9.81 = 9,417.6 N. artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '63 what-pushes-the-car'. Demo.tsx M, A_ASK, MU. The μ values are illustrative (typical textbook ranges). Brief claim 3. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58304 'Friction' (added from FC pass 55, cm-physics R5).",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-1256, B3 r3-verticals, 2026-10-16): cm-physics R1 cut P1 (Seen row shows forces only) changed the quoted Seen text from 'dry: 2,400 N, 2.0 m/s²' to 'dry: 2,400 N'; previously verified by fact-checker on 2026-10-16; not self-verified. | FC pass 55 (fact-checker, 2026-10-16): Own node: 1200 x 2 = 2,400 N; 0.8 x 1200 x 9.81 = 9,417.6 N, so grip holds. Stage '2,400 N forward . 2.0 m/s2', Seen and reveal seen. mu 0.8 for dry road: opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 m58304 'Friction', table: rubber on dry concrete mu_s 1.0, wet 0.5-0.7; 0.8 is illustrative and any mu above 0.204 gives the same stage. 9,418 N is not shown to the learner."
     },
     {
       "id": "physics.what-pushes-the-car.c4",
-      "text": "On ice (μ 0.1) the road can give at most μ m g = 1,177 N, less than the 2,400 N asked for, so the wheels slip and the car gains speed at only 0.98 m/s² (stage readout '1,177 N max · 0.98 m/s² · slipping', spin marks; Seen row 'ice: 1,177 N, slips'; reveal 'On ice the road could give only 1,177 N and the wheels slipped').",
+      "text": "On ice (μ 0.1) the road can give at most μ m g = 1,177 N, less than the 2,400 N asked for, so the wheels slip and the car gains speed at only 0.98 m/s² (stage readout '1,177 N max · 0.98 m/s² · slipping', spin marks; Seen row 'ice: 1,177 N'; reveal 'On ice the road could give only 1,177 N and the wheels slipped').",
       "support": "derivation",
-      "source": "0.1 × 1,200 × 9.81 = 1,177.2 N; 1,177.2 / 1,200 = 0.981 m/s². check.mjs block 63. Brief claim 3 (the brief's stage text rounds this to ~1,200 N; the lesson shows 1,177 N so that it matches 0.98 m/s²).",
-      "status": "verified",
-      "note": "FC pass 55 (fact-checker, 2026-10-16): Own node: 0.1 x 1200 x 9.81 = 1,177.2 N < 2,400 N; a = 0.981 m/s2. Stage '1,177 N max . 0.98 m/s2 . slipping', spin marks, Seen 'ice: 1,177 N, slips', reveal seen. mu 0.1 for ice: opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58304, which uses 'mu_s = 0.100, the same as for shoes on ice' for a car on ice.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "0.1 × 1,200 × 9.81 = 1,177.2 N; 1,177.2 / 1,200 = 0.981 m/s². check.mjs block 63. Brief claim 3 (the brief's stage text rounds this to ~1,200 N; the lesson shows 1,177 N so that it matches 0.98 m/s²). | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58304 'Friction' (added from FC pass 55, cm-physics R5).",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-1256, B3 r3-verticals, 2026-10-16): cm-physics R1 cut P1 (Seen row shows forces only) changed the quoted Seen text from 'ice: 1,177 N, slips' to 'ice: 1,177 N'; previously verified by fact-checker on 2026-10-16; not self-verified. | FC pass 55 (fact-checker, 2026-10-16): Own node: 0.1 x 1200 x 9.81 = 1,177.2 N < 2,400 N; a = 0.981 m/s2. Stage '1,177 N max . 0.98 m/s2 . slipping', spin marks, Seen 'ice: 1,177 N, slips', reveal seen. mu 0.1 for ice: opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58304, which uses 'mu_s = 0.100, the same as for shoes on ice' for a car on ice."
     },
     {
       "id": "physics.what-pushes-the-car.c5",
-      "text": "On a frictionless road the road gives 0 N, so the car does not speed up at all (stage readout '0 N forward · 0 m/s² · wheels spin'; Seen row 'frictionless: 0 N, stays put').",
+      "text": "On a frictionless road the road gives 0 N, so the car does not speed up at all (stage readout '0 N forward · 0 m/s² · wheels spin'; Seen row 'frictionless: 0 N').",
       "support": "derivation",
       "source": "μ = 0 gives μ m g = 0 N. check.mjs block 63.",
-      "status": "verified",
-      "note": "FC pass 55 (fact-checker, 2026-10-16): mu = 0 gives 0 N and 0 m/s2 (Demo.tsx physics()). Stage '0 N forward . 0 m/s2 . wheels spin' and Seen 'frictionless: 0 N, stays put' seen.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-1256, B3 r3-verticals, 2026-10-16): cm-physics R1 cut P1 (Seen row shows forces only) changed the quoted Seen text from 'frictionless: 0 N, stays put' to 'frictionless: 0 N'; previously verified by fact-checker on 2026-10-16; not self-verified. | FC pass 55 (fact-checker, 2026-10-16): mu = 0 gives 0 N and 0 m/s2 (Demo.tsx physics()). Stage '0 N forward . 0 m/s2 . wheels spin' and Seen 'frictionless: 0 N, stays put' seen."
     },
     {
       "id": "physics.what-pushes-the-car.c6",
       "text": "Idealisations: a 1,200 kg all-wheel-drive car on a flat road, no air drag, and the maximum static grip also used while slipping (real sliding grip is a little lower) (stage caption '1,200 kg car, all-wheel drive, no air drag.'). The car is drawn where it would be 2 s after pulling away (4.0 m dry, 2.0 m on ice, 0 m frictionless; 12 px per m; the dashed outline is where it started), and the force arrows are drawn in proportion, one pair per axle.",
       "support": "convention",
-      "source": "Brief claim 4. Demo.tsx T_SHOW (2 s), PXM (12 px per m), FPX (1 px per 40 N per axle). x = ½ a t²: 4.0 m and 1.96 m.",
+      "source": "Brief claim 4. Demo.tsx T_SHOW (2 s), PXM (12 px per m), FPX (1 px per 40 N per axle). x = ½ a t²: 4.0 m and 1.96 m. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58304 'Friction' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Caption '1,200 kg car, all-wheel drive, no air drag.' seen. Own node: x = 1/2 a t^2 at 2 s = 4.000 m dry, 1.962 m ice ('2.0 m' rounds), 0 m; 48.0, 23.5, 0 px at 12 px/m; arrows 30.0 and 14.7 px per axle at 1 px per 40 N; Demo.tsx T_SHOW, PXM, FPX agree; dashed outline seen on dry and ice only. AWD makes mu m g (full weight) the limit. 'Real sliding grip is a little lower': opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58304, 'the force of kinetic friction will then become smaller' (table: rubber on dry concrete mu_k 0.7 vs mu_s 1.0).",
       "checkedBy": "fact-checker",
@@ -101,7 +95,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:friction-drives-forward",
     "also": [

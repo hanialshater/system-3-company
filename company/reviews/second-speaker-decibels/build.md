@@ -21,3 +21,36 @@ Open item for cm-physics (not fixed): stage text counts 24 words at the start an
 ## QA
 
 Computer-use QA, unmodified `tests/qa/contract.spec.ts`, `QA_ONLY=electron-speed-in-a-wire,second-speaker-decibels,what-pushes-the-car` on a production build at port 3821, 2026-10-16: phone and desktop passed (6/6, default timeouts). Builder's local pass, not the qa-tester's record.
+
+## v2 (2026-10-16, demo-builder, lane 2 r3 B3, W-1256 / W-1185)
+
+Inputs: FC pass 55 (`2026-10-16-fact-check.md`, findings 1-4), cm-physics rulings R1, R2, R5 (`company/ops/dispatch-requests/2026-10-16-r3-physics.md`), the stage-word decision and its Ruling 2.
+
+- **FC 55 finding 1 (c4 wording) / R2: done.** The reveal's last sentence now reads "So 120 dB is not two 60 dB speakers; it is a million times one speaker's power." c4's text quotes the new sentence and says "the sound power of one 60 dB speaker"; its source note no longer explains what "their" meant. c4 reset to `unverified`.
+- **FC 55 finding 2 (c1 terms):** no change (not a dispute; no ruling asked for one).
+- **FC 55 finding 3 (sources) / R5: done.** OpenStax University Physics (bundle 2300d5b) added to `source`: vol 1 m58377 'Sound Intensity' on c1 and c3; vol 1 m58372 'Interference of Waves' and m58377 on c5. R5's line lists "c1 m58377 and m58372"; I put m58372 on c5, not c1, because FC 55's notes quote m58372 only for c5 (interference) and it does not support c1's definition of the decibel. cm-physics may move it. c2 and c4 quote no module. c1, c3, c5 keep `verified` (source only).
+- **FC 55 finding 4:** nothing to do.
+- **R1: no cut** (count below).
+
+### Stage word budget
+
+Counted from the rendered stage (production build, port 3463, 390x844, visible non-aria-hidden text inside `data-testid="stage"`), every frame of the QA path, a revisit and the reveal. Ruling 2 (a): a unit after a number is 0; a unit standing alone is 1.
+
+| Item | Words |
+|---|---|
+| "you", "meter" | 2 |
+| meter "60 dB" ... "70 dB"; bar value "1 µW/m²"; ticks 0, 10 | 0 |
+| bar title "sound power reaching you, µW/m²" (the unit stands alone, so 1) | 5 |
+| caption "Identical speakers, same distance, no echoes." | 6 |
+| "Seen:", "power" (the "×2: 63 dB" values are 0) | 2 |
+| controls "2 speakers", "4 speakers", "10 speakers" | 3 |
+| **Total, every frame** | **18** |
+
+Under 25; no stimulus on this stage. The caption is unchanged.
+
+### Checks (2026-10-16)
+
+- Production build passed; reveal-fit 390x844 strict (clean stamp, tool 79c22aa): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, thumb false, 72 reveal words including the verdict line (v1: 71 by the same tool; R2 replaces "their" with "one speaker's", +1 word, not the +2 R2 estimated).
+- `grep -c "a million times one speaker's power" src/demos/physics/second-speaker-decibels/Demo.tsx` = 1.
+- Local contract QA, phone and desktop: passed.
+- Status stays `review`; with c4 unverified the lesson is gate-blocked until the fact-checker re-checks c4 (expected).
