@@ -13781,7 +13781,7 @@
       "id": "W-1164",
       "title": "Privacy review of EDD-008 (company/reviews/_privacy/2026-10-16-edd-008-accounts.md): merge conditions M1-M6 for the accounts branch (name hook/CHECK in auth_verification, idle clock keyed on last activity, purge timing, anonymous /me sets no cookie, re-run IP/UA test on every Better Auth bump, hashed limiter keys, server-side policyVersion); route via the First Light POC",
       "owner": "backend-engineer",
-      "state": "done",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -14243,6 +14243,33 @@
     {
       "id": "W-1215",
       "title": "Confirm the growth designer's reading of C4 device markers and the exp definition in PRD-003/004 §9 (828d12e)",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1216",
+      "title": "Accounts before go-live (privacy re-read 62020cf): R-M2a export key/policy say 'last sign-in or signed-in use' (rename lastSignInAt→lastActiveAt); R-M2b extend test 27 scan so last_sign_in_at feeds only idle clock + export",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1217",
+      "title": "Accounts readiness additions (privacy re-read 62020cf): Production Postgres >= 16 (IS JSON CHECK); named owner for db-deletion-check --oldest-expired; PUBLISHED_POLICY_VERSIONS holds the real policy before any learner email; run 3 skipped built-routes tests + browser-cookie.mjs on the release SHA",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1218",
+      "title": "Write company/engineering/data-inventory.md entry for last_sign_in_at as 'last signed-in use, to the day'",
       "owner": "privacy-reviewer",
       "state": "backlog",
       "domain": null,
