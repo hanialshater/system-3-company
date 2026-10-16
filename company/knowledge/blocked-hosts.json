@@ -1,0 +1,669 @@
+{
+  "about": "Hosts the agent egress proxy refused (CONNECT 403) to fact-checkers, kept as data for W-556 (a web-capable fact-check session per wave). Board W-1335. Written by tools/blocked-hosts.mjs: `scan` rebuilds records/firstSeen/heldClaims/claimsHeld from company/reviews/**/*.md and unverified claim notes in src/demos/**/meta.json (a sentence naming the host and a block word); `probe` writes only lastProbe. This list informs; it never sets or justifies a claim's status. `match` is the case-insensitive regex used by scan.",
+  "scannedAt": "2026-10-16T14:32:11.059Z",
+  "hosts": [
+    {
+      "host": "fr.wikipedia.org",
+      "match": "fr(?:/en)?\\.wikipedia",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "en.wikipedia.org",
+      "match": "en\\.wikipedia|(?<!fr\\.)\\bwikipedia\\b",
+      "firstSeen": "2026-10-13",
+      "records": [
+        "company/reviews/agenda-picks-the-winner/2026-10-14-fact-check.md",
+        "company/reviews/alias-wave-wagon-wheel/2026-10-13-fact-check.md",
+        "company/reviews/bending-frontier/2026-10-14-fact-check.md",
+        "company/reviews/best-of-twenty-on-one-test/2026-10-14-fact-check.md",
+        "company/reviews/bird-on-the-wire/2026-10-14-fact-check.md",
+        "company/reviews/birthday-paradox/2026-10-13-fact-check.md",
+        "company/reviews/bridge-carries-news-not-habits/2026-10-14-fact-check.md",
+        "company/reviews/britain-made-most-co2-in-1850/2026-10-14-fact-check.md",
+        "company/reviews/broker-between-two-groups/2026-10-14-fact-check.md",
+        "company/reviews/cafe-is-five-bytes/2026-10-13-fact-check.md",
+        "company/reviews/capped-doubling-game/2026-10-14-fact-check.md",
+        "company/reviews/check-confidence-with-output/2026-10-14-fact-check.md",
+        "company/reviews/children-dying-before-five/2026-10-14-fact-check.md",
+        "company/reviews/cholera-fell-with-height/2026-10-14-fact-check.md",
+        "company/reviews/circle-tray-square-corners/2026-10-14-fact-check.md",
+        "company/reviews/cluster-stops-the-cascade/2026-10-14-fact-check.md",
+        "company/reviews/coal-came-back/2026-10-14-fact-check.md",
+        "company/reviews/continental-jigsaw/2026-10-13-fact-check.md",
+        "company/reviews/count-the-marked-fish/2026-10-13-fact-check.md",
+        "company/reviews/cue-needs-a-boundary/2026-10-14-fact-check.md",
+        "company/reviews/cut-the-busiest-link/2026-10-14-fact-check.md",
+        "company/reviews/deleted-column-still-there/2026-10-14-fact-check.md",
+        "company/reviews/deleted-key-breaks-search/2026-10-14-fact-check.md",
+        "company/reviews/dice-that-chase-each-other/2026-10-13-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/drying-room-water-load/2026-10-14-fact-check.md",
+        "company/reviews/duck-rides-the-wave/2026-10-14-fact-check.md",
+        "company/reviews/earthquakes-did-not-fall/2026-10-14-fact-check.md",
+        "company/reviews/electron-speed-in-a-wire/2026-10-16-fact-check.md",
+        "company/reviews/enemies-allow-three-camps/2026-10-14-fact-check.md",
+        "company/reviews/enemy-of-my-enemy/2026-10-14-fact-check.md",
+        "company/reviews/eratosthenes-shadow/2026-10-14-fact-check.md",
+        "company/reviews/euclid-three-steps/2026-10-14-fact-check.md",
+        "company/reviews/every-base-fools-fermat/2026-10-14-fact-check.md",
+        "company/reviews/every-scale-equally-likely/2026-10-14-fact-check.md",
+        "company/reviews/everyone-gets-hats-back/2026-10-13-fact-check.md",
+        "company/reviews/everyone-saves-nobody-does/2026-10-14-fact-check.md",
+        "company/reviews/fewest-exits-first-tour/2026-10-14-fact-check.md",
+        "company/reviews/flaw-to-lawn/2026-10-14-fact-check.md",
+        "company/reviews/four-in-a-row-two-thirds/2026-10-14-fact-check.md",
+        "company/reviews/gradient-fades-with-depth/2026-10-14-fact-check.md",
+        "company/reviews/gray-code-one-flip/2026-10-14-fact-check.md",
+        "company/reviews/groups-where-everyone-reaches-everyone/2026-10-14-fact-check.md",
+        "company/reviews/hailstone-27-climbs/2026-10-14-fact-check.md",
+        "company/reviews/half-adder-wiring/2026-10-14-fact-check.md",
+        "company/reviews/half-of-humanity/2026-10-13-fact-check.md",
+        "company/reviews/harm-prices-clear-the-market/2026-10-14-fact-check.md",
+        "company/reviews/hemoglobin-s-curve/2026-10-13-fact-check.md",
+        "company/reviews/honest-bid-loses-in-gsp/2026-10-14-fact-check.md",
+        "company/reviews/horizon-ruler/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/iss-gravity-still-there/2026-10-14-fact-check.md",
+        "company/reviews/italy-poorer-in-1800/2026-10-14-fact-check.md",
+        "company/reviews/karatsuba-three-not-four/2026-10-14-fact-check.md",
+        "company/reviews/keep-one-of-a-stream/2026-10-14-fact-check.md",
+        "company/reviews/kmp-never-steps-back/2026-10-14-fact-check.md",
+        "company/reviews/lakes-misplaced-east-west/2026-10-14-fact-check.md",
+        "company/reviews/last-digit-first/2026-10-14-fact-check.md",
+        "company/reviews/lh-align-price-units/2026-10-14-fact-check.md",
+        "company/reviews/lh-big-pack-price/2026-10-14-fact-check.md",
+        "company/reviews/lh-count-sheets-not-rolls/2026-10-14-fact-check.md",
+        "company/reviews/lh-duty-cycle-energy/2026-10-14-fact-check.md",
+        "company/reviews/lh-fixed-energy-charge/2026-10-14-fact-check.md",
+        "company/reviews/lh-idle-versus-active/2026-10-14-fact-check.md",
+        "company/reviews/lh-purchase-plus-running/2026-10-14-fact-check.md",
+        "company/reviews/lh-same-energy-new-tariff/2026-10-14-fact-check.md",
+        "company/reviews/lh-scale-recipe-portions/2026-10-14-fact-check.md",
+        "company/reviews/lh-standby-days-add-up/2026-10-14-fact-check.md",
+        "company/reviews/lh-watts-hours-trade/2026-10-14-fact-check.md",
+        "company/reviews/life-expectancy-gained-late/2026-10-14-fact-check.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/long-cord-knots-itself/2026-10-14-fact-check.md",
+        "company/reviews/lowball-offer-should-pass/2026-10-14-fact-check.md",
+        "company/reviews/lower-bid-takes-the-top-ad/2026-10-14-fact-check.md",
+        "company/reviews/mail-exact-phrase/2026-10-14-fact-check.md",
+        "company/reviews/mail-minus-noise/2026-10-14-fact-check.md",
+        "company/reviews/metal-feels-colder/2026-10-14-fact-check.md",
+        "company/reviews/more-boys-christened/2026-10-14-fact-check.md",
+        "company/reviews/more-detail-less-likely/2026-10-14-fact-check.md",
+        "company/reviews/new-server-moves-few-keys/2026-10-14-fact-check.md",
+        "company/reviews/newton-doubles-the-digits/2026-10-14-fact-check.md",
+        "company/reviews/nines-without-end/2026-10-14-fact-check.md",
+        "company/reviews/odds-average-the-bettors/2026-10-14-fact-check.md",
+        "company/reviews/one-crowded-bucket/2026-10-14-fact-check.md",
+        "company/reviews/one-shy-rioter-stops-the-riot/2026-10-14-fact-check.md",
+        "company/reviews/only-the-needed-trader-profits/2026-10-14-fact-check.md",
+        "company/reviews/overshoot-from-delay/2026-10-13-fact-check.md",
+        "company/reviews/pairs-cancel-under-xor/2026-10-14-fact-check.md",
+        "company/reviews/patience-wins-the-split/2026-10-14-fact-check.md",
+        "company/reviews/pay-for-the-harm-you-do/2026-10-14-fact-check.md",
+        "company/reviews/penalty-on-wiggle/2026-10-14-fact-check.md",
+        "company/reviews/pennies-dont-add-up/2026-10-14-fact-check.md",
+        "company/reviews/pesticide-paradox/2026-10-13-fact-check.md",
+        "company/reviews/ph-log-scale/2026-10-13-fact-check.md",
+        "company/reviews/potassium-battery/2026-10-13-fact-check.md",
+        "company/reviews/proposers-get-the-best/2026-10-14-fact-check.md",
+        "company/reviews/protein-search-space/2026-10-13-fact-check.md",
+        "company/reviews/ramp-same-work/2026-10-14-fact-check.md",
+        "company/reviews/range-min-in-four-nodes/2026-10-14-fact-check.md",
+        "company/reviews/raters-reward-agreement/2026-10-14-fact-check.md",
+        "company/reviews/reject-the-first-three/2026-10-13-fact-check.md",
+        "company/reviews/ring-buffer-wraps-around/2026-10-14-fact-check.md",
+        "company/reviews/rising-price-stops-at-second/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/build.md",
+        "company/reviews/ruler-catch/2026-10-14-fact-check.md",
+        "company/reviews/salt-ions-count-double/2026-10-13-fact-check.md",
+        "company/reviews/salt-water-hides-silver/2026-10-13-fact-check.md",
+        "company/reviews/same-line-four-pictures/2026-10-13-fact-check.md",
+        "company/reviews/same-revenue-any-rule/2026-10-14-fact-check.md",
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md",
+        "company/reviews/second-speaker-decibels/2026-10-16-fact-check.md",
+        "company/reviews/secret-in-the-counts/2026-10-14-fact-check.md",
+        "company/reviews/selection-not-focus/2026-10-14-fact-check.md",
+        "company/reviews/selfish-routes-cost-a-third-more/2026-10-14-fact-check.md",
+        "company/reviews/side-of-the-square/2026-10-14-fact-check.md",
+        "company/reviews/snap-the-magnet/2026-10-14-fact-check.md",
+        "company/reviews/someone-has-to-swerve/2026-10-14-fact-check.md",
+        "company/reviews/sorting-without-comparing/2026-10-13-fact-check.md",
+        "company/reviews/spaced-beats-cram/2026-10-14-fact-check.md",
+        "company/reviews/square-bow-stays-tied/2026-10-14-fact-check.md",
+        "company/reviews/stag-needs-three-in-four/2026-10-14-fact-check.md",
+        "company/reviews/sudden-skill-or-strict-score/2026-10-14-fact-check.md",
+        "company/reviews/survive-childhood-live-to-sixty/2026-10-14-fact-check.md",
+        "company/reviews/temperature-reshapes/2026-10-14-fact-check.md",
+        "company/reviews/ten-to-one-buffer/2026-10-14-fact-check.md",
+        "company/reviews/ternary-asks-more/2026-10-14-fact-check.md",
+        "company/reviews/the-bar-nobody-can-forecast/2026-10-14-fact-check.md",
+        "company/reviews/the-fast-ones-leave/2026-10-14-fact-check.md",
+        "company/reviews/the-long-tail-adds-up/2026-10-14-fact-check.md",
+        "company/reviews/the-pivotal-juror-convicts/2026-10-14-fact-check.md",
+        "company/reviews/the-slowing-half-life/2026-10-14-fact-check.md",
+        "company/reviews/three-questions-six-orders/2026-10-13-fact-check.md",
+        "company/reviews/ties-keep-their-order/2026-10-14-fact-check.md",
+        "company/reviews/tortoise-meets-hare/2026-10-14-fact-check.md",
+        "company/reviews/turns-beat-first-come-first/2026-10-14-fact-check.md",
+        "company/reviews/twenty-flips-run-of-five/2026-10-14-fact-check.md",
+        "company/reviews/twenty-then-ten-off/2026-10-13-fact-check.md",
+        "company/reviews/two-bets-split/2026-10-14-fact-check.md",
+        "company/reviews/two-names-one-list/2026-10-13-fact-check.md",
+        "company/reviews/two-pages-swallow-the-rank/2026-10-14-fact-check.md",
+        "company/reviews/two-public-clues-break-the-herd/2026-10-14-fact-check.md",
+        "company/reviews/two-stacks-make-a-queue/2026-10-14-fact-check.md",
+        "company/reviews/two-writers-one-counter/2026-10-13-fact-check.md",
+        "company/reviews/useless-degree-still-pays/2026-10-14-fact-check.md",
+        "company/reviews/version-nine-and-ten/2026-10-14-fact-check.md",
+        "company/reviews/wages-bought-more-wheat/2026-10-14-fact-check.md",
+        "company/reviews/waves-return/2026-10-14-fact-check.md",
+        "company/reviews/ways-to-make-ten/2026-10-14-fact-check.md",
+        "company/reviews/what-pushes-the-car/2026-10-16-fact-check.md",
+        "company/reviews/who-pays-same-filter/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "hal.science",
+      "match": "\\bhal\\.science|hal\\.archives-ouvertes",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "halshs.archives-ouvertes.fr",
+      "match": "\\bhalshs",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.persee.fr",
+      "match": "pers(?:e|é)e(?:\\.fr)?\\b",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.cairn.info",
+      "match": "cairn\\.info|\\bcairn\\b",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "journals.openedition.org",
+      "match": "openedition",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "core.ac.uk",
+      "match": "core\\.ac\\.uk",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "gallica.bnf.fr",
+      "match": "gallica",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "archive.org",
+      "match": "\\barchive\\.org|internet archive",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/acid-diluted-a-thousandfold/2026-10-14-fact-check.md",
+        "company/reviews/calibrated-but-unequal-alarms/2026-10-16-fact-check.md",
+        "company/reviews/cut-the-busiest-link/2026-10-16-fact-check.md",
+        "company/reviews/early-fatality-count/2026-10-14-fact-check.md",
+        "company/reviews/earth-history-in-a-day/2026-10-14-fact-check.md",
+        "company/reviews/ethanol-and-its-twin/2026-10-14-fact-check.md",
+        "company/reviews/find-the-co2-in-air/2026-10-14-fact-check.md",
+        "company/reviews/heat-the-ammonia-maker/2026-10-14-fact-check.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/noise-draws-dunning-kruger/2026-10-14-fact-check.md",
+        "company/reviews/one-gram-two-fires/2026-10-14-fact-check.md",
+        "company/reviews/one-ten-thousandth-apart/2026-10-14-fact-check.md",
+        "company/reviews/patience-wins-the-split/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/same-grey-in-shadow/2026-10-14-fact-check.md",
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md",
+        "company/reviews/screening-survival-clock/2026-10-14-fact-check.md",
+        "company/reviews/steady-catch-from-a-lake/2026-10-14-fact-check.md",
+        "company/reviews/ten-times-taller-giant/2026-10-14-fact-check.md",
+        "company/reviews/twenty-cultures-twenty-plates/2026-10-14-fact-check.md",
+        "company/reviews/two-four-six-rule/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.gutenberg.org",
+      "match": "gutenberg",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/acid-diluted-a-thousandfold/2026-10-14-fact-check.md",
+        "company/reviews/children-dying-before-five/2026-10-14-fact-check.md",
+        "company/reviews/cholera-fell-with-height/2026-10-14-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/early-fatality-count/2026-10-14-fact-check.md",
+        "company/reviews/earth-history-in-a-day/2026-10-14-fact-check.md",
+        "company/reviews/ethanol-and-its-twin/2026-10-14-fact-check.md",
+        "company/reviews/find-the-co2-in-air/2026-10-14-fact-check.md",
+        "company/reviews/heat-the-ammonia-maker/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/noise-draws-dunning-kruger/2026-10-14-fact-check.md",
+        "company/reviews/one-gram-two-fires/2026-10-14-fact-check.md",
+        "company/reviews/one-ten-thousandth-apart/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/same-grey-in-shadow/2026-10-14-fact-check.md",
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md",
+        "company/reviews/screening-survival-clock/2026-10-14-fact-check.md",
+        "company/reviews/steady-catch-from-a-lake/2026-10-14-fact-check.md",
+        "company/reviews/ten-times-taller-giant/2026-10-14-fact-check.md",
+        "company/reviews/twenty-cultures-twenty-plates/2026-10-14-fact-check.md",
+        "company/reviews/two-four-six-rule/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "openlibrary.org",
+      "match": "openlibrary|open library",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.legifrance.gouv.fr",
+      "match": "l(?:e|é)gifrance",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www2.assemblee-nationale.fr",
+      "match": "assemblee-nationale|assembl(?:e|é)e nationale",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "archives.creuse.fr",
+      "match": "archives\\.creuse",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.herodote.net",
+      "match": "h(?:e|é)rodote",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.napoleon.org",
+      "match": "napoleon\\.org",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.universalis.fr",
+      "match": "universalis",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.britannica.com",
+      "match": "britannica",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/britain-made-most-co2-in-1850/2026-10-14-fact-check.md",
+        "company/reviews/children-dying-before-five/2026-10-14-fact-check.md",
+        "company/reviews/cholera-fell-with-height/2026-10-14-fact-check.md",
+        "company/reviews/coal-came-back/2026-10-14-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/earthquakes-did-not-fall/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/italy-poorer-in-1800/2026-10-14-fact-check.md",
+        "company/reviews/lakes-misplaced-east-west/2026-10-14-fact-check.md",
+        "company/reviews/life-expectancy-gained-late/2026-10-14-fact-check.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/more-boys-christened/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md",
+        "company/reviews/survive-childhood-live-to-sixty/2026-10-14-fact-check.md",
+        "company/reviews/wages-bought-more-wheat/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "fr.vikidia.org",
+      "match": "vikidia",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "fr.geneawiki.com",
+      "match": "geneawiki",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.datavis.ca",
+      "match": "datavis\\.ca",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/britain-made-most-co2-in-1850/2026-10-14-fact-check.md",
+        "company/reviews/children-dying-before-five/2026-10-14-fact-check.md",
+        "company/reviews/cholera-fell-with-height/2026-10-14-fact-check.md",
+        "company/reviews/coal-came-back/2026-10-14-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/earthquakes-did-not-fall/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/italy-poorer-in-1800/2026-10-14-fact-check.md",
+        "company/reviews/lakes-misplaced-east-west/2026-10-14-fact-check.md",
+        "company/reviews/life-expectancy-gained-late/2026-10-14-fact-check.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/more-boys-christened/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/build.md",
+        "company/reviews/schooling-and-crime-1830s/2026-10-16-fact-check.md",
+        "company/reviews/survive-childhood-live-to-sixty/2026-10-14-fact-check.md",
+        "company/reviews/wages-bought-more-wheat/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [
+        "history.literacy-split-france.c4",
+        "history.schooling-and-crime-1830s.c1"
+      ],
+      "claimsHeld": 2
+    },
+    {
+      "host": "www.ginetex.net",
+      "match": "ginetex",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/care-label-first-choice/2026-10-14-fact-check.md",
+        "company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md",
+        "company/reviews/lifehacks-200/2026-10-16-fact-check-so-10-2-batch2.md",
+        "company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md",
+        "company/reviews/wet-knit-hang-stretch/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [
+        "lifehacks.wet-knit-hang-stretch.c1"
+      ],
+      "claimsHeld": 1
+    },
+    {
+      "host": "www.ftc.gov",
+      "match": "\\bftc\\.gov",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/lifehacks-200/2026-10-16-fact-check-so-10-2-batch2.md",
+        "company/reviews/wet-knit-hang-stretch/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.ecfr.gov",
+      "match": "\\becfr\\b",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/wet-knit-hang-stretch/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.govinfo.gov",
+      "match": "govinfo",
+      "firstSeen": "2026-10-16",
+      "records": [
+        "company/reviews/wet-knit-hang-stretch/2026-10-16-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.nhs.uk",
+      "match": "\\bnhs\\.uk",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/coiled-cord-bend-radius/2026-10-14-fact-check.md",
+        "company/reviews/drying-room-water-load/2026-10-14-fact-check.md",
+        "company/reviews/elastic-loop-release/2026-10-14-fact-check.md",
+        "company/reviews/group-cables-with-ends/2026-10-14-fact-check.md",
+        "company/reviews/lh-percentage-overage/2026-10-14-fact-check.md",
+        "company/reviews/lh-scale-recipe-portions/2026-10-14-fact-check.md",
+        "company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.gov.uk",
+      "match": "(?<![\\w.-])(?:www\\.)?gov\\.uk\\b",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/coiled-cord-bend-radius/2026-10-14-fact-check.md",
+        "company/reviews/drying-room-water-load/2026-10-14-fact-check.md",
+        "company/reviews/elastic-loop-release/2026-10-14-fact-check.md",
+        "company/reviews/group-cables-with-ends/2026-10-14-fact-check.md",
+        "company/reviews/lh-percentage-overage/2026-10-14-fact-check.md",
+        "company/reviews/lh-scale-recipe-portions/2026-10-14-fact-check.md",
+        "company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.pnas.org",
+      "match": "\\bpnas\\b",
+      "firstSeen": "2026-10-13",
+      "records": [
+        "company/reviews/calibrated-but-unequal-alarms/2026-10-16-fact-check.md",
+        "company/reviews/coiled-cord-bend-radius/2026-10-14-fact-check.md",
+        "company/reviews/cut-the-busiest-link/2026-10-16-fact-check.md",
+        "company/reviews/drying-room-water-load/2026-10-14-fact-check.md",
+        "company/reviews/elastic-loop-release/2026-10-14-fact-check.md",
+        "company/reviews/group-cables-with-ends/2026-10-14-fact-check.md",
+        "company/reviews/lh-percentage-overage/2026-10-14-fact-check.md",
+        "company/reviews/lh-scale-recipe-portions/2026-10-14-fact-check.md",
+        "company/reviews/lifehacks-briefs/2026-10-13-source-check.md",
+        "company/reviews/long-cord-knots-itself/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.ncbi.nlm.nih.gov",
+      "match": "(?<!pmc\\.)\\bncbi\\b|\\bpubmed\\b|\\beutils\\b",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/bracket-order-sets-the-bill/2026-10-14-fact-check.md",
+        "company/reviews/calibrated-but-unequal-alarms/2026-10-16-fact-check.md",
+        "company/reviews/children-dying-before-five/2026-10-14-fact-check.md",
+        "company/reviews/cholera-fell-with-height/2026-10-14-fact-check.md",
+        "company/reviews/contact-order-matters/2026-10-14-fact-check.md",
+        "company/reviews/count-the-bread-once/2026-10-14-fact-check.md",
+        "company/reviews/cut-the-busiest-link/2026-10-16-fact-check.md",
+        "company/reviews/doubling-finds-the-edge/2026-10-14-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/earth-history-in-a-day/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/insert-at-front-cost/2026-10-14-fact-check.md",
+        "company/reviews/italy-poorer-in-1800/2026-10-14-fact-check.md",
+        "company/reviews/keeping-the-bad-gene/2026-10-14-fact-check.md",
+        "company/reviews/life-expectancy-gained-late/2026-10-14-fact-check.md",
+        "company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md",
+        "company/reviews/lifehacks-200/fact-check-W3-2026-10-16.md",
+        "company/reviews/london-buried-six-times-more/2026-10-14-fact-check.md",
+        "company/reviews/more-boys-christened/2026-10-14-fact-check.md",
+        "company/reviews/more-copying-bigger-stars/2026-10-14-fact-check.md",
+        "company/reviews/negative-edge-fools-dijkstra/2026-10-14-fact-check.md",
+        "company/reviews/newton-doubles-the-digits/2026-10-14-fact-check.md",
+        "company/reviews/noise-draws-dunning-kruger/2026-10-14-fact-check.md",
+        "company/reviews/outbreak-can-fizzle-above-one/2026-10-14-fact-check.md",
+        "company/reviews/patience-wins-the-split/2026-10-14-fact-check.md",
+        "company/reviews/rome-placed-too-far-east/2026-10-14-fact-check.md",
+        "company/reviews/shoelace-order-matters/2026-10-14-fact-check.md",
+        "company/reviews/skip-the-edge-that-loops/2026-10-14-fact-check.md",
+        "company/reviews/torch-underwater-tilt/2026-10-14-fact-check.md",
+        "company/reviews/twenty-cultures-twenty-plates/2026-10-14-fact-check.md",
+        "company/reviews/wages-bought-more-wheat/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    },
+    {
+      "host": "www.ebi.ac.uk",
+      "match": "\\bebi\\.ac\\.uk|\\bwww\\.ebi\\b",
+      "firstSeen": "2026-10-14",
+      "records": [
+        "company/reviews/calibrated-but-unequal-alarms/2026-10-16-fact-check.md",
+        "company/reviews/cut-the-busiest-link/2026-10-16-fact-check.md",
+        "company/reviews/doubling-stopped-speeding-up/2026-10-14-fact-check.md",
+        "company/reviews/earth-history-in-a-day/2026-10-14-fact-check.md",
+        "company/reviews/income-flat-then-sixteenfold/2026-10-14-fact-check.md",
+        "company/reviews/italy-poorer-in-1800/2026-10-14-fact-check.md",
+        "company/reviews/life-expectancy-gained-late/2026-10-14-fact-check.md",
+        "company/reviews/more-boys-christened/2026-10-14-fact-check.md",
+        "company/reviews/patience-wins-the-split/2026-10-14-fact-check.md",
+        "company/reviews/wages-bought-more-wheat/2026-10-14-fact-check.md"
+      ],
+      "heldClaims": [],
+      "claimsHeld": 0
+    }
+  ],
+  "knownOpen": [
+    {
+      "host": "raw.githubusercontent.com",
+      "note": "control: fact-checkers fetch pinned data here"
+    },
+    {
+      "host": "pmc.ncbi.nlm.nih.gov",
+      "note": "control: PMC text opened via its OAI service in fact-check passes"
+    }
+  ]
+}
