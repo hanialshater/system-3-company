@@ -3,6 +3,24 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #4 held by founder: reviews preserved on the PR branch
+
+**Changed:** merged pr4/pe (`95a44849`), pr4/a11y (`37db216f`), pr4/hist (`d84a5c93`) and base `d904f68d` into `pr4-history-maps`, merge commits only. pr4/hist's W-1562..W-1564 became W-1568..W-1570 (pr4/pe kept W-1562..W-1567). prs/4.md §8 holds the verdict "held by founder", the matrix and the revival list. Pushed to `feat/history-maps-100` without force, and posted on PR #4. The PR stays a draft. This entry lives on the PR branch only.
+**Believe (high):** every review is on the branch; check and typecheck pass; no build or QA was run (nothing merges).
+**Next:** nothing until a legal read, a new source, or a labels-only redesign (`company/decisions/2026-10-16-founder-pr4-hold.md`). **Blocked:** the merge, by the founder's hold.
+
+## 2026-10-16 · principal-engineer (Kenji) · PR #4 History maps 100: engineering review (W-1556) and GPL data record (W-1557)
+
+**Changed:** `company/engineering/reviews/2026-10-16-pr4-engineering-review.md` (F1–F12, merge conditions M1–M5, pre-publish F6–F10, no retroactive EDD) and `company/decisions/2026-10-16-history-maps-gpl-data.md` (engineering side only; status proposed, founder decides). Board W-1562 (founder decision), W-1563 (platform: payload test, antimeridian fix, `--write` guard), W-1564 (qa-tester integrated verify), W-1565 (readiness record + ops approval), W-1566 (cm-history: index copy, hover labels), W-1567 (tier map). W-1556 done, W-1557 in review awaiting the founder.
+**Believe (high):** the code is sound and goes through the kit contract; 100/100 answers agree with their data; typecheck (90 s), `test:history-maps` 3/3 and check pass at `57aef500`. Draft data still ships in production bundles, because the registry loads every lesson whatever its status. One generator bug: `map-sydney-wellington-1800-1900` crosses the antimeridian and renders a near-world map, 371 KB. The GitHub repo is public with no licence, so the derived data is already public on the PR branch.
+**Next:** founder decides W-1562; meanwhile platform-engineer W-1563, then qa-tester W-1564, then W-1565. **Blocked:** merge, on W-1562 (founder) and M2–M5.
+
+## 2026-10-16 · research-lead (Wen) · W-1559 provenance note for PR #4's 100 history map lessons
+
+**Changed:** new `company/research/notes/2026-10-16-provenance-history-maps-100.md` (the stage A input for W-1558). W-1559 done. Board: W-1568 (cm-history: limit sentence, the 10 risk-A lessons, recall by fit), W-1569 (principal-engineer: Sydney antimeridian crop, ABBREVN trace labels), W-1570 (fact-checker: open sources for the memory-only year checks).
+**Believe:** high that the 25 snapshots match their pins and on every data fact in the note (feature joins, precision and unnamed counts, point tests). BORDERPRECISION is an era code (all 1 before 1500, almost all 3 from 1700), so no lesson may quote it. The khanates note does not cover these lessons. Medium-low on which labels are historically wrong: reference hosts were refused by the proxy, so those lines are marked unverified (memory). The risk tiers (A 10, B 55, C 35) are input for the reviewer, not verdicts.
+**Next:** cultural-reviewer W-1558 with the note; then W-1568. **Blocked:** nothing from research; the fact-checker needs an opened source for each memory line.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 
 **Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.
@@ -165,6 +183,12 @@ who no longer exists: check what you rely on.
 **Next:** review the requested draft PR and grouped rollback, preserving all holds. Existing owners retain source/chapter work W-1499, short-phone crop repair W-1501, artifact provenance tooling W-1502 and inherited dispatch fixture W-1503. Final publication uses byte-identical Git-tree comparison because CLI push lacks credentials; local/public phase IDs are mapped in publication-provenance.json.
 
 **Blocked before launch/merge:** source/attribution/empirical/legal gates, short-viewport completeness and required CI resolution; no merge, lesson publication or deployment performed. No founder gate or protected judge was bypassed.
+## 2026-10-16 (Codex, chief-of-staff integration): 100 History map draft prototypes on a PR
+
+- **Changed:** 100 separately addressable map practice cases, ten regional groups, 25 immutable source snapshot pins, 500 unverified claims, default Lesson predict/explore/reveal, a draft-visible `/history-maps` index, generator, geometry tests and CI script. Each case retains source matches, coordinate offsets, missing coverage and overlaps. Added per-case pre-flights, five browser screenshots, a machine validation record and 100 explicit publish holds. Current company work was integrated without changing its app/kit/QA contract. No new role, agent, budget approval, publication or deployment.
+- **Believe (high, engineering only):** source reconstruction 100/100; regression tests 3/3; typecheck/build pass; final browser contract 200/200; 390×844 strict phone fit 100/100; stage audit 100/100, max 23 words, minimum SVG label 10.67 px. Post-integration company check 1,074 lessons / 5,827 claims, three pre-existing dispute warnings; 99 role memories pass. **Not established:** historical accuracy of every reconstruction, category fit, cultural acceptance or learning. This is 100 practice cases of related ideas, not 100 new concepts. All claims remain unverified; no independent review evidence invented.
+- **Next:** W-1551 cm-history rules on scope/placement; W-1552 evaluation-steward routes provenance, cultural stage A, artifact-first fact-check/learner review and cultural stage B; W-1553 portfolio-manager reconciles renewed scope with F-43. Keep holds until category launch and required reviews. See company/decisions/2026-10-16-founder-history-maps-100-pr.md and company/reviews/history-maps-100/build.md.
+- **Blocked:** full verify reaches the unchanged dispatch fixture W-1337 C2 (empty stash expected, `autostash` retained by Git 2.51.1); reproduced alone, W-1554 principal-engineer-ops. Prototype admission still needs the sensitive pre-build route; this PR does not claim it already happened. No production admission, funded wave or deploy approval is inferred from the content request.
 
 ## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
