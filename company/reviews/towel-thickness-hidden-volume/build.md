@@ -2,6 +2,13 @@
 
 Kept from evaluators until they report.
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit 764ef10: patch r3 (company/reviews/lifehacks-200/content-patch-2026-10-16-r3.md) D1 rows: idea (c1, and objective), limit (c2), formula (c3), spec recall (c5), meta recall question (1 → 2 mm), options `Twice as much` / `The same` / `Half as much` (key 2), why. "ratio" is gone from every learner-visible field here. Patch run at p = 2 and 1 as quoted. The c3 "cm⁻¹" (FC 61) goes with the c3 formula row.
+- Reset: c1, c2, c3, c5, recall. seen unchanged (stage fields unchanged).
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 ## Revision B4 (content patch r2, 2026-10-16, demo-builder)
 
 - Applied by demo-builder on branch lhfix-r2 (batch B4), rows from company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1, every old value asserted against disk before writing. Not merged: the change touches src/lib/lifehacks (tier 2, company/engineering/readiness/2026-10-16-lh-content-patch-r2-b4.md, awaiting principal-engineer-ops).

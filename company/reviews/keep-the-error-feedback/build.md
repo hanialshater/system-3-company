@@ -1,5 +1,12 @@
 # Build note: keep-the-error-feedback
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit d44fdab (r5 D3, FC 61 W-1345): RetrievalLesson.tsx FeedbackStage chip labels `Try ${r.tries}, count only` / `Try ${r.tries}, marked` (render: "Try 3, count only", "Try 3, marked"). FeedbackStage renders only for `kind: "feedback"`, which only this lesson uses (studyCatalog.ts, 1 match). c4 last sentence replaced as D3 wrote it.
+- Reset: c3 (text unchanged, was disputed), c4 (was disputed).
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 ## Revision v3 (W1, r11 fix plan, 2026-10-15, demo-builder)
 
 Input: company/reviews/keep-the-error-feedback/2026-10-15-learner-adult-beginner-r11.md (verdict revise) and the W1 row of company/decisions/2026-10-15-lifehacks-r11-fix-plan.md.

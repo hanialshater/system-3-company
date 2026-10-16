@@ -1,5 +1,12 @@
 # Build note: group-cables-with-ends
 
+## Revision lhfix-r3 (dispatch 2026-10-16-r5-lifehacks.md B1, 2026-10-16, demo-builder)
+
+- Branch lhfix-r3 from main 422f861. Tier 2: company/engineering/readiness/2026-10-16-lh-content-patch-r3.md, awaiting principal-engineer-ops; not merged. No claim marked verified by me.
+- Applied, commit 764ef10: patch r2 §2 (company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md, as amended by patch r3 "§2 re-check") title `Tie the middle or tuck the ends?`, hook `Three cords in one drawer. Does tying them together stop the tangles?`. Pending the W-1094 safety re-look.
+- Reset: c4. Not applied, by design: the "how to tuck" picture and the c2 bend-radius limit (safety-owned wording, W-1094); the locked end-dot highlight is already off on main (lh-engine-locked, W-1299).
+- QA: release build of this branch (NEXT_DIST_DIR=.next-lh3, port 4073, QA_ONLY = the 21 touched lessons, 2 workers): this lesson's contract passed on phone and desktop (42 of 42 contract tests; the only 2 failures were feed.spec "subject chips filter the feed", which compares against the QA_ONLY subset and passes 10/10 without it). Dist deleted.
+
 
 ## Revision v2 → v3 (r11 fix plan wave W3, TP-1/TP-2/TP-8, 2026-10-16, demo-builder)
 
