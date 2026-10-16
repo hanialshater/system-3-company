@@ -13,7 +13,7 @@
     "check": "node tools/company.mjs check && node tools/memory.mjs check",
     "qa": "playwright test",
     "walkthrough": "node tools/walkthrough.mjs",
-    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run check && npm run typecheck && npm run build && npm run qa",
+    "verify": "npm run test:deploy && npm run test:publish && npm run test:lifehacks && npm run test:kit && npm run test:hq && npm run test:platform && npm run test:dispatch && npm run test:mailbox && npm run test:memory && npm run check && npm run typecheck && npm run build && npm run qa",
     "metrics": "node tools/metrics.mjs",
     "deploy": "node tools/deploy.mjs",
     "test:deploy": "node --test tests/deploy/*.test.mjs",
