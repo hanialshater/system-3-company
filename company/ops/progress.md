@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · privacy-reviewer (Elif) · W-1495 personalization model inputs (run pr-w1495-perso-inputs-1016)
+
+**Changed:** wrote `company/reviews/_privacy/2026-10-16-personalization-model-inputs.md` (per-signal rulings, conditions A2-A3, P1-P4, SS1-SS5, F1-F3, AG1-AG3, M1-M3, N1-N6, T1-T6, HQ lab limits); added row D20 to `company/engineering/data-inventory.md` (derived personalization values: nothing stored). W-1495 to review; new board item for personalization-lead to apply the conditions. No code, no protected path.
+
+**Believe:** phase A touches no real data (high: sim reads only curriculum and meta.json, no storage/network calls by grep). Phase B: `predictedCorrectly` for ordering allowed with conditions (recall-only fallback must stay tested); stated subjects/less-of allowed with conditions on a schema not yet built; the five on-demand signals allowed; fingerprints/need scores stored per learner refused; gapDays refused; masteryOf as input conditional on EDD-009; HQ lab simulated personas only; teen mode same model, age band never an input (medium-high; conditions are on builds I have not seen, about 70% first build is clean). Every phase B ruling rests on AMD-008 P2 as drafted (F-19 open).
+
+**Next:** personalization-lead applies section 8; backend-engineer puts SS1-SS5 in the settings diff; analytics-steward owns N5/T4/AG; I read the settings diff. **Blocked:** F-19; lawyer items in section 7 of the review.
+
 ## 2026-10-16 · learner-model-engineer (Ifeoma) · W-1494 phase A simulator + W-1504 trace (run lme-w1494-sim-1016, branch perso-sim-w1494)
 
 **Changed:** new `company/personalization/model/sim/` (offline, no dependencies, nothing in src/ imports it): `catalog.mjs` (230 pilot lessons, dims from meta.json + curriculum, default order = feed interleave on the pilot, **misconceptionStrength a placeholder hash**), `composer.ts` (`composeExplained()` / `gamCompose: ComposeFn`, port of edp compose() with all §2.5 constraints; draft rules, default, random baselines; ablation by term), `simulate.mjs` (episodes + per-step trace schema `personalization-sim-trace-v0`), `learner.ts` + `score.ts` (**PROVISIONAL**, builder placeholders behind `SimLearner` / `scoreEpisode()`, to be replaced or owned by personalization-eval per company/ceo-office/2026-10-16-personalization-org-proposal.md §2), `run.mjs`, `README.md`. Outputs to `sim/out/` (gitignored). Run: `node company/personalization/model/sim/run.mjs` (~3 min). Board: W-1494, W-1504 → review; added W-1512 (contract findings, personalization-lead), W-1513 (replace the provisional learner/scorer).

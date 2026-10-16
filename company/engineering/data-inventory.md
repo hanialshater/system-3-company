@@ -149,6 +149,7 @@ Both PRDs are in my queue and the full read waits for F-26 and the founder's ans
 | D17 | `swap_block`: `blocker_user_id`, `blocked_user_id`, `created_at`; deleted with either account | PRD-003 §6 | as D16 |
 | D18 | `swap_report`: `token`, `reason` (enum), `created_at`, `state` (enum); 90 days unless preserved under the child-safety procedure | PRD-003 §6 | The preservation exception needs counsel (gate 5.3 item 7). Not in any migration |
 | D19 | PRD-004 challenges | PRD-004 §8 | The PRD says no new table, column or key beyond D5. Not yet read in full |
+| D20 | Personalization derived values: fingerprint, need scores, composer terms, mastery state | company/personalization/model/model.ts | **Nothing is stored, and the ruling is that nothing may be**: not per learner, not in localStorage, not in the beacon, `exp`, export, merge or a log. Computed on demand from D1 (and `settings` once it exists). Ruling and build conditions: company/reviews/_privacy/2026-10-16-personalization-model-inputs.md (N1 to N6) |
 
 ## 7. What deletion and export cannot reach
 
