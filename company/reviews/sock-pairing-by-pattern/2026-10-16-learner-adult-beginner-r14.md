@@ -15,3 +15,9 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** No. My question was "is sorting first worth it?" The reveal sets that aside with one line ("Sorting takes its own time"), so I leave without knowing whether the hack saves time overall, which is the whole claim the title makes. Also seen: the trust link reads "2/7 claims checked", far fewer than the other lessons in the wave (6/6 or 7/7).
 
 Verdict reason: the question asks about one pile but scores "3" (true only after sorting) as the alternative, and the reveal never says whether sorting first saves time overall.
+
+## After reading build.md / meta.json
+
+- meta.json has five of seven claims **disputed** (c1, c3, c4, recall, seen; FC pass 54). That is the trust link's "2/7". The disputes are the fact-checker's to resolve. My finding is about the learner experience and does not depend on them, but c1 (the "pick up one at a time" rule) is both the sentence I objected to and one of the disputed claims.
+- The stated misconception ("sorting first is extra work and doesn't speed up pairing") is exactly the question the reveal sets aside with "sorting takes its own time". The lesson's target misconception is never answered.
+- The recall claim (10 − 1 = 9; a bin of 5) does not fit three equal bins of 10 socks, and it is disputed.

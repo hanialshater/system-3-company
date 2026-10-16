@@ -15,3 +15,9 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** It said "it was 5" and then, in the next sentence, "you lift 7 items". The 7 comes from the slider (8 items), but next to "it was 5" it reads as a contradiction. The idea it teaches (what you need first goes in last) is the same as jacket-last-first in this wave, which teaches it better because it asks about order instead of stating the count.
 
 Verdict reason: the question states its own answer, so the predict step tests nothing; and the reveal's "it was 5" sits next to "you lift 7" without saying the slider changed the scene.
+
+## After reading build.md / meta.json
+
+- The brief's misconception is "packing order doesn't matter as long as everything fits", which is a good target, but the question as written ("under five items. How many do you lift?") does not test it. A question about order or choice would, as jacket-last-first's question does.
+- The `.seen` claim confirms that the reveal's first sentence is recomputed from the slider state. That is where "you lift 7" comes from, next to the fixed "it was 5".
+- The r11 point (the stack did not read as a stack) is fixed: the stack is clear now.

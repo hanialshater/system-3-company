@@ -15,3 +15,8 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** Partly. My real question is "will it tangle less?", and the reveal says outright that "the drawing counts loose ends; it does not simulate tangling". The one causal sentence ("a tangle starts when a free end weaves through a loop") carries all the teaching, and the lesson asserts it rather than showing it. The last line ("no electrical safety limit or product-specific bend radius") is jargon to me and answers a question I did not ask.
 
 Verdict reason: the locked stage's "6 loose ends" caption gives me the measure, and with it the answer, before I commit; and the tucked-ends move is never shown clearly enough to copy.
+
+## After reading build.md / meta.json
+
+- Intent and experience match on the idea: the misconception is "tying the middle stops tangling", and the reveal corrects exactly that. The r11 review said the option names gave the answer away; the options are now plainer, but the giveaway has moved to the locked stage. Pre-flight v2 says the caption reads "2N loose ends" in the middle-tie view, and the engine draws the locked stage as option A, so that caption shows before the commit. This looks like an engine-2 pattern (locked stage = A with A's caption), not a single-lesson slip. The same pattern shows up in shoes-opposite-ends (24 cm) and socks-use-shoe-space (600 cm³ empty).
+- Claim c3 says plainly that "tangling itself is not simulated", which agrees with what I saw. The teaching rests on c1's causal sentence, which is verified.

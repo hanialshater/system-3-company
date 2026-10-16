@@ -15,3 +15,9 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** Yes, for a top-opening bag: last in, first out, said plainly, plus the limit (side pockets, cases that open flat). The slider (3 to 5 items) only makes the buried count grow (2 to 4), and the reveal quotes 4 correctly. Note: this is the same idea, and nearly the same jacket, as suitcase-layer-access in this wave. Walking both, the second one felt like a repeat.
 
 Verdict reason: the title ("backwards") and the locked stage (jacket drawn buried) give the answer before the commit.
+
+## After reading build.md / meta.json
+
+- The r11 review asked for a stack showing the blockers, and v2 drew one (build.md: "arrows show the items that must come off it"). The fix works after the commit, but because the locked stage draws option A, the buried jacket and its arrows now show before the commit. The r11 fix and the no-answer-before-commit rule pull against each other here; the lane-1 builder should know that.
+- The title is claim c4 and is verified as a fact. Whether it gives the answer away is a separate, design question, and this review raises it.
+- Intent (misconception: "pack in use order") matches the reveal.

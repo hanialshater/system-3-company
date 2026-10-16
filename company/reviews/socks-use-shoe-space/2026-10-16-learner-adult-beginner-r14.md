@@ -15,3 +15,9 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** It answered the question as posed, plus the useful limit ("only socks bigger than the space spill over"). The walk only went to 300 cm³, so I never saw the spill-over case it mentions. My real question ("is a shoe really about 600 cm³ inside, and do two pairs of socks fit?") was not answered; "ideal hollow-volume model" leaves it open.
 
 Verdict reason: the title and the labelled "600 cm³ empty" hollow point to the answer before the commit, and the stage keeps saying "600 cm³ empty" after the socks fill it.
+
+## After reading build.md / meta.json
+
+- c3 explains the 800: the shoe counts as 800 cm³ with a 600 cm³ hollow. The learner is never told this, so the "Shoe and socks" row is unexplained on screen.
+- The r11 point (the beside-shoe number never shown) is fixed: the A/B table shows 200 against 0.
+- The recall claim uses a 500 cm³ hollow and 300 cm³ of socks while the lesson says 600. Fine as a transfer item; worth a look if it is meant to repeat the lesson.

@@ -15,3 +15,8 @@ Walked from the transcript cut at the trust-sheet appendix (steward ruling R1) a
 3. **Did the reveal answer my question?** It answered a counting question I did not have. My real question was "how many tries would it take me?" When I actually do it, I pick a sock and test it against the others (at most 5), then at most 3, then 1: at most 9 tries, not 15. The reveal moves from "15 pairings exist" to the hack (mark your pairs) as if I would test all 15. A careful beginner would call that overstated. The 5 + 4 + 3 + 2 + 1 sum is clear, and so is "ten socks give 45".
 
 Verdict reason: the premise (plain socks that are still not interchangeable) is explained only after the reveal, and the lesson treats "15 pairings exist" as "15 tries", when sequential matching needs at most 9.
+
+## After reading build.md / meta.json
+
+- The brief's misconception is "six loose socks need only a handful of checks", and its doesNotKnow says the "checks grow fast". That treats "15 pairings exist" as "15 checks", which is the gap I named. Matching one sock at a time needs at most 5 + 3 + 1 = 9 checks for 6 socks (and grows about as N²/4, still fast). The model formula (c3, N(N−1)/2) counts candidate pairs, not checks. The claim text is verified as arithmetic, but the step from it to "checks" is the learner-facing problem.
+- The r11 point (15 never shown) is fixed: the complete graph is drawn. It is now drawn before the commit, though.
