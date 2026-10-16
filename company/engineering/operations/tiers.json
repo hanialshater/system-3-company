@@ -54,7 +54,15 @@
       "tier": "T1",
       "owner": "principal-engineer",
       "status": "degraded",
-      "note": "One 4-CPU machine runs every agent, build, dev server and QA. 2026-10-14: load 24-27, dev server 15-60 s/page, disk full several times (W-486). Interim owner until the CEO office chief of staff names one (ops review 2026-10-14). SEV2"
+      "note": "One 4-CPU machine runs every agent, build, dev server and QA. 2026-10-14: load 24-27, dev server 15-60 s/page, disk full several times (W-486). Interim owner until the CEO office chief of staff names one (ops review 2026-10-14). SEV2. 2026-10-16: two SEV2s. (1) 09:45Z /dev/null replaced by a symlink to an agent scratch dir by `ln -sfn $QA_OUT /dev/null` in a QA run, git broken for every agent ~2.5 min (ev-356e65fbc7, COE company/rituals/records/2026-10-16-coe-dev-null-replaced.md). (2) 13:06Z rebase --autostash in the shared main checkout wiped uncommitted work and blocked pushes (COE-B by principal-engineer; see shared-main-checkout). Host invariants (device files, disk floor, reserved ports, checkout state) specified in company/engineering/operations/2026-10-16-host-invariants.md, not yet enforced"
+    },
+    {
+      "id": "shared-main-checkout",
+      "tier": "T2",
+      "owner": "tools-lead",
+      "poc": "chief-of-staff",
+      "status": "degraded",
+      "note": "/home/user/system-3-company: the one checkout every records-only agent commits in and the CoS integrates from. T2 (not T1): an outage stops the company shipping (pushes, records, integration) but no learner sees it, the same reasoning as dispatch-control; T3 would understate a SEV2 that destroyed work. Owner tools-lead (the git guards, tools r5 B1); point of contact chief-of-staff (single integrator, clears in-progress git state). Degraded: 2026-10-16 13:06Z rebase --autostash left rebase-merge/ and lost uncommitted work (SEV2, COE-B principal-engineer); 38 rebase starts in the reflog that day; two stash entries remain (10:55 autostash, 13:11 cm-history). Controls: commit-only brief line (ruling R3) until tools r5 B1 merges and H1 (W-1280) shows hooks fire. Invariant HI-4 in company/engineering/operations/2026-10-16-host-invariants.md. Classified 2026-10-16 by principal-engineer-ops (ops r5 B1)."
     },
     {
       "id": "agent-isolation",
