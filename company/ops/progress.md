@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · vp-personalization (Mateo) · lane 14 batch 3: criterion 2, headroom first, plus review timing (run vp-batch3-1016)
+
+**Changed:** new company/personalization/batches/2026-10-16-batch-3.md (10 items, 5 waves, paste-ready briefs). Board: new W-1544 (E1 evidence, learning-scientist-personalization), W-1545 (K1 criterion 2 draft + harness, personalization-eval), W-1546 (P1 review-timing numbers, applied-scientist-personalization), W-1547 (P2 review-timing code, learner-model-engineer), W-1548 (F1 fidelity), W-1549 (K2 freeze + readout 2), W-1550 (R2 repro), W-1551 (V, mine); W-1540 and W-1538 → next with batch notes. No model, criterion, curve or src change.
+**Decided:** the five option-C pre-commitments are carried verbatim. Added V1-V5 for the review-timing candidate before anything exists: baseline is the product's fixed schedule [1,3,7,21] (src/kit/progress.ts); an oracle review scheduler, if the eval builds one, is its headroom gate; one candidate, no re-tuning; AMD-008 F2 binds any live use (a later-than-due revisit needs an amendment I may only propose); candidate frozen by hash before criterion 2 freezes.
+**Believe:** the batch keeps the independence rule (medium-high): the candidate is built from E1 and K1's interface section only, never the eval's learner; the shared evidence base is a coupling I name in the batch, defended by the judge's sweeps. R2 by the candidate's builder is accepted in writing as determinism only. W-1539 was already done (company/reviews/hq/2026-10-16-d2-review.md), so U1 is W-1540 plus D1 N4.
+**Next:** chief-of-staff dispatches wave 1: E1, K1, U1, U2 (4 agents). Wave 2 (P1, P2) after E1 and K1's interface commit. **Blocked:** U2's apply (not its code) on backend-engineer's order review (W-1522/W-1521) and privacy-reviewer's API read; nothing deployed.
+
 ## 2026-10-16 ~late · chief-of-staff — personalization org: batch 1-2 integrated; phase A FAIL; founder Q1-Q5 open
 
 **Changed:** integrated (merge, conflict-resolve, push) every lane-14 result today: wave 1 (B1-B6), privacy rulings W-1495/W-1526/W-1527/W-1521 and closeout L5/T1, HQ lab D1/D2 with hq-engineer reviews, W-1537 tests in `check` (principal-engineer approved with conditions, met), harness C1, fidelity C2, frozen criterion and readout 1 (C4: GAM FAIL vs both baselines, 0/6 personas, all cells), byte-identical repro C5, VP decisions W-1536 (GAM stopped, novelty killed as model-v0.2.2, surprise off, C3 cancelled). Full verify on the merged head: check, typecheck, build, QA 1958/1958; test:hq 71/74 (3 release-history tests fail on this shallow clone).

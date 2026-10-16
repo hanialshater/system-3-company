@@ -18066,10 +18066,16 @@
       "id": "W-1538",
       "title": "Settings API read by privacy-reviewer: conditions B1-B4 (catalog-membership drop test, only PUT /api/settings writes, deletion/export patches, no body logging) per company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3",
       "owner": "learner-data-engineer",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md",
+        "company/personalization/data/2026-10-16-settings-schema-note.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U2 (wave 1): write the settings API on a branch per privacy B1-B4 and D1-D3. Code does not wait; applying the table waits on backend-engineer order review (W-1522 / W-1521 note), privacy-reviewer API read and accounts-tip re-read (E7); deploy needs the founder.",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1539",
@@ -18092,10 +18098,16 @@
       "id": "W-1540",
       "title": "HQ lab D2 review nits (company/reviews/hq/2026-10-16-d2-review.md): M1 say the import allowlist is a trust list; M3 flag external url() in CSS; M5 DoD says the test runs in verify, not check; M6 test that two cold meta misses share one process",
       "owner": "personalization-engineer",
-      "state": "backlog",
+      "state": "next",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/reviews/hq/2026-10-16-d2-review.md",
+        "company/reviews/hq/2026-10-16-d1-review.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U1 (wave 1): M1, M3, M5, M6 plus D1 review N4 (SystemRoot); N5, M2, M4 stay notes. W-1539 already done (company/reviews/hq/2026-10-16-d2-review.md).",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1541",
@@ -18134,6 +18146,118 @@
       "domain": null,
       "created": "2026-10-16",
       "links": []
+    },
+    {
+      "id": "W-1544",
+      "title": "Criterion 2 evidence (lane 14 batch 3 E1): sourced ranges for 1-7 day forgetting, spacing/review-timing effects, population prior-knowledge spread and the learnRate base; plus a short memo on review-timing evidence (company/personalization/batches/2026-10-16-batch-3.md#e1)",
+      "owner": "learning-scientist-personalization",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1545",
+      "title": "Criterion 2 draft, unfrozen (lane 14 batch 3 K1): oracle ordering, draft-rules vs default-order, GAM frozen at model-v0.2.2, review-timing candidate interface (published first), recall read at several delays (F7), prior knowledge swept (F16), chosen C2 notes; harness extension; S from default-order only; no policy scored (company/personalization/batches/2026-10-16-batch-3.md#k1)",
+      "owner": "personalization-eval",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1546",
+      "title": "Review-timing candidate curve numbers (lane 14 batch 3 P1): per-lesson revisit timing values with one written reason each, from the E1 evidence only, never from the eval's learner (company/personalization/batches/2026-10-16-batch-3.md#p1)",
+      "owner": "applied-scientist-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1547",
+      "title": "Review-timing candidate policy code (lane 14 batch 3 P2): against criterion 2's published interface, permitted inputs only, existing policies byte-identical, candidate frozen by commit hash before criterion 2 freezes (company/personalization/batches/2026-10-16-batch-3.md#p2)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1548",
+      "title": "Criterion 2 fidelity review (lane 14 batch 3 F1): eval's criterion-2 learner and world against the E1 ranges; blocking or note per row; no policy results (company/personalization/batches/2026-10-16-batch-3.md#f1)",
+      "owner": "learning-scientist-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1549",
+      "title": "Criterion 2 freeze and readout 2 (lane 14 batch 3 K2): answer blocking F1 rows, record candidate hash, freeze (hash), score, readout unedited (company/personalization/batches/2026-10-16-batch-3.md#k2)",
+      "owner": "personalization-eval",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1550",
+      "title": "Reproduce readout 2 from seeds, criterion hash and commit: determinism only (lane 14 batch 3 R2; company/personalization/batches/2026-10-16-batch-3.md#r2)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1551",
+      "title": "Decide on readout 2 by the pre-registered commitments (headroom gate, GAM, draft rules, review timing V1-V5); founder note if any line closes (lane 14 batch 3 V; company/personalization/batches/2026-10-16-batch-3.md#v)",
+      "owner": "vp-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
+      "updated": "2026-10-16"
     }
   ]
 }
