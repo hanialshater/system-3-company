@@ -3,11 +3,12 @@
 //
 // UNVERIFIED (the accounts branch is not fetchable in this clone, 2026-10-16). backend-engineer to confirm or supply:
 // 1. Session: the helper that returns the signed-in auth_user.id for a Request. ADR-008 scopes the session cookie
-//    to Path=/api/account, so a route at /api/settings never receives it. Either the route mounts under
-//    /api/account/settings (keeps P6.2 by construction; principal-engineer's location call) or the cookie path
-//    changes (a new privacy read). See company/personalization/data/2026-10-16-settings-api-note.md §4.
+//    to Path=/api/account; the route is mounted at /api/account/settings (src/app/api/account/settings/route.ts) so
+//    it receives it (principal-engineer review 2026-10-16 ruling 1, C1). backend-engineer acknowledges the namespace
+//    and that no /api/account catch-all shadows it. See company/personalization/data/2026-10-16-settings-api-note.md §4.
 // 2. Database: src/lib/server/db.ts per the env contract (company/engineering/notes/2026-10-15-accounts-env-contract.md);
-//    its query function must match `Query` in settings-store.ts (pg Pool#query shape).
+//    its query function must match `Query` in settings-store.ts (pg Pool#query shape). Each PUT is one autocommit
+//    statement (D2a), so the helper needs no transaction or client checkout.
 // 3. Flag: src/lib/server/accounts-flag.ts (ACCOUNTS_ENABLED === "on", read per request, ADR-008 C5).
 // Until 1–3 exist, settingsDeps() returns null and the route is 404. Nothing here touches a database.
 

@@ -104,8 +104,12 @@ test("D1: no row and NULL both read as no choice; a no-choice write on an accoun
   assert.equal(res.headers.get("cache-control"), "no-store");
   const w = await handleSettingsPut(put({ personalizationOn: null, subjects: [], lessOf: ["lesson:not-real"] }), deps(store));
   assert.equal(w.status, 200);
-  assert.equal(store.calls.put.length, 0);
+  assert.deepEqual((await body(w)).settings, { personalizationOn: null, subjects: [], lessOf: [] });
+  assert.equal(store.calls.writes.length, 0, "nothing written");
   assert.equal(store.rows.size, 0);
+  const m = await handleSettingsPut(put({ mode: "merge", personalizationOn: null }), deps(store));
+  assert.equal(m.status, 200);
+  assert.equal(store.rows.size, 0, "a no-choice merge creates no row either");
   store.rows.set("u-fake-1", { personalizationOn: null, subjects: [], lessOf: [] });
   assert.deepEqual(S.servingSettings(S.cleanStored(null, FAKE)), S.servingSettings(S.cleanStored(store.rows.get("u-fake-1"), FAKE)));
   assert.equal(S.servingSettings(S.cleanStored(null, FAKE)).mode, "no-choice");
@@ -138,7 +142,8 @@ test("D3: an arm, a timestamp or a score in the body is dropped unread; the stor
   );
   assert.equal(res.status, 200);
   assert.equal(store.calls.put.length, 1);
-  assert.deepEqual(store.calls.put[0].keys, ["lessOf", "personalizationOn", "subjects"]);
+  assert.deepEqual(store.calls.put[0].keys, ["mode", "personalizationOn", "subjects"], "the request's two choices and the mode, nothing else");
+  assert.deepEqual(Object.keys(store.rows.get("u-fake-1")).sort(), ["lessOf", "personalizationOn", "subjects"]);
   assert.deepEqual(Object.keys((await body(res)).settings).sort(), ["lessOf", "personalizationOn", "subjects"]);
   assert.deepEqual(S.WRITABLE_KEYS, ["personalizationOn", "subjects", "lessOf"]);
 });
@@ -149,9 +154,9 @@ test("set mode: keys not sent keep their stored values; an unchanged row is not 
   await handleSettingsPut(put({ subjects: ["math", "cs"], lessOf: ["lesson:fake-lesson"] }), d);
   await handleSettingsPut(put({ subjects: ["history"] }), d);
   assert.deepEqual(store.rows.get("u-fake-1"), { personalizationOn: null, subjects: ["history"], lessOf: ["lesson:fake-lesson"] });
-  const n = store.calls.put.length;
+  const n = store.calls.writes.length;
   await handleSettingsPut(put({ subjects: ["history"] }), d);
-  assert.equal(store.calls.put.length, n);
+  assert.equal(store.calls.writes.length, n, "an unchanged row is not rewritten");
   await handleSettingsPut(put({ lessOf: [] }), d);
   assert.deepEqual(store.rows.get("u-fake-1").lessOf, [], "clearing empties the list at once");
 });
@@ -222,20 +227,46 @@ test("access: 404 when accounts are off, 401 signed out, 403 for a missing or cr
   assert.equal((await handleSettingsPut(put({ subjects: ["cs"] }), deps(store))).status, 200);
 });
 
-test("the pg store sends exactly the four columns, parameterised, and maps NULL to no choice", async () => {
-  const { pgSettingsStore, UPSERT_SQL, SELECT_SQL } = await import("./helpers.mjs").then((h) => h.storeMod());
+test("the pg store: one parameterised statement per PUT, chosen by the request alone, four columns only", async () => {
+  const St = await import("./helpers.mjs").then((h) => h.storeMod());
+  const { pgSettingsStore, writePlan, SET_UPSERT_SQL, SET_UPDATE_SQL, MERGE_SQL, SELECT_SQL } = St;
   const seen = [];
   const q = async (text, values) => {
     seen.push({ text, values });
-    return { rows: text === SELECT_SQL ? [{ personalization_on: null, subjects: ["math"], less_of: [] }] : [] };
+    if (text === SELECT_SQL) return { rows: [{ personalization_on: null, subjects: ["math"], less_of: [] }] };
+    return { rows: text === SET_UPSERT_SQL ? [{ personalization_on: false, subjects: ["cs"], less_of: ["domain:math"] }] : [] };
   };
   const st = pgSettingsStore(q);
   assert.deepEqual(await st.get("u-fake-1"), { personalizationOn: null, subjects: ["math"], lessOf: [] });
-  await st.put("u-fake-1", { personalizationOn: false, subjects: ["cs"], lessOf: ["domain:math"] });
-  assert.equal(seen[1].text, UPSERT_SQL);
-  assert.deepEqual(seen[1].values, ["u-fake-1", false, ["cs"], ["domain:math"]]);
-  assert.match(UPSERT_SQL, /\(user_id, personalization_on, subjects, less_of\) VALUES \(\$1, \$2, \$3, \$4\)/);
-  assert.doesNotMatch(UPSERT_SQL + SELECT_SQL, /created_at|updated_at|arm|score|age_band/);
+  seen.length = 0;
+  // A write runs exactly one statement and no read before it (D2a).
+  const out = await st.put("u-fake-1", { mode: "set", personalizationOn: false });
+  assert.deepEqual(seen.map((c) => c.text), [SET_UPSERT_SQL]);
+  assert.deepEqual(seen[0].values, ["u-fake-1", false, [], [], true, false, false], "only personalizationOn is flagged as sent");
+  assert.deepEqual(out, { personalizationOn: false, subjects: ["cs"], lessOf: ["domain:math"] }, "answer comes from RETURNING");
+  // Nothing returned (unchanged, or no row): the answer is read after the write, never before it.
+  seen.length = 0;
+  await st.put("u-fake-1", { mode: "set", subjects: [] });
+  assert.deepEqual(seen.map((c) => c.text), [SET_UPDATE_SQL, SELECT_SQL], "a no-choice set is a plain UPDATE: no row created (D1)");
+  assert.deepEqual(writePlan("u", { mode: "set", subjects: ["cs"] }).values, ["u", null, ["cs"], [], false, true, false]);
+  assert.deepEqual(writePlan("u", { mode: "merge", personalizationOn: true, lessOf: ["domain:cs"] }), {
+    text: MERGE_SQL,
+    values: ["u", true, [], ["domain:cs"], true],
+  });
+  assert.equal(writePlan("u", { mode: "merge" }).values[4], false, "a no-choice merge proposes no row");
+  // The set statements write a column only when its key was sent; the merge statement only ever writes false.
+  for (const sql of [SET_UPSERT_SQL, SET_UPDATE_SQL]) {
+    assert.match(sql, /personalization_on = CASE WHEN \$5::boolean THEN .+ ELSE s\.personalization_on END/);
+    assert.match(sql, /subjects = CASE WHEN \$6::boolean THEN .+ ELSE s\.subjects END/);
+    assert.match(sql, /less_of = CASE WHEN \$7::boolean THEN .+ ELSE s\.less_of END/);
+    assert.match(sql, /IS DISTINCT FROM/, "an unchanged row is not rewritten");
+  }
+  assert.match(MERGE_SQL, /DO UPDATE SET personalization_on = false WHERE EXCLUDED\.personalization_on IS FALSE/);
+  assert.doesNotMatch(MERGE_SQL, /DO UPDATE SET[^W]*(subjects|less_of)\s*=/, "a merge never writes the account's lists");
+  for (const sql of [SET_UPSERT_SQL, SET_UPDATE_SQL, MERGE_SQL, SELECT_SQL]) {
+    assert.doesNotMatch(sql, /created_at|updated_at|arm|score|age_band/);
+    assert.doesNotMatch(sql, /\bBEGIN\b|;/, "a single statement");
+  }
   const none = pgSettingsStore(async () => ({ rows: [] }));
   assert.equal(await none.get("u-fake-2"), null);
 });

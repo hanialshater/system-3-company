@@ -1,8 +1,10 @@
 // The learner's feed settings (W-1538): GET reads them, PUT is the only writer of the `settings` table (B2).
 // Owner: learner-data-engineer. Privacy ruling: company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3.
 // Design note: company/personalization/data/2026-10-16-settings-api-note.md
-// Not wired: 404 until backend-engineer supplies the session, database and flag (settings-wiring.ts). The mount
-// path itself is open (ADR-008 scopes the session cookie to /api/account; note §4).
+// Mounted at /api/account/settings (principal-engineer review 2026-10-16 ruling 1, C1; privacy B2a): ADR-008 scopes
+// the session cookie to Path=/api/account, and ADR-008 item 8 makes every /api/account/* route 404 when
+// ACCOUNTS_ENABLED is off. Not wired: 404 until backend-engineer supplies the session, database and flag
+// (settings-wiring.ts). The B2 test fails if a route file reappears under src/app/api/settings/.
 // No request body, value or error text is logged here or in the handler (B4). Only GET and PUT are exported.
 
 import { handleSettingsGet, handleSettingsPut } from "@/lib/server/personalization/settings-handler";

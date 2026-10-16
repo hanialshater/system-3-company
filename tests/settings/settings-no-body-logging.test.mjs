@@ -96,7 +96,7 @@ test("B4 control: the capture records console and stderr, and a store error does
 
 test("B4 static: no console, logger or body echo in the route and library files beyond the one fixed line", () => {
   const files = [
-    "src/app/api/settings/route.ts",
+    "src/app/api/account/settings/route.ts",
     "src/lib/server/personalization/settings.ts",
     "src/lib/server/personalization/settings-store.ts",
     "src/lib/server/personalization/settings-handler.ts",

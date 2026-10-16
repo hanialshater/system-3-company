@@ -7,19 +7,12 @@
 //     fixed text plus, at most, a five-character SQLSTATE. Every path returns a Response; nothing is thrown to Next,
 //     whose default handler would print the error (a pg constraint error's `detail` holds the failing row).
 // D1: no row and NULL both answer personalizationOn: null. D2: every request reads the store; nothing is cached.
+// D2a/C7: the PUT never reads the row before writing it. It hands the validated request to store.put, which applies
+//     it in one SQL statement against the locked row (settings-store.ts), so no stale value can be written back.
 // D3: the body's keys are an allow-list; an arm, a timestamp or any other key is dropped unread and never stored.
 // Anonymous learners never reach this: their settings stay on the device (D22, N2); no session means 401.
 
-import {
-  NO_CHOICE,
-  applyMerge,
-  applySet,
-  cleanStored,
-  parseSettingsWrite,
-  sameSettings,
-  type FeedSettings,
-  type SettingsCatalog,
-} from "./settings";
+import { cleanStored, parseSettingsWrite, type FeedSettings, type SettingsCatalog } from "./settings";
 import type { SettingsStore } from "./settings-store";
 
 /** Longest PUT body parsed. 50 typed slugs of 200 characters plus the subjects fit well under it. */
@@ -124,11 +117,13 @@ export async function handleSettingsGet(req: Request, deps: SettingsDeps): Promi
 /**
  * PUT: the learner's stated choices (SS3).
  *  {"personalizationOn"?: true|false|null, "subjects"?: string[], "lessOf"?: string[], "mode"?: "set"|"merge"}
- * "set" (default): keys sent replace stored ones. "merge": the "Keep my history" confirm (G1–G4), see applyMerge.
+ * "set" (default): keys sent replace stored ones. "merge": the "Keep my history" confirm (G1–G4). The rule for both
+ * is applyWrite (settings.ts), evaluated atomically by the store's single statement (D2a).
  * Unknown keys and ids are dropped (B1, gate 2.3); wrong types are 400 "malformed"; over the caps is 400 "too_many".
  * Answers 200 with the settings as now stored, which the device then keeps (G4 after the learner's confirm).
  * A row is created only when there is a choice to keep: a write that leaves "no choice" on an account with no row
- * writes nothing, and an unchanged row is not rewritten.
+ * writes nothing, and an unchanged row is not rewritten. The answer is the stored row read through cleanStored, so
+ * ids that left the catalog are not handed back to the device.
  */
 export async function handleSettingsPut(req: Request, deps: SettingsDeps): Promise<Response> {
   try {
@@ -158,12 +153,8 @@ export async function handleSettingsPut(req: Request, deps: SettingsDeps): Promi
   const { patch } = parsed;
 
   try {
-    const stored = await deps.store.get(auth.userId);
-    const current = stored ? cleanStored(stored, catalog) : null;
-    const next = patch.mode === "merge" ? applyMerge(current, patch) : applySet(current ?? NO_CHOICE, patch);
-    const unchanged = current ? sameSettings(current, next) && sameSettings(stored as FeedSettings, next) : sameSettings(NO_CHOICE, next);
-    if (!unchanged) await deps.store.put(auth.userId, next);
-    return json(200, { settings: next });
+    const stored: FeedSettings | null = await deps.store.put(auth.userId, patch);
+    return json(200, { settings: cleanStored(stored, catalog) });
   } catch (err) {
     logFailure(deps, "put", "store", err);
     return json(500, { error: "unavailable" });

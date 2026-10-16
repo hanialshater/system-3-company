@@ -35,23 +35,50 @@ export async function realCatalog() {
   return buildSettingsCatalog(domains, curricula, slugs);
 }
 
-/** An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1521's SQL test. */
+const { applyWrite, sameSettings } = await settingsMod();
+
+/**
+ * An in-memory store standing in for the `settings` table with a stub auth_user, as in W-1521's SQL test.
+ * It models the store's atomicity contract (D2a): put applies the write rule (applyWrite, the reference model of the
+ * single SQL statement) to the row as it is at that moment, with no await between reading and writing the row, which
+ * is what one Postgres statement on a locked row gives. It does not prove the SQL; test-settings-write-sql.mjs does.
+ * `calls.put` counts calls; `calls.writes` counts rows actually created or changed.
+ * `hold()` makes the next put wait until the returned release() is called (to interleave requests).
+ */
 export function memoryStore({ failWith } = {}) {
   const rows = new Map();
-  const calls = { get: 0, put: [] };
+  const calls = { get: 0, put: [], writes: [] };
+  let gate = null;
   return {
     rows,
     calls,
+    hold() {
+      let release;
+      gate = new Promise((r) => (release = r));
+      return () => release();
+    },
     async get(userId) {
       calls.get++;
       if (failWith) throw failWith;
       const r = rows.get(userId);
       return r ? structuredClone(r) : null;
     },
-    async put(userId, s) {
+    async put(userId, patch) {
+      calls.put.push({ userId, keys: Object.keys(patch).sort(), patch: structuredClone(patch) });
+      if (gate) {
+        const g = gate;
+        gate = null;
+        await g;
+      }
       if (failWith) throw failWith;
-      calls.put.push({ userId, keys: Object.keys(s).sort(), value: structuredClone(s) });
-      rows.set(userId, structuredClone(s));
+      // From here to the return there is no await: one atomic step, like the single statement.
+      const before = rows.get(userId) ?? null;
+      const after = applyWrite(before, patch);
+      if (after && !(before && sameSettings(before, after))) {
+        calls.writes.push({ userId, value: structuredClone(after) });
+        rows.set(userId, structuredClone(after));
+      }
+      return after ? structuredClone(after) : null;
     },
   };
 }
@@ -69,7 +96,7 @@ export function deps(store, over = {}) {
   };
 }
 
-export const URL_ = "https://s3c.example/api/settings";
+export const URL_ = "https://s3c.example/api/account/settings";
 export function put(body, { origin = "https://s3c.example", headers = {} } = {}) {
   const h = { "content-type": "application/json", ...headers };
   if (origin) h.origin = origin;

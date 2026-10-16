@@ -78,7 +78,8 @@ export function cleanLessOf(raw: readonly unknown[], catalog: SettingsCatalog): 
 
 /**
  * Read path: a stored row as the learner and the serving code see it. Ids that left the catalog since they were
- * chosen are ignored here and dropped by the learner's next write; nothing rewrites the row in the background (SS3).
+ * chosen are ignored here and dropped when the learner next writes that list; nothing rewrites the row in the
+ * background (SS3).
  */
 export function cleanStored(row: FeedSettings | null, catalog: SettingsCatalog): FeedSettings {
   if (!row) return { ...NO_CHOICE, subjects: [], lessOf: [] };
@@ -132,32 +133,48 @@ export function parseSettingsWrite(body: unknown, catalog: SettingsCatalog): Par
   return { ok: true, patch };
 }
 
-/** "set": the keys sent replace the stored ones; keys not sent keep their stored value. */
-export function applySet(current: FeedSettings, patch: SettingsPatch): FeedSettings {
+/** The row a write would create on an account with no row: keys not sent take the D1 "no choice" values. */
+export function freshRow(patch: SettingsPatch): FeedSettings {
   return {
-    personalizationOn: patch.personalizationOn !== undefined ? patch.personalizationOn : current.personalizationOn,
-    subjects: patch.subjects ?? current.subjects,
-    lessOf: patch.lessOf ?? current.lessOf,
+    personalizationOn: patch.personalizationOn ?? null,
+    subjects: patch.subjects ?? [],
+    lessOf: patch.lessOf ?? [],
   };
 }
 
+/** D1: a row holding nothing but "no choice" is never created; there is nothing to keep. */
+export function isNoChoice(s: FeedSettings): boolean {
+  return sameSettings(NO_CHOICE, s);
+}
+
 /**
+ * The write rule, as one function of (the row as it is when the write lands, the request). This is the reference
+ * model of the single SQL statement in settings-store.ts (D2a, C7): the database evaluates exactly this against the
+ * row it has locked, so no request ever writes a value it read earlier. Returns the row after the write, or null when
+ * there is still no row. Nothing here reads anything but its arguments.
+ *
+ * "set" (default): only the keys sent are written; keys not sent keep whatever the row holds at that moment. So a
+ *   subjects-only write can never carry a stale personalizationOn back over an explicit off (D2).
  * "merge": the learner confirmed "Keep my history" with these device choices listed on screen (G1). The client sends
- * this mode only after that confirm; the server cannot see the screen, so that is the client's contract.
- * - No account row: the device's choices are written (G2: already cleaned by the same parse as "set").
- * - Account row: the account wins for the lists, no union (G3), and the device takes the result (G4, client side).
- * - Either side holding an explicit false gives false (G3: an explicit off is never turned on by a merge).
+ *   this mode only after that confirm; the server cannot see the screen, so that is the client's contract.
+ *   - No account row: the device's choices are written (G2: already cleaned by the same parse as "set").
+ *   - Account row: the account wins for the lists, no union (G3), and the device takes the result (G4, client side).
+ *   - Either side holding an explicit false gives false (G3: an explicit off is never turned on by a merge).
+ * Either mode: a write that would create a "no choice" row creates nothing (D1).
  */
-export function applyMerge(account: FeedSettings | null, device: SettingsPatch): FeedSettings {
-  const deviceOn = device.personalizationOn ?? null;
-  if (!account) {
-    return { personalizationOn: deviceOn, subjects: device.subjects ?? [], lessOf: device.lessOf ?? [] };
+export function applyWrite(row: FeedSettings | null, patch: SettingsPatch): FeedSettings | null {
+  if (!row) {
+    const fresh = freshRow(patch);
+    return isNoChoice(fresh) ? null : fresh;
   }
-  const off = account.personalizationOn === false || deviceOn === false;
+  if (patch.mode === "merge") {
+    const off = row.personalizationOn === false || patch.personalizationOn === false;
+    return { personalizationOn: off ? false : row.personalizationOn, subjects: row.subjects, lessOf: row.lessOf };
+  }
   return {
-    personalizationOn: off ? false : account.personalizationOn,
-    subjects: account.subjects,
-    lessOf: account.lessOf,
+    personalizationOn: patch.personalizationOn !== undefined ? patch.personalizationOn : row.personalizationOn,
+    subjects: patch.subjects ?? row.subjects,
+    lessOf: patch.lessOf ?? row.lessOf,
   };
 }
 

@@ -1,6 +1,8 @@
 // B2 (company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3, SS3 row): "the route test that only
 // `PUT /api/settings` can write the table (owed with the API) is a condition of the API read. No 'suggested subjects'
-// path may call it." W-1538.
+// path may call it." W-1538. The route is mounted at `PUT /api/account/settings` (principal-engineer C1; privacy-reviewer
+// B2a, company/reviews/_privacy/2026-10-16-w1538-settings-api.md: the B2 text now reads that path). B2a also requires
+// that no route file remains under src/app/api/settings/; the static test below fails if one does.
 //
 // Three layers:
 // 1. Static, repo-wide: no file outside the allow-list writes the table in SQL (INSERT/UPDATE/DELETE/TRUNCATE/MERGE/
@@ -20,13 +22,20 @@ import os from "node:os";
 import path from "node:path";
 import { REPO, deps, get, handlerMod, memoryStore, settingsMod, FAKE } from "./helpers.mjs";
 
-const ROUTE = "src/app/api/settings/route.ts";
+const ROUTE = "src/app/api/account/settings/route.ts";
+/** The old mount (B2a): no file may remain here. */
+const OLD_ROUTE_DIR = "src/app/api/settings";
 const STORE = "src/lib/server/personalization/settings-store.ts";
 const HANDLER = "src/lib/server/personalization/settings-handler.ts";
 const WIRING = "src/lib/server/personalization/settings-wiring.ts";
 
-/** Files allowed to write the table in SQL: the store (upsert) and the draft migration's own SQL and test. */
-const SQL_WRITERS = new Set([STORE, "company/personalization/data/test-00N-settings.sh"]);
+/** Files allowed to write the table in SQL: the store, and the fake-data local Postgres tests of the draft migration
+ * and of the store's write statements (throwaway cluster, never a real database). */
+const SQL_WRITERS = new Set([
+  STORE,
+  "company/personalization/data/test-00N-settings.sh",
+  "company/personalization/data/test-settings-write-sql.mjs",
+]);
 /** Account deletion (B3). Empty in this clone: the accounts branch is not here. May hold DELETE only. */
 const DELETE_ONLY = new Set([]);
 /** Who may import the store module (types or values) and the handler. */
@@ -76,6 +85,8 @@ function scan(root) {
     if (IMPORTS_STORE.test(src) && !STORE_IMPORTERS.has(f)) findings.push(`${f}: imports the settings store`);
     if (IMPORTS_HANDLER.test(src) && !HANDLER_IMPORTERS.has(f)) findings.push(`${f}: imports the settings handler`);
   }
+  // B2a: the route moved to /api/account/settings; any file left at the old mount is a second, unauthenticated entry.
+  for (const f of walk(root, OLD_ROUTE_DIR)) findings.push(`${f}: a route file remains at the old mount`);
   return { files: files.length, findings };
 }
 
@@ -129,6 +140,7 @@ test("B2 control: the scanner catches each planted write and import", () => {
     ["src/app/api/y/route.ts", 'import { handleSettingsPut } from "@/lib/server/personalization/settings-handler";'],
     ["db/migrations/009.sql", "TRUNCATE settings;"],
     ["src/lib/z.ts", "const m = await import('../server/personalization/settings-store.ts');"],
+    ["src/app/api/settings/route.ts", "export async function GET() { return new Response(null); }"],
   ];
   for (const [file, text] of plants) {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "s3c-b2-"));
