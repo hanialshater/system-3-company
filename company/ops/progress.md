@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · tools-lead · W-1596: publish-ready tie-break without mtime; reveal text bumps the version
+
+**Changed:** `tools/publish-ready.mjs` `decide()` orders same-version same-day learner records by built-from git ancestry, then a `supersedes:` line, then `-rN` within one name stem; an unordered tie keeps the most severe verdict; mtime is no longer read. New `tests/publish/publish-ready-tiebreak.test.mjs` (5 tests; `npm run test:publish` 18/18). `company/product/demo-standard.md`: section "The lesson version" (a change to reveal text bumps `meta.version`, Head of Product's rule). Readiness: `company/engineering/readiness/2026-10-16-publish-ready-tiebreak.md` (tier 1 self-check). Changelog line.
+**Believe:** sure the swap fix holds: read-only publish-ready now lists math/the-swap-that-goes-in-circles as a candidate (r2 launch v1; e092f6c3 descends from 236737ff), and a before/after run shows no other lesson's result changed. `npm run check` passes (3 unrelated lifehacks warnings).
+**Next:** release-manager: W-1594 can include the swap without applying ruling 2 by hand (lapse conditions in the r7 record still apply). Demo-builder lane: follow the new version rule. No deploy without the founder. **Blocked:** nothing.
+
 ## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
 
 **Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.

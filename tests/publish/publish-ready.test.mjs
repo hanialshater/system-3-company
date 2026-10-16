@@ -54,7 +54,7 @@ test("the version stamp stays strict", () => {
   assert.equal(decide([rec(head("Verdict: launch"))], 2).ready, true);
 });
 
-test("latest review wins by version, then date, then write order", () => {
+test("latest review wins by version, then date; an unordered same-day tie fails closed (W-1596)", () => {
   const old = rec(head("Verdict: revise", "lesson version: v1"), "2026-10-13-learner-a.md", 1);
   const cur = rec(head("Verdict: launch"), "2026-10-14-learner-a-v2.md", 2);
   assert.equal(decide([old, cur], 2).ready, true);

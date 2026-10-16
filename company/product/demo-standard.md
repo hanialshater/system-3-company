@@ -60,6 +60,23 @@ src/demos/<domain>/<slug>/
 Scaffold with `npm run company -- new-demo <domain> <slug>`. Fill the brief fields in `meta.json`
 first (learner boundary, misconception, objective, claims, recall). Build second.
 
+### The lesson version (`meta.json` `version`)
+
+Learner records, QA records and launch reviews name the version they saw, so the version must
+change whenever what the learner sees changes. **A change to reveal text bumps the version**, in the
+same commit, as does any other learner-visible change: hook, predict question or options, stage text,
+explore hint, recall, a claim's text, or behaviour on the stage. Metadata the learner never sees
+(tags, prerequisites, claim status and evidence links) does not bump it. A review stamped with the
+old version then counts as "for an older version", and the lesson needs a new walk on the new one.
+Do not bump a version only to settle which record applies: that holds the lesson for no reason.
+(Head of Product, W-1596; case: fc8c53b8 changed the-swap-that-goes-in-circles' reveal without a
+bump, `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` ruling 2, objection 3.)
+
+When two learner records stamp the same version on the same day, `tools/publish-ready.mjs` orders
+them by the `built from <sha>` each names (the record of the later build wins, by git ancestry),
+then a `supersedes: <file>` line, then the `-rN` suffix; never by file time. If nothing orders them,
+the more severe verdict stands. Reviewers: name the build SHA, and write a re-walk as `-r2`, `-r3`.
+
 ### Kit API (`src/kit`)
 
 ```tsx
