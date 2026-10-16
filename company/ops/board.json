@@ -17514,10 +17514,11 @@
       "id": "W-1494",
       "title": "Personalization phase A: port edp-engine detect/compose/evaluate to an offline simulator (not in src/) with an independent simulated learner; score policies on simulated recall over all lessons, not on need coverage (evaluate() is circular); policies: default order, draft rules, GAM, GAM ablations, random, epsilon (company/personalization/2026-10-16-brief-response.md §1 C5, §3; inputs from personalization-lead's phase A item)",
       "owner": "learner-model-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1495",
@@ -17606,6 +17607,25 @@
       "id": "W-1504",
       "title": "W-1494 requirement from the founder's HQ ask (founder-brief §7): the simulator emits a per-step JSON trace (persona, fingerprint, need scores, per-slot candidates with score terms, winner, simulated recall) for the HQ Personalization Lab to render",
       "owner": "learner-model-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1505",
+      "title": "Phase A sim findings for the model contract (company/personalization/model/sim/README.md, run.mjs output): (1) overlap term and slots 2-3 never affect the served card when the queue is recomputed after every card (gam-off-overlap = gam exactly) — serve the queue or drop the term; (2) distinct-domains breadth guardrail saturates at 2/2 in the pilot — pick a breadth measure that can move (concepts? per-domain share?); (3) surprise currently acts as a readiness proxy because misconceptionStrength is a placeholder hash; (4) 1-in-3 floor needs a 'moved' flag or the pure reconstruction in composer.ts movedStreak() — confirm. Answer each in the model-v0 decision record",
+      "owner": "personalization-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1506",
+      "title": "Replace or adopt the PROVISIONAL simulated learner and scorer (company/personalization/model/sim/learner.ts SimLearner, score.ts) per the independence rule (company/ceo-office/2026-10-16-personalization-org-proposal.md §2); until then sim results are smoke tests. Owner: personalization-eval once the founder approves the role; held by personalization-lead meanwhile",
+      "owner": "personalization-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
