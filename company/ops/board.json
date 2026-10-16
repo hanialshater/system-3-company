@@ -17874,11 +17874,49 @@
       "id": "W-1527",
       "title": "Privacy ruling W-1495 section 6 (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md): write the HQ Personalization Lab definition of done (simulated personas only, 'simulated' labels, no real-data path) and record the no-real-data grep (localStorage, s3c:, /api/, fetch, accounts imports) over the lab code with each hit explained, for privacy-reviewer to read. Read-only on src/app/hq (hq-engineer holds it). Lane 14 batch 1 item B6 (company/personalization/batches/2026-10-16-batch-1.md)",
       "owner": "personalization-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md"
+      ],
+      "updated": "2026-10-16",
+      "reviewer": "privacy-reviewer",
+      "note": "2026-10-16 to review: reviewer privacy-reviewer (ruling §6 author; she reads the grep before the lab is called done). DoD D1-D6 and the grep at aab21dc in company/personalization/lab/2026-10-16-lab-privacy-dod.md: D1 met, D4 met pending her ruling on the own-route fetch exception (H1-H3), D2/D3 partly met (fix W-1528), D5 not yet (W-1529), runSim hardening W-1530. Run pe-b6-1016."
+    },
+    {
+      "id": "W-1528",
+      "title": "HQ lab labelling (W-1527 DoD D2/D3, company/personalization/lab/2026-10-16-lab-privacy-dod.md F1): add 'simulated' to the fingerprint table caption and curves legend, and 'Simulated persona:' to the persona h2 and select label in src/app/hq/personalization/Personalization.tsx. After W-1519; needs hq-engineer review",
+      "owner": "personalization-engineer",
       "state": "next",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md"
+      ]
+    },
+    {
+      "id": "W-1529",
+      "title": "HQ lab no-real-data grep as an automated test (W-1527 DoD D5, company/personalization/lab/2026-10-16-lab-privacy-dod.md F2): fail on localStorage, s3c:, /api/, fetch, accounts/event-intake imports in the lab files; allow the own-route fetch only if privacy-reviewer accepts the exception. Needs hq-engineer review if under tests/hq",
+      "owner": "personalization-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md"
+      ]
+    },
+    {
+      "id": "W-1530",
+      "title": "HQ lab runSim hardening (company/reviews/hq/2026-10-16-w1503-review.md findings 3 and 5; company/personalization/lab/2026-10-16-lab-privacy-dod.md F3): single in-flight lock per route, cache meta per process keyed on model-folder mtime, minimal child env instead of ...process.env. After W-1519; needs hq-engineer review",
+      "owner": "personalization-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
+        "company/reviews/hq/2026-10-16-w1503-review.md"
       ]
     }
   ]
