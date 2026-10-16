@@ -3,6 +3,14 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · platform-engineer (Noor) · W-408 EDD-004 C3 integrated verify
+
+**Changed:** recorded verify on 29f77f03 in `company/engineering/reviews/2026-10-16-w408-verify.md`. W-408 is done. One test-only fix: the default `BUILT_PORT` in `tests/platform/built-output.test.mjs` was 3659, which Next reserves, so the runtime-404 test could never start a server; it is now 3660. Routed W-1551 to tools-lead: dispatch-check's C3 worktree false positive.
+
+**Believe (high):** C3 is met. Every stage passes. The exceptions are 3 test:hq tests that fail only because this clone is shallow (W-1514). qa passed 2160/2160 in 1.2 h, and test:kit passed 98/98. The 4 built-output tests pass 34/34 on a local VERCEL=1 build, and nothing was deployed.
+
+**Next:** knot builds W-1539..W-1542 still wait on W-1521 (readiness approval by principal-engineer-ops); C3 no longer blocks them. tools-lead: W-1551. **Blocked:** nothing.
+
 ## 2026-10-16 · evaluation-steward (Hilde) · W-1535 lane A/B fact-check disagreements
 
 **Changed:** ruled on procedure for 6 claims (`company/qa/2026-10-16-w1535-lane-disagreement-ruling.md`). literacy-split-france c4 and schooling-and-crime-1830s c1 are now **verified**: lane A's verification stands, because lane B's "unverified" was only a hold for lack of an opened source. schelling c10b **stays unverified**: lane B raised specific objections that lane A never saw, so a third check is needed (W-1544). clap recall, scale alt1 and batteries alt1 **stay disputed**: no third check, and re-verification after the fix goes to a non-drafting instance (W-1545). The merge note in all 6 claims had truncated lane A's note; I restored it in full from fe7574c8. Lane A's behavioral HELD_LINE withdrawals are acceptable, with a reset condition (W-1546). New procedure `company/qa/fact-check-lanes.md`: a lane is an explicit, disjoint slug list (W-1547, chief of staff to adopt). W-1548: source-field hygiene.
