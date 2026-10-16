@@ -16,7 +16,7 @@ their work, complete the last batch, then run the integrated checks and independ
 quality work. No lesson has been published and no deployment is requested. The PR
 will carry the actual review state; unverified claims and unreviewed lessons remain
 drafts. Coordination overhead delayed delivery; finishing the concrete PR is now
-the priority. Existing board items W-1517 through W-1521 track this work.
+the priority. Existing board items W-1562 through W-1566 track this work.
 
 No new founder decision is required for this continuation. Other founder-inbox
 items are outside this checkout's task and are not represented as resolved.

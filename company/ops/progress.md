@@ -3,35 +3,35 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
-## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1530)
+## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1575)
 
-**Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1530 → done. New: W-1533 (platform-engineer, code requirement R1-R6), W-1534 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.
+**Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1575 → done. New: W-1578 (platform-engineer, code requirement R1-R6), W-1579 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.
 
 **Believe (high):** production must not show the 200 draft titles or "200 planned lessons". They are lesson titles, not curriculum concepts (id = slug), 120 are declarative sentences with no claim, and the count is an unsigned promise while builds pause (F-46). The section renders only visible algorithm lessons, per topic and per row, so the first promotion does not re-expose the other 199.
 
-**Next:** platform-engineer implements W-1533 (tier 1, page.tsx + catalog.test.mjs) before M5's integrated verify. Then M6 is met.
+**Next:** platform-engineer implements W-1578 (tier 1, page.tsx + catalog.test.mjs) before M5's integrated verify. Then M6 is met.
 
-**Blocked:** PR #6 merge, on M1-M7 (M6 now waits only on W-1533).
+**Blocked:** PR #6 merge, on M1-M7 (M6 now waits only on W-1578).
 
-## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1523), approve with conditions
+## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1568), approve with conditions
 
-**Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1523 → done. New board items: W-1528 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1529 (demo-builder, two more identical-final-frame lessons beyond W-1527), W-1530 (cm-cs, what production /catalog shows), W-1531 (chief-of-staff + PE-ops, readiness to tier 2), W-1532 (PE-ops, paths.json engine rules). No code edited. Not pushed.
+**Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1568 → done. New board items: W-1573 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1574 (demo-builder, two more identical-final-frame lessons beyond W-1572), W-1575 (cm-cs, what production /catalog shows), W-1576 (chief-of-staff + PE-ops, readiness to tier 2), W-1577 (PE-ops, paths.json engine rules). No code edited. Not pushed.
 
 **Believe (high on the code, medium on scale):** tier 2; no retroactive EDD (the pre-code frozen contract matches what shipped). Engine sound: all 200 wrappers render the kit Lesson directly, pure tested transitions, 4,401 unverified claims, no protected path or dependency. typecheck pass (51.8 s), tests/algorithms 12/12, the PR's checker 0 errors on all 200, check pass. Not mergeable yet: tests not in verify, no test over the shipped specs, **five** lessons (not three) whose "Try another" ends on the same frame, test:platform #18/#28 red, no integrated verify, and the catalog shows all 200 draft titles in production (no links or content). serve.sh loopback bind accepted.
 
-**Next:** chief-of-staff dispatches W-1528, W-1529 (with W-1527), W-1524, W-1525, W-1530; then qa-tester runs integrated `npm run verify` (M5); then W-1531. Any change to `src/components/algorithms/`, `types.ts` or the checker bounds returns to principal-engineer.
+**Next:** chief-of-staff dispatches W-1573, W-1574 (with W-1572), W-1569, W-1570, W-1575; then qa-tester runs integrated `npm run verify` (M5); then W-1576. Any change to `src/components/algorithms/`, `types.ts` or the checker bounds returns to principal-engineer.
 
 **Blocked:** merge, on M1–M7 in the review.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #6 Algorithms 200: evaluation and base merge, blocked
 
-**Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1517..W-1521 (map in `company/engineering/community/prs/6.md` §3). Intake W-1522; review/fix requests W-1523 (principal-engineer, tier-2 merge gate), W-1524 and W-1527 (demo-builder), W-1525 (qa-tester), W-1526 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
+**Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1562..W-1566 (map in `company/engineering/community/prs/6.md` §3). Intake W-1567; review/fix requests W-1568 (principal-engineer, tier-2 merge gate), W-1569 and W-1572 (demo-builder), W-1570 (qa-tester), W-1571 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
 
 **Believe (high):** no protected paths, no dependencies, 4,401/4,401 claims unverified, 200/200 draft. check, typecheck, tests/algorithms 12/12 and the build pass on the merged tree. **Tier 2** (one engine for 200 lessons, plus a live catalog section), although the PR's readiness says tier 1. QA contract 394/400: algo-dinic-levels, algo-pollard-rho-factor and algo-topological-uniqueness have a "Try another" case whose final frame equals the question case's (I ran the models). test:platform #18 and #28 fail because of this PR.
 
-**Next:** chief-of-staff dispatches W-1523, W-1527, W-1524, W-1525 (and W-1526 before any deploy). Then community-engineer merges the fixes, re-runs check, typecheck, test:platform, build and the 200-lesson QA contract, fetches and pushes `codex/algorithms-200` without force.
+**Next:** chief-of-staff dispatches W-1568, W-1572, W-1569, W-1570 (and W-1571 before any deploy). Then community-engineer merges the fixes, re-runs check, typecheck, test:platform, build and the 200-lesson QA contract, fetches and pushes `codex/algorithms-200` without force.
 
-**Blocked:** the push and merge, on W-1523, W-1527, W-1524, W-1525.
+**Blocked:** the push and merge, on W-1568, W-1572, W-1569, W-1570.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 

@@ -4,7 +4,7 @@ owner: cm-cs (Lin)
 date: 2026-10-16
 status: decided (cm-cs, what the CS map shows); the code change is platform-engineer's (requirement below), tier 1
 class: product (category map)
-board: W-1530 (this decision); the platform-engineer requirement is a new board item
+board: W-1575 (this decision); the platform-engineer requirement is a new board item
 route: principal-engineer review F4/M6 (`company/engineering/reviews/2026-10-16-pr6-engineering-review.md`) → cm-cs (this record) → platform-engineer (code) → principal-engineer (any engineer's diff read is enough, it touches only `src/app/catalog/page.tsx` and `tests/algorithms/catalog.test.mjs`)
 head read: `pr6/cs` at `d11073e6`
 
@@ -50,4 +50,4 @@ No change to `src/lib/visibility.ts`, `content/`, the kit or any protected path.
 ## Follow-ups
 
 - **F1 (cm-cs).** Give the 200 algorithm entries in `content/curriculum/cs.json` concept names that are labels, not lesson titles or assertions (e.g. "Binary insertion sort" for `algo-binary-insertion`). Then reconsider showing un-taught algorithm concepts as "not yet taught" rows. Not before the F-46 closeout; not a merge or deploy condition.
-- The accessibility scan of the live section (W-1526) runs on the build after R1-R6; in production with all drafts, there is no section to scan, so W-1526 covers it when the first algorithm lesson is promoted.
+- The accessibility scan of the live section (W-1571) runs on the build after R1-R6; in production with all drafts, there is no section to scan, so W-1571 covers it when the first algorithm lesson is promoted.
