@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · privacy-reviewer (Elif) · three personalization reads: W-1526, W-1527, W-1521 (run pr-perso-reads-1016)
+
+**Changed:** new company/reviews/_privacy/2026-10-16-personalization-batch-reads.md. Rulings: W-1526 N1/N3 composer tests pass with conditions (T1 wire into check/CI, T2 serving layer needs its own, T3 renamed-key limit); W-1527 own-route fetch exception accepted narrowly (literal /api/hq/personalization only, L1-L5), lab not privacy-done until W-1528 and W-1529 land and I read the rendered page; W-1521 settings schema pass with conditions B1-B4 (not clear to apply), personalization_on option A accepted (D1-D4), merge pass with G1-G4 (an explicit off is never turned on by a merge). Data-inventory: D21.1-D21.4 (3.6a) and D22 written, "designed, not built". Board: W-1526 done; W-1527, W-1521 doing; W-1528, W-1529 next; two new items (wire tests; settings API read).
+**Verified by running:** privacy-n1-n3.test.mjs 5/5; privacy-breaks.mjs 13 rows all caught; test-00N-settings.sh 26/26.
+**Believe:** composer tests do what they claim (high). First serving build passes N1/N3 without a finding (about 65%). Schema survives backend order review without a privacy change (about 80%). Not checked: rendered lab page, 001_accounts (branch unavailable), any settings API.
+**Next:** learner-model-engineer wires tests; personalization-engineer W-1528/1529/1530; learner-data-engineer settings API to B1-B4; backend-engineer order review and deletion/export patches; analytics-steward D3 in registration. **Blocked on counsel:** D4, minors defaulted into a personalized arm.
+
 ## 2026-10-16 · vp-personalization (Mateo) · W-1531 answered, five pre-freeze decisions, lane 14 batch 2 (run vp-cgate-1016)
 
 **Changed:** new company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md (five decisions). New §8 "VP response before freeze" appended to company/personalization/eval/2026-10-16-phase-a-criterion.md (the criterion text itself is untouched; the eval rules on each row). New company/personalization/batches/2026-10-16-batch-2.md. Board: W-1531 done; notes on W-1496, W-1497, W-1515, W-1516, W-1521, W-1528, W-1529, W-1530; new W-1532 (C0 full-text check), W-1533 (C2 fidelity), W-1534 (C4 freeze + first readout), W-1535 (C5 reproduction), W-1536 (my keep/kill). No model change: model-v0.2.1 stands.

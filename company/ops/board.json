@@ -17822,7 +17822,7 @@
       "id": "W-1521",
       "title": "settings schema diff for privacy-reviewer's read (personalization_on, subjects[], less_of[]; SS1-SS5; data-inventory rows; retention, deletion, export; D20 stays unstored). Waits for founder approval of card N6 learner-data-engineer (company/ceo-office/2026-10-16-personalization-org-proposal.md); on approval re-own to learner-data-engineer and dispatch the same day. Replaces item 3 of company/reviews/_privacy/2026-10-16-personalization-model-inputs.md section 8",
       "owner": "learner-data-engineer",
-      "state": "review",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -17876,7 +17876,7 @@
       "id": "W-1526",
       "title": "Privacy ruling W-1495 section 8 item 2 (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md): in company/personalization/model/sim, add the N1 stubbed-IO test (compose with storage and network stubbed: zero writes, zero fetches) and the N3 forbidden-input invariance test against the composer (two histories equal in permitted inputs, different in every forbidden one incl. ageBand: same order); A2 note on W-1497/W-1513 (no real-data calibration without a read). Lane 14 batch 1 item B5 (company/personalization/batches/2026-10-16-batch-1.md)",
       "owner": "learner-model-engineer",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -17893,7 +17893,7 @@
       "id": "W-1527",
       "title": "Privacy ruling W-1495 section 6 (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md): write the HQ Personalization Lab definition of done (simulated personas only, 'simulated' labels, no real-data path) and record the no-real-data grep (localStorage, s3c:, /api/, fetch, accounts imports) over the lab code with each hit explained, for privacy-reviewer to read. Read-only on src/app/hq (hq-engineer holds it). Lane 14 batch 1 item B6 (company/personalization/batches/2026-10-16-batch-1.md)",
       "owner": "personalization-engineer",
-      "state": "review",
+      "state": "doing",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -18022,6 +18022,24 @@
         "company/personalization/batches/2026-10-16-batch-2.md",
         "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ]
+    },
+    {
+      "id": "W-1537",
+      "title": "Wire the N1/N3 composer privacy tests into npm run check or CI (privacy ruling T1, company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §1); serving layer needs its own N1/N3 (T2)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1538",
+      "title": "Settings API read by privacy-reviewer: conditions B1-B4 (catalog-membership drop test, only PUT /api/settings writes, deletion/export patches, no body logging) per company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3",
+      "owner": "learner-data-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }

@@ -21,6 +21,7 @@ owner: privacy-reviewer (Elif) · first written 2026-10-16 (W-1166) · batch fir
 | D3 | `s3c:ageband:session` (sessionStorage), release-1 design: the band only (`under-13`, `13-15`, `16+`), so the age screen does not invite an instant retry | P2.1 | learner's tab | nobody | until the tab closes | closing the tab | unknown (counsel). Working description: needed to run the age screen | designed, not built. Owner: backend-engineer. The birth **year** is never written anywhere |
 | D4 | Session cookie `__Secure-…`, `HttpOnly`, `Secure`, `SameSite=Lax`, `Path=/api/account`, 30 days, sliding | stay signed in | learner's browser; its token also sits in D8 | our functions (Vercel) | 30 days since last use, or sign-out | sign-out (must be one visible control, my review Q8), expiry, account deletion | unknown (counsel). Working description: strictly needed once the learner has signed in; set only after sign-in, never for anonymous visitors (P1.2) | designed, spike-tested, off by default (`ACCOUNTS_ENABLED`). Owner: backend-engineer |
 | D5 | **Experiment markers** (proposed in PRD-003 R12 and PRD-004 §9, **not built, not yet ruled in the build**; ruling in `company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md`): `s3c:origin:v1` = per slug an origin enum (`swap` or `challenge`), and a local arm assignment (for PRD-004's 20% holdout) | measure whether swaps and challenges help first-revisit recall | learner's browser | nobody (only the enum values in D6 leave the device) | ruled: marker per slug removed once that lesson's first revisit is answered or 30 days after it was written; arm removed when the experiment closes | clear site data; the code removes them as stated | unknown (counsel). Working description: our own measurement of whether a feature works, no identifier | **not live.** Owner: analytics-steward (registers), growth-designer (builds). The marker shows on the device that a learner opened a friend's swap; shared devices exist |
+| D22 | `s3c:settings:v1` (localStorage), `{personalizationOn, subjects, lessOf}` | the anonymous learner's own P4 switch and stated filters | learner's browser | nobody else; never sent while anonymous (N2); moved to D21 only on the learner's confirmation at sign-up (merge ruling G1 to G4) | until the learner clears it or site data | the settings control, clear site data | unknown (counsel, F-25). Working description: the learner's stated preference | **designed, not built.** Key name provisional; no code owner on record (a finding if it ships without one) |
 
 ## 2. Sent to us with no account: the event beacon and the host's logs
 
@@ -104,7 +105,18 @@ Deletion path: consumed on click; purge; account deletion removes pending rows m
 
 **Aggregate purpose (EDD-008 Q5), the one new purpose these tables carry:** "measure, in aggregate, whether spaced revisits work" (the revisit recall rate, correct over total by interval). Conditional ruling in my review: the output carries no `user_id` or email, cells with fewer than 20 learners are suppressed (proposal; the analytics steward may argue another number with a reason), no analyst receives raw `recall` rows, and **the query text comes back to me before it runs on real data**. Not yet running; no query exists. The policy must name this purpose.
 
-`settings` (`personalization_on`, `subjects[]`, `less_of[]`) is **not in migration 001**. It ships with F-19 with its own schema diff and review. Nothing is stored for it today.
+`settings` (`personalization_on`, `subjects[]`, `less_of[]`) is **not in migration 001**. It ships with F-19 with its own schema diff and review. Nothing is stored for it today. The draft diff (`company/personalization/data/00N_settings.up.sql`, W-1521) is read in `company/reviews/_privacy/2026-10-16-personalization-batch-reads.md`; its rows are below, **designed, not built**, and the read was not against `001_accounts` (branch unavailable).
+
+### 3.6a `settings` (4 columns, draft, not in any migration)
+
+| # | Column | Purpose | Retention | Deletion | Notes |
+|---|---|---|---|---|---|
+| D21.1 | `settings.user_id` | owner; one row per account, written only on the learner's first explicit choice | with the account | explicit `DELETE` in the deletion transaction; `ON DELETE CASCADE` backstop; Neon history rolls off (D14b) | owner: learner-data-engineer |
+| D21.2 | `settings.personalization_on` (boolean, nullable) | the AMD-008 P4 off switch as the learner set it. NULL or no row = no choice (serves F1 default, or the registered arm) | with the account | as D21.1; the learner can change it at any time | never written from behaviour; explicit off always wins; the arm is never stored here |
+| D21.3 | `settings.subjects` (domain ids, <= 32 in DB, <= domain count in app) | the learner's stated subjects, a feed filter | with the account | as D21.1; clearing empties it at once | stated only, never inferred (SS3); membership checked by the write path |
+| D21.4 | `settings.less_of` (typed ids `domain:`, `concept:`, `lesson:`; <= 50) | the learner's "less of this", a feed filter | with the account | as D21.1 | can reveal what a teen avoids: never in an aggregate, a log, the beacon or `exp`; no index but the primary key; request bodies not logged |
+
+Export: a `settings` block in the export file, same shape as D22. Legal basis: unknown (counsel, F-25). Working description: the learner's own stated preference for the feed they asked for. The deletion check must list `settings` (expected 0 rows after deletion).
 
 ### 3.7 `deleted_account` (2 columns) and `schema_migrations`
 
