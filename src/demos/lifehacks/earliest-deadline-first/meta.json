@@ -24,30 +24,38 @@
     {
       "text": "Scenario, hook and prediction: Short job (5 min, due 30) or urgent job (10 min, due 10). Short job (5 min, due 30) or urgent job (10 min, due 10). Do quickest first: is anything late? Correct option: Yes, the urgent one. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog hook, question, options ('Yes, the urgent one' / 'No') and answer 0. Own run: quickest first ends urgent at 15 > due 10, so it is late; the key is right.",
       "id": "lifehacks.earliest-deadline-first.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The red deadline markers compare completion with due time. This exercise rewards meeting due dates, rather than minimising average waiting.",
       "support": "derivation",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): reveal principle edited (W9 stage fix). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): reveal principle edited (W9 stage fix). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Principle text matches. The order stage draws a red line at each job's due minute (StudyLesson x(spec.due[id])); late = finish > due. Own run: urgent first has 0 late jobs and more waiting (10 vs 5), so the stage's goal is due dates, not least waiting.",
       "id": "lifehacks.earliest-deadline-first.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, earliest-deadline-first fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, earliest-deadline-first fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read StudyLesson.tsx (order stage) and queueObservation in src/lib/lifehacks/studyStages.ts first; own run of queueResult/queueObservation (scratchpad fc52/sim.mts): short→urgent waiting 5, 1 late; urgent→short waiting 10, 0 late, reveal adds 'That is 5 more minutes of waiting than short → urgent, but the goal here is no late jobs'. The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit.",
       "id": "lifehacks.earliest-deadline-first.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: short job 5 min, due at 30; urgent job 10 min, due at 10. Quickest first (short, then urgent) ends the urgent job at minute 15, 5 minutes late. Urgent first ends it at 10, on time, and total waiting rises from 5 to 10 minutes.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run: short 0–5, urgent 5–15 (due 10, 5 late); urgent 0–10 (on time), short 10–15; total waiting 5 → 10. Matches.",
       "id": "lifehacks.earliest-deadline-first.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.earliest-deadline-first.recall",

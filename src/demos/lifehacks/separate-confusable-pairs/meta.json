@@ -24,30 +24,38 @@
     {
       "text": "Scenario, hook and prediction: Asked for the grey cable's code, how often do you pick the right one? Codes K-417 and K-471, both noted as 'grey cable'. Asked for the grey cable's code, how often do you pick the right one? Correct option: About half the time. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Codes K-417 and K-471, both noted as 'grey cable'. … how often do you pick the right one?', answer 'About half the time'. With the cue fitting two remembered codes, a pick is a 1-in-2 guess.",
       "id": "lifehacks.separate-confusable-pairs.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "K-417 and K-471 share the note 'grey cable', so that cue fits both and a pick is a guess. Adding what differs, here the length, makes the cue fit one code.",
       "support": "derivation",
-      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): reveal principle rewritten for the new stage. Not checked by the builder.",
+      "source": "Roediger & Karpicke (2006), Test-Enhanced Learning, Psychological Science 17(3),249–255, DOI10.1111/j.1467-9280.2006.01693.x; publisher abstract retrieved 2026-10-13: https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/ . Prose-passage experiments found delayed retention advantages for retrieval over restudy. This short exercise does not establish that effect for the learner. Fixture mappings and rules are explicit conventions, not empirical demonstrations. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): reveal principle rewritten for the new stage. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Principle text matches. On the stage the cue 'grey cable' fits K-417 and K-471 (row note 'this cue fits 2 codes'); 'grey, 5 m' fits K-471 only ('fits 1 code'). Logic, not an empirical claim.",
       "id": "lifehacks.separate-confusable-pairs.c2",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), separate-confusable-pairs fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), separate-confusable-pairs fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read RetrievalLesson.tsx and src/lib/lifehacks/studyRecall.ts first; own run of the fixture: two one-box rows, each checked on its own; fits notes appear after each check; card uncovers after both. Reveal = per-row sentences plus the principle. No benefit claimed.",
       "id": "lifehacks.separate-confusable-pairs.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: the card (grey · 2 m → K-417, grey · 5 m → K-471) shows at the prediction and is covered after it (grey · 2 m → K-???, grey · 5 m → K-???). Each answer box starts empty and cycles through fixed choices (grey cable: K-417, K-471, K-714; grey, 5 m: K-471, K-417, K-714). Pressing each box once gives: Cue 'grey cable' 0 of 1; Cue 'grey, 5 m' 1 of 1. After its check, the row “Cue 'grey cable'” shows “this cue fits 2 codes”. After its check, the row “Cue 'grey, 5 m'” shows “this cue fits 1 code”. Reveal sentences: The first pick was a lucky guess: that cue fits two codes.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run matches: first choices K-417 for 'grey cable' (wrong, K-471 meant) = 0 of 1; K-471 for 'grey, 5 m' = 1 of 1; fits notes '2 codes' / '1 code'. 'The first pick was a lucky guess…' only when both rows are right.",
       "id": "lifehacks.separate-confusable-pairs.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.separate-confusable-pairs.recall",

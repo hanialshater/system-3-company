@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: Cover it and rebuild its three fields: how many do you expect to get? Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get? Correct option: Can't tell until you try. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'Your note looks complete. Cover it and rebuild its three fields: how many do you expect to get?', answer 'Can't tell until you try'.",
       "id": "lifehacks.note-gap-check.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The note has three named fields. Reconstructing their values makes missing details visible; this is a local completeness check.",
@@ -40,16 +42,20 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), note-gap-check fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), note-gap-check fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read RetrievalLesson.tsx and src/lib/lifehacks/studyRecall.ts first; own run of the fixture: same TP-3 rows rules. Reveal lead 'The note showed all three fields filled.' plus the principle ('a local completeness check'). No benefit claimed.",
       "id": "lifehacks.note-gap-check.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: the card (room → B4, day → Friday, code → 627) shows at the prediction and is covered after it (room → ?, day → ?, code → ?). Each answer box starts empty and cycles through fixed choices (room: B4, D4, B6; day: Friday, Tuesday, Thursday; code: 672, 627, 267). Pressing each box once gives: Rebuilt 2 of 3. The readout “Note looks 3/3 filled” stands for the check made with everything in view. Reveal sentences: The note showed all three fields filled. Nothing was missing this time, and only rebuilding it could tell you that.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run matches: room→B4 (right), day→Friday (right), code→672 (wrong, 627) = Rebuilt 2 of 3; chip 'Note looks 3/3 filled'. 'Nothing was missing…' only when all right.",
       "id": "lifehacks.note-gap-check.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.note-gap-check.recall",

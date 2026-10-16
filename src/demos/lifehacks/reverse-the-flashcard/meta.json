@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: Shown 'dog', can you give 'perro'? You get 'perro → dog' right every time. Shown 'dog', can you give 'perro'? Correct option: Not tested yet. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): hook, question and options replaced by the W1 prediction line. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'Shown 'dog', can you give 'perro'?', question, answer 'Not tested yet'.",
       "id": "lifehacks.reverse-the-flashcard.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Reverse the cue and answer to check the opposite mapping. A result in one direction is not a test of the other.",
@@ -40,16 +42,20 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: recall. One short reconstruction; not a retention experiment. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), reverse-the-flashcard fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyRecall.ts and src/components/lifehacks/RetrievalLesson.tsx (TP-3), reverse-the-flashcard fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: the studied card shows at the prediction and is covered after it; answer boxes start empty and cycle through fixed choices; Check marks each box right or wrong against the card; the card uncovers only after every row is checked. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W1, TP-3): the stage is now the TP-3 retrieval stage. Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read RetrievalLesson.tsx and src/lib/lifehacks/studyRecall.ts first; own run of the fixture: two rows checked separately; the card (all '? → ?' while covered) stays covered until both rows are checked, so one direction cannot give away the other. Reveal = per-row results plus the principle. No benefit claimed.",
       "id": "lifehacks.reverse-the-flashcard.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: the card (dax → red, wug → blue, zib → green) shows at the prediction and is covered after it (? → ?, ? → ?, ? → ?). Each answer box starts empty and cycles through fixed choices (zib: green, red, blue; dax: red, blue, green; wug: blue, green, red; red: dux, dax, zib; blue: wug, wog, dax; green: zeb, zib, wug). Pressing each box once gives: Word → meaning 3 of 3; Meaning → word 1 of 3. Reveal sentences: Both directions passed this time, but only testing each one could show it.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts (retrieval field); the choice order is fixed, not random, and is disclosed here. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run matches: Word → meaning first choices green, red, blue = 3 of 3; Meaning → word first choices dux (wrong), wug (right), zeb (wrong) = 1 of 3. 'Both directions passed…' only when both rows are fully right.",
       "id": "lifehacks.reverse-the-flashcard.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.reverse-the-flashcard.recall",

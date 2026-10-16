@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: You booked the presentation, but where did preparation go? The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready? Correct option: Only if prep is booked before 30. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready?', answer 'Only if prep is booked before 30'. Own run: prep 10–30 is on time; the start layout (45–65) is 35 minutes late.",
       "id": "lifehacks.meeting-and-preparation.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",
@@ -40,16 +42,20 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, meeting-and-preparation fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, meeting-and-preparation fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read StudyLesson.tsx (schedule stage) and scheduleObservation in src/lib/lifehacks/studyStages.ts first; own run of scheduleLayout/calendarResult/scheduleObservation (scratchpad fc52/sim.mts): dueRow 0 (prep), deadline 30. Start: prep 45–65, no overlap, 'prep finishes at minute 65 and is due at minute 30, so it is 35 minutes late'; Book prep before 30: 10–30, on time. The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit. Note for demo-builder: lower-case 'prep finishes' after a full stop.",
       "id": "lifehacks.meeting-and-preparation.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: the presentation runs 30–45; prep takes 20 minutes and is due at minute 30. It starts booked at 45–65, after the presentation, so it finishes 35 minutes late. “Book prep before 30” moves it to 10–30, on time.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run matches: present 30–45; prep 20 minutes due 30; start booking 45–65 is 35 late; button moves it to 10–30, on time.",
       "id": "lifehacks.meeting-and-preparation.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.meeting-and-preparation.recall",

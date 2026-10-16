@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: A 15-25 minute task, then a call at 20. A 15-25 minute task, then a call at 20. Plan with 15: is the call safe? Correct option: Not if it runs long. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook 'A 15-25 minute task, then a call at 20.', question 'Plan with 15: is the call safe?', options Yes / 'Not if it runs long', answer 1. Own run: at 25 minutes the task overlaps the call by 5.",
       "id": "lifehacks.estimate-a-range.c1",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The first block is shown at the longer stated duration. Check overlap at that endpoint before treating the optimistic estimate as enough.",
@@ -40,16 +42,20 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: schedule. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, estimate-a-range fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, estimate-a-range fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: finish=start+duration; overlap is pairwise intersection length; last finish=max finish; deadline spill=max(0,last finish-deadline). FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-4): shared schedule stage changed: readouts in words, an overlapping layout reports no valid finish, and the reveal reads the final layout (scheduleObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read StudyLesson.tsx (schedule stage) and scheduleObservation in src/lib/lifehacks/studyStages.ts first; own run of scheduleLayout/calendarResult/scheduleObservation (scratchpad fc52/sim.mts): task 0–15, call 20–30, no overlap, done by 30; 'Use the long end, 25' sets refined, task 0–25 overlaps the call 5 minutes; reveal 'Task is drawn at its long end, 25 minutes. Your final layout overlaps for 5 minutes (task with call)... no valid finish.' The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit.",
       "id": "lifehacks.estimate-a-range.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: the task is planned at its short end, 15 minutes (0–15), before a call at 20–30, with no overlap. “Use the long end, 25” draws it at 25 minutes (0–25), which overlaps the call by 5 minutes, so that plan has no valid finish. Reveal sentence: Task is drawn at its long end, 25 minutes.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run matches every number: 0–15 before 20–30 with no overlap; long end 0–25 overlaps by 5, no valid finish; reveal sentence 'Task is drawn at its long end, 25 minutes.'",
       "id": "lifehacks.estimate-a-range.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.estimate-a-range.recall",

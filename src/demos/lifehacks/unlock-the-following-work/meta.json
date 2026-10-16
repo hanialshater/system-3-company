@@ -24,9 +24,11 @@
     {
       "text": "Scenario, hook and prediction: A 2-minute input unlocks a 30-minute build. A 2-minute input unlocks a 30-minute build. Polish (10 min) first or input first: when does the build finish? Correct option: 10 minutes later with polish first. All fixture labels, example words, dates, task durations and file fields are stipulated exercise data.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): DISPUTED. The keyed answer is true only for one reading of 'input first'. Question: 'Polish (10 min) first or input first: when does the build finish?' Key: '10 minutes later with polish first'. On this stage, 'Swap first' turns polish→input→build into input→polish→build, which is input first, and the build is still done at minute 42, the same as polish first (own run of queueResult; the 'Build done' chip shows 42 both times). Only input→build→polish ('Try target') gives 32. A learner who swaps sees the distractor 'Same either way' come true. Fix (demo-builder, claim text and studyCatalog together): ask about the order that is meant, e.g. 'Polish (10 min) first, or input and then the build: when does the build finish?', or make 'Swap first' not produce input→polish→build. Re-check after the change.",
       "id": "lifehacks.unlock-the-following-work.c1",
-      "status": "unverified"
+      "status": "disputed",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The build depends on the input. Doing unrelated work first delays release, even when that unrelated work is useful.",
@@ -40,16 +42,20 @@
     {
       "text": "Every displayed result is computed from the visible exercise state: order. Exercise only; no measured productivity gain. The reveal reports this same state and never translates its score into a personal productivity or memory benefit.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, unlock-the-following-work fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder.",
+      "source": "src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx, unlock-the-following-work fixture in src/lib/lifehacks/studyCatalog.ts. Stage rules: cumulative execution with stated setup cost; waiting is sum of start times; late means finish>due; dependency breach means predecessor is later in order. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan TP-5): shared queue stage changed: total waiting is defined on the stage, “Prereq” became “Run before input”, readouts in words, and the reveal says when the right order waits longer (queueObservation in src/components/lifehacks/StudyLesson.tsx). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Read StudyLesson.tsx (order stage) and queueObservation in src/lib/lifehacks/studyStages.ts first; own run of queueResult/queueObservation (scratchpad fc52/sim.mts): polish→input→build: build done at 42, waiting 22; input→polish→build (Swap first): build still 42, waiting 14; input→build→polish (Try target): build 32, waiting 34, reveal adds '12 more minutes of waiting ... the goal here is build done sooner (minute 32, not 42)'. The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit.",
       "id": "lifehacks.unlock-the-following-work.c3",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "Stage: input 2 min; build 30 min, needs the input; polish 10 min. Polish first: build done at minute 42. Input first, then build: build done at minute 32, 10 minutes sooner, while total waiting rises from 22 to 34 minutes.",
       "support": "convention",
-      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified.",
+      "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts; rules in src/lib/lifehacks/studyModels.ts and src/components/lifehacks/StudyLesson.tsx. Added by demo-builder 2026-10-15 (r11 fix plan); unverified. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Own run: input 2, build 30 (needs input), polish 10. Polish first: build done at 42. Input then build: 32, 10 sooner; waiting 22 → 34. Matches (the claim says 'Input first, then build', which is the target order).",
       "id": "lifehacks.unlock-the-following-work.c4",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.unlock-the-following-work.recall",
