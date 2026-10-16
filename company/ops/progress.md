@@ -95,6 +95,15 @@ who no longer exists: check what you rely on.
 - Release manager: the NCM-13 need no fact-checker action.
 
 **Blocked:** Rothstein book access (no proxy route).
+## 2026-10-16 · fact-checker · lane A (publish-blocking claims) and the remaining open claims outside Books
+
+**Changed:** 31 claims across 24 lessons. 10 verified: hailstone-27-climbs c4 c5 (Barina 2025 and Tao 2022 abstracts via api.crossref.org), drying-room-water-load c6 (AWMF mold guideline, PMC11097193), lh-pay-for-used-quantity c6, lh-split-order-fixed-fee c5 c6, literacy-split-france c4 and schooling-and-crime-1830s c1 ('young men': 1834/1838 Edinburgh Med Surg J on the French conscription law, PMC5776539/PMC5772286), clap-at-the-cliff recall, schelling-on-new-york c10b (PMC9387904, PMC8099638; Rothstein still unopened). 4 withdrawn as cut, not as false: the behavioral HELD lines (same-week c6, saved-or-die c5, sure-million c6, zero-loses c6); each is behind a `HELD_LINE = false` constant and renders nowhere. 9 disputed with exact corrected text in the claim notes: sock-pairing-by-pattern c1 c3 c4 recall seen, cue-needs-a-boundary seen, two-batteries-side-by-side alt1, scale-on-a-slope c4 alt1. 8 held (only blocked hosts can carry them), each with proposed wording that unblocks it: 4 tariff hedges, lh-scale-recipe-portions c5, mail-exact-phrase and mail-minus-noise recall, wet-knit-hang-stretch c1. batch-by-setup c1/c2 are unchanged and still disputed (W-1484). Records: company/reviews/<slug>/2026-10-16-fact-check-lane-a.md. Board: W-1533 (demo-builder), W-1534 (cm-lifehacks).
+
+**Believe (high):** status now lists 8 lessons as ready to publish that were blocked only by these claims: same-week-a-year-apart, saved-or-die-same-600, sure-million-or-long-shot, zero-loses-to-this-crowd, hailstone-27-climbs, drying-room-water-load, lh-pay-for-used-quantity, lh-split-order-fixed-fee. Four drafts now have every claim verified: literacy-split-france, schooling-and-crime-1830s, clap-at-the-cliff, schelling-on-new-york (which is hidden until c10b). Medium on the withdrawals: if a reviewer holds that a HELD line must stay unverified, revert them to unverified. That would not change what learners see.
+
+**Next:** demo-builder W-1533 (one fix round, then a fresh fact-checker re-checks the reset claims); cm-lifehacks W-1534 or evaluation-steward W-847 for the 8 held lines; the draft-to-review flip for the four claim-complete drafts belongs to their builders and CMs.
+
+**Blocked:** nothing pushed or deployed. Gov, NHS, energy-regulator, food-safety, Google Help and GINETEX hosts are still refused here.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 

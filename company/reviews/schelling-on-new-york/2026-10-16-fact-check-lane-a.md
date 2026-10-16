@@ -1,0 +1,11 @@
+# Fact-check (after lane A, open claims): schelling-on-new-york
+
+fact-checker · 2026-10-16 · worktree base cdee168c. Checker: a fresh fact-checker instance; I did not write, build or record any claim checked here. Brief: chief of staff, after lane A: remaining open claims outside Books, fewest-open lessons first. Builder notes and build.md not read.
+
+Method: Read Demo.tsx for the rendered sentence first (no server or walkthrough this pass; Demo.tsx unchanged since the last fact-check walkthrough), re-derived numbers by hand and in node, and opened sources only through the PMC OAI API (pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/) and raw.githubusercontent.com; other hosts are refused by the proxy here.
+
+| claim | status | reason / fix |
+|---|---|---|
+| c10b | verified | VERIFIED, on opened peer-reviewed sources other than the one cited (Rothstein 2017 is still unopened: no reachable copy). Card (Demo.tsx lines 634-637): 'housing and lending discrimination by race, including late-1930s government maps grading neighbourhoods for lending risk, then widening wealth gaps'. Opened via the PMC OAI API: (1) 'Persistence of mortgage lending bias in the United States: 80 years after the Home Owners' Loan Corporation security maps', Journal of Race, Ethnicity and the City 2022 (PMC9387904): 'the wealth gap between Blacks and Whites is substantial, attributed in large part to differentials in wealth accumulation through home ownership', and racial bias 'restricted the settlement of people of color in wealthier neighborhoods throughout the 20th century'; (2) 'The legacy of structural racism: Associations between historic redlining, current mortgage lending, and health', SSM - Population Health 2021 (PMC8099638): 'Racially discriminatory lending policies and practices have systematically shaped access to wealth' and 'Racial disparities in lending, equity, and wealth'. Together they support discrimination widening wealth gaps, largely through home ownership and equity. Builder (non-blocking, but owed): replace Rothstein in the source field with these two citations, or keep Rothstein alongside them marked 'not opened' (cultural pass 3 allows replacing the source). |
+
+The same text is in each claim's note in src/demos/*/schelling-on-new-york/meta.json.

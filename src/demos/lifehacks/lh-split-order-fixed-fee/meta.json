@@ -63,16 +63,20 @@
       "text": "The same goods can produce different totals when a fee repeats.",
       "support": "derivation",
       "source": "Hook (meta.json hook; resource-specs.json \"lh-split-order-fixed-fee\".hook). Learner-visible and unrecorded until FC pass 51 (fact-checker, 2026-10-15, W-1101), which recorded it verbatim. Recorded by fact-checker, so a different fact-checker must verify it.",
-      "status": "unverified",
-      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): HELD UNVERIFIED (SO-10-2 stop-if, W-1108 class), not disputed. The text was recorded by a fact-checker (FC pass 51), and SO-10-2 says to stop on such claims, so this run does not verify it. My independent derivation, for whoever W-1108 is dispatched to: the hook matches resource-specs.json and the render; with goods €24 and €4 per order, totals are 24 + 4n, so 1 order €28, 2 orders €32: the same goods give different totals when the fee repeats. Nothing against it. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD."
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): HELD UNVERIFIED (SO-10-2 stop-if, W-1108 class), not disputed. The text was recorded by a fact-checker (FC pass 51), and SO-10-2 says to stop on such claims, so this run does not verify it. My independent derivation, for whoever W-1108 is dispatched to: the hook matches resource-specs.json and the render; with goods €24 and €4 per order, totals are 24 + 4n, so 1 order €28, 2 orders €32: the same goods give different totals when the fee repeats. Nothing against it. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD. | FC lane-A (fact-checker, 2026-10-16, base cdee168c; I did not record this claim, FC pass 51 did): VERIFIED. Hook matches meta.json and resource-specs.json. Own arithmetic from formulaA = 24 + 4x: one order 28, two 32, three 36; the same 24 of goods gives different totals as the fee repeats.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.lh-split-order-fixed-fee.c6",
       "text": "The same goods total €24. Each order adds a fictional €4 delivery fee. For two separate orders, which receipt is lower? Options: Split / Combined / Equal. Correct: Combined.",
       "support": "derivation",
       "source": "Prediction (resource-specs.json \"lh-split-order-fixed-fee\".question, options, answer). Learner-visible and unrecorded until FC pass 51 (fact-checker, 2026-10-15, W-1101), which recorded it verbatim from the spec. Recorded by fact-checker, so a different fact-checker must verify it (a checker may not verify a claim they wrote). Pass 51 arithmetic, for the next checker to redo independently, is in the Pass 51 record.",
-      "status": "unverified",
-      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): HELD UNVERIFIED (SO-10-2 stop-if, W-1108 class), not disputed. Recorded by a fact-checker (FC pass 51). Independent derivation for W-1108: question, options and answer 1 match resource-specs.json and the render; split (2 orders) 24 + 4 × 2 = €32, combined 24 + 4 = €28 (walk: A €32.00, B €28.00), so 'Combined' is the only true option; 'Equal' holds only at 1 order, which the question excludes. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD."
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): HELD UNVERIFIED (SO-10-2 stop-if, W-1108 class), not disputed. Recorded by a fact-checker (FC pass 51). Independent derivation for W-1108: question, options and answer 1 match resource-specs.json and the render; split (2 orders) 24 + 4 × 2 = €32, combined 24 + 4 = €28 (walk: A €32.00, B €28.00), so 'Combined' is the only true option; 'Equal' holds only at 1 order, which the question excludes. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD. | FC lane-A (fact-checker, 2026-10-16, base cdee168c; I did not record this claim, FC pass 51 did): VERIFIED. Text matches resource-specs.json question, options and answer 1. Own arithmetic: split into two orders 24 + 4 x 2 = 32; combined 24 + 4 = 28. Combined is lower and the only true option; 'Equal' only at one order, which the question excludes.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
