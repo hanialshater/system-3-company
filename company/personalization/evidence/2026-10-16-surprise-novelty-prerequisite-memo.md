@@ -181,3 +181,12 @@ The original text and the ranges table above are **unchanged**. The full-text ch
 **What stayed marked (unverifiable this run; no primary text reachable):** Roediger & Karpicke 2006 retention values (sets `forgetRate` low/base; direction [A] from the abstract), Bransford & Johnson 1972 idea units (now [S] from web secondaries consistent with the memo), Crouch et al. 2004 percentages (direction [A]), Butler et al. 2011 56% ([S]).
 
 **No range bound moved.** The corrected source and mark columns for the affected rows are in the check record, under "What moves in the ranges table". Every statement above is still a research finding, not a verified learner-facing claim.
+
+## Revision 2026-10-16 (run ls-c2-1016, W-1533): after the simulator fidelity review
+
+The original text and table above are unchanged. Full reasoning: company/personalization/evidence/2026-10-16-simulator-fidelity-review.md.
+- **Novelty row, meaning corrected.** "Concept/domain unseen" was copied from the composer's definition. In a judge where nearly every new card is a new concept, the concept clause is a constant. The evidence (§1d) is about novel contexts just before encoding and switching between similar categories. So the row now means a relative boost to encoding when the lesson's context differs from what came just before (e.g., a domain switch). Values unchanged (−0.05 / 0 / +0.05, low). Review F3.
+- **Hypercorrection row, unit clarified.** "Relative boost to correction" was meant against a correction rate near Butler et al.'s ~56% ([S]), so the high bound 0.15 is about +0.08 absolute. Applied to recall near 0.9 it hits the cap. Review F12.
+- **New row: `learnRate`** (P(encode | concept unknown) from one lesson): low 0.35, from Fazio et al. 2010 Table 2 [F] ((.48 − .21)/(1 − .21) ≈ 0.34, one untested read, per fact), high 0.70 (the provisional learner's guess, unsourced), no base, low confidence. Review F2.
+- **`forgetRate` high under a whole-probability form with a `max` guess floor:** the sourced equivalent of 0.20 is 0.12–0.13. Review F1.
+Still a research record, not a learner-facing claim.

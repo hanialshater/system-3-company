@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learning-scientist-personalization (Oskar) · C2 simulator fidelity review, W-1533 (run ls-c2-1016)
+
+**Changed:** new company/personalization/evidence/2026-10-16-simulator-fidelity-review.md (23 findings, each marked blocking or note). Revision section appended to the B2 memo (novelty meaning, hypercorrection unit, new `learnRate` range). W-1533 moved to review, reader personalization-eval. No harness policy command run; no results or out folder read; no curve value set.
+**Blocking (C4 step 1 must answer in writing):** F1: the learner decays the whole recall probability (floor applied with `max`), not the increment above a floor. Under that form, C0's source supports `forgetRate` high of about 0.12–0.13, not 0.20. Fix: one-line form change (recommended), fill 0.12–0.13, or relabel. F2: `learnRate` 0.7 is unsourced and unswept, and ΔR is linear in it against an absolute δ_min. Fazio 2010 [F] gives about 0.34; range 0.35–0.70 published. F3: the novelty trigger is true for nearly every card (223 concepts / 230 lessons) and copies the composer's own clauses, so the ±0.05 novelty cells cannot test novelty. Affects the per-term cells only.
+**Believe:** F1–F3 are departures (high). F1 changes ΔR by only about 6–8% in its cell (medium), so its risk is a wrong label more than a wrong verdict. Whether 0.7 overstates learning is low-medium. Verdict: not ready for C4 until F1–F3 are answered (fixed or refused with a reason).
+**Next:** personalization-eval, C4 step 1 (W-1534). **Blocked:** nothing.
+
 ## 2026-10-16 · privacy-reviewer (Elif) · L5 lab rendered page and T1 check wiring closed (run pr-l5-t1-1016)
 
 **Changed:** new company/reviews/_privacy/2026-10-16-l5-t1-closeout.md; status section 6 in company/personalization/lab/2026-10-16-lab-privacy-dod.md; board W-1529 and W-1537 → done.
