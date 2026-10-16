@@ -29,3 +29,21 @@ Result: 6 claims, 6 verified, 0 disputed, 0 withdrawn. No unrecorded claim.
 ## After reading build.md
 
 The build note's "100,000 sales land within $0.07" agrees with my 0.065. Its W-507 strand re-check is outside this record. Nothing in it changes a status.
+
+## W-507 re-check (c4 reset, c7 and c8 new)
+
+Date: 2026-10-16. Checker: fact-checker (did not write these claims or the reworded reveal). Lane: this slug only, claims c4, c7, c8. Base: main ccr-4c6c7654-ew9ko1 at 91bf40a2.
+
+Method: read model.ts, src/kit/random.ts and every learner-visible string in Demo.tsx before build.md. The second reveal paragraph in Demo.tsx is character-for-character the c4 text. Re-derived the tag optimum by a grid search over p in steps of 0.0001 (own Python, n = 1 to 5): 50.00, 57.74, 63.00, 66.87, 69.88, matching the closed form 100(1/(n + 1))^(1/n); auction mean 100(n - 1)/(n + 1) = 0, 33.33, 50.00, 60.00, 66.67. Prior simulation and Monte Carlo results for c1 to c3 above still apply (git diff f1568498..91bf40a2 on this lesson touches only Demo.tsx, 6 lines, and meta.json; model.ts is unchanged).
+
+Result: 3 claims, 3 verified, 0 disputed, 0 withdrawn. No new unrecorded claim: the reworded question ("Values are random, $0 to $100 ... beats the best price tag on average") is covered by c1, c2 and c8.
+
+| id | status | basis |
+|---|---|---|
+| c4 | verified | Same derivation as the first check, now on the reworded text. "Set knowing only the $0-$100 range": tagPrice(n) takes no drawn value (see c8). "Too high and nobody buys": no-sale chance (p/100)^n grows with p. "Too low and money is left on the table": the seller gets p while the highest value can be far above it. "An auction with no reserve lets the second-highest bidder set the price": simulate() adds second, the second-highest value, with no floor (see c7); this is the second-highest bid under truthful bidding, the prerequisite lesson result (bid-what-its-worth). "Gets better with every rival": the average 100(n - 1)/(n + 1) is strictly increasing in n (derivative 200/(n + 1)^2 > 0), which is what the chart shows. |
+| c7 | verified | Convention, checked against the model. In simulate() second starts at 0 and auction += second with no comparison to any floor; auctionRevenue(n) = 100(n - 1)/(n + 1) is the unconditional mean of the second-highest value; with 1 bidder both give $0.00, which the locked stage shows. "The highest bidder wins and pays the second-highest value" equals the second-price rule with truthful bids (same assumption as c4 and c6). |
+| c8 | verified, with non-blocking note | tagPrice(n) = round(100(1/(n + 1))^(1/n), cents) is a function of n alone; simulate() computes p once before any draw and charges it in every sale (hi >= p). It maximises p(1 - (p/100)^n), the expected revenue before values are drawn, so no buyer value enters. Note for the builder and cm-economics-markets (not a dispute): the tag also uses the number of bidders, which the stage shows openly (a different tag under each count). "Knowing only" reads as "knowing about values only"; if anyone wants it exact, "knowing only the number of bidders and the $0-$100 range" would be precise. Not needed for truth, since the learner sees the tag change with n. |
+
+### After reading build.md (W-507 fix round)
+
+The fix-round section agrees with what I found in Demo.tsx (question and second reveal paragraph reworded, first paragraph and status line unchanged). Nothing in it changes a status. The evidence field was not touched; a qa-tester is working on evidence.qa in parallel.
