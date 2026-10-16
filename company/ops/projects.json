@@ -773,6 +773,82 @@
       "premortem": "company/ceo-office/2026-10-14-project-review-1-premortems.md"
     },
     {
+      "id": "personalization",
+      "title": "Personalization phase A offline study (criterion 2: headroom-first, review-timing candidate) plus upkeep (settings API, HQ lab); no live personalization",
+      "kind": "project",
+      "major": true,
+      "majorBecause": [
+        "new org (vp-personalization and six roles, founder-approved 2026-10-16)",
+        "more than 20 agent runs across batches 1-3",
+        "spans more than one wave"
+      ],
+      "owner": "vp-personalization",
+      "status": "approved",
+      "scope": {
+        "in": [
+          "phase A offline study per company/personalization/batches/2026-10-16-batch-3.md: E1 evidence, K1/K2 criterion 2 and scored readout 2, P1/P2 review-timing candidate, F1 fidelity review, R2 reproduction, V the VP's decision",
+          "upkeep: U1 HQ lab nits (W-1540), U2 settings API code (W-1538), and their fix rounds"
+        ],
+        "out": [
+          "any live personalization: no GAM curves live, no live test, default order for everyone (founder Q1); First Light ships the rule set off (founder Q5)",
+          "applying the settings table anywhere real or deploying (backend-engineer order review, privacy-reviewer read, founder deploy approval)",
+          "phase B (needs accounts, W-706, a registered experiment, privacy pass and founder deploy approval; pre-commitment 5)"
+        ],
+        "overlap": "First Light's 'personalization' workstream (t1 357k, owner learner-model-engineer, vp-personalization) also covers release-1 settings and off switch (Q5). U2 settings API work could be charged to either; until the founder or forum says otherwise, lane-14 mailbox requests tag 'personalization' and First Light keeps its workstream figure unchanged. Raised for the founder with the budget ask."
+      },
+      "budget": {
+        "tokens": 2000000,
+        "proposed": 2000000,
+        "countFrom": "2026-10-16T00:00:00Z",
+        "estimate": true,
+        "basis": "ESTIMATE by portfolio-manager (run pm-perso-project-1016), not measured and NOT approved by the founder or forum. Batch 3 = 10 runs priced at per-run units: E1 research 180k (research-note proxy 182k), K1 and K2 eval code+criterion 150k each, U1, U2, P2 code 110k each (platform-engineer code-run unit), F1 review 100k, P1 numbers 80k and R2 reproduction 80k (learner-model-engineer measured 78k), V decision 60k (personalization-lead measured 50k) = 1.13M; plus about 10 VP mailbox inbox turns at 50k = 0.5M (pilot design point 4); plus fix rounds and upkeep re-reads about 0.35M; total about 2.0M. Batches 1-2 (about 15 worker runs plus VP runs, roughly 1.5-2M at the same units) are NOT counted against this budget and are mostly unmeasured: the ledger holds only 2 lane-14 runs (128k, both tagged first-light) because this checkout is a fresh clone (company/ops/ledger.jsonl).",
+        "approval": "pending: token-budget.md section 9 says the portfolio manager writes a budget line but does not approve it; the forum or the founder does. Founder ask routed via board to chief-of-staff (founder inbox writer).",
+        "topUps": []
+      },
+      "approval": {
+        "record": "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+        "approvedBy": "founder",
+        "date": "2026-10-16",
+        "covers": "scope only: founder answers Q1-Q5 (Q3 criterion 2 headroom-first approved, Q4 review timing as second candidate, Q1 and Q5 no live personalization); org in company/decisions/2026-10-16-founder-personalization-org.md; lane 14 joins the mailbox pilot in company/decisions/2026-10-16-founder-mailbox-dispatch.md (last section). It does NOT cover the 2.0M token figure, which is an estimate awaiting approval.",
+        "registeredBy": "portfolio-manager (register entry only, on the founder's lane-14 mailbox decision which needs this tag first)"
+      },
+      "returns": {
+        "notLessons": "decisions, not lessons: readout 2 frozen, scored and reproduced byte for byte (R2), and the VP's decision by the pre-written commitments (pre-commitments 1-5, V1-V5): ordering for recall closed or kept, review timing closed or kept; upkeep return = W-1538 and W-1540 to done"
+      },
+      "kill": "stop lane 14's model work if the oracle does not beat default-order by delta_min for 4 of 6 personas in the base cell and review timing closes under V2 or V3 (pre-commitment 3 and V1-V5 in batch 3); no re-tuning after a fail; at 2.0M spent before readout 2 is reproduced, stop and ask the founder for a top-up",
+      "match": [
+        "personali[sz]ation",
+        "vp-personalization",
+        "learner-model",
+        "learner-data",
+        "lesson-dims",
+        "applied-scientist-personalization",
+        "learning-scientist-personalization",
+        "criterion[ -]2"
+      ],
+      "board": [
+        "W-1538",
+        "W-1540",
+        "W-1544",
+        "W-1545",
+        "W-1546",
+        "W-1547",
+        "W-1548",
+        "W-1549",
+        "W-1550",
+        "W-1551"
+      ],
+      "refs": [
+        "company/personalization/batches/2026-10-16-batch-3.md",
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/decisions/2026-10-16-founder-personalization-org.md",
+        "company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md",
+        "company/decisions/2026-10-16-founder-mailbox-dispatch.md"
+      ],
+      "proposedBy": "portfolio-manager"
+    },
+    {
       "id": "lifehacks-200",
       "title": "Life Hacks 200 (PR #2): 200 lessons built on engine v1",
       "kind": "project",
