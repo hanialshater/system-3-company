@@ -41,6 +41,7 @@ An ADR is never edited after it is accepted. A later ADR supersedes it, and the 
 | [ADR-007](adr/ADR-007-manifest-is-the-registry.md) | The manifest is the registry; rollback is a pointer change | proposed |
 | [ADR-008](adr/ADR-008-better-auth-magic-link.md) | Accounts are Better Auth magic links in our own Postgres, optional, invisible to the beacon | proposed; architecture approved with changes ([review](reviews/2026-10-15-accounts-f01-review.md)); accepted after spike W-1135 |
 | [ADR-009](adr/ADR-009-postgres-on-neon-eu.md) | One Postgres on Neon via Vercel, Frankfurt, plain SQL migrations, no preview copies of learner rows | proposed; approved with changes, §4 to be rewritten for the test/production split ([review](reviews/2026-10-15-accounts-f01-review.md)); accepted after spike W-1135 |
+| [ADR-010](adr/ADR-010-lesson-bundler-esbuild.md) | Lesson and kit bundles are built with esbuild, exact pin 0.27.0, used only by the lesson-build tool | proposed; needs the founder (W-485), principal-engineer's tier-2 review with the EDD-003 A2 pilot addendum, and a readiness record ([dependency record](../decisions/2026-10-16-dep-esbuild.md)) |
 | [EDD-001](edd/EDD-001-feed-at-500-lessons.md) | The feed at 500+ lessons | proposed |
 | [EDD-002](edd/EDD-002-vercel-deploy-command.md) | Executable Vercel deployment | proposed (PR) |
 | [EDD-003](edd/EDD-003-lesson-storage-at-scale.md) | Lesson storage and loading at 10k–1M (client-side bundles, hybrid) | approved with changes ([review](../rituals/records/2026-10-13-eng-review-lesson-storage.md), 2026-10-14) |
