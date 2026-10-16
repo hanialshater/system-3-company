@@ -1,0 +1,116 @@
+{
+  "slug": "schooling-and-crime-1830s",
+  "title": "Reading and the courts, 1830s",
+  "hook": "Where more young men could read, did fewer crimes reach court? France, 1825-30.",
+  "domain": "history",
+  "concept": "guerry-crime-vs-instruction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-history",
+    "builder": "demo-builder-h24"
+  },
+  "learner": {
+    "knows": [
+      "schooling is said to reduce crime"
+    ],
+    "doesNotKnow": [
+      "that in Guerry's 1830s France the most literate departments recorded more property crime per person, not less"
+    ]
+  },
+  "misconception": "Where more people could read, less crime was recorded.",
+  "objective": "The learner can say that in Guerry's record the most literate quarter of French departments recorded about 1.7 times the property crimes per 100,000 people of the least literate quarter (18.9 against 11.3), with crimes against persons the same (5.9), and that this compares departments' court records, not people, and does not show a cause.",
+  "claims": [
+    {
+      "id": "history.schooling-and-crime-1830s.c1",
+      "text": "Guerry's table for 86 French departments: Literacy (percent of military conscripts who can read and write), and population per crime against property and against persons (Compte général, 1825-1830). Stage: every bar and dot; hook: 'young men could read', 'France, 1825-30'.",
+      "support": "source",
+      "source": "history-data.mjs: guerry, HistData Guerry.csv (sha256 13f9ff6ad1413d9e75a26374147a5a840a432adc418d5faa1d4e40df763c8433), columns Literacy, Crime_prop, Crime_pers; doc HistData/Guerry.html. The 86 rows are copied into Demo.tsx (RAW) unchanged, in file order. Brief 24 claim 1.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c2",
+      "text": "Quarters of 21 departments by literacy: the least literate quarter averages 19% literate, the most literate 63% (stage panel heads).",
+      "support": "derivation",
+      "source": "Stable sort of the 86 rows by Literacy in file order; lowest 21 and highest 21 (floor(86/4)). Unweighted means 18.6% and 63.4%, shown rounded. Ties: literacy 25% sits on the lower boundary, so which 25% departments fall in the lowest quarter is decided by file order, exactly as history-cycle2-check.mjs section 24 '24 quarters' does. Computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c3",
+      "text": "The most literate quarter of departments recorded 18.9 property crimes per 100,000 people, against 11.3 in the least literate: 1.7 times as many (reveal; stage bars and the '×1.7' label; question options 'about 1.7 times').",
+      "support": "derivation",
+      "source": "Crimes per 100,000 = 100,000 / Crime_prop per department; unweighted mean of each quarter's 21 departments: 18.9 and 11.3; ratio of the unrounded means 1.67, shown 1.7. history-cycle2-check.mjs section 24 '24 property crime'. Computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c4",
+      "text": "Crimes against persons were the same, 5.9 per 100,000 in both quarters (reveal; stage 'persons' bars).",
+      "support": "derivation",
+      "source": "100,000 / Crime_pers per department, unweighted quarter means, both 5.9 at one decimal. history-cycle2-check.mjs section 24 '24 crimes against persons'. Computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c5",
+      "text": "Across all 86 departments, literacy and property crimes per 100,000 correlate at r = 0.37 (stage, 'All 86 departments' scatter).",
+      "support": "derivation",
+      "source": "Pearson correlation of Literacy with 100,000 / Crime_prop over the 86 rows, 0.37 at two decimals (crimes against persons r = 0.03, not shown). history-cycle2-check.mjs section 24 '24 all departments'. Computed in Demo.tsx.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c6",
+      "text": "In this record, the more literate departments did not have fewer cases brought to court (reveal).",
+      "support": "derivation",
+      "source": "Follows from c3 and c4: property cases higher, persons cases equal, in the most literate quarter. Wording by cultural-reviewer, company/reviews/schooling-and-crime-1830s/2026-10-16-culture-en-brief.md change 2, applied by cm-history.",
+      "status": "unverified"
+    },
+    {
+      "id": "history.schooling-and-crime-1830s.c7",
+      "text": "Where it stops: these are cases brought to court in 1825 to 1830, which depend on policing as well as crime; they compare departments, not people, and two numbers moving together say nothing, alone, about what caused what (reveal).",
+      "support": "source",
+      "source": "'Cases brought to court', '1825 to 1830': history-data.mjs guerry 'what' (Crime_pers and Crime_prop = population per crime, Compte général 1825-1830) and the HistData Guerry doc. 'Depend on policing as well as crime': a general limit of court records (wording by cultural-reviewer, culture-en-brief change 1); the fact-checker decides whether it needs a source. 'Compare departments, not people': the table has one row per department. The last clause is a reasoning limit, not a fact about the record.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Towns with more libraries report more thefts. What is the safest reading?",
+    "options": [
+      "Libraries cause theft",
+      "The thefts are misreported",
+      "They go together here; the cause needs more evidence"
+    ],
+    "answer": 2,
+    "why": "Two things rising together across places can share a cause (bigger, richer towns have more of both); the pattern alone does not say which causes which."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "history:guerry-crime-vs-instruction",
+    "also": [],
+    "prerequisites": [
+      "probability:confounding",
+      "probability:per-capita-rates"
+    ],
+    "level": "core",
+    "strand": "maps-borders",
+    "references": [],
+    "tags": [
+      "Guerry",
+      "literacy",
+      "crime",
+      "correlation",
+      "France"
+    ]
+  },
+  "format": "side-by-side",
+  "interactions": [
+    "choice-before-reveal",
+    "preset-buttons",
+    "milestone-gate"
+  ]
+}

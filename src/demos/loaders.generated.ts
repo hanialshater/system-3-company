@@ -470,6 +470,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "london-buried-six-times-more": () => import("./history/london-buried-six-times-more/Demo"),
   "more-boys-christened": () => import("./history/more-boys-christened/Demo"),
   "rome-placed-too-far-east": () => import("./history/rome-placed-too-far-east/Demo"),
+  "schooling-and-crime-1830s": () => import("./history/schooling-and-crime-1830s/Demo"),
   "survive-childhood-live-to-sixty": () => import("./history/survive-childhood-live-to-sixty/Demo"),
   "wages-bought-more-wheat": () => import("./history/wages-bought-more-wheat/Demo"),
   "all-lines-meet-in-one-mother": () => import("./life/all-lines-meet-in-one-mother/Demo"),
