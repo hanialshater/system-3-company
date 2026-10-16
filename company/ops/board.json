@@ -6044,15 +6044,15 @@
       "id": "W-433",
       "title": "Confirm or swap the reveal cuts made for the 90-word budget (r8): no-fraction-fits v6 (cut 'No, never.' opener, 'Close calls keep coming...' -> 'The 2s settle it.'). See company/reviews/no-fraction-fits/build.md v6",
       "owner": "cm-math",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
       "priority": 2,
       "triage": {
-        "at": "2026-10-14",
+        "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "As W-421."
+        "note": "cm-math r5 (808e666) rulings M1/M2/board decisions"
       }
     },
     {
@@ -7249,15 +7249,15 @@
       "id": "W-516",
       "title": "Duplicate lh-discount-round-trip vs fifty-up-fifty-down (math:percent-change-asymmetry): receiving-manager transfer decision; pairwise prefers fifty-up-fifty-down. See company/reviews/lh-discount-round-trip/2026-10-14-pairwise.md",
       "owner": "cm-math",
-      "state": "backlog",
+      "state": "done",
       "domain": "lifehacks",
       "created": "2026-10-14",
       "links": [],
       "priority": 3,
       "triage": {
-        "at": "2026-10-14",
+        "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "Same pair as W-515 from the math side; decide together after W-513."
+        "note": "cm-math r5 (808e666) rulings M1/M2/board decisions"
       }
     },
     {
@@ -8177,11 +8177,16 @@
       "id": "W-577",
       "title": "agenda-picks-the-winner v2: reveal 94 words (>90); pick a cut (learner r9)",
       "owner": "cm-math",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
-      "updated": "2026-10-14"
+      "updated": "2026-10-14",
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "cm-math r5 (808e666) rulings M1/M2/board decisions"
+      }
     },
     {
       "id": "W-578",
@@ -8427,10 +8432,15 @@
       "id": "W-603",
       "title": "math/euclid-three-steps (draft, multi-card sequence format reference) duplicates concept infinitude-of-primes (product-plus-one is published): decide ship, merge or keep as reference; claims c1-c6 unverified",
       "owner": "cm-math",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "cm-math r5 (808e666) rulings M1/M2/board decisions"
+      }
     },
     {
       "id": "W-604",
@@ -15895,7 +15905,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "built on tools-r5-b1 3ce2528; awaiting PE-ops approval (r5-ops B2) + principal-engineer code check; merge installs pre-rebase at once"
+        "note": "COE-B: the wipe path is dirty-tree autostash failing before pre-rebase runs; the record must name it and test detector + Bash refusal on it"
       }
     },
     {
@@ -16160,10 +16170,15 @@
       "id": "W-1361",
       "title": "COE-B: 13:06 shared-checkout autostash (SEV2 ev-ff2a7438e3) at company/rituals/records/2026-10-16-coe-shared-checkout-autostash.md; leads in company/ops/dispatch-requests/2026-10-16-r5-ops.md A2 and event ev-cff83fa150",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "COE-B final (a3c1445/1dd2915); pattern-librarian accept; evaluation-steward review pending"
+      }
     },
     {
       "id": "W-1362",
@@ -16330,6 +16345,78 @@
     {
       "id": "W-1380",
       "title": "cut-the-busiest-link c5 text nit (optional): 'while the network is whole and any count is fractional'",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1381",
+      "title": "COE-B action: tools r5 B1 readiness must state the dirty-tree autostash path (pre-rebase never runs) and test that the SubagentStop detector and Bash-layer refusal catch it (P1)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1382",
+      "title": "COE-B action: one shared git-rules block every brief includes + a dispatch lint that refuses briefs prescribing state-changing git in the main checkout",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1383",
+      "title": "COE-B action (P2): single integrator for the main checkout, rebase.autoStash off, shared-main-checkout tier rule",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1384",
+      "title": "COE-B action (P2): recovery tool + runbook for orphan autostashes and fsck --lost-found listing",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1385",
+      "title": "COE-B action (P2): trigger that declares leftover shared-checkout state (rebase-merge, MERGE_HEAD, new stash) an incident instead of cleaning it up",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1386",
+      "title": "COE-B action (P2): 'hazards not covered' line in the ops-readiness template",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1387",
+      "title": "COE-A notes (principal-engineer review): reply on /dev/null birth time 08:20:25 vs 'recreated after'; A1 refusal list must allow writes into the device (tee /dev/null)",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1388",
+      "title": "two-right-angles-never-meet v2 (math r5 B4, ruling M3): 'bases up' readout clipped at 390px + name the 'assume' step — builder",
       "owner": "demo-builder",
       "state": "backlog",
       "domain": null,
