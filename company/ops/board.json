@@ -18229,19 +18229,21 @@
       "id": "W-1556",
       "title": "PR #4 merge gate (tier 2): principal-engineer engineering review of src/lib/history-maps/** (HistoryMapStage, types; engine for 100 lessons), the new public route src/app/history-maps/page.tsx (static, imports tools/history-maps/catalog.json), package.json test:history-maps in verify, and the generator tools/history-maps/*. The PR has no EDD and no readiness record: rule on what is owed. Integrated head pr4-history-maps @ 5c54c689; see company/engineering/community/prs/4.md",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": "history",
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1557",
       "title": "PR #4 merge gate (licence): decision record on shipping GPL-3.0 derived data. 100 map.json files are clipped Mercator paths generated in bulk from aourednik/historical-basemaps @ da7a4b73 (GPL-3.0, LICENSE copied to src/lib/history-maps/DATA-LICENSE.txt) and land in client bundles; best-practices 11 says anything beyond individual facts from an uncleared source needs a decision record. Founder decides if the principal engineer says so. See company/engineering/community/prs/4.md section 1",
       "owner": "principal-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": "history",
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1558",
@@ -18276,6 +18278,60 @@
       "owner": "cm-history",
       "state": "backlog",
       "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1562",
+      "title": "PR #4 merge M1 (W-1557): decide whether the company accepts GPL-3.0 for the historical-basemaps-derived map data (option A accept with A1-A4, B keep out, C change source/design); engineering recommends B1 (do not merge) until decided. Facts and options in company/decisions/2026-10-16-history-maps-gpl-data.md. Not legal advice; counsel is the founder's call",
+      "owner": "founder",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1563",
+      "title": "PR #4 merge M2+M3 (tier 2, approved in company/engineering/reviews/2026-10-16-pr4-engineering-review.md): payload test in tests/history-maps (relation+answer from labels, dot separation, extent within +-180, 64 KB per-file budget, wrapper hash, /history-maps empty under VERCEL_ENV=production); --write guard in tools/history-maps/generate.mjs (F10); fix antimeridian extent (F3) and regenerate map-sydney-wellington-1800-1900 only",
+      "owner": "platform-engineer",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1564",
+      "title": "PR #4 merge M4: integrated npm run verify on the final PR #4 head after M2/M3, full contract (all lessons, not QA_ONLY); record summary, build wall time, .next size, QA wall time. Red for any reason blocks. See company/engineering/reviews/2026-10-16-pr4-engineering-review.md",
+      "owner": "qa-tester",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1565",
+      "title": "PR #4 merge M5: tier-2 readiness record (what ships incl. draft chunks in production bundles, M4 evidence, commit list, revert and its limit: a revert does not withdraw a deployment); approval by principal-engineer-ops. See company/engineering/reviews/2026-10-16-pr4-engineering-review.md F5",
+      "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1566",
+      "title": "PR #4 before any map- lesson leaves draft (incl. review): decide what /history-maps says in production (hard-coded DRAFT copy, catalog titles not registry titles, F6) and whether hover <title> labels on 1,689 context polygons are dropped or claimed (F7). See company/engineering/reviews/2026-10-16-pr4-engineering-review.md",
+      "owner": "cm-history",
+      "state": "backlog",
+      "domain": "history",
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1567",
+      "title": "Tier map: propose shared-engine tier-2 rules for src/lib/history-maps/** and tools/history-maps/** (with the Books and algorithms rules already owed); principal-engineer accepts. See company/engineering/reviews/2026-10-16-pr4-engineering-review.md F12",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
       "created": "2026-10-16",
       "links": []
     }

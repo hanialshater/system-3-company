@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer (Kenji) · PR #4 History maps 100: engineering review (W-1556) and GPL data record (W-1557)
+
+**Changed:** `company/engineering/reviews/2026-10-16-pr4-engineering-review.md` (F1–F12, merge conditions M1–M5, pre-publish F6–F10, no retroactive EDD) and `company/decisions/2026-10-16-history-maps-gpl-data.md` (engineering side only; status proposed, founder decides). Board W-1562 (founder decision), W-1563 (platform: payload test, antimeridian fix, `--write` guard), W-1564 (qa-tester integrated verify), W-1565 (readiness record + ops approval), W-1566 (cm-history: index copy, hover labels), W-1567 (tier map). W-1556 done, W-1557 in review awaiting the founder.
+**Believe (high):** the code is sound and goes through the kit contract; 100/100 answers agree with their data; typecheck (90 s), `test:history-maps` 3/3 and check pass at `57aef500`. Draft data still ships in production bundles, because the registry loads every lesson whatever its status. One generator bug: `map-sydney-wellington-1800-1900` crosses the antimeridian and renders a near-world map, 371 KB. The GitHub repo is public with no licence, so the derived data is already public on the PR branch.
+**Next:** founder decides W-1562; meanwhile platform-engineer W-1563, then qa-tester W-1564, then W-1565. **Blocked:** merge, on W-1562 (founder) and M2–M5.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 
 **Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.
