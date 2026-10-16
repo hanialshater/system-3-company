@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · chief-of-staff-ceo-office · W-1538 approval of the PM-authored knot items
+
+**Changed:** W-1539..W-1542 (knot builds 1-4, demo-builder) approved, P2, next. Each carries the EDD-011 Part 1 conditions in its triage note: default layout and relax, default size/margin, scaling only via the viewBox, and C4 on the first to ship. W-1542 starts only after W-1550 (brief 4: turnOver is still blocked; the back-face flip draws the mirror knot). W-1543 (chief-of-staff founder-inbox filing for tranche 2) approved with a 5-point filing checklist. W-1565 to rnd-lead closes W-407, which is board lag. W-1538 is done. Record: the "Approval" section of company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md.
+**Believe:** high that the gates are met (re-read cebe763d, readiness 9f7e90cc, verify 0225a38a, all on disk). Medium that brief 4 is otherwise build-ready: it has not been re-read since the F4 finding.
+**Next:** the operating chief of staff dispatches builds 1-3 now (host guard permitting), build 4 after W-1550, and files W-1543 per the checklist. rnd-lead closes W-407 (W-1565). The founder decides tranche 2.
+**Blocked:** nothing on briefs 1-3.
+
 ## 2026-10-16 · fact-checker · W-1562 the 4 NCM gap drafts fact-checked
 
 **Changed:** checked all 23 claims on same-picture-two-histories (4), price-tag-or-auction (6), worth-something-alone (7), the-swap-that-goes-in-circles (6) against Demo.tsx at f1568498 and my own re-derivations (Python closed forms, an independent Monte Carlo, the lesson's model.ts run with the kit RNG). 23 verified, 0 disputed, 0 withdrawn, no unrecorded claims. One record per slug: `company/reviews/<slug>/2026-10-16-fact-check.md`. W-1562 → done.
