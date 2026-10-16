@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder (w1542) · left-or-right built as B2 (two-sided card), draft
+
+**Changed:** new lesson `src/demos/math/left-or-right/` (Demo.tsx, card.ts, card.test.mjs, styles, meta with 8 unverified claims); build note and evidence in `company/reviews/left-or-right/` (build.md, c1-check.mjs, fit-probe.mjs, the Chromium C1 record and the reveal-fit record). Board: W-1542 to review; W-1600 qa-tester (WebKit run plus QA record), W-1601 design-lead (S4), W-1602 fact-checker.
+**Believe:**
+- PE-C1 holds in Chromium on all 8 rest states, sure: crossing 0's screen x is 82/18 (3₁) and 96.4/3.6 (4₁), and the pixel check shows only the expected face paints.
+- K21 and the L-1 badge floor pass as unit tests (minimum 2.43 units).
+- reveal-fit: fit, crop 0, 79 words. Local contract QA 2/2.
+**Blocked:** WebKit was not run, because the proxy refuses the Playwright WebKit download.
+**Next:** W-1600, W-1601, W-1602.
+
 ## 2026-10-16 · head-of-product · Launch review r7 (NCM gap four): 4 go, each held open on the strand manager's draft->review call
 
 **Changed:** new `company/rituals/records/2026-10-16-launch-review-ncm-gap4.md` covering same-picture-two-histories v2, price-tag-or-auction v2, worth-something-alone v2 and the-swap-that-goes-in-circles v1 (with fc8c53b8).

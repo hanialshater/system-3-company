@@ -1,0 +1,128 @@
+{
+  "slug": "left-or-right",
+  "title": "Can a knot match its mirror?",
+  "hook": "Hold a rope trefoil up to a mirror. Can you ever make the rope match its reflection?",
+  "domain": "math",
+  "concept": "knot-chirality",
+  "status": "draft",
+  "format": "before-after",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after",
+    "preset-buttons",
+    "locked-readouts"
+  ],
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-math",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what a mirror image is, and that a trefoil is a closed loop with three crossings"
+    ],
+    "doesNotKnow": [
+      "that turning a knot over is a way of moving it, so it never changes the knot, while its mirror image can be a different knot: no wiggling turns the left-handed trefoil into the right-handed one. The figure-eight is its own mirror image."
+    ]
+  },
+  "misconception": "A mirror image is the same knot; you just flip it over.",
+  "objective": "The learner can explain that turning the trefoil over leaves every crossing mark the same, so it is the same knot, while the mirror changes every mark, and that the trefoil cannot be moved into its mirror image.",
+  "keyState": "Two milestones on the trefoil: 'turned' (card turned over, unmirrored, marks −,−,−, Sum −3) and 'mirrored' (mirrored on either face, marks +,+,+, Sum +3); each writes its segment of the seen line 'Trefoil: turned over −3 · mirror +3', which is never cleared. Optional, not on the QA path: 'eightMirror' (figure-eight mirrored, Sum 0).",
+  "claims": [
+    {
+      "id": "math.left-or-right.c1",
+      "text": "The trefoil is chiral: the left- and right-handed trefoils cannot be moved into each other; Max Dehn proved it in 1914 ('Mirroring turned every mark plus, and no wiggling gets back: the trefoil is not its own mirror image, as Max Dehn proved in 1914'; 'So a trefoil comes in a left and a right version'; predict answer 'No, never').",
+      "support": "source",
+      "source": "Dehn, M. (1914), 'Die beiden Kleeblattschlingen', Math. Ann. 75, 402-413; Wikipedia 'Chiral knot' (research note company/research/notes/2026-10-13-teachable-knot-theory.md §2.4, high; full text unchecked). Brief claim 1 (company/domains/briefs/math.discrete.md, Knots batch 1 #4). Cut first if held: 'as Max Dehn proved in 1914'. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c2",
+      "text": "The figure-eight knot is its own mirror image (amphichiral) ('The figure-eight is different: it is its own mirror image.'; branch when eightMirror fired: 'and it is its own mirror image').",
+      "support": "source",
+      "source": "Wikipedia 'Chiral knot' / 'Figure-eight knot (mathematics)' (research note §2.4, high; full text unchecked); kit table flags 4_1 amphichiral and identify(mirror(4_1)) = 4_1 (brief check K4). Brief claim 2; second in the cut order. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c3",
+      "text": "In the kit's trefoil drawing every crossing mark is minus (Sum −3); turned over, the marks stay minus, minus, minus (Sum −3); mirrored, every mark is plus (Sum +3), on either face ('Turning the trefoil over left every mark minus'; 'Mirroring turned every mark plus'; stage readout 'Sum −3 Left-handed' / 'Sum +3 Right-handed', badges; seen line 'Trefoil: turned over −3 · mirror +3').",
+      "support": "derivation",
+      "source": "signs/writhe of knot('3_1').pd, turnOver(pd), mirror(pd) and turnOver(mirror(pd)) on src/kit/knots (turnOver for numbers only, never drawn): -1,-1,-1 / -1,-1,-1 / +1,+1,+1 / +1,+1,+1. Brief checks K4 and K21 (node company/domains/briefs/checks/knots-check.mjs); builder test src/demos/math/left-or-right/card.test.mjs, 'the readout of each rest state'. Brief claim 3. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c4",
+      "text": "The kit's figure-eight drawing has marks minus, plus, minus, plus (Sum 0, no hand named); turned over it is the same, and mirrored it reads plus, minus, plus, minus (Sum 0) ('The figure-eight's marks summed to 0 both ways'; stage readout 'Sum 0'; picture label 'Figure-eight, front. Marks minus, plus, minus, plus. Sum 0.').",
+      "support": "derivation",
+      "source": "signs of knot('4_1').pd and its turnOver, mirror and turnOver(mirror) on src/kit/knots: -1,+1,-1,+1 / -1,+1,-1,+1 / +1,-1,+1,-1 / +1,-1,+1,-1. Brief checks K4, K21; card.test.mjs. Brief claim 4. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c5",
+      "text": "Convention: a crossing mark is plus (right-handed) when the over-strand passes from right to left as seen travelling along the under-strand; a drawing whose marks sum below 0 is called left-handed and above 0 right-handed, and the table's trefoil is the left-handed one (stage 'Left-handed' / 'Right-handed', badges '+' / '−', 'Sum'; reveal 'its hand stayed left'; predict 'A left-handed trefoil and its mirror image, the right-handed one').",
+      "support": "convention",
+      "source": "Library convention, src/lab/knots/README.md 'Conventions' (signs, writhe); sources differ on which trefoil is called right-handed, and the lesson uses the library's. The Sum describes the drawing on show only (reduced alternating, simplify status 'minimal', K1); the stage never calls it an invariant. Brief claim 5. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c6",
+      "text": "Turning a knot over in your hands is a way of moving it, so it does not change the knot; the mirror is a reflection, not a move ('turning over is a way of moving it, so its hand stayed left'; 'turning one over never swaps them'; recall answer 'A right-handed trefoil').",
+      "support": "source",
+      "source": "Definition (a knot is a closed loop up to moving it in space): Adams, The Knot Book (1994), ch. 1 (fact-checker to confirm wording). Brief claim 6. Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c7",
+      "text": "After 'Turn over' the card's picture is the knot turned over (a left-right reflection with every crossing switched), not its mirror image: on screen it is the mirror drawing reflected left to right, and the marks read from its drawn lines equal the readout on all four rest states of both knots (stage picture, picture label 'Trefoil, turned over. Marks minus, minus, minus. Sum minus 3, left-handed.').",
+      "support": "derivation",
+      "source": "turnOver = planar reflection plus every crossing switched (src/kit/knots/index.d.ts); principal-engineer ruling company/engineering/reviews/2026-10-16-knots-left-or-right-card.md §1 (probe 17 of 17); brief checks K17, K21; builder test card.test.mjs ('K21: signs read from each rest state's drawn lines on screen'); rendered-page check company/reviews/left-or-right/c1-check.mjs (crossing 0 screen x and visible face per rest state). Builder-written; unverified.",
+      "status": "unverified"
+    },
+    {
+      "id": "math.left-or-right.c8",
+      "text": "Stage labels: 'Turned over' (reduced motion label) and the controls 'Turn over' (turns the card over left to right) and 'Mirror' (reflects the drawing left to right in the page, so every crossing's sign flips), chips 'Trefoil' (3₁) and 'Figure-eight' (4₁).",
+      "support": "convention",
+      "source": "Spec company/design/specs/left-or-right.md (controls, reduced motion); table names 3_1 = trefoil, 4_1 = figure-eight in src/kit/knots (KNOTS). Builder-written; unverified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "You hold a right-handed trefoil made of rope. You turn it upside down and lay it flat. What do you have?",
+    "options": [
+      "A right-handed trefoil",
+      "A left-handed trefoil",
+      "Either, depending on how you lay it"
+    ],
+    "answer": 0,
+    "why": "Turning a knot over is a way of moving it, and moving never changes the knot. Only a mirror image swaps the trefoil's hand, and no move reaches it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "math:knot-chirality",
+    "also": [],
+    "prerequisites": [
+      "math:knot-table-names"
+    ],
+    "level": "core",
+    "strand": "discrete",
+    "references": [
+      {
+        "work": "dehn-1914-kleeblattschlingen",
+        "note": "attribution for the fact-checker; brief: none chosen yet (Wikipedia 'Chiral knot' is the research note's source; Dehn 1914 is the proof)"
+      }
+    ],
+    "tags": [
+      "knots",
+      "chirality",
+      "mirror-image"
+    ]
+  }
+}
