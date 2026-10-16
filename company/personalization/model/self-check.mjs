@@ -3,7 +3,7 @@
 //   node company/personalization/model/self-check.mjs
 // Prints need scores for each simulation persona, runs the model invariants, and checks the
 // boundaries: model.ts does not reference personas, nothing in src/ imports this folder, and
-// MODEL_VERSION has a line in the decision record. Exits 1 on any failure.
+// MODEL_VERSION has a line in the decision record; then the privacy ruling's P1/P2/N6 tests (W-1514). Exits 1 on any failure.
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -35,6 +35,10 @@ for (const f of walk(join(root, "src"))) {
 }
 const decision = readFileSync(join(root, M.DECISION), "utf8");
 for (const v of [M.MODEL_VERSION, PERSONAS_VERSION]) if (!decision.includes(v)) fails.push(`${v} has no line in ${M.DECISION}`);
+// N6 (privacy ruling §3, W-1514): from model-v0.2.1 on, the current version's change line says
+// "privacy: no new input" or names the privacy read it needed.
+const curLine = decision.split("\n").find((l) => l.startsWith(`| ${M.MODEL_VERSION} |`));
+if (curLine && !/privacy:/.test(curLine)) fails.push(`${M.MODEL_VERSION} change line lacks "privacy: no new input" or the read it needed (ruling N6)`);
 
 // 3. Determinism and inspectability.
 const fp = (p) => ({ version: "fp-v0", statedSubjects: [], lessOfThis: [], ...p.fingerprintMeans });
@@ -57,6 +61,31 @@ const f2 = M.fingerprintFrom(hist, dims, now, { predictedCorrectly: false });
 if (f1.missRecent !== 0.5 || f1.frontierOpen !== 1 || f1.domainConcentration !== 0.5) fails.push(`fingerprintFrom: unexpected ${JSON.stringify(f1)}`);
 if (f2.successRecent !== 0.5) fails.push("fingerprintFrom: recall-only mode wrong");
 
+// 5. Privacy ruling tests (company/reviews/_privacy/2026-10-16-personalization-model-inputs.md §2.1, W-1514).
+// P2: predictedCorrectly null or absent (no prediction made) is absent, never "wrong".
+const noRecall = (slug, t, pc) => ({ slug, completedAt: t, ...(pc === undefined ? {} : { predictedCorrectly: pc }), recalls: [] });
+const fNull = M.fingerprintFrom([noRecall("a", now - 5e8, null), noRecall("b", now - 4e8, null)], dims, now);
+const fAbsent = M.fingerprintFrom([noRecall("a", now - 5e8, undefined), noRecall("b", now - 4e8, undefined)], dims, now);
+const fWrong = M.fingerprintFrom([noRecall("a", now - 5e8, false), noRecall("b", now - 4e8, false)], dims, now);
+if (fNull.missRecent !== 0 || fNull.successRecent !== 0) fails.push(`P2: null prediction counted as a miss or success ${JSON.stringify(fNull)}`);
+if (JSON.stringify(fNull) !== JSON.stringify(fAbsent)) fails.push("P2: null and absent prediction give different fingerprints");
+if (fWrong.missRecent !== 1) fails.push("P2 control: a wrong prediction should count as a miss when the input is on");
+// P1: with the recall-only fallback on, histories identical except predictedCorrectly give identical fingerprints.
+const variants = [true, false, null, undefined];
+const base = [
+  { slug: "a", completedAt: now - 5e8, recalls: [{ at: now - 1e8, correct: true }] },
+  { slug: "b", completedAt: now - 4.5e8, recalls: [] },
+  { slug: "c", completedAt: now - 4e8, recalls: [{ at: now - 1e8, correct: false }] },
+];
+const seen = new Set();
+for (const v0 of variants) for (const v1 of variants) for (const v2 of variants) {
+  const h = base.map((x, i) => { const pc = [v0, v1, v2][i]; return pc === undefined ? { ...x } : { ...x, predictedCorrectly: pc }; });
+  seen.add(JSON.stringify(M.fingerprintFrom(h, dims, now, { predictedCorrectly: false })));
+}
+if (seen.size !== 1) fails.push(`P1: recall-only fallback depends on predictedCorrectly (${seen.size} distinct fingerprints over 64 variants)`);
+const stripped = M.fingerprintFrom(base, dims, now, { predictedCorrectly: false });
+if (!seen.has(JSON.stringify(stripped))) fails.push("P1: fallback fingerprint differs from one computed with the field never loaded");
+
 // Output.
 const r = (x) => x.toFixed(2);
 console.log(`${M.MODEL_VERSION} · ${PERSONAS_VERSION} · decision ${M.DECISION}`);
@@ -69,5 +98,5 @@ for (const p of PERSONAS) {
   console.log(p.id.padEnd(24) + r(ex[0].dampener).padEnd(6) + ex.map((e) => r(e.score).padEnd(8)).join("") +
     (top.score > 0 ? `${top.need} (${term.signal}=${r(term.x)} -> ${r(term.y)})` : "none (default order)"));
 }
-console.log(fails.length ? `\nFAIL (${fails.length}):\n- ${fails.join("\n- ")}` : "\nOK: invariants, boundaries, determinism, fingerprintFrom");
+console.log(fails.length ? `\nFAIL (${fails.length}):\n- ${fails.join("\n- ")}` : "\nOK: invariants, boundaries, determinism, fingerprintFrom, privacy P1/P2/N6");
 process.exit(fails.length ? 1 : 0);

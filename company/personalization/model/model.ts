@@ -31,7 +31,7 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.2" as const;
+export const MODEL_VERSION = "model-v0.2.1" as const;
 export const DECISION = "company/decisions/2026-10-16-personalization-model-v0.md" as const;
 
 /** The pilot set (response §3, phase A). Life Hacks is out: 15/200 lessons have prerequisites.
@@ -44,41 +44,67 @@ export const PILOT_DOMAINS = ["probability", "cs"] as const;
 export type PilotDomain = (typeof PILOT_DOMAINS)[number];
 
 // ---------------------------------------------------------------------------------------------
-// 1. Inputs and their privacy status (response §2.1). Pending W-1495 (privacy-reviewer).
+// 1. Inputs and their privacy status (response §2.1). Ruled by W-1495 (privacy-reviewer).
 // ---------------------------------------------------------------------------------------------
 
+/** The privacy ruling these statuses apply (model-v0.2.1, W-1514). Section numbers below are its. */
+export const PRIVACY_RULING = "company/reviews/_privacy/2026-10-16-personalization-model-inputs.md" as const;
+
 /**
- * Privacy status of a raw input, as of 2026-10-16:
- * - "permitted-pending-F19": in AMD-008 P2's permitted list and privacy gate P3.1; F-19 (the
- *   founder's ratification of AMD-008 part P) is still open.
- * - "read-needed": not forbidden, but W-1495 must rule before it may order a live feed.
- *   Offline simulation may use it (no learner data is involved).
+ * Privacy status of a raw input for phase B (live, experiment-gated), per PRIVACY_RULING §2.
+ * Phase A (offline, simulated personas only) is allowed for every input (ruling §1, A1); calibrating
+ * the simulated learner on any real data, even aggregates, is a new read (A2).
+ * Every phase B status also needs F-19 (AMD-008 part P ratified with P2 as drafted), a registered
+ * experiment and the founder's deploy approval; none of those is the privacy reviewer's to give.
+ * - "standing-conditions": allowed under the standing conditions N1-N6 (ruling §3): computed on
+ *   demand, never stored; anonymous stays local; forbidden-input invariance; no served-order log.
+ * - "conditions": allowed only if the named extra conditions (INPUT_PRIVACY_CONDITIONS) hold too.
+ * - "conditions-schema-unread": allowed in use, but the schema that would hold it is not built and
+ *   its diff needs its own read (ruling §2.2, E7; W-1521) before it may order a live feed.
  * - "not-personal": lesson or curriculum data.
+ * There is no "refused" raw input: refused things (gapDays, stored fingerprints or need scores, the
+ * forbidden list) are absent from RawInput by design (FORBIDDEN_INPUTS, ruling §2.5 and §4).
  */
-export type PrivacyStatus = "permitted-pending-F19" | "read-needed" | "not-personal";
+export type PrivacyStatus = "standing-conditions" | "conditions" | "conditions-schema-unread" | "not-personal";
 
 export type RawInput =
-  | "completions"          // per-lesson completion with time. permitted-pending-F19 (P2, P3.1)
-  | "predictedCorrectly"   // prediction right/wrong. read-needed: EDD-009 §7 says ordering use needs its own privacy read
-  | "recalls"              // revisit results {at, correct}. permitted-pending-F19 (P2, P3.1)
-  | "settings"             // stated subjects, "less of this", on/off. read-needed: schema not built (EDD-008 §6.1)
+  | "completions"          // per-lesson completion with time. standing-conditions (ruling §2; P2, gate P3.1)
+  | "predictedCorrectly"   // prediction right/wrong. conditions P1-P4 (ruling §2.1); null = no prediction, never "wrong"
+  | "recalls"              // revisit results {at, correct}. standing-conditions; 30-day window only, F1 (ruling §2.3)
+  | "settings"             // stated subjects, "less of this", on/off. conditions SS1-SS5; schema diff unread (§2.2, W-1521)
   | "lessonDims"           // domain, concept, level, prerequisites, successors. not-personal
   | "curriculumGraph";     // content/curriculum/*.json. not-personal
 
 export const INPUT_PRIVACY: Record<RawInput, PrivacyStatus> = {
-  completions: "permitted-pending-F19",
-  predictedCorrectly: "read-needed",
-  recalls: "permitted-pending-F19",
-  settings: "read-needed",
+  completions: "standing-conditions",
+  predictedCorrectly: "conditions",
+  recalls: "standing-conditions",
+  settings: "conditions-schema-unread",
   lessonDims: "not-personal",
   curriculumGraph: "not-personal",
 };
 
+/** The ruling's condition ids per input (PRIVACY_RULING), shown by inspect() beside the status. */
+export const INPUT_PRIVACY_CONDITIONS: Record<RawInput, string[]> = {
+  completions: ["N1-N6", "F2 (historySize never shown as a number or label)"],
+  predictedCorrectly: ["N1-N6", "P1 recall-only fallback stays buildable and tested", "P2 null is absent, never wrong",
+    "P3 reason copy names an act, never a trait or comparison", "P4 read to order, never counted or stored"],
+  recalls: ["N1-N6", "F1 30-day window over results; never days-since-last or per-day counts"],
+  settings: ["N1-N6", "SS1 closed vocabulary", "SS2 bounded", "SS3 stated, never inferred", "SS4 deleted/exported with the account; anonymous local",
+    "SS5 never visible to others or in aggregates", "schema diff read (W-1521)"],
+  lessonDims: [],
+  curriculumGraph: [],
+};
+
 /**
  * Forbidden inputs (AMD-008 P2, X1; privacy gate P3.1). No signal may read these, and the
- * composer never sees them. Listed so self-check can assert it. Not used in v0 and deliberately
- * absent from RawInput: days since last completion (gapDays) and masteryOf() output, both
- * waiting on W-1495; a persona label, which never exists at serve time.
+ * composer never sees them. Listed so self-check can assert it. The ruling confirms the list is
+ * complete; keep it (PRIVACY_RULING §2). Deliberately absent from RawInput: days since last
+ * completion (gapDays), REFUSED (§2.5: close to session count; a new ask needs purpose and the
+ * alternative considered); masteryOf() output, allowed only outside v0 on M1-M3 after EDD-009 is
+ * approved (§2.5); a persona label, which never exists at serve time. Per-learner storage of any
+ * fingerprint, need score or composer term is REFUSED (§4): everything below is computed on
+ * demand and discarded (N1). The age band is never an input (teen mode T1).
  */
 export const FORBIDDEN_INPUTS = [
   "dwell", "swipes", "scroll", "sessionLength", "sessionCount", "shares", "device",
@@ -95,30 +121,30 @@ export type CurveSignal =
 
 export type Fingerprint = {
   version: "fp-v0";
-  /** completed lessons / 30, capped at 1. Inputs: completions. Status: permitted-pending-F19. */
+  /** completed lessons / 30, capped at 1. Inputs: completions. Status: standing-conditions. */
   historySize: number;
   /** share of the last 5 completed with a wrong prediction OR a failed first revisit.
-   *  Inputs: completions, predictedCorrectly, recalls. Status: read-needed (predictedCorrectly).
-   *  If W-1495 refuses predictedCorrectly, this becomes recall-only (opts.predictedCorrectly=false). */
+   *  Inputs: completions, predictedCorrectly, recalls. Status: conditions P1-P4 (predictedCorrectly).
+   *  Recall-only fallback (opts.predictedCorrectly=false) must stay tested (P1, self-check). */
   missRecent: number;
   /** failed first revisits / first revisits taken in the last 30 days (0 if none).
-   *  Inputs: recalls. Status: permitted-pending-F19. */
+   *  Inputs: recalls. Status: standing-conditions. */
   recallFailRate: number;
   /** share of the last 5 predicted right OR recalled on first revisit.
-   *  Inputs: completions, predictedCorrectly, recalls. Status: read-needed (predictedCorrectly). */
+   *  Inputs: completions, predictedCorrectly, recalls. Status: conditions P1-P4 (predictedCorrectly). */
   successRecent: number;
   /** mean level of the last 5 (intro 0, core .5, stretch 1).
-   *  Inputs: completions, lessonDims. Status: permitted-pending-F19. */
+   *  Inputs: completions, lessonDims. Status: standing-conditions. */
   levelRecent: number;
   /** share of the last 10 completions in the single most-seen domain.
-   *  Inputs: completions, lessonDims. Status: permitted-pending-F19. */
+   *  Inputs: completions, lessonDims. Status: standing-conditions. */
   domainConcentration: number;
   /** share of completed concepts that have at least one successor concept not yet completed.
-   *  Inputs: completions, curriculumGraph. Status: permitted-pending-F19. */
+   *  Inputs: completions, curriculumGraph. Status: standing-conditions. */
   frontierOpen: number;
-  /** filter, not a curve. Inputs: settings. Status: read-needed (schema). */
+  /** filter, not a curve. Inputs: settings. Status: conditions-schema-unread (SS1-SS5; stated, never inferred, SS3). */
   statedSubjects: string[];
-  /** filter, not a curve. Inputs: settings. Status: read-needed (schema). */
+  /** filter, not a curve. Inputs: settings. Status: conditions-schema-unread (SS1-SS5; never visible to others, SS5). */
   lessOfThis: string[];
 };
 
@@ -137,8 +163,9 @@ export const SIGNAL_INPUTS: Record<CurveSignal | "statedSubjects" | "lessOfThis"
 /** A signal's status is its most restrictive input's status. */
 export function signalPrivacy(signal: keyof typeof SIGNAL_INPUTS): PrivacyStatus {
   const s = SIGNAL_INPUTS[signal].map((i) => INPUT_PRIVACY[i]);
-  if (s.includes("read-needed")) return "read-needed";
-  if (s.includes("permitted-pending-F19")) return "permitted-pending-F19";
+  if (s.includes("conditions-schema-unread")) return "conditions-schema-unread";
+  if (s.includes("conditions")) return "conditions";
+  if (s.includes("standing-conditions")) return "standing-conditions";
   return "not-personal";
 }
 
@@ -160,11 +187,11 @@ export type LessonDims = {
   firstRecallRate?: number;                       // aggregate only, phase B on
 };
 
-/** One learner's history as the fingerprint reads it. Only permitted/read-needed fields. */
+/** One learner's history as the fingerprint reads it. Only fields ruled in PRIVACY_RULING §2. */
 export type HistoryItem = {
   slug: string;
   completedAt: number;                               // ms since epoch
-  predictedCorrectly?: boolean | null;               // read-needed (W-1495)
+  predictedCorrectly?: boolean | null;               // conditions P1-P4; null/absent = no prediction, never "wrong" (P2)
   recalls: { at: number; correct: boolean }[];       // revisit results, oldest first
 };
 
@@ -174,6 +201,10 @@ const DAY = 86_400_000;
 /**
  * The fingerprint definition made executable, so the simulator (W-1494) and any later serving
  * code compute the same thing. Pure: same inputs, same output (AMD-008 P1 replay test).
+ * Privacy (PRIVACY_RULING §2.1): predictedCorrectly is read only through usePred and only as
+ * `=== true` / `=== false`, so null or absent counts as neither a miss nor a success (P2). With
+ * opts.predictedCorrectly=false the output does not depend on the field at all (P1; self-check
+ * asserts both). Serving code in fallback mode must not load the field into the history at all.
  */
 export function fingerprintFrom(
   history: HistoryItem[],
@@ -509,6 +540,10 @@ export function checkModel(): string[] {
     for (const i of inputs) if (forbidden.has(i)) errs.push(`${sig}: reads forbidden input ${i}`);
   }
   if (COMPOSER.engagementGuardrail.effect !== "not-eligible-to-move-up") errs.push("engagement must stay a floor");
+  for (const i of Object.keys(INPUT_PRIVACY) as RawInput[]) {
+    if (INPUT_PRIVACY[i] !== "not-personal" && !INPUT_PRIVACY_CONDITIONS[i]?.length) errs.push(`${i}: personal input with no ruling conditions`);
+    if (INPUT_PRIVACY[i] === "not-personal" && INPUT_PRIVACY_CONDITIONS[i]?.length) errs.push(`${i}: not-personal input carries conditions`);
+  }
   return errs;
 }
 
@@ -535,5 +570,7 @@ export function inspect() {
     signals: (Object.keys(SIGNAL_INPUTS) as (keyof typeof SIGNAL_INPUTS)[]).map((s) => ({ signal: s, inputs: SIGNAL_INPUTS[s], privacy: signalPrivacy(s) })),
     curves: curveViews(), composer: COMPOSER, objective: OBJECTIVE, policies: POLICIES,
     forbiddenInputs: FORBIDDEN_INPUTS,
+    privacyRuling: PRIVACY_RULING,
+    inputPrivacy: (Object.keys(INPUT_PRIVACY) as RawInput[]).map((i) => ({ input: i, status: INPUT_PRIVACY[i], conditions: INPUT_PRIVACY_CONDITIONS[i] })),
   };
 }
