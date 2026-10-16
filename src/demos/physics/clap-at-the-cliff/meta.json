@@ -27,21 +27,38 @@
       "text": "The speed of sound in still air at 20 °C is about 343 m/s, from c = sqrt(γRT/M) (stage caption 'Still air, 20 °C.'; predict question 'Sound travels 343 m each second'; reveal: 'in 1 s the sound covered 343 m in total').",
       "support": "derivation",
       "source": "c = sqrt(γRT/M) with γ = 1.4, R = 8.314 J/(mol K), T = 293.15 K, M = 0.02897 kg/mol gives 343.2 m/s. artifacts/scratch/cm-physics-r4/check.mjs (block '68 clap-at-the-cliff', 'sound 20 C'). Halliday, Resnick and Walker, Fundamentals of Physics, chapter on sound waves. Brief #65 claim 1.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Walkthrough read first (own next dev on :3644 from the main checkout, transcript to the appendix and screenshots). Numbers re-derived in own node (scratchpad fc-wj64/recompute.mjs, reproduced in the record). build.md and check.mjs not read. Own: sqrt(1.4 * 8.314462618 * 293.15 / 0.0289647) = 343.23 m/s. Opened OpenStax College Physics 2e (CC BY 4.0), CNXML fetched 2026-10-16 from raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42256 (Speed of Sound, Frequency, and Wavelength): table 'Air 20 C 343 m/s' and text 'it is 343 m/s'. Caption, predict and reveal match. Source fix for the builder: replace the unopened Halliday citation with m42256."
     },
     {
       "id": "physics.clap-at-the-cliff.c2",
       "text": "The echo delay is 2d/c: 0.50 s, 0.99 s and 1.98 s for cliffs 85, 170 and 340 m away, and the sound travels 170, 340 and 680 m; a 1.0 s echo means about 171 m (stage: echo and 'sound travelled' readouts, Seen row '85 m: 0.50 s · 170 m: 0.99 s · 340 m: 1.98 s'; reveal: 'your echo came back after 0.99 s, close to the 1.0 s in the question. At 340 m it took 1.98 s', 'The clap has to reach the cliff and come back', 'half out, half back', 'The distance to a cliff is the speed of sound times the echo time, divided by two').",
       "support": "derivation",
       "source": "t = 2d/c with c = 343 m/s. artifacts/scratch/cm-physics-r4/check.mjs (echo_s 0.5, 0.99, 1.98; 'echo 1.0 s' d_m 171.5). Demo.tsx echoS(). Brief #65 claim 2.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Own: t = 2d/343: 85 m 0.496 -> 0.50 s; 170 m 0.991 -> 0.99 s; 340 m 1.983 -> 1.98 s (same to 2 dp with c = 343.23); paths 170, 340, 680 m; 1.0 s -> 171.5 m, so '170 m away' is the closest option and 'about' is fair. m42256: 'The time for the echo to return is directly proportional to the distance'. Stage readouts, Seen row, alt text and reveal match the walkthrough."
     },
     {
       "id": "physics.clap-at-the-cliff.c3",
       "text": "Idealisations: still air at 20 °C, a flat cliff face that reflects the clap straight back, no reaction time. The pulse animation runs in 360 ms whatever the distance; the readouts report the simulated seconds. The picture's distances are to scale with each other (0.74 px per m), not with the person.",
       "support": "convention",
       "source": "Stated assumption, brief #65 claim 3. Demo.tsx: PX_PER_M 0.74, animation 360 ms. The caption 'Still air, 20 °C.' states the air conditions on the stage.",
-      "status": "unverified"
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): VERIFIED. Matches code: PX_PER_M 0.74 (340 m -> 251.6 px), pulse animation 360 ms (styles.module.css .pulse), readouts report computed seconds. Stated idealisations; caption carries the air conditions."
+    },
+    {
+      "id": "physics.clap-at-the-cliff.recall",
+      "text": "Sound in sea water travels about 1,500 m each second, so a sonar ping that returns after 2 s means a seabed 1,500 m deep (recall question, options and why).",
+      "support": "source",
+      "source": "Recorded by the fact-checker (FC wj64, 2026-10-16): the recall question states a speed for sea water that no claim covers. OpenStax College Physics 2e m42256 (Speed of Sound, Frequency, and Wavelength), table: 'Sea water 1540 m/s'.",
+      "status": "unverified",
+      "note": "FC wj64 (fact-checker, 2026-10-16, SO-10-2 [project:wave-j], W-1490, main 0027f27+): UNRECORDED CLAIM, recorded here by the fact-checker, so left unverified. My check: arithmetic 1,500 * 2 / 2 = 1,500 m is right; OpenStax m42256 lists sea water at 1540 m/s, so 1,500 m/s is 2.6% low but a common nominal round value (real sea water varies with temperature, salinity and depth). Suggest the builder write 'about 1,500 m each second' in the recall question. Needs a second fact-checker."
     }
   ],
   "confidence": "",

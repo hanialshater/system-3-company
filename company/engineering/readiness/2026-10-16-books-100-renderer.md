@@ -6,7 +6,7 @@ paths: src/components/books/**, src/lib/books/**, tests/books/**
 author: platform-engineer
 approved-by: principal-engineer-ops
 approved: 2026-10-16
-board: W-1486
+board: W-1492
 risks: proposed shared Books renderer regression and unverified book attribution; principal-engineer-ops owns register changes
 links: company/engineering/edd/EDD-010-books-100-models.md, company/engineering/reviews/2026-10-16-books-100-pr-architecture.md
 
@@ -86,7 +86,7 @@ Decision by principal-engineer-ops: **approved with conditions for bounded rende
 on the exact-100 draft PR, identified seven-family v3 build at
 `da62ea4379440a0186d0f09b78a5ecb820b162aa`. See the separate ops approval
 record for actual O1 evidence, remaining O2–O5, revocation conditions and
-the explicit 360×640 reveal-fit limitation (W-1495, subject to integration ID remap).
+the explicit 360×640 reveal-fit limitation (W-1501, subject to integration ID remap).
 No publication/deployment approval is supplied. The author did not self-approve.
 
 ## Corrective B1 follow-up (2026-10-16)
