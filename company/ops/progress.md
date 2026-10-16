@@ -3,6 +3,26 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · design-lead (Ines) · knots batch 1 contact sheet, block (b) per lesson, W-1566
+
+**Changed:**
+- Wrote `company/design/reviews/2026-10-16-knots-batch1-contact-sheet.md` with sheets, `metrics.json` and `sheet.mjs` in the folder beside it: 67 pictures drawn by the kit at 290 and 320 px, both themes.
+- **Rulings:**
+  - Block (b) is **lifted** for tricolour-check, unknot-game and left-or-right (knot and mirror pictures), with conditions S1 to S4: `gap: 0.5`, stroke 2 units with butt caps, viewBox `-8 -8 116 116`, 44 px hit circles.
+  - draw-a-table-knot is cleared, including the switched states.
+  - W-1566: I prefer the **two-sided card**, under C1 to C6. It needs W-1567 (principal-engineer) and a brief revision (cm-math-discrete); until then the caption-only brief stands.
+- **Board:** W-1566 done. Added W-1570 (cm-math-discrete) and W-1571 (design-lead, the S4 check at build).
+
+**Believe:**
+- Sure: 0 false crossings in all 67 pictures, including within 3 % of a real crossing (the detector has a self-test).
+- Sure: the card's back face reads the signs of `turnOver(pd)`.
+- Fairly sure: 4_1's right-hand crossing needs `gap: 0.5`. At the default, its gap is 4.2 px, narrower than the stroke.
+- The real phone stage is 290 px, not 360.
+
+**Next:** principal-engineer W-1567, cm-math-discrete W-1570, interaction-designer W-1568 (tint one strand, the card).
+
+**Blocked:** the left-or-right card, on W-1567.
+
 ## 2026-10-16 · cm-math-discrete · W-1550 knot brief 4 and the U1 padding
 
 **Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).
