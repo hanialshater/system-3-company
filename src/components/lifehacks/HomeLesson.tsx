@@ -25,11 +25,16 @@ function HomeMode({ locked, pressed, onPress, children }: { locked: boolean; pre
   </StageControl>;
 }
 
-/** v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none. */
-type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string };
+/**
+ * v2 only (W-608): `override` replaces the drawing, `extra` is drawn on top, `className`/`label` replace the svg's. v1 passes none.
+ * `neutral` (W-1258, engines-v2 spec R2 "Predict (locked)" row): no mode is in effect (locked, or before the first press).
+ * The picture keeps A's arrangement but draws no text that states a count, amount or result for either mode, and no
+ * highlight that marks what to look at (W-1299). Givens the question states may stay (tests/lifehacks/home-locked.test.mjs).
+ */
+type SceneV2Props = { className?: string; label?: string; override?: ReactNode; extra?: ReactNode; caption?: string; neutral?: boolean };
 function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number; after:boolean; result:HomeResult; locked:boolean; v2?:SceneV2Props }) {
   const n = Math.min(12,Math.max(2,Math.round(p)));
-  const v=spec.values, model=spec.model;
+  const v=spec.values, model=spec.model, neutral=v2?.neutral===true;
   const rect=(x:number,y:number,w:number,h:number,key:string,target=false)=><rect key={key} x={x} y={y} width={Math.max(1,w)} height={Math.max(1,h)} rx={3} className={target?s.target:s.object}/>;
   let art:React.ReactNode;
   if(spec.view==='cloth') {
@@ -118,9 +123,9 @@ function Scene({ spec, p, after, result, locked, v2 }: { spec:HomeSpec; p:number
   } else if(spec.view==='cord') {
     // W-358: plain cord only (safety records forbid plugs, devices, power or snap-back).
     const c=homeCordScene(spec,p,after);
-    if(c?.kind==='end-paths') art=<>{c.strands.map((strand,i)=><path key={i} d={strand.d} className={s.line}/>)}{c.ties.map((t,i)=><rect key={`tie${i}`} x={t.x} y={t.y} width={t.width} height={t.height} rx={3} className={s.object}/>)}{c.ends.map((e,i)=><circle key={`end${i}`} cx={e.x} cy={e.y} r={4} className={s.target}/>)}<text x="150" y="222" textAnchor="middle">{after?'Ends tucked into end ties':`${c.ends.length} loose ends`}</text></>;
+    if(c?.kind==='end-paths') art=<>{c.strands.map((strand,i)=><path key={i} d={strand.d} className={s.line}/>)}{c.ties.map((t,i)=><rect key={`tie${i}`} x={t.x} y={t.y} width={t.width} height={t.height} rx={3} className={s.object}/>)}{c.ends.map((e,i)=><circle key={`end${i}`} cx={e.x} cy={e.y} r={4} className={s.target}/>)}{!neutral&&<text x="150" y="222" textAnchor="middle">{after?'Ends tucked into end ties':`${c.ends.length} loose ends`}</text>}</>;
     else if(c?.kind==='loop-release') art=<><rect x="12" y="138" width="12" height="24" className={s.outline}/><path d={c.cord} className={s.line}/>{c.crossings.map((x,i)=><circle key={i} cx={x.x} cy={x.y} r={5} className={s.target}/>)}{after&&<><ellipse cx={c.end+14} cy={150} rx={8} ry={22} className={s.hidden}/><path d={`M150,118H${c.end+10}m-6,-4l6,4l-6,4`} className={s.air}/></>}<circle cx={c.end} cy={150} r={3} fill="var(--good)"/><path d={`M${c.start},180v6H${c.end}v-6`} className={s.line}/><text x={(c.start+c.end)/2} y="202" textAnchor="middle">free end {fmt(p)}cm</text></>;
-    else if(c?.kind==='coil-radius') art=<>{c.loops.map((l,i)=><circle key={i} cx={l.cx} cy={l.cy} r={l.r} className={s.line} fill="none"/>)}{c.partial&&<path d={c.partial} className={s.line}/>}<line x1={c.cx} y1={c.cy} x2={c.cx-c.r} y2={c.cy} className={s.air}/><circle cx={c.cx} cy={c.cy} r={2.5} fill="var(--good)"/><text x={c.cx} y={c.cy-c.r-8} textAnchor="middle">r={fmt(c.radius)}cm</text><text x="150" y="234" textAnchor="middle">{fmt(c.turns)} turns of {fmt(v[0])}cm</text></>;
+    else if(c?.kind==='coil-radius') art=<>{c.loops.map((l,i)=><circle key={i} cx={l.cx} cy={l.cy} r={l.r} className={s.line} fill="none"/>)}{c.partial&&<path d={c.partial} className={s.line}/>}<line x1={c.cx} y1={c.cy} x2={c.cx-c.r} y2={c.cy} className={s.air}/><circle cx={c.cx} cy={c.cy} r={2.5} fill="var(--good)"/>{!neutral&&<><text x={c.cx} y={c.cy-c.r-8} textAnchor="middle">r={fmt(c.radius)}cm</text><text x="150" y="234" textAnchor="middle">{fmt(c.turns)} turns of {fmt(v[0])}cm</text></>}</>;
   } else {
     if(model==='circle-area') art=<><rect x="60" y="30" width="180" height="180" className={s.outline}/>{after?<circle cx="150" cy="120" r="90" className={s.object}/>:rect(60,30,180,180,'square')}</>;
     else if(model==='diameter-match') art=<><circle cx="90" cy="120" r={Math.min(60,p*2.5)} className={s.outline}/><circle cx="215" cy="120" r={Math.min(60,(after?p:v[1])*2.5)} className={s.object}/></>;
@@ -247,7 +252,7 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
       const cup=(bottom:number,i:number)=><path key={i} d={`M100,${bottom-depth}L112,${bottom}H208L220,${bottom-depth}`} className={s.object}/>;
       return <>{Array.from({length:n},(_,i)=>cup(floor-i*(b?layer:depth),i))}
         <path d={`M246,${floor}V${floor-total}M240,${floor}h12M240,${floor-total}h12`} className={s.line}/>
-        <text x="246" y={floor-total-8} textAnchor="middle">{fmt(total/k)} cm</text></>;
+        {mode&&<text x="246" y={floor-total-8} textAnchor="middle">{fmt(total/k)} cm</text>}</>;
     }
     case 'pairpack': {
       // 7 units per cm, top view, toes up: each shoe narrows evenly from a 12 cm toe to a 6 cm heel over 24 cm.
@@ -260,7 +265,7 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
       return <><rect x={L} y="44" width={bag} height={bottom-36} rx="4" className={s.outline}/>
         <path d={one} className={s.object} strokeLinejoin="round"/><path d={two} className={s.target} strokeLinejoin="round"/>
         <path d={`M${x0},32H${x0+width}M${x0},25v14M${x0+width},25v14`} className={s.line}/>
-        <text x={x0+width/2} y="22" textAnchor="middle">{fmt(width/k)} cm</text></>;
+        {mode&&<text x={x0+width/2} y="22" textAnchor="middle">{fmt(width/k)} cm</text>}</>;
     }
     case 'balance': {
       // 3 units per cm; the two loads sit 20 cm either side of the handle. The bag hangs from the handle top, so it
@@ -282,6 +287,11 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
     }
     case 'reverse-order': {
       const n=Math.round(p),names=useOrder(n),stack=b?[...names].reverse():names,h=Math.min(40,190/n);
+      // W-1299 (content patch r3): with no mode in effect, the bag is empty and the items lie beside it, unstacked, in use
+      // order (reading order, two columns), with no arrows and no highlight. A stack in either order would show a mode.
+      if(!mode) return <><path d="M206,60V226H292V60" className={s.line}/>
+        {names.map((name,i)=>{ const x=8+(i%2)*94,y=40+Math.floor(i/2)*44;
+          return <g key={name}><rect x={x} y={y} width="86" height="34" rx="3" className={s.object}/><text x={x+43} y={y+24} textAnchor="middle">{name}</text></g>; })}</>;
       return <><path d="M70,28V226H230V28" className={s.line}/>
         {stack.map((name,j)=>{ const y=224-(j+1)*h,jacket=name==='Jacket';
           return <g key={name}><rect x="76" y={y+1} width="148" height={h-3} rx="3" className={jacket?s.target:s.object}/>
@@ -304,7 +314,7 @@ function w3Picture(spec:HomeSpec,p:number,mode:Mode|null):ReactNode|null {
         <ellipse cx="80" cy="150" rx={rx} ry={ry} fill="none" stroke="var(--line)" strokeDasharray="5 4"/>
         {inside>0&&<ellipse cx="80" cy="150" rx={rx*f} ry={ry*f} className={s.target}/>}
         {outside>0&&<rect x={b?60:206} y={(b?95:205)-side(outside)} width={side(outside)} height={side(outside)} rx="4" className={s.target}/>}
-        <text x="80" y="60" textAnchor="middle">{fmt(hollow)} cm³ empty</text></>;
+        {mode&&<text x="80" y="60" textAnchor="middle">{fmt(hollow)} cm³ empty</text>}</>;
     }
     default: return null;
   }
@@ -362,7 +372,7 @@ function StageV2({spec,p,setP,mode,setMode,seen,setSeen,locked,interact}:{spec:H
   const label=locked||!mode?`${spec.title}: shared setup, drawn as ${A}; no result shown`:`${spec.title}: showing ${mode==='a'?A:B}; ${resultLabel} ${cols[mode].result}`;
   const status=locked||!mode?'':`${mode==='a'?A:B}: ${rows.map(r=>`${r.label} ${r.cells[mode==='a'?0:1]}`).join('; ')}`;
   return <div className={s.stage}>
-    <Scene spec={spec} p={p} after={after} result={result} locked={locked} v2={{className:`${s.scene} ${s.sceneV2}`,label,caption:textInPicture?caption(spec):undefined,...v2Marks(spec,p,locked?null:mode)}}/>
+    <Scene spec={spec} p={p} after={after} result={result} locked={locked} v2={{className:`${s.scene} ${s.sceneV2}`,label,caption:textInPicture?caption(spec):undefined,neutral:locked||!mode,...v2Marks(spec,p,locked?null:mode)}}/>
     <SeenTable label="Seen results" columns={[{head:'A',current:!locked&&mode==='a'},{head:'B',current:!locked&&mode==='b'}]} rows={rows}/>
     <div className={s.controls}>
       <ModeControl locked={locked} pressed={!locked&&mode==='a'} letter="A" label={A} onPress={()=>press('a')}/>
@@ -439,6 +449,8 @@ const CORD_RATES={short:0,long:0.55};
 const cordCounts=()=>({short:sourceConditionedCordTrials(CORD_RATES.short).filter(Boolean).length,long:sourceConditionedCordTrials(CORD_RATES.long).filter(Boolean).length});
 function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number)=>void;locked:boolean;interact:()=>void}) {
   const {reach}=useMilestones(interact,['short','long']);
+  // W-1241: "Tumble 3 m" draws both lengths (runs=2) and leaves "Tumble 0.3 m" pressed, so it reaches both milestones.
+  // Reaching only 'long' left a learner who tapped 3 m first with no way to unlock the reveal.
   const short=sourceConditionedCordTrials(CORD_RATES.short),long=sourceConditionedCordTrials(CORD_RATES.long);
   return <div className={s.stage}>
     <svg viewBox="0 0 300 230" className={s.scene} role="img" aria-label="Twenty simulated strings at each length, knotted or not">
@@ -450,7 +462,7 @@ function CordStage({runs,setRuns,locked,interact}:{runs:number;setRuns:(n:number
       }))}
       <text x="76" y="218" textAnchor="middle">{runs>=1?`${short.filter(Boolean).length} of 20 knotted`:'?'}</text><text x="207" y="218" textAnchor="middle">{runs>=2?`${long.filter(Boolean).length} of 20 knotted`:'?'}</text>
     </svg>
-    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Tumble 0.3 m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('long');}}>Tumble 3 m</HomeMode></div>
+    <div className={s.controls}><HomeMode locked={locked} pressed={runs>=1} onPress={()=>{setRuns(1);reach('short');}}>Tumble 0.3 m</HomeMode><HomeMode locked={locked} pressed={runs>=2} onPress={()=>{setRuns(2);reach('short');reach('long');}}>Tumble 3 m</HomeMode></div>
     <p className={s.inputs}>Raymer and Smith (2007) tumbled one string at a time in a 30 cm box, one turn a second, for 10 seconds.</p>
     <p className={s.caption}>Each drawing is a simulated string at the study&apos;s rate. Plain cord; storage only.</p>
     <StageStatus locked={locked} text={runs<1?'':`0.3 m: ${short.filter(Boolean).length} of 20 knotted${runs>=2?`; 3 m: ${long.filter(Boolean).length} of 20 knotted`:''}`}/>
@@ -476,7 +488,9 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
     // R6: the first sentence quotes both Seen columns; the kit already prints the verdict line, so it is not repeated.
     reveal:()=><div className={s.reveal}><p>{homeRevealLine(spec,p)}</p><p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}</div>
   }};
-  if(spec.model==='cord'&&spec.engine===2) { const n=cordCounts();
+  // r2 ruling (b): the cord stage has one reveal, for any engine. The v1 cord sentence ("At seed 17 …") is gone: no v1
+  // lesson used model 'cord', so it was unreachable (tests/lifehacks/engines-v2.test.mjs pins which lessons are v1).
+  if(spec.model==='cord') { const n=cordCounts();
     return {stage,lessonProps:{
       slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
       exploreHint:'Tumble both lengths, then compare.',minInteractions:2,
@@ -490,12 +504,13 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
       // TP-2(b, e): the reveal compares both bows at the learner's step count; the kit prints the only verdict line.
       reveal:()=><div className={s.reveal}><p>{`After ${p} steps: the twisted bow's loops are ${mm(twisted)}, the flat bow's ${mm(flat)}.`}</p><p>{spec.idea}</p><p>{spec.limit}</p></div>
     }}; }
-  const result=evaluateHome(spec,p,after), special=spec.model==='cord'||spec.model==='bow';
+  // Cord and bow return above for any engine, so neither reaches this v1 branch.
+  const result=evaluateHome(spec,p,after);
   return {stage,lessonProps:{
     slug:spec.slug,predict:{question:spec.question,options:[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
-    exploreHint:special?'Try both evidence controls, then compare.':'Try the second layout; vary the shown input.',minInteractions:special?2:1,
+    exploreHint:'Try the second layout; vary the shown input.',minInteractions:1,
     reveal:({correct})=><div className={s.reveal}>
-      <p><strong>{correct?'Your prediction held.':'Not quite.'}</strong>{' '}{spec.model==='cord'?`At seed 17, the study-conditioned model gave ${sourceConditionedCordTrials(0.55).filter(Boolean).length}/20 at 3m, and 0/20 at 0.3m.`:spec.model==='bow'?`After ${p} model steps, the loops shown measure ${fmt(Math.max(0,20-p*0.8))}mm and ${fmt(Math.max(0,20-p*(after?0.3:0.8)))}mm.`:spec.model==='wobble'?`You visited the zero-gap position; the current illustrated gap is ${fmt(result.value)}mm.`:`The current ${spec.choices[after?1:0].toLowerCase()} setting gives ${fmt(result.value)}${result.unit}.`}</p>
+      <p><strong>{correct?'Your prediction held.':'Not quite.'}</strong>{' '}{spec.model==='wobble'?`You visited the zero-gap position; the current illustrated gap is ${fmt(result.value)}mm.`:`The current ${spec.choices[after?1:0].toLowerCase()} setting gives ${fmt(result.value)}${result.unit}.`}</p>
       <p>{spec.idea}</p><p>{spec.limit}</p>{spec.warning&&<p>{spec.warning}</p>}
     </div>
   }};
