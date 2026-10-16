@@ -49,3 +49,27 @@ Why two tiers: everything but `package.json` is tools outside the gates, generat
 - `npm run check`: passed, 969 lessons, 99 roles, 5 warnings (lifehacks disputed claims, not from this change), then `memory: 99 role memory file(s) within 50 KB`.
 - `npx tsc --noEmit`: exit 0 (with node_modules linked from the main checkout for the run; this worktree has none of its own, and the link was removed and never committed).
 - `node tools/org/generate.mjs`: 99 onboarding docs, 98 agents. A second run changes nothing.
+
+## 2026-10-16 principal-engineer-ops verdict (tier-2 part: commit c7b9c22, package.json)
+
+approver: principal-engineer-ops (Rhea), slot pe-ops-tier2-approvals · not my area (tools-lead's tool; I am only one of its 99 users) · read at 15:15-15:30Z
+
+- **Decision: approved with conditions.** The line is scripts only, no dependency, and reverts alone.
+- **What I checked myself, not taken from the record:**
+  - `git show c7b9c22`: package.json only. `check` becomes `node tools/company.mjs check && node tools/memory.mjs check`, and `test:memory` is added. Nothing else changes.
+  - `tools/memory.mjs` on this branch is byte-identical to the main checkout's copy (main already carries the tier-1 work as 55b19b0..94c6d28).
+  - In main, `node tools/memory.mjs check`: exit 0, 0.09 s, "99 role memory file(s) within 50 KB". In main, `node --test tests/memory/*.test.mjs`: 7 pass, 0 fail, 3.2 s.
+  - Code read: `check()` only collects warnings, and the CLI's catch sets exit 0 for `check`. So this line cannot turn `npm run check`, or CI (`.github/workflows/ci.yml` runs `npm run check`), red over memory content. The one exception: a missing `tools/org/memory-policy.mjs` fails the static import with exit 1. That failure is loud and correct.
+  - Merge: **`git merge-tree HEAD c7b9c22` conflicts** (company/roles/memory/*.md: main has the seeds from different commits). **Cherry-picking c7b9c22 onto main is clean** (merge-tree with base c7b9c22~1). Merged with a8317f6 (F-42's line), package.json also merges clean.
+- **Conditions:**
+  1. Bring this onto main by **cherry-picking c7b9c22 (plus this verdict commit)**, not by merging the f39-agent-memory branch. A branch merge conflicts on the 98 seeded memory files. Owner: chief of staff (integrator). Board: none. I may not write board.json in this slot, so the chief of staff adds the item if it wants one.
+  2. `test:memory` is not in `verify`. F-42's record says "just as F-39's `test:memory` did", but c7b9c22 adds the script without adding it to `verify`, so nothing in verify or CI runs the 7 memory tests. tools-lead adds `npm run test:memory` to `verify` with the next package.json change. That is another tier-2 line, which I will approve on sight if it is only that. This does not block the merge.
+  3. **Risk (section 7) registration.** I accept it as proposed, and its text is below. It cannot go into company/ops/risks.json yet: `tools/risks.mjs` rejects an `open` risk that has no board id, and this slot forbids writing board.json. The chief of staff adds the board item "Meter: dispatches with no offboarding entry (F-39 risk)" with owner hq-engineer. After that, the next principal-engineer-ops run appends this entry with that W-id. Entry to append (proposed id R-029): title "Agents skip onboarding or offboarding and nothing detects it"; category operational; likelihood 3, impact 2; owner tools-lead; mitigation: the generated template states both steps, and `memory.mjs check` shows missing or oversized files; reality paper; paperOnly "no meter compares dispatch events with run files under company/roles/memory/<role>/"; projects none; links this record and company/decisions/2026-10-16-founder-agent-memory-basics.md. A first data point: at 15:26Z there were 3 run files on main (head-of-strategic-initiatives, release-manager, tools-lead), and the event log ends at 14:46Z, so no rate can be computed yet.
+- **What would make me revoke it:** `npm run check` exits non-zero, or gets more than about 1 s slower, because of the memory step; or `memory.mjs check` writes anything under company/ (it must stay read-only).
+
+## Objections
+| # | Objection | Raised by | What happened to it |
+|---|---|---|---|
+| 1 | A check that never fails is a dashboard nobody acts on. 0 to 99 warnings look the same to CI. | principal-engineer-ops | Accepted as designed (the founder's F-39 is warnings only). It is mitigated when the WBR's operational health line reports the warning count. That line is mine, starting with the next WBR. |
+| 2 | The record implies test:memory is in verify. It is not. | principal-engineer-ops | Condition 2. |
+| 3 | The proposed risk cannot be registered without a board item, and this slot cannot write one. | principal-engineer-ops | Condition 3. The entry text is written here, so the next run can paste it verbatim. |
