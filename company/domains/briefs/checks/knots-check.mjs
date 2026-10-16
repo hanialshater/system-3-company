@@ -75,14 +75,28 @@ for (const n of ['3_1', '4_1']) {
 
 // K13 viewBox padding for 44 px hit areas (brief 2 U1, brief 4): the default draw is 100 x 100; pad with the viewBox only.
 // A crossing at distance d from the nearest edge, stage W px wide, viewBox side 100 + 2p: hit radius 22 px needs (d + p) * W / (100 + 2p) >= 22.
+// W-1577: the real stage is 290 px on a 360 phone, 320 px on a 390 phone and about 260 px on a short phone (max-height 46dvh), because
+// the feed chrome takes 70 px (.slot-screen 10+10, .card-shell 1+14 each side, .stage 10+10; design-lead contact sheet, finding "Phone size").
+// Earlier versions of this line used W=360, which overstated every pixel figure by about 24 %.
 for (const n of ['3_1', '4_1']) {
   const pd = K.knot(n).pd, L = K.layout(pd)
   for (const [lab, q] of [['knot', pd], ['mirror', K.mirror(pd)]]) {
     const cr = K.draw(q, { layout: L }).crossings, d = Math.min(...cr.flatMap((c) => [c.x, c.y, 100 - c.x, 100 - c.y]))
-    const W = 360, rows = [0, 6, 8, 10].map((p) => 'p=' + p + ': edge room ' + ((d + p) * W / (100 + 2 * p)).toFixed(1) + ' px')
     let minGap = Infinity; for (let i = 0; i < cr.length; i++) for (let j = i + 1; j < cr.length; j++) minGap = Math.min(minGap, Math.hypot(cr[i].x - cr[j].x, cr[i].y - cr[j].y))
-    say('K13', n, lab, 'nearest crossing to an edge d=' + d.toFixed(1) + ' (of 100)', rows.join('; '), '| closest crossing pair ' + minGap.toFixed(1) + ' units = ' + (minGap * W / 116).toFixed(0) + ' px at W=360, p=8')
+    const rows = [260, 290, 320].map((W) => 'W=' + W + ' p=8: edge room ' + ((d + 8) * W / 116).toFixed(1) + ' px (needs 22), closest pair ' + (minGap * W / 116).toFixed(0) + ' px (needs 44)')
+    say('K13', n, lab, 'nearest crossing to an edge d=' + d.toFixed(1) + ' (of 100); no padding at W=290: ' + (d * 290 / 100).toFixed(1) + ' px', rows.join('; '))
   }
+}
+
+// K18 (W-1577, design-lead S1): gap 0.5 on the stored layout. Every subset of crossing changes and the mirror still draw with the right
+// edge and crossing counts for 3_1, 4_1, 5_2 and 6_1. (The design lead's detector found 0 extra crossings in every one: metrics.json gapProbe.)
+for (const n of ['3_1', '4_1', '5_2', '6_1']) {
+  const pd = K.knot(n).pd, c = K.crossingCount(pd), L = K.layout(pd); let ok = 0, tot = 0
+  for (let m = 0; m < 1 << c; m++) {
+    let q = pd; for (let i = 0; i < c; i++) if (m >> i & 1) q = K.crossingChange(q, i)
+    const d = K.draw(q, { layout: L, gap: 0.5 }); tot++; if (d.edges.length === 2 * c && d.crossings.length === c && d.size === 100) ok++
+  }
+  say('K18', n, 'gap 0.5, every subset of switches (the mirror is the all-switched subset): ' + ok + ' of ' + tot + ' draw with the right edge and crossing counts')
 }
 
 // K6 the table name's first number is the crossing number c (and the drawn count, for these drawings)
@@ -149,6 +163,21 @@ for (const n of ['3_1', '4_1']) {
   const to = K.signs(K.turnOver(pd)), mi = K.signs(K.mirror(pd))
   const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b)
   say('K17', n, 'draw(mirror) crossing signs=' + JSON.stringify(back), '= signs(mirror)? ' + eq(back, mi), '| reflected (negated) = signs(turnOver)? ' + eq(back.map((s) => -s), to), '| unreflected (counter-rotated back face) = signs(turnOver)? ' + eq(back, to))
+}
+
+// K19 (W-1577, left-or-right version B with the principal engineer's C1/C2 and the design lead's C6): the four rest states of the card.
+// Mirror swaps both faces (C6); the back face is authored already reflected (C1), so on screen it shows the left-right reflection of its
+// drawing, whose geometric signs are the negation of draw()'s own. Each state's readout must equal signs of the logical diagram:
+//   front, not mirrored: signs(pd) | turned over: signs(turnOver(pd)) | mirrored: signs(mirror(pd)) | mirrored and turned over: signs(turnOver(mirror(pd))).
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), eq = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+  const geo = (q) => K.draw(q, { layout: L }).crossings.map((c) => c.sign)
+  const mi = K.mirror(pd), rows = [
+    ['front', geo(pd), K.signs(pd)],
+    ['turned over (back face = reflected draw(mirror))', geo(mi).map((s) => -s), K.signs(K.turnOver(pd))],
+    ['mirrored front', geo(mi), K.signs(mi)],
+    ['mirrored and turned over (back face = reflected draw(pd))', geo(pd).map((s) => -s), K.signs(K.turnOver(mi))]]
+  say('K19', n, rows.map(([lab, g, r]) => lab + ': screen ' + JSON.stringify(g) + (eq(g, r) ? ' = ' : ' != ') + 'readout ' + JSON.stringify(r)).join(' | '))
 }
 
 // K15 (learning-designer probe, W-1569): after any single switch on 3_1 and 4_1, does moves() offer an R2 (a strand on top at

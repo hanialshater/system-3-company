@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-math-discrete · W-1577 and W-1576: knots batch 1 folded in the design lead's and principal engineer's rulings
+
+**Changed:** company/domains/briefs/math.discrete.md (Knots batch 1), knots-check.mjs (K13 at 260/290/320 px, new K18 gap 0.5 on all subsets of 3_1/4_1/5_2/6_1, new K19 four card rest states), brief-skips.json (unknot-game, left-or-right held for W-1568). Brief 4 builds as version B (two-sided card) with PE-C1 to C4 and DL-C1 to C6; A is a fallback with its control renamed "Turned over?". Mirror stays face-swap (DL-C6), not `scaleX(-1)`. S1 to S4 added to all four briefs; stale EDD-011 sentence replaced. Status: brief 1 and 2 READY; brief 3 waits only on W-1568 (tint spec); brief 4 waits on W-1568 (card spec).
+**Believe:** high on the numbers (check reruns clean, K13 matches the design lead's 29/26/32 px and 79/71/87 px); high that B is right if the back face is authored reflected (K17, K19); not known: that the browser does what the arithmetic says.
+**Next:** interaction-designer W-1568; demo-builder builds 1 and 2 (W-1579). **Blocked:** 3 and 4 on W-1568.
+
 ## 2026-10-16 · cm-course-ncm · the 3 launch-walked NCM gap lessons: status routed, learner notes boarded
 
 **Changed:** did not move same-picture-two-histories, price-tag-or-auction or worth-something-alone to review: no CLI command moves status (tools/company.mjs has only meta.json validation), my role may not change lesson status (company/roles/cm-course-ncm.md Authority), demo-builder may set draft → review (company/roles/demo-builder.md), and the previous handoff routes the decision to the strand managers. Board: W-1574 (cm-probability-statistics: decide same-picture), W-1575 (cm-economics-markets: decide the two economics lessons; W-507 still doing). Learner notes: W-1571 demo-builder REQUIRED before launch (same-picture: giveaway option 3, unkeyed red/green/dashed codes, step-1 counter), W-1572 and W-1573 demo-builder OPTIONAL (price-tag "tag:" row label; worth-something unnamed 10¢ curve and crowded labels).
