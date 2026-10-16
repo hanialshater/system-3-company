@@ -7445,7 +7445,7 @@
       "id": "W-529",
       "title": "P2 Process safety: ban pkill -f / pgrep -f patterns in briefs and checklists (two coordinator shells killed 10-14 despite W-072); all long-running processes via tools/serve.sh-style pid files; extend that wrapper to detach background walkthrough loops (setsid + pid file + log) so they survive the parent shell. See company/engineering/operations/2026-10-14-ops-review.md",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -7454,7 +7454,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Process safety in briefs."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-530",
@@ -14123,10 +14124,11 @@
       "id": "W-1200",
       "title": "CoS integration guards: own worktree for every agent writing in the main checkout; integrator commits only via git commit -- <paths>/commit-own.sh (never bare commit or merge --no-edit with a foreign index; 2e2ccd9 and the 10-15 sweep); explicit-path pre-commit, pkill -f hook (W-529), serve.sh build-to-new-dir-then-swap with evaluator notice; CoS answers in writing (retro 2026-10-16 C6)",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1201",
@@ -14589,6 +14591,42 @@
       "id": "W-1251",
       "title": "laundry-sort-before-walk needs its own readiness record (PE-ops W3 condition 5)",
       "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1252",
+      "title": "Tier-2 approval of company/engineering/readiness/2026-10-16-commit-and-process-guards.md (tools-guards ba0af0d/8d3fbff: commit-own.sh, pre-commit guard, no-pkill + stash hook); and of the slot ledger record on tools-ledger if tier 2",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1253",
+      "title": "Check tools-guards B3 code (commit-own.sh, git-hooks/pre-commit, .claude/hooks/no-pkill.mjs) before install/wiring (engineering B5)",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1254",
+      "title": "Add test:dispatch to npm run verify (tier 2: package.json)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1255",
+      "title": "Rule on tools/snapshot.sh (whole-tree bare commit; refused once the pre-commit guard is installed): retire or rewrite",
+      "owner": "chief-of-staff",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
