@@ -28,8 +28,8 @@ If a strand manager declines, objects, or asks for a change first, that lesson's
 | Lesson | Version this review is on | Precondition owner | Board | Decision (move to review: yes / no / after change) | Where recorded, date |
 |---|---|---|---|---|---|
 | probability/same-picture-two-histories | v2 | cm-probability-statistics | W-1574 | *open* | |
-| economics/price-tag-or-auction | v2 | cm-economics-markets | W-1575 (and W-507 for #27) | *open* | |
-| economics/worth-something-alone | v2 | cm-economics-markets | W-1575 | *open* | |
+| economics/price-tag-or-auction | v2 | cm-economics-markets | W-1575 (and W-507 for #27) | **yes** (both W-507 #27 changes are in v2; W-507 closed for #26 and #27 only) | W-1575 ruling in company/ops/board.json; 2026-10-16 cm-economics-markets |
+| economics/worth-something-alone | v2 | cm-economics-markets | W-1575 | **yes** (no change; #26 accepted as built) | W-1575 ruling in company/ops/board.json; 2026-10-16 cm-economics-markets |
 | math/the-swap-that-goes-in-circles | v1 (with fc8c53b8) | cm-math-discrete | W-1595 | *open* | |
 
 ## Readings applied
