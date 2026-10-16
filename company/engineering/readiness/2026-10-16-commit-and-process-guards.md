@@ -212,6 +212,51 @@ record is unchanged, and the Approval section below is still blank. It needs pri
   is refused, and the quoted body, the mention of `kill $(pgrep)`, a pipe to a non-shell, and a here-string all pass. Every
   pre-existing case still passes. `npm run test:dispatch` 55/55.
 
+## Addendum r3 B1 (tools-lead, 2026-10-16): M1 and M2, the live guards changed after N1
+
+Batch company/ops/dispatch-requests/2026-10-16-r3-tools.md#B1; board W-1266 (M1, M2), W-529. Both files are
+**live** (pre-commit installed, no-pkill wired: 2026-10-16-f31-wiring-day.md), so this changes running guards.
+
+**Tier.** The batch asked for a tier-1 addendum. By paths.json, `.claude/hooks/no-pkill.mjs` is tier 2
+(first matching rule), and the approval's revoke clause says either file edited after its approved version comes
+back to principal-engineer-ops. So I file this as a **tier-2 delta, awaiting principal-engineer-ops**, with
+principal-engineer (lane 7) as the code checker. I do not approve it. Diff:
+`git diff <base> tools-guardfix -- tools/git-hooks/pre-commit tools/commit-own.sh .claude/hooks/no-pkill.mjs tests/dispatch/guards.test.mjs`
+(base: the branch point, dc2aca4).
+
+**M1 (wording, no behaviour change).** `tools/git-hooks/pre-commit` `refuse()` takes `merging`. During a merge
+the hint now says a merge cannot be a partial commit, "wait for the owner of the listed paths to commit or
+unstage them", then finish with `tools/commit-own.sh "<message>" <paths you resolved or regenerated>`. It no
+longer offers `git commit -m … -- <path>`, which git refuses mid-merge. Outside a merge the hint is unchanged.
+`tools/commit-own.sh`'s merge refusal gains the same line ("Do not unstage them. Wait for the owner of the
+listed paths, then run this again"); its non-merge text is unchanged. Exit codes and rules are unchanged.
+
+**M2, the answer for W-529: refuse, and point at `tools/serve.sh stop <port>`.** Not just a warning: on this host
+a port can belong to another agent's server (W-851), so a port kill is the same hazard as a pattern kill. Refused
+(new `PORT_HINT`, which names `tools/serve.sh stop <port>`, `kill <pid>`, and says `lsof -i:<port>` is fine to look):
+- `kill [-sig] $(lsof …)` or `` `lsof …` ``, and `kill $(fuser …)`, by the same token test as `kill $(pgrep …)`.
+- `fuser -k` / `--kill` / flag clusters with `k` (`-km`), also behind wrappers (`sudo`).
+- `lsof … | xargs kill` (and `fuser|ss|netstat … | xargs kill`): the xargs kill already refused as a pattern
+  kill; it now says "port kill" when the pipe's source is one of those. Any other `| xargs kill` keeps the old message.
+Passes: `kill 1234`, `kill -9 1234`, `lsof -i:3591`, `lsof -t -i:3591` (lookup only), `fuser 3591/tcp`,
+`tools/serve.sh stop 3591`, `kill $(cat .serve/3591.pid)`, quoted mentions (`echo 'kill $(lsof …)'`, `grep "fuser -k"`).
+Accepted misses (the hook reads command lines, not data flow): `p=$(lsof -t -i:3591); kill $p`, `npx kill-port 3591`,
+a script file that does any of these. Nothing in tools/, company/ops, company/rituals or .claude/commands
+instructs a port kill (grep), so no sanctioned workflow loses a step.
+
+**Tests** (tests/dispatch/guards.test.mjs, +4): M1 merge-time hint (pre-commit and commit-own.sh: names
+commit-own.sh and the owner wait, does not offer `git commit -m … --`); M1 non-merge hint unchanged; M2 refuses
+11 forms, each naming serve.sh stop, plus one through the hook process (exit 2); M2 passes 9 forms, three through
+the hook process (exit 0).
+
+| Claim | Command | Result |
+|---|---|---|
+| Dispatch suite passes | `npm run test:dispatch` (worktree /home/user/s3c-tg1) | 65/65, 39 s wall at load 12.8 on 4 cores |
+| `npm run check` passes | `npm run check` | passed: 969 lessons, 8 warnings, none from this change |
+
+Believed, not checked: the wired hook picks up the new file on the next Bash call without a session restart (it
+is spawned per call by path; about 90%). Cost per call is unchanged in kind (one more regex and a string test).
+
 ## Approval (tier 2; written by principal-engineer-ops)
 
 - Decision: **approved with conditions to merge at 8d3fbff** (pre-commit guard not installed, no-pkill not wired) by principal-engineer-ops; copied by chief-of-staff at merge 2026-10-16. Authority, install conditions G1-G5 and wiring conditions W1-W3: `company/engineering/readiness/2026-10-16-commit-and-process-guards-approval.md` (90fc0de).

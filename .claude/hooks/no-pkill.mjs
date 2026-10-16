@@ -8,6 +8,9 @@
 //   pkill (any form), pgrep -f / --full, killall <name>, `kill $(pgrep|pidof …)`, `… | xargs kill`, kill -1.
 //     All agents share one host: a name or pattern match kills other agents' servers and, with -f, the
 //     shell running the command (retros 2026-10-13 and 2026-10-16 H5). Stop by exact pid instead.
+//   Port kills (M2, W-529): `kill [-9] $(lsof …)` / `kill $(fuser …)`, `lsof … | xargs kill`, `fuser -k <port>/tcp`.
+//     A port on this host can belong to another agent's server (W-851). Plain `lsof -i:<port>` and
+//     `fuser <port>/tcp` (lookups, no -k) pass.
 //   git stash with no message (bare `git stash`, `git stash -u`, `git stash push` without -m), `git stash save`,
 //   `git stash pop`, `git stash apply|drop|branch` with no explicit ref, `git stash clear`.
 //     The stash stack lives in the common git dir, so the main checkout and every worktree share it. A bare
@@ -25,6 +28,10 @@ import { pathToFileURL } from "node:url";
 const STOP_HINT =
   "Stop a server you started with `tools/serve.sh stop <port>`, or a process by exact pid with `kill <pid>` " +
   "(pid from your own pid file, e.g. `kill $(cat .serve/<port>.pid)`).";
+const PORT_HINT =
+  "A port on this shared host may be another agent's server (W-851). Stop a server you started with " +
+  "`tools/serve.sh stop <port>` (it stops only the pid in its own .serve/<port>.pid), or by exact pid with `kill <pid>`. " +
+  "To see who holds a port, `lsof -i:<port>` is fine; killing what it finds is not.";
 const STASH_HINT =
   "The stash stack is shared by the main checkout and every worktree. Prefer a temporary WIP commit. If you must stash: " +
   '`git stash push -u -m "<unique-tag>"`, capture the SHA with `git stash list --format=\'%H %gs\'`, restore with ' +
@@ -319,8 +326,17 @@ function checkSimple(tokens, raw, depth) {
     const listOnly = args.length > 0 && args.every((a) => ["-l", "--list", "-V", "--version"].includes(a));
     if (!listOnly) return `\`killall\` kills every process with that name on the shared host. ${STOP_HINT}`;
   }
+  if (cmd === "fuser" && (hasShortFlag(args, "k") || args.includes("--kill")))
+    return `\`fuser -k\` kills every process using that port or file, whoever started it. ${PORT_HINT}`;
   if (cmd === "kill") {
-    if (via === "xargs") return `\`xargs kill\` kills whatever the pipeline matched (a pattern kill). ${STOP_HINT}`;
+    if (via === "xargs") {
+      const from = tokens.pipedFrom ? unwrap(tokens.pipedFrom).argv : [];
+      if (from.length && ["lsof", "fuser", "ss", "netstat"].includes(base(from[0])))
+        return `\`${base(from[0])} … | xargs kill\` kills whatever holds the port (a port kill). ${PORT_HINT}`;
+      return `\`xargs kill\` kills whatever the pipeline matched (a pattern kill). ${STOP_HINT}`;
+    }
+    if (args.some((a) => /(\$\(|`)\s*(\S*\/)?(lsof|fuser)\b/.test(a)))
+      return `\`kill\` fed by \`lsof\`/\`fuser\` is a port kill on a shared host. ${PORT_HINT}`;
     if (args.some((a) => /(\$\(|`)\s*(\S*\/)?(pgrep|pidof)\b/.test(a)))
       return `\`kill\` fed by \`pgrep\`/\`pidof\` is a pattern kill on a shared host. ${STOP_HINT}`;
     // pid positions: after `--`, or every arg that is not an option / signal spec
