@@ -2,7 +2,7 @@
 
 owner: chief-of-staff-ceo-office (Leonie: org design and the new-role pipeline)
 date: 2026-10-16
-status: routed
+status: decided
 class: org
 route: personalization-lead (proposes the team, §7 of company/personalization/2026-10-16-brief-response.md) → chief-of-staff-ceo-office (designs under company/ceo-office/org-change-process.md, checks overlaps) → founder (approves each new role before it exists)
 recorded by: chief-of-staff
@@ -41,6 +41,16 @@ recorded by: chief-of-staff
 
 - **Decided by the founder:** a customer-data team inside the personalization org, under the VP. It owns the learner data personalization reads and writes, starting with the `settings` schema diff for the privacy read.
 - **Left to Leonie (how):** the role card(s), scope, and the interface with backend-engineer (owns the accounts database, migrations and EDD-008 today) and privacy-reviewer (company-wide gate, unchanged).
+
+## Founder approval (2026-10-16)
+
+> "Approve V, N1–N6, E1–E3; 7 directs fine for now; progress/recall stay with backend."  (founder, conversation)
+
+- **Approved:** card V (personalization-lead → vp-personalization, VP of Personalization, reports to the founder); N1 personalization-eval; N2 applied-scientist-personalization; N3 learning-scientist-personalization; N4 lesson-dims-owner; N5 personalization-engineer; N6 learner-data-engineer; E1 learner-model-engineer scope edit; E2 growth-designer scope edit (no streaks); E3 backend-engineer scope edit; all as written in company/ceo-office/2026-10-16-personalization-org-proposal.md.
+- **Objection 9 (span):** the VP's 7 direct reports are accepted for now; revisit at phase B start.
+- **Objection 10:** `progress` and `recall` stay with backend-engineer.
+- **Deferred cards** (head-of-feed, feed-engineer, splits, sub-team leads) are not approved; they come back on their triggers.
+- status: **decided**. Next: chief-of-staff-ceo-office generates the roles (tools/org/roles.mjs → tools/org/generate.mjs), then the chief of staff dispatches the first tasks through the VP.
 
 ## Objections
 
