@@ -46,3 +46,37 @@ builder: demo-builder (builder-beh3) · 2026-10-16 · brief: `company/domains/br
 - QA (`QA_ONLY=zero-loses-to-this-crowd`, port 3961, 2 workers, harness stamp clean): **lesson contract passes on phone and desktop**; 10 of 12 specs pass. The 2 failures are `feed.spec` "subject chips filter the feed" (phone, desktop), the known harness defect under QA_ONLY that is already on the board (the allowed list is cut to the subset but the feed shows every lesson in the subject); not this lesson's code. "a finished lesson comes back as a spaced revisit" failed while the lesson was `draft` (the feed keeps drafts out of revisits) and passed after the status moved to `review`.
 - Looked at: 390 x 844 screenshots at predict, explore and reveal (light), and the reveal in dark theme; the markers, brackets and key read in both.
 - reveal-fit: pass, phoneFit.
+
+## v2 revision build (2026-10-16)
+
+builder: demo-builder · dispatch `company/ops/dispatch-requests/2026-10-16-r3-behavioral.md` B2 · decisions: brief 3 "Decisions on the built lesson" items 1, 2, 5 and rules 6-8 (`company/domains/briefs/behavioral.md`) · board W-1267 · commit 379a759 (lesson), this section in the next commit
+
+### What changed (and nothing else)
+- `HELD_LINE = false` in Demo.tsx (rule 6). No reveal branch renders c6; the only use of the held sentence is the `HELD_LINE ? … : ""` in the reveal, the same for all 101 guesses. c6 stays in meta.json, `unverified`; its text now starts "HELD, CUT (renders nowhere: HELD_LINE = false, brief rule 6, W-1267; …)" so the record says it is cut. Its source and the named cut that would pay for its return (decision 1) are unchanged.
+- Predict option B: "About 23" → "About 23, between the other two". Recall option B: "About 30" → "About 30, between the other two". Both equal the check script's text. Claims c2 and c10 quoted the old option text; their quotes now carry the gloss (text only; status stays `unverified`).
+- Not changed: stage, rule line, controls, crowd, reveal sentences, title, hook, slug, every other claim, status (`review`), `version`.
+
+### Stage word budget (confirmed rule, decision 2026-10-16-stage-word-budget-counting)
+- Busiest frame (crowd shown, 0 marked): stage 25 words (stimulus 0, other 25): rule line 18 (numerals 2, 30%, 40%, 33, 30%, 22 count 0) + "Guess" 1 + "Show the crowd" 3 + "Mark the 0 guess" 3 + picture labels 0 (numerals only). Same as v1; the gloss is predict text outside the stage, so it adds nothing to the stage.
+
+### Reveal-fit numbers (QA path, guess 52)
+- `node tools/reveal-fit.mjs --url http://localhost:4081 zero-loses-to-this-crowd` (390 x 844, tool clean, head 379a759): verdict **fit**, crop 0 px, hiddenBelow 0, namedHidden 0 (target, average, 34.8, 23.2, 22.9, 52, 28.8, guess all visible), phoneFit true. **revealWords 84** (the script's 74-word branch + the kit verdict "Not quite: it was "About 23, between the other two"", which is 4 words longer than v1's because it quotes the option). Stage 305 px (picture 124, controls 94, text 49); reveal 273 px of a 618 px window. v1 measured the picture at 118 px; nothing in the picture changed in this build, so I read the 6 px as a layout difference from main since v1, not this change (not checked).
+
+### Pre-flight v2
+1. **Title and hook.** "Your best guess against this crowd" / "Guess 0 to 100: closest to two thirds of the average wins. What wins against this crowd?" No: neither names 0, 23 or 35.
+2. **Options.** "0, the equilibrium guess" / "About 23, between the other two" / "About 35, the crowd's average". All numbered, all glossed (v1's bare right option is fixed). Whether "between" reads as a middle-option cue is the learner-evaluator's to say (decision 2).
+3. **Locked stage.** Unchanged from v1: rule line ("near 33", "near 22", not 23), empty 0-100 line, slider at 50, two disabled buttons. Nothing matches 23.
+4. **Reveal values.** Unchanged from v1: g is the locked slider value; average, target, miss and closer count are computed from g and the seeded crowd; 22.9 from the same crowd with 0 in. 36.4 / 250 no longer render.
+5. **QA path.** Unchanged: two ArrowRight (50 → 52, `guess`), "Show the crowd" (`crowd`), "Mark the 0 guess" (`zero`); all three milestones in 4 presses; guess, target, average and both brackets on the stage at the reveal.
+6. **Reset.** No Reset control (as v1). QA-path reveal text, from the 390 x 844 run: "With your 52 in, this simulated crowd averaged 34.8, so the target was 23.2. Your guess missed by 28.8; 86 simulated guesses were closer. Had you guessed 0, the equilibrium, you would have missed by 22.9. Against a crowd that stops after one or two steps, the winning guess sits near two thirds of the crowd's actual average, not at 0. Where it stops: a simulated crowd with a stated rule, not real players."
+7. **Phone fit.** fit, crop 0 px, 84 words measured; stage top and every named value on screen (screenshot `artifacts/reveal-fit/zero-loses-to-this-crowd.png`, not committed).
+
+### Checks run (2026-10-16, v2)
+- Check script `behavioral-beauty-contest-level-k.mjs`: all checks pass (unchanged script; it prints both glossed options B).
+- `npm run check`: pass. `npm run typecheck`: pass (exit 0). `next build` (NEXT_DIST_DIR=.next-beh3r): pass; next build's tsconfig.json edit reverted.
+- QA (`QA_ONLY=zero-loses-to-this-crowd`, QA_BASE_URL port 4081, 2 workers, QA_OUT artifacts/qa-beh3r): **lesson contract passes on phone and desktop**; 10 of 12 pass. The 2 failures are again `feed.spec` "subject chips filter the feed" (phone, desktop), the known QA_ONLY harness defect named in v1; not this lesson's code.
+- Looked at the 390 x 844 reveal screenshot: the verdict wraps to two lines with the longer option, and the reveal still fits.
+
+### For whoever looks next
+- The "Why trust this?" panel serialises every claim, so c6's text (marked "HELD, CUT") is in the page data and readable there, as it was in v1. It is not in the reveal. If the fact-checker wants held claims kept out of the provenance panel, that is a kit question (platform-engineer), not a lesson change.
+- The claim lease (`node tools/claim.mjs release zero-loses-to-this-crowd --done`) was not closed in this run: the permission system denied the write to the main checkout's company/ops/claims/. Someone with that permission closes it.
