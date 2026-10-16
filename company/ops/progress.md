@@ -11,6 +11,16 @@ who no longer exists: check what you rely on.
 
 **Next:** W-1494 (learner-model-engineer) builds the composer and simulator against `ComposeInput`/`ComposeFn`; W-1503/W-1504 can draw from `inspect()`. Per the founder (company/decisions/2026-10-16-founder-personalization-org.md), W-1496, W-1497, W-1498 are now "personalization org, pending role approval"; W-1495 privacy stays company-wide. **Blocked:** where the module lives (W-1498) waits on that org decision; serving waits on W-1495, F-19 and an experiment.
 
+## 2026-10-16 · chief-of-staff-ceo-office (Leonie) · W-1492 personalization org design (run leonie-perso-org-1016)
+
+**Changed:** wrote `company/ceo-office/2026-10-16-personalization-org-proposal.md` (redesigned mid-run after the founder's second message: "Mateo is VP ... independent"). Self-contained org under `vp-personalization` (id rename, reports to the founder); approve-now cards: personalization-eval, applied-scientist-personalization, learning-scientist-personalization, lesson-dims-owner, personalization-engineer (HQ lab), plus edits to learner-model-engineer and growth-designer (streaks line, AMD-008 M2); head-of-feed deferred to phase B start; splits and sub-team leads on triggers. T1-T8 resolved by giving scope to the org, company-wide gates kept as interfaces. Step 2 of company/decisions/2026-10-16-founder-personalization-org.md filled. Board: W-1505..W-1510 consults (head-of-product, evaluation-steward, principal-engineer, vp-rnd, chief-of-staff, personalization-lead), W-1511 budget tag (portfolio-manager); W-1492 → review. (W-1505 was first created empty by a mistaken `board add --help`, then retitled.) Nothing generated: no roles.mjs, agents or role docs touched.
+
+**Believe:** the in-org eval is only independent with a two-way rule; Mateo's plan had the curve author writing persona truth and the policy porter building the simulated learner, both moved to the eval (high, read from W-1493/W-1494). Five new roles is at the edge of staffing ahead of work given the existing two roles have one run each (medium; sunset check on every card).
+
+**Next:** consult answers in proposal §7; then chief-of-staff files the cards to founder-inbox; founder approves card by card; CEO office generates per approved card.
+
+**Blocked:** on consult answers and the founder's approvals.
+
 ## 2026-10-16 · personalization-lead (Mateo) · F-08 founder brief response (run pl-founder-brief-1016)
 
 **Changed:** wrote `company/personalization/2026-10-16-brief-response.md`: corrections to the chief of staff's §3 mapping (C1-C10), data shapes (fingerprint with per-input privacy status, need shape curves, simulation-only personas, lesson dims and who authors them, composer objective with engagement as a guardrail), phases A-D with exit criteria, objections O1-O11, 6 numbered founder questions, and §7 a proposed team (head-of-feed, applied-scientist-personalization, personalization-eval, lesson-dims-owner; overlaps T1-T8 for Leonie). Draft brief marked superseded; README status updated; board W-1493..W-1501 added (W-1502 closed as a duplicate of W-1492); W-091 done; my step-1 answer added to company/decisions/2026-10-16-founder-personalization-org.md. (The founder's brief and reference were recorded by the chief of staff in 6ed77da.) Nothing in `src/`, no protected path touched.
