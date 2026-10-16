@@ -1,0 +1,127 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.wrap > :global(.slider) {
+  flex: none;
+}
+
+/* The stage must fit above the reveal on a 390 x 844 phone: no extra gap above the kit rows. */
+.wrap > :global(.row) {
+  margin-top: 0;
+}
+
+.rule {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.link {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Key: the rule line's words name the markers by the same colour and line style. */
+.keyTarget {
+  color: var(--domain);
+  font-weight: 800;
+  border-bottom: 2px solid var(--domain);
+}
+
+.keyAvg {
+  color: var(--fg);
+  font-weight: 800;
+  border-bottom: 2px dashed var(--fg);
+}
+
+.btn {
+  flex: 1 1 0;
+  min-height: 44px;
+}
+
+.dot {
+  fill: var(--muted);
+}
+
+.axis {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.tick {
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.avgLine {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+
+.avgLabel {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.targetLine {
+  stroke: var(--domain);
+  stroke-width: 2.5;
+}
+
+.targetLabel {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--domain);
+  font-variant-numeric: tabular-nums;
+}
+
+.guessMark {
+  fill: var(--fg);
+}
+
+.zeroMark {
+  fill: var(--bg-2);
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.guessLabel,
+.zeroLabel {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.myBracket {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.zeroBracket {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 2;
+}
+
+.missLabel {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--fg);
+  font-variant-numeric: tabular-nums;
+}

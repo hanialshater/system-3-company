@@ -72,6 +72,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "word-in-pieces": () => import("./ai/word-in-pieces/Demo"),
   "same-week-a-year-apart": () => import("./behavioral/same-week-a-year-apart/Demo"),
   "sure-million-or-long-shot": () => import("./behavioral/sure-million-or-long-shot/Demo"),
+  "zero-loses-to-this-crowd": () => import("./behavioral/zero-loses-to-this-crowd/Demo"),
   "earth-history-in-a-day": () => import("./big-ideas/earth-history-in-a-day/Demo"),
   "noise-draws-dunning-kruger": () => import("./big-ideas/noise-draws-dunning-kruger/Demo"),
   "one-ten-thousandth-apart": () => import("./big-ideas/one-ten-thousandth-apart/Demo"),
