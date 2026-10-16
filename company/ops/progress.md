@@ -5,11 +5,11 @@ who no longer exists: check what you rely on.
 
 ## 2026-10-16 · principal-engineer (Kenji) · W-1538 settings API tier-2 review: approve with conditions (run pe-u2-review-1016, branch perso-u2)
 
-**Changed:** review record company/engineering/reviews/2026-10-16-w1538-settings-api.md; board W-1552..W-1557 (conditions by owner). No code edited.
+**Changed:** review record company/engineering/reviews/2026-10-16-w1538-settings-api.md; board W-1554..W-1559 (conditions by owner; W-1552/W-1553 renumbered to W-1558/W-1559 by chief-of-staff, collided with main). No code edited.
 **Ruled:** mount at `/api/account/settings` (ADR-008 items 3-4 already prescribe it; cookie not widened); modules stay in `src/lib/server/personalization/` (settings only, not model serving); table name `settings`; `test:settings` in verify is fine for merge, but must run in CI before wiring (CI amendment with W-1116/W-409).
 **Measured:** typecheck 0; test:settings 25/25 1.1 s; build 21 s, route nft trace includes all 14 content/curriculum/*.json (file tracing closed at build level); check 1.4 s.
 **Believe:** code is sound once moved (high); one race (merge vs set-false, finding 2) is a privacy call (C7).
-**Next:** learner-data-engineer C1 move (W-1552); backend-engineer namespace ack (W-1553); principal-engineer paths.json rule (W-1555). **Blocked:** wiring/apply on the accounts branch.
+**Next:** learner-data-engineer C1 move (W-1558); backend-engineer namespace ack (W-1559); principal-engineer paths.json rule (W-1555). **Blocked:** wiring/apply on the accounts branch.
 
 ## 2026-10-16 · learner-data-engineer (Solenne) · U2 / W-1538: settings API on a branch, not wired, nothing applied (run lde-u2-1016, branch perso-u2)
 
