@@ -7,8 +7,8 @@
 // controls once, so all five exist from the first render: A, B, C, D, toggle). The toggle "Say both in the
 // same words" swaps C's and D's text, in place, for A's and B's texts word for word (the brief's declared
 // restatements); the bars and the learner's marks stay. Each option is one bar of 600 cells per outcome,
-// filled = alive. C has exactly A's outcomes and D has B's, so any rule that judges outcomes picks A with C
-// or B with D. The toggle is enabled once both rows are answered; turning it on the first time fixes both
+// filled = alive (key "■ = alive · □ = die"). C has exactly A's outcomes and D has B's, so any rule that judges
+// outcomes and strictly prefers one option picks A with C or B with D. The toggle is enabled once both rows are answered; turning it on the first time fixes both
 // choices (the reveal reads the choices made in the original wordings), after which it toggles freely.
 // At the reveal everything freezes and the toggle is forced on, so the "same words" picture is on screen.
 // Stage text is only: caption, key, cover, toggle label and the declared stimulus (no option letters, no
@@ -117,11 +117,13 @@ function describe(b: Bar) {
 const CHOSE_SAVED: Record<Saved, string> = { A: "the sure 200 saved", B: "the 1-in-3 chance to save all 600" };
 const CHOSE_LOST: Record<Lost, string> = { C: "the sure 400 die", D: "the 1-in-3 chance that nobody dies" };
 const SAME = "In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.";
-const FITS = "You answered the same offer the same way twice: a model that judges outcomes fits both of your choices.";
-const AD =
-  "No model that judges only outcomes fits both of your choices: the wording moved you. Sure for gains, gamble for losses: that pattern is called a framing effect.";
-const BC =
-  "No model that judges only outcomes fits both of your choices: the wording moved you, the reverse of the pattern called a framing effect.";
+// r4 (brief 4, decisions 1 and 3): the mixed branches carry the toss-up qualifier (expected value ties the two
+// programmes, 200 = 200, and only a tie fits a mixed pair); the matched branches name the framing effect.
+const FITS =
+  "Same offer, same answer twice: a model that judges outcomes fits both. Preferring the sure 200 saved, then the chance nobody dies, would fit none: that is called a framing effect.";
+const UNLESS = "Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices: the wording moved you";
+const AD = `${UNLESS}. Sure for gains, gamble for losses: that pattern is called a framing effect.`;
+const BC = `${UNLESS}, the reverse of the pattern called a framing effect.`;
 const STOPS = "Where it stops: you saw both wordings back to back.";
 
 function revealParas(a: Saved, b: Lost): [string, string] {
@@ -142,10 +144,15 @@ export default function SavedOrDieSame600({ slug }: { slug: string }) {
     <Lesson
       slug={slug}
       predict={{
+        // r4 (decision 2): strict "prefers", no premise, the misconception first, the answer last.
         question:
-          "Judged by outcomes, not wording: someone picks the sure 200 saved. In the 'die' wording, which must they pick?",
-        options: ["The sure 400 die", "The 1-in-3 chance nobody dies", "Either: the two wordings are different offers"],
-        answer: 0,
+          "Someone prefers the sure 200 saved, then, in the 'die' wording, the 1-in-3 chance nobody dies. Can one model that judges outcomes fit both?",
+        options: [
+          "Yes: 'saved' and 'die' are different offers",
+          "No: only the sure option both times fits",
+          "No: same programmes, two wordings",
+        ],
+        answer: 2,
       }}
       exploreHint="Pick one in each wording, then say both in the same words."
       minInteractions={MILESTONES.length}
@@ -217,8 +224,9 @@ export default function SavedOrDieSame600({ slug }: { slug: string }) {
               <div className={s.wrap}>
                 <p className={s.caption}>
                   An outbreak is expected to kill 600 people. Pick a programme.{" "}
+                  {/* r4 (decision 4): the key names both cell kinds, so the die row's grey cells read as deaths. */}
                   <span className={s.key}>
-                    <span className={s.keySw} aria-hidden="true" /> = alive
+                    <span className={s.keyOn}>■</span> = alive · <span className={s.keyOff}>□</span> = die
                   </span>
                 </p>
                 <div className={s.row} role="group" aria-label="First wording">
