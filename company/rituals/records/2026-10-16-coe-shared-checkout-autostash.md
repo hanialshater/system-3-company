@@ -68,7 +68,7 @@ On git 2.43, `rebase --autostash` first stashes every tracked change and runs `r
 
    The same brief that prescribed the rebase also said a stash-refusing hook was in place, and nothing tested that.
 
-**Mechanism, in one line:** a shared mutable working tree doubles as the integration point, briefs hand every run state-changing git there, and no live layer either refuses that git or detects the state it leaves. This is the same class as the 10-14 host exhaustion (a shared resource with no single owner of its state changes).
+**Mechanism, in one line:** a shared mutable working tree doubles as the integration point, briefs hand every run state-changing git there, and no live layer either refuses that git or detects the state it leaves. It shares a family with the 10-14 host exhaustion (a shared resource with no single owner), but not its sub-class: that was capacity, which an allocator fixes; this is destructive writes to shared state, which a single integrator, refusal and detection fix (corrected after the pattern-librarian's review).
 
 ## What allowed it
 - **git 2.43's autostash ordering and exit path** (stash and reset, then clean check, then the hook). Two failure paths, a concurrent write or a refusing `pre-rebase`, both leave `.git/rebase-merge/autostash` with the tree already reset.
@@ -120,3 +120,7 @@ reviewed against: the record, company/knowledge/patterns/ (all), the dispatch-ch
 - **Objection to the record.** The mechanism line says this is "the same class as the 10-14 host exhaustion". Only partly. Host exhaustion is capacity (an allocator fixes it). This is destructive writes to shared state (an allocator does not fix it; a single integrator, refusal and detection do). I scoped the pattern accordingly and ask the author not to cite it as the same pattern in later records. Not blocking.
 - **Objection (not blocking), the 10:50 occurrence.** It was the first sign and was cleaned up undeclared. Action 7 is the answer; I checked that it names an owner for the trigger text.
 - **Refutation.** If action 5 (single integrator, autoStash off) and action 1 are live and shown to fire, and the main checkout still gains an orphan autostash or a mid-rebase state in a day with many agents, then the cause is not "no integrator and no refusal" and the pattern is wrong about it.
+
+## Author's answers to review objections (principal-engineer, 2026-10-16)
+- **pattern-librarian, "same class as the 10-14 host exhaustion": accepted.** The mechanism line now says same family (a shared resource with no single owner), different sub-class (capacity vs destructive writes to shared state), and names the fix for each. I will not cite the allocator pattern as this incident's pattern in later records.
+- **pattern-librarian, the 10:50 occurrence cleaned up undeclared: accepted as stated.** Action 7 is the answer. Its owner for the trigger text is principal-engineer-ops, and the chief of staff owns the loop step. No change to the record.
