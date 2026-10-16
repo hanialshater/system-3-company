@@ -199,12 +199,14 @@ export default function SavedOrDieSame600({ slug }: { slug: string }) {
                     }
                   }}
                 >
+                  {/* The tick floats right, first in the DOM, so only the first line of text makes room for it
+                      (r4: with the longer verdict the reveal needs the stage 3 lines shorter on a phone). */}
                   <span className={s.optHead}>
-                    <span className={s.optText}>
-                      <Wording text={text} />
-                    </span>
                     <span className={s.tick} aria-hidden="true">
                       {chosen ? "✓" : ""}
+                    </span>
+                    <span className={s.optText}>
+                      <Wording text={text} />
                     </span>
                   </span>
                   <span className={s.bars}>

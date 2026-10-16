@@ -99,3 +99,52 @@ Counted from the rendered lesson. A Playwright script at 390×844 read `innerTex
 - `npm run check`: passed. `npm run typecheck`: clean. `next build` (NEXT_DIST_DIR=.next-beh4b): exit 0.
 - `QA_BASE_URL=http://localhost:4061 QA_OUT=artifacts/qa-beh4b npx playwright test --workers=2 -g saved-or-die-same-600`: 2 passed (phone, desktop). No page or console errors in my own runs of all four branches either.
 - Status set draft → review. No QA record or evidence entry was written. That belongs to the qa-tester's run (lane 10).
+
+---
+
+# Revision build (r4), 2026-10-16: v2
+
+builder: demo-builder (beh1) · worktree `/home/user/s3c-beh1`, branch `beh-r4-b1` · dispatch: `company/ops/dispatch-requests/2026-10-16-r4-behavioral.md` B1 (W-1315, W-1306) · brief: `company/domains/briefs/behavioral.md` §4 "Decisions (r4)" 1-8 and rules 6-8 · numbers: `node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs` (unchanged, "all checks pass", exit 0) · W-1061: no cm-books objection on the board or in `company/domains/behavioral-signoffs.md`, so no stop.
+
+## What changed
+- **Predict** (decision 2): the script's question, its three options in the script's order, `answer: 2`.
+- **Reveal** (decisions 1, 3): all four branches copied from the script. The mixed branches open "Unless the two were a toss-up for you, ..."; the matched branches read "Same offer, same answer twice: ... that is called a framing effect." "Where it stops" unchanged. `HELD_LINE = false`; c5 renders nowhere.
+- **Key** (decision 4): "■ = alive · □ = die", as text. "■" is coloured like the filled cells and "□" like the grey cells (CSS `keyOn` / `keyOff` replace the old drawn swatch). Bar legends unchanged.
+- **Recall** (r4): question, options and `answer: 2` from the script. **The recall "why" is mine** (the script does not print one): "Out of 1,000 patients, 900 live and 100 die under both descriptions. A model that judges outcomes can take it both times or refuse it both times, but cannot prefer to take it one way and refuse it the other." It says "prefer" so it stays true for an indifferent chooser (the c2/c3 lesson). It is quoted in c9.
+- **Objective** (decision 7) and `"version": 2`.
+- **Claims reset to `unverified`** (quoted text changed): c1 (now quotes the key), c2 (strict qualifier and the new predict), c3 (new branch sentences), c4 (adds the matched-branch naming), c9 (new recall). c5 stays `unverified` and renders nowhere. c6, c7, c8 unchanged and still as FC pass 57 left them. I verified none.
+
+## One change outside the letter of "styles only if the key needs it": the tick floats
+With the longer verdict (2 lines on a phone) and the 89-word A + D branch, the card body overflowed by 17-18 px at 390×844 and the kit scrolled it, so the caption's first line slid under the hook (screenshot taken before the fix; the stage itself did not overflow, and `reveal-fit` on its own B + D path did not see it). The fix: the chosen-tick now floats right and comes first in the option's DOM, so only the first text line makes room for it. The B and D texts wrap in 3 lines instead of 4, and the stage goes from 321 to 292 px. No text, font size, tap target, bar or control changed; the words are identical. I chose this over tighter padding, which saved only 8 px. If lane 10 reads this as outside the item, the alternative is a cm-behavioral call on the text.
+
+## Stage count per frame (rendered, 390×844; tokens with a letter, stimulus = the visible option-text spans)
+| Frame | Stage | Stimulus | Other |
+|---|---|---|---|
+| Locked (predict): caption, key, A, B, cover, toggle | 37 | 15 | 22 |
+| Both wordings shown, toggle off | 46 | 28 | 18 |
+| Toggle on (C, D restated in place) | 48 | 30 | 18 |
+| Open reveal, every branch (toggle forced on) | 48 | 30 | 18 |
+
+Busiest frame 48 (other 18): other ≤ 25 and total ≤ 50. This equals the script's counts. The key string "■ = alive · □ = die" is found exactly in the stage text on every frame.
+
+## Measured reveal per branch (reveal-fit's token rule: tokens with a letter or digit, the kit verdict included)
+| Branch | Prediction on screen | Verdict | Measured | Script | Branch text exact |
+|---|---|---|---|---|---|
+| A + C | option 1 (wrong) | Not quite: it was "No: same programmes, two wordings". | 82 | 82 | yes |
+| A + D | option 1 (wrong) | Not quite ... | **89** | 89 | yes |
+| B + C | option 1 (wrong) | Not quite ... | 86 | 86 | yes |
+| B + D | option 1 (wrong) | Not quite ... | 87 | 87 | yes |
+| A + D | option 3 (right) | Your prediction held. | 83 | - | yes |
+| B + C | option 2 (wrong) | Not quite ... | 86 | 86 | yes |
+
+Every branch ≤ 90. After the tick fix: card body scroll 0, stage top 174 px in every branch, reveal bottom at most 781 of 844 (A + D, wrong prediction). No page or console errors.
+
+## Gates run
+- `npx playwright test --workers=2 -g saved-or-die-same-600` against a production build on :4071: 2 passed (phone, desktop).
+- `node tools/reveal-fit.mjs --url http://localhost:4071 saved-or-die-same-600 --strict`: fit 1, crop 0, phoneFit 1, pass 1.
+- `npx tsc --noEmit`, `npm run check`: pass.
+- Measuring scripts (not committed): `/tmp/claude-0/-home-user/3e472d64-8589-5167-8584-c47a01ab4321/scratchpad/b1/m.mjs` and `clip.mjs`.
+
+## Believed, not checked
+- The recall card's on-screen rendering: I compared meta.json's recall with the script source, not a rendered recall card.
+- Landscape and a smaller phone (360 px wide) were not measured after the tick change.

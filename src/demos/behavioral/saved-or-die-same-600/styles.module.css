@@ -64,11 +64,11 @@
   visibility: hidden;
 }
 
+/* Block, not flex: the tick floats right, so only the text's first line wraps around it. */
 .optHead {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4px;
+  display: block;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .optText {
@@ -81,6 +81,9 @@
 }
 
 .tick {
+  float: right;
+  margin-left: 4px;
+  line-height: 1.1;
   color: var(--domain);
   font-weight: 800;
   font-size: 13px;
