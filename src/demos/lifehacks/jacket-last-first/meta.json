@@ -1,7 +1,7 @@
 {
   "slug": "jacket-last-first",
-  "title": "Pack the return order backwards",
-  "hook": "Jacket needed first, sweater next, shoes last. Which goes into the bag first?",
+  "title": "Jacket, sweater, shoes",
+  "hook": "You'll want the jacket first. Where in the bag should it go?",
   "domain": "lifehacks",
   "concept": "pack-in-reverse-order",
   "status": "review",
@@ -50,12 +50,10 @@
     },
     {
       "id": "lifehacks.jacket-last-first.c4",
-      "text": "Title: Pack the return order backwards Hook: Jacket needed first, sweater next, shoes last. Which goes into the bag first? Question: You need the jacket first, the sweater next, the shoes last. Which goes into the bag first? Options: The shoes / The jacket / Order doesn't matter. Correct option: The shoes.",
+      "text": "Title: Jacket, sweater, shoes Hook: You'll want the jacket first. Where in the bag should it go? Question: You need the jacket first, the sweater next, the shoes last. Which goes into the bag first? Options: The shoes / The jacket / Order doesn't matter. Correct option: The shoes.",
       "support": "convention",
-      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'reverse-order' at the starting input 3; correct option moved from 2nd to 1st for TP-8. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered question and options match the plan W3 row (correct moved first). Keyed \"The shoes\" is right: last needed goes in first. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'reverse-order' at the starting input 3; correct option moved from 2nd to 1st for TP-8. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): VERIFIED. Rendered question and options match the plan W3 row (correct moved first). Keyed \"The shoes\" is right: last needed goes in first. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title and hook replaced (content-patch-2026-10-16-r2.md §2 as amended by content-patch-2026-10-16-r3.md \"§2 re-check\", row \"jacket-last-first\"). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.jacket-last-first.c5",

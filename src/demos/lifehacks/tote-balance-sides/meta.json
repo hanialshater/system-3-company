@@ -19,16 +19,14 @@
     ]
   },
   "misconception": "As long as the total weight is the same, how you load a bag makes no difference to how it hangs.",
-  "objective": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
+  "objective": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Even the sides out, half the total on each, and the balance point is already under the handle: 3 kg and 1 kg become 2 kg each, 5 kg and 1 kg become 3 kg each. The bag hangs straight, and it weighs the same.",
   "claims": [
     {
       "id": "lifehacks.tote-balance-sides.c1",
-      "text": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
-      "support": "source",
-      "source": "REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): HELD. Support is \"source\" and the cited host (www.rei.com) is blocked from this session (proxy 403, and the WebFetch DNS lookup failed), so the source was not opened; not verified from memory. Also, the cited page is about loading a backpack, so it may not carry this statement even when open. The content can be derived: a body hanging freely from one point rests with its centre of mass straight below that point; 3 kg at -20 cm and 1 kg at +20 cm put it at -10 cm, and 2 kg + 2 kg put it at 0 (node). Fix (builder): retype support to derivation with that argument; then it verifies in one step. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts.",
+      "text": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Even the sides out, half the total on each, and the balance point is already under the handle: 3 kg and 1 kg become 2 kg each, 5 kg and 1 kg become 3 kg each. The bag hangs straight, and it weighs the same.",
+      "support": "derivation",
+      "source": "A body hanging freely from one point rests with its centre of mass straight below that point. With m kg at −20 cm and 1 kg at +20 cm, the centre is at (−20m + 20) / (m + 1): −10 cm for m = 3, −13.3 cm for m = 5. With (m + 1) / 2 kg on each side, it is at 0. Further reading (not support): REI, How to Pack a Backpack, https://www.rei.com/learn/expert-advice/loading-backpack.html (opened 2026-10-14), core heavy gear, balanced sides, accessory pocket access. Card arithmetic is a static simplified model, not a comfort or safety prediction. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 54 (fact-checker, 2026-10-16): HELD. Support is \"source\" and the cited host (www.rei.com) is blocked from this session (proxy 403, and the WebFetch DNS lookup failed), so the source was not opened; not verified from memory. Also, the cited page is about loading a backpack, so it may not carry this statement even when open. The content can be derived: a body hanging freely from one point rests with its centre of mass straight below that point; 3 kg at -20 cm and 1 kg at +20 cm put it at -10 cm, and 2 kg + 2 kg put it at 0 (node). Fix (builder): retype support to derivation with that argument; then it verifies in one step. Walkthrough of lhw3 tip 5d9de52 (production build, port 3931, transcript cut at the appendix per R1) read first; numbers re-run in node from home-lessons.ts, home-models.ts and engine-v2.ts. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): idea replaced so it holds at every slider value (content-patch-2026-10-16-r3.md D2 \"tote-balance-sides\"); support retyped source → derivation with the FC54 argument (dispatch 2026-10-16-r3-lifehacks.md D2); pending the W-1094 safety re-look. Not checked by the builder.",
       "status": "unverified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16",
       "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): HELD (blocked host www.rei.com, still proxy 403 this pass). Unchanged since FC 54. The FC 54 fix still stands and would let it verify in one step: demo-builder retypes support to derivation (3 kg at -20 cm and 1 kg at +20 cm put the centre at -10 cm; 2 + 2 kg at 0; engine and render agree, own run). Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD."
     },
     {
@@ -84,6 +82,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-16"
+    },
+    {
+      "id": "lifehacks.tote-balance-sides.caption",
+      "text": "Model; no safe load limit",
+      "support": "convention",
+      "source": "Stage caption drawn inside the picture (HomeLesson.tsx caption(): view \"mechanics\"). Scope and safety statement, no number (dispatch 2026-10-16-r3-lifehacks.md D2: record the caption as a claim). Pending the W-1094 safety re-look. Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",

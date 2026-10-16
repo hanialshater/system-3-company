@@ -20,7 +20,9 @@ const FIX_PLAN = read('company/decisions/2026-10-15-lifehacks-r11-fix-plan.md');
 const R11_WAVES_HOME = {
   W2: ['breeze-is-not-extra-surface', 'drying-room-water-load', 'folded-shirt-stack-height', 'garment-overlap-hides-face', 'half-size-two-towels', 'humidity-evaporation-gap', 'square-bow-stays-tied', 'towel-over-two-bars', 'towel-spread-dries-first', 'wet-knit-hang-stretch',
     // B4 (2026-10-16, content-patch-2026-10-16-r2.md 1D): two of the three W2 lines that did not fit, now on engine 2
-    'care-label-first-choice', 'towel-thickness-hidden-volume'],
+    'care-label-first-choice', 'towel-thickness-hidden-volume',
+    // lhfix-r3 (2026-10-16, content-patch-2026-10-16-r3.md D1): the third, on engine 2 with the rail varied instead of the count
+    'laundry-gap-air-path'],
   W3: ['elastic-loop-release', 'fitted-sheet-corners-nest', 'group-cables-with-ends', 'jacket-last-first', 'long-cord-knots-itself', 'shoes-opposite-ends', 'sock-pairing-by-pattern', 'sock-pairs-not-all-combinations', 'socks-use-shoe-space', 'suitcase-layer-access', 'tote-balance-sides'],
 };
 const V2_HOME = [...BATCH_D_HOME, ...Object.values(R11_WAVES_HOME).flat()].sort();

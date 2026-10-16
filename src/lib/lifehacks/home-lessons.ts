@@ -127,7 +127,7 @@ export const homeLessons: HomeSpec[] = [
     "limit": "Both can fail. The schematic is not a tying tutorial; loop loss is illustrative, not measured walking data.",
     "formula": "Both illustrative loops start at 20 mm at step 0. Walk advances from 0 to 25 steps: remaining loop = max(0, 20 − steps × rate) mm, with twisted (matching) rate 0.8 and flat (opposing) rate 0.3. The displayed results are 0 mm (undone) and 12.5 mm. No empirical lifetime is claimed.",
     "recall": "A bow twists out of line. Which knot step could you reverse?",
-    "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data.",
+    "source": "Ian Fieggen, Granny Knot Info, https://www.fieggen.com/shoelace/grannyknot.htm (opened 2026-10-14), balanced/opposing stages and bow orientation; Daily-Diamond, Gregg & O'Reilly 2017, doi:10.1098/rspa.2016.0770, full paper opened at https://escholarship.org/content/qt7qs984k7/qt7qs984k7_noSplash_66a8485e2a04a2d12bd2baeb463325cf.pdf. The model step decrements are illustrative, not data. Daily-Diamond, Gregg & O'Reilly 2017, Proc. R. Soc. A 473:20160770 (PMC5415684): the weak (granny) bow fails before the strong (square) bow.",
     "answer": 1,
     "concept": "shoelace-square-bow",
     "unit": "steps",
@@ -179,7 +179,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "cord-tangle-length",
     "unit": "cm",
     "inputLabel": "Length",
-    "hook": "Strings were tumbled in a box for ten seconds. How often did 3 m strings come out knotted?",
+    "hook": "Can a cord tie itself in a knot, with nobody tying it?",
     "engine": 2,
     "modeLabels": [
       "Tumble 0.3 m",
@@ -409,7 +409,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "shoes-opposite-ends",
-    "title": "Toe next to heel",
+    "title": "Packing a pair of shoes",
     "model": "pairpack",
     "view": "grid",
     "initial": 28,
@@ -465,7 +465,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "socks-use-shoe-space",
-    "title": "Use an existing hollow",
+    "title": "Socks beside the shoe or in it?",
     "model": "hollow",
     "view": "volume",
     "initial": 200,
@@ -480,7 +480,7 @@ export const homeLessons: HomeSpec[] = [
       "Beside shoe",
       "Inside hollow"
     ],
-    "question": "Socks beside the shoe or inside it. How much packed volume do they add inside?",
+    "question": "Rolled socks beside a shoe take up their own space in the bag. Stuffed inside the shoe, how much extra space do they take?",
     "idea": "A shoe is hollow: in this model it has 600 cm³ of empty space inside. Socks that fit in that space add nothing to what you pack. Only socks bigger than the space spill over and add volume.",
     "limit": "Use clean, dry items; do not force or deform footwear. This is an ideal hollow-volume model.",
     "formula": "Shoe=800cm³ with a 600cm³ hollow. Socks add their own volume beside the shoe, or max(0, socks−600) inside it; packed total=800+added.",
@@ -490,7 +490,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "socks-use-shoe-space",
     "unit": "cm³",
     "inputLabel": "Sock volume",
-    "hook": "Socks beside the shoe or inside it. How much packed volume do they add inside?",
+    "hook": "Rolled socks next to your shoes, or inside them. Does it change the room they take?",
     "engine": 2,
     "modeLabels": [
       "Beside the shoe",
@@ -498,7 +498,7 @@ export const homeLessons: HomeSpec[] = [
     ],
     "options": [
       "None",
-      "Same as beside"
+      "The same as beside it"
     ],
     "amounts": [
       {
@@ -711,7 +711,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "jacket-last-first",
-    "title": "Pack the return order backwards",
+    "title": "Jacket, sweater, shoes",
     "model": "reverse-order",
     "view": "order",
     "initial": 3,
@@ -735,7 +735,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "jacket-last-first",
     "unit": "items",
     "inputLabel": "Items packed",
-    "hook": "Jacket needed first, sweater next, shoes last. Which goes into the bag first?",
+    "hook": "You'll want the jacket first. Where in the bag should it go?",
     "engine": 2,
     "modeLabels": [
       "In use order",
@@ -805,7 +805,7 @@ export const homeLessons: HomeSpec[] = [
       "Balance sides"
     ],
     "question": "3 kg on the left, 1 kg on the right. Move 1 kg across. Does the bag now hang straight?",
-    "idea": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Move 1 kg across and both sides hold 2 kg, so the bag hangs straight, though it weighs the same.",
+    "idea": "The heavier side pulls the balance point towards it, and the bag tilts until that point is under the handle. Even the sides out, half the total on each, and the balance point is already under the handle: 3 kg and 1 kg become 2 kg each, 5 kg and 1 kg become 3 kg each. The bag hangs straight, and it weighs the same.",
     "limit": "A centred drawing does not certify a bag’s strength or make a heavy load safe.",
     "formula": "As packed: m kg left and 1 kg right, at −20 and +20 cm from the handle; evened out, each side=(m+1)/2 kg. Balance point=sum(mass×position)/total mass.",
     "recall": "Why is the total weight insufficient to describe balance?",
@@ -995,10 +995,10 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "laundry-gap-air-path",
-    "title": "A gap is an air path",
+    "title": "Room between the shirts",
     "model": "gaps",
     "view": "cloth",
-    "initial": 60,
+    "initial": 48,
     "min": 45,
     "max": 80,
     "step": 1,
@@ -1010,17 +1010,60 @@ export const homeLessons: HomeSpec[] = [
       "Touching rows",
       "Spaced rows"
     ],
-    "question": "Which layout leaves clear paths between these items?",
-    "idea": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off.",
+    "question": "Five shirts on a 60 cm rail have 5 cm between neighbours. Move them to a 48 cm rail: how much gap is left?",
+    "idea": "Five shirts always take 40 cm of rail. Only the rail left over is shared out as gaps, so a shorter rail shrinks every gap, even with the same five shirts. At 0 cm, neighbours touch and no open path is left between them.",
     "limit": "The diagram does not calculate airflow or real drying time; fabric shapes and room ventilation matter.",
-    "formula": "Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0.",
+    "formula": "Gap=(rail width−5×8)/4 cm; shirts 8 cm wide. Channels count only when the gap is above 0.",
     "recall": "What changes when a rack is full enough that neighbouring garments touch?",
     "source": null,
     "answer": 1,
     "concept": "laundry-gap-air-path",
     "unit": "cm",
-    "inputLabel": "Rack width",
-    "hook": "Which layout leaves clear paths between these items?"
+    "inputLabel": "Rail width",
+    "hook": "Same five shirts, shorter rail. What happens to the space between them?",
+    "engine": 2,
+    "modeLabels": [
+      "Pushed together",
+      "Spread evenly"
+    ],
+    "options": [
+      "None: they touch",
+      "2 cm",
+      "5 cm: same five shirts"
+    ],
+    "amounts": [
+      {
+        "label": "Rail width",
+        "unit": "cm",
+        "a": "p",
+        "b": "p"
+      },
+      {
+        "label": "Rail left after the shirts",
+        "unit": "cm",
+        "a": [
+          "-",
+          "p",
+          [
+            "*",
+            "a",
+            "b"
+          ]
+        ],
+        "b": [
+          "-",
+          "p",
+          [
+            "*",
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ],
+    "resultLabel": "Gap between neighbours",
+    "plainNumbers": true,
+    "revealLine": "{B}: five 8 cm shirts use 40 cm of the {amountB0} rail. The {amountB1} left is shared by 4 gaps: {resultB} each. {A}: {resultA} between neighbours, so no gap is open."
   },
   {
     "slug": "garment-overlap-hides-face",
@@ -1048,7 +1091,7 @@ export const homeLessons: HomeSpec[] = [
     "answer": 2,
     "concept": "garment-overlap-hides-face",
     "unit": "cm",
-    "inputLabel": "Overlap",
+    "inputLabel": "Overlap width (overlapping shirts only)",
     "hook": "Two wet shirts overlap on the line. Does that hide any cloth from the air?",
     "engine": 2,
     "modeLabels": [
@@ -1092,7 +1135,7 @@ export const homeLessons: HomeSpec[] = [
     "model": "water-load",
     "view": "volume",
     "initial": 12,
-    "min": 1,
+    "min": 2,
     "max": 16,
     "step": 1,
     "values": [
@@ -1386,10 +1429,10 @@ export const homeLessons: HomeSpec[] = [
       "Double thickness"
     ],
     "question": "Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now?",
-    "idea": "Doubling thickness at the same width and length doubles material volume while keeping the two large face areas fixed. The area-to-volume ratio therefore halves.",
-    "limit": "This geometric ratio alone does not determine a fabric’s drying time.",
-    "formula": "Face area=2×50×100cm²; volume=50×100×thickness/10 cm³, doubled for comparison. Ratio=area/volume cm⁻¹.",
-    "recall": "What happens to face-area-to-volume ratio when thickness doubles?",
+    "idea": "Twice as thick at the same width and length means twice the cloth, but the open face is still the same two sides. So each cm³ of cloth gets half as much open face.",
+    "limit": "Open face per cm³ of cloth does not, on its own, set a towel’s drying time.",
+    "formula": "Open face=2×50×100 cm²; cloth=50×100×thickness/10 cm³, doubled when twice as thick. Open face per cm³=open face÷cloth.",
+    "recall": "Same size cloth, twice as thick: what happens to the open face each cm³ of cloth gets?",
     "source": null,
     "answer": 2,
     "concept": "towel-thickness-hidden-volume",
@@ -1456,7 +1499,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "fitted-sheet-corners-nest",
-    "title": "Put the corner inside the corner",
+    "title": "Folding a fitted sheet",
     "model": "nest",
     "view": "cloth",
     "initial": 4,
@@ -1471,25 +1514,25 @@ export const homeLessons: HomeSpec[] = [
       "Separate pockets",
       "Nested pockets"
     ],
-    "question": "Fold a fitted sheet with its corners tucked into each other, or not. How much flatter is it?",
+    "question": "Fold a fitted sheet with its corners tucked into each other, or with them apart. How do the two heights compare?",
     "idea": "Each elastic corner is a cup of cloth. Kept apart, four cups stack as four full depths. Tucked inside one another, they share one hollow, and each extra corner adds only a thin layer of cloth.",
     "limit": "Real elastic and seams change the numbers; this counts the corners, not every fold of the sheet.",
     "formula": "Folded thickness=4×8cm with the corners apart; nested=8+(4−1)×2cm (8 cm corner depth, 2 cm per extra layer of cloth).",
-    "recall": "Why can nesting hollow shapes save envelope space without removing material?",
+    "recall": "Why can nesting hollow shapes take up less room without removing any material?",
     "source": null,
     "answer": 1,
     "concept": "fitted-sheet-corners-nest",
     "unit": "corners",
     "inputLabel": "Count",
-    "hook": "Fold a fitted sheet with its corners tucked into each other. How much flatter is it?",
+    "hook": "Corners tucked into each other, or folded apart. Does it change the fold?",
     "engine": 2,
     "modeLabels": [
       "Corners apart",
       "Corners nested"
     ],
     "options": [
-      "Not at all: elastic always lumps",
-      "18 cm flatter"
+      "The same: elastic always lumps",
+      "Nested is 18 cm flatter"
     ],
     "amounts": [
       {
@@ -1583,7 +1626,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "sock-pairs-not-all-combinations",
-    "title": "Six socks are not six possible pairs",
+    "title": "Ten socks: how many pairings?",
     "model": "combinations",
     "view": "order",
     "initial": 6,
@@ -1597,26 +1640,26 @@ export const homeLessons: HomeSpec[] = [
       "All possible pairs",
       "Marked partners"
     ],
-    "question": "Six plain socks, three pairs, no marks. How many different two-sock pairings could you try?",
-    "idea": "Each sock can go with any of the others, so six socks give 15 pairings: 5 + 4 + 3 + 2 + 1. The pairings grow much faster than the socks: ten socks give 45. A mark on each pair leaves one pairing per pair.",
-    "limit": "This assumes pairs that look alike but are not interchangeable; identical pairs would need fewer tries.",
-    "formula": "Candidates=N(N−1)/2 versus floor(N/2) marked pairs; N is an even illustrative sock count after rounding down.",
+    "question": "Six black socks from three people look alike, but only the true pairs match. They make 15 possible two-sock pairings. Ten socks from five people: how many?",
+    "idea": "Each sock can go with any of the others, so six socks make 15 pairings (5 + 4 + 3 + 2 + 1) and ten make 45 (9 + 8 + … + 1). You never test them all, because a sock leaves the pile once it is matched, but each extra sock adds a pairing with every sock already there, so the pairings grow faster than the socks. A mark on each pair leaves one pairing per pair.",
+    "limit": "This counts possible pairings, not the tries it takes you: a matched sock leaves the pile. Socks that really are identical pair up any way.",
+    "formula": "Possible pairings=N(N−1)/2 unmarked versus N/2 marked pairs; N is an even sock count, 4 to 10.",
     "recall": "Why can a unique partner mark change a matching task more than a tidy pile?",
     "source": null,
-    "answer": 2,
+    "answer": 1,
     "concept": "sock-pairs-not-all-combinations",
     "unit": "socks",
     "inputLabel": "Count",
-    "hook": "Six plain socks, three pairs, no marks. How many two-sock pairings could you try?",
+    "hook": "More socks in the pile. How fast do the possible two-sock pairings grow?",
     "engine": 2,
     "modeLabels": [
       "No marks",
       "Marked partners"
     ],
     "options": [
-      "3",
-      "6",
-      "15"
+      "25: in step with the socks",
+      "45",
+      "90"
     ],
     "amounts": [
       {
@@ -1626,8 +1669,8 @@ export const homeLessons: HomeSpec[] = [
         "b": "p"
       }
     ],
-    "resultLabel": "Pairings to try",
-    "revealLine": "{A}: {amountA0} socks give {resultA} pairings to try. {B}: only {resultB}, one per pair."
+    "resultLabel": "Possible pairings",
+    "revealLine": "{A}: {amountA0} socks make {resultA} possible two-sock pairings. {B}: {resultB}, one per pair."
   },
   {
     "slug": "laundry-sort-before-walk",
@@ -1791,7 +1834,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "group-cables-with-ends",
-    "title": "A bundle still has loose ends",
+    "title": "Tie the middle or tuck the ends?",
     "model": "end-paths",
     "view": "cord",
     "initial": 3,
@@ -1815,7 +1858,7 @@ export const homeLessons: HomeSpec[] = [
     "concept": "group-cables-with-ends",
     "unit": "cords",
     "inputLabel": "Count",
-    "hook": "Three cords tied in the middle, or with their ends tucked. Which tangles less in a drawer?",
+    "hook": "Three cords in one drawer. Does tying them together stop the tangles?",
     "engine": 2,
     "modeLabels": [
       "Tie the middle",
@@ -1839,7 +1882,7 @@ export const homeLessons: HomeSpec[] = [
   },
   {
     "slug": "elastic-loop-release",
-    "title": "A loop is not a permanent knot",
+    "title": "Knotted, or just looped?",
     "model": "loop-release",
     "view": "cord",
     "initial": 20,
@@ -1856,14 +1899,14 @@ export const homeLessons: HomeSpec[] = [
     "question": "A hair tie is looped round a cord's end, and it looks knotted. What frees it?",
     "idea": "A hair tie round a cord is a closed loop, not a knot, so there is nothing to pick apart. While the cord's end is free, the loop slides along the cord and off the end, and the cord lies straight again.",
     "limit": "Plain cord; storage only. The drawing gives no electrical safety limit or product-specific bend radius.",
-    "formula": "Crossings=1 while the hair tie is on the cord, 0 once it has slid off the free end; nothing is cut and the elastic is not stretched.",
+    "formula": "Hair ties on the cord=1 while the tie is round the cord, 0 once it has slid off the free end; nothing is cut and the elastic is not stretched.",
     "recall": "Why does the position of a free end matter when judging a tangle?",
     "source": "Raymer & Smith 2007, Spontaneous knotting of an agitated string, doi:10.1073/pnas.0611320104, full text opened 2026-10-14 at https://www.mit.edu/~kardar/research/seminars/knots/RaymerSmithPNAS.pdf; p.16432 standard 0.30m box, 1 revolution/s, 10s, length dependence; p.16435 end weaving model. No household knot probability is asserted.",
     "answer": 1,
     "concept": "elastic-loop-release",
     "unit": "cm",
     "inputLabel": "Free end",
-    "hook": "A hair tie is looped round a cord's end, and it looks knotted. What frees it?",
+    "hook": "A hair tie caught on a cord looks like a knot. How do you get it off?",
     "engine": 2,
     "modeLabels": [
       "Pick at it",
@@ -1882,12 +1925,12 @@ export const homeLessons: HomeSpec[] = [
         "b": "off the end"
       }
     ],
-    "resultLabel": "Crossings",
+    "resultLabel": "Hair ties on the cord",
     "verdictByMode": {
       "a": "still looped",
       "b": "free"
     },
-    "revealLine": "{A}: the hair tie stays {amountA0}, crossings {resultA}. {B}: it comes {amountB0}, crossings {resultB}, and nothing is cut."
+    "revealLine": "{A}: there is no knot to undo, so the hair tie stays {amountA0}. Hair ties on the cord: {resultA}. {B}: it slides {amountB0}, and nothing is cut. Hair ties on the cord: {resultB}."
   },
   {
     "slug": "coiled-cord-bend-radius",

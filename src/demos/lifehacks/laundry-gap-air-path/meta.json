@@ -1,7 +1,7 @@
 {
   "slug": "laundry-gap-air-path",
-  "title": "A gap is an air path",
-  "hook": "Which layout leaves clear paths between these items?",
+  "title": "Room between the shirts",
+  "hook": "Same five shirts, shorter rail. What happens to the space between them?",
   "domain": "lifehacks",
   "concept": "drying-airflow",
   "status": "review",
@@ -18,17 +18,15 @@
       "that the spaces between hanging clothes let damp air move away, so crowding items together slows each one down even though more of them fit"
     ]
   },
-  "misconception": "Packing more clothes onto the rack dries the load sooner, because more items dry at once.",
-  "objective": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off.",
+  "misconception": "The same five shirts keep the same 5 cm gap on a shorter rail.",
+  "objective": "Five shirts always take 40 cm of rail. Only the rail left over is shared out as gaps, so a shorter rail shrinks every gap, even with the same five shirts. At 0 cm, neighbours touch and no open path is left between them.",
   "claims": [
     {
       "id": "lifehacks.laundry-gap-air-path.c1",
-      "text": "In this rack drawing, positive separation leaves an open channel. Packing more garments onto the same width eventually removes those channels; the count of gaps shows the trade-off.",
+      "text": "Five shirts always take 40 cm of rail. Only the rail left over is shared out as gaps, so a shorter rail shrinks every gap, even with the same five shirts. At 0 cm, neighbours touch and no open path is left between them.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): idea replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c2",
@@ -41,21 +39,17 @@
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c3",
-      "text": "Available gap=(rack width−5×8)/4cm; touching method sets spacing=0. Four channels count only when spacing>0.",
+      "text": "Gap=(rail width−5×8)/4 cm; shirts 8 cm wide. Channels count only when the gap is above 0.",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): formula replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c4",
-      "text": "Which layout leaves clear paths between these items?",
+      "text": "Title: Room between the shirts Hook: Same five shirts, shorter rail. What happens to the space between them? Question: Five shirts on a 60 cm rail have 5 cm between neighbours. Move them to a 48 cm rail: how much gap is left? Options: None: they touch / 2 cm / 5 cm: same five shirts. Correct option: 2 cm.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): title, hook, question and options replaced (content-patch-2026-10-16-r3.md D1 rows \"laundry-gap-air-path\" (engine 2 on the existing gaps case)). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.laundry-gap-air-path.c5",
@@ -74,6 +68,13 @@
       "status": "verified",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-14"
+    },
+    {
+      "id": "lifehacks.laundry-gap-air-path.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Spread evenly: five 8 cm shirts use 40 cm of the 48 cm rail. The 8 cm left is shared by 4 gaps: 2 cm each. Pushed together: 0 cm between neighbours, so no gap is open.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2, content-patch-2026-10-16-r3.md D1). Added unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3). Not checked by the builder.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +98,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:drying-airflow",
     "prerequisites": [
