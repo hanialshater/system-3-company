@@ -1,14 +1,17 @@
 .wrap { display: flex; flex-direction: column; gap: 6px; }
 .wrap > :global(.row) { margin-top: 0; justify-content: center; flex-wrap: wrap; }
 .caption { margin: 0; text-align: center; font-weight: 700; font-size: 0.9rem; min-height: 1.4em; }
-.key { margin: 0; text-align: center; font-size: 0.8rem; color: var(--muted); min-height: 1.3em; }
-.keyDash { color: var(--muted); letter-spacing: 1px; font-weight: 700; }
-.keyRing { color: var(--domain); font-weight: 700; }
+.key { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; column-gap: 12px; font-size: 0.8rem; color: var(--fg); min-height: 1.3em; }
+.keyItem { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.swatch { width: 22px; height: 8px; }
+.ringSwatch { width: 12px; height: 12px; }
+.keyRingLine { fill: none; stroke: var(--muted); stroke-width: 1.6; }
 .seen { margin: 0; text-align: center; font-size: 0.8rem; font-weight: 600; min-height: 1.3em; }
 .link { fill: none; stroke: var(--fg); stroke-width: 1.6; opacity: 0.55; }
 .newLink { fill: none; stroke: var(--good); stroke-width: 3; }
 .crossLink { fill: none; stroke: var(--bad); stroke-width: 2.4; }
 .trailLink { fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 4 4; opacity: 0.8; }
-.trailRing { fill: none; stroke: var(--domain); stroke-width: 2.5; opacity: 0.9; }
+.ringBlue { fill: none; stroke: #3b82f6; stroke-width: 3; }
+.ringOrange { fill: none; stroke: #f59e0b; stroke-width: 3; }
 .blue { fill: #3b82f6; stroke: var(--fg); stroke-width: 1.2; }
 .orange { fill: #f59e0b; stroke: var(--fg); stroke-width: 1.2; }
