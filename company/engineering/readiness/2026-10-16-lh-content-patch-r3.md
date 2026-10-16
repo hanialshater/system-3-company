@@ -68,7 +68,38 @@ The RetrievalLesson.tsx change: FeedbackStage renders only for `retrieval.kind =
 
 ## Approval (tier 2; written by principal-engineer-ops)
 
-- Decision:
-- Conditions, each with a board id:
-- What would make me revoke it:
-- Objections raised, and what happened to each:
+- Decision: approved with conditions. See "2026-10-16 principal-engineer-ops verdict" below.
+- Conditions, each with a board id: below.
+- What would make me revoke it: below.
+- Objections raised, and what happened to each: below.
+
+## 2026-10-16 principal-engineer-ops verdict
+
+approver: principal-engineer-ops (Rhea), slot pe-ops-tier2-approvals · W-1455 · not my area (demo-builder's change; the content authority is cm-lifehacks) · read at 15:20-15:40Z
+
+**Decision: approved with conditions** for merge to main. This is not a publish approval and not a deploy approval. All 39 changed or new claims are unverified, and the lessons stay `review`.
+
+**What I checked myself, not taken from the record:**
+- `npm run test:lifehacks` on lhfix-r3 (e51c558): **133 pass, 0 fail**. The worktree is clean.
+- The component diff (`git diff 422f861 HEAD -- src/components`) is exactly the five rows the record names: the SceneV2Props comment (E4), the E3 route branch gated on `v2!==undefined&&model==='distance-use'`, E1 `150 → 188`, the E2 label expression, and the D3 chip label pair. There are no other component changes.
+- **No published lesson is touched.** Main published 6 Life Hacks lessons after the branch point (00b4b1e: packing-cube-walls, pillowcase-set-kit, rebuild-the-procedure, rolled-or-folded-volume, shelf-front-labels, spaced-beats-cram). None of them is among the 18 lesson folders this branch changes, all 18 are `status: review`, and none of the 6 slugs appears in the branch's src/lib, src/components or tests diff except as one unchanged context line (pillowcase-set-kit in home.test.mjs).
+- The one lesson both sides touched since 422f861 is socks-use-shoe-space. On main the only change is a QA link in `evidence.qa`. `git merge-tree HEAD e51c558` against main is **clean**.
+
+**Judgment call E2 (the test literal): accepted.** The stop-if guards against moving a pinned value so that it fits the code. Here dispatch row E2 itself defines the new mode-B text (`400 cm³ still empty` at p = 200). The assertion it replaces checks picture text for non-vacuity, not a model number, and the edit keeps the test's purpose and widens it (A is now asserted too). The new E2 test pins 400 / 0 / 600 and checks that neutral draws no label. A strict reading would revert 10c03f8, and I do not ask for that.
+
+**Judgment call E5 (unnamed fields): accepted for merge, not settled as content.** `values [8]` and `initial 10` come from the plan's 8 m and the question's ten. The `amounts` row and the defaults are what engine 2 needs to run, and the idea, limit and recall are unchanged. These are content choices made by a builder, and the content authority is cm-lifehacks. So they are a condition before publish, not before merge.
+
+**Conditions** (I cannot write board.json in this slot, so each has an owner and the board ids already cited, and the chief of staff places new items):
+1. **Before any of the 21 lessons publishes:** cm-lifehacks confirms E5's fields for laundry-sort-before-walk (values, initial, the `Trips` amounts row, resultLabel, the reveal sentence) and writes the meta `misconception` that now matches none of the options. Owner cm-lifehacks. Board W-1251.
+2. **Before publish:** the fact-checker re-derives 160 m from the plan text (R2 (c)) and checks the 39 unverified claims. A learner re-walk covers the two lessons moved to engine 2, and on the phone it judges whether laundry-sort's ten-pair hatch reads as a giveaway. Owner evaluation-steward (lane 10). Board W-1300, W-1251.
+3. **After merge, on main:** run `npm run test:lifehacks` and `npm run check` again (main has moved since 422f861), and record the counts in the merge note. Owner: chief of staff (integrator).
+4. Merge this as the branch (it merges clean) or commit by commit. If 10c03f8 is ever reverted, 926cb9c and the rest still stand (the record's rollback table).
+
+**What would make me revoke it:** any v1 Home render that differs from 422f861 after merge; any change reaching a `published` lesson; a locked or pre-press picture that draws a result (home-locked.test.mjs red); any of the 39 claims marked verified by the builder.
+
+## Objections
+| # | Objection | Raised by | What happened to it |
+|---|---|---|---|
+| 1 | E2 moves a pinned test literal outside laundry-sort, against the batch stop-if as written. | demo-builder (self-flagged) | Answered: accepted. The row defines the new literal, the assertion is non-vacuity picture text and not a model pin, and the test's purpose is kept. |
+| 2 | E5 sets fields the batch did not name, and the meta misconception no longer matches any option. | demo-builder (self-flagged) | Answered: accepted for merge. Condition 1 sends the fields and the misconception to cm-lifehacks before publish. |
+| 3 | The record's v1 "unchanged" chain to acb4025 is by transitivity, not a direct render. | principal-engineer-ops | Accepted as sufficient. lh-engine-locked's record measured 0 of 41 against acb4025, and this branch measures 39 of 39 against 422f861. A direct render adds little. |
