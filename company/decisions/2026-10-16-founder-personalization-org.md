@@ -33,6 +33,13 @@ recorded by: chief-of-staff
 - **Consequence for open items:** W-1496 (analytics-steward), W-1497 (research-lead), W-1498 (principal-engineer, location of dims and code) and W-1503 (hq-engineer, HQ lab) move into the personalization org once its roles are approved; until then they wait for those roles rather than going to the other teams. personalization-eval reports inside the org, not to evaluation-steward.
 - **What stays company-wide (not "leveraging", they are gates every org passes):** privacy review of learner data (W-1495), the founder's approval of every deploy, protected paths and the constitution, the claims rule for anything a learner reads, and the platform owner's review where personalization code touches the shared feed or kit. Leonie is asked to state the interface for each in the org design.
 
+## Founder decision, third message (2026-10-16): a customer-data team
+
+> "Ues do it, but through a new team for customer data under the vp of personalization"  (founder, conversation; "it" = the chief of staff's recommendation to add the `settings` table (personalization on/off, subjects, less-of) to the accounts database and keep fingerprints, need scores and ability scores unstored, per company/reviews/_privacy/2026-10-16-personalization-model-inputs.md and data-inventory row D20)
+
+- **Decided by the founder:** a customer-data team inside the personalization org, under the VP. It owns the learner data personalization reads and writes, starting with the `settings` schema diff for the privacy read.
+- **Left to Leonie (how):** the role card(s), scope, and the interface with backend-engineer (owns the accounts database, migrations and EDD-008 today) and privacy-reviewer (company-wide gate, unchanged).
+
 ## Objections
 
 - **chief-of-staff:** a "head of feed" and a personalization "eval" role overlap with owners that exist (platform-engineer owns the feed surface; analytics-steward and evaluation-steward own experiments and the harness). Creating them without moving those scopes leaves two owners for one thing. **Answer:** sent to step 1 and 2: Mateo must name each overlap, Leonie must resolve it (move the scope, split it, or drop the role) before it reaches the founder.
