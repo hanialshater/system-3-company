@@ -23,6 +23,27 @@ who no longer exists: check what you rely on.
 **Tests:** HQ lab tests 10/10; `npm run test:hq` 72/75 (the same 3 release-history shallow-clone failures); typecheck clean; `npm run check` passes. M6 test mutation-checked: removing the meta join makes it fail. `npm run verify` (build + QA) not run.
 **Believe (high):** the nits are closed as asked; M3 is stricter than asked (`data:` and inline styles flagged too), which a privacy gate can afford. N5, M2, M4 stay notes (W-1540 note).
 **Next:** hq-engineer reviews W-1540 on perso-u1; chief-of-staff merges after. **Blocked:** nothing.
+## 2026-10-16 · learner-data-engineer (Solenne) · W-1538/W-1558 fix round: C1/B2a route moved, C7/D2a atomic PUT (run lde-u2-fix-1016, branch perso-u2)
+
+**Changed:** route moved to src/app/api/account/settings/route.ts (git mv; nothing left under src/app/api/settings/); B2 scan now also fails on any file at the old mount (planted control added, 8 plants). PUT no longer reads before writing: settings-store.ts runs one statement per request (SET_UPSERT_SQL / SET_UPDATE_SQL / MERGE_SQL, chosen by `writePlan` from the request only), each writing only the sent columns on the locked row; merge decides "account lists win, either false stays false" inside the statement. Rule = `applyWrite` in settings.ts (replaced applySet/applyMerge). New tests/settings/settings-write-race.test.mjs; new company/personalization/data/test-settings-write-sql.mjs; note §1-§4, §6, new §7; board W-1558 to review, W-1538 note/links.
+**Tests:** `npm run test:settings` 31/31 (fake in-memory store modelling the atomicity contract; no Postgres in that suite). Separately, the exact SQL on a throwaway local Postgres 16 with fake rows (not Neon, no learner data): 9/9, i.e. 52 cases equal applyWrite, unchanged rows keep xmin, five two-session races keep `false`, old statement used the old way loses it; a planted break in MERGE_SQL failed it. typecheck 0, build 0 (`ƒ /api/account/settings`, nft still lists 14 curriculum files), check 0.
+**Believe:** D2a is closed for the default READ COMMITTED isolation (high, ran on real local Postgres sessions); D1 and unchanged-not-rewritten kept. Not checked on Neon or through the real db helper.
+**Next:** privacy-reviewer confirms D2a/B2a closed (W-1557); principal-engineer closes C7; backend-engineer W-1559 (namespace ack, session/db/flag, B3 patches, FK, number). **Blocked:** wiring and apply on the accounts branch; deploy on the founder.
+
+## 2026-10-16 · principal-engineer (Kenji) · W-1538 settings API tier-2 review: approve with conditions (run pe-u2-review-1016, branch perso-u2)
+
+**Changed:** review record company/engineering/reviews/2026-10-16-w1538-settings-api.md; board W-1554..W-1559 (conditions by owner; W-1552/W-1553 renumbered to W-1558/W-1559 by chief-of-staff, collided with main). No code edited.
+**Ruled:** mount at `/api/account/settings` (ADR-008 items 3-4 already prescribe it; cookie not widened); modules stay in `src/lib/server/personalization/` (settings only, not model serving); table name `settings`; `test:settings` in verify is fine for merge, but must run in CI before wiring (CI amendment with W-1116/W-409).
+**Measured:** typecheck 0; test:settings 25/25 1.1 s; build 21 s, route nft trace includes all 14 content/curriculum/*.json (file tracing closed at build level); check 1.4 s.
+**Believe:** code is sound once moved (high); one race (merge vs set-false, finding 2) is a privacy call (C7).
+**Next:** learner-data-engineer C1 move (W-1558); backend-engineer namespace ack (W-1559); principal-engineer paths.json rule (W-1555). **Blocked:** wiring/apply on the accounts branch.
+
+## 2026-10-16 · learner-data-engineer (Solenne) · U2 / W-1538: settings API on a branch, not wired, nothing applied (run lde-u2-1016, branch perso-u2)
+
+**Changed:** new src/app/api/settings/route.ts (GET, PUT only; 404 while unwired), src/lib/server/personalization/{settings,settings-store,settings-handler,settings-wiring}.ts, tests/settings/ (25 tests), package.json `test:settings` (also in `verify`, not `check`), design note company/personalization/data/2026-10-16-settings-api-note.md (API surface, B1-B4/D1-D3/G1-G4 map, B3 patches, unverified list). Board W-1538 → review. No database touched, no migration moved or applied, no dependency.
+**Tests:** `npm run test:settings` 25/25 (B1 incl. real-catalog drop test; B2 repo-wide write/import scan with planted-break control; B4 sentinel through 11 paths incl. pg-style error detail, with capture control; D1-D3; G2-G3); typecheck clean; build passes (`ƒ /api/settings`); test:platform 30/30; `npm run check` passes.
+**Believe:** the code meets B1, B2 (as a grep), B4, D1-D3, G2-G3 (high). **It cannot work at /api/settings as mounted:** ADR-008 scopes the session cookie to `Path=/api/account`, so this path never receives a session. I recommend mounting at /api/account/settings (one path change + one test constant); principal-engineer (location) and backend-engineer (namespace) decide, and privacy-reviewer's B2 wording follows. Unverified against the accounts branch: session helper, db query shape, flag, FK/table name, migration number, file tracing (note §4).
+**Next:** privacy-reviewer reads B1-B4; backend-engineer: B3 patches (note §5) + order review + wiring; principal-engineer: tier 2 location and package.json. **Blocked:** wiring and any apply on the accounts branch (not in this clone); deploy on the founder.
 
 ## 2026-10-16 · vp-personalization (Mateo) · lane 14 batch 3: criterion 2, headroom first, plus review timing (run vp-batch3-1016)
 

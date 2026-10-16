@@ -18066,15 +18066,23 @@
       "id": "W-1538",
       "title": "Settings API read by privacy-reviewer: conditions B1-B4 (catalog-membership drop test, only PUT /api/settings writes, deletion/export patches, no body logging) per company/reviews/_privacy/2026-10-16-personalization-batch-reads.md §3",
       "owner": "learner-data-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-3.md",
         "company/reviews/_privacy/2026-10-16-personalization-batch-reads.md",
-        "company/personalization/data/2026-10-16-settings-schema-note.md"
+        "company/personalization/data/2026-10-16-settings-schema-note.md",
+        "company/personalization/data/2026-10-16-settings-api-note.md",
+        "src/app/api/account/settings/route.ts",
+        "src/lib/server/personalization/settings-handler.ts",
+        "tests/settings/settings-only-put-writes.test.mjs",
+        "company/engineering/reviews/2026-10-16-w1538-settings-api.md",
+        "company/reviews/_privacy/2026-10-16-w1538-settings-api.md",
+        "company/personalization/data/test-settings-write-sql.mjs",
+        "tests/settings/settings-write-race.test.mjs"
       ],
-      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U2 (wave 1): write the settings API on a branch per privacy B1-B4 and D1-D3. Code does not wait; applying the table waits on backend-engineer order review (W-1522 / W-1521 note), privacy-reviewer API read and accounts-tip re-read (E7); deploy needs the founder.",
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U2 (wave 1): write the settings API on a branch per privacy B1-B4 and D1-D3. Code does not wait; applying the table waits on backend-engineer order review (W-1522 / W-1521 note), privacy-reviewer API read and accounts-tip re-read (E7); deploy needs the founder. | 2026-10-16 learner-data-engineer (lde-u2-1016, branch perso-u2): settings API written, not wired (route 404 until backend-engineer supplies session/db/flag), nothing applied. npm run test:settings 25/25. REVIEW: privacy-reviewer (B1-B4 read; D1-D3, G1-G4; note §3), backend-engineer (B3 patches note §5; unverified items note §4 incl. ADR-008 cookie Path=/api/account means /api/settings never gets the session: recommend /api/account/settings; order review), principal-engineer (tier 2: location src/app/api/settings + src/lib/server/personalization, package.json test:settings + verify line, table name). Not merged to main until those reads exist. | 2026-10-16 learner-data-engineer (lde-u2-fix-1016): fix round for C1/B2a and C7/D2a done on perso-u2 (W-1558): route now src/app/api/account/settings/route.ts, scan fails on any file under src/app/api/settings/; PUT is one atomic SQL statement per request (no read-modify-write). test:settings 31/31; local throwaway Postgres 16 SQL test 9/9 incl. two-session races (fake rows, not Neon). REVIEW: privacy-reviewer re-read D2a/B2a (W-1557), principal-engineer C7 close; backend-engineer W-1559 unchanged.",
       "updated": "2026-10-16"
     },
     {
@@ -18274,6 +18282,70 @@
       "id": "W-1553",
       "title": "Founder ask: approve the personalization project budget (2.0M token ESTIMATE by portfolio-manager, batch 3 + upkeep; scope already founder-approved) and say whether the U2 settings API is charged to personalization or First Light's personalization workstream. File in founder-inbox with budget=personalization (projects.json id personalization; token-budget.md section 9)",
       "owner": "chief-of-staff",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1558",
+      "title": "W-1538 C1 (eng review company/engineering/reviews/2026-10-16-w1538-settings-api.md): move settings route to src/app/api/account/settings/route.ts (ADR-008 cookie Path=/api/account), update ROUTE in tests/settings/settings-only-put-writes.test.mjs + comments + note §2/§4.1; then C7: make PUT atomic or get privacy-reviewer to accept the merge-vs-off race",
+      "owner": "learner-data-engineer",
+      "state": "review",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/engineering/reviews/2026-10-16-w1538-settings-api.md",
+        "company/reviews/_privacy/2026-10-16-w1538-settings-api.md",
+        "company/personalization/data/2026-10-16-settings-api-note.md",
+        "src/app/api/account/settings/route.ts",
+        "src/lib/server/personalization/settings-store.ts",
+        "tests/settings/settings-write-race.test.mjs",
+        "company/personalization/data/test-settings-write-sql.mjs"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 learner-data-engineer (lde-u2-fix-1016): C1 done (route moved, ROUTE + comments + note updated, old-mount scan with planted control). C7/D2a fixed by option (a)+single-statement merge: SET_UPSERT_SQL / SET_UPDATE_SQL / MERGE_SQL in settings-store.ts, rule = applyWrite in settings.ts; note §7. Needs privacy-reviewer to confirm D2a closed and principal-engineer to close C7; backend-engineer ack of the /api/account namespace stays on W-1559."
+    },
+    {
+      "id": "W-1559",
+      "title": "W-1538 (eng review company/engineering/reviews/2026-10-16-w1538-settings-api.md): ack /api/account/settings in the /api/account namespace (no shadowing catch-all) before merge; before wiring supply session helper, db Query shape + text[] round-trip on a Neon preview branch, accounts flag (C4); before apply FK auth_user(id), migration number, B3 patches",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1554",
+      "title": "Add test:settings (W-1538, company/engineering/reviews/2026-10-16-w1538-settings-api.md ruling 3/C6) to the CI test:* amendment with W-1116/W-409, so B2/B4 run in CI before the settings route is wired",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1555",
+      "title": "W-1538 C2 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): add src/lib/server/** tier 2 class data to company/engineering/readiness/paths.json above src/**/db*, separate commit on main",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1556",
+      "title": "W-1538 C5 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): readiness addendum to company/engineering/readiness/2026-10-16-accounts.md for /api/account/settings (kill switch, B4 logs, rollback) in the wiring change",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1557",
+      "title": "W-1538 C3 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): confirm B2 path change /api/settings -> /api/account/settings is wording only, with the B1-B4 read; and rule on C7 (merge vs set-false race) if not fixed",
+      "owner": "privacy-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
