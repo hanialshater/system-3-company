@@ -21,4 +21,8 @@ Verdict reason: the reveal opens "Your prediction held" and then describes the l
 
 ## After reading build.md / meta.json
 
-(pending: added in a second commit after the findings above are committed)
+Read after 28fe139: meta.json only (learner, objective, recall, claims c1-c11). Not read: build.md, design.md, CM notes.
+- The meta.json learner knows expected value and that a felt value rising more slowly than money favours a sure amount (square-root-wealth). For that learner the stage gloss is a reminder, not a definition, so finding 1 is a note for learners without the prerequisite.
+- The objective is to explain that removing the shared 89% turns pair 1 into pair 2, so expected utility gives the same answer both times. The matched-branch frame shows this (finding 3), and the reveal's second sentence says it. **Finding 4 stands for the intended learner as well.** The predict question is about a third person who took 1A, and the matched 1B+2B branch (c3/c4) is about the learner's own picks. "Your prediction held" followed by "You took the 10% chance of $5M both times" puts two different subjects side by side with no bridge, and the forced answer (1A, so 2A) is never stated in that branch. c1 says "Expected utility must answer it the same way both times" appears in the mixed branches only. For cm-behavioral: one sentence in the matched branches that answers the question as asked (for example, someone who takes the sure $1M has to take the 11% chance) would close the gap. The fix is the CM's call.
+- Matched branches (the change this run was asked to check): 1B+2B renders c3's "a bolder one, for which $5M is worth more than 1.1 times $1M" and c4's "The sure $1M, then the 10% chance, would fit none". Both appear as recorded. The 1A+2A branch was not walked: the harness chooses 1B/2B.
+- c6 (held): no "4,098" line appears. That fits HELD on a matched branch, since c6 is mixed-only anyway.

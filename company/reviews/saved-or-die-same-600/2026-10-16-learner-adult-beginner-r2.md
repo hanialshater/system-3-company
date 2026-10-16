@@ -21,4 +21,10 @@ Verdict reason: option 3 ("same programmes, two wordings") repeats the title and
 
 ## After reading build.md / meta.json
 
-(pending: added in a second commit after the findings above are committed)
+Read after 28fe139: meta.json only (learner, misconception, objective, recall, claims c1-c9). Not read: build.md, the r1 learner record, CM notes.
+- The meta.json learner knows only "what a sure thing and a 1-in-3 chance are", so my boundary matches it. Finding 1 stands: nothing in `learner.knows` covers "a model that judges outcomes", and the objective says "rule", not "model".
+- The objective is to explain that the two wordings describe the same outcomes. Option 3 states that sentence almost word for word, so a learner can answer correctly with no explanation behind it. That is finding 2a. The recall repeats the same pattern: "No: same outcome, two descriptions" against the stem "Can one model that judges outcomes fit both?". So the recall is also answerable by matching the stem's framing, and it does not show transfer. This is a note for cm-behavioral and should be fixed together with the predict options.
+- c3/c4 show the mixed branches ("the wording moved you", "Sure for gains, gamble for losses: that pattern is called a framing effect"). Those branches would make the stage feel like a decision for a learner who does flip. The walkthrough took the matched branch (chance, chance), so I saw only the matched text. My verdict comes from that branch plus the cue in the predict options, which every branch shares.
+- c5 (held) did not render: there is no "88,181" line in the reveal frame. That fits HELD_LINE = false.
+- c2 depends on "prefers" meaning a strict preference, and the stem's wording carries it. An adult beginner will not read "prefers" that closely. That is another reason the question reads as a logic puzzle about wording.
+- Answer to lane 10 (from the artifact): **a quiz about wording, not one decision.** The finding goes to cm-behavioral (lane 10).

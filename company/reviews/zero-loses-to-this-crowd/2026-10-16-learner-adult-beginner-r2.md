@@ -25,4 +25,8 @@ Verdict reason: no finding blocks a first-time learner; notes: "equilibrium" is 
 
 ## After reading build.md / meta.json
 
-(pending: added in a second commit after the findings above are committed)
+Read after 28fe139: meta.json only (learner, objective, recall, claims c1-c10). Not read: build.md, cm-behavioral.md, the r1 learner record.
+- The meta.json learner already knows the two-thirds game and its ladder to 0 (prerequisite two-thirds-of-the-average). My boundary was stricter on purpose, so finding 1 ("equilibrium" unexplained) is a note only for a learner who arrives without the prerequisite. For the intended learner it is not a break.
+- c2 agrees with what I saw: 0 misses by 22.9, and "About 23" is listed third. The question asked for this run, whether "between the other two" reads as a middle-option cue: **on screen, no.** The options sit in one row, 0 | About 35 | About 23, so 23 is not in the middle position. In number order it is between the other two, and that is at most a weak cue (finding 2). The recall has the same layout (0 / About 60 / About 30, answer listed third, numerically between). So a "pick the middle number" learner passes both. For cm-behavioral to decide: if this matters, put one distractor on the far side of the answer (for example "About 15"), so the answer is not always the numerical middle.
+- c4: the "no simulated guess was closer" branch exists only at g = 23. That addresses my finding 3 if the learner moves the slider there, but nothing points them to it. This is a note to the CM, not a fail (R4 corrected).
+- c6 (held, cut): no "36.4" or "250 real players" text appears in the reveal frame. It is cut as recorded.
