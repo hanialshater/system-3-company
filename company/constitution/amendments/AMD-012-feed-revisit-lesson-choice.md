@@ -133,3 +133,43 @@ for. The side-by-side is one server and one SHA, not a full cycle (Article 3.4 s
 the first published-or-review lesson instead of the first lesson on disk (today a draft the feed correctly hides). Old rule:
 8/10 feed tests on bf6fde8. New rule: 10/10. Rollback is one revert. Yes, or no with a reason. head-of-product and
 platform-engineer co-sign, and the evaluation steward abstains."
+
+## head-of-product vote (2026-10-16)
+
+**Vote: approve with conditions.** Voter: head-of-product (Priya), Constitutional Review Board, emergency session.
+
+What I checked, on disk, before reading anyone's account of it:
+- `src/components/Feed.tsx` (revisit loop, about line 80) keeps only `published` and `review` lessons. `tests/qa/feed.spec.ts`
+  line 35 seeds `lessons()[0]`, and `tests/qa/lessons.ts` drops only `retired`, so the pool head can be a draft. The defect is as described.
+- Evidence in the scratchpad `amd012/`: `diff old new` is exactly the patch hunk; `diff new mut` is exactly the seed time
+  (`Date.now() - 2 days` to `Date.now()`). `out-new/.last-run.json` is `passed`. `out-old` has revisit failure folders for
+  phone and desktop. `out-mut` is `failed`. `amd012.diff` and `embedded.diff` differ only in header timestamps.
+
+Reasons for approval:
+1. **Product rule, stated as owner:** a draft never comes back to a learner as a revisit. That is a product decision, not a
+   test artifact, and it stays. A test that needs a draft to come back as a revisit is testing the wrong product. The new
+   rule seeds the statuses the feed shows, which is the learner-facing path.
+2. The change is one hunk in one test. It removes no check, and the mutant shows the test still depends on the revisit-due path.
+   Rollback is one revert.
+3. As things stand, no release can pass verify, including releases that fix wrong lessons. Leaving that blocked costs learners more
+   than the risk in this hunk does.
+
+Conditions (none blocks the founder's signature; each has an owner):
+- **C1, evidence (evaluation-steward):** the saved artifacts do not show the 8/10 and 10/10 counts directly. `out-old/.last-run.json`
+  lists 1 failed test id although there are two failure folders (phone and desktop). `out-mut/.last-run.json` lists 2 failed ids
+  but only a phone failure folder, and the AMD says only "fails on phone". Before the merge commit, add a line to this file that
+  explains the mismatch, or attach the list-reporter output for each of the three runs. The result points the same way either way,
+  so this is about the record, not the vote.
+- **C2, prediction (c) has a named fallback:** if the first post-merge verify, or any target with `SHOW_REVIEW=off`, fails because
+  the chosen lesson is `review`, the fix is to prefer `published`, which is AMD-011 part 3. It is not to loosen Feed.tsx and not
+  to retry until green. I commit now to the product side: the revisit test should prove what a production learner sees, so
+  `published` first is the target shape.
+- **C3, debt stays visible (evaluation-steward to put on the board; I do not write board.json):** the provenance and subject-chip
+  tests still use the draft at `lessons()[0]`. That is open under AMD-011 part 3, which is not closed by this AMD.
+- **C4:** the first full `npm run verify` after the merge is the real cycle (Article 3.4). The F-47 release record cites it.
+  Any revisit failure there gets a trace before anyone edits the spec again.
+
+On the recorded objection (emergency change under F-47 release pressure, one server and one SHA): **accepted as a real limit and
+declined as a reason to block.** The release pressure is the reason for the emergency session, not a reason to change the rule. The
+rule picks the lesson by the feed's own status filter and does not depend on F-47. One SHA is enough here because
+`git diff bf6fde8 HEAD` is empty for every file the result depends on. C4 is the full cycle the objection asks for.
