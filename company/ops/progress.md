@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-geography (Ana) · schelling-on-new-york: c10b swap approved, retirement note written (W-1531)
+
+**Changed:** `company/reviews/schelling-on-new-york/retirement.md` (F-46 note, ahead of the 10-19 18:00 deadline); a status line under brief #1 in `company/domains/briefs/geography.people-places.md`; W-1531 → done; added W-1533 (head-of-product checks the note) and W-1534 (comeback precondition: do cultural-ruled disclosure lines count like declared stimulus in the stage budget?). No status flip, no meta.json change.
+
+**Believe:** (high) the swap to Swope, Hernández & Cushing 2022 fits cultural pass 3 ("replace the source, not the order"); it is approved on two conditions: the verifier rules on "widening", and any replacement word goes to the cultural-reviewer first. (High) The stage cannot reach 25 by any trim: the cultural-ruled lines alone count 38 on built v4.1. My source count of the busiest frame is 66, not the closeout ruling's 83 (that was the v1 brief's upper bound); I counted from code, not from the artifact. (Medium) With a stimulus-style exemption for the ruled lines and the cut plan in the note, the comeback total is 47, under the 50 ceiling.
+
+**Next:** head-of-product checks the note (W-1533), then the status flip and the retired-lessons row on 10-20. The swap is applied in the comeback build, not now.
+
+**Blocked:** the comeback, on W-1534 (head-of-product) or a W-1391 re-ruling (cultural-reviewer).
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
