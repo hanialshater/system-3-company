@@ -13,3 +13,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c4 | verified | Own run matches: task 0–25 overlaps call 20–30 by 5; free 0–20 and 30–60 = 50 minutes, longest 30; button moves the task to 30–55; reveal 'Before minute 60 there are 50 free minutes in 2 gaps, and the longest gap is 30 minutes.' |
 
 **Result (Pass 52):** 3 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.fit-before-fixed-slot.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/fit-before-fixed-slot/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

@@ -26,7 +26,10 @@
       "support": "convention",
       "source": "Explicit exercise fixture in src/lib/lifehacks/studyCatalog.ts and pure rules in studyModels.ts. All times, sizes, deadlines and outcomes describe this exercise only; no empirical productivity or learning effect is inferred. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified by demo-builder 2026-10-15 (r11 fix plan W9): hook, question or options replaced by the W9 prediction line (options reordered for TP-8). Not checked by the builder. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches studyCatalog: hook, question 'The presentation is at 30 and needs 20 minutes' prep. With nothing booked before it, are you ready?', answer 'Only if prep is booked before 30'. Own run: prep 10–30 is on time; the start layout (45–65) is 35 minutes late. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"meeting-and-preparation\"). Not checked by the builder.",
       "id": "lifehacks.meeting-and-preparation.c1",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED (convention). Text equals studyCatalog hook + question + options + key (scripted compare, true); meta.hook = spec.hook = the patch r2 1C row. Own run of scheduleLayout/calendarResult: target prep 10-30 ends at the 30 deadline (on time); start layout prep 45-65 spills 35 min. The key 'Only if prep is booked before 30' is the only true option; the new hook is a question and states no answer. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The exercise requires preparation to finish before presenting. A shared calendar must include the prerequisite, not only the visible event.",

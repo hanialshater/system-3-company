@@ -1,0 +1,175 @@
+diff -ru a/tests/qa/contract.spec.ts b/tests/qa/contract.spec.ts
+--- a/tests/qa/contract.spec.ts
++++ b/tests/qa/contract.spec.ts
+@@ -7,8 +7,11 @@
+ //   1. It renders without page errors.
+ //   2. Predict-before-reveal: stage controls are locked and no reveal exists before a prediction.
+ //   3. Every stage control does something observable ("the beautiful button that does nothing").
++//      Except: a pressed toggle (aria-pressed="true") is the option in effect, and pressing it again may do nothing (AMD-011 part 1).
+ //   4. The reveal unlocks only after interaction, and says something substantial.
+ //   5. Nothing overflows the screen horizontally; controls are big enough to tap.
++//   6. Order (phone): pressing the controls last-first never leaves the reveal locked with no control that still
++//      changes anything (AMD-011 part 2; the long-cord soft lock, W-1241/W-1242).
+ // It saves a screenshot per phase to artifacts/qa/ for the evaluators.
+ 
+ import { expect, test, type Page } from "@playwright/test";
+@@ -74,6 +77,7 @@
+         const c = page.locator('[data-testid="stage"] [data-qa="control"]').nth(i);
+         if ((await c.count()) === 0 || !(await c.isVisible()) || (await c.isDisabled())) continue;
+         const label = ((await c.getAttribute("aria-label")) ?? (await c.innerText().catch(() => "")) ?? `#${i}`).trim().slice(0, 40);
++        const wasPressed = (await c.getAttribute("aria-pressed")) === "true"; // AMD-011 part 1 (W-1128, ruling W-1111)
+         const before = await stageFingerprint(page);
+         const tag = await c.evaluate((el) => `${el.tagName}:${(el as HTMLInputElement).type ?? ""}`);
+         if (tag === "INPUT:range") {
+@@ -89,7 +93,7 @@
+         }
+         await page.waitForTimeout(450); // let animations settle
+         const after = await stageFingerprint(page);
+-        if (before === after) dead.push(label || `#${i}`);
++        if (before === after && !wasPressed) dead.push(label || `#${i}`);
+       }
+       expect(dead, `controls that changed nothing observable: ${dead.join(", ")}`).toEqual([]);
+       await shot(page, lesson.slug, info.project.name, "2-explore");
+@@ -119,5 +123,62 @@
+ 
+       expect(errors, "no page or console errors").toEqual([]);
+     });
++
++    // 6. AMD-011 part 2 (W-1242): the reveal must not depend on pressing the controls in DOM order.
++    test("reverse order never dead-ends", async ({ page }, info) => {
++      test.skip(info.project.name !== "phone", "order does not depend on the viewport; run once (cost, AMD-007)");
++      test.setTimeout(90_000); // worst case: 2 sweeps x 16 presses x 450 ms, the 8 s wait, one way-out pass
++      await page.goto(`/d/${lesson.slug}`);
++      const lessonEl = page.locator('[data-testid="lesson"]');
++      await expect(lessonEl, "lesson renders").toBeVisible({ timeout: 15_000 });
++      await page.locator('[data-testid="predict-option"]').last().click();
++      await page.locator('[data-testid="commit-prediction"]').click();
++      await expect(lessonEl).toHaveAttribute("data-phase", "explore");
++      const revealBtn = page.locator('[data-testid="reveal-button"]');
++      const sel = '[data-testid="stage"] [data-qa="control"]';
++      const usable = async (i: number) => {
++        const c = page.locator(sel).nth(i);
++        return (await c.count()) > 0 && (await c.isVisible()) && !(await c.isDisabled());
++      };
++      const press = async (i: number) => {
++        const c = page.locator(sel).nth(i);
++        if ((await c.evaluate((el) => `${el.tagName}:${(el as HTMLInputElement).type ?? ""}`)) === "INPUT:range") {
++          await c.focus();
++          const atMax = await c.evaluate((el) => (el as HTMLInputElement).value === (el as HTMLInputElement).max);
++          await page.keyboard.press(atMax ? "ArrowLeft" : "ArrowRight");
++          await page.keyboard.press(atMax ? "ArrowLeft" : "ArrowRight");
++        } else await c.click();
++        await page.waitForTimeout(450);
++      };
++      // Up to 2 sweeps, last control first (the first 16 from the end), stopping as soon as the reveal unlocks.
++      for (let sweep = 0; sweep < 2 && !(await revealBtn.isEnabled()); sweep++) {
++        const total = await page.locator(sel).count();
++        for (let i = total - 1; i >= Math.max(0, total - 16) && !(await revealBtn.isEnabled()); i--) if (await usable(i)) await press(i);
++      }
++      if (await revealBtn.isEnabled()) return;
++      // An animation may hold every control disabled for a while (atoms-across-a-hair's auto-zoom): wait up to 8 s
++      // for the reveal to unlock or for some control to become usable before judging.
++      await expect
++        .poll(async () => {
++          if (await revealBtn.isEnabled()) return true;
++          const n = await page.locator(sel).count();
++          for (let i = 0; i < n; i++) if (await usable(i)) return true;
++          return false;
++        }, { timeout: 8_000 })
++        .toBe(true)
++        .catch(() => undefined); // the verdict below says what is wrong
++      if (await revealBtn.isEnabled()) return;
++      // Still locked is allowed (a lesson may ask for a value, not a count) if some control still changes the stage.
++      let wayOut = false;
++      const total = await page.locator(sel).count();
++      for (let i = 0; i < total && !wayOut; i++) {
++        if (!(await usable(i))) continue;
++        const before = await stageFingerprint(page);
++        await press(i);
++        wayOut = (await revealBtn.isEnabled()) || before !== (await stageFingerprint(page));
++      }
++      await shot(page, lesson.slug, info.project.name, "4-reverse");
++      expect(wayOut, "soft lock: after last-first presses the reveal is locked and no control changes anything").toBe(true);
++    });
+   });
+ }
+diff -ru a/tests/qa/feed.spec.ts b/tests/qa/feed.spec.ts
+--- a/tests/qa/feed.spec.ts
++++ b/tests/qa/feed.spec.ts
+@@ -1,6 +1,10 @@
+ // Feed-level QA: the product around the lessons.
+ import { expect, test } from "@playwright/test";
+-import { lessons } from "./lessons";
++import { feedLessons } from "./lessons";
++
++// AMD-011 part 3 (W-1264): the feed specs test the product around the lessons, so they pick from the feed's
++// own pool (published lessons, listed in every deployment), never from the QA_ONLY subset.
++const pool = feedLessons();
+ 
+ test("home feed opens honestly and starts", async ({ page }) => {
+   await page.goto("/");
+@@ -12,18 +16,18 @@
+ });
+ 
+ test("subject chips filter the feed", async ({ page }) => {
+-  const first = lessons()[0];
++  const first = pool.published[0];
+   await page.goto("/");
+   await page.locator(`[data-testid="chip-${first.domain}"]`).click();
+   const cards = page.locator('[data-testid="demo-card"]');
+   const slugs = await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-slug")));
+-  const allowed = new Set(lessons().filter((l) => l.domain === first.domain).map((l) => l.slug));
++  const allowed = new Set(pool.listed.filter((l) => l.domain === first.domain).map((l) => l.slug));
+   expect(slugs.length).toBeGreaterThan(0);
+   for (const s of slugs) expect(allowed.has(s!)).toBe(true);
+ });
+ 
+ test("provenance is legible on demand", async ({ page }) => {
+-  const first = lessons()[0];
++  const first = pool.published[0];
+   await page.goto(`/d/${first.slug}`);
+   await page.locator('[data-testid="trust-button"]').click();
+   const sheet = page.locator('[data-testid="trust-sheet"]');
+@@ -32,7 +36,7 @@
+ });
+ 
+ test("a finished lesson comes back as a spaced revisit", async ({ page }) => {
+-  const first = lessons()[0];
++  const first = pool.published[0];
+   await page.goto("/");
+   await page.evaluate((slug) => {
+     const past = Date.now() - 2 * 86_400_000;
+diff -ru a/tests/qa/lessons.ts b/tests/qa/lessons.ts
+--- a/tests/qa/lessons.ts
++++ b/tests/qa/lessons.ts
+@@ -9,7 +9,7 @@
+ }
+ 
+ /** Read lessons straight from disk so QA does not depend on the app's own registry. */
+-export function lessons(): LessonRef[] {
++function onDisk(): LessonRef[] {
+   const root = path.join(process.cwd(), "src/demos");
+   const out: LessonRef[] = [];
+   for (const domain of fs.readdirSync(root)) {
+@@ -23,6 +23,21 @@
+       out.push({ slug: m.slug, domain: m.domain, status: m.status, title: m.title });
+     }
+   }
++  return out;
++}
++
++/** Lessons the contract checks: every lesson on disk, or the QA_ONLY subset. */
++export function lessons(): LessonRef[] {
++  const out = onDisk();
+   const only = process.env.QA_ONLY?.split(",").filter(Boolean);
+   return only ? out.filter((l) => only.includes(l.slug)) : out;
+ }
++
++/**
++ * AMD-011 part 3 (W-1264): the feed specs' pool, never cut by QA_ONLY. `published` is listed in every deployment;
++ * `listed` adds review (shown unless SHOW_REVIEW=off, src/lib/visibility.ts). Sorted, so the pick is stable.
++ */
++export function feedLessons(): { published: LessonRef[]; listed: LessonRef[] } {
++  const out = onDisk().sort((a, b) => a.slug.localeCompare(b.slug));
++  return { published: out.filter((l) => l.status === "published"), listed: out.filter((l) => l.status === "published" || l.status === "review") };
++}

@@ -52,8 +52,10 @@
       "id": "lifehacks.care-label-first-choice.c4",
       "text": "Title: What does 'dry flat' allow? Hook: The label says 'dry flat', and the line has room. Does it matter? Question: Three jumpers say 'dry flat'. You hang them on the line with the rest. How many are dried the way the label says? Options: None / All 3: dry is dry. Correct option: None.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, question, options, answer replaced (row \"care-label-first-choice\"). Not checked by the builder.",
-      "status": "unverified"
+      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, question, options, answer replaced (row \"care-label-first-choice\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): VERIFIED. Title, hook, question, options ['None','All 3: dry is dry'] and answer 0 match home-lessons.ts and the rendered page. Model (evaluateHome label-rule, p=3): hung 0, laid flat 3. Hanging an item labelled 'dry flat' is by definition not drying it flat, so 'None' is the only right answer; this rests on the model and the label's own words, not on GINETEX (ginetex.net: proxy 403 this pass, not used). Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.care-label-first-choice.c5",
@@ -77,8 +79,10 @@
       "id": "lifehacks.care-label-first-choice.seen",
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Hung on the line: 3 jumpers, 0 dried the way the label says. Laid flat: 3 of 3.",
       "support": "derivation",
-      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 by demo-builder 2026-10-16, batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1D). Added unverified. Not checked by the builder.",
-      "status": "unverified"
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 by demo-builder 2026-10-16, batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1D). Added unverified. Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): VERIFIED. homeRevealLine at the starting value p=3: 'Hung on the line: 3 jumpers, 0 dried the way the label says. Laid flat: 3 of 3.' (exact). The walkthrough at p=5 rendered 'Hung on the line: 5 jumpers, 0 … Laid flat: 5 of 5', consistent with 'recomputed from the learner's current state'. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",

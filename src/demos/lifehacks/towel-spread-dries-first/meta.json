@@ -53,14 +53,20 @@
       "text": "Title: Fold it or spread it? Hook: Fold it or spread it: does that change how long a towel takes to dry? Question: Folded in quarters, the towel takes 12 hours in this model. Spread flat, how long? Options: 3 h / 6 h / 12 h: same water. Correct option: 3 h.",
       "support": "convention",
       "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W2, cm-lifehacks), numbers filled from home-models.ts case 'dry' at the starting input 70; option order varied for TP-8. Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Matches the spec: title, hook (= question), options '3 h' / '6 h' / '12 h: same water', answer 0. Own run at the start input 70: spread flat 3 h. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"towel-spread-dries-first\"). Not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED. Text equals the spec title, hook, question, options, answer 0; hook = patch r2 1D row. homeColumn at p = 70: folded 0.49 m², 12 h; spread 1.96 m², 3 h (0.6 / (1.96 × 0.1020408163) = 3.00). Key '3 h' holds; the new hook is a question and states no number. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.recall",
       "text": "In this model each square metre of open face dries at the same speed, so time = water ÷ (open face × that speed). Doubling the open face halves the time. This does not promise a real household drying-time ratio.",
       "support": "derivation",
       "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3B (fact-checker, 2026-10-14): verified. Arithmetic re-derived in node; the keyed option is the only correct one of the three; the why agrees with this lesson's idea, limit and formula claims and the model in src/lib/lifehacks; no real-world effect is promised. The text matches recall-patch-home.lines.txt. See company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch B). Reset to unverified 2026-10-15 by demo-builder (r11 fix plan wave W2: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage. | FC pass 52 (fact-checker, 2026-10-16, W-1144/W2): VERIFIED. Recall card (meta.recall): A 1 m², B 2 m², same water and flux; time ∝ 1/area, so B takes half as long; keyed option 2 is the only right one. Matches the model. Trust-sheet note (W-1078 pattern): the worked example uses 1 and 2 m², not the stage's 0.49 and 1.96 m². | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): recall question and why reworded without 'flux' / 'normalised gap' (W-1109). Not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED (derivation). recall question and why = patch r2 1D rows, no 'flux'. Same water W and same per-area speed k: t = W/(A k), so A = 2 m² gives half the time of A = 1 m²; keyed option 2 'B takes half as long' is the only right one, and it matches the engine's constant-rate formula. The why's limit sentence is kept. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.towel-spread-dries-first.seen",

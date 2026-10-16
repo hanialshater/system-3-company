@@ -14,3 +14,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c4 | verified | Own run matches: call 0–30, notes 20–30 (10 min overlap); after the button notes 30–40, done at 40; chip 'Call-only plan: minute 30'; reveal 'The call-only plan said minute 30: N minutes too early' with N = 10 at the target (N = finish − 30 for later slider positions). |
 
 **Result (Pass 52):** 4 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.include-the-wrap-up.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/include-the-wrap-up/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

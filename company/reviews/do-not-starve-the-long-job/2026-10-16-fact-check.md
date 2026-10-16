@@ -11,3 +11,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c3 | verified | Read StudyLesson.tsx (order stage) and queueObservation in src/lib/lifehacks/studyStages.ts first; own run of queueResult/queueObservation (scratchpad fc52/sim.mts): small→tiny→long: long ends 35 > due 25, 1 late, waiting 15; long first: 0 late, waiting 55, and the reveal adds 'That is 40 more minutes of waiting than small → tiny → long, but the goal here is no late jobs' (55 − 15 = 40). The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit. Note (aria only): the Frame label prints '1 late jobs'. |
 
 **Result (Pass 52):** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.do-not-starve-the-long-job.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/do-not-starve-the-long-job/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.

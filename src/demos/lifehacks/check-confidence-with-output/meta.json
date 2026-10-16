@@ -25,9 +25,11 @@
       "id": "lifehacks.check-confidence-with-output.c1",
       "text": "Scenario and prediction: You studied three words in order and feel sure of it. How sure should you be? Your attempt feels familiar. Before checking it, how many places do you know are right? Options: All 3 of 3: you feel sure / Unknown until checked / At least 2 of 3. Correct option: Unknown until checked. All fixture words are stipulated exercise data.",
       "support": "convention",
-      "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14). | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"check-confidence-with-output\"). Not checked by the builder.",
-      "status": "unverified",
-      "note": "FC W-740 (2026-10-14): Before the check, mode A reads \"not checked\": no place is known; stipulated fixture."
+      "source": "Stipulated exercise fixture in studyCatalog.ts. Content patch r9 batch D (cm-lifehacks, company/reviews/lifehacks-200/content-patch-r9-batch-d.md block 10), applied by demo-builder for W-608 (2026-10-14). | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): hook replaced (row \"check-confidence-with-output\"). Not checked by the builder. | FC pass 61 (fact-checker, SO-10-2 Life Hacks set A, 2026-10-16; shared review server 5b2fee7, R3a pass; walkthrough on :3591 read first, cut at the appendix; numbers re-run in node from the engine on main 2d6b4d5): VERIFIED. Hook, question, options and answer 1 match studyCatalog and the rendered page. Before the check, mode A reads 'match not checked' (recallColumn), so no place is known; the hook no longer names the studied words. Record: company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.",
+      "status": "verified",
+      "note": "FC W-740 (2026-10-14): Before the check, mode A reads \"not checked\": no place is known; stipulated fixture.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "text": "The check counts matching positions. It can expose a mismatch, but this single attempt cannot estimate future retention or general ability.",

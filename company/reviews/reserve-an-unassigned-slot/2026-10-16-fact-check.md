@@ -11,3 +11,12 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c3 | verified | Read StudyLesson.tsx (schedule stage) and scheduleObservation in src/lib/lifehacks/studyStages.ts first; own run of scheduleLayout/calendarResult/scheduleObservation (scratchpad fc52/sim.mts): focus 0–30, admin 30–50, call 50–60, no overlap, done by 60; Reserve ten minutes: admin 40–60, call 60–70, done by 70, leaving 30–40 free. The reveal is that sentence plus the principle; neither names a personal productivity or memory benefit. |
 
 **Result (Pass 52):** 1 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (SO-10-2 [project:lifehacks-engine-v2], batch 2)
+
+Checker: fact-checker, a fresh instance, 2026-10-16. I did not write, build or record these claims (lh-split-order-fixed-fee c5/c6 were recorded by an earlier fact-checker, FC 51, and are held for that reason). Server: http://localhost:3591, /home/user/s3c-qa/.next-review3/BUILT_FROM = 5b2fee71701e8645e3cd6e2fde60bcea004833e8 at start and end; main at 6141f65. R3a scope test (company/reviews/org/2026-10-16-r3a-scope/check.sh) passed 5b2fee7 -> main 2d6b4d5 for this lesson at the start; at 6141f65 it fails only on content/curriculum/history.json (cm-history 8bdf821), which is outside this lesson. Lesson files and src/lib/lifehacks are unchanged 2d6b4d5..6141f65.
+Method: artifact first (`npm run walkthrough -- … --url http://localhost:3591`, transcript read to the trust-sheet appendix), then meta.json, then content patch r2 (company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md) row by row, then the engine on main: scripted compare of claim text with studyCatalog.ts / home-lessons.ts / resource-specs.json, and own runs of queueResult, scheduleLayout, calendarResult, homeColumn and homeRevealLine (tsx). Consolidated record: company/reviews/lifehacks-200/2026-10-16-fact-check-so-10-2-batch2.md.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | verified | VERIFIED (convention). Text equals studyCatalog; title, hook, question, options, answer = patch r2 1C rows (answer 0). Own run: start focus 0-30, admin 30-50, call 50-60, finish 60; target starts [0,40,60], finish 70, 0 overlap. 60 + 10 = 70, key Minute 70 holds. Advisory, not a dispute: the freed 30-40 slot is not labelled as the urgent task on the stage (walk step 2), which the patch's builder note allowed if the v1 calendar cannot label it; the line still holds. |

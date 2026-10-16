@@ -14,3 +14,9 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 | c4 | verified | Own run: short 0–5, urgent 5–15 (due 10, 5 late); urgent 0–10 (on time), short 10–15; total waiting 5 → 10. Matches. |
 
 **Result (Pass 52):** 4 verified, 0 disputed, 0 held unverified, 0 withdrawn.
+
+## Pass 61 (fact-checker, SO-10-2, 2026-10-16; shared review server 5b2fee7, R3a pass)
+
+- lifehacks.earliest-deadline-first.c1: verified
+
+Reasons and fixes: each claim's source in src/demos/lifehacks/earliest-deadline-first/meta.json, and company/reviews/lifehacks-200/2026-10-16-fact-check-pass61.md.
