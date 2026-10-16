@@ -45,7 +45,7 @@ for (const n of ['3_1', '4_1']) {
   }
 }
 
-// K4 chirality: Jones, writhe and per-crossing signs under mirror and under turn over
+// K4 chirality (numbers only: turnOver is never drawn): Jones, writhe and per-crossing signs under mirror and under turn over
 for (const n of ['3_1', '4_1']) {
   const pd = K.knot(n).pd
   say('K4', n, 'V=' + K.pstr(K.jones(pd)), 'V(mirror)=' + K.pstr(K.jones(K.mirror(pd))), 'V(turnOver)=' + K.pstr(K.jones(K.turnOver(pd))),
@@ -61,12 +61,28 @@ for (const n of ['3_1', '4_1', '5_2', '6_1']) {
   const d0 = K.draw(pd, { layout: L }), d1 = K.draw(K.mirror(pd), { layout: L })
   say('K5', n, 'edges=' + d0.edges.length, 'crossings=' + d0.crossings.length, 'mirror with stored layout: edges=' + d1.edges.length, 'crossings=' + d1.crossings.length)
 }
-{
-  const pd = K.knot('3_1').pd, L = K.layout(pd), T = K.turnOver(pd)
-  let stored = 'ok', fresh = 'ok'
-  try { K.draw(T, { layout: L }) } catch (e) { stored = 'throws: ' + e.message }
-  try { K.draw(T, { layout: K.layout(T) }) } catch (e) { fresh = 'throws: ' + e.message }
-  say('K5', '3_1 turnOver drawn with the original stored layout:', stored, '| with a fresh layout:', fresh)
+// turnOver is NOT drawn by any brief (EDD-011 re-read F4: it stays inside import block (a)); it is used for numbers only.
+// The mirror and the crossing-changed pictures below are drawn on the entry's stored layout, default size and margin.
+// K5b: mirror drawn on the entry's own stored layout, and again after every subset of crossing changes
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), c = K.crossingCount(pd); let ok = 0, tot = 0
+  for (let m = 0; m < 1 << c; m++) {
+    let q = K.mirror(pd); for (let i = 0; i < c; i++) if (m >> i & 1) q = K.crossingChange(q, i)
+    const d = K.draw(q, { layout: L }); tot++; if (d.edges.length === 2 * c && d.crossings.length === c && d.size === 100) ok++
+  }
+  say('K5b', n, 'mirror + every subset drawn on stored layout, default size/margin: ' + ok + ' of ' + tot + ' draw with the right edge and crossing counts')
+}
+
+// K13 viewBox padding for 44 px hit areas (brief 2 U1, brief 4): the default draw is 100 x 100; pad with the viewBox only.
+// A crossing at distance d from the nearest edge, stage W px wide, viewBox side 100 + 2p: hit radius 22 px needs (d + p) * W / (100 + 2p) >= 22.
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd)
+  for (const [lab, q] of [['knot', pd], ['mirror', K.mirror(pd)]]) {
+    const cr = K.draw(q, { layout: L }).crossings, d = Math.min(...cr.flatMap((c) => [c.x, c.y, 100 - c.x, 100 - c.y]))
+    const W = 360, rows = [0, 6, 8, 10].map((p) => 'p=' + p + ': edge room ' + ((d + p) * W / (100 + 2 * p)).toFixed(1) + ' px')
+    let minGap = Infinity; for (let i = 0; i < cr.length; i++) for (let j = i + 1; j < cr.length; j++) minGap = Math.min(minGap, Math.hypot(cr[i].x - cr[j].x, cr[i].y - cr[j].y))
+    say('K13', n, lab, 'nearest crossing to an edge d=' + d.toFixed(1) + ' (of 100)', rows.join('; '), '| closest crossing pair ' + minGap.toFixed(1) + ' units = ' + (minGap * W / 116).toFixed(0) + ' px at W=360, p=8')
+  }
 }
 
 // K6 the table name's first number is the crossing number c (and the drawn count, for these drawings)
