@@ -83,3 +83,62 @@ Decision: `company/decisions/2026-10-14-reveal-fits-with-its-picture.md`, "Amend
   come back in DOM order, at full size, state kept, and stay open until the reveal phase ends.
 - Rows are hidden with `display: none` only. Never collapse by height, scale, opacity or visibility (that
   shrinks tap targets and fails the QA contract's 24 px check).
+
+### Fold toggle look (W-350, 2026-10-16, visual-designer; spec only, not built)
+
+The toggle is a **control**, not a caption. A learner must see at a glance that it can be pressed and that it
+holds the controls they used a moment ago. Tokens only; every token below exists in `src/app/globals.css`.
+
+| Part | Spec | Token (light and dark follow the token) |
+|---|---|---|
+| Base | The kit `.control` look, unchanged: 1 px border, `--radius`-family corner 10 px, weight 600, 0.88rem | border `--line`, fill `--bg-2` |
+| Label | Centred, one line, the three labels below | `--fg` (15.4:1 dark, about 16 light, on `--bg-2`) |
+| Chevron | Disclosure chevron, an inline SVG, 12 px wide by 8 px tall, 2 px stroke, round caps, `aria-hidden`, placed right of the label with an 8 px gap | `currentColor` of `--fg` (same contrast as the label; 3:1 needed for a graphic) |
+| Size | Full stage width, `min-height: 44px`, border-box, 8 px above | none |
+| Pressed or focus | Focus ring as other controls; no new "active" tint. Expanded is shown by the chevron only, not by `.active`, so it is not mistaken for a selected option | border `--domain` on `:focus-visible` |
+| Disabled | Never disabled | none |
+
+**Chevron flip.** Collapsed: points **down** (the rows are below). Expanded: rotates 180 deg to point **up**,
+`transition: transform 150 ms`, and no transition under `prefers-reduced-motion: reduce`. The SVG replaces the
+text glyph "▾" (a font glyph changes size and weight by platform; the SVG does not).
+
+**Labels** (unchanged from the spec): "Show more controls" (other stage controls stay visible), "Show controls"
+(none left), "Hide controls" (expanded). The label never says how many controls are folded.
+
+**How it differs from a muted caption line.** A caption is `--muted` text with no border, no fill and a height
+of one line (about 20 px). The toggle has a visible boundary (`--line` border on a `--bg-2` fill), is 44 px
+tall, spans the stage, carries a chevron, and its text is `--fg`, not `--muted`. If the toggle and a caption
+ever sit together, the caption is the one that has no box. A Row of controls has its buttons side by side and
+sized to their text; the toggle is the only full-width single button in the stage, so it cannot be read as one
+of that Row's options.
+
+**Mockup at 390 px** (card 390 wide, stage 342 wide, toggle 342 x 44; `v` is the chevron, drawn up when expanded):
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342 60" width="342" height="60" role="img" aria-label="Fold toggle, collapsed">
+  <rect x="0.5" y="8.5" width="341" height="44" rx="10" fill="var(--bg-2)" stroke="var(--line)"/>
+  <text x="136" y="35" font-size="14" font-weight="600" fill="var(--fg)" text-anchor="middle">Show more controls</text>
+  <path d="M232 27 l6 6 l6 -6" fill="none" stroke="var(--fg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+```
+
+```
++----------------------------------------------+   <- 342 px, 44 px tall, --line border, --bg-2 fill
+|            Show more controls   v            |   <- --fg label 14 px/600, chevron 12 x 8 (collapsed)
++----------------------------------------------+
++----------------------------------------------+
+|            Hide controls   ^                 |   <- expanded: chevron rotated 180 deg
++----------------------------------------------+
+```
+
+**Implementation note to platform-engineer** (W-350; ride along with W-441/W-442, before the first opt-in).
+In `src/kit/controls.tsx` `FoldToggle`: replace the `▾` text glyph in `.fold-chevron` with the 12 x 8 inline
+SVG polyline above (stroke `currentColor`, still `aria-hidden`), keep `aria-expanded` and `aria-controls`, and
+keep the three labels. In `src/app/globals.css`: keep the existing `.fold-toggle` rules (flex, 100% width,
+44 px, gap 8 px, centred), set `.fold-toggle { color: var(--fg); }` and `.fold-toggle:focus-visible { outline:
+2px solid var(--domain); outline-offset: 2px; }`, keep the 180 deg rotate on `.expanded`, and add
+`@media (prefers-reduced-motion: reduce) { .fold-chevron { transition: none; } }`. No new token, no new
+component, no change to the kit Control look. Open for the accessibility reviewer: the `--line` border is
+below 3:1 on `--bg-3` (as for every kit control), so the toggle's boundary relies on its label and chevron to
+be identified; if that is ruled insufficient, the fix is a kit-wide control-border decision, not a toggle-only
+colour.
