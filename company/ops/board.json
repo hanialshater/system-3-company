@@ -15927,7 +15927,7 @@
       "id": "W-1337",
       "title": "Main checkout: a session ran 'rebase --autostash' at ~13:06 and left it unfinished, wiping uncommitted work (stash 166ee49 + 13e83c8; two behavioral check files lost: behavioral-beauty-contest-level-k.mjs, behavioral-gain-loss-framing.mjs). Add a pre-rebase guard in tools/git-hooks refusing rebase in the main checkout",
       "owner": "tools-lead",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15935,7 +15935,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "COE-B: the wipe path is dirty-tree autostash failing before pre-rebase runs; the record must name it and test detector + Bash refusal on it"
+        "note": "merged (tools-r5-b1); C3-C6 follow-ups; layers b/c inert until H1"
       }
     },
     {
@@ -16104,28 +16104,28 @@
       "id": "W-1352",
       "title": "P1 published soft lock (AMD-011 part 2 probe): kmp-never-steps-back — 'Run to end' first leaves 'saw-miss' unreachable and every button disabled. Fix in lesson; QA record re-run",
       "owner": "cm-cs",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "fix batched: r5b-cs.md#B1 (d1fae58); ruling H: no publish hold; trigger H 2026-10-17 18:00Z"
+        "note": "fix merged (cs-r5b-softlocks 30c08da); QA re-run + v3.1 re-probe after server rebuild; reaches learners only with a founder-approved deploy"
       }
     },
     {
       "id": "W-1353",
       "title": "P1 published soft lock (AMD-011 part 2 probe): rolling-hash-window — 'Slide to end' first skips the false-flag window, then every button is disabled. Fix in lesson",
       "owner": "cm-cs",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "fix batched: r5b-cs.md#B1 (d1fae58); ruling H as W-1352"
+        "note": "fix merged (cs-r5b-softlocks 30c08da); QA re-run + v3.1 re-probe after server rebuild; reaches learners only with a founder-approved deploy"
       }
     },
     {
@@ -16675,6 +16675,15 @@
       "id": "W-1411",
       "title": "Physics #61-63 v2 checks (824e171): FC reset claims second-speaker c4, electron c6, what-pushes c3/c4/c5; QA naming the commit; learner walks (does the forces-only Seen row keep the 'slipped' thread?); cm-physics confirm m58372 on c5",
       "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1412",
+      "title": "Git guard F1 (P3, fold into C4): 'git merge --autostash' / -c merge.autoStash=true not refused in main checkout (principal-engineer code check a9df075)",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
