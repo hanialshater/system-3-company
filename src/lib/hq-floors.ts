@@ -15,7 +15,13 @@ export const FLOOR_NAMES: Record<Floor, string> = {
 };
 
 /** Room ids in the event log that are drawn under another id. Applied at read time in loadEvents; stored events are never rewritten. */
-export const ROOM_ALIASES: Record<string, string> = { "research-room": "research-lab" };
+export const ROOM_ALIASES: Record<string, string> = {
+  "research-room": "research-lab",
+  "categories": "cm-books", // Historical dispatch ev-e3ac33ab4b; future events use cm-books.
+  "leadership": "product",
+  "quality": "constitution",
+  "design": "design-studio", // Legacy group display; learning-designer's canonical home remains studio.
+};
 
 /** A stairs room ("to-floor-<n>", optionally with a suffix such as "-from-6") takes you to floor n; anything else is undefined. */
 export function stairsTo(roomId: string): Floor | undefined {

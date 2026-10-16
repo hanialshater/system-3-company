@@ -21,6 +21,7 @@ Open a `/d/<slug>` path from the table. Local builds include direct draft lesson
 - Independent design review samples the named artifacts; its results must not be described as an all100 design pass.
 - Known 360×640 reveal cropping is retained as a pre-launch defect. The binding strict phone fit is390×844.
 - Integration record (corrected 2026-10-16 by community-engineer, PR #5 review F4/M4): the integration evidence, final commit list, build result and revert command are in [company/engineering/community/prs/5.md](../../engineering/community/prs/5.md); the merge-gate engineering review is [2026-10-16-pr5-engineering-review.md](../../engineering/reviews/2026-10-16-pr5-engineering-review.md). No separate integration record exists beside this guide, and the final full `npm run verify` (M3) is recorded there only once it has run. An earlier mid-generation verify failed the platform metadata sentinel while QA arrays were still empty; only actual final verification establishes its resolution.
+- Final validation: 200/200 phone/desktop contracts, 100/100 strict 390×844 fits and 100/100 Reset/reveal explorations on frozen v2; 12/12 model tests. The current integrated build additionally passes the upstream unmodified feed suite, 10/10, and seven reverse paths. Design covers 30 bounded artifacts (70 unseen), and formal simulated learner review covers seven distinct pilots. See [final integration](2026-10-16-final-integration.md) and [QA summary](2026-10-16-qa-summary.md) for identities, historical failures and limits. The platform metadata sentinel passes after the actual QA links were recorded; the inherited Git C2 fixture remains a disclosed red verification result.
 
 ## Board identities after concurrent base integration
 
@@ -40,6 +41,10 @@ The upstream company allocated the original task's board IDs concurrently. Upstr
 | W-1473 | W-1501 |
 | W-1474 | W-1502 |
 | W-1475 | W-1503 |
+
+## Pull request
+
+[Draft PR #5](https://github.com/hanialshater/system-3-company/pull/5). No merge, lesson publication or deployment was performed. The PR also discloses a narrow historical HQ room-alias repair for this task’s append-only event labels.
 
 ## Inventory
 
