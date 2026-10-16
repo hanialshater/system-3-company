@@ -28,8 +28,10 @@
       "id": "physics.head-on-is-a-wall.c1",
       "text": "In a head-on collision of identical cars at equal speeds, total momentum is zero, so both cars stop at the meeting point, which does not move (stage: dashed 'meeting point' line; reveal: 'The meeting point never moved').",
       "support": "derivation",
-      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1. Reveal quote updated in v2 (cm-physics r5 R7); FC pass 35 verification of v1 replaced; reset to unverified for re-check.",
-      "status": "unverified"
+      "source": "Momentum conservation: m v + m (-v) = 0 = (2m) v_after, so v_after = 0; by symmetry the contact plane stays at rest throughout. artifacts/scratch/cm-physics-r3/check.mjs (brief claim 1). Brief: company/domains/briefs/physics.mechanics.md round 3 #1. Reveal quote updated in v2 (cm-physics r5 R7); FC pass 35 verification of v1 replaced; reset to unverified for re-check. | FC pass 65 (fact-checker, SO-10-2, 2026-10-16, v2 at 9e7d37c, shared server 987687ac, R3a check pass): VERIFIED. Own node: m*v + m*(-v) = 1500*13.889 - 1500*13.889 = 0, so the perfectly inelastic pair has v_after = 0; with identical cars the contact plane is the centre of mass, at rest throughout. Code: car B is drawn at 2*MID - frontA, so both fronts meet at MID and stop there. Stage: after 'Into a car' a line labelled 'meeting point' appears at MID (class .mid, stroke-dasharray 3 3: dashed), fresh walkthrough step 1. Reveal on :3591 reads 'The meeting point never moved, so each car stopped from 50 to 0 in its own crumple zone, as against a wall.', which contains the quoted 'The meeting point never moved'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.head-on-is-a-wall.c2",
@@ -53,8 +55,10 @@
       "id": "physics.head-on-is-a-wall.c4",
       "text": "Two identical cars at 50 km/h carry twice one car's energy (2 × 145 kJ), and each crumple zone absorbs its own car's half (145 kJ).",
       "support": "derivation",
-      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ (0.5 x 1,500 x (50/3.6)^2), absorbed half by each car's crumple zone by symmetry (each car stops from its own 50 km/h against a contact plane that does not move). check.mjs (artifacts/scratch/cm-physics-r3/check.mjs). Reveal (v2, cm-physics r5 R7): 'Two cars at 50 carry twice one car's energy, and each crumple zone takes its own half.' v1 text and its FC pass 35 verification replaced; reset to unverified for re-check.",
-      "status": "unverified"
+      "source": "Head-on at 50 + 50: total kinetic energy 2 x 144.7 = 289.4 kJ, twice one car's 144.7 kJ (0.5 x 1,500 x (50/3.6)^2), absorbed half by each car's crumple zone by symmetry (each car stops from its own 50 km/h against a contact plane that does not move). check.mjs (artifacts/scratch/cm-physics-r3/check.mjs). Reveal (v2, cm-physics r5 R7): 'Two cars at 50 carry twice one car's energy, and each crumple zone takes its own half.' v1 text and its FC pass 35 verification replaced; reset to unverified for re-check. | FC pass 65 (fact-checker, SO-10-2, 2026-10-16, v2 at 9e7d37c, shared server 987687ac, R3a check pass): VERIFIED. Own node: 0.5*1500*(50/3.6)^2 = 144,676 J ('145 kJ' via toFixed(0)); two cars: 289,352 J = 2 x 144,676 (289.4 kJ). Lab frame is the centre-of-mass frame (total momentum 0, c1), so all 289 kJ is dissipated; with identical crumple zones, symmetry splits it 144.7 kJ each, which is each car's own kinetic energy. The model is c5's (identical cars and crumple zones, perfectly inelastic). Reveal on :3591 reads 'Two cars at 50 carry twice one car's energy, and each crumple zone takes its own half.', matching the claim; the '2 x 145 kJ' and '145 kJ' figures are ledger detail and agree with the stage's 'car 50: 145 kJ'.",
+      "status": "verified",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "physics.head-on-is-a-wall.c5",
