@@ -362,6 +362,7 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
 }
 
 // ---------------------------------------------------------------- 24. Schooling and recorded crime in Guerry's France
+// Amended 2026-10-16 by cm-history, W-1204: the cultural-reviewer's two wording edits (company/reviews/schooling-and-crime-1830s/2026-10-16-culture-en-brief.md).
 {
   const srt = [...G].sort((a, b) => a.lit - b.lit), q = Math.floor(G.length / 4);
   const lo = srt.slice(0, q), hi = srt.slice(-q);
@@ -372,7 +373,7 @@ const G = csv("guerry").map((x) => ({ dept: Number(x.dept), name: x.Department, 
     question: "Compare the most literate quarter of Guerry's French departments with the least literate. Where were recorded property crimes per person higher?",
     options: ["In the least literate, about 1.7 times as high", "About equal", "In the most literate, about 1.7 times as high"], answer: 2, pick: () => (v.x > 1.3 ? 2 : v.x < 0.77 ? 0 : 1),
     presets: ["Least literate quarter", "Most literate quarter", "Crimes against persons", "All 86 departments"],
-    reveal: "The most literate quarter of departments recorded {hiP} property crimes per 100,000 people, against {loP} in the least literate: {x} times as many. Crimes against persons were the same, {hiQ} per 100,000 in both. In this record, more schooling did not go with less crime. Where it stops: these are crimes brought to court in 1825-1830, and two numbers moving together say nothing, alone, about what caused what.",
+    reveal: "The most literate quarter of departments recorded {hiP} property crimes per 100,000 people, against {loP} in the least literate: {x} times as many. Crimes against persons were the same, {hiQ} per 100,000 in both. In this record, the more literate departments did not have fewer cases brought to court. Where it stops: these are cases brought to court in 1825 to 1830, which depend on policing as well as crime; they compare departments, not people, and two numbers moving together say nothing, alone, about what caused what.",
     checks: (v) => {
       ok("24 quarters", q === 21, `${q} departments in each quarter; literacy ${r(m(lo, "lit"), 1)}% vs ${r(m(hi, "lit"), 1)}%`);
       ok("24 property crime", v.x === 1.7, `crimes against property per 100,000 (100,000 / Crime_prop): least literate ${v.loP}, most literate ${v.hiP}; x${v.x}`);

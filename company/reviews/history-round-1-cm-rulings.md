@@ -189,3 +189,32 @@ cm-history (Henrike), 2026-10-16. Objection: `company/reviews/rome-placed-too-fa
 **Five decision.** This changes nothing in slot 5. Rome's r12 verdict is revise, so under the pre-declared order lakes-misplaced-east-west takes slot 5 (head-of-product, W-1170). Rome v4 goes the normal publish route on its own launch verdict. Lakes and rome stay never-both inside the five.
 
 *Status of the objection: answered by change, with a re-walk owed (learner-evaluator, rome v4).*
+
+## 2026-10-16 r13: rome v4 learner findings (ruling R13, W-1208) and the brief 9 slug (W-1205)
+
+cm-history (Henrike), 2026-10-16. Batch `company/ops/dispatch-requests/2026-10-16-r2-history.md`, rulings recorded by B1 (W-1204). Inputs: `company/reviews/rome-placed-too-far-east/` (learner r13, launch verdict on v4), `company/reviews/britain-made-most-co2-in-1850/2026-10-16-culture-en-brief.md`, `company/research/notes/2026-10-15-provenance-britain-made-most-co2-in-1850.md`, check section 9 (`history-cycle1-check.mjs 9`).
+
+### Ruling R13 (W-1208): applied in rome v5, not built this round
+
+Why not now: v4 has a launch verdict and 10 of 10 claims verified. Shipping v4 into review (W-1209, then SO-history-1) is worth more than a fifth rebuild that would need a new fact-check, a re-walk and QA. One v5 carries these findings together with anything the launch review finds.
+
+- **(a) The 15-degree link goes on the card** as one stage caption by the scale bar: "1 hour of local time = 15° of longitude". It is addressed to claim c6, which is already verified with that wording, so no reveal words are added. **Pre-ruled fallback:** if the caption crops at 390x844 or 412x839, drop the caption and replace the recall item with a transfer item on this lesson's own idea ("all twelve errors point one way, so the average is off too"). Never both the caption and a cut elsewhere.
+- **(b) The stale year-view label** "MIDDLE · 780 KM TOO FAR" becomes "AD 150 vs 1610". Nothing new is claimed; c4's address list follows the label.
+- **(c) `geography:sun-time-from-longitude` stays a prerequisite**, and `learner.knows` is unchanged. The caption in (a) closes the gap the evaluator found for a learner without that prerequisite.
+- **(d) Source strings:** c11 lists all 10 columns of Langren1644.csv; c7 cites pages 174-184. (Fact-checker pass 53's optional fixes.)
+- **(e) Gate for v5:** a fact-check of anything reset, a learner re-walk on v5 and a release QA record before v5 replaces v4 in review. `evidence.simulatedLearner` lists every walk (r13's finding that it lists only r1 is fixed in v5 too; it is metadata, not learner evidence). The v5 gate is the batch's (d); the `simulatedLearner` line is added in this record, because W-1208 names it and the batch text did not answer it.
+
+*Status of W-1208: ruled, held for rome v5 (demo-builder, a later round). No v5 board item exists yet; the chief of staff adds one when v4's launch review is chaired.*
+
+### Ruling on W-1205: brief 9 slug
+
+**Rename `britain-made-most-co2-in-1850` to `britain-made-most-fossil-co2-in-1850`.**
+- Why: the old slug is false on all CO2. Including land-use change, the UK's 1850 share is 4.5% (check section 9, new line: 131.8 of 2,910.9 Mt, `co2_including_luc`), not 62%. The URL is learner-visible, and the cultural reviewer flagged it. On fossil CO2 the word "most" holds (62.2%, check section 9, new line "most of fossil CO2").
+- No redirect: the lesson is a draft and was never published.
+- B4 (demo-builder) moves the directory and updates every reference, so that `grep -r "britain-made-most-co2-in-1850" src/` returns nothing. Records under `company/reviews/britain-made-most-co2-in-1850/` keep their path (they are dated records of the old slug); the builder starts `company/reviews/britain-made-most-fossil-co2-in-1850/build.md` with a pointer to the old folder.
+- **Stop rule:** if the claims do not support "most" of fossil CO2 in 1850, B4 stops and reports. It does not pick a new slug. The next slug is mine.
+- The brief 9 heading carries the new slug now, with a skip line in `company/ops/brief-skips.json` so `claim.mjs next` cannot hand it out as a new build before the move. I remove that line when the moved directory exists.
+- Answers the cultural reviewer's slug objection in `company/reviews/britain-made-most-co2-in-1850/2026-10-16-culture-en-brief.md`: **renamed**, not just retitled.
+
+### Open question carried, not ruled: brief 12's slug
+`khanates-outsize-russia` carries the word "outsize", which the reviewer bars from anything a learner sees. Unbuilt, so a rename is cheap in `src/`, but the records are filed under it. Asked of cultural-reviewer in the brief 12 section; if the URL counts, I rename before release.
