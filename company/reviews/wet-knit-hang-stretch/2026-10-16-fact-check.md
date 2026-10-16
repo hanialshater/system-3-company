@@ -19,3 +19,12 @@ Checker: fact-checker, a fresh instance. I did not write, build or record any of
 **Trust-sheet check (W-1078 pattern, for this wave):** recall works 900 g, the slider's maximum (0.9 kg); no mismatch of fixture.
 
 **Result (Pass 52):** 6 verified, 0 disputed, 1 held unverified, 0 withdrawn.
+
+## Pass 61 (SO-10-2 [project:lifehacks-engine-v2], batch 2)
+
+Checker: fact-checker, a fresh instance, 2026-10-16. I did not write, build or record these claims (lh-split-order-fixed-fee c5/c6 were recorded by an earlier fact-checker, FC 51, and are held for that reason). Server: http://localhost:3591, /home/user/s3c-qa/.next-review3/BUILT_FROM = 5b2fee71701e8645e3cd6e2fde60bcea004833e8 at start and end; main at 6141f65. R3a scope test (company/reviews/org/2026-10-16-r3a-scope/check.sh) passed 5b2fee7 -> main 2d6b4d5 for this lesson at the start; at 6141f65 it fails only on content/curriculum/history.json (cm-history 8bdf821), which is outside this lesson. Lesson files and src/lib/lifehacks are unchanged 2d6b4d5..6141f65.
+Method: artifact first (`npm run walkthrough -- … --url http://localhost:3591`, transcript read to the trust-sheet appendix), then meta.json, then content patch r2 (company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md) row by row, then the engine on main: scripted compare of claim text with studyCatalog.ts / home-lessons.ts / resource-specs.json, and own runs of queueResult, scheduleLayout, calendarResult, homeColumn and homeRevealLine (tsx). Consolidated record: company/reviews/lifehacks-200/2026-10-16-fact-check-so-10-2-batch2.md.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c1 | held (unverified) | HELD (blocked host www.ginetex.net, still proxy 403 / DNS failure this pass). The first sentence (equal-share model, 0.6/2 = 0.3, 0.6/6 = 0.1 kg) holds by own run; the care-label sentence still needs an opened source. Unchanged since FC 52. |

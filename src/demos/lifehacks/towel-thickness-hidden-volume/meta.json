@@ -53,7 +53,10 @@
       "text": "Title: A towel twice as thick Hook: Same size, twice as thick, twice the water. Does it get more face to dry from? Question: Same size towel, twice as thick, so twice the cloth and twice the water. How much open face does each cm³ of cloth get now? Options: The same: same size towel / Twice as much / Half as much. Correct option: Half as much.",
       "support": "convention",
       "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1): title, hook, question, options, answer replaced (row \"towel-thickness-hidden-volume\"). Not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED. Text equals the spec title, hook, question, options, answer 2 (patch r2 1D rows, engine 2). Model: face 2 × 50 × 100 = 10,000 cm² fixed; volume 50 × 100 × t/10 cm³ doubles with thickness, so face per cm³ halves at every slider value (own run at 1, 2, 5 mm: 20/10, 10/5, 4/2). Key 'Half as much' holds; 'twice the water' is stipulated scenario, not modelled. Advisory: the rendered trust sheet still shows 'cm⁻¹' once (formula claim c3, verified earlier), which the patch row asked to keep off screen; that is c3's wording, not this claim's. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     },
     {
       "id": "lifehacks.towel-thickness-hidden-volume.c5",
@@ -78,7 +81,10 @@
       "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Single thickness: 10,000 cm² of open face on 1,000 cm³ of cloth, 10 cm² per cm³. Twice as thick: the same 10,000 cm² on 2,000 cm³, 5 cm² per cm³: half as much.",
       "support": "derivation",
       "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (moved to engine 2 by demo-builder 2026-10-16, batch B4, company/reviews/lifehacks-200/content-patch-2026-10-16-r2.md section 1D). Added unverified. Not checked by the builder.",
-      "status": "unverified"
+      "status": "verified",
+      "note": "FC pass 61 (fact-checker, 2026-10-16, SO-10-2 [project:lifehacks-engine-v2], shared review server 5b2fee7, main 6141f65): VERIFIED (derivation). engine-v2 homeRevealLine at the initial p = 2 reproduces the text exactly: '10,000 cm² ... 1,000 cm³ ... 10 cm² per cm³ ... 2,000 cm³, 5 cm² per cm³: half as much'. Recomputes with the slider (walk at 2.2 mm: 1,100 / 2,200 cm³, 9.09 / 4.55), as the claim says. Walkthrough on :3591 read first (transcript cut at the trust-sheet appendix per R1); R3a scope test passes 5b2fee7 to HEAD.",
+      "checkedBy": "fact-checker",
+      "checkedOn": "2026-10-16"
     }
   ],
   "confidence": "",
