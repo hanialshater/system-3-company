@@ -23,6 +23,13 @@ who no longer exists: check what you rely on.
 **Believe (high):** no protected paths, no dependencies, 500/500 claims unverified, 100/100 draft; check, typecheck, all suites (hq 3 shallow-clone failures, W-1514), build, and the QA contract 200/200 on the 100 map- lessons (stamp clean) pass. The generator reproduces all 300 lesson files byte for byte from the 25 pinned upstream snapshots. **Not ready to merge:** tier 2 with no EDD, readiness record or engineering review (W-1556); the map paths are bulk-derived GPL-3.0 data with no decision record (best-practices 11, W-1557); the sensitive-route stage A (borders, colonialism) was skipped (W-1559 research note, then W-1558 cultural-reviewer).
 **Next:** chief of staff dispatches W-1556, W-1557, W-1559→W-1558; W-1560 (a11y) and W-1561 (reviewRoute shape, cm-history) run alongside, not merge gates. Then community-engineer merges the review branches, re-merges base, rebuilds, re-runs QA and pushes.
 **Blocked:** the push (by design, until those three gates are recorded). W-1554 may duplicate W-1503; test:dispatch passed here.
+## 2026-10-16 · platform-engineer (Noor) · W-408 EDD-004 C3 integrated verify
+
+**Changed:** recorded verify on 29f77f03 in `company/engineering/reviews/2026-10-16-w408-verify.md`. W-408 is done. One test-only fix: the default `BUILT_PORT` in `tests/platform/built-output.test.mjs` was 3659, which Next reserves, so the runtime-404 test could never start a server; it is now 3660. Routed W-1564 to tools-lead: dispatch-check's C3 worktree false positive.
+
+**Believe (high):** C3 is met. Every stage passes. The exceptions are 3 test:hq tests that fail only because this clone is shallow (W-1514). qa passed 2160/2160 in 1.2 h, and test:kit passed 98/98. The 4 built-output tests pass 34/34 on a local VERCEL=1 build, and nothing was deployed.
+
+**Next:** knot builds W-1539..W-1542 still wait on W-1521 (readiness approval by principal-engineer-ops); C3 no longer blocks them. tools-lead: W-1564. **Blocked:** nothing.
 
 ## 2026-10-16 · evaluation-steward (Hilde) · W-1535 lane A/B fact-check disagreements
 

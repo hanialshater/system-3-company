@@ -5667,7 +5667,7 @@
       "id": "W-408",
       "title": "EDD-004 condition C3: npm run verify on the integrated tree (test:kit now in verify alongside test:lifehacks; session 2 builds were OOM-killed at load 30-41). Record wall time",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -5677,7 +5677,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "verify on the integrated tree has not run; gate evidence."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-409",
@@ -18303,6 +18304,15 @@
       "id": "W-1563",
       "title": "QA record + learner walk for the 4 NCM gap drafts (same-picture-two-histories, price-tag-or-auction, worth-something-alone, the-swap-that-goes-in-circles); builder's local contract run 8/8, reveal-fit fit crop 0",
       "owner": "qa-tester",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1564",
+      "title": "dispatch-check C3 worktree false positive: run from inside a linked worktree, ROOT resolves to that worktree, so --worktree=<its own path> fails as 'is the main checkout' (tools/dispatch-check.mjs line 187 compares abs === ROOT; trees[0] alone names the main checkout). Found in W-408 (company/engineering/reviews/2026-10-16-w408-verify.md)",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
