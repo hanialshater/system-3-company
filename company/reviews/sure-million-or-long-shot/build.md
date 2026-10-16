@@ -4,6 +4,18 @@ builder: demo-builder (builder-beh) · 2026-10-16 · brief: `company/domains/bri
 
 *Kept from evaluators until they have written their findings (demo-standard: artifact before account).*
 
+## Revision build (r4, 2026-10-16, r4 B2, brief 1 "Decision (r4)")
+What changed: the matched branches (1A + 2A, 1B + 2B) only. "so one utility function fits your two choices:" → "so one utility function fits both:"; "The sure $1M, then the 10% chance of $5M, would fit none: that is the certainty effect." → "The sure $1M, then the 10% chance, would fit none: the certainty effect." Mixed branches, stage, predict, recall and `HELD_LINE = false` unchanged. Version stays 1 (the brief did not ask for a bump). Claims c4 and c5 quote the matched text, so both went back to `unverified` (old text and the prior FC note kept in each note); I did not re-verify them. The brief names "the claim" in the singular; c5 also quotes "that is the certainty effect", so it is reset too.
+- Check script `node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs` (unchanged) → all checks pass; the matched branch strings in Demo.tsx equal its printed text.
+- Measured reveal, 390 x 844, predicting wrong ("Only the 10% chance of $5M", so the 10-word "Not quite" verdict is on screen), counted as reveal-fit counts (words with a letter or digit in the reveal's innerText), scripted Playwright run:
+  - 1A + 2A: 89 (79 + 10), reveal bottom 783 px
+  - 1B + 2B: 87 (77 + 10), bottom 762 px
+  - 1A + 2B: 85 (75 + 10), bottom 762 px
+  - 1B + 2A: 90 (80 + 10), bottom 783 px, at the limit (unchanged branch)
+- Build: `NEXT_DIST_DIR=.next-beh2 NODE_OPTIONS=--max-old-space-size=3072 npx next build` → exit 0 (load 5.7 before; the tsconfig.json edit next made was reverted; dist dir deleted after QA). `npx tsc --noEmit` → no errors. `npm run check` → passed (969 lessons, 0 errors; 6 warnings, none on these three lessons).
+- QA: `QA_BASE_URL=http://localhost:4142 QA_ONLY=zero-loses-to-this-crowd,sure-million-or-long-shot,same-week-a-year-apart npx playwright test --workers=2` → 14 passed, 2 failed, both `feed.spec.ts` "subject chips filter the feed" (the known QA_ONLY artifact noted in earlier build notes); `tests/qa/feed.spec.ts` unfiltered → 10 passed.
+- `node tools/reveal-fit.mjs --url http://localhost:4142 zero-loses-to-this-crowd sure-million-or-long-shot same-week-a-year-apart --jobs 2` → fit 3, pass 3, phoneFit 3, namedHidden 0 (clean stamp, head 4e78fdf + this diff).
+
 ## Revision build (2026-10-16, B3, W-1244)
 
 builder: demo-builder (B3 of `company/ops/dispatch-requests/2026-10-16-r3-behavioral.md`) · brief §1 "Decision ... W-1244" and rule 6

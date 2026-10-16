@@ -23,23 +23,19 @@
   "claims": [
     {
       "id": "behavioral.zero-loses-to-this-crowd.c1",
-      "text": "The game's rule, on the stage: 'Target: two thirds of everyone's average.' The target is two thirds of the average of all 101 guesses, the learner's included (predict: 'closest to two thirds of the average, your guess included').",
+      "text": "The game's rule, on the stage: 'Target: two thirds of everyone's average.' The target is two thirds of the average of all 101 guesses, the learner's included (predict: 'which guess lands closest to the target?').",
       "support": "derivation",
       "source": "The rule of the game as given in brief 3 (Stated model). Demo.tsx avg(g) = (S + g) / 101, target(g) = (2/3)·avg(g), the same formulas as node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs. Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Rule line seen on every frame: 'Target: two thirds of everyone's average.' Demo.tsx avg(g) = (SUM + g)/(N + 1), N = 100, so 101 guesses including the learner's. My own re-derivation (own mulberry32, no imports) gives the stage's numbers with that formula (g = 52: average 34.8, target 23.2, as on screen).",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "Builder (r4 B2 revision build, 2026-10-16): TEXT CHANGED, so set back to unverified for the fact-checker to re-check; the builder does not re-verify it. The predict quote was 'closest to two thirds of the average, your guess included' and is now the check script's 'Against this simulated crowd, which guess lands closest to the target?' (brief 3, Decisions (r4) 1). Prior check, on the old text: FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Rule line seen on every frame: 'Target: two thirds of everyone's average.' Demo.tsx avg(g) = (SUM + g)/(N + 1), N = 100, so 101 guesses including the learner's. My own re-derivation (own mulberry32, no imports) gives the stage's numbers with that formula (g = 52: average 34.8, target 23.2, as on screen)."
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c2",
-      "text": "Against this crowd the best guess is 2S/301 = 23.01 (S = 3,463), so 23 wins and 0 misses by 22.9 and is beaten by 84 simulated guesses; predict answer B 'About 23, between the other two' (played: 0 misses by 22.9, 23 by 0.0, 35 by 11.9). Reveal at g = 0: '0 is the equilibrium guess, and it missed by 22.9; 84 simulated guesses were closer.' Every other g: 'Had you guessed 0, the equilibrium, you would have missed by 22.9.'",
+      "text": "Against this crowd the best guess is 2S/301 = 23.01 (S = 3,463), so 23 wins and 0 misses by 22.9 and is beaten by 84 simulated guesses; predict answer, listed third, 'About 23' (options '0' / 'About 35' / 'About 23'; played: 0 misses by 22.9, 23 by 0.0, 35 by 11.9). Reveal at g = 0: '0 is the equilibrium guess, and it missed by 22.9; 84 simulated guesses were closer.' Every other g: 'Had you guessed 0, the equilibrium, you would have missed by 22.9.'",
       "support": "derivation",
       "source": "g* solves g = (2/3)(S + g)/101, so g* = 2S/301 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, checks '(a) best guess', '(a) 0 loses', 'predict answer'; brief 3 claim 2). Demo.tsx computes miss(0) and closer(0) from the seeded crowd. Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): My own derivation (S = 3,463): g* = 2S/301 = 23.010 (fixed point checked); played: 0 misses by 22.9 (84 simulated closer), 23 by 0.0 (0 closer, the only integer with none), 35 by 11.9; the integer argmin is 23. On :3591 I drove g = 0, 23, 35, 52 and 100: the g = 0 sentence and the 'Had you guessed 0 ... 22.9' sentence read exactly as claimed. Predict answer B is the closest of the three options.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "Builder (r4 B2 revision build, 2026-10-16): TEXT CHANGED, so set back to unverified for the fact-checker to re-check; the builder does not re-verify it. The predict answer was option B 'About 23, between the other two' (answer index 1) and is now option C 'About 23' (answer index 2), options '0' / 'About 35' / 'About 23' with no gloss (brief 3, Decisions (r4) 1). The derivation and the reveal quotes are unchanged. Prior check, on the old text: FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): My own derivation (S = 3,463): g* = 2S/301 = 23.010 (fixed point checked); played: 0 misses by 22.9 (84 simulated closer), 23 by 0.0 (0 closer, the only integer with none), 35 by 11.9; the integer argmin is 23. On :3591 I drove g = 0, 23, 35, 52 and 100: the g = 0 sentence and the 'Had you guessed 0 ... 22.9' sentence read exactly as claimed. Predict answer B is the closest of the three options."
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c3",
@@ -63,13 +59,11 @@
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c5",
-      "text": "Names: 'equilibrium' (predict option A '0, the equilibrium guess'; reveal 'the equilibrium') names the guess that survives the ladder; 'one step' and 'two steps' are the rule's labels for the 40% and 30% groups, linked to two-thirds-of-the-average.",
+      "text": "Names: 'equilibrium' (predict question '0 is this game's equilibrium guess.'; reveal 'the equilibrium') names the guess that survives the ladder; 'one step' and 'two steps' are the rule's labels for the 40% and 30% groups, linked to two-thirds-of-the-average.",
       "support": "convention",
       "source": "Brief 3 claim 5 and Stated model: why the ladder ends at 0 is economics/two-thirds-of-the-average's (published, concept iterated-dominance), linked, not re-derived (E0, E8 (3)). The stage shows no ceiling (66.7, 44.4, ...). Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Term checked in an opened source: Pantelis & Kennedy 2017, PMC5303671 (PMC OAI-PMH, HTTP 200): 'The Nash equilibrium ... prescribes that the rational actor should select 0 - as should all of the other players' and 'the Nash equilibrium of zero'. Finding, not a dispute: the same paper's footnote i notes that with integer-only guesses, all players submitting 1 is also a Nash equilibrium. This slider is integers (step 1), so 'the equilibrium' is the standard name rather than the unique one. Whether to say so is cm-behavioral's call.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "Builder (r4 B2 revision build, 2026-10-16): TEXT CHANGED, so set back to unverified for the fact-checker to re-check; the builder does not re-verify it. The predict quote was option A '0, the equilibrium guess' and is now the question's first sentence '0 is this game's equilibrium guess.' (brief 3, Decisions (r4) 1: 'equilibrium' moves into the question). Prior check, on the old text: FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Term checked in an opened source: Pantelis & Kennedy 2017, PMC5303671 (PMC OAI-PMH, HTTP 200): 'The Nash equilibrium ... prescribes that the rational actor should select 0 - as should all of the other players' and 'the Nash equilibrium of zero'. Finding, not a dispute: the same paper's footnote i notes that with integer-only guesses, all players submitting 1 is also a Nash equilibrium. This slider is integers (step 1), so 'the equilibrium' is the standard name rather than the unique one. Whether to say so is cm-behavioral's call."
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c6",
@@ -113,24 +107,22 @@
     },
     {
       "id": "behavioral.zero-loses-to-this-crowd.c10",
-      "text": "Recall answer: a simulated crowd of 100 averages 60 and the target is half the average, your guess included; 'About 30, between the other two' lands closest (0 misses by 29.7, 30 by 0.1, 60 by 30.0).",
+      "text": "Recall answer: a simulated crowd of 100 averages 60 and the target is half of everyone's average, yours included; 'About 30', listed third, lands closest (options '0' / 'About 60' / 'About 30'; 0 misses by 29.7, 30 by 0.1, 60 by 30.0).",
       "support": "derivation",
       "source": "Target(g) = (6000 + g)/101/2 (node company/domains/briefs/checks/behavioral-beauty-contest-level-k.mjs, recall check; brief 3 transfer recall). Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Recall card in meta.json. My own node: target(g) = (6000 + g)/101/2; 0 misses by 29.7, 30 by 0.1, 60 by 30.0; best guess 6000/201 = 29.85. The answer 'About 30, between the other two' and its 'why' match.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "Builder (r4 B2 revision build, 2026-10-16): TEXT CHANGED, so set back to unverified for the fact-checker to re-check; the builder does not re-verify it. The recall answer was 'About 30, between the other two' (index 1) and is now 'About 30' (index 2) in the script's order '0' / 'About 60' / 'About 30'; the question gains '0 is the equilibrium guess.' and reads 'half of everyone's average, yours included' (brief 3, Decisions (r4) 1). Prior check, on the old text: FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Recall card in meta.json. My own node: target(g) = (6000 + g)/101/2; 0 misses by 29.7, 30 by 0.1, 60 by 30.0; best guess 6000/201 = 29.85. The answer 'About 30, between the other two' and its 'why' match."
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A simulated crowd of 100 averages 60. The target is half the average, your guess included. Which guess lands closest?",
+    "question": "A simulated crowd of 100 averages 60. The target is half of everyone's average, yours included. 0 is the equilibrium guess. Which guess lands closest?",
     "options": [
-      "0, the equilibrium guess",
-      "About 30, between the other two",
-      "About 60, the crowd's average"
+      "0",
+      "About 60",
+      "About 30"
     ],
-    "answer": 1,
+    "answer": 2,
     "why": "The winning guess sits near the target of what the crowd actually guesses: half of about 60 is about 30. The equilibrium guess 0 misses by about 30."
   },
   "evidence": {
@@ -141,7 +133,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "behavioral:beauty-contest-level-k",
     "also": [],

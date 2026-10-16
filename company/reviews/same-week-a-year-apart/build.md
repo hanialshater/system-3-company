@@ -4,6 +4,13 @@ builder: demo-builder (builder-beh) · 2026-10-16 · brief: `company/domains/bri
 
 *Kept from evaluators until they have written their findings (demo-standard: artifact before account).*
 
+## Revision build (r4, 2026-10-16, r4 B2, brief 2 "Decision (r4, W-1293, W-1321)")
+What changed: meta.json `objective` only; its last sentence ("They can also say that with real payments this switch is clearer for effort than for money.") is removed, because the lesson does not teach it (c6 stays cut). No Demo.tsx change, no claim status changed (the objective is not a claim). c3 is still `unverified` from the r3 revision, waiting for the fact-checker.
+- Check script `node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs`: not touched by this change (no learner text changed).
+- Build: `NEXT_DIST_DIR=.next-beh2 NODE_OPTIONS=--max-old-space-size=3072 npx next build` → exit 0 (load 5.7 before; the tsconfig.json edit next made was reverted; dist dir deleted after QA). `npx tsc --noEmit` → no errors. `npm run check` → passed (969 lessons, 0 errors; 6 warnings, none on these three lessons).
+- QA: `QA_BASE_URL=http://localhost:4142 QA_ONLY=zero-loses-to-this-crowd,sure-million-or-long-shot,same-week-a-year-apart npx playwright test --workers=2` → 14 passed, 2 failed, both `feed.spec.ts` "subject chips filter the feed" (the known QA_ONLY artifact noted in earlier build notes); `tests/qa/feed.spec.ts` unfiltered → 10 passed.
+- `node tools/reveal-fit.mjs --url http://localhost:4142 zero-loses-to-this-crowd sure-million-or-long-shot same-week-a-year-apart --jobs 2` → fit 3, pass 3, phoneFit 3, namedHidden 0 (clean stamp, head 4e78fdf + this diff).
+
 ## Revision build (2026-10-16, B3, W-1244)
 
 builder: demo-builder (B3 of `company/ops/dispatch-requests/2026-10-16-r3-behavioral.md`) · brief §2 "Decision ... W-1244" and "Revision-build changes (W-1244)", rule 6
