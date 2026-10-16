@@ -108,6 +108,8 @@ So once the swap is in review, publish-ready will print it under "held (verdict 
 
 None is committed for these four. I treat it as in r6, objection 2: declined as a hold, and routed. analytics-steward adds a row here before the first deploy that includes any of these slugs. If the row is still missing at that deploy, the release-manager names the gap in the release record.
 
+**Added by analytics-steward (Grace), 2026-10-16, about 23:40Z.** Committed in `company/experiments/EXP-006-launch-predictions-r6-r7.md`, before any deploy that carries these four slugs (no `[deploy]` commit after the publish c97973e7). Pooled with cut-the-busiest-link: A1 revisit recall >= 55% (wrong if < 40% on >= 30), A2 recall over prediction >= 15 points (wrong if <= 0), A3 misconception share of wrong predictions >= 60% (wrong if < 45%; the swap is left out, it has no misconception option), A4 predict-correct <= 50% (wrong if > 70%). Per lesson: A5 reveal rate >= 60% (wrong if < 40% on >= 20), A6 median dwell 30-120 s. F1/F2 (first-revisit recall, Surface Value #4) are committed but not measurable on the current events (EXP-006 objection 2). The release-manager's step 6 no longer needs to name a missing row for these four. Results go under EXP-006 `## Result`, never here.
+
 ## Open objections travelling with this launch
 
 | # | Objection | Raised by | Status |

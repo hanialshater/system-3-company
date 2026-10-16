@@ -33,6 +33,8 @@ Brief: `npm run company -- status` at `cdee168c` lists 11 review lessons as "Rea
 
 None has been committed for cut-the-busiest-link. See objection 2. The r5 rows (P1-P3 in `company/rituals/records/2026-10-16-launch-review-r5.md`) are analytics-steward's, written for nine other slugs. I do not extend them to this slug on that role's behalf.
 
+**Added by analytics-steward (Grace), 2026-10-16, about 23:40Z (W-1529).** Committed in `company/experiments/EXP-006-launch-predictions-r6-r7.md`, before any deploy that carries this slug (last deploy 6cbce514 predates the publish f6b2a22e). For cut-the-busiest-link: A5, reveal rate >= 60%, wrong if < 40% on >= 20 predict events; A6, median dwell 30-120 s, wrong if < 20 s or > 180 s; and the pooled rows A1-A4 and F1-F2 with the four r7 lessons. The rows are later than the publish commit, and EXP-006 "Timing" says why that does not let a result be read first. Objection 2 is closed by this row. Results go under EXP-006 `## Result`, never here.
+
 ## Open objections travelling with this launch
 
 | # | Objection | Raised by | Status |
