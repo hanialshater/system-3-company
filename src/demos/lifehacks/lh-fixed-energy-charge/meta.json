@@ -19,7 +19,7 @@
       "Compare fixed and usage-dependent charges in a stated bill model."
     ]
   },
-  "misconception": "The smallest per-kWh rate always makes the smallest total bill.",
+  "misconception": "Halve the energy and the whole bill halves.",
   "objective": "Compare fixed and usage-dependent charges in a stated bill model.",
   "claims": [
     {
@@ -42,12 +42,10 @@
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c3",
-      "text": "A lower variable rate does not erase a fixed charge. At 40kWh, A totals €18 and B €12. They match at 100kWh under these exact assumptions; real tariffs can include other terms.",
+      "text": "A fixed charge does not shrink when you use less. Halve usage from 40 to 20 kWh and A's bill goes from €18 to €14, not €9: only the €8 energy part halves. A lower per-kWh rate does not erase the fee either: B costs €12 at 40 kWh, and the two match at 100 kWh under these exact assumptions; real tariffs can include other terms.",
       "support": "derivation",
-      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "src/lib/lifehacks/resource-specs.json contains this lesson's numeric AST; src/lib/lifehacks/resource-model.ts evaluates it. A=[\"+\",[\"*\",\"x\",0.2],10]; B=[\"*\",\"x\",0.3]; x denotes Usage. At x=40, A=18, B=12. Values are fictional/ideal assumptions, not measurements. Display rounds to at most three decimals. The principle follows from those expressions and stated scenario limits. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. | Reset to unverified 2026-10-16 by demo-builder (dispatch 2026-10-16-r5-lifehacks.md B1, branch lhfix-r3): principle replaced: the reveal now states the 20 kWh answer case (€18 → €14, only the €8 energy part halves) (dispatch 2026-10-16-r5-lifehacks.md D3, FC 61 note). Not checked by the builder.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.lh-fixed-energy-charge.c4",
