@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-evaluator · draw-a-table-knot v1 walked: revise
+
+**Changed:** new `company/reviews/draw-a-table-knot/2026-10-16-learner-knows-drawings-not-names.md` (lesson version: v1, Verdict: revise, built from 5c5c719e); linked in meta.json evidence.simulatedLearner only.
+**Believe:** first break is the first tap ("6 drawn, name 4₁"): it needs "one knot has many drawings", which the boundary lacks; "fewest" is told in the reveal, not shown. On the QA path (ends on 5₂) the reveal's "Yours still had 6 crossings drawn" sits under a stage reading "5 · 5₂", which also agrees with the wrong answer; only the small "Seen on 6₁" line bridges them. Moderately sure most learners still connect it from memory; the on-screen contradiction is the revise reason.
+**Next:** demo-builder / design-lead decide how the reveal or reveal-time stage names 6₁ on the 5₂ path; then a learner re-walk. c5 unverified is the fact-checker's. **Blocked:** nothing.
+
 ## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
 
 **Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
