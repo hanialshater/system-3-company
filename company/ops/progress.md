@@ -3,11 +3,11 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
-## 2026-10-16 16:20Z · chief-of-staff (Ada)
+## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
 **Changed:** published 675 → 709 today (+34; 15 Wave J by W-843 ruling + launch review 7ab3934, 6 Life Hacks slate 00b4b1e, first in category; 4 physics/Wave J f9265aa). Nothing deployed. Founder decisions: F-39 agent memory (merged; every agent reads onboarding + `node tools/memory.mjs read <role>`, ends with an offboarding entry; 50 KB threshold), F-40 floor reseat (merged; 52 moves + Leonie's R1), F-42 mailbox dispatch (tier 1 merged; pilot on verticals, day 1: two builds started by mail, c5b4 physics #64-68 in /home/user/s3c-wj64, 213a Wave J revisions in /home/user/s3c-wjrev6), F-43 First Light T1 +1M (6.59M), History and behavioral no top-up (STOP after 23:59Z). F-41 throughput plan, F-44 First Light cuts C1–C4, F-45 fra1 are open with the founder. Retro and WBR-4 held.
 
-**Believe:** dispatch, not caps, limits output (PE-ops c5a73a4, high). Only 44 held lessons were clean, not ~250; quote publish-ready, never `company status` (high). Wave J has ~1.1M left after the pilot builds (medium; ledger imported 16:10Z).
+**Believe:** dispatch, not caps, limits output (PE-ops c5a73a4, high). Only 44 held lessons were clean, not ~250; quote publish-ready, never `company status` (high). Wave J has ~1.1M left after the pilot builds (medium; ledger imported 15:30Z).
 
 **Next:** drain `node tools/mailbox.mjs drain dispatcher` on every report; merge the two mail builds and send their checks to lane 10; principal-engineer-ops verdicts on the two package.json lines (F-39 c7b9c22, F-42 a8317f6), lhfix-r3, and the F-38/F-43 co-sign (running); founder answers on F-41, F-44.
 

@@ -1,9 +1,10 @@
-# Retro: 2026-10-16, interval 14:35–16:15Z (founder: "the number of demos did not move")
+# Retro: 2026-10-16, interval 14:35–15:32Z (founder: "the number of demos did not move")
 
 owner: chief-of-staff · attendees (by report): principal-engineer-ops (throughput diagnosis c5a73a4), evaluation-steward (W-843 a40bdea), head-of-product (Wave J launch 7ab3934, Life Hacks DLR r2 a29b8e5), lifehacks-safety-reviewer (0c64108), analytics-steward (d83d7b7), release-manager (f9265aa, 00b4b1e), chief-of-staff-ceo-office (floor reseat 2976eb7, consultation 8ab264d), tools-lead (F-39, F-42), hq-engineer (F-40), principal-pm-verticals (F-42 pilot day 1)
+Correction 15:38Z: times in this record were first written as 16:xx; the host clock read 15:3x. The file name keeps "1615" so links hold.
 recorded by: chief-of-staff (citing the attendees' reports; no words in their name)
 
-## Numbers (git, ledger after the 16:10Z import)
+## Numbers (git, ledger after the 15:30Z import)
 - Published 688 → 709 (+21 in this interval: 15 Wave J at 7ab3934, 6 Life Hacks, the first in that category, at 00b4b1e). Nothing deployed.
 - Founder decisions recorded: F-39 (agent memory), F-40 (floors), F-42 (mailbox dispatch), F-43 (First Light +1M); F-41 (throughput), F-44, F-45 open.
 - Merged: F-39 memory (tier 1), F-40 floors, F-42 mailbox (tier 1). Two package.json lines wait for principal-engineer-ops.
