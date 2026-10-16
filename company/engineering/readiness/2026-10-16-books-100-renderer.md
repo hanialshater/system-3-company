@@ -6,7 +6,7 @@ paths: src/components/books/**, src/lib/books/**, tests/books/**
 author: platform-engineer
 approved-by: principal-engineer-ops
 approved: 2026-10-16
-board: W-1492
+board: W-1515
 risks: proposed shared Books renderer regression and unverified book attribution; principal-engineer-ops owns register changes
 links: company/engineering/edd/EDD-010-books-100-models.md, company/engineering/reviews/2026-10-16-books-100-pr-architecture.md
 

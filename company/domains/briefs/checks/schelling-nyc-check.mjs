@@ -1,5 +1,8 @@
 import { mulberry32, run as absRun } from '../../../../src/demos/economics/mild-preferences-sharp-divides/abm.ts';
-const N = 32, EMPTY = 0.1, CAP = 60;
+import fs from 'node:fs';
+// MASK=<json from nyc-mask-rasterise.mjs> switches from the hand-drawn mask to the rasterised DCP borough file.
+const REAL = process.env.MASK ? JSON.parse(fs.readFileSync(process.env.MASK, 'utf8')) : null;
+const N = REAL ? REAL.N : 32, EMPTY = 0.1, CAP = 60;
 // rough hand-drawn borough polygons, lon/lat, from memory of public geography. NOT surveyed data.
 const B = {
  SI: [[-74.26,40.50],[-74.05,40.55],[-74.06,40.60],[-74.08,40.64],[-74.20,40.65],[-74.25,40.56]],
@@ -10,7 +13,7 @@ const B = {
 };
 const LON0=-74.27, LON1=-73.69, LAT0=40.48, LAT1=40.93;
 function inside(p, poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const [xi,yi]=poly[i],[xj,yj]=poly[j];if((yi>p[1])!==(yj>p[1])&&p[0]<(xj-xi)*(p[1]-yi)/(yj-yi)+xi)c=!c;}return c;}
-export function mask(){const m=new Uint8Array(N*N);const lab=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const lon=LON0+(x+.5)/N*(LON1-LON0),lat=LAT1-(y+.5)/N*(LAT1-LAT0);let k=null;for(const [n,p] of Object.entries(B))if(inside([lon,lat],p))k=n;m[y*N+x]=k?1:0;lab[y*N+x]=k;}return {m,lab};}
+export function mask(){if(REAL){const m=new Uint8Array(REAL.labels.map(l=>l?1:0));return {m,lab:REAL.labels};}const m=new Uint8Array(N*N);const lab=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const lon=LON0+(x+.5)/N*(LON1-LON0),lat=LAT1-(y+.5)/N*(LAT1-LAT0);let k=null;for(const [n,p] of Object.entries(B))if(inside([lon,lat],p))k=n;m[y*N+x]=k?1:0;lab[y*N+x]=k;}return {m,lab};}
 const WALL=3;
 function shuffle(a,r){for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));const x=a[i];a[i]=a[j];a[j]=x;}return a;}
 function nb(c,i){const x=i%N,y=(i-x)/N;let like=0,occ=0;for(let dy=-1;dy<=1;dy++){const yy=y+dy;if(yy<0||yy>=N)continue;for(let dx=-1;dx<=1;dx++){const xx=x+dx;if((!dx&&!dy)||xx<0||xx>=N)continue;const v=c[yy*N+xx];if(v===1||v===2){occ++;if(v===c[i])like++;}}}return [like,occ];}
