@@ -79,8 +79,8 @@ export default function TugOfWarScale({ slug }: { slug: string }) {
             the second friend did.
           </p>
           <p>
-            A scale measures the tension in the rope, the pull passed through it, and it can only be stretched if both ends
-            are pulled equally. Only when both pulled 200 N did it read {seen.pair200 ?? "?"} N.
+            A scale measures the tension in the rope, the pull passed through it, and at rest it is stretched only when both
+            ends are pulled equally. Only when both pulled 200 N did it read {seen.pair200 ?? "?"} N.
           </p>
         </>
       )}

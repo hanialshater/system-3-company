@@ -4,7 +4,9 @@
 // `watershed` of company/domains/briefs/checks/geography-wave-j.mjs). Locked: outline, the dot and the two
 // seas only (relief would point at the answer). On unlock the relief appears; the learner drops rain at the
 // dot, drops rain west of the ridge, then colours every square by the sea its water reaches, which draws
-// the divide. A Seen line keeps what was found after Reset.
+// the divide. Reset keeps faint traces of what was found. v3 (W-832): when the reveal opens, the stage shows
+// everything the learner found (both paths, the colouring and the 80% / 20% labels), even after Reset, and
+// the controls are disabled there; the v2 Seen line is gone (the reveal no longer needs it; stage budget).
 
 import { useState } from "react";
 import { Lesson } from "@/kit/Lesson";
@@ -52,7 +54,6 @@ type Seen = { dot: boolean; west: boolean; divide: boolean };
 export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
   const [show, setShow] = useState<Seen>({ dot: false, west: false, divide: false });
   const [seen, setSeen] = useState<Seen>({ dot: false, west: false, divide: false });
-  const [wasReset, setWasReset] = useState(false);
 
   return (
     <Lesson
@@ -77,7 +78,7 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact }) => (
+      {({ locked, interact, phase }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const turnOn = (k: keyof Seen) => {
@@ -85,6 +86,9 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
               setSeen((v) => ({ ...v, [k]: true }));
               reach(k);
             };
+            const atReveal = phase === "reveal";
+            // At the reveal the stage shows every state the learner reached, so Reset cannot empty it.
+            const view: Seen = atReveal ? seen : show;
             const any = show.dot || show.west || show.divide;
             const shade = (v: number) => 0.12 + (0.62 * (v - LO)) / (HI - LO);
             return (
@@ -96,7 +100,7 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                   aria-label={
                     locked
                       ? `A made-up island between a west sea and an east sea, with a dot ${westKm} km from the west sea.`
-                      : `The island with its relief shaded${show.divide ? `; land coloured by the sea it drains to, ${eastPct}% east` : ""}.`
+                      : `The island with its relief shaded${view.divide ? `; land coloured by the sea it drains to, ${eastPct}% east` : ""}.`
                   }
                 >
                   <rect x={0} y={0} width={SEA} height={VH - 22} className={s.seaWest} />
@@ -121,8 +125,8 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                             y={TOP + y * C}
                             width={C + 0.3}
                             height={C + 0.3}
-                            className={show.divide ? (outlet[y][x] === "east" ? s.toEast : s.toWest) : s.relief}
-                            fillOpacity={show.divide ? undefined : shade(v)}
+                            className={view.divide ? (outlet[y][x] === "east" ? s.toEast : s.toWest) : s.relief}
+                            fillOpacity={view.divide ? undefined : shade(v)}
                           />
                         )),
                       )}
@@ -130,7 +134,7 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                   )}
                   <rect x={SEA} y={TOP} width={W * C} height={H * C} className={s.outline} />
 
-                  {show.divide && (
+                  {view.divide && (
                     <>
                       <path d={divideSegs.join("")} className={s.divide} />
                       <text x={divideTopX + 4} y={TOP + 10} className={s.halo}>
@@ -146,17 +150,17 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                   )}
 
                   {/* Faint traces of what was found, kept after Reset */}
-                  {!locked && seen.divide && !show.divide && <path d={divideSegs.join("")} className={s.divideTrace} />}
-                  {!locked && seen.west && !show.west && <polyline points={pathPoints(westRun)} className={s.trace} />}
-                  {!locked && seen.dot && !show.dot && <polyline points={pathPoints(dotRun)} className={s.trace} />}
+                  {!locked && seen.divide && !view.divide && <path d={divideSegs.join("")} className={s.divideTrace} />}
+                  {!locked && seen.west && !view.west && <polyline points={pathPoints(westRun)} className={s.trace} />}
+                  {!locked && seen.dot && !view.dot && <polyline points={pathPoints(dotRun)} className={s.trace} />}
 
-                  {show.west && (
+                  {view.west && (
                     <>
                       <polyline points={pathPoints(westRun)} className={s.pathWest} />
                       <circle cx={cx(WEST_DROP[0])} cy={cy(WEST_DROP[1])} r={3} className={s.start2} />
                     </>
                   )}
-                  {show.dot && <polyline points={pathPoints(dotRun)} className={s.path} />}
+                  {view.dot && <polyline points={pathPoints(dotRun)} className={s.path} />}
 
                   {/* Distances from the dot to each sea (stated in the question). */}
                   <line x1={SEA} y1={TOP - 6} x2={VW - SEA} y2={TOP - 6} className={s.dim} />
@@ -170,38 +174,29 @@ export default function WhichSeaGetsTheRain({ slug }: { slug: string }) {
                   <circle cx={cx(DOT[0])} cy={cy(DOT[1])} r={4} className={s.dot} />
 
                   <text x={SEA} y={VH - 14} className={s.caption}>
-                    Made-up island; 1 square = {KM} km{locked ? "" : show.divide ? "; coloured by sea reached" : "; darker = higher"}
+                    Made-up island; 1 square = {KM} km{locked ? "" : view.divide ? "; colour = sea" : "; darker = higher"}
                   </text>
                 </svg>
                 <div className={s.chips}>
-                  <Control disabled={locked || show.dot} className={show.dot ? "active" : ""} onClick={() => turnOn("dot")}>
+                  <Control disabled={locked || atReveal || show.dot} className={view.dot ? "active" : ""} onClick={() => turnOn("dot")}>
                     Rain at the dot
                   </Control>
-                  <Control disabled={locked || show.west} className={show.west ? "active" : ""} onClick={() => turnOn("west")}>
+                  <Control disabled={locked || atReveal || show.west} className={view.west ? "active" : ""} onClick={() => turnOn("west")}>
                     {locked ? "Rain at a second spot" : "Rain west of the ridge"}
                   </Control>
-                  <Control disabled={locked || show.divide} className={show.divide ? "active" : ""} onClick={() => turnOn("divide")}>
+                  <Control disabled={locked || atReveal || show.divide} className={view.divide ? "active" : ""} onClick={() => turnOn("divide")}>
                     Colour land by its sea
                   </Control>
                   <Control
-                    disabled={locked || !any}
+                    disabled={locked || atReveal || !any}
                     onClick={() => {
                       setShow({ dot: false, west: false, divide: false });
-                      setWasReset(true);
                       interact();
                     }}
                   >
                     Reset
                   </Control>
                 </div>
-                {wasReset && (seen.dot || seen.west || seen.divide) && (
-                  <p className="tiny" data-testid="seen">
-                    Seen:{" "}
-                    {[seen.dot && `dot → ${dotRun.sea}`, seen.west && `west drop → ${westRun.sea}`, seen.divide && `${eastPct}% east`]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                )}
               </div>
             );
           }}

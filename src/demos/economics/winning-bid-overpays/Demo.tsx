@@ -8,8 +8,10 @@
 // 2 bidders: $105.4 (12 of 20). 20 bidders: $118.6. Theory: expected top error 20(n − 1)/(n + 1).
 // Picture: 20 columns (one per auction): faint dots for guesses, the winner's dot filled, a line at the
 // jar's true $100 (drawn locked too: it is the stated value), a dashed line at the average winning bid.
-// Controls (DOM order): [Run 20 auctions] (10 bidders), [2 bidders], [20 bidders], then Step (one more
-// auction at the current number of bidders, from 0; disabled at 20).
+// Controls (DOM order): [Run 20 auctions] (10 bidders), [2 bidders], [20 bidders]. v2 (W-835): the v1
+// "Step: one auction" button is dropped (it was disabled once any run had been pressed, so it was dead on
+// every path that reached the reveal). Winner dots carry a shape cue as well as colour: over $100 is a
+// filled red dot, $100 or under is a hollow green ring.
 // Milestones: "ten" (20 auctions with 10 bidders: average guess, average win, overpay count recorded) and
 // "two" (20 auctions with 2 bidders: average win recorded). The record row keeps both.
 
@@ -89,7 +91,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
         </>
       )}
     >
-      {({ locked, interact, phase }) => (
+      {({ locked, interact }) => (
         <Milestones interact={interact} names={MILESTONES}>
           {(reach) => {
             const show = (nn: number, nk: number) => {
@@ -152,7 +154,7 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
                   {locked ? "" : !ten && !two ? "Run the auctions." : null}
                   {!locked && ten && (
                     <span style={{ display: "block" }}>
-                      10 bidders: guesses {usd1(ten.guess)}, winners {usd1(ten.win)} ({ten.over}/20 over)
+                      10 bidders: guesses {usd1(ten.guess)}, winners {usd1(ten.win)} <span className={s.nowrap}>({ten.over}/20 over)</span>
                     </span>
                   )}
                   {!locked && two !== null && <span style={{ display: "block" }}>2 bidders: winners {usd1(two)}</span>}
@@ -168,13 +170,6 @@ export default function WinningBidOverpays({ slug }: { slug: string }) {
                     20 bidders
                   </Control>
                 </Row>
-                {phase !== "reveal" && (
-                <Row>
-                  <Control disabled={locked || k >= AUCTIONS} onClick={() => show(n, k + 1)}>
-                    Step: one auction
-                  </Control>
-                </Row>
-                )}
               </div>
             );
           }}

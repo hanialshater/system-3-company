@@ -17,3 +17,33 @@ Built as briefed: one rope band, two pullers (the right one becomes a wall), a s
 ## QA
 
 Computer-use QA, unmodified `tests/qa/contract.spec.ts`, `QA_BASE_URL=http://localhost:3530 QA_ONLY=<the 5 Wave J physics slugs> QA_OUT=artifacts/qa-wavej-physics`, 2026-10-14. With the default 45 s test timeout every test failed at `page.goto` (server load), before any check. With only the test timeout raised on the command line (`--timeout=900000`), phone and desktop both passed. Status stays draft as the dispatch asked; the qa-tester's own run on a quiet server or build is still owed.
+
+## Revision v2 (demo-builder, 2026-10-16, verticals r5 B1: W-834, W-711)
+
+Kept from evaluators until they report. Worktree s3c-wjd5, branch wj-design-r5b1.
+
+- **W-834 (design review 2026-10-14, finding 4): fixed.** `.labT` (the "tension N" label under the spring) is now `fill: var(--fg); font-size: 11px` (was `fill: var(--domain); font-size: 10.5px`). The end-pull labels `.lab` ("100 N") go from 10.5 px to 11 px as well (already fg ink). The spring, needle and tension arrows keep the domain colour: they are strokes, not text. Probe at 390×844: the tension label renders rgb(20, 24, 36) at 11 px, SVG scale 1.
+- **W-711 (fact-check c1 wording note): fixed.** Reveal sentence now reads "A scale measures the tension in the rope, the pull passed through it, and at rest it is stretched only when both ends are pulled equally." (was "and it can only be stretched if both ends are pulled equally"). **c1 reset to unverified**, its quote updated, the v1 record kept in its note. No other claim text changed.
+- Nothing else changed: same presets, milestones, Seen row, no Reset.
+
+### Stage word budget (v2, decision 2026-10-16 with Ruling 2: a unit after a number counts 0)
+
+| Busiest frame: explore, "Tie right end to a wall" active, 100 + 100 already seen | words |
+|---|---|
+| Picture: "wall" / "100 N" ×2 / "tension 100 N" / dial ticks and "100 N" | 1 + 0 + 1 + 0 |
+| Caption "Right end tied to a wall. The wall pulls back." | 10 |
+| "Seen: 100 + 100: 100 N · wall: 100 N · 200 + 200: –" | 2 |
+| Controls "Both pull 100 N" / "Tie right end to a wall" / "Both pull 200 N" | 2 + 6 + 2 |
+| **Total** (no stimulus) | **24** |
+
+Other frames: locked 17, slack explore 19, pair frames 16. Unchanged from v1 (no stage word changed).
+
+## Pre-flight v2
+
+1-5. Unchanged from v1 (title, hook, options, locked stage, reveal sources, QA path).
+6. **Reset.** No Reset. Reveal text on the QA path (rendered, reveal-fit run below): "With each friend pulling 100 N, your scale read 100 N, not 200. Tied to a wall, one friend's 100 N pull also read 100 N: the wall pulls back exactly as hard, just as the second friend did. A scale measures the tension in the rope, the pull passed through it, and at rest it is stretched only when both ends are pulled equally. Only when both pulled 200 N did it read 200 N."
+7. **Phone fit.** `node tools/reveal-fit.mjs --url http://localhost:3647 <4 slugs> --jobs 2 --out artifacts/reveal-fit/wjd5-r5b1.json --shots` (own production build, NEXT_DIST_DIR=.next-wjd5, 2026-10-16, unmodified tool, tool commit 79c22aa, clean): `verdict fit, crop 0, phoneFit true, revealWords 82, hiddenBelow 0, namedHidden 0 (named 100, 200 visible), picScale 1, stageH 280`. Screenshot artifacts/reveal-fit/tug-of-war-scale.png: dial and spring at 200 N, "tension 200 N" label and the Seen row all on screen.
+
+### QA (v2)
+
+`QA_BASE_URL=http://localhost:3647 QA_ONLY=tug-of-war-scale,secret-in-the-counts,which-sea-gets-the-rain,winning-bid-overpays QA_OUT=artifacts/qa-wjd5-r5b1 npx playwright test tests/qa/contract.spec.ts --workers=2` on the own production build: 8 passed (phone and desktop, all four lessons), default timeouts. Status stays draft.
