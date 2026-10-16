@@ -18262,6 +18262,60 @@
       ],
       "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 item; brief in the batch file; founder approved criterion 2 (Q3) and review timing (Q4) in the decisions record.",
       "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1552",
+      "title": "W-1538 C1 (eng review company/engineering/reviews/2026-10-16-w1538-settings-api.md): move settings route to src/app/api/account/settings/route.ts (ADR-008 cookie Path=/api/account), update ROUTE in tests/settings/settings-only-put-writes.test.mjs + comments + note §2/§4.1; then C7: make PUT atomic or get privacy-reviewer to accept the merge-vs-off race",
+      "owner": "learner-data-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1553",
+      "title": "W-1538 (eng review company/engineering/reviews/2026-10-16-w1538-settings-api.md): ack /api/account/settings in the /api/account namespace (no shadowing catch-all) before merge; before wiring supply session helper, db Query shape + text[] round-trip on a Neon preview branch, accounts flag (C4); before apply FK auth_user(id), migration number, B3 patches",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1554",
+      "title": "Add test:settings (W-1538, company/engineering/reviews/2026-10-16-w1538-settings-api.md ruling 3/C6) to the CI test:* amendment with W-1116/W-409, so B2/B4 run in CI before the settings route is wired",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1555",
+      "title": "W-1538 C2 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): add src/lib/server/** tier 2 class data to company/engineering/readiness/paths.json above src/**/db*, separate commit on main",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1556",
+      "title": "W-1538 C5 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): readiness addendum to company/engineering/readiness/2026-10-16-accounts.md for /api/account/settings (kill switch, B4 logs, rollback) in the wiring change",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1557",
+      "title": "W-1538 C3 (company/engineering/reviews/2026-10-16-w1538-settings-api.md): confirm B2 path change /api/settings -> /api/account/settings is wording only, with the B1-B4 read; and rule on C7 (merge vs set-false race) if not fixed",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
     }
   ]
 }
