@@ -31,3 +31,18 @@ Result: 6 claims, 6 verified, 0 disputed, 0 withdrawn. No unrecorded claim.
 ## After reading build.md
 
 Nothing in it changes a status. Its QA-path reveal text matches the reveal I read from Demo.tsx.
+
+## 2026-10-16 W-1570..W-1573 re-check (W-1570 fix round): c3, c7
+
+Checker: fact-checker (did not write these claims). Base: main ccr-4c6c7654-ew9ko1 at 975a4851. Lane as written in the dispatch: this slug c3 and c7 only (with same-picture-two-histories c2 to c5, price-tag-or-auction c1, worth-something-alone c7 c8).
+
+Method: git diff of the lesson directory since f1568498: Demo.tsx changes only the reveal's second paragraph (the voting-cycle sentence is gone; c5 is withdrawn in meta.json, outside this lane). Read the current reveal and Stage() before build.md. Swaps re-run by hand: ranked apple 3 > banana 2 > cherry 1, route cherry to banana to apple to cherry: two accepted, apple to cherry refused, stop at apple after 2 swaps, 20 cents. Sources re-opened this run through the PMC OAI API.
+
+| id | status | basis |
+|---|---|---|
+| c3 | verified | Rendered: "That is why choice models assume preferences are ranked (transitive): ...". Chater et al. (2018), PMC5902517: "Some rather mild constraints on the structure of preferences (e.g., most notably, completeness and transitivity) will ensure that such a utility function can be defined", followed by the money pump as a reason to keep preferences coherent. Park, Davis-Stober et al. (2019), PMC6994187: "transitivity of preference is a necessary assumption for nearly all modern utility theories, including expected utility theory and prospect theory". "Ranked" for a complete transitive order is a fair plain-word gloss. Caveat carried from the first check: "That is why" reads as the only reason; the sources give the money pump as one reason beside utility representation. Not a dispute. Easley and Kleinberg ch. 23 still not opened. |
+| c7 | verified | Definition: Park, Davis-Stober et al. (2019), PMC6994187: "A decision maker is transitive in her preferences if, and only if, for any triple a,b,c, whenever she prefers a to b and prefers b to c then she also prefers a to c." The card's apple, banana, cherry sentence is that definition instantiated. "No circle to sell him": with a strict transitive order, some swap in any cycle trades a fruit for one he ranks lower, so a full circle is never accepted; on the stage, ranked mode draws apple to cherry dashed with "✕ refused" and the replay stops at the apple after 2 swaps. |
+
+Non-blocking (demo-builder, optional): c7's source names Easley and Kleinberg (unopened); PMC6994187 above is an opened source for the same definition.
+
+After reading build.md (W-1570 section): quotes the same old and new reveal text; nothing changes a status.

@@ -30,3 +30,16 @@ Result: 7 claims, 7 verified, 0 disputed, 0 withdrawn. No unrecorded claim.
 ## After reading build.md
 
 Nothing in it changes a status. Its QA-path reveal text matches the reveal I read from Demo.tsx.
+
+## 2026-10-16 W-1570..W-1573 re-check (W-1573 fix round): c7, c8
+
+Checker: fact-checker (did not write these claims). Base: main ccr-4c6c7654-ew9ko1 at 975a4851. Lane as written in the dispatch: this slug c7 and c8 only (with same-picture-two-histories c2 to c5, price-tag-or-auction c1, the-swap-that-goes-in-circles c3 c7).
+
+Method: git diff of the lesson directory since f1568498: the model functions (next, value, crossings, tipping, launch) are unchanged; Demo.tsx adds CurveName() for the current and ghost curves and moves the ghost tipping labels below the price line. Read the current Stage() and styles.module.css before build.md. Own Python: for a = 0, 10, 20 cents and every share z = 0.001 to 0.999, the sign of next(z) - z equals the sign of (1 - z)(a + z) - 0.16; crossings 20.0 / 80.0, 7.25 / 82.75, 84.72 percent; iterating from 0 rests at 0 for a = 0 and 10 cents and climbs to 84.72 percent for 20 cents.
+
+| id | status | basis |
+|---|---|---|
+| c7 | verified | Users at share z are the people x < z, so the keenest non-user is x = z with value (1 - z)(a + z), which is what curvePts plots under the axis title "keenest non-user's value". Next share = 1 - 0.16/(a + z) exceeds z exactly when (1 - z)(a + z) > 0.16 (a + z > 0): above the dashed price line the share grows, below it shrinks, and at a crossing next = z. The claim does not say the crossings are the only resting shares (0 also rests when a is below the price), so the 10 cent case does not contradict it. The new curve names and moved labels change no plotted value. |
+| c8 | verified | CurveName writes cents(a) + " alone" ("0¢ alone", "10¢ alone", "20¢ alone") at the curve's own peak, share (1 - a)/2, height ((1 + a)/2)^2: y = 69.3, 50.6, 30.2 in the viewBox, so each name sits on its own curve about 19 px from the next. The current a is drawn with .curve / .curveName (var(--domain), coloured); ghosts are the launched values minus the current a, i.e. values launched earlier, drawn with .ghost / .ghostName (var(--muted), grey). Before the first launch the coloured curve is the default 10¢, which is "the value now chosen". |
+
+After reading build.md (W-1573 section): matches the diff; nothing changes a status.

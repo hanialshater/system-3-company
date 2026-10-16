@@ -47,3 +47,17 @@ Result: 3 claims, 3 verified, 0 disputed, 0 withdrawn. No new unrecorded claim: 
 ### After reading build.md (W-507 fix round)
 
 The fix-round section agrees with what I found in Demo.tsx (question and second reveal paragraph reworded, first paragraph and status line unchanged). Nothing in it changes a status. The evidence field was not touched; a qa-tester is working on evidence.qa in parallel.
+
+## 2026-10-16 W-1570..W-1573 re-check (W-1572 fix round): c1
+
+Checker: fact-checker (did not write this claim). Base: main ccr-4c6c7654-ew9ko1 at 975a4851. Lane as written in the dispatch: this slug c1 only (with same-picture-two-histories c2 to c5, worth-something-alone c7 c8, the-swap-that-goes-in-circles c3 c7).
+
+Method: git diff of the lesson directory since f1568498: model.ts unchanged; Demo.tsx changes the price-row label ("tag:" to "tag price:"), its colour (.price now var(--fg)), the label placement where the two points are within $5 (3 bidders), the predict question wording and the reveal's last paragraph. Read the current Stage() before build.md. Re-derived in my own Python, not the lesson's model: p* = 100 (1/(n+1))^(1/n) = 50, 57.735, 62.996, 66.874; rounded to the cent 50.00, 57.74, 63.00, 66.87; revenue at the rounded price p(1 - (p/100)^n) = 25.000, 38.490, 47.247, 53.499; a brute search over every cent from $0 to $100 gives the same best price and revenue for each n.
+
+| id | status | basis |
+|---|---|---|
+| c1 | verified | The row labelled "tag price:" shows money(tagPrice(k)) under each visited bidder count k, so the label now names exactly the claim's prices ($50.00, $57.74, $63.00, $66.87); the dot labels and status line show money(tagRevenue(k)) = $25.00, $38.49, $47.25, $53.50, the claim's averages. The sale rule in simulate() is hi >= p ("values the item at the tag or more"). The moved 3-bidder labels change position only, not values. |
+
+Non-blocking (qa-tester, layout; no status depends on it): "tag price:" starts at x = 4 and the $50.00 under 1 bidder is centred at x = 70, both 10 px type on the same baseline; by width estimate they come within about a pixel of each other. Worth a look in the phone screenshot.
+
+After reading build.md (W-1572 section): matches the diff; nothing changes the status.

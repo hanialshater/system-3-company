@@ -28,3 +28,22 @@ Result: 4 claims, 4 verified, 0 disputed, 0 withdrawn. No unrecorded claim.
 ## After reading build.md
 
 The build note adds nothing that changes a status. Its probe reveal text matches the reveal I read from Demo.tsx.
+
+## 2026-10-16 W-1570..W-1573 re-check (W-1571 fix round): c2, c3, c4, c5
+
+Checker: fact-checker (did not write these claims; the W-1571 fix round is demo-builder's). Base: main ccr-4c6c7654-ew9ko1 at 975a4851. Lane as written in the dispatch: this slug c2, c3, c4, c5 only (with price-tag-or-auction c1, worth-something-alone c7 c8, the-swap-that-goes-in-circles c3 c7).
+
+Method: git diff of the lesson directory since f1568498 (the prior check), then read the whole current Demo.tsx branch by branch (caption, svg classes, key row, Seen row, controls, predict, reveal with and without each history seen), styles.module.css and the colour variables in src/app/globals.css, before reading build.md. Graph re-derived by hand from SWAPS, SWITCHES and FINAL_LINKS. No walkthrough transcript; no server started.
+
+Result: 4 verified, 0 disputed, 0 withdrawn. No unrecorded claim.
+
+| id | status | basis |
+|---|---|---|
+| c2 | verified | Model unchanged since f1568498 (town1, town2, SWAPS, SWITCHES identical in the diff). Town 1 start = 12 links with 0-4, 3-6, 1-5 crossing; 3 swaps, colours constant. Town 2: person 3 (orange, friends 0 1 2 blue) turns blue, then person 7 (blue, friends 4 5 6 orange) turns orange; links constant. New gating checked: onSeen fires only when step reaches STEPS[town] (3 or 2), by the 700 ms timer or by Step; the Seen row hides a town while it is replayed and not yet at its last step; the reveal says 3 and 2 only when seen, otherwise "some friendships" / "some people", which asserts no wrong number. |
+| c3 | verified | The reveal's second paragraph still reads the claim text (two sentences instead of a semicolon). The new predict option 3 "Can't tell from this picture alone" is the keyed answer (index 2) and asserts exactly this claim; with Town 1 a picking history and Town 2 a copying history ending in one picture, "can't tell" is the correct answer to "Did people choose friends like themselves?". Source re-opened this run: Aral, Muchnik and Sundararajan, PNAS 106(51): 21544-21549 (Crossref 10.1073/pnas.0908800106: title, authors, volume, issue, pages confirmed; PMC2799846 abstract via the PMC OAI oai_dc record): assortative mixing "is used to support claims of peer influence", but "homophily may also explain such evidence"; they separate the two with "longitudinal behavioral, demographic, and geographic data". Easley and Kleinberg ch. 4 still not opened (section 4.2 unconfirmed). Caveat carried from the first check: time data is necessary, not sufficient; the card says "needs". |
+| c4 | verified | Convention. Caption still "Town N (picking/copying) · step k of m"; controls now "▶ Town 1", "▶ Town 2", "Final", "Step"; no real town named; town1 keeps FINAL_COLOURS, town2 keeps FINAL_LINKS. The option no longer names the towns, so nothing on the card contradicts the claim. |
+| c5 | verified | Stage(): a link whose end colours differ gets crossLink (stroke var(--bad): #ff7a7a dark theme, #b8222a light; red); a link in the added set gets newLink (var(--good): #4fd1a5 / #09704d; green) and is never crossing, since every added link joins two same-colour people; removed links are drawn as trailLink (stroke-dasharray 4 4; dashed); in Town 2 each switched person gets a ring, ringBlue or ringOrange from frameOf(2, 0).colours, i.e. the colour before the change (person 3 orange ring, person 7 blue ring). Green and dashed appear only in Town 1, rings only in Town 2. The key lists only the codes present in the current frame, with swatches in the same classes; the ring swatch is grey and labelled "colour before", which matches. The trail fades 1 s after a history's last step; the claim says what the codes mean when drawn, so the fade does not contradict it. |
+
+Non-blocking (qa-tester or demo-builder, no status depends on it): on the dark theme the "red" is a salmon #ff7a7a; next to the grey links it reads as red, so the claim's colour word stands.
+
+After reading build.md (W-1571 section): it describes the same option rewording, control labels and key; nothing changes a status.
