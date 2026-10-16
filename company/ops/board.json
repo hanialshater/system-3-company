@@ -17545,10 +17545,12 @@
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/eval/2026-10-16-phase-a-criterion.md",
-        "company/personalization/eval/2026-10-16-learner-scorer-decision.md"
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze."
+      "note": "2026-10-16 re-owned analytics-steward → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016, batch-1 B1): criterion DRAFT (unfrozen) + phase B MDE first estimate in company/personalization/eval/2026-10-16-phase-a-criterion.md. No simulator run made. Freeze is C1, after B2 fills the named placeholders (B2_FORGET/PULL/PREREQ/SURPRISE, RHO_AGREEMENT) and C1 fixes seeds S and the episode definition. VP may contest bars (delta_min .01, delta_harm .02, G1-G4 margins, G4 added by eval) in writing in the file before freeze. | 2026-10-16 vp-personalization (vp-cgate-1016): VP response before freeze in criterion §8 (one contest: delta_harm .01; one request: novelty-benefit sweep). Freeze moves to batch 2 C4, after C0 full-text check (W-1532) and C2 fidelity review (W-1533). company/personalization/batches/2026-10-16-batch-2.md"
     },
     {
       "id": "W-1497",
@@ -17559,10 +17561,11 @@
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
-        "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md"
+        "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 to review: reader personalization-eval (ranges table for the C1 sweep); findings also to applied-scientist-personalization and vp-personalization. Memo company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md (run ls-b2-1016). Q1: predict-then-feedback helps the predicted item (medium-high); hypercorrection exists (high) and helps recall at a week (medium); serving higher-surprise lessons raises mean recall: unknown (low); novelty as defined in §2.4 improves recall: no evidence (low, base 0). C3 condition: the memo splits hypercorrection (medium+) from the surprise term (low); VP decides which C3 means. Many effect sizes are [R]/[S] (primary full texts unreachable this run): verify before any claim."
+      "note": "2026-10-16 to review: reader personalization-eval (ranges table for the C1 sweep); findings also to applied-scientist-personalization and vp-personalization. Memo company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md (run ls-b2-1016). Q1: predict-then-feedback helps the predicted item (medium-high); hypercorrection exists (high) and helps recall at a week (medium); serving higher-surprise lessons raises mean recall: unknown (low); novelty as defined in §2.4 improves recall: no evidence (low, base 0). C3 condition: the memo splits hypercorrection (medium+) from the surprise term (low); VP decides which C3 means. Many effect sizes are [R]/[S] (primary full texts unreachable this run): verify before any claim. | 2026-10-16 vp-personalization (vp-cgate-1016): read by VP: novelty kept for the first readout with a kill rule (must pass per-term at novelty benefit 0); C3 held; load-bearing [S]/[R] numbers to be full-text checked before freeze (W-1532). company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
     },
     {
       "id": "W-1498",
@@ -17749,10 +17752,11 @@
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/dims/2026-10-16-misconception-strength-rubric.md",
-        "company/personalization/dims/2026-10-16-misconception-strength-anchors.json"
+        "company/personalization/dims/2026-10-16-misconception-strength-anchors.json",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → lesson-dims-owner (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 step 1 DONE (run dims-b3-1016): final rubric msr-v1 + 12 anchors (4 per level, reasons published) in company/personalization/dims/2026-10-16-misconception-strength-rubric.md and the anchors JSON beside it. No other lesson rated. Step 1b (rate the remaining pilot lessons) WAITS for batch-1 C3 condition (vp-personalization reads the B2 memo §1c split: hypercorrection vs the surprise term). Eval: draw the blind 20% sample from non-anchor lessons."
+      "note": "2026-10-16 re-owned personalization-lead → lesson-dims-owner (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 step 1 DONE (run dims-b3-1016): final rubric msr-v1 + 12 anchors (4 per level, reasons published) in company/personalization/dims/2026-10-16-misconception-strength-rubric.md and the anchors JSON beside it. No other lesson rated. Step 1b (rate the remaining pilot lessons) WAITS for batch-1 C3 condition (vp-personalization reads the B2 memo §1c split: hypercorrection vs the surprise term). Eval: draw the blind 20% sample from non-anchor lessons. | 2026-10-16 vp-personalization (vp-cgate-1016): step 1b (C3) HELD: C3 condition means memo §1c (selection for surprise, low), not 1b. Trigger: C4 readout shows gam-surprise-on passing the per-term rule at rho <= 0.5 in the surprise-high cell or better. company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §2."
     },
     {
       "id": "W-1516",
@@ -17764,10 +17768,11 @@
       "links": [
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/eval/2026-10-16-phase-a-criterion.md",
-        "company/personalization/eval/2026-10-16-learner-scorer-decision.md"
+        "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): (a) prereq penalty is a sweep dimension with B2 placeholders, rule for including 0 set before data (criterion §4); (b) G1/G2 in criterion §3; (c) hidden per-lesson pull in decision file finding 1 and criterion T5/T6. (d) waits for VP pilot-widening decision."
+      "note": "2026-10-16 re-owned personalization-lead → personalization-eval (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 personalization-eval (eval-b1-1016): (a) prereq penalty is a sweep dimension with B2 placeholders, rule for including 0 set before data (criterion §4); (b) G1/G2 in criterion §3; (c) hidden per-lesson pull in decision file finding 1 and criterion T5/T6. (d) waits for VP pilot-widening decision. | 2026-10-16 vp-personalization (vp-cgate-1016): (d) pilot not widened for batch 2 (probability + cs). company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1."
     },
     {
       "id": "W-1517",
@@ -17824,10 +17829,11 @@
         "company/personalization/batches/2026-10-16-batch-1.md",
         "company/personalization/data/2026-10-16-settings-schema-note.md",
         "company/personalization/data/00N_settings.up.sql",
-        "company/personalization/data/00N_settings.down.sql"
+        "company/personalization/data/00N_settings.down.sql",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → learner-data-engineer (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 to review (learner-data-engineer, run lde-b4-1016): draft 00N_settings up/down + note on branch perso-settings-w1521 (from main: accounts branch not fetchable). Reviewers: privacy-reviewer (read, SS1-SS5, inventory rows D21/D22, personalization_on default question with vp-personalization), principal-engineer (tier 2 schema, table name), backend-engineer (migration number/order, FK target, runner, preview down test, delete/export patch in note section 6). Nothing built or applied."
+      "note": "2026-10-16 re-owned personalization-lead → learner-data-engineer (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 to review (learner-data-engineer, run lde-b4-1016): draft 00N_settings up/down + note on branch perso-settings-w1521 (from main: accounts branch not fetchable). Reviewers: privacy-reviewer (read, SS1-SS5, inventory rows D21/D22, personalization_on default question with vp-personalization), principal-engineer (tier 2 schema, table name), backend-engineer (migration number/order, FK target, runner, preview down test, delete/export patch in note section 6). Nothing built or applied. | 2026-10-16 vp-personalization (vp-cgate-1016): personalization_on position for privacy-reviewer: option A (nullable, explicit choice only; NULL serves a registered experiment arm, else F1 default; explicit off wins; never inferred). company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §4."
     },
     {
       "id": "W-1522",
@@ -17906,8 +17912,11 @@
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/lab/2026-10-16-lab-privacy-dod.md"
-      ]
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
+        "company/personalization/batches/2026-10-16-batch-2.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D1 with W-1530 (W-1519 is done). company/personalization/batches/2026-10-16-batch-2.md",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1529",
@@ -17917,8 +17926,11 @@
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/lab/2026-10-16-lab-privacy-dod.md"
-      ]
+        "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
+        "company/personalization/batches/2026-10-16-batch-2.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D2, after privacy-reviewer rules on the own-route exception (W-1527 H1/H2). company/personalization/batches/2026-10-16-batch-2.md",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1530",
@@ -17929,19 +17941,86 @@
       "created": "2026-10-16",
       "links": [
         "company/personalization/lab/2026-10-16-lab-privacy-dod.md",
-        "company/reviews/hq/2026-10-16-w1503-review.md"
-      ]
+        "company/reviews/hq/2026-10-16-w1503-review.md",
+        "company/personalization/batches/2026-10-16-batch-2.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-cgate-1016): batch 2 D1 with W-1528. company/personalization/batches/2026-10-16-batch-2.md",
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1531",
       "title": "Before C1 freezes W-1496: answer personalization-eval's rating-fidelity question (simulated ratings from the hidden pull at swept rho, or real ratings with independent pull, rho=0 only; company/personalization/eval/2026-10-16-learner-scorer-decision.md Open) and contest any bar in company/personalization/eval/2026-10-16-phase-a-criterion.md in writing in that file",
       "owner": "vp-personalization",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/eval/2026-10-16-learner-scorer-decision.md",
-        "company/personalization/eval/2026-10-16-phase-a-criterion.md"
+        "company/personalization/eval/2026-10-16-phase-a-criterion.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/personalization/batches/2026-10-16-batch-2.md"
+      ],
+      "note": "2026-10-16 vp-personalization (vp-cgate-1016): done. Rating fidelity: simulated ratings from the hidden pull at swept rho (eval proposal); per-term surprise via named counterfactual gam-surprise-on. Contested delta_harm .02 -> .01; accepted delta_min, 4/6, G1-G3 margins, G4, all one-at-a-time cells incl. penalty 0. Written in criterion §8 and company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1.",
+      "updated": "2026-10-16"
+    },
+    {
+      "id": "W-1532",
+      "title": "Full-text check of the B2 numbers that set a C1 sweep range (forgetRate inputs incl. the unsourced 0.20 basis, T&K Linda rate, Casscells, Bransford & Johnson idea units, St. Hilaire g, Crouch %, Butler 56%): quote + page per number, before the criterion freezes. Lane 14 batch 2 C0 (company/personalization/batches/2026-10-16-batch-2.md; company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §5)",
+      "owner": "learning-scientist-personalization",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+      ]
+    },
+    {
+      "id": "W-1533",
+      "title": "Simulator fidelity review: eval-owned learner (C1) against the B2 ranges and the C0 check record; fidelity only, no policy results. Lane 14 batch 2 C2 (company/personalization/batches/2026-10-16-batch-2.md)",
+      "owner": "learning-scientist-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+      ]
+    },
+    {
+      "id": "W-1534",
+      "title": "Phase A first scored readout: fill B2 placeholders from the C0 record, rule on criterion §8, freeze W-1496 (hash), then score all POLICIES plus the gam-surprise-on counterfactual under the frozen criterion. Lane 14 batch 2 C4 (company/personalization/batches/2026-10-16-batch-2.md)",
+      "owner": "personalization-eval",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+      ]
+    },
+    {
+      "id": "W-1535",
+      "title": "Reproduce the phase A readout (C4) from its seed list and commit: determinism only, not judgement (independence rule §2.5). Lane 14 batch 2 C5 (company/personalization/batches/2026-10-16-batch-2.md)",
+      "owner": "learner-model-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
+      ]
+    },
+    {
+      "id": "W-1536",
+      "title": "Keep or kill per term on the C4 readout: novelty by the kill rule in company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §3; C3 trigger (§2); phase A decision record; batch 3",
+      "owner": "vp-personalization",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [
+        "company/personalization/batches/2026-10-16-batch-2.md",
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
       ]
     }
   ]

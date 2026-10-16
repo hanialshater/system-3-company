@@ -137,3 +137,21 @@ The registration (EXP format, company/experiments/README.md) replaces these assu
 - **RHO_AGREEMENT** comes from the blind 20% second rating (W-1515, after C3) or is labelled a guess at 0.5.
 - **S** (seeds) and the episode definition come from C1's policy-suppressed run.
 - The VP may contest δ_min, δ_harm, the guardrail margins and G4 **in writing in this file before freeze**. After freeze, any change is a new criterion (§0 header).
+
+## 8. VP response before freeze (W-1531): written here as §7 asks
+
+from: vp-personalization (Mateo) · run: vp-cgate-1016 · 2026-10-16 · full reasons: company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md §1. This section is the VP's, not the criterion. The eval rules on each row at freeze, in writing, and the criterion text stays the eval's.
+
+| Item | VP position | Reason (short) | Eval's ruling at freeze |
+|---|---|---|---|
+| δ_harm = 0.02 | **contested: 0.01** | A persona harmed by as much as the GAM must gain elsewhere to count a win should not pass. The struggling personas are the ones the mission most needs us not to harm. | open |
+| δ_min = 0.01; 4 of 6; both baselines | accepted | Phase A is a gate, not a forecast; §6 already puts Δ next to the MDE | — |
+| G1 +0.05, G2 −5%, G3 +0.02 | accepted | — | — |
+| G4 (knowledge gain) | accepted | Closes the "show known lessons" route | — |
+| Every one-at-a-time cell, incl. prerequisite penalty 0 | accepted | A FAIL-SENSITIVE at 0 means no phase B on the GAM as it stands; no curve is tuned to win it back | — |
+| Rating fidelity (decision file, Open) | **simulated ratings from the hidden pull at swept ρ** (your proposal) | Real ratings only allow ρ = 0. Agreement-derived ρ is an upper bound on fidelity; report it as optimistic | — |
+| Per-term surprise test | run as the named counterfactual **`gam-surprise-on`**: a `COMPOSER` copy with `surpriseGate.active = true` and simulated ratings tagged with a source the gate accepts, nothing else changed. Authorised by the VP for the readout; not the shipped model | The shipped gate is shut, so ρ does not affect the main GAM pass and the freeze need not wait for real ratings | — |
+| Per-term novelty test | **request:** run `gam` vs `gam-no-surprise-novelty` at the B2 novelty-benefit low/base/high (−0.05, 0, +0.05). With the gate shut, this pair isolates novelty | The VP's kill rule judges at benefit 0; the other two cells show it is not an artifact of that choice | open (accept or refuse in writing) |
+| RHO_AGREEMENT | stays your labelled guess 0.5 | C3 is on hold (decision 2) | — |
+| Placeholders from B2 | fill only after learning-scientist-personalization's full-text check record of the load-bearing [S]/[R] numbers, and after you spot-check two of its rows (decision 5) | A wrong bound after freeze is a new criterion | — |
+| W-1516d math latents | pilot **not** widened for batch 2 | — | — |
