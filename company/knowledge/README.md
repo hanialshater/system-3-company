@@ -44,3 +44,13 @@ part_of / may_call: links to other patterns
 Confidence follows Alexander: `**` well-supported, `*` promising, unmarked for an open question.
 A pattern earns confidence only on cases that did not produce it (Pattern Review). The pattern
 librarian owns the file, and reviewers apply it.
+
+## Blocked hosts (fact-checking)
+
+`blocked-hosts.json` lists the hosts the agent egress proxy refuses to fact-checkers (W-1335, for the
+W-556 founder ask: a web-capable fact-check session per wave). Each entry has its first-seen date, the
+review records that hit it, the unverified claims whose note names it as blocked, and the last probe.
+`node tools/blocked-hosts.mjs list` prints hosts by claims held; `scan` rebuilds the record and claim
+fields from disk; `probe` sends one HEAD per host through the configured proxy (10 s, no redirects, no
+retries) and writes only `lastProbe`. The list informs, it does not judge: never mark or hold a claim
+because of it, and never route around a host it lists.
