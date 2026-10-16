@@ -5,6 +5,7 @@ date: 2026-10-16
 class: product (PRD for a social surface; stored social data, so engineering tier 2)
 status: **proposed**. Nothing here is approved. It ships only if every condition in "What ships, and when it does not" holds.
 route: growth-designer (this PRD) → privacy-reviewer (privacy gate §5.3, P2.3, P4.3; the beacon field in R12) → principal-engineer (tier-2 EDD, W-1131, written with growth-designer) → analytics-steward (registers the experiment before any build) → head-of-product (scope: does this replace Ruling 2's share-link-only line) → evaluation-steward (AMD-008 M5 reading, Q1.8) → head-of-strategic-initiatives (dates, D-23) → founder (F-26 moderator; the reading of M5 if contested)
+changes: **2026-10-16 (growth-designer, batch first-light/2026-10-16-round-2#B4).** R12 replaced by the one event definition in the privacy ruling `company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md` (conditional pass, C1 to C9), so PRD-003 and PRD-004 no longer disagree on `arm`; the C4 marker rules added to section 9; the P6 row and objection 6 updated. Conformance to a ruling only: what ships, and when, is unchanged.
 recorded by: growth-designer
 board: W-1127 (this PRD). Related: W-1131 (social tier-2 EDD), F-26 (moderator), F-25 (lawyer)
 inputs read: `company/decisions/2026-10-15-founder-first-light-ads-social-back.md`; `company/decisions/2026-10-15-first-light-release-1-scope.md` (Rulings 2 and 4); `company/initiatives/first-light/privacy-gate.md` (§1 P1, P2.3, P4, P6; §5; §7.2; §8); `company/constitution/amendments/AMD-008-first-light-surface-value.md` (M1 to M8, X1, X2); `company/initiatives/first-light/quality-bar.md` (Q1.8, Q2, Q3.4, Q4); `company/engineering/notes/2026-10-15-first-light-reestimate.md` (social row); `company/decisions/2026-10-15-founder-f01-accounts.md`; `src/kit/progress.ts`, `src/kit/types.ts`, `src/kit/Lesson.tsx` (event calls only), `src/components/Feed.tsx` (RevisitCard). Not read: any EDD-008 draft (none on disk).
@@ -75,7 +76,7 @@ The mechanism behind C is a hypothesis here, not a claim (pm-handbook rule 4: an
 - **R9. Report and block** on every unlocked panel and every list row (5.3 item 5; details in section 7). Reasons are a fixed list: "I don't know who sent this", "I'm being sent these when I don't want them", "Something else is wrong with this". No free text.
 - **R10. Settings.** A single account setting, "Prediction swaps", default **off** (5.3 item 4: private by default). The opt-in screen says, in one sentence, exactly who sees what: "If you turn this on, people you send a swap to see your first prediction on that lesson, after they see the answer. They do not see your name." Turning it off deletes the learner's open swaps at once.
 - **R11. No ads anywhere on `/s/<token>`,** as on `/d/<slug>` (scope record, Ruling 3, rule 6). Routed to head-of-product as an explicit addition to rule 6.
-- **R12. Measurement field.** When a recipient claims a swap, a local marker (outside `src/kit/`, for example `s3c:origin:v1` = `{slug: "swap"}`) is written in that browser. When that lesson's revisit later comes up, the recall card sends one extra beacon event defined outside the kit: `{type: "exp", exp: "EXP-<n>", origin: "swap" | "none", slug, correct, spacedDays}`. No identifier, no token, no account field. This is a P6.1 allow-list addition and needs the privacy reviewer's reading. The analytics steward may replace it with a design that needs less.
+- **R12. Measurement field (privacy ruling 2026-10-16, conditional pass).** When a recipient claims a swap, the swap page writes the origin marker `s3c:origin:v1` = `swap` for that slug (rules in section 9, "Device markers"). When that lesson's first revisit is answered, the recall card sends one extra beacon event, defined outside `src/kit/`, exactly `{type: "exp", exp: "EXP-<n>", origin: "swap" | "challenge" | "none", arm?: "test" | "holdout", slug, correct, spacedDays: 1 | 3 | 7 | 21}`. The server adds `at`. Nothing else is accepted: no token (`/s/<token>` never reaches the beacon, the marker or a log), no sender, recipient, account or challenge id, no counts, no durations, no client timestamps, no free text. In this PRD `origin` is `swap`, and `arm` is absent unless the analytics steward adds a randomised arm. The analytics steward may replace it with any strict subset of these fields without a new privacy read (C3).
 - **R13. Copy.** Every surface string passes the AMD-008 M4 banned-phrase scan. No string states a fact about learning ("Swapping helps you remember" is banned: it is an unverified claim and engagement bait). Any string that does state a fact is a recorded claim (X2, Q3.4).
 - **R14. Performance.** The swap page and controls load on demand, outside the feed's entry chunk (re-estimate: new surfaces stay out of first-load JS; Q5.3).
 
@@ -108,7 +109,7 @@ Other gate rows this touches:
 | **P4.2** (share a lesson) | Section 6, S1 to S5 |
 | **P4.3** (5.3 plus a named moderator) | This section, plus F-26 |
 | **P1.2** (anonymous means local) | Opening `/s/<token>` anonymously reads the token and writes nothing |
-| **P6.1, P6.2** (beacon fields, no identifier) | R12 adds one event type with no identifier; the privacy reviewer reads it |
+| **P6.1, P6.2** (beacon fields, no identifier) | R12 adds one event type with no identifier. Ruled 2026-10-16: conditional pass, C1 to C9 (`company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md`); C1 (route.ts allow-list for every type) blocks the event until it lands |
 | **Q1.8** (quality) | Works logged-out (plain lesson) and logged-in; 0 cross-account leaks over the 2-account script; the report path works |
 
 ## 8. Committed prediction (about learning)
@@ -135,6 +136,17 @@ Proposed, smallest set. The EDD may propose less; it may not propose more withou
 | `swap_report` | `token`, `reason` (enum), `created_at`, `state` (enum) | 90 days, unless preserved under the child-safety procedure (lawyer) |
 
 No recipient user id, no IP, no device, no user agent, no free text. The beacon event in R12 is not stored with any of these.
+
+### Device markers and the beacon event (privacy ruling C4, data inventory D5)
+
+Ruled in `company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md` (conditional pass, C1 to C9; the gate it applies is itself proposed until the founder's 10-23 review). The same rules hold in PRD-003 and PRD-004; the analytics steward owns the markers, growth-designer specifies them, a platform builder builds them.
+
+- **`s3c:origin:v1`** holds, per slug, the origin **enum only** (`swap` or `challenge`). Never a token, a sender, a link or a timestamp from the swap or the challenge. It is removed for a slug once that lesson's first revisit has been answered, and in any case 30 days after it was written.
+- **The arm** (PRD-004's random 20% holdout, not used by this PRD unless the analytics steward adds a randomised arm): one key holding the enum `test` or `holdout`, written once, removed when the experiment closes. It is the only marker value allowed to persist beyond one lesson. It leaves the device only as the `arm` enum on the `exp` event, never on any other event and never with the account.
+- **Never uploaded or exported:** neither marker is uploaded by the account merge (EDD-008 §8 uploads the progress map only), neither is in the account export, and neither is read by any personalization rule (P3.2). Deleting the account does not touch them; "also clear this device" does.
+- **Never in `s3c:events:v1`:** neither marker is written to the local event log, and the `exp` event is not stored locally at all.
+- **Shared devices:** the origin marker shows the next user of the browser that a learner opened a friend's swap or a challenge. The privacy reviewer accepts this as the cost of measuring, and the data inventory (D5) says so.
+- **The event** is the one definition in R12. It is sent only when a marker or an arm exists for that browser (C3, the analytics steward's call); the server accepts it only after C1 and C2 land and the experiment is on the server's registered list; it obeys the global kill switch, GPC and DNT, and has its own off switch (C8); raw rows are kept at most 90 days (C7) and analysed only as aggregates, never joined to account, swap or report tables (C6).
 
 ## 10. AMD-008 (proposed) check
 
@@ -187,7 +199,7 @@ Preview only, behind a flag (off by default) until the privacy gate passes P4.3.
 | 3 | Stored social data is tier 2, needs its own EDD and "does not fit 11-30"; about 9 quality runs and 3 privacy runs. | principal-engineer, privacy-reviewer | **Open.** Section 9 is the smallest data set I could find (three tables, no text, no recipient id). The 11-06 line in section 11 is the pre-declared cut. The date is head-of-strategic-initiatives' |
 | 4 | "Light" social could include comparison. Seeing a friend's option lets a learner infer who was right. | head-of-product, AMD-008 M5 | **Open, routed.** No scores, ranks, tallies or right/wrong marks (R5, R7). The reading is the evaluation-steward's (board ask 5); if it goes against the swap, release 1 is share links only |
 | 5 | The prediction may be confounded: people who get swaps from friends differ from feed learners. | growth-designer (anticipating analytics-steward) | **Accepted as a limit.** Stated in section 8 with my confidence; the analytics steward may add a randomised arm |
-| 6 | The R12 beacon event adds a field to the event stream, which the gate keeps minimal. | growth-designer (anticipating privacy-reviewer) | **Open, routed** to the privacy reviewer (board ask 2). It carries no identifier. Without it, section 8 cannot be measured and the swap does not ship (no feature without an experiment) |
+| 6 | The R12 beacon event adds a field to the event stream, which the gate keeps minimal. | growth-designer (anticipating privacy-reviewer) | **Answered by the privacy reviewer, 2026-10-16: conditional pass, C1 to C9** (`company/reviews/_privacy/2026-10-16-experiment-beacon-exp-event.md`, objection 1). R12 and section 9 now follow her definition and C4. Still open on the route: C1 and C2 (backend-engineer), C3 (analytics-steward), C9 (principal-engineer). The ruling is not a pass on the swap itself |
 
 ## What would make this PRD wrong
 
