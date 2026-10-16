@@ -42,11 +42,33 @@ Each learner file has exactly one `Verdict: launch` line and one `lesson version
 
 ## Committed predictions (analytics steward, before launch)
 
-*Left for B2 (analytics-steward). It must be written and dated before any publish commit for these slugs.*
+Written by analytics-steward on **2026-10-16 at about 14:00Z**, before any publish commit for these nine slugs. All nine `meta.json` files still say `status: review` at HEAD abeb7cb, so none of these predictions is late. They cover all nine go and go-with-conditions lessons: best-of-twenty-on-one-test, order-of-the-bad-year, tax-now-or-tax-later, two-cells-sum-any-range, zebra-sorts-before-apple, more-digits-not-bigger, more-detail-less-likely, one-circle-fewer-introductions, twenty-flips-run-of-five.
 
-| Metric | Prediction | Period | would_be_wrong_if |
-|---|---|---|---|
-| First revisit recall rate | | 2 weeks | |
+**There are no real learners yet, so none of these predictions can be tested today.** `/api/events` only writes to function logs, and nothing keeps them (W-706, backend-engineer, still open). Publishing is not deploying, and any deploy needs the founder's approval of that deploy. The learner verdicts this launch rests on are simulated. They are gate inputs, not evidence that anyone learned anything. So this section says what will be measured once real events exist, and what result would count against the launch.
+
+**Period.** Day 0 is the first day that persisted production events exist for any of the nine slugs, which needs both W-706 and a founder-approved deploy that carries this publish. The read is at day 0 + 14. If a minimum sample below is not reached by then, the read is **"no read"**, not a pass. The window can be extended once, to day 0 + 28, and this has to be written here before that extension starts. If the minimum is still not reached at day 28, the read stays "no read" and these rows are re-committed, not re-interpreted.
+
+**Definitions** (event types are from `src/kit/types.ts`). A *start* is a `view` followed by at least one `predict` or `interact` in the same session. *Reveal reached* means a `reveal` event for that slug after a start. *First revisit recall* is the first `recall` event per learner and slug with `spacedDays >= 1` (`REVISIT_SCHEDULE_DAYS = [1, 3, 7, 21]`, so the first one is due on day 1). *Prediction correct* is the first `predict` per learner and slug. Every recall card has 3 options, so chance is 33%. All rates are pooled across the nine unless a row says otherwise.
+
+| # | Metric | Prediction | Period | Minimum sample | would_be_wrong_if |
+|---|---|---|---|---|---|
+| P1 | First revisit recall rate (the learning metric) | >= 50% correct, pooled over the nine | day 0 to day 0 + 14 | >= 30 first revisits pooled | < 40% correct across >= 30 first revisits (near chance, 33%, plus about 7 points) |
+| P2 | Recall gain over the first prediction (same learners, same slugs) | first revisit recall exceeds first-prediction correctness by >= 15 points | day 0 to day 0 + 14 | >= 30 learner-slug pairs with both events | the gain is <= 0 points across >= 30 pairs. Then recall is not evidence that the lesson changed anyone's mind, whatever P1 says |
+| P3 | First-prediction correct rate (does the lesson target a real misconception?) | <= 50% correct, pooled | day 0 to day 0 + 14 | >= 50 first predictions pooled | > 70% correct across >= 50 first predictions. Then most learners already knew the point, and a high P1 cannot be credited to the lesson |
+| P4 | Reveal reached, pooled (completion, not learning) | >= 70% of starts reach the reveal | day 0 to day 0 + 14 | >= 50 starts pooled | < 50% across >= 50 starts |
+| P5 | Reveal reached, per lesson (the simulated "launch" verdicts predicting no real dead end) | every one of the nine >= 50% | day 0 to day 0 + 14 | >= 20 starts for that lesson | any lesson with >= 20 starts has < 30% reaching the reveal. That lesson goes back to its CM and release-manager as a possible dead end (the record's unpublish condition) |
+| P6 | Reveal reached, the two conditional lessons against the other seven (objection 1: an unsignposted unlock treated as a condition, not a hold) | best-of-twenty-on-one-test and two-cells-sum-any-range are each within 15 points of the pooled rate of the other seven | day 0 to day 0 + 14 | >= 20 starts each, and >= 50 for the seven | either lesson is >= 20 points below the other seven's pooled rate. Then the "condition, not hold" reading of objection 1 was wrong, and the evidence goes to W-1333 (principal-pm-verticals) |
+| P7 | Median dwell on `complete` (engagement only, **never reported as learning**) | between 45 s and 120 s, pooled | day 0 to day 0 + 14 | >= 50 completes | the median is < 30 s or > 180 s. This tests the 60-second format only. Longer dwell can mean confusion as easily as interest |
+
+**Checks before reading any row** (Twyman: anything that looks interesting is probably wrong until these pass).
+- Logging: events persist for all nine slugs, and every event type above appears at least once per slug. Our own QA, smoke tests and learner-evaluator walks are excluded (by agent and session marker) before counting.
+- Sample ratio: starts per slug should not differ by more than about 3x between lessons in the same domain once the feed exposes them. A lesson with no `view`s is a logging or exposure fault, not a result.
+- Novelty: report day 0-2 and day 3-14 separately. A P4 or P7 move that exists only in day 0-2 is not read as preference.
+- Recall selection: only learners who come back can produce P1. Report P1 next to the revisit rate (first revisits / starts). P1 on a revisit rate under 10% is reported as "survivors only", not as the cohort's recall.
+
+These rows are scored at the first WBR after day 0 + 14 (analytics-steward, WBR metrics section). Results are added beside this section and never written into it. The standing EXP-002 prediction (recall >= 60%, wrong if <= 45%) is separate and unchanged. It is a moderated 5 x 5 session design, and these rows are passive feed telemetry.
+
+Signed: analytics-steward (Grace), 2026-10-16.
 
 ## Open objections travelling with this launch
 | # | Objection | Raised by · owner | Why we proceed anyway (what happened to it) |
