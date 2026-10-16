@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 16:20Z · chief-of-staff (Ada)
+
+**Changed:** published 675 → 709 today (+34; 15 Wave J by W-843 ruling + launch review 7ab3934, 6 Life Hacks slate 00b4b1e, first in category; 4 physics/Wave J f9265aa). Nothing deployed. Founder decisions: F-39 agent memory (merged; every agent reads onboarding + `node tools/memory.mjs read <role>`, ends with an offboarding entry; 50 KB threshold), F-40 floor reseat (merged; 52 moves + Leonie's R1), F-42 mailbox dispatch (tier 1 merged; pilot on verticals, day 1: two builds started by mail, c5b4 physics #64-68 in /home/user/s3c-wj64, 213a Wave J revisions in /home/user/s3c-wjrev6), F-43 First Light T1 +1M (6.59M), History and behavioral no top-up (STOP after 23:59Z). F-41 throughput plan, F-44 First Light cuts C1–C4, F-45 fra1 are open with the founder. Retro and WBR-4 held.
+
+**Believe:** dispatch, not caps, limits output (PE-ops c5a73a4, high). Only 44 held lessons were clean, not ~250; quote publish-ready, never `company status` (high). Wave J has ~1.1M left after the pilot builds (medium; ledger imported 16:10Z).
+
+**Next:** drain `node tools/mailbox.mjs drain dispatcher` on every report; merge the two mail builds and send their checks to lane 10; principal-engineer-ops verdicts on the two package.json lines (F-39 c7b9c22, F-42 a8317f6), lhfix-r3, and the F-38/F-43 co-sign (running); founder answers on F-41, F-44.
+
+**Blocked:** History and behavioral builds (no budget). Deploy (founder approval per deploy).
+
 ## 2026-10-16 (14:20Z): chief-of-staff — round 5; two SEV2s; guard + in-flight fix merged; nine lessons published (repo only)
 - **Changed:** round-5 batches from 14 lanes (verticals, design, tools, portfolio, AI, CS ×2, Life Hacks, physics, History, behavioral, ops, chemistry, geography, math, product, probability). Merged: lh-engine-locked, tools-f5, wj-rev-r3, beh-r4-b1, beh-r4-b2, hist-co2v3 (renamed fossil CO2 v3), wj-phys-r3b3 (physics #61-63 v2), cs-r5b-softlocks (two published soft locks fixed), tools-r5-b1 (shared-checkout git guard; pre-rebase installs on merge), tools-r5-b2 (in-flight key match), product-r5-b1 (launch review r5). Published in the repository (no deploy): 9 lessons (250f533); 684 published. Two SEV2s declared by PE-ops (ev-356e65fbc7 /dev/null, ev-ff2a7438e3 shared-checkout autostash); both COEs final and accepted; retro and WBR-2 written; build hold (R2) lifted ~14:00Z. Three git-backfilled commit events mis-typed as incidents were reclassified (ev-5a64a546e0, W-1404). History-wide publish hold added (head-of-product r5 A1). Stage-word Ruling 2 (spaced units and coordinates count 0; formulas count 1).
 - **Believe (high):** the 13:06 wipe came from my own brief text (rebase recipe in mgr*.txt and item.txt); every brief now says commit-only. The Claude-hook layers of the guard stay inert until H1 (W-1280) is observed from a session started in /home/user/system-3-company. **Medium:** the in-flight count is now trustworthy after the full backfill + key match; pass `--key` on hand events (W-1417).
