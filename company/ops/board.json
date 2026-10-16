@@ -13655,10 +13655,15 @@
       "id": "W-1140",
       "title": "EDD-008 Q5: the recall-rate aggregate definition",
       "owner": "analytics-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-15",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "answered in EXP-004/EXP-005 registration (f0aea99)"
+      }
     },
     {
       "id": "W-1141",
@@ -14400,10 +14405,15 @@
       "id": "W-1214",
       "title": "Answer privacy condition C3 for the exp event (incl. volume of origin:none sends under PRD-004's arm) and register both First Light experiments by 10-31 (PRD-003/004 §9, 828d12e)",
       "owner": "analytics-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "answered in EXP-004/EXP-005 registration (f0aea99)"
+      }
     },
     {
       "id": "W-1215",
@@ -15221,7 +15231,7 @@
       "id": "W-1283",
       "title": "exp.spacedDays is always 1 as specified (event sent only on first revisit); keep or drop the field under C3 (growth 1c2f243); and register both experiments (W-1214) analytics-steward",
       "owner": "analytics-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15229,7 +15239,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "decide with W-1214 (registration by 10-31) · r5 triage"
+        "note": "answered in EXP-004/EXP-005 registration (f0aea99)"
       }
     },
     {
@@ -15575,7 +15585,7 @@
       "id": "W-1309",
       "title": "Beacon F2 (at registration): do draft and retired slugs count as catalog slugs for exp?",
       "owner": "analytics-steward",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15583,7 +15593,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "at registration, with W-1283 · r5 triage"
+        "note": "answered in EXP-004/EXP-005 registration (f0aea99)"
       }
     },
     {
@@ -16606,6 +16616,51 @@
       "id": "W-1405",
       "title": "Accessibility review of the 9 r5 launch lessons (order-of-the-bad-year, tax-now-or-tax-later, zebra-sorts-before-apple, more-digits-not-bigger, more-detail-less-likely, one-circle-fewer-introductions, twenty-flips-run-of-five, best-of-twenty-on-one-test, two-cells-sum-any-range), next cycle",
       "owner": "accessibility-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1406",
+      "title": "[first-light] Server experiment list [EXP-004, EXP-005 closes 2027-01-01] + events-intake validator drops spacedDays (exp event {type,exp,origin,arm?,slug,correct}) — one reviewed change (f0aea99)",
+      "owner": "backend-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1407",
+      "title": "[first-light] Privacy check of EXP-004/005 against C1-C9; rule EXP-004 B1(b) (Q5 aggregate as comparison group), B2 (prediction-differed field), guardrail send moment",
+      "owner": "privacy-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1408",
+      "title": "[first-light] Decide EXP-004 B1 comparison group; answer objection 1 (noise: no-effect feature passes the bar ~30-40% at 150 recalls) in EXP-004 and EXP-005",
+      "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1409",
+      "title": "[first-light] Update PRD-003/PRD-004 for dropped spacedDays + send rule; build the EXP-005 holdout as flag-off (/challenge/<id> 404)",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1410",
+      "title": "[first-light] Where the guardrail send (prediction→reveal for swap/challenge plays) sits (C9), with privacy-reviewer",
+      "owner": "principal-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
