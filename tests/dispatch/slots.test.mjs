@@ -9,6 +9,7 @@ import path from "node:path";
 import { execFileSync, spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import * as slots from "../../tools/lib/slots.mjs";
+import { stubGitPath } from "./git-stub.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const CHECK = path.join(ROOT, "tools/dispatch-check.mjs");
@@ -28,11 +29,16 @@ function batch(d, name, { poc, lane, items }) {
     items.map((r, i) => `## B${i + 1} · fixture item · board W-0\nrole: ${r}\nkind: other\n`).join("\n"));
   return f;
 }
-function run(args, { dir, ev }, env = {}) {
+// G5-d (2026-10-16-r5-tools.md#B3): the spawns run with a stub git (tests/dispatch/git-stub.mjs says why). No test
+// here reads R1 or C3, the only rules that call git; every run is --kind=other. The slow suite cross-checks real git.
+const SLOW = process.env.S3_SLOW_TESTS === "1";
+const STUB_PATH = stubGitPath();
+function run(args, { dir, ev }, env = {}, { realGit = false } = {}) {
   const e = { ...process.env, S3_SLOTS_DIR: dir, S3_EVENTS: ev, ...env };
   delete e.S3_SLOTS; delete e.S3_SLOTS_S4;
   Object.assign(e, env);
-  try { return { code: 0, ...JSON.parse(execFileSync("node", [CHECK, "--kind=other", "--running=0", "--json", ...args], { env: e, encoding: "utf8" })) }; }
+  if (!realGit) e.PATH = STUB_PATH;
+  try { return { code: 0, ...JSON.parse(execFileSync(process.execPath, [CHECK, "--kind=other", "--running=0", "--json", ...args], { env: e, encoding: "utf8" })) }; }
   catch (err) { return { code: err.status, ...JSON.parse(err.stdout) }; }
 }
 const has = (list, re) => list.some((l) => re.test(l));
@@ -190,7 +196,10 @@ test("release on report: a later report naming the batch item (abbreviated path)
   const sb = sandbox();
   assert.equal(run(["--role=tools-lead", `--source=${TOOLS_B2}`], sb).code, 0);
   assert.equal(run(["--role=tools-lead", `--source=batch=company/ops/dispatch-requests/2026-10-16-r2-tools.md#B4`, "--agent=tools-lead: B4 serve"], sb).code, 0);
-  const later = new Date(Date.now() + 1000).toISOString();
+  // G5-d: the reports are dated when both claims have returned, so they come after those slots and before the
+  // re-dispatch below. (It was now + 1 s, which held only while a spawn took over 1 s: with a fast spawn the
+  // re-dispatch's slot fell inside that second and was released too.)
+  const later = new Date().toISOString();
   fs.writeFileSync(sb.ev, [
     { id: "ev-1", ts: later, type: "report", actor: "tools-lead", agent: "tools-lead: B2 ledger", summary: "batch=…r2-tools.md#B2 done (abc123)" },
     { id: "ev-2", ts: later, type: "report", actor: "tools-lead", agent: "tools-lead: B4 serve", summary: "done" },
@@ -383,4 +392,25 @@ test("F6 / Q1: with S4 on, §4:ritual: <id> passes only when <id> is in the role
   const free = run(["--role=fact-checker", "--source=§4:emergency: launch-review", "--no-claim", "--s4"], sb, en);
   assert.ok(has(free.fails, /^S4 /), "only the ritual: form is exempt");
   assert.deepEqual([...slots.roleRituals("fact-checker")].sort(), ["coe", "launch-review"]);
+});
+
+// G5-d: the git stub must not change any S/C result. Slow suite only (each real-git spawn reads 53 records, ~2.8 s).
+test("G5-d cross-check: with the real git on PATH, S1/S2/S3 and C1 give the same result as with the stub", { skip: !SLOW && "slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)" }, () => {
+  const sb = sandbox();
+  const now = new Date().toISOString();
+  for (let i = 0; i < 14; i++) writeSlot(sb.dir, { id: `fixture-${i}`, role: "fact-checker", lane: "10", source: "SO-quality-1", chooser: "evaluation-steward", kind: "check", agent: `fc-${i}`, ts: now });
+  const en = { S3_SLOTS: "enforce" };
+  const cases = [
+    [["--role=tools-lead", "--chooser=tools-lead", "--no-claim"], en],
+    [["--role=general-purpose", `--source=${TOOLS_B2}`, "--no-claim"], en],
+    [["--role=tools-lead", `--source=${TOOLS_B2}`, "--no-claim"], en],
+    [["--role=tools-lead", `--source=${TOOLS_B2}`, "--no-claim", "--running=14"], {}],
+  ];
+  const rules = (r) => [...r.fails, ...r.warns].map((l) => l.split(" ")[0]).filter((w) => /^[SC]\d$/.test(w)).sort();
+  for (const [args, env] of cases) {
+    const stub = run(args, sb, env), real = run(args, sb, env, { realGit: true });
+    assert.equal(real.code, stub.code, args.join(" "));
+    assert.deepEqual(rules(real), rules(stub), args.join(" "));
+    assert.deepEqual(real.fails, stub.fails, args.join(" "));
+  }
 });

@@ -11,6 +11,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { coeCoverage, readCoes, isSevere } from "../../tools/lib/coe-coverage.mjs";
 import { readJsonlFile } from "../../tools/lib/events-spool.mjs";
+import { stubGitPath } from "./git-stub.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const REC = path.join(ROOT, "company/rituals/records");
@@ -38,8 +39,11 @@ const asAccepted = (t) => asFinal(t).split(/^(?=## )/m).map((p) => {
   if (!/^## Review \(/.test(p)) return p;
   return /^verdict:/m.test(p) ? p.replace(/^verdict:.*$/m, "verdict: accept") : p.replace(/^(## Review .*\n)/, "$1verdict: accept\n");
 }).join("");
+// G5-d (2026-10-16-r5-tools.md#B3): a stub git (tests/dispatch/git-stub.mjs). Every assertion here reads only R2
+// lines, and R2 reads COE files, not git; R1's per-record git log was ~2.7 s of each spawn.
+const STUB_PATH = stubGitPath();
 const runCheck = (kind, dir, evFile) => {
-  try { return JSON.parse(execFileSync("node", [path.join(ROOT, "tools/dispatch-check.mjs"), `--kind=${kind}`, "--running=0", "--builders=0", "--json"], { env: { ...process.env, S3_COE_DIR: dir, S3_EVENTS: evFile }, encoding: "utf8" })); }
+  try { return JSON.parse(execFileSync(process.execPath, [path.join(ROOT, "tools/dispatch-check.mjs"), `--kind=${kind}`, "--running=0", "--builders=0", "--json"], { env: { ...process.env, S3_COE_DIR: dir, S3_EVENTS: evFile, PATH: STUB_PATH }, encoding: "utf8" })); }
   catch (e) { return JSON.parse(e.stdout); }
 };
 const eventsFile = (d) => {
@@ -230,4 +234,20 @@ test("W-782: both reviewers accept, covered; a later re-review that revises un-c
   assert.deepEqual(coeCoverage([ev(IDS.deploy)], d).covered.map((e) => e.id), [IDS.deploy]);
   fs.appendFileSync(path.join(d, "2026-10-14-coe-x.md"), "## Review (pattern-librarian, 2026-10-15)\nverdict: revise\n");
   assert.match(coeCoverage([ev(IDS.deploy)], d).uncovered[0]?.why ?? "", /revise by pattern-librarian/);
+});
+
+// G5-d: the git stub must not change any R2 line. Slow suite only (real-git spawns read every ritual record).
+test("G5-d cross-check: with the real git on PATH, wave and build give the same R2 lines as with the stub", { skip: process.env.S3_SLOW_TESTS !== "1" && "slow: set S3_SLOW_TESTS=1 (npm run test:dispatch:slow)" }, () => {
+  const d = tmpDir({ "2026-10-14-coe-x.md": coe(IDS.deploy, "final") });
+  const evFile = eventsFile(tmpDir({}));
+  const real = (kind) => {
+    try { return JSON.parse(execFileSync(process.execPath, [path.join(ROOT, "tools/dispatch-check.mjs"), `--kind=${kind}`, "--running=0", "--builders=0", "--json"], { env: { ...process.env, S3_COE_DIR: d, S3_EVENTS: evFile }, encoding: "utf8" })); }
+    catch (e) { return JSON.parse(e.stdout); }
+  };
+  const r2 = (r) => [...r.fails, ...r.warns].filter((l) => l.startsWith("R2"));
+  for (const kind of ["wave", "build"]) {
+    const stub = runCheck(kind, d, evFile), withGit = real(kind);
+    assert.ok(r2(stub).length > 0, `${kind}: the fixture has uncovered incidents`);
+    assert.deepEqual(r2(withGit), r2(stub), kind);
+  }
 });
