@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · personalization-engineer (Tavi) · W-1540 HQ lab D2 nits + D1 N4 (run pe-u1-1016, branch perso-u1)
+
+**Changed:** src/lib/hq-personalization-server.ts: `childEnv()` = `CHILD_ENV` plus `SystemRoot` only when set (D1 N4, Windows). tests/hq/personalization.test.mjs: M6 test that two concurrent cold `meta` misses return the same promise (one process), then cache; `childEnv` copies nothing else. tests/hq/personalization-privacy.test.mjs: M1 trust-list sentence in the header; M3 rule `url() with a scheme or host` (any scheme incl. `data:`, or `//`) over every lab file, with 4 planted rows; M5 header says enforced by verify, not check. company/personalization/lab/2026-10-16-lab-privacy-dod.md: D5 update (M1, M3, M5) and F3 child-env line. Board: W-1540 → review, reviewer hq-engineer. No new data path, no dependency, no model or simulator change.
+**Tests:** HQ lab tests 10/10; `npm run test:hq` 72/75 (the same 3 release-history shallow-clone failures); typecheck clean; `npm run check` passes. M6 test mutation-checked: removing the meta join makes it fail. `npm run verify` (build + QA) not run.
+**Believe (high):** the nits are closed as asked; M3 is stricter than asked (`data:` and inline styles flagged too), which a privacy gate can afford. N5, M2, M4 stay notes (W-1540 note).
+**Next:** hq-engineer reviews W-1540 on perso-u1; chief-of-staff merges after. **Blocked:** nothing.
+
 ## 2026-10-16 · vp-personalization (Mateo) · lane 14 batch 3: criterion 2, headroom first, plus review timing (run vp-batch3-1016)
 
 **Changed:** new company/personalization/batches/2026-10-16-batch-3.md (10 items, 5 waves, paste-ready briefs). Board: new W-1544 (E1 evidence, learning-scientist-personalization), W-1545 (K1 criterion 2 draft + harness, personalization-eval), W-1546 (P1 review-timing numbers, applied-scientist-personalization), W-1547 (P2 review-timing code, learner-model-engineer), W-1548 (F1 fidelity), W-1549 (K2 freeze + readout 2), W-1550 (R2 repro), W-1551 (V, mine); W-1540 and W-1538 → next with batch notes. No model, criterion, curve or src change.

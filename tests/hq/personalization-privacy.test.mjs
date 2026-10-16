@@ -21,9 +21,14 @@
 // a hit that matters").
 // Known limit: a grep cannot see a name assembled at run time (window["fe" + "tch"], "/a" + "pi/"). The import
 // allowlist and review of src/app/hq/** (hq-engineer) cover that; privacy-reviewer re-reads under L2.
+// The import allowlist is a trust list, not a scan: the modules on IMPORT_ALLOW (for example @/lib/hq, ../HqTop,
+// ../model.ts, ./simulate.mjs) are trusted by name and their own contents are not scanned here. A change to any
+// allowlisted file is re-read by hq-engineer under ruling L2 (company/reviews/hq/2026-10-16-d2-review.md M1).
+// CSS: any url() with a scheme (https:, http:, data: and the rest) or a protocol-relative "//" fails, so a style
+// cannot load from outside the lab (D2 review M3). Lab styles need no images today.
 //
 // The second test proves the scanner is not blind: each forbidden pattern is planted in a temp copy and must fail.
-// Run: npm run test:hq
+// Run: npm run test:hq. It is enforced by `npm run verify` (which runs test:hq), not by `npm run check` (D2 review M5).
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -83,6 +88,8 @@ const FORBIDDEN = [
   ["sendBeacon", /sendBeacon/],
   ["WebSocket", /WebSocket/],
   ["EventSource", /EventSource/],
+  // D2 review M3: a url() that names a scheme or a host (protocol-relative) in any lab file, CSS included.
+  ["url() with a scheme or host", /\burl\(\s*["']?\s*(?:[a-z][a-z0-9+.-]*:|\/\/)/i],
 ];
 
 function listFiles(root) {
@@ -159,6 +166,10 @@ export const BREAKS = [
   ["another /api/ path in a string", PX, 'const u0 = "/api/progress";', "other /api/ path"],
   ["/api path built from pieces", PX, 'const u0 = "/api" + "/events";', "other /api/ path"],
   ["/api/ in CSS", "src/app/hq/personalization/personalization.module.css", ".x { background: url(/api/events); }", "other /api/ path"],
+  ["external url() in CSS", "src/app/hq/personalization/personalization.module.css", ".x { background: url(https://example.com/p.png?u=1); }", "url() with a scheme or host"],
+  ["quoted external url() in CSS", "src/app/hq/personalization/personalization.module.css", '.x { background-image: url( "http://example.com/p.png" ); }', "url() with a scheme or host"],
+  ["protocol-relative url() in CSS", "src/app/hq/personalization/personalization.module.css", "@font-face { src: url('//example.com/f.woff2'); }", "url() with a scheme or host"],
+  ["external url() in an inline style", PX, 'const st0 = { backgroundImage: "url(https://example.com/p.png)" };', "url() with a scheme or host"],
   ["localStorage", PX, 'const v0 = localStorage.getItem("x");', "localStorage"],
   ["s3c: key", CLI, 'const k0 = "s3c:progress:v1";', "s3c:"],
   ["sessionStorage", PX, "sessionStorage.clear();", "sessionStorage"],

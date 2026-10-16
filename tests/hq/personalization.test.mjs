@@ -5,7 +5,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import path from "node:path";
 import { parseSimRequest, cliArgs, pwlAt, curvePath, policyGroups, stepLine, UNSCORED_LABEL } from "../../src/lib/hq-personalization.ts";
-import { runSim, BUSY, CHILD_ENV, modelStamp } from "../../src/lib/hq-personalization-server.ts";
+import { runSim, BUSY, CHILD_ENV, childEnv, modelStamp } from "../../src/lib/hq-personalization-server.ts";
 
 const q = (o) => new URLSearchParams(o);
 
@@ -100,4 +100,19 @@ test("runSim lock: released after a failed run (N3); meta never waits on the run
   const meta = await runSim({ op: "meta" }, coldRoot);
   assert.ok(meta.ok, `meta is not refused while a run is in flight: ${meta.error}`);
   assert.ok((await running).ok);
+});
+
+// W-1540 (company/reviews/hq/2026-10-16-d2-review.md M6; company/reviews/hq/2026-10-16-d1-review.md N4)
+test("runSim meta: two concurrent cold misses share one process (M6); SystemRoot passes through when set (N4)", async () => {
+  // A root string no earlier test used, so both calls miss the cache (keyed on root and stamp).
+  const coldRoot = `${process.cwd()}${path.sep}.${path.sep}.`;
+  const a = runSim({ op: "meta" }, coldRoot);
+  const b = runSim({ op: "meta" }, coldRoot);
+  assert.equal(b, a, "the second cold miss joins the first one's process");
+  const r = await a;
+  assert.ok(r.ok, r.error);
+  assert.equal(await runSim({ op: "meta" }, coldRoot), r, "then it is cached");
+  assert.deepEqual(childEnv({ SystemRoot: "C:\\Windows", PATH: "/bin", SECRET: "x" }), { NODE_NO_WARNINGS: "1", SystemRoot: "C:\\Windows" });
+  assert.deepEqual(childEnv({ PATH: "/bin", SECRET: "x" }), { NODE_NO_WARNINGS: "1" }, "nothing else is copied");
+  assert.deepEqual(childEnv({ SystemRoot: "" }), { NODE_NO_WARNINGS: "1" });
 });

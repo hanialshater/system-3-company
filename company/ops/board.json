@@ -18098,7 +18098,7 @@
       "id": "W-1540",
       "title": "HQ lab D2 review nits (company/reviews/hq/2026-10-16-d2-review.md): M1 say the import allowlist is a trust list; M3 flag external url() in CSS; M5 DoD says the test runs in verify, not check; M6 test that two cold meta misses share one process",
       "owner": "personalization-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
@@ -18106,8 +18106,9 @@
         "company/reviews/hq/2026-10-16-d2-review.md",
         "company/reviews/hq/2026-10-16-d1-review.md"
       ],
-      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U1 (wave 1): M1, M3, M5, M6 plus D1 review N4 (SystemRoot); N5, M2, M4 stay notes. W-1539 already done (company/reviews/hq/2026-10-16-d2-review.md).",
-      "updated": "2026-10-16"
+      "note": "2026-10-16 vp-personalization (vp-batch3-1016): lane 14 batch 3 U1 (wave 1): M1, M3, M5, M6 plus D1 review N4 (SystemRoot); N5, M2, M4 stay notes. W-1539 already done (company/reviews/hq/2026-10-16-d2-review.md). | 2026-10-16 personalization-engineer (pe-u1-1016), branch perso-u1: M1 trust-list sentence in tests/hq/personalization-privacy.test.mjs header and DoD D5; M3 url() with a scheme or // in any lab file (CSS included; data: also flagged, stricter than asked) with 4 planted rows; M5 DoD D5 says passes under npm run verify (test:hq), not check; M6 test that two concurrent cold metas share one promise (mutation-checked: fails if the join is removed); N4 childEnv() passes SystemRoot only when set. Left as notes, not changed: N5 (joined requests share the first caller 90 s timeout), M2 (global, not per-file allowlist), M4 (SCOPE/BREAKS exported from a test file). Review: hq-engineer (src/lib/hq-personalization-server.ts and tests). HQ tests 10/10; test:hq 72/75 (3 pre-existing release shallow-clone failures); typecheck and check pass.",
+      "updated": "2026-10-16",
+      "reviewer": "hq-engineer"
     },
     {
       "id": "W-1541",
