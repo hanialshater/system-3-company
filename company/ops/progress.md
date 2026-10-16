@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1530)
+
+**Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1530 → done. New: W-1533 (platform-engineer, code requirement R1-R6), W-1534 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.
+
+**Believe (high):** production must not show the 200 draft titles or "200 planned lessons". They are lesson titles, not curriculum concepts (id = slug), 120 are declarative sentences with no claim, and the count is an unsigned promise while builds pause (F-46). The section renders only visible algorithm lessons, per topic and per row, so the first promotion does not re-expose the other 199.
+
+**Next:** platform-engineer implements W-1533 (tier 1, page.tsx + catalog.test.mjs) before M5's integrated verify. Then M6 is met.
+
+**Blocked:** PR #6 merge, on M1-M7 (M6 now waits only on W-1533).
+
 ## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1523), approve with conditions
 
 **Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1523 → done. New board items: W-1528 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1529 (demo-builder, two more identical-final-frame lessons beyond W-1527), W-1530 (cm-cs, what production /catalog shows), W-1531 (chief-of-staff + PE-ops, readiness to tier 2), W-1532 (PE-ops, paths.json engine rules). No code edited. Not pushed.
