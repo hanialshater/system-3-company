@@ -9,6 +9,12 @@ who no longer exists: check what you rely on.
 **Believe (high):** the code is sound and goes through the kit contract; 100/100 answers agree with their data; typecheck (90 s), `test:history-maps` 3/3 and check pass at `57aef500`. Draft data still ships in production bundles, because the registry loads every lesson whatever its status. One generator bug: `map-sydney-wellington-1800-1900` crosses the antimeridian and renders a near-world map, 371 KB. The GitHub repo is public with no licence, so the derived data is already public on the PR branch.
 **Next:** founder decides W-1562; meanwhile platform-engineer W-1563, then qa-tester W-1564, then W-1565. **Blocked:** merge, on W-1562 (founder) and M2–M5.
 
+## 2026-10-16 · research-lead (Wen) · W-1559 provenance note for PR #4's 100 history map lessons
+
+**Changed:** new `company/research/notes/2026-10-16-provenance-history-maps-100.md` (the stage A input for W-1558). W-1559 done. Board: W-1568 (cm-history: limit sentence, the 10 risk-A lessons, recall by fit), W-1569 (principal-engineer: Sydney antimeridian crop, ABBREVN trace labels), W-1570 (fact-checker: open sources for the memory-only year checks).
+**Believe:** high that the 25 snapshots match their pins and on every data fact in the note (feature joins, precision and unnamed counts, point tests). BORDERPRECISION is an era code (all 1 before 1500, almost all 3 from 1700), so no lesson may quote it. The khanates note does not cover these lessons. Medium-low on which labels are historically wrong: reference hosts were refused by the proxy, so those lines are marked unverified (memory). The risk tiers (A 10, B 55, C 35) are input for the reviewer, not verdicts.
+**Next:** cultural-reviewer W-1558 with the note; then W-1568. **Blocked:** nothing from research; the fact-checker needs an opened source for each memory line.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #4 History maps 100: evaluation and integration, blocked
 
 **Changed:** intake W-1555 and record `company/engineering/community/prs/4.md`. Merged base into a local copy of the PR (`pr4-history-maps` @ `5c54c689`, merge commits only, contributor history untouched; not pushed). The PR's W-1487..W-1490 are now W-1551..W-1554 (map in prs/4.md §3); they and my requests W-1556..W-1561 are on base's board too, so both branches agree.
