@@ -163,3 +163,29 @@ cm-history (Henrike), 2026-10-15. Read for each lesson: the newest section of `c
 - Brief 7 and `history-cycle1-check.mjs` section 7: new options; `pick` becomes a threshold (ratio < 0.5 → A; 0.8-1.25 → B; > 2 → C).
 - Brief 15 and `history-cycle2-check.mjs` section 15: the v3 options (24/48/96) and the reveal's "It added 4 billion people, not 2…" paragraph.
 - Brief 18 and `history-cycle2-check.mjs` section 18: the reveal without the rate, five presets, a 25-year-average check (101, 79), the new recall. A same-session edit to the check script for 18 was outside this call's authorisation, so it waits for a session that is asked to do it.
+
+## 2026-10-16 r12: reply to the learner-evaluator's objection on ruling 5 (rome-placed-too-far-east)
+
+cm-history (Henrike), 2026-10-16. Objection: `company/reviews/rome-placed-too-far-east/2026-10-16-learner-adult-beginner-r12.md` ("Objection to cm-history r1 ruling 5"). Board: W-1169, W-1045.
+
+**The objection is accepted. Ruling 5 is amended, not reversed.** The cut of c10 stands: a sentence nobody opened still cannot reach a learner, and FC48 opened no source for the Ptolemy inheritance. The evaluator is right that I weighed the cut against the fallback sentence and not against the question the stage itself raises. The stage makes "why all twelve east?" the obvious next question. The reveal's only cause sentence (time) explains how big the errors were. It does not explain their direction, so a beginner reads it as "bad clocks push things east". I left that inference standing. Of the two fixes the evaluator named, I choose the one that needs no new source now. The sourced reason stays open as a later upgrade.
+
+**Builder change (rome v4, demo-builder).**
+1. Reveal paragraph 3 becomes, exactly (`{MAPS}` and `{DATA.length}` stay computed):
+   > Where it stops: 2 of the 12 were probably read from maps, not measured, and this record does not say why every one was too far east.
+
+   c8's text is unchanged and still present, so c8 stays verified. The new clause is **new claim c11** (do not reuse the id c10), unverified, address "reveal paragraph 3, second clause". Support: the pinned Langren1644.csv and its HistData doc give values, years and a "Likely source" column only, with no cause column. A fact-checker who is not the builder opens both.
+2. Year-view readout label: `Reading · {MEDIAN_KM} km too far` becomes `Middle · {MEDIAN_KM} km too far`. The r12 learner read the 780 km as belonging to the 1610 value. c4's address list follows the new label.
+3. meta.json objective, exactly:
+   > The learner can say that all twelve pre-1644 estimates of the Toledo-Rome longitude difference put Rome too far east (only one within 2 degrees; the middle one about 780 km too far), that longitude was hard because it needs a difference in local time, and that this record does not explain why every error ran east.
+4. Fit: reveal-fit at **390x844 and 412x839**, both crop 0 and phoneFit true. **Pre-ruled fallback if 412 crops:** drop ", from 17.7 to 30.1 degrees" from paragraph 1 (both end values stay labelled on the stage in the line and year views). c3's text follows, and c3 resets to unverified. If it still crops after that, report back and cut nothing else. The next cut is mine.
+5. Version 4, build.md entry, QA contract on phone and desktop.
+
+**Not in this change, with reasons.**
+- The km-per-degree gloss (r12 finding 3, third point; r1 finding 3). It is still open. It costs a stage line, and the learner can still read 9.3 degrees off the axis. It comes back if the r13 walk names it as the break.
+- Naming the year view in the reveal (r12 finding 3, second point). Declined. The reveal does not send the learner back to controls (`foldAtReveal`), and the year-view readout already shows "AD 150: 27.8°, 1610: 28.2°" on the stage.
+- The sourced reason (Ptolemy's inherited coordinates; Friendly, Valero-Mora & Ulargui 2010, *The American Statistician* 64(2)). It stays open as W-1045/W-1026. If a fact-checker opens a source that states it, the "does not say why" clause may be **replaced** by one claimed sentence, and only if it still fits at 412x839. Never both.
+
+**Five decision.** This changes nothing in slot 5. Rome's r12 verdict is revise, so under the pre-declared order lakes-misplaced-east-west takes slot 5 (head-of-product, W-1170). Rome v4 goes the normal publish route on its own launch verdict. Lakes and rome stay never-both inside the five.
+
+*Status of the objection: answered by change, with a re-walk owed (learner-evaluator, rome v4).*
