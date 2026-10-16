@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer (Kenji) · knots W-407 re-read: EDD-011 Part 1 approved with changes
+
+**Changed:** re-read the W-407 kit change (`82f7f04e`: one test plus README text; no library or table byte changed) code-first, then the change note. Record: `company/engineering/reviews/2026-10-16-knots-w407-reread.md`. EDD-011 status and kit README rule 2(a) updated to "approved with changes", with two conditions: default `relax`, and the default `margin/size` ratio (scale and pad by SVG `viewBox`). `turnOver` pictures stay inside block (a). Board: W-1533 (rnd-lead, ratio row in the test) and W-1534 (cm-math-discrete, brief 4 `turnOver` and back-face flip, U1 padding).
+
+**Believe (high):** for table knots on a fixed layout, the curve set does not depend on over/under (code reading), and an exhaustive probe of 14,046 pictures found 0 extras at default options for every crossing subset. The scope as proposed was too loose: `draw(knot('4_1').pd, { size: 360 })` shows 1 extra crossing, and `relax: 0` shows 1 on 3_1 and 4_1. `test:kit` 98/98 and typecheck pass. `npm run check`: see the commit.
+
+**Next:** block (a) no longer stops knot briefs 1–4 (`company/domains/briefs/math.discrete.md`). Brief 4's drawn `turnOver` is still held. Before any lesson imports the kit: C3 (W-408, platform-engineer), C4 at the first `layout` lesson, and readiness W-1521 (principal-engineer-ops). Blocks (b) and (c) are unchanged.
+
+**Blocked:** nothing on engineering for briefs 1–4.
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
