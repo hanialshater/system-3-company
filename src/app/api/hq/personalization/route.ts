@@ -3,7 +3,7 @@
 // (W-1498). 404 when HQ is off; an error (never a run) in production, even with HQ_PUBLIC=1.
 import { hqEnabled } from "@/lib/hq";
 import { parseSimRequest } from "@/lib/hq-personalization";
-import { BUSY, runSim } from "@/lib/hq-personalization-server";
+import { runSim } from "@/lib/hq-personalization-server";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +13,8 @@ export async function GET(req: Request) {
   if (typeof r === "string") return Response.json({ error: r }, { status: 400 });
   const out = await runSim(r);
   if (out.ok) return Response.json(out.data);
-  // One simulator process at a time (W-1530): a second, different request is refused, not queued.
-  return Response.json({ error: out.error }, { status: out.error === BUSY ? 429 : 422 });
+  // One simulator process at a time (W-1530): a second, different request is refused, not queued. The result
+  // carries `busy: true` (W-1539 N2), so this does not depend on the message text.
+  if (!out.ok && out.busy) return Response.json({ error: out.error }, { status: 429, headers: { "Retry-After": "5" } });
+  return Response.json({ error: out.error }, { status: 422 });
 }

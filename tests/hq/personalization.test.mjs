@@ -3,6 +3,7 @@
 // Run: npm run test:hq
 import test from "node:test";
 import assert from "node:assert/strict";
+import path from "node:path";
 import { parseSimRequest, cliArgs, pwlAt, curvePath, policyGroups, stepLine, UNSCORED_LABEL } from "../../src/lib/hq-personalization.ts";
 import { runSim, BUSY, CHILD_ENV, modelStamp } from "../../src/lib/hq-personalization-server.ts";
 
@@ -75,7 +76,7 @@ test("runSim hardening: minimal child env, one process in flight, meta cached on
   const same = runSim({ op: "run", persona: "wanderer", policy: "gam", seed: 4, days: 1 });
   const other = await runSim({ op: "run", persona: "wanderer", policy: "random", seed: 4, days: 1 });
   assert.equal(same, a, "an identical request joins the running one");
-  assert.deepEqual(other, { ok: false, error: BUSY }, "a different request is refused while one runs");
+  assert.deepEqual(other, { ok: false, error: BUSY, busy: true }, "a different request is refused while one runs");
   assert.ok((await a).ok);
   assert.ok((await runSim({ op: "run", persona: "wanderer", policy: "random", seed: 4, days: 1 })).ok, "the lock is released");
   assert.match(modelStamp(), /^\d+(\.\d+)?:\d+(\.\d+)?$/);
@@ -83,4 +84,20 @@ test("runSim hardening: minimal child env, one process in flight, meta cached on
   const m2 = await runSim({ op: "meta" });
   assert.ok(m1.ok);
   assert.equal(m2, m1, "meta comes from the cache while the model folder is unchanged");
+});
+
+// W-1539 (company/reviews/hq/2026-10-16-d1-review.md nits N1 to N3)
+test("runSim lock: released after a failed run (N3); meta never waits on the run lock (N1); busy is a flag (N2)", async () => {
+  const bad = await runSim({ op: "run", persona: "a-real-learner", policy: "gam", seed: 1, days: 1 });
+  assert.equal(bad.ok, false);
+  assert.equal(bad.busy, undefined, "a failed run is not reported as busy");
+  const next = await runSim({ op: "run", persona: "wanderer", policy: "gam", seed: 5, days: 1 });
+  assert.ok(next.ok, `the lock is released after a failure: ${next.error}`);
+  // A cold meta cache while a run is in flight: meta spawns its own process instead of returning BUSY.
+  // A different root string for the same folder misses the meta cache (it is keyed on root and stamp).
+  const coldRoot = `${process.cwd()}${path.sep}.`;
+  const running = runSim({ op: "run", persona: "wanderer", policy: "random", seed: 6, days: 1 });
+  const meta = await runSim({ op: "meta" }, coldRoot);
+  assert.ok(meta.ok, `meta is not refused while a run is in flight: ${meta.error}`);
+  assert.ok((await running).ok);
 });
