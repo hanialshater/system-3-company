@@ -96,7 +96,7 @@ export default function SecondSpeakerDecibels({ slug }: { slug: string }) {
           </p>
           <p>
             Decibels count multiplications, not amounts: every doubling adds 3 dB and every tenfold adds 10. So 120 dB is not two
-            60 dB speakers; it is a million times their power.
+            60 dB speakers; it is a million times one speaker's power.
           </p>
         </>
       )}

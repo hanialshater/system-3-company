@@ -131,10 +131,11 @@ export default function WhatPushesTheCar({ slug }: { slug: string }) {
                 : sf === "ice"
                   ? `${fmtN(r.grip)} max · ${fmtA(r.a)} m/s² · slipping`
                   : `0 N forward · 0 m/s² · wheels spin`;
+            // Seen row: forces only (cm-physics R1 cut P1, 2026-10-16); the acceleration stays in the readout and reveal
             const seenText = [
-              `dry: ${seen.dryN !== undefined && seen.dryA !== undefined ? `${fmtN(seen.dryN)}, ${fmtA(seen.dryA)} m/s²` : "–"}`,
-              `ice: ${seen.iceN !== undefined ? `${fmtN(seen.iceN)}, slips` : "–"}`,
-              `frictionless: ${seen.frN !== undefined ? `${fmtN(seen.frN)}, stays put` : "–"}`,
+              `dry: ${seen.dryN !== undefined ? fmtN(seen.dryN) : "–"}`,
+              `ice: ${seen.iceN !== undefined ? fmtN(seen.iceN) : "–"}`,
+              `frictionless: ${seen.frN !== undefined ? fmtN(seen.frN) : "–"}`,
             ].join(" · ");
             const roadCls = !live ? s.road : sf === "dry" ? s.road : sf === "ice" ? s.ice : s.glass;
             return (
@@ -143,7 +144,7 @@ export default function WhatPushesTheCar({ slug }: { slug: string }) {
                   viewBox={`0 0 ${W} ${H}`}
                   className={`stage-svg ${s.fit}`}
                   role="img"
-                  aria-label={locked || !r ? "A parked car on a flat road" : `Car on a ${sf} road. ${readout}.`}
+                  aria-label={locked || !r ? "A parked car on a flat road" : `Car on the ${sf} road. ${readout}.`}
                 >
                   <defs>
                     {[

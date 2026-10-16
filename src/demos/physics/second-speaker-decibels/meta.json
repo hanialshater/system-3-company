@@ -26,7 +26,7 @@
       "id": "physics.second-speaker-decibels.c1",
       "text": "Sound intensity level is L = 10 log10(I / I0) with I0 = 10⁻¹² W/m², so 60 dB is a sound power of 1 µW/m² reaching you (stage at start: one speaker, meter '60 dB', bar '1 µW/m²'; hook 'One speaker reads 60 dB').",
       "support": "source",
-      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on sound waves (sound level β = 10 log(I/I0), I0 = 10⁻¹² W/m²). artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '62 second-speaker-decibels'. Demo.tsx I0, I1. Brief claim 1.",
+      "source": "Halliday, Resnick and Walker, Fundamentals of Physics, chapter on sound waves (sound level β = 10 log(I/I0), I0 = 10⁻¹² W/m²). artifacts/scratch/cm-physics-r4/check.mjs (main checkout), block '62 second-speaker-decibels'. Demo.tsx I0, I1. Brief claim 1. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58377 'Sound Intensity' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 module m58377 'Sound Intensity': beta (dB) = 10 log10(I/I0), 'I0 = 10^-12 W/m2 is a reference intensity'. Own node: 10 log10(1e-6/1e-12) = 60.000 dB. Stage at start seen: '60 dB', '1 uW/m2', hook. Terminology note: the stage's 'sound power reaching you' is an intensity (power per area), and the unit shown says so; not a dispute.",
       "checkedBy": "fact-checker",
@@ -46,7 +46,7 @@
       "id": "physics.second-speaker-decibels.c3",
       "text": "Decibels count multiplications of power, not amounts: every doubling adds 3 dB (10 log10 2 = 3.01) and every tenfold adds 10 dB (reveal: 'ten times the power adds just 10 dB', 'every doubling adds 3 dB and every tenfold adds 10').",
       "support": "derivation",
-      "source": "From the definition in c1: L(k I) = L(I) + 10 log10 k. check.mjs block 62.",
+      "source": "From the definition in c1: L(k I) = L(I) + 10 log10 k. check.mjs block 62. | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58377 'Sound Intensity' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), m58377: 'each factor of 10 in intensity corresponds to 10 dB' and a sound twice as intense is '3.01 dB, or about 3 dB' higher. Own node: 10 log10 2 = 3.010. Reveal seen.",
       "checkedBy": "fact-checker",
@@ -54,19 +54,17 @@
     },
     {
       "id": "physics.second-speaker-decibels.c4",
-      "text": "120 dB is a million (10⁶) times the sound power of 60 dB, not two 60 dB speakers (reveal: 'So 120 dB is not two 60 dB speakers; it is a million times their power').",
+      "text": "120 dB is a million (10⁶) times the sound power of one 60 dB speaker, not two 60 dB speakers (reveal: 'So 120 dB is not two 60 dB speakers; it is a million times one speaker's power').",
       "support": "derivation",
-      "source": "10^((120 − 60) / 10) = 10⁶. check.mjs block 62. Brief claim 3. 'Their power' is the power of one 60 dB speaker; two give 2 µW/m², so 120 dB (1 W/m²) is 500,000 times two speakers' power.",
-      "status": "verified",
-      "note": "FC pass 55 (fact-checker, 2026-10-16): Own node: 10^((120-60)/10) = 1e6. True as the claim states it (a million times the power of one 60 dB speaker). Wording finding for the builder, not a dispute: the reveal 'So 120 dB is not two 60 dB speakers; it is a million times their power' can be read with 'their' = the two speakers (2 uW/m2), which would make it 500,000 times; 'a million times one speaker's power' removes the reading.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "10^((120 − 60) / 10) = 10⁶. check.mjs block 62. Brief claim 3. The reveal names one speaker's power (v2; v1 said 'their power', FC pass 55 finding 1). Two speakers give 2 µW/m², so 120 dB (1 W/m²) is 500,000 times two speakers' power.",
+      "status": "unverified",
+      "note": "Reset to unverified by demo-builder (W-1256, B3 r3-verticals, 2026-10-16): cm-physics R2 reveal wording 'a million times their power' became 'a million times one speaker's power', claim text updated to match; previously verified by fact-checker on 2026-10-16; not self-verified. | FC pass 55 (fact-checker, 2026-10-16): Own node: 10^((120-60)/10) = 1e6. True as the claim states it (a million times the power of one 60 dB speaker). Wording finding for the builder, not a dispute: the reveal 'So 120 dB is not two 60 dB speakers; it is a million times their power' can be read with 'their' = the two speakers (2 uW/m2), which would make it 500,000 times; 'a million times one speaker's power' removes the reading."
     },
     {
       "id": "physics.second-speaker-decibels.c5",
       "text": "Idealisations: identical speakers playing uncorrelated sound (such as different music or noise) at the same distance, with no room echoes (stage caption 'Identical speakers, same distance, no echoes.'). Not on the stage: identical in-phase tones can reach up to +6 dB at some spots and less at others. How loud it feels is not claimed.",
       "support": "convention",
-      "source": "Brief claim 4. Interference of coherent sources: |2p|² = 4 p² gives +6 dB at in-phase spots (Halliday, Resnick and Walker, chapter on sound waves, interference).",
+      "source": "Brief claim 4. Interference of coherent sources: |2p|² = 4 p² gives +6 dB at in-phase spots (Halliday, Resnick and Walker, chapter on sound waves, interference). | OpenStax University Physics (CC BY 4.0), github.com/openstax/osbooks-university-physics-bundle at 2300d5b: vol 1 m58372 'Interference of Waves'; vol 1 m58377 'Sound Intensity' (added from FC pass 55, cm-physics R5).",
       "status": "verified",
       "note": "FC pass 55 (fact-checker, 2026-10-16): Caption 'Identical speakers, same distance, no echoes.' seen on every frame. Off-stage line: opened OpenStax University Physics (CC BY 4.0), CNXML opened from github.com/openstax/osbooks-university-physics-bundle at 2300d5b (2026-09-08), vol 1 m58372 'Interference of Waves': 'Constructive interference of two identical waves produces a wave with twice the amplitude'; m58377: intensity goes as (pressure amplitude)^2. Own node: 10 log10 4 = 6.02 dB at in-phase spots, less (down to silence) where out of phase. No loudness claim on the stage (reveal says 'meter', 'power').",
       "checkedBy": "fact-checker",
@@ -90,7 +88,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "physics:decibels-logarithmic",
     "also": [

@@ -21,3 +21,32 @@ Open item for cm-physics (not fixed): stage text counts 26 words locked and 41 a
 ## QA
 
 Computer-use QA, unmodified `tests/qa/contract.spec.ts`, `QA_BASE_URL=http://localhost:3821 QA_ONLY=electron-speed-in-a-wire,second-speaker-decibels,what-pushes-the-car`, production build of the worktree at a926418 plus the final label edits (committed with this note), 2026-10-16: phone and desktop passed (6/6, default timeouts). This is the builder's local pass, not the qa-tester's record.
+
+## v2 (2026-10-16, demo-builder, lane 2 r3 B3, W-1256 / W-1185)
+
+Inputs: FC pass 55 (`2026-10-16-fact-check.md`, findings 1-3), cm-physics rulings R1, R3, R5 (`company/ops/dispatch-requests/2026-10-16-r3-physics.md`), the stage-word decision and its Ruling 2 (`company/decisions/2026-10-16-stage-word-budget-counting.md`: spaced units after a number count 0).
+
+- **FC 55 finding 1 (c5 scope) / R3: done.** c6's idealisations now include "The bulb's filament is drawn as the same wire." Claim text only; nothing on the stage changed. c6 reset to `unverified`. c5's text is unchanged.
+- **FC 55 finding 2 (sources) / R5: done.** OpenStax University Physics (bundle commit 2300d5b) added to the `source` field: vol 2 m58730 on c1, c2, c4, c6; m58730 and vol 2 m58454 on c5 (the modules FC 55's note quotes for each claim). c3's note quotes no module (own derivation), so its source is unchanged. Source-only change: c1, c2, c4, c5 keep `verified`.
+- **FC 55 finding 3:** nothing to do (no unrecorded claims).
+- **R1 cuts E1-E3: not applied, not needed.** See the count below.
+
+### Stage word budget
+
+Counted from the rendered stage (production build, port 3463, 390x844, every text node inside `data-testid="stage"` that is visible and not aria-hidden), at every frame of the QA path plus revisits and the open reveal. Rule: a token with a letter is 1; numerals 0; a unit symbol directly after a number is 0, spaced or not (Ruling 2 (a)).
+
+| Frame | Counted words | Total |
+|---|---|---|
+| locked / open | battery, switch, bulb (3); caption "in copper wire. Tinted dot: one electron." (8; "1 A", "1 mm²" are 0); "Seen:", "lit:", "trip:" (3; "1 min:", "1 h:" are a number and its unit); "Switch on" (2), "Wait" x3 (3) | 18 |
+| **after Switch on (busiest)** | as above, "Switched on" (2), plus marker "lit after ~10 ns" (2) | **20** |
+| Wait 1 h | as above, marker "2 m trip: 7.6 h" ("trip:" 1) | 19 |
+| Wait 1 s / 1 min, reveal | ruler label "+0.07 mm" / "+4.4 mm" are 0 | 18 |
+
+Busiest frame 20 words, under 25. Nothing on this stage is manipulated stimulus. If "A" in "1 A" were read as a word it would be 21. cm-physics' R1 estimate (about 33) counted spaced units at 1; Ruling 2 now counts them 0, so no R1 cut is needed and none was made. The Seen row and caption are unchanged.
+
+### Checks (2026-10-16, worktree s3c-phys3, branch wj-phys-r3b3)
+
+- Production build `NEXT_DIST_DIR=.next-phys3 npm run build`: passed (tsconfig.json change reverted).
+- `tools/reveal-fit.mjs --width 390 --height 844 --strict` (clean stamp, tool commit 79c22aa, HEAD 6838dba plus this change uncommitted): verdict fit, crop 0, hiddenBelow 0, namedHidden 0, phoneFit true, thumb false, 81 reveal words. The reveal text did not change in v2.
+- Local contract QA (`tests/qa/contract.spec.ts`, QA_ONLY three slugs, `--workers=2`, against port 3463): phone and desktop passed.
+- Status stays `review`. c6 is now unverified, so the lesson is gate-blocked until the fact-checker re-checks c6 (expected).
