@@ -37,3 +37,18 @@ None. I compared every sentence in the transcript (hook, predict, options, panel
 
 - c6 → verified: a dated W-975 (d) statement that covers this line, a W-1059 ruling that accepts this second-hand route, and the gap named in the c6 row closed by an opened source.
 - Any verified claim → disputed: a change to Demo.tsx reveal text, cards or stage labels after 2026-10-16. Re-check on any version bump.
+
+
+## FC pass 63 (SO-10-2, trigger b: text changed by behavioral r4 B2, 267277a)
+
+fact-checker · 2026-10-16 · target: http://localhost:3591 · mode: external (shared review server) · built from: 6838dbac0613a3d1f2f5353e83b27d5c0dbf4f2c (read at start and end) · R3a scope check: pass · [project:behavioral-econ]
+
+Method: walkthrough on :3591 written to my scratchpad (not artifacts/), read cut at the appendix before any note; then every reveal branch driven with Playwright (Pixel 7) and the visible page text searched for the held strings before the trust sheet; then the check script run; then my own node re-derivation with no repo imports; then sources opened via PMC OAI-PMH where the claim is a term. Verdicts are in each claim's `note` (prefix "FC pass 63").
+
+Result: **1 verified, 0 disputed, 0 held** (scope: c3 only).
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c3 | verified | All four branches driven; wait/take and matched sentences exact. Own node: beta-delta (0.9, 1) ratio 1.100 at week 52, 0.990 today; exponential ratio 1.1 d at every stop. The new 'Waiting, then taking...' wording clears 54b's take/take note. |
+
+Observation (not a c3 issue, for the builder): the check script still prints L ('With real payments, reversals are clearer for effort than for money.') inside each of the four reveal branches and words them at 87-90, while the page (HELD_LINE = false) omits L. The script'"'"'s fallback lines cover the shipped text by word count only; the shipped strings themselves are not printed.
