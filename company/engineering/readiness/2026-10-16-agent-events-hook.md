@@ -164,6 +164,26 @@ event is still in the transcript for the backfill. I did not reproduce it. (2) `
 (3) `tools/lib/ledger.mjs` `readEvents` reads only events.jsonl. Usage events come from the backfill, not the hook,
 so I left it.
 
+## Change notes for F1 + F2 (tools-lead, 2026-10-16, W-1275; still NOT wired)
+
+PE-ops asked for F1/F2 "as a diff with the two-fold test, not as a new record" (e1c9162). The diff is
+`git diff 23c6255 tools-f1 -- tools/events.mjs tests/dispatch/fold-lock.test.mjs tests/dispatch/agent-events.test.mjs`.
+These notes only say where to look; they are not a request for a new round.
+
+- F1: `acquireFoldLock` (O_EXCL `fold.lock` with the pid; live holder → exit 2; dead or empty lock taken over only
+  under `fold.lock.takeover`, also O_EXCL, and removed only if it still holds the stale pid). `fold` adopts
+  `*.folding-<pid>` only for a dead pid (`process.kill(pid, 0)`: ESRCH = dead, EPERM = alive).
+- F2: both of PE-ops' options, on two sides. Fold side: each renamed file is re-read after the append, once its
+  size is stable for 100 ms, and late ids are folded before removal. Writer side (`add --spool` → `spoolAppend`):
+  after its write, if the path no longer names the inode it wrote, it appends the line again to the current file
+  (ids dedupe). A raw `appendFileSync` writer that is descheduled for longer than the settle between open and write
+  can still be lost; the hook does not write that way.
+- Measured (scratchpad, 2 raw writers × 20,000 + two fold loops for 6 s): code at 23c6255 **19,133 duplicates, 6 lost**;
+  this diff **0 duplicates, 0 lost** (also 0/0 at settle 0, and 0/0 with 2 × 5,000 `spoolAppend` writers).
+- S2 (W-1272, tier 1, self-check): `tools/ops-health.mjs` and `tools/rituals-due.mjs` read the log via `readJsonlFile`.
+  Checked: ops-health on a log copy with a `<<<<<<< HEAD` line prints `ops-health: 1 unreadable line(s) skipped`
+  and its table; the 23c6255 version throws `SyntaxError: Unexpected token '<'`. Not a hook file.
+
 ## Approval (tier 2; written by principal-engineer-ops)
 - Decision: **approved with conditions to merge unwired at 864dab5** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Authority and conditions H1-H6: `company/engineering/readiness/2026-10-16-agent-events-hook-approval.md` (fee2b05). Wiring needs founder F-31 plus H1 and H2.
 

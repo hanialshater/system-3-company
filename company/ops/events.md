@@ -84,7 +84,10 @@ The hook calls `events.mjs add --spool`, which appends to `company/ops/events-sp
 `dispatch-check` and `metrics` read this log plus the spool (deduped by id), so in-flight counts are right between
 folds. The chief of staff, the single writer of this log, runs `node tools/events.mjs fold` (`--dry` to count)
 before an events commit: spool events not already here are appended in ts order and the spool is emptied;
-unparseable spool lines are kept in `events-spool/unparsed-*.txt`. `S3_SPOOL=<dir>` overrides the spool
+unparseable spool lines are kept in `events-spool/unparsed-*.txt`. One fold at a time: `fold` holds
+`events-spool/fold.lock` (its pid) and exits 2 with the holder's pid when a live fold has it; a lock or a
+`*.folding-<pid>` file of a dead pid is taken over (F1, e1c9162). Appends that land in a file the fold has
+renamed are re-read before the file is removed (F2). `S3_SPOOL=<dir>` overrides the spool
 (tests); with only `S3_EVENTS=<file>` set, the spool is `<that file's dir>/events-spool/`.
 Unparseable lines here or in the spool are skipped and counted, never thrown (E1): `add` prints the count to
 stderr, metrics prints `events.jsonl: N unreadable line(s)`, dispatch-check warns.

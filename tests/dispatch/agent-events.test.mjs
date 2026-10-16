@@ -255,7 +255,8 @@ test("H2: `fold` moves the spool into the log in ts order, dedupes by id, keeps 
   const before = fs.readFileSync(sb.events, "utf8");
   fs.mkdirSync(sb.spool, { recursive: true });
   fs.writeFileSync(path.join(sb.spool, "2026-10-16.jsonl"), jsonl([ev("hk-2", "2026-10-16T10:00:00Z"), ev("old", "2026-10-16T08:00:00Z"), CONFLICT]));
-  fs.writeFileSync(path.join(sb.spool, "2026-10-15.jsonl.folding-999"), jsonl([ev("hk-1", "2026-10-15T23:00:00Z")])); // left by a dead fold
+  const deadPid = spawnSync("node", ["-e", ""]).pid; // an exited child: a pid that is not running (F1 adopts only those)
+  fs.writeFileSync(path.join(sb.spool, `2026-10-15.jsonl.folding-${deadPid}`), jsonl([ev("hk-1", "2026-10-15T23:00:00Z")])); // left by a dead fold
   const dry = cli(sb, ["fold", "--dry"]);
   assert.match(dry.out, /fold --dry: 2 event\(s\) would be folded/);
   assert.equal(fs.readFileSync(sb.events, "utf8"), before, "--dry writes nothing");
