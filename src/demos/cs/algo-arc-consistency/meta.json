@@ -1,0 +1,247 @@
+{
+  "slug": "algo-arc-consistency",
+  "title": "A value needs a supporting neighbour",
+  "hook": "A value removed from one domain can invalidate another domain’s choices.",
+  "domain": "cs",
+  "concept": "algo-arc-consistency",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Search trees; minimax and a partial solution state."
+    ],
+    "doesNotKnow": [
+      "Apply AC-3 by deleting unsupported domain values and requeueing affected arcs."
+    ]
+  },
+  "misconception": "Checking that each variable has a nonempty domain proves all constraints are satisfiable.",
+  "objective": "Apply AC-3 by deleting unsupported domain values and requeueing affected arcs.",
+  "claims": [
+    {
+      "id": "cs.algo-arc-consistency.c1",
+      "text": "A value is deleted when no value across its constraint can support it. Deletion can invalidate support on a neighbouring arc, which must be queued again. Here propagation exposes inconsistency without assigning all variables; nonempty domains would not prove global satisfiability in general.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c2",
+      "text": "A value removed from one domain can invalidate another domain’s choices.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c3",
+      "text": "X={1,2},Y={1,2},Z={2} with X<Y and Y<Z. Does AC-3 retain a nonempty domain for every variable?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c6",
+      "text": "Run the question case; Step exposes each search decision.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c7",
+      "text": "Nonempty false.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c8",
+      "text": "Constraint domains",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c9",
+      "text": "X",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c10",
+      "text": "Y",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c11",
+      "text": "Z",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c12",
+      "text": "constraints",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c13",
+      "text": "X<Y<Z",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[0].rows[3].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c14",
+      "text": "Delete unsupported values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c15",
+      "text": "arc",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c16",
+      "text": "X→Y",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c17",
+      "text": "Y→X",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[2].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c18",
+      "text": "Y→Z",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[3].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c19",
+      "text": "Domain consistency result",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c20",
+      "text": "empty",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[0].run().frames[4].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c21",
+      "text": "Nonempty true.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#arc_consistency.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c22",
+      "text": "Why requeue neighbouring arcs after a domain shrinks?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c23",
+      "text": "Their previous supports may have vanished",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c24",
+      "text": "Their values must all be deleted",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c25",
+      "text": "It changes the constraint direction",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arc-consistency.c26",
+      "text": "An earlier support check can become stale after a related deletion.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-arc-consistency\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why requeue neighbouring arcs after a domain shrinks?",
+    "options": [
+      "Their previous supports may have vanished",
+      "Their values must all be deleted",
+      "It changes the constraint direction"
+    ],
+    "answer": 0,
+    "why": "An earlier support check can become stale after a related deletion."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-arc-consistency",
+    "also": [],
+    "prerequisites": [
+      "depth-first-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "combinatorial-game-search"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

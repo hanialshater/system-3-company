@@ -1,0 +1,607 @@
+{
+  "batch": "B2",
+  "specs": 50,
+  "checks": 4600,
+  "fixtures": [
+    {
+      "slug": "algo-lower-bound",
+      "inputSpecification": "Sorted [1,2,2,2,5], target 2; compare with target 4.",
+      "checkedAnswer": 1,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        5,
+        5
+      ],
+      "proof": "Boundary index 1; target 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-upper-bound",
+      "inputSpecification": "Sorted [1,2,2,2,5], target 2; compare with target 5.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        5,
+        4
+      ],
+      "proof": "Boundary index 4; target 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-rotated-search",
+      "inputSpecification": "Rotated [4,5,6,1,2,3], targets 2 and 5.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        5,
+        7
+      ],
+      "proof": "Target 2; index 4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-matrix-staircase",
+      "inputSpecification": "Matrix [[1,4,7],[2,5,8],[3,6,9]], targets 6 and 10.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": -1,
+      "traceFrames": [
+        6,
+        5
+      ],
+      "proof": "Found 6 after 4 visits.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-answer-capacity",
+      "inputSpecification": "Loads [3,2,2,4,1], at most 3 containers; compare at most 2.",
+      "checkedAnswer": 5,
+      "countercaseAnswer": 7,
+      "traceFrames": [
+        6,
+        5
+      ],
+      "proof": "Capacity 5; containers 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-median-two-sorted",
+      "inputSpecification": "Arrays [1,4,7] and [2,3,8]; compare [1,2] and [3,4,5].",
+      "checkedAnswer": 3.5,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        3,
+        4
+      ],
+      "proof": "Median 3.5; lengths 3,3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-kth-pair-distance",
+      "inputSpecification": "Sorted positions [1,3,4,8], k=3; compare k=5.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        5,
+        5
+      ],
+      "proof": "Pair rank 3; distance 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-missing-rank-search",
+      "inputSpecification": "Present [2,3,6,8], missing rank 4; compare rank 2.",
+      "checkedAnswer": 7,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Missing rank 4; value 7.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-mountain-target",
+      "inputSpecification": "Mountain [1,4,8,6,3], targets 6 and 4.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        7,
+        5
+      ],
+      "proof": "Peak 2; target 6; index 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-weighted-median",
+      "inputSpecification": "Values [1,3,7,9], weights [1,1,5,1]; compare weights [4,1,1,2].",
+      "checkedAnswer": 7,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        4,
+        5
+      ],
+      "proof": "Weighted median 7; weight 8.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-natural-merge",
+      "inputSpecification": "Sequence [1,3,5,2,4,6,0,7]; compare a fully sorted sequence.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        5,
+        3
+      ],
+      "proof": "Initial runs 3; sorted 0,1,2,3,4,5,6,7.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-reverse-descending-run",
+      "inputSpecification": "Tagged keys [5a,4a,4b,2a] versus [5a,4a,3a,2a].",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        3,
+        4
+      ],
+      "proof": "Strict descending length 2; reversed 4a,5a,4b,2a.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-binary-insertion",
+      "inputSpecification": "Prefix [1,3,5,7,9], insert 4; compare insert 10.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 0,
+      "traceFrames": [
+        7,
+        4
+      ],
+      "proof": "Shifted 3; inserted at 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-bitonic-merge",
+      "inputSpecification": "Bitonic [1,3,6,8,7,5,4,2]; compare [1,2,4,9,8,7,6,3].",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        14,
+        14
+      ],
+      "proof": "Index 3 holds 4; sorted 1,2,3,4,5,6,7,8.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-odd-even-network",
+      "inputSpecification": "Sequence [4,1,3,2]; compare [2,4,1,3].",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        6,
+        6
+      ],
+      "proof": "Network swaps 4; sorted 1,2,3,4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-cycle-sort",
+      "inputSpecification": "Distinct sequence [3,1,4,2]; compare [2,1,3,4].",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        6,
+        4
+      ],
+      "proof": "Array writes 4; sorted 1,2,3,4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-kway-merge",
+      "inputSpecification": "Streams [[1,7],[2,5],[3,4,8]]; compare a stream that becomes empty first.",
+      "checkedAnswer": 5,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        8,
+        7
+      ],
+      "proof": "First exhaustion after 5; merged 1,2,3,4,5,7,8.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-external-merge",
+      "inputSpecification": "Input [6,1,5,2,4,3], memory capacity 3; compare capacity 2.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        4,
+        6
+      ],
+      "proof": "Initial disk runs 2; sorted 1,2,3,4,5,6.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-replacement-selection",
+      "inputSpecification": "Input [4,1,6,2,7,3,8], heap capacity 3; compare descending input.",
+      "checkedAnswer": 6,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        8,
+        8
+      ],
+      "proof": "First run length 6; total runs 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-american-flag-sort",
+      "inputSpecification": "Two-digit keys [21,10,22,11,20,12], radix 3 digits; compare reordered keys.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 0,
+      "traceFrames": [
+        11,
+        5
+      ],
+      "proof": "High-digit swaps 3; sorted 10,11,12,20,21,22.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-order-statistic-select",
+      "inputSpecification": "BST keys [4,2,6,1,3,5,7], rank 5; compare rank 2.",
+      "checkedAnswer": 5,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        5,
+        4
+      ],
+      "proof": "Rank 5; selected key 5.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-order-statistic-rank",
+      "inputSpecification": "BST keys [4,2,6,1,3,5,7], key 6; compare key 3.",
+      "checkedAnswer": 6,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        3,
+        4
+      ],
+      "proof": "Key 6; sorted rank 6.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-interval-tree",
+      "inputSpecification": "Intervals [[1,3],[2,8],[6,7],[9,12]], query [5,6]; compare [13,14].",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 0,
+      "traceFrames": [
+        9,
+        4
+      ],
+      "proof": "Query 5–6; overlapping intervals 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-treap-priority",
+      "inputSpecification": "Keys [2,1,3], priorities [50,20,40]; insert key 4 priority 10.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        7,
+        5
+      ],
+      "proof": "Inserted priority 10; root key 4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-splay-access",
+      "inputSpecification": "BST insertion [5,3,7,2,4], access 2; compare access 4.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Accessed 2; root 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-btree-split",
+      "inputSpecification": "Minimum degree 2, insert [1,2,3,4,5,6]; compare insertion 0.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        9,
+        10
+      ],
+      "proof": "Root separators 2; keys 2,4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-btree-delete-borrow",
+      "inputSpecification": "Degree-2 tree root [4], leaves [1,2] and [5,6]; delete 5 then 6.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Deleted 5,6; root separator 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-bplus-leaf-range",
+      "inputSpecification": "Leaves [1,2],[4,5],[7,8] with separators 4,7; query [2,7].",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        5,
+        3
+      ],
+      "proof": "Range 2–7; returned 4; keys 2,4,5,7.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-persistent-tree",
+      "inputSpecification": "Balanced tree [4,2,6,1,3,5,7], insert 8; compare updating key 3.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        6,
+        5
+      ],
+      "proof": "Path copies 4; old root 4; new root 4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-implicit-treap",
+      "inputSpecification": "Sequence [A,B,C,D,E], move positions 2..3 to the end; compare first-element move.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 0,
+      "traceFrames": [
+        3,
+        3
+      ],
+      "proof": "B index 3; sequence ADEBC.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-heap-delete-min",
+      "inputSpecification": "Heap [1,3,2,7,6,4,5]; remove min; compare [1,2,3].",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        5,
+        4
+      ],
+      "proof": "Removed 1; new minimum 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-indexed-decrease-key",
+      "inputSpecification": "Tasks A:2,B:5,C:4,D:9; decrease D to 1; compare C to 3.",
+      "checkedAnswer": 1,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        5,
+        3
+      ],
+      "proof": "Decreased D to 1; minimum 1.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-heap-delete-arbitrary",
+      "inputSpecification": "Heap [1,5,2,9,6,3,4], delete 9; contrast deleting 2.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Deleted 9; index 1 holds 4.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-binomial-meld",
+      "inputSpecification": "Heaps with sizes 3 and 5; compare sizes 3 and 3.",
+      "checkedAnswer": 1,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        5,
+        4
+      ],
+      "proof": "Sizes 3+5; roots 1; degrees 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-leftist-meld",
+      "inputSpecification": "Heaps from [1,4,7] and [2,3,8]; compare a singleton meld.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        7,
+        4
+      ],
+      "proof": "Right-spine nodes 2; root rank 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-skew-meld",
+      "inputSpecification": "Heaps from [1,5,9] and [2,4,6]; compare repeated singleton melds.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        5,
+        3
+      ],
+      "proof": "Meld child swaps 3; root 1.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-pairing-heap",
+      "inputSpecification": "Root 1 with children [8,3,7,2,6]; compare four children.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        7,
+        5
+      ],
+      "proof": "New root 2; direct children 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-fibonacci-cut",
+      "inputSpecification": "Root 2 with child 7 and grandchild 9; decrease 9 to 1; compare decrease to 8.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 1,
+      "traceFrames": [
+        4,
+        3
+      ],
+      "proof": "Decreased to 1; roots 2; parent marked 1.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-radix-heap",
+      "inputSpecification": "Monotone integer keys [3,5,6,12], last=0; compare after extracting 3.",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        3,
+        3
+      ],
+      "proof": "Extracted 3; new last 3.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-dary-heap",
+      "inputSpecification": "Keys [1,4,2,8,7,3,6,9,5], arities 2 and 3.",
+      "checkedAnswer": 4,
+      "countercaseAnswer": 4,
+      "traceFrames": [
+        6,
+        5
+      ],
+      "proof": "Arity 2; deletion comparisons 4; removed 1.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-range-difference",
+      "inputSpecification": "Array [0,0,0,0,0,0], add 3 on [1,4]; compare overlapping add 2 on [3,5].",
+      "checkedAnswer": 3,
+      "countercaseAnswer": 5,
+      "traceFrames": [
+        8,
+        9
+      ],
+      "proof": "Index 3 holds 3; values 0,3,3,3,3,0.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-prefix-2d",
+      "inputSpecification": "Matrix [[1,2,3],[4,5,6],[7,8,9]], query rows 1..2 columns 1..2.",
+      "checkedAnswer": 28,
+      "countercaseAnswer": 12,
+      "traceFrames": [
+        11,
+        11
+      ],
+      "proof": "Corners 45,6,12,1; rectangle sum 28.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-sparse-table-rmq",
+      "inputSpecification": "Values [7,2,6,3,5,1], query [1,4]; contrast replacing min with sum.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 32,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Range minimum 2; block results 2,2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-lazy-range-add",
+      "inputSpecification": "Values [1,2,3,4], add 5 to [0,3], query [1,2].",
+      "checkedAnswer": 15,
+      "countercaseAnswer": 10,
+      "traceFrames": [
+        6,
+        4
+      ],
+      "proof": "Add 5 on 0..3; query 1..2 sum 15.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-lazy-assign-compose",
+      "inputSpecification": "Values [1,2,3,4], assign 7 then add 2; compare add 2 then assign 7.",
+      "checkedAnswer": 9,
+      "countercaseAnswer": 7,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Set then add; leaf value 9.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-sliding-window-deque",
+      "inputSpecification": "Values [4,1,3,2,5,0], window 3; compare window 2.",
+      "checkedAnswer": 17,
+      "countercaseAnswer": 20,
+      "traceFrames": [
+        11,
+        11
+      ],
+      "proof": "Width 3; maxima 4,3,5,5; sum 17.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-window-min-length",
+      "inputSpecification": "Positive values [2,1,4,3,2], threshold 7; compare threshold 5.",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 2,
+      "traceFrames": [
+        9,
+        10
+      ],
+      "proof": "Threshold 7; shortest length 2.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-mo-query-order",
+      "inputSpecification": "Values [1,2,1,3,2,4], queries [0,1],[4,5],[1,4],[0,5].",
+      "checkedAnswer": 12,
+      "countercaseAnswer": 16,
+      "traceFrames": [
+        5,
+        5
+      ],
+      "proof": "Block order 0,2,3,1; endpoint moves 12.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-sqrt-decomposition",
+      "inputSpecification": "Values [1,2,3,4,5,6,7,8,9], blocks of 3; update index 4 then query [1,7].",
+      "checkedAnswer": 40,
+      "countercaseAnswer": 30,
+      "traceFrames": [
+        7,
+        7
+      ],
+      "proof": "Index 4→10; query 1..7 sum 40.",
+      "status": "builder-model-check; independent verification pending"
+    },
+    {
+      "slug": "algo-wavelet-rank",
+      "inputSpecification": "Values [3,1,4,1,5,2], count values at most 2 in [1,4].",
+      "checkedAnswer": 2,
+      "countercaseAnswer": 3,
+      "traceFrames": [
+        4,
+        4
+      ],
+      "proof": "Limit 2; range 1..4; count 2.",
+      "status": "builder-model-check; independent verification pending"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "slug": "algo-space-saving",
+  "title": "A replacement inherits an error bar",
+  "hook": "Replacing a counter leaves a history that the new item did not earn.",
+  "domain": "cs",
+  "concept": "algo-space-saving",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Uniform hash/draw assumptions; probability and weighted ranks as stated."
+    ],
+    "doesNotKnow": [
+      "Replace the minimum-frequency counter while retaining its inherited overcount bound."
+    ]
+  },
+  "misconception": "A new tracked item's inherited counter is its exact frequency.",
+  "objective": "Replace the minimum-frequency counter while retaining its inherited overcount bound.",
+  "claims": [
+    {
+      "id": "cs.algo-space-saving.c1",
+      "text": "Replacement inherits the smallest counter rather than starting from zero. Its inherited error bounds the overcount: the displayed estimate minus error is a lower bound on that stored item’s true frequency.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-space-saving\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c2",
+      "text": "Replacing a counter leaves a history that the new item did not earn.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-space-saving\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c3",
+      "text": "Two Space-Saving counters process A,B,A,C,C,D,C. What is C’s final estimated count?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c4",
+      "text": "Run the question case, then inspect its updates with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c5",
+      "text": "C estimate 4; error 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c6",
+      "text": "Stream input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c7",
+      "text": "stream",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c8",
+      "text": "ABACCDC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c9",
+      "text": "slots",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c10",
+      "text": "Replace minimum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c11",
+      "text": "keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c13",
+      "text": "estimate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c14",
+      "text": "error",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c15",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[2].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c16",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[4].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c17",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[0].run().frames[6].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c18",
+      "text": "C estimate 3; error 0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#space_saving.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c19",
+      "text": "A replacement inherits count 6 then increments to 7. What error is recorded?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-space-saving\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-space-saving.c20",
+      "text": "The previous minimum can all be overcount for the new item.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-space-saving\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A replacement inherits count 6 then increments to 7. What error is recorded?",
+    "options": [
+      "0",
+      "1",
+      "6"
+    ],
+    "answer": 2,
+    "why": "The previous minimum can all be overcount for the new item."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-space-saving",
+    "also": [],
+    "prerequisites": [
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

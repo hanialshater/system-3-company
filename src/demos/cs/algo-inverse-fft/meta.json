@@ -1,0 +1,254 @@
+{
+  "slug": "algo-inverse-fft",
+  "title": "Undo the frequencies with a scale",
+  "hook": "Reversing a transform’s sign does not yet reverse its scale.",
+  "domain": "cs",
+  "concept": "algo-inverse-fft",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary masks, basic complex arithmetic for FFT, polynomial coefficients."
+    ],
+    "doesNotKnow": [
+      "Recover time coefficients by reversing Fourier signs and applying the 1/n normalization."
+    ]
+  },
+  "misconception": "Running the forward transform a second time always recovers the input unchanged.",
+  "objective": "Recover time coefficients by reversing Fourier signs and applying the 1/n normalization.",
+  "claims": [
+    {
+      "id": "cs.algo-inverse-fft.c1",
+      "text": "Conjugating before and after the forward transform reverses the exponent sign. The composition still multiplies the original coefficients by the transform length, so division by that length is essential. The comparison deliberately omits only that final normalization.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c2",
+      "text": "Reversing a transform’s sign does not yet reverse its scale.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c3",
+      "text": "The four-point spectrum is [3,1−2i,−1,1+2i]. With the inverse sign and division by 4, what is the first recovered coefficient?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c4",
+      "text": "Run the question case; Step exposes each transform update.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c5",
+      "text": "Recovered 1,2,0,0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c6",
+      "text": "Spectrum input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c7",
+      "text": "X",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c8",
+      "text": "1-2i",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c9",
+      "text": "1+2i",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c10",
+      "text": "Conjugate spectrum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c11",
+      "text": "conjugate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c12",
+      "text": "Twiddle sum and difference",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c13",
+      "text": "even",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c14",
+      "text": "odd",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[2].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c15",
+      "text": "k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[2].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c16",
+      "text": "output",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[2].rows[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c17",
+      "text": "0+4i",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[3].rows[3].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c18",
+      "text": "Conjugate and normalize",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c19",
+      "text": "x",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[6].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c20",
+      "text": "divisor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[0].run().frames[6].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c21",
+      "text": "Recovered 4,8,0,0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c22",
+      "text": "Normalization omitted",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#inverse_fft.cases[1].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c23",
+      "text": "A length-8 inverse omits normalization. How are recovered coefficients scaled?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c24",
+      "text": "Eight times the originals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c25",
+      "text": "Half the originals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c26",
+      "text": "They are unchanged",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-inverse-fft.c27",
+      "text": "The forward and sign-reversed transform compose to eight times the identity.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-inverse-fft\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A length-8 inverse omits normalization. How are recovered coefficients scaled?",
+    "options": [
+      "Eight times the originals",
+      "Half the originals",
+      "They are unchanged"
+    ],
+    "answer": 0,
+    "why": "The forward and sign-reversed transform compose to eight times the identity."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-inverse-fft",
+    "also": [],
+    "prerequisites": [
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "transforms-convolution-bitsets"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "slug": "algo-sweep-active-segments",
+  "title": "Only active neighbours can cross next",
+  "hook": "Only active neighbours can cross next. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-sweep-active-segments",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Cartesian coordinates, determinant sign, Euclidean distance."
+    ],
+    "doesNotKnow": [
+      "Detect segment intersections with endpoint sweep events and an ordered active set."
+    ]
+  },
+  "misconception": "Every new segment must be checked against every segment in the input.",
+  "objective": "Detect segment intersections with endpoint sweep events and an ordered active set.",
+  "claims": [
+    {
+      "id": "cs.algo-sweep-active-segments.c1",
+      "text": "Endpoint events change the active ordering. Inserting a segment checks its neighbours; removing one checks the newly adjacent pair, which can certify an intersection before the sweep reaches that crossing.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c2",
+      "text": "Only active neighbours can cross next. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c3",
+      "text": "Segments 0:(0,0)–(4,4),1:(0,3)–(4,1),2:(1,5)–(3,5): intersect?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c6",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c7",
+      "text": "Intersecting pair=1,0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c8",
+      "text": "Sweep input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c9",
+      "text": "Insert neighbour check",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c10",
+      "text": "x",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c11",
+      "text": "active",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[0].run().frames[1].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c12",
+      "text": "Intersecting pair=none.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c13",
+      "text": "Remove neighbour check",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#sweep_active_segments.cases[1].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c14",
+      "text": "Removing a segment makes two other segments adjacent. What must be checked?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c15",
+      "text": "Their intersection",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c16",
+      "text": "Only the removed segment",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sweep-active-segments.c17",
+      "text": "The newly adjacent pair may be the first pair whose intersection matters.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-sweep-active-segments\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Removing a segment makes two other segments adjacent. What must be checked?",
+    "options": [
+      "Their intersection",
+      "Only the removed segment"
+    ],
+    "answer": 0,
+    "why": "The newly adjacent pair may be the first pair whose intersection matters."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-sweep-active-segments",
+    "also": [],
+    "prerequisites": [
+      "point-in-polygon"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

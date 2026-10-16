@@ -1,0 +1,232 @@
+{
+  "slug": "algo-equal-partition",
+  "title": "One target can split the whole set",
+  "hook": "One target can split the whole set. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-equal-partition",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Reduce equal partition to a half-total reachability DP and reject odd totals before searching."
+    ]
+  },
+  "misconception": "Two equal groups require searching two independent subset choices.",
+  "objective": "Reduce equal partition to a half-total reachability DP and reject odd totals before searching.",
+  "claims": [
+    {
+      "id": "cs.algo-equal-partition.c1",
+      "text": "Equal groups must each sum to half the total. The witness reduces partition to reachability; an odd total rules out an integer half before any subset transitions.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-equal-partition\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c2",
+      "text": "One target can split the whole set. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-equal-partition\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c3",
+      "text": "Can [1,5,11,5] split into equal-sum groups?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c6",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c7",
+      "text": "Total=22; half=11; 11.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c8",
+      "text": "Partition input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c9",
+      "text": "items",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c10",
+      "text": "Use item 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c11",
+      "text": "sum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c12",
+      "text": "reach",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c13",
+      "text": "Use item 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c14",
+      "text": "Use item 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c15",
+      "text": "Use item 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c16",
+      "text": "Reconstruct",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c17",
+      "text": "chosen",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c18",
+      "text": "target",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[0].run().frames[5].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c19",
+      "text": "Total=7; odd, impossible.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c20",
+      "text": "Odd total",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[1].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c21",
+      "text": "total",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[1].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c22",
+      "text": "half",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#equal_partition.cases[1].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c23",
+      "text": "Total weight is 17. Can integer weights split equally?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-equal-partition\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-equal-partition.c24",
+      "text": "Two equal integer sums have an even total.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-equal-partition\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Total weight is 17. Can integer weights split equally?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "Two equal integer sums have an even total."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-equal-partition",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "slug": "algo-kll-compaction",
+  "title": "Half the cards get double weight",
+  "hook": "Keeping half the items changes how much each survivor represents.",
+  "domain": "cs",
+  "concept": "algo-kll-compaction",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Uniform hash/draw assumptions; probability and weighted ranks as stated."
+    ],
+    "doesNotKnow": [
+      "Compact a sorted sketch level by retaining one parity and doubling retained weights."
+    ]
+  },
+  "misconception": "Discarding half the observations necessarily halves their represented mass.",
+  "objective": "Compact a sorted sketch level by retaining one parity and doubling retained weights.",
+  "claims": [
+    {
+      "id": "cs.algo-kll-compaction.c1",
+      "text": "Compaction retains one value per adjacent sorted pair and doubles its weight. Total represented mass is preserved, while a threshold’s estimated rank can move. The parity is disclosed; randomized sketches choose parity rather than always preferring low values.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c2",
+      "text": "Keeping half the items changes how much each survivor represents.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c3",
+      "text": "Sorted level [1,2,3,4,5,6,7,8] keeps zero-based even indices. Which values move upward with weight 2?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c4",
+      "text": "Run the question case, then inspect its updates with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c5",
+      "text": "Kept 1,3,5,7; mass 8.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c6",
+      "text": "Level input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c8",
+      "text": "parity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c9",
+      "text": "Sort then retain parity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c10",
+      "text": "kept",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c11",
+      "text": "Double survivor weights",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c12",
+      "text": "weight",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[2].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c13",
+      "text": "rank≤4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[0].run().frames[2].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c14",
+      "text": "Kept 2,4,6,8; mass 8.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#kll_compaction.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c15",
+      "text": "After halving a full level, why double retained weights?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c16",
+      "text": "To preserve represented stream mass",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c17",
+      "text": "To make values themselves twice as large",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c18",
+      "text": "To preserve every exact rank",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kll-compaction.c19",
+      "text": "The retained item stands for two items rather than changing its numeric value.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-kll-compaction\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After halving a full level, why double retained weights?",
+    "options": [
+      "To preserve represented stream mass",
+      "To make values themselves twice as large",
+      "To preserve every exact rank"
+    ],
+    "answer": 0,
+    "why": "The retained item stands for two items rather than changing its numeric value."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-kll-compaction",
+    "also": [],
+    "prerequisites": [
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

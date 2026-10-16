@@ -1,0 +1,218 @@
+{
+  "slug": "algo-adaptive-simpson",
+  "title": "Where should the next sample go?",
+  "hook": "Where should the next sample go? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-adaptive-simpson",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Arithmetic, function evaluation, vector dot products, small matrices and solving linear equations."
+    ],
+    "doesNotKnow": [
+      "Refine quadrature only on intervals whose coarse and split estimates disagree too much."
+    ]
+  },
+  "misconception": "Uniformly adding the same number of samples everywhere is necessary for an accuracy target.",
+  "objective": "Refine quadrature only on intervals whose coarse and split estimates disagree too much.",
+  "claims": [
+    {
+      "id": "cs.algo-adaptive-simpson.c1",
+      "text": "The coarse and split estimates supply a local error estimate. Only disagreement above tolerance triggers deeper refinement; the linear contrast needs none, while the additional sharper case concentrates work where agreement is weaker.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c2",
+      "text": "Where should the next sample go? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c3",
+      "text": "For x⁴ on [0,1], Simpson coarse .208333 and split .200521: error estimate |gap|/15 < .001?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c6",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c7",
+      "text": "Integral≈0.2; refinements=0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c8",
+      "text": "Quadrature input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c9",
+      "text": "power",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c10",
+      "text": "interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c11",
+      "text": "tolerance",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c12",
+      "text": "Accept interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c13",
+      "text": "a,b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c14",
+      "text": "coarse,split",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c15",
+      "text": "error,eps",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c16",
+      "text": "Integral≈0.5; refinements=0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c17",
+      "text": "Integral≈0.111163; refinements=1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[2].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c18",
+      "text": "Refine interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#adaptive_simpson.cases[2].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c19",
+      "text": "One interval exceeds its error allowance while its neighbour does not. Which needs splitting?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c20",
+      "text": "Both uniformly",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c21",
+      "text": "Only the failing interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-adaptive-simpson.c22",
+      "text": "Adaptive refinement spends extra samples where the local error estimate requires them.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-adaptive-simpson\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "One interval exceeds its error allowance while its neighbour does not. Which needs splitting?",
+    "options": [
+      "Both uniformly",
+      "Only the failing interval"
+    ],
+    "answer": 1,
+    "why": "Adaptive refinement spends extra samples where the local error estimate requires them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-adaptive-simpson",
+    "also": [],
+    "prerequisites": [
+      "floating-point"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "numerical-linear-algebra"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

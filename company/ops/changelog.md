@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-16: algorithms 200 topic coverage and opt-in trace lessons (tier 1; W-1497)
+- Added topic grouping on the existing catalog, shared trace controls with retained question-case proof, and bounded materialization/validation tools. Local serving binds loopback. Principal-engineer read the source diff; focused tests 12/12. Full-200 integrated verification and independent lesson gates remain pending: company/engineering/readiness/2026-10-16-algorithms-200.md.
+
 ## 2026-10-16: tools-lead F-39 agent memory: onboarding, personal memory and offboarding for every role (slot tools-f39-agent-memory; tier 1 + one tier-2 line awaiting principal-engineer-ops: company/engineering/readiness/2026-10-16-f39-agent-memory.md)
 - `tools/memory.mjs read|add|compact|check|init` (new, no dependencies) and `tools/org/memory-policy.mjs` (one policy: 50 KB threshold, 25 KB target, 12-line entries). `add` writes one O_EXCL file per run (`company/roles/memory/<role>/<date>-<runkey>.md`), so parallel runs never collide; `compact` merges under a per-role lock and archives narrative and closed items to `<role>.archive-<date>.md` (nothing deleted). Past the threshold `read`/`add` compact first (`--no-compact`: "compact first"). `tools/org/generate.mjs`: the agent template reads onboarding then memory first and offboards last; working-agreement item 7; missing memory files are created, never overwritten. 99 memory files, 98 seeded (365 cited lines). Tests: tests/memory/memory.test.mjs (7). `package.json` (c7b9c22, tier 2, held): `check` also runs `memory.mjs check` (warnings only) and `test:memory`.
 ## 2026-10-16: tools-lead W-1319 publish-ready flags (batch 2026-10-16-r5-tools.md#B4; tier 1, company/engineering/readiness/2026-10-16-publish-ready-flags.md)

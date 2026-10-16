@@ -1,0 +1,254 @@
+{
+  "slug": "algo-misra-gries",
+  "title": "More than one frequent candidate",
+  "hook": "A small table must decide what to forget when a new item arrives.",
+  "domain": "cs",
+  "concept": "algo-misra-gries",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Uniform hash/draw assumptions; probability and weighted ranks as stated."
+    ],
+    "doesNotKnow": [
+      "Maintain k-1 cancellation counters and bound which items can exceed frequency n/k."
+    ]
+  },
+  "misconception": "The single majority-vote survivor finds every item above a smaller frequency threshold.",
+  "objective": "Maintain k-1 cancellation counters and bound which items can exceed frequency n/k.",
+  "claims": [
+    {
+      "id": "cs.algo-misra-gries.c1",
+      "text": "A full-table miss cancels one occurrence from every stored candidate and the arriving item. These survivors are candidates, not certified heavy hitters; a second counting pass is needed to confirm a threshold.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c2",
+      "text": "A small table must decide what to forget when a new item arrives.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c3",
+      "text": "For stream A,B,A,C,A,B,D,A,B with k=3, which candidates remain?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c4",
+      "text": "A,B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c5",
+      "text": "A,C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c6",
+      "text": "B,D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c7",
+      "text": "A,D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.predict.options[3]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c8",
+      "text": "Run the question case, then inspect its updates with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c9",
+      "text": "Candidates A,B.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c10",
+      "text": "Stream input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c11",
+      "text": "stream",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c12",
+      "text": "ABACABDAB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c13",
+      "text": "k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c14",
+      "text": "Cancel or count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c15",
+      "text": "read",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c16",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c17",
+      "text": "keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c18",
+      "text": "counts",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c19",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[2].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c20",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[4].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c21",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[0].run().frames[7].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c22",
+      "text": "Candidates B.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#misra_gries.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c23",
+      "text": "After cancellation, does a surviving candidate automatically exceed n/k?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c24",
+      "text": "No; count it in another pass",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c25",
+      "text": "Yes; survival is a certificate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c26",
+      "text": "Only if it arrived first",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-misra-gries.c27",
+      "text": "Cancellation protects possible heavy hitters but can also leave infrequent candidates.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/randomized-streaming.ts#lessonDetails[\"algo-misra-gries\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After cancellation, does a surviving candidate automatically exceed n/k?",
+    "options": [
+      "No; count it in another pass",
+      "Yes; survival is a certificate",
+      "Only if it arrived first"
+    ],
+    "answer": 0,
+    "why": "Cancellation protects possible heavy hitters but can also leave infrequent candidates."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-misra-gries",
+    "also": [],
+    "prerequisites": [
+      "hashing-collisions"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "randomized-streaming"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

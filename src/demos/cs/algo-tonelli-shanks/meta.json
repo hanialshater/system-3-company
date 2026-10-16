@@ -1,0 +1,190 @@
+{
+  "slug": "algo-tonelli-shanks",
+  "title": "Square roots on a prime clock",
+  "hook": "Square roots on a prime clock. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-tonelli-shanks",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Integer remainders, gcd, primes, modular exponentiation."
+    ],
+    "doesNotKnow": [
+      "Find a modular square root by reducing the power-of-two order of the residual."
+    ]
+  },
+  "misconception": "A modular square root can be obtained by ordinary real square rooting and rounding.",
+  "objective": "Find a modular square root by reducing the power-of-two order of the residual.",
+  "claims": [
+    {
+      "id": "cs.algo-tonelli-shanks.c1",
+      "text": "Tonelli–Shanks splits the group order into an odd part and a power of two. Each correction reduces the residual order until it becomes one, and the final square checks the root certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c2",
+      "text": "Square roots on a prime clock. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c3",
+      "text": "Which value is a square root of10 modulo13?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c5",
+      "text": "Root=7; 7² mod13=10.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c6",
+      "text": "Modular-root input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c7",
+      "text": "a,p",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c8",
+      "text": "Split odd part",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c9",
+      "text": "q,s,z",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c10",
+      "text": "x,t,m",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c11",
+      "text": "Reduce residual order",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c12",
+      "text": "i,b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c13",
+      "text": "Root=2; 2² mod17=4.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c14",
+      "text": "Root=9; 9² mod13=3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#tonelli_shanks.cases[2].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c15",
+      "text": "Before seeking a nonzero root modulo an odd prime, what can reject the input?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c16",
+      "text": "A quadratic nonresidue test",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c17",
+      "text": "A decimal digit test",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-tonelli-shanks.c18",
+      "text": "A nonresidue has no modular square root.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-tonelli-shanks\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Before seeking a nonzero root modulo an odd prime, what can reject the input?",
+    "options": [
+      "A quadratic nonresidue test",
+      "A decimal digit test"
+    ],
+    "answer": 0,
+    "why": "A nonresidue has no modular square root."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-tonelli-shanks",
+    "also": [],
+    "prerequisites": [
+      "euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "number-theoretic-algorithms"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "slug": "algo-btree-delete-borrow",
+  "title": "Can a neighbour lend a key?",
+  "hook": "A shrinking leaf may need help from its sibling.",
+  "domain": "cs",
+  "concept": "algo-btree-delete-borrow",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary search-tree ordering; subtree size and interval notation."
+    ],
+    "doesNotKnow": [
+      "Preserve minimum occupancy during B-tree deletion by borrowing through the parent."
+    ]
+  },
+  "misconception": "Deleting a B-tree key only removes it from a leaf.",
+  "objective": "Preserve minimum occupancy during B-tree deletion by borrowing through the parent.",
+  "claims": [
+    {
+      "id": "cs.algo-btree-delete-borrow.c1",
+      "text": "A child with only the minimum number of keys needs a repair before deletion. Borrowing moves a parent separator down and a sibling boundary up, preserving both occupancy and sorted separation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c2",
+      "text": "A shrinking leaf may need help from its sibling.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c3",
+      "text": "Root [4] has leaves [1,2] and [5,6]. After deleting 5 then 6, what separator remains?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c4",
+      "text": "Run the operation; inspect the changed links and annotations.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c5",
+      "text": "Deleted 5,6; root separator 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c6",
+      "text": "Degree-two tree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c7",
+      "text": "Remove leaf key",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c8",
+      "text": "Borrow through parent separator",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c9",
+      "text": "Deleted 1,2; root separator 5.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#btree_delete_borrow.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c10",
+      "text": "During B-tree borrowing, does a sibling key bypass the parent separator?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c11",
+      "text": "No, they rotate through it",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c12",
+      "text": "Yes, always",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c13",
+      "text": "Only with two leaves",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-btree-delete-borrow.c14",
+      "text": "The separator moves down as the sibling boundary moves up.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-btree-delete-borrow\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "During B-tree borrowing, does a sibling key bypass the parent separator?",
+    "options": [
+      "No, they rotate through it",
+      "Yes, always",
+      "Only with two leaves"
+    ],
+    "answer": 0,
+    "why": "The separator moves down as the sibling boundary moves up."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-btree-delete-borrow",
+    "also": [],
+    "prerequisites": [
+      "binary-search-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "ordered-augmented-trees"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

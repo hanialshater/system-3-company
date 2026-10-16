@@ -1,0 +1,191 @@
+{
+  "slug": "algo-dary-heap",
+  "title": "More children, shorter paths",
+  "hook": "More children change the shape and the work of a heap.",
+  "domain": "cs",
+  "concept": "algo-dary-heap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Heap parent/child ordering and priority comparisons."
+    ],
+    "doesNotKnow": [
+      "Compare d-ary heap extraction depth against child-comparison cost."
+    ]
+  },
+  "misconception": "More children always make a priority queue faster.",
+  "objective": "Compare d-ary heap extraction depth against child-comparison cost.",
+  "claims": [
+    {
+      "id": "cs.algo-dary-heap.c1",
+      "text": "The arity determines how many children compete at each downward step. More children can shorten the path while increasing comparisons per level; the two computed traces show the tradeoff on the same keys.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c2",
+      "text": "More children change the shape and the work of a heap.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c3",
+      "text": "Heapify [1,4,2,8,7,3,6,9,5] as a binary heap, then delete-min. How many child comparisons does downward repair make?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c4",
+      "text": "Run the operation; Step shows the repair before its result.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c5",
+      "text": "Arity 2; deletion comparisons 4; removed 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c6",
+      "text": "Arity and keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c7",
+      "text": "heap",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c8",
+      "text": "arity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c9",
+      "text": "Compare child group",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c10",
+      "text": "Heapify chosen arity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c11",
+      "text": "Deletion comparisons",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c12",
+      "text": "comparisons",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[0].run().frames[5].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c13",
+      "text": "Arity 3; deletion comparisons 4; removed 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#dary_heap.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c14",
+      "text": "Increasing heap arity changes which tradeoff?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c15",
+      "text": "Depth versus children compared",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c16",
+      "text": "Key order versus sign",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c17",
+      "text": "Array length versus key value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dary-heap.c18",
+      "text": "The heap gets shallower but each level has more children.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-dary-heap\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Increasing heap arity changes which tradeoff?",
+    "options": [
+      "Depth versus children compared",
+      "Key order versus sign",
+      "Array length versus key value"
+    ],
+    "answer": 0,
+    "why": "The heap gets shallower but each level has more children."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-dary-heap",
+    "also": [],
+    "prerequisites": [
+      "heap-priority-queue"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "priority-queues-meldable-heaps"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

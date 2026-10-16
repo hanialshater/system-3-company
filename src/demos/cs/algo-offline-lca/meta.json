@@ -1,0 +1,267 @@
+{
+  "slug": "algo-offline-lca",
+  "title": "Ask the ancestors after the branch",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-offline-lca",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Use Tarjan's offline LCA traversal with union-find and a representative ancestor label."
+    ]
+  },
+  "misconception": "The DSU representative itself is always the lowest common ancestor.",
+  "objective": "Use Tarjan's offline LCA traversal with union-find and a representative ancestor label.",
+  "claims": [
+    {
+      "id": "cs.algo-offline-lca.c1",
+      "text": "Tarjan traversal answers black-endpoint queries through representative ancestor labels.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c3",
+      "text": "Tree A→{B,C}, B→{D,E}. What are LCA(D,E) and LCA(D,C)?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c4",
+      "text": "A,A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c5",
+      "text": "B,A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c6",
+      "text": "B,B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c7",
+      "text": "Run the question case, then inspect its steps and compare another case.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c8",
+      "text": "LCA answers B,A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c9",
+      "text": "LCA answers B,A. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c10",
+      "text": "Finishing a subtree permits its union with the parent. The separate ancestor label is restored to that parent; the representative identifier alone is not the LCA answer.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c11",
+      "text": "Tree and queries",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c13",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c14",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c15",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c16",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[0].rows[1].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c17",
+      "text": "Union; ancestor B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c18",
+      "text": "parent",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c19",
+      "text": "ancestor",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c20",
+      "text": "Both endpoints finished",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c21",
+      "text": "answer",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c22",
+      "text": "Union; ancestor A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c23",
+      "text": "LCA answers A,A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c24",
+      "text": "LCA answers A,A. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#offline_lca.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c25",
+      "text": "After unioning a finished child with its parent, what label must be restored?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c26",
+      "text": "The parent as ancestor of the merged representative",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c27",
+      "text": "The largest vertex identifier",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c28",
+      "text": "The child as ancestor of every component",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-offline-lca.c29",
+      "text": "The subtree is now represented at its parent in the traversal, regardless of DSU root choice.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-offline-lca\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After unioning a finished child with its parent, what label must be restored?",
+    "options": [
+      "The parent as ancestor of the merged representative",
+      "The largest vertex identifier",
+      "The child as ancestor of every component"
+    ],
+    "answer": 0,
+    "why": "The subtree is now represented at its parent in the traversal, regardless of DSU root choice."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-offline-lca",
+    "also": [],
+    "prerequisites": [
+      "cs:union-find"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "disjoint-offline-connectivity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

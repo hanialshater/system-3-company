@@ -1,0 +1,211 @@
+{
+  "slug": "algo-binary-insertion",
+  "title": "Searching is cheaper than shifting",
+  "hook": "Finding a gap and making room are different kinds of work.",
+  "domain": "cs",
+  "concept": "algo-binary-insertion",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Separate binary insertion's reduced comparisons from its unchanged element movement."
+    ]
+  },
+  "misconception": "A logarithmic insertion-position search makes the whole insertion logarithmic.",
+  "objective": "Separate binary insertion's reduced comparisons from its unchanged element movement.",
+  "claims": [
+    {
+      "id": "cs.algo-binary-insertion.c1",
+      "text": "Binary search finds the gap with a few comparisons, but the suffix still has to move. Reducing comparison work does not remove the movement cost of inserting inside an array.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c2",
+      "text": "Finding a gap and making room are different kinds of work.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c3",
+      "text": "Insert 4 into sorted [1,3,5,7,9]. How many existing items must shift?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c4",
+      "text": "Run the question case; Step exposes the actual movement.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c5",
+      "text": "Shifted 3; inserted at 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c6",
+      "text": "Sorted prefix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c7",
+      "text": "prefix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c8",
+      "text": "insert",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c9",
+      "text": "Search insertion gap",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c10",
+      "text": "lo",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c11",
+      "text": "hi",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[1].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c12",
+      "text": "Shift one slot",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c13",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[3].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c14",
+      "text": "Fill insertion gap",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c15",
+      "text": "shifts",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[0].run().frames[6].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c16",
+      "text": "Shifted 0; inserted at 5.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#binary_insertion.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c17",
+      "text": "Binary insertion uses fewer comparisons. What still costs linear movement?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c18",
+      "text": "Shifting the suffix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c19",
+      "text": "Finding the middle",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c20",
+      "text": "Reading the length",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-binary-insertion.c21",
+      "text": "Items after the insertion gap must move one slot.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-binary-insertion\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Binary insertion uses fewer comparisons. What still costs linear movement?",
+    "options": [
+      "Shifting the suffix",
+      "Finding the middle",
+      "Reading the length"
+    ],
+    "answer": 0,
+    "why": "Items after the insertion gap must move one slot."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-binary-insertion",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "adaptive-network-sorting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

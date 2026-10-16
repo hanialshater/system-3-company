@@ -1,0 +1,240 @@
+{
+  "slug": "algo-vertex-cover-two",
+  "title": "A matching supplies a cover bound",
+  "hook": "A small matching can certify a lower bound on every possible cover.",
+  "domain": "cs",
+  "concept": "algo-vertex-cover-two",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Offline optimum versus online decisions; cost and approximation ratio."
+    ],
+    "doesNotKnow": [
+      "Take both endpoints of a maximal matching and compare the cover size with the matching lower bound."
+    ]
+  },
+  "misconception": "A greedy vertex cover has no usable bound against the optimum.",
+  "objective": "Take both endpoints of a maximal matching and compare the cover size with the matching lower bound.",
+  "claims": [
+    {
+      "id": "cs.algo-vertex-cover-two.c1",
+      "text": "Disjoint matching edges each require at least one endpoint in any vertex cover. Taking both endpoints uses twice that lower bound, and maximality ensures no uncovered edge remains. The exhaustive tiny optimum is displayed separately from the approximation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c2",
+      "text": "A small matching can certify a lower bound on every possible cover.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c3",
+      "text": "For path A-B-C-D-E, scan edges left to right and take both endpoints of each unmatched edge. How many vertices are chosen?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c4",
+      "text": "Run the question case, then compare the changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c5",
+      "text": "Cover 4; matching 2; optimum 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c6",
+      "text": "Graph input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c7",
+      "text": "edges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c8",
+      "text": "Choose unmatched edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c9",
+      "text": "matching",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c10",
+      "text": "cover",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c11",
+      "text": "Cover and lower bound",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c12",
+      "text": "size,matching,optimum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[3].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c13",
+      "text": "Cover 2; matching 1; optimum 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c14",
+      "text": "Why does a matching of m disjoint edges force every cover to use at least m vertices?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c15",
+      "text": "Each edge needs a separate endpoint",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c16",
+      "text": "One vertex covers the whole matching",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c17",
+      "text": "Every matching is a minimum cover",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c18",
+      "text": "No vertex can serve as an endpoint of two disjoint matching edges.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-vertex-cover-two\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c19",
+      "text": "A−B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c20",
+      "text": "B−C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c21",
+      "text": "C−D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c22",
+      "text": "D−E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c23",
+      "text": "A−C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[1].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c24",
+      "text": "A−D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[1].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-vertex-cover-two.c25",
+      "text": "A−E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#vertex_cover_two.cases[1].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does a matching of m disjoint edges force every cover to use at least m vertices?",
+    "options": [
+      "Each edge needs a separate endpoint",
+      "One vertex covers the whole matching",
+      "Every matching is a minimum cover"
+    ],
+    "answer": 0,
+    "why": "No vertex can serve as an endpoint of two disjoint matching edges."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-vertex-cover-two",
+    "also": [],
+    "prerequisites": [
+      "greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation-online"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

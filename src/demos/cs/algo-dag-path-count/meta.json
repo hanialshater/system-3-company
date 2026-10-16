@@ -1,0 +1,190 @@
+{
+  "slug": "algo-dag-path-count",
+  "title": "One count per incoming route",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-dag-path-count",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Count directed acyclic graph paths by propagating counts in topological order."
+    ]
+  },
+  "misconception": "Counting paths requires enumerating every complete path.",
+  "objective": "Count directed acyclic graph paths by propagating counts in topological order.",
+  "claims": [
+    {
+      "id": "cs.algo-dag-path-count.c1",
+      "text": "Path counts add along incoming edges in topological order.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dag-path-count\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dag-path-count\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c3",
+      "text": "DAG AB, AC, BD, CD, BC: how many paths run from A to D?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c4",
+      "text": "Complete this graph, then inspect steps and compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c5",
+      "text": "A→D paths 3; counts 1,1,2,3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c6",
+      "text": "A→D paths 3; counts 1,1,2,3. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c7",
+      "text": "Topological processing finalizes each predecessor before its successors. Each incoming edge contributes the paths reaching its source, so branches add rather than overwrite one another.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c8",
+      "text": "DAG input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c12",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c13",
+      "text": "Propagate path count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c14",
+      "text": "ways",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c15",
+      "text": "A→D paths 2; counts 1,1,1,2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c16",
+      "text": "A→D paths 2; counts 1,1,1,2. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#dag_path_count.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c17",
+      "text": "Two predecessors contribute 4 and 7 paths to a DAG vertex. What is its count?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dag-path-count\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-path-count.c18",
+      "text": "Every path arrives through one incoming edge, so the contributions add.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-dag-path-count\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Two predecessors contribute 4 and 7 paths to a DAG vertex. What is its count?",
+    "options": [
+      "7",
+      "28",
+      "11"
+    ],
+    "answer": 2,
+    "why": "Every path arrives through one incoming edge, so the contributions add."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-dag-path-count",
+    "also": [],
+    "prerequisites": [
+      "cs:depth-first-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "graph-traversal-decomposition"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

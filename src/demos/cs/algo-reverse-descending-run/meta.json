@@ -1,0 +1,204 @@
+{
+  "slug": "algo-reverse-descending-run",
+  "title": "Can this run be turned around?",
+  "hook": "Tagged equal keys make a tempting shortcut dangerous.",
+  "domain": "cs",
+  "concept": "algo-reverse-descending-run",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Reverse a strictly descending run while refusing to reverse tied keys that would lose stability."
+    ]
+  },
+  "misconception": "Any nonincreasing run may be reversed without changing equal-key order.",
+  "objective": "Reverse a strictly descending run while refusing to reverse tied keys that would lose stability.",
+  "claims": [
+    {
+      "id": "cs.algo-reverse-descending-run.c1",
+      "text": "Reversal is safe for a strictly descending run because it contains no equal keys. Extending through equality would reverse the tagged equals and break their original order.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c2",
+      "text": "Tagged equal keys make a tempting shortcut dangerous.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c3",
+      "text": "In [5a,4a,4b,2a], how many items belong to the initial strictly descending run?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c4",
+      "text": "Run the question case; Step exposes the actual movement.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c5",
+      "text": "Strict descending length 2; reversed 4a,5a,4b,2a.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c6",
+      "text": "Tagged input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c7",
+      "text": "keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c8",
+      "text": "5a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c9",
+      "text": "4a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c10",
+      "text": "4b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c11",
+      "text": "2a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c12",
+      "text": "Stop before equality",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c13",
+      "text": "Reverse strict run",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c14",
+      "text": "Strict descending length 4; reversed 2a,3a,4a,5a.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c15",
+      "text": "3a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#reverse_descending_run.cases[1].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c16",
+      "text": "May a stable run reversal include two equal tagged keys?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c17",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c18",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c19",
+      "text": "Only at the beginning",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-descending-run.c20",
+      "text": "Reversal would swap their original order.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-reverse-descending-run\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "May a stable run reversal include two equal tagged keys?",
+    "options": [
+      "Yes",
+      "No",
+      "Only at the beginning"
+    ],
+    "answer": 1,
+    "why": "Reversal would swap their original order."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-reverse-descending-run",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "adaptive-network-sorting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

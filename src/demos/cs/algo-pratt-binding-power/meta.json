@@ -1,0 +1,163 @@
+{
+  "slug": "algo-pratt-binding-power",
+  "title": "Which operator owns the next token?",
+  "hook": "The right operand has its own rule for where parsing stops.",
+  "domain": "cs",
+  "concept": "algo-pratt-binding-power",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix codes, strings, grammar productions and a stack."
+    ],
+    "doesNotKnow": [
+      "Parse expressions with left and right binding powers to control precedence and associativity."
+    ]
+  },
+  "misconception": "One numeric precedence value fully determines right-associative parsing.",
+  "objective": "Parse expressions with left and right binding powers to control precedence and associativity.",
+  "claims": [
+    {
+      "id": "cs.algo-pratt-binding-power.c1",
+      "text": "The right binding power controls which operators the right operand may absorb. Equal left and right powers here admit another exponent inside the right operand; subtraction uses a larger right threshold so equal-precedence subtraction remains outside.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-pratt-binding-power\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c2",
+      "text": "The right operand has its own rule for where parsing stops.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-pratt-binding-power\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c3",
+      "text": "Pratt parsing gives ^ binding powers (30,30). What value does 2^3^2 produce?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c4",
+      "text": "Run the question case; Step follows its actual state changes.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c5",
+      "text": "Tree (2^(3^2)); value 512.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c6",
+      "text": "Expression input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c7",
+      "text": "infix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c8",
+      "text": "Binding powers combine",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c9",
+      "text": "tree",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c10",
+      "text": "value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c11",
+      "text": "powers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c12",
+      "text": "Tree ((8-3)-2); value 3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#pratt_binding_power.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c13",
+      "text": "To make subtraction left associative under this parser’s < test, what right binding power should accompany left power 10?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-pratt-binding-power\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pratt-binding-power.c14",
+      "text": "A right threshold above 10 prevents a following subtraction from entering the right operand.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-pratt-binding-power\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "To make subtraction left associative under this parser’s < test, what right binding power should accompany left power 10?",
+    "options": [
+      "11",
+      "10",
+      "9"
+    ],
+    "answer": 0,
+    "why": "A right threshold above 10 prevents a following subtraction from entering the right operand."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-pratt-binding-power",
+    "also": [],
+    "prerequisites": [
+      "stack-expression-eval"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "compression-coding-parsing"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "slug": "algo-american-flag-sort",
+  "title": "Can buckets live inside the array?",
+  "hook": "Digit counts reserve destinations before the records move.",
+  "domain": "cs",
+  "concept": "algo-american-flag-sort",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Partition by a leading digit using bucket boundaries and in-place cycles."
+    ]
+  },
+  "misconception": "Radix sorting always needs a second full-size output array.",
+  "objective": "Partition by a leading digit using bucket boundaries and in-place cycles.",
+  "claims": [
+    {
+      "id": "cs.algo-american-flag-sort.c1",
+      "text": "Counts reserve each digit’s final interval. A misplaced record swaps directly into its destination bucket, advancing that bucket’s next free slot; low digits are refined only after the high-digit partition.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c2",
+      "text": "Digit counts reserve destinations before the records move.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c3",
+      "text": "For [21,10,22,11,20,12], how many in-place swaps partition the high base-three digit?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c4",
+      "text": "Run the question case; Step exposes the actual movement.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c5",
+      "text": "High-digit swaps 3; sorted 10,11,12,20,21,22.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c6",
+      "text": "Base-three keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c7",
+      "text": "keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c8",
+      "text": "Reserve digit bucket intervals",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c9",
+      "text": "count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c10",
+      "text": "start",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c11",
+      "text": "place",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c12",
+      "text": "Cycle misplaced digit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c13",
+      "text": "next",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[2].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c14",
+      "text": "All digits partitioned",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[0].run().frames[10].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c15",
+      "text": "High-digit swaps 0; sorted 10,11,12,20,21,22.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#american_flag_sort.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c16",
+      "text": "What tells a misplaced digit where to swap?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c17",
+      "text": "Its bucket’s next free slot",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c18",
+      "text": "Its previous position",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c19",
+      "text": "The median key",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-american-flag-sort.c20",
+      "text": "Counts reserve intervals, then next pointers fill them.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-american-flag-sort\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "What tells a misplaced digit where to swap?",
+    "options": [
+      "Its bucket’s next free slot",
+      "Its previous position",
+      "The median key"
+    ],
+    "answer": 0,
+    "why": "Counts reserve intervals, then next pointers fill them."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-american-flag-sort",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "adaptive-network-sorting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

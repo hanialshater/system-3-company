@@ -1,0 +1,296 @@
+{
+  "slug": "algo-lzw-dictionary",
+  "title": "The decoder learns the new word",
+  "hook": "A decoder sometimes receives a dictionary entry it has not written yet.",
+  "domain": "cs",
+  "concept": "algo-lzw-dictionary",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix codes, strings, grammar productions and a stack."
+    ],
+    "doesNotKnow": [
+      "Build matching encoder and decoder dictionaries from previous phrase plus next first character."
+    ]
+  },
+  "misconception": "A dictionary compressor must transmit every new dictionary phrase in full.",
+  "objective": "Build matching encoder and decoder dictionaries from previous phrase plus next first character.",
+  "claims": [
+    {
+      "id": "cs.algo-lzw-dictionary.c1",
+      "text": "The encoder adds its previous phrase plus the next character. The decoder recreates that dictionary; when it sees the next unassigned code, the required phrase is the previous phrase plus its own first character.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lzw-dictionary\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c2",
+      "text": "A decoder sometimes receives a dictionary entry it has not written yet.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lzw-dictionary\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c3",
+      "text": "LZW starts with A=0,B=1 and next code 2. Which code stream encodes ABABABA?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c4",
+      "text": "Run the question case; Step follows its actual state changes.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c5",
+      "text": "Codes 0,1,2,4; decoded ABABABA.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c6",
+      "text": "Text input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c7",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c8",
+      "text": "ABABABA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c9",
+      "text": "alphabet",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c10",
+      "text": "A=0,B=1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c11",
+      "text": "Emit and extend dictionary",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c12",
+      "text": "codes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c13",
+      "text": "new",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c14",
+      "text": "AB=2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[1].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c15",
+      "text": "BA=3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c16",
+      "text": "ABA=4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c17",
+      "text": "Decoder rebuilds phrase",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c18",
+      "text": "AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c19",
+      "text": "ABAB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[5].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c20",
+      "text": "BA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[5].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c21",
+      "text": "ABA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[6].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c22",
+      "text": "Decoded text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c23",
+      "text": "Codes 0,1,1,0,2; decoded ABBAAB.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c24",
+      "text": "ABBAAB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c25",
+      "text": "BB=3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c26",
+      "text": "BA=4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c27",
+      "text": "AA=5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c28",
+      "text": "ABB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[6].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c29",
+      "text": "BB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[6].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c30",
+      "text": "ABBA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[7].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c31",
+      "text": "AA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lzw_dictionary.cases[1].run().frames[8].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c32",
+      "text": "A decoder receives its next unassigned code after phrase AB. What phrase does the special case produce?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lzw-dictionary\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lzw-dictionary.c33",
+      "text": "The missing phrase is previous phrase plus its first character.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lzw-dictionary\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A decoder receives its next unassigned code after phrase AB. What phrase does the special case produce?",
+    "options": [
+      "ABA",
+      "ABB",
+      "BA"
+    ],
+    "answer": 0,
+    "why": "The missing phrase is previous phrase plus its first character."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lzw-dictionary",
+    "also": [],
+    "prerequisites": [
+      "stack-expression-eval"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "compression-coding-parsing"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

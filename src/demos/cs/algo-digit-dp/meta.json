@@ -1,0 +1,169 @@
+{
+  "slug": "algo-digit-dp",
+  "title": "Has the prefix fallen below the limit?",
+  "hook": "Has the prefix fallen below the limit? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-digit-dp",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "DP reachability; a bitmask names a subset; base-10 digits."
+    ],
+    "doesNotKnow": [
+      "Count bounded integers using tight-prefix and property states."
+    ]
+  },
+  "misconception": "Every suffix has the same freedom whether or not the prefix equals the limit.",
+  "objective": "Count bounded integers using tight-prefix and property states.",
+  "claims": [
+    {
+      "id": "cs.algo-digit-dp.c1",
+      "text": "Tightness records whether the prefix still equals the upper bound. The remainder records the digit-sum property; counting these states includes zero without enumerating every full integer.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-digit-dp\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c2",
+      "text": "Has the prefix fallen below the limit? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-digit-dp\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c3",
+      "text": "In 0..35 inclusive, how many digit sums are divisible by 3?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c5",
+      "text": "Count=12; 0 included.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c6",
+      "text": "Bound digits",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c7",
+      "text": "bound",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c8",
+      "text": "mod",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c9",
+      "text": "Advance prefix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c10",
+      "text": "loose",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c11",
+      "text": "tight",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c12",
+      "text": "Count=15; 0 included.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#digit_dp.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c13",
+      "text": "After a prefix falls below the bound, what limits its next decimal digit?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-digit-dp\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c14",
+      "text": "The bound digit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-digit-dp\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-digit-dp.c15",
+      "text": "Once loose, every decimal digit remains below the original upper bound.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/resource-subset-dp.ts#lessonDetails[\"algo-digit-dp\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After a prefix falls below the bound, what limits its next decimal digit?",
+    "options": [
+      "The bound digit",
+      "9"
+    ],
+    "answer": 1,
+    "why": "Once loose, every decimal digit remains below the original upper bound."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-digit-dp",
+    "also": [],
+    "prerequisites": [
+      "memoization"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "resource-subset-dp"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

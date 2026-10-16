@@ -1,0 +1,212 @@
+{
+  "slug": "algo-alpha-beta",
+  "title": "Can the unseen child change the choice?",
+  "hook": "A branch can stop mattering before every leaf has been read.",
+  "domain": "cs",
+  "concept": "algo-alpha-beta",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Search trees; minimax and a partial solution state."
+    ],
+    "doesNotKnow": [
+      "Prune a minimax branch when its alpha-beta bounds cannot change an ancestor's decision."
+    ]
+  },
+  "misconception": "Every leaf must be evaluated to guarantee a minimax choice.",
+  "objective": "Prune a minimax branch when its alpha-beta bounds cannot change an ancestor's decision.",
+  "claims": [
+    {
+      "id": "cs.algo-alpha-beta.c1",
+      "text": "A MIN child at or below the current MAX guarantee cannot improve the root decision. Its remaining leaf is skipped. Reordering children changes which bounds arrive first, so the same minimax value can require a different number of evaluations.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c2",
+      "text": "A branch can stop mattering before every leaf has been read.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c3",
+      "text": "MAX has MIN children [3,5],[2,9],[4,6], visited left to right. How many leaves does alpha-beta evaluate?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c4",
+      "text": "Run the question case; Step exposes each search decision.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c5",
+      "text": "Value 4; leaves 5; pruned 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c6",
+      "text": "MAX over MIN pairs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c7",
+      "text": "Tighten MIN bound",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c8",
+      "text": "pair",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c9",
+      "text": "α,β",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c10",
+      "text": "leaves",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c11",
+      "text": "Bound cuts remaining leaf",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c12",
+      "text": "cut",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[4].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c13",
+      "text": "Root decision",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c14",
+      "text": "value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[7].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c15",
+      "text": "leaves,pruned",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[0].run().frames[7].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c16",
+      "text": "Value 4; leaves 4; pruned 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#alpha_beta.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c17",
+      "text": "Does a pruned leaf need to be worse than every other leaf?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c18",
+      "text": "No; its branch cannot change the ancestor’s choice",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c19",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c20",
+      "text": "Only if its numeric value is unknown",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-alpha-beta.c21",
+      "text": "Pruning follows ancestor bounds rather than a global ordering of all leaves.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-alpha-beta\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does a pruned leaf need to be worse than every other leaf?",
+    "options": [
+      "No; its branch cannot change the ancestor’s choice",
+      "Yes",
+      "Only if its numeric value is unknown"
+    ],
+    "answer": 0,
+    "why": "Pruning follows ancestor bounds rather than a global ordering of all leaves."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-alpha-beta",
+    "also": [],
+    "prerequisites": [
+      "depth-first-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "combinatorial-game-search"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

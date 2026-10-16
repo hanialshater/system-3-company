@@ -1,0 +1,219 @@
+{
+  "slug": "algo-arithmetic-coding",
+  "title": "A whole message fits one interval",
+  "hook": "A whole message can narrow a single interval.",
+  "domain": "cs",
+  "concept": "algo-arithmetic-coding",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix codes, strings, grammar productions and a stack."
+    ],
+    "doesNotKnow": [
+      "Refine nested probability intervals to encode a complete message as one final interval."
+    ]
+  },
+  "misconception": "Every symbol must receive a whole-number-length bit code independently.",
+  "objective": "Refine nested probability intervals to encode a complete message as one final interval.",
+  "claims": [
+    {
+      "id": "cs.algo-arithmetic-coding.c1",
+      "text": "Each symbol selects a subinterval of the current interval, not a new interval of the original size. The final bounds retain the whole prefix; decoding also needs the symbol model and a stopping rule such as the known message length.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c2",
+      "text": "A whole message can narrow a single interval.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c3",
+      "text": "For A:1/2, B:1/4, C:1/4 in that order, which half-open interval encodes ABA?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c4",
+      "text": "Run the question case; Step follows its actual state changes.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c5",
+      "text": "Interval [0.25,0.3125).",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c6",
+      "text": "Message input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c7",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c8",
+      "text": "ABA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c9",
+      "text": "A,B,C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c10",
+      "text": "Refine interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c11",
+      "text": "read",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c13",
+      "text": "bounds",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c14",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[0].run().frames[2].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c15",
+      "text": "Interval [0.1875,0.25).",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c16",
+      "text": "AAC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c17",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#arithmetic_coding.cases[1].run().frames[3].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c18",
+      "text": "After reading another symbol, where must the new interval lie?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c19",
+      "text": "Inside the previous interval",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c20",
+      "text": "Anywhere in [0,1)",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c21",
+      "text": "Always at zero",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-arithmetic-coding.c22",
+      "text": "Refinement scales the symbol’s cumulative range into the current bounds.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-arithmetic-coding\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After reading another symbol, where must the new interval lie?",
+    "options": [
+      "Inside the previous interval",
+      "Anywhere in [0,1)",
+      "Always at zero"
+    ],
+    "answer": 0,
+    "why": "Refinement scales the symbol’s cumulative range into the current bounds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-arithmetic-coding",
+    "also": [],
+    "prerequisites": [
+      "stack-expression-eval"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "compression-coding-parsing"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

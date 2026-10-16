@@ -1,0 +1,177 @@
+{
+  "slug": "algo-skew-meld",
+  "title": "What if we always swap children?",
+  "hook": "This heap reshapes itself without storing a balance rank.",
+  "domain": "cs",
+  "concept": "algo-skew-meld",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Heap parent/child ordering and priority comparisons."
+    ],
+    "doesNotKnow": [
+      "Meld skew heaps with unconditional child swaps and no stored balance ranks."
+    ]
+  },
+  "misconception": "Meld requires maintaining an explicit balance field.",
+  "objective": "Meld skew heaps with unconditional child swaps and no stored balance ranks.",
+  "claims": [
+    {
+      "id": "cs.algo-skew-meld.c1",
+      "text": "A skew heap swaps its children after every recursive meld, without storing a null-path rank. That unconditional structural change distinguishes it from the leftist heap’s rank-based repair.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c2",
+      "text": "This heap reshapes itself without storing a balance rank.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c3",
+      "text": "Meld skew heaps built by singleton insertion from [1,5,9] and [2,4,6]. How many child swaps occur in this meld?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c4",
+      "text": "Run the operation; Step shows the repair before its result.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c5",
+      "text": "Meld child swaps 3; root 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c6",
+      "text": "Skew heap inputs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c7",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c8",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c9",
+      "text": "Swap after recursive meld",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c10",
+      "text": "Skew heap merged",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c11",
+      "text": "Meld child swaps 1; root 0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#skew_meld.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c12",
+      "text": "Does skew-heap melding consult stored null-path ranks before swapping?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c13",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c14",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c15",
+      "text": "Only at the root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-skew-meld.c16",
+      "text": "It swaps children unconditionally after recursive melding.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-skew-meld\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does skew-heap melding consult stored null-path ranks before swapping?",
+    "options": [
+      "No",
+      "Yes",
+      "Only at the root"
+    ],
+    "answer": 0,
+    "why": "It swaps children unconditionally after recursive melding."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-skew-meld",
+    "also": [],
+    "prerequisites": [
+      "heap-priority-queue"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "priority-queues-meldable-heaps"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

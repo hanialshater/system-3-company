@@ -1,0 +1,183 @@
+{
+  "slug": "algo-cholesky-positive",
+  "title": "Can every symmetric matrix take a root?",
+  "hook": "Can every symmetric matrix take a root? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-cholesky-positive",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Arithmetic, function evaluation, vector dot products, small matrices and solving linear equations."
+    ],
+    "doesNotKnow": [
+      "Factor a symmetric positive-definite matrix while rejecting a nonpositive pivot."
+    ]
+  },
+  "misconception": "Every symmetric matrix has a real Cholesky factorization.",
+  "objective": "Factor a symmetric positive-definite matrix while rejecting a nonpositive pivot.",
+  "claims": [
+    {
+      "id": "cs.algo-cholesky-positive.c1",
+      "text": "Each diagonal square root uses the remaining positive pivot after previous-column contributions are removed. Symmetry alone is insufficient: the contrasting matrix produces a nonpositive pivot and the algorithm rejects it.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c2",
+      "text": "Can every symmetric matrix take a root? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c3",
+      "text": "[[4,2],[2,3]]: second Cholesky diagonal pivot before sqrt?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c5",
+      "text": "L=[[2,0],[1,1.41421]]; pivots=[4,2].",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c6",
+      "text": "Symmetric matrix",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c7",
+      "text": "Diagonal square root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c8",
+      "text": "L0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c9",
+      "text": "L1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c10",
+      "text": "Off-diagonal solve",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c11",
+      "text": "Pivot=-3; real Cholesky rejected.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c12",
+      "text": "Nonpositive pivot",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[1].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c13",
+      "text": "pivot",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#cholesky_positive.cases[1].run().frames[3].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c14",
+      "text": "A symmetric matrix produces a negative diagonal residual. Can real Cholesky continue?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c15",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c16",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-cholesky-positive.c17",
+      "text": "Its next real diagonal square root does not exist.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/numerical-linear-algebra.ts#lessonDetails[\"algo-cholesky-positive\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A symmetric matrix produces a negative diagonal residual. Can real Cholesky continue?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "Its next real diagonal square root does not exist."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-cholesky-positive",
+    "also": [],
+    "prerequisites": [
+      "floating-point"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "numerical-linear-algebra"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

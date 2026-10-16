@@ -1,0 +1,274 @@
+{
+  "slug": "algo-zero-one-bfs",
+  "title": "A free move goes to the front",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-zero-one-bfs",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Use a deque to settle 0-1 weighted paths with zero edges pushed to the front."
+    ]
+  },
+  "misconception": "Every edge should enter the same FIFO queue regardless of its weight.",
+  "objective": "Use a deque to settle 0-1 weighted paths with zero edges pushed to the front.",
+  "claims": [
+    {
+      "id": "cs.algo-zero-one-bfs.c1",
+      "text": "Deque front/back insertion preserves the distance order for weights zero and one.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c3",
+      "text": "S→A=1, S→B=0, B→A=0, A→T=1, B→T=1. What is the shortest distance to T?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c4",
+      "text": "Complete the question path calculation, then inspect a changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c5",
+      "text": "S→T 1; distances 0,0,0,1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c6",
+      "text": "S→T 1; distances 0,0,0,1. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c7",
+      "text": "A zero edge preserves the current distance and enters the deque front. A unit edge enters the back; the deque order exposes the cheaper route through B before costlier alternatives.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c8",
+      "text": "Zero-one input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c9",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c10",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c11",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c12",
+      "text": "T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c13",
+      "text": "Push back",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c14",
+      "text": "distance",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c15",
+      "text": "0,1,Infinity,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[1].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c16",
+      "text": "deque",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[1].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c17",
+      "text": "Push front",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c18",
+      "text": "0,1,0,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[2].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c19",
+      "text": "BA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[2].metrics[1].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c20",
+      "text": "0,0,0,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[3].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c21",
+      "text": "AA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[3].metrics[1].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c22",
+      "text": "AAT",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[0].run().frames[4].metrics[1].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c23",
+      "text": "S→T 0; distances 0,0,0,0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c24",
+      "text": "S→T 0; distances 0,0,0,0. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c25",
+      "text": "TAA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#zero_one_bfs.cases[1].run().frames[4].metrics[1].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c26",
+      "text": "A relaxed edge has weight zero. Where is its destination queued?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c27",
+      "text": "Front",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c28",
+      "text": "Back",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c29",
+      "text": "Random position",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-zero-one-bfs.c30",
+      "text": "It keeps the current distance, so it precedes queued unit-cost extensions.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-zero-one-bfs\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A relaxed edge has weight zero. Where is its destination queued?",
+    "options": [
+      "Front",
+      "Back",
+      "Random position"
+    ],
+    "answer": 0,
+    "why": "It keeps the current distance, so it precedes queued unit-cost extensions."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-zero-one-bfs",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "path-algorithms-witnesses"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

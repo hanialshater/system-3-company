@@ -1,0 +1,197 @@
+{
+  "slug": "algo-sparse-table-rmq",
+  "title": "Can the two blocks overlap?",
+  "hook": "Two useful blocks may overlap more than you expect.",
+  "domain": "cs",
+  "concept": "algo-sparse-table-rmq",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Answer immutable range minimum with overlapping power-of-two blocks because minimum is idempotent."
+    ]
+  },
+  "misconception": "Overlapping blocks always double-count and are invalid.",
+  "objective": "Answer immutable range minimum with overlapping power-of-two blocks because minimum is idempotent.",
+  "claims": [
+    {
+      "id": "cs.algo-sparse-table-rmq.c1",
+      "text": "Minimum is unchanged when a covered value appears twice. The comparison case deliberately replaces minimum with sum: using the same overlapping blocks then double-counts, so that query rule does not transfer to every operation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c2",
+      "text": "Two useful blocks may overlap more than you expect.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c3",
+      "text": "For [7,2,6,3,5,1], what minimum do sparse-table blocks return for inclusive [1,4]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c5",
+      "text": "Range minimum 2; block results 2,2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c6",
+      "text": "Immutable input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c8",
+      "text": "range",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c9",
+      "text": "Build power-of-two blocks",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c10",
+      "text": "Minimum tolerates overlap",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c11",
+      "text": "block",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[3].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c12",
+      "text": "result",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[0].run().frames[3].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c13",
+      "text": "Overlap sum 32; block results 16,16.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c14",
+      "text": "Sum counts overlap twice",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#sparse_table_rmq.cases[1].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c15",
+      "text": "Can the overlapping-block RMQ formula be reused unchanged for range sums?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c16",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c17",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c18",
+      "text": "Only positive values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-sparse-table-rmq.c19",
+      "text": "Repeated values affect sum but not minimum.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-sparse-table-rmq\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Can the overlapping-block RMQ formula be reused unchanged for range sums?",
+    "options": [
+      "No",
+      "Yes",
+      "Only positive values"
+    ],
+    "answer": 0,
+    "why": "Repeated values affect sum but not minimum."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-sparse-table-rmq",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

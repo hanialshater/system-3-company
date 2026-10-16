@@ -1,0 +1,183 @@
+{
+  "slug": "algo-wheel-sieve",
+  "title": "Which residues can survive the wheel?",
+  "hook": "Which residues can survive the wheel? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-wheel-sieve",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Integer remainders, gcd, primes, modular exponentiation."
+    ],
+    "doesNotKnow": [
+      "Skip candidates sharing small prime factors using a repeating residue wheel."
+    ]
+  },
+  "misconception": "A prime search must test every odd number even after excluding multiples of three.",
+  "objective": "Skip candidates sharing small prime factors using a repeating residue wheel.",
+  "claims": [
+    {
+      "id": "cs.algo-wheel-sieve.c1",
+      "text": "Coprime residues repeat with the wheel period, skipping numbers divisible by its small primes. Surviving means candidate, not proved prime: the witness deliberately counts one and other composite survivors.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c2",
+      "text": "Which residues can survive the wheel? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c3",
+      "text": "Among integers1..60, how many survive wheel primes2 and3?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c5",
+      "text": "Candidates=20; residues=[1,5]; includes1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c6",
+      "text": "Wheel input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c7",
+      "text": "primes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c8",
+      "text": "limit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c9",
+      "text": "Wheel residues",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c10",
+      "text": "n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c11",
+      "text": "pass",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c12",
+      "text": "period",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c13",
+      "text": "Candidates=16; residues=[1,7,11,13,17,19,23,29]; includes1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#wheel_sieve.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c14",
+      "text": "A number survives a 2×3 wheel. Is it necessarily prime?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c15",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c16",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-wheel-sieve.c17",
+      "text": "A survivor can still contain larger prime factors, as 25 does.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-wheel-sieve\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A number survives a 2×3 wheel. Is it necessarily prime?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "why": "A survivor can still contain larger prime factors, as 25 does."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-wheel-sieve",
+    "also": [],
+    "prerequisites": [
+      "euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "number-theoretic-algorithms"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

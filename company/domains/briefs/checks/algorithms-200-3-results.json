@@ -1,0 +1,659 @@
+{
+  "batch": "B4",
+  "checks": "50 question fixtures; subset/permutation/string/geometry/certificate/numerical oracles; all model cases deterministic and bounded",
+  "lessons": [
+    {
+      "slug": "algo-assignment-bitmask",
+      "input": "Costs [[4,1,3],[2,0,5],[3,2,2]]: minimum assignment?",
+      "checkedAnswer": "5",
+      "computedResult": 5,
+      "proof": "Assignment=5; jobs unique.",
+      "cases": 2,
+      "frames": [
+        8,
+        8
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-bounded-knapsack",
+      "input": "Capacity 7; (w,v,stock)=(2,3,2),(3,5,1). Best value?",
+      "checkedAnswer": "11",
+      "computedResult": 11,
+      "proof": "Value=11; capacity=7.",
+      "cases": 2,
+      "frames": [
+        17,
+        17
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-digit-dp",
+      "input": "In 0..35 inclusive, how many digit sums are divisible by 3?",
+      "checkedAnswer": "12",
+      "computedResult": 12,
+      "proof": "Count=12; 0 included.",
+      "cases": 2,
+      "frames": [
+        3,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-equal-partition",
+      "input": "Can [1,5,11,5] split into equal-sum groups?",
+      "checkedAnswer": "Yes",
+      "computedResult": true,
+      "proof": "Total=22; half=11; 11.",
+      "cases": 2,
+      "frames": [
+        6,
+        2
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-held-karp",
+      "input": "AB2 AC4 AD3 BC1 BD5 CD2: shortest return tour?",
+      "checkedAnswer": "8",
+      "computedResult": 8,
+      "proof": "Tour=8; start=0, return=0.",
+      "cases": 2,
+      "frames": [
+        10,
+        10
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-profile-domino",
+      "input": "How many domino tilings does a 2×4 empty board have?",
+      "checkedAnswer": "5",
+      "computedResult": 5,
+      "proof": "Tilings=5; frontier=0.",
+      "cases": 2,
+      "frames": [
+        5,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-resource-constrained-path",
+      "input": "S→A costs/fuel 1/3 or 3/1; A→T 1/2; budget3. Cheapest?",
+      "checkedAnswer": "4",
+      "computedResult": 4,
+      "proof": "Cost=4; fuel≤3.",
+      "cases": 2,
+      "frames": [
+        4,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-subset-sum-witness",
+      "input": "Single-use [2,3,7], target 9: which witness exists?",
+      "checkedAnswer": "2+7",
+      "computedResult": "2+7",
+      "proof": "2+7=9; no reuse.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-tree-independent-set",
+      "input": "Path A–B–C has weights 4,7,4. Maximum independent weight?",
+      "checkedAnswer": "8",
+      "computedResult": 8,
+      "proof": "Weight=8; adjacent picks excluded.",
+      "cases": 2,
+      "frames": [
+        4,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-unbounded-knapsack",
+      "input": "Capacity 6: reusable (2,3),(3,4). Maximum value?",
+      "checkedAnswer": "9",
+      "computedResult": 9,
+      "proof": "Value=9; reusable.",
+      "cases": 2,
+      "frames": [
+        10,
+        10
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-aho-failure",
+      "input": "Patterns he,she,his,hers in ushers: which are found?",
+      "checkedAnswer": "he,she,hers",
+      "computedResult": "she@1,he@2,hers@2",
+      "proof": "Matches: she@1,he@2,hers@2.",
+      "cases": 2,
+      "frames": [
+        8,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-aho-output-links",
+      "input": "Patterns a,ba,aba in aba: how many total matches?",
+      "checkedAnswer": "4",
+      "computedResult": "a@0,aba@0,ba@1,a@2",
+      "proof": "Matches: a@0,aba@0,ba@1,a@2.",
+      "cases": 2,
+      "frames": [
+        4,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-booth-rotation",
+      "input": "Smallest rotation of bbaaccaadd?",
+      "checkedAnswer": "aaccaaddbb",
+      "computedResult": "aaccaaddbb",
+      "proof": "Rotation=aaccaaddbb; start=2.",
+      "cases": 2,
+      "frames": [
+        8,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-kasai-lcp",
+      "input": "banana suffix order [5,3,1,0,4,2]: adjacent LCP row?",
+      "checkedAnswer": "0,1,3,0,0,2",
+      "computedResult": "0,1,3,0,0,2",
+      "proof": "LCP=[0,1,3,0,0,2]; h←max(0,h−1).",
+      "cases": 2,
+      "frames": [
+        7,
+        8
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-lcp-distinct-substrings",
+      "input": "How many distinct nonempty substrings does ababa contain?",
+      "checkedAnswer": "9",
+      "computedResult": 9,
+      "proof": "Distinct=9; overlaps=6.",
+      "cases": 2,
+      "frames": [
+        6,
+        7
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-levenshtein-automaton",
+      "input": "Pattern cat, edit budget1: cut and cart are?",
+      "checkedAnswer": "both accepted",
+      "computedResult": "accept,accept",
+      "proof": "Distance=[1,1]; budget=1; accept,accept.",
+      "cases": 2,
+      "frames": [
+        8,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-manacher-radius",
+      "input": "What is the longest odd palindrome length in abacaba?",
+      "checkedAnswer": "7",
+      "computedResult": 7,
+      "proof": "Longest=7; radii=[1,2,1,4,1,2,1].",
+      "cases": 2,
+      "frames": [
+        8,
+        9
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-suffix-array",
+      "input": "banana: at which zero-based positions does ana begin?",
+      "checkedAnswer": "1,3",
+      "computedResult": "1,3",
+      "proof": "Positions=[1,3]; interval=[1,3).",
+      "cases": 2,
+      "frames": [
+        8,
+        7
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-suffix-automaton",
+      "input": "For abcbc, how many suffix-automaton clone states are needed?",
+      "checkedAnswer": "2",
+      "computedResult": "8/2/12",
+      "proof": "States=8; clones=2; substrings=12.",
+      "cases": 2,
+      "frames": [
+        6,
+        6
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-z-function",
+      "input": "For aabcaabxaaaz, what is Z[4]?",
+      "checkedAnswer": "3",
+      "computedResult": "0,1,0,0,3,1,0,0,2,2,1,0",
+      "proof": "Z=[0,1,0,0,3,1,0,0,2,2,1,0]; box=[9,11).",
+      "cases": 2,
+      "frames": [
+        12,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-closest-pair-strip",
+      "input": "Points (0,0),(0,5),(2,2),(3,2),(5,0),(5,5): closest distance?",
+      "checkedAnswer": "1",
+      "computedResult": 1,
+      "proof": "Distance=1; strip checks bounded.",
+      "cases": 2,
+      "frames": [
+        7,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-ear-clipping",
+      "input": "A simple concave pentagon is triangulated by ears. Triangle count?",
+      "checkedAnswer": "3",
+      "computedResult": "123,013,034",
+      "proof": "Triangles=3; diagonals=2.",
+      "cases": 2,
+      "frames": [
+        7,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-kd-nearest-pruning",
+      "input": "Query (5,3), points 0:(1,1),1:(2,5),2:(4,2),3:(6,6),4:(8,3): nearest ID?",
+      "checkedAnswer": "2",
+      "computedResult": 2,
+      "proof": "Nearest=2; distance²=2; pruned=2.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-liang-barsky",
+      "input": "Segment (−2,1)→(5,4) in [0,3]²: valid parameter interval?",
+      "checkedAnswer": "[2/7,2/3]",
+      "computedResult": "0.2857,0.6667",
+      "proof": "t=[0.2857,0.6667]; clipped.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-rectangle-union-sweep",
+      "input": "Union area of [0,0,3,2],[1,1,4,3],[2,0,5,2]?",
+      "checkedAnswer": "13",
+      "computedResult": 13,
+      "proof": "Union area=13; overlaps counted once.",
+      "cases": 2,
+      "frames": [
+        6,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-rotating-calipers",
+      "input": "Convex (0,0),(4,0),(5,2),(3,4),(0,3): squared diameter?",
+      "checkedAnswer": "29",
+      "computedResult": 29,
+      "proof": "Diameter²=29; pair=2,0.",
+      "cases": 2,
+      "frames": [
+        6,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-segment-intersection",
+      "input": "Collinear [0,4] and [2,6] on y=0: intersect?",
+      "checkedAnswer": "Yes",
+      "computedResult": true,
+      "proof": "Intersection=1; x-overlap=[2,4].",
+      "cases": 2,
+      "frames": [
+        3,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-segment-orientation",
+      "input": "A(0,0)→B(4,2): signs for C(1,2),D(2,1),E(3,0)?",
+      "checkedAnswer": "+,0,−",
+      "computedResult": "1,0,-1",
+      "proof": "Signs=[1,0,-1]; +left, 0collinear, −right.",
+      "cases": 2,
+      "frames": [
+        4,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-sutherland-hodgman",
+      "input": "Triangle (−1,1),(2,4),(5,1) clipped to [0,3]²: vertices?",
+      "checkedAnswer": "5",
+      "computedResult": 5,
+      "proof": "Vertices=5; inside=[0,3]².",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-sweep-active-segments",
+      "input": "Segments 0:(0,0)–(4,4),1:(0,3)–(4,1),2:(1,5)–(3,5): intersect?",
+      "checkedAnswer": "Yes",
+      "computedResult": true,
+      "proof": "Intersecting pair=1,0.",
+      "cases": 2,
+      "frames": [
+        3,
+        7
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-baby-step-giant-step",
+      "input": "Smallest x with 2^x=5 mod13, 0≤x<12?",
+      "checkedAnswer": "9",
+      "computedResult": 9,
+      "proof": "x=9; 2^9 mod13=5.",
+      "cases": 2,
+      "frames": [
+        5,
+        6
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-garner-reconstruction",
+      "input": "Residues 2 mod3,3 mod5,2 mod7: smallest nonnegative x?",
+      "checkedAnswer": "23",
+      "computedResult": 23,
+      "proof": "x=23; digits=[2,2,1]; modulus=105.",
+      "cases": 2,
+      "frames": [
+        4,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-generalized-crt",
+      "input": "x=2 mod6 and x=5 mod9 merge to?",
+      "checkedAnswer": "14 mod18",
+      "computedResult": "14 mod 18",
+      "proof": "x=14 mod18; residues=2,5.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-linear-diophantine",
+      "input": "6x+10y=14: which integer pair is a certificate?",
+      "checkedAnswer": "14,−7",
+      "computedResult": "14,-7",
+      "proof": "6×14+10×-7=14; gcd=2.",
+      "cases": 2,
+      "frames": [
+        6,
+        6
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-linear-sieve",
+      "input": "In the linear sieve through20, how many producers mark composite12?",
+      "checkedAnswer": "1",
+      "computedResult": "2,3,5,7,11,13,17,19/11",
+      "proof": "Composite marks=11; 12producers=1.",
+      "cases": 2,
+      "frames": [
+        20,
+        30
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-pollard-p-minus-one",
+      "input": "n91, base2, M12: gcd(2^M−1,n) is?",
+      "checkedAnswer": "91",
+      "computedResult": 91,
+      "proof": "gcd(2^12−1,91)=91; trivial.",
+      "cases": 3,
+      "frames": [
+        6,
+        5,
+        6
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-pollard-rho-factor",
+      "input": "n91, f(x)=x²+1 mod91, start2: first nontrivial gcd?",
+      "checkedAnswer": "7",
+      "computedResult": "7×13",
+      "proof": "91=7×13; gcd=7.",
+      "cases": 2,
+      "frames": [
+        2,
+        2
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-segmented-sieve",
+      "input": "Primes in [30,50] inclusive: how many?",
+      "checkedAnswer": "5",
+      "computedResult": "31,37,41,43,47",
+      "proof": "Primes=[31,37,41,43,47]; interval=[30,50].",
+      "cases": 2,
+      "frames": [
+        6,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-tonelli-shanks",
+      "input": "Which value is a square root of10 modulo13?",
+      "checkedAnswer": "7",
+      "computedResult": 7,
+      "proof": "Root=7; 7² mod13=10.",
+      "cases": 3,
+      "frames": [
+        3,
+        3,
+        2
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-wheel-sieve",
+      "input": "Among integers1..60, how many survive wheel primes2 and3?",
+      "checkedAnswer": "20",
+      "computedResult": 20,
+      "proof": "Candidates=20; residues=[1,5]; includes1.",
+      "cases": 2,
+      "frames": [
+        7,
+        7
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-adaptive-simpson",
+      "input": "For x⁴ on [0,1], Simpson coarse .208333 and split .200521: error estimate |gap|/15 < .001?",
+      "checkedAnswer": "Yes",
+      "computedResult": 0.2,
+      "proof": "Integral≈0.2; refinements=0.",
+      "cases": 3,
+      "frames": [
+        2,
+        2,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-bisection-root",
+      "input": "For x²−2 on [1,2], after four bisections the bracket width is?",
+      "checkedAnswer": "1/16",
+      "computedResult": "1.375,1.4375",
+      "proof": "Bracket=[1.375,1.4375]; width=0.0625.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-cholesky-positive",
+      "input": "[[4,2],[2,3]]: second Cholesky diagonal pivot before sqrt?",
+      "checkedAnswer": "2",
+      "computedResult": "2,0|1,1.41421",
+      "proof": "L=[[2,0],[1,1.41421]]; pivots=[4,2].",
+      "cases": 2,
+      "frames": [
+        4,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-fixed-point-contraction",
+      "input": "Starting1 and repeatedly applying cos(x): successive step gaps?",
+      "checkedAnswer": "shrink",
+      "computedResult": 0.76396,
+      "proof": "Gap 0.459698→0.0625909; shrinking.",
+      "cases": 2,
+      "frames": [
+        7,
+        7
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-gaussian-pivot",
+      "input": "[[0,2],[1,3]]x=[4,7]: solution after pivoting?",
+      "checkedAnswer": "1,2",
+      "computedResult": "1,2",
+      "proof": "x=[1,2]; swaps=1.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-kahan-summation",
+      "input": "Binary64 sums [1e16,1,1,−1e16]: compensated result?",
+      "checkedAnswer": "2",
+      "computedResult": 2,
+      "proof": "Kahan=2; naive=0; correction=0.",
+      "cases": 2,
+      "frames": [
+        5,
+        4
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-lu-reuse",
+      "input": "A=[[2,1],[4,3]], b=[5,11] then [1,1]: factorization count?",
+      "checkedAnswer": "1",
+      "computedResult": "2,1|1,-1",
+      "proof": "Solutions=[2,1],[1,-1]; factorizations=1.",
+      "cases": 2,
+      "frames": [
+        6,
+        6
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-qr-orthogonalize",
+      "input": "u=[1,1,0], v=[1,0,1]: subtract which multiple of u?",
+      "checkedAnswer": "0.5",
+      "computedResult": "0.408248,-0.408248,0.816497",
+      "proof": "Projection coefficient=0.5; q₁·q₂=0.",
+      "cases": 2,
+      "frames": [
+        3,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-secant-root",
+      "input": "x²−2, previous guesses1 and2: first secant intercept?",
+      "checkedAnswer": "1.333333",
+      "computedResult": 1.41421,
+      "proof": "First=1.33333; estimate=1.41421; residual=-0.00000600729.",
+      "cases": 2,
+      "frames": [
+        5,
+        5
+      ],
+      "status": "local-finite-fixture-checked"
+    },
+    {
+      "slug": "algo-stable-quadratic",
+      "input": "x²+1e8x+1=0: stable small root is approximately?",
+      "checkedAnswer": "−1e−8",
+      "computedResult": -1e-8,
+      "proof": "Roots=[-100000000,-1e-8]; product=1.",
+      "cases": 2,
+      "frames": [
+        3,
+        3
+      ],
+      "status": "local-finite-fixture-checked"
+    }
+  ]
+}

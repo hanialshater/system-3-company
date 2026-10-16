@@ -1,0 +1,288 @@
+{
+  "slug": "algo-aho-failure",
+  "title": "One fallback serves many words",
+  "hook": "One fallback serves many words. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-aho-failure",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix/suffix/subsequence distinction; character comparison."
+    ],
+    "doesNotKnow": [
+      "Use trie failure links to continue multi-pattern matching after a transition misses."
+    ]
+  },
+  "misconception": "Searching several patterns requires running an independent full search for each.",
+  "objective": "Use trie failure links to continue multi-pattern matching after a transition misses.",
+  "claims": [
+    {
+      "id": "cs.algo-aho-failure.c1",
+      "text": "A failure link retains the longest suffix that is also a trie prefix. The trace falls back without rereading the whole text, then continues to a later pattern match.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c2",
+      "text": "One fallback serves many words. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c3",
+      "text": "Patterns he,she,his,hers in ushers: which are found?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c4",
+      "text": "he,she",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c5",
+      "text": "he,she,hers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c6",
+      "text": "his,hers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c7",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c8",
+      "text": "Matches: she@1,he@2,hers@2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c9",
+      "text": "Patterns and text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c10",
+      "text": "patterns",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c11",
+      "text": "he",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c12",
+      "text": "she",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c13",
+      "text": "his",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c14",
+      "text": "hers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c15",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c16",
+      "text": "ushers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c17",
+      "text": "Transition",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c18",
+      "text": "state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c19",
+      "text": "read",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c20",
+      "text": "u",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[1].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c21",
+      "text": "emit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c22",
+      "text": "s",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c23",
+      "text": "h",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c24",
+      "text": "e",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c25",
+      "text": "Failure link",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c26",
+      "text": "r",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[0].run().frames[5].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c27",
+      "text": "Matches: his@0.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c28",
+      "text": "i",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_failure.cases[1].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c29",
+      "text": "After a trie transition misses, should matching restart the text from its beginning?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c30",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c31",
+      "text": "No; retain a suffix state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-failure.c32",
+      "text": "Failure links preserve useful suffix progress while the text scan continues.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-failure\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After a trie transition misses, should matching restart the text from its beginning?",
+    "options": [
+      "Yes",
+      "No; retain a suffix state"
+    ],
+    "answer": 1,
+    "why": "Failure links preserve useful suffix progress while the text scan continues."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-aho-failure",
+    "also": [],
+    "prerequisites": [
+      "kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "string-indexing-automata"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

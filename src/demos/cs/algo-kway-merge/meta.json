@@ -1,0 +1,169 @@
+{
+  "slug": "algo-kway-merge",
+  "title": "Which stream supplies the next card?",
+  "hook": "Several sorted streams compete through their visible heads.",
+  "domain": "cs",
+  "concept": "algo-kway-merge",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Merge several sorted streams with one live candidate from each stream in a min-priority queue."
+    ]
+  },
+  "misconception": "Merging many streams requires rescanning every remaining item.",
+  "objective": "Merge several sorted streams with one live candidate from each stream in a min-priority queue.",
+  "claims": [
+    {
+      "id": "cs.algo-kway-merge.c1",
+      "text": "Only the head of each stream competes in the priority queue. Removing the winner reveals one replacement from that same stream, preserving access to the smallest remaining value without sorting the full remainder.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c2",
+      "text": "Several sorted streams compete through their visible heads.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c3",
+      "text": "Merge [[1,7],[2,5],[3,4,8]]. After how many output items does a stream first become empty?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c4",
+      "text": "Run the question case; Step exposes the actual movement.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c5",
+      "text": "First exhaustion after 5; merged 1,2,3,4,5,7,8.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c6",
+      "text": "Sorted streams",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c7",
+      "text": "Advance winning stream",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c8",
+      "text": "output",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c9",
+      "text": "heads",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c10",
+      "text": "First exhaustion after 1; merged 0,2,3,4,5,8.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#kway_merge.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c11",
+      "text": "After removing a stream head, which value enters the heap next?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c12",
+      "text": "That stream’s next value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c13",
+      "text": "Every remaining value",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c14",
+      "text": "The largest tail",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-kway-merge.c15",
+      "text": "Only the winning stream exposes a new head.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-kway-merge\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After removing a stream head, which value enters the heap next?",
+    "options": [
+      "That stream’s next value",
+      "Every remaining value",
+      "The largest tail"
+    ],
+    "answer": 0,
+    "why": "Only the winning stream exposes a new head."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-kway-merge",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "adaptive-network-sorting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

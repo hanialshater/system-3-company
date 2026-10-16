@@ -1,0 +1,142 @@
+{
+  "slug": "algo-order-statistic-rank",
+  "title": "How many keys come before this one?",
+  "hook": "A search path can account for unseen smaller keys.",
+  "domain": "cs",
+  "concept": "algo-order-statistic-rank",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary search-tree ordering; subtree size and interval notation."
+    ],
+    "doesNotKnow": [
+      "Accumulate skipped left subtrees while computing a key's rank."
+    ]
+  },
+  "misconception": "A key's depth gives its sorted rank.",
+  "objective": "Accumulate skipped left subtrees while computing a key's rank.",
+  "claims": [
+    {
+      "id": "cs.algo-order-statistic-rank.c1",
+      "text": "Moving right passes every key in the left subtree plus the parent. Summing those skipped groups recovers the global rank; counting only the visited nodes would lose the unseen smaller keys.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-order-statistic-rank\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c2",
+      "text": "A search path can account for unseen smaller keys.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-order-statistic-rank\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c3",
+      "text": "In BST keys [4,2,6,1,3,5,7], what is the one-based sorted rank of key 6?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c4",
+      "text": "Run the operation; inspect the changed links and annotations.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c5",
+      "text": "Key 6; sorted rank 6.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c6",
+      "text": "Keys and subtree sizes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c7",
+      "text": "Accumulate skipped keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c8",
+      "text": "rank",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c9",
+      "text": "Key 3; sorted rank 3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#order_statistic_rank.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c10",
+      "text": "Going right passes a left subtree of size 3 and its parent. How many keys are skipped?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-order-statistic-rank\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-order-statistic-rank.c11",
+      "text": "Both the left subtree and the parent are smaller.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-order-statistic-rank\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Going right passes a left subtree of size 3 and its parent. How many keys are skipped?",
+    "options": [
+      "1",
+      "3",
+      "4"
+    ],
+    "answer": 2,
+    "why": "Both the left subtree and the parent are smaller."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-order-statistic-rank",
+    "also": [],
+    "prerequisites": [
+      "binary-search-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "ordered-augmented-trees"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

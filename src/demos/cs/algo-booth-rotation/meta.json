@@ -1,0 +1,267 @@
+{
+  "slug": "algo-booth-rotation",
+  "title": "Which rotation can be discarded?",
+  "hook": "Which rotation can be discarded? Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-booth-rotation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix/suffix/subsequence distinction; character comparison."
+    ],
+    "doesNotKnow": [
+      "Find the lexicographically smallest string rotation by skipping a run of losing candidates after a mismatch."
+    ]
+  },
+  "misconception": "Every cyclic rotation must be built and sorted separately.",
+  "objective": "Find the lexicographically smallest string rotation by skipping a run of losing candidates after a mismatch.",
+  "claims": [
+    {
+      "id": "cs.algo-booth-rotation.c1",
+      "text": "At a mismatch, the losing candidate and its matched-prefix neighbours can be skipped together. The candidate jumps preserve the minimum rotation without sorting or explicitly storing every rotation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c2",
+      "text": "Which rotation can be discarded? Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c3",
+      "text": "Smallest rotation of bbaaccaadd?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c4",
+      "text": "aaccaaddbb",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c5",
+      "text": "aaddbbaacc",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c6",
+      "text": "accaaddbba",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c7",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c8",
+      "text": "Rotation=aaccaaddbb; start=2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c9",
+      "text": "Rotation input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c10",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c11",
+      "text": "bbaaccaadd",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c12",
+      "text": "Skip losing starts",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c13",
+      "text": "i,j,k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c14",
+      "text": "next",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c15",
+      "text": "compare",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c16",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c17",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[1].rows[2].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c18",
+      "text": "c",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[3].rows[2].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c19",
+      "text": "d",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[5].rows[2].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c20",
+      "text": "Minimum rotation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c21",
+      "text": "start",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[7].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c22",
+      "text": "rotate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[0].run().frames[7].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c23",
+      "text": "Rotation=abac; start=1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c24",
+      "text": "caba",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c25",
+      "text": "abac",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#booth_rotation.cases[1].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c26",
+      "text": "After k equal characters followed by a losing mismatch, how far may the losing start advance?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c27",
+      "text": "One only",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c28",
+      "text": "k+1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-booth-rotation.c29",
+      "text": "Every skipped start inherits a losing comparison from the matched prefix.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-booth-rotation\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After k equal characters followed by a losing mismatch, how far may the losing start advance?",
+    "options": [
+      "One only",
+      "k+1"
+    ],
+    "answer": 1,
+    "why": "Every skipped start inherits a losing comparison from the matched prefix."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-booth-rotation",
+    "also": [],
+    "prerequisites": [
+      "kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "string-indexing-automata"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

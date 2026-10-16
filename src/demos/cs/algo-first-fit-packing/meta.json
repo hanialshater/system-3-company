@@ -1,0 +1,198 @@
+{
+  "slug": "algo-first-fit-packing",
+  "title": "The first gap may matter later",
+  "hook": "A locally convenient bin can leave the wrong shape of free space.",
+  "domain": "cs",
+  "concept": "algo-first-fit-packing",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Offline optimum versus online decisions; cost and approximation ratio."
+    ],
+    "doesNotKnow": [
+      "Place each arriving item in the first feasible existing bin and distinguish the online packing from optimal packing."
+    ]
+  },
+  "misconception": "First fit always uses the fewest bins when every item individually fits.",
+  "objective": "Place each arriving item in the first feasible existing bin and distinguish the online packing from optimal packing.",
+  "claims": [
+    {
+      "id": "cs.algo-first-fit-packing.c1",
+      "text": "First Fit cannot move earlier items to repair a later packing. The two fours share the first bin, leaving too little room for either six. Reordering those same items permits two full bins; the volume lower bound alone does not force this online algorithm to attain it.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c2",
+      "text": "A locally convenient bin can leave the wrong shape of free space.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c3",
+      "text": "Capacity 10, arrivals [4,4,6,6]. First Fit uses the earliest bin with room. How many bins result?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c4",
+      "text": "Run the question case, then compare the changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c5",
+      "text": "Bins 3; lower 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c6",
+      "text": "Online item input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c7",
+      "text": "items",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c8",
+      "text": "capacity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c9",
+      "text": "First feasible bin",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c10",
+      "text": "item,bin",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c11",
+      "text": "loads",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c12",
+      "text": "Packing certificate",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c13",
+      "text": "lower",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[0].run().frames[5].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c14",
+      "text": "Bins 2; lower 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#first_fit_packing.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c15",
+      "text": "Does a volume lower bound of two bins guarantee First Fit will use two?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c16",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c17",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c18",
+      "text": "Only for integer sizes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-first-fit-packing.c19",
+      "text": "A lower bound constrains the optimum but does not certify an online packing reaches it.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/approximation-online.ts#lessonDetails[\"algo-first-fit-packing\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Does a volume lower bound of two bins guarantee First Fit will use two?",
+    "options": [
+      "No",
+      "Yes",
+      "Only for integer sizes"
+    ],
+    "answer": 0,
+    "why": "A lower bound constrains the optimum but does not certify an online packing reaches it."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-first-fit-packing",
+    "also": [],
+    "prerequisites": [
+      "greedy-failure"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "approximation-online"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

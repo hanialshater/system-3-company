@@ -1,0 +1,232 @@
+{
+  "slug": "algo-dag-negative-path",
+  "title": "Acyclic roads permit negative costs",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-dag-negative-path",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Relax a DAG in topological order to solve shortest paths with negative edges in one pass."
+    ]
+  },
+  "misconception": "Any negative edge requires repeated Bellman-Ford passes.",
+  "objective": "Relax a DAG in topological order to solve shortest paths with negative edges in one pass.",
+  "claims": [
+    {
+      "id": "cs.algo-dag-negative-path.c1",
+      "text": "Topological order finalizes predecessors before relaxing negative DAG edges.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c3",
+      "text": "DAG SA=4, SB=2, AB=−3, BT=2, AT=5. What shortest S→T cost results?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c4",
+      "text": "Complete the question path calculation, then inspect a changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c5",
+      "text": "S→T 3; topological distances 0,4,1,3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c6",
+      "text": "S→T 3; topological distances 0,4,1,3. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c7",
+      "text": "A DAG supplies a topological order even with negative weights. Once all predecessors are processed, its outgoing relaxations use the final distance without needing a greedy nonnegative-edge assumption.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c8",
+      "text": "Acyclic weighted input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c9",
+      "text": "S",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c10",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c11",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c12",
+      "text": "T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c13",
+      "text": "Topological relaxation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c14",
+      "text": "distance",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c15",
+      "text": "0,4,Infinity,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[1].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c16",
+      "text": "0,4,2,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[2].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c17",
+      "text": "0,4,1,Infinity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[0].run().frames[3].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c18",
+      "text": "S→T 4; topological distances 0,4,2,4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c19",
+      "text": "S→T 4; topological distances 0,4,2,4. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#dag_negative_path.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c20",
+      "text": "Why are negative edges acceptable in topological shortest paths?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c21",
+      "text": "No directed cycle can require repeated propagation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c22",
+      "text": "Every edge is shifted to positive",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c23",
+      "text": "The algorithm ignores negative edges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-dag-negative-path.c24",
+      "text": "All predecessors are processed before a vertex, so one ordered pass suffices.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-dag-negative-path\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why are negative edges acceptable in topological shortest paths?",
+    "options": [
+      "No directed cycle can require repeated propagation",
+      "Every edge is shifted to positive",
+      "The algorithm ignores negative edges"
+    ],
+    "answer": 0,
+    "why": "All predecessors are processed before a vertex, so one ordered pass suffices."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-dag-negative-path",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "path-algorithms-witnesses"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

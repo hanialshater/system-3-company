@@ -1,0 +1,226 @@
+{
+  "slug": "algo-mrv-choice",
+  "title": "Which variable can fail soonest?",
+  "hook": "The next variable should be chosen from the choices that still survive.",
+  "domain": "cs",
+  "concept": "algo-mrv-choice",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Search trees; minimax and a partial solution state."
+    ],
+    "doesNotKnow": [
+      "Choose the smallest remaining legal domain after propagation rather than a fixed variable order."
+    ]
+  },
+  "misconception": "Starting with the variable having the most options avoids backtracking.",
+  "objective": "Choose the smallest remaining legal domain after propagation rather than a fixed variable order.",
+  "claims": [
+    {
+      "id": "cs.algo-mrv-choice.c1",
+      "text": "Propagation first removes Y’s unsupported value and then removes X’s conflict with Y’s singleton. Among the remaining unassigned variables, MRV chooses the smaller legal domain. The comparison skips propagation, exposing the stale domain sizes even when the selected variable agrees.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c2",
+      "text": "The next variable should be chosen from the choices that still survive.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c3",
+      "text": "Treat singleton Z={2} as fixed. For X={1,2,3},Y={1,2}, X≠Y,Y≠Z, propagate first. Which still-unassigned variable has minimum remaining values?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c4",
+      "text": "X",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c5",
+      "text": "Y",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c6",
+      "text": "Run the question case; Step exposes each search decision.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c7",
+      "text": "Next Y; sizes X=2,Y=1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c8",
+      "text": "Unassigned domains",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c9",
+      "text": "Z",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c10",
+      "text": "Propagate inequality",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c11",
+      "text": "Select smallest legal domain",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c12",
+      "text": "sizes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[3].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c13",
+      "text": "Y:1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[3].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c14",
+      "text": "X:2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[3].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c15",
+      "text": "next",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[0].run().frames[3].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c16",
+      "text": "Next Y; sizes X=3,Y=2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c17",
+      "text": "Y:2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[1].run().frames[1].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c18",
+      "text": "X:3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#mrv_choice.cases[1].run().frames[1].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c19",
+      "text": "Why compute legal domains before applying MRV?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c20",
+      "text": "Propagation may change which variable has fewest choices",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c21",
+      "text": "MRV ignores constraints",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c22",
+      "text": "The largest domain should be chosen",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mrv-choice.c23",
+      "text": "The heuristic is about remaining legal choices rather than original domain sizes.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/combinatorial-game-search.ts#lessonDetails[\"algo-mrv-choice\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why compute legal domains before applying MRV?",
+    "options": [
+      "Propagation may change which variable has fewest choices",
+      "MRV ignores constraints",
+      "The largest domain should be chosen"
+    ],
+    "answer": 0,
+    "why": "The heuristic is about remaining legal choices rather than original domain sizes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-mrv-choice",
+    "also": [],
+    "prerequisites": [
+      "depth-first-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "combinatorial-game-search"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

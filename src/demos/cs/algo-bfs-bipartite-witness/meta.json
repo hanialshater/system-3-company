@@ -1,0 +1,239 @@
+{
+  "slug": "algo-bfs-bipartite-witness",
+  "title": "Show the odd loop",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-bfs-bipartite-witness",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Recover an odd-cycle witness from a BFS edge joining equal-parity vertices."
+    ]
+  },
+  "misconception": "A failed two-colouring test only says no and cannot explain where.",
+  "objective": "Recover an odd-cycle witness from a BFS edge joining equal-parity vertices.",
+  "claims": [
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c1",
+      "text": "Equal-parity BFS endpoints and their parent chains yield an odd-cycle witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c3",
+      "text": "Triangle ABC has tail C–D–E. How many edges are in the recovered odd cycle?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c4",
+      "text": "Complete this graph, then inspect steps and compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c5",
+      "text": "Odd-cycle edges 3; BACB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c6",
+      "text": "Odd-cycle edges 3; BACB. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c7",
+      "text": "BFS gives opposite parities to tree neighbours. An equal-parity edge closes two parent chains into an odd cycle, providing a concrete obstruction rather than only a failed colour attempt.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c8",
+      "text": "Uncoloured input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c12",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c13",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[0].nodes[4].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c14",
+      "text": "BFS assigns parity",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c15",
+      "text": "colour",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c16",
+      "text": "Equal-parity edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c17",
+      "text": "cycle",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[3].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c18",
+      "text": "BACB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[0].run().frames[3].metrics[0].value; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c19",
+      "text": "Odd-cycle edges 0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c20",
+      "text": "Odd-cycle edges 0. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#bfs_bipartite_witness.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c21",
+      "text": "Why can an odd cycle not receive a two-colour edge colouring of vertices?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c22",
+      "text": "Its vertices have degree two",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c23",
+      "text": "Alternating colours return to a same-colour closing edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c24",
+      "text": "BFS cannot visit it",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bfs-bipartite-witness.c25",
+      "text": "Alternating an odd number of edges forces the final adjacent pair to share a colour.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-bfs-bipartite-witness\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why can an odd cycle not receive a two-colour edge colouring of vertices?",
+    "options": [
+      "Its vertices have degree two",
+      "Alternating colours return to a same-colour closing edge",
+      "BFS cannot visit it"
+    ],
+    "answer": 1,
+    "why": "Alternating an odd number of edges forces the final adjacent pair to share a colour."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-bfs-bipartite-witness",
+    "also": [],
+    "prerequisites": [
+      "cs:depth-first-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "graph-traversal-decomposition"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

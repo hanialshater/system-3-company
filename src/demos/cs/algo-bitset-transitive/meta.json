@@ -1,0 +1,275 @@
+{
+  "slug": "algo-bitset-transitive",
+  "title": "One row can add many reachable nodes",
+  "hook": "A whole destination row is useful only after its starting point is reachable.",
+  "domain": "cs",
+  "concept": "algo-bitset-transitive",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary masks, basic complex arithmetic for FFT, polynomial coefficients."
+    ],
+    "doesNotKnow": [
+      "Compute transitive closure with row-bitset unions gated by reachability to the current intermediate vertex."
+    ]
+  },
+  "misconception": "Every graph reachability update needs an individual operation per destination.",
+  "objective": "Compute transitive closure with row-bitset unions gated by reachability to the current intermediate vertex.",
+  "claims": [
+    {
+      "id": "cs.algo-bitset-transitive.c1",
+      "text": "A row may import the intermediate vertex’s destinations only if it already reaches that intermediate. The OR operation adds several destinations together. Processing intermediates systematically computes all-pairs reachability; the diagonal here explicitly includes each vertex reaching itself.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c2",
+      "text": "A whole destination row is useful only after its starting point is reachable.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c3",
+      "text": "Edges A→B,B→C,C→D,A→E, with self-reachability included. Which vertices does A reach after row-bitset closure?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c4",
+      "text": "A,B,C,D,E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c5",
+      "text": "A,B,E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c6",
+      "text": "A,C,D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c7",
+      "text": "B,C,D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.predict.options[3]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c8",
+      "text": "Run the question case; Step exposes each transform update.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c9",
+      "text": "Closure masks 31,14,12,8,16.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c10",
+      "text": "Directed graph input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c11",
+      "text": "edges",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c12",
+      "text": "Reach intermediate then union",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c13",
+      "text": "i,k",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c14",
+      "text": "Reflexive transitive closure",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c15",
+      "text": "Closure masks 31,14,14,14,16.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c16",
+      "text": "May row i OR row k when i cannot reach k?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c17",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c18",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c19",
+      "text": "Only when k has many neighbours",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c20",
+      "text": "Without the gate, the operation invents paths with no connection to their starting vertex.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#lessonDetails[\"algo-bitset-transitive\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c21",
+      "text": "A→B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c22",
+      "text": "B→C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c23",
+      "text": "C→D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c24",
+      "text": "A→E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c25",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c26",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c27",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c28",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c29",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[0].run().frames[1]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-bitset-transitive.c30",
+      "text": "D→B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/transforms-convolution-bitsets.ts#bitset_transitive.cases[1].run().frames[0]; finite fixture derivation, independent verification pending; no external source claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "May row i OR row k when i cannot reach k?",
+    "options": [
+      "No",
+      "Yes",
+      "Only when k has many neighbours"
+    ],
+    "answer": 0,
+    "why": "Without the gate, the operation invents paths with no connection to their starting vertex."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-bitset-transitive",
+    "also": [],
+    "prerequisites": [
+      "binary-numbers"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "transforms-convolution-bitsets"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

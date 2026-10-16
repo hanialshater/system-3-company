@@ -1,0 +1,260 @@
+{
+  "slug": "algo-reverse-deletions",
+  "title": "Run the broken network backward",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-reverse-deletions",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Answer offline edge-deletion connectivity by reversing time into edge additions."
+    ]
+  },
+  "misconception": "A disjoint set must support arbitrary online edge deletion to answer a deletion log.",
+  "objective": "Answer offline edge-deletion connectivity by reversing time into edge additions.",
+  "claims": [
+    {
+      "id": "cs.algo-reverse-deletions.c1",
+      "text": "Offline reversal converts a known deletion log into union operations.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c3",
+      "text": "Path A–B–C–D loses B–C then A–B. Is A connected to C after each deletion?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c4",
+      "text": "Run the question case, then inspect its steps and compare another case.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c5",
+      "text": "AC after deletions 0,0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c6",
+      "text": "AC after deletions 0,0. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c7",
+      "text": "Reversing the log turns deletions into unions. Each query is answered before its deleted edge is restored, then the answers are put back in chronological order.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c8",
+      "text": "Delete BC, then AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c9",
+      "text": "path",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c10",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c11",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c12",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c13",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[0].rows[0].cells[3].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c14",
+      "text": "Query after deletion 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c15",
+      "text": "parent",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c16",
+      "text": "AC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c17",
+      "text": "Restore AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c18",
+      "text": "Query after deletion 1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c19",
+      "text": "Restore BC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c20",
+      "text": "AC after deletions 1,0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c21",
+      "text": "AC after deletions 1,0. This is the retained result of the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.reveal(src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c22",
+      "text": "Delete CD, then AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[1].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c23",
+      "text": "Restore CD",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#reverse_deletions.cases[1].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c24",
+      "text": "When answering a reversed deletion log, when is a post-deletion query recorded?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c25",
+      "text": "Before restoring that edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c26",
+      "text": "After restoring every edge",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c27",
+      "text": "Before reading the log",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-reverse-deletions.c28",
+      "text": "Before restoration the DSU represents the graph after that deletion.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/disjoint-offline-connectivity.ts#lessonDetails[\"algo-reverse-deletions\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "When answering a reversed deletion log, when is a post-deletion query recorded?",
+    "options": [
+      "Before restoring that edge",
+      "After restoring every edge",
+      "Before reading the log"
+    ],
+    "answer": 0,
+    "why": "Before restoration the DSU represents the graph after that deletion."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-reverse-deletions",
+    "also": [],
+    "prerequisites": [
+      "cs:union-find"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "disjoint-offline-connectivity"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

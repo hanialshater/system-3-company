@@ -1,0 +1,176 @@
+{
+  "slug": "algo-odd-even-network",
+  "title": "Can fixed neighbours finish the sort?",
+  "hook": "The wires stay fixed while the values decide whether to swap.",
+  "domain": "cs",
+  "concept": "algo-odd-even-network",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Sort using alternating odd and even adjacent compare-exchange layers."
+    ]
+  },
+  "misconception": "Comparators must choose their partners based on previous swaps.",
+  "objective": "Sort using alternating odd and even adjacent compare-exchange layers.",
+  "claims": [
+    {
+      "id": "cs.algo-odd-even-network.c1",
+      "text": "Comparator locations stay fixed while their exchanges depend on the values. The last middle comparator repairs the cross-pair disorder that the first two layers can leave behind.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c2",
+      "text": "The wires stay fixed while the values decide whether to swap.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c3",
+      "text": "For the shown five-comparator network on [4,1,3,2], how many comparisons exchange their values?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c4",
+      "text": "Run the question case; Step exposes the actual movement.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c5",
+      "text": "Network swaps 4; sorted 1,2,3,4.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c6",
+      "text": "Network input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c8",
+      "text": "Comparator swaps",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c9",
+      "text": "swaps",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c10",
+      "text": "Comparator keeps",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c11",
+      "text": "Network swaps 3; sorted 1,2,3,4.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#odd_even_network.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c12",
+      "text": "Which depends on the input in a sorting network?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c13",
+      "text": "Comparator positions",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c14",
+      "text": "Whether a comparator swaps",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c15",
+      "text": "The wire count",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-odd-even-network.c16",
+      "text": "Positions are fixed; compare-exchange decisions depend on values.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/adaptive-network-sorting.ts#lessonDetails[\"algo-odd-even-network\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which depends on the input in a sorting network?",
+    "options": [
+      "Comparator positions",
+      "Whether a comparator swaps",
+      "The wire count"
+    ],
+    "answer": 1,
+    "why": "Positions are fixed; compare-exchange decisions depend on values."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-odd-even-network",
+    "also": [],
+    "prerequisites": [
+      "divide-and-conquer"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "adaptive-network-sorting"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

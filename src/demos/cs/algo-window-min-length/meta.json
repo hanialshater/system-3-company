@@ -1,0 +1,197 @@
+{
+  "slug": "algo-window-min-length",
+  "title": "When is it safe to shrink?",
+  "hook": "A qualifying window may still contain a shorter answer.",
+  "domain": "cs",
+  "concept": "algo-window-min-length",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Find a shortest positive-sum window by shrinking only after the threshold is met."
+    ]
+  },
+  "misconception": "Finding a shortest qualifying interval requires checking all starts independently.",
+  "objective": "Find a shortest positive-sum window by shrinking only after the threshold is met.",
+  "claims": [
+    {
+      "id": "cs.algo-window-min-length.c1",
+      "text": "Positivity makes extension increase the sum and shrinking decrease it. Once a window qualifies, moving its left edge explores shorter candidates; negative entries would break this monotone justification.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c2",
+      "text": "A qualifying window may still contain a shorter answer.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c3",
+      "text": "In positive [2,1,4,3,2], what is the shortest contiguous length with sum at least 7?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c4",
+      "text": "Run the question case; inspect the maintained summary with Step.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c5",
+      "text": "Threshold 7; shortest length 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c6",
+      "text": "Positive values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c8",
+      "text": "threshold",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c9",
+      "text": "Extend right endpoint",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c10",
+      "text": "sum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c11",
+      "text": "Shrink qualifying window",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c12",
+      "text": "length",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[4].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c13",
+      "text": "best",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[0].run().frames[4].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c14",
+      "text": "Threshold 5; shortest length 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#window_min_length.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c15",
+      "text": "Why does the simple shrinking-window proof require positive entries?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c16",
+      "text": "Removing a left entry must reduce sum",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c17",
+      "text": "The array must be sorted",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c18",
+      "text": "Every answer must use two entries",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-window-min-length.c19",
+      "text": "Negative entries could make shrinking increase the sum.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/range-sliding-window.ts#lessonDetails[\"algo-window-min-length\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why does the simple shrinking-window proof require positive entries?",
+    "options": [
+      "Removing a left entry must reduce sum",
+      "The array must be sorted",
+      "Every answer must use two entries"
+    ],
+    "answer": 0,
+    "why": "Negative entries could make shrinking increase the sum."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-window-min-length",
+    "also": [],
+    "prerequisites": [
+      "prefix-sums"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "range-sliding-window"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

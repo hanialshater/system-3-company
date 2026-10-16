@@ -1,0 +1,211 @@
+{
+  "slug": "algo-floyd-intermediate",
+  "title": "Which detour is allowed this round?",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-floyd-intermediate",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Compute all-pairs shortest paths while allowing intermediate vertices one at a time."
+    ]
+  },
+  "misconception": "Updating all-pairs distances is just repeatedly taking the cheapest outgoing edge.",
+  "objective": "Compute all-pairs shortest paths while allowing intermediate vertices one at a time.",
+  "claims": [
+    {
+      "id": "cs.algo-floyd-intermediate.c1",
+      "text": "All-pairs relaxation permits intermediate vertices one phase at a time.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c3",
+      "text": "AB=3, BC=2, AC=9, CA=4. What is shortest A→C after permitting B as an intermediate?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c4",
+      "text": "Complete the question path calculation, then inspect a changed input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c5",
+      "text": "A→C 5; row A 0,3,5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c6",
+      "text": "A→C 5; row A 0,3,5. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c7",
+      "text": "Each Floyd phase allows one more intermediate vertex. The matrix compares the old route with the route through that vertex, keeping the shorter value for each ordered pair.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c8",
+      "text": "Input distances",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c9",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c10",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c11",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c12",
+      "text": "Via A: C→B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c13",
+      "text": "Via B: A→C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c14",
+      "text": "Via C: B→A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c15",
+      "text": "A→C 4; row A 0,3,4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c16",
+      "text": "A→C 4; row A 0,3,4. This is the retained computed witness for the question case.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.reveal(src/lib/algorithms/topics/path-algorithms-witnesses.ts#floyd_intermediate.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c17",
+      "text": "A Floyd phase permits vertex K. Which candidate is compared with d[I,J]?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c18",
+      "text": "d[I,K]−d[K,J]",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c19",
+      "text": "d[I,K]+d[K,J]",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c20",
+      "text": "d[I,J]+d[K,K]",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-floyd-intermediate.c21",
+      "text": "The new candidate concatenates a route to K with one from K to J.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/path-algorithms-witnesses.ts#lessonDetails[\"algo-floyd-intermediate\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A Floyd phase permits vertex K. Which candidate is compared with d[I,J]?",
+    "options": [
+      "d[I,K]−d[K,J]",
+      "d[I,K]+d[K,J]",
+      "d[I,J]+d[K,K]"
+    ],
+    "answer": 1,
+    "why": "The new candidate concatenates a route to K with one from K to J."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-floyd-intermediate",
+    "also": [],
+    "prerequisites": [
+      "cs:weighted-shortest-path"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "path-algorithms-witnesses"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

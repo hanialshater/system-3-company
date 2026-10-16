@@ -1,0 +1,310 @@
+{
+  "slug": "algo-lr-shift-reduce",
+  "title": "A prefix is not a complete handle",
+  "hook": "Seeing a rule’s right side is only part of deciding when to reduce.",
+  "domain": "cs",
+  "concept": "algo-lr-shift-reduce",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix codes, strings, grammar productions and a stack."
+    ],
+    "doesNotKnow": [
+      "Recognize a handle with parser state before reducing a shifted symbol sequence."
+    ]
+  },
+  "misconception": "Any substring matching a grammar right-hand side can be reduced immediately.",
+  "objective": "Recognize a handle with parser state before reducing a shifted symbol sequence.",
+  "claims": [
+    {
+      "id": "cs.algo-lr-shift-reduce.c1",
+      "text": "A reduction replaces a recognized handle with its left-hand nonterminal and consults the goto state. The state and lookahead select that action; reducing arbitrary matching characters without the viable-prefix state can recognize the wrong language.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c2",
+      "text": "Seeing a rule’s right side is only part of deciding when to reduce.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c3",
+      "text": "For E→E+T|T and T→n, does the state-driven shift/reduce parser accept n+n?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c6",
+      "text": "Run the question case; Step follows its actual state changes.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c7",
+      "text": "Accepted true.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c8",
+      "text": "Token input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c9",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c10",
+      "text": "n+n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c11",
+      "text": "grammar",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c12",
+      "text": "E→E+T|T;T→n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[0].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c13",
+      "text": "Shift token",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c14",
+      "text": "states",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c15",
+      "text": "symbols",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c16",
+      "text": "n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c17",
+      "text": "remaining",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c18",
+      "text": "+n$",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[1].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c19",
+      "text": "Reduce handle",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c20",
+      "text": "T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c21",
+      "text": "E",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c22",
+      "text": "E+",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[4].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c23",
+      "text": "n$",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[4].rows[2].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c24",
+      "text": "E+n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[5].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c25",
+      "text": "E+T",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[6].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c26",
+      "text": "Accept start symbol",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[0].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c27",
+      "text": "Accepted false.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c28",
+      "text": "n+",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c29",
+      "text": "No parser action",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[1].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c30",
+      "text": "lookahead",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lr_shift_reduce.cases[1].run().frames[5].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c31",
+      "text": "After reducing a handle, how is the next parser state chosen?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c32",
+      "text": "Goto from the uncovered state and left-hand symbol",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c33",
+      "text": "Restart at state zero",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c34",
+      "text": "Keep the state of the removed token",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lr-shift-reduce.c35",
+      "text": "Popping the handle exposes the state from which its nonterminal is reached.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/compression-coding-parsing.ts#lessonDetails[\"algo-lr-shift-reduce\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After reducing a handle, how is the next parser state chosen?",
+    "options": [
+      "Goto from the uncovered state and left-hand symbol",
+      "Restart at state zero",
+      "Keep the state of the removed token"
+    ],
+    "answer": 0,
+    "why": "Popping the handle exposes the state from which its nonterminal is reached."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lr-shift-reduce",
+    "also": [],
+    "prerequisites": [
+      "stack-expression-eval"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "compression-coding-parsing"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

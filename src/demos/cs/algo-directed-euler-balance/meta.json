@@ -1,0 +1,246 @@
+{
+  "slug": "algo-directed-euler-balance",
+  "title": "Arrows change the endpoint rule",
+  "hook": "Make a prediction. Inspect the steps. Test a second input.",
+  "domain": "cs",
+  "concept": "algo-directed-euler-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Check directed in/out-degree balance and use the required start for an Euler trail."
+    ]
+  },
+  "misconception": "Even undirected degree is enough when roads have arrows.",
+  "objective": "Check directed in/out-degree balance and use the required start for an Euler trail.",
+  "claims": [
+    {
+      "id": "cs.algo-directed-euler-balance.c1",
+      "text": "Directed trail endpoints are determined by outgoing-minus-incoming imbalance.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c2",
+      "text": "Make a prediction. Inspect the steps. Test a second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c3",
+      "text": "Arcs A→B, B→C, C→A, A→D. Which Euler-trail endpoints are required?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c4",
+      "text": "D→A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c5",
+      "text": "A→D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c6",
+      "text": "circuit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.predict.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c7",
+      "text": "Complete this graph, then inspect steps and compare another input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c8",
+      "text": "Euler endpoints A→D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c9",
+      "text": "Euler endpoints A→D. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c10",
+      "text": "The start needs one extra outgoing arc and the end one extra incoming arc. Internal vertices balance; adding the return arc changes this example into a balanced circuit.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c11",
+      "text": "Arc input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c12",
+      "text": "A",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[0].nodes[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c13",
+      "text": "B",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[0].nodes[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c14",
+      "text": "C",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[0].nodes[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c15",
+      "text": "D",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[0].nodes[3].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c16",
+      "text": "Update balances",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c17",
+      "text": "out−in",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c18",
+      "text": "Required endpoints",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c19",
+      "text": "result",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[0].run().frames[5].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c20",
+      "text": "Euler endpoints circuit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c21",
+      "text": "Euler endpoints circuit. This remains the computed question-case witness.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.reveal(src/lib/algorithms/topics/graph-traversal-decomposition.ts#directed_euler_balance.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c22",
+      "text": "At the end of an open directed Euler trail, which balance holds?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c23",
+      "text": "out−in=1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c24",
+      "text": "out−in=0",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c25",
+      "text": "out−in=−1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-directed-euler-balance.c26",
+      "text": "The endpoint receives one arrival without a matching departure.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/graph-traversal-decomposition.ts#lessonDetails[\"algo-directed-euler-balance\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At the end of an open directed Euler trail, which balance holds?",
+    "options": [
+      "out−in=1",
+      "out−in=0",
+      "out−in=−1"
+    ],
+    "answer": 2,
+    "why": "The endpoint receives one arrival without a matching departure."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-directed-euler-balance",
+    "also": [],
+    "prerequisites": [
+      "cs:depth-first-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "graph-traversal-decomposition"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

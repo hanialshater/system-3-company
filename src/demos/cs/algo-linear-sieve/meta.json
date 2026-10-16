@@ -1,0 +1,365 @@
+{
+  "slug": "algo-linear-sieve",
+  "title": "Every composite gets one producer",
+  "hook": "Every composite gets one producer. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-linear-sieve",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Integer remainders, gcd, primes, modular exponentiation."
+    ],
+    "doesNotKnow": [
+      "Use least-prime-factor order to mark each composite once and stop after the current least prime."
+    ]
+  },
+  "misconception": "A sieve must revisit a composite for every prime factor.",
+  "objective": "Use least-prime-factor order to mark each composite once and stop after the current least prime.",
+  "claims": [
+    {
+      "id": "cs.algo-linear-sieve.c1",
+      "text": "Each composite is generated through its least prime factor. Stopping the inner prime loop at the current least factor prevents alternative producers from marking the same composite again.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c2",
+      "text": "Every composite gets one producer. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c3",
+      "text": "In the linear sieve through20, how many producers mark composite12?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c5",
+      "text": "Composite marks=11; 12producers=1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c6",
+      "text": "Sieve bound",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c7",
+      "text": "n",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c8",
+      "text": "Producer 2",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c9",
+      "text": "LPF",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c10",
+      "text": "made",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c11",
+      "text": "Producer 3",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c12",
+      "text": "Producer 4",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c13",
+      "text": "Producer 5",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c14",
+      "text": "Producer 6",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c15",
+      "text": "Producer 7",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c16",
+      "text": "Producer 8",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[7].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c17",
+      "text": "Producer 9",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[8].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c18",
+      "text": "Producer 10",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[9].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c19",
+      "text": "Producer 11",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[10].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c20",
+      "text": "Producer 12",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[11].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c21",
+      "text": "Producer 13",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[12].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c22",
+      "text": "Producer 14",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[13].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c23",
+      "text": "Producer 15",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[14].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c24",
+      "text": "Producer 16",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[15].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c25",
+      "text": "Producer 17",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[16].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c26",
+      "text": "Producer 18",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[17].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c27",
+      "text": "Producer 19",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[18].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c28",
+      "text": "Producer 20",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[0].run().frames[19].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c29",
+      "text": "Composite marks=19; 12producers=1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c30",
+      "text": "Producer 21",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[20].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c31",
+      "text": "Producer 22",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[21].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c32",
+      "text": "Producer 23",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[22].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c33",
+      "text": "Producer 24",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[23].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c34",
+      "text": "Producer 25",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[24].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c35",
+      "text": "Producer 26",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[25].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c36",
+      "text": "Producer 27",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[26].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c37",
+      "text": "Producer 28",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[27].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c38",
+      "text": "Producer 29",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[28].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c39",
+      "text": "Producer 30",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#linear_sieve.cases[1].run().frames[29].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c40",
+      "text": "Why stop after the current least prime factor?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c41",
+      "text": "To preserve one producer per composite",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c42",
+      "text": "To skip all even numbers",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-linear-sieve.c43",
+      "text": "Larger factors would recreate composites assigned to a smaller least-prime producer.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/number-theoretic-algorithms.ts#lessonDetails[\"algo-linear-sieve\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Why stop after the current least prime factor?",
+    "options": [
+      "To preserve one producer per composite",
+      "To skip all even numbers"
+    ],
+    "answer": 0,
+    "why": "Larger factors would recreate composites assigned to a smaller least-prime producer."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-linear-sieve",
+    "also": [],
+    "prerequisites": [
+      "euclid-gcd"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "number-theoretic-algorithms"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

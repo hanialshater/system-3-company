@@ -1,0 +1,253 @@
+{
+  "slug": "algo-lower-bound-flow",
+  "title": "The minimum shipments create demands",
+  "hook": "Minimum required flows can leave a hidden imbalance at a vertex.",
+  "domain": "cs",
+  "concept": "algo-lower-bound-flow",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Transform edge lower bounds into vertex demands and test circulation feasibility."
+    ]
+  },
+  "misconception": "A usual zero-start max-flow model enforces minimum shipments automatically.",
+  "objective": "Transform edge lower bounds into vertex demands and test circulation feasibility.",
+  "claims": [
+    {
+      "id": "cs.algo-lower-bound-flow.c1",
+      "text": "Lower bounds become residual capacities and node demands requiring saturation.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c2",
+      "text": "Minimum required flows can leave a hidden imbalance at a vertex.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c3",
+      "text": "Cycle AB,BC,CA has lower bounds 2,1,1 and upper bounds 3,3,3. Is a circulation feasible?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c4",
+      "text": "Yes",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.predict.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c5",
+      "text": "No",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.predict.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c6",
+      "text": "Run the question case, inspect its certificate, then compare the second input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c7",
+      "text": "Feasible yes; demand 1/1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c8",
+      "text": "Feasible yes; demand 1/1. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c9",
+      "text": "Subtracting lower bounds leaves residual capacity and vertex imbalances. A super-source flow must satisfy every resulting demand; saturation certifies that the original lower-bounded circulation can be completed.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run())[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c10",
+      "text": "Lower/upper capacities",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c11",
+      "text": "AB",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c12",
+      "text": "BC",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c13",
+      "text": "CA",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[0].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c14",
+      "text": "Convert lower-bound demands",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c15",
+      "text": "balance",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c16",
+      "text": "residual",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c17",
+      "text": "Route remaining demand",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c18",
+      "text": "required/routed",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[2].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c19",
+      "text": "Demand saturated",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c20",
+      "text": "Feasible no; demand 0/1",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c21",
+      "text": "Feasible no; demand 0/1. This is the retained computed question-case certificate.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.reveal(src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[1].run())[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c22",
+      "text": "Demand blocked",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lower_bound_flow.cases[1].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c23",
+      "text": "After the lower-bound transformation, one required super-source edge is unsaturated. What follows?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c24",
+      "text": "No feasible circulation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c25",
+      "text": "A feasible circulation",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c26",
+      "text": "The lower bounds can be ignored",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-lower-bound-flow.c27",
+      "text": "Every required demand must be met to restore flow conservation in the original network.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/spanning-matching-flow.ts#lessonDetails[\"algo-lower-bound-flow\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After the lower-bound transformation, one required super-source edge is unsaturated. What follows?",
+    "options": [
+      "No feasible circulation",
+      "A feasible circulation",
+      "The lower bounds can be ignored"
+    ],
+    "answer": 0,
+    "why": "Every required demand must be met to restore flow conservation in the original network."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-lower-bound-flow",
+    "also": [],
+    "prerequisites": [
+      "minimum-spanning-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "spanning-matching-flow"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

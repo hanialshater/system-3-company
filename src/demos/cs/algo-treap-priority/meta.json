@@ -1,0 +1,191 @@
+{
+  "slug": "algo-treap-priority",
+  "title": "Two orders in one tree",
+  "hook": "Each node has a search key and a separate priority.",
+  "domain": "cs",
+  "concept": "algo-treap-priority",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Binary search-tree ordering; subtree size and interval notation."
+    ],
+    "doesNotKnow": [
+      "Restore independent search-key and heap-priority invariants after a treap insertion."
+    ]
+  },
+  "misconception": "A random priority replaces the search-key ordering.",
+  "objective": "Restore independent search-key and heap-priority invariants after a treap insertion.",
+  "claims": [
+    {
+      "id": "cs.algo-treap-priority.c1",
+      "text": "Search-tree order chooses where the new key attaches. Rotations then restore the independent minimum-priority heap order without changing the inorder key sequence.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c2",
+      "text": "Each node has a search key and a separate priority.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c3",
+      "text": "Keys [2,1,3] have priorities [50,20,40]. Insert key 4 with priority 10. Which key becomes root?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c4",
+      "text": "Run the operation; inspect the changed links and annotations.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c5",
+      "text": "Inserted priority 10; root key 4.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c6",
+      "text": "Keys and min priorities",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c7",
+      "text": "Attach new key",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c8",
+      "text": "key",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c9",
+      "text": "priority",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c10",
+      "text": "Check parent priority",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c11",
+      "text": "Rotate priority upward",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c12",
+      "text": "Both invariants restored",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c13",
+      "text": "Inserted priority 60; root key 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#treap_priority.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c14",
+      "text": "A rotation repairs treap priority order. What key property must survive?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c15",
+      "text": "Inorder order",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c16",
+      "text": "Original root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c17",
+      "text": "Equal depths",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-treap-priority.c18",
+      "text": "A treap is simultaneously a BST and a priority heap.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/ordered-augmented-trees.ts#lessonDetails[\"algo-treap-priority\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A rotation repairs treap priority order. What key property must survive?",
+    "options": [
+      "Inorder order",
+      "Original root",
+      "Equal depths"
+    ],
+    "answer": 0,
+    "why": "A treap is simultaneously a BST and a priority heap."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-treap-priority",
+    "also": [],
+    "prerequisites": [
+      "binary-search-tree"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "ordered-augmented-trees"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

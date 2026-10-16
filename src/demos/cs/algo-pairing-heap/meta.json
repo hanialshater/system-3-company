@@ -1,0 +1,191 @@
+{
+  "slug": "algo-pairing-heap",
+  "title": "Which siblings should pair first?",
+  "hook": "Removing one root leaves several heaps to reunite.",
+  "domain": "cs",
+  "concept": "algo-pairing-heap",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Heap parent/child ordering and priority comparisons."
+    ],
+    "doesNotKnow": [
+      "Delete a pairing-heap minimum using pairwise sibling melds then a right-to-left accumulation."
+    ]
+  },
+  "misconception": "Removing the root only needs one arbitrary left-to-right sibling fold.",
+  "objective": "Delete a pairing-heap minimum using pairwise sibling melds then a right-to-left accumulation.",
+  "claims": [
+    {
+      "id": "cs.algo-pairing-heap.c1",
+      "text": "The first pass links adjacent sibling pairs; the second combines those winners from right to left. The trace retains attached children, showing why delete-min is more than merely choosing the smallest child.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c2",
+      "text": "Removing one root leaves several heaps to reunite.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c3",
+      "text": "Delete root 1 with children [8,3,7,2,6]. After pair-then-right-fold melding, how many direct children has the new root?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c4",
+      "text": "Run the operation; Step shows the repair before its result.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c5",
+      "text": "New root 2; direct children 3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c6",
+      "text": "Delete pairing root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c7",
+      "text": "root",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c8",
+      "text": "children",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c9",
+      "text": "Pair siblings leftward",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c10",
+      "text": "paired",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c11",
+      "text": "Fold paired heaps rightward",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[4].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c12",
+      "text": "Two-pass repair complete",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c13",
+      "text": "New root 2; direct children 2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#pairing_heap.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c14",
+      "text": "Which order does a two-pass pairing delete-min use?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c15",
+      "text": "Pair left-to-right, fold right-to-left",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c16",
+      "text": "Sort all keys",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c17",
+      "text": "Fold only left-to-right",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-pairing-heap.c18",
+      "text": "Adjacent pairs form first, then their winners fold back.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/priority-queues-meldable-heaps.ts#lessonDetails[\"algo-pairing-heap\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Which order does a two-pass pairing delete-min use?",
+    "options": [
+      "Pair left-to-right, fold right-to-left",
+      "Sort all keys",
+      "Fold only left-to-right"
+    ],
+    "answer": 0,
+    "why": "Adjacent pairs form first, then their winners fold back."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-pairing-heap",
+    "also": [],
+    "prerequisites": [
+      "heap-priority-queue"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "priority-queues-meldable-heaps"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

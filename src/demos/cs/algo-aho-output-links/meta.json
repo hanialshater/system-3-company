@@ -1,0 +1,246 @@
+{
+  "slug": "algo-aho-output-links",
+  "title": "A match can end inside another",
+  "hook": "A match can end inside another. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-aho-output-links",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Prefix/suffix/subsequence distinction; character comparison."
+    ],
+    "doesNotKnow": [
+      "Emit suffix-pattern outputs when an automaton state matches a longer pattern."
+    ]
+  },
+  "misconception": "One automaton state can report only the longest matching pattern.",
+  "objective": "Emit suffix-pattern outputs when an automaton state matches a longer pattern.",
+  "claims": [
+    {
+      "id": "cs.algo-aho-output-links.c1",
+      "text": "A terminal state can also finish shorter suffix patterns. Inherited failure outputs emit every matching suffix, so reaching one long pattern need not mean reporting only one match.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c2",
+      "text": "A match can end inside another. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c3",
+      "text": "Patterns a,ba,aba in aba: how many total matches?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c5",
+      "text": "Matches: a@0,aba@0,ba@1,a@2.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c6",
+      "text": "Patterns and text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c7",
+      "text": "patterns",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c8",
+      "text": "a",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c9",
+      "text": "ba",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c10",
+      "text": "aba",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].rows[0].cells[2].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c11",
+      "text": "text",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[0].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c12",
+      "text": "Suffix outputs",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c13",
+      "text": "state",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[1].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c14",
+      "text": "read",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[1].rows[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c15",
+      "text": "emit",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[1].rows[2].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c16",
+      "text": "b",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[0].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c17",
+      "text": "Matches: she@0,he@1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c18",
+      "text": "he",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().frames[0].rows[0].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c19",
+      "text": "she",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().frames[0].rows[0].cells[1].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c20",
+      "text": "s",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().frames[1].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c21",
+      "text": "h",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().frames[2].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c22",
+      "text": "e",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#aho_output_links.cases[1].run().frames[3].rows[1].cells[0].text; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c23",
+      "text": "Patterns x and yx end at the same character. How many matches should an output chain emit?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c24",
+      "text": "One",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c25",
+      "text": "Two",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-aho-output-links.c26",
+      "text": "Both terminal patterns match, even though only one final automaton state is active.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/string-indexing-automata.ts#lessonDetails[\"algo-aho-output-links\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Patterns x and yx end at the same character. How many matches should an output chain emit?",
+    "options": [
+      "One",
+      "Two"
+    ],
+    "answer": 1,
+    "why": "Both terminal patterns match, even though only one final automaton state is active."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-aho-output-links",
+    "also": [],
+    "prerequisites": [
+      "kmp-string-search"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "string-indexing-automata"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

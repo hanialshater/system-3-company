@@ -1,0 +1,211 @@
+{
+  "slug": "algo-mountain-target",
+  "title": "Two slopes, one target",
+  "hook": "One peak separates two different comparison rules.",
+  "domain": "cs",
+  "concept": "algo-mountain-target",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn."
+    ],
+    "doesNotKnow": [
+      "Search a strict mountain array by finding the summit then using opposite comparison directions."
+    ]
+  },
+  "misconception": "One binary-search direction works on both sides of a peak.",
+  "objective": "Search a strict mountain array by finding the summit then using opposite comparison directions.",
+  "claims": [
+    {
+      "id": "cs.algo-mountain-target.c1",
+      "text": "The peak divides the input into two ordered sides. The descending side reverses the comparison rule; treating it as ascending discards the side that can contain the target.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c2",
+      "text": "One peak separates two different comparison rules.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c3",
+      "text": "In mountain [1,4,8,6,3], what zero-based index contains 6?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c4",
+      "text": "Run the question case, then inspect each boundary move.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c5",
+      "text": "Peak 2; target 6; index 3.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c6",
+      "text": "Mountain input",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c7",
+      "text": "values",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[0].rows[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c8",
+      "text": "target",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[0].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c9",
+      "text": "Slope falls",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c10",
+      "text": "Slope rises",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[2].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c11",
+      "text": "Ascending comparison",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[3].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c12",
+      "text": "Descending comparison",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[5].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c13",
+      "text": "Peak separates directions",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[6].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c14",
+      "text": "peak",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[6].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c15",
+      "text": "index",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[0].run().frames[6].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c16",
+      "text": "Peak 2; target 4; index 1.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#mountain_target.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c17",
+      "text": "After the peak, the middle is smaller than the target. Which direction should descending search move?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c18",
+      "text": "Left",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c19",
+      "text": "Right",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c20",
+      "text": "Either",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].recall.options[2]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-mountain-target.c21",
+      "text": "Larger values lie toward the peak.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/boundary-search-selection.ts#lessonDetails[\"algo-mountain-target\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "After the peak, the middle is smaller than the target. Which direction should descending search move?",
+    "options": [
+      "Left",
+      "Right",
+      "Either"
+    ],
+    "answer": 0,
+    "why": "Larger values lie toward the peak."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-mountain-target",
+    "also": [],
+    "prerequisites": [
+      "cs:binary-search"
+    ],
+    "level": "core",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "boundary-search-selection"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "slug": "algo-liang-barsky",
+  "title": "An interval along the line",
+  "hook": "An interval along the line. Follow the computed steps.",
+  "domain": "cs",
+  "concept": "algo-liang-barsky",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-cs",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "Compare numbers; read a short array, string, tree or graph as drawn.",
+      "Cartesian coordinates, determinant sign, Euclidean distance."
+    ],
+    "doesNotKnow": [
+      "Clip a segment to an axis-aligned rectangle by narrowing its valid parameter interval."
+    ]
+  },
+  "misconception": "Every rectangle border needs a separately constructed trial segment.",
+  "objective": "Clip a segment to an axis-aligned rectangle by narrowing its valid parameter interval.",
+  "claims": [
+    {
+      "id": "cs.algo-liang-barsky.c1",
+      "text": "Each rectangle inequality narrows the common parameter interval. An entry raises its lower bound and an exit lowers its upper bound; an empty interval certifies that no segment portion survives.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].mechanism; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c2",
+      "text": "An interval along the line. Follow the computed steps.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].hook; manifest row hook; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c3",
+      "text": "Segment (−2,1)→(5,4) in [0,3]²: valid parameter interval?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.predict.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c4",
+      "text": "Run the question case, then step through the contrasting input.",
+      "support": "convention",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.exploreHint; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c5",
+      "text": "t=[0.2857,0.6667]; clipped.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[0].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c6",
+      "text": "Segment and window",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[0].run().frames[0].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c7",
+      "text": "Narrow parameter",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[0].run().frames[1].caption; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c8",
+      "text": "p,q",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[0].run().frames[1].metrics[0].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c9",
+      "text": "t",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[0].run().frames[1].metrics[1].label; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c10",
+      "text": "Intersection=none; parameter interval empty.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#liang_barsky.cases[1].run().proof; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c11",
+      "text": "The entry bound becomes larger than the exit bound. What remains?",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].recall.question; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c12",
+      "text": "A point",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].recall.options[0]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c13",
+      "text": "No visible segment",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].recall.options[1]; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    },
+    {
+      "id": "cs.algo-liang-barsky.c14",
+      "text": "No parameter can satisfy both bounds.",
+      "support": "derivation",
+      "source": "src/lib/algorithms/topics/computational-geometry.ts#lessonDetails[\"algo-liang-barsky\"].recall.why; illustrative finite model inputs; independent verification pending. No external source is claimed opened.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The entry bound becomes larger than the exit bound. What remains?",
+    "options": [
+      "A point",
+      "No visible segment"
+    ],
+    "answer": 1,
+    "why": "No parameter can satisfy both bounds."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "format": "single-card",
+  "curriculum": {
+    "primary": "cs:algo-liang-barsky",
+    "also": [],
+    "prerequisites": [
+      "point-in-polygon"
+    ],
+    "level": "stretch",
+    "strand": "algorithms",
+    "references": [],
+    "tags": [
+      "algorithms",
+      "computational-geometry"
+    ]
+  },
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "step-through",
+    "compare-inputs"
+  ]
+}

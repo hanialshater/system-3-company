@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-16",
+  "threshold": 0.18,
+  "baselineLessons": 969,
+  "proposed": 200,
+  "signals": 3,
+  "pairs": [
+    {
+      "a": "algo-lower-bound",
+      "b": "algo-upper-bound",
+      "kind": "intra-batch",
+      "similarity": 0.241,
+      "objectiveA": "Find the first position with value at least a target, preserving a half-open answer interval.",
+      "objectiveB": "Find the first position strictly greater than a target and distinguish it from lower bound."
+    },
+    {
+      "a": "algo-regex-star-dp",
+      "b": "algo-wildcard-dp",
+      "kind": "intra-batch",
+      "similarity": 0.219,
+      "objectiveA": "Match a full string against dot-and-star patterns using zero-copy and repeat transitions.",
+      "objectiveB": "Match glob patterns by letting a star consume zero or more arbitrary characters."
+    },
+    {
+      "a": "algo-suffix-array",
+      "b": "algo-booth-rotation",
+      "kind": "intra-batch",
+      "similarity": 0.2,
+      "objectiveA": "Find all pattern occurrences as one interval in lexicographically sorted suffixes.",
+      "objectiveB": "Find the lexicographically smallest string rotation by skipping a run of losing candidates after a mismatch."
+    }
+  ]
+}
