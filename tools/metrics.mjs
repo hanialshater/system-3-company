@@ -106,6 +106,12 @@ const rawEvs = readEvents();
 // it may list roles that ran but were not recorded.
 const dispatchAge = lastDispatchAge(rawEvs);
 const staleTag = dispatchAge.stale ? "STALE " : "";
+// PE-ops H4: corruption is visible, not silent. Ruling H2: unfolded hook spool lines are shown with their age.
+const logHealthLines = [
+  ...(rawEvs.skipped ? [`events.jsonl: ${rawEvs.skipped} unreadable line(s)`] : []),
+  ...(rawEvs.spool?.skipped ? [`events spool: ${rawEvs.spool.skipped} unreadable line(s)`] : []),
+  ...(rawEvs.spool?.lines ? [`events spool: ${rawEvs.spool.lines} unfolded event(s), oldest ${rawEvs.spool.oldest?.slice(0, 16) ?? "?"}Z`] : []),
+];
 // A resumed run logs `usage` again with cumulative tokens: count only the max record per run (W-941, tools/lib/usage.mjs).
 const keptUsage = new Set(dedupeUsage(rawEvs.filter((e) => e.type === "usage")));
 const evs = rawEvs.filter((e) => e.type !== "usage" || keptUsage.has(e));
@@ -189,6 +195,7 @@ if (md) {
   console.log(`| Agent runs | ${agentRows.reduce((n, r) => n + r.dispatched, 0)} dispatched · ${seen.done.size} reported · ${seen.stopped.size} stopped at least once (${stopRate}%) |`);
   console.log(`| Tokens (recorded runs) | ${Math.round(totalTokens / 1e6 * 10) / 10}M |`);
   console.log(`| Last dispatch event | ${lastDispatchLine(dispatchAge).replace(/^last dispatch event: /, "")} |`);
+  for (const l of logHealthLines) console.log(`| Event log health | ${l} |`);
   console.log(`| ${staleTag}Roles never dispatched | ${neverDispatched.length} of ${roster.length}${neverDispatched.length ? ": " + neverDispatched.slice(0, 40).join(", ") + (neverDispatched.length > 40 ? ", …" : "") : ""} |`);
   console.log(`| Rework | ${reworked} of ${live.length} lessons revised at least once (${pct(reworked, live.length)}) |`);
   console.log(`| First-review launch rate by builder model (EXP-003) | opus ${byModel.opus.launch}/${byModel.opus.reviewed} (${pct(byModel.opus.launch, byModel.opus.reviewed)}) · sonnet ${byModel.sonnet.launch}/${byModel.sonnet.reviewed} (${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}) |`);
@@ -213,6 +220,7 @@ if (md) {
   console.log(`Rituals ${Object.entries(ritualCount).map(([k, v]) => `${k} ${v}`).join(" · ") || "none run"}`);
   console.log(`Agents  ${agentRows.reduce((n, r) => n + r.dispatched, 0)} runs · ${seen.stopped.size} stopped (${stopRate}%) · ${Math.round(totalTokens / 1e5) / 10}M tokens · rework ${pct(reworked, live.length)} · launch-on-first-review opus ${pct(byModel.opus.launch, byModel.opus.reviewed)} vs sonnet ${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}`);
   console.log(`        ${lastDispatchLine(dispatchAge)}`);
+  for (const l of logHealthLines) console.log(`        ${l}`);
   console.log(`        ${staleTag}never dispatched (${neverDispatched.length}/${roster.length}): ${neverDispatched.join(", ") || "none"}`);
   for (const r of agentRows.slice(0, 12)) console.log(`        ${r.role.padEnd(22)} ${String(r.dispatched).padStart(3)} runs  ${String(r.stopped).padStart(2)} stopped  ${String(r.perRun || "—").padStart(4)}k/run  ${String(r.medMin || "—").padStart(3)} min`);
   console.log(`\nDomain        lessons published reviewed fatal`);

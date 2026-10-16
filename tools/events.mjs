@@ -7,9 +7,13 @@
 //                             [--id=I] [--source=S] [--chooser=C] [--tool-use-id=T]   (written by .claude/hooks/agent-events.mjs)
 //   node tools/events.mjs backfill [--transcripts=<dir>]   git history + session transcripts (idempotent)
 //            [--types=stopped,usage] [--since=<ISO>] [--dry]  only those types / from that time; --dry counts, writes nothing
+//   node tools/events.mjs add … --spool      append to the hook spool instead of the log (tools/lib/events-spool.mjs)
+//   node tools/events.mjs fold [--dry]        fold the spool into the log (dedupe by id) and empty it; chief of staff, before an events commit
 //   node tools/events.mjs tail [n]
 //
 // S3_EVENTS=<file> points every command at another log (tests, fixtures); default company/ops/events.jsonl.
+// S3_SPOOL=<dir> points at another spool; see tools/lib/events-spool.mjs for how the spool is found.
+// Unparseable lines are skipped and counted on stderr, never thrown (E1).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -17,26 +21,67 @@ import os from "node:os";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { readJsonlFile, readSpool, spoolDir, spoolFileFor, spoolFiles } from "./lib/events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOG = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl");
+const rel = (f) => { const r = path.relative(ROOT, f); return !r || r.startsWith("..") ? f : r; };
 const hash = (s, n = 10) => crypto.createHash("sha1").update(s).digest("hex").slice(0, n);
 
-function readLog() {
-  if (!fs.existsSync(LOG)) return [];
-  return fs
-    .readFileSync(LOG, "utf8")
-    .split("\n")
-    .filter(Boolean)
-    .map((l) => JSON.parse(l));
+// E1 (company/engineering/reviews/2026-10-16-agent-hooks-wiring-review.md): an unparseable line (a merge conflict
+// marker, a torn write) is skipped and counted, never thrown, so one bad line cannot stop every later write.
+// The count goes to stderr, where the agent-events hook log and the caller see it.
+function readFile(file) {
+  const r = readJsonlFile(file);
+  if (r.bad.length) {
+    process.stderr.write(`events: ${r.bad.length} unreadable line(s) skipped in ${rel(file)}\n`);
+  }
+  return r.events;
 }
+const readLog = () => readFile(LOG);
 
-function append(events) {
-  const have = new Set(readLog().map((e) => e.id));
+// Appends events whose id is not yet in `file` (default the log). Returns the number written.
+function append(events, file = LOG, alsoHave = []) {
+  const have = new Set([...readFile(file), ...alsoHave].map((e) => e.id));
   const fresh = events.filter((e) => !have.has(e.id) && (have.add(e.id), true));
   if (!fresh.length) return 0;
-  fs.appendFileSync(LOG, fresh.map((e) => JSON.stringify(e)).join("\n") + "\n");
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.appendFileSync(file, fresh.map((e) => JSON.stringify(e)).join("\n") + "\n");
   return fresh.length;
+}
+
+/**
+ * Fold the spool into the log (ruling H2): each spool file is renamed to *.folding-<pid> first, so hook writes
+ * that arrive during the fold start a new file and are not lost; events are appended in ts order, deduped by id
+ * against the log; the folded files are then removed. Unparseable spool lines are not dropped: they are kept in
+ * <spool>/unparsed-<stamp>.txt for a person to look at. Returns { folded, duplicates, unparsed, files }.
+ */
+export function fold({ log = LOG, dir = spoolDir(), dry = false } = {}) {
+  const files = spoolFiles(dir);
+  if (dry) {
+    const s = readSpool(dir);
+    const have = new Set(readFile(log).map((e) => e.id));
+    const fresh = new Set(s.events.filter((e) => !have.has(e.id)).map((e) => e.id));
+    return { folded: fresh.size, duplicates: s.events.length - fresh.size, unparsed: s.skipped, files: files.length };
+  }
+  const work = files.map((f) => {
+    if (/\.folding-\d+$/.test(f)) return f; // left by a fold that died: fold it now (ids dedupe)
+    const to = `${f}.folding-${process.pid}`;
+    fs.renameSync(f, to);
+    return to;
+  });
+  const events = [];
+  const bad = [];
+  for (const f of work) {
+    const r = readJsonlFile(f);
+    events.push(...r.events);
+    bad.push(...r.bad);
+  }
+  events.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
+  const folded = append(events.filter((e) => e && e.id), log);
+  if (bad.length) fs.writeFileSync(path.join(dir, `unparsed-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`), bad.join("\n") + "\n");
+  for (const f of work) fs.rmSync(f, { force: true });
+  return { folded, duplicates: events.length - folded, unparsed: bad.length, files: work.length };
 }
 
 export const ROOM_BY_ROLE = {
@@ -282,8 +327,16 @@ if (cmd === "add") {
   if (opt["body-file"] === "-") e.body = fs.readFileSync(0, "utf8");
   else if (opt["body-file"]) e.body = fs.readFileSync(opt["body-file"], "utf8");
   else if (opt.body) e.body = opt.body;
-  append([e]);
-  console.log(`added ${e.id}`);
+  if (opt.spool) {
+    // The hook's path (ruling H2): the spool only, deduped against the spool (hk- ids are fixed per tool_use_id).
+    // It never reads or writes events.jsonl, so a conflicted log cannot stop it and it costs nothing as the log grows.
+    const have = spoolFiles().flatMap((f) => readFile(f));
+    const n = append([e], spoolFileFor(new Date()), have);
+    console.log(n ? `spooled ${e.id}` : `already spooled ${e.id}`);
+  } else {
+    const n = append([e]);
+    console.log(n ? `added ${e.id}` : `already in the log ${e.id}`);
+  }
 } else if (cmd === "backfill") {
   const dir = opt.transcripts ?? path.join(os.homedir(), ".claude/projects");
   const types = opt.types ? String(opt.types).split(",") : null;
@@ -300,9 +353,12 @@ if (cmd === "add") {
     console.log(`backfill --dry: ${picked.length} new event(s) would be added (${scope}; ${all.length} seen in git + ${dir})`);
     for (const e of picked.slice(0, 50)) console.log(`  ${e.ts.slice(0, 16)} ${e.type.padEnd(8)} ${e.summary}`);
   } else console.log(`backfill: ${append(picked)} new event(s) (${scope}; ${all.length} seen)`);
+} else if (cmd === "fold") {
+  const r = fold({ dry: !!opt.dry });
+  console.log(`fold${opt.dry ? " --dry" : ""}: ${r.folded} event(s) ${opt.dry ? "would be " : ""}folded into ${rel(LOG)} from ${r.files} spool file(s) in ${spoolDir()}; ${r.duplicates} already in the log${r.unparsed ? `; ${r.unparsed} unparseable spool line(s)${opt.dry ? "" : " kept in unparsed-*.txt"}` : ""}`);
 } else if (cmd === "tail") {
   const n = Number(args[0] ?? 20);
   for (const e of readLog().sort((a, b) => a.ts.localeCompare(b.ts)).slice(-n)) console.log(`${e.ts.slice(0, 16).replace("T", " ")}  ${e.type.padEnd(9)} ${e.room.padEnd(15)} ${e.summary}`);
 } else if (isMain) {
-  console.log("usage: node tools/events.mjs add|backfill|tail  (see company/ops/events.md)");
+  console.log("usage: node tools/events.mjs add|backfill|fold|tail  (see company/ops/events.md)");
 }

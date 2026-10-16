@@ -7,10 +7,11 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { lastDispatchAge, lastDispatchLine } from "../../tools/lib/dispatch-age.mjs";
 import { transcriptEvents } from "../../tools/events.mjs";
+import { mainCheckout } from "../../tools/lib/events-spool.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const HOOK = path.join(ROOT, ".claude/hooks/agent-events.mjs");
@@ -18,19 +19,24 @@ const REAL_LOG = path.join(ROOT, "company/ops/events.jsonl");
 
 function sandbox() {
   const d = fs.mkdtempSync(path.join(os.tmpdir(), "agent-events-"));
-  return { dir: d, events: path.join(d, "events.jsonl"), log: path.join(d, "hook.log"), state: path.join(d, "state") };
+  return { dir: d, events: path.join(d, "events.jsonl"), spool: path.join(d, "spool"), log: path.join(d, "hook.log"), state: path.join(d, "state") };
 }
 function runHook(sb, payload, extraEnv = {}) {
   const input = typeof payload === "string" ? payload : JSON.stringify(payload);
   const r = (() => {
     try {
-      execFileSync("node", [HOOK], { input, env: { ...process.env, S3_EVENTS: sb.events, S3_HOOK_LOG: sb.log, S3_HOOK_STATE: sb.state, ...extraEnv }, encoding: "utf8" });
+      execFileSync("node", [HOOK], { input, env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool, S3_HOOK_LOG: sb.log, S3_HOOK_STATE: sb.state, ...extraEnv }, encoding: "utf8" });
       return 0;
     } catch (e) { return e.status; }
   })();
   return r;
 }
 const read = (f) => (fs.existsSync(f) ? fs.readFileSync(f, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : []);
+// Ruling H2: the hook writes only the spool. Every hook test reads the spool and checks the log was not created.
+const spooled = (sb) => {
+  assert.ok(!fs.existsSync(sb.events), "the hook never writes the event log (ruling H2)");
+  return fs.existsSync(sb.spool) ? fs.readdirSync(sb.spool).sort().flatMap((f) => read(path.join(sb.spool, f))) : [];
+};
 const pre = (prompt, extra = {}) => ({
   session_id: "s1", hook_event_name: "PreToolUse", tool_name: "Agent", tool_use_id: extra.id ?? "toolu_fixture_1",
   tool_input: { description: extra.description ?? "Agent-events hook (B1)", subagent_type: extra.role ?? "tools-lead", prompt },
@@ -42,7 +48,7 @@ test("PreToolUse with batch= writes one dispatch with role, batch= and the batch
   const sb = sandbox();
   const code = runHook(sb, pre("[project:maintenance] batch=company/ops/dispatch-requests/2026-10-16-r2-tools.md#B1 (your own batch). Do B1."));
   assert.equal(code, 0);
-  const evs = read(sb.events);
+  const evs = spooled(sb);
   assert.equal(evs.length, 1);
   const e = evs[0];
   assert.equal(e.type, "dispatch");
@@ -61,7 +67,7 @@ test("PreToolUse with batch= writes one dispatch with role, batch= and the batch
 test("a dispatch with no source is still written, marked source=none, chooser = the dispatcher", () => {
   const sb = sandbox();
   assert.equal(runHook(sb, pre("Please fix the thing.", { role: "general-purpose", id: "toolu_nosrc" })), 0);
-  const [e] = read(sb.events);
+  const [e] = spooled(sb);
   assert.equal(e.type, "dispatch");
   assert.equal(e.source, "none");
   assert.equal(e.chooser, "chief-of-staff");
@@ -73,7 +79,7 @@ test("explicit chooser=, SO- ids and §4 reasons are parsed", () => {
   runHook(sb, pre("batch=SO-10-1 run QA on 15 lessons chooser=evaluation-steward", { role: "qa-tester", id: "t-so" }));
   runHook(sb, pre("§4: SEV2 containment, the review server is down", { role: "principal-engineer-ops", id: "t-s4" }));
   runHook(sb, pre("Standing order SO-lifehacks-1 applies.", { role: "demo-builder", id: "t-so2" }));
-  const [so, s4, so2] = read(sb.events);
+  const [so, s4, so2] = spooled(sb);
   assert.equal(so.source, "batch=SO-10-1");
   assert.equal(so.chooser, "evaluation-steward");
   assert.equal(s4.source, "§4:SEV2 containment, the review server is down");
@@ -87,12 +93,12 @@ test("async launch writes no report (the dispatch stays open); SubagentStop then
   runHook(sb, pre("batch=company/ops/dispatch-requests/2026-10-16-r2-tools.md#B1"));
   const post = { hook_event_name: "PostToolUse", tool_name: "Agent", tool_use_id: "toolu_fixture_1", tool_input: pre("").tool_input, tool_response: { isAsync: true, status: "async_launched", agentId: "a0123456789abcdef" } };
   assert.equal(runHook(sb, post), 0);
-  assert.equal(read(sb.events).length, 1, "no report on async launch");
+  assert.equal(spooled(sb).length, 1, "no report on async launch");
   assert.ok(fs.existsSync(path.join(sb.state, "a0123456789abcdef.json")));
   const tr = path.join(sb.dir, "agent.jsonl");
   fs.writeFileSync(tr, JSON.stringify({ type: "assistant", message: { content: [{ type: "text", text: "Changed: tools/x.mjs\nAll tests pass." }] } }) + "\n");
   assert.equal(runHook(sb, { hook_event_name: "SubagentStop", agent_id: "a0123456789abcdef", agent_transcript_path: tr }), 0);
-  const [d, r] = read(sb.events);
+  const [d, r] = spooled(sb);
   assert.equal(r.type, "report");
   assert.equal(r.agent, d.agent);
   assert.equal(r.actor, "tools-lead");
@@ -104,7 +110,7 @@ test("a foreground (sync) PostToolUse is the report", () => {
   const sb = sandbox();
   runHook(sb, pre("batch=x#B2", { id: "t-sync" }));
   runHook(sb, { hook_event_name: "PostToolUse", tool_name: "Agent", tool_use_id: "t-sync", tool_input: pre("").tool_input, tool_response: { content: [{ type: "text", text: "Done: wrote the record." }] } });
-  const [d, r] = read(sb.events);
+  const [d, r] = spooled(sb);
   assert.equal(r.type, "report");
   assert.equal(r.agent, d.agent);
   assert.equal(r.state, "done");
@@ -115,10 +121,10 @@ test("never blocks: garbage stdin, other tools and a broken log path all exit 0"
   assert.equal(runHook(sb, "not json"), 0);
   assert.match(fs.readFileSync(sb.log, "utf8"), /payload: not json/);
   assert.equal(runHook(sb, { hook_event_name: "PreToolUse", tool_name: "Bash", tool_input: { command: "ls" } }), 0);
-  assert.equal(read(sb.events).length, 0);
+  assert.equal(spooled(sb).length, 0);
   const blocked = path.join(sb.dir, "file-not-dir");
   fs.writeFileSync(blocked, "");
-  assert.equal(runHook(sb, pre("batch=x#B1"), { S3_EVENTS: path.join(blocked, "events.jsonl") }), 0);
+  assert.equal(runHook(sb, pre("batch=x#B1"), { S3_SPOOL: path.join(blocked, "spool") }), 0);
   assert.match(fs.readFileSync(sb.log, "utf8"), /ENOTDIR|Command failed/);
 });
 
@@ -165,4 +171,118 @@ test("backfill reuses the hook's label and writes no second dispatch for a hooke
   assert.equal(hooked.filter((e) => e.type === "dispatch").length, 0);
   const rep = hooked.find((e) => e.type === "report");
   assert.equal(rep.agent, "Hooked run ·beef");
+});
+
+// ---- E1 (review 2026-10-16-agent-hooks-wiring-review.md) and the H2 spool (ruling 2026-10-16-cos-ruling-h2-hook-spool.md)
+const CONFLICT = "<<<<<<< Updated upstream";
+const ev = (id, ts, extra = {}) => ({ id, ts, type: "dispatch", room: "tools", actor: "chief-of-staff", summary: id, ...extra });
+const jsonl = (evs) => evs.map((e) => (typeof e === "string" ? e : JSON.stringify(e))).join("\n") + "\n";
+const EVENTS_CLI = path.join(ROOT, "tools/events.mjs");
+const cli = (sb, args) => {
+  try {
+    const out = execFileSync("node", [EVENTS_CLI, ...args], { env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool }, encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] });
+    return { code: 0, out, err: "" };
+  } catch (e) { return { code: e.status, out: String(e.stdout), err: String(e.stderr) }; }
+};
+const spawnCli = (sb, args) => {
+  const r = spawnSync("node", [EVENTS_CLI, ...args], { env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool }, encoding: "utf8" });
+  return { code: r.status, out: r.stdout, err: r.stderr };
+};
+
+test("E1: `add` on a log holding a conflict-marker line still appends, keeps the bad line, and reports 1 skipped", () => {
+  const sb = sandbox();
+  fs.writeFileSync(sb.events, jsonl([ev("a1", "2026-10-16T09:00:00Z"), CONFLICT, ev("a2", "2026-10-16T09:01:00Z")]));
+  const before = fs.readFileSync(sb.events, "utf8");
+  const r = spawnCli(sb, ["add", "--id=a3", "--type=note", "--room=tools", "--actor=tools-lead", "--summary=after the conflict"]);
+  assert.equal(r.code, 0, r.err);
+  assert.match(r.err, /events: 1 unreadable line\(s\) skipped/);
+  const after = fs.readFileSync(sb.events, "utf8");
+  assert.ok(after.startsWith(before), "append-only: the earlier lines, the bad one included, are untouched");
+  assert.equal(JSON.parse(after.trim().split("\n").at(-1)).id, "a3");
+  assert.match(spawnCli(sb, ["add", "--id=a1", "--type=note", "--room=tools", "--actor=tools-lead", "--summary=dup"]).out, /already in the log a1/, "dedupe still works past the bad line");
+});
+
+test("E1: a spool holding a `<<<<<<<` line still gets the hook's hk- event, and the hook log shows the skipped count", () => {
+  const sb = sandbox();
+  fs.mkdirSync(sb.spool, { recursive: true });
+  fs.writeFileSync(path.join(sb.spool, "2026-10-01.jsonl"), jsonl([CONFLICT]));
+  assert.equal(runHook(sb, pre("batch=x#B1", { id: "t-e1" })), 0);
+  const raw = fs.readdirSync(sb.spool).flatMap((f) => fs.readFileSync(path.join(sb.spool, f), "utf8").split("\n").filter(Boolean));
+  const hk = raw.filter((l) => l.startsWith("{")).map((l) => JSON.parse(l));
+  assert.equal(hk.length, 1);
+  assert.match(hk[0].id, /^hk-/);
+  assert.match(fs.readFileSync(sb.log, "utf8"), /1 unreadable line\(s\) skipped/);
+  assert.ok(!fs.existsSync(sb.events));
+});
+
+test("H2: the default spool is the main checkout's, found through the git common dir from a linked worktree", () => {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), "spool-git-"));
+  const main = path.join(d, "main");
+  const g = (cwd, ...a) => execFileSync("git", a, { cwd, encoding: "utf8", env: { ...process.env, GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" } });
+  fs.mkdirSync(main);
+  g(main, "init", "-q", "-b", "main");
+  g(main, "commit", "-q", "--allow-empty", "-m", "init");
+  g(main, "worktree", "add", "-q", path.join(d, "wt"), "-b", "wt");
+  assert.equal(mainCheckout(path.join(d, "wt")), main);
+  assert.equal(mainCheckout(main), main);
+  assert.equal(mainCheckout(path.join(d, "no-repo-here")), path.join(d, "no-repo-here"), "no .git: falls back to the given root");
+  fs.rmSync(d, { recursive: true, force: true });
+});
+
+test("H2: dispatch-check counts dispatches in the log plus the spool, deduped by id, and a spool report closes one", () => {
+  const sb = sandbox();
+  const now = Date.now();
+  const t = (min) => new Date(now - min * 60e3).toISOString();
+  fs.writeFileSync(sb.events, jsonl([ev("d-log", t(30), { agent: "A ·0001", subjects: ["tools-lead"] }), CONFLICT]));
+  fs.mkdirSync(sb.spool, { recursive: true });
+  fs.writeFileSync(path.join(sb.spool, "x.jsonl"), jsonl([
+    ev("d-log", t(30), { agent: "A ·0001", subjects: ["tools-lead"] }), // already folded copy: counted once
+    ev("hk-b", t(20), { agent: "B ·0002", subjects: ["demo-builder"] }),
+    ev("hk-c", t(10), { agent: "C ·0003", subjects: ["qa-tester"] }),
+    { id: "hk-c-r", ts: t(5), type: "report", room: "qa-lab", actor: "qa-tester", agent: "C ·0003", summary: "done" },
+  ]));
+  let out;
+  try { out = execFileSync("node", [path.join(ROOT, "tools/dispatch-check.mjs"), "--kind=other", "--running=0"], { env: { ...process.env, S3_EVENTS: sb.events, S3_SPOOL: sb.spool }, encoding: "utf8" }); }
+  catch (e) { out = String(e.stdout); }
+  assert.match(out, /in flight: 2 agents, 1 builders \(event log 2\/1/);
+  assert.match(out, /hook spool: 4 unfolded event\(s\)/);
+  assert.match(out, /warn event log has 1 unreadable line\(s\) \(log 1, spool 0\)/);
+});
+
+test("H2: `fold` moves the spool into the log in ts order, dedupes by id, keeps unparseable lines aside and empties the spool", () => {
+  const sb = sandbox();
+  fs.writeFileSync(sb.events, jsonl([ev("old", "2026-10-16T08:00:00Z")]));
+  const before = fs.readFileSync(sb.events, "utf8");
+  fs.mkdirSync(sb.spool, { recursive: true });
+  fs.writeFileSync(path.join(sb.spool, "2026-10-16.jsonl"), jsonl([ev("hk-2", "2026-10-16T10:00:00Z"), ev("old", "2026-10-16T08:00:00Z"), CONFLICT]));
+  fs.writeFileSync(path.join(sb.spool, "2026-10-15.jsonl.folding-999"), jsonl([ev("hk-1", "2026-10-15T23:00:00Z")])); // left by a dead fold
+  const dry = cli(sb, ["fold", "--dry"]);
+  assert.match(dry.out, /fold --dry: 2 event\(s\) would be folded/);
+  assert.equal(fs.readFileSync(sb.events, "utf8"), before, "--dry writes nothing");
+  const r = cli(sb, ["fold"]);
+  assert.equal(r.code, 0, r.err);
+  assert.match(r.out, /fold: 2 event\(s\) folded .* from 2 spool file\(s\).*; 1 already in the log; 1 unparseable spool line\(s\) kept/);
+  const after = fs.readFileSync(sb.events, "utf8");
+  assert.ok(after.startsWith(before), "append-only");
+  assert.deepEqual(read(sb.events).map((e) => e.id), ["old", "hk-1", "hk-2"]);
+  const left = fs.readdirSync(sb.spool);
+  assert.equal(left.filter((f) => /\.jsonl/.test(f)).length, 0, "spool emptied");
+  const unparsed = left.filter((f) => f.startsWith("unparsed-"));
+  assert.equal(unparsed.length, 1);
+  assert.equal(fs.readFileSync(path.join(sb.spool, unparsed[0]), "utf8"), CONFLICT + "\n");
+  assert.match(cli(sb, ["fold"]).out, /fold: 0 event\(s\) folded .* from 0 spool file\(s\)/, "a second fold is a no-op");
+});
+
+test("H2/H4: metrics read the spool beside a fixture log and print unreadable and unfolded counts", () => {
+  const sb = sandbox();
+  const now = new Date().toISOString();
+  fs.writeFileSync(sb.events, jsonl([ev("m1", now, { agent: "M ·0001", subjects: ["tools-lead"] }), CONFLICT]));
+  const spool = path.join(sb.dir, "events-spool"); // the S3_EVENTS sibling rule: no S3_SPOOL here
+  fs.mkdirSync(spool);
+  fs.writeFileSync(path.join(spool, "2026-10-16.jsonl"), jsonl([ev("hk-m2", now, { agent: "N ·0002", subjects: ["qa-tester"] })]));
+  const env = { ...process.env, S3_EVENTS: sb.events };
+  delete env.S3_SPOOL;
+  const out = execFileSync("node", [path.join(ROOT, "tools/metrics.mjs")], { env, encoding: "utf8" });
+  assert.match(out, /events\.jsonl: 1 unreadable line\(s\)/);
+  assert.match(out, /events spool: 1 unfolded event\(s\)/);
 });
