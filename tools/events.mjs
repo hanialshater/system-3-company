@@ -3,10 +3,13 @@
 // Schema and rooms: company/ops/events.md.
 //
 //   node tools/events.mjs add --type=T --room=R --actor=A --summary="…" [--agent=L] [--subjects=a,b]
-//                             [--refs=p1,p2] [--state=S] [--body="…" | --body-file=path]
+//                             [--refs=p1,p2] [--state=S] [--body="…" | --body-file=path | --body-file=- (stdin)]
+//                             [--id=I] [--source=S] [--chooser=C] [--tool-use-id=T]   (written by .claude/hooks/agent-events.mjs)
 //   node tools/events.mjs backfill [--transcripts=<dir>]   git history + session transcripts (idempotent)
 //            [--types=stopped,usage] [--since=<ISO>] [--dry]  only those types / from that time; --dry counts, writes nothing
 //   node tools/events.mjs tail [n]
+//
+// S3_EVENTS=<file> points every command at another log (tests, fixtures); default company/ops/events.jsonl.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -16,7 +19,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const LOG = path.join(ROOT, "company/ops/events.jsonl");
+const LOG = process.env.S3_EVENTS ? path.resolve(process.env.S3_EVENTS) : path.join(ROOT, "company/ops/events.jsonl");
 const hash = (s, n = 10) => crypto.createHash("sha1").update(s).digest("hex").slice(0, n);
 
 function readLog() {
@@ -159,7 +162,9 @@ const firstLine = (s, n = 140) => {
   return l.length > n ? l.slice(0, n - 1) + "…" : l;
 };
 
-export function transcriptEvents(dir) {
+// hooked: tool_use_id -> agent label for dispatches the Agent-tool hook already wrote (.claude/hooks/agent-events.mjs).
+// The backfill then reuses the hook's label (so reports join the hook's dispatch) and does not write a second dispatch.
+export function transcriptEvents(dir, { hooked = new Map() } = {}) {
   const files = [];
   const walk = (d) => {
     if (!fs.existsSync(d)) return;
@@ -207,6 +212,10 @@ export function transcriptEvents(dir) {
             const raw = text(c.content).match(/agentId: (a[0-9a-f]{8,})/)?.[1];
             if (!raw) continue;
             const d = dispatch[c.tool_use_id];
+            if (hooked.has(c.tool_use_id)) {
+              agents[raw] = { label: hooked.get(c.tool_use_id), role: d.role };
+              continue;
+            }
             agents[raw] = { label: `${d.desc} ·${hash(raw, 4)}`, role: d.role };
             events.push({ id: `tx-${hash(raw + "dispatch")}`, ts: d.ts, type: "dispatch", room: roomFor(d.role), actor: "chief-of-staff", agent: agents[raw].label, subjects: [d.role], summary: `Dispatch ${d.role}${d.model ? ` (${d.model})` : ""}: ${d.desc}`, body: d.prompt, state: "working" });
           }
@@ -261,13 +270,17 @@ const opt = Object.fromEntries(args.filter((a) => a.startsWith("--")).map((a) =>
 if (cmd === "add") {
   for (const k of ["type", "room", "actor", "summary"]) if (!opt[k]) throw new Error(`--${k} is required`);
   const ts = opt.ts ?? new Date().toISOString();
-  const e = { id: `ev-${hash(ts + opt.summary)}`, ts, type: opt.type, room: opt.room, actor: opt.actor, summary: opt.summary };
+  const e = { id: opt.id ? String(opt.id) : `ev-${hash(ts + opt.summary)}`, ts, type: opt.type, room: opt.room, actor: opt.actor, summary: opt.summary };
   if (opt.agent) e.agent = opt.agent;
   if (opt.subjects) e.subjects = String(opt.subjects).split(",");
   if (opt.refs) e.refs = String(opt.refs).split(",");
   if (opt.state) e.state = opt.state;
   if (opt.corrects) e.corrects = opt.corrects;
-  if (opt["body-file"]) e.body = fs.readFileSync(opt["body-file"], "utf8");
+  if (opt.source) e.source = String(opt.source);
+  if (opt.chooser) e.chooser = String(opt.chooser);
+  if (opt["tool-use-id"]) e.toolUseId = String(opt["tool-use-id"]);
+  if (opt["body-file"] === "-") e.body = fs.readFileSync(0, "utf8");
+  else if (opt["body-file"]) e.body = fs.readFileSync(opt["body-file"], "utf8");
   else if (opt.body) e.body = opt.body;
   append([e]);
   console.log(`added ${e.id}`);
@@ -276,8 +289,12 @@ if (cmd === "add") {
   const types = opt.types ? String(opt.types).split(",") : null;
   const since = opt.since ? new Date(String(opt.since)).toISOString() : null;
   const fromGit = !types || types.some((t) => !["dispatch", "report", "stopped", "usage", "note", "founder"].includes(t));
-  const all = [...(fromGit ? gitEvents() : []), ...transcriptEvents(dir)].sort((a, b) => a.ts.localeCompare(b.ts));
-  const picked = selectBackfill(all, { types, since, have: new Set(readLog().map((e) => e.id)) });
+  const log = readLog();
+  const hooked = new Map(log.filter((e) => e.type === "dispatch" && e.toolUseId && e.agent).map((e) => [e.toolUseId, e.agent]));
+  const hookReported = new Set(log.filter((e) => e.type === "report" && e.id.startsWith("hk-") && e.agent).map((e) => e.agent));
+  const all = [...(fromGit ? gitEvents() : []), ...transcriptEvents(dir, { hooked })].sort((a, b) => a.ts.localeCompare(b.ts));
+  // A run whose report the hook already wrote gets no second report from the transcript.
+  const picked = selectBackfill(all, { types, since, have: new Set(log.map((e) => e.id)) }).filter((e) => !(e.type === "report" && hookReported.has(e.agent)));
   const scope = `${types ? types.join(",") : "all types"}${since ? ` since ${since}` : ""}`;
   if (opt.dry) {
     console.log(`backfill --dry: ${picked.length} new event(s) would be added (${scope}; ${all.length} seen in git + ${dir})`);

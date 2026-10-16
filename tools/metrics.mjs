@@ -4,6 +4,7 @@
 //
 //   npm run metrics            human-readable
 //   npm run metrics -- --md    markdown tables (paste into WBR / retro records)
+//   S3_EVENTS=<file>           read another event log (tests, fixtures)
 //
 // Definitions live in company/ops/metrics.md. A number here is evidence about the company,
 // not about learning: no metric below says anyone learned anything.
@@ -99,9 +100,12 @@ const ritualCount = recs.reduce((m, f) => {
 // roles nobody uses (the design roles sat at 0 dispatches for ~500 lessons) and roles that keep failing.
 const { roles } = await import("./org/roles.mjs");
 const { dedupeUsage } = await import("./lib/usage.mjs");
-const rawEvs = fs.existsSync(rel("company/ops/events.jsonl"))
-  ? fs.readFileSync(rel("company/ops/events.jsonl"), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l))
-  : [];
+const { readEvents, lastDispatchAge, lastDispatchLine } = await import("./lib/dispatch-age.mjs");
+const rawEvs = readEvents();
+// W-1195 / retro 2026-10-16 C1: how old the newest dispatch event is. Over 6 h, "never dispatched" is STALE:
+// it may list roles that ran but were not recorded.
+const dispatchAge = lastDispatchAge(rawEvs);
+const staleTag = dispatchAge.stale ? "STALE " : "";
 // A resumed run logs `usage` again with cumulative tokens: count only the max record per run (W-941, tools/lib/usage.mjs).
 const keptUsage = new Set(dedupeUsage(rawEvs.filter((e) => e.type === "usage")));
 const evs = rawEvs.filter((e) => e.type !== "usage" || keptUsage.has(e));
@@ -184,7 +188,8 @@ if (md) {
   console.log(`\n### Agents\n\n| Metric | Value |\n|---|---|`);
   console.log(`| Agent runs | ${agentRows.reduce((n, r) => n + r.dispatched, 0)} dispatched · ${seen.done.size} reported · ${seen.stopped.size} stopped at least once (${stopRate}%) |`);
   console.log(`| Tokens (recorded runs) | ${Math.round(totalTokens / 1e6 * 10) / 10}M |`);
-  console.log(`| Roles never dispatched | ${neverDispatched.length} of ${roster.length}${neverDispatched.length ? ": " + neverDispatched.slice(0, 40).join(", ") + (neverDispatched.length > 40 ? ", …" : "") : ""} |`);
+  console.log(`| Last dispatch event | ${lastDispatchLine(dispatchAge).replace(/^last dispatch event: /, "")} |`);
+  console.log(`| ${staleTag}Roles never dispatched | ${neverDispatched.length} of ${roster.length}${neverDispatched.length ? ": " + neverDispatched.slice(0, 40).join(", ") + (neverDispatched.length > 40 ? ", …" : "") : ""} |`);
   console.log(`| Rework | ${reworked} of ${live.length} lessons revised at least once (${pct(reworked, live.length)}) |`);
   console.log(`| First-review launch rate by builder model (EXP-003) | opus ${byModel.opus.launch}/${byModel.opus.reviewed} (${pct(byModel.opus.launch, byModel.opus.reviewed)}) · sonnet ${byModel.sonnet.launch}/${byModel.sonnet.reviewed} (${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}) |`);
   console.log(`\n| Role | Dispatched | Reported | Stopped | Resumed | Tokens/run | Median min |\n|---|---|---|---|---|---|---|`);
@@ -207,7 +212,8 @@ if (md) {
   console.log(`Board   ${open.length} open; oldest ${open.length ? Math.max(...open.map(age)) : 0} days; by owner: ${Object.entries(open.reduce((m, i) => ((m[i.owner] = (m[i.owner] ?? 0) + 1), m), {})).map(([k, v]) => `${k} ${v}`).join(", ")}`);
   console.log(`Rituals ${Object.entries(ritualCount).map(([k, v]) => `${k} ${v}`).join(" · ") || "none run"}`);
   console.log(`Agents  ${agentRows.reduce((n, r) => n + r.dispatched, 0)} runs · ${seen.stopped.size} stopped (${stopRate}%) · ${Math.round(totalTokens / 1e5) / 10}M tokens · rework ${pct(reworked, live.length)} · launch-on-first-review opus ${pct(byModel.opus.launch, byModel.opus.reviewed)} vs sonnet ${pct(byModel.sonnet.launch, byModel.sonnet.reviewed)}`);
-  console.log(`        never dispatched (${neverDispatched.length}/${roster.length}): ${neverDispatched.join(", ") || "none"}`);
+  console.log(`        ${lastDispatchLine(dispatchAge)}`);
+  console.log(`        ${staleTag}never dispatched (${neverDispatched.length}/${roster.length}): ${neverDispatched.join(", ") || "none"}`);
   for (const r of agentRows.slice(0, 12)) console.log(`        ${r.role.padEnd(22)} ${String(r.dispatched).padStart(3)} runs  ${String(r.stopped).padStart(2)} stopped  ${String(r.perRun || "—").padStart(4)}k/run  ${String(r.medMin || "—").padStart(3)} min`);
   console.log(`\nDomain        lessons published reviewed fatal`);
   for (const d of perDomain) console.log(`${d.id.padEnd(13)} ${String(d.lessons).padStart(7)} ${String(d.published).padStart(9)} ${String(d.reviewed).padStart(8)} ${String(d.fatal).padStart(5)}`);
