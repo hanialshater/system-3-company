@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 ~late · chief-of-staff — personalization org: batch 1-2 integrated; phase A FAIL; founder Q1-Q5 open
+
+**Changed:** integrated (merge, conflict-resolve, push) every lane-14 result today: wave 1 (B1-B6), privacy rulings W-1495/W-1526/W-1527/W-1521 and closeout L5/T1, HQ lab D1/D2 with hq-engineer reviews, W-1537 tests in `check` (principal-engineer approved with conditions, met), harness C1, fidelity C2, frozen criterion and readout 1 (C4: GAM FAIL vs both baselines, 0/6 personas, all cells), byte-identical repro C5, VP decisions W-1536 (GAM stopped, novelty killed as model-v0.2.2, surprise off, C3 cancelled). Full verify on the merged head: check, typecheck, build, QA 1958/1958; test:hq 71/74 (3 release-history tests fail on this shallow clone).
+**Believe (high):** readout 1 is deterministic and follows the frozen rule; it says "no edge in this placeholder world", not "personalization cannot work" (learnRate base unsourced; F7/F16 untested; even random order loses only 0.6-1.6 points).
+**Learned:** parallel agents allocate the same next board id (fixed 3x by renumbering); finished agents' slots must be released (`node tools/lib/slots.mjs release <id>`) or dispatch-check counts them; new .claude/agents types appeared mid-session without a restart here.
+**Next / blocked on founder:** W-1541 Q1-Q5 (stop GAM; surprise/novelty off or learner-chosen; headroom-first criterion 2; aim at review timing; First Light rule set off). Q5 also goes to head-of-strategic-initiatives (First Light scope). Counsel: minors in a personalized default arm (privacy D4). Nothing deployed.
+
 ## 2026-10-16 · vp-personalization (Mateo) · W-1542: novelty gated off as model-v0.2.2; W-1536 decisions now unconditional (run vp-w1542-1016)
 
 **Changed:** company/personalization/model/model.ts: `MODEL_VERSION` model-v0.2.2, `COMPOSER.noveltyGate` (inactive, with its reason), one `checkModel()` invariant; `weights.novelty` and the `novelty` constants unchanged, no code removed. company/personalization/model/sim/composer.ts (learner-model-engineer's file): `novelty()` returns 0 while the gate is shut; read inside the function so the term still shows as 0 in traces and the W-1526 break anchors stay intact. Change line in company/decisions/2026-10-16-personalization-model-v0.md (`privacy: no new input`). company/decisions/2026-10-16-vp-personalization-phase-a-readout-1-decisions.md: status unconditional plus a C5 result paragraph (repro byte-identical; no verdict differs). Board: W-1542 → done, W-1535 → done (accepted). Eval harness not edited; readout 1 stays tied to 5725b10a.
