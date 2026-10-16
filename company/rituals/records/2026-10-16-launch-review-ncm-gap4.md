@@ -30,7 +30,7 @@ If a strand manager declines, objects, or asks for a change first, that lesson's
 | probability/same-picture-two-histories | v2 | cm-probability-statistics | W-1574 | *open* | |
 | economics/price-tag-or-auction | v2 | cm-economics-markets | W-1575 (and W-507 for #27) | *open* | |
 | economics/worth-something-alone | v2 | cm-economics-markets | W-1575 | *open* | |
-| math/the-swap-that-goes-in-circles | v1 (with fc8c53b8) | cm-math-discrete | W-1595 | *open* | |
+| math/the-swap-that-goes-in-circles | v1 (with fc8c53b8) | cm-math-discrete | W-1595 | **yes** (version stays v1; the prerequisite and tag change below is metadata, no claim text, question or version changed) | cm-math-discrete (Chiara), 2026-10-16: board W-1595; metadata in `src/demos/math/the-swap-that-goes-in-circles/meta.json` and `content/curriculum/math.json`. The status flip to `review` is the demo-builder's (W-1597). |
 
 ## Readings applied
 
