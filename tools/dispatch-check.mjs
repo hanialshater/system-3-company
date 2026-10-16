@@ -15,7 +15,7 @@
 //        The event log is also read; the larger number wins, so an unlogged agent cannot hide.
 //
 // Rules (each FAIL names the rule):
-//   C1  at most 8 agents in flight: a dispatch that would make 9 fails (every kind).
+//   C1  at most 14 agents in flight: a dispatch that would make 15 fails (every kind). Founder 2026-10-16: 14 agents, 3 builders.
 //   C2  at most 3 builders in flight: a build/wave dispatch that would make 4 fails.
 //   C3  builders work in a worktree: build/wave needs --worktree=<path> that is a git worktree, not the main checkout.
 //   C4  host guard: build/wave fails when the 1-minute load is above 2 x CPUs or / has under 10 GB free;
@@ -42,7 +42,7 @@ if (!KINDS.includes(kind)) {
   console.error(`usage: node tools/dispatch-check.mjs --kind=<${KINDS.join("|")}> [--running=N] [--builders=N] [--worktree=PATH]`);
   process.exit(2);
 }
-const MAX_AGENTS = 8, MAX_BUILDERS = 3, STALE_H = 6, INTAKE_FROM = "2026-10-15";
+const MAX_AGENTS = 14, MAX_BUILDERS = 3, STALE_H = 6, INTAKE_FROM = "2026-10-15";
 const builds = kind === "build" || kind === "wave";
 const fails = [], warns = [], info = [];
 
