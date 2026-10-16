@@ -17807,14 +17807,17 @@
       "id": "W-1521",
       "title": "settings schema diff for privacy-reviewer's read (personalization_on, subjects[], less_of[]; SS1-SS5; data-inventory rows; retention, deletion, export; D20 stays unstored). Waits for founder approval of card N6 learner-data-engineer (company/ceo-office/2026-10-16-personalization-org-proposal.md); on approval re-own to learner-data-engineer and dispatch the same day. Replaces item 3 of company/reviews/_privacy/2026-10-16-personalization-model-inputs.md section 8",
       "owner": "learner-data-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/data/2026-10-16-settings-schema-note.md",
+        "company/personalization/data/00N_settings.up.sql",
+        "company/personalization/data/00N_settings.down.sql"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned personalization-lead → learner-data-engineer (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 re-owned personalization-lead → learner-data-engineer (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9). | 2026-10-16 to review (learner-data-engineer, run lde-b4-1016): draft 00N_settings up/down + note on branch perso-settings-w1521 (from main: accounts branch not fetchable). Reviewers: privacy-reviewer (read, SS1-SS5, inventory rows D21/D22, personalization_on default question with vp-personalization), principal-engineer (tier 2 schema, table name), backend-engineer (migration number/order, FK target, runner, preview down test, delete/export patch in note section 6). Nothing built or applied."
     },
     {
       "id": "W-1522",
