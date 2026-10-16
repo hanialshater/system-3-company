@@ -17,3 +17,14 @@ Run: SO-10-3 batch=SO-10-3 [project:wave-j], board W-1326, r15. Walkthrough `npm
 5. **Phone legibility.** In the reveal frame the grids shrink and the red/black counts under them ("false alarms 10/50 = 20%", "10/50 = 20%") look near or under the 10 px floor in the screenshot. I cannot measure computed font size from the image: a question for qa-tester, not a finding.
 
 Verdict reason: launch: no finding blocks a first-time learner; the term drift to "calibrated" (1), the stale "B at 32" status line (3) and the tilted predict stage (2) are notes for cm-ai.
+
+## After reading build.md / meta.json
+
+Read after the findings above were committed (9be5921): meta.json `learner`, `objective` and `claims` only. build.md, builder notes and rulings not read.
+
+- **Boundary.** meta's learner already knows "a calibrated score means '80% means 80%'" (prerequisite say-seventy-mean-it). For that learner finding 1 (the word "calibrated" undefined) is weaker: the word is familiar. It still stands for a learner arriving from the feed without the prerequisite; the hook/question/reveal use "accurate / true / honest" and only the last sentence says "calibrated".
+- **c1 address not observed.** c1 cites a stage message before outcomes: "Ringed: 80% reoffend. Others: 20%. Same in A and B." My walk went predict → "Show outcomes" at once and saw "Make a prediction to start." then "Compare the false alarms."; the cited line never appeared in the frames. Probably it shows between commit and "Show outcomes" (no frame there). Not contradicted, not confirmed: for the fact-checker.
+- **c3 trace vs finding 3.** c3 cites a stage trace "B at 32: false alarms 6%, misses 50%." / "B at 50: both errors 20%.". With the slider at 50 the walk showed only the "B at 32" line; the "B at 50" line did not render in that frame. Either the trace lags one step, or it needs a stop at a value the walkthrough's jump (32 → 50) skipped. That sharpens finding 3: if the line at 50 is missing for a real learner, the stage contradicts itself at the moment the lesson makes its point. I keep the verdict at launch because the grid readouts under it are right and the reveal restates both states, but this needs a check by qa-tester under a real drag (board item) and a fix by cm-ai if it reproduces.
+- **c4** (the general impossibility sentence) is on the ledger as unverified: good, finding 4's concern is recorded where the fact-checker will see it.
+- **c6** says the slider has stops 23, 32, 41, 50; the walk saw only 32 and 50. Not a finding.
+- **Objective vs experience.** The objective's two halves (more of A's innocents flagged; errors match only when base rates match) are both on screen in this walk. Whether a learner can then explain them is not something this review can show.

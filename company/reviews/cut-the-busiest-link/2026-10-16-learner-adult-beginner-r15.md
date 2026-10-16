@@ -17,3 +17,13 @@ Run: SO-10-3 batch=SO-10-3 [project:wave-j], board W-1326, r15. Walkthrough `npm
 5. **Small point.** After Reset (step 2) the footer still shows the first-cut result. Harmless as a memo, but it describes a state the stage no longer shows.
 
 Verdict reason: launch: no finding blocks a first-time learner; the missing link-number caption on the locked stage (1) and the unexplained in-group change in the reveal (4) are notes for cm-cs.
+
+## After reading build.md / meta.json
+
+Read after the findings above were committed (9be5921): meta.json `learner`, `objective` and `claims` only. build.md, builder notes and rulings not read.
+
+- **Boundary.** meta's learner already knows shortest paths and that a broker between groups carries many of them. For that learner finding 2 is stronger: 24 is the expected answer, and the prediction does not test either `doesNotKnow` item (recount after every cut; cut-and-recount finds communities). Those are carried by explore and reveal instead. Note for cm-cs, not blocking.
+- **c5 address.** c5 says "Number on a link: shortest paths it carries." shows before any cut. In the walk it showed after Reset, not on the locked predict frame ("Make a prediction to start."). It probably also shows between commit and the first cut (no frame there). So finding 1 narrows to: the learner answers the question before the stage defines its numbers. Unchanged as a note.
+- **c2 vs finding 4.** The claim records the in-group shifts (0–3 5 → 12.5 when 5–6 is cut); the stage footer shows it; the reveal states only "links inside the groups changed too". The objective asks the learner to explain that loads inside the groups shift, and the reveal gives no reason. That is the gap most likely to matter for the objective. Note for cm-cs.
+- **c4** (Girvan–Newman description) is unverified on the ledger; the wording on screen matches the claim text.
+- **Objective vs experience.** Every element of the objective appears on screen in this walk. This review cannot show that a learner can explain it.

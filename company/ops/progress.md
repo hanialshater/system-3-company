@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 (13:45Z): learner-evaluator — SO-10-3 batch=SO-10-3 [project:wave-j], W-1326 r15 re-walk
+- **Changed:** r15 learner records for calibrated-but-unequal-alarms v2 and cut-the-busiest-link v2 (both **launch**), walked on the shared review server built from 3bf1d341adc9871e1036cfecef083e093660732c (SHA unchanged start to end; R3a exit 0 for both). Findings committed before meta.json was read (9be5921); comparison section, evidence.simulatedLearner links and board after. W-1326 done; W-1367 (qa-tester: does the 'B at 50' trace line render under a real drag), W-1368 (cm-ai notes), W-1369 (cm-cs notes).
+- **Believe (medium):** neither lesson has a finding that blocks a first-time learner. The likeliest real defect is the calibrated stage trace staying at 'B at 32' with the slider at 50 (could be a walkthrough-jump artifact). Simulated learner only: not evidence that anyone learned.
+- **Next:** qa-tester W-1367; CMs decide on the notes; fact-checker still has c1-c4/c6 (calibrated) and c4-c5 (cut) unverified.
+- **Blocked:** nothing.
+
 ## 2026-10-16 (13:05Z): chief-of-staff — rounds 3-4; shared review server; F-31 applied
 - **Changed:** F-31 applied (hooks wired in .claude/settings.json; main checkout core.hooksPath = tools/git-hooks; W2 checks pass; H1 not observable from this session because it started in /home/user — repo-dir sessions load the hooks). Shared review server on :3591 (built by me per main SHA; now 5b2fee7, `.next-review3/BUILT_FROM`); steward rulings R3 (shared-server QA is not a build) and R3a (eligibility by `company/reviews/org/2026-10-16-r3a-scope/check.sh`). Production builds share the 3-builder cap (OOM retro). Merged today since 11:30Z: brief 3 v2, brief 4 saved-or-die, briefs 23/24, behavioral pilot revisions, lhfix-r2 (33 LH lessons), beacon allow-list (E1-E4), guard fixes M1/M2 + G5, slot ledger (warn), rome v4 to review, H2 spool + fold lock.
 - **Review throughput:** independent QA on the shared server: Wave J 20/20, History 10/10; learner: Wave J 5 launch/2 revise + 6/8 earlier, History 3 launch, behavioral 2 revise; fact-check: physics 17/17, History 9/11 (+'young men' held), behavioral 15/19 (saved-or-die c2/c3 disputed: equal-EV tie).
