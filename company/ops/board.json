@@ -8870,10 +8870,11 @@
       "id": "W-646",
       "title": "Wave J physics: re-run tools/reveal-fit.mjs and computer-use QA for tug-of-war-scale, drop-on-the-train, duck-rides-the-wave, snap-the-magnet, coat-on-the-ice once :3530 renders a lesson in under 15 s (2026-10-14 runs all timed out at page.goto; builder probe in each build.md). Then draft -> review if QA passes.",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-647",
@@ -9464,10 +9465,11 @@
       "id": "W-709",
       "title": "Held source claims, wave-J physics: duck-rides-the-wave c5 (breaking waves rush forward near shore) and snap-the-magnet c2 (atomic magnets and domains) have no openable source (Kundu, Griffiths blocked). Supply an openable source or cut the sentence (cm-physics decides any cut); then re-check by the fact-checker",
       "owner": "demo-builder",
-      "state": "backlog",
+      "state": "done",
       "domain": "physics",
       "created": "2026-10-14",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-710",
@@ -14881,7 +14883,7 @@
       "id": "W-1278",
       "title": "F5 (not gating): events.mjs fold and events-spool readSpool crash 'Maximum call stack size exceeded' above ~120k events per spool file (push(...spread) at events.mjs 194/195/218, events-spool.mjs 75); replace spreads with loops + 200k-line test; send commit to PE-ops tools-lead",
       "owner": "chief-of-staff",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15178,7 +15180,7 @@
       "id": "W-1310",
       "title": "F5 merge gates (PE-ops 9ca8d06): G5-a put the 200k fold test behind S3_SLOW_TESTS=1; G5-b fix the 'if (!ok) process.exit(3)' assumption in fold-lock F1+F2 test, re-time merged test:dispatch 3x and record; G5-c (before next ops review) r2-coe test reads via readJsonlFile and stops pinning exactly three SEV1/2",
       "owner": "tools-lead",
-      "state": "review",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15473,6 +15475,60 @@
       "id": "W-1343",
       "title": "Brief 11 reveal change ('Per million people, about 36 times fewer') + brief 12 rename + brief 4 name: cultural-reviewer confirm (History lane 10 asks d/e); FC P5 first",
       "owner": "cultural-reviewer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1344",
+      "title": "batch-by-setup c1 DISPUTED (FC 61): keyed '2 minutes' is finish-time saving but stage shows only total waiting (21→17 = 4). Ask about the stage's measure or add finish times",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1345",
+      "title": "keep-the-error-feedback c3/c4 DISPUTED (FC 61): chips say 'First try' but report stipulated try 3; label 'Try 3, count only'/'Try 3, marked' in RetrievalLesson.tsx FeedbackStage and fix c4",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1346",
+      "title": "Rulings (FC 61): drying-room-water-load c6 — are PMC papers enough for 'housing or public-health body'? And W-1108: may a separate fact-checker instance verify claims an earlier FC transcribed (lh-pay-for-used-quantity c6, lh-split-order-fixed-fee c5/c6) in an SO run?",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1347",
+      "title": "FC 61 notes: reverse-the-flashcard title says perro/dog but stage cards are dax/wug/zib; towel-thickness 'cm⁻¹' on trust sheet c3; lh-fixed-energy-charge reveal never shows the 20 kWh bill; drying-room '1 shirts'; square-bow home-lessons.ts source still cites Fieggen",
+      "owner": "cm-lifehacks",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1348",
+      "title": "tote-balance-sides c1: change support type to derivation (FC 54 fix) so it verifies",
+      "owner": "demo-builder",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1349",
+      "title": "G5-d: npm run test:dispatch is 184-224 s (line 60 s) due to slots.test.mjs (99de2a4); make spawns cheaper or move slow slot cases behind S3_SLOW_TESTS, re-time x3; PE-ops revokes the G5 verify line at next ops review if still over",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
