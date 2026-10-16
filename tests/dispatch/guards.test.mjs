@@ -2,7 +2,7 @@
 // tools/commit-own.sh, tools/git-hooks/pre-commit and .claude/hooks/no-pkill.mjs.
 // Every git test runs in a throwaway repo under os.tmpdir(); nothing is installed in this checkout.
 // Run: npm run test:dispatch
-import { test } from "node:test";
+import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
@@ -15,6 +15,17 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const COMMIT_OWN = path.join(ROOT, "tools/commit-own.sh");
 const HOOKS = path.join(ROOT, "tools/git-hooks");
 const NO_PKILL = path.join(ROOT, ".claude/hooks/no-pkill.mjs");
+
+// Every temp dir this file makes, removed when the file's tests end (a run makes about 19, ~4 MB).
+const TEMP = [];
+const mkTemp = (prefix) => {
+  const d = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  TEMP.push(d);
+  return d;
+};
+after(() => {
+  for (const d of TEMP) fs.rmSync(d, { recursive: true, force: true });
+});
 
 // A clean env: no inherited S3_COMMIT_PATHS, git identity fixed, no global hooks path.
 const ENV = Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith("S3_") && !k.startsWith("GIT_")));
@@ -38,7 +49,7 @@ const staged = (dir) => git(dir, "diff", "--cached", "--name-only").split("\n").
 
 // A temp repo with mine.txt and theirs.txt committed. hooks: install tools/git-hooks via core.hooksPath (temp repo only).
 function repo({ hooks = false } = {}) {
-  const d = fs.mkdtempSync(path.join(os.tmpdir(), "guards-"));
+  const d = mkTemp("guards-");
   git(d, "init", "-q", "-b", "main");
   git(d, "config", "user.name", "test");
   git(d, "config", "user.email", "t@t");
@@ -181,7 +192,7 @@ test("commit-own.sh commits a merge with an extra regenerated path, and refuses 
 
 test("pre-commit passes a bare commit in a linked worktree and an empty commit in the main checkout", () => {
   const d = repo({ hooks: true });
-  const wt = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "guards-wt-")), "wt");
+  const wt = path.join(mkTemp("guards-wt-"), "wt");
   git(d, "worktree", "add", "-q", "-b", "wt", wt);
   write(wt, "mine.txt", "wt\n");
   write(wt, "theirs.txt", "wt\n");

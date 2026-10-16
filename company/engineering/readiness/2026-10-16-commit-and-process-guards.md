@@ -150,8 +150,9 @@ and `git commit -m "pkill -f note" -- <path>` is not.
    hook spawns one node process per Bash call: **172 ms average** over 10 runs on this host today (mostly node
    start-up), added to every Bash call of every agent once wired, beside the constitution hook's own spawn. If that
    is too much, the fix is to merge both Bash checks into one process, which needs an amendment because
-   protect-constitution.mjs is protected. No disk beyond temp repos in `os.tmpdir()` during tests (left for the OS to clear, about
-   a few KB each). No CI minutes beyond the existing test:dispatch run. No deploys.
+   protect-constitution.mjs is protected. Disk: one test run makes about 19 temp repos in `os.tmpdir()` (~4 MB) and removes
+   them when the file ends (checked: 0 `guards-*` dirs left after a run). No CI minutes (CI does not run
+   test:dispatch). No deploys.
 5. **Security.** No routes, no secrets, no network. The pre-commit hook reads env (`S3_COMMIT_PATHS`,
    `GIT_INDEX_FILE`) and git state; it writes nothing. no-pkill reads stdin and writes stderr only. Neither adds a
    capability: both only refuse.
