@@ -1,0 +1,131 @@
+{
+  "slug": "bk-emyth-owner-bottleneck",
+  "title": "Who handles the repeat job?",
+  "hook": "A toy owner delegates repeated work. What happens to the new handoff station?",
+  "domain": "books",
+  "concept": "book-emyth-owner-bottleneck",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Calculate the new constraint after work is redistributed away from an owner."
+    ]
+  },
+  "misconception": "Removing owner work guarantees that the delegated step has unlimited capacity.",
+  "objective": "Calculate the new constraint after work is redistributed away from an owner.",
+  "claims": [
+    {
+      "id": "books.bk-emyth-owner-bottleneck.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The E-Myth Revisited, by Michael E. Gerber, candidate publication year 1995.",
+      "support": "source",
+      "source": "Michael E. Gerber, The E-Myth Revisited (1995); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-emyth-owner-bottleneck.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The E-Myth Revisited distinguishes building repeatable operating systems from relying on the owner to do every job.",
+      "support": "source",
+      "source": "Michael E. Gerber, The E-Myth Revisited (1995); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-emyth-owner-bottleneck.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated serial line: A capacities [3,10,10] give min(3,10,10)=3 jobs/hour; B capacities [6,5,10] give min(6,5,10)=5 jobs/hour. Every job passes all three stations. In B they handle 6, 5 and 10 jobs/hour. How many completed jobs per hour can B sustain? Every job passes all three stations. A completes {A} jobs/hour; B completes {B}. In B, the owner can pass six per hour, but the handoff handles only five. More than five cannot finish. Real delegation outcomes are not estimated.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response. Builder clarification responding to independent learner review 2026-10-16-learner-seven-v3.md: completed output means jobs passing every station; no empirical delegation claim.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-emyth-owner-bottleneck.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy owner handles 8 jobs/hour, the delegated handoff handles 6, and finishing handles 12. Steady output? Every completed job needs the handoff, so min(8,6,12) = 6 jobs/hour.",
+      "support": "derivation",
+      "source": "Original transfer toy, flow, inputs [8, 6, 12], output 6; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-emyth-owner-bottleneck.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy owner handles 8 jobs/hour, the delegated handoff handles 6, and finishing handles 12. Steady output?",
+    "options": [
+      "8.00",
+      "6.00",
+      "12.00",
+      "26.00"
+    ],
+    "answer": 1,
+    "why": "Every completed job needs the handoff, so min(8,6,12) = 6 jobs/hour."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 4,
+  "curriculum": {
+    "primary": "books:book-emyth-owner-bottleneck",
+    "also": [
+      "books:goal-bottleneck-sets-pace"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "emyth-owner-1995",
+        "note": "Michael E. Gerber, The E-Myth Revisited, 1995 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "flow",
+      "emyth-owner-bottleneck"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

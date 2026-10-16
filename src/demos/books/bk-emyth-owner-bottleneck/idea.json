@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The E-Myth Revisited",
+    "author": "Michael E. Gerber",
+    "year": 1995,
+    "work": "emyth-owner-1995"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Every job passes all three stations. In B they handle 6, 5 and 10 jobs/hour. How many completed jobs per hour can B sustain?",
+    "options": [
+      "6.00",
+      "10.00",
+      "5.00",
+      "3.00"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases. Watch which station limits completed jobs per hour.",
+  "scenarios": [
+    {
+      "label": "Owner does repeats",
+      "values": [
+        3,
+        10,
+        10
+      ]
+    },
+    {
+      "label": "Delegated repeats",
+      "values": [
+        6,
+        5,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Owner",
+    "Handoff",
+    "Finish"
+  ],
+  "unit": "jobs/hour",
+  "bookIdea": "The E-Myth Revisited distinguishes building repeatable operating systems from relying on the owner to do every job.",
+  "modelBoundary": "Every job passes all three stations. A completes {A} jobs/hour; B completes {B}. In B, the owner can pass six per hour, but the handoff handles only five. More than five cannot finish. Real delegation outcomes are not estimated.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

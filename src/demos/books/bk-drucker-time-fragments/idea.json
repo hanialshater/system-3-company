@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Effective Executive",
+    "author": "Peter F. Drucker",
+    "year": 1967,
+    "work": "drucker-time-1967"
+  },
+  "family": "intervals",
+  "predict": {
+    "question": "B provides forty minutes for indivisible twenty-minute tasks with no overhead. What is B’s toy result?",
+    "options": [
+      "40.00",
+      "20.00",
+      "39.00",
+      "19.00"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "39 minutes",
+      "values": [
+        39,
+        20,
+        0
+      ]
+    },
+    {
+      "label": "40 minutes",
+      "values": [
+        40,
+        20,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Work",
+    "Overhead"
+  ],
+  "unit": "work minutes",
+  "bookIdea": "The Effective Executive treats recording and consolidating time as a prerequisite for choosing what deserves it.",
+  "modelBoundary": "A completes {A} work minutes; B completes {B}. One extra available minute makes a second whole 20-minute task fit instead of leaving 19 unusable minutes. Indivisible toy tasks only; unfinished chunks contribute no output and concentration is not modeled.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

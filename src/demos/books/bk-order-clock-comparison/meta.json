@@ -1,0 +1,115 @@
+{
+  "slug": "bk-order-clock-comparison",
+  "title": "A faster clock accumulates a gap",
+  "hook": "Start two toy clocks together and prescribe different reading rates.",
+  "domain": "books",
+  "concept": "book-order-clock-comparison",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish an initial offset from a gap accumulated by different rates."
+    ]
+  },
+  "misconception": "Starting together forces clocks to continue agreeing regardless of rates.",
+  "objective": "Distinguish an initial offset from a gap accumulated by different rates.",
+  "claims": [
+    {
+      "id": "books.bk-order-clock-comparison.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Elapsed time can differ between clocks in different physical conditions.",
+      "status": "unverified",
+      "source": "{\"work\":\"order-clock-2018\",\"edition\":2018,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-order-clock-comparison.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Carlo Rovelli, The Order of Time (2018)",
+      "status": "unverified",
+      "source": "{\"work\":\"order-clock-2018\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-order-clock-comparison.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The prescribed rates give {A} and {B}. Matching initial readings do not prevent an accumulating gap when rates differ.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=max(0,x+in-out); fixed flows\",\"inputs\":[[0,1,0,10],[0,1.2,0,10]],\"outputs\":[10,11.999999999999998]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-order-clock-comparison.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This integrates prescribed readings only. No relativity equation, gravitational effect or clock measurement is supplied.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Clocks start at zero and advance 2 and 3 ticks per reference step. After four steps, what is their gap?",
+    "options": [
+      "1",
+      "4",
+      "12"
+    ],
+    "answer": 1,
+    "why": "Readings are 8 and 12; their gap is 4."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-order-clock-comparison",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "order-clock-2018",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "feedback"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

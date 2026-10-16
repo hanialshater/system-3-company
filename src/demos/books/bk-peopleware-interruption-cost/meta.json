@@ -1,0 +1,131 @@
+{
+  "slug": "bk-peopleware-interruption-cost",
+  "title": "The restarted work block",
+  "hook": "A toy session pays the same startup cost each time work resumes. How much fits?",
+  "domain": "books",
+  "concept": "book-peopleware-interruption-cost",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Account for how chunk duration changes the fraction spent on a repeated startup cost."
+    ]
+  },
+  "misconception": "Splitting work into shorter chunks leaves the same usable work if total session time stays fixed.",
+  "objective": "Account for how chunk duration changes the fraction spent on a repeated startup cost.",
+  "claims": [
+    {
+      "id": "books.bk-peopleware-interruption-cost.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Peopleware, by Tom DeMarco and Timothy Lister, candidate publication year 1987.",
+      "support": "source",
+      "source": "Tom DeMarco and Timothy Lister, Peopleware (1987); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-peopleware-interruption-cost.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Peopleware treats interruptions and the working environment as relevant to software work.",
+      "support": "source",
+      "source": "Tom DeMarco and Timothy Lister, Peopleware (1987); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-peopleware-interruption-cost.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated intervals model: A inputs [60, 20, 10] yield 40; B inputs [60, 10, 10] yield 30. Prediction correct option 30.00. A yields {A} work minutes; B {B}. Shorter chunks repeat the same ten-minute startup more often, leaving a larger share of the hour outside work. The startup cost is invented and constant, not a measured cognitive recovery time.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-peopleware-interruption-cost.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy session lasts 48 minutes; each chunk is 8 work plus 4 startup minutes. Finished work minutes? Four complete 12-minute cycles fit, and each contains eight work minutes: 32 total.",
+      "support": "derivation",
+      "source": "Original transfer toy, intervals, inputs [48, 8, 4], output 32; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-peopleware-interruption-cost.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy session lasts 48 minutes; each chunk is 8 work plus 4 startup minutes. Finished work minutes?",
+    "options": [
+      "48.00",
+      "32.00",
+      "40.00",
+      "24.00"
+    ],
+    "answer": 1,
+    "why": "Four complete 12-minute cycles fit, and each contains eight work minutes: 32 total."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-peopleware-interruption-cost",
+    "also": [
+      "lifehacks:book-setup-and-prep"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "peopleware-interruption-1987",
+        "note": "Tom DeMarco and Timothy Lister, Peopleware, 1987 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "intervals",
+      "peopleware-interruption-cost"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

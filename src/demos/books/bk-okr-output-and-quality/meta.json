@@ -1,0 +1,131 @@
+{
+  "slug": "bk-okr-output-and-quality",
+  "title": "The count and the goal",
+  "hook": "A toy dashboard counts more items by adding unusable ones. What happens to usable share?",
+  "domain": "books",
+  "concept": "book-okr-output-and-quality",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Inspect whether an output metric preserves the named quality objective after the counted activity increases."
+    ]
+  },
+  "misconception": "Raising an activity count necessarily raises progress toward the stated quality goal.",
+  "objective": "Inspect whether an output metric preserves the named quality objective after the counted activity increases.",
+  "claims": [
+    {
+      "id": "books.bk-okr-output-and-quality.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Measure What Matters, by John Doerr, candidate publication year 2018.",
+      "support": "source",
+      "source": "John Doerr, Measure What Matters (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-okr-output-and-quality.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Measure What Matters pairs an objective with measurable results intended to express progress toward it.",
+      "support": "source",
+      "source": "John Doerr, Measure What Matters (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-okr-output-and-quality.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated selection model: A inputs [10, 100, 0, 0] yield 100; B inputs [10, 100, 10, 0] yield 50. Prediction correct option 50.00. A shows {A}%; B shows {B}%. The count doubles from ten to twenty, but usable outputs remain ten and their fraction halves. Usability is a stipulated binary score; no organizational incentive effect is inferred.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-okr-output-and-quality.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy process produces 12 usable and 8 unusable items. What percentage is usable? 12 of 20 items are usable: 60%. Counting all twenty alone does not express that quality goal.",
+      "support": "derivation",
+      "source": "Original transfer toy, selection, inputs [12, 100, 8, 0], output 60; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-okr-output-and-quality.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy process produces 12 usable and 8 unusable items. What percentage is usable?",
+    "options": [
+      "12.00",
+      "60.00",
+      "40.00",
+      "100.00"
+    ],
+    "answer": 1,
+    "why": "12 of 20 items are usable: 60%. Counting all twenty alone does not express that quality goal."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-okr-output-and-quality",
+    "also": [
+      "lifehacks:homework-deadline-first"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "okr-output-and-2018",
+        "note": "John Doerr, Measure What Matters, 2018 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "selection",
+      "okr-output-and-quality"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

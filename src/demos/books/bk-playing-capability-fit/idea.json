@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Playing to Win",
+    "author": "A. G. Lafley and Roger L. Martin",
+    "year": 2013,
+    "work": "playing-capability-2013"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "B requires three serial capabilities, each at five jobs/hour. What is B’s toy result?",
+    "options": [
+      "15.00",
+      "18.00",
+      "5.00",
+      "2.00"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Uneven investment",
+      "values": [
+        8,
+        2,
+        8
+      ]
+    },
+    {
+      "label": "Balanced capability",
+      "values": [
+        5,
+        5,
+        5
+      ]
+    }
+  ],
+  "labels": [
+    "Make",
+    "Deliver",
+    "Support"
+  ],
+  "unit": "jobs/hour",
+  "bookIdea": "Playing to Win connects strategic choices with the capabilities needed to make those choices work together.",
+  "modelBoundary": "A completes {A} jobs/hour; B completes {B}. B has fewer total capacity units, but every required step can sustain five jobs. Serial equal-job capabilities are stipulated; a real strategy is not reduced to one rate.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

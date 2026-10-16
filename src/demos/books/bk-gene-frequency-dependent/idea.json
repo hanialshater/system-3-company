@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "year": 1976,
+    "work": "gene-frequency-1976"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "At 25% compatible opponents, +4 against compatible and −2 otherwise, what is the mean?",
+    "options": [
+      "−0.5 points",
+      "+1.0 points",
+      "+2.5 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Few compatible",
+      "values": [
+        25,
+        4,
+        -2
+      ]
+    },
+    {
+      "label": "Many compatible",
+      "values": [
+        75,
+        4,
+        -2
+      ]
+    }
+  ],
+  "labels": [
+    "Compatible",
+    "Other"
+  ],
+  "unit": "points",
+  "bookIdea": "A strategy’s evolutionary payoff can depend on the population of other strategies.",
+  "modelBoundary": "The first opponent mix gives {A}; the second gives {B}. Neither conditional outcome changes; encounter frequencies change the strategy’s average.",
+  "doesItHoldUp": "Does it hold up? This is a specified encounter payoff, not an evolutionary trajectory, stable-strategy proof or biological fitness measurement."
+}

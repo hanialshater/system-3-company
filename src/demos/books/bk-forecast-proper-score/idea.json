@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Superforecasting",
+    "author": "Philip E. Tetlock and Dan Gardner",
+    "year": 2015,
+    "work": "forecast-proper-2015"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "An action earns+10 on success and-5 otherwise. At a 60% success forecast, expected net points?",
+    "options": [
+      "-2 points",
+      "4 points",
+      "6 points"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Forecast 20 percent",
+      "values": [
+        20,
+        10,
+        -5
+      ]
+    },
+    {
+      "label": "Forecast 60 percent",
+      "values": [
+        60,
+        10,
+        -5
+      ]
+    }
+  ],
+  "labels": [
+    "Success",
+    "Failure"
+  ],
+  "unit": "net points",
+  "bookIdea": "Superforecasting describes revising probability judgments as relevant information arrives.",
+  "modelBoundary": "At 20%, action averages {A}; at 60%, {B}. The changed probability crosses the positive-expectation threshold.",
+  "doesItHoldUp": "Does it hold up? An updated probability is not automatically more accurate; forecast quality needs outcomes and scoring."
+}

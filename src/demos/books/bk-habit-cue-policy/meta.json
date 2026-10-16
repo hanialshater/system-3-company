@@ -1,0 +1,131 @@
+{
+  "slug": "bk-habit-cue-policy",
+  "title": "When does the routine run?",
+  "hook": "A toy cue starts two actions per round. Compare keeping and removing that cue.",
+  "domain": "books",
+  "concept": "book-habit-cue-policy",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to separate a specified trigger policy from evidence about an acquired habit"
+    ]
+  },
+  "misconception": "Repeating a rule-driven cue simulation demonstrates that human habits persist after removing cues.",
+  "objective": "Separate a specified trigger policy from evidence about an acquired habit.",
+  "claims": [
+    {
+      "id": "books.bk-habit-cue-policy.bibliography",
+      "text": "The Power of Habit; Charles Duhigg; 2012.",
+      "support": "source",
+      "source": "Candidate bibliographic record for duhigg-power-of-habit-2012; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-habit-cue-policy.book",
+      "text": "The Power of Habit describes routines in relation to cues and rewards.",
+      "support": "source",
+      "source": "The Power of Habit (2012), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-habit-cue-policy.model",
+      "text": "Original stipulated toy: No starting actions; each present cue supplies exactly two counted actions; no decay, acquisition, rewards or competing causes. Exact feedback inputs [{\"label\": \"Cue present\", \"values\": [0, 2, 0, 4]}, {\"label\": \"Cue absent\", \"values\": [0, 0, 0, 4]}]; second author arithmetic check A=8, B=0. Keeping the cue records {A}; removing it records {B}. The programmed trigger supplies actions; no habit strength is inferred.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-habit-cue-policy.world",
+      "text": "Does it hold up? Real cues do not guarantee actions; rewards and competing cues are outside this counter.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-habit-cue-policy.recall",
+      "text": "{\"question\": \"A programmed cue adds three actions for two rounds. Can six counted actions prove a human habit formed?\", \"options\": [\"Yes, repetition proves habit\", \"No, the trigger policy was assumed\", \"Yes, if actions were identical\"], \"answer\": 1, \"why\": \"The counter gives 3*2=6, but it contains no mechanism for human habit acquisition.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A programmed cue adds three actions for two rounds. Can six counted actions prove a human habit formed?",
+    "options": [
+      "Yes, repetition proves habit",
+      "No, the trigger policy was assumed",
+      "Yes, if actions were identical"
+    ],
+    "answer": 1,
+    "why": "The counter gives 3*2=6, but it contains no mechanism for human habit acquisition."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-habit-cue-policy/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "books:book-habit-cue-policy",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "duhigg-power-of-habit-2012",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "feedback",
+      "habit-cues"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

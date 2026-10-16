@@ -1,0 +1,131 @@
+{
+  "slug": "bk-great-selected-winners",
+  "title": "Who entered the comparison?",
+  "hook": "A toy company sample starts with winners. What changes when the omitted firms return?",
+  "domain": "books",
+  "concept": "book-great-selected-winners",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Identify the omitted denominator before treating winner-only evidence as a general success rate."
+    ]
+  },
+  "misconception": "A rule found only among selected past winners already explains success in the full population.",
+  "objective": "Identify the omitted denominator before treating winner-only evidence as a general success rate.",
+  "claims": [
+    {
+      "id": "books.bk-great-selected-winners.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Good to Great, by Jim Collins, candidate publication year 2001.",
+      "support": "source",
+      "source": "Jim Collins, Good to Great (2001); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-great-selected-winners.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Good to Great searches for distinguishing patterns in selected companies with unusually strong prior performance.",
+      "support": "source",
+      "source": "Jim Collins, Good to Great (2001); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-great-selected-winners.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated selection model: A inputs [10, 100, 0, 0] yield 100; B inputs [10, 100, 90, 0] yield 10. Prediction correct option 10.00. A reports {A}%; B reports {B}%. Adding 90 omitted non-winners changes the denominator from 10 to 100 without changing any firm’s result. These are invented groups; neither a causal explanation nor a replication of the book is supplied.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-great-selected-winners.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy showcase has 8 successful firms. The omitted 32 firms were unsuccessful. Success percentage in all 40? The numerator stays 8; the denominator is 40, so the full toy rate is 20%.",
+      "support": "derivation",
+      "source": "Original transfer toy, selection, inputs [8, 100, 32, 0], output 20; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-great-selected-winners.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy showcase has 8 successful firms. The omitted 32 firms were unsuccessful. Success percentage in all 40?",
+    "options": [
+      "100.00",
+      "20.00",
+      "25.00",
+      "80.00"
+    ],
+    "answer": 1,
+    "why": "The numerator stays 8; the denominator is 40, so the full toy rate is 20%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-great-selected-winners",
+    "also": [
+      "probability:base-rates"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "great-selected-2001",
+        "note": "Jim Collins, Good to Great, 2001 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "selection",
+      "great-selected-winners"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

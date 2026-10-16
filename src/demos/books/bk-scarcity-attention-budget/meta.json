@@ -1,0 +1,129 @@
+{
+  "slug": "bk-scarcity-attention-budget",
+  "title": "Where did the task time go?",
+  "hook": "A 30-minute task budget includes repeated urgent admin work in one plan.",
+  "domain": "books",
+  "concept": "book-scarcity-attention-budget",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to explain the lost task time while keeping the psychological claim separate"
+    ]
+  },
+  "misconception": "A mathematical time allocation by itself measures the psychological effect of scarcity.",
+  "objective": "Explain the lost task time while keeping the psychological claim separate.",
+  "claims": [
+    {
+      "id": "books.bk-scarcity-attention-budget.bibliography",
+      "text": "Scarcity; Sendhil Mullainathan and Eldar Shafir; 2013.",
+      "support": "source",
+      "source": "Candidate bibliographic record for scarcity-attention-2013; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-scarcity-attention-budget.book",
+      "text": "Scarcity argues pressing shortages can capture attention and leave less for other demands.",
+      "support": "source",
+      "source": "Scarcity (2013), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-scarcity-attention-budget.model",
+      "text": "Original stipulated toy: No task can overlap admin; no partial task chunks count; zero admin is a counterfactual stipulated schedule, not a treatment result. Exact intervals inputs [{\"label\": \"Admin each chunk\", \"values\": [30, 5, 5]}, {\"label\": \"No urgent admin\", \"values\": [30, 5, 0]}]; second author arithmetic check A=15, B=30. Admin leaves {A} for task chunks; removing it leaves {B}. The consumed time is explicit, not an estimated cognitive penalty.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-scarcity-attention-budget.world",
+      "text": "Does it hold up? Scarcity’s real attentional effects are not established by this scheduling identity.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-scarcity-attention-budget.recall",
+      "text": "{\"question\": \"A toy reserves 12 of 30 minutes for urgent work. Does that establish a measured attentional effect of scarcity?\", \"options\": [\"Yes, twelve minutes is the effect\", \"No, it only specifies an allocation\", \"Yes, if the urgent task is important\"], \"answer\": 1, \"why\": \"The reservation is invented; a causal human effect requires evidence beyond this budget.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy reserves 12 of 30 minutes for urgent work. Does that establish a measured attentional effect of scarcity?",
+    "options": [
+      "Yes, twelve minutes is the effect",
+      "No, it only specifies an allocation",
+      "Yes, if the urgent task is important"
+    ],
+    "answer": 1,
+    "why": "The reservation is invented; a causal human effect requires evidence beyond this budget."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-scarcity-attention-budget",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "scarcity-attention-2013",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "attention-budget"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

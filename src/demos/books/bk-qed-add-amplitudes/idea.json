@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "An Introduction to Error Analysis",
+    "author": "John R. Taylor",
+    "year": 1997,
+    "work": "taylor-introduction-error-analysis-1997"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "Errors are +4 or −4 equally often. What is mean signed error?",
+    "options": [
+      "−4 units",
+      "0 units",
+      "4 units"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Signed errors",
+      "values": [
+        50,
+        4,
+        -4
+      ]
+    },
+    {
+      "label": "Error magnitudes",
+      "values": [
+        50,
+        4,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "Outcome A",
+    "Outcome B"
+  ],
+  "unit": "units",
+  "bookIdea": "Measurement uncertainty requires more than a mean signed error.",
+  "modelBoundary": "Signed errors average {A}; magnitudes average {B}. Opposite signs cancel while each measurement remains four units from the target.",
+  "doesItHoldUp": "Does it hold up? This exact two-outcome calculation is not a measured uncertainty estimate or a confidence interval."
+}

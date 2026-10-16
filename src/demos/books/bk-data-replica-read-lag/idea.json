@@ -1,0 +1,49 @@
+{
+  "book": {
+    "title": "Designing Data-Intensive Applications",
+    "author": "Martin Kleppmann",
+    "year": 2017,
+    "work": "data-replica-read-2017"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "B starts six writes behind, receives four and applies six each round for four rounds. What is B’s toy result?",
+    "options": [
+      "10.00",
+      "6.00",
+      "8.00",
+      "0.00"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Apply three",
+      "values": [
+        6,
+        4,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "Apply six",
+      "values": [
+        6,
+        4,
+        6,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "pending writes",
+  "bookIdea": "Designing Data-Intensive Applications distinguishes accepting writes from propagating and applying them across replicas.",
+  "modelBoundary": "A ends with {A} pending writes; B with {B}. Six applications against four new writes drain the initial six-write backlog, then the zero floor stops depletion. A fixed backlog model; read visibility, ordering, consistency and replication delay in time are not represented.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

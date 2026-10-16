@@ -1,0 +1,115 @@
+{
+  "slug": "bk-pale-angular-size",
+  "title": "Farther away looks smaller",
+  "hook": "Every distance doubling halves apparent size in this small-angle toy.",
+  "domain": "books",
+  "concept": "book-pale-angular-size",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Apply repeated inverse scaling without replacing proportional change with subtraction."
+    ]
+  },
+  "misconception": "Doubling distance subtracts the same angular amount every time.",
+  "objective": "Apply repeated inverse scaling without replacing proportional change with subtraction.",
+  "claims": [
+    {
+      "id": "books.bk-pale-angular-size.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Our view of Earth changes with the vantage point from which we see it.",
+      "status": "unverified",
+      "source": "{\"work\":\"pale-angular-1994\",\"edition\":1994,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-pale-angular-size.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Carl Sagan, Pale Blue Dot (1994)",
+      "status": "unverified",
+      "source": "{\"work\":\"pale-angular-1994\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-pale-angular-size.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "One distance doubling gives {A}; two give {B}. The second halving acts on an already smaller angle rather than subtracting a fixed amount.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[8,-50,1,0],[8,-50,2,0]],\"outputs\":[4,2]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-pale-angular-size.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This inverse-distance approximation assumes fixed object size and small angles. It is not an exact angular formula or spacecraft measurement.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under the same rule, 12 angle units become what after two distance doublings?",
+    "options": [
+      "0",
+      "3",
+      "6"
+    ],
+    "answer": 1,
+    "why": "12×0.5×0.5=3."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-pale-angular-size",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "pale-angular-1994",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

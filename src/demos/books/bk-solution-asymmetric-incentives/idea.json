@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Innovator's Solution",
+    "author": "Clayton M. Christensen and Michael E. Raynor",
+    "year": 2003,
+    "work": "solution-asymmetric-2003"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B pays 100 with 20% probability and loses 40 otherwise. What is B’s toy result?",
+    "options": [
+      "12.00",
+      "20.00",
+      "-40.00",
+      "-12.00"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Small commitment",
+      "values": [
+        20,
+        100,
+        -10
+      ]
+    },
+    {
+      "label": "Large commitment",
+      "values": [
+        20,
+        100,
+        -40
+      ]
+    }
+  ],
+  "labels": [
+    "Win",
+    "Loss"
+  ],
+  "unit": "credits",
+  "bookIdea": "The Innovator’s Solution examines why opportunities can motivate entrants and incumbents differently.",
+  "modelBoundary": "A averages {A}; B averages {B}. Both have the same 20% favorable branch; the larger unfavorable commitment changes the sign of the expected net. The asymmetric losses are invented; no firm-size effect or market outcome is estimated.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

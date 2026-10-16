@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "Turn the Ship Around!",
+    "author": "L. David Marquet",
+    "year": 2012,
+    "work": "ship-distributed-2012"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "B prepares six, approves eight and acts on six decisions/hour. What is B’s toy result?",
+    "options": [
+      "8.00",
+      "12.00",
+      "6.00",
+      "2.00"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Central approval",
+      "values": [
+        12,
+        2,
+        12
+      ]
+    },
+    {
+      "label": "Distributed authority",
+      "values": [
+        6,
+        8,
+        6
+      ]
+    }
+  ],
+  "labels": [
+    "Prepare",
+    "Approve",
+    "Act"
+  ],
+  "unit": "decisions/hour",
+  "bookIdea": "Turn the Ship Around! describes moving authority toward people able to act on local knowledge.",
+  "modelBoundary": "A completes {A} decisions/hour; B completes {B}. Approval stops limiting flow after redistribution, but preparation and action now jointly cap it at six. Only serial capacity is modeled; knowledge quality, military operations and leadership outcomes are outside it.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

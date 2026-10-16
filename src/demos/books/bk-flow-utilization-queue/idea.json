@@ -1,0 +1,49 @@
+{
+  "book": {
+    "title": "The Principles of Product Development Flow",
+    "author": "Donald G. Reinertsen",
+    "year": 2009,
+    "work": "flow-utilization-2009"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "B starts empty, receives seven and serves six each round for six rounds. What is B’s toy result?",
+    "options": [
+      "0.00",
+      "42.00",
+      "1.00",
+      "6.00"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Arrive five",
+      "values": [
+        0,
+        5,
+        6,
+        6
+      ]
+    },
+    {
+      "label": "Arrive seven",
+      "values": [
+        0,
+        7,
+        6,
+        6
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "waiting jobs",
+  "bookIdea": "The Principles of Product Development Flow emphasizes queues and the economic consequences of managing development flow.",
+  "modelBoundary": "A leaves {A} waiting jobs; B leaves {B}. The same six-job service can absorb five arrivals but accumulates one per round when seven arrive. Fixed arrivals and service only; no stochastic near-capacity queueing law or utilization nonlinearity is shown.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

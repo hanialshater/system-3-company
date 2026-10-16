@@ -1,0 +1,131 @@
+{
+  "slug": "bk-nudge-default-choice-model",
+  "title": "Which default, which result?",
+  "hook": "Two forms offer identical alternatives. Compare their stated choice rules.",
+  "domain": "books",
+  "concept": "book-nudge-default-choice-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to identify which group changes when a default changes"
+    ]
+  },
+  "misconception": "Identical alternatives guarantee identical outcomes regardless of the supplied decision rule.",
+  "objective": "Identify which group changes when a default changes.",
+  "claims": [
+    {
+      "id": "books.bk-nudge-default-choice-model.bibliography",
+      "text": "Nudge; Richard H. Thaler and Cass R. Sunstein; 2008.",
+      "support": "source",
+      "source": "Candidate bibliographic record for thaler-sunstein-nudge-2008; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-nudge-default-choice-model.book",
+      "text": "Nudge argues defaults can influence choices while alternatives remain available.",
+      "support": "source",
+      "source": "Nudge (2008), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-nudge-default-choice-model.model",
+      "text": "Original stipulated toy: Follower and chooser groups are disjoint; follower behavior is deterministic; chooser probabilities stay fixed. Exact selection inputs [{\"label\": \"Default X\", \"values\": [6, 100, 4, 50]}, {\"label\": \"Default Y\", \"values\": [6, 0, 4, 50]}]; second author arithmetic check A=80, B=20. Default X gives {A}%; default Y gives {B}%: only the six followers change. Following is assumed, not measured.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-nudge-default-choice-model.world",
+      "text": "Does it hold up? The arithmetic cannot estimate how many real people follow a default.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-nudge-default-choice-model.recall",
+      "text": "{\"question\": \"Four followers choose X; six independent choosers choose X with 50% probability. Expected X share?\", \"options\": [\"40%\", \"70%\", \"100%\"], \"answer\": 1, \"why\": \"(4*100+6*50)/10 = 70%; the follower count is a stipulated input.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Four followers choose X; six independent choosers choose X with 50% probability. Expected X share?",
+    "options": [
+      "40%",
+      "70%",
+      "100%"
+    ],
+    "answer": 1,
+    "why": "(4*100+6*50)/10 = 70%; the follower count is a stipulated input."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-nudge-default-choice-model/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "books:book-nudge-default-choice-model",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "thaler-sunstein-nudge-2008",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "defaults"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

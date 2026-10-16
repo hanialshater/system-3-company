@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "The Extended Phenotype",
+    "author": "Richard Dawkins",
+    "year": 1982,
+    "work": "phenotype-external-1982"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "A structure costs 2 always and brings 8 half the time. What is its mean net payoff?",
+    "options": [
+      "2 points",
+      "3 points",
+      "4 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Omit cost",
+      "values": [
+        50,
+        8,
+        0
+      ]
+    },
+    {
+      "label": "Include cost",
+      "values": [
+        50,
+        6,
+        -2
+      ]
+    }
+  ],
+  "labels": [
+    "Benefit",
+    "No benefit"
+  ],
+  "unit": "points",
+  "bookIdea": "Gene effects can extend beyond the organism’s body into its surroundings.",
+  "modelBoundary": "Omitting construction gives {A}; charging it in both branches gives {B}. An external benefit does not erase the unconditional construction cost.",
+  "doesItHoldUp": "Does it hold up? These costs and encounters are invented. They do not measure adaptation, inheritance or the fitness of a real structure."
+}

@@ -1,0 +1,129 @@
+{
+  "slug": "bk-digital-attention-allocation",
+  "title": "Which tool serves the goal?",
+  "hook": "Two digital tools earn invented goal points according to explicit success chances.",
+  "domain": "books",
+  "concept": "book-digital-attention-allocation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to compare tools using a declared goal score and its assumptions, without treating that score as universal value"
+    ]
+  },
+  "misconception": "The tool with the largest best-case benefit necessarily contributes most to a chosen goal.",
+  "objective": "Compare tools using a declared goal score and its assumptions, without treating that score as universal value.",
+  "claims": [
+    {
+      "id": "books.bk-digital-attention-allocation.bibliography",
+      "text": "Digital Minimalism; Cal Newport; 2019.",
+      "support": "source",
+      "source": "Candidate bibliographic record for digital-attention-2019; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-digital-attention-allocation.book",
+      "text": "Digital Minimalism proposes evaluating technologies by how they serve deliberately chosen values.",
+      "support": "source",
+      "source": "Digital Minimalism (2019), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-digital-attention-allocation.model",
+      "text": "Original stipulated toy: All point values and chances invented; scores are declared preferences, not measured wellbeing; signed branches include stipulated effort costs. Exact payoff inputs [{\"label\": \"Broad tool\", \"values\": [20, 20, -2]}, {\"label\": \"Focused tool\", \"values\": [70, 8, -2]}]; second author arithmetic check A=2.4, B=5. The broad tool averages {A}; focused tool {B}. Reliability offsets its smaller success payoff in this scoring rule.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-digital-attention-allocation.world",
+      "text": "Does it hold up? Invented points cannot settle anyone’s values or actual technology use.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-digital-attention-allocation.recall",
+      "text": "{\"question\": \"A tool earns +6 points with probability 50% and -2 otherwise. Its expected score?\", \"options\": [\"2 points\", \"3 points\", \"4 points\"], \"answer\": 0, \"why\": \"0.5*6+0.5*(-2)=2; choosing the score is a separate value judgment.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tool earns +6 points with probability 50% and -2 otherwise. Its expected score?",
+    "options": [
+      "2 points",
+      "3 points",
+      "4 points"
+    ],
+    "answer": 0,
+    "why": "0.5*6+0.5*(-2)=2; choosing the score is a separate value judgment."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-digital-attention-allocation",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "digital-attention-2019",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "payoff",
+      "goal-alignment"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

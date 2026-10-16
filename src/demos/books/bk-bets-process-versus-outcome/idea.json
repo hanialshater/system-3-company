@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Thinking in Bets",
+    "author": "Annie Duke",
+    "year": 2018,
+    "work": "duke-thinking-in-bets-2018"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B wins 20 with 40% probability and otherwise loses 5. What is B’s toy result?",
+    "options": [
+      "20.00",
+      "0.00",
+      "5.00",
+      "8.00"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Frequent wins",
+      "values": [
+        80,
+        5,
+        -20
+      ]
+    },
+    {
+      "label": "Larger payoff",
+      "values": [
+        40,
+        20,
+        -5
+      ]
+    }
+  ],
+  "labels": [
+    "Win net",
+    "Lose net"
+  ],
+  "unit": "credits",
+  "bookIdea": "Thinking in Bets separates the quality of a decision process from the outcome of one attempt.",
+  "modelBoundary": "A averages {A} credits; B averages {B}. B wins less often, but its weighted gains exceed its weighted losses. Outcomes and probabilities are stipulated, not advice about real bets.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

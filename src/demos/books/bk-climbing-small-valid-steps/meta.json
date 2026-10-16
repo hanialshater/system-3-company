@@ -1,0 +1,115 @@
+{
+  "slug": "bk-climbing-small-valid-steps",
+  "title": "Finer steps change the approximation",
+  "hook": "Split the same nominal increase into more proportional updates.",
+  "domain": "books",
+  "concept": "book-climbing-small-valid-steps",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish an update scheme from its nominal cumulative rate."
+    ]
+  },
+  "misconception": "Rate times step count fixes the compounded result.",
+  "objective": "Distinguish an update scheme from its nominal cumulative rate.",
+  "claims": [
+    {
+      "id": "books.bk-climbing-small-valid-steps.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Calculus relates finite approximations to limiting processes.",
+      "status": "unverified",
+      "source": "{\"work\":\"strogatz-infinite-powers-2019\",\"edition\":2019,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-climbing-small-valid-steps.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Steven Strogatz, Infinite Powers (2019)",
+      "status": "unverified",
+      "source": "{\"work\":\"strogatz-infinite-powers-2019\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-climbing-small-valid-steps.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Four steps give {A}; eight smaller steps give {B}. Both nominal rate totals are 100%, but later multipliers act on earlier increases.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,25,4,0],[1,12.5,8,0]],\"outputs\":[2.44140625,2.565784513950348]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-climbing-small-valid-steps.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? The finite recurrences are exact. Two approximations alone do not prove a limit or a physical growth law.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Starting at 1, compare one 100% update with two 50% updates. Which is larger?",
+    "options": [
+      "One update",
+      "Two updates",
+      "Equal"
+    ],
+    "answer": 1,
+    "why": "One gives 2; two give 1.5²=2.25."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-climbing-small-valid-steps",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "strogatz-infinite-powers-2019",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

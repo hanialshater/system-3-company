@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Pale Blue Dot",
+    "author": "Carl Sagan",
+    "year": 1994,
+    "work": "pale-angular-1994"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "Starting at 8 angle units, what follows two halvings?",
+    "options": [
+      "2 angle units",
+      "4 angle units",
+      "6 angle units"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "One doubling",
+      "values": [
+        8,
+        -50,
+        1,
+        0
+      ]
+    },
+    {
+      "label": "Two doublings",
+      "values": [
+        8,
+        -50,
+        2,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "doublings"
+  ],
+  "unit": "angle units",
+  "bookIdea": "Our view of Earth changes with the vantage point from which we see it.",
+  "modelBoundary": "One distance doubling gives {A}; two give {B}. The second halving acts on an already smaller angle rather than subtracting a fixed amount.",
+  "doesItHoldUp": "Does it hold up? This inverse-distance approximation assumes fixed object size and small angles. It is not an exact angular formula or spacecraft measurement."
+}

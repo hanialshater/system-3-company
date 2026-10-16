@@ -1,0 +1,129 @@
+{
+  "slug": "bk-mindset-small-effect-scale",
+  "title": "Different test, different score",
+  "hook": "Easy and hard toy tasks have fixed accuracy rates; change the assessment mix.",
+  "domain": "books",
+  "concept": "book-mindset-small-effect-scale",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to explain why changing task difficulty changes the aggregate without measuring learning potential"
+    ]
+  },
+  "misconception": "A lower score under a harder task mix establishes reduced ability to learn.",
+  "objective": "Explain why changing task difficulty changes the aggregate without measuring learning potential.",
+  "claims": [
+    {
+      "id": "books.bk-mindset-small-effect-scale.bibliography",
+      "text": "Mindset; Carol S. Dweck; 2006.",
+      "support": "source",
+      "source": "Candidate bibliographic record for dweck-mindset-2006; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-mindset-small-effect-scale.book",
+      "text": "Mindset challenges treating present performance as a fixed limit on what someone can learn.",
+      "support": "source",
+      "source": "Mindset (2006), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-mindset-small-effect-scale.model",
+      "text": "Original stipulated toy: Invented expected accuracies 100% and 50%; independent item expectations; fractional expected correct items; not an observed experiment. Exact selection inputs [{\"label\": \"Mostly easy\", \"values\": [8, 100, 2, 50]}, {\"label\": \"Mostly hard\", \"values\": [2, 100, 8, 50]}]; second author arithmetic check A=90, B=60. Mostly easy yields {A}%; mostly hard {B}%. Only task weights change; neither group’s assumed accuracy changes.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-mindset-small-effect-scale.world",
+      "text": "Does it hold up? These invented scores measure no mindset intervention or future learning capacity.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-mindset-small-effect-scale.recall",
+      "text": "{\"question\": \"At fixed easy/hard accuracies, what can a score change after switching task mix establish?\", \"options\": [\"A permanent ability limit\", \"A mindset treatment effect\", \"A change in the weighted test result\"], \"answer\": 2, \"why\": \"The toy changes only the mix; it never models a treatment, ability limit or learning trajectory.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "At fixed easy/hard accuracies, what can a score change after switching task mix establish?",
+    "options": [
+      "A permanent ability limit",
+      "A mindset treatment effect",
+      "A change in the weighted test result"
+    ],
+    "answer": 2,
+    "why": "The toy changes only the mix; it never models a treatment, ability limit or learning trajectory."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-mindset-small-effect-scale",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "dweck-mindset-2006",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "assessment-mix"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

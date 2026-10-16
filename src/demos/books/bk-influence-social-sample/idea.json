@@ -1,0 +1,44 @@
+{
+  "book": {
+    "title": "Influence",
+    "author": "Robert B. Cialdini",
+    "year": 1984,
+    "work": "cialdini-influence-1984"
+  },
+  "family": "network",
+  "predict": {
+    "question": "Starting with one source at round 0, each newly reached node sends to two unused nodes next round. After three rounds, including the source and capped at 12, how many nodes?",
+    "options": [
+      "7 nodes",
+      "12 nodes",
+      "15 nodes"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "One recipient",
+      "values": [
+        12,
+        1,
+        3
+      ]
+    },
+    {
+      "label": "Two recipients",
+      "values": [
+        12,
+        2,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "Rounds"
+  ],
+  "unit": "reached nodes",
+  "bookIdea": "Influence discusses using other people’s behavior as a guide to choice.",
+  "modelBoundary": "One-recipient forwarding reaches {A}; two-recipient forwarding {B}. Extra branches multiply copies, while the original source remains one.",
+  "doesItHoldUp": "Does it hold up? Reach is not independent evidence or a measured persuasion effect."
+}

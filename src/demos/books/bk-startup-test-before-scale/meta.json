@@ -1,0 +1,131 @@
+{
+  "slug": "bk-startup-test-before-scale",
+  "title": "A test before a large rollout",
+  "hook": "A toy staged commitment lowers upside and limits losses. Compare the trade.",
+  "domain": "books",
+  "concept": "book-startup-test-before-scale",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Compare explicitly staged and full commitments using both branches before deciding whether foregone upside is decisive."
+    ]
+  },
+  "misconception": "Any reduction in the upside makes testing before scaling economically worse.",
+  "objective": "Compare explicitly staged and full commitments using both branches before deciding whether foregone upside is decisive.",
+  "claims": [
+    {
+      "id": "books.bk-startup-test-before-scale.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Startup Owner's Manual, by Steve Blank and Bob Dorf, candidate publication year 2012.",
+      "support": "source",
+      "source": "Steve Blank and Bob Dorf, The Startup Owner's Manual (2012); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-startup-test-before-scale.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Startup Owner’s Manual treats customer development as testing a business model before scaling it.",
+      "support": "source",
+      "source": "Steve Blank and Bob Dorf, The Startup Owner's Manual (2012); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-startup-test-before-scale.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [50, 30, -20] yield 5; B inputs [50, 20, -5] yield 7.5. Prediction correct option 7.50. A averages {A}; B {B}. The staged policy gives up ten in the success branch but saves fifteen in the failure branch. Policy branches and probabilities are stipulated; no test accuracy or actual channel discovery is claimed.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-startup-test-before-scale.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy staged policy pays 16 with 50% probability and loses 4 otherwise. Expected net? 0.5 × 16 + 0.5 × (−4) = 6; no real test’s effectiveness follows from these stipulated outcomes.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [50, 16, -4], output 6; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-startup-test-before-scale.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy staged policy pays 16 with 50% probability and loses 4 otherwise. Expected net?",
+    "options": [
+      "16.00",
+      "6.00",
+      "8.00",
+      "-4.00"
+    ],
+    "answer": 1,
+    "why": "0.5 × 16 + 0.5 × (−4) = 6; no real test’s effectiveness follows from these stipulated outcomes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-startup-test-before-scale",
+    "also": [
+      "books:lean-vanity-metrics"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "startup-test-before-2012",
+        "note": "Steve Blank and Bob Dorf, The Startup Owner's Manual, 2012 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "startup-test-before-scale"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

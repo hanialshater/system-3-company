@@ -1,0 +1,129 @@
+{
+  "slug": "bk-mistakes-selective-evidence",
+  "title": "Which records survived the filter?",
+  "hook": "A toy review either retains every result or keeps only favorable records.",
+  "domain": "books",
+  "concept": "book-mistakes-selective-evidence",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to identify denominator manipulation before treating retained agreement as stronger support"
+    ]
+  },
+  "misconception": "A higher favorable fraction after selective exclusion means the underlying evidence improved.",
+  "objective": "Identify denominator manipulation before treating retained agreement as stronger support.",
+  "claims": [
+    {
+      "id": "books.bk-mistakes-selective-evidence.bibliography",
+      "text": "Mistakes Were Made (But Not by Me); Carol Tavris and Elliot Aronson; 2007.",
+      "support": "source",
+      "source": "Candidate bibliographic record for mistakes-selective-2007; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-mistakes-selective-evidence.book",
+      "text": "Mistakes Were Made discusses self-justification and selective treatment of evidence.",
+      "support": "source",
+      "source": "Mistakes Were Made (But Not by Me) (2007), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-mistakes-selective-evidence.model",
+      "text": "Original stipulated toy: All records equally weighted; favorable indicator fixed100/0; no evidence reliability difference; filtered fraction explicitly distinct from original population. Exact selection inputs [{\"label\": \"All records\", \"values\": [2, 100, 8, 0]}, {\"label\": \"Favorable only\", \"values\": [2, 100, 0, 0]}]; second author arithmetic check A=20, B=100. All records are {A}% favorable; the filtered set {B}%. Discarding contrary records changes the denominator, not the original evidence.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-mistakes-selective-evidence.world",
+      "text": "Does it hold up? This programmed filter does not diagnose dissonance or self-justification in a person.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-mistakes-selective-evidence.recall",
+      "text": "{\"question\": \"Three favorable and seven contrary records exist. Remove all seven contrary records: did the original favorable count rise?\", \"options\": [\"Yes, it became ten\", \"No, it remains three\", \"Yes, the original evidence became unanimous\"], \"answer\": 1, \"why\": \"Only selection changed; the original three favorable records and seven contrary records remain the same evidence.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Three favorable and seven contrary records exist. Remove all seven contrary records: did the original favorable count rise?",
+    "options": [
+      "Yes, it became ten",
+      "No, it remains three",
+      "Yes, the original evidence became unanimous"
+    ],
+    "answer": 1,
+    "why": "Only selection changed; the original three favorable records and seven contrary records remain the same evidence."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-mistakes-selective-evidence",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "mistakes-selective-2007",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "selection",
+      "selective-evidence"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

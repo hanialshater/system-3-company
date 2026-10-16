@@ -1,0 +1,115 @@
+{
+  "slug": "bk-dodo-fragmented-habitat",
+  "title": "Total habitat is not reachable habitat",
+  "hook": "Compare a large connected component with a smaller accessible fragment.",
+  "domain": "books",
+  "concept": "book-dodo-fragmented-habitat",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish supplied accessible habitat from all habitat in an area."
+    ]
+  },
+  "misconception": "Equal total habitat guarantees equal reachable habitat.",
+  "objective": "Distinguish supplied accessible habitat from all habitat in an area.",
+  "claims": [
+    {
+      "id": "books.bk-dodo-fragmented-habitat.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Habitat isolation can matter in addition to total habitat area.",
+      "status": "unverified",
+      "source": "{\"work\":\"dodo-fragmented-1996\",\"edition\":1996,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-dodo-fragmented-habitat.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "David Quammen, The Song of the Dodo (1996)",
+      "status": "unverified",
+      "source": "{\"work\":\"dodo-fragmented-1996\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-dodo-fragmented-habitat.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The large component permits {A}; the accessible fragment caps reach at {B}. Component sizes are supplied premises, not inferred from a geographic map.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(total,sum(branch**i,i=0..rounds)); includes root\",\"inputs\":[[7,2,2],[3,2,2]],\"outputs\":[7,3]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-dodo-fragmented-habitat.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is a capped tree, not animal movement, general habitat connectivity or extinction risk.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "An area has 40 cells but the organism’s connected component has 9. Can more tree rounds alone justify counting 40?",
+    "options": [
+      "Yes",
+      "No",
+      "After six rounds"
+    ],
+    "answer": 1,
+    "why": "The accessible component caps reach unless a connection is added."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-dodo-fragmented-habitat",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "dodo-fragmented-1996",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "network"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

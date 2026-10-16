@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "On Being Certain",
+    "author": "Robert A. Burton",
+    "year": 2008,
+    "work": "certain-confidence-2008"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "A toy audit stipulates a 50% correctness rate. Correct earns+10, incorrect-10. Expected points under the audit rate?",
+    "options": [
+      "0 points",
+      "8 points",
+      "10 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Reported 90 percent",
+      "values": [
+        90,
+        10,
+        -10
+      ]
+    },
+    {
+      "label": "Audit assumes 50",
+      "values": [
+        50,
+        10,
+        -10
+      ]
+    }
+  ],
+  "labels": [
+    "Correct",
+    "Incorrect"
+  ],
+  "unit": "expected points",
+  "bookIdea": "On Being Certain distinguishes feeling certain from establishing that a conclusion is correct.",
+  "modelBoundary": "The reported chance implies {A}; the audit rate {B}. Replacing the probability changes the expectation without changing confidence rhetoric.",
+  "doesItHoldUp": "Does it hold up? This invented audit supplies no real calibration evidence or account of subjective certainty."
+}

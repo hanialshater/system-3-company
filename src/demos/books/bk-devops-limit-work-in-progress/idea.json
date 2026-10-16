@@ -1,0 +1,49 @@
+{
+  "book": {
+    "title": "The DevOps Handbook",
+    "author": "Gene Kim, Jez Humble, Patrick Debois and John Willis",
+    "year": 2016,
+    "work": "devops-limit-work-in-2016"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "B starts empty and admits and completes five each round for four rounds. What is B’s toy result?",
+    "options": [
+      "5.00",
+      "0.00",
+      "12.00",
+      "20.00"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Admit eight",
+      "values": [
+        0,
+        8,
+        5,
+        4
+      ]
+    },
+    {
+      "label": "Admit five",
+      "values": [
+        0,
+        5,
+        5,
+        4
+      ]
+    }
+  ],
+  "labels": [
+    "In",
+    "Out",
+    "steps"
+  ],
+  "unit": "waiting jobs",
+  "bookIdea": "The DevOps Handbook describes limiting work in progress and making delivery flow visible.",
+  "modelBoundary": "A accumulates {A} waiting jobs; B has {B}. Admitting three more than finish adds three jobs each round; matching admissions avoids that accumulation. Deterministic fixed rates only; latency, randomness and real deployment reliability are not estimated.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

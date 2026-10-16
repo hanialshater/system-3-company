@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Competitive Strategy",
+    "author": "Michael E. Porter",
+    "year": 1980,
+    "work": "porter-competitive-strategy-1980"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B earns forty with 30% probability and zero otherwise; it foregoes a sure fifteen. What is B’s toy result?",
+    "options": [
+      "12.00",
+      "15.00",
+      "25.00",
+      "-3.00"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Keep alternative",
+      "values": [
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "label": "Switch project",
+      "values": [
+        30,
+        25,
+        -15
+      ]
+    }
+  ],
+  "labels": [
+    "Success net",
+    "Failure net"
+  ],
+  "unit": "extra credits",
+  "bookIdea": "Competitive Strategy treats strategic choice as requiring trade-offs rather than pursuing every attractive activity.",
+  "modelBoundary": "A adds {A} credits over the baseline; B adds {B}. Switching can earn 40, but foregoes the certain alternative’s 15 in both branches. A single exclusive budget is stipulated; no competitive industry outcome or investment recommendation follows.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

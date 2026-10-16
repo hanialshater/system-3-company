@@ -1,0 +1,115 @@
+{
+  "slug": "bk-spring-selection-resistance",
+  "title": "Resistance changes the mixture",
+  "hook": "Keep survival rates fixed; change the proportion of resistant units.",
+  "domain": "books",
+  "concept": "book-spring-selection-resistance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Explain why changed resistance composition changes expected aggregate survival."
+    ]
+  },
+  "misconception": "An unchanged treatment must have the same aggregate effect in every mixture.",
+  "objective": "Explain why changed resistance composition changes expected aggregate survival.",
+  "claims": [
+    {
+      "id": "books.bk-spring-selection-resistance.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Selection can undermine pest-control assumptions by favoring resistant organisms.",
+      "status": "unverified",
+      "source": "{\"work\":\"carson-silent-spring-1962\",\"edition\":1962,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-spring-selection-resistance.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Rachel Carson, Silent Spring (1962)",
+      "status": "unverified",
+      "source": "{\"work\":\"carson-silent-spring-1962\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-spring-selection-resistance.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Rare resistance gives {A}%; the changed mix gives {B}%. Both survival rates stay fixed, but weight moves to the high-survival group.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"(nA*rA+nB*rB)/(nA+nB)\",\"inputs\":[[10,90,90,10],[50,90,50,10]],\"outputs\":[18,50]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-spring-selection-resistance.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? These are stipulated expected percentages, not pesticide measurements or a simulation of resistance evolving.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Equal groups survive at 80% and 20%. If the first becomes three quarters, what happens?",
+    "options": [
+      "Expected survival rises",
+      "Both rates rise",
+      "Expected survival stays 50%"
+    ],
+    "answer": 0,
+    "why": "The weighted rate becomes 65%; neither group rate changes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-spring-selection-resistance",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "carson-silent-spring-1962",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "selection"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

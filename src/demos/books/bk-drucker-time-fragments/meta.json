@@ -1,0 +1,131 @@
+{
+  "slug": "bk-drucker-time-fragments",
+  "title": "The almost-complete hour",
+  "hook": "A toy task cannot be split. What changes between 39 and 40 available minutes?",
+  "domain": "books",
+  "concept": "book-drucker-time-fragments",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Recognize the discrete completion threshold when a finite time budget must fit indivisible tasks."
+    ]
+  },
+  "misconception": "An extra minute can add at most one minute of completed work.",
+  "objective": "Recognize the discrete completion threshold when a finite time budget must fit indivisible tasks.",
+  "claims": [
+    {
+      "id": "books.bk-drucker-time-fragments.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Effective Executive, by Peter F. Drucker, candidate publication year 1967.",
+      "support": "source",
+      "source": "Peter F. Drucker, The Effective Executive (1967); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-drucker-time-fragments.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "The Effective Executive treats recording and consolidating time as a prerequisite for choosing what deserves it.",
+      "support": "source",
+      "source": "Peter F. Drucker, The Effective Executive (1967); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-drucker-time-fragments.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated intervals model: A inputs [39, 20, 0] yield 20; B inputs [40, 20, 0] yield 40. Prediction correct option 40.00. A completes {A} work minutes; B completes {B}. One extra available minute makes a second whole 20-minute task fit instead of leaving 19 unusable minutes. Indivisible toy tasks only; unfinished chunks contribute no output and concentration is not modeled.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-drucker-time-fragments.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy session has 59 minutes and indivisible 20-minute tasks with no overhead. Completed work minutes? Only two complete tasks fit in 59 minutes, yielding 40 completed work minutes and 19 unused minutes.",
+      "support": "derivation",
+      "source": "Original transfer toy, intervals, inputs [59, 20, 0], output 40; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-drucker-time-fragments.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy session has 59 minutes and indivisible 20-minute tasks with no overhead. Completed work minutes?",
+    "options": [
+      "59.00",
+      "40.00",
+      "60.00",
+      "20.00"
+    ],
+    "answer": 1,
+    "why": "Only two complete tasks fit in 59 minutes, yielding 40 completed work minutes and 19 unused minutes."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-drucker-time-fragments",
+    "also": [
+      "lifehacks:pieces-are-not-one-whole"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "drucker-time-1967",
+        "note": "Peter F. Drucker, The Effective Executive, 1967 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "intervals",
+      "drucker-time-fragments"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

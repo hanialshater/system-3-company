@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Competing Against Luck",
+    "author": "Clayton M. Christensen, Taddy Hall, Karen Dillon and David S. Duncan",
+    "year": 2016,
+    "work": "jobs-context-changes-2016"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B faces task X 80% of the time and scores 18 there, versus 2 on task Y. What is B’s toy result?",
+    "options": [
+      "18.00",
+      "10.00",
+      "14.80",
+      "5.20"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Task X uncommon",
+      "values": [
+        20,
+        18,
+        2
+      ]
+    },
+    {
+      "label": "Task X common",
+      "values": [
+        80,
+        18,
+        2
+      ]
+    }
+  ],
+  "labels": [
+    "Task X",
+    "Task Y"
+  ],
+  "unit": "fit points",
+  "bookIdea": "Competing Against Luck frames product choice around the progress someone seeks in a particular circumstance.",
+  "modelBoundary": "A scores {A}; B scores {B}. The product is unchanged; its 18-point fit matters more when task X occurs four times as often. Task frequencies and fit points are stipulated, not measured preferences or a choice law.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

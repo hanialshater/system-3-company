@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Startup Owner's Manual",
+    "author": "Steve Blank and Bob Dorf",
+    "year": 2012,
+    "work": "startup-test-before-2012"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B pays twenty if successful and loses five otherwise, with equal probabilities. What is B’s toy result?",
+    "options": [
+      "7.50",
+      "5.00",
+      "10.00",
+      "20.00"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Commit at once",
+      "values": [
+        50,
+        30,
+        -20
+      ]
+    },
+    {
+      "label": "Stage commitment",
+      "values": [
+        50,
+        20,
+        -5
+      ]
+    }
+  ],
+  "labels": [
+    "Success",
+    "Failure"
+  ],
+  "unit": "credits",
+  "bookIdea": "The Startup Owner’s Manual treats customer development as testing a business model before scaling it.",
+  "modelBoundary": "A averages {A}; B {B}. The staged policy gives up ten in the success branch but saves fifteen in the failure branch. Policy branches and probabilities are stipulated; no test accuracy or actual channel discovery is claimed.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

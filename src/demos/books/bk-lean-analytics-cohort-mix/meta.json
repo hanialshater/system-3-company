@@ -1,0 +1,131 @@
+{
+  "slug": "bk-lean-analytics-cohort-mix",
+  "title": "Users and activation",
+  "hook": "A toy service grows tenfold. What happens to activation when each cohort scales equally?",
+  "domain": "books",
+  "concept": "book-lean-analytics-cohort-mix",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Distinguish growth in the numerator from a change in the activation fraction when denominators grow proportionally."
+    ]
+  },
+  "misconception": "A tenfold increase in activated users proves the activation process improved.",
+  "objective": "Distinguish growth in the numerator from a change in the activation fraction when denominators grow proportionally.",
+  "claims": [
+    {
+      "id": "books.bk-lean-analytics-cohort-mix.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Lean Analytics, by Alistair Croll and Benjamin Yoskovitz, candidate publication year 2013.",
+      "support": "source",
+      "source": "Alistair Croll and Benjamin Yoskovitz, Lean Analytics (2013); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-lean-analytics-cohort-mix.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Lean Analytics distinguishes metrics that inform a business model from attractive counts without enough context.",
+      "support": "source",
+      "source": "Alistair Croll and Benjamin Yoskovitz, Lean Analytics (2013); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-lean-analytics-cohort-mix.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated selection model: A inputs [10, 50, 10, 0] yield 25; B inputs [100, 50, 100, 0] yield 25. Prediction correct option 25.00. A and B both give {A}%. Scaling both cohorts tenfold scales activated users tenfold too, so the activation fraction does not improve. Cohort counts and rates are stipulated; no actual service or actionable-metric effect is measured.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-lean-analytics-cohort-mix.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy product has 40 users at 75% activation and 40 at 25%. Overall expected activation percentage? Expected activations are 30 + 10 = 40 of 80 users, so the overall rate is 50%.",
+      "support": "derivation",
+      "source": "Original transfer toy, selection, inputs [40, 75, 40, 25], output 50; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-lean-analytics-cohort-mix.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy product has 40 users at 75% activation and 40 at 25%. Overall expected activation percentage?",
+    "options": [
+      "75.00",
+      "50.00",
+      "25.00",
+      "100.00"
+    ],
+    "answer": 1,
+    "why": "Expected activations are 30 + 10 = 40 of 80 users, so the overall rate is 50%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-lean-analytics-cohort-mix",
+    "also": [
+      "books:lean-vanity-metrics"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "lean-analytics-cohorts-2013",
+        "note": "Alistair Croll and Benjamin Yoskovitz, Lean Analytics, 2013 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "selection",
+      "lean-analytics-cohort-mix"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

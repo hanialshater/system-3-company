@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Learn Like a Pro",
+    "author": "Barbara Oakley and Olav Schewe",
+    "year": 2021,
+    "work": "pro-feedback-2021"
+  },
+  "family": "flow",
+  "predict": {
+    "question": "Serial capacities are notice 10, diagnose 6, correct 8 errors per minute. Steady completed corrections per minute?",
+    "options": [
+      "2 corrections",
+      "6 corrections",
+      "8 corrections"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Vague feedback",
+      "values": [
+        10,
+        2,
+        8
+      ]
+    },
+    {
+      "label": "Diagnostic feedback",
+      "values": [
+        10,
+        6,
+        8
+      ]
+    }
+  ],
+  "labels": [
+    "Notice",
+    "Diagnose",
+    "Correct"
+  ],
+  "unit": "corrections/min",
+  "bookIdea": "Learn Like a Pro discusses using feedback to improve how one studies.",
+  "modelBoundary": "Vague feedback permits {A}; diagnostic feedback {B}. Raising diagnosis capacity helps because diagnosis constrained this line.",
+  "doesItHoldUp": "Does it hold up? Those capacities are invented; specific feedback need not multiply real learning by this ratio."
+}

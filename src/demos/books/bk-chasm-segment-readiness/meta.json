@@ -1,0 +1,131 @@
+{
+  "slug": "bk-chasm-segment-readiness",
+  "title": "Fans and the next audience",
+  "hook": "A toy launch succeeds with early fans. What happens as the audience mix changes?",
+  "domain": "books",
+  "concept": "book-chasm-segment-readiness",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Keep within-segment rates separate from audience composition when transferring launch evidence."
+    ]
+  },
+  "misconception": "A strong overall early-launch rate predicts the same rate in the mainstream audience.",
+  "objective": "Keep within-segment rates separate from audience composition when transferring launch evidence.",
+  "claims": [
+    {
+      "id": "books.bk-chasm-segment-readiness.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Crossing the Chasm, by Geoffrey A. Moore, candidate publication year 1991.",
+      "support": "source",
+      "source": "Geoffrey A. Moore, Crossing the Chasm (1991); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-chasm-segment-readiness.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Crossing the Chasm distinguishes early adopters from mainstream customers who require different reasons to adopt.",
+      "support": "source",
+      "source": "Geoffrey A. Moore, Crossing the Chasm (1991); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-chasm-segment-readiness.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated selection model: A inputs [90, 90, 10, 10] yield 82; B inputs [10, 90, 90, 10] yield 18. Prediction correct option 18.00. A averages {A}%; B averages {B}%. Segment rates stay 90% and 10%; only the weights change as the audience shifts. Adoption rates are stipulated; they are not observed customers or a test of the book.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-chasm-segment-readiness.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy audience is 20 fans at 80% adoption and 80 other users at 20%. Combined expected adoption percentage? The weighted expected total is 20 × 0.8 + 80 × 0.2 = 32 of 100; the overall rate is 32%.",
+      "support": "derivation",
+      "source": "Original transfer toy, selection, inputs [20, 80, 80, 20], output 32; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-chasm-segment-readiness.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy audience is 20 fans at 80% adoption and 80 other users at 20%. Combined expected adoption percentage?",
+    "options": [
+      "50.00",
+      "32.00",
+      "80.00",
+      "20.00"
+    ],
+    "answer": 1,
+    "why": "The weighted expected total is 20 × 0.8 + 80 × 0.2 = 32 of 100; the overall rate is 32%."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-chasm-segment-readiness",
+    "also": [
+      "books:lean-vanity-metrics"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "chasm-segment-1991",
+        "note": "Geoffrey A. Moore, Crossing the Chasm, 1991 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "selection",
+      "chasm-segment-readiness"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "slug": "bk-deep-unbroken-block",
+  "title": "Can a long task fit?",
+  "hook": "Two schedules offer 30 minutes total, arranged as two short blocks or one long block.",
+  "domain": "books",
+  "concept": "book-deep-unbroken-block",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to identify when contiguity, rather than total available minutes, constrains completion"
+    ]
+  },
+  "misconception": "Equal total calendar time guarantees equal ability to finish an uninterrupted task.",
+  "objective": "Identify when contiguity, rather than total available minutes, constrains completion.",
+  "claims": [
+    {
+      "id": "books.bk-deep-unbroken-block.bibliography",
+      "text": "Deep Work; Cal Newport; 2016.",
+      "support": "source",
+      "source": "Candidate bibliographic record for deep-unbroken-2016; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-deep-unbroken-block.book",
+      "text": "Deep Work advocates protecting sustained periods for demanding work.",
+      "support": "source",
+      "source": "Deep Work (2016), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-deep-unbroken-block.model",
+      "text": "Original stipulated toy: The task is indivisible and nonresumable; short case is per block and appears twice in schedule; both short blocks yield zero, not twenty total. Exact intervals inputs [{\"label\": \"Each 15-min block\", \"values\": [15, 20, 5]}, {\"label\": \"One 30-min block\", \"values\": [30, 20, 5]}]; second author arithmetic check A=0, B=20. Each short block completes {A}; the long block {B}. Setup and indivisible work must fit inside the same block.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-deep-unbroken-block.world",
+      "text": "Does it hold up? Real tasks may allow resumption; this model assumes they cannot.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-deep-unbroken-block.recall",
+      "text": "{\"question\": \"A nonresumable task needs 12 work minutes plus 4 setup. Can two separate 10-minute blocks complete it?\", \"options\": [\"Yes, twenty exceeds sixteen\", \"No, neither block fits sixteen\", \"Yes, setup can be ignored\"], \"answer\": 1, \"why\": \"Each block must fit all sixteen minutes; unused time across blocks cannot be pooled under the stated rule.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A nonresumable task needs 12 work minutes plus 4 setup. Can two separate 10-minute blocks complete it?",
+    "options": [
+      "Yes, twenty exceeds sixteen",
+      "No, neither block fits sixteen",
+      "Yes, setup can be ignored"
+    ],
+    "answer": 1,
+    "why": "Each block must fit all sixteen minutes; unused time across blocks cannot be pooled under the stated rule."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-deep-unbroken-block",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "deep-unbroken-2016",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "intervals",
+      "sustained-work"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

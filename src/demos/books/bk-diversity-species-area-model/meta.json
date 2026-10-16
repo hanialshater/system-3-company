@@ -1,0 +1,115 @@
+{
+  "slug": "bk-diversity-species-area-model",
+  "title": "A finite stock can run out",
+  "hook": "Compare partial replacement with complete replacement under fixed removal.",
+  "domain": "books",
+  "concept": "book-diversity-species-area-model",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish positive replenishment from replenishment sufficient to prevent depletion."
+    ]
+  },
+  "misconception": "Positive replenishment always prevents depletion.",
+  "objective": "Distinguish positive replenishment from replenishment sufficient to prevent depletion.",
+  "claims": [
+    {
+      "id": "books.bk-diversity-species-area-model.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Finite resource stocks constrain indefinitely maintained material throughput.",
+      "status": "unverified",
+      "source": "{\"work\":\"meadows-limits-growth-1972\",\"edition\":1972,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-diversity-species-area-model.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Donella H. Meadows, Dennis L. Meadows, Jørgen Randers and William W. Behrens III, The Limits to Growth (1972)",
+      "status": "unverified",
+      "source": "{\"work\":\"meadows-limits-growth-1972\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-diversity-species-area-model.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Partial replacement leaves {A}; full replacement leaves {B}. The first path loses five units per step until it reaches the nonnegative floor.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=max(0,x+in-out); fixed flows\",\"inputs\":[[50,2,7,10],[50,7,7,10]],\"outputs\":[0,50]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-diversity-species-area-model.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is stock accounting, not World3. It predicts no discoveries, substitution, prices or collapse date.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A store starts at 12, receives 1 and is asked for 4 each step. After four updates?",
+    "options": [
+      "0",
+      "4",
+      "8"
+    ],
+    "answer": 0,
+    "why": "Net change is −3 per step; the store reaches its zero floor."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-diversity-species-area-model",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "meadows-limits-growth-1972",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "feedback"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

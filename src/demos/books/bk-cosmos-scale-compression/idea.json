@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "Cosmos",
+    "author": "Carl Sagan",
+    "year": 1980,
+    "work": "cosmos-scale-1980"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "Starting at 1, what follows six tenfold multiplications?",
+    "options": [
+      "6 units",
+      "100000 units",
+      "1000000 units"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Six scale steps",
+      "values": [
+        1,
+        900,
+        6,
+        0
+      ]
+    },
+    {
+      "label": "Seven scale steps",
+      "values": [
+        1,
+        900,
+        7,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "steps"
+  ],
+  "unit": "units",
+  "bookIdea": "Astronomical scales require reasoning across many orders of magnitude.",
+  "modelBoundary": "Six steps give {A}; seven give {B}. The additional step multiplies the accumulated scale by ten rather than adding ten.",
+  "doesItHoldUp": "Does it hold up? These are dimensionless scale factors, not dated cosmic events, an age estimate or the book’s calendar diagram."
+}

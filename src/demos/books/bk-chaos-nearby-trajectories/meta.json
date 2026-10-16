@@ -1,0 +1,115 @@
+{
+  "slug": "bk-chaos-nearby-trajectories",
+  "title": "An uncertainty can grow each step",
+  "hook": "Compare multipliers acting on the same tiny initial uncertainty.",
+  "domain": "books",
+  "concept": "book-chaos-nearby-trajectories",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish initial precision from growth under a specified error multiplier."
+    ]
+  },
+  "misconception": "A tiny initial uncertainty stays tiny at every horizon.",
+  "objective": "Distinguish initial precision from growth under a specified error multiplier.",
+  "claims": [
+    {
+      "id": "books.bk-chaos-nearby-trajectories.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Sensitivity to initial conditions can limit long-range prediction.",
+      "status": "unverified",
+      "source": "{\"work\":\"chaos-nearby-1987\",\"edition\":1987,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-chaos-nearby-trajectories.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "James Gleick, Chaos (1987)",
+      "status": "unverified",
+      "source": "{\"work\":\"chaos-nearby-1987\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-chaos-nearby-trajectories.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Doubling gives {A}; tripling gives {B}. Repeated amplification makes the multiplier increasingly important despite the same tiny starting uncertainty.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[0.01,100,5,0],[0.01,200,5,0]],\"outputs\":[0.32,2.43]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-chaos-nearby-trajectories.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This error recurrence is not a chaotic system. It proves neither chaos nor the accuracy of a weather forecast.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Uncertainty 0.1 triples three times. What is its final size?",
+    "options": [
+      "0.3",
+      "0.9",
+      "2.7"
+    ],
+    "answer": 2,
+    "why": "0.1×3³=2.7."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-chaos-nearby-trajectories",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "chaos-nearby-1987",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

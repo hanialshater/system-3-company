@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "The Extended Mind",
+    "author": "Annie Murphy Paul",
+    "year": 2021,
+    "work": "extended-external-2021"
+  },
+  "family": "feedback",
+  "predict": {
+    "question": "A record starts empty. Three entries arrive per round; none are lost. After three rounds, entries retained?",
+    "options": [
+      "3 entries",
+      "6 entries",
+      "9 entries"
+    ],
+    "answer": 2
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Lossy scratch list",
+      "values": [
+        0,
+        3,
+        2,
+        3
+      ]
+    },
+    {
+      "label": "Persistent record",
+      "values": [
+        0,
+        3,
+        0,
+        3
+      ]
+    }
+  ],
+  "labels": [
+    "Entries in",
+    "Entries lost",
+    "Rounds"
+  ],
+  "unit": "retained entries",
+  "bookIdea": "The Extended Mind examines how resources outside the brain can support thinking.",
+  "modelBoundary": "The scratch list retains {A}; the persistent record {B}. Removing the stipulated losses preserves all incoming entries.",
+  "doesItHoldUp": "Does it hold up? Human forgetting has no fixed loss rate, and external records can also fail."
+}

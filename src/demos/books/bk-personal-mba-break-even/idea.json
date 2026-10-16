@@ -1,0 +1,46 @@
+{
+  "book": {
+    "title": "The Personal MBA",
+    "author": "Josh Kaufman",
+    "year": 2010,
+    "work": "personal-mba-break-2010"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "B sells for 100 with 50% probability and always pays a 70-credit fee. What is B’s toy result?",
+    "options": [
+      "15.00",
+      "30.00",
+      "0.00",
+      "-20.00"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Fee 40",
+      "values": [
+        50,
+        60,
+        -40
+      ]
+    },
+    {
+      "label": "Fee 70",
+      "values": [
+        50,
+        30,
+        -70
+      ]
+    }
+  ],
+  "labels": [
+    "Sale net",
+    "No-sale net"
+  ],
+  "unit": "credits",
+  "bookIdea": "The Personal MBA distinguishes sales revenue from the costs needed to create and deliver value.",
+  "modelBoundary": "A averages {A}; B averages {B}. A sale brings 100 credits, but the fixed fee is paid in both the sale and no-sale branches. Fees, one-sale probability and revenue are invented; this is not business or investment advice.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

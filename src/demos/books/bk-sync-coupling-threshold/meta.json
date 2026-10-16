@@ -1,0 +1,115 @@
+{
+  "slug": "bk-sync-coupling-threshold",
+  "title": "The bottleneck moves after an upgrade",
+  "hook": "Improve the slowest stage and inspect the new limit.",
+  "domain": "books",
+  "concept": "book-sync-coupling-threshold",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Identify a new limiting stage after a successful local improvement."
+    ]
+  },
+  "misconception": "Fixing one limiting stage removes all throughput limits.",
+  "objective": "Identify a new limiting stage after a successful local improvement.",
+  "claims": [
+    {
+      "id": "books.bk-sync-coupling-threshold.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Pipeline performance depends on the capacities of its stages.",
+      "status": "unverified",
+      "source": "{\"work\":\"patterson-hennessy-computer-organization-2014\",\"edition\":2014,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-sync-coupling-threshold.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "David A. Patterson and John L. Hennessy, Computer Organization and Design, Enhanced (2014)",
+      "status": "unverified",
+      "source": "{\"work\":\"patterson-hennessy-computer-organization-2014\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-sync-coupling-threshold.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The original gives {A}; the upgrade gives {B}. Decode now limits output, so doubling one stage does not double the whole pipeline.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(capacities)\",\"inputs\":[[8,6,4],[8,6,8]],\"outputs\":[4,6]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-sync-coupling-threshold.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is an ideal serial abstraction, not a CPU simulation. Hazards, latency and buffering are omitted.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A serial pipeline has capacities 5,7,9. Raise the first to 10. Which stage now limits it?",
+    "options": [
+      "First",
+      "Second",
+      "Third"
+    ],
+    "answer": 1,
+    "why": "The new minimum of 10,7,9 is 7, at the second stage."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-sync-coupling-threshold",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "patterson-hennessy-computer-organization-2014",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "flow"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

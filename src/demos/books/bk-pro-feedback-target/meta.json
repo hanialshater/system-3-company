@@ -1,0 +1,129 @@
+{
+  "slug": "bk-pro-feedback-target",
+  "title": "Which step can feedback repair?",
+  "hook": "A toy revision line must notice, diagnose and correct errors in that order.",
+  "domain": "books",
+  "concept": "book-pro-feedback-target",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to locate when diagnostic information can improve a disclosed serial revision process"
+    ]
+  },
+  "misconception": "More comments necessarily produce more completed corrections regardless of where the process is constrained.",
+  "objective": "Locate when diagnostic information can improve a disclosed serial revision process.",
+  "claims": [
+    {
+      "id": "books.bk-pro-feedback-target.bibliography",
+      "text": "Learn Like a Pro; Barbara Oakley and Olav Schewe; 2021.",
+      "support": "source",
+      "source": "Candidate bibliographic record for pro-feedback-2021; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-pro-feedback-target.book",
+      "text": "Learn Like a Pro discusses using feedback to improve how one studies.",
+      "support": "source",
+      "source": "Learn Like a Pro (2021), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-pro-feedback-target.model",
+      "text": "Original stipulated toy: Serial steady-state flow; no overlapping corrections, backlog transients or feedback learning effects; capacities invented. Exact flow inputs [{\"label\": \"Vague feedback\", \"values\": [10, 2, 8]}, {\"label\": \"Diagnostic feedback\", \"values\": [10, 6, 8]}]; second author arithmetic check A=2, B=6. Vague feedback permits {A}; diagnostic feedback {B}. Raising diagnosis capacity helps because diagnosis constrained this line.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-pro-feedback-target.world",
+      "text": "Does it hold up? Those capacities are invented; specific feedback need not multiply real learning by this ratio.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-pro-feedback-target.recall",
+      "text": "{\"question\": \"Notice 8, diagnose 3, correct 7 errors/minute. Raising notice to 12 changes throughput to?\", \"options\": [\"3 corrections/min\", \"7 corrections/min\", \"12 corrections/min\"], \"answer\": 0, \"why\": \"The diagnosis stage remains the minimum capacity at three; the stated serial model fixes throughput.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Notice 8, diagnose 3, correct 7 errors/minute. Raising notice to 12 changes throughput to?",
+    "options": [
+      "3 corrections/min",
+      "7 corrections/min",
+      "12 corrections/min"
+    ],
+    "answer": 0,
+    "why": "The diagnosis stage remains the minimum capacity at three; the stated serial model fixes throughput."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-pro-feedback-target",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "pro-feedback-2021",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "flow",
+      "diagnostic-feedback"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

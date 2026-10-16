@@ -1,0 +1,115 @@
+{
+  "slug": "bk-gene-frequency-dependent",
+  "title": "Payoff depends on the opponent",
+  "hook": "A strategy keeps its outcomes; the mix of opponents changes.",
+  "domain": "books",
+  "concept": "book-gene-frequency-dependent",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Identify opponent frequency as an input to mean strategy payoff."
+    ]
+  },
+  "misconception": "A strategy has an intrinsic score independent of its opponents.",
+  "objective": "Identify opponent frequency as an input to mean strategy payoff.",
+  "claims": [
+    {
+      "id": "books.bk-gene-frequency-dependent.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "A strategy’s evolutionary payoff can depend on the population of other strategies.",
+      "status": "unverified",
+      "source": "{\"work\":\"gene-frequency-1976\",\"edition\":1976,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-gene-frequency-dependent.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Richard Dawkins, The Selfish Gene (1976)",
+      "status": "unverified",
+      "source": "{\"work\":\"gene-frequency-1976\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-gene-frequency-dependent.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The first opponent mix gives {A}; the second gives {B}. Neither conditional outcome changes; encounter frequencies change the strategy’s average.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[25,4,-2],[75,4,-2]],\"outputs\":[-0.5,2.5]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-gene-frequency-dependent.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This is a specified encounter payoff, not an evolutionary trajectory, stable-strategy proof or biological fitness measurement.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A strategy earns +2 against A and −2 otherwise. If A is 75%, what is its mean?",
+    "options": [
+      "−1",
+      "0",
+      "+1"
+    ],
+    "answer": 2,
+    "why": "0.75×2+0.25×(−2)=1."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-gene-frequency-dependent",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "gene-frequency-1976",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

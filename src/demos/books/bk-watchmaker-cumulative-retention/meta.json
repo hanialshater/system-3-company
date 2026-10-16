@@ -1,0 +1,115 @@
+{
+  "slug": "bk-watchmaker-cumulative-retention",
+  "title": "Count prefixes, not information",
+  "hook": "More symbols create more prefixes; do they reveal message probabilities?",
+  "domain": "books",
+  "concept": "book-watchmaker-cumulative-retention",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish cumulative possibility count from probability-dependent entropy."
+    ]
+  },
+  "misconception": "The number of possible messages alone determines their information.",
+  "objective": "Distinguish cumulative possibility count from probability-dependent entropy.",
+  "claims": [
+    {
+      "id": "books.bk-watchmaker-cumulative-retention.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Communication models distinguish possible messages from their statistical uncertainty.",
+      "status": "unverified",
+      "source": "{\"work\":\"shannon-weaver-mathematical-communication-1949\",\"edition\":1949,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-watchmaker-cumulative-retention.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Claude E. Shannon and Warren Weaver, The Mathematical Theory of Communication (1949)",
+      "status": "unverified",
+      "source": "{\"work\":\"shannon-weaver-mathematical-communication-1949\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-watchmaker-cumulative-retention.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "One round gives {A}; two give {B}. Each next symbol extends existing prefixes without collisions; the empty prefix counts once.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"min(total,sum(branch**i,i=0..rounds)); includes root\",\"inputs\":[[1000,2,1],[1000,2,2]],\"outputs\":[3,7]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-watchmaker-cumulative-retention.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? This counts possibilities, not entropy. No symbol probabilities, noise model or coding theorem is supplied.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "The same four strings can be equally likely or very unequal. What is missing to compute entropy?",
+    "options": [
+      "Probabilities",
+      "A larger alphabet",
+      "More colors"
+    ],
+    "answer": 0,
+    "why": "Possibility counts do not specify the probabilities needed for entropy."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-watchmaker-cumulative-retention",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "shannon-weaver-mathematical-communication-1949",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "network"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

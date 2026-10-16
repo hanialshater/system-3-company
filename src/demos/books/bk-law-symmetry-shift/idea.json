@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Art of Statistics",
+    "author": "David Spiegelhalter",
+    "year": 2019,
+    "work": "spiegelhalter-art-statistics-2019"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "For 20 units at 80% and 80 at 20%, what is the combined rate?",
+    "options": [
+      "32%",
+      "50%",
+      "80%"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases and inspect what changes.",
+  "scenarios": [
+    {
+      "label": "Both groups",
+      "values": [
+        20,
+        80,
+        80,
+        20
+      ]
+    },
+    {
+      "label": "Selected group",
+      "values": [
+        20,
+        80,
+        0,
+        20
+      ]
+    }
+  ],
+  "labels": [
+    "Included A",
+    "Included B"
+  ],
+  "unit": "%",
+  "bookIdea": "Statistical conclusions depend on how data were selected and measured.",
+  "modelBoundary": "Both groups give {A}%; omitting group B gives {B}%. No unit’s stipulated rate improves; selection changes whose rates count.",
+  "doesItHoldUp": "Does it hold up? This exact aggregation shows selection sensitivity. It does not diagnose missingness in a real dataset."
+}

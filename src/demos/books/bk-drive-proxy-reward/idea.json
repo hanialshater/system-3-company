@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Drive",
+    "author": "Daniel H. Pink",
+    "year": 2009,
+    "work": "drive-proxy-2009"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "A toy reward gives 50 points after success and zero otherwise. Success is stipulated at 20%. Expected reward per attempt?",
+    "options": [
+      "10 points",
+      "20 points",
+      "50 points"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Twenty either way",
+      "values": [
+        20,
+        20,
+        20
+      ]
+    },
+    {
+      "label": "Fifty on success",
+      "values": [
+        20,
+        50,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Success",
+    "Failure"
+  ],
+  "unit": "reward points",
+  "bookIdea": "Drive questions whether contingent rewards are suitable for every kind of task.",
+  "modelBoundary": "Unconditional rewards average {A}; success-only bonuses {B}. The larger headline payment applies to fewer outcomes.",
+  "doesItHoldUp": "Does it hold up? Motivation, enjoyment and performance responses to rewards are not modeled."
+}

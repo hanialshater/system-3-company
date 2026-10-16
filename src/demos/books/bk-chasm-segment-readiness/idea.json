@@ -1,0 +1,48 @@
+{
+  "book": {
+    "title": "Crossing the Chasm",
+    "author": "Geoffrey A. Moore",
+    "year": 1991,
+    "work": "chasm-segment-1991"
+  },
+  "family": "selection",
+  "predict": {
+    "question": "B contains ten early fans and ninety mainstream customers; rates remain 90% and 10%. What is B’s toy result?",
+    "options": [
+      "18.00",
+      "82.00",
+      "50.00",
+      "10.00"
+    ],
+    "answer": 0
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Mostly early fans",
+      "values": [
+        90,
+        90,
+        10,
+        10
+      ]
+    },
+    {
+      "label": "Mostly mainstream",
+      "values": [
+        10,
+        90,
+        90,
+        10
+      ]
+    }
+  ],
+  "labels": [
+    "Early",
+    "Mainstream"
+  ],
+  "unit": "%",
+  "bookIdea": "Crossing the Chasm distinguishes early adopters from mainstream customers who require different reasons to adopt.",
+  "modelBoundary": "A averages {A}%; B averages {B}%. Segment rates stay 90% and 10%; only the weights change as the audience shifts. Adoption rates are stipulated; they are not observed customers or a test of the book.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

@@ -1,0 +1,47 @@
+{
+  "book": {
+    "title": "The Checklist Manifesto",
+    "author": "Atul Gawande",
+    "year": 2009,
+    "work": "gawande-checklist-manifesto-2009"
+  },
+  "family": "compound",
+  "predict": {
+    "question": "Three checkpoints each retain 95% of complete jobs. What percentage survives all three?",
+    "options": [
+      "95.00",
+      "85.00",
+      "90.00",
+      "85.74"
+    ],
+    "answer": 3
+  },
+  "exploreHint": "Run both cases; compare the changed input.",
+  "scenarios": [
+    {
+      "label": "Miss 10%",
+      "values": [
+        100,
+        -10,
+        3,
+        0
+      ]
+    },
+    {
+      "label": "Miss 5%",
+      "values": [
+        100,
+        -5,
+        3,
+        0
+      ]
+    }
+  ],
+  "labels": [
+    "Rounds"
+  ],
+  "unit": "%",
+  "bookIdea": "Checklists help teams remember critical steps when routine competence is not enough.",
+  "modelBoundary": "Retaining 90% at each checkpoint leaves {A}%; retaining 95% leaves {B}%. Each checkpoint multiplies what remains. Independent misses are stipulated; these are not measured checklist effects.",
+  "doesItHoldUp": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified."
+}

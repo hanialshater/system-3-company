@@ -1,0 +1,129 @@
+{
+  "slug": "bk-certain-confidence-score",
+  "title": "A confident report, an audited rate",
+  "hook": "Compare a reported chance with a different stipulated audit rate, using unchanged payoffs.",
+  "domain": "books",
+  "concept": "book-certain-confidence-score",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to keep stated confidence distinct from independently justified correctness rates"
+    ]
+  },
+  "misconception": "Expressed certainty itself determines the correctness probability that should enter a decision calculation.",
+  "objective": "Keep stated confidence distinct from independently justified correctness rates.",
+  "claims": [
+    {
+      "id": "books.bk-certain-confidence-score.bibliography",
+      "text": "On Being Certain; Robert A. Burton; 2008.",
+      "support": "source",
+      "source": "Candidate bibliographic record for certain-confidence-2008; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-certain-confidence-score.book",
+      "text": "On Being Certain distinguishes feeling certain from establishing that a conclusion is correct.",
+      "support": "source",
+      "source": "On Being Certain (2008), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-certain-confidence-score.model",
+      "text": "Original stipulated toy: Reported and audit probabilities are invented, not observations; payoff fixed; no actual calibration data; audit is a scenario assumption, not validated ground truth. Exact payoff inputs [{\"label\": \"Reported 90 percent\", \"values\": [90, 10, -10]}, {\"label\": \"Audit assumes 50\", \"values\": [50, 10, -10]}]; second author arithmetic check A=8, B=0. The reported chance implies {A}; the audit rate {B}. Replacing the probability changes the expectation without changing confidence rhetoric.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-certain-confidence-score.world",
+      "text": "Does it hold up? This invented audit supplies no real calibration evidence or account of subjective certainty.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-certain-confidence-score.recall",
+      "text": "{\"question\": \"Someone says90%, but a scenario stipulates50% correctness. Under +6/-6 payoffs, expected points using the stipulated rate?\", \"options\": [\"0 points\", \"4.8 points\", \"6 points\"], \"answer\": 0, \"why\": \"0.5*6+0.5*(-6)=0; using the reported90% would answer a different conditional model.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Someone says90%, but a scenario stipulates50% correctness. Under +6/-6 payoffs, expected points using the stipulated rate?",
+    "options": [
+      "0 points",
+      "4.8 points",
+      "6 points"
+    ],
+    "answer": 0,
+    "why": "0.5*6+0.5*(-6)=0; using the reported90% would answer a different conditional model."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-certain-confidence-score",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "certain-confidence-2008",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "payoff",
+      "certainty-versus-correctness"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

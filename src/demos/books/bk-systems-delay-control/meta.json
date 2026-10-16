@@ -1,0 +1,118 @@
+{
+  "slug": "bk-systems-delay-control",
+  "title": "A stock is not its flow",
+  "hook": "A smaller drain changes the accumulated stock. How much after three updates?",
+  "domain": "books",
+  "concept": "book-systems-delay-control",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Addition and subtraction of whole units."
+    ],
+    "doesNotKnow": [
+      "A stock accumulates the net difference between fixed inflows and outflows."
+    ]
+  },
+  "misconception": "A one-unit flow change makes only a one-unit difference in the final stock.",
+  "objective": "Calculate cumulative stock change and distinguish a stored quantity from its per-step flows.",
+  "claims": [
+    {
+      "id": "books.bk-systems-delay-control.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Stocks change through accumulated inflows and outflows.",
+      "status": "unverified",
+      "source": "{\"work\":\"meadows-thinking-in-systems-2008\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-systems-delay-control.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "status": "unverified",
+      "source": "{\"work\":\"meadows-thinking-in-systems-2008\",\"edition\":2008,\"chapter\":\"unconfirmed\"}",
+      "text": "idea.book: {\"title\":\"Thinking in Systems\",\"author\":\"Donella H. Meadows\",\"year\":2008,\"work\":\"meadows-thinking-in-systems-2008\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-systems-delay-control.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "status": "unverified",
+      "source": "{\"type\":\"independent-derivation\",\"formula\":\"x=max(0,x+in-out), repeated steps times\",\"inputs\":[[10,4,4,3],[10,4,3,3]],\"outputs\":[10,13]}",
+      "text": "title: \"A stock is not its flow\"; hook: \"A smaller drain changes the accumulated stock. How much after three updates?\"; idea.predict: {\"question\":\"With 10 units initially and three updates, which final stock follows from inflow 4 and outflow 3?\",\"options\":[\"10 units\",\"13 units\",\"19 units\"],\"answer\":1}; idea.exploreHint: \"Compare balanced flows with a smaller drain. Track each update.\"; idea.scenarios: [{\"label\":\"Balanced flows\",\"values\":[10,4,4,3]},{\"label\":\"Smaller drain\",\"values\":[10,4,3,3]}]; idea.labels: [\"In\",\"Out\",\"steps\"]; idea.unit: \"units\"; idea.modelBoundary: \"Balanced flows leave {A}; reducing the drain leaves {B}. Three net additions accumulate; the starting stock is not itself a flow. Rates stay fixed.\"; recall: {\"question\":\"A tank starts at 6 units, receives 5 and loses 3 per step. After four steps, what is stored?\",\"options\":[\"8 units\",\"14 units\",\"26 units\"],\"answer\":1,\"why\":\"The net inflow is 2 each step; 6 + 4×2 = 14.\"}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-systems-delay-control.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"Only bounded arithmetic is proposed. No independent environmental evidence opened.\"}",
+      "text": "idea.doesItHoldUp: \"Does it hold up? This accounting follows the stated recurrence. It does not model feedback control or verify environmental forecasts.\"",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A tank starts at 6 units, receives 5 and loses 3 per step. After four steps, what is stored?",
+    "options": [
+      "8 units",
+      "14 units",
+      "26 units"
+    ],
+    "answer": 1,
+    "why": "The net inflow is 2 each step; 6 + 4×2 = 14."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-systems-delay-control",
+    "also": [
+      "life:feedback"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "meadows-thinking-in-systems-2008",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open the named edition, locate the relevant stock-and-flow discussion; do not invent a chapter number."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "stock",
+      "net-flow"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

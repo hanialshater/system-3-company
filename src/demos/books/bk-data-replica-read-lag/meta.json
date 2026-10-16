@@ -1,0 +1,131 @@
+{
+  "slug": "bk-data-replica-read-lag",
+  "title": "Writes waiting to be applied",
+  "hook": "A toy replica receives writes faster than it applies them. Can it clear the pending stock?",
+  "domain": "books",
+  "concept": "book-data-replica-read-lag",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Calculate pending unapplied writes while separating receipt from application."
+    ]
+  },
+  "misconception": "Receiving a write means every replica has already applied it.",
+  "objective": "Calculate pending unapplied writes while separating receipt from application.",
+  "claims": [
+    {
+      "id": "books.bk-data-replica-read-lag.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Designing Data-Intensive Applications, by Martin Kleppmann, candidate publication year 2017.",
+      "support": "source",
+      "source": "Martin Kleppmann, Designing Data-Intensive Applications (2017); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-data-replica-read-lag.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Designing Data-Intensive Applications distinguishes accepting writes from propagating and applying them across replicas.",
+      "support": "source",
+      "source": "Martin Kleppmann, Designing Data-Intensive Applications (2017); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-data-replica-read-lag.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated feedback model: A inputs [6, 4, 3, 4] yield 10; B inputs [6, 4, 6, 4] yield 0. Prediction correct option 0.00. A ends with {A} pending writes; B with {B}. Six applications against four new writes drain the initial six-write backlog, then the zero floor stops depletion. A fixed backlog model; read visibility, ordering, consistency and replication delay in time are not represented.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-data-replica-read-lag.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy replica starts with 9 pending writes, receives 2 and applies 5 each round for four rounds. Pending at end? Net drain is three writes per round until empty; the stock cannot become negative.",
+      "support": "derivation",
+      "source": "Original transfer toy, feedback, inputs [9, 2, 5, 4], output 0; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-data-replica-read-lag.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy replica starts with 9 pending writes, receives 2 and applies 5 each round for four rounds. Pending at end?",
+    "options": [
+      "3.00",
+      "0.00",
+      "9.00",
+      "12.00"
+    ],
+    "answer": 1,
+    "why": "Net drain is three writes per round until empty; the stock cannot become negative."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-data-replica-read-lag",
+    "also": [
+      "cs:circular-buffer"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "data-replica-read-2017",
+        "note": "Martin Kleppmann, Designing Data-Intensive Applications, 2017 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "feedback",
+      "data-replica-read-lag"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

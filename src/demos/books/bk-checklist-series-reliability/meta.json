@@ -1,0 +1,133 @@
+{
+  "slug": "bk-checklist-series-reliability",
+  "title": "Three checks, one complete job",
+  "hook": "Each checkpoint can miss a step. What survives three independent checks?",
+  "domain": "books",
+  "concept": "book-checklist-series-reliability",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Compute serial completion from independently stipulated checkpoint reliability, and identify independence as the boundary."
+    ]
+  },
+  "misconception": "A 5% miss rate at each of three checkpoints means only 5% can fail overall.",
+  "objective": "Compute serial completion from independently stipulated checkpoint reliability, and identify independence as the boundary.",
+  "claims": [
+    {
+      "id": "books.bk-checklist-series-reliability.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is The Checklist Manifesto, by Atul Gawande, candidate publication year 2009.",
+      "support": "source",
+      "source": "Atul Gawande, The Checklist Manifesto (2009); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-checklist-series-reliability.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Checklists help teams remember critical steps when routine competence is not enough.",
+      "support": "source",
+      "source": "Atul Gawande, The Checklist Manifesto (2009); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-checklist-series-reliability.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated compound model: A inputs [100, -10, 3, 0] yield 72.9; B inputs [100, -5, 3, 0] yield 85.7375. Prediction correct option 85.74. Retaining 90% at each checkpoint leaves {A}%; retaining 95% leaves {B}%. Each checkpoint multiplies what remains. Independent misses are stipulated; these are not measured checklist effects. Prediction explicitly asks the three-checkpoint 95%-retention case: 100 × 0.95³ = 85.7375%, displayed as 85.74%.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-checklist-series-reliability.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy parcel has two independent 80% completion checks. What percentage completes both? The retained share is 100 × 0.8 × 0.8 = 64%; adding the two pass rates is invalid.",
+      "support": "derivation",
+      "source": "Original transfer toy, compound, inputs [100, -20, 2, 0], output 64; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-checklist-series-reliability.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy parcel has two independent 80% completion checks. What percentage completes both?",
+    "options": [
+      "80.00",
+      "64.00",
+      "60.00",
+      "40.00"
+    ],
+    "answer": 1,
+    "why": "The retained share is 100 × 0.8 × 0.8 = 64%; adding the two pass rates is invalid."
+  },
+  "evidence": {
+    "qa": [
+      "company/reviews/bk-checklist-series-reliability/2026-10-16-qa.md"
+    ],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 3,
+  "curriculum": {
+    "primary": "books:book-checklist-series-reliability",
+    "also": [
+      "books:habits-one-percent"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "gawande-checklist-manifesto-2009",
+        "note": "Atul Gawande, The Checklist Manifesto, 2009 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "compound",
+      "checklist-series-reliability"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

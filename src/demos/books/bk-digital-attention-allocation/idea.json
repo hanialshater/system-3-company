@@ -1,0 +1,45 @@
+{
+  "book": {
+    "title": "Digital Minimalism",
+    "author": "Cal Newport",
+    "year": 2019,
+    "work": "digital-attention-2019"
+  },
+  "family": "payoff",
+  "predict": {
+    "question": "A focused tool earns +8 goal points with probability 70% and -2 otherwise. Expected goal points?",
+    "options": [
+      "2.4 points",
+      "5.0 points",
+      "8.0 points"
+    ],
+    "answer": 1
+  },
+  "exploreHint": "Compare both named cases; keep each result for the reveal.",
+  "scenarios": [
+    {
+      "label": "Broad tool",
+      "values": [
+        20,
+        20,
+        -2
+      ]
+    },
+    {
+      "label": "Focused tool",
+      "values": [
+        70,
+        8,
+        -2
+      ]
+    }
+  ],
+  "labels": [
+    "Success",
+    "Failure"
+  ],
+  "unit": "goal points",
+  "bookIdea": "Digital Minimalism proposes evaluating technologies by how they serve deliberately chosen values.",
+  "modelBoundary": "The broad tool averages {A}; focused tool {B}. Reliability offsets its smaller success payoff in this scoring rule.",
+  "doesItHoldUp": "Does it hold up? Invented points cannot settle anyone’s values or actual technology use."
+}

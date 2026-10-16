@@ -1,0 +1,115 @@
+{
+  "slug": "bk-signal-overfit-validation",
+  "title": "A forecast still needs a payoff",
+  "hook": "The same outcomes can imply different mean payoffs at different forecast odds.",
+  "domain": "books",
+  "concept": "book-signal-overfit-validation",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish forecasting an event from valuing an action conditional on it."
+    ]
+  },
+  "misconception": "A possible positive outcome is sufficient to favor an action.",
+  "objective": "Distinguish forecasting an event from valuing an action conditional on it.",
+  "claims": [
+    {
+      "id": "books.bk-signal-overfit-validation.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Probabilistic forecasts need uncertainty and consequences to be interpreted.",
+      "status": "unverified",
+      "source": "{\"work\":\"silver-signal-and-noise-2012\",\"edition\":2012,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-signal-overfit-validation.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Nate Silver, The Signal and the Noise (2012)",
+      "status": "unverified",
+      "source": "{\"work\":\"silver-signal-and-noise-2012\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-signal-overfit-validation.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The lower probability gives {A}; the higher gives {B}. Outcomes stay fixed. Probability weights decide the sign of this toy mean.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"p/100*win+(1-p/100)*lose; signed net outcomes\",\"inputs\":[[30,5,-4],[60,5,-4]],\"outputs\":[-1.2999999999999998,1.4]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-signal-overfit-validation.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? Arithmetic supports this decision boundary, not forecast calibration or a real-world recommendation.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy pays +3 on success and −1 otherwise. At 20% success, is its mean positive?",
+    "options": [
+      "Yes",
+      "No",
+      "Exactly zero"
+    ],
+    "answer": 1,
+    "why": "0.2×3−0.8=−0.2; both branches matter."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-signal-overfit-validation",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "silver-signal-and-noise-2012",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "payoff"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "slug": "bk-blue-value-cost-trade",
+  "title": "A feature and its cost",
+  "hook": "A toy redesign lowers upside and limits downside. Compare the net averages.",
+  "domain": "books",
+  "concept": "book-blue-value-cost-trade",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Evaluate both net branches of an explicit feature trade rather than only its largest gross benefit."
+    ]
+  },
+  "misconception": "Removing a feature can only lower the value of a business offer.",
+  "objective": "Evaluate both net branches of an explicit feature trade rather than only its largest gross benefit.",
+  "claims": [
+    {
+      "id": "books.bk-blue-value-cost-trade.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Blue Ocean Strategy, by W. Chan Kim and Renee Mauborgne, candidate publication year 2005.",
+      "support": "source",
+      "source": "W. Chan Kim and Renee Mauborgne, Blue Ocean Strategy (2005); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-blue-value-cost-trade.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Blue Ocean Strategy considers changing which factors a business offers rather than competing only by adding more.",
+      "support": "source",
+      "source": "W. Chan Kim and Renee Mauborgne, Blue Ocean Strategy (2005); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-blue-value-cost-trade.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [50, 20, -20] yield 0; B inputs [50, 10, 0] yield 5. Prediction correct option 5.00. A averages {A}; B averages {B}. The redesign gives up ten points in the favorable branch and recovers twenty in the unfavorable branch. Net values are invented; no buyer response, new market or innovation effect is established.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-blue-value-cost-trade.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy redesign pays net 12 or net 4, each equally likely. Expected net? 0.5 × 12 + 0.5 × 4 = 8; the comparison concerns these specified net outcomes only.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [50, 12, 4], output 8; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-blue-value-cost-trade.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy redesign pays net 12 or net 4, each equally likely. Expected net?",
+    "options": [
+      "12.00",
+      "8.00",
+      "6.00",
+      "4.00"
+    ],
+    "answer": 1,
+    "why": "0.5 × 12 + 0.5 × 4 = 8; the comparison concerns these specified net outcomes only."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-blue-value-cost-trade",
+    "also": [
+      "economics:sunk-cost"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "blue-value-cost-2005",
+        "note": "W. Chan Kim and Renee Mauborgne, Blue Ocean Strategy, 2005 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "blue-value-cost-trade"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

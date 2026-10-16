@@ -1,0 +1,131 @@
+{
+  "slug": "bk-bets-process-versus-outcome",
+  "title": "The win counter",
+  "hook": "Two toy policies win at different rates. Is the more frequent winner better on average?",
+  "domain": "books",
+  "concept": "book-bets-process-versus-outcome",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and the meaning of a percentage"
+    ],
+    "doesNotKnow": [
+      "Compare expected net payoff rather than win frequency alone."
+    ]
+  },
+  "misconception": "The policy that wins most often must have the greatest expected net payoff.",
+  "objective": "Compare expected net payoff rather than win frequency alone.",
+  "claims": [
+    {
+      "id": "books.bk-bets-process-versus-outcome.bibliography",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ],
+      "text": "The named work is Thinking in Bets, by Annie Duke, candidate publication year 2018.",
+      "support": "source",
+      "source": "Annie Duke, Thinking in Bets (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-bets-process-versus-outcome.book",
+      "addresses": [
+        "idea.bookIdea"
+      ],
+      "text": "Thinking in Bets separates the quality of a decision process from the outcome of one attempt.",
+      "support": "source",
+      "source": "Annie Duke, Thinking in Bets (2018); chapter (unconfirmed); edition and bibliography not independently opened. Access hold F1.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-bets-process-versus-outcome.toy",
+      "addresses": [
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary"
+      ],
+      "text": "Original stipulated payoff model: A inputs [80, 5, -20] yield 8.8817842e-16; B inputs [40, 20, -5] yield 5. Prediction correct option 5.00. A averages {A} credits; B averages {B}. B wins less often, but its weighted gains exceed its weighted losses. Outcomes and probabilities are stipulated, not advice about real bets.",
+      "support": "derivation",
+      "source": "Original lesson construction; EDD-010 formula ; exact independent Python arithmetic recomputation recorded in answerCheck; no book dataset or measured human response.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-bets-process-versus-outcome.recall",
+      "addresses": [
+        "recall.question",
+        "recall.options",
+        "recall.why"
+      ],
+      "text": "A toy policy wins 10 credits with 25% probability and loses 2 otherwise. Expected net? 0.25 × 10 + 0.75 × (−2) = 1 credit; the win rate alone is insufficient.",
+      "support": "derivation",
+      "source": "Original transfer toy, payoff, inputs [25, 10, -2], output 1; independent Python recomputation.",
+      "status": "unverified"
+    },
+    {
+      "id": "books.bk-bets-process-versus-outcome.world",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ],
+      "text": "Does it hold up? The arithmetic follows our assumptions; real-world applicability and book attribution remain unverified.",
+      "support": "convention",
+      "source": "Scope limitation, not a research verdict: only original toy derivation supplied. Publication requires independently opened book chapter and separate real-world evidence review; no effectiveness inference is made.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A toy policy wins 10 credits with 25% probability and loses 2 otherwise. Expected net?",
+    "options": [
+      "2.50",
+      "1.00",
+      "-1.00",
+      "8.00"
+    ],
+    "answer": 1,
+    "why": "0.25 × 10 + 0.75 × (−2) = 1 credit; the win rate alone is insufficient."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-bets-process-versus-outcome",
+    "also": [
+      "economics:market-selection-wealth"
+    ],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "business",
+    "references": [
+      {
+        "work": "duke-thinking-in-bets-2018",
+        "note": "Annie Duke, Thinking in Bets, 2018 edition; chapter (unconfirmed). No source copy was opened for this brief."
+      }
+    ],
+    "tags": [
+      "books",
+      "business",
+      "payoff",
+      "bets-process-versus-outcome"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

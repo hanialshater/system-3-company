@@ -1,0 +1,115 @@
+{
+  "slug": "bk-growth-surface-volume",
+  "title": "The same stretch, different powers",
+  "hook": "Apply a doubling once per geometric dimension.",
+  "domain": "books",
+  "concept": "book-growth-surface-volume",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Distinguish area and volume scaling by counting multiplied dimensions."
+    ]
+  },
+  "misconception": "Doubling all lengths multiplies area and volume by the same factor.",
+  "objective": "Distinguish area and volume scaling by counting multiplied dimensions.",
+  "claims": [
+    {
+      "id": "books.bk-growth-surface-volume.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Geometry constrains how form changes with size.",
+      "status": "unverified",
+      "source": "{\"work\":\"growth-surface-1917\",\"edition\":1917,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-growth-surface-volume.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "D'Arcy Wentworth Thompson, On Growth and Form (1917)",
+      "status": "unverified",
+      "source": "{\"work\":\"growth-surface-1917\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-growth-surface-volume.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "The area factor is {A}; the volume factor is {B}. Each independent doubled dimension contributes another multiplier of two.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=x*(1+rate/100)+addition\",\"inputs\":[[1,100,2,0],[1,100,3,0]],\"outputs\":[4,8]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-growth-surface-volume.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? These are dimensionless factors for similar shapes, not evidence about organism growth or heat exchange.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "All lengths of a similar solid triple. Its area and volume factors are?",
+    "options": [
+      "3 and 3",
+      "6 and 9",
+      "9 and 27"
+    ],
+    "answer": 2,
+    "why": "Two factors give 3²=9; three give 3³=27."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-growth-surface-volume",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "growth-surface-1917",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "compound"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

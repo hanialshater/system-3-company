@@ -1,0 +1,129 @@
+{
+  "slug": "bk-smart-sunk-cost-boundary",
+  "title": "Does the old fee change the choice?",
+  "hook": "Both toy routes already paid 30 points; compare only their stated future consequences.",
+  "domain": "books",
+  "concept": "book-smart-sunk-cost-boundary",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "basic arithmetic and how to compare two stated rules"
+    ],
+    "doesNotKnow": [
+      "how to compare future alternatives while stating when past costs may carry new information"
+    ]
+  },
+  "misconception": "A larger unrecoverable past fee makes an otherwise unchanged future option more valuable.",
+  "objective": "Compare future alternatives while stating when past costs may carry new information.",
+  "claims": [
+    {
+      "id": "books.bk-smart-sunk-cost-boundary.bibliography",
+      "text": "You Are Not So Smart; David McRaney; 2011.",
+      "support": "source",
+      "source": "Candidate bibliographic record for smart-sunk-cost-2011; edition and original publication year require independent authoritative checking. No book source was opened by this drafter.",
+      "status": "unverified",
+      "addresses": [
+        "idea.book.title",
+        "idea.book.author",
+        "idea.book.year"
+      ]
+    },
+    {
+      "id": "books.bk-smart-sunk-cost-boundary.book",
+      "text": "You Are Not So Smart discusses sunk costs and the pull of past commitments.",
+      "support": "source",
+      "source": "You Are Not So Smart (2011), candidate original-language edition; relevant chapter/section unconfirmed, not supplied or fabricated. Proposed attribution in our own words; fact-checker must open the book before publication.",
+      "status": "unverified",
+      "addresses": [
+        "idea.bookIdea",
+        "objective",
+        "misconception"
+      ]
+    },
+    {
+      "id": "books.bk-smart-sunk-cost-boundary.model",
+      "text": "Original stipulated toy: Past fee unrecoverable and already paid in both routes; no informational signal; branches exclude past spending and include every future cost. Exact payoff inputs [{\"label\": \"Continue\", \"values\": [50, 12, -8]}, {\"label\": \"Switch\", \"values\": [100, 3, 3]}]; second author arithmetic check A=2, B=3. Continuing averages {A}; switching {B}. The unrecoverable fee is shared history, not an additional future branch payoff.",
+      "support": "derivation",
+      "source": "EDD-010-books-100-models.md formula; this brief fixes invented inputs, not sampled people or measured outcomes. Independent arithmetic recomputation recorded in answerCheck. All displayed labels, hook and prediction premises are scenario conventions. Round only display to two decimals when necessary.",
+      "status": "unverified",
+      "addresses": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "idea.exploreHint"
+      ]
+    },
+    {
+      "id": "books.bk-smart-sunk-cost-boundary.world",
+      "text": "Does it hold up? Real past spending may reveal information; the toy fixes future chances independently.",
+      "support": "convention",
+      "source": "Scope boundary: a deterministic toy establishes only the disclosed arithmetic. Book-specific empirical evidence has not been assessed; source-access hold remains. No invented study, effect size or replication verdict.",
+      "status": "unverified",
+      "addresses": [
+        "idea.doesItHoldUp"
+      ]
+    },
+    {
+      "id": "books.bk-smart-sunk-cost-boundary.recall",
+      "text": "{\"question\": \"A nonrefundable fee changes from 30 to 90; future outcomes and probabilities stay identical. Does the future ranking change?\", \"options\": [\"Yes, continuing becomes better\", \"No, future ranking stays the same\", \"Yes, switching becomes better\"], \"answer\": 1, \"why\": \"The fee cannot change either future payoff expression under the explicit fixed-probability assumption.\"}",
+      "support": "derivation",
+      "source": "Independent transfer computation or boundary check in this brief; invented scenario, not a claim about measured psychology.",
+      "status": "unverified",
+      "addresses": [
+        "recall"
+      ]
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "A nonrefundable fee changes from 30 to 90; future outcomes and probabilities stay identical. Does the future ranking change?",
+    "options": [
+      "Yes, continuing becomes better",
+      "No, future ranking stays the same",
+      "Yes, switching becomes better"
+    ],
+    "answer": 1,
+    "why": "The fee cannot change either future payoff expression under the explicit fixed-probability assumption."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-smart-sunk-cost-boundary",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "psychology",
+    "references": [
+      {
+        "work": "smart-sunk-cost-2011",
+        "note": "relevant chapter/section unconfirmed; independent source check required"
+      }
+    ],
+    "tags": [
+      "book-idea",
+      "toy-model",
+      "payoff",
+      "sunk-cost-boundary"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}

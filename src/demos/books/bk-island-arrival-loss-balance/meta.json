@@ -1,0 +1,115 @@
+{
+  "slug": "bk-island-arrival-loss-balance",
+  "title": "Balanced flows do not choose a stock",
+  "hook": "The same arrival and loss rates can leave different stocks unchanged.",
+  "domain": "books",
+  "concept": "book-island-arrival-loss-balance",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-books",
+    "builder": "demo-builder-books100"
+  },
+  "learner": {
+    "knows": [
+      "Whole-number arithmetic and percentages."
+    ],
+    "doesNotKnow": [
+      "Explain why fixed balanced flows cannot locate a unique equilibrium."
+    ]
+  },
+  "misconception": "Balanced rates identify one particular equilibrium stock.",
+  "objective": "Explain why fixed balanced flows cannot locate a unique equilibrium.",
+  "claims": [
+    {
+      "id": "books.bk-island-arrival-loss-balance.book",
+      "kind": "book-attribution",
+      "address": "idea.bookIdea",
+      "text": "Island species numbers reflect both immigration and extinction.",
+      "status": "unverified",
+      "source": "{\"work\":\"island-arrival-loss-1967\",\"edition\":1967,\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-island-arrival-loss-balance.bibliography",
+      "kind": "bibliographic",
+      "address": "idea.book",
+      "text": "Robert H. MacArthur and Edward O. Wilson, The Theory of Island Biogeography (1967)",
+      "status": "unverified",
+      "source": "{\"work\":\"island-arrival-loss-1967\",\"chapter\":\"unconfirmed\"}",
+      "support": "source"
+    },
+    {
+      "id": "books.bk-island-arrival-loss-balance.toy",
+      "kind": "derivation",
+      "address": [
+        "title",
+        "hook",
+        "idea.predict",
+        "idea.exploreHint",
+        "idea.scenarios",
+        "idea.labels",
+        "idea.unit",
+        "idea.modelBoundary",
+        "recall"
+      ],
+      "text": "Balanced flows retain {A} and {B}. Equal arrivals and losses stop net change at either stock; fixed flows do not select a unique equilibrium.",
+      "status": "unverified",
+      "source": "{\"type\":\"author-derivation\",\"formula\":\"repeat x=max(0,x+in-out); fixed flows\",\"inputs\":[[20,3,3,4],[40,3,3,4]],\"outputs\":[20,40]}",
+      "support": "derivation"
+    },
+    {
+      "id": "books.bk-island-arrival-loss-balance.world",
+      "kind": "world-evidence-boundary",
+      "address": "idea.doesItHoldUp",
+      "text": "Does it hold up? Counts and rates are stipulated. Species-dependent curves and empirical island predictions are not modeled.",
+      "status": "unverified",
+      "source": "{\"type\":\"source-access-hold\",\"note\":\"No empirical effect or research verdict established. Only bounded arithmetic proposed.\"}",
+      "support": "convention"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Reservoirs start at 5 and 12. Each gains and loses 2 per step. Do they converge?",
+    "options": [
+      "Yes",
+      "No",
+      "After six steps"
+    ],
+    "answer": 1,
+    "why": "Both net flows are zero, so each starting stock is retained."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "books:book-island-arrival-loss-balance",
+    "also": [],
+    "prerequisites": [],
+    "level": "intro",
+    "strand": "science-history",
+    "references": [
+      {
+        "work": "island-arrival-loss-1967",
+        "chapter": "unconfirmed",
+        "status": "unverified",
+        "sourceRoute": "Open named edition; locate this idea and record chapter only after checking it."
+      }
+    ],
+    "tags": [
+      "books",
+      "science-history",
+      "feedback"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "preset-buttons"
+  ]
+}
