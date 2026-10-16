@@ -445,6 +445,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "parallel-vs-arc-short-hop": () => import("./geography/parallel-vs-arc-short-hop/Demo"),
   "polar-day-length": () => import("./geography/polar-day-length/Demo"),
   "ruler-on-mercator": () => import("./geography/ruler-on-mercator/Demo"),
+  "schelling-on-new-york": () => import("./geography/schelling-on-new-york/Demo"),
   "seattle-moscow-heading": () => import("./geography/seattle-moscow-heading/Demo"),
   "shortest-way-to-tokyo": () => import("./geography/shortest-way-to-tokyo/Demo"),
   "shrinking-degree": () => import("./geography/shrinking-degree/Demo"),
