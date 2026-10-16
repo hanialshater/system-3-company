@@ -237,9 +237,11 @@ export default function ElectronSpeedInAWire({ slug }: { slug: string }) {
                   {[0, 10, 20, 30].map((cm) => (
                     <g key={cm}>
                       <line x1={RL + cm * RX_CM} y1={RY + 4} x2={RL + cm * RX_CM} y2={RY + 12} className={s.tick} />
-                      <text x={RL + cm * RX_CM} y={RY + 24} textAnchor="middle" className={s.lab}>
-                        {cm === 30 ? "30 cm" : cm}
-                      </text>
+                      {(cm === 0 || cm === 30) && (
+                        <text x={RL + cm * RX_CM} y={RY + 24} textAnchor="middle" className={s.lab}>
+                          {cm === 30 ? "30 cm" : cm}
+                        </text>
+                      )}
                     </g>
                   ))}
                   {Array.from({ length: 31 }, (_, cm) => (

@@ -177,7 +177,7 @@ export default function SecondSpeakerDecibels({ slug }: { slug: string }) {
                         textAnchor={v === 0 ? "start" : v === 10 ? "end" : "middle"}
                         className={s.lab}
                       >
-                        {v}
+                        {v === 0 || v === 10 ? v : ""}
                       </text>
                     </g>
                   ))}
