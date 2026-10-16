@@ -8,6 +8,10 @@
 // When the network falls apart the links freeze (Reset to start again); if the pieces are the two groups, each
 // group takes its own colour. Link tap targets are HTML buttons over the label at each link's midpoint (28 px:
 // 17 midpoints do not leave room for 44 px), DOM order bridges first.
+// v2 (r14): every node carries its number (the trace and buttons name links by them); while any count on the
+// stage is fractional the message states the tie rule (c5). The reveal no longer says "a list ranked once goes
+// stale": in this network the once-ranked list cuts the same two bridges the recount does (own node check,
+// build.md), so that sentence could only be told; cut as a departure for cm-cs.
 // Milestones: first-bridge-cut (one between-group link cut while the network is whole; the other's new count and
 // the inner link that changed most are recorded), split (the pieces are exactly the two groups; sizes recorded).
 
@@ -37,6 +41,7 @@ const MID = EDGES.map(([a, b]) => [(POS[a][0] + POS[b][0]) / 2, (POS[a][1] + POS
 const name = (i: number) => `${EDGES[i][0]}–${EDGES[i][1]}`;
 const fmt = (x: number) => (Math.abs(x - Math.round(x)) < 1e-9 ? String(Math.round(x)) : x.toFixed(1));
 const HIT = 28;
+const fractional = (L: number[], cut: Set<number>) => L.some((x, i) => !cut.has(i) && Math.abs(x - Math.round(x)) > 1e-9);
 
 function bfs(src: number, cut: Set<number>) {
   const adj: number[][] = Array.from({ length: N }, () => []);
@@ -135,8 +140,7 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
             links inside the groups changed too.
           </p>
           <p>
-            A list ranked once goes stale after every cut. So the Girvan–Newman method cuts the busiest link, recounts, and
-            repeats. Your last cut split the network into its two groups, {split?.[0]} and {split?.[1]}.
+            The Girvan–Newman method cuts the busiest link, recounts every link, and repeats. Your last cut split the network into its two groups, {split?.[0]} and {split?.[1]}.
           </p>
         </>
       )}
@@ -191,7 +195,9 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
                   ? "A piece broke off, not the two groups. Reset to try again."
                   : cut.length === 0
                     ? "Number on a link: shortest paths it carries. Tap a link to cut it."
-                    : `Recounted after cutting ${name(cut[cut.length - 1])}. Blinking counts changed.`;
+                    : fractional(L, cutSet)
+                      ? `Cut ${name(cut[cut.length - 1])}, all recounted. Each pair counts 1, split evenly over its tied shortest paths.`
+                      : `Recounted after cutting ${name(cut[cut.length - 1])}. Blinking counts changed.`;
             const fill = (v: number) =>
               !locked && P.isGroups ? (GROUP1.includes(v) ? "var(--domain)" : "var(--good)") : "var(--bg-2)";
 
@@ -226,7 +232,12 @@ export default function CutTheBusiestLink({ slug }: { slug: string }) {
                       );
                     })}
                     {POS.map(([x, y], v) => (
-                      <circle key={v} cx={x} cy={y} r={10} fill={fill(v)} stroke="var(--fg)" strokeWidth={1.5} />
+                      <g key={v}>
+                        <circle cx={x} cy={y} r={10} fill={fill(v)} stroke="var(--fg)" strokeWidth={1.5} />
+                        <text x={x} y={y + 4} textAnchor="middle" className={s.node}>
+                          {v}
+                        </text>
+                      </g>
                     ))}
                     {EDGES.map((_, i) => {
                       const [x, y] = MID[i];

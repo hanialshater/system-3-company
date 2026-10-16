@@ -4,7 +4,7 @@
   "hook": "Two friend groups, two links between them. Cut one and watch the shortest paths move.",
   "domain": "cs",
   "concept": "edge-betweenness-communities",
-  "status": "review",
+  "status": "draft",
   "durationSec": 60,
   "owner": {
     "categoryManager": "cm-cs",
@@ -52,21 +52,17 @@
     },
     {
       "id": "cs.cut-the-busiest-link.c4",
-      "text": "A list ranked once goes stale after every cut, so the Girvan–Newman method cuts the busiest link, recounts, and repeats.",
+      "text": "The Girvan–Newman method cuts the busiest link, recounts every link, and repeats.",
       "support": "source",
-      "source": "Girvan and Newman (2002), 'Community structure in social and biological networks', PNAS 99(12): 7821-7826 (remove the edge of highest betweenness, recalculate betweenness for all affected edges, repeat); Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 3, section 3.6. Not opened by the builder; fact-checker confirms attribution. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The reveal sentence matches the claim. Attributing the cut, recount, repeat procedure to Girvan–Newman rests on Girvan and Newman 2002 (PNAS) and Easley and Kleinberg ch. 3. Neither could be opened (DNS failure, proxy 403). 'Goes stale after every cut' is shown on stage (c2), but the attribution needs the source. Left unverified. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED on an opened source: NetworkX girvan_newman() (raw GitHub networkx/networkx, networkx/algorithms/community/centrality.py, opened 2026-10-14). Its docstring says the Girvan–Newman method 'removes the ... edge with the highest betweenness centrality, at each step', and its default most_valuable_edge() calls edge_betweenness_centrality(G) again on the cut graph each time. So the method recounts after every cut. Demo.tsx defines a link's number as its edge betweenness (Brandes), so 'busiest link' means highest betweenness. Girvan and Newman 2002 (PNAS) and E&K 3.6 were not opened.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "v2 2026-10-16 (r14 finding 3, fallback): the told sentence 'A list ranked once goes stale after every cut' is cut from the reveal (in this network the once-ranked list cuts the same two bridges as the recount, so it could not be shown; departure for cm-cs); reveal now 'The Girvan–Newman method cuts the busiest link, recounts every link, and repeats.' Reset to unverified because the learner-visible text changed. | v1 record: Girvan and Newman (2002), 'Community structure in social and biological networks', PNAS 99(12): 7821-7826 (remove the edge of highest betweenness, recalculate betweenness for all affected edges, repeat); Easley and Kleinberg (2010), Networks, Crowds, and Markets, ch. 3, section 3.6. Not opened by the builder; fact-checker confirms attribution. | FC pass 35 (fact-checker, 2026-10-14): HELD UNVERIFIED. The reveal sentence matches the claim. Attributing the cut, recount, repeat procedure to Girvan–Newman rests on Girvan and Newman 2002 (PNAS) and Easley and Kleinberg ch. 3. Neither could be opened (DNS failure, proxy 403). 'Goes stale after every cut' is shown on stage (c2), but the attribution needs the source. Left unverified. | FC pass 38 (fact-checker, 2026-10-14): VERIFIED on an opened source: NetworkX girvan_newman() (raw GitHub networkx/networkx, networkx/algorithms/community/centrality.py, opened 2026-10-14). Its docstring says the Girvan–Newman method 'removes the ... edge with the highest betweenness centrality, at each step', and its default most_valuable_edge() calls edge_betweenness_centrality(G) again on the cut graph each time. So the method recounts after every cut. Demo.tsx defines a link's number as its edge betweenness (Brandes), so 'busiest link' means highest betweenness. Girvan and Newman 2002 (PNAS) and E&K 3.6 were not opened.",
+      "status": "unverified"
     },
     {
       "id": "cs.cut-the-busiest-link.c5",
-      "text": "The number on a link is the shortest paths it carries: each pair of people counted once, a pair with several shortest paths sharing its 1 evenly among them.",
+      "text": "The number on a link is the shortest paths it carries: each pair of people counted once, a pair with several shortest paths sharing its 1 evenly among them. Stage: 'Number on a link: shortest paths it carries.' before any cut; while any count is fractional, 'Each pair counts 1, split evenly over its tied shortest paths.'",
       "support": "convention",
-      "source": "Edge betweenness as defined by Girvan and Newman (2002) and computed by Brandes (2001), 'A faster algorithm for betweenness centrality', J. Math. Sociology 25(2); unordered pairs, split evenly over shortest paths. Stage legend: 'Number on a link: shortest paths it carries.' | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention matches the code: loads() loops a < t (each unordered pair once) and adds sg[a][u]·sg[t][v]/sg[a][t] per edge, i.e. the pair's 1 split evenly over its shortest paths. My independent path enumeration gives identical labels. Stage legend: 'Number on a link: shortest paths it carries.' The Brandes and Girvan–Newman names are in the source field only, not on stage.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "v2 2026-10-16 (r14 finding 2): the sharing clause is now on the stage message whenever a count on the stage is fractional (Demo.tsx fractional()); reset to unverified because the learner-visible text changed. Convention unchanged: loads() is Brandes edge betweenness, unordered pairs, 1/k split. | v1 record: Edge betweenness as defined by Girvan and Newman (2002) and computed by Brandes (2001), 'A faster algorithm for betweenness centrality', J. Math. Sociology 25(2); unordered pairs, split evenly over shortest paths. Stage legend: 'Number on a link: shortest paths it carries.' | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention matches the code: loads() loops a < t (each unordered pair once) and adds sg[a][u]·sg[t][v]/sg[a][t] per edge, i.e. the pair's 1 split evenly over its shortest paths. My independent path enumeration gives identical labels. Stage legend: 'Number on a link: shortest paths it carries.' The Brandes and Girvan–Newman names are in the source field only, not on stage.",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -90,7 +86,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "cs:edge-betweenness-communities",
     "also": [
