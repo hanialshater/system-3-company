@@ -15857,7 +15857,7 @@
       "id": "W-1337",
       "title": "Main checkout: a session ran 'rebase --autostash' at ~13:06 and left it unfinished, wiping uncommitted work (stash 166ee49 + 13e83c8; two behavioral check files lost: behavioral-beauty-contest-level-k.mjs, behavioral-gain-loss-framing.mjs). Add a pre-rebase guard in tools/git-hooks refusing rebase in the main checkout",
       "owner": "tools-lead",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [],
@@ -15865,7 +15865,7 @@
       "triage": {
         "at": "2026-10-16",
         "by": "portfolio-manager",
-        "note": "correction (cm-behavioral r5): the two behavioral check files were NOT lost; History script and amendments README losses stand"
+        "note": "built on tools-r5-b1 3ce2528; awaiting PE-ops approval (r5-ops B2) + principal-engineer code check; merge installs pre-rebase at once"
       }
     },
     {
@@ -16197,6 +16197,15 @@
       "id": "W-1369",
       "title": "Learner r15 notes (launch, non-blocking) for cut-the-busiest-link v2: link-number caption absent on locked predict frame; reveal says in-group loads changed but not why; prediction tests only the expected 12->24 (company/reviews/cut-the-busiest-link/2026-10-16-learner-adult-beginner-r15.md)",
       "owner": "cm-cs",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1370",
+      "title": "tests/dispatch/agent-events.test.mjs never removes its /tmp sandboxes (~886 guards-*/agent-events-* dirs left); clean up in the test",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
