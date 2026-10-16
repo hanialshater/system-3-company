@@ -18020,13 +18020,16 @@
       "id": "W-1535",
       "title": "Reproduce the phase A readout (C4) from its seed list and commit: determinism only, not judgement (independence rule §2.5). Lane 14 batch 2 C5 (company/personalization/batches/2026-10-16-batch-2.md)",
       "owner": "learner-model-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
         "company/personalization/batches/2026-10-16-batch-2.md",
-        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md"
-      ]
+        "company/decisions/2026-10-16-vp-personalization-pre-freeze-decisions.md",
+        "company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md"
+      ],
+      "updated": "2026-10-16",
+      "note": "2026-10-16 learner-model-engineer (lme-c5-1016): reproduced readout 1 at 5725b10a from harness/README.md Reproduction only: BYTE-IDENTICAL. results.json and verdicts.json sha256 match in both parts (pass, rest); manifests differ only in seconds; regenerated §6 tables differ only in out-dir label and seconds. No defect found. Record: company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md. To review: personalization-eval (Uma) and vp-personalization."
     },
     {
       "id": "W-1536",
