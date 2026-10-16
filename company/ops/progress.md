@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · portfolio-manager (Odette) · rnd-knots budget line (W-1520) and triage of W-1517..W-1532
+
+**Changed:** `company/ops/projects.json` rnd-knots: legacy → **proposed**; tranche 2 (EDD-011 Part 2) priced at 0.6M from measured per-run means (rnd-lead est. 0.5M); returns as lessons (`returns.slugs`, the 8 Knots batch 1 slugs); stop rules; kill date 2026-11-06; pre-mortem. Record: `company/ceo-office/triage/2026-10-16-w1517-w1532-rnd-knots.md`. Board: W-1517..W-1532 triaged (P/owner/state/note; W-1520 done); new PM-authored W-1533..W-1536 (build knot briefs 1-4, demo-builder, backlog P2), W-1537 (chief-of-staff: founder-inbox filing for tranche 2), W-1538 (chief-of-staff-ceo-office approves my items).
+**Believe:** high that knot briefs 1-4 need no project budget: routine re-reads (maintenance) plus catalog builds, untagged; their gates are W-407, W-1521, W-408 (C3). High that tranche 2 needs the forum with the founder in the chair (kit is tier 2, so the PR2 delegation does not apply). Medium on 0.6M (proxies for rnd-lead and design-lead).
+**Next:** principal-engineer W-407 re-read; principal-engineer-ops W-1521; platform-engineer W-408; chief-of-staff-ceo-office W-1538; chief-of-staff W-1537.
+**Blocked:** tranche 2 on the founder-chaired forum. Not mine but flagged: history (6.3M of 2.5M) and behavioral-econ (2.7M of 1.8M) are past 100% with tagged work (`node tools/ledger.mjs check`).
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
