@@ -33,4 +33,10 @@ Verdict reason: revise. The reveal speaks to the walker's path only: for the two
 
 ## After reading build.md / meta.json
 
-(added after the findings above were committed)
+(added after the findings above were committed in 62d267d; read meta.json at the server SHA only. build.md and design.md not read.)
+
+- **My boundary is below the intended one.** meta.json's learner already knows that money later is worth less and that "which offer is better depends on the rate", and lists economics:present-value as a prerequisite. So finding 2's point about undefined jargon ("steady discounting", "discount rate") is weaker for the intended learner. It still matters for the feed, where nobody checks the prerequisite. Not part of the revise reason.
+- **Finding 3 is sharper against the stated intent.** The misconception in meta.json is "some steady rate fits" a reversal, and the intended learner arrives believing the choice depends on the rate, i.e. option 3. The objective is to explain that the choice cannot change "at any rate". The recall's `why` says exactly the missing sentence ("so the choice cannot change, whatever the rate"), but the reveal never says "whatever the rate". The learner the lesson was built for is the option-3 chooser, and the reveal does not answer that chooser. This is the revise.
+- **Finding 1 against intent.** Claim c1 records the predict answer as "Wait a week again for the $110" *for someone who waits at week 52*. That condition is in the claim and the question, but not in the option label or the verdict line the take-first learner reads. Content question for cm-behavioral, not a claim dispute.
+- Claims: c3 is `unverified` and on screen (the wait-wait/take-take branch sentence the walker saw, "would fit only a model that gives today extra weight"). c6 (held line) did not render, as intended (HELD_LINE false). I found no on-screen sentence missing from the claims list.
+- Evidence link: `evidence.simulatedLearner` is **not** updated by this run. The working-tree meta.json for this lesson has another run's uncommitted edits (another worker's QA record link), and committing it by path would sweep those in. The link is an ask in the run report for the chief of staff to sequence.
