@@ -20,47 +20,39 @@
     ]
   },
   "misconception": "A sure 200 saved and a sure 400 dead are different offers, so taking the sure thing in one wording and the gamble in the other is consistent.",
-  "objective": "The learner can explain that the saved and die wordings describe the same outcomes (200 live and 400 die for sure; 1 in 3 all 600 live, 2 in 3 all die), so a rule that judges outcomes picks the sure option in both or the chance in both, and sure-for-gains with gamble-for-losses fits no such rule.",
+  "objective": "The learner can explain that the saved and die wordings describe the same outcomes (200 live and 400 die for sure; 1 in 3 all 600 live, 2 in 3 all die), so a rule that judges outcomes picks the sure option in both or the chance in both, and preferring the sure option in one wording and the chance in the other fits no such rule.",
   "claims": [
     {
       "id": "behavioral.saved-or-die-same-600.c1",
-      "text": "The stage's options and their bars (600 cells each, filled = alive): saved wording '200 people will be saved' (200 live, 400 die, for sure) and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is'; die wording '400 people will die' (the same outcome as the first) and 'a 1-in-3 chance nobody dies, a 2-in-3 chance all 600 die' (the same as the second). With the toggle 'Say both in the same words' on, the die options read '200 people will be saved' and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is' in place. Reveal, every branch: 'In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.'",
+      "text": "The stage's options and their bars (600 cells each, filled = alive; stage key '■ = alive · □ = die'): saved wording '200 people will be saved' (200 live, 400 die, for sure) and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is'; die wording '400 people will die' (the same outcome as the first) and 'a 1-in-3 chance nobody dies, a 2-in-3 chance all 600 die' (the same as the second). With the toggle 'Say both in the same words' on, the die options read '200 people will be saved' and 'a 1-in-3 chance all 600 are saved, a 2-in-3 chance nobody is' in place. Reveal, every branch: 'In the same words, 400 sure to die is 200 sure to be saved, and the two chances are one chance.'",
       "support": "derivation",
       "source": "Brief 4 claim (1) and its declared stimulus (company/domains/briefs/behavioral.md §4); node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks 'option A-D text matches its outcomes', '(a) C has exactly A's outcomes', '(a) D has exactly B's outcomes', 'restatements are option A's and B's texts word for word'. Demo.tsx TEXT, RESTATE and BARS hold the same strings and outcomes. Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Seen in the walkthrough (phone, 7 frames) and in my own 4-branch drive: the four option texts and both restatements render exactly as declared in brief 4 (exact-line match, 6 of 6 strings); restatements replace C and D in place (step-5 frame). Demo.tsx BARS: 60x10 = 600 cells, alive/10 columns filled (A 20, B 60/0, C 20, D 60/0), legends name lives in the saved wording and deaths in the die wording. Reveal sentence 'In the same words, 400 sure to die ...' seen in all 4 branches. My own lottery comparison: C == A, D == B.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the only change is the key, now '■ = alive · □ = die' (decision 4): filled cells are lives, grey cells deaths."
     },
     {
       "id": "behavioral.saved-or-die-same-600.c2",
-      "text": "Any rule that ranks options by their outcomes picks the sure option in both wordings or the chance in both, so someone judging by outcomes who picks the sure 200 saved must pick 'The sure 400 die' (predict answer).",
+      "text": "Any rule that ranks options by their outcomes and strictly prefers one option to the other picks the sure option in both wordings or the chance in both (C has A's outcomes and D has B's), so someone who prefers the sure 200 saved, then the 1-in-3 chance nobody dies, fits no such model: predict 'Someone prefers the sure 200 saved, then, in the 'die' wording, the 1-in-3 chance nobody dies. Can one model that judges outcomes fit both?', answer 'No: same programmes, two wordings'. Only a rule that ranks the two as a toss-up (expected value, 200 = 200) fits a mixed pair, and it is excluded by 'prefers'. A sure-sure or chance-chance pair fits some strict rule, so 'No: only the sure option both times fits' is false.",
       "support": "derivation",
-      "source": "Brief 4 claim (2): C has A's outcomes and D has B's, so any function of the outcome lists ranks A vs B as C vs D; the script also tries 31 outcome-based rules (u = x^a for a = 0.1-3.0, worst case, best case) and none picks A with D or B with C (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, checks '(a) every outcome-based rule tried' and 'predict answer follows from the derivation'). Builder statement, not self-verified.",
-      "status": "disputed",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): DISPUTED. True only for rules that rank one option strictly above the other. These programmes have equal expected value (200 lives each), so the risk-neutral rule (u = x^1, expected value) ranks A and B equal and does not force a pick: a chooser it describes may pick the sure 200 saved and then either die option. My sweep u = x^a, a = 0.01-3.00: 299 strict, tied at a = 1. The check script's test compares Math.sign of the differences, so the tie counts as 'consistent' (0 === 0) and the case is never tested. Learner-facing: the predict question 'someone picks the sure 200 saved ... which must they pick?' The answer is right for a strict preference. Fix (builder; wording is cm-behavioral's): make the premise strict ('someone prefers the sure 200 saved', or 'any rule that ranks one option above the other') and say so in the claim text.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "Brief 4 claim (2) and Decisions (r4) 1-2; node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs checks '(a) every outcome-based rule tried' (31 rules), '(a) mixed pairs fit only rules that rank the two programmes as a toss-up', '(a) both matched pairs fit some strict rule' and 'predict answer follows from the derivation'. Builder statement, not self-verified.",
+      "status": "unverified",
+      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: the equal-EV tie); the predict now says 'prefers' (strict) and this text carries the strict qualifier."
     },
     {
       "id": "behavioral.saved-or-die-same-600.c3",
-      "text": "The learner's own screen, conditional on the two choices: sure-then-chance or chance-then-sure: 'No model that judges only outcomes fits both of your choices: the wording moved you'; sure-sure or chance-chance: 'You answered the same offer the same way twice: a model that judges outcomes fits both of your choices.' Each branch opens 'You chose {first}, then {second}.' with the learner's two marked options.",
+      "text": "The learner's own screen, conditional on the two choices: sure-then-chance or chance-then-sure: 'Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices: the wording moved you'; sure-sure or chance-chance: 'Same offer, same answer twice: a model that judges outcomes fits both.' Each branch opens 'You chose {first}, then {second}.' with the learner's two marked options.",
       "support": "derivation",
       "source": "Brief 4 claim (3); all four branches print in node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs ('Reveal branches') and Demo.tsx copies them (revealParas). The choices quoted are the ones still marked on the stage at the reveal (fixed once the toggle is first turned on). Builder statement, not self-verified.",
-      "status": "disputed",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): DISPUTED (same root as c2). All four branches driven on :3591 and read: each opens 'You chose {first}, then {second}.' and matches the claim text. But in the A-D and B-C branches, 'No model that judges only outcomes fits both of your choices' is false for an outcome model that is indifferent here: expected value ranks A and B equal (200 = 200), and under weak revealed preference the pair A-then-D (or B-then-C) fits it. The A-C/B-D sentence ('a model that judges outcomes fits both') is true. Fix (builder; wording is cm-behavioral's): qualify the mixed-branch sentence for strict preference (for example 'Unless the two were a toss-up for you, no model that judges only outcomes fits both of your choices'), recount the reveal (now 72 / 69 words), and the script's rule test should treat a tie as fitting either pair.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status disputed (FC pass 57: false for an indifferent chooser); the mixed branches now open with the toss-up qualifier and the matched branches are reworded (decisions 1 and 3)."
     },
     {
       "id": "behavioral.saved-or-die-same-600.c4",
-      "text": "Names: 'Sure for gains, gamble for losses: that pattern is called a framing effect' (sure-then-chance branch); 'the reverse of the pattern called a framing effect' (chance-then-sure branch).",
+      "text": "Names: 'Sure for gains, gamble for losses: that pattern is called a framing effect' (sure-then-chance branch); 'the reverse of the pattern called a framing effect' (chance-then-sure branch); 'Preferring the sure 200 saved, then the chance nobody dies, would fit none: that is called a framing effect' (sure-sure and chance-chance branches).",
       "support": "convention",
       "source": "Brief 4 claim (4) (convention: the name of the pattern). Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Term checked in an opened source: Rachev et al. 2021, PLOS ONE, PMC8432807 (PMC OAI-PMH, HTTP 200): 'The framing effect ... refers to the shift of preferences depending on superficial changes in the wording of otherwise equivalent choice options ... Specifically, people tend to be risk-averse when presented with potential gains but tend to be risk-seeking when the same options are presented as potential losses.' A-D (sure for gains, gamble for losses) is that pattern, B-C its reverse. Both sentences seen in their branches on :3591. Verifies the name only; the sentences around it are c3 (disputed).",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "status": "unverified",
+      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57, term checked in Rachev et al. 2021, PMC8432807); the matched branches now name the framing effect too (decision 3). 'Would fit none' rests on c2's strict preference."
     },
     {
       "id": "behavioral.saved-or-die-same-600.c5",
@@ -104,25 +96,23 @@
     },
     {
       "id": "behavioral.saved-or-die-same-600.c9",
-      "text": "Recall answer: '90% survive' and '10% die' describe the same outcome (900 of 1,000 live in both).",
+      "text": "Recall: 'Someone prefers to take a treatment described as '90% survive', and to refuse it described as '10% die'. Can one model that judges outcomes fit both?' Answer 'No: same outcome, two descriptions': '90% survive' and '10% die' describe the same outcome (900 of 1,000 live in both), so a model that judges outcomes can take it both times or refuse it both times, but cannot prefer to take it one way and refuse it the other; 'No: only taking it both times fits' is false because refusing both times also fits.",
       "support": "derivation",
-      "source": "1,000 × 0.9 = 1,000 − 1,000 × 0.1 = 900 (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, recall check; brief 4 transfer recall). Builder statement, not self-verified.",
-      "status": "verified",
-      "note": "FC pass 57 (fact-checker, 2026-10-16, SO-10-2, server bc0edc0 :3591): Recall card in meta.json: '90% survive' vs '10% die' of 1,000: 0.9 x 1000 = 900 = 1000 - 0.1 x 1000 (my own node). The answer 'Describe the same outcome' and its 'why' (900 live, 100 die) match.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-16"
+      "source": "1,000 × 0.9 = 1,000 − 1,000 × 0.1 = 900 (node company/domains/briefs/checks/behavioral-gain-loss-framing.mjs, recall checks; brief 4 transfer recall, reworked r4). Builder statement, not self-verified.",
+      "status": "unverified",
+      "note": "r4 revision build (demo-builder, 2026-10-16, brief 4 Decisions (r4)): quoted text changed, so reset to unverified; not self-verified. Previous status verified (FC pass 57); the recall question, options and answer are rebuilt (W-1306), and the 'why' is the builder's wording."
     }
   ],
   "confidence": "",
   "recall": {
-    "question": "A treatment is described as '90% survive' or as '10% die'. Judged by outcomes, the two descriptions:",
+    "question": "Someone prefers to take a treatment described as '90% survive', and to refuse it described as '10% die'. Can one model that judges outcomes fit both?",
     "options": [
-      "Describe the same outcome",
-      "Differ: '10% die' is the worse one",
-      "Depend on the patient"
+      "Yes: '10% die' is the worse offer",
+      "No: only taking it both times fits",
+      "No: same outcome, two descriptions"
     ],
-    "answer": 0,
-    "why": "Out of 1,000 patients, 900 live and 100 die under both descriptions. Judged by outcomes, a different wording of the same outcome cannot make one worse."
+    "answer": 2,
+    "why": "Out of 1,000 patients, 900 live and 100 die under both descriptions. A model that judges outcomes can take it both times or refuse it both times, but cannot prefer to take it one way and refuse it the other."
   },
   "evidence": {
     "qa": [],
@@ -132,7 +122,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "behavioral:gain-loss-framing",
     "also": [],
