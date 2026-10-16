@@ -86,13 +86,15 @@ Full lists of every tranche are in the Appendix.
 
 | Lesson | QA record (date, commit) | Walkthrough commit | Verdict | Record | Signed |
 |---|---|---|---|---|---|
-| packing-cube-walls | 2026-10-16, 6838dba | | | | |
-| pillowcase-set-kit | 2026-10-16, 6838dba | | | | |
-| shelf-front-labels | 2026-10-16, 6838dba | | | | |
-| rolled-or-folded-volume | 2026-10-16, 6838dba | | | | |
-| suitcase-rotate-block | 2026-10-16, 6838dba | | | | |
-| rebuild-the-procedure | 2026-10-16, 6838dba | | | | |
-| spaced-beats-cram | 2026-10-16, 6838dba | | | | |
+| packing-cube-walls | 2026-10-16, 6838dba | 987687a | attest | company/reviews/packing-cube-walls/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| pillowcase-set-kit | 2026-10-16, 6838dba | 987687a | attest | company/reviews/pillowcase-set-kit/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| shelf-front-labels | 2026-10-16, 6838dba | 987687a | attest | company/reviews/shelf-front-labels/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| rolled-or-folded-volume | 2026-10-16, 6838dba | 987687a | attest | company/reviews/rolled-or-folded-volume/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| suitcase-rotate-block | 2026-10-16, 6838dba | 987687a | attest | company/reviews/suitcase-rotate-block/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| rebuild-the-procedure | 2026-10-16, 6838dba | 987687a | attest | company/reviews/rebuild-the-procedure/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+| spaced-beats-cram | 2026-10-16, 6838dba | 987687a | attest | company/reviews/spaced-beats-cram/2026-10-16-safety-launch.md | Sana, 2026-10-16 |
+
+Sana, 2026-10-16: all 7 attested on one build (server BUILT_FROM 987687acc1cc934b5eaa4f5510d2111712263532, same at start and end), none with changes, class none. Sweep record, T1-L drawn and walked 14 of 14, no stratum failed: `company/reviews/lifehacks-200/safety-launch-sweep-2026-10-16.md`. One non-safety hand-off for the fact-checker (W-1078): suitcase-rotate-block's recall example does not use the stage's bag and blocks (see its record).
 
 Sweep and per-lesson rows go in Sana's own records (`company/reviews/lifehacks-200/safety-launch-sweep-<date>.md` and `company/reviews/<slug>/<date>-safety-launch.md`). She links each one here by adding a line under this table.
 
