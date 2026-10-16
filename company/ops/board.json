@@ -17801,10 +17801,11 @@
       "id": "W-1523",
       "title": "PR #6 merge gate (tier 2): principal-engineer engineering review of the SHIPPED head (pr/6-algorithms-200 after base merge e32feca5): shared engine src/components/algorithms/** + src/lib/algorithms/** used by 200 lessons, catalog page change (src/app/catalog/page.tsx, globals.css, imports content/algorithms-200.json), tools/serve.sh -H 127.0.0.1 (owning-engineer read for the Tools row), tests/algorithms/*.test.mjs not wired into package.json verify, paths.json has no shared-engine rule for algorithms. The PR's readiness record classed it tier 1 and reviewed at 150/200 wrappers. EDD needed or a ruling that none is. See company/engineering/community/prs/6.md",
       "owner": "principal-engineer",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1524",
@@ -17838,6 +17839,51 @@
       "title": "PR #6 merge gate: QA contract fails 3 of 200 algo lessons on phone and desktop with 'controls that changed nothing observable: Try another' (algo-dinic-levels, algo-pollard-rho-factor, algo-topological-uniqueness). In each, cases[1] ends on a final frame identical to cases[0] (checked by running the models), so Try another shows no change. Make the changed case visibly differ (src/lib/algorithms/topics/spanning-matching-flow.ts dinic_levels, number-theoretic-algorithms.ts pollard_rho_factor, graph-traversal-decomposition.ts topological_uniqueness) and update their claims (stay unverified). See company/engineering/community/prs/6.md",
       "owner": "demo-builder",
       "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1528",
+      "title": "PR #6 merge gate M1+M2: add test:algorithms to package.json scripts and verify (approved in the review, no EDD); add tests/algorithms/shipped.test.mjs running checkAlgorithms on the real manifest (0 errors, 0 warnings), exact wrapper imports, case-1 visible final frame differs from case 0 without result; tighten tools/algorithms-200-check.mjs:53-54,89. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md",
+      "owner": "platform-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1529",
+      "title": "PR #6 merge gate M3 (widens W-1527): algo-external-merge and algo-american-flag-sort also end case 1 on a final frame identical to case 0 (pass QA only via the trace counter); repair with the three in W-1527. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F13",
+      "owner": "demo-builder",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1530",
+      "title": "PR #6 merge gate M6: decide whether production /catalog may show the 200 planned algorithm titles (byte-equal to draft lesson titles) and '200 planned lessons across 20 topics', or have platform-engineer render the section only when an algorithm lesson is visible. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F4",
+      "owner": "cm-cs",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1531",
+      "title": "PR #6 merge gate M7: correct company/engineering/readiness/2026-10-16-algorithms-200.md to tier 2, link the PE review, add the M5 integrated verify evidence, final commit list and grouped revert; then principal-engineer-ops approves readiness. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F5",
+      "owner": "chief-of-staff",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1532",
+      "title": "paths.json shared-engine rules (tier 2) for src/components/algorithms/**, src/lib/algorithms/**, src/components/books/**, src/lib/books/**; principal-engineer-ops proposes, principal-engineer accepts; tools/readiness.mjs still absent. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F6",
+      "owner": "principal-engineer-ops",
+      "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
       "links": []

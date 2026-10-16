@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · principal-engineer (Kenji) · PR #6 Algorithms 200: tier-2 engineering review (W-1523), approve with conditions
+
+**Changed:** wrote `company/engineering/reviews/2026-10-16-pr6-engineering-review.md` on `pr6/pe` (head `80dd3469`). W-1523 → done. New board items: W-1528 (platform-engineer, M1+M2 test wiring and shipped-spec test), W-1529 (demo-builder, two more identical-final-frame lessons beyond W-1527), W-1530 (cm-cs, what production /catalog shows), W-1531 (chief-of-staff + PE-ops, readiness to tier 2), W-1532 (PE-ops, paths.json engine rules). No code edited. Not pushed.
+
+**Believe (high on the code, medium on scale):** tier 2; no retroactive EDD (the pre-code frozen contract matches what shipped). Engine sound: all 200 wrappers render the kit Lesson directly, pure tested transitions, 4,401 unverified claims, no protected path or dependency. typecheck pass (51.8 s), tests/algorithms 12/12, the PR's checker 0 errors on all 200, check pass. Not mergeable yet: tests not in verify, no test over the shipped specs, **five** lessons (not three) whose "Try another" ends on the same frame, test:platform #18/#28 red, no integrated verify, and the catalog shows all 200 draft titles in production (no links or content). serve.sh loopback bind accepted.
+
+**Next:** chief-of-staff dispatches W-1528, W-1529 (with W-1527), W-1524, W-1525, W-1530; then qa-tester runs integrated `npm run verify` (M5); then W-1531. Any change to `src/components/algorithms/`, `types.ts` or the checker bounds returns to principal-engineer.
+
+**Blocked:** merge, on M1–M7 in the review.
+
 ## 2026-10-16 · community-engineer (Femi) · PR #6 Algorithms 200: evaluation and base merge, blocked
 
 **Changed:** local branch `pr/6-algorithms-200` = PR head `6008cd52` + merge of base `cdee168c` (`e32feca5`, merge commits only). The PR's W-1493..W-1497 collided with base and are now W-1517..W-1521 (map in `company/engineering/community/prs/6.md` §3). Intake W-1522; review/fix requests W-1523 (principal-engineer, tier-2 merge gate), W-1524 and W-1527 (demo-builder), W-1525 (qa-tester), W-1526 (accessibility). Not pushed, nothing deployed, the PR is still a draft.
