@@ -17618,10 +17618,11 @@
       "id": "W-1512",
       "title": "Phase A sim findings for the model contract (company/personalization/model/sim/README.md, run.mjs output): (1) overlap term and slots 2-3 never affect the served card when the queue is recomputed after every card (gam-off-overlap = gam exactly) — serve the queue or drop the term; (2) distinct-domains breadth guardrail saturates at 2/2 in the pilot — pick a breadth measure that can move (concepts? per-domain share?); (3) surprise currently acts as a readiness proxy because misconceptionStrength is a placeholder hash; (4) 1-in-3 floor needs a 'moved' flag or the pure reconstruction in composer.ts movedStreak() — confirm. Answer each in the model-v0 decision record",
       "owner": "personalization-lead",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1513",
@@ -17699,6 +17700,42 @@
       "id": "W-1514",
       "title": "Apply privacy ruling company/reviews/_privacy/2026-10-16-personalization-model-inputs.md: INPUT_PRIVACY update, P2-null and fallback-invariance self-checks, N1/N3 composer tests, HQ lab no-real-data grep (section 8)",
       "owner": "personalization-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1515",
+      "title": "misconceptionStrength pilot ratings (230 probability + cs lessons) per company/personalization/2026-10-16-misconception-strength-ratings-plan.md: final rubric, 12 anchors, ratings with strengthSource dims-owner, eval blind 20% second rating. Held by personalization-lead for lesson-dims-owner once the founder approves card N4 (W-1512 finding 3)",
+      "owner": "personalization-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1516",
+      "title": "For personalization-eval with W-1513 (held by personalization-lead until card N1 is approved): (a) sweep the learner's prerequisite penalty as a dimension of the W-1496 criterion, since the GAM's simulated edge reverses at penalty 0 (W-1512 finding 4); (b) measure model-v0.2 breadth guardrails: top-domain share of completed new cards and distinct concepts vs default-order; (c) before surprise is tested, a hidden per-lesson misconception pull the ratings only approximate (the judge must not read the ratings); (d) math latents if the pilot widens (v0.3 candidate). Decision record: company/decisions/2026-10-16-personalization-model-v0.md",
+      "owner": "personalization-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1517",
+      "title": "W-1497 addendum: evidence range for the recall cost of meeting a concept before its prerequisites; the phase A simulator's GAM edge over default order rests entirely on it (W-1512 finding 4, company/decisions/2026-10-16-personalization-model-v0.md)",
+      "owner": "research-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1518",
+      "title": "Phase B privacy read (not urgent): a session-local, never-stored list of cards served this session, so the 1-in-3 default floor also counts moved cards the learner skipped (model.ts antiBubbleFloor.knownGap, model-v0.2)",
+      "owner": "privacy-reviewer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",

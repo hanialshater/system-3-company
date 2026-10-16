@@ -31,10 +31,15 @@
  * serving code must never read them. self-check.mjs fails if this file mentions that module.
  */
 
-export const MODEL_VERSION = "model-v0.1" as const;
+export const MODEL_VERSION = "model-v0.2" as const;
 export const DECISION = "company/decisions/2026-10-16-personalization-model-v0.md" as const;
 
-/** The pilot set (response §3, phase A). Life Hacks is out: 15/200 lessons have prerequisites. */
+/** The pilot set (response §3, phase A). Life Hacks is out: 15/200 lessons have prerequisites.
+ *  model-v0.2 (W-1512 finding 2): NOT widened yet. Candidate third domain: math (80 visible lessons,
+ *  65% with prerequisites; 11 pilot prerequisite edges already point into math:). Widening changes
+ *  the simulated world (persona latent priorKnowledge/interest per domain, sim history seeding), which
+ *  is personalization-eval's (W-1513), and adds 80 lessons to the ratings (lesson-dims-owner). The
+ *  breadth guardrail was redefined instead (OBJECTIVE), so it moves with two domains. */
 export const PILOT_DOMAINS = ["probability", "cs"] as const;
 export type PilotDomain = (typeof PILOT_DOMAINS)[number];
 
@@ -139,6 +144,7 @@ export function signalPrivacy(signal: keyof typeof SIGNAL_INPUTS): PrivacyStatus
 
 /** Lesson dims the model reads (response §2.4). Where they live is W-1498 (personalization org, pending role approval). */
 export type Level = "intro" | "core" | "stretch";
+export type StrengthSource = "dims-owner" | "cm" | "classifier" | "data";
 export type LessonDims = {
   slug: string;
   domain: string;
@@ -146,8 +152,10 @@ export type LessonDims = {
   level: Level;
   prerequisites: string[];   // concept ids
   successors: string[];      // concept ids (reverse edges)
-  misconceptionStrength?: 1 | 2 | 3;              // pilot rating (CMs), then classifier, then data
-  strengthSource?: "cm" | "classifier" | "data";
+  misconceptionStrength?: 1 | 2 | 3;              // pilot rating (in-org rater, or CMs), then classifier, then data
+  /** model-v0.2: "dims-owner" added (org proposal T6 moves the pilot rating in-org). Absent = unrated or
+   *  placeholder, and the surprise term reads it as 0 (COMPOSER.surpriseGate). */
+  strengthSource?: StrengthSource;
   revealCompletionRate?: number;                  // aggregate only, phase B on (gate P6.3)
   firstRecallRate?: number;                       // aggregate only, phase B on
 };
@@ -330,12 +338,26 @@ export function detect(fp: Fingerprint, shapes: Record<Need, ShapeTerm[]> = NEED
  * an edit to this file.
  */
 export type ComposerTermName =
-  | "defaultRank" | `need:${Need}` | "surprise" | "novelty" | "overlap" | "slot";
+  | "defaultRank" | `need:${Need}` | "surprise" | "novelty";
+// model-v0.2: "overlap" and "slot" removed. With compose-one-recompute (slotsAhead 1, below) the queue
+// is always empty and the slot index is always 0, so both terms were identically 0 in every pick
+// (simulator finding 1, W-1512; company/personalization/model/sim/README.md). Repeats of a concept are
+// still damped by novelty.perSimilarRecent over the last 3 completed cards.
 
 export const COMPOSER = {
-  version: "composer-v0",
-  /** guess: 3 new cards ahead, recomputed after every card, as response §2.5. */
-  slotsAhead: 3,
+  version: "composer-v0.2",
+  /**
+   * model-v0.2: compose ONE card, serve it, recompute from the learner's answer (was: 3 slots ahead,
+   * recomputed after every card, so slots 2-3 were composed and thrown away; W-1512 finding 1).
+   * Chosen over "compose a session of N, then serve all N" because N-ahead serving delays repair: a
+   * wrong prediction on card 1 could not change cards 2..N. Needs fall on evidence (the next
+   * fingerprint), not on assumed coverage by queued cards (the circularity O2 warns about).
+   * `ComposeInput.remaining` therefore equals `needs` and `queued` is empty in every call.
+   * Revisit if a surface ever pre-fetches a session (offline mode): that is a new version, with
+   * a session-level diversity term designed then.
+   */
+  slotsAhead: 1,
+  servingMode: "compose-one-recompute" as const,
   weights: {
     /** guess: 1.0 on the default order's rank (1 for the next default card, falling linearly to
      *  0 across the pool) so the default order is the base and needs must earn a move. */
@@ -345,15 +367,26 @@ export const COMPOSER = {
      *  floor), stretch lowest (O8: stretch before readiness is the riskiest move). */
     onRem: { repair: 0.5, build: 0.4, breadth: 0.35, stretch: 0.3 } satisfies Record<Need, number>,
     /** guess: small on purpose. Surprise (misconceptionStrength/3 × readiness) is kept only while
-     *  the experiment shows recall does not fall (founder Q1); W-1497 may change its form. */
+     *  the experiment shows recall does not fall (founder Q1); W-1497 may change its form.
+     *  INACTIVE in model-v0.2: see surpriseGate. The weight is kept so turning it on is one flag. */
     surprise: 0.15,
     /** guess: smaller than surprise; novelty without a learning reason is the feed-optimisation
      *  drift we exist to avoid. Kept only while recall does not fall. */
     novelty: 0.1,
-    /** guess: a second card on a queued concept loses half a default rank: no two from one concept. */
-    overlap: 0.5,
-    /** guess: as edp-engine slot_decay; mild preference to resolve needs sooner. */
-    slotDecay: 0.02,
+  },
+  /**
+   * model-v0.2 (W-1512 finding 3): surprise is OFF until real ratings exist. With a placeholder
+   * misconceptionStrength (a slug hash, sim/catalog.mjs) the term ranked by noise × readiness, i.e. it
+   * acted only as a second readiness term. Two locks, both required for a non-zero surprise value:
+   * (1) `active` is true (a version bump, after personalization-eval's blind 20% second rating reports
+   * agreement on the pilot ratings); (2) the lesson's `strengthSource` is in `requiresStrengthSource`
+   * (an unrated or placeholder lesson scores 0). Plan for the ratings:
+   * company/personalization/2026-10-16-misconception-strength-ratings-plan.md.
+   */
+  surpriseGate: {
+    active: false,
+    requiresStrengthSource: ["dims-owner", "cm", "classifier", "data"] as StrengthSource[],
+    why: "inactive: no real misconceptionStrength ratings on the pilot; placeholder hash ranks by noise (W-1512 finding 3)",
   },
   /** guess: a card moves only if score − score(default card) > .1; otherwise the default card is
    *  shown and no reason is claimed (constraint 3). .1 is a tenth of the default-rank range. */
@@ -378,7 +411,15 @@ export const COMPOSER = {
   constraints: {
     dueRevisitsFirst: true,               // AMD-008 F2
     defaultWhenDampenedOrOff: true,       // dampener 0, or learner switched off (P4)
-    antiBubbleFloor: { everyN: 3, fromDefaultRoundRobin: 1 },  // guess: 1 in 3 (draft G3)
+    antiBubbleFloor: {
+      everyN: 3, fromDefaultRoundRobin: 1,  // guess: 1 in 3 (draft G3)
+      /** model-v0.2 (W-1512 finding 5), how the floor counts, confirmed in the simulator: */
+      counts: "completed new cards only, rebuilt from history (permitted inputs, no served log is stored): a card counts as moved if it was not the first eligible card of the default order when it was completed. Learner-chosen cards (map, search) and pre-personalisation history count as moved, so a first session usually starts on the default card. Cards left before the reveal and due revisits do not count. Past items are judged against today's default order and filter, so a catalog change can shift the count.",
+      /** Open (phase B, before serving): a learner who skips moved cards without completing them is not
+       *  bounded by this floor. Closing it needs a session-local served list, which is a new input for
+       *  privacy-reviewer (W-1495); not added here. */
+      knownGap: "skipped moved cards do not count (sim: max 4 moved served in a row vs 2 completed)",
+    },
     stretchNeedsSomePrereq: true,         // stretch ineligible if all prerequisites unseen (O8)
     statedSubjectsAndLessOfThisFilter: true,
   },
@@ -405,10 +446,10 @@ export type Pick = { slug: string; moved: boolean; reason: PickReason; terms: Co
 export type ComposeInput = {
   fingerprint: Fingerprint;
   needs: NeedScores;            // detect(fingerprint)
-  remaining: NeedScores;        // needs not yet covered by cards already queued this pass
+  remaining: NeedScores;        // needs not yet covered by cards already queued; equals needs under compose-one-recompute
   pool: LessonDims[];           // eligible lessons, pilot domains
   defaultOrder: string[];       // today's round-robin order (the base and the holdout)
-  queued: string[];             // cards already queued ahead
+  queued: string[];             // cards already queued ahead; empty under compose-one-recompute
   history: HistoryItem[];
   dueRevisits: string[];
   personalisationOn: boolean;   // the learner's switch (P4)
@@ -423,7 +464,10 @@ export type ComposeFn = (input: ComposeInput, model: typeof COMPOSER) => Pick[];
 export const OBJECTIVE = {
   primary: "mean simulated first spaced-revisit recall over ALL lessons completed (not only moved ones)",
   guardrails: [
-    "distinct domains reached does not fall (breadth)",
+    // model-v0.2 (W-1512 finding 2): "distinct domains reached" cannot move with 2 pilot domains
+    // (every policy reached 2.00 in every episode). Concentration moves with any number of domains.
+    "share of completed new cards in the learner's top domain does not rise vs default-order (breadth)",
+    "distinct concepts completed does not fall vs default-order (breadth within a domain)",
     "share of cards shown before their prerequisites does not rise",
   ],
   /** Never a score input: the simulator scores an independent simulated learner, not need coverage (O2). */
@@ -443,6 +487,8 @@ export type PolicyName = (typeof POLICIES)[number];
 
 export function checkModel(): string[] {
   const errs: string[] = [];
+  if (COMPOSER.slotsAhead !== 1 && COMPOSER.servingMode === "compose-one-recompute") errs.push("compose-one-recompute needs slotsAhead 1");
+  if (COMPOSER.surpriseGate.active && !COMPOSER.surpriseGate.requiresStrengthSource.length) errs.push("surprise active needs a required strength source");
   const curves: [string, Curve & { why: string }][] = [["dampener", DAMPENER]];
   for (const need of NEEDS) {
     if (!NEED_SHAPES[need]?.length) errs.push(`${need}: no shape terms`);

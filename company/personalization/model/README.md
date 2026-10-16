@@ -29,8 +29,10 @@ There is no curve-editing tool.
 - `fingerprintFrom(history, dims, now, {predictedCorrectly})` → `Fingerprint`. Pure. `predictedCorrectly:false` is the recall-only fallback if W-1495 refuses that input.
 - `detect(fp)` → `{repair, build, breadth, stretch}`. `explainNeeds(fp)` gives the same scores with each term's `x`, `y = pwl(x)`, weight, contribution and reason, plus the dampener.
 - `COMPOSER`: weights, relational dim constants (`addr`, `readiness`, `novelty`), hard constraints, `engagementGuardrail` (a floor, never a term). `ComposeInput`, `Pick`, `ComposeFn` are the composer's types; the composer is W-1494's to build. `ComposerTermName` has no engagement member on purpose.
-- `OBJECTIVE` (recall over all lessons completed; breadth and prerequisite-order guardrails) and `POLICIES` (the 7 to compare). The pass criterion is W-1496's and is written before the first run.
+- `OBJECTIVE` (recall over all lessons completed; breadth guardrails as top-domain share and distinct concepts since model-v0.2, and a prerequisite-order guardrail) and `POLICIES` (the 7 to compare). The pass criterion is W-1496's and is written before the first run.
 - `inspect()` / `curveViews()`: the whole model as JSON-serialisable data, every curve as points with its reason and its signal's privacy status.
 - A policy must never read `Persona.latent` or a persona id; the simulator jitters `fingerprintMeans` and scores the latent learner.
 
 Ownership note: per the founder (company/decisions/2026-10-16-founder-personalization-org.md), the next steps that were routed to other teams (W-1496, W-1497, W-1498, W-1503) are "personalization org, pending role approval". The privacy review (W-1495) stays company-wide.
+
+model-v0.2 (W-1512): compose one card then recompute, overlap/slot terms removed, surprise gated off until real ratings (company/personalization/2026-10-16-misconception-strength-ratings-plan.md), floor counting rule written into `antiBubbleFloor`. Decisions per simulator finding: the decision record's model-v0.2 section.

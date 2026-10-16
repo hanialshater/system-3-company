@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · personalization-lead (Mateo) · W-1512 model-v0.2 from the simulator findings (run pl-w1512-1016)
+
+**Changed:** `company/personalization/model/model.ts` → **model-v0.2** / composer-v0.2. Compose one card, then recompute (`slotsAhead` 1); `overlap` and `slot` terms removed. `surpriseGate` is inactive: surprise is 0 unless the gate is on AND the lesson has a real `strengthSource` (`dims-owner` source added). Breadth guardrail redefined as top-domain share plus distinct concepts. The 1-in-3 floor's counting rule and its skip gap are written into `antiBubbleFloor`. Two new `checkModel()` invariants. Call sites fixed only where the contract changed: sim/composer.ts (terms, gate) and sim/simulate.mjs (dropped `gam-off-overlap`). learner.ts and score.ts are untouched. Each finding's decision and objections are in the model-v0.2 section of `company/decisions/2026-10-16-personalization-model-v0.md`. New plan: `company/personalization/2026-10-16-misconception-strength-ratings-plan.md`. Board: W-1512 done; W-1515 ratings (held for lesson-dims-owner), W-1516 eval asks (held for personalization-eval), W-1517 research-lead (prerequisite-order evidence), W-1518 privacy-reviewer (session-local served list, phase B).
+
+**Believe:** finding 4 is the important one. The GAM's simulated edge comes from the judge's prerequisite-penalty assumption, so there is no evidence yet that the composer beats default order (high). I changed no curve or weight to win it back. The quick run after the change is as predicted (`gam` = old `gam-off-surprise`, 0.684 recall vs default 0.654, sd ~.13, 5 seeds, UNSCORED). The floor holds over completed cards (max 2 moved in a row) but not over served cards (max 4), because skipped cards are not counted (high, measured on 30 episodes). Self-check OK; strict tsc on the model/sim .ts files clean; `npm run typecheck` cannot run here (no node_modules); `npm run check` passes.
+
+**Next:** W-1514 (mine): apply privacy section 8. W-1496 criterion before any scored run. W-1516 for personalization-eval once approved. Pilot widening to math is a v0.3 candidate after eval has math latents.
+
+**Blocked:** founder approval of cards N1 (eval) and N4 (lesson-dims-owner) gates the ratings and the judge swap; W-1498 (dims location).
+
 ## 2026-10-16 · privacy-reviewer (Elif) · W-1495 personalization model inputs (run pr-w1495-perso-inputs-1016)
 
 **Changed:** wrote `company/reviews/_privacy/2026-10-16-personalization-model-inputs.md` (per-signal rulings, conditions A2-A3, P1-P4, SS1-SS5, F1-F3, AG1-AG3, M1-M3, N1-N6, T1-T6, HQ lab limits); added row D20 to `company/engineering/data-inventory.md` (derived personalization values: nothing stored). W-1495 to review; new board item for personalization-lead to apply the conditions. No code, no protected path.

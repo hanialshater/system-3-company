@@ -35,7 +35,6 @@ export const GAM_VARIANTS = {
   "gam-off-stretch": ["need:stretch"],
   "gam-off-surprise": ["surprise"],
   "gam-off-novelty": ["novelty"],
-  "gam-off-overlap": ["overlap"],
   "gam-off-floor": ["floor"],
 };
 export const ALL_POLICIES = ["default-order", "draft-rules", ...Object.keys(GAM_VARIANTS), "random", "epsilon-greedy"];

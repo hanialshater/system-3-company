@@ -6,8 +6,10 @@
  * Imports types only, so it runs under Node type stripping and tsc alike; every number comes from the
  * `model` argument (COMPOSER), never from a literal here, except where marked "sim choice".
  *
- *   score(lesson | learner, slot) = defaultRank·rank + Σ onRem[n]·remaining[n]·addr[lesson,n]
- *                                 + wS·surprise + wN·novelty − overlap·sameConceptQueued − slotDecay·slot
+ *   score(lesson | learner) = defaultRank·rank + Σ onRem[n]·remaining[n]·addr[lesson,n]
+ *                           + wS·surprise·[surpriseGate open] + wN·novelty
+ * (model-v0.2: overlap and slot terms removed from the contract; slotsAhead is 1, compose-one-recompute.
+ *  Surprise is 0 unless COMPOSER.surpriseGate is active AND the lesson's strengthSource is a real rating.)
  *
  * Hard constraints (not terms; no weight buys past them): due revisits first; default order when the
  * dampener is 0 or the learner switched off; move threshold; 1-in-3 default share (anti-bubble floor);
@@ -214,10 +216,10 @@ export function composeExplained(input: ComposeInput, model: Model, opts: Compos
       const add = (name: ComposerTermName, v: number) => t.push({ name, value: off.has(name) ? 0 : v });
       add("defaultRank", w.defaultRank * (n > 1 ? 1 - (rankOf.get(l.slug) ?? n - 1) / (n - 1) : 1));
       for (const need of NEEDS) add(`need:${need}`, w.onRem[need] * remaining[need] * addr(l, need, ctx, model));
-      add("surprise", w.surprise * ((l.misconceptionStrength ?? 0) / 3) * readiness(l, ctx, model));
+      const g = model.surpriseGate;
+      const rated = g.active && !!l.strengthSource && g.requiresStrengthSource.includes(l.strengthSource);
+      add("surprise", rated ? w.surprise * ((l.misconceptionStrength ?? 0) / 3) * readiness(l, ctx, model) : 0);
       add("novelty", w.novelty * novelty(l, ctx, model, queuedConcepts));
-      add("overlap", -w.overlap * queuedConcepts.filter((c) => c === l.concept).length);
-      add("slot", -w.slotDecay * s);
       const stretchBlocked = model.constraints.stretchNeedsSomePrereq && l.level === "stretch" && prereqsAllUnseen(l, ctx);
       return { slug: l.slug, concept: l.concept, domain: l.domain, level: l.level, score: sum(t), terms: t,
         eligibleToMove: !stretchBlocked, note: stretchBlocked ? "stretch readiness: all prerequisites unseen" : undefined };
@@ -246,7 +248,7 @@ export function composeExplained(input: ComposeInput, model: Model, opts: Compos
         if (best.slug !== defaultCard) rejected.push({ slug: best.slug, why: "anti-bubble floor forced the default card" });
       } else if (best.slug !== defaultCard && best.score - def.score > model.moveThreshold) {
         winner = best; moved = true;
-        const named = best.terms.filter((t) => t.name !== "defaultRank" && t.name !== "slot" && t.name !== "overlap" && t.value > 0)
+        const named = best.terms.filter((t) => t.name !== "defaultRank" && t.value > 0)
           .sort((a, b) => b.value - a.value)[0];
         reason = named ? (named.name.startsWith("need:") ? (named.name.slice(5) as Need) : (named.name as PickReason)) : "default";
         rejected.push({ slug: defaultCard, why: `default card, ${(best.score - def.score).toFixed(3)} below the winner` });
