@@ -38,5 +38,6 @@ Tier 2 because paths.json classes src/lib/lifehacks/** and src/components/lifeha
 - **reserve-an-unassigned-slot free-slot label**: the v1 calendar cannot label a free gap without a StudyLesson.tsx change. The patch allows leaving it unlabelled.
 
 ## Approval (tier 2; written by principal-engineer-ops)
+- Decision: **approved with conditions** for the code and tests at 483a52b/90a3abb by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Does not cover publishing (42 claims unverified) or the four rows not applied. Authority: `company/engineering/readiness/2026-10-16-lh-content-patch-r2-b4-approval.md` (3523e83).
 
 (empty: awaiting principal-engineer-ops)
