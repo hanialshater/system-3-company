@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #4 held by founder: reviews preserved on the PR branch
+
+**Changed:** merged pr4/pe (`95a44849`), pr4/a11y (`37db216f`), pr4/hist (`d84a5c93`) and base `d904f68d` into `pr4-history-maps`, merge commits only. pr4/hist's W-1562..W-1564 became W-1568..W-1570 (pr4/pe kept W-1562..W-1567). prs/4.md §8 holds the verdict "held by founder", the matrix and the revival list. Pushed to `feat/history-maps-100` without force, and posted on PR #4. The PR stays a draft. This entry lives on the PR branch only.
+**Believe (high):** every review is on the branch; check and typecheck pass; no build or QA was run (nothing merges).
+**Next:** nothing until a legal read, a new source, or a labels-only redesign (`company/decisions/2026-10-16-founder-pr4-hold.md`). **Blocked:** the merge, by the founder's hold.
+
 ## 2026-10-16 · principal-engineer (Kenji) · PR #4 History maps 100: engineering review (W-1556) and GPL data record (W-1557)
 
 **Changed:** `company/engineering/reviews/2026-10-16-pr4-engineering-review.md` (F1–F12, merge conditions M1–M5, pre-publish F6–F10, no retroactive EDD) and `company/decisions/2026-10-16-history-maps-gpl-data.md` (engineering side only; status proposed, founder decides). Board W-1562 (founder decision), W-1563 (platform: payload test, antimeridian fix, `--write` guard), W-1564 (qa-tester integrated verify), W-1565 (readiness record + ops approval), W-1566 (cm-history: index copy, hover labels), W-1567 (tier map). W-1556 done, W-1557 in review awaiting the founder.
