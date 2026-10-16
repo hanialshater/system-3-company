@@ -50,6 +50,8 @@ Claims: c1, c2, c3 reset to unverified (texts quote the v3 stage exactly). New c
 
 Node check of the toy (2026-10-16): ASTHMA_DIE_WARD has 10 entries, ASTHMA_DIE_ICU has 2 (both inside the 10), OTHERS_DIE has 12. 0.2*100, 0.08*100 and 0.04*100 give 20, 8, 4. 50*0.04 = 2, 50*0.2 = 10, 150*0.08 = 12. This agrees with the verified 2/50, 12/150, 10/50.
 
+cm-ai (r6-ai): the three layout choices are confirmed; reasons in company/reviews/ai-cm-rulings.md 2026-10-16 r6.
+
 ## Stage word budget (v3)
 
 Counted from the rendered DOM (playwright, all text nodes inside `data-testid="stage"`, aria-hidden excluded, a token counts when it contains a letter; 390x844, production build at b0d5cff). Nothing on this stage is stimulus.
