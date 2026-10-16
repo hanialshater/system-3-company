@@ -13,6 +13,11 @@ who no longer exists: check what you rely on.
 **Changed:** draw-a-table-knot meta.json claims only (7 verified, c5 disputed); new `company/reviews/draw-a-table-knot/2026-10-16-fact-check.md` and its scripts in `fc-2026-10-16/`; board W-1589 done, W-1591 (demo-builder) added.
 **Believe:** sure of the knot facts (own Jones bracket, Gauss words, picture geometry, all 11 switches agree with the kit). c5 disputed for the generic sentence "A switch makes a new knot." (false for a nugatory crossing; fix "Your switch made a new knot."). c7's general clause rests on the kit table and naming sources, not on Rolfsen's opened pictures (hosts blocked): medium-high.
 **Next:** demo-builder applies W-1591 (cm-math-discrete owns the script wording); a fact-checker who did not draft the fix re-verifies c5. **Blocked:** nothing.
+## 2026-10-16 · design-lead · W-1588: S4 check of draw-a-table-knot (first built knot lesson)
+
+**Changed:** new `company/design/reviews/2026-10-16-draw-a-table-knot-s4.md` (+ `fit-probe.mjs`, `bbox.mjs`, `contrast.mjs` beside it); board W-1588 done, W-1592 (demo-builder) added.
+**Believe:** pass with changes. Reveal at 390×844: reveal-fit --strict fit, crop 0, 80 words (70 to 81 over all 6 variants, 27 to 68 px spare). Departures accepted: (a) switched-crossing ring, but light-mode colour fails 3:1 (2.26) so D1 darkens it; (b) 231 px reveal picture (2.24 px/unit, my measured floor). Tightened viewBox -1.5 -1 103 105 accepted (curve bbox re-measured over all 13 pictures). D2: the Seen line is pastel text at 2.26:1 in light mode and must use the 45% ink mix. D3: height-aware board width removes the 360×740 stage overflow (31 to 51 px → 0) at no change at 390×844; 360×640 still scrolls (accepted). Sure on the measures; D3's constant depends on kit chrome.
+**Next:** demo-builder W-1592 (D1 to D3, re-run checks); fact-checker W-1589. **Blocked:** nothing.
 
 ## 2026-10-16 · interaction-designer · W-1584: spec review folded into unknot-game and left-or-right
 
