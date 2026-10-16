@@ -1,4 +1,4 @@
-// The HQ top bar for the inspector pages (/hq/design, /hq/curriculum). /hq itself draws its own bar
+// The HQ top bar for the inspector pages (every /hq/* page except /hq itself). /hq itself draws its own bar
 // because Office and People are client-side views there; keep the tab list in the same order.
 import Link from "next/link";
 import type { ReactNode } from "react";

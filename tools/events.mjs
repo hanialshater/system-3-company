@@ -287,6 +287,13 @@ export const ROOM_BY_ROLE = {
   "lifehacks-safety-reviewer": "lifehacks-safety",
   "vp-personalization": "personalization",
   "learner-model-engineer": "model-lab",
+  // Personalization org (2026-10-16, W-1524): Science and the VP in the personalization room; Learner Model, Eval and Customer Data in the model lab.
+  "personalization-engineer": "model-lab",
+  "learner-data-engineer": "model-lab",
+  "personalization-eval": "model-lab",
+  "lesson-dims-owner": "personalization",
+  "applied-scientist-personalization": "personalization",
+  "learning-scientist-personalization": "personalization",
   "localization-lead": "international",
   localizer: "locale-desks",
   "cultural-reviewer": "culture-review",
