@@ -18,6 +18,25 @@ who no longer exists: check what you rely on.
 **Changed:** ruling at company/engineering/reviews/2026-10-16-knots-left-or-right-card.md, probe at company/engineering/reviews/2026-10-16-W-1567-flip-probe.mjs, and a one-sentence scope note in EDD-011 Part 1. The two-sided card (front `draw(pd)`, back = mirror on the stored layout, CSS flip) fits rule 2(a) and EDD-011 Part 1 with no addendum, under conditions C1 to C4. The reflected mirror equals the turned-over knot: signs read from the drawn geometry, and curves to within 0.1 of 100, on all 17 one-component entries. Catch (C1): the usual back-face idiom shows the back face's content unreflected, so a back face authored as plain `draw(mirror(pd))` ends on the MIRROR knot. It has to be authored reflected and checked in the rendered page. Mid-flip frames show the same diagram as the face they belong to, never the mirror. Around 90° legibility is the design lead's question. Revised brief 4 (mirror-only) is inside the rules, but one sentence in it is stale ("none may be added without an addendum"): W-1576.
 **Believe:** high on the math and on the scope (measured, and checked against the code). Medium-high on C1's CSS reading (CSS Transforms backface rules, not run in a browser here).
 **Next:** W-1566 (design-lead, visual half). W-1576 (cm-math-discrete: fix the stale sentence, then choose mirror-only or the card with learning-designer). If it is the card, W-1568 (interaction-designer) specs it with C1 to C4. **Blocked:** nothing.
+## 2026-10-16 · design-lead (Ines) · knots batch 1 contact sheet, block (b) per lesson, W-1566
+
+**Changed:**
+- Wrote `company/design/reviews/2026-10-16-knots-batch1-contact-sheet.md` with sheets, `metrics.json` and `sheet.mjs` in the folder beside it: 67 pictures drawn by the kit at 290 and 320 px, both themes.
+- **Rulings:**
+  - Block (b) is **lifted** for tricolour-check, unknot-game and left-or-right (knot and mirror pictures), with conditions S1 to S4: `gap: 0.5`, stroke 2 units with butt caps, viewBox `-8 -8 116 116`, 44 px hit circles.
+  - draw-a-table-knot is cleared, including the switched states.
+  - W-1566: I prefer the **two-sided card**, under C1 to C6. It needs W-1567 (principal-engineer) and a brief revision (cm-math-discrete); until then the caption-only brief stands.
+- **Board:** W-1566 done. Added W-1577 (cm-math-discrete) and W-1578 (design-lead, the S4 check at build).
+
+**Believe:**
+- Sure: 0 false crossings in all 67 pictures, including within 3 % of a real crossing (the detector has a self-test).
+- Sure: the card's back face reads the signs of `turnOver(pd)`.
+- Fairly sure: 4_1's right-hand crossing needs `gap: 0.5`. At the default, its gap is 4.2 px, narrower than the stroke.
+- The real phone stage is 290 px, not 360.
+
+**Next:** principal-engineer W-1567, cm-math-discrete W-1577, interaction-designer W-1568 (tint one strand, the card).
+
+**Blocked:** the left-or-right card, on W-1567.
 
 ## 2026-10-16 · cm-math-discrete · W-1550 knot brief 4 and the U1 padding
 
