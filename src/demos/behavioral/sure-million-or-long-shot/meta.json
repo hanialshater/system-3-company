@@ -1,0 +1,142 @@
+{
+  "slug": "sure-million-or-long-shot",
+  "title": "A sure million or a long shot?",
+  "hook": "Take the sure $1M, or gamble for $5M? Then choose again with the sure thing gone.",
+  "domain": "behavioral",
+  "concept": "allais-certainty-effect",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "what an average (expected value) is",
+      "a felt value that rises more slowly than money can make a sure amount worth more than a gamble (square-root-wealth)"
+    ],
+    "doesNotKnow": [
+      "that under expected utility, with any felt value that rises with money, a chance both options share cancels out, so two pairs that differ only in that shared chance must get the same answer"
+    ]
+  },
+  "misconception": "Taking the sure $1M in one pair and the 10% chance of $5M in the other just means I am cautious; some felt value for money fits that.",
+  "objective": "The learner can explain that removing the 89% both options in a pair share turns pair 1 into pair 2, so expected utility, whatever the felt value, gives the same answer in both, and the sure-then-long-shot pattern fits no felt value.",
+  "claims": [
+    {
+      "id": "behavioral.sure-million-or-long-shot.c1",
+      "text": "Under expected utility, with any increasing utility function, someone who takes the sure $1M in pair 1 must take the 11% chance of $1M in pair 2 (predict answer A), and 'Expected utility must answer it the same way both times' (reveal, mixed branches).",
+      "support": "derivation",
+      "source": "EU(1A) - EU(1B) and EU(2A) - EU(2B) are the same expression, 0.11·u($1M) - 0.10·u($5M) - 0.01·u($0), so 1A over 1B iff 2A over 2B for every u; sweep of 20,058 increasing functions (CRRA, CARA, 20,000 seeded random): all pick the same letter in both pairs, none a mixed pair (node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs, brief 1 claim 1). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c2",
+      "text": "'Take away the 89% each pair shares, and both pairs become 11% of $1M against 10% of $5M.' (reveal, every branch; the toggle 'Take away the shared 89%' greys those 89 cells in all four cards and leaves 11% $1M against 10% $5M and 1% $0 in both pairs.)",
+      "support": "derivation",
+      "source": "Pair 1 shares 89% of $1M, pair 2 shares 89% of $0; removing it leaves {11% $1M} against {10% $5M, 1% $0} in both pairs (node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs, 'Take away the shared 89%' line; brief 1 claim 2). Demo.tsx CARDS lists the shared block first in every card. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c3",
+      "text": "Matched branches: 1A and 2A fit 'a cautious one, for which $1M is worth more than 10/11 of $5M'; 1B and 2B fit 'a bolder one, for which $5M is worth more than 1.1 times $1M'.",
+      "support": "derivation",
+      "source": "With u($0) = 0, 1A (and 2A) iff u($1M) > 10/11·u($5M) = 0.909·u($5M); 1B (and 2B) iff u($5M) > 1.1·u($1M). Witnesses: u = 1 - e^(-3x) picks 1A and 2A (ratio 0.950); u = sqrt(x) picks 1B and 2B (ratio 2.236) (node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs; brief 1 claim 3). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c4",
+      "text": "About the learner's own two choices: mixed (1A+2B or 1B+2A) 'no utility function fits your two choices'; matched (1A+2A or 1B+2B) 'one utility function fits your two choices' and 'The sure $1M, then the 10% chance of $5M, would fit none'.",
+      "support": "derivation",
+      "source": "Conditional on the learner's two choices, which the reveal reads from the stage state (Demo.tsx p1, p2); all four combinations print in node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs and follow from claims c1 and c3 (brief 1 claim 4). The walkthrough must show each branch. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c5",
+      "text": "Names: 'This lean to the sure thing is the certainty effect' (1A+2B); 'Leaning away from the sure thing is the reverse of the certainty effect' (1B+2A, unheld text); 'that is the certainty effect' (matched branches); 'a departure from the model, not a slip'.",
+      "support": "convention",
+      "source": "'The certainty effect' is the name of the departure from expected utility on these pairs (a term, not an empirical claim about people); brief 1 claim 5; charter company/domains/behavioral.md rule 1 (the reveal says what the model cannot hold, never 'wrong'). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c6",
+      "text": "HELD (the one type (d) line; mixed branches only). 1A+2B adds 'Re-run with 4,098 people in 19 countries, it held up, weaker than first reported.'; 1B+2A replaces its naming sentence with 'That is the reverse of the certainty effect, which held up with 4,098 people in 19 countries, weaker than first reported.'",
+      "support": "source",
+      "source": "W-902 row 'Allais / certainty effect' (robust, smaller than the 1979 original; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Ruggeri et al. 2020 as reported by Cicerale et al. 2022, PLoS ONE, PMC9337702 ('substantially confirmed ... albeit with attenuated effects, in a study enrolling 4098 participants from 19 countries'; opened by research-lead, not by the builder; Ruggeri 2020 itself is not in PMC). Second-hand: whether that is enough is the fact-checker's call. Fallback if not checkable (brief 1): cut the sentence; set HELD_LINE = false in Demo.tsx, which restores the unheld text (1A+2B 75 words, 1B+2A 80 words). The lesson teaches fully without it. Not published until the fact-checker opens it.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c7",
+      "text": "The four cards: 1A 100% $1M; 1B 10% $5M, 89% $1M, 1% $0; 2A 11% $1M, 89% $0; 2B 10% $5M, 90% $0 (each a 100-cell grid; chances sum to 100%).",
+      "support": "convention",
+      "source": "The lesson's set-up (the Allais common-consequence pairs as given in brief 1); sums checked in node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs ('probabilities sum to 100%'). Demo.tsx CARDS. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c8",
+      "text": "Stage gloss: 'Expected utility: any felt value, more is better, weighted by chance.'",
+      "support": "convention",
+      "source": "Definition of the stated model (brief 1 'Stated model': expected utility with any increasing u; P0 condition 1). Wording is the learning designer's 11-word fallback (company/reviews/sure-million-or-long-shot/design.md, open question 1); 'felt value' is the prerequisite lesson's word for utility (economics/square-root-wealth). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c9",
+      "text": "'Where it stops: you chose knowing the pairs were linked.' (every branch)",
+      "support": "derivation",
+      "source": "About this stage, not other people (charter rule 5, the within-learner cost): both pairs are on screen together, the learner predicts the expected-utility link before choosing, and the toggle links them before the reveal opens (Demo.tsx). Brief 1 reveal text. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c10",
+      "text": "Hook: 'Take the sure $1M, or gamble for $5M? Then choose again with the sure thing gone.'",
+      "support": "convention",
+      "source": "Describes the set-up: pair 1 offers a sure $1M (1A) or a gamble with a $5M prize (1B); pair 2 has no sure option (2A 11% $1M, 2B 10% $5M). Claim c7. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.sure-million-or-long-shot.c11",
+      "text": "Recall answer: in pair X ($2,000 for sure, or 20% of $3,000, 75% of $2,000, 5% nothing) and pair Y (25% of $2,000, or 20% of $3,000), someone who takes the sure $2,000 must take the 25% chance of $2,000 under expected utility.",
+      "support": "derivation",
+      "source": "Taking away the shared 75% of $2,000 turns X into Y; EU(X1) - EU(X2) = EU(Y1) - EU(Y2) = 0.25·u($2k) - 0.20·u($3k) - 0.05·u(0); 20,058 of 20,058 functions agree (node company/domains/briefs/checks/behavioral-allais-certainty-effect.mjs, recall lines; ruling 2 in company/domains/briefs/behavioral.md). Builder statement, not self-verified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Pair X: $2,000 for sure, or 20% of $3,000, 75% of $2,000 and 5% nothing. Pair Y: 25% of $2,000, or 20% of $3,000. Under expected utility, someone who takes the sure $2,000 must choose in Y:",
+    "options": [
+      "The 25% chance of $2,000",
+      "The 20% chance of $3,000",
+      "Either, depending on how cautious they are"
+    ],
+    "answer": 0,
+    "why": "Take away the 75% of $2,000 both options in X share, and X becomes Y: 25% of $2,000 against 20% of $3,000 (and 5% nothing). Expected utility must answer both pairs the same way, so the sure $2,000 goes with the 25% chance."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:allais-certainty-effect",
+    "also": [],
+    "prerequisites": [
+      "probability:expected-value",
+      "economics:risk-aversion"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "choice under risk",
+      "expected utility",
+      "certainty effect"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "toggle-before-after"
+  ]
+}

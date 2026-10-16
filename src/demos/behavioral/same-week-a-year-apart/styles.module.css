@@ -1,0 +1,98 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.wrap > :global(.slider) {
+  flex: none;
+}
+
+.caption {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.strip {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fg);
+  min-height: 1.3em;
+}
+
+.choice {
+  flex: 1 1 0;
+  min-height: 44px;
+  font-variant-numeric: tabular-nums;
+}
+
+.coin {
+  fill: var(--bg-3);
+  stroke: var(--domain);
+  stroke-width: 2;
+}
+
+.coinPicked {
+  fill: color-mix(in srgb, var(--domain) 35%, var(--bg-3));
+  stroke: var(--domain);
+  stroke-width: 3;
+}
+
+.amount {
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  fill: var(--fg);
+}
+
+.check {
+  font-size: 12px;
+  font-weight: 800;
+  fill: var(--domain);
+}
+
+.bracket {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.gap {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--fg);
+}
+
+.leader {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.axis {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.dot {
+  fill: var(--domain);
+}
+
+.tick {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.mark {
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--domain);
+  font-variant-numeric: tabular-nums;
+}

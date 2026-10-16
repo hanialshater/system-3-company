@@ -1,0 +1,147 @@
+{
+  "slug": "same-week-a-year-apart",
+  "title": "Same week, a year apart",
+  "hook": "Would you wait a week for $10 more? Answer a year out, then again today.",
+  "domain": "behavioral",
+  "concept": "present-bias-reversal",
+  "status": "draft",
+  "durationSec": 60,
+  "owner": {
+    "categoryManager": "cm-behavioral",
+    "builder": "demo-builder"
+  },
+  "learner": {
+    "knows": [
+      "money later can be worth less than money now, and which offer is better depends on the rate (wait-or-take-now)"
+    ],
+    "doesNotKnow": [
+      "that under steady discounting, where each week counts the same, the choice between two dated amounts depends only on the gap between them, so moving the pair closer cannot change the choice at any rate"
+    ]
+  },
+  "misconception": "Taking $100 today but waiting a week for $110 a year from now just means I discount at a high rate; some steady rate fits that.",
+  "objective": "The learner can explain that under steady discounting only the gap between the two dates matters, so sliding the pair to today cannot change the choice, and a switch to the sooner amount needs a model that gives today extra weight (present bias). They can also say that with real payments this switch is clearer for effort than for money.",
+  "claims": [
+    {
+      "id": "behavioral.same-week-a-year-apart.c1",
+      "text": "Under steady (exponential) discounting the choice between $100 at week t and $110 at week t + 1 is the same at every start date (predict answer A, 'Wait a week again for the $110', for someone who waits at week 52); reveal: 'Steady discounting judges the pair only by its gap, one week for $10 more, and the gap never changed as the pair moved to today.'",
+      "support": "derivation",
+      "source": "Value ratio of the $110 to the $100 = 110·d^(t+1) / (100·d^t) = 1.1·d for every t; max deviation over d in [0.5, 1.2] and the three stops 4.4e-16; wait iff d > 1/1.1 = 0.9091 per week, whatever t is (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 1). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c2",
+      "text": "The same holds in continuous time (supports 'each week counts the same' as the stage's stated model; not a separate sentence on screen).",
+      "support": "derivation",
+      "source": "Ratio = 1.1·e^(-rho) for every t (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 2). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c3",
+      "text": "'A model that gives today extra weight does' (fit a wait a year out and a take today); matched branches: 'Switching to the $100 today would fit only a model that gives today extra weight, called present bias.'",
+      "support": "derivation",
+      "source": "Witness: quasi-hyperbolic (beta-delta) with b = 0.9, d = 1: ratio at t = 52 is 1.10 (wait), at t = 0 is 0.99 (take $100) (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs; brief 2 claim 3). 'Only' is the brief's script text and is relative to the two models the stage names (steady discounting, which cannot switch at any rate, against a model that weights today extra); the fact-checker may want it scoped. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c4",
+      "text": "About the learner's own two choices: switched (wait then take, or take then wait) 'No steady discount rate fits both of your choices'; same both times 'One steady rate fits both of your choices'; take then wait: 'Yours switched toward patience as the date came closer, the reverse of present bias.'",
+      "support": "derivation",
+      "source": "Conditional on the learner's far and near choices, read from the stage state (Demo.tsx far, near); all four combinations print in node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs and follow from c1 (brief 2 claim 4). The walkthrough must show each branch. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c5",
+      "text": "Names: 'that departure is called present bias', 'called present bias', 'the reverse of present bias'.",
+      "support": "convention",
+      "source": "'Present bias' is the name of the departure from steady discounting toward the sooner amount as it nears (a term for the learner's own switch, not a claim that other people do it; brief 2 claim 5 and ruling 4 in company/domains/briefs/behavioral.md). Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c6",
+      "text": "HELD (the one type (d) line, the limit L, in every branch): 'With real payments, reversals are clearer for effort than for money.'",
+      "support": "source",
+      "source": "W-902 row 'Present bias' (with limits; company/research/notes/2026-10-15-w902-behavioral-economics-replication-sourcing.md): Augenblick, Niederle & Sprenger 2015 as reported by Cohen, Ericson, Laibson & White 2020, J Econ Lit, PMC10489299 (opened by research-lead, not by the builder): with money the inconsistency was 'much weaker (but still statistically significant)'. 'With real payments' stays because Ruggeri et al. 2022 (PMC9584811) found present bias in unpaid monetary choices in all 61 countries. Second-hand: whether that is enough is the fact-checker's call. Fallback (ruling 4): L is cut and nothing replaces it; set HELD_LINE = false in Demo.tsx (branches 75-78 words, still naming present bias and keeping the 'Where it stops' line). Not published until the fact-checker opens it.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c7",
+      "text": "'Where it stops: imagined money, chosen once each, with your first choice in view.' (every branch)",
+      "support": "derivation",
+      "source": "About this stage, not other people (charter rule 5): the amounts are hypothetical, each choice is made once, and the far choice stays marked on the timeline and in the model strip while the near choice is made (Demo.tsx). Brief 2 reveal text. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c8",
+      "text": "Stage caption: 'A simple model: each week counts the same'.",
+      "support": "convention",
+      "source": "Names steady (exponential) discounting as the stated model and as a simplification (brief 2 'Stated model'; neighbour condition E4). No market rate, present value or weekly factor is shown. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c9",
+      "text": "Model strip: 'Steady model: wait' (far choice $110) or 'Steady model: take $100' (far choice $100), the same at every stop of the slider.",
+      "support": "derivation",
+      "source": "Follows from c1: under steady discounting the choice at week 52 is the choice at every start date (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs). Demo.tsx shows the strip only after the far choice, so it never states the predict's answer before the commit. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c10",
+      "text": "Set-up on the stage: $100 at week t and $110 at week t + 1, with the gap bracket '1 week, +$10'; the pair starts at week 52, 13 or today (choice labels '$100 at week 52', '$110 at week 53', '$100 today', '$110 in a week').",
+      "support": "convention",
+      "source": "The lesson's set-up as given in brief 2 (three stops, ruling 3). $110 - $100 = $10; (t + 1) - t = 1 week at every stop. Demo.tsx STOPS. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c11",
+      "text": "Hook: 'Would you wait a week for $10 more? Answer a year out, then again today.'",
+      "support": "convention",
+      "source": "Describes the set-up (c10): the far choice is made with the pair at week 52, the near choice with it at today. Builder statement, not self-verified.",
+      "status": "unverified"
+    },
+    {
+      "id": "behavioral.same-week-a-year-apart.c12",
+      "text": "Recall answer: under steady discounting, someone who prefers $50 in 10 days to $60 in 20 days still takes the $50 when offered $50 in 100 days or $60 in 110 days.",
+      "support": "derivation",
+      "source": "Ratio of the $60's value to the $50's = 1.2·d^10 at both dates; the gap is 10 days both times (node company/domains/briefs/checks/behavioral-present-bias-reversal.mjs, recall line). Builder statement, not self-verified.",
+      "status": "unverified"
+    }
+  ],
+  "confidence": "",
+  "recall": {
+    "question": "Under steady discounting, someone prefers $50 in 10 days to $60 in 20 days. Offered $50 in 100 days or $60 in 110 days, they:",
+    "options": [
+      "Still take the $50, at day 100",
+      "Now wait for the $60",
+      "Either, depending on their rate"
+    ],
+    "answer": 0,
+    "why": "Steady discounting judges the pair only by its gap. The gap is 10 days for $10 more at both dates, so the choice cannot change, whatever the rate."
+  },
+  "evidence": {
+    "qa": [],
+    "simulatedLearner": [],
+    "pairwise": [],
+    "humanLearners": []
+  },
+  "version": 1,
+  "curriculum": {
+    "primary": "behavioral:present-bias-reversal",
+    "also": [],
+    "prerequisites": [
+      "economics:present-value"
+    ],
+    "level": "core",
+    "references": [],
+    "tags": [
+      "choice over time",
+      "discounting",
+      "present bias"
+    ]
+  },
+  "format": "single-card",
+  "interactions": [
+    "choice-before-reveal",
+    "milestone-gate",
+    "scrubber-timeline"
+  ]
+}
