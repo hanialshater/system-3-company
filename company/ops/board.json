@@ -1309,7 +1309,7 @@
       "id": "W-091",
       "title": "Founder brief for Personalization (founder will explain); collect questions in company/personalization/README.md",
       "owner": "founder",
-      "state": "backlog",
+      "state": "done",
       "domain": null,
       "created": "2026-10-13",
       "links": [],
@@ -1318,7 +1318,8 @@
         "at": "2026-10-13",
         "by": "portfolio-manager",
         "note": "In founder inbox as F-08. Not decided here."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-092",
@@ -17497,6 +17498,97 @@
       "domain": null,
       "created": "2026-10-16",
       "links": []
+    },
+    {
+      "id": "W-1493",
+      "title": "Personalization phase A inputs: needs-v0 shape curves, 6 simulation-only personas with latent ground truth, composer objective and constraints as JSON under company/personalization/model/ (company/personalization/2026-10-16-brief-response.md §2, §3)",
+      "owner": "personalization-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1494",
+      "title": "Personalization phase A: port edp-engine detect/compose/evaluate to an offline simulator (not in src/) with an independent simulated learner; score policies on simulated recall over all lessons, not on need coverage (evaluate() is circular); policies: default order, draft rules, GAM, GAM ablations, random, epsilon (company/personalization/2026-10-16-brief-response.md §1 C5, §3; inputs from personalization-lead's phase A item)",
+      "owner": "learner-model-engineer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1495",
+      "title": "Privacy read of personalization fingerprint inputs (company/personalization/2026-10-16-brief-response.md §2.1): predictedCorrectly for ordering, masteryOf() as an input, days-since-last-completion, per-lesson aggregate rates as lesson dims, personas simulation-only and never stored or assigned",
+      "owner": "privacy-reviewer",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1496",
+      "title": "Personalization phase A: write the simulator pass criterion BEFORE it runs (recall over all lessons, breadth, sensitivity), and a first minimum-detectable-effect estimate for the phase B holdout at plausible traffic (company/personalization/2026-10-16-brief-response.md §3, O2, O3)",
+      "owner": "analytics-steward",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1497",
+      "title": "Evidence memo for personalization: does surprise/prediction error (e.g. hypercorrection) and novelty improve recall, does surprise before prerequisites hurt, and parameter ranges for a simulated learner (forgetting, misconception pull) (company/personalization/2026-10-16-brief-response.md §2.5, O8)",
+      "owner": "research-lead",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1498",
+      "title": "Personalization lesson dims: where they live (derived index from meta.json + curriculum vs new meta.json fields, EDD-003), where engine code lives (src/lib/learner tier 2, W-1220), pilot set probability + cs (company/personalization/2026-10-16-brief-response.md §2.4, O4). Scope grows if the founder's answer to Q2 is new in-lesson features",
+      "owner": "principal-engineer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1499",
+      "title": "F-19 ruling for personalization: is a published, versioned, hand-set GAM (shape curves + composer weights) a 'rule' under AMD-008 P1; fitted curves need a further amendment; engagement stays out of the score per X1 unless the founder amends (company/personalization/2026-10-16-brief-response.md O1, O3). BLOCKED ON FOUNDER (F-19)",
+      "owner": "evaluation-steward",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1500",
+      "title": "Badges and points (personalization phase D): no work until phase C defines 'learned'; rewards for verified recall/mastery only (company/personalization/2026-10-16-brief-response.md §3 D, O7, §7 T7 streaks wording). BLOCKED ON FOUNDER (Q5)",
+      "owner": "growth-designer",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1501",
+      "title": "Put the 6 founder questions in company/personalization/2026-10-16-brief-response.md §6 to the founder as the F-08 follow-up (engagement term, what 'features' means, who edits curves, tuning, badges timing, phase A start). BLOCKED ON FOUNDER (answers)",
+      "owner": "chief-of-staff",
+      "state": "next",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1502",
+      "title": "DUPLICATE of W-1492 (closed by personalization-lead): Design the proposed personalization team into the org (company/personalization/2026-10-16-brief-response.md §7: head-of-feed, applied-scientist-personalization, personalization-eval, lesson-dims-owner; overlaps T1-T8) and route each role to the founder for approval; founder said 'Mateo will create his team... this org should scale'. BLOCKED ON FOUNDER (role approvals)",
+      "owner": "chief-of-staff-ceo-office",
+      "state": "done",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": [],
+      "updated": "2026-10-16"
     }
   ]
 }

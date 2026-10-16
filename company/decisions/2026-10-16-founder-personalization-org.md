@@ -20,7 +20,7 @@ recorded by: chief-of-staff
 
 | Step | Role | Answer (agree / agree with changes / object) | Where |
 |---|---|---|---|
-| 1 | personalization-lead | pending | company/personalization/2026-10-16-brief-response.md §7 |
+| 1 | personalization-lead | **agree with changes** (2026-10-16): 3 new roles for phase A (applied-scientist-personalization, personalization-eval reporting to evaluation-steward, lesson-dims-owner), head-of-feed in phase B as an ordering-contract owner, not the feed code; overlaps written as T1-T8 for Leonie | company/personalization/2026-10-16-brief-response.md §7 |
 | 2 | chief-of-staff-ceo-office | pending | company/ceo-office/ (org change proposal) |
 | 3 | founder | pending | this record |
 
