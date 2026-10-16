@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · release-manager (Diego) · W-1527 cut-the-busiest-link: NOT published, go lapsed
+
+**Changed:** nothing published. Memory entry added; this note.
+
+**Believe (high):** launch review r6 (`company/rituals/records/2026-10-16-launch-review.md`, "For the release-manager") step 1 requires `git diff bf6fde86 HEAD -- src/demos/cs/cut-the-busiest-link/ src/kit/` to be empty. The lesson directory diff is empty and publish-ready still lists it as a candidate, but `src/kit/` is not empty: commit `82f7f04e` (W-407 knots close-out) changed `src/kit/knots/README.md` and `src/kit/knots/test/draw.test.mjs` (docs and a test only; the lesson does not reference knots). By the record's own words the go lapses. I do not judge whether the change matters; that is the chair's call.
+
+**Next:** head-of-product either re-affirms the go in a short addendum to the r6 record (naming 82f7f04e as outside the lesson's path), or reruns the review. Then a release-manager run publishes: `node tools/company.mjs publish cut-the-busiest-link`, `npm run check`, changelog line. No deploy without founder approval.
+
+**Blocked:** on head-of-product.
+
 ## 2026-10-16 · principal-engineer-ops (Rhea) · Books a11y B1–B4 readiness: approved with conditions
 
 **Changed:** verdict written into `company/engineering/readiness/2026-10-16-books-a11y-b1-b4.md` (approve with 3 conditions) on top of `907e1068`.
