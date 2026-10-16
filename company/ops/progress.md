@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · cm-math-discrete · W-1569 answers to the knot design notes (briefs 1 to 4)
+
+**Changed:** company/domains/briefs/math.discrete.md, briefs 1 to 4. Accepted: draw-a-table-knot switch-not-count (and the joke option out, determinant sentence out); tricolour-check staggered cycles (a real QA-path bug in my brief), narrowed doesNotKnow, and the plain-loop chip, which I made required (the narrowed doesNotKnow names it); unknot-game one switch at a time with tally, the "on top twice" tint, and "switch all three" dropped. Brief 4 now holds both versions: A (mirror only, caption "Flip it over", buildable now) and B (designer's two-sided card, only if design lead W-1566 and principal engineer W-1567 both rule yes). knots-check.mjs gained K14 (single switches of 5_2: 3 trefoil, 2 plain loop; 6_1: 4 figure-eight, 2 plain loop), K15 (every single switch on 3_1 and 4_1 offers an R2), K16 (staggered cycles reach three colours), K17 (card end state signs equal signs(turnOver) only if the back face is reflected).
+**Believe:** high that the new numbers are true (rerun the check); high that B is mathematically right if the back face is reflected, and wrong with the usual counter-rotated back face (K17); medium that the tint and card read well (design questions). All citations still unverified.
+**Next:** interaction-designer spec for the tint and the card (W-1568); design lead and principal engineer rulings (W-1566, W-1567); the demo-builder builds 1 to 3 from the revised briefs. **Blocked:** brief 4 build waits on W-1566/W-1567 for version B; version A needs only the design lead's mirror contact sheets.
+
 ## 2026-10-16 · cm-math-discrete · W-1550 knot brief 4 and the U1 padding
 
 **Changed:** brief 4 (left-or-right) in company/domains/briefs/math.discrete.md rewritten so everything drawn is allowed: table entries, `mirror` on the stored layout, no drawn `turnOver`, no 3-D flip. "Turn over" is a caption plus marks computed from `signs(turnOver(pd))` (numbers only). Brief 2 U1 (and the same ask in brief 3) now pads through the viewBox `-8 -8 116 116`, never `size`/`margin`. The import-block (a) paragraph says the same. knots-check.mjs gained K5b (mirror plus every switch subset draws) and K13 (padding room: 4_1 has 13 px at 360 px unpadded, 36 px padded).

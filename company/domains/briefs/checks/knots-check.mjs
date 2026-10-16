@@ -112,3 +112,58 @@ for (const n of ['3_1', '4_1']) {
 
 // K9 unknotting number from this drawing: one switch frees it, and the knot is not the unknot, so u = 1
 for (const n of ['3_1', '4_1']) say('K9', n, 'identify(knot)=' + name(K.knot(n).pd), 'table u=' + K.knot(n).u)
+
+// K14 (learning-designer probe, W-1569): every single crossing switch on the kit's 5_2 and 6_1 drawings
+// (draw-a-table-knot: the name changes, the drawn crossing count does not). Pictures are drawn on the entry's stored layout.
+for (const n of ['5_2', '6_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), c = K.crossingCount(pd), seen = {}
+  for (let i = 0; i < c; i++) {
+    const q = K.crossingChange(pd, i), d = K.draw(q, { layout: L })
+    const key = name(q) + ' (simplify ' + K.simplify(q).status + ', drawn ' + K.crossingCount(q) + ', picture ' + d.crossings.length + ' crossings / ' + d.edges.length + ' edges)'
+    seen[key] = (seen[key] || 0) + 1
+  }
+  say('K14', n, 'single switches=' + c, JSON.stringify(seen))
+}
+
+// K16 (W-1569, tricolour-check): the staggered arc cycles. Arc k's first tap goes to colour 1 + (k % 2) and then keeps stepping by that amount
+// (mod 3), starting from all arcs colour 0. Tapping arcs 0 and 1 once each (the QA path: the first two arc buttons in DOM order) must
+// give a valid trefoil colouring with all three colours; with the same order for every arc it cannot (all taps of arcs 0, 1, 2 once each
+// give (1,1,1): one colour, valid but not a milestone).
+{
+  const pd = K.knot('3_1').pd, A = K.arcs(pd).count
+  const press = (col, k, times, step) => { const c = col.slice(); c[k] = (c[k] + step * times) % 3; return c }
+  const stagger = (k) => 1 + (k % 2)
+  let col = Array(A).fill(0), same = Array(A).fill(0)
+  for (const k of [0, 1]) col = press(col, k, 1, stagger(k))
+  for (let k = 0; k < A; k++) same = press(same, k, 1, 1)
+  const row = (c) => JSON.stringify(c) + ' colours=' + new Set(c).size + ' crossings ok=' + K.colouringOk(pd, c).filter(Boolean).length + '/' + K.crossingCount(pd)
+  say('K16', '3_1 staggered, arcs 0 and 1 tapped once:', row(col), '| same order for every arc, all three arcs tapped once:', row(same))
+}
+
+// K17 (W-1569, left-or-right version B, the two-sided card): the card's end state is the left-right reflection of draw(mirror(pd)).
+// A planar reflection negates every geometric crossing sign and keeps the gaps, so the on-screen signs are minus the signs of the
+// back-face drawing. They must equal signs(turnOver(pd)). A back face that is counter-rotated (the usual CSS card trick) is not
+// reflected, shows draw(mirror(pd)) as drawn, and its signs equal signs(mirror(pd)), which is the mirror knot, not the turned-over one.
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), back = K.draw(K.mirror(pd), { layout: L }).crossings.map((c) => c.sign)
+  const to = K.signs(K.turnOver(pd)), mi = K.signs(K.mirror(pd))
+  const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+  say('K17', n, 'draw(mirror) crossing signs=' + JSON.stringify(back), '= signs(mirror)? ' + eq(back, mi), '| reflected (negated) = signs(turnOver)? ' + eq(back.map((s) => -s), to), '| unreflected (counter-rotated back face) = signs(turnOver)? ' + eq(back, to))
+}
+
+// K15 (learning-designer probe, W-1569): after any single switch on 3_1 and 4_1, does moves() offer an R2 (a strand on top at
+// both crossings of a bigon)? Read only: apply is never called. Also: the first R2's two edge labels are drawn edges that join
+// the same two crossings (so tinting those two stored paths marks one bigon).
+for (const n of ['3_1', '4_1']) {
+  const pd = K.knot(n).pd, L = K.layout(pd), c = K.crossingCount(pd); let withR2 = 0, bigonOk = 0; const counts = []
+  for (let i = 0; i < c; i++) {
+    const q = K.crossingChange(pd, i), r2 = K.moves(q).filter((m) => m.type === 'R2'); counts.push(r2.length)
+    if (r2.length) {
+      withR2++
+      const d = K.draw(q, { layout: L }), es = r2[0].edges.map((l) => d.edges.find((e) => e.label === l))
+      const ends = es.map((e) => e && [e.from, e.to].sort().join('-'))
+      if (es.length === 2 && es.every(Boolean) && ends[0] === ends[1]) bigonOk++
+    }
+  }
+  say('K15', n, 'single switches=' + c, 'with at least one R2=' + withR2, 'R2 offered per switch=' + JSON.stringify(counts), 'first R2 edges join one pair of crossings=' + bigonOk + ' of ' + withR2, 'unchanged diagram R2 count=' + K.moves(pd).filter((m) => m.type === 'R2').length)
+}
