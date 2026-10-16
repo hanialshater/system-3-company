@@ -20,7 +20,7 @@
     ]
   },
   "misconception": "Old estimates scattered around the truth, so their average was about right.",
-  "objective": "The learner can say that all twelve pre-1644 estimates of the Toledo-Rome longitude difference put Rome too far east (only one within 2 degrees; the middle one about 780 km too far), and that longitude was hard because it needs a difference in local time.",
+  "objective": "The learner can say that all twelve pre-1644 estimates of the Toledo-Rome longitude difference put Rome too far east (only one within 2 degrees; the middle one about 780 km too far), that longitude was hard because it needs a difference in local time, and that this record does not explain why every error ran east.",
   "claims": [
     {
       "id": "history.rome-placed-too-far-east.c1",
@@ -54,13 +54,11 @@
     },
     {
       "id": "history.rome-placed-too-far-east.c4",
-      "text": "The middle estimate was 25.8 degrees, 9.3 degrees too far, about 780 km (reveal: 'The middle, 25.8, was 780 km too far'; readout label in the year view 'Reading · 780 km too far'; median view readout '9.3° too far ≈ 780 km').",
+      "text": "The middle estimate was 25.8 degrees, 9.3 degrees too far, about 780 km (reveal: 'The middle, 25.8, was 780 km too far'; readout label in the year view 'Middle · 780 km too far'; median view readout '9.3° too far ≈ 780 km').",
       "support": "derivation",
       "source": "Median of 12 = mean of the 6th and 7th sorted values (25.617, 26) = 25.81; 25.81 - 16.53 = 9.28 degrees x 111.32 x cos(40.875 deg) = 84.2 km per degree = 781 km, rounded to the nearest 10 = 780. Computed in Demo.tsx; history-cycle1-check.mjs section 6 '6 middle estimate in km'. The stage's 500 km scale bar uses the same km per degree.",
-      "status": "verified",
-      "note": "FC pass 39 (fact-checker, 2026-10-14): Median (25.617 + 26) / 2 = 25.8085; minus 16.53 = 9.2785 degrees; 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens = 780. Demo.tsx MEDIAN, KM_PER_DEG, MEDIAN_KM are the same formulas. | v3 (demo-builder, 2026-10-15, W-989): reveal reworded for the phone fit (was 'The middle one was 25.8, about 780 km too far'; 'about' dropped, matching the stage's own '780 km too far'; 781 rounded to the nearest 10). In the year view the km moved from the readout value to its label. Numbers unchanged. Reset to unverified for a fact-checker who is not the builder. | FC pass 48 (fact-checker, 2026-10-15): VERIFIED. Sorted 6th and 7th: 25.617, 26 -> median 25.8085 (25.8); 9.2785 degrees too far (9.3); 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens 780. Median-view readout '9.3° too far ≈ 780 km' and year-view label 'Reading · 780 km too far' use MEDIAN_KM, the same value.",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-15"
+      "status": "unverified",
+      "note": "FC pass 39 (fact-checker, 2026-10-14): Median (25.617 + 26) / 2 = 25.8085; minus 16.53 = 9.2785 degrees; 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens = 780. Demo.tsx MEDIAN, KM_PER_DEG, MEDIAN_KM are the same formulas. | v3 (demo-builder, 2026-10-15, W-989): reveal reworded for the phone fit (was 'The middle one was 25.8, about 780 km too far'; 'about' dropped, matching the stage's own '780 km too far'; 781 rounded to the nearest 10). In the year view the km moved from the readout value to its label. Numbers unchanged. Reset to unverified for a fact-checker who is not the builder. | FC pass 48 (fact-checker, 2026-10-15): VERIFIED. Sorted 6th and 7th: 25.617, 26 -> median 25.8085 (25.8); 9.2785 degrees too far (9.3); 111.32 x cos(40.875 deg) = 84.173 km/degree; 781.0 km, rounded to tens 780. Median-view readout '9.3° too far ≈ 780 km' and year-view label 'Reading · 780 km too far' use MEDIAN_KM, the same value. | v4 (demo-builder, 2026-10-16, cm-history r12 amended ruling 5, point 2): the year-view readout label changed from 'Reading · 780 km too far' to 'Middle · 780 km too far' (the r12 learner read the 780 km as belonging to the 1610 value); the address list follows. Numbers unchanged (MEDIAN_KM). Reset to unverified for a fact-checker who is not the builder."
     },
     {
       "id": "history.rome-placed-too-far-east.c5",
@@ -111,6 +109,14 @@
       "note": "v2 (demo-builder, 2026-10-15): new claim for the hook, which was unrecorded. Was 'Astronomers spent centuries measuring one short distance' (FC39 wording note: not all 12 were astronomers, and the map-read ones were not measured). | FC pass 43 (fact-checker, 2026-10-15): VERIFIED. Hook: 'Astronomers and mapmakers spent centuries on one short distance. How close did they get?' Years in the file run 150 (C. Ptolomeus) to 1610 (A. Argelius); Source has both levels (Astron 10, Map 2); the HistData doc calls it 'even this modest distance'. Advisory on the claim text only: say 'likely' ('each marked with its likely source, astronomical or a map'), as the doc does.",
       "checkedBy": "fact-checker",
       "checkedOn": "2026-10-15"
+    },
+    {
+      "id": "history.rome-placed-too-far-east.c11",
+      "text": "... and this record does not say why every one was too far east (reveal paragraph 3, second clause: 'Where it stops: 2 of the 12 were probably read from maps, not measured, and this record does not say why every one was too far east.').",
+      "support": "source",
+      "source": "history-data.mjs: langren, the pinned Langren1644.csv (columns Name, Year, Longitude, Source, Gap) and its HistData Langren1644 documentation: values, years and a 'Likely source for this determination of Longitude' column only, with no cause column and no stated reason for the direction of the errors. Address: reveal paragraph 3, second clause. A fact-checker who is not the builder opens both.",
+      "status": "unverified",
+      "note": "v4 (demo-builder, 2026-10-16): new claim per cm-history's r12 amendment to ruling 5 (company/reviews/history-round-1-cm-rulings.md, '2026-10-16 r12'). The id c10 is not reused (c10 was the cut Ptolemy sentence). If a source that states the cause is opened later (W-1045/W-1026), this clause may be replaced by one claimed sentence, never sit beside it."
     }
   ],
   "confidence": "",
@@ -132,7 +138,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 3,
+  "version": 4,
   "curriculum": {
     "primary": "history:longitude-problem-estimates",
     "also": [],

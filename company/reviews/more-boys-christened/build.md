@@ -34,3 +34,6 @@ QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c4 unverified.
 
 - c5 source and the Demo.tsx header: "median 28" -> "median 27.5" over seeds 1-1000. Re-run in node (mulberry32 as in src/kit/random.ts, p = 484,382 / 938,223): seed 1 = 23, median 27.5 (500th/501st sorted 27 and 28), 5th-95th 20 to 35, range 14 to 41. c5 text unchanged; reset to unverified.
 - reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 90 words. QA contract: phone and desktop pass.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/more-boys-christened/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 5/5 verified; launch verdict on the current version v2 in company/reviews/more-boys-christened/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 2.

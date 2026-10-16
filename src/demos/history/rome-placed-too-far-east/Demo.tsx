@@ -212,7 +212,7 @@ function Stage({ locked, reach }: { locked: boolean; reach: (n: string) => void 
           Sort by year
         </Control>
       </Row>
-      <Readout label={locked ? "Estimates" : year ? `Reading · ${MEDIAN_KM} km too far` : "Reading"} value={readout} />
+      <Readout label={locked ? "Estimates" : year ? `Middle · ${MEDIAN_KM} km too far` : "Reading"} value={readout} />
     </div>
   );
 }
@@ -240,7 +240,8 @@ export default function RomePlacedTooFarEast({ slug }: { slug: string }) {
             which nobody could then measure well.
           </p>
           <p>
-            Where it stops: {MAPS} of the {DATA.length} were probably read from maps, not measured.
+            Where it stops: {MAPS} of the {DATA.length} were probably read from maps, not measured, and this record does not
+            say why every one was too far east.
           </p>
         </>
       )}

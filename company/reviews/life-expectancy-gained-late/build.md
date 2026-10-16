@@ -34,3 +34,6 @@ Held source sentence (one): "such as epidemic years" (c5), fallback: cut the phr
 
 - meta.json objective: 2.8 -> 2.9 (exact ruling text). c3 source: the check reference now reads "section 14 ('two centuries (as shown)', ...) quotes 2.9"; c3 text unchanged; reset to unverified. No stage or reveal change.
 - reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 73 words. QA contract: phone and desktop pass.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/life-expectancy-gained-late/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 5/5 verified; launch verdict on the current version v3 in company/reviews/life-expectancy-gained-late/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 3.

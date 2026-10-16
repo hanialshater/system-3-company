@@ -25,3 +25,6 @@ QA: `tests/qa/contract.spec.ts` phone + desktop passed. Claims c1-c5 unverified.
 - No learner text or claim changed; meta.json version 2 (layout only). Not done: faint lake outlines and the white notch (optional findings).
 - Phone fit: tools/reveal-fit.mjs (committed copy, clean stamp) against the dev server on :3671 at 390x844: fit, crop 0 px, hidden 0 px, namedHidden 0, phoneFit true, 77 reveal words with the verdict line. 412x839: crop 1 px, phoneFit true.
 - QA contract (tests/qa/contract.spec.ts, QA_BASE_URL=http://localhost:3671, QA_ONLY = the five W-989 lessons): phone and desktop pass (10/10, artifacts/qa-hrA-w989/qa-report.json). Dev server, not a production build.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/lakes-misplaced-east-west/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 5/5 verified; launch verdict on the current version v2 in company/reviews/lakes-misplaced-east-west/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 2.

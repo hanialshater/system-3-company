@@ -36,3 +36,6 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - c2 text gains its hook address; c5 source no longer says HELD and names the HistData Wheat doc FC48 opened. Both reset to unverified.
 - Not done here (cm-history's follow-up): brief 7 and history-cycle1-check.mjs section 7 options/pick.
 - reveal-fit (dev server, tool clean): 390x844 fit, crop 0, phoneFit true, 81 words; 412x839 fit, crop 0, phoneFit true. QA contract: phone and desktop pass.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/wages-bought-more-wheat/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 6/6 verified; launch verdict on the current version v2 in company/reviews/wages-bought-more-wheat/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 2.

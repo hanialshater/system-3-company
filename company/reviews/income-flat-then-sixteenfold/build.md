@@ -44,3 +44,6 @@ Held source sentence (one): "reconstructions from wages, prices and output recor
 
 - c11 source: "first reaches it in 2002" was wrong. Re-run on the rounded UK series from the pinned maddison2020.csv against 2,412 x 1.008713^(y - 1700): below in 304 of 317 years 1701-2017; above in 1701 (+7.4%), 1702 (+2.9%), 1704 (+11.2%), 1705 (+4.4%), 1708 (+2.0%) and 2002-2008, 2017. Source now says so. Not learner-facing; c11 text unchanged; reset to unverified.
 - reveal-fit: 390x844 and 412x839 fit, crop 0, phoneFit true, 90 words. QA contract: phone and desktop pass.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/income-flat-then-sixteenfold/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 11/11 verified; launch verdict on the current version v4 in company/reviews/income-flat-then-sixteenfold/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 4.
