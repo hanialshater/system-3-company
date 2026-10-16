@@ -42,3 +42,6 @@ v1 (2026-10-14, history-builder-1, branch history-build-1). Brief: company/domai
 - meta.json hook "World population doubled in 122 years, then in 48. How long did the next doubling take?" (exact ruling text).
 - c6 reworded to "World population doubled in 122 years (1 to 2 billion), then in 48 (2 to 4 billion) (hook)."; support unchanged; reset to unverified. Re-derived from the pinned gapminder-pop-global.csv: first year at or above 1/2/4/8 billion = 1805/1927/1975/2022 (122, 48, 47).
 - reveal-fit: 390x844 fit, crop 0, phoneFit true, 90 words; 412x839 fit, crop 4 px, phoneFit false. The 4 px crop at 412 is pre-existing: the same run on the unchanged HEAD files gives crop 4 too (the hook is not part of the stage). Not fixed here; it needs its own item. QA contract: phone and desktop pass.
+
+## Status draft -> review (2026-10-16, demo-builder, branch rome4: W-996, history round-1 batch item 2)
+- Flipped on: QA record company/reviews/doubling-stopped-speeding-up/2026-10-16-qa.md (contract phone + desktop, pass, production build of 59df55e); claims 7/7 verified; launch verdict on the current version v3 in company/reviews/doubling-stopped-speeding-up/2026-10-16-learner-adult-beginner-r12.md. Demo.tsx and styles are unchanged since the QA build. No code or claim changed; version stays 3.
