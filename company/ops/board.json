@@ -16082,10 +16082,15 @@
       "id": "W-1349",
       "title": "G5-d: npm run test:dispatch is 184-224 s (line 60 s) due to slots.test.mjs (99de2a4); make spawns cheaper or move slow slot cases behind S3_SLOW_TESTS, re-time x3; PE-ops revokes the G5 verify line at next ops review if still over",
       "owner": "tools-lead",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "triage": {
+        "at": "2026-10-16",
+        "by": "portfolio-manager",
+        "note": "tools-r5-b3 (40f1b1e, be8d5f2): 175 s → ~27 s; merged on int-tools-r5-b3 (c002153, not pushed): 109 pass, 40 s at load ~5; awaiting principal-engineer read + loaded re-time"
+      }
     },
     {
       "id": "W-1350",
@@ -16766,6 +16771,24 @@
       "id": "W-1420",
       "title": "Stage-word rule: do H/T letters inside flip cells count as stage words (twenty-flips v1/v3 far over 25 if they do)?",
       "owner": "head-of-product",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1421",
+      "title": "rituals-due.mjs recordEvents(): one 'git log --format=@%cI --name-only' pass instead of 53 per-file git calls (0.15 s vs 4.6 s; speeds every dispatch-check and company status); tier 1; patch note in G5 addendum",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1422",
+      "title": "dispatch-check C2 (builder cap) has no CLI test",
+      "owner": "tools-lead",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
