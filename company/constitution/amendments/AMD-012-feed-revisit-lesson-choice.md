@@ -173,3 +173,54 @@ On the recorded objection (emergency change under F-47 release pressure, one ser
 declined as a reason to block.** The release pressure is the reason for the emergency session, not a reason to change the rule. The
 rule picks the lesson by the feed's own status filter and does not depend on F-47. One SHA is enough here because
 `git diff bf6fde8 HEAD` is empty for every file the result depends on. C4 is the full cycle the objection asks for.
+
+## platform-engineer vote (2026-10-16)
+
+**Vote: approve with conditions.** Voter: platform-engineer (Noor), the affected role (Article 3.3). I am not the sole approver:
+head-of-product has voted above, the evaluation steward abstains, and ratification needs the founder's signature.
+
+What I checked myself, on disk and against the server:
+- `src/components/Feed.tsx` (revisit loop, about line 80) keeps only `published`/`review` metas from `/api/meta`. That filter is
+  correct product behaviour and this AMD leaves it alone, as it should. `tests/qa/lessons.ts` drops only `retired` and exposes
+  `status`, so the `find()` in the patch reads a field that exists. `expect(...).toBeTruthy()` throws first; `if (!first) return`
+  is only type narrowing and cannot let the test pass silently.
+- Re-run today against http://localhost:3591 (`BUILT_FROM` bf6fde8 before and after), `-g "spaced revisit" --reporter=list`, scratch trees:
+  new rule **2 passed** (phone + desktop); mutant (seed `completedAt: Date.now()`) **2 failed** (phone + desktop, no `revisit-card`).
+  Output: scratchpad `amd012/out-new-pe/` and `amd012/out-mut-pe/`. That closes the desktop gap in the mutant evidence.
+- **Correction to head-of-product C1:** the saved summaries are the other way round from C1's text. `out-old/.last-run.json`
+  has **2** failed ids (phone + desktop folders: consistent). `out-mut/.last-run.json` has **1** failed id (phone folder only), so
+  the original mutant run showed phone only. My re-run above shows desktop fails too. C1's record line can cite this paragraph.
+
+Reasons for approval:
+1. The defect is in the test's choice of lesson, not the app. I root-caused W-1451 to exactly this (my memory entry, cited above),
+   and the patch is the smallest change that makes the test seed a lesson the feed is allowed to bring back.
+2. The test still depends on the revisit-due path (mutant fails on both projects). It loses nothing it really covered.
+3. One hunk, one file, one revert. No app, gate or kit test id changes.
+
+Technical risks (the AMD's own limits, and one it does not name):
+- **R1, `SHOW_REVIEW=off`:** the rule takes the first `published` *or* `review` lesson in directory order. If that lesson is
+  `review` and the target has `SHOW_REVIEW=off`, `/api/meta` treats it as not visible, the revisit filter drops it, and the test
+  times out on a healthy build. Today the pick is `ai/attention-shares-one` (published) and `npm run qa` runs against a local
+  `next start` with review on, so this is latent. `ai/penalty-on-wiggle` is already `review` in the same domain, so one status
+  change upstream would make it live. The sturdy shape is `published` first (`find(published) ?? find(review)`), which is
+  AMD-011 part 3. I do not ask for it here because changing the hunk would void the side-by-side.
+- **R2, provenance (and subject chips):** they still open `lessons()[0]`, the draft, by URL. That passes off Vercel only because
+  `draftsVisible()` is true there (`src/lib/visibility.ts`). Against a Vercel production `QA_BASE_URL` (`VERCEL_ENV=production`),
+  provenance will 404 on the draft. So a post-deploy smoke of `feed.spec.ts` against production would fail provenance on a
+  healthy deploy. That is not a regression from this AMD, and it must not be read as one.
+- **R3, disk vs server skew (not named in the AMD):** the spec picks by the status *on the checkout's disk*, while the server
+  serves the status it was *built* from. If QA runs against a server built from a different SHA (the shared review servers),
+  the two can disagree and the test can seed a lesson the server treats as a draft. `npm run verify` builds from the same
+  checkout, so it is safe. Ad hoc `QA_BASE_URL` runs need `BUILT_FROM` to match HEAD for the lesson statuses.
+
+Conditions (none blocks the founder's signature):
+- **P1 (evaluation-steward):** the merge commit touches only `tests/qa/feed.spec.ts` and this file, applied exactly as the hunk
+  above, so the side-by-side still holds. Any edit to the hunk means a new side-by-side.
+- **P2 (release-manager):** a provenance or subject-chip failure in a run against a Vercel production URL is R2, routed to
+  AMD-011 part 3. It is not a reason to revert AMD-012 or to loosen `visibility.ts`.
+- **P3 (evaluation-steward):** if R1 fires, the fix is published-first (AMD-011 part 3), not loosening Feed.tsx. This agrees with head-of-product C2.
+- **P4:** I agree with C4. If the first post-merge `npm run verify` has a revisit failure, I own the trace (it is the platform's
+  path), before anyone edits the spec again.
+
+On the recorded objection (emergency under F-47 pressure, one server and one SHA): **accepted as a real limit, and declined as a
+reason to block.** I re-ran both projects on that SHA independently, and C4/P4 make the next verify the full cycle.
