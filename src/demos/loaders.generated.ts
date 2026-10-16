@@ -929,6 +929,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "two-colours-enough": () => import("./math/two-colours-enough/Demo"),
   "two-right-angles-never-meet": () => import("./math/two-right-angles-never-meet/Demo"),
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
+  "unknot-game": () => import("./math/unknot-game/Demo"),
   "up-hill-down-hill": () => import("./math/up-hill-down-hill/Demo"),
   "zeno-half-steps": () => import("./math/zeno-half-steps/Demo"),
   "add-a-parallel-bulb": () => import("./physics/add-a-parallel-bulb/Demo"),
