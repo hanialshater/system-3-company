@@ -290,7 +290,7 @@ export const ROOM_BY_ROLE = {
   "localization-lead": "international",
   localizer: "locale-desks",
   "cultural-reviewer": "culture-review",
-  "pattern-librarian": "tools",
+  "pattern-librarian": "chief-of-staff",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
   "domain-scout": "strategy",

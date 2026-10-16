@@ -74,7 +74,7 @@ export const ROOMS: Room[] = [
   // Stairs to floor 8: System 3 Press, the founder's sibling company (company/sibling/press/).
   { id: "to-floor-8", name: "↑ Floor 8 · System 3 Press", x: 810, y: 16, w: 170, h: 84, kind: "lobby", color: "#c8553d" },
   { id: "chief-of-staff", name: "Chief of Staff · dispatched agents", x: 20, y: 116, w: 300, h: 230, kind: "office" },
-  { id: "tools", name: "Company tools & patterns", x: 330, y: 116, w: 250, h: 110, kind: "office" },
+  { id: "tools", name: "Company tools", x: 330, y: 116, w: 250, h: 110, kind: "office" },
   { id: "boardroom", name: "Boardroom · project review", x: 330, y: 236, w: 250, h: 110, kind: "meeting" },
   { id: "ceo-office", name: "CEO office · company health", x: 590, y: 116, w: 390, h: 110, kind: "office", color: "#ffd54f" },
   // First Light war room (W-907, company/decisions/2026-10-15-founder-first-light.md): temporary, beside the CEO office. Page: /hq/first-light.

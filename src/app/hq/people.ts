@@ -22,7 +22,7 @@ export const HOME: Record<string, string> = {
   "design-engineer": "design-studio",
   researcher: "research-lab",
   "domain-scout": "strategy",
-  "pattern-librarian": "tools",
+  "pattern-librarian": "chief-of-staff",
   "evaluation-steward": "constitution",
   "principal-engineer": "engineering",
   "principal-engineer-ops": "ops-room",
