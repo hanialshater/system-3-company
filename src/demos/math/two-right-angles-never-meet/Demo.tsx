@@ -26,7 +26,7 @@ const BX0 = 120;
 const BX1 = BX0 + BASE;
 const BY = 186;
 const TOP = 26;
-const RX = 226; // readouts drawn in the picture
+const RX = W - 6; // readouts drawn in the picture, right-anchored so "57.3 bases up" stays inside at 390 px (v2, M3a)
 
 const rad = (d: number) => (d * Math.PI) / 180;
 /** Height in bases where the two sides meet; null when they are parallel (B = 90°). */
@@ -63,11 +63,11 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
       reveal={() => (
         <>
           <p>
-            Suppose a triangle had two right angles. Those two corners already use all 180°, leaving 0° for the third.
+            Assume a triangle had two right angles. Those two corners already use all 180°, leaving 0° for the third.
           </p>
           <p>
-            You watched it happen: at {near}° the sides met {nearH} bases up with a {90 - (near ?? 0)}° tip; at 90° they stood
-            parallel and never met.
+            You watched it happen: at {near}° the sides met {nearH} bases up with a {90 - (near ?? 0)}° tip.{" "}
+            Setting 90° was that assumption, and the sides stood parallel and never met.
           </p>
           <p>
             The assumption leads to an impossible triangle, so it is false. That is proof by contradiction: assume it, follow
@@ -158,16 +158,16 @@ export default function TwoRightAnglesNeverMeet({ slug }: { slug: string }) {
                     </>
                   )}
                   {/* readouts, folded into the picture */}
-                  <text x={RX} y={92} className={s.small}>
+                  <text x={RX} y={92} textAnchor="end" className={s.small}>
                     sides meet
                   </text>
-                  <text x={RX} y={110} className={s.value}>
+                  <text x={RX} y={110} textAnchor="end" className={s.value}>
                     {locked ? "?" : h === null ? "never" : `${fmtH(h)} bases up`}
                   </text>
-                  <text x={RX} y={136} className={s.small}>
+                  <text x={RX} y={136} textAnchor="end" className={s.small}>
                     top corner
                   </text>
-                  <text x={RX} y={154} className={s.value}>
+                  <text x={RX} y={154} textAnchor="end" className={s.value}>
                     {locked ? "?" : `${90 - b}°`}
                   </text>
                 </svg>
