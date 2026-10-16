@@ -481,7 +481,7 @@ export function useHomeLesson(slug:string): {lessonProps:Omit<LessonProps,'child
       slug:spec.slug,predict:{question:spec.question,options:spec.options??[spec.choices[0],spec.choices[1],'Same outcome'],answer:spec.answer},
       exploreHint:'Tumble both lengths, then compare.',minInteractions:2,
       // TP-2(b, e): the reveal compares both simulated lengths with the study's rate; the kit prints the only verdict line.
-      reveal:()=><div className={s.reveal}><p>{`In this simulation, ${n.short} of 20 short strings and ${n.long} of 20 long ones came out knotted. The study's 55% is about 11 in 20.`}</p><p>{spec.idea}</p><p>{spec.limit}</p></div>
+      reveal:()=><div className={s.reveal}><p>{`This simulation knotted ${n.short} of 20 short strings and ${n.long} of 20 long ones; the study's 55% is about 11 in 20.`}</p><p>{spec.idea}</p><p>{spec.limit}</p></div>
     }}; }
   if(spec.model==='bow') { const {twisted,flat}=bowLoops(p,spec), mm=(x:number)=>x<=0?'undone (0 mm)':`${fmt(x)} mm`;
     return {stage,lessonProps:{

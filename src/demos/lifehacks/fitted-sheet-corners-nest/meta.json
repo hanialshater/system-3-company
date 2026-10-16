@@ -1,7 +1,7 @@
 {
   "slug": "fitted-sheet-corners-nest",
   "title": "Put the corner inside the corner",
-  "hook": "Which ideal arrangement uses less pocket envelope?",
+  "hook": "Fold a fitted sheet with its corners tucked into each other. How much flatter is it?",
   "domain": "lifehacks",
   "concept": "fill-the-hollows",
   "status": "review",
@@ -19,61 +19,56 @@
     ]
   },
   "misconception": "A fitted sheet can't be folded flat; its elastic corners always leave a lump.",
-  "objective": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner.",
+  "objective": "Each elastic corner is a cup of cloth. Kept apart, four cups stack as four full depths. Tucked inside one another, they share one hollow, and each extra corner adds only a thin layer of cloth.",
   "claims": [
     {
       "id": "lifehacks.fitted-sheet-corners-nest.c1",
-      "text": "These hollow corner pockets occupy separate envelopes when spread apart. Nesting them shares that hollow region while leaving a layer allowance for each extra corner.",
+      "text": "Each elastic corner is a cup of cloth. Kept apart, four cups stack as four full depths. Tucked inside one another, they share one hollow, and each extra corner adds only a thin layer of cloth.",
       "support": "derivation",
-      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Separate height=count×8cm; nested height=8+(count−1)×2cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Explicit geometric/arithmetic derivation in src/lib/lifehacks/home-models.ts; Separate height=count×8cm; nested height=8+(count−1)×2cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fitted-sheet-corners-nest.c2",
-      "text": "Real elastic and seams change the envelope; this is a nesting model, not a complete folding tutorial.",
+      "text": "Real elastic and seams change the numbers; this counts the corners, not every fold of the sheet.",
       "support": "convention",
-      "source": "Scope limits and illustrative assumptions of this card; Separate height=count×8cm; nested height=8+(count−1)×2cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Scope limits and illustrative assumptions of this card; Separate height=count×8cm; nested height=8+(count−1)×2cm. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fitted-sheet-corners-nest.c3",
-      "text": "Separate height=count×8cm; nested height=8+(count−1)×2cm.",
+      "text": "Folded thickness=4×8cm with the corners apart; nested=8+(4−1)×2cm (8 cm corner depth, 2 cm per extra layer of cloth).",
       "support": "derivation",
-      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Computed in src/lib/lifehacks/home-models.ts; all dimensions and rates are stated on the stage. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fitted-sheet-corners-nest.c4",
-      "text": "Which ideal arrangement uses less pocket envelope?",
+      "text": "Title: Put the corner inside the corner Hook: Fold a fitted sheet with its corners tucked into each other. How much flatter is it? Question: Fold a fitted sheet with its corners tucked into each other, or not. How much flatter is it? Options: Not at all: elastic always lumps / 18 cm flatter. Correct option: 18 cm flatter.",
       "support": "convention",
-      "source": "Chosen comparison question; the prediction refers to the stated default values and selected methods. FC LH-1 (session 2, received by message): verified; see company/reviews/lifehacks-200/fact-check-LH1-2026-10-14.md.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Prediction line from company/decisions/2026-10-15-lifehacks-r11-fix-plan.md (wave W3, cm-lifehacks), numbers filled from home-models.ts case 'nest' at the starting input 4; option order as written in the plan (TP-8 spread across the wave). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fitted-sheet-corners-nest.c5",
       "text": "Why can nesting hollow shapes save envelope space without removing material?",
       "support": "convention",
-      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention: transfer question (spec.recall), not rendered. Presupposition matches the engine: case 'nest' gives count × 8 cm separate and 8 + (count − 1) × 2 cm nested (e.g. 32 vs 14 cm at 4), with no change to the material; nesting shares the hollow.",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Transfer prompt, grounded by this lesson's mechanism and limitations. | FC pass 35 (fact-checker, 2026-10-14): VERIFIED. Convention: transfer question (spec.recall), not rendered. Presupposition matches the engine: case 'nest' gives count × 8 cm separate and 8 + (count − 1) × 2 cm nested (e.g. 32 vs 14 cm at 4), with no change to the material; nesting shares the hollow. Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
     },
     {
       "id": "lifehacks.fitted-sheet-corners-nest.recall",
       "text": "Nesting shares the hollow: 8 + 3 × 2 = 14 cm. Kept separate, each pocket needs its own 8 cm: 4 × 8 = 32 cm. No material was removed. Real elastic and seams change the numbers.",
       "support": "derivation",
-      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 8 + 3×2 = 14; 4 × 8 = 32 (node). Matches c3 formula; elastic/seam caveat as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A).",
-      "status": "verified",
-      "checkedBy": "fact-checker",
-      "checkedOn": "2026-10-14"
+      "source": "Recall transfer item for this lesson; scenario values are stipulated in the question. The why applies the lesson's own model and limits (see this lesson's idea, limit and formula claims). Recall patch by learning-designer (session 2, 2026-10-14), applied by session 1. FC LH-3A (fact-checker, 2026-10-14): verified. 8 + 3×2 = 14; 4 × 8 = 32 (node). Matches c3 formula; elastic/seam caveat as c2. Record: company/reviews/lifehacks-200/fact-check-LH3-2026-10-14.md (Batch A). Reset to unverified 2026-10-16 by demo-builder (r11 fix plan wave W3: new prediction line, stage and reveal; engine 2). Re-verify against the rebuilt stage.",
+      "status": "unverified"
+    },
+    {
+      "id": "lifehacks.fitted-sheet-corners-nest.seen",
+      "text": "First reveal sentence at the starting slider value; recomputed from the learner's current state: Corners apart: four 8 cm corners stacked, 32 cm thick. Corners nested: tucked inside each other, 14 cm: 18 cm flatter.",
+      "support": "derivation",
+      "source": "Computed by src/lib/lifehacks/engine-v2.ts (homeRevealLine) from this lesson's spec in home-lessons.ts (wave W3, demo-builder 2026-10-16).",
+      "status": "unverified"
     }
   ],
   "confidence": "",
@@ -97,7 +92,7 @@
     "pairwise": [],
     "humanLearners": []
   },
-  "version": 1,
+  "version": 2,
   "curriculum": {
     "primary": "lifehacks:fill-the-hollows",
     "prerequisites": [],
@@ -111,7 +106,6 @@
     "choice-before-reveal",
     "locked-readouts",
     "milestone-gate",
-    "toggle-before-after",
-    "slider-drives-live-chart"
+    "toggle-before-after"
   ]
 }
