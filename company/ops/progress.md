@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · design-lead · S4 check of tricolour-check: pass with changes D1, D2 (W-1600)
+
+**Changed:** new `company/design/reviews/2026-10-16-tricolour-check-s4.md` with probes in `2026-10-16-tricolour-check-s4/` (fit-probe, row-probe, geom-probe). Board W-1600 (demo-builder): D1 explore row on one line at 360 wide (`.wrap .controls` gap 4px, `.btn` padding-inline 8px); D2 `.board { width: min(100%, clamp(254px, calc(100dvh - 458px), 320px)); }`. Accepted the builder's choices: loopOne on opening ○ (no design objection; sufficiency is cm-math-discrete's), the row hidden at the reveal, label placement (T3a min 17 units), the crossing-mark rings.
+**Believe:** sure at 390x844 the lesson meets S1-S3, T1, T3a, W-1583 and the reveal fits (crop 0, 37 px spare, all 3 options); sure D1+D2 make 360x740 overflow 0 at no cost to 390x844 (tested as override); sure 360x640 cannot lose its scroll without going under the 10 px text floor (67 px left, accepted, as for draw-a-table-knot).
+**Next:** demo-builder applies W-1600 and re-runs walkthrough, reveal-fit --strict, fit-probe. Learner review: grey C in light, 360x640 row discovery. S4 still due on unknot-game and left-or-right (W-1578). **Blocked:** nothing.
+
 ## 2026-10-16 · demo-builder · W-1597..W-1599: NCM gap four flipped draft -> review
 
 **Changed:** `"status": "review"` in meta.json of probability/same-picture-two-histories (v2), economics/price-tag-or-auction (v2), economics/worth-something-alone (v2), math/the-swap-that-goes-in-circles (v1, not bumped). One line each; no version, claim, text or code change. Board W-1597, W-1598, W-1599 done.
