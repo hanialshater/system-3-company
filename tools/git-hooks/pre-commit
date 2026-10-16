@@ -27,12 +27,19 @@ const git = (...args) =>
   execFileSync("git", ["-c", "core.quotePath=false", ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 const lines = (s) => s.split("\n").filter(Boolean);
 
-function refuse(why, paths) {
+// M1 (readiness approval 2026-10-16-commit-and-process-guards-approval.md): during a merge git refuses a partial
+// commit (`git commit -- <path>`), so the merge hint names only commit-own.sh and waiting for the paths' owner.
+function refuse(why, paths, merging = false) {
   const list = paths.length ? "\n" + paths.slice(0, 30).map((p) => `    ${p}`).join("\n") + (paths.length > 30 ? `\n    … and ${paths.length - 30} more` : "") : "";
+  const how = merging
+    ? `  This is the main checkout; its index is shared with other agents. A merge cannot be a partial commit, so:\n` +
+      `    wait for the owner of the listed paths to commit or unstage them, then finish the merge with\n` +
+      `    tools/commit-own.sh "<message>" <paths you resolved or regenerated>\n`
+    : `  This is the main checkout; its index is shared with other agents. Commit only your own paths:\n` +
+      `    tools/commit-own.sh "<message>" <path> [<path> ...]     or     git commit -m "<message>" -- <path> ...\n`;
   process.stderr.write(
     `pre-commit (tools/git-hooks/pre-commit): refused. ${why}${list}\n` +
-      `  This is the main checkout; its index is shared with other agents. Commit only your own paths:\n` +
-      `    tools/commit-own.sh "<message>" <path> [<path> ...]     or     git commit -m "<message>" -- <path> ...\n` +
+      how +
       `  Do not unstage paths you did not stage: they are someone else's work in flight.\n`,
   );
   process.exit(1);
@@ -67,7 +74,7 @@ try {
       ? "The merge commit would include staged paths that the merged branch did not change" +
         (specs ? " and that S3_COMMIT_PATHS does not list:" : " (a foreign index):")
       : "Staged paths outside S3_COMMIT_PATHS:";
-    refuse(why, foreign); // rules 2 and 3
+    refuse(why, foreign, merging); // rules 2 and 3
   }
   process.exit(0);
 } catch (e) {
