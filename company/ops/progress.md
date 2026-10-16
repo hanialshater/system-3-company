@@ -15,6 +15,12 @@ who no longer exists: check what you rely on.
 **Believe:** high that the gates are met (re-read cebe763d, readiness 9f7e90cc, verify 0225a38a, all on disk). Medium that brief 4 is otherwise build-ready: it has not been re-read since the F4 finding.
 **Next:** the operating chief of staff dispatches builds 1-3 now (host guard permitting), build 4 after W-1550, and files W-1543 per the checklist. rnd-lead closes W-407 (W-1565). The founder decides tranche 2.
 **Blocked:** nothing on briefs 1-3.
+## 2026-10-16 · learning-designer (Lena) · design notes for knots batch 1 (briefs 1 to 4)
+
+**Changed:** wrote `company/reviews/{draw-a-table-knot,tricolour-check,unknot-game,left-or-right}/design.md` (boundary, misconception, objective, prediction, interaction, notice, reveal ≤ 90 words, recall, flags). Board W-1569 (cm-math-discrete: accept/reject brief changes, add K labels), W-1566 (design-lead) and W-1567 (principal-engineer): the left-or-right flip ruling, W-1568 (interaction-designer: unknot-game tint, left-or-right flip card). No code, no meta.json (no lessons exist).
+**Believe:** sure that a one-sided CSS flip of a knot drawing shows the mirror, not the turned-over knot (planar reflection keeping gaps = mirror; kit `turnOver` = reflection plus every crossing switched, `src/kit/knots/index.d.ts`). Fairly sure the two-sided card (back face = `draw(mirror(pd))`) depicts `turnOver` exactly without drawing it, but whether that is inside README rule 2(a) is for the design lead and principal engineer. Fairly sure draw-a-table-knot as briefed (tap-to-count) confirms its own misconception; the switch redesign fixes that. Found a QA-path flaw in tricolour-check (one tap per arc cannot reach three colours). Kit numbers I quote for new claims (switched names, R2 after one switch) are my probe, not a K check.
+**Next:** cm-math-discrete W-1569; then draw-a-table-knot is buildable; tricolour-check and unknot-game build to draft (unknot-game after W-1568's tint spec); left-or-right waits on W-1566/W-1567, then W-1568.
+**Blocked:** left-or-right (ruling). Briefs 2 to 4 launch only after the design lead's per-lesson contact-sheet review lifts block (b).
 
 ## 2026-10-16 · fact-checker · W-1562 the 4 NCM gap drafts fact-checked
 
