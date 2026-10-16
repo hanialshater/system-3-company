@@ -17554,14 +17554,15 @@
       "id": "W-1497",
       "title": "Evidence memo for personalization: does surprise/prediction error (e.g. hypercorrection) and novelty improve recall, does surprise before prerequisites hurt, and parameter ranges for a simulated learner (forgetting, misconception pull) (company/personalization/2026-10-16-brief-response.md §2.5, O8)",
       "owner": "learning-scientist-personalization",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned research-lead → learning-scientist-personalization (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 to review: reader personalization-eval (ranges table for the C1 sweep); findings also to applied-scientist-personalization and vp-personalization. Memo company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md (run ls-b2-1016). Q1: predict-then-feedback helps the predicted item (medium-high); hypercorrection exists (high) and helps recall at a week (medium); serving higher-surprise lessons raises mean recall: unknown (low); novelty as defined in §2.4 improves recall: no evidence (low, base 0). C3 condition: the memo splits hypercorrection (medium+) from the surprise term (low); VP decides which C3 means. Many effect sizes are [R]/[S] (primary full texts unreachable this run): verify before any claim."
     },
     {
       "id": "W-1498",
@@ -17770,14 +17771,15 @@
       "id": "W-1517",
       "title": "W-1497 addendum: evidence range for the recall cost of meeting a concept before its prerequisites; the phase A simulator's GAM edge over default order rests entirely on it (W-1512 finding 4, company/decisions/2026-10-16-personalization-model-v0.md)",
       "owner": "learning-scientist-personalization",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
       "links": [
-        "company/personalization/batches/2026-10-16-batch-1.md"
+        "company/personalization/batches/2026-10-16-batch-1.md",
+        "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md"
       ],
       "updated": "2026-10-16",
-      "note": "2026-10-16 re-owned research-lead → learning-scientist-personalization (personalization org generated; company/decisions/2026-10-16-founder-personalization-org.md, proposal §2/§4/§9)."
+      "note": "2026-10-16 to review: reader personalization-eval (fills the B1 prereq-penalty placeholder). Memo company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md §Q2 and ranges table: prereqPenalty low 0.00 / base 0.15 / high 0.40 (stress 0.50 for hard edges), no recovery when the prerequisite is later seen; direction medium confidence, size low confidence; no study measures this for self-contained short lessons, so report across the whole range (run ls-b2-1016)."
     },
     {
       "id": "W-1518",
