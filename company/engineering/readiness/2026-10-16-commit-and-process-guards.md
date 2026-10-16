@@ -185,6 +185,33 @@ and `git commit -m "pkill -f note" -- <path>` is not.
   "explicit-path commit passes" would go red first).
 - Octopus merges (several `MERGE_HEAD` lines) use only the first head for "incoming". Not used in this company.
 
+## Change notes since 8d3fbff (tools-lead, 2026-10-16, W-1260: N1; still NOT wired)
+
+The principal engineer's review (company/engineering/reviews/2026-10-16-agent-hooks-wiring-review.md, 08ee578)
+approved no-pkill with change N1. It needs no second review if N1 and its tests are the only diff. Diff:
+`git diff 8d3fbff tools-e1n1 -- .claude/hooks/no-pkill.mjs tests/dispatch/guards.test.mjs`. The rest of this
+record is unchanged, and the Approval section below is still blank. It needs principal-engineer-ops.
+
+- **Heredoc bodies are data.** After `<<WORD`, `<<-WORD`, `<<'WORD'`, `<<"WORD"` or `<<\WORD`, the lines up to the
+  terminator are attached to their command (`.heredoc`) and are not split into commands. With `<<-`, leading tabs are stripped
+  from the terminator. `closeParen` skips heredoc bodies too, so a `)` or an apostrophe in a `$(cat <<'EOF' …)`
+  commit message cannot end the substitution early. A here-string (`<<<`) is not a heredoc. An unquoted
+  delimiter must start with a letter or `_`, so `$((1<<2))` is not read as one.
+- **Must-refuse, done rather than accepted as a miss.** When a shell (`sh`/`bash`/…) has no `-c` and no script
+  argument, it reads stdin. If that stdin is its own heredoc (`bash <<'X'`) or a piped one (`cat <<EOF | sh`,
+  `| bash -s`), the body is checked as commands. Command substitutions in an **unquoted**-delimiter body
+  (`<<EOF … $(pkill x)`) are checked, because the shell expands them. A quoted delimiter body is not checked.
+- **`kill $(pgrep …)`** moved from a regex over the whole command string to the kill command's own tokens. Substitution
+  tokens now keep their text (`$(pgrep x)` and not a placeholder). Without this, a heredoc that only mentions it would still be refused.
+- Accepted misses, added to the known list: `cat <<EOF > s.sh` followed by `sh s.sh`, a heredoc fed to `python3 -` or
+  `node -`, and a heredoc terminator that shares a line with `)` (`EOF)`). In that last case the rest of the command is read as body,
+  so it errs toward passing.
+- Tests: guards.test.mjs, 16 → 20. Must-pass: the review's two reproduced inputs, through the hook process (exit 0).
+  Must-refuse: `cat <<EOF | sh` with a `pkill` body (exit 2), plus `bash <<'X'`, `| bash -s`, `sh <<-EOF`. Also
+  commands after the terminator are refused, an unquoted-body substitution is refused, `$((1<<2))` then `pkill`
+  is refused, and the quoted body, the mention of `kill $(pgrep)`, a pipe to a non-shell, and a here-string all pass. Every
+  pre-existing case still passes. `npm run test:dispatch` 55/55.
+
 ## Approval (tier 2; written by principal-engineer-ops)
 
 - Decision:

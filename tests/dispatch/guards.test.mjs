@@ -252,3 +252,40 @@ test("verdict: bare stash and pop are refused; tagged push, apply/drop by ref an
     "git stash list --format='%H %gs'", "git stash show -p 3f2a9c1", "git status"])
     assert.equal(verdict(c), null, `should pass: ${c}`);
 });
+
+// N1 (company/engineering/reviews/2026-10-16-agent-hooks-wiring-review.md): heredoc bodies are data.
+// The first two are the review's reproduced false refusals, run through the hook process as the harness would.
+test("N1 must-pass: a heredoc body line starting with `pkill` (hook exit 0)", () => {
+  const cmd = "cat > notes.md <<'EOF'\n# Guards\npkill -f is refused by the hook; stop by exact pid.\nEOF\nls notes.md";
+  assert.equal(verdict(cmd), null);
+  assert.equal(bash(cmd).code, 0);
+});
+
+test("N1 must-pass: a $(cat <<'EOF' …) commit message with a line `git stash pop` (hook exit 0)", () => {
+  const cmd = "git commit -m \"$(cat <<'EOF'\nN1: heredoc bodies are data\n\ngit stash pop\ndon't (really) refuse this\nEOF\n)\" -- .claude/hooks/no-pkill.mjs";
+  assert.equal(verdict(cmd), null);
+  assert.equal(bash(cmd).code, 0);
+});
+
+test("N1 must-refuse: a shell that reads a heredoc as commands (`cat <<EOF | sh`, `bash <<'X'`)", () => {
+  const piped = "cat <<EOF | sh\npkill -f next\nEOF";
+  assert.ok(verdict(piped));
+  assert.equal(bash(piped).code, 2);
+  for (const c of ["bash <<'X'\npkill x\nX", "cat <<'EOF' | bash -s\ngit stash pop\nEOF", "sh <<-EOF\n\tkillall node\n\tEOF"])
+    assert.ok(verdict(c), `should refuse: ${JSON.stringify(c)}`);
+});
+
+test("N1: the shell still runs what follows a heredoc, and substitutions in an unquoted body", () => {
+  for (const c of [
+    "cat > f <<'EOF'\nhello\nEOF\npkill -f next", // after the terminator: a command again
+    "cat <<-EOF > f\n\tnotes\n\tEOF\ngit stash pop", // <<- strips leading tabs from the terminator
+    "cat <<EOF\nnow: $(pkill x)\nEOF", // unquoted delimiter: the shell expands $( )
+    "echo $((1<<2))\npkill x", // arithmetic shift is not a heredoc
+  ]) assert.ok(verdict(c), `should refuse: ${JSON.stringify(c)}`);
+  for (const c of [
+    "cat <<'EOF'\nnow: $(pkill x)\nEOF", // quoted delimiter: no expansion
+    "cat > r.md <<'EOF'\nnever run kill $(pgrep -f next)\nEOF", // a mention of kill $(pgrep), as data
+    "cat <<EOF | grep stash\ngit stash pop\nEOF", // piped to a non-shell
+    "cat <<< 'pkill x'", // a here-string is a word, not a command
+  ]) assert.equal(verdict(c), null, `should pass: ${JSON.stringify(c)}`);
+});
