@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
+
+**Changed:** verified and committed the base merge into `feat/books-100-demos` (board/events resolution; the PR's W-1486..W-1497 are now W-1492..W-1503, map in `company/engineering/community/prs/5.md` §3). Intake W-1504; review gates W-1505 (QA), W-1506 (PE, done), W-1507 (a11y, done). Merged `review/pr5-pe`, `review/pr5-platform`, `review/pr5-build`, `review/pr5-a11y` with merge commits. Corrected the README sentence that cited a missing integration record (PE M4). Board: W-1508 (test:books red), W-1509/W-1510 (cm-books), W-1511 (a11y fixes B1-B4, publish prerequisite). Nothing pushed, nothing deployed.
+
+**Believe (high):** no protected paths, no dependencies, 467/467 claims unverified, 100/100 draft, check and build pass. **Merge is blocked:** `npm run test:books` fails 4 subtests (2 lessons) on the merged tree because the M2 payload test and the F8 reformatting disagree (W-1508); the QA contract (W-1505) has not landed; full verify (PE M3) is not run.
+
+**Next:** platform-engineer/demo-builder fix W-1508; qa-tester lands `review/pr5-qa`; then merge it, run full verify (M3), push `feat/books-100-demos` (merge commits only) and report ready to merge. Release manager only after publish gates.
+
+**Blocked:** W-1508, W-1505, M3.
+
 ## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
 **Changed:** published 675 → 709 today (+34; 15 Wave J by W-843 ruling + launch review 7ab3934, 6 Life Hacks slate 00b4b1e, first in category; 4 physics/Wave J f9265aa). Nothing deployed. Founder decisions: F-39 agent memory (merged; every agent reads onboarding + `node tools/memory.mjs read <role>`, ends with an offboarding entry; 50 KB threshold), F-40 floor reseat (merged; 52 moves + Leonie's R1), F-42 mailbox dispatch (tier 1 merged; pilot on verticals, day 1: two builds started by mail, c5b4 physics #64-68 in /home/user/s3c-wj64, 213a Wave J revisions in /home/user/s3c-wjrev6), F-43 First Light T1 +1M (6.59M), History and behavioral no top-up (STOP after 23:59Z). F-41 throughput plan, F-44 First Light cuts C1–C4, F-45 fra1 are open with the founder. Retro and WBR-4 held.
