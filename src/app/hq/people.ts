@@ -8,6 +8,7 @@ export const HOME: Record<string, string> = {
   "chief-of-staff": "chief-of-staff",
   "chief-of-staff-ceo-office": "ceo-office",
   "portfolio-manager": "ceo-office",
+  "head-of-strategic-initiatives": "ceo-office",
   "head-of-product": "product",
   "principal-pm-verticals": "strategy",
   "courses-lead": "courses",
@@ -17,14 +18,15 @@ export const HOME: Record<string, string> = {
   "design-lead": "design-studio",
   "interaction-designer": "design-studio",
   "visual-designer": "design-studio",
+  illustrator: "design-studio",
   "design-engineer": "design-studio",
   researcher: "research-lab",
-  "domain-scout": "studio",
-  "pattern-librarian": "studio",
+  "domain-scout": "strategy",
+  "pattern-librarian": "tools",
   "evaluation-steward": "constitution",
-  "principal-engineer": "ceo-office",
-  "principal-engineer-ops": "ceo-office",
-  "vp-rnd": "ceo-office",
+  "principal-engineer": "engineering",
+  "principal-engineer-ops": "ops-room",
+  "vp-rnd": "rnd-office",
   "vp-marketing": "marketing",
   "rnd-lead": "rnd-office",
   "research-lead": "research-office",
@@ -34,8 +36,8 @@ export const HOME: Record<string, string> = {
   "community-engineer": "app-team",
   "release-manager": "launch-room",
   "accessibility-reviewer": "qa-lab",
-  "backend-engineer": "app-team",
-  "privacy-reviewer": "backend",
+  "backend-engineer": "backend",
+  "privacy-reviewer": "privacy-review",
   "growth-designer": "growth",
   "analytics-steward": "growth",
   "tools-lead": "tools",
@@ -47,7 +49,7 @@ export const HOME: Record<string, string> = {
   "localization-lead": "international",
 };
 for (const d of ["math", "cs", "probability", "physics", "ai", "economics", "life", "chemistry", "geography", "books", "big-ideas", "history", "behavioral"]) HOME[`cm-${d}`] = `cm-${d}`;
-// Sub-area managers sit in their category's office (floor 3 for subjects; floor 6 for Books, Big Ideas and History; Behavioral has no strands).
+// Sub-area managers sit in their category's office (floors 3 and 4, split by neighbourhood; Behavioral and Life Hacks have no strands).
 for (const [d, subs] of Object.entries(SUBAREAS)) for (const [sub] of subs) HOME[`cm-${d}-${sub}`] = `cm-${d}`;
 
 export interface Person {
