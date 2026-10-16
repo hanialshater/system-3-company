@@ -33,7 +33,7 @@ Source: company/decisions/2026-10-16-founder-org-and-dispatch-rule.md · lanes: 
 
 ## Publish loop (from the 2026-10-13 retro)
 1. After each merge batch: QA the lessons that have no QA record (`QA_ONLY=<those slugs>`), then `node tools/company.mjs qa-record`.
-2. `node tools/publish-ready.mjs`. It links learner reviews as evidence and lists the lessons whose latest review says launch for the current version. Holds go in `company/ops/publish-holds.json`, each with a reason.
+2. `node tools/publish-ready.mjs` (read-only; `--link` writes learner-review evidence links, `--publish` links and publishes). It lists the lessons whose latest review says launch for the current version. Holds go in `company/ops/publish-holds.json`, each with a reason.
 3. `node tools/publish-ready.mjs --publish`. The gates in `company publish` still run.
 4. Append the batch to that day's launch-review record.
 5. Before QA or a walkthrough, confirm the build is fresh: `ls <distDir>/server/app/d/*.html | wc -l` must equal the lesson count. A stale build makes new lessons 404 and records false failures (2026-10-13).
