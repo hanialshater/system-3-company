@@ -4799,7 +4799,7 @@
       "id": "W-350",
       "title": "Fold-at-the-reveal toggle look (W-330/W-335): it must read as a control, not as caption text (system.md says 'text style'): kit Control styling, a disclosure chevron that flips on expand, >= 44 px, full stage width. Learners skim muted text-style lines as captions, so a text-style toggle hides the folded rows a second time. Review: company/decisions/2026-10-14-reveal-fits-with-its-picture.md, Consulted (interaction-designer)",
       "owner": "visual-designer",
-      "state": "next",
+      "state": "done",
       "domain": null,
       "created": "2026-10-14",
       "links": [],
@@ -4808,7 +4808,8 @@
         "at": "2026-10-14",
         "by": "portfolio-manager",
         "note": "Kept: toggle look must land before the first foldAtReveal opt-in (with W-441, W-442), which unlocks the 88 control-cause crops (W-326)."
-      }
+      },
+      "updated": "2026-10-16"
     },
     {
       "id": "W-351",
@@ -15529,6 +15530,24 @@
       "id": "W-1349",
       "title": "G5-d: npm run test:dispatch is 184-224 s (line 60 s) due to slots.test.mjs (99de2a4); make spawns cheaper or move slow slot cases behind S3_SLOW_TESTS, re-time x3; PE-ops revokes the G5 verify line at next ops review if still over",
       "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1350",
+      "title": "In-flight drift in dispatch-check: backfill dispatch labels never match hand-written report labels; match by run key, list 'possibly finished', hook-liveness line (tools r5 B2)",
+      "owner": "tools-lead",
+      "state": "backlog",
+      "domain": null,
+      "created": "2026-10-16",
+      "links": []
+    },
+    {
+      "id": "W-1351",
+      "title": "Implement the fold toggle look (company/design/system.md 'Fold toggle look', b9e2312) in controls.tsx FoldToggle + globals.css, with W-441/W-442; a11y review of contrast/44px/disclosure",
+      "owner": "platform-engineer",
       "state": "backlog",
       "domain": null,
       "created": "2026-10-16",
