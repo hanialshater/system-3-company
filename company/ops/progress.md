@@ -11,7 +11,7 @@ who no longer exists: check what you rely on.
 
 **Next:** platform-engineer/demo-builder fix W-1508; qa-tester lands `review/pr5-qa`; then merge it, run full verify (M3), push `feat/books-100-demos` (merge commits only) and report ready to merge. Release manager only after publish gates.
 
-**Blocked:** M3 only (qa-tester full verify). W-1508 fixed and merged (e6bd2788), test:books 413/413. Update: QA contract 200/200 at fe7fc958 merged (81afa242), W-1505 done; W-1512 (tools-lead) Turbopack in symlinked worktrees.
+**Blocked:** push. Update after M3: M3 is met (qa 2158/2158, build 116 s, .next 570 MB, company/reviews/books-100/2026-10-16-pr5-m3-verify.md), so every merge gate is recorded. Follow-ups: W-1513 (evaluation-steward, built-output tests before publish), W-1514 (tools-lead, shallow-clone hq tests). But origin/feat/books-100-demos is now at 3fc72dbe, a second integration of the PR that diverges from ours (101 conflicts, 96 bk- metas), and base moved to 207e8010 (conflicts in board.json and index.generated.ts). No push and no force-push. The founder's session or chief-of-staff must choose which integration wins (company/engineering/community/prs/5.md §9).
 
 ## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
