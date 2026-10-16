@@ -11,7 +11,7 @@ who no longer exists: check what you rely on.
 
 **Next:** platform-engineer/demo-builder fix W-1508; qa-tester lands `review/pr5-qa`; then merge it, run full verify (M3), push `feat/books-100-demos` (merge commits only) and report ready to merge. Release manager only after publish gates.
 
-**Blocked:** W-1508, W-1505, M3.
+**Blocked:** W-1508 (fix on fix/pr5-w1508), M3. Update: QA contract 200/200 at fe7fc958 merged (81afa242), W-1505 done; W-1512 (tools-lead) Turbopack in symlinked worktrees.
 
 ## 2026-10-16 15:34Z · chief-of-staff (Ada)
 
