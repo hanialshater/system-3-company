@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · learner-model-engineer (Ifeoma) · C5: phase A readout 1 reproduced, byte-identical (W-1535; run lme-c5-1016, branch perso-c5)
+
+**Changed:** new company/personalization/eval/2026-10-16-phase-a-readout-1-repro.md. Board W-1535 → review (personalization-eval, vp-personalization). No eval file edited.
+**Result:** I followed harness/README.md "Reproduction" only, at run commit 5725b10a with Node v22.22.0 and `--jobs=4` (the readout used 2), in two parts (`base,one-at-a-time`: 829 s; `corner,novelty,rho`: 741 s). Both parts are **byte-identical**: results.json sha256 matches readout §6 and verdicts.json passes `cmp` against the committed files. The manifests differ only in `seconds`. The regenerated §6 tables differ only in the out-dir label and `seconds`. The criterion hash, the inputs hash and all 11 fileSha256 entries match. The episode spot check gives the same hash in two processes.
+**Believe:** at this commit the run is deterministic across worker counts (2 vs 4) and across processes (high: full outputs compared byte for byte). This says nothing about whether the verdicts are right.
+**Next:** vp-personalization W-1536 (keep/kill). Optional doc point for personalization-eval: the README's two-part `--kinds` note and readout-tables.mjs exist only from 62c0e1b on, not at the run commit (repro record, Notes). **Blocked:** nothing.
+
 ## 2026-10-16 · personalization-eval (Uma) · C4: criterion frozen, phase A readout 1 (W-1496, W-1534; run eval-c4-1016, branch perso-c4)
 
 **Changed:** C2's blocking findings answered in criterion §10. All three were fixed in the learner: F1 forgetting acts on the increment above the guess floor; F2 adds a pass-relevant `learnRate-low` 0.35 cell; F3 novelty triggers on a domain switch from the previous card. B2 filled from the C0-corrected table after I re-read C0 rows 2 (Fazio Table 2) and 4 (Manrai) in full text; both match. S=200 rechecked on default-order only (records/2026-10-16-seeds-c4.json). Criterion **frozen at e9909edc**, hash written in 5725b10a. New: company/personalization/eval/2026-10-16-phase-a-readout-1.md, harness/readout-tables.mjs, records/2026-10-16-readout-1/{pass,rest}/ (manifest, verdicts; results.json not committed, sha256 in readout). Board W-1496 and W-1534 → review.
