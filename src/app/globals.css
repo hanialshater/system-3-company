@@ -211,3 +211,12 @@ a { color: inherit; }
 .fold-toggle.expanded .fold-chevron { transform: rotate(180deg); }
 /* The toggle keeps its on-screen position on expand: no browser scroll anchoring against it. */
 .card-body:has([data-fold-toggle]) { overflow-anchor: none; }
+
+/* Knots: the tinted strand (unknot-game "on top twice"). visual-designer ruling W-1580/W-1582,
+   company/design/reviews/2026-10-16-knots-colour-ruling.md. The 70% light mix is cleared for math only
+   (#576db3, 4.30:1 on --bg-3); a non-math domain would need 60% (probability 2.85:1, life 2.94:1 at 70%).
+   Width 3 stays an SVG attribute on the path; the caption swatch sets its own fill/background. */
+.knot-tint { stroke: var(--domain); }
+@media (prefers-color-scheme: light) {
+  .knot-tint { stroke: color-mix(in srgb, var(--domain) 70%, #000); }
+}
