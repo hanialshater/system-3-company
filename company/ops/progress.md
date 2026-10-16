@@ -3,6 +3,13 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · fact-checker · W-1562 the 4 NCM gap drafts fact-checked
+
+**Changed:** checked all 23 claims on same-picture-two-histories (4), price-tag-or-auction (6), worth-something-alone (7), the-swap-that-goes-in-circles (6) against Demo.tsx at f1568498 and my own re-derivations (Python closed forms, an independent Monte Carlo, the lesson's model.ts run with the kit RNG). 23 verified, 0 disputed, 0 withdrawn, no unrecorded claims. One record per slug: `company/reviews/<slug>/2026-10-16-fact-check.md`. W-1562 → done.
+**Believe:** high on every number (all reproduce exactly). Medium on the two source attributions resting partly on search summaries because the book host is blocked: price-tag-or-auction c5 (E&K 9.2, not on the card, also backed by a derivation) and worth-something-alone c6 (17.6 pointer only). Other sources were opened through PMC and Crossref and are quoted in the records.
+**Next:** qa-tester W-1563, then borrowed-mind walks. Non-blocking wording notes for demo-builder / cm-math are in the records (worth-something-alone c5 source "a >= 0.16" should be "a > 0.16"; swap recall "stop at his favourite").
+**Blocked:** nothing.
+
 ## 2026-10-16 · demo-builder (demo-builder-ncm-gap4) · the 4 NCM gap lessons built, draft
 
 **Changed:** built `probability/same-picture-two-histories` (4.2, W-1522), `economics/price-tag-or-auction` (9.2, W-1523), `economics/worth-something-alone` (17.6, W-1524), `math/the-swap-that-goes-in-circles` (23.2, W-1525) from the strand briefs, numbers re-run with `company/courses/ncm/checks/rejudged-four.mjs`. All draft, all 23 claims unverified (kit support types). Build notes with pre-flight and stage word counts in `company/reviews/<slug>/build.md`. Board W-1522..W-1525 → review; added W-1562 (fact-checker) and W-1563 (qa-tester). Claims taken by slug and still held (not merged).
