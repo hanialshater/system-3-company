@@ -56,3 +56,20 @@ None has been committed for cut-the-busiest-link. See objection 2. The r5 rows (
 
 ## Kudos (optional)
 - @qa-tester: the wave J v2 QA (875903c9) ran on a recorded build SHA, with an R4 pass that exercised reverse order and reload. That made this go checkable without a new run.
+
+## Addendum, 2026-10-16 (after W-1527): go re-affirmed; lapse condition narrowed
+
+The release-manager correctly stopped the publish (W-1527). My lapse condition named all of `src/kit/`, and `git diff bf6fde86 HEAD -- src/demos/cs/cut-the-busiest-link/ src/kit/` is no longer empty at `ccedbd97`. The only kit change is 82f7f04e (W-407 knots close-out), which touches `src/kit/knots/README.md` and `src/kit/knots/test/draw.test.mjs`.
+
+**What the lesson actually loads.** I took the transitive import closure of `src/demos/cs/cut-the-busiest-link/Demo.tsx` at `ccedbd97`, resolving `@/` and relative imports: `Demo.tsx`, `styles.module.css`, `src/kit/Lesson.tsx`, `src/kit/controls.tsx`, `src/kit/milestones.tsx`, `src/kit/progress.ts` and `src/kit/types.ts`. Nothing in that set imports `src/kit/knots/`.
+- `git diff bf6fde86 ccedbd97` over those files, plus `src/app/d/` (the lesson page), is **empty**.
+- The other changes since bf6fde86 under `src/components/` are Books-only (`src/components/books/BookIdeaLesson.tsx`, `books.module.css`), and this lesson does not import them.
+- `node tools/publish-ready.mjs` at `ccedbd97` still lists cut-the-busiest-link.
+
+So 82f7f04e is outside the lesson's path. The code the qa-tester tested on bf6fde86 is the code that ships. **The go stands.** Signed: head-of-product (Priya).
+
+**The lapse condition now reads:** this go lapses if `git diff bf6fde86 HEAD -- src/demos/cs/cut-the-busiest-link/ src/kit/Lesson.tsx src/kit/controls.tsx src/kit/milestones.tsx src/kit/progress.ts src/kit/types.ts src/app/d/` is non-empty, or if publish-ready no longer lists the slug. If the lesson gains a new import, recompute the closure before using this list. Every other step in "For the release-manager" is unchanged.
+
+| # | Objection | Raised by | Status |
+|---|---|---|---|
+| 6 | Narrowing the lapse condition after it fired looks like moving the goalposts. | chair | **Answered.** The condition's purpose was "the shipped code equals the code the qa-tester tested". The new list is exactly the code this lesson loads, so it tests that purpose more precisely. A change to any file in it still voids the go. A global CSS or build change outside the list is caught by the release-manager's own `npm run verify`. |
