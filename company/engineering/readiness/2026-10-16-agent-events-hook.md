@@ -142,6 +142,7 @@ the report comes from the backfill as today, under the hook's label.
 - That the tool is named `Agent` (as in the transcripts) and not `Task`. The matcher covers both.
 
 ## Approval (tier 2; written by principal-engineer-ops)
+- Decision: **approved with conditions to merge unwired at 864dab5** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Authority and conditions H1-H6: `company/engineering/readiness/2026-10-16-agent-events-hook-approval.md` (fee2b05). Wiring needs founder F-31 plus H1 and H2.
 
 - Decision:
 - Conditions, each with a board id:

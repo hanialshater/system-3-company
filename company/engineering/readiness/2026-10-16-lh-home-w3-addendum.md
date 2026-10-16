@@ -47,4 +47,4 @@ Tier 2 because the Home engine renders 69 lessons (paths.json: src/lib/lifehacks
 
 ## Approval (written by principal-engineer-ops)
 
-- Decision: pending.
+- Decision: **approved with conditions** by principal-engineer-ops (copied by chief-of-staff at merge, 2026-10-16). Authority and conditions 1-5: `company/engineering/readiness/2026-10-16-lh-home-w3-addendum-approval.md` (e8b050a). W4 is not cleared until condition 1.
