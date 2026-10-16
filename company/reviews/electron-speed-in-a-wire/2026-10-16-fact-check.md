@@ -22,3 +22,15 @@ Result: 6 of 6 verified, 0 held, 0 disputed. Statuses and full per-claim notes a
 1. **c5, scope.** "All of them drift together at the same speed" is true in the uniform 1 mm2 copper wire the stage models. A real bulb filament carries the same current at a different drift speed (different n and A). The reveal says "the wire's free electrons", so nothing on screen is false. If the builder wants c6 to be complete, add "the bulb's filament is drawn as the same wire" to the idealisations.
 2. **Sources.** The Halliday and Purcell-Morin citations name a chapter with no page. The claims stand on the opened OpenStax module (m58730). The builder may add it to the source field. I have not edited claim text or sources.
 3. No unrecorded claims: the hook, the predict answer ("Several hours") and every stage string in the transcript are covered by c1-c6.
+
+## FC pass 66 (2026-10-16)
+
+Checker: fact-checker (Ingrid). Batch: SO-10-2 (company/ops/dispatch-requests/2026-10-16-r3-quality.md, "## Standing orders"), batch SO-10-2 trigger (b)/(d), tag [project:wave-j]. Server: shared review server http://localhost:3591 built from 987687acc1cc934b5eaa4f5510d2111712263532 (BUILT_FROM read at start and end; s3c-qa HEAD the same); R3a check.sh exit 0 for this lesson; no diff on this lesson between 987687acc1cc934b5eaa4f5510d2111712263532 and the main checkout HEAD. Order (artifact first): `npm run walkthrough -- second-speaker-decibels electron-speed-in-a-wire what-pushes-the-car tug-of-war-scale --url http://localhost:3591` (recorded 2026-10-16T14:42-14:43Z), transcript cut at the appendix, step screenshots viewed; then Demo.tsx, then meta.json. I did not read build.md or check.mjs; numbers re-derived in my own node. Source: OpenStax University Physics (CC BY 4.0) CNXML fetched by this pass from raw.githubusercontent.com/openstax/osbooks-university-physics-bundle at 2300d5b. Halliday/Purcell not opened and not relied on. Independence: the reset wording came from earlier FC wording findings but was adopted into Demo.tsx and claim text by demo-builder (commit named below), the route the r2 ruling on W-1108 sets; this pass wrote no claim text. Full per-claim notes start 'FC pass 66' in the lesson's meta.json.
+
+Scope: c6 (reset by 824e171). Result: 1 of 1 verified, 0 held, 0 disputed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c6 | verified | Stage caption, ruler 0-30 cm, '2 m' seen. New idealisation 'The bulb's filament is drawn as the same wire': Demo.tsx moves every dot on one loop path (through BULB_X) by the same shiftPx, so the filament is modelled as the same wire. m58730: electrons go negative to positive terminal. AC: own node peak drift 1.04e-4 m/s, amplitude 0.33 um at 50 Hz. |
+
+Wording note for demo-builder via cm-physics (not a dispute, not blocking): the bulb is drawn as a symbol with a zigzag filament, so 'treated as the same wire' says what the stage does more exactly than 'drawn as the same wire'.

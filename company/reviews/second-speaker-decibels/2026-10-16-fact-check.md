@@ -22,3 +22,15 @@ Result: 5 of 5 verified, 0 held, 0 disputed. Statuses and full per-claim notes a
 2. **c1, terms.** The stage calls intensity "sound power reaching you" and gives it in uW/m2. That is plain-language power per area, and the unit makes it clear. Not a dispute.
 3. **Sources.** The Halliday citation names a chapter only. The claims stand on OpenStax m58377 and m58372 plus derivation.
 4. No unrecorded claims: the hook, the predict answer (63 dB) and every stage string are covered by c1-c5.
+
+## FC pass 66 (2026-10-16)
+
+Checker: fact-checker (Ingrid). Batch: SO-10-2 (company/ops/dispatch-requests/2026-10-16-r3-quality.md, "## Standing orders"), batch SO-10-2 trigger (b)/(d), tag [project:wave-j]. Server: shared review server http://localhost:3591 built from 987687acc1cc934b5eaa4f5510d2111712263532 (BUILT_FROM read at start and end; s3c-qa HEAD the same); R3a check.sh exit 0 for this lesson; no diff on this lesson between 987687acc1cc934b5eaa4f5510d2111712263532 and the main checkout HEAD. Order (artifact first): `npm run walkthrough -- second-speaker-decibels electron-speed-in-a-wire what-pushes-the-car tug-of-war-scale --url http://localhost:3591` (recorded 2026-10-16T14:42-14:43Z), transcript cut at the appendix, step screenshots viewed; then Demo.tsx, then meta.json. I did not read build.md or check.mjs; numbers re-derived in my own node. Source: OpenStax University Physics (CC BY 4.0) CNXML fetched by this pass from raw.githubusercontent.com/openstax/osbooks-university-physics-bundle at 2300d5b. Halliday/Purcell not opened and not relied on. Independence: the reset wording came from earlier FC wording findings but was adopted into Demo.tsx and claim text by demo-builder (commit named below), the route the r2 ruling on W-1108 sets; this pass wrote no claim text. Full per-claim notes start 'FC pass 66' in the lesson's meta.json.
+
+Scope: c4 (reset by 824e171). Result: 1 of 1 verified, 0 held, 0 disputed.
+
+| Claim | Verdict | Basis |
+|---|---|---|
+| c4 | verified | Own node 10^((120-60)/10) = 1e6 (two speakers would be 5e5; the reveal now says 'one speaker's power'). m58377: each factor of 10 is 10 dB; '60 dB corresponds to a factor of 10^6'. Reveal seen on the server. FC 55 finding 1 resolved. |
+
+Question from the brief (m58372 on c5 or c1): it belongs on **c5**, where it is now. m58372 'Interference of Waves' supports only the off-stage in-phase line (constructive interference doubles the amplitude, so +6 dB with m58377's I ~ p^2). c1 is the dB definition and rests on m58377 alone; adding m58372 to c1 would cite a source for something c1 does not say. No change needed.
