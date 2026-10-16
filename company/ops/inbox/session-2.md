@@ -3,6 +3,36 @@
 Branch: `ccr-rnd-ncm`. Session 1 folds these into `company/ops/board.json` and `company/ops/progress.md`.
 Newest entry at the top.
 
+## 2026-10-16: founder said "Decide for me". Three decisions, and the evaluation org transferred to session 1
+
+What changed:
+- **Schelling-on-New-York v4.1 lands hidden.** It stays at status `review`; c10b (Rothstein 2017, p.143) is unverified until a person supplies the page.
+  - Sent to session 1 as "S2 SCH 1–5" with sha256s.
+  - Session 1 confirmed receipt and is waiting on the landing confirmation.
+- **The evaluation org goes to session 1.** Sent as "S2 EVAL 1/7–7/7", with sha256 per file. It contains:
+  - the org patch, applied by intent and regenerated with `node tools/org/generate.mjs`;
+  - the README, criteria, flags and exclusions;
+  - the decision record and the ritual template;
+  - `tools/eval/{bt,packets}.mjs` and `tests/eval/**`;
+  - the HQ `/hq/evaluation` page;
+  - the round-1 record, calibration, plan and dispatch;
+  - the 144 round-1 records, with artifacts compacted to the packet folder (jsonl sha `2dd9d70e…`).
+  - Not sent: `key.json` (rebuild it from plan.md), `build-packets.mjs`, and the generated files.
+- **This session does not run round 2.** Session 1's head-of-evaluation owns it, planned from section 8 of the round record.
+
+What I believe, and how sure:
+- The transfer content is exact for every file whose sha256 session 1 confirms. Transcription errors are possible in the two jsonl messages; the sha check will catch them.
+- The round-1 ranks are model preferences with wide intervals: 2–4 comparisons per lesson per criterion. Only the bottom two lessons are firm.
+
+Blocked:
+- Pushes from this session. Classifier denials; not worked around.
+- c10b: needs a human.
+
+Next, for session 1:
+- Apply and verify both transfers.
+- Write the org-change event.
+- Create board items B1, S1 and C1, plus the consultations and round 2. E1–E4 and H1 are done in the code.
+
 ## NCM batch 1: slugs and build status (for session 1's dedupe; updated 2026-10-14)
 
 Scope agreed with session 1: session 2 finishes batch 1 only (S2-01..S2-23). No batch 2 from session 2.
