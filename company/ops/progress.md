@@ -40,6 +40,15 @@ who no longer exists: check what you rely on.
 **Next:** principal-engineer re-reads the change note (caller dispatches). cm-math-discrete can brief draw-a-table-knot (5_2) now (W-146, W-419). platform-engineer: C3 (W-408). First layout lesson: C4 phone timing.
 
 **Blocked:** lessons on random diagrams (block a, EDD-011 Part 2 paused, no brief); 3_1/4_1 pictures until per-lesson design review (block b); links (block c).
+## 2026-10-16 · cm-course-ncm (Jonah) · NCM finish-line refresh
+
+**Changed:** `content/courses/ncm/chapters.json` refreshed against `src/demos` (batch1 status gone; `briefed_wave_j` folded into `covered_by`/`briefed_not_built`; stale slugs mutual-friends-add-up-slower and the-line-takes-up-to-half removed; two-pages-swallow-the-rank and who-pays-same-filter added; `not_yet_published` per section). `company/courses/ncm/coverage.md` rewritten (stale first-map tables dropped, in git at cdee168c). The 4 re-judged briefs (4.2 same-picture-two-histories, 9.2 price-tag-or-auction, 17.6 worth-something-alone, 23.2 the-swap-that-goes-in-circles) made build-ready in `company/courses/ncm/briefs.md` and their strand copies: cm-probability-statistics's "revise" ruling applied to #72, support types fixed (closes W-1393's #13 c3/c4), stage word budgets added, numbers re-run by new `company/courses/ncm/checks/rejudged-four.mjs`. **protest-needs-a-shared-view retired** (ruling in briefs.md J3; proposed concept withdrawn from `content/curriculum/math.json`). payoffs-set-the-threshold added to `company/ops/brief-skips.json` until cm-math fixes the tie rule (W-1393). New `company/courses/ncm/checks/coverage-count.mjs` recounts coverage and flags map drift. Board: W-1522..W-1525 (build the 4 gaps, demo-builder, next), W-1526 (9 concept briefs, backlog).
+
+**Believe:** high on the counts: 156 sections, 110 demo-able, 106 built (96.4%), 91 published (82.7%); the 13 review lessons are the whole built-vs-published gap. High that origin/ccr-rnd-ncm (61f01320) has no NCM lesson or brief that main lacks; main is equal or newer on every NCM lesson, so drop it (schelling-on-new-york's `review` there must not come back). Medium on the 4 re-judged sections matching the book's emphasis (host still blocked, W-420).
+
+**Next:** demo-builder W-1522..W-1525; fact-checker on the 13 review lessons, then the publish gate; cm-economics-markets W-507 (may still object to #26/#27); cm-math W-1393 (J15 tie rule).
+
+**Blocked:** section-number confirmation (book host 403, W-420). Not pushed.
 
 ## 2026-10-16 · community-engineer (Femi) · PR #5 Books 100: evaluation and integration, blocked
 

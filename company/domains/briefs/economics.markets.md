@@ -414,11 +414,12 @@ Proposed by `cm-course-ncm` (Jonah) from `company/courses/ncm/briefs.md` (sectio
   1. With stand-alone value a = 10¢ at price 16¢, 0% is still an equilibrium and the tipping point falls from 20% to 7.3% (high equilibrium 82.7%). support: derivation; source: node.
   2. With a = 20¢, 0% is not an equilibrium and a launch from 0 rises 0, 20, 60, 80, 84 … to 84.7%. support: derivation; source: node.
   3. An empty network product sells to nobody unless someone's value with no other users exceeds the price. support: derivation (at share 0 the keenest value is a).
-  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: definition; source: E&K ch. 17 (section unconfirmed).
+  4. The model and numbers are invented for the lesson (a network value mixed with an individual one, the idea the book discusses in ch. 17). support: convention; source: E&K ch. 17 (section unconfirmed).
 - Format: Single card (stand-alone chips drive live chart; launch run)
 - Curriculum: `{"primary": "economics:standalone-value-network", "also": [], "prerequisites": ["economics:network-effects-tipping"], "level": "stretch", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 17, "section_unconfirmed": "17.6"}], "tags": ["network effects", "critical mass"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: economics/below-critical-mass has no stand-alone value; two-cents-empties-the-network (this wave) moves the price. This one adds individual value to the same curve. Build after below-critical-mass (built).
+- Stage word budget: about 14 words at the busiest frame, no stimulus (count in `company/courses/ncm/briefs.md` J11). Numbers re-run 2026-10-16: `node company/courses/ncm/checks/rejudged-four.mjs` (J11 lines). Claim 4 support set to `convention` (cm-course-ncm, 2026-10-16). Your strand re-check (W-507) is still open: object here if it fails.
 
 ### 27. price-tag-or-auction · concept: economics:auction-vs-posted-price · core · demand 2 · format: Single card (bidder-count chips; seeded check run)
 - Sections: E&K ch. 9 (section 9.2, unconfirmed) · domain: economics · course: ncm (wave J)
@@ -433,11 +434,12 @@ Proposed by `cm-course-ncm` (Jonah) from `company/courses/ncm/briefs.md` (sectio
   1. With n bidders whose values are uniform on $0–$100, the best fixed price earns 100 × p(1 − p^n) at p = (1/(n + 1))^(1/n): $25.00, $38.50, $47.20, $53.50 for n = 1 to 4. support: derivation; source: node.
   2. A second-price auction with no reserve earns 100(n − 1)/(n + 1) on average: $0, $33.30, $50.00, $60.00. support: derivation (expected second-highest of n uniforms).
   3. In 100,000 seeded simulated sales each average is within $0.20 of these. support: simulation; source: node (the builder records its own run).
-  4. Auctions are most useful when the seller does not know what buyers will pay. support: citation; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
+  4. Auctions are most useful when the seller does not know what buyers will pay. support: source; source: E&K ch. 9 (section unconfirmed). Attribution: fact-checker confirms.
 - Format: Single card (bidder-count chips; seeded check run)
 - Curriculum: `{"primary": "economics:auction-vs-posted-price", "also": ["economics:monopoly-pricing"], "prerequisites": ["economics:second-price-auction"], "level": "core", "strand": "markets", "references": [{"work": "easley-kleinberg-2010", "chapter": 9, "section_unconfirmed": "9.2"}], "tags": ["auctions", "pricing"]}`
 - Needs interaction-designer spec: no.
 - Differs from nearest: economics/bid-what-its-worth is bidder strategy; same-revenue-any-rule compares auction formats with each other; monopolist-holds-back sets a price against a known demand curve. This one compares an auction with no auction. No lesson does.
+- Stage word budget: about 12 words at the busiest frame, no stimulus (count in `company/courses/ncm/briefs.md` J12). Numbers re-run 2026-10-16: `node company/courses/ncm/checks/rejudged-four.mjs` (J12 line). Claim 4 support set to `source` (cm-course-ncm, 2026-10-16). Your strand re-check (W-507) is still open: object here if it fails.
 
 ### 28. does-going-first-help · concept: economics:first-mover-commitment · core · demand 2 · format: Single card (game tree; solve-from-the-end and game chips)
 - Sections: E&K ch. 6 (section 6.10, unconfirmed) · domain: economics · course: ncm (wave J)
