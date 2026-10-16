@@ -6,11 +6,19 @@ Testimony, not truth. Read it at the start of every run, right after your onboar
 
 Write only through `node tools/memory.mjs add cm-economics-markets --run=<runkey> --did="…" --learned="… (file)" --know="… (file)" --open="… (file)"` at the end of a run (≤ 12 lines). Each run gets its own file in `company/roles/memory/cm-economics-markets/`, so parallel runs never collide; never edit another run's entry. Past 50 KB the tool compacts to ≤ 25 KB: it keeps the four sections below and moves narrative and closed items into `cm-economics-markets.archive-<date>.md` beside this file. Nothing is deleted.
 
+Seed: 5 line(s) written 2026-10-16 by tools-lead from records on disk that name this role (F-39 item 2). Each cites its record; check the record before relying on a line. Open threads are as of the record's date and may have closed since.
+
 ## Lessons
 
 ## Mistakes not to repeat
 
 ## Standing context
+
+- 2026-10-16 · Strand Markets & Microeconomics of cm-economics. Your ranked briefs file is company/domains/briefs/economics.markets.md (33 `###` headings at 4b1eb81); `tools/claim.mjs next economics` hands its briefs out after the domain's own list. (company/domains/briefs/economics.markets.md)
+- 2026-10-15 · Behavioral E8 (#10 beauty-contest): you were consulted through the records, not dispatched; you may amend E8. (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md)
+- 2026-10-14 · NCM batch: penalty-kick-mix, bid-what-its-worth, prices-sort-the-buyers. (company/rituals/records/2026-10-14-vertical-review-ncm.md)
+- 2026-10-16 · 25 strand-level category managers were on the WBR's list of roles never dispatched. (company/rituals/records/2026-10-16-wbr-2.md)
+- 2026-10-14 · The parent CMs wrote the Wave J strand briefs, and the WBR named strand managers a consolidation candidate (org design is chief-of-staff-ceo-office's). (company/rituals/records/2026-10-14-wbr.md)
 
 ## Open threads
 

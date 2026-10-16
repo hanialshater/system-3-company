@@ -6,12 +6,21 @@ Testimony, not truth. Read it at the start of every run, right after your onboar
 
 Write only through `node tools/memory.mjs add personalization-lead --run=<runkey> --did="…" --learned="… (file)" --know="… (file)" --open="… (file)"` at the end of a run (≤ 12 lines). Each run gets its own file in `company/roles/memory/personalization-lead/`, so parallel runs never collide; never edit another run's entry. Past 50 KB the tool compacts to ≤ 25 KB: it keeps the four sections below and moves narrative and closed items into `personalization-lead.archive-<date>.md` beside this file. Nothing is deleted.
 
+Seed: 5 line(s) written 2026-10-16 by tools-lead from records on disk that name this role (F-39 item 2). Each cites its record; check the record before relying on a line. Open threads are as of the record's date and may have closed since.
+
 ## Lessons
 
 ## Mistakes not to repeat
 
 ## Standing context
 
+- 2026-10-14 · You still own the learning path; a course map is an input to it. (company/decisions/2026-10-14-courses-org.md)
+
 ## Open threads
+
+- 2026-10-15 · First Light: confirm ownership of the rule set and reason copy; W-906 not ratified by 10-30 means personalization ships switched off. (company/decisions/2026-10-15-first-light-release-1-scope.md)
+- 2026-10-15 · The "Why we decide badly" zero-lesson path is the cheapest behavioral demand test. (company/decisions/2026-10-15-behavioral-economics-dlr-decision.md)
+- 2026-10-14 · NCM path in book order using the 14 referenced lessons plus batch 1. (company/rituals/records/2026-10-14-vertical-review-ncm.md)
+- 2026-10-14 · History doorway paths and a zero-lesson astronomy-interest path. (company/rituals/records/2026-10-14-vertical-review.md)
 
 ## Entries
