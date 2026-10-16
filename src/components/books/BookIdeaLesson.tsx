@@ -5,7 +5,7 @@ import { Lesson, type StageContext } from "@/kit/Lesson";
 import { Control, Row } from "@/kit/controls";
 import { useMilestones } from "@/kit/milestones";
 import {
-  calculateModel, canResetObservation, fillSeen, formatBookValue, formatCompoundOperation, initialObservation, observeScenario,
+  announceCase, calculateModel, canResetObservation, describeScene, fillSeen, formatBookValue, formatCompoundOperation, initialObservation, observeScenario,
   resetObservation, validateBookIdeaSpec, type BookIdeaSpec, type CaseIndex,
   type ModelResult, type Observation, type ValidatedBookIdeaSpec,
 } from "@/lib/books/model";
@@ -52,20 +52,21 @@ function BookStage({ spec, observation, setObservation, locked, interact }: Stag
       {spec.scenarios.map((scenario, i) => <Control key={scenario.label}
         className={active === i ? "active" : ""} aria-pressed={active === i}
         aria-label={`Case ${i === 0 ? "A" : "B"}: ${scenario.label}`}
-        disabled={locked || active === i} onClick={() => apply(i as CaseIndex)}>{i === 0 ? "A" : "B"}: {scenario.label}</Control>)}
+        disabled={locked} onClick={() => apply(i as CaseIndex)}>{i === 0 ? "A" : "B"}: {scenario.label}</Control>)}
       <Control disabled={locked || !canResetObservation(observation)} onClick={() => setObservation(resetObservation(observation))}>Reset</Control>
     </Row>
     <svg viewBox="0 0 320 152" className={`stage-svg ${s.picture}`} role="img"
-      aria-label={active === null ? `${spec.family} toy, results hidden` : `${spec.scenarios[active].label}: ${formatBookValue(result!.output)} ${spec.unit}`}>
+      aria-label={describeScene(spec, active)}>
       <CausalPicture spec={spec} values={values} result={result} />
       <text x="160" y="147" textAnchor="middle" className={s.answer}>{result === null ? "?" : spec.family === "payoff"
         ? `${formatBookValue(result.trace[0])} + (${formatBookValue(result.trace[1])}) = ${formatBookValue(result.output)} ${spec.unit}`
         : `→ ${formatBookValue(result.output)} ${spec.unit}`}</text>
     </svg>
-    <div className={s.seen} aria-live="polite" aria-atomic="true">
-      <span className={s.seenLabel}>Seen</span>
+    <p className={s.status} aria-live="polite" aria-atomic="true">{locked ? "" : announceCase(spec, observation.active, observation.seen)}</p>
+    <div className={s.seen}>
+      <span className={s.seenLabel}>Seen</span>{" "}
       {spec.scenarios.map((scenario, i) => <span key={scenario.label}>
-        {i === 0 ? "A" : "B"}: <strong>{locked || observation.seen[i] === null ? "?" : formatBookValue(observation.seen[i]!)}{spec.unit ? ` ${spec.unit}` : ""}</strong>
+        {i === 0 ? "A" : "B"}: <strong>{locked || observation.seen[i] === null ? "?" : formatBookValue(observation.seen[i]!)}{spec.unit ? ` ${spec.unit}` : ""}</strong>{" "}
       </span>)}
     </div>
   </div>;

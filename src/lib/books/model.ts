@@ -136,6 +136,49 @@ export function formatCompoundOperation(ratePercent: number, additionEachStep: n
   if (!finite(ratePercent) || !finite(additionEachStep)) return fail("compound caption inputs must be finite");
   return `× (1 ${ratePercent < 0 ? "−" : "+"} ${String(Math.abs(ratePercent))}/100) + ${String(additionEachStep)}`;
 }
+/** Accessible name for the stage picture. It restates only what the picture draws: payload
+ * labels, unit and input values, plus outputs computed by calculateModel. No new facts.
+ */
+export function describeScene(spec: ValidatedBookIdeaSpec, active: CaseIndex | null): string {
+  if (active === null) return "Toy model picture. Values appear when you choose case A or B.";
+  const v = spec.scenarios[active].values;
+  const { output, trace } = calculateModel(spec.family, v);
+  const f = formatBookValue;
+  const label = (i: number) => spec.labels[i] ?? "";
+  const unit = spec.unit ? ` ${spec.unit}` : "";
+  let body: string;
+  switch (spec.family) {
+    case "flow": {
+      const lowest = v.flatMap((n, i) => n === output ? [label(i)] : []).join(" and ");
+      body = `Stations in order: ${v.map((n, i) => `${label(i)} ${f(n)}`).join(", ")}. Lowest: ${lowest} at ${f(output)}.`;
+      break;
+    }
+    case "payoff":
+      body = `${label(0)} at ${f(v[0])}%: ${f(v[0] / 100)} × ${f(v[1])} = ${f(trace[0])}. ${label(1)} at ${f(100 - v[0])}%: ${f((100 - v[0]) / 100)} × ${f(v[2])} = ${f(trace[1])}. Sum ${f(trace[0])} + (${f(trace[1])}).`;
+      break;
+    case "compound":
+      body = `Start ${f(trace[0])}; ${label(0)} ${v[2]}, each ${formatCompoundOperation(v[1], v[3])}: ${trace.map(f).join(", ")}.`;
+      break;
+    case "selection":
+      body = `${label(0)}: ${f(trace[0])} of ${f(v[0])} at ${f(v[1])}%. ${label(1)}: ${f(trace[1])} of ${f(v[2])} at ${f(v[3])}%. Together ${f(trace[0] + trace[1])} of ${f(v[0] + v[2])}.`;
+      break;
+    case "network":
+      body = `From the origin, × ${v[1]} for ${v[2]} ${label(0)}: ${Math.min(12, output)} pictured, ${f(output)} reached.`;
+      break;
+    case "feedback":
+      body = `Level ${f(v[0])} to ${f(output)}: ${label(0)} +${f(v[1])}, ${label(1)} −${f(v[2])}, ${v[3]} ${label(2)}.`;
+      break;
+    case "intervals":
+      body = `From 0 to ${f(v[0])}: ${trace.length} × (${f(v[2])} ${label(1)} + ${f(v[1])} ${label(0)}).`;
+      break;
+  }
+  return `Case ${active === 0 ? "A" : "B"}, ${spec.scenarios[active].label}. ${body} Result: ${f(output)}${unit}.`;
+}
+/** Live-region text for the case just observed: which case changed, its value and unit. */
+export function announceCase(spec: ValidatedBookIdeaSpec, active: CaseIndex | null, seen: Observation["seen"]): string {
+  if (active === null || seen[active] === null) return "";
+  return `Case ${active === 0 ? "A" : "B"}: ${formatBookValue(seen[active]!)}${spec.unit ? ` ${spec.unit}` : ""}`;
+}
 /** Literal substitution only: no HTML, interpolation engine, eval or computed fallback. */
 export function fillSeen(text: string, seen: Observation["seen"]): string {
   return text.replace(/\{([AB])\}/g, (_, key: string) => {
