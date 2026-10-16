@@ -168,13 +168,13 @@ function Reveal({ seen }: { seen: Seen | null }) {
     <>
       <p>
         A switch makes a new knot. Yours still had {r.drawn} crossings drawn, but its name became {pretty(r.name)}
-        {loop ? ", a plain loop" : ""}. So the first number in a name is not what one drawing shows.
+        {loop ? ", a plain loop" : ""}.
       </p>
       <p>
-        It is the fewest crossings any drawing of that knot can have:{" "}
+        The first number in a name is the fewest crossings any drawing of that knot can have:{" "}
         {loop ? "a plain loop can be drawn with none." : `${pretty(r.name)} can be drawn with ${k} and never with fewer.`} The
-        table draws each knot with that fewest, which is why {pretty(r.chip)} had exactly {r.drawn}. The number after it is only
-        the knot&apos;s place in the table&apos;s list.
+        table draws each knot with that fewest, so {pretty(r.chip)} had exactly {r.drawn}. The second number is only its place in
+        the table.
       </p>
     </>
   );
