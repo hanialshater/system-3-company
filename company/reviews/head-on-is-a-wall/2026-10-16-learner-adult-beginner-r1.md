@@ -21,3 +21,9 @@ Notes:
 
 Verdict reason: revise for one specific line: "Doubling the closing speed doubles the total energy, but two cars share it" sits beside "grows with speed squared" and, for this learner, reads as a contradiction of the 4x result just shown; the reveal needs to say what is compared with what (two cars at 50 carry twice one car's energy, not four times, and each car takes its own half).
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- The sentence I flag in finding 1 is claim c4, "Doubling the closing speed doubles the total energy, but two cars share it", recorded as verified. I do not dispute that it is true (two cars at 50 carry 2 x 145 kJ, closing at 100, against one car at 50 into a wall, closing at 50). My finding is that, for this learner and next to c3's "grows with speed squared", it reads as a contradiction because it does not say what is compared with what. That is a pedagogy finding, not a fact dispute.
+- The objective's last clause ("a 100 km/h wall puts four times the energy into one car") is shown well. The middle clause ("each crumple zone absorbs its own car's energy") is the one c4 is meant to carry, and it is the one that did not land.
+- The predict-stage pre-selection of "Into a car" + "50 km/h" (finding 2) is not a claim; it is a layout question for the CM/designer.
+- Verdict unchanged: revise.

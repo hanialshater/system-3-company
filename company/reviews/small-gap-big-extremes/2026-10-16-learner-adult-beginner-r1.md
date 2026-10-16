@@ -18,3 +18,9 @@ Brief: SO-10-3 run (batch=SO-10-3, tag [project:wave-j]). Walkthrough on the sha
 
 Verdict reason: revise for two specific findings: (a) the reveal's "sharing about 80% of their area" puts a second, unrelated 80% beside the correct answer "About 80%" (82% above 130 cm), inviting the very confusion the lesson should prevent; (b) the explore unlocks the reveal before the learner has set 130 cm, so the number that answers the question asked is read, not seen.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- The colliding 80% in finding 1(a) is claim c3 ("sharing about 80% of their area"), recorded as verified. I do not dispute it as a fact. My finding is that it sits in the same sentence as the correct answer "About 80%" (c1's 82%) and is a different quantity.
+- The objective asks the learner to say "82% of the plants above 130 cm". In this walkthrough the learner never set 130 (finding 1(b)), so the 82% reaches them only as reveal text. A learner who follows the panel's instruction would see it; the gate does not require it.
+- The objective's reason, "A's curve falls away faster in the tail", is the sentence I found hardest (finding 1). With equal spreads it is true in the sense of a steeper relative fall at a given height; for this learner it reads as contradicting "same spread". A question for the pedagogy critic.
+- Verdict unchanged: revise.

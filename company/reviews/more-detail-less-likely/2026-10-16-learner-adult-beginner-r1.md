@@ -22,3 +22,9 @@ Notes (do not block a first-time learner):
 
 Verdict reason: no finding blocks a first-time learner; the giveaway wording in the question and the "ring" labels are notes.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- The misconception says the fitting detail makes the fuller story feel more likely. In this card the description ("quiet and loves books") barely points at a book club, and the question says "some librarians run book clubs, some don't", so I did not feel that pull (finding 2). The objective (subset, never more likely) is met by what I saw; the misconception is named rather than provoked.
+- c1 says "equal only if every librarian runs a club"; the slider stops at 90%, so the equal case is stated in the claim but never on screen. The reveal's "never more likely" is consistent with c1.
+- c2 (the town is a model) is not visible to me as a learner beyond the stage's own numbers; it is in the trust sheet, which I did not read (R1).
+- Verdict unchanged: launch.

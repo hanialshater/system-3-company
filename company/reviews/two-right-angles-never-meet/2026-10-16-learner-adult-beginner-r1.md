@@ -22,3 +22,9 @@ Notes (do not block a first-time learner):
 
 Verdict reason: no finding blocks a first-time learner; the two-arguments-in-one-reveal ambiguity and the clipped label are notes.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- The objective asks the learner to explain that the assumption leaves 0° for the third corner, "which they saw as the sides running parallel". The lesson intends the slider and the arithmetic to be one argument; I experienced them as two (finding 3). Whether a learner can say which step is the "assume" is a question for the pedagogy critic and for human learners.
+- The misconception ("a rule you are told, not something you can show"; "a tall enough triangle might manage it") matches the option I chose. My finding that the prediction is easy for a mind that knows 180° stands: the learner field says this mind knows it.
+- c2 (tan(B) bases up; 57.3 at 89°) and c3 (parallel at 90°) match the readouts. c5 (flat page) matches the caption.
+- Verdict unchanged: launch.

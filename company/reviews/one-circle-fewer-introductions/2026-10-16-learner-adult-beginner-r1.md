@@ -23,3 +23,8 @@ Notes (do not block a first-time learner):
 
 Verdict reason: no finding blocks a first-time learner; the unexplained "then N% each" line is a note.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- c2 is the model behind "then N% each" (each friend's chance in a meeting week is 10%/q, so the weekly average stays 10%). The claim says "stated on the card"; from the walkthrough the card shows the numbers but not the reason, which is my finding 1. Not a fact dispute.
+- The objective's numbers (41% separate, 34% at half the weeks, each friend still 10%) are all on screen and in the reveal.
+- Verdict unchanged: launch.

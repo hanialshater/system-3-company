@@ -22,3 +22,8 @@ Notes (do not block a first-time learner):
 
 Verdict reason: no finding blocks a first-time learner; the "tallest bar is 4" sentence and the unused fake-flip input are notes.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- c5 says that once the learner has tapped all 20 fake flips, the reveal gives their longest run and compares it with the real tally. The walkthrough tapped only 2 and cleared, so I did not see this. My note that "the reveal never compares my fake taps" holds only for a learner who does not finish 20 taps; I correct it here rather than in the findings, which stay as written.
+- The objective (about 46%, most common longest run 4, repeats half the time) is met on screen: 47.6% in my tally, 45.8% exact, tallest bar at 4 (c3). My finding 1 is that the "tallest bar is 4" sentence can read as "5 is unusual" without a legend for the yellow bars.
+- Verdict unchanged: launch.

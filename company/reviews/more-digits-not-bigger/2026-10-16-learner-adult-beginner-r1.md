@@ -22,3 +22,9 @@ Notes (do not block a first-time learner):
 
 Verdict reason: no finding blocks a first-time learner; the sliver/hairline rendering at phone size is a note.
 
+## After reading meta.json (misconception, objective, claims; build.md not read)
+
+- Intent and experience match. The misconception ("longer is larger", 0.125 > 0.25 > 0.3) is the one I chose with, and the objective (compare from the first digit because each place is a tenth of the one before) is the reveal's last sentence, c4.
+- c3 (the five slivers add 0.05, less than one more block) is the sentence that answered my question in finding 3.
+- c5 (block/sliver/hairline legend) is accurate as text; my finding 1 is about how the slivers render at phone size, not about the claim.
+- Verdict unchanged: launch.
