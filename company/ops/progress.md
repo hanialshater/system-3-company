@@ -3,6 +3,16 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · community-engineer (Femi) · PR #6 second integration: review/fix branches and base af8e4021 merged, not pushed
+
+**Changed:** on `pr/6-algorithms-200`, merged `pr6/pe` (PE review, approve with conditions M1–M7), `pr6/platform` (M1/M2, cm-cs M6 decision, W-1578 catalog) and `pr6/build` (M3, W-1569) with merge commits. Base moved to `af8e4021` and took W-1517..W-1561, so all 18 PR #6 ids moved +45 to W-1562..W-1579 (`64359bc7`; map in `company/engineering/community/prs/6.md` §9.2), then merged base (`02707ebb`). Engineer read of the W-1578 catalog diff: no finding (§9.4). W-1569, W-1572..W-1574, W-1578 moved to review.
+
+**Believe (high):** check, typecheck, test:algorithms 417/417, test:books 417/417 pass; test:platform fails only #18 (W-1570); 200/200 draft, 4,407/4,407 algo claims unverified. No build or QA run in this pass.
+
+**Next:** qa-tester W-1570 (per-lesson QA records linked into evidence, as PR #5) and M5 full verify; chief-of-staff + principal-engineer-ops M7 (W-1576). Then community-engineer merges those, fetches, and pushes `codex/algorithms-200` without force.
+
+**Blocked:** push, on M4 #18, M5, M7.
+
 ## 2026-10-16 · cm-cs (Lin) · PR #6 M6: what production /catalog shows (W-1575)
 
 **Changed:** wrote `company/decisions/2026-10-16-pr6-catalog-algorithms-section.md`. W-1575 → done. New: W-1578 (platform-engineer, code requirement R1-R6), W-1579 (cm-cs, label names for the 200 algo concepts, after F-46). No code edited. Not pushed.

@@ -18356,10 +18356,11 @@
       "id": "W-1569",
       "title": "PR #6: cs.algo-multiplicative-weights.c12 has claim text exactly 'learner', which JSON-serialises to the W-947 internal string '\"learner\"' and fails test:platform #28 (tests/platform/trust.test.mjs:108). Change the row label/claim text (e.g. 'learner loss') in src/lib/algorithms/topics/approximation-online.ts and the meta claim; keep it unverified. See company/engineering/community/prs/6.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1570",
@@ -18383,28 +18384,31 @@
       "id": "W-1572",
       "title": "PR #6 merge gate: QA contract fails 3 of 200 algo lessons on phone and desktop with 'controls that changed nothing observable: Try another' (algo-dinic-levels, algo-pollard-rho-factor, algo-topological-uniqueness). In each, cases[1] ends on a final frame identical to cases[0] (checked by running the models), so Try another shows no change. Make the changed case visibly differ (src/lib/algorithms/topics/spanning-matching-flow.ts dinic_levels, number-theoretic-algorithms.ts pollard_rho_factor, graph-traversal-decomposition.ts topological_uniqueness) and update their claims (stay unverified). See company/engineering/community/prs/6.md",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1573",
       "title": "PR #6 merge gate M1+M2: add test:algorithms to package.json scripts and verify (approved in the review, no EDD); add tests/algorithms/shipped.test.mjs running checkAlgorithms on the real manifest (0 errors, 0 warnings), exact wrapper imports, case-1 visible final frame differs from case 0 without result; tighten tools/algorithms-200-check.mjs:53-54,89. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md",
       "owner": "platform-engineer",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1574",
       "title": "PR #6 merge gate M3 (widens W-1572): algo-external-merge and algo-american-flag-sort also end case 1 on a final frame identical to case 0 (pass QA only via the trace counter); repair with the three in W-1572. See company/engineering/reviews/2026-10-16-pr6-engineering-review.md F13",
       "owner": "demo-builder",
-      "state": "next",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1575",
@@ -18438,10 +18442,11 @@
       "id": "W-1578",
       "title": "PR #6 M6 (decided by cm-cs): /catalog Algorithms section renders only visible algorithm lessons; no section when none visible; per-topic and per-row filtering; remove all planned-count and 'not yet visible' copy; update tests/algorithms/catalog.test.mjs. Exact requirement R1-R6 in company/decisions/2026-10-16-pr6-catalog-algorithms-section.md",
       "owner": "platform-engineer",
-      "state": "backlog",
+      "state": "review",
       "domain": null,
       "created": "2026-10-16",
-      "links": []
+      "links": [],
+      "updated": "2026-10-16"
     },
     {
       "id": "W-1579",
