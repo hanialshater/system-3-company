@@ -3,6 +3,12 @@
 Newest entry at the top. Every session adds one before it ends. This is testimony from a worker
 who no longer exists: check what you rely on.
 
+## 2026-10-16 · demo-builder · W-1540 tricolour-check built (draft)
+
+**Changed:** new lesson `src/demos/math/tricolour-check/` (draft, 8 claims, all unverified), build note `company/reviews/tricolour-check/build.md`, registry regenerated; board W-1540 → review. Follows S1 to S4, T1, T3a, the ticks rule and W-1583 (A/B/C letter rings, arc sets in one constant). W-1583's tricolour part of W-1585 is done here; W-1585 stays open for unknot-game and left-or-right.
+**Believe:** local contract QA passes on phone and desktop; reveal-fit at 390x844 is fit, crop 0, 87 words; check and typecheck pass. Fairly sure on the picture (viewed both themes at 390x844); untested with learners. Two calls for others: `loopOne` fires on opening ○ (the only way the QA path reaches it), and the control row hides at the reveal (crop was 22 px without it). Both are in build.md "Decisions".
+**Next:** fact-checker c1 to c8 (c5 is the proof); design-lead S4 review of the walkthrough; qa-tester record; learner walk. **Blocked:** nothing.
+
 ## 2026-10-16 · design-lead · W-1568 spec review (unknot-game, left-or-right) and W-1583 arc sets
 
 **Changed:** new `company/design/reviews/2026-10-16-knots-specs-review.md` (+ `badge-probe.mjs`); board W-1584 (interaction-designer), W-1585 (demo-builder).

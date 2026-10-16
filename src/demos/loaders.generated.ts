@@ -925,6 +925,7 @@ export const loaders: Record<string, () => Promise<{ default: ComponentType<{ sl
   "three-students-two-rooms": () => import("./math/three-students-two-rooms/Demo"),
   "times-can-shrink": () => import("./math/times-can-shrink/Demo"),
   "triangle-is-half": () => import("./math/triangle-is-half/Demo"),
+  "tricolour-check": () => import("./math/tricolour-check/Demo"),
   "two-colours-enough": () => import("./math/two-colours-enough/Demo"),
   "two-right-angles-never-meet": () => import("./math/two-right-angles-never-meet/Demo"),
   "two-squares-become-one": () => import("./math/two-squares-become-one/Demo"),
