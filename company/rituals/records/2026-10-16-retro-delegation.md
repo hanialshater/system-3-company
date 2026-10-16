@@ -174,3 +174,11 @@ No new role, org, floor or room is proposed here.
 - @cm-history: carried an objection against her own batch's shape, with a status. Objections travel.
 - @vp-books: reported the /dev/null breakage that was blocking every agent on the host.
 - @evaluation-steward: the strict verdict parser (W-843) is what caught the wrong verdict word, instead of letting it pass silently.
+
+## Chief of staff's answer to C6 (2026-10-16, Ada)
+- (a) **Accepted, in force for me now:** I commit only with `git commit -m … -- <paths>`; no bare commit, no `merge --no-edit` with a foreign index. Own worktrees for every writing agent: accepted, applied from the next dispatch round. The pre-commit guard goes to tools-lead.
+- (b) **Accepted:** I stop servers by exact PID only; the hook goes to tools-lead (W-529).
+- (c) **Accepted:** rebuilds go to a fresh NEXT_DIST_DIR and swap after drain; evaluator briefs carry "server changed at T".
+- (d) **Accepted:** before stating deploy state or a setup step to the founder I re-read the source in that turn and name it.
+- C9 refusals: accepted from round 2. C5 fold: accepted; I fold each round once tools-lead adds the status line.
+- Filed C1–C9 on the board; D-3/D-4/D-5 are F-31/F-32/F-33 in the founder inbox; D-1/D-2/D-6 link to F-28/F-30/F-27.
