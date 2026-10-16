@@ -1,7 +1,7 @@
 # Phase A evaluation harness (eval-owned learner, scorer, tests)
 
 owner: personalization-eval (Uma) · built in run eval-c1-1016 (lane 14 batch 2 C1; board W-1513, W-1516 (a)(b)(c), W-1496)
-criterion: `company/personalization/eval/2026-10-16-phase-a-criterion.md` (draft, unfrozen until C4)
+criterion: `company/personalization/eval/2026-10-16-phase-a-criterion.md` (frozen in C4, run eval-c4-1016; C4 changes in its §10)
 decision: `company/personalization/eval/2026-10-16-learner-scorer-decision.md`
 Offline only. Node 22.18 or later (type stripping), no dependencies, nothing in `src/` imports this folder.
 
@@ -17,7 +17,7 @@ Offline only. Node 22.18 or later (type stripping), no dependencies, nothing in 
 | `checks.mjs` | T1 to T7 as functions | no |
 | `run.mjs`, `run-worker.mjs` | The full criterion run (C4), in worker threads | no |
 | `tests.test.mjs` | The tests runnable before the freeze (T5 to T7 on the judge; T1 to T4 on default-order and fixtures only) | no |
-| `records/` | Committed records: the S computation (`2026-10-16-seeds-c1.json`) | |
+| `records/` | Committed records: the S computation (`2026-10-16-seeds-c1.json`, rechecked in C4: `2026-10-16-seeds-c4.json`) and the C4 run outputs (`2026-10-16-readout-1/`) | |
 
 The policies are imported read-only from `company/personalization/model/` (`model.ts` POLICIES and COMPOSER, `sim/composer.ts`, `sim/catalog.mjs`). Nothing in `model/` or `sim/` is edited. The provisional `sim/learner.ts`, `sim/score.ts` and `sim/simulate.mjs` are not imported: the parts used (the episode loop, the pre-history generator, epsilon-greedy's exploration) are copies in `harness.mjs`, so a later edit there cannot change the judge's world unseen.
 
@@ -45,8 +45,8 @@ NODE_NO_WARNINGS=1 node company/personalization/eval/harness/harness.mjs world -
 # runner self-check before the freeze: every policy served by a fixture (verdicts meaningless by construction)
 NODE_NO_WARNINGS=1 node company/personalization/eval/harness/run.mjs --seeds=3 --plumbing --out=/tmp/eval-plumbing
 
-# C4 only, after `status: frozen`: the full run (about 30-40 min at S = 200 with 4 jobs)
-NODE_NO_WARNINGS=1 node company/personalization/eval/harness/run.mjs --seeds=200 --jobs=4 [--inputs=<C0-corrected B2 block as JSON>] --out=<dir>
+# C4 only, after `status: frozen`: the full run (S = 200). --kinds=base,one-at-a-time runs only the pass-relevant cells
+NODE_NO_WARNINGS=1 node company/personalization/eval/harness/run.mjs --seeds=200 --jobs=4 [--kinds=<kinds>] [--inputs=<B2 block as JSON>] --out=<dir>
 ```
 
 `--inputs=<file.json>` replaces the B2 block of `world-inputs.mjs` (same keys). C4 uses it, or edits the block, to put in the C0-corrected values; the manifest records the hash of the block used.
@@ -66,6 +66,6 @@ Every random draw is a hash of a string key (seed, persona, concept or card, eve
 
 ## What the judge models, and where each number comes from
 
-See the criterion §1 and §4 and the header of `learner.mjs`. In short: binary knowledge per in-pilot concept; prior knowledge from the copied latents rescaled to B2's mean and spread; exponential forgetting at a per-persona rate rescaled to B2's base and spread; a hidden per-lesson misconception pull (B2 range as a triangular distribution) plus a per-persona modifier (B2 range); encoding cut by the prerequisite penalty when any in-pilot prerequisite is unknown (B2); a hypercorrection boost to first-revisit recall after a misconception error (B2; 0 at base by the criterion rule); a novelty boost to encoding (B2; 0 at base); a constant prediction-feedback boost (B2 base); five unsourced constants copied from the provisional learner and labelled (`UNSOURCED`). The composer's rating of each lesson is generated from the hidden pull at fidelity ρ and never read by the learner.
+See the criterion §1 and §4 and the header of `learner.mjs`. In short: binary knowledge per in-pilot concept; prior knowledge from the copied latents rescaled to B2's mean and spread; exponential forgetting at a per-persona rate rescaled to B2's base and spread; a hidden per-lesson misconception pull (B2 range as a triangular distribution) plus a per-persona modifier (B2 range); encoding cut by the prerequisite penalty when any in-pilot prerequisite is unknown (B2); a hypercorrection boost to first-revisit recall after a misconception error (B2; 0 at base by the criterion rule); a novelty boost to encoding on a domain switch from the previous completed card (B2; 0 at base; C4, C2 F3); a constant prediction-feedback boost (B2 base); a learn rate from B2's C2 row (base 0.70 guess, low cell 0.35; C4, C2 F2); five unsourced constants copied from the provisional learner and labelled (`UNSOURCED`). Forgetting acts on the increment above the guess floor (C4, C2 F1). The composer's rating of each lesson is generated from the hidden pull at fidelity ρ and never read by the learner.
 
-Open fidelity questions are for learning-scientist-personalization (C2, W-1533): the forgetting form, the binary prerequisite penalty and its "unknown" (not "unseen") trigger, the triangular pull distribution, the rating cut points (0.5 and 0.7), the unsourced constants, and the novelty trigger ("concept never completed, or domain not among the last 10 completed").
+C2 (W-1533) reviewed fidelity: company/personalization/evidence/2026-10-16-simulator-fidelity-review.md. Its blocking findings F1 to F3 were fixed in C4 (criterion §10); its notes stay open there.

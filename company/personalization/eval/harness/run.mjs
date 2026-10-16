@@ -2,6 +2,8 @@
 // The full phase A criterion run (C4). Refused unless the criterion's status is `frozen` (freeze lock, harness.mjs).
 //   NODE_NO_WARNINGS=1 node company/personalization/eval/harness/run.mjs --seeds=<S> [--jobs=4] [--inputs=<b2.json>] [--out=<dir>]
 //   ... run.mjs --seeds=3 --plumbing --out=<tmp>   runner self-check before the freeze: every policy served by a fixture
+//   ... --kinds=base,one-at-a-time   (C4) run only these cell kinds (e.g. the pass-relevant cells first on a loaded host);
+//       sections whose cells were not run are omitted from verdicts.json, and the manifest records the kinds.
 // owner: personalization-eval (Uma) · run: eval-c1-1016 (built; first used in C4) · criterion §2 to §5
 //
 // Order: T5-T7 (judge; any failure stops the run) -> episodes for every unit (cell × policy × persona, S seeds each, in
@@ -34,9 +36,10 @@ const arg = (k, d) => { const a = process.argv.find((x) => x.startsWith(`--${k}=
 
 export const GAM_VARIANTS_UNDER_T4 = ["gam", "gam-no-surprise-novelty", "gam-no-breadth", "gam-surprise-on"];
 
-export function units(b2) {
+export function units(b2, kinds = null) {
   const out = [];
   for (const c of cells(b2)) {
+    if (kinds && !kinds.includes(c.kind)) continue;
     const pols = c.kind === "base" || c.kind === "one-at-a-time" ? [...M.POLICIES]
       : c.kind === "corner" ? ["default-order", "draft-rules", "gam"]
         : c.kind === "novelty" ? ["gam", "gam-no-surprise-novelty"]
@@ -87,7 +90,8 @@ async function main() {
   const judgeOk = judge.t5.ok && judge.t6.every((x) => x.ok) && judge.t7.a.ok && judge.t7.b.ok && judge.t7.c.ok;
   if (!judgeOk) { writeFileSync(join(out, "judge-tests.json"), JSON.stringify(judge, null, 2)); throw new Error("T5-T7 failed: run stopped (eval defect); see judge-tests.json"); }
 
-  const list = units(b2);
+  const kinds = arg("kinds") ? arg("kinds").split(",") : null;
+  const list = units(b2, kinds);
   const t0 = Date.now();
   const scores = await runUnits(list, seeds, b2, +arg("jobs", 4));
   const R = {}; // cell -> policy -> persona -> score[]
@@ -96,6 +100,7 @@ async function main() {
   // T1-T4 per policy under test (base cell; gam-surprise-on at rho = RHO_AGREEMENT, surprise high).
   const validity = {};
   for (const policy of policies) {
+    if (!list.some((u) => u.policy === policy)) continue;
     const cellName = policy === "gam-surprise-on" ? `rho-${CRITERION.rhoAgreement.value}-surprise-high` : "base";
     const world = cellByName(cellName, b2);
     const t1 = ["curious-newcomer", "returning-expert"].map((persona) => t1Replay({ persona, seed: seeds[0], cell: cellName, policy: impl(policy) }));
@@ -108,22 +113,21 @@ async function main() {
   const C = CRITERION;
   const oat = cells(b2).filter((c) => c.kind === "one-at-a-time").map((c) => c.name);
   const pairs = {};
-  for (const baseline of ["default-order", "draft-rules"]) {
+  if (R.base) for (const baseline of ["default-order", "draft-rules"]) {
     const byCell = {};
     for (const cell of ["base", ...oat]) byCell[cell] = judgeCell({ gam: R[cell].gam, base: R[cell][baseline], dflt: R[cell]["default-order"], C });
     const oatBeats = Object.fromEntries(oat.map((c) => [c, byCell[c].beats]));
     pairs[`gam vs ${baseline}`] = { outcome: outcome({ invalid: validity.gam.invalid || validity[baseline].invalid, baseBeats: byCell.base.beats, oatBeats }), byCell };
   }
-  const perTerm = {
-    "breadth: gam vs gam-no-breadth (base)": judgeCell({ gam: R.base.gam, base: R.base["gam-no-breadth"], dflt: R.base["default-order"], C, withGuardrails: false }),
-  };
-  for (const c of cells(b2).filter((x) => x.kind === "novelty")) perTerm[`novelty: gam vs gam-no-surprise-novelty (${c.name})`] = judgeCell({ gam: R[c.name].gam, base: R[c.name]["gam-no-surprise-novelty"], dflt: null, C, withGuardrails: false });
-  for (const c of cells(b2).filter((x) => x.kind === "rho")) perTerm[`surprise: gam-surprise-on vs gam (${c.name})`] = judgeCell({ gam: R[c.name]["gam-surprise-on"], base: R[c.name].gam, dflt: null, C, withGuardrails: false });
+  const perTerm = {};
+  if (R.base) perTerm["breadth: gam vs gam-no-breadth (base)"] = judgeCell({ gam: R.base.gam, base: R.base["gam-no-breadth"], dflt: R.base["default-order"], C, withGuardrails: false });
+  for (const c of cells(b2).filter((x) => x.kind === "novelty" && R[x.name])) perTerm[`novelty: gam vs gam-no-surprise-novelty (${c.name})`] = judgeCell({ gam: R[c.name].gam, base: R[c.name]["gam-no-surprise-novelty"], dflt: null, C, withGuardrails: false });
+  for (const c of cells(b2).filter((x) => x.kind === "rho" && R[x.name])) perTerm[`surprise: gam-surprise-on vs gam (${c.name})`] = judgeCell({ gam: R[c.name]["gam-surprise-on"], base: R[c.name].gam, dflt: null, C, withGuardrails: false });
   const reference = {};
-  for (const pol of ["random", "epsilon-greedy"]) reference[pol] = Object.fromEntries(PERSONAS.map((p) => [p.id, paired(R.base[pol][p.id].map((s) => s.R), R.base["default-order"][p.id].map((s) => s.R))]));
+  if (R.base) for (const pol of ["random", "epsilon-greedy"]) reference[pol] = Object.fromEntries(PERSONAS.map((p) => [p.id, paired(R.base[pol][p.id].map((s) => s.R), R.base["default-order"][p.id].map((s) => s.R))]));
   const corners = {};
-  for (const c of cells(b2).filter((x) => x.kind === "corner")) for (const baseline of ["default-order", "draft-rules"]) corners[`${c.name}: gam vs ${baseline}`] = judgeCell({ gam: R[c.name].gam, base: R[c.name][baseline], dflt: R[c.name]["default-order"], C });
-  const descriptive = Object.fromEntries(Object.entries(R.base).map(([pol, byP]) => [pol, Object.fromEntries(Object.entries(byP).map(([p, ss]) => [p, {
+  for (const c of cells(b2).filter((x) => x.kind === "corner" && R[x.name])) for (const baseline of ["default-order", "draft-rules"]) corners[`${c.name}: gam vs ${baseline}`] = judgeCell({ gam: R[c.name].gam, base: R[c.name][baseline], dflt: R[c.name]["default-order"], C });
+  const descriptive = Object.fromEntries(Object.entries(R.base ?? {}).map(([pol, byP]) => [pol, Object.fromEntries(Object.entries(byP).map(([p, ss]) => [p, {
     movedShare: mean(ss.map((s) => s.movedShare)), reveal: mean(ss.map((s) => s.reveal)), cards: mean(ss.map((s) => s.cards)),
     R_realised_minus_R: mean(ss.map((s) => s.R_realised - s.R)) }]))]));
 
@@ -131,7 +135,7 @@ async function main() {
   try { commit = execSync("git rev-parse HEAD", { cwd: HERE, encoding: "utf8" }).trim(); } catch {}
   const files = ["harness.mjs", "learner.mjs", "scorer.mjs", "world-inputs.mjs", "personas.copy.mjs", "checks.mjs", "run.mjs", "run-worker.mjs",
     "../../model/model.ts", "../../model/sim/composer.ts", "../../model/sim/catalog.mjs"];
-  const manifest = { plumbing: PLUMBING, criterionStatus: criterionStatus(), criterionSha256: sha(readFileSync(CRITERION_FILE)), inputsSha256: sha(JSON.stringify(b2)), inputs: b2,
+  const manifest = { plumbing: PLUMBING, kinds: kinds ?? "all", criterionStatus: criterionStatus(), criterionSha256: sha(readFileSync(CRITERION_FILE)), inputsSha256: sha(JSON.stringify(b2)), inputs: b2,
     commit, node: process.version, S, seedList: `${seeds[0]}..${seeds.at(-1)}`, modelVersion: M.MODEL_VERSION, composer: M.COMPOSER.version,
     fileSha256: Object.fromEntries(files.map((f) => [f, sha(readFileSync(join(HERE, f)))])), seconds: (Date.now() - t0) / 1000 };
   writeFileSync(join(out, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");

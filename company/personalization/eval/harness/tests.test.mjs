@@ -14,7 +14,8 @@ import { join } from "node:path";
 import { PERSONAS } from "./personas.copy.mjs";
 import { cellByName, assertScoringAllowed, criterionStatus, poolFor, catalog } from "./harness.mjs";
 import { t1Replay, pickChecks, t5Static, staticIsolation, t6Dynamic, t7Forgetting0, t7Prereq0, t7Surprise0 } from "./checks.mjs";
-import { simulatedRating, hiddenPull, triangularMoments, normal } from "./learner.mjs";
+import { simulatedRating, hiddenPull, triangularMoments, normal, makeLearner } from "./learner.mjs";
+import { knownAnswerWorld } from "./checks.mjs";
 import { B2, cells } from "./world-inputs.mjs";
 import { judgeCell, outcome, paired, seedsFromSd, t975 } from "./scorer.mjs";
 
@@ -117,16 +118,19 @@ test("T4 control: terms that do not sum to the score fail", () => {
 });
 
 // ---------------- the freeze lock and the counterfactual's construction ----------------
-test("freeze lock: while the criterion is unfrozen, only default-order and fixtures may be scored", () => {
-  assert.ok(!/^frozen\b/.test(criterionStatus()), "this test file expects the C1 (unfrozen) state");
-  assert.doesNotThrow(() => assertScoringAllowed(["default-order", "fixture-explained-default"]));
-  for (const p of ["gam", "draft-rules", "random", "epsilon-greedy", "gam-no-surprise-novelty", "gam-no-breadth", "gam-surprise-on"]) {
-    assert.throws(() => assertScoringAllowed([p]), /freeze lock/);
-  }
+test("freeze lock: while a criterion is unfrozen, only default-order and fixtures may be scored; frozen allows all", () => {
+  // C4: the real criterion is frozen from C4 on, so the lock is tested on temporary copies in both states.
   const dir = mkdtempSync(join(tmpdir(), "eval-lock-"));
-  const f = join(dir, "c.md");
-  writeFileSync(f, readFileSync(new URL("../2026-10-16-phase-a-criterion.md", import.meta.url), "utf8").replace(/^status:.*$/m, "status: frozen"));
-  assert.doesNotThrow(() => assertScoringAllowed(["gam"], f));
+  const src = readFileSync(new URL("../2026-10-16-phase-a-criterion.md", import.meta.url), "utf8");
+  const draft = join(dir, "draft.md"), frozen = join(dir, "frozen.md");
+  writeFileSync(draft, src.replace(/^status:.*$/m, "status: draft (unfrozen)"));
+  writeFileSync(frozen, src.replace(/^status:.*$/m, "status: frozen"));
+  assert.doesNotThrow(() => assertScoringAllowed(["default-order", "fixture-explained-default"], draft));
+  for (const p of ["gam", "draft-rules", "random", "epsilon-greedy", "gam-no-surprise-novelty", "gam-no-breadth", "gam-surprise-on"]) {
+    assert.throws(() => assertScoringAllowed([p], draft), /freeze lock/);
+  }
+  assert.doesNotThrow(() => assertScoringAllowed(["gam"], frozen));
+  assert.ok(["missing"].indexOf(criterionStatus()) === -1, "the criterion file has a status line");
 });
 test("gam-surprise-on differs from gam only in the gate flag and the rating source tag", async () => {
   const M = await import("../../model/model.ts");
@@ -162,6 +166,37 @@ test("scorer: t quantile, paired interval, S rule, judge rule on synthetic numbe
   assert.equal(judgeCell({ ...mk([0.02, 0.02, 0.02, 0.005, 0, 0]), C }).beats, false, "3 wins is not enough");
   assert.equal(judgeCell({ ...mk([0.02, 0.02, 0.02, 0.02, 0.02, -0.015]), C }).beats, false, "a harm of 1.5 points fails at δ_harm 0.01");
   assert.deepEqual(outcome({ invalid: false, baseBeats: true, oatBeats: { a: true, b: false } }), { verdict: "FAIL-SENSITIVE", cells: ["b"] });
-  assert.equal(cells().filter((c) => c.kind === "one-at-a-time").length, 8);
+  assert.equal(cells().filter((c) => c.kind === "one-at-a-time").length, 9, "8 B2/exit-row cells + learnRate-low (C4, C2 F2)");
+  assert.ok(cells().some((c) => c.name === "learnRate-low" && c.world.learnRate === 0.35));
   assert.equal(cells().filter((c) => c.kind === "corner").length, 16);
+});
+
+// ---------------- C4 answers to the C2 fidelity review (company/personalization/evidence/2026-10-16-simulator-fidelity-review.md) ----------------
+const DAYMS = 86_400_000;
+test("C2 F1: recall decays the increment above the guess floor: P(t) = g + (1 - g)·exp(-k·t)", () => {
+  const g1 = { prereqsOf: () => [], pilotConcepts: ["probability:a"] };
+  const A1 = { slug: "lesson-a", concept: "probability:a", domain: "probability" };
+  let checked = 0;
+  for (let s = 1; s <= 50; s++) {
+    const L = makeLearner({ seed: s, personaId: "f1", world: knownAnswerWorld({ forgetK: 0.2, stopHazard: 0 }), graph: g1, pullOf: () => 0 });
+    if (!L.study(A1, 0).learned) continue;
+    checked++;
+    for (const d of [1, 7, 30]) assert.ok(Math.abs(L.recallProb(A1, d * DAYMS) - (0.2 + 0.8 * Math.exp(-0.2 * d))) < 1e-12);
+  }
+  assert.ok(checked > 0);
+});
+test("C2 F3: the novelty boost depends on the order (domain switch from the previous completed card), not on 'concept unseen'", () => {
+  const g2 = { prereqsOf: () => [], pilotConcepts: ["probability:a", "probability:b", "cs:c"] };
+  const pa = { slug: "pa", concept: "probability:a", domain: "probability" };
+  const pb = { slug: "pb", concept: "probability:b", domain: "probability" };
+  const cc = { slug: "cc", concept: "cs:c", domain: "cs" };
+  let sameDiffers = 0, switchDiffers = 0;
+  for (let s = 1; s <= 400; s++) {
+    const run = (nov, first) => { const L = makeLearner({ seed: s, personaId: "f3", world: knownAnswerWorld({ novelty: nov, learnRate: 0.5 }), graph: g2, pullOf: () => 0 });
+      L.study(first, 0); return L.study(pb, 120_000).learned; };
+    if (run(0, pa) !== run(0.5, pa)) sameDiffers++;     // same domain before: no boost, whatever the benefit
+    if (run(0, cc) !== run(0.5, cc)) switchDiffers++;   // domain switch: the boost applies
+  }
+  assert.equal(sameDiffers, 0);
+  assert.ok(switchDiffers > 0);
 });

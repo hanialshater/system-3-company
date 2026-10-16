@@ -18,10 +18,15 @@
 //   - Each in-pilot concept is known or not. Start: known with P = priorKnowledge[domain]; then the visible pre-history.
 //   - Predict: known -> right with P 1 - slip; unknown -> wrong with P = clamp(pull(lesson) × pullScale + pullModifier).
 //   - Study, if the card reached the reveal: unknown -> encodes with
-//       P = learnRate × (1 + predictionFeedback) × (1 - learnPrereqPenalty·[any prerequisite unknown]) × (1 + novelty·[concept or domain unseen]).
+//       P = learnRate × (1 + predictionFeedback) × (1 - learnPrereqPenalty·[any prerequisite unknown]) × (1 + novelty·[context switch]).
+//     [context switch] (C4, answer to C2 F3) = the lesson's domain differs from the domain of the previous completed card
+//     (pre-history included; false for the very first card). C1's trigger ("concept never completed, or domain not among
+//     the last 10 completed") was true for nearly every card and copied the composer's own novelty tests; replaced.
 //     Known -> the clock is refreshed. A card left before the reveal changes nothing (and is not "seen").
-//   - Recall at time t of a known concept: min(1, exp(-forgetK × mult × days) × (1 + hypercorrection·[encoded after a
-//     misconception error, until its first revisit])), floored at guessRecall. Unknown: guessRecall.
+//   - Recall at time t of a known concept (C4, answer to C2 F1: the increment-above-floor form, the form under which
+//     C0 sourced forgetRate high 0.20): min(1, guessRecall + (1 - guessRecall) × exp(-forgetK × mult × days) ×
+//     (1 + hypercorrection·[encoded after a misconception error, until its first revisit])). Unknown: guessRecall.
+//     (C1 decayed the whole probability toward 0 and floored it at guessRecall with max; replaced before any score.)
 //   - Revisit: recalled with that P; success halves the forgetting multiplier; failure re-encodes with P relearn, else forgets.
 //   - Stop after each card with P = stopHazard × (1.5 - interest[domain]), keyed by card position (sessions stay aligned).
 
@@ -89,8 +94,7 @@ export function makeLearner({ seed, personaId, world, graph, pullOf }) {
   const W = world;
   const known = new Map(); // concept -> { at, mult, hyper }
   const occ = new Map();
-  const seen = new Set();   // concepts the learner has completed (pre-history or simulation)
-  const recentDomains = []; // domains of the last 10 completed cards
+  let lastDomain = null;    // domain of the previous completed card (pre-history or simulation): the novelty context (C2 F3)
   let cardNo = 0;
   const draw = (key, event) => {
     const k = `${key}|${event}`;
@@ -103,17 +107,13 @@ export function makeLearner({ seed, personaId, world, graph, pullOf }) {
     if (draw(c, "prior") < (W.priorKnowledge[dom] ?? 0)) known.set(c, { at: -30 * DAY, mult: 1, hyper: false });
   }
   const anyPrereqUnknown = (c) => graph.prereqsOf(c).some((p) => !known.has(p));
-  const markSeen = (lesson) => {
-    seen.add(lesson.concept);
-    recentDomains.push(lesson.domain);
-    if (recentDomains.length > 10) recentDomains.shift();
-  };
+  const markSeen = (lesson) => { lastDomain = lesson.domain; };
   const recallProb = (lesson, t) => {
     const k = known.get(lesson.concept);
     if (!k) return W.guessRecall;
     const days = Math.max(0, (t - k.at) / DAY);
-    const r = Math.exp(-W.forgetK * k.mult * days) * (k.hyper ? 1 + W.hypercorrection : 1);
-    return Math.max(W.guessRecall, Math.min(1, r));
+    const kept = Math.exp(-W.forgetK * k.mult * days) * (k.hyper ? 1 + W.hypercorrection : 1); // share of the increment kept
+    return Math.min(1, W.guessRecall + (1 - W.guessRecall) * kept);
   };
   return {
     /** Visible pre-history -> hidden state: a recalled concept is known, a failed recall is not, else encoded with P learnRate. */
@@ -143,7 +143,7 @@ export function makeLearner({ seed, personaId, world, graph, pullOf }) {
           const k = known.get(c);
           known.set(c, { at: t, mult: k.mult, hyper: k.hyper });
         } else {
-          const novel = !seen.has(c) || !recentDomains.includes(lesson.domain);
+          const novel = lastDomain !== null && lastDomain !== lesson.domain;
           const p = clamp01(W.learnRate * (1 + W.predictionFeedback) * (1 - W.learnPrereqPenalty * (miss ? 1 : 0)) * (1 + W.novelty * (novel ? 1 : 0)));
           if (draw(c, "learn") < p) {
             learned = true;

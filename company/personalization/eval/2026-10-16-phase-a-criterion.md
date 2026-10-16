@@ -1,7 +1,8 @@
 # Phase A pass criterion: GAM composer vs default order and vs draft rules (W-1496)
 
-status: draft (unfrozen)
+status: frozen
 owner: personalization-eval (Uma) · run: eval-b1-1016 · brief: company/personalization/batches/2026-10-16-batch-1.md B1
+frozen: run eval-c4-1016 (batch 2 C4, board W-1496), before any policy under test was scored. Freeze commit: written below in a second commit (§11). Every C4 change made before the freeze is listed in §10.
 freezes in: **C4 of batch 2** (company/personalization/batches/2026-10-16-batch-2.md; moved from batch 1's C1 by the VP), after the B2 placeholders are filled from the C0-corrected table. Frozen = `status: frozen` plus the commit hash written into this file. Any change after a scored run is a new criterion, says so in the readout, and the old result stands (company/ceo-office/2026-10-16-personalization-org-proposal.md §2.3).
 learner/scorer decision: company/personalization/eval/2026-10-16-learner-scorer-decision.md (W-1513)
 harness (built in C1, run eval-c1-1016): company/personalization/eval/harness/ (README.md there: how to run and reproduce). Every C1 change to this text is listed in §9.
@@ -32,6 +33,8 @@ Not opened: company/personalization/model/sim/README.md, `sim/out/`, the HQ lab 
 
 **S = 200 (C1, run eval-c1-1016).** sd_R is the largest per-persona SD of R of the default-order arm at the base cell over 500 pilot seeds (1001 to 1500): 0.0315 (struggling-repeater; the others 0.021 to 0.031). The formula gives ⌈(2.8 · √2 · 0.0315 / 0.01)²⌉ = 156, under the floor, so **S = 200, seeds 1001 to 1200**. Record: company/personalization/eval/harness/records/2026-10-16-seeds-c1.json (SDs only; inputs hash f7beca21…). The inputs were the B2 memo values as written, before C0. S changes only if sd_R exceeds 0.0357 (where the formula passes 200); if C4's C0-corrected base values differ, C4 reruns `harness.mjs seeds` on the default-order arm alone and writes the new S here before freezing.
 
+**S rechecked in C4 (run eval-c4-1016): S = 200 stands, seeds 1001 to 1200.** No B2 base value moved (C0: "No range bound moves"), but the learner's forgetting form and novelty trigger changed (§10, C2 F1 and F3), so the default-order arm's SD was recomputed at the base cell over pilot seeds 1001 to 1500, default-order only: largest per-persona sd_R = 0.0328 (struggling-repeater; the others 0.021 to 0.032). The formula gives ⌈(2.8 · √2 · 0.0328 / 0.01)²⌉ = 169, under the floor. Record: company/personalization/eval/harness/records/2026-10-16-seeds-c4.json (SDs only; inputs hash d2fbc581…).
+
 **Episode definition (C1).** One simulated learner, one session a day at 09:00 for 14 days, then a 15th day of revisits only. Each session: first the first revisits of every lesson completed on an earlier day (the scheduled first revisit, REVISIT_SCHEDULE_DAYS[0] = 1 day, is the next session), then new cards one at a time, the policy recomputed after every card, until the learner stops (stop hazard per card, from the copied persona latents) or 12 new cards. The learner returns every day, so every completed lesson gets its first revisit and R has no survivorship. R reads each lesson's expected recall at the session start, before any revisit of that session is applied. Before day 0 a visible pre-history is drawn from the persona's jittered fingerprint means (the copy of sim/simulate.mjs's generator), the same for every policy at a (seed, persona). Clock: 2 minutes per new card, 1 per revisit. Code: company/personalization/eval/harness/world-inputs.mjs `EPISODE`, harness.mjs `runEpisode`.
 
 ## 2. Pass rule per policy pair
@@ -44,7 +47,7 @@ In one parameter cell, the GAM **beats** a baseline when all of the following ho
 3. **Every breadth guardrail in §3 holds** in every persona.
 4. **The knowledge-gain guardrail in §3 holds** in every persona.
 
-**Pass across the sweep (§4):** the GAM passes a pair only if it beats the baseline in the base cell **and** in every one-at-a-time sensitivity cell. Outcomes, per pair:
+**Pass across the sweep (§4):** the GAM passes a pair only if it beats the baseline in the base cell **and** in every one-at-a-time sensitivity cell (9 cells from C4: the 8 of §4 plus `learnRate-low`, §10 F2). Outcomes, per pair:
 - **PASS**: beats in all one-at-a-time cells.
 - **FAIL-SENSITIVE**: beats in the base cell but not in at least one sensitivity cell. The readout names the cells. Per the exit row ("if the GAM only wins under one parameter setting, we say so and do not proceed on it"), this is not a pass.
 - **FAIL**: does not beat in the base cell.
@@ -86,7 +89,8 @@ Each parameter is a **scale on the persona latents** (as learner.ts `forgetScale
 | prerequisite penalty (absolute) | **B2_PREREQ_LOW** | **B2_PREREQ_BASE** | **B2_PREREQ_HIGH** | B2 table (W-1516a, W-1517) |
 | surprise/hypercorrection effect on retention (absolute) | **B2_SURPRISE_LOW** | **B2_SURPRISE_BASE** | **B2_SURPRISE_HIGH** | B2 table (W-1497) |
 | rating fidelity ρ (how well the composer's misconceptionStrength tracks the hidden pull) | 0 | **RHO_AGREEMENT** | 1 | 0 and 1 are bounds; the middle comes from the blind 20% agreement (W-1515 / C3) or, if none exists at freeze, 0.5 labelled as a guess |
-| novelty benefit (relative boost to encoding when the concept or the domain is unseen) | **B2_NOVELTY_LOW** | **B2_NOVELTY_BASE** | **B2_NOVELTY_HIGH** | B2 table; used only by the per-term novelty cells (§2), not by the GAM pass |
+| novelty benefit (relative boost to encoding when the concept or the domain is unseen; **C4: when the lesson's domain differs from the previous completed card's**, §10 F3) | **B2_NOVELTY_LOW** | **B2_NOVELTY_BASE** | **B2_NOVELTY_HIGH** | B2 table; used only by the per-term novelty cells (§2), not by the GAM pass |
+| learn rate (C4, absolute; P(encode \| concept unknown) before the prediction-feedback boost) | **B2_LEARNRATE_LOW** | 0.70 (C1 guess; B2 gives no base) | none (B2 high = 0.70 = base) | B2 C2 revision row (W-1533 F2); low is pass-relevant (§10 F2) |
 
 **C1 additions to this section (before any score; §9):**
 - **Forgetting low/high** are the wider of the exit row's ±50% and B2's own range around its base: low = min(0.5, B2 low ÷ B2 base), high = max(1.5, B2 high ÷ B2 base). With the memo as written that is 0.4 and 2.0. Reason: the exit row sets a minimum sensitivity, not a cap, and a sweep narrower than the evidence's range would hide the bounds B2 gives. The low/high bounds come from the C0-corrected table at C4 under the same rule.
@@ -100,8 +104,22 @@ Rules for the placeholders, set now so that they do not depend on any result:
 - Named placeholders are filled in C1 **only** from company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md's table, cited row by row. If B2 gives no range for a parameter, the cell is {0, guess, 2×guess}, labelled unsourced, and the readout says the pass is conditional on that guess.
 - **Prerequisite penalty and zero.** 0 is included in the range if B2's low end is 0 or below, or B2's confidence in the effect is below medium. It is not added or removed for any other reason. (I know a provisional result concerns penalty 0, §0. This rule is about the evidence, not that result, and I set it before reading B2.)
 - **Surprise:** if B2's low end is 0 or B2's confidence is below medium, the base is 0 (no surprise effect in the world), and the surprise term can earn its place only in the high cell, which the readout says plainly.
-- **One-at-a-time cells** (pass-relevant): base, then each of forgetting, pull, prerequisite penalty, surprise at low and at high with the others at base: 9 cells. ρ is varied only for the per-term surprise/novelty criterion, and the main GAM pass is judged at ρ = RHO_AGREEMENT.
+- **One-at-a-time cells** (pass-relevant): base, then each of forgetting, pull, prerequisite penalty, surprise at low and at high with the others at base: 9 cells. **C4:** plus `learnRate-low` (learn rate 0.35, the others at base), 10 cells in all (§10 F2). ρ is varied only for the per-term surprise/novelty criterion, and the main GAM pass is judged at ρ = RHO_AGREEMENT.
 - **Corners** (reported only): the 16 combinations of low/high on forgetting, pull, prerequisite penalty, surprise at base.
+
+**C4 fill (run eval-c4-1016): the placeholders, from the B2 table as corrected by C0 and the memo's C2 revision.** Spot-check first (VP decision §5): I re-read two C0 rows in their full text through the PMC OAI endpoint, myself. **Row 2** (Fazio et al. 2010, *Memory & Cognition* 38(4), PMC4094137, Table 2): Read / Zero (not tested) .48 immediate, .30 and .31 delayed one week; Not Read .21, .23, .23; "up to 90 s. to read each passage"; 72 undergraduates. **Matches C0.** k above the not-read baseline: ln(.27/.07)/7 = 0.193, ln(.27/.08)/7 = 0.174. **Row 4** (Manrai et al. 2014, *JAMA Intern Med* 174(6), PMC4955674, Results and Table): "14 of 61 respondents (23%) gave a correct response ... 11 of 60 correct responses (18%) in the Casscells study"; "27 of 61 respondents (44%) in our study and 27 of 60 (45%)"; Casscells sample 20 / 20 / 20. **Matches C0.**
+
+| Placeholder | Value | Mark after C0 | Rule applied |
+|---|---|---|---|
+| B2_FORGET_RANGE | base 0.10, spread 2 (persona k 0.071 to 0.141); low 0.04 → scale 0.4; high 0.20 → scale 2.0 | low/base [R] unverifiable this run; high [F] (Fazio Table 2, spot-checked), **valid for the increment-above-floor form**, which the learner now has (§10 F1) | §4 C1 rule max/min with ±50%; unverifiable rows keep their value, labelled, and the pass is conditional on them |
+| B2_PULL_RANGE | 0.30 / 0.55 / 0.85, modifier −0.15 / +0.10 | high [F-r]; base region [F-r] (1978) / [F] (2014, spot-checked) | as C1 |
+| B2_PREREQ_LOW / BASE / HIGH | 0 / 0.15 / 0.40 | high [S] unverifiable this run | 0 kept (B2 low is 0, confidence low); labelled; pass conditional |
+| B2_SURPRISE_LOW / BASE / HIGH | 0 / **0** / 0.15 | [S] unverifiable this run (Butler 56%) | base 0 by the §4 surprise rule (B2 low 0, confidence low-medium); unit per memo C2 revision: relative boost to the kept increment of recall (§10 F1, F12 note) |
+| B2_NOVELTY_LOW / BASE / HIGH | −0.05 / 0 / +0.05 | low confidence, unchanged; meaning corrected (memo C2 revision) | trigger: domain switch from the previous completed card (§10 F3) |
+| B2_LEARNRATE_LOW (new, §10 F2) | 0.35 | [F]-derived (Fazio Table 2: (.48 − .21)/(1 − .21) ≈ 0.34), low confidence | pass-relevant one-at-a-time cell; base stays 0.70, the C1 guess (= B2 high, unsourced), because B2 gives no base and the eval sets no range value |
+| prediction-feedback (fixed) | 0.10 | [A] / [S] | not swept (as C1) |
+
+The block is `B2` in harness/world-inputs.mjs (status "C0-corrected"); the run's manifest records its hash.
 
 ## 5. Tests the harness runs (a failure makes the policy INVALID)
 
@@ -116,6 +134,8 @@ Rules for the placeholders, set now so that they do not depend on any result:
 | T7 judge known answers | learner unit tests: with forgetting 0, a learned concept recalls with P 1; with prerequisite penalty 0, the order of a prerequisite pair does not change expected R; with surprise 0, a wrong prediction does not change retention | each holds to 1e-9 in expectation |
 
 T1 to T4 test policies; T5 to T7 test the judge. A T5 to T7 failure stops the run and is my defect, not the policy's.
+
+**C4 status (before freeze):** T5 to T7 pass again on the C4 learner, plus two known-answer tests for the C4 changes (increment-above-floor recall to 1e-12; novelty boost absent after a same-domain card and present after a switch), harness/tests.test.mjs, 20 of 20. The freeze-lock test now checks both states on temporary copies.
 
 **C1 status:** T5, T6 and T7 pass (harness/tests.test.mjs). T1 to T4 are built and shown able to fail (fixtures: a `Math.random` policy fails T1 and T2, a `sessionCount` reader fails T3 on that entry only, a mis-summed explanation fails T4) and pass on default-order and a positive control. They are not run on any policy under test before the freeze. Scope used in C4: T1 on 2 personas at seed 1001 in two processes; T2 to T4 at every pick of one episode per persona at seed 1001 (base cell; `gam-surprise-on` at ρ = RHO_AGREEMENT, surprise high).
 
@@ -151,7 +171,7 @@ Under base assumptions, detecting 5 points needs about 1,900 eligible learners, 
 
 The registration (EXP format, company/experiments/README.md) replaces these assumptions with whatever traffic exists then, and states arm holding (N5).
 
-## 7. Open before freeze
+## 7. Open before freeze (all closed in C4: §4 C4 fill, §1 S recheck, §10)
 
 - C4 fills **B2_FORGET_RANGE, B2_PULL_RANGE, B2_PREREQ_LOW/BASE/HIGH, B2_SURPRISE_LOW/BASE/HIGH, B2_NOVELTY_LOW/BASE/HIGH** from the B2 table as corrected by C0 (company/personalization/evidence/2026-10-16-ranges-fulltext-check.md), after spot-checking two of C0's rows against their sources. The harness holds them as one named input (harness/world-inputs.mjs `B2`, or `--inputs=`), today at the memo's values as written.
 - **RHO_AGREEMENT** stays the labelled guess 0.5 (C3 held, VP decision §2).
@@ -191,3 +211,28 @@ from: vp-personalization (Mateo) · run: vp-cgate-1016 · 2026-10-16 · full rea
 | §5 | C1 status of T1 to T7 | Done criterion of C1 |
 | §7, §8 | Open list updated; §8 ruled row by row | Batch-2 C1 step 5 |
 
+
+## 10. C4 (run eval-c4-1016): answers to C2's blocking findings, and every change made before the freeze
+
+C2's record: company/personalization/evidence/2026-10-16-simulator-fidelity-review.md (learning-scientist-personalization, W-1533). Its three blocking findings, answered here as batch-2 C4 step 1 requires. No policy under test had been scored when any of these was decided; the only runs were default-order (S recheck) and fixtures (runner self-check).
+
+| C2 | Finding (short) | Answer | What changed |
+|---|---|---|---|
+| F1 | The learner decays the whole recall probability toward 0, floored at guessRecall by `max`; under that form B2's `forgetRate` high 0.20 is not sourced (≈ 0.12–0.13 is) | **Fixed: option (a).** Recall of a known concept is now guessRecall + (1 − guessRecall) · exp(−k · mult · days) · (1 + h), capped at 1. Reason: it is the form C0 read the evidence under (C0 "condition"), so 0.20 is sourced [F] as recorded and spot-checked (§4 C4 fill), and guessRecall 0.2 gains Fazio's not-read baseline (.21–.23) as support (C2 F19). Option (b) would have made the ±50% floor, not evidence, set the cell; (c) would have left a cell labelled as B2's edge that is not. I checked C2's arithmetic: (e^(−7k) − 0.2)/0.8 = 0.26–0.30 gives k = 0.118–0.128 under the old form. | learner.mjs `recallProb`; hypercorrection now scales the kept increment (C2 F12's suggestion). Test "C2 F1" in tests.test.mjs. S rechecked (§1). |
+| F2 | `learnRate` 0.7 unsourced, not swept; ΔR scales about linearly with it against an absolute δ_min | **Fixed: a pass-relevant one-at-a-time cell `learnRate-low` = 0.35** (B2's new row, low end, [F]-derived), others at base. Reason: the criterion's own rule is that the GAM must beat its baselines in every one-at-a-time cell, and B2 now gives a range; a verdict that holds only at the unsourced top of that range would be "wins only under one parameter setting" (exit row). This makes the bar stricter and is set before any score. **Not done:** no high cell (B2's high 0.70 is the base; nothing supports more); the base stays 0.70, the C1 guess, because B2 gives no base and choosing a centre would be the judge choosing a range value; learn rate is not added to the corners (they stay the 16 of four axes, reported only). The readout states that the base cell sits at the top of B2's learn-rate range. | world-inputs.mjs `B2.learnRate`, `cells` (`learnRate-low`), `personaWorld` (learnRate from the cell; also used by the visible pre-history's encoding). §2, §4. |
+| F3 | Novelty trigger "concept never completed, or domain not among the last 10 completed" is true for nearly every card (223 concepts / 230 lessons) and copies the composer's `conceptUnseen` and `domainUnseen` | **Fixed.** Trigger is now a **domain switch from the previous completed card** (pre-history included; never on the very first card), the meaning C2 corrected B2's row to (memo C2 revision: a context that differs from what came just before). It is not the composer's formula: the composer scores a concept never completed and a domain absent from the last 10 (sim/composer.ts `novelty`, lines 145–150); with two domains its domain clause implies a switch, but a switch does not imply it, and the concept clause is gone. It can now differ by order, so the ±0.05 cells test something. | learner.mjs `study` (`lastDomain`). Test "C2 F3". |
+
+**The notes.** The six C2 marks "state in readout" (F4, F7, F10, F12, F16, F17) go into the readout's model description, unchanged here. The other notes (F5, F6, F8, F9, F11, F13–F15, F18–F23) are not acted on in C4; they stay open in C2's record for a later criterion, and none changes what the readout can claim beyond what the readout states.
+
+**Other C4 changes before the freeze:**
+
+| § / file | Change | Why |
+|---|---|---|
+| header | `status: frozen`, freeze line | Batch-2 C4 step 3 |
+| §1 | S rechecked: 200 stands | Learner changed (F1, F3); rule of §1 |
+| §2, §4 | 10 pass-relevant cells (base + 9 one-at-a-time, `learnRate-low` added) | F2 |
+| §4 | Placeholders filled (C4 fill table) after spot-checking C0 rows 2 and 4 | §7, VP decision §5 |
+| §4 row | Novelty trigger meaning; learn-rate row | F3, F2 |
+| §5 | C4 test status | T5–T7 must pass before the run |
+| run.mjs | `--kinds=` option (run only some cell kinds first on a loaded host); the manifest records the kinds | Host load (the run is otherwise unchanged and deterministic) |
+| tests.test.mjs | Freeze-lock test on temporary copies in both states; one-at-a-time count 9; two C4 known-answer tests | The real file is frozen from now on |

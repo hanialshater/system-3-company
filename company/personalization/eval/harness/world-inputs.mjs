@@ -2,40 +2,53 @@
 // owner: personalization-eval (Uma) · run: eval-c1-1016 · criterion: company/personalization/eval/2026-10-16-phase-a-criterion.md
 // Judge module: imports nothing (criterion T5). No policy, curve, weight or lesson dim is read here.
 //
-// THE B2 BLOCK IS A NAMED INPUT, NOT A FILLED PLACEHOLDER. In C1 it holds the values of the B2 memo's ranges table
-// (company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md, "The ranges table"), as
-// written, before the C0 full-text check (company/personalization/evidence/2026-10-16-ranges-fulltext-check.md).
-// C4 replaces this block from the B2 table as corrected by C0 (batch-2 C4 step 2), applies the criterion §4 rules,
-// and, if a base value changed, recomputes S from the default-order arm only. `B2.status` says which state it is in.
+// THE B2 BLOCK: FILLED IN C4 (run eval-c4-1016) from the B2 memo's ranges table
+// (company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md, "The ranges table") as corrected by
+// C0 (company/personalization/evidence/2026-10-16-ranges-fulltext-check.md, "What moves in the ranges table": no bound
+// moved, marks changed) and by the memo's C2 revision (company/personalization/evidence/2026-10-16-simulator-fidelity-review.md:
+// novelty meaning F3, hypercorrection unit F12, new learnRate row F2). Marks: [F] full text, [F-r] full text of a paper
+// reporting the primary, [A] abstract, [S] secondary, [R] recalled; "unverifiable" rows keep their value, labelled, and
+// the readout says the pass is conditional on them (criterion §4 rule, VP decision §5).
 // Run with another block: `--inputs=<file.json>` (same keys); the harness logs the hash of the block it used.
 
 export const B2 = {
-  status: "memo-as-written (pre-C0); C4 fills from the C0-corrected table",
+  status: "C0-corrected (filled in C4, run eval-c4-1016; criterion §4 C4 table)",
   memo: "company/personalization/evidence/2026-10-16-surprise-novelty-prerequisite-memo.md#the-ranges-table-for-the-c1-sweep",
-  // per-day exponential rate k over the 1-7 day first-revisit window. [R] Roediger & Karpicke 2006; high bound has no named source (VP decision §5).
-  forgetRate: { low: 0.04, base: 0.10, high: 0.20, confidence: "low-medium" },
-  // ratio of the fastest to the slowest persona's rate
+  check: "company/personalization/evidence/2026-10-16-ranges-fulltext-check.md",
+  // per-day exponential rate k of the increment ABOVE the guess floor (C0 condition; learner form changed in C4, C2 F1).
+  // low/base 0.04/0.10: Roediger & Karpicke 2006 [R], unverifiable this run (C0 row 1). high 0.20: Fazio et al. 2010 Table 2 [F]
+  // (C0 row 2, spot-checked by the eval in C4: k ≈ 0.17–0.19 above the not-read baseline).
+  forgetRate: { low: 0.04, base: 0.10, high: 0.20, confidence: "low-medium", marks: "low/base [R] unverifiable; high [F]" },
+  // ratio of the fastest to the slowest persona's rate. Not on C0's list.
   forgetSpread: { low: 1.5, base: 2, high: 3, confidence: "low" },
-  // hidden per-lesson pull, P(predicts the misconception | concept unknown)
-  pull: { low: 0.30, base: 0.55, high: 0.85, confidence: "low-medium" },
-  // additive learner modifier on the lesson's pull
+  // hidden per-lesson pull, P(predicts the misconception | concept unknown). high 0.85: Tversky & Kahneman 1983 [F-r];
+  // base region: Casscells et al. 1978 [F-r] / Manrai et al. 2014 [F] (C0 row 4, spot-checked by the eval in C4).
+  pull: { low: 0.30, base: 0.55, high: 0.85, confidence: "low-medium", marks: "high [F-r]; base region [F-r]/[F]" },
+  // additive learner modifier on the lesson's pull. Not on C0's list.
   pullModifier: { low: -0.15, base: 0, high: 0.10, confidence: "low" },
-  // relative cut in encoding when >= 1 in-pilot prerequisite is unknown; no recovery
-  prereqPenalty: { low: 0.00, base: 0.15, high: 0.40, stress: 0.50, confidence: "low" },
+  // relative cut in encoding when >= 1 in-pilot prerequisite is unknown; no recovery. high 0.40: Bransford & Johnson 1972
+  // [S], unverifiable this run (C0 row 5).
+  prereqPenalty: { low: 0.00, base: 0.15, high: 0.40, stress: 0.50, confidence: "low", marks: "high [S] unverifiable" },
   priorKnowledgeMean: { low: 0.05, base: 0.20, high: 0.50, confidence: "low" },
   priorKnowledgeSpread: { low: 0.05, base: 0.15, high: 0.25, confidence: "low" },
-  // relative boost to encoding, every lesson (prediction then feedback)
-  predictionFeedback: { low: 0.00, base: 0.10, high: 0.25, confidence: "medium" },
-  // relative boost to first-revisit recall after a misconception error that was then learned, net of reversion
-  hypercorrection: { low: 0.00, base: 0.05, high: 0.15, confidence: "low-medium" },
-  // relative boost to encoding when the concept or the domain is unseen
+  // relative boost to encoding, every lesson (prediction then feedback). St. Hilaire et al. [A]; Crouch et al. [S] (C0 row 6).
+  predictionFeedback: { low: 0.00, base: 0.10, high: 0.25, confidence: "medium", marks: "[A]/[S]" },
+  // relative boost to the kept increment of first-revisit recall after a misconception error that was then learned, net of
+  // reversion (unit: C2 F12 / memo C2 revision). Butler et al. 2011 [S], unverifiable this run (C0 row 7).
+  hypercorrection: { low: 0.00, base: 0.05, high: 0.15, confidence: "low-medium", marks: "[S] unverifiable" },
+  // relative boost to encoding when the lesson's context differs from what came just before (a domain switch from the
+  // previous completed card). Meaning corrected by the memo's C2 revision (F3); values unchanged.
   novelty: { low: -0.05, base: 0.00, high: 0.05, confidence: "low" },
+  // P(encode | concept unknown, no penalty) before the prediction-feedback boost. NEW ROW (memo C2 revision, C2 F2):
+  // low 0.35 from Fazio et al. 2010 Table 2 [F]; high 0.70 = the C1 guess, unsourced; B2 gives NO base. The base 0.70 is
+  // the C1 value kept (labelled guess, = B2 high); low 0.35 is a pass-relevant one-at-a-time cell (criterion §4, C4).
+  learnRate: { low: 0.35, base: 0.70, high: 0.70, confidence: "low", marks: "low [F] (derived); high unsourced; base none in B2 (C1 guess)" },
 };
 
 // Unsourced constants the B2 table does not cover. Copied from the provisional learner (sim/learner.ts BASE_PARAMS,
 // read as an artifact), labelled guesses, NOT swept. C2 (learning-scientist-personalization) may challenge any.
 export const UNSOURCED = {
-  learnRate: 0.7,            // P(encode | unknown, no penalty) before the prediction-feedback boost. guess
+  // learnRate moved to the B2 block in C4 (C2 F2: learning-scientist-personalization published a range for it).
   slip: 0.1,                 // P(wrong prediction | known). guess
   guessRecall: 0.2,          // floor on recall probability (a guess at a revisit). guess
   relearn: 0.5,              // P(encode from the feedback of a failed revisit). guess
@@ -76,6 +89,7 @@ export const CRITERION = {
  *  - surprise (hypercorrection): B2 low is 0 or confidence below medium => base 0; low 0; high = B2 high.
  *  - novelty: base = B2 base (0); the VP's per-term request runs B2 low/base/high (criterion §8 ruling).
  *  - prediction-feedback: B2 base, not swept (it applies to every lesson alike).
+ *  - learnRate (C4, C2 F2): base = B2 learnRate.base (the C1 guess 0.70); B2's low 0.35 is one more one-at-a-time cell.
  */
 export function cells(b2 = B2) {
   const fLow = Math.min(0.5, b2.forgetRate.low / b2.forgetRate.base);
@@ -83,7 +97,7 @@ export function cells(b2 = B2) {
   const surpriseBaseZero = b2.hypercorrection.low <= 0 || !["medium", "high"].includes(b2.hypercorrection.confidence);
   const sBase = surpriseBaseZero ? 0 : b2.hypercorrection.base;
   const base = { forgetScale: 1, pullScale: 1, prereqPenalty: b2.prereqPenalty.base, hypercorrection: sBase,
-    novelty: b2.novelty.base, rho: CRITERION.rhoAgreement.value };
+    novelty: b2.novelty.base, rho: CRITERION.rhoAgreement.value, learnRate: b2.learnRate.base };
   const out = [{ name: "base", kind: "base", world: { ...base } }];
   const axes = {
     forgetScale: [fLow, fHigh], pullScale: [0.5, 1.5],
@@ -93,6 +107,10 @@ export function cells(b2 = B2) {
     out.push({ name: `${k}-low`, kind: "one-at-a-time", world: { ...base, [k]: lo } });
     out.push({ name: `${k}-high`, kind: "one-at-a-time", world: { ...base, [k]: hi } });
   }
+  // learnRate (C4, answer to C2 F2): B2's low as a pass-relevant one-at-a-time cell. No high cell: B2's high equals the
+  // base (0.70), and nothing supports a higher value. Not added to the corners (they stay the 16 of the four axes above).
+  if (b2.learnRate.low !== b2.learnRate.base) out.push({ name: "learnRate-low", kind: "one-at-a-time", world: { ...base, learnRate: b2.learnRate.low } });
+  if (b2.learnRate.high !== b2.learnRate.base) out.push({ name: "learnRate-high", kind: "one-at-a-time", world: { ...base, learnRate: b2.learnRate.high } });
   const keys = Object.keys(axes);
   for (let m = 0; m < 16; m++) {
     const w = { ...base };
@@ -141,7 +159,7 @@ export function personaWorld(persona, personas, cell, b2 = B2) {
     priorKnowledge: { probability: prior(L.priorKnowledge.probability), cs: prior(L.priorKnowledge.cs) },
     learnPrereqPenalty: cell.prereqPenalty, forgetPrereqPenalty: UNSOURCED.forgetPrereqPenalty,
     hypercorrection: cell.hypercorrection, novelty: cell.novelty, predictionFeedback: b2.predictionFeedback.base,
-    learnRate: UNSOURCED.learnRate, slip: UNSOURCED.slip, guessRecall: UNSOURCED.guessRecall, relearn: UNSOURCED.relearn,
+    learnRate: cell.learnRate ?? b2.learnRate.base, slip: UNSOURCED.slip, guessRecall: UNSOURCED.guessRecall, relearn: UNSOURCED.relearn,
     revisitStrengthen: UNSOURCED.revisitStrengthen, stopBeforeRevealShare: UNSOURCED.stopBeforeRevealShare,
     interest: { ...L.interest }, stopHazard: L.stopHazard,
   };
