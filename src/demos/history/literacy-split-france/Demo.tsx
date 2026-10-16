@@ -45,14 +45,15 @@ const SHOW_NAME: Record<string, string> = { Correze: "Corrèze" };
 const nameOf = (r: Dept) => SHOW_NAME[r.name] ?? r.name;
 
 // five shading steps, darkest = most literate
+// Colours mix the domain colour with the card background (low) or the text colour (high), so the order reads in
+// light and dark themes: the further from the background, the more literate.
 const STEPS = [
-  { min: 65, label: "65 to 74" },
-  { min: 50, label: "50 to 64" },
-  { min: 35, label: "35 to 49" },
-  { min: 20, label: "20 to 34" },
-  { min: 0, label: "12 to 19" },
+  { min: 65, label: "65–74", fill: "color-mix(in srgb, var(--domain) 50%, var(--fg))" },
+  { min: 50, label: "50–64", fill: "color-mix(in srgb, var(--domain) 85%, var(--fg))" },
+  { min: 35, label: "35–49", fill: "color-mix(in srgb, var(--domain) 70%, var(--bg-2))" },
+  { min: 20, label: "20–34", fill: "color-mix(in srgb, var(--domain) 42%, var(--bg-2))" },
+  { min: 0, label: "12–19", fill: "color-mix(in srgb, var(--domain) 16%, var(--bg-2))" },
 ];
-const OPACITY = [0.95, 0.72, 0.5, 0.3, 0.12];
 const stepOf = (lit: number) => STEPS.findIndex((st) => lit >= st.min);
 
 type Mode = "ne" | "swc" | "paris" | "ext";
@@ -65,7 +66,7 @@ const PRESETS: { id: Mode; label: string }[] = [
 ];
 
 const W = 340;
-const H = 300;
+const H = 252;
 
 function Stage({ locked, reach, mode, pick, seen }: {
   locked: boolean;
@@ -77,7 +78,7 @@ function Stage({ locked, reach, mode, pick, seen }: {
   const hatch = `hatch-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const { path, xy } = useMemo(() => {
     const fc: FeatureCollection<Geometry, Props> = { type: "FeatureCollection", features: FEATURES };
-    const projection = geoConicEqualArea().parallels([44, 49]).rotate([-3, 0]).fitExtent([[6, 4], [W - 4, H - 22]], fc);
+    const projection = geoConicEqualArea().parallels([44, 49]).rotate([-3, 0]).fitExtent([[80, 4], [W - 4, H - 4]], fc);
     const g = geoPath(projection);
     return {
       path: (o: Parameters<typeof g>[0]) => g(o) ?? "",
@@ -91,13 +92,6 @@ function Stage({ locked, reach, mode, pick, seen }: {
   };
 
   const active = locked ? null : mode;
-  const inGroup = (r: Dept | undefined) => {
-    if (!r) return false;
-    if (active === "ne") return inNE(r);
-    if (active === "swc") return inSWC(r);
-    return true;
-  };
-  const dimming = active === "ne" || active === "swc";
   const named = (code: string) => {
     const f = FEATURES.find((x) => x.properties.code === code)!;
     return xy(f);
@@ -115,7 +109,6 @@ function Stage({ locked, reach, mode, pick, seen }: {
 
   return (
     <div className={s.wrap}>
-      {locked && <p className={s.msg}>Make a prediction to start.</p>}
       <div className={s.pic}>
         <svg viewBox={`0 0 ${W} ${H}`} className="stage-svg" role="img" aria-label={label}>
           <defs>
@@ -125,10 +118,8 @@ function Stage({ locked, reach, mode, pick, seen }: {
           </defs>
           {FEATURES.map((f) => {
             const r = f.properties.g === null ? undefined : BY.get(f.properties.g);
-            const fill = locked ? "var(--muted)" : r ? "var(--domain)" : `url(#${hatch})`;
-            const base = locked ? 0.18 : r ? OPACITY[stepOf(r.lit)] : 1;
-            const op = dimming && !inGroup(r) ? base * 0.3 : base;
-            return <path key={f.properties.code} d={path(f)} fill={fill} fillOpacity={op} className={s.dept} />;
+            const fill = locked ? "color-mix(in srgb, var(--muted) 22%, var(--bg-2))" : r ? STEPS[stepOf(r.lit)].fill : `url(#${hatch})`;
+            return <path key={f.properties.code} d={path(f)} style={{ fill }} className={s.dept} />;
           })}
           {active === "ne" && <path d={path(LINES.ne)} className={s.region} />}
           {active === "swc" && <path d={path(LINES.swc)} className={s.region} />}
@@ -154,21 +145,24 @@ function Stage({ locked, reach, mode, pick, seen }: {
           )}
           {!locked && (
             <g>
-              <text x={6} y={136} className={s.legendTitle}>% of conscripts</text>
-              <text x={6} y={149} className={s.legendTitle}>who could read</text>
-              <text x={6} y={162} className={s.legendTitle}>and write</text>
+              {["Conscripts", "who could", "read and", "write, %"].map((t, i) => (
+                <text key={t} x={2} y={13 + i * 13} className={s.legendTitle}>{t}</text>
+              ))}
               {STEPS.map((st, i) => (
                 <g key={st.min}>
-                  <rect x={6} y={168 + i * 15} width={14} height={11} fill="var(--domain)" fillOpacity={OPACITY[i]} className={s.swatch} />
-                  <text x={24} y={177 + i * 15} className={s.legend}>{st.label}</text>
+                  <rect x={2} y={60 + i * 16} width={15} height={12} style={{ fill: st.fill }} className={s.swatch} />
+                  <text x={21} y={70 + i * 16} className={s.legend}>{st.label}</text>
                 </g>
               ))}
-              <rect x={6} y={250} width={14} height={11} fill={`url(#${hatch})`} className={s.swatch} />
-              <text x={24} y={259} className={s.legend}>no value in</text>
-              <text x={24} y={272} className={s.legend}>Guerry&apos;s table</text>
+              <rect x={2} y={142} width={15} height={12} fill={`url(#${hatch})`} className={s.swatch} />
+              {["no value", "in Guerry's", "table"].map((t, i) => (
+                <text key={t} x={21} y={152 + i * 13} className={s.legend}>{t}</text>
+              ))}
             </g>
           )}
-          <text x={6} y={H - 6} className={s.proj}>Conic equal-area projection · today&apos;s outlines</text>
+          {["Conic equal-area", "projection;", "today's outlines"].map((t, i) => (
+            <text key={t} x={2} y={H - 32 + i * 13} className={s.proj}>{t}</text>
+          ))}
         </svg>
       </div>
       <div className={s.presets}>

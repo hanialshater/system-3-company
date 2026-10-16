@@ -1,7 +1,7 @@
 {
   "slug": "literacy-split-france",
-  "title": "Where France could read in the 1830s",
-  "hook": "Literacy by French department in the 1830s: does one average describe the whole country?",
+  "title": "Who could read in 1830s France",
+  "hook": "Can one average describe all of France?",
   "domain": "history",
   "concept": "guerry-literacy-map",
   "status": "draft",
@@ -37,9 +37,9 @@
     },
     {
       "id": "history.literacy-split-france.c3",
-      "text": "Departments in Guerry's north and east averaged 55% of conscripts who could read and write; in the south, west and centre, 29%. The extremes were Meuse, 74%, and Corrèze, 12%; Seine (Paris) 71%. The average across the 86 departments was 39%.",
+      "text": "Departments in Guerry's north and east averaged 55% of conscripts who could read and write; in the south, west and centre, 28%. The extremes were Meuse, 74%, and Corrèze, 12%; Seine (Paris) 71%. The average across the 86 departments was 39%.",
       "support": "derivation",
-      "source": "history-cycle2-check.mjs section 23: N 54.1, E 56.4, S 31.9, W 27.6, C 25.8 (17 departments each); N+E 55.2, S+W+C 28.8; unweighted mean of 86 departments 39.26; Meuse 74, Corrèze 12, Seine 71. Demo.tsx computes the same from departments.json rows (Math.round of unweighted means of departments; the readout row and reveal show them rounded to whole percent).",
+      "source": "history-cycle2-check.mjs section 23: N 54.1, E 56.4, S 31.9, W 27.6, C 25.8 (17 departments each); N+E 55.2 (34 departments); unweighted mean of 86 departments 39.26; Meuse 74, Corrèze 12, Seine 71. S+W+C: Demo.tsx takes Guerry's 51 S, W and C departments, mean 28.41, shown 28%. The check script prints 28.8 (brief: 29%) because its filter \"SWC\".includes(x.reg) also matches Corse's empty Region (52 departments); the 17+17+17 count in its own output and the stage's outline say 51. Flagged to cm-history in company/reviews/literacy-split-france/build.md. Demo.tsx computes every value from departments.json rows (Math.round of unweighted means of departments; the readout row and reveal show whole percent).",
       "status": "unverified"
     }
   ],
